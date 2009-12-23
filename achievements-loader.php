@@ -25,6 +25,7 @@
 define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_achievements_class', true);
+define('load_mangos_class', true);
 
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');

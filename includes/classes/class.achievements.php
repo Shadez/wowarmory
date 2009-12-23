@@ -211,14 +211,38 @@ Class Achievements extends Connector {
         //{
         switch($data[0]['requiredType']) {
             case 7: // Skills
-            case 29: // items
+            case 9:  // Quests
+            case 10: // Daily quests
+            case 11: // Quest counter
+            case 14: // Daily quests
+            case 29: // Items
+            case 13: // PvP Kills
+            case 37: // Arena Wins
             case 41: // Food & drinks
             case 42: // Badges
 		    case 45: // Bank safe
             case 47: // Reputation
+            case 56: // PvP Kills
+            case 62: // Money
+            case 67: // Money drop
             case 75: // Pets
             case 109: // Fishing
             case 113: // PvP wins
+                if($data[0]['requiredType'] == 62 || $data[0]['requiredType'] == 67) { // Make money
+                    $money = Mangos::getMoney($character_progress);
+                    $money_need = Mangos::getMoney($data[0]['value']);
+                    $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>";
+                    if($money['gold'] > 0) {
+                        $progress_bar_string .= $money['gold']." <img alt='' class='p' src='images/icons/money-gold-small.png'/>";
+                    }
+                    if($money['silver'] > 0) {
+                        $progress_bar_string .= $money['silver']." <img alt='' class='p' src='images/icons/money-silver-small.png'/>";
+                    }
+                    if($money['copper'] > 0) {
+                        $progress_bar_string .= $money['copper']." <img alt='' class='p' src='images/icons/money-copper-small.png'/>";
+                    }
+                    $progress_bar_string .= " / ".$money_need['gold']."<img alt='' class='p' src='images/icons/money-gold-small.png'/></div></div></div></div></ul>";
+                }
                 $percent_value = floor(Utils::getPercent($data['0']['value'], $character_progress));
                 $progress_bar_string = str_replace("{PERCENT}", $percent_value, $progress_bar_string);
                 $progress_bar_string = str_replace("{CURRENT_NUM}", $character_progress, $progress_bar_string);
@@ -232,11 +256,13 @@ Class Achievements extends Connector {
             case 36: // Keys
             case 43: // Exploration
             case 46: // Reputation list
+            case 49: // Item levels
             case 52: // PvP (classes)
             case 53: // PvP (races)
             case 54: // All squirells I love'd before...
             case 68: // Read books
             case 69: // NPCs
+            case 70: // PvP Kills
             case 72: // Fishing
                 $i=0;
                 foreach($data as $criteria) {

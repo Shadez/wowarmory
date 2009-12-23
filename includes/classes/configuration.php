@@ -30,7 +30,7 @@ $ArmoryConfig = array();
 $ArmoryConfig['mysql']['host_armory']     = 'localhost';
 $ArmoryConfig['mysql']['user_armory']     = 'root';
 $ArmoryConfig['mysql']['pass_armory']     = '';
-$ArmoryConfig['mysql']['name_armory']     = 'armortyy';
+$ArmoryConfig['mysql']['name_armory']     = 'armory';
 $ArmoryConfig['mysql']['charset_armory']  = 'UTF8';
 
 $ArmoryConfig['mysql']['host_characters']     = 'localhost';
