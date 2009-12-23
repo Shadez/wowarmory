@@ -1,0 +1,148 @@
+.talContainer, .talCalcContainer, .petTalCalcContainer { width: 636px; position:relative; background: none }
+.talContainer { height: 659px; padding: 33px 0 0 0 }
+.talentFrame { width: 636px; padding: 0px; background: none }
+.talCalcContainer { height: 659px; margin:0 auto;  padding: 19px 0 0 0 }
+.petTalCalcContainer { height: 402px; padding:20px 0 0 0 ; }
+.petTalCalcContainer .talentFrame { width: 210px; margin-left:164px }
+
+.calcInfo { margin:0 auto 0; height: 22px; padding: 12px 50px 0 100px; background: url('../../images/talents/talentcalc-textstrip.jpg') 0 10px no-repeat; color: #FFF; }
+.calcInfo span.ptsHolder { margin: 0 30px 0 0; }
+.calcInfo #pointsLeft { margin-right: 12px }
+.calcInfoLeft { float: left; display: block }
+.calcInfo a.petBeastMastery { display: block; float: left; width: 19px; height: 17px; line-height: 17px; background: url('../../images/talents/button-beastmaster2.gif') no-repeat 0 0; position: relative; top: 1px; font-size: 11px; text-align: center; color: #00ff00; text-decoration: none }
+.calcInfo a.petBeastMastery:hover { background-position: 0 -17px }
+.calcInfo a.petBeastMastery-on { color: red !important; background-position: 0 -34px !important }
+
+/* TODO: Add nice 1px #75601c border to the talent trees, will require updating the background image */
+.talContainer .talentTree { width: 210px; height: 569px; padding: 5px 0 0 0; display: block; float: left; background-repeat:no-repeat; }
+.petTalCalcContainer .talentTree { height: 314px; }
+.talContainer .talentTree .tier { height: 52px; width: 210px;  position:relative; }
+.talContainer .talentTree .talent { position:absolute; display: block; height: 42px; width: 46px; background-position: 2px 2px; background-repeat:no-repeat; }
+.talContainer .talentTree .talentHolder { width: 44px; height: 39px; padding: 2px 0 0 2px; background: url('../../images/talents/talent-wrap-small.gif') no-repeat 0 50%;  }
+.talContainer .talentTree .tier .talentHover { background: url('../../images/talents/talent-hover.png') 0 0 no-repeat; float: left; height: 30px; width: 30px; }
+.talContainer .talentTree .tier .talentHover:hover { background-position: 0 100%; }
+/* different select states */
+.talContainer .talentTree .disabled { background-position: 0 0 !important; }
+.talContainer .talentTree .talentMax { background-position: 0 100% !important;  }
+
+.talContainer .talentTree .disabled .rankCtr { color: #FFF !important; }
+.talContainer .talentTree .talentMax .rankCtr { color: #FFD100 !important; }
+.talContainer .talentTree .rankCtr { color: #1AFF1A; }
+
+.talContainer .talentTree .col0 { top: 0; left: 10px;  }
+.talContainer .talentTree .col1 { top: 0; left: 60px;  }
+.talContainer .talentTree .col2 { top: 0; left: 110px;  }
+.talContainer .talentTree .col3 { top: 0; left: 160px;  }
+
+.talContainer .rankCtr {color: #FFF; width: 15px; font-size: 10px; position:absolute; bottom: -1px; right: 4px; }
+.talContainer .requiredArrow { display: block; position: absolute; z-index: 100; }
+
+.talContainer .vArrow { background: url('../../images/talents/arrow-down.gif') 0 100% no-repeat; }
+.talContainer .hArrow { background: url('../../images/talents/arrow-vertical.gif') 0 100% no-repeat; }
+.talContainer .plain { background-image: url('../../images/talents/arrow-plain.gif'); }
+.talContainer .arrowLeft { background-position: 0 0; }
+.talContainer .arrowRight { background-position: 100% 0; }
+.talContainer .disabledArrow { background-position: 100% 100%; }
+.talContainer .disabledArrowL { background-position: 0 100% !important; }
+
+.talContainer .talentTreeInfo { margin: 13px 0px 0 4px; line-height: 21px; padding: 0 0 0 28px; height: 25px; overflow: hidden; white-space: nowrap }
+
+/* Reset/Export button */
+.resetExportHolder, .resetExportPetHolder { margin: 0 auto; clear: both; position:relative; top: 50px}
+
+/* Blue buttons */
+a.awesomeButton-resetTalents div { background-image: url('../../images/button-blue-reload.gif') }
+a.awesomeButton-exportBuild div { background-image: url('../../images/talents/button-blue-export.gif') }
+a.awesomeButton-printableVersion { margin-right: 8px }
+a.awesomeButton-printableVersion div { background-image: url('../../images/talents/button-blue-printer.gif') }
+
+.subtleResetButton { cursor:pointer; float: right; text-decoration: none !important; margin: 0 3px 0 0; display: block; background: url('../../images/talents/button-subtle-left.gif') 0 0 no-repeat; height: 22px; padding: 0 0 0 7px; }
+.subtleResetButton span { cursor:pointer; float: left; display: block; height: 21px; background: url('../../images/talents/button-subtle-right.gif') 100% 0 no-repeat; padding: 1px 10px 0 5px; }
+
+/* glyphs */
+#glyphsLabel { float: left; margin: 50px 0 0 0px !important; }
+#glyphHolder {position:absolute; top: 203px; right: 25px; width: 210px; height: 232px;}
+.glyphHolderBottom { margin: 0 auto; background: url('../../images/talents/glyph-frame-bottom.gif') 0 0 no-repeat; width: 836px; height: 27px; position:relative; top: -30px;  } 
+
+#glyphHolder .glyph { cursor: default; float: left; display: block; background: url('../../images/talents/glyphs-small-left.gif') 0 0 no-repeat; padding: 0 0 0 33px; height: 33px; width: 173px; }
+#glyphHolder .glyph span { float: left; background: url('../../images/talents/glyphs-small-right.gif') 100% 0 no-repeat; height: 33px; padding: 0 0 0 5px; width: 100%; line-height: 33px;}
+#glyphHolder .major { background-position:  0 -66px; margin: 0 0 2px 0; }
+#glyphHolder .major:hover { background-position: 0 -99px; }
+#glyphHolder .minor { background-position: 0 -132px;  margin: 0 0 2px 0; }
+#glyphHolder .minor:hover { background-position: 0 -165px; }
+#glyphHolder .major span, #glyphHolder .minor span { background-position: 100% 100%; color: #FFF; font-weight: bold; }
+#glyphHolder .glyphTypeText { color: #73c7f3; font-weight: normal; margin: 0 0 0 3px; font-size: 11px; font-style:normal; }
+/* empty glyph */
+#glyphHolder .emptyGlyphminor, #glyphHolder .emptyGlyphmajor { margin: 0 0 2px 0; }
+#glyphHolder .emptyGlyphminor span, #glyphHolder .emptyGlyphmajor span{ color: #64432d; font-style:italic;  background-position: 100% 0 !important; }
+#glyphHolder .emptyGlyphminor { background-position: 0 -33px !important; }
+#glyphHolder .emptyGlyphmajor { background-position: 0 0 !important; }
+#glyphHolder .majorGlyphIcon { float: left; position:relative; top: 6px; left: -32px; margin: 0 -32px 0 0 }
+#glyphHolder .minorGlyphIcon { float: left; position:relative; top: 8px; left: -31px; margin: 0 -31px 0 0 }
+
+/* switch specs */
+.talentSpecSwitchHolder { position:absolute;width:100%;z-index:10000 }
+.talentSpecSwitch { margin:0 auto;position:relative;top:-11px;}
+.talentSpecSwitch td{ width:50%; }
+.talentSpecSwitch a { display:block; height:26px; line-height:26px; background:url('/images/talents/talent-buttons.gif') no-repeat; text-decoration:none !important; text-align:center; padding:0 3px 0 0;color:#FFD200}
+.talentSpecSwitch a:hover { color:#FFFFFF; text-decoration:none !important}
+.talentSpecSwitch .selectedSet a, .talentSpecSwitch .selectedSet a:hover {color:#000 !important }
+.talentSpecSwitch img { position:relative; border: none; float: left; display: block; height: 21px; width: 21px; top:3px; margin:0 15px 0 3px }
+.talentSpecSwitch a div { padding:0 30px 0 0 } 
+.talentSpecSwitch a#group_1_link { background-position:left -26px;}
+.talentSpecSwitch a#group_2_link { background-position:right -104px;}
+.talentSpecSwitch a#group_1_link:hover { background-position:left -52px}
+.talentSpecSwitch a#group_2_link:hover { background-position:right -130px}
+.talentSpecSwitch .selectedSet a#group_1_link,.talentSpecSwitch .selectedSet a#group_1_link:hover { background-position:left top !important}
+.talentSpecSwitch .selectedSet a#group_2_link,.talentSpecSwitch .selectedSet a#group_2_link:hover { background-position:right -78px !important}
+.talentSpecSwitch .activeTalents div { background:url('/images/talents/check-brown.gif') right 3px no-repeat}
+.talentSpecSwitch .selectedSet .activeTalents div { background-image:url('/images/talents/check-green.gif') !important}
+.talentSpecSwitch .buildPointer { height:7px; overflow:hidden; position:relative; top:-2px }
+.talentSpecSwitch .selectedSet .buildPointer { background:url('/images/talents/talent-button-arrow.gif') center top no-repeat }
+
+.talentGlyphBg {background:url('/images/talents/talent-bg-top-no-pet.jpg') left top no-repeat}
+.talentGlyphBgPet {background:url('/images/talents/talent-bg-top-pet.jpg') left top no-repeat}
+.talentGlyphFooter {background:url('/images/talents/talent-bg-bottom-no-pet.jpg') left bottom no-repeat}
+.talentGlyphFooterPet {background:url('/images/talents/talent-bg-bottom-pet.jpg') left bottom no-repeat}
+.talentGlyphHeader, .talentGlyphHeaderMultiSpec { padding:0 0 0 15px }
+.talentGlyphHeader {}
+.talentGlyphHeaderMultiSpec {background:url('/images/talents/talent-bg-top-double.jpg') left top no-repeat;}
+
+.petTalContainer { width:210px; position:absolute; top: 465px; right:19px; }
+.petTalTree { width:210px;height:314px; }
+.petTalTree.petTalTypeTenacity { background:url('/images/talents/bg/small/HunterPetTenacity.jpg') center center no-repeat }
+.petTalTree.petTalTypeFerocity { background:url('/images/talents/bg/small/HunterPetFerocity.jpg') center center no-repeat }
+.petTalTree.petTalTypeCunning { background:url('/images/talents/bg/small/HunterPetCunning.jpg') center center no-repeat }
+.petTalContainer .petTalInfo { background:green; line-height:21px; padding:0 0 0 28px; margin:18px 0 0 2px}
+
+.talentCalcBg { background:url('/images/talents/talentcalc-bg-top.jpg') left top no-repeat }
+.talentCalcFooter { background:url('/images/talents/talentcalc-bg-bottom.jpg') left bottom no-repeat }
+.petTalentCalcBg { background:url('/images/talents/pettalentcalc-bg-top.jpg') left top no-repeat; margin:0 0 0 50px }
+.petTalentCalcBg .talentCalcFooter { background:url('/images/talents/pettalentcalc-bg-bottom.jpg') left bottom no-repeat; }
+
+#petName { width:210px;height:21px;position:absolute; top: 443px; right:19px; z-index:1000; text-align:center; overflow:hidden }
+#petName select{ width: 190px }
+#petName select:hover { border:1px solid #CAF500; }
+#petName .onlyPetName { display:block; font-weight:bold; font-size:12px; background:#fff7ce; width:188px;margin:0 auto;line-height:17px;position:relative;top:2px; border:1px solid #b39349; }
+
+.petFamilies { width:300px; padding:10px; float:right; clear:both; /*margin-right:120px*/; z-index:500; position:absolute; top:50px; left:450px}
+.petGroup { cursor:pointer; background:left top repeat; background-image:url('/images/talents/petlist-bg.jpg'); border:1px solid #c6984f; margin:0 0 5px; position:relative }
+.petGroup_b { height: height:100px; background:left top repeat-y; background-image:url('/images/talents/petlist-bg-left.jpg'); border:1px solid #fde9b0; padding:2px 0 3px 5px}
+.petGroup.selectedPetGroup { background-image:url('/images/talents/petlist-bg-sel.jpg'); border:1px solid #c4995b }
+.selectedPetGroup .petGroup_b { background-image:url('/images/talents/petlist-bg-left-sel.jpg'); border:1px solid #ffffef }
+.petGroup.hoverPetGroup { border:1px solid #fff !important}
+.hoverPetGroup .petGroup_b {border:1px solid #fff !important}
+.petGroup.hoverPetGroup.selectedPetGroup { border:1px solid #c6984f !important}
+.hoverPetGroup.selectedPetGroup .petGroup_b {border:1px solid #fde9b0 !important}
+.petFamily { background:left top no-repeat; width:43px; height:43px; float:left; margin:2px 4px 2px 1px; position:relative }
+.petFrame { width:43px; height:43px; zoom: 1 }
+.petFrameSelected { background: url(/images/talents/icon-select_43x43.png) no-repeat }
+.petGroup h4 { margin:0; color:#8d4d3c; font-size:12px }
+.petGroup.hoverPetGroup h4 { color:#ff7e00 }
+.petGroup.selectedPetGroup h4 { color:#cb6f56 }
+.petListArrow { overflow:hidden; position:absolute; width:15px; height:27px; top:50px; left:-14px}
+.petGroup.selectedPetGroup .petListArrow { background:url('/images/talents/petlist-arrow.gif') left top no-repeat; }
+
+.petContainer {	padding: 2px 0 0 0 !important }
+.petContainer .talentTree { height: 308px }
+.petContainer, .petContainer .talentFrame {	width: auto !important }

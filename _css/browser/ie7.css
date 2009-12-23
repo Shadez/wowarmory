@@ -1,0 +1,146 @@
+@charset "utf-8";
+/*
+World of Warcraft.com Armory Internet Explorer 7 CSS Specific
+(c) Blizzard Entertainment 2007. All rights reserved.
+*/
+.sub-head{zoom:1}
+
+.top{margin:0 0 -18px 0}
+.front-top .login-container .module{width:1px;white-space:nowrap;display:inline;right:auto;top:auto !important;position:relative;float:right !important}
+.front-top .login-container a.loginLink{zoom:1;padding:0 30px 0 0}
+.front-top .login-container .userKey {position:absolute;right:4px;top:4px}
+.front-top .login-container .usermod {margin:0 35px 0 0;position:relative;top:-2px}
+.int .login-container .module{zoom:1}
+a.userName {position:relative;padding:0 0 0 18px !important;zoom:1}
+.front-top .login-container a.userName em {position:absolute;}
+.front-top .login-container .menu-position {position:absolute;right:5px;}
+.user-menu-contents * {zoom:1;}
+.user-menu a,.user-menu a:active,.user-menu a:visited,.user-menu span{float:none}
+.char-select a {float:right !important}
+#wrapperTabs,#divCharTabs,#divCharTabs .tabs,.parch-int,.parch-bot{zoom:1}
+.hright,.hleft{display:none}
+.scroll-padding{display:none}
+.scroll-bot{margin-bottom:-5px}
+.usermod a em{zoom:1;padding:0}
+.list{padding:5px 0 5px 0}
+.updateTop{right:5px;top:-25px}
+.team-description a{cursor:pointer}
+.ihr,.iht,.ihl{width:588px}
+.faction-propass #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-alliance #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-horde #level{position:absolute;top:75px;left:57px;z-index:99}
+.profile-master li{height:52px}
+.level-noflash{font:28px/1 Georgia,"Times New Roman",Times,serif;top:0;}
+.ipl input{background:url('../../images/search-offstate.gif') no-repeat 100% 0}
+.ipl input:hover{background:url('../../images/search-overstate.gif')no-repeat 100% 0}
+.ipl input:focus{background:url('../../images/search-onstate.gif') no-repeat 100% 0}
+.arenaBadge-icon p{top:-20px}
+.character-stats li{margin:0 0 -2px 0 !important}
+.debuffs li p{top:0}
+.stack3{margin-top:-2px}
+.faq-links ol{margin:0 0 0 8px}
+q.filler{width:40px;height:1px}
+.deco-frame em.foot{top:-6px;left:-68px}
+.deco-frame tfoot td.sb{width:100% !important}
+.parchment .tr{padding:10px 0 20px 0;margin-bottom:0}
+.toolBoxb p{zoom:1}
+.player-side blockquote,.team-side blockquote,.rinfo blockquote,.full-list blockquote{margin:0}
+.rlbox,.rlbox1,.rlbox2{width:100%}
+.paging {height: auto;}
+.pnav ul {overflow:hidden;}
+del.rel-container em{filter:alpha(opacity='50')}
+.sort {display:inline;width:7px;height:12px;padding:0 7px 0 0;margin:0 0 0 4px;}
+.pinselect label input {top:0px;left:-4px}
+.data-table input {border:none;}
+.footer {zoom:1;}
+/* Guild Profiles */
+/*...........................................................*/
+.header-gs table{position:relative;top:22px}
+.racebar{filter:alpha(opacity='50')}
+.classbar{filter:alpha(opacity='50')}
+.levelbar{filter:alpha(opacity='70')}
+.level-container .graph-layout td:hover{filter:alpha(opacity='50')}
+.raceicon,.classicon{top:-1px}
+.banktabs{top:450px;}
+/* Talents */
+/*...........................................................*/
+.talentwrap1{display:block;margin:0;text-align:center}
+.talentwrap2{display:inline-block;width:654px;text-align:left;margin:0 -5px}
+.tdPaddingTen{padding:8px 10px 7px 6px !important}
+/* Profile */
+/*...........................................................*/
+.character-outer-noflash{position:relative;top:0px}
+.character-middle-noflash{position:absolute;top:50%}
+.character-inner-noflash{position:relative;top:-50%}
+#battlegroupName{width:100px}
+.arena-list li.left{float:none}
+.items-bot{position:absolute;width:200px;top:13px;left:74px}
+.items-bot b{left:0px}
+.player-side{padding-top:15px}
+.user-menu * {zoom:1}
+.character-stats li{margin:0 0 -2px 0;}
+/* Arena */
+/*...........................................................*/
+.arenaTeam-wrapper,.arenaTeam-right,.innerData,.arena-list li,.filterIcon,.arenaHeader,.arenaBody,.arena-list,.arena-cont,#teamIconBox,#teamIconBoxresults,#teamIconBox{zoom:1}
+.teamRank{top:0}
+.team2,.team3,.team5{margin-top:-10px}
+/* Results Page */
+/*...........................................................*/
+tr span,img.ci,.generic-wrapper,.generic-right,.genericHeader{zoom:1}
+/* character sheet */
+/*...........................................................*/
+.profile-master,.profile-master li,.stack1,.stack2,.stack3,.stack4,.spec,.resists,.profs,.stack2,.stats1,.stats2,.bonus-stats-content,.under10,.lastModified span,.stats1,.stats2,.bonus-stats-content,.language-filter,.bottom-background-align,.bottom-background-align2,.header-gs,.g-pos,.inner-top,.light-tip,.player-name em,#wowMenu,#arenaMenu,.profile,.profile-content,.spec,.resists,.profs,.stack2,.stats1,.stats2,.tip,.tooltip,html,.relative,#big-results,.data{zoom:1}
+.faq-links a span{zoom:normal}
+.header-gs table{position:relative;top:22px;zoom:1}
+.bonus-stats{z-index:-1}
+#arenaMenu{left:55px;top:16px}
+/* Item page */
+/*...........................................................*/
+.tourn{padding-top:40px}
+.breakit{display:none}
+.filter-left{left:0px}
+.filter-right{right:60px}
+.detail-search span.shr{height:15px;background:url('../../images/shr.gif') repeat-x 0 0;border-top:1px solid #c19b30;border-bottom:none}
+.multi-filter{padding:0;position:relative;z-index:99999}
+.icon-container{margin:0 -38px 0 0}
+.item-info{float:left;width:50%;padding-bottom:25px}
+#big-results .rating,.rating{background-position:0 0}
+.item-info .item-double .myTable{top:-10px !important;left:-10px !important}
+.id td.bg{background:#371f0b}
+.item-bound{padding:15px 0 15px 59px}
+.as-bot{padding-top:20px}
+a.ao-pop em{margin:0 0 -11px 0}
+a.item-add b{height:20px !important;top:21px}
+.filter-loc{margin-bottom:-20px;z-index:999999999}
+.filter-containter p{top:0 !important;}
+.open-filter{height:23px;position:absolute;text-decoration:none !important;display:block;text-align:center;z-index:909;padding-right:40px}
+.open-filter{top:9px;width:145px;left:-80px}
+.filter-loc b{text-align:center;font-weight:bold;text-decoration:none !important;font-style:normal;color:black !important;background:transparent;cursor:pointer;white-space:nowrap;position:relative;top:3px}
+.filter-loc em{background:url('../../images/filter-left.png') no-repeat 0 0;height:23px;position:relative;left:-19px;width:100%}
+.filter-loc strong{padding:0;display:block;width:100%;font-weight:bold;text-decoration:none;font-style:normal;color:#fdd623;cursor:pointer;position:absolute;top:2px;left:0;white-space:nowrap;z-index:2;text-align:center;height:20px}
+.filter-loc a:hover strong{color:white}
+.filter-loc i{position:relative;display:block;height:6px;bottom:6px;font-size:1px;margin:0 0 0 22px !important}
+a.filter-red{left:30px}
+.filter-loc a,.filter-loc a:link,.filter-loc a:visited,.filter-loc a:active{text-decoration:none}
+.filter-loc a:hover i{background-position:100% -6px}
+i.on{background:url('../../images/filter-arrow-down.gif') no-repeat 100% 0}
+i.off{background:url('../../images/filter-arrow-up.gif') no-repeat 100% 0}
+i.on{background:url('../../images/filter-arrow-down.gif') no-repeat 50% 0}
+i.off{background:url('../../images/filter-arrow-up.gif') no-repeat 50% 0}
+#formInputd { height: 20px!important;}
+#bankcontentscont1 { width: 21%!important;}
+#bankcontentscont2 { width: 18%!important;}
+#bankcontentscont3 { width: 17%!important;}
+#bankcontentscont4 { width: 21%!important;}
+#bankcontentscont5 { width: 22%!important;}
+
+
+/* Achievements */
+.add_error a { float:left;  display:block; }
+.criteria.c_list { padding:0; margin-left:64px;}
+.points { margin-top: 28px !important;}
+
+.bottomItems { top: 574px !important;}
+
+.sortTable th a { padding: 4px 0px 0 5px !important; }
+#petTalContainer  { top:474px !important;}

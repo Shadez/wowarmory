@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* reputations & skills */
+/*...........................................................*/
+.reputation-cont div { zoom:1 }
+.reputation-cont{width:750px;position:relative;z-index:99;margin:0 auto;clear:both}
+.reputation-cont a.staticTip { text-decoration:none }
+.reputationNote { background:url('/_images/reputation/product_box_bg.gif') left top repeat; border:1px solid #b6803d; margin:30px auto 100px auto; clear:both; width:50%}
+.reputationNote h1 { background:url('/_images/reputation/product_box_top_middle.gif') left top repeat-x; border:1px solid #ffffd6; text-align:center; padding: 10px 50px; color:#ab4a30 }
+/* GROUPING BUTTONS */
+.groupSwitches { clear:both;margin:0 auto;position:relative;top:-10px;height:18px}
+.groupSwitches a { float:left; background:url('/_images/button-yellow-right.gif') no-repeat; background-position: right top ; padding: 0 6px 0 0; height:18px; display:block; margin:0 0 0 12px; text-decoration:none !important; cursor:pointer}
+.groupSwitches a:hover { background-position: right -18px }
+.groupSwitches a span { font-size:11px; background:url('/_images/button-yellow-left.gif')  no-repeat; background-position: left top; padding: 0 6px 0 12px; line-height:18px; display:block }
+.groupSwitches a:hover span { background-position: left -18px }
+.groupSwitches a.selectedGroup {   background-position: right -18px }
+.groupSwitches a.selectedGroup span {  background-position: left -18px }
+/* TIER 1*/
+.reputation-cont .tier_1_a { background:url('/_images/reputation/product_box_bg.gif') left top repeat; border:1px solid #b6803d }
+.reputation-cont .tier_1_b { background:url('/_images/reputation/product_box_top_middle.gif') left top repeat-x; border:1px solid #ffffd6 }
+.reputation-cont .tier_1_c { background:url('/_images/reputation/product_box_top_left.jpg') left top no-repeat }
+.reputation-cont .tier_1_d { background:url('/_images/reputation/product_box_bottom.gif') center bottom no-repeat; padding:7px 7px 6px 7px }
+.reputation-cont a.tier_1_title, .reputation-cont a.tier_2_title { font-family:Georgia,"Times New Roman",Times,serif ; font-weight: normal !important; text-decoration:none; display:block; position:relative}
+.reputation-cont a.tier_1_title { font-size:22px !important; color:#ab4a30; background:url('/_images/reputation/collapse_arrows_big.gif') no-repeat;background-position: left 7px;  padding:0 0 0 17px; margin:0 0 7px 0 }
+.reputation-cont a.tier_1_title:hover { background-position: left -53px; color:#ff7e00}
+.reputation-cont .tier_1_shadow, .tier_1_shadow_end { background:url('/_images/reputation/product_box_shadow.jpg') center top no-repeat }
+.reputation-cont .tier_1_shadow { height:21px }
+.reputation-cont .tier_1_shadow_end { height:21px }
+/* TIER 2*/
+.reputation-cont .tier_2_a { background:url('/_images/reputation/group_box_bg.jpg') left top repeat; border:1px solid #b6803d }
+.reputation-cont .tier_2_b { background:url('/_images/reputation/group_box_top.jpg') left top repeat-x; border:1px solid #fff; padding:7px 7px 6px 7px }
+.reputation-cont a.tier_2_title { font-size:18px !important; color:#1e92c8; background:url('/_images/reputation/collapse_arrows_small.gif') left 10px no-repeat; padding:0 0 0 15px }
+.reputation-cont a.tier_2_title:hover { background-position: left -50px; color:#ff7e00}
+.reputation-cont .tier_2_shadow { background:url('/_images/reputation/group_box_shadow.jpg') center top no-repeat; height:4px }
+.reputation-cont .tier_2-5_a { background:url('/_images/reputation/group_box_top.jpg') left top repeat-x; border:1px solid #b6803d; padding:2px 7px}
+.reputation-cont .tier_2-5_shadow { background:url('/_images/reputation/group_box_shadow.jpg') center top no-repeat; height:0px }
+/* TIER 3*/
+.reputation-cont .rep-table { width:100%; table-layout:fixed;height:24px; overflow:hidden; }
+.reputation-cont .rep-table tbody td { vertical-align:top; width:33%; position:relative; background:url('/_images/reputation/rep_box_middle.jpg') left top repeat-x;  }
+
+.reputation-cont .rep-table thead th { vertical-align:middle; padding: 0 0 7px 0}
+.reputation-cont .rep-table thead th a { font-size:12px; text-decoration:none; cursor:pointer; padding:0 12px 0 0}
+.reputation-cont .rep-table thead th a.selectedSorting { background:url('/_images/reputation/sorting_arrows.gif') no-repeat; background-position:right 2px }
+.reputation-cont .rep-table thead th a.selectedSorting:hover { background-position:right -18px }
+
+.reputation-cont .rep-table td.faction-name {vertical-align:top;}
+.reputation-cont .rep-table .faction-name span {display:block; background:url('/_images/reputation/rep_box_left.jpg') left top no-repeat;line-height:24px;padding:0 8px;height:24px; overflow:hidden;}
+
+.reputation-cont .rep-table.repGroup td { background:none !important; }
+.reputation-cont .rep-table.repGroup, .reputation-cont .rep-table.repHeader  { margin:0 0 7px 0 }
+.reputation-cont .rep-table.repHeader .faction-name span { background:url('/_images/reputation/rep_box_left_title.jpg') left top no-repeat; padding:0}
+.reputation-cont .rep-table.repGroup .faction-name span { background:none; padding:0}
+
+.reputation-cont .rep-table .faction-bar { text-align:center;border:1px solid black;height:16px;background:url('/_images/rep-bar0.gif') repeat-x;position:relative }
+.reputation-cont .rep-table .faction-level div { background:url('/_images/reputation/rep_box_right.jpg') right top no-repeat}
+.reputation-cont .rep-table .faction-level span { display:block;line-height:24px; background:url('/_images/reputation/rep_box_dark.jpg') left top no-repeat; padding:0 0 0 32px; color:white; font-weight:bold }
+/* BAR */
+.reputation-cont a.rep-data{position:absolute;top:-1px;left:0;display:block;width:100%;text-align:center;color:white;text-decoration:none !important;white-space:nowrap}
+.bar-color{width:70%;height:16px;float:left}
+.repBar { vertical-align:top !important; padding-top:3px }
+.rep7 .bar-color{background:url('/_images/bar-exalted.gif') repeat-x}
+.rep6 .bar-color{background:url('/_images/bar-revered.gif') repeat-x}
+.rep5 .bar-color{background:url('/_images/bar-honored.gif') repeat-x}
+.rep4 .bar-color{background:url('/_images/bar-friendly.gif') repeat-x}
+.rep3 .bar-color{background:url('/_images/bar-neutral.gif') repeat-x}
+.rep2 .bar-color{background:url('/_images/bar-unfriendly.gif') repeat-x}
+.rep1 .bar-color{background:url('/_images/bar-hostile.gif') repeat-x}
+.rep0 .bar-color{background:url('/_images/bar-hated.gif') repeat-x}
+/* COLLAPSED */
+.reputation-cont .repCollapse .tier_1_shadow { height:10px }
+.repCollapse .tier_2, .repCollapse .repContent, .repCollapse .faction-level, .repCollapse .faction-bar{ display:none !important }
+.repCollapse .rep-table.repHeader td, .repCollapse .rep-table.repHeader .faction-name span { background-image:none !important; }
+.repCollapse .tier_1_d { background:none; padding:7px 7px 0 7px !important }
+.repCollapse .tier_2_b { padding:0 7px !important }
+.repCollapse .rep-table.repGroup, .repCollapse .rep-table.repHeader { margin:0 !important }
+.repCollapse a.tier_1_title { background-position: left -26px !important }
+.repCollapse a.tier_2_title { background-position: left -21px !important }
+.repCollapse a.tier_1_title:hover { background-position: left -86px !important }
+.repCollapse a.tier_2_title:hover { background-position: left -81px !important }
+.repSelect1, .repSelect2, .repSelect1 .tier_1_b, .repSelect2 .tier_2_b { border:1px solid #fff !important }

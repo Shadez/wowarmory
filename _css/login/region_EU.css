@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+div.legalView{background:url(../../images/login/tou-background-top.jpg) 50% 0 no-repeat;}
+div.legalAgreement{background:url(../../images/login/tou-background-repeat-y.jpg) no-repeat 50% 100%;}
+div.legalAgreementBackground{background:url(../../images/login/tou-background-top.jpg) 50% -175px no-repeat}
+div.legalAgreementBottom{background:url(../../images/login/tou-background-bottom.jpg) 50% 100% no-repeat;}
+div.seam{background:url(../../images/login/tou-unseam.png) 50% 100% no-repeat;padding-bottom:75px}

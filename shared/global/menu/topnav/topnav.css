@@ -1,0 +1,17 @@
+/* Top Banner */
+#shared_topnav { background: #072540 url('bg.gif') 50% 0; border-bottom:1px solid black; }
+.topnav { width:100%; text-align:center; position:absolute; z-index:12; font: bold 11px Tahoma;	background: url('topbg2.gif') no-repeat 50% 0; border-bottom: 1px solid #143352; padding: 6px 0; }
+.tn_interior { width:916px; margin:0px auto; text-align:right; padding-right:40px; }
+.topnav a:link, .topnav a:visited { color:#D0A803; text-decoration:none; padding:2px; margin:0 15px; }
+.topnav a:hover { color: white; }
+.tn_push { height:26px;}
+
+/* Forums Specific Styles */
+.tn_forums .tn_interior { width:auto; }
+
+/* Armory Specific Styles */
+.tn_armory .tn_interior {  width:1024px; padding:0;}
+
+/* Community Site Specific Styles */
+.tn_wow { } 
+

@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*
+World of Warcraft.com Armory Opera CSS Specific
+(c) Blizzard Entertainment 2007. All rights reserved.
+*/
+
+input{background:white !important}
+img.ci{margin-top:0px;margin-bottom:0px}
+.faction-propass #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-alliance #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-horde #level{position:absolute;top:75px;left:57px;z-index:99}
+li.user-line-item em {display:inline;float:none;padding:0 16px 0 0}
+.debuffs li p{top:0}
+ul.heading li{margin:0 0 5px 0}
+.parchment .tr{padding:10px 0 20px 0;display:table-cell;margin-bottom:0}
+.light-tip td.tl,.light-tip td.t,.light-tip td.tr{padding:0 !important}
+.scroll-padding{height:5px}
+.teamRank{top:0}
+.team2 a,.team3 a,.team5 a{position:relative}
+.pin-base p,.pin-clone p{margin:2px 0 0 0;padding:0;line-height:12px}
+.filter-loc{width:1px !important;z-index:9999}
+/*open filter*/
+.open-filter{background:url('../../images/filter.png') no-repeat 100% 0;z-index:87643;height:23px;position:absolute;text-decoration:none !important;display:block;z-index:999999}
+.open-filter{top:9px;width:175px;left:-85px}
+.filter-loc b{padding:0;display:block;width:100%;text-align:center;font-weight:bold;text-decoration:none !important;font-style:normal;color:black !important;background:transparent;cursor:pointer;white-space:nowrap;position:relative;top:3px}
+.filter-loc em.copy-link-left{background:url('../../images/filter-left.png') no-repeat 0 0;height:23px;position:relative;left:-19px;width:100%}
+.filter-loc strong{padding:0;display:block;text-align:center;width:100%;font-weight:bold;text-decoration:none;font-style:normal;color:#fdd623;cursor:pointer;position:absolute;top:2px;left:0;white-space:nowrap;z-index:2}
+.filter-loc a:hover strong{color:white}
+.filter-loc i{position:relative;display:block;height:6px;width:35px;margin:0;bottom:6px;z-index:999999}
+.filter-loc a:hover i{background-position:100% -6px}
+i.on{background:url('../../images/filter-arrow-down.gif') no-repeat 100% 0}
+i.off{background:url('../../images/filter-arrow-up.gif') no-repeat 100% 0}
+.item-double{width:330px}
+.id table{margin:-1px !important}
+a.item-add b{top:14px;left:-10px;display:inline;position:relative;margin-left:-7px}
+
+div.bankcontentsfilter{margin:0 4px; padding: 6px;}
+.points {top:35px;}
+.points-alliance {top:34px;}
+.points-propass {top:35px;}
+
+.user-menu .bookmarkwrap {position:relative; height:26px; float:left;}
+.user-menu .bookmarkwrap div {position:absolute; top:0; left:0px;}
+ 

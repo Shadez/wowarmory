@@ -1,0 +1,73 @@
+@charset "utf-8";
+/*
+World of Warcraft.com Armory Safari CSS Specific
+(c) Blizzard Entertainment 2007. All rights reserved.
+*/
+
+
+
+a,a:link,a:active,a:visited{font-weight:normal;font-size:1.0em !important;color:#005BA1}
+a:hover{color:#b00700;text-decoration:none}
+.specify-search-container a, .specify-search-container a:visited, .specify-search-container a:active {color:#FED500;}
+.profile-master li {padding:0}
+.character-clone a{font-weight:bold;font-family:Georgia,"Times New Roman",Times,serif !important}
+.module a {color:#308ca0;text-decoration:none;}
+.module a:hover {color:white !important}
+.module h1 {font-family:Arial, Helvetica, sans-serif}
+.profile-master a, .profile-master a:active, .profile-master a:visited {color:#FFD200;}
+.banktabs{top:450px;}
+.hright,.hleft{display:none}
+ul.heading li{padding:0}
+table.scroll-content{margin:0 0 0 102px !important}
+.debuffs li p{top:0}
+div.teamnamehighlight a{font-weight:bold;font-size:20px;font-family:Georgia,Times New Roman,Times,serif !important}
+.arenareport-moldingleft-info a {font-style:italic;color:#c1ebff}
+a.noLink:hover {font-weight:bold;font-family:Arial, Helvetica, sans-serif}
+table.stats-content{width:100% !important}
+.updateTop{top:4px;}
+.faction-propass #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-alliance #level{position:absolute;top:75px;left:57px;z-index:99}
+.faction-horde #level{position:absolute;top:75px;left:57px;z-index:99}
+.raceicon,.classicon{top:1px}
+.dungeon-content td a {line-height:30px;}
+.drop-lang li,.drop-link li{padding:0}
+.parchment .tr{padding:10px 0 20px 0;display:table-cell;margin-bottom:0}
+.realms a{display:block;width:171px;height:22px;padding:4px 0 0 25px;border:3px solid #dfbd5e;background:url('../../images/bullet-mac.gif') no-repeat 0 3px}
+.realms a:hover{border:3px solid #dcfb08;background-position:0 -57px}
+.related-links a,.specify-search-container a {line-height:20px}
+a.loginLink{line-height:25px; color: #FFCC00;}
+.user-line-item {padding:0 !importants}
+.navigation a {line-height:35px;padding-top:2px}
+a.user-alerts {top:2px;background-position:25px -40px !important;}
+.teamRank{top:0}
+.character-stats span {font-weight:normal}
+.dropdown1 a, .dropdown2 a {line-height:20px}
+#divAchievementArenaTeams h2 a {font-size:10px !important}
+.prof1 a,.prof1 a:link,.prof1 a:active,.prof1 a:visited,.prof1 a:hover,.resists a,.resists a:hover {font-weight:normal;line-height:18px;font-size:10px !important;font-family:Arial, Helvetica, sans-serif}
+.prof1 a:link,.prof1 a:active,.prof1 a:visited{color:#FFD200}
+.resists li {padding:0 33px 0 0;}
+.pnav li,.mnav li{padding:0}
+.filter-loc b{padding:0;display:block;width:100%;text-align:center;font-weight:bold;text-decoration:none !important;font-style:normal;color:black !important;background:transparent;cursor:pointer;white-space:nowrap;position:relative;top:3px}
+.filter-loc strong{padding:0;display:block;text-align:center;width:100%;font-weight:bold;text-decoration:none;font-style:normal;color:#fdd623;cursor:pointer;position:absolute;top:2px;left:0;white-space:nowrap;z-index:2}
+.data-table q{padding:6px 7px 0 7px;margin:0;height:21px !important}
+#big-results .data-table q{padding:17px 7px 0 7px;height:30px !important;margin:0}
+#big-results .data-table a,#big-results .data-table strong{padding:0;margin:0}
+.item-icon strong{padding:0}
+.item-icon a{padding:17px 7px 0 6px !important;z-index:22 !important;display:block;margin:0;top:0;position:absolute !important}
+.item-icon strong{margin:0}
+.item-icon strong,.item-icon a{font:bold 12px/12px Arial,Helvetica,sans-serif;letter-spacing:0px}
+tr.masthead a,tr.masthead a:active,tr.masthead a:visited{padding:4px 0 0 3px !important}
+a.rep-data:hover {line-height:18px;font-family:Arial, Helvetica, sans-serif}
+#maccenterdiv {display: block!important; width: 100%!important; text-align: center!important;}
+a.bluebutton {margin: 0 4px; display: inline-block!important;}
+
+.comp_btn_title {  line-height:18px; }
+.blue .progress_fill { height:100% }
+.progress_fill {  }
+.prog_bar { padding-bottom:6px; }
+.null_progress { line-height:12px}
+.prog_bar { padding-top:3px; }
+
+.points {top:35px;}
+.points-alliance {top:34px;}
+.points a {font-weight:bold;}

@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+html{height:100%;background:#000 url(../../images/login/background.jpg) 50% 0 no-repeat}
+body{height:100%;background: url(../../images/login/logo.jpg) 50% 20px no-repeat;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+form{margin:0;padding:0}
+a{outline:none;color:#FFD200}
+a:hover{color:#FFF}
+
+/*utility*/
+div.clear{clear:both}
+input.hiddenSubmit{width:0;height:0;border:none;margin:0;padding:0;line-height:0;font-size:1px}
+
+/*submit button*/
+a.submit{margin:-20px auto 0;font-size:16px;background:url(../../images/login/submit-button-login.gif) no-repeat;text-decoration:none;width:203px;height:66px;display:block;text-align:center;line-height:66px;font-weight:bold}
+a.submit:hover{background-position:0 -66px}
+a.submitDisabled, 
+a.submitDisabled:hover{background-position:0 -132px}
+
+/*cancel*/
+a.cancel{color:#5f0f08;font-weight:bold;display:block;width:100%;text-align:center;font-size:12px}
+a.cancel:hover{text-decoration:none}
+
+/* form fields */
+form div.formRow{text-align:center}
+form label.formLabel,
+form label.inputLabel {color:#61100c;font-size:14px;font-weight:bold;letter-spacing:-1px;display:block;width:333px;margin:0 auto;text-align:left}
+form input.text{height:22px;border:1px solid #9b4e02;width:323px;font-size:14px;padding:5px 3px 1px;background-color:#fff;margin:3px 0 20px 0}
+form input.text:active,
+form input.text:focus,
+form input.text:hover{border:1px solid #c38e6e}
+
+/*login */
+div.loginView{position:relative;top:171px}
+div.loginView form.submitForm{padding-top:16px;width:416px;margin:0 auto}
+div.loginView form.submitForm div.accountName{background:url(../../images/login/input-bg-1.gif) 50% 5px no-repeat}
+div.loginView form.submitForm div.password{background:url(../../images/login/input-bg-2.gif) 50% 5px no-repeat}
+
+/*forgot password / no account */
+div.loginView div.signUp{text-align:center;color:#5f0b09;font-size:12px;margin-top:19px}
+div.loginView div.signUp p{padding:0;margin:5px 0}
+div.loginView div.signUp a{color:#5f0f08;font-weight:bold}
+div.loginView div.signUp a:hover{text-decoration:none}
+
+/*logout */
+div.logoutView{position:relative;top:171px}
+div.logoutView div.logout{height:340px}
+div.logoutView div.logout h2.loggedOut{color:#222;text-align:center;margin:0 0 15px 0;padding:20px 0 0 0}
+div.logoutView div.logout p.redirect{font-size:12px;text-align:center;width:350px;margin:5px auto 10px;color:#222}
+div.logoutView div.logout p.redirect a{color:#5f0f08;font-weight:bold}
+div.logoutView div.logout p.redirect a:hover{text-decoration:none}
+
+/*locale select */
+div.selectLocale{color:#FFF;text-align:center;margin:90px auto 5px;font-size:12px;width:400px}
+div.selectLocale a{padding:0 4px;line-height:12px;white-space:nowrap}
+div.localeExtension{margin-top:-80px}
+
+/*legal*/
+div.legal{position:relative;z-index:2;width:370px;color:#FFF;font-size:11px;text-align:center;margin:0 auto}
+div.legal div.legalLinks{color:#666;margin-top:20px}
+div.legal div.legalLinks a{color:#72878F;text-decoration:none;white-space:nowrap}
+div.legal div.legalLinks a:hover{color:#EEE}
+div.legal a.esrb{display:block;width:144px;height:53px;background:url(../../images/login/esrb.gif) no-repeat;margin:20px auto 10px}
+
+/* authenticator */
+div.authenticatorView{position:relative;top:171px}
+div.authenticatorView div.authenticator{height:340px;}
+div.authenticatorView div.authenticator form{padding-top:16px;width:416px;margin:0 auto;text-align:center}
+div.authenticatorView div.authenticator input.text{margin:5px auto 20px}
+div.authenticatorView div.authenticator p.authMessage{color:#222;width:340px;margin:0 auto 20px;padding:20px 0 0 0;font-size:14px;font-weight:bold}
+div.authenticatorView div.authenticator form table.neteaseMatrix{margin:0 auto}
+div.authenticatorView div.authenticator form table.neteaseMatrix input.text{text-align:center;width:40px}
+div.authenticatorView div.authenticator form table.neteaseMatrix th{color:#FFF;font-weight:normal;text-align:center;font-size:14px}
+
+/*legal agreement*/
+div.legalView{min-height:910px;position:absolute;z-index:0;background:url(../../images/login/tou-background.jpg) 50% 0 no-repeat;width:100%;height:100%;top:0;left:0}
+div.legalView div.logo{margin:20px auto 0;width:368px;height:155px;background:url(../../images/login/tou-logo.jpg) 50% 0 no-repeat}
+div.legalView a.submit{background:url(../../images/login/submit-button-tou.gif) no-repeat;margin:0 auto -15px}
+div.legalView a.submit:hover{background-position:0 -66px}
+div.legalView a.submitDisabled,
+div.legalView a.submitDisabled:hover{background-position:0 -132px;cursor:default;color:#FFD200}
+div.legalView div.legalAgreement h2.legalHeader{color:#000;font-weight:normal;font-size:18px;letter-spacing:-0.05em;margin:2px auto 5px;width:800px}
+div.legalView div.legalAgreement div.scrollContainer{width:800px;margin:0 auto}
+div.legalView div.legalAgreement div.scrollContainer div.scrollContent{background-color:#fff;color:#222;width:760px;height:225px;margin:0 auto;padding:20px;border:1px solid #003854;overflow:auto}
+div.legalView div.legalAgreement div.scrollContainer div.mustScroll{color:#600;text-align:center;margin:20px 0 0 15px;font-size:12px}
+div.legalView div.legalAgreement div.scrollContainer label{font-size:16px;font-weight:bold;width:100%;text-align:center;display:block;margin:10px;color:#003854}
+div.legalView div.legalAgreement div.scrollContainer label.enabled{color:#000}
+div.legalView div.legalAgreement div.scrollContainer label.accepted{color:#060}
+div.legalView div.legalAgreement div.scrollContainer span.important{font-weight:bold;font-size:20px;color:#AE4C4C;font-family:Georgia,"Times New Roman",Times,serif}
+div.legalView div.legalAgreement div.terms{padding:0;margin:0 auto;font-size:12px}
+div.legalView div.legalAgreement div.terms strong{color:#000}
+div.legalView div.legalAgreement div.terms p{line-height:18px}
+div.legalView div.legalAgreement div.terms a{color:#333}
+div.legalView div.legalAgreement div.terms h1{font-size:24px;line-height:22px;color:#000;line-height:20px;margin:0;padding:0}
+div.legalView div.legalAgreement div.terms h1 strong{font-weight:normal;color:#444}
+div.legalView div.legalAgreement div.terms h2{font-weight:normal;font-size:14px;line-height:25px;background:black;color:#ffba00;padding:0 10px;margin:5px 0}
+div.legalView div.legalAgreement div.terms h5{text-transform:uppercase;color:#444;font-weight:normal;font-size:10px;line-height:10px}
+div.legalView div.legalAgreement div.terms ul{list-style:decimal outside;margin:7px 30px;padding:0}
+div.legalView div.legalAgreement div.terms ul li{list-style:decimal outside;padding:7px 0 7px 5px;line-height:22px;margin:0}
+div.legalView div.legalAgreement div.terms ol{list-style:lower-roman outside;margin:7px 30px 7px 40px;padding:0}
+div.legalView div.legalAgreement div.terms ul.roman{list-style:upper-alpha outside}
+div.legalView div.legalAgreement div.terms ul.roman-lower{list-style:lower-alpha outside}
+
+/* error messages */
+div.errorTooltip{margin:3px 0 0 10px;display:inline;z-index:2;background:transparent url(../../images/login/errortooltip-tl.png) no-repeat scroll 0 0;position:absolute;font-size:12px}
+div.errorTooltip div.tooltipBg{background:transparent url(../../images/login/errortooltip-br.png) no-repeat 100% 100%; left:-2px; top:10px; width:223px;position:relative}
+div.errorTooltip div.tooltipBg p{padding:1px 13px 6px 11px;text-align:center;top:-6px;position:relative;color:#FFF;margin:0}
+div.errorTooltip div.tooltipBg div.arrow{background:transparent url(../../images/login/errortooltip-arrowleft.png) no-repeat scroll 0 0;width:6px;height:21px;position:absolute;left:-4px;top:-6px}
+
+/*captcha*/
+div.backgroundExtension{background:url(../../images/login/background-bottom.jpg) 50% 195px no-repeat;height:665px}
+div.captchaNotice{width:333px;font-size:12px;margin:0 auto;color:#61100C}
+div.captcha{width:323px;margin:10px auto 20px;text-align:center;border:1px solid #9B4E02;background:url(../../images/login/captcha-bg.jpg);padding:12px 0 10px}

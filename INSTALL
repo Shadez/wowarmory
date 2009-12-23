@@ -1,0 +1,33 @@
+=========================
+How to install WoW Armory
+=========================
+
+SYSTEM REQUIREMENTS:
+1. Apache HTTP Server with Mod Rewrite
+2. PHP 5 or higher
+3. MySQL 5 Server or higher
+
+INSTALLATION STEPS:
+1. Create new MySQL database (`armory`, for expample);
+2. Unpack sql/wowarmory_rc1.sql.7z to any folder;
+3. Upload unpacked wowarmory_rc1.sql into `armory` database;
+4. Rename includes/classes/configuration.php.new to includes/classes/configuration.php;
+5. Edit includes/classes/configuration.php (read comments).
+6. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
+
+========================
+Как установить Оружейную
+========================
+
+СИСТЕМНЫЕ ТРЕБОВАНИЯ:
+1. Web-сервер Apache с подключенным Mod Rewrite
+2. PHP 5 или выше
+3. MySQL-сервер 5 или выше
+
+ПОРЯДОК УСТАНОВКИ:
+1. Создайте новую базу сервера MySQL (`armory`, к примеру);
+2. Распакуйте архив sql/wowarmory_rc1.sql.7z в любую папку;
+3. Залейте распакованный wowarmory_rc1.sql в базу `armory`;
+4. Переименуйте файл includes/classes/configuration.php.new в includes/classes/configuration.php;
+5. Отредактируйте файл includes/classes/configuration.php.
+6. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"

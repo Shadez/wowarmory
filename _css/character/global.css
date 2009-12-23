@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* global styles for all the character-related pages */
+
+.flash-profile{margin:0 0 0 130px;width:280px;height:120px}
+
+/* avatar */
+.profile-achieve img { margin: 16px 0 0 21px; }
+/* char profile level */
+#leveltext {position:absolute;margin:0;padding:0;width:38px;height:38px; top: 79px; left: 40px; }
+.faction-horde #leveltext { background:url('../../images/horde-gem.gif') no-repeat; }
+.faction-alliance #leveltext { background:url('../../images/alliance-gem.gif') no-repeat; } 
+.faction-propass #leveltext { background:url('../../images/propass-gem.gif') no-repeat; }
+/* points */
+.points { width: 84px; height: 23px !important; line-height: 23px !important; text-align:center; margin: 23px 0 0 10px; float: left; }
+.points a, .points a:visited { padding: 0 12px 0 0 !important; font-weight: bold; font-size: 14px!important;  font-family: Georgia, "Times New Roman", Times, serif; background: url('../../images/icon-charheader-achieve.gif') 100% 4px scroll no-repeat; text-decoration: none; height: 23px !important; line-height: 23px !important; } 
+.faction-horde .points a, .faction-horde .points a:visited { color: #FFFF00 !important; } 
+.faction-alliance .points a, .faction-alliance .points a:visited { color: #FFD200 !important; } 
+.faction-propass .points a, .faction-propass .points a:visited { color: #FFD200 !important; } 
+.points a:hover { color: #FFF !important; }
+
+/* bg/forum frames links */
+#forumLinks { position: absolute; top: 110px; left: 130px;  }
+
+
+.banner-container{height:1px;width:1px;margin:0 auto;position:relative;z-index:80}
+.profile-banner{position:absolute;top:-30px;left:-184px;height:68px;width:400px;background:url('../../images/banner.png') no-repeat;text-align:center}
+.profile-banner h1{padding:12px 0 0 0;color:#714b2d}
+.realm-info{position:absolute;right:0;top:25px;height:60px;width:190px;overflow:hidden}
+.realm-info a,.realm-info a:active,.realm-info a:visited{color:#ffd200;text-decoration:none;font-size:12px}
+.realm-info a:hover{color:white}
+.realm-info p{margin:0;padding:0;height:26px;text-align:right}
+a.realm-icon,a.battlegroup-icon{display:block;height:26px;width:40px;float:right}
+a.realm-icon{background:url('../../images/icons/realm.gif') no-repeat 50% 0}
+a.battlegroup-icon{background:url('../../images/icons/battlegroup.gif') no-repeat 50% 0}
+.realm-info a.name{padding:3px 0 0 0;display:block}
+.profile-achieve { height: 170px; width: 158px; }
+.profile-right { height: 179px; float: right;  width: 420px;}
+/*horde*/
+.faction-horde{background:url('../../images/profile-tile-h.jpg') repeat-x 0 0}
+.faction-horde .profile-right{background:url('../../images/profile-right-h.jpg') no-repeat 100% 0;}
+.faction-horde .profile-achieve{background:url('../../images/horde-banner-achieve.gif') no-repeat 0 0;}
+/*alliance*/
+.faction-alliance{background:url('../../images/profile-tile-a.jpg') repeat-x 0 0}
+.faction-alliance .profile-right{background:url('../../images/profile-right-a.jpg') no-repeat 100% 0;}
+.faction-alliance .profile-achieve{background:url('../../images/alliance-banner-achieve.gif') no-repeat 0 0;}
+/*propass*/
+.faction-propass{background:url('../../images/profile-tile-p.jpg') repeat-x 0 0}
+.faction-propass .profile-right{background:url('../../images/profile-right-p.jpg') no-repeat 100% 0;}
+.faction-propass .profile-achieve{background:url('../../images/propass-banner-achieve.gif') no-repeat 0 0;}
+
+/* guild name, char name, suffix/prefix */
+#charHeaderTxt_Dark, #charHeaderTxt_Light { position:absolute; top: 19px; left: 152px; text-align: left; } 
+#charHeaderTxt_Light {top: 17px; left: 150px; }
+.charGuildName, .charGuildName:visited { text-decoration:none; color: #FFD200; font-size: 20px; line-height: 21px; font-weight: bold; font-family:Georgia, 'Times New Roman', Times, serif; display: block; }
+.charGuildName:hover { color: #FFF; }
+.charNameHeader { font-size: 24px; line-height: 25px; font-family:Georgia, 'Times New Roman', Times, serif; font-weight: bold; color: #FFFFFF; display: block;  }
+.charLvl { font-size: 11px; line-height: 14px;color: #FFF; display: block; text-transform:uppercase; font-weight: bold;}
+.prefix, .suffix { font-size: 16px; font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 400; color: #FFF7D2; }
+.suffix { margin: 0 0 0 5px; }
+.emptyPrefix { height: 10px; width: 10px; display: block }
+#charHeaderTxt_Dark span, #charHeaderTxt_Dark div, #charHeaderTxt_Dark a { color: #000 !important;}
+
+/* bookmark this character link */
+a#bmcLink {position:absolute;top:40px;right:45px;line-height:33px;background: #FFF url('../../images/bmc-right.gif') no-repeat 100% 0;padding:0 20px 0 0;cursor:pointer }
+a#bmcLink span {display:block;float:left;background:url('../../images/bmc-left.gif') no-repeat 0 0;line-height:33px;padding:0 0 0 20px;position:relative;left:-3px}
+a#bmcLink em {display:block;height:53px;width:49px;background:url('../../images/bmc-icon.gif') no-repeat 0 0;position:absolute;right:-42px;top:-10px}
+.bmcEnabled {position:absolute;top:30px;right:3px;height:53px;width:52px;background:url('../../images/bmc-icon-enabled.gif') no-repeat 0 0;}
+.bmcMaxed {position:absolute;top:30px;right:3px;height:53px;width:52px;background:url('../../images/bmc-icon-max.gif') no-repeat 0 0;}
+
+
+
+
+
+

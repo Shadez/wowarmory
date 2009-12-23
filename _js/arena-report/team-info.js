@@ -1,0 +1,3 @@
+function initializeTeamInfo(){
+	$("#teamsTable").tablesorter();
+}

@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+/* error messages */
+div.errorTooltip{background:transparent url(../../images/login/errortooltip-tl.gif) no-repeat scroll 0 0;}
+div.errorTooltip div.tooltipBg{background:transparent url(../../images/login/errortooltip-br.gif) no-repeat 100% 100%;}
+div.errorTooltip div.tooltipBg div.arrow{background:transparent url(../../images/login/errortooltip-arrowleft.gif) no-repeat scroll 0 0;left:-3px;top:-7px;}
+
+/*legal agreement*/
+div.seam{background-image:url(../../images/login/tou-unseam.gif);}
+div.legalView a.submit{margin:0 auto}

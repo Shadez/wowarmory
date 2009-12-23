@@ -1,0 +1,493 @@
+@charset "utf-8";
+/*
+World of Warcraft.com Armory Internet Explorer CSS Specific
+(c) Blizzard Entertainment 2007. All rights reserved.
+*/
+/* Armory IE6 CSS Index ................... /
+
+
+* html,body,.relative,q{zoom:1}
+del{zoom:1}
+*/
+img.p {behavior:url(../../images/iepngfix.htc);}
+#globalToolTip td.tl,#globalToolTip td.tm,#globalToolTip td.tr,#globalToolTip td.ml,#globalToolTip td.mm,#globalToolTip td.mr,#globalToolTip td.bl,#globalToolTip td.bm,#globalToolTip td.br{background-image:url('../../images/newtip/tip.gif')}
+input{border:none;}
+.always-scroll{display:none}
+
+/* new armory */
+.clear{width:1px;height:1px;font-size:1px;line-height:0;}
+.front-top {padding:0}
+.int-top{padding:12px 0 0 0 !important}
+.data-shadow-top{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/theme/wrath/box-top.png',sizingMethod='image')}
+.data-shadow-sides{zoom:1;background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/theme/wrath/box-sides.png',sizingMethod='scale')}
+.data-shadow-bot{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/theme/wrath/box-bot.png',sizingMethod='image')}
+.specify-search{background:none;filter:none;}
+.module {zoom:1;background:black; }
+.int .search-bar .module {background:none !important;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/theme/wrath/module-drk.png',sizingMethod='scale')}
+
+.adbox {background:none !important;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/adbox.png',sizingMethod='image');}
+.adbox div div {position:relative;}
+.warning-bubble{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/warning-bg.png',sizingMethod='image')}
+.module-lite{background:url('../../images/theme/wrath/module-lite.gif')}
+.parch-front .search-module {z-index:0;}
+
+.usermod a em{zoom:1;padding:0}
+.updateTop{right:5px;top:-25px}
+.usermod a:active,.usermod a:link,.usermod a:visited {text-decoration:none}
+.int .usermod{margin:0 15px 0 0; position:relative; top:2px;}
+.int .user-options{padding:0;width:25px;}
+.user-menu-contents * {zoom:1;}
+.user-menu a,.user-menu a:active,.user-menu a:visited,.user-menu span{float:none}
+.user-menu .bookmarkwrap {position:relative; height:26px;}
+.user-menu .bookmarkwrap div {position:absolute; top:0; left:0;}
+.char-select a {float:right !important}
+.character-item{width:185px; padding-right:44px;}
+.character-item p{padding-left:26px !important;}
+.character-achievement a {display:inline !important; color:#fff;}
+.bookmarknumber {display:inline;}
+.user-line-item .character-achievement a:link, .user-line-item .character-achievement a:visited, .user-line-item .character-achievement a:hover, .user-line-item .character-achievement a:active {color:#fff !important;}
+
+.loginbg { background:none; background-color: #0a0d0e !important; }
+
+.menu-dropshadow {zoom:1;background:none;filter:none;}
+.menu-dropshadow * {position:relative;z-index:10}
+.parch-bot,.footer,.item-background,.item-bottom,.item-top {zoom:1}
+.parch-front .navigation{margin-top:2px !important}
+#nav ul {background:none;filter:none}
+#nav li a {position:relative;z-index:5}
+.language .module {filter:none}
+.module-block-left {margin:0 15px 15px 10px}
+.char-select {position:absolute;top:0;right:5px;text-align:right;}
+.tabs a.tab em {cursor:pointer;}
+.tabs a.tab:hover em span {cursor:pointer}
+.tabs .select1 a.tab:hover {background-position: 100% 0}
+.tabs .select1 a.tab:hover em {background-position: 0 0}
+#wrapperTabs,#divCharTabs,#divCharTabs .tabs,.parch-int,.parch-bot,.parchment-content,.parchment-top,.result-list,.results-side,.result-banner{zoom:1}
+.alt-stats {margin-right:15px; display:inline;}
+a#bmcLink {right:75px !important}
+.bmcEnabled {right:33px !important;}
+.banktabs{top:450px;}
+.always-scroll{display:none}
+.alt-stats{background:#ead27e !important;}
+.results-header{height:35px;}
+#miniSearchElement{float:left;}
+
+/* Talent Calculator */
+.resetExportHolder { top: 10px !important }
+.resetExportPetHolder { top: 8px !important }
+.calcInfo a.awesomeButton { width: 1px; white-space: nowrap }
+
+#glyphsLabel { float: left; margin: -10px 0 0 0px !important; top: -10px !important; postion: relative !important; }
+.talContainer { }
+.talCalcContainer { padding: 29px 0 0 0 !important; }
+.petTalCalcContainer { padding:30px 0 0 0 !important; }
+/*.talContainer .talentFrame { height: 819px; width: 636px; padding: 0px 18px; background: url('../../images/talents/talent-bg-bottom.jpg')  0 715px no-repeat !important; }*/
+/*.talContainer .talentFrame, .talContainer, .talContainer .talentTree { height: 700px !important } */
+.talContainer .talentFrame { margin-top:-10px }
+.petTalContainer .talContainer .talentFrame { margin-top:0;  }
+
+.talContainer .talentTreeInfo { margin: 23px 0px 0 4px !important;}
+.petTalContainer .talContainer .talentTreeInfo { margin: 18px 0px 0 4px !important;}
+.talContainer .talentTree .tier .talentHover { background: none !important; }
+/* glyphs */
+#glyphHolder {width: 235px;padding:0 25px 0 0}
+#glyphHolder .major { background-position:  0 -74px; margin: 0 0 2px 0 !important; zoom: 1 !important; }
+#glyphHolder .minor { background-position: 0 -148px;  margin: 0 0 2px 0 !important; zoom: 1 !important; }
+#petTalContainer  { top:469px !important; right:42px !important}
+#petName { top:446px !important; right:46px !important }
+.petFrameSelected {
+	background: none !important;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/talents/icon-select_43x43.png');
+}
+
+/* Layout */
+
+/*...........................................................*/
+.sub-head{zoom:1}
+.dd{margin:0 0 0 4px}
+.input{margin-left:-252px}
+.wowcom{left:-41px}
+.list{padding:5px 0 5px 0}
+.bottom-background-align,.bottom-background-align2{zoom:1}
+.parchment .tr{padding:10px 0 20px 0;margin-bottom:0}
+/* sticky profile */
+.pinProfile{background:url('../../images/profile-plate-bg.gif') no-repeat}
+.pinArena{background:url('../../images/profile-arena-links.gif') no-repeat}
+.pin-base,.pin-clone{padding:7px 0 0 0}
+.at2,.at20{margin:0 0 0 4px}
+a.unpin{font-size:1px;zoom:1}
+.pinNav{background:url('../../images/pin-nav.gif') no-repeat}
+.pin-base p,.pin-clone p{margin:0;padding:0;line-height:12px}
+.pin-clone{padding:2px 0 0 0}
+a.unpin-link,.toolBoxb p{zoom:1}
+.user-menu * {zoom:1}
+.user-menu {right:30px}
+.user {top:4px;right:-20px;}
+a.modify-user,a.modify-user:active,a.modify-user:visited {right:35px;}
+#replaceSearchTable {zoom:1}
+.sel-char {margin:0;height:60px; padding:0 !important; position:relative; left:0; top:0; width:888px; zoom:1;}
+.pinselect {height:75px;}
+.pinselect label input {top:0;left:-3px;background:none}
+/* search */
+/*...........................................................*/
+#showHideItemFilters { margin: 5px 0 0 7px!important; height: 180px !important; zoom: 1;}
+.home .arrow{background:url('../../images/index-dd-arrow0.gif') no-repeat}
+.other .search{height:86px;top:49px;left:-40px}
+.other .search-right{height:86px}
+.other .arrow{background:url('../../images/index-dd-arrow0.gif') no-repeat;width:28px}
+.adv-search em{background:url('../../images/icons/icon-mag.gif') no-repeat}
+.other .adv-search{background:url('../../images/adv-backplate.jpg') no-repeat}
+a.title-search{top:15px}
+.search-container{height:1px;margin:0 auto}
+.home .search,.other .search{width:504px;position:absolute}
+.home .search-right,.other .search-right{width:504px}
+.input,.dd,.arrow,.ip,.submit{height:33px}
+.home .input,.other .input{left:56%}
+.dd,.arrow,.ipl,.ip,.submit{float:left}
+.dd{margin:0 0 0 4px;background:url('../../images/index-dd1.gif') no-repeat;width:124px}
+.ip{background:url('../../images/index-ip1.gif') no-repeat 9px 0;width:211px}
+.ipl input{width:194px;padding:2px 0 0 5px;position:absolute;top:7px;left:166px;background:url('../../images/search-offstate.gif') no-repeat 100% 0;height:18px}
+.ipl input:hover{background:url('../../images/search-overstate.gif') no-repeat 100% 0}
+.ipl input:focus{background:url('../../images/search-onstate.gif') no-repeat 100% 0}
+.home .submit,.other .submit{width:74px}
+.home a.submit,.other a.submit{display:block;height:33px;width:74px}
+.other .search{background:url('../../images/search-left.gif') no-repeat 0 0}
+.other .search-right{background:url('../../images/search-right.gif') no-repeat 100% 0}
+.item-icon a div{top:-37px}
+.arena-list li.left{float:none}
+/* drop down filter */
+/*...........................................................*/
+.searchMenu a:hover{color:white;background:url('../../images/UI-Listbox-Highlight.jpg') no-repeat 0 50%}
+/* inner container */
+/*...........................................................*/
+.ietop-hack{background:url('../../images/inner-top-ie.jpg') repeat-x 1px 0}
+.inner-top{zoom:1;background:url('../../images/inner-top.gif') repeat-x 50% 0}
+/* tips table */
+/*...........................................................*/
+.tip{zoom:1}
+/* tooltip */
+/*...........................................................*/
+.tooltip{zoom:1}
+.tooltip td.tl{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/ttip-tl.png')}
+.tooltip td.tr{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/ttip-tr.png')}
+.tooltip td.t{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/ttip-t.png')}
+.tooltip td.l{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/ttip-l.png')}
+.tooltip td.r{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/ttip-r.png')}
+.tooltip td.bl{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/ttip-bl.png')}
+.tooltip td.br{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/ttip-br.png')}
+.tooltip td.b{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/ttip-b.png')}
+.tooltip td.bg{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/ttipbg.png')}
+/* light tooltip */
+/*...........................................................*/
+.light-tip{zoom:1}
+.light-tip td.tl{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/lp-tl.png')}
+.light-tip td.tr{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/lp-tr.png')}
+.light-tip td.t{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/lp-t.png')}
+.light-tip td.l{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/lp-l.png')}
+.light-tip td.r{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/lp-r.png')}
+.light-tip td.bl{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/lp-bl.png')}
+.light-tip td.br{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tooltip/lp-br.png')}
+.light-tip td.b{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/lp-b.png')}
+.light-tip td.bg{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/tooltip/lp-bg.png')}
+
+
+
+/* Index Page */
+/*...........................................................*/
+table.ietable{margin:0}
+.dragon{top:-15px;left:-3px}
+.naga{bottom:-5px;right:-3px}
+.stars1{bottom:-35px;left:-3px}
+.stars2{top:-5px;right:-3px}
+.index-dd{margin:0 0 0 0px}
+.beta{top:-24px}
+.faqtd{padding:0 0 0 5px !important}
+/* Results Page */
+/*...........................................................*/
+tr span,img.ci,.generic-wrapper,.generic-right,.genericHeader{zoom:1}
+.top{margin:0 0 -18px 0}
+/* data table */
+table.data-table p,.page-body p{background:none}
+table.data-table b,.page-body b{background:none}
+.player-side blockquote,.team-side blockquote,.rinfo blockquote,.full-list blockquote{margin:0}
+.team2,.team3,.team5{top:-13px}
+.item-related .data{zoom:1}
+
+/* Arena */
+/*...........................................................*/
+.arenaTeam-wrapper,.arenaTeam-right,.innerData,.arena-list li,.filterIcon,.arenaHeader,.arenaBody,.arena-list,.arena-cont,#teamIconBox,#teamIconBoxresults,#teamIconBox,.warning-desc{zoom:1}
+.teamRank{top:0}
+/* Team & Player Profiles // Shared */
+/*...........................................................*/
+.player-name em,#wowMenu,#arenaMenu{zoom:1}
+/* team profiles */
+/*...........................................................*/
+a.left-button{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tab-arrow-left.png')}
+a.right-button{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/tab-arrow-right.png')}
+.innerData tr.hl td{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/ad-hl.png')}
+.arenaData .st{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/ad-t.png')}
+.arenaData tbody td.sl{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/ad-l.png')}
+.arenaData tbody td.sr{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/ad-r.png')}
+.arenaData .sb{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='../../images/ad-b.png')}
+.ps-top{zoom:1}
+.full-list ul.heading{left:-18px}
+
+.team-side{margin:0 0 0 2px;padding-top:15px}
+.player-side{margin:0 0 0 2px;padding-top:15px}
+.pnav p{display:inline}
+.team-description{margin:0 0 0 105px}
+.arenaHeader{height:75px}
+/* player profiles */
+/*...........................................................*/
+.player-classes img,.team-classes img{margin:4px 0 0 0}
+.playdata{float:left;margin:0 0 0 55px}
+.iht p{margin:0 0 -14px 0}
+li.faction-level{width:134px}
+.ihr,.iht,.ihl{width:579px}
+.faction-horde #level{position:absolute;top:75px;left:57px;z-index:999999}
+.faction-alliance #level{position:absolute;top:75px;left:57px;z-index:999999}
+.faction-propass #level{position:absolute;top:75px;left:57px;z-index:999999}
+
+.health-stat p,.mana-stat p,.rage-stat p,.energy-stat p{margin-bottom:-2px !important;background-color:black}
+.profile-header{z-index:990}
+.banner-container{z-index:995}
+.profile-banner{z-index:999}
+.profile-banner{background:none !important;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/banner.png')}
+.kids h2{top:133px;left:-39px}
+.deco-frame em.foot{top:-6px;left:-68px}
+.deco-frame tfoot td.sb{width:100% !important}
+.character-outer-noflash{position:relative;top:0px}
+.character-middle-noflash{position:absolute;top:50%}
+.character-inner-noflash{position:relative;top:-50%}
+#battlegroupName{width:100px}
+.arena-list li{margin:0}
+.arena-list li select{margin:0}
+.bonus-stats{z-index:-1}
+.items-bot b{left:0px}
+/* Character Search / Profiles */
+/*...........................................................*/
+.scroll-top{width:100%;display:table}
+.scroll-bot{background:url('../../images/cp-bot.jpg') repeat-x 50% 100%}
+.scroll-bot-right{background:url('../../images/cp-bot-right.gif') no-repeat 100% 100%}
+.scroll-bot-left{background:url('../../images/cp-bot-left.gif') no-repeat 0 100%}
+.scroll-top-right{background:url('../../images/cp-top-right.gif') no-repeat 100% 0;height:210px}
+.scroll-top-left{background:url('../../images/cp-top-left.gif') no-repeat 0 0}
+.items-right .fly-horz,.items-left .fly-horz,.items-bot .fly-horz{background:url('../../images/flyout.gif') no-repeat 0 0}
+.header-tp{top:-31px;left:-49px}
+.profile-master li p{background:url('../../images/icon-glass.gif') no-repeat -2px -4px}
+.profile-master li{height:53px;margin:0}
+.items-left li,.items-right li {}
+.ammo p{background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../../images/ammo-glass.png')}
+.character-stats li{margin:0 0 -2px 0 !important; height: 13px !important; line-height:13px !important; padding: 0 !important}
+.faq-links ol{margin:0 0 0 8px}
+.faq-links a span{zoom:normal}
+img.ieimg{display:inline}
+.bar-container img{margin-bottom:-1px}
+a.search-default{top:0px;left:-7px}
+/* icons */
+.team-description a{cursor:pointer}
+.dropdown3,.dropdown4{width:112px}
+.lrs{height:1px;margin-bottom:-8px}
+
+/* Item page */
+/*...........................................................*/
+.breakit{display:none}
+/* character headers */
+/*...........................................................*/
+.profile,.profile-content,.clink-bg{zoom:1}
+
+/* Guild Profiles */
+/*...........................................................*/
+.header-gs,.g-pos{zoom:1}
+.raceicon,.classicon{top:-1px}
+.header-gs table{position:relative;top:22px;zoom:1}
+h4.gm,strong.gm{display:block;width:10%;white-space:nowrap}
+tr.data3 a:hover{color:#b00700 !important}
+.classbar{filter:alpha(opacity=50);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);}
+.racebar{filter:alpha(opacity=50);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);}
+.stats-wrapper h2 {padding:4px 0 0 0;width:auto;}
+/* Talents */
+/*...........................................................*/
+.talentwrap1{display:block;margin:0;text-align:center}
+.talentwrap2{display:inline-block;width:654px;text-align:left;margin:0 -5px}
+.tdPaddingTen{padding:8px 10px 7px 6px !important}
+/* Item Search */
+/*...........................................................*/
+.item-wrapper .item-content,.item-double,.alt-stats p img,.alt-stats a,.alt-stats a:active,.alt-stats a:visited,.filter-grad,#parentPredefinedFilter,.filterBox,.filter-open,.filter-left,.filter-right,.multi-filter,.filter-container{zoom:1}
+.multi-filter{padding:0;position:relative;z-index:99999}
+.detail-search-results span.shr,span.shrb{margin:15px auto 5px 20px}
+.a-option{margin:4px 0 0 0}
+.detail-search span.shr{height:1%;background:#e9d08a;border-top:1px solid #c19b30;border-bottom:none}
+.detail-search .filter-left,.detail-search .filter-right{margin-top:15px}
+.detail-search .light-tip{position:relative;z-index:19932092}
+.see-also em{font-size:1px}
+.filter-open{right:-18px}
+.searchPageIeFix a.ao-pop, .searchPageIeFix a.ao-pop:visited { top: -25px !important; }
+a.ao-pop em{margin:0 0 -11px 0 !important;}
+.icon-container{margin:0 -38px 0 0}
+.icon-container p{background:url('../../images/icon64-glass.gif') no-repeat -2px -4px !important;}
+.item-info{float:left !important; width:auto !important; margin:0 !important; padding:0 !important;padding-bottom:25px;}
+.item-bound{width:250px !important; margin:15px 0 0 59px !important; padding:0 !important;}
+a.item-add{top:-11px}
+a.item-add b{filter:none !important;height:21px !important;top:26px}
+.rel-tab h3{width:250px}
+#big-results{padding:0 0 10px 0}
+.filter-loc{margin-bottom:-20px;z-index:999999999}
+.filter-containter p{top:0 !important;}
+.open-filter{height:23px;position:absolute;text-decoration:none !important;display:block;text-align:center;z-index:909}
+.open-filter{top:9px;width:145px;left:-80px}
+.filter-loc b{text-align:center;font-weight:bold;text-decoration:none !important;font-style:normal;color:black !important;background:transparent;cursor:pointer;white-space:nowrap;position:relative;top:3px}
+.filter-loc em{height:23px;position:relative;left:-19px;width:100%}
+.filter-loc strong{padding:0;display:block;width:100%;font-weight:bold;text-decoration:none;font-style:normal;color:#fdd623;cursor:pointer;position:absolute;top:2px;left:0;white-space:nowrap;z-index:2;text-align:center;height:20px}
+.filter-loc a:hover strong{color:white}
+.filter-loc a,.filter-loc a:link,.filter-loc a:visited,.filter-loc a:active{text-decoration:none}
+.filter-loc i{position:relative;display:block;height:6px;bottom:6px;font-size:1px;margin:0 0 0 22px !important}
+a.filter-red{left:35px;top:-6px;margin-right:40px}
+.filter-loc a:hover i{background-position:100% -6px}
+i.on{background:url('../../images/filter-arrow-down.gif') no-repeat 100% 0}
+i.off{background:url('../../images/filter-arrow-up.gif') no-repeat 100% 0}
+.filter-loc em{background:url('../../images/filter-left.gif') no-repeat 0 0 !important}
+.open-filter{background:url('../../images/filter.gif') no-repeat 100% 0 !important}
+/* arena calculator */
+/*...........................................................*/
+.arenacalc {border-bottom:1px solid #e4c66f;}
+#hidePoints ul li div {padding:0 70px 0 110px;}
+.arenacalc .calculator .redrow span, .arenacalc .calculator .equation span {line-height:26px;}
+.arenacalc .calculator .equation td.equation-input input {margin-top:4px;}
+
+
+/* arena-tournament */
+/*...........................................................*/
+
+td.tournament_box_tl{width:11px;height:41px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tl.png',sizingMethod='scale') no-repeat top right; background: none;}
+td.tournament_box_tm{width:100%;height:41px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tm.png',sizingMethod='scale') no-repeat top left; background: none;}
+td.tournament_box_tr{width:8px;height:41px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tr.png',sizingMethod='scale') no-repeat top left; background: none;}
+td.tournament_box_ml{width:11px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_ml.png',sizingMethod='scale') repeat-y top left; background: none;}
+td.tournament_box_bg{width:100%;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_mbg.png',sizingMethod='scale')no-repeat top left; background: none;}
+td.tournament_box_mr{width:8px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_mr.png',sizingMethod='scale') repeat-y top left; background: none;}
+td.tournament_box_bl{width:11px;height:13px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_bl.png',sizingMethod='scale') no-repeat top right; background: none;}
+td.tournament_box_bm{width:100%;height:13px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_bm.png',sizingMethod='scale')no-repeat top center; background: none;}
+td.tournament_box_br{width:8px;height:13px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_br.png',sizingMethod='scale') no-repeat top left; background: none;}
+td.tournament_box_shadow{width:100%;height:24px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_shadow.png',sizingMethod='scale') no-repeat top left;font-size:1px;line-height:1px; background: none;}
+td.tournament_box_tlc{width:11px;height:9px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tl.png',sizingMethod='scale') no-repeat top right; background: none;}
+td.tournament_box_tmc{width:100%;height:9px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tm.png',sizingMethod='scale') no-repeat top left; background: none;}
+td.tournament_box_trc{width:8px;height:9px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_box_tr.png',sizingMethod='scale') no-repeat top left; background: none;}
+div.tournament_spears{position:absolute;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/tournament_topspears.png',sizingMethod='scale') no-repeat top left;width:385px;height:102px;margin:-111px 0px 0px 236px;padding:0; background: none;}
+
+/* guild banks */
+/*...........................................................*/
+
+div.outerfilterbox {width: 32%; }
+div.opacity50 {filter:alpha(opacity=50);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);}
+div.opacity100 {filter:alpha(opacity=100);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);}
+div.opacity25 {filter:alpha(opacity=25);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=25);}
+div.smallframe-a { filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/smallframe-a.png',sizingMethod='crop'); background:none; }
+div.smallframe-b { filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/smallframe-b.png',sizingMethod='crop'); background: none; }
+div.smallframe-c {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/smallframe-c.png',sizingMethod='crop'); background: none; }
+div.smallframe-icon { filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/smallframe-b.png',sizingMethod='crop'); background: none; }
+a.linksmallframe:link { }
+a.linksmallframe:hover div {background-position: top; color: #FFFFFF;}
+div.iconhighlight  { background: none; }
+div.iconhighlight:hover  { background: none;}
+div.itemCount {margin-right: 3px;}
+
+
+/* Armory Login */
+/*...........................................................*/
+
+div.logincomment {padding-top: 4px;}
+div.toploginleft {background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/login-armory-left.png',sizingMethod='crop');}
+div.toploginright {background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/login-armory-right.png',sizingMethod='crop');}
+
+/* Arena Match Reports */
+/*...........................................................*/
+
+div.buttonleft {background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreport-button-left.png',sizingMethod='crop');}
+div.buttonright {background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreport-button-right.png',sizingMethod='crop');}
+div.buttonmidbg {background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreport-button-mid.png',sizingMethod='crop');}
+div.arenareport-moldingleft-s {background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreports-molding-left-s.png',sizingMethod='crop');}
+div.arenareport-header-double-moldingleft { background:none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreports-molding-left.png');}
+div.arenareport-header-double-moldingright { background:none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/matchreports-molding-right.png',sizingMethod='crop'); }
+
+/* Achievements */
+.compare_box { background-image:url(../../images/achievements/compare_top_bg.gif); right:68px;  }
+.comp_out { }
+.comp_int { width:auto; padding-right:27px;  float:left;}
+.comp_box_t_l { background-image:url(../../images/achievements/compare_top_l.gif); }
+.comp_box_t_r { background-image:url(../../images/achievements/compare_top_r.gif); right:-6px; 0}
+.pointshield { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/achievements/point_shield.png',sizingMethod='crop');  }
+.locked .pointshield  {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/achievements/point_shield.png',sizingMethod='crop'); } 
+.criteria.c_list { padding:0; margin-left:64px !important; }
+.firsts_tshadow { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/achievements/fst_title_sh.png',sizingMethod='scale'); }
+.achv_reward_bg { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/achievements/title_bg.png',sizingMethod='scale'); }
+.comp_points img {top:1px;}
+.s_ach_stat img {top:1px; padding-left:4px;}
+.achv_lnav .selected a:hover { color:#ffe46c; background-image:url(../../images/achievements/achv_lnav_sel.gif); }
+.achv_lnav .selected div a:hover { background:none; }
+.summary_progress_container { padding:0 0 0 32px; }
+.expand_btn {right:4px;}
+.add_error a {float:left; display:block;}
+#achievements-content .selected {background-image:url(../../images/achievements/achievement_bg_sel.jpg);}
+#achievements-content .locked {background-image:url(../../images/achievements/achievement_bg_locked.jpg);}
+.points { margin: 27px 0 0 6px !important;}
+.points-alliance {top:34px;}
+
+
+a.smFrame, a.smFrame:visited {background:url('../../images/smallframe-right.gif') no-repeat top right !important; } 
+.smFrame div { background:url('../../images/smallframe-left.gif') no-repeat top left !important; }
+a.smFrame:hover { background-position: top right; }
+a.smFrame:hover div { background-position: top left; }
+
+
+/* character sheet */
+.dropdown1 { zoom: 1;}
+#leveltext { left: 35px !important; }
+.profile-master,.profile-master li,.stack1,.stack2,.stack3,.stack4,.spec,.resists,.profs,.stack2,.stats1,.stats2,.bonus-stats-content,.under10,.lastModified span,.stats1,.stats2,.bonus-stats-content,.language-filter{zoom:1 !important}
+.ihrc{background:url('../../images/ihr.gif') no-repeat -1px 0}
+
+em.ptl, em.pbl, em.ptr, em.pbr{ display: none !important;}
+.profileCenter { position:absolute; left: 262px !important; margin-top: 6px; display: block; width: 365px; height: 396px; }
+.health-stat p span,.mana-stat p span,.rage-stat p span,.energy-stat p span, .runic-stat p span{position:relative;top:-1px; margin-left: -10px !important; }
+.resists, .profs, .stack2, .stats1, .stats2, .achRight, .brownBox{  background-image: url('../../images/ie-cp-bg.gif') !important; }
+.gearItem { height: 51px !important; margin: 0 !important; background-position: 8px 4px !important;}
+.gearItem a { height: 52px !important; }
+.leftItems { left: 188px !important; }
+.rightItems { right: 211px !important; }
+
+.bottomItems { position:absolute; left: 335px !important; top: 575px !important; float: left; display: block;  }
+.bottomItems .gearItem { float: left; display: block; width: 51px !important; height: 60px; }
+.bottomItems .gearItem a.gearFrame { height: 75px; width: 51px !important; background:url('../../images/icon-glass-bot.gif') no-repeat 0px 0px !important; top: -1px; left: 0px !important; padding: 0 6px 0 0 !important; margin: 0 !important}
+.bottomItems .gearItem a.gearFrame:hover { background-position: 0px -75px !important; }
+
+.profileCenter .hp_mana_stats {padding: 4px 0 !important; height: 40px !important }
+
+.fly-horz {background:url('../../images/flyout.gif') no-repeat 0 0 !important;}
+
+.singleBankItem span { margin-right: 4px !important }
+.bankTabIcon .hoverBankTab, .hoverBankItem { background: none !important; }
+
+.petFrame { background:url('../../images/talents/icon-frame_43x43.gif') left top no-repeat}
+
+/* iphone page */
+.mobileArmoryTitle .phone { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/phone.png',sizingMethod='crop');}
+.mobileArmoryContent a.downloadButton { background-image:url('../../images/mobile-armory/download_btn_left.gif') !important;}
+.mobileArmoryContent a.downloadButton span { background-image:url('../../images/mobile-armory/download_btn_right.gif') !important; }
+.mobileArmoryContent .bullet { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/bullets_bg.png',sizingMethod='scale'); width:100%}
+.mobileArmoryContent .mobileArmoryVideo .leftTop {background:url('../../images/mobile-armory/video_border_left_top.gif') right bottom no-repeat !important}
+.mobileArmoryContent .mobileArmoryVideo .top {background:url('../../images/mobile-armory/video_border_top.gif') left bottom repeat-x !important}
+.mobileArmoryContent .mobileArmoryVideo .rightTop {background:url('../../images/mobile-armory/video_border_right_top.gif') left bottom no-repeat !important}
+.mobileArmoryContent .mobileArmoryVideo .left {background:url('../../images/mobile-armory/video_border_left.gif') right top repeat-y !important}
+.mobileArmoryContent .mobileArmoryVideo .right {background:url('../../images/mobile-armory/video_border_right.gif') left top repeat-y !important}
+.mobileArmoryContent .mobileArmoryVideo .leftBottom {background:url('../../images/mobile-armory/video_border_left_bottom.gif') right top no-repeat !important}
+.mobileArmoryContent .mobileArmoryVideo .bottom {background:url('../../images/mobile-armory/video_border_bottom.gif') left top repeat-x !important}
+.mobileArmoryContent .mobileArmoryVideo .rightBottom {background:url('../../images/mobile-armory/video_border_right_bottom.gif') left top no-repeat !important}
+.mobileArmoryContent a.downloadButtonLarge { background-image:url('../../images/mobile-armory/download_btn_large_left.gif') !important;}
+.mobileArmoryContent a.downloadButtonLarge span { background-image:url('../../images/mobile-armory/download_btn_large_right.gif') !important; }
+.mobileArmoryContent .characterIcon { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/icon_char.png',sizingMethod='crop');}
+.mobileArmoryContent .calendarIcon { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/icon_calendar.png',sizingMethod='crop');}
+.mobileArmoryContent .noteIcon { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/icon_note.png',sizingMethod='crop');}
+.mobileArmoryContent .achievmentIcon { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/icon_achievment.png',sizingMethod='crop');}
+.mobileArmoryContent .gearIcon { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/icon_gear.png',sizingMethod='crop');}
+.mobileArmoryContent .lightBackground { zoom:1 }
+.mobileArmoryContent .screens a { margin:0 33px 0 0 !important; }
+#blackout { background: none !important; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/mobile-armory/black.png',sizingMethod='scale');position:absolute !important}

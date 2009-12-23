@@ -1,0 +1,122 @@
+/* arena game reports */
+/*...........................................................*/
+
+td.halfwidth { width: 50%;}
+td.buttonside { width: 17px; height: 40px;}
+td.buttonmid { height: 40px;}
+div.buttonleft {width: 17px; height: 40px; background: url(../images/matchreport-button-left.png) no-repeat top left;}
+div.buttonright {width: 17px; height: 40px; background: url(../images/matchreport-button-right.png) no-repeat top left;}
+div.buttonmidbg {height: 40px; background: url(../images/matchreport-button-mid.png) repeat-x top left; padding: 4px 6px 0;}
+div.teamnameshadow {margin: 1px 0 0 0; position: absolute;  color: #000000; line-height: 25px; white-space:nowrap; font-weight: bold; font-family: Georgia, Times New Roman, Times, serif; font-size: 20px; letter-spacing: -1px;}
+div.teamnamehighlight {margin: 0; position: absolute; line-height: 25px; color: white; white-space:nowrap; font-weight: bold; font-family: Georgia, Times New Roman, Times, serif; font-size: 20px; letter-spacing: -1px;}
+div.reports-blue {color: #c1ebff;}
+div.reports-icon-space {width: 10px; float: left; height: 26px;}
+div.parch-banner {position: absolute; margin: 148px 0 0 235px; width: 400px; height: 40px; text-align: center;}
+div.parch-banner h1{color:#714b2d; font-size: 16px; font-weight: bold; font-style: italic; letter-spacing: 1px; }
+div.parch-banner-versus {position: absolute; margin: 188px 0 0 235px; width: 400px; height: 40px; text-align: center;}
+div.parch-banner-versus h1{color:#714b2d; font-size: 16px; font-weight: bold; font-style: italic; letter-spacing: 1px; }
+a.teamnamehighlight:link {color: #FFFFFF; text-decoration: none;}
+a.teamnamehighlight:visited {color: #FFFFFF; text-decoration: none;}
+a.teamnamehighlight:hover {color: #b00700; text-decoration: none;}
+a.teamnamehighlight:active {color: #FFFFFF; text-decoration: none;}
+a.reports-subtitle {color: #c1ebff; text-decoration: none!important; white-space:nowrap;  font-weight: bold;  font-style: italic;}
+a.reports-subtitle:visited {color: #c1ebff;}
+a.reports-subtitle:hover {color: #ffffff; }
+a.reports-subtitle:active {color: #c1ebff; }
+a.battlegroup-icon-reports { background:url('../images/icons/battlegroup.gif') no-repeat top left; height:26px; width:26px; display: block; margin: -3px 5px 0;}
+a.realm-icon-reports { background:url('../images/icons/realm.gif') no-repeat top left; height:26px; width:26px; display: block; margin-top: -3px; margin: -3px 5px 0;}
+.detailsBlueItalic { color: #005BA1!important; font-weight: bold; font-style: italic; padding-right: 5px;}
+span.detailsBrownItalic { color: #8D4D21!important; font-weight: bold; font-style: italic;}
+span.detailsBrownItalicLarge { color: #8D4D21!important; font-weight: bold; font-style: italic; padding: 0 0 0 5px; font-size: 14px;}
+span.detailsBrown { color: #8D4D21!important; font-weight: bold;}
+#textRatingNew { color: #53637f!important; font-weight: bold; font-size: 23px; font-style: italic;}
+span.detailsRatingChangeGreen { color: #5a9800!important; font-weight: bold; font-size: 16px; font-style: italic;}
+span.detailsRatingChangeRed { color: #ae361d!important; font-weight: bold; font-size: 16px; font-style: italic;}
+span.limitRatingChangeGreen { color: #5a9800!important; font-weight: bold; font-size: 14px; font-style: italic;}
+span.limitRatingChangeRed { color: #ae361d!important; font-weight: bold; font-size: 14px; font-style: italic;}
+span.limitAverageChangeGreen { color: #5a9800!important; font-weight: bold; font-size: 12px; font-style: italic;}
+span.limitAverageChangeRed { color: #ae361d!important; font-weight: bold; font-size: 12px; font-style: italic;}
+span.limitAverageBrown { color: #8D4D21!important; font-weight: bold; font-style: italic; font-size: 12px;  font-style: italic;}
+
+span.filterTextTitle {  color: #53637f!important; font-weight: bold; font-style: italic; padding-right: 5px; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; font-size: 11px;}
+select.selectGeneralStyle{background-color: #ffffcc; border:1px solid #b39349;font:bold 11px Arial,Helvetica,sans-serif;}
+select.selectGeneralStyle:hover{border:1px solid #caf500;}
+span.detailsBlueItalicDates { color: #53637f!important; font-weight: bold; font-style: italic; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 1px; padding-left: 10px;}
+div.matchreportRow {background-position: bottom right; height: 15px!important; float: left; clear: both; text-align: left;}
+span.matchreportDataEntry {font-size: 11px; font-weight: bold; padding: 0 3px 0 0;}
+div.matchreportRowContents {width: 100%!important;height: 15px!important; font-size: 10px; line-height: 14px; margin-top: -14px!important; float: right; clear: none; text-align: right!important;}
+div.matchreportContainer {width: 100%!important; height: auto!important;}
+div.matchreportMarginDiv {margin: 6px 4px 0 2px; height: 18px!important; width: auto!important;}
+div.arenareport-moldingleft-s { width: 134px; height: 117px; background: url('../images/matchreports-molding-left-s.png') top left no-repeat; float: left; margin: 0px 0 0 0; clear: none; }
+div.arenareport-header-single {background-color: #FF0000; background: url('../images/matchreports-header-single.jpg') top center no-repeat; height: 145px; margin: 0; width: 100%; position: relative; left:0; padding: 0;}
+div.arenareport-header-single2 {background-color: #FF0000; background: url('../images/matchreports-header-single.jpg') 0 0 no-repeat; height: 145px;width: 100%;}
+div.arenareport-moldingleft-s-flash {width: 78px; height: 78px; position: absolute; margin: 19px 0 0 30px; }
+div.arenareport-moldingleft-name {position: absolute; color: white; margin: 35px 0 0 140px;}
+div.arenareport-moldingleft-info {position: absolute; color: #000000; margin: 60px 0 0 140px; white-space:nowrap; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; font-style: italic; height: 30px; width: 400px;}
+div.arenareport-header-double {background-color: #FF0000; background: url('../images/matchreports-header-double.jpg') top center no-repeat; height: 220px; margin: 0; width: 100%; position: relative; top:0; left:0; padding:0; overflow:hidden;}
+div.arenareport-header-double-moldingleft {width: 254px; height: 117px; background: url('../images/matchreports-molding-left.png') top left no-repeat; float: left; margin: 0px 0 0 0; clear: none;}
+div.arenareport-header-double-moldingright {width: 254px; height: 117px; background: url('../images/matchreports-molding-right.png') top left no-repeat; float: right; margin: 0px 0 0 0;  clear: none;}
+div.arenareport-header-double-flash-l {width: 78px; height: 78px; position: absolute; margin: 19px 0 0 30px;}
+div.arenareport-header-double-flash-r {width: 78px; height: 78px; position: absolute; margin: 19px 0 0 152px;}
+div.arenareport-header-double-rating-l {position: absolute; width: 50px; height: 20px; font-family: Georgia, Times New Roman, Times, serif; font-size: 18px; text-align: center; margin: 46px 0 0 124px; letter-spacing: -1px; color: #befc2f;}
+div.arenareport-header-double-ratingnew-l {position: absolute; width: 50px; height: 20px; font-family: Trebuchet MS, Arial, Helvetica, sans-serif; font-size: 12px; text-align: center; margin: 48px 0 0 184px; color: #ffffff; font-weight: bold;}
+div.arenareport-header-double-txt-l {position: absolute; color: white; margin: 105px 0 0 25px;}
+div.arenareport-winner1-l {margin: 1px 0 0 0; position: absolute;  color: #000000; line-height: 25px; white-space:nowrap; font-weight: bold; font-family: Georgia, Times New Roman, Times, serif; font-size: 18px; letter-spacing: -1px;}
+div.arenareport-winner2-l {margin: 0; position: absolute; line-height: 25px; color: white; white-space:nowrap; font-weight: bold; font-family: Georgia, Times New Roman, Times, serif; font-size: 18px; letter-spacing: -1px;}
+div.arenareport-loser1-r {margin: 1px 0 0 0;  color: #000000; position: absolute; line-height: 25px; white-space:nowrap; font-weight: bold; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; letter-spacing: -1px; text-align: right; width: 400px;}
+div.arenareport-loser2-r {margin: 0; position: absolute; line-height: 25px; color: white; white-space:nowrap; font-weight: bold; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; letter-spacing: -1px; text-align: right; width: 400px;}
+div.arenareport-pathwinner1 {margin: 1px 0 0 1px;position: absolute;  color: #000000; white-space:nowrap; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; font-style: italic;}
+div.arenareport-pathwinner2 {margin: 0; position: absolute; color: #c1ebff; white-space:nowrap;  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold;  font-style: italic;}
+div.arenareport-pathloser1 {margin: 1px 0 0 1px; color: #000000; position: absolute; white-space:nowrap; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; font-style: italic; text-align: right; width: 400px;}
+div.arenareport-pathloser2 {margin: 0; position: absolute; color: #c1ebff; white-space:nowrap;  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold;  font-style: italic; text-align: right; width: 400px;}
+div.arenareport-header-double-rating-r {position: absolute; width: 50px; height: 20px; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; text-align: center; margin: 46px 0 0 77px; letter-spacing: -1px; color: #ff5400;}
+div.arenareport-header-double-ratingnew-r {position: absolute; width: 50px; height: 20px; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 12px; text-align: center; margin: 48px 0 0 20px; color: #ffffff; font-weight: bold;}
+div.arenareport-header-double-txt-r {position: absolute; color: white; margin: 105px 0 0 -170px; width: 400px;}
+div.arenareport-defeats1 {margin: 0; position: absolute; color: #c1ebff; white-space:nowrap;  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 16px;  font-style: italic; }
+div.arenareport-defeats2 {padding: 1px 0 0 1px; white-space:nowrap; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-size: 16px;  font-style: italic;}
+select.arenaseasonselect{background-color: #ffffcc; border:1px solid #b39349;  margin: 0 0 0 12px; font-size: 11px; letter-spacing: 0;}
+select.arenaseasonselect:hover{border:1px solid #caf500;}
+
+/* match history graph */
+#infoBubbleHolder { width: 716px; margin: 0 auto; height: 53px; background: url('../images/matchreport-infoBubble-bg.gif') no-repeat; } 
+#leftBubble { float: left; background: url('../images/matchreport-infoBubble-right.gif') no-repeat top right; height: 47px; margin: 0 0 0 10px; padding: 8px 10px 0 0; } 
+#rightBubble { float: right; background: url('../images/matchreport-infoBubble-left.gif') no-repeat top left; height: 47px; margin: 0 10px 0 0; padding: 8px 0 0 10px; max-width: 150px; }
+.infoBubble { height: 53px; color: #005BA1; font-weight: bold; } 
+.infoBubble span { height: 53px; }
+#graphContainer { width: 875px; height: 601px; margin: 0 auto; clear: both; padding: 0; background: url(../images/matchreport-graph-bg.jpg) top left no-repeat;} 
+#arenaFlashOuter { width: 875px; height: 470px; }
+#containerDetails { width: 350px; height: 53px; visibility: hidden; display: none; }
+#containerDelta { width: 350px; height: 53px; visibility: visible; display: block; }
+#graphBottom { width: 875px; height: 40px; margin: 0 auto; clear: both; background: url('../images/matchreport-graph-bg-bot.jpg') top left no-repeat; padding: 20px 0 0 0; text-align:right}
+
+.timeFormat { float: left; line-height: 26px;}
+.findMatch { background: url('../images/icons/arenareports/matchreport-icon-graph.gif') no-repeat top left; display:block; width: 31px; height: 23px; float:right; margin: 2px 15px 0 0;} 
+.goToMatchReport{background: url('../images/icons/arenareports/matchreport-icon-report.gif') no-repeat top left; display:block; width: 31px; height: 23px; float: right; margin: 2px 15px 0 0;} 
+
+
+#graphNone, #errorLoadingArenaData { padding: 35px 0 0 0; width: 875px; height: 90px; margin: 0 auto; clear: both; background: url('../images/matchreport-graph-none.jpg') top left no-repeat; text-align: center; font-size:14px; font-family: Georgia, "Times New Roman", Times, serif;color: #53637f!important; font-style: italic;}
+
+
+
+
+.matchReportDetails { background: url('../images/icons/arenareports/matchreport-icon-details.gif') no-repeat top left; display: block; width: 31px; height: 23px; float: right; margin: 0px 0px 4px 10px; line-height: 26px;} 
+.delReportDetails { background-position: bottom left; line-right: 26px; }
+.graphTxt {line-height: 26px;}
+
+.deletedTeam, .deletedTeam:visited { cursor:default !important; color: #666 !important; font-style:italic; text-decoration: none !important;} 
+
+/* filter stuff */
+#dateStart, #dateEnd { width: 100px; }
+#ratingMin, #ratingMax, #ratingChange { width: 45px !important; }
+#dateRange { width: 280px; }
+#ratingChange { width: 118px; }
+
+.matchstats { color: #403301; font-weight: bold; background-color:#e9d490; border: 1px solid #c39749; padding: 5px; display: block;  margin: 3px; margin:0 10px 10px 10px; padding:5px; -moz-border-radius-topleft:3px;  -moz-border-radius-topright:3px;  -moz-border-radius-bottomleft:3px;  -moz-border-radius-bottomright:3px;  -webkit-border-top-right-radius:3px; -webkit-border-top-left-radius:3px;  -webkit-border-bottom-left-radius:3px;  -webkit-border-bottom-right-radius:3px; }
+.matchstats span { margin-right: 20px; font-weight: normal; color: #865809 !important; }
+
+/* filter buttons */
+
+.calIcon { display: block; float: left; width: 21px; height: 20px; background: url('../images/icons/calendar.gif') no-repeat; margin: 1px 0 0 5px; position:relative; top:-1px;}
+
+.graphLink { line-height: 26px; width: 18px; height: 23px; display: block; background: url('../images/icons/arenareports/view-team.gif') no-repeat top left; float: left; margin: 3px 3px 0 0; }
+.delGraphLink { background-position: bottom left; cursor: default; }

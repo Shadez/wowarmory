@@ -1,0 +1,199 @@
+@charset "utf-8";
+/* gear */
+.profile-master2{ margin:0px;background:url('../../images/profile-bg.jpg') no-repeat 50% 0; height: 460px; width: 100%;}
+.gearItem { height: 55px; width: 60px; margin: 0px 0 1px 0; position: relative; background-position: 100% 4px; background-repeat:no-repeat;}
+.gearItem a { width: 75px; height: 60px; display: block; padding: 4px 0 0 0; position: relative; margin: 0 0 0 5px; } 
+.gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat 11px 0 !important; }
+
+.upgradeBox { height: 50px; width: 10px; position:relative; float: left; top: 0px;}
+
+
+.leftItems { position: absolute; left: 192px; margin-top: 2px; float: left; display: block;}
+.leftItems .gearItem a.gearFrame { background:url('../../images/icon-glass-left.gif') no-repeat -75px -1px; top: -1px; left: -13px;  }
+.leftItems .gearItem a.gearFrame:hover { background-position: -3px 0px; }
+.leftItems .upgradeBox { left: 5px; }
+.leftItems .fly-horz{top:-1px;left:-86px}
+
+.rightItems { position:absolute; right: 203px; float: left; display: block; margin-top: 2px; }
+.rightItems .gearItem a.gearFrame { background:url('../../images/icon-glass-right.gif') no-repeat -2px -1px; top: -1px; left: 0; width: 74px;  }
+.rightItems .gearItem a.gearFrame:hover { background-position: -75px 0;  }
+.rightItems .gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat -2px 0 !important; }
+.rightItems .upgradeBox {left: 57px; }
+.rightItems .fly-horz{top:-1px; right:-96px}
+
+.bottomItems { position:absolute; left: 344px; top: 565px; float: left; display: block;  }
+.bottomItems .gearItem { float: left; display: block; width: 55px; height: 60px; }
+.bottomItems .gearItem a.gearFrame { height: 75px; width: 60px; background:url('../../images/icon-glass-bot.gif') no-repeat 7px 0px; top: -1px; left: -13px; padding: 0 6px 0 0;}
+.bottomItems .gearItem a.gearFrame:hover { background-position: 5px -75px; }
+.bottomItems .gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat 5px 1px !important; }
+.bottomItems .upgradeBox { width: 50px; height: 10px; top: 57px; left: 10px; }
+.bottomItems .fly-horz{top:55px;left:-10px}
+
+.rightItems .fly-horz,.leftItems .fly-horz,.bottomItems .fly-horz{display: none; position:absolute;width:83px;height:53px;background:url('../../images/flyout.png') no-repeat 0 0;z-index:9991;padding:8px 0 0 12px; }
+.fly-horz a,.fly-horz a:active,.fly-horz a:visited{color:#5c4500 !important;font-family:Arial,Helvetica,sans-serif !important}
+.fly-horz a:hover{color:black !important;}
+a.upgrd, a.upgrd:visited{ text-decoration:none !important; margin:0 !important;padding:0 0 0 25px !important;background:url('../../images/icons/upgrade.gif') no-repeat !important;position:relative !important;top:3px !important;left:0 !important;height:30px !important;width:55px !important}
+
+/* center info of charcater sheet */
+.profileCenter { position:absolute; left: 268px; margin-top: 6px; display: block; width: 365px; height: 396px; }
+.profileCenter h4{margin:0;padding:0px 8px;color:white;text-transform:uppercase;font-size:10px}
+
+.profileCenter .statsLeft { width: 181px; height: 249px; float: left; display: block; margin-bottom: 3px;}
+.profileCenter .hp_mana_stats { margin-top: 2px; padding: 8px 0; height: 40px; }
+.profileCenter .achRight { width: 181px; height: 249px; float: right; display: block; margin-bottom: 3px;  }
+.profileCenter .achRight .achList { font-size: 11px; line-height: 15px !important; font-weight: normal; display: block; width: 170px; color: #ffd200; text-decoration: none; margin: 0px 2px 1px 4px; padding: 1px 1px 0 1px; border-bottom: 1px solid #513e24; }
+.profileCenter .achRight .achList span, .profileCenter .achRight a span { display: inline; float: right; text-decoration: none !important; color: #FFF; }
+
+.profileCenter .achRight .achPointsLink, .profileCenter .achRight .achPointsLink:visited { text-decoration: none; display: block; color: #FFD200; font-weight: bold; margin: 8px 0 0; padding: 0 10px 0; font-size: 14px; }
+
+
+.achieve-bar{line-height: 14px !important; width: 170px; margin: 12px 0 6px 4px; text-align:center;color:white;padding:0;height:16px; border:1px solid black;background:url('../../images/bar-grey.gif') repeat-x;}
+.achieve-bar b{height:16px;margin:0;padding:0; background:url('../../images/bar-life.gif') repeat-x; white-space: nowrap; float: left; }
+.achieve-bar .progressTxt { position: absolute; left: 5px; top: 57px; display: inline; float: left;}
+
+/* drop down menu to change stats information */
+#stats_leftDropDown, #stats_rightDropDown { background-color: #FFCC00; display: block;width: 178px;padding: 0 8px 0 4px; height: 140px; float: left; display: block; }
+#stats_leftDropDown { padding: 0 4px 0 8px; }
+.profile-stats{background:url('../../images/profile-dd.gif') no-repeat 0 0;height:23px;width:181px;display:block;text-decoration:none;color:white !important;padding:4px 0 0 8px;margin:0 -8px 0 0}
+.profile-stats:hover{background-position:0 100%;color:white}
+.statsBlock { width: 178px;  height: 105px; display: block; background-color:#663333; margin: 4px 0 0 0; }
+
+.statValue { float: right; color: #FFF; }
+.statLine { width: 174px; color: #FFD800; font-weight: bold; font-size: 12px; line-height: 13px; padding: 0 2px;}
+
+.drop-stats{position:absolute;top:255px !important;left:5px;width:170px !important; margin-top: 30px;}
+.drop-stats li{height:17px !important;width:100% !important;line-height:15px}
+.drop-stats a{display:block;width:100%;padding:0 0 0 4px;color:white !important;text-decoration:none}
+.drop-stats .tooltip{width:170px !important}
+.drop-stats a img{width:21px;height:13px;margin:1px 0 0 3px;border:0}
+.drop-stats a:hover{color:white;background:url('../../images/UI-Listbox-Highlight.png') no-repeat}
+.stats1,.stats2{position:relative;height:96px;width:181px;margin-top:3px}
+.dropdown1,.stats1{float:left}
+.dropdown2,.stats2{float:right}
+.buffs li,.debuffs li{width:21px !important;height:21px !important;padding:1px 0}
+.buffs li img,.debuffs li img{height:21px;width:21px;position:relative;left:0}
+.debuffs li p{background:url('../../images/icons/debuff.png') no-repeat 0 0;height:24px;width:24px;position:absolute;left:-1px;top:3px;cursor:default !important}
+.debuffs li p:hover{background:url('../../images/icons/debuff.png') no-repeat 0 0}
+.icon-holy,.icon-fire,.icon-nature,.icon-arcane,.icon-frost,.icon-shadow{height:14px;line-height:14px;padding-left:21px}
+.icon-holy{background:url('../../images/icons/icon-holy.gif') 0 center no-repeat}
+.icon-fire{background:url('../../images/icons/icon-fire.gif') 0 center no-repeat}
+.icon-nature{background:url('../../images/icons/icon-nature.gif') 0 center no-repeat}
+.icon-arcane{background:url('../../images/icons/icon-arcane.gif') 0 center no-repeat}
+.icon-frost{background:url('../../images/icons/icon-frost.gif') 0 center no-repeat}
+.icon-shadow{background:url('../../images/icons/icon-shadow.gif') 0 center no-repeat}
+
+.checkmark{vertical-align:top}
+.stack1,.stack2,.stack3,.stack4{width:365px;margin:0 auto;position:relative}
+
+.stack1{height:201px;padding-top:9px;margin-bottom:-9px;z-index:999}
+.stack2{height:50px}
+.stack3{height:132px}
+.stack4{height:70px}
+.stack1 em,.stack2 em,.stack3 em, .achRight em, .brownBox em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/pc1.gif') !important;background-repeat:no-repeat;}
+.resists,.profs,.stack2,.stats1,.stats2, .achRight, .brownBox{background:url('../../images/cpbg.png');position:relative;cursor:default}
+
+/* talent specs */
+.spec{width:180px;height:69px;float:left}
+.spec-wrapper{padding:2px 0 0 47px; border: 1px solid #513e24; margin: 8px 3px 0px 6px;}
+.activeSpecTxt { font-size: 8px; letter-spacing: 1px; padding: 0 1px; text-transform:uppercase; color: #513e24; float: left; position: relative; top: -8px; line-height: 10px; left: -42px; margin-bottom: -20px; background-color: #2e200b;}
+.prof1,.prof2 { padding: 2px 0 0 35px; margin: 3px 0 0 5px; }
+.profImage{position:absolute;left:15px}
+.profImage img{position:relative;top:15px;width:27px;height:27px}
+
+.spec-wrapper h4{font-size:14px; margin: 0 4px 0 -5px; border-bottom: 1px solid #513e24; padding: 0 !important;}
+#replaceTalentSpecText, #replaceTalentSpecText:visited, #replaceTalentSpecText2, #replaceTalentSpecText2:visited { color: #FFD200; text-decoration: none; }
+.spec-wrapper span{color:white;padding:0 0 0 3px}
+.spec-wrapper img{position:relative;top:5px;width:27px;height:27px}
+.tooltipContentSpecial, .tooltipContentSpecial span { line-height: 14px !important; }
+.disabledSpec h4 a { color: #7e623b !important; }
+.disabledSpec span { color: #7e623b !important;  }
+.disabledSpec { border: none !important; margin-top: 5px !important; }
+
+em.ptl{background-position:0 0;top:0;left:0}
+em.pbl{background-position:0 -3px;bottom:0;left:0}
+em.ptr{background-position:-3px 0;top:0;right:0}
+em.pbr{background-position:-3px -3px;bottom:0;right:0}
+.character-stats{margin:7px 0 0 0}
+
+.profile-master2 ul{margin:0;padding:0;list-style:none}
+.profile-master2 li{width:60px;height:55px;margin:1px;position:relative}
+.resists{width:131px;height:189px;float:right}
+.character-stats li{height:13px !important;width:95%;line-height:13px}
+.character-stats span{color:#ffd800;padding:0 0 0 4px;float:left;}
+.character-stats i{line-height:10px;font-size:10px;color:white;float:right;font-family:"Trebuchet MS",Arial,Helvetica,sans-serif !important}
+
+.stack1 em,.stack2 em,.stats1 em, .stats2 em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/pc1.gif');background-repeat:no-repeat;}
+.mod{color:#7eff00 !important}
+.moddown{color:#ff0000 !important}
+
+/* stats */
+.health-stat p,.mana-stat p,.rage-stat p,.energy-stat p,.runic-stat p{float:left;width:150px;margin:0 0 0 14px;text-align:center;color:white;padding:0;height:16px;border:1px solid black}
+.health-stat p{background:url('../../images/bar-life.gif') repeat-x}
+.health-stat p span,.mana-stat p span,.rage-stat p span,.energy-stat p span, .runic-stat p span{position:relative;top:-1px}
+.health-stat h4,.mana-stat h4,.rage-stat h4,.energy-stat h4, .runic-stat h4{text-align:right;width:55px}
+.mana-stat p,.bar-container b{background:url('../../images/bar-mana.gif') repeat-x}
+.rage-stat p{background:url('../../images/bar-rage.gif') repeat-x}
+.energy-stat p{background:url('../../images/bar-energy.gif') repeat-x}
+.runic-stat p{background:url('../../images/bar-runic.gif') repeat-x}
+.health-stat p:hover{border:1px solid #7eff00}
+.mana-stat p:hover,.bar-container:hover{border:1px solid #00a8ff}
+.rage-stat p:hover{border:1px solid #ff0000}
+.energy-stat p:hover{border:1px solid #fcff00}
+.runic-stat p:hover{border:1px solid #49c1d7}
+
+.bar-container{line-height: 14px !important; margin:0;padding:0;text-align:center;color:white;padding:0;height:16px;width:130px;border:1px solid black;background:url('../../images/bar-grey.gif') repeat-x; white-space: nowrap}
+.bar-container b{height:16px;margin:0;padding:0;float:left}
+
+/* deco-frame table */
+/*...........................................................*/
+.bonus-stats{width:80%;margin:0 auto 10px;position:relative}
+.bonus-stats-content{width:100%;position:relative}
+.deco-frame td{border:0}
+.deco-frame thead td,.deco-frame tfoot td{height:9px;width:12px}
+.deco-frame tfoot td.sb b{height:9px;width:1px;position:relative}
+.deco-frame td.sl b,.deco-frame td.sr b{width:12px;display:block;height:1px;position:relative}
+.deco-frame thead td.sl{background:url('../../images/df-tl.gif') no-repeat 0 0 !important}
+.deco-frame thead td.sr{background:url('../../images/df-tr.gif') no-repeat 0 0 !important}
+.deco-frame .st{background:url('../../images/df-t.gif') repeat-x 0 0 !important}
+.deco-frame tbody td.sl{background:url('../../images/df-l.gif') repeat-y 0 0 !important;vertical-align:middle !important}
+.deco-frame tbody td.sr{background:url('../../images/df-r.gif') repeat-y 100% 0 !important;vertical-align:middle !important}
+.deco-frame tfoot td.sl{background:url('../../images/df-bl.gif') no-repeat 0 0 !important}
+.deco-frame tfoot td.sr{background:url('../../images/df-br.gif') no-repeat 0 0 !important}
+.deco-frame .sb{background:url('../../images/df-b.gif') repeat-x 0 0 !important}
+.deco-frame .ct{padding:2px;width:100% !important}
+.deco-frame em.port{background:url('../../images/df-left.gif') no-repeat;width:25px;height:114px;top:-57px;left:-15px;display:block;position:absolute}
+.deco-frame em.star{background:url('../../images/df-right.gif') no-repeat;width:25px;height:114px;top:-57px;right:-15px;display:block;position:absolute}
+.deco-frame em.foot{background:url('../../images/df-bot.gif') no-repeat;width:136px;height:36px;top:4px;left:-68px;display:block;position:absolute}
+
+/* under level 10 */
+.under10{width:550px;margin:0 auto;}
+.under10 table{width:495px !important}
+.under10 .bonus-stats{margin:0px 0 10px -10px;width:459px !important}
+.kids{height:352px;width:497px;background:url('../../images/kids.jpg') no-repeat;z-index:90;position:relative}
+.kids h2{position:absolute;top:119px;left:-39px;width:564px;height:131px}
+.kids h2 span{display:none}
+.kids .levelBar-wrapper{position:absolute;top:-10px;right:-101px;width:71px;height:387px}
+.levelBar-wrapper div{height:387px;width:23px;position:relative}
+.levelBar-wrapper div a{display:block;width:21px;position:absolute;bottom:2px;left:2px;height:75%;background:url('../../images/kidbar-tile.gif') repeat-y}
+
+/* arena/pvp */
+.arena-ranking{padding:8px 8px 5px 8px;;}
+.arena-ranking h2{clear:both;height:25px;line-height:25px !important;margin:0;padding:0 0 0 6px;background:url(../../images/achievetitle-bg.jpg) #f1db91 0 0 repeat-y;color:#f2e09a;font:18px 'Trebuchet MS',Arial,Helvetica,sans-serif;text-transform:uppercase}
+.arena-ranking h2 a:link,.arena-ranking h2 a:hover,.arena-ranking h2 a:visited,.arena-ranking h2 a:active{float:right;position:relative;color:#005ba1;font:11px 'Trebuchet MS',Arial,Helvetica,sans-serif;display:block;height:25px;line-height:25px;text-transform:none;background:url('../../images/more-arrow.gif') 100% 50% no-repeat;padding-right:21px}
+.arena-ranking h3{margin:0 0 3px 0;padding:0 0 0px 6px;text-transform:uppercase;color:#847240;font-size:12px;background:url('../../images/achievetitle-bg.jpg') #f0da8d -250px 100% repeat-y;}
+.arena-ranking h3 strong{color:#533A00}
+
+ul.badges-pvp{margin:3px 0 3px 8px;padding:0;width:100%}
+ul.badges-pvp li{float:left;width:32%;margin:0 3px 3px 0;padding:0;list-style:none;position:relative;border:1px dotted #cbb166;text-align:center;background:url(../../images/achieve-pvp-bg.jpg) 50% 0 repeat;color:#443b1f}
+ul.badges-pvp li h4{display:block;margin:0;padding:17px 0 0 0;font:28px Georgia,"Times New Roman",Times,serif}
+ul.badges-pvp li em{display:block;text-transform:uppercase;font:12px 'Trebuchet MS',Arial,Helvetica,sans-serif;letter-spacing:0px}
+ul.badges-pvp li .arenacontainer{width:100%;height:160px;background:url(../../images/achieve-pvp-wreath.jpg) 50% 0 no-repeat}
+ul.badges-pvp li .icon{width:149px;height:82px;margin:0 0 0 -74px;padding:0;background-position:48px 11px;background-repeat:no-repeat;background-image:none;position:absolute;top:66px;left:50%}
+ul.badges-pvp li .icon img{width:149px;height:82px}
+ul.badges-pvp li .rank-num{width:60px;height:40px;margin:0 0 0 -30px;padding:0;background:none;position:absolute;top:54px;left:36%}
+.personalrating span {font-size:10px;}
+.arena-team-faded{width:100%;height:160px;background:url(../../images/achieve-pvp-wreath.jpg) 50% 0 no-repeat}
+.arena-team-faded h4{color:#b09c61}
+.arena-team-faded em{color:#b09c61}
+
+.teamShortcut { background: url('../../images/icons/arenareports/view-team.gif') no-repeat top left; height: 21px; width: 21px; display: block; float: left; margin: 2px; text-align:center; }

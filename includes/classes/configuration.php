@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @package World of Warcraft Armory
+ * @version Release Candidate 1
+ * @revision 30
+ * @copyright (c) 2009 Shadez  
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ **/
+
+if(!defined('__ARMORY__')) {
+    die('Direct access to this file not allowed!');
+}
+
+$ArmoryConfig = array();
+$ArmoryConfig['mysql']['host_armory']     = 'localhost';
+$ArmoryConfig['mysql']['user_armory']     = 'root';
+$ArmoryConfig['mysql']['pass_armory']     = '';
+$ArmoryConfig['mysql']['name_armory']     = 'armortyy';
+$ArmoryConfig['mysql']['charset_armory']  = 'UTF8';
+
+$ArmoryConfig['mysql']['host_characters']     = 'localhost';
+$ArmoryConfig['mysql']['user_characters']     = 'root';
+$ArmoryConfig['mysql']['pass_characters']     = '';
+$ArmoryConfig['mysql']['name_characters']     = 'characters';
+$ArmoryConfig['mysql']['charset_characters']  = 'UTF8';
+
+$ArmoryConfig['mysql']['host_realmd']         = 'localhost';
+$ArmoryConfig['mysql']['user_realmd']         = 'root';
+$ArmoryConfig['mysql']['pass_realmd']         = '';
+$ArmoryConfig['mysql']['name_realmd']         = 'realmd';
+$ArmoryConfig['mysql']['charset_realmd']      = 'UTF8';
+
+$ArmoryConfig['mysql']['host_mangos']         = 'localhost';
+$ArmoryConfig['mysql']['user_mangos']         = 'root';
+$ArmoryConfig['mysql']['pass_mangos']         = '';
+$ArmoryConfig['mysql']['name_mangos']         = 'mangos';
+$ArmoryConfig['mysql']['charset_mangos']      = 'UTF8';
+
+$ArmoryConfig['settings']['siteCharset']      = 'utf-8';
+$ArmoryConfig['settings']['useNews']          = true;
+$ArmoryConfig['settings']['defaultRealmId']   = 1;
+$ArmoryConfig['settings']['defaultRealmName'] = 'MaNGOS';
+/*$ArmoryConfig['settings']['useCache']         = true;
+$ArmoryConfig['settings']['cache_lifetime']   = 2;  */ // In days
+$ArmoryConfig['settings']['minlevel']         = 10; // Character must have this level or higher to be shown in Armory
+$ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - only players, 1 - moderators, 2 - GMs, 3 - everyone
+$ArmoryConfig['settings']['defaultLocale']    = 'ru_ru'; // Can be 'ru_ru' or 'en_gb' (limited English support!)
+$ArmoryConfig['settings']['useDualSpec']      = false; // Use Dual specialization talent view (!requires MaNGOS core patch!)
+                                                      // Armory supports KiriX's version ONLY (can be found here:
+                                                      // http://getmangos.com/community/showthread.php?t=8580)
+?>

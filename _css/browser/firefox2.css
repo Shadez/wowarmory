@@ -1,0 +1,19 @@
+.front-top .login-container a.loginLink{padding:0 29px 0 0;position:relative;z-index:10; margin:0; float:left;}
+.front-top .login-container .userKey {position:absolute;right:0;top:0;}
+.front-top .login-container .usermod {position:relative;float:left;text-align:right !important; margin:0 44px 0 0;}
+.front-top .login-container .usermod a {position:relative; right:0;}
+.front-top .login-container .user-options {padding:2px 0 0 0; float:left;}
+.front-top .login-container a.bookmark-user {position:absolute;right:10px;top:5px;}
+.front-top .login-container .menu-position {position:absolute;right:5px}
+.char-select a {float:right !important}
+
+.int .login-container a.loginLink{padding:0 29px 0 0;position:relative;z-index:10; margin:0; float:left;}
+.int .login-container .userKey {position:absolute;right:0;top:0;}
+.int .login-container .usermod {position:relative;float:left;text-align:right !important; margin:0 44px 0 0;}
+.int .login-container .usermod a {position:relative; right:0;}
+.int .login-container .user-options {padding:2px 0 0 0; float:left;}
+.int .login-container a.bookmark-user {position:absolute;right:0;top:0;}
+.int .login-container .menu-position {position:absolute;right:5px}
+
+.pvprewards table {display:block;}
+.pvprewards table td {width:444px;}
