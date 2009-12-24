@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 32
+ * @revision 33
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -264,7 +264,7 @@ $armory->tpl->assign('source', $items->GetItemSource($itemID));
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {
-    $armory->tpl->display('index_header.tpl');
+    $armory->tpl->display('overall_header.tpl');
 }
 // Write tooltip to cache
 $utils->writeCache($itemID, $_SESSION['char_guid'], $armory->tpl->fetch('item-tooltip.tpl'));
