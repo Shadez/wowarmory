@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 32
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -417,6 +417,7 @@ Class Utils extends Connector {
         }
         return SKILL_UNARMED;
     }
+    
     public function getSkill($id, $char_data) {
         $skillInfo = array(0,0,0,0,0,0);
         for ($i=0;$i<128;$i++)
@@ -433,6 +434,46 @@ Class Utils extends Connector {
             break;
         }
         return $skillInfo;
+    }
+    
+    public function getCache($itemID, $guid) {
+        if($this->armoryconfig['useCache'] != true) {
+            return false;
+        }
+        return $this->aDB->selectCell("
+        SELECT `tooltip_html`
+            FROM `cache`
+                WHERE `id`=? AND `guid`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $this->armoryconfig['cache_lifetime']);
+    }
+    
+    public function writeCache($itemID, $guid, $tooltip) {
+        if($this->armoryconfig['useCache'] != true) {
+            return false;
+        }
+        $this->aDB->query("
+        INSERT IGNORE INTO `cache` (`id`, `guid`, `tooltip_html`, `date`)
+            VALUES (?, ?, ?, NOW())", $itemID, $guid, $tooltip);
+        return true;
+    }
+    
+    public function dropCache($itemID, $guid, $full=false) {
+        if($this->armoryconfig['useCache'] != true) {
+            return false;
+        }
+        if($full == true) {
+            $this->aDB->query("TRUNCATE TABLE `cache`");
+			return true;
+        }
+        $this->aDB->query("DELETE FROM `cache` WHERE `id`=? AND `guid`=?", $itemID, $guid);
+        return true;
+    }
+    
+    public function clearCache() {
+        if($this->armoryconfig['useCache'] != true) {
+            return false;
+        }
+        $this->aDB->query("DELETE FROM `cache` WHERE TO_DAYS(NOW()) - TO_DAYS(`date`) >= ?", $this->armoryconfig['cache_lifetime']);
+        return true;
     }
 }
 ?>

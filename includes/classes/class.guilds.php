@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 32
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -206,8 +206,8 @@ Class Guilds extends Connector {
             FROM `characters` AS `characters`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`guildid`=?
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=?
-            WHERE `guild`.`guildid`=? AND `characters`.`level` >= 10 AND `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`rank` <> 0
-            GROUP BY `guild_member`.`rank`", $this->guildId, $this->guildId, $this->guildId);
+            WHERE `guild`.`guildid`=? AND `characters`.`level`>=? AND `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`rank` <> 0
+            GROUP BY `guild_member`.`rank`", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
         }
         $i = 0;
         $countMembers = count($memberListTmp);
@@ -221,7 +221,7 @@ Class Guilds extends Connector {
         $cList = $this->cDB->select("
         SELECT `race`, `class`, `level`, `gender`
             FROM `characters`
-                WHERE `guid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=?) AND `level`>=10", $this->guildId);
+                WHERE `guid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=?) AND `level`>=?", $this->guildId, $this->armoryconfig['minlevel']);
         return $cList;
      }
 }

@@ -81,7 +81,7 @@
 <img src="images/icon-header-realm.gif" /></a>
 </div>
 </div>
-<script src="js/JsHttpRequest.js"></script>
+<script src="_js/JsHttpRequest.js"></script>
 <script type="text/javascript" language="JavaScript">
 function loadAchievements(name, category)
 {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 32
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,7 +37,13 @@ if($itemID==0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FRO
     die($armory->tpl->get_config_vars('armory_item_tooltip_undefined_item'));
 }
 
-// TODO: Cache system
+$utils->clearCache();
+$CacheItem = $utils->getCache($itemID, $_SESSION['char_guid']);
+if($CacheItem) {
+    echo $CacheItem;
+    exit;
+}
+
 $quality_colors = array (
 	0 => 'myGray',
  	1 => 'myWhite',
@@ -260,6 +266,8 @@ $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {
     $armory->tpl->display('index_header.tpl');
 }
+// Write tooltip to cache
+$utils->writeCache($itemID, $_SESSION['char_guid'], $armory->tpl->fetch('item-tooltip.tpl'));
 $armory->tpl->display('item-tooltip.tpl');
 exit();
 ?>
