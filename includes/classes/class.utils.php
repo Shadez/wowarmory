@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 32
+ * @revision 34
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -474,6 +474,15 @@ Class Utils extends Connector {
         }
         $this->aDB->query("DELETE FROM `cache` WHERE TO_DAYS(NOW()) - TO_DAYS(`date`) >= ?", $this->armoryconfig['cache_lifetime']);
         return true;
+    }
+    
+    public function showNews() {
+        $news = $this->aDB->select("SELECT * FROM `news` ORDER BY `id` DESC");
+        $count = count($news);
+        for($i=0;$i<$count;$i++) {
+            $news[$i]['date'] = date('Y-m-d\TH:i:s', $news[$i]['date']);
+        }
+        return $news;
     }
 }
 ?>

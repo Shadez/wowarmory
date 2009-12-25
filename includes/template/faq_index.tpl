@@ -1,4 +1,34 @@
 <div class="module-block-left">
+{{if $armoryNews}}
+<div class="armory-firsts">
+<div class="module">
+<h1>Новости</h1>
+{{foreach from=$armoryNews item=news}}
+<div class="module-lite news_feed">
+<div class="news_upd">
+<img class="p news_icon" src="images/news_news.png" /><div>
+<b style="color:white">{{$news.title}}</b>
+		<span class="timestamp-news-{{$news.id}}" style="display:none">{{$news.date}}+00:00</span>
+</div>
+<div>{{$news.text}}
+</div>
+</div>
+<script type="text/javascript">
+						L10n.formatTimestamps("span.timestamp-news-{{$news.id}}", {
+			withinHour: "{0} мин. назад",
+			withinHourSingular: "{0} мин. назад",
+			withinDay: "{0} ч назад",
+			withinDaySingular: "{0} ч назад",
+			today: "Сегодня, {0}",
+			yesterday: "Вчера",
+			date: "d.M.yyyy"
+		});
+					</script>
+</div>
+{{/foreach}}
+</div>
+</div>
+{{/if}}
 <div class="rinfo">
 <div class="module">
 <h1>{{#armory_faq_header#}}</h1>
