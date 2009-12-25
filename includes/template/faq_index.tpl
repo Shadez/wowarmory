@@ -2,7 +2,7 @@
 {{if $armoryNews}}
 <div class="armory-firsts">
 <div class="module">
-<h1>Новости</h1>
+<h1>{{#armory_news_title#}}</h1>
 {{foreach from=$armoryNews item=news}}
 <div class="module-lite news_feed">
 <div class="news_upd">
@@ -15,12 +15,12 @@
 </div>
 <script type="text/javascript">
 						L10n.formatTimestamps("span.timestamp-news-{{$news.id}}", {
-			withinHour: "{0} мин. назад",
-			withinHourSingular: "{0} мин. назад",
-			withinDay: "{0} ч назад",
-			withinDaySingular: "{0} ч назад",
-			today: "Сегодня, {0}",
-			yesterday: "Вчера",
+			withinHour: "{0} {{#armory_timeformat_1#}}",
+			withinHourSingular: "{0} {{#armory_timeformat_2#}}",
+			withinDay: "{0} {{#armory_timeformat_3#}}",
+			withinDaySingular: "{0} {{#armory_timeformat_4#}}",
+			today: "{{#armory_timeformat_5#}} {0}",
+			yesterday: "{{#armory_timeformat_6#}}",
 			date: "d.M.yyyy"
 		});
 					</script>

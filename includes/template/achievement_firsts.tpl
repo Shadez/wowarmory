@@ -43,13 +43,13 @@
 </div>
 <script type="text/javascript">
 					L10n.formatTimestamps("b.timestamp-firsts", {
-			withinHour: "{0} мин. назад",
-			withinHourSingular: "{0} мин. назад",
-			withinDay: "{0} ч назад",
-			withinDaySingular: "{0} ч назад",
-			today: "Сегодня, {0}",
-			yesterday: "Вчера",
-			date: "d-M-yyyy"
+			withinHour: "{0} {{#armory_timeformat_1#}}",
+			withinHourSingular: "{0} {{#armory_timeformat_2#}}",
+			withinDay: "{0} {{#armory_timeformat_3#}}",
+			withinDaySingular: "{0} {{#armory_timeformat_4#}}",
+			today: "{{#armory_timeformat_5#}} {0}",
+			yesterday: "{{#armory_timeformat_6#}}",
+			date: "d.M.yyyy"
 		});
 </script>
 </div>
