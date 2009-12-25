@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 36
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,27 +29,11 @@ if(!@include('includes/armory_loader.php')) {
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
 $className = $_GET['c'];
-$classId   = $_GET['cid'];
-$petId     = $_GET['pid'];
+$classId   = (int) $_GET['cid'];
+$petId     = (int) $_GET['pid'];
 if(isset($petId)) {
-    switch($petId) {
-        case '-1':
-            $armory->tpl->assign('openTree', '-1');
-            $tpl2include = 'talent_calc_pet_'.$_locale;
-            break;
-        case '-2':
-            $armory->tpl->assign('openTree', '-2');
-            $tpl2include = 'talent_calc_pet_'.$_locale;
-            break;
-        case '-3':
-            $armory->tpl->assign('openTree', '-3');
-            $tpl2include = 'talent_calc_pet_'.$_locale;
-            break;
-        default:
-            $armory->tpl->assign('openTree', '-1');
-            $tpl2include = 'talent_calc_pet_'.$_locale;
-            break;
-    }
+    $armory->tpl->assign('openTree', $petId);
+    $tpl2include = 'talent_calc_pet_'.$_locale;
 }
 elseif(isset($classId)) {
     switch($classId) {
