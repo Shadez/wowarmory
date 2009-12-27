@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 37
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,8 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 session_start();
-error_reporting(0);
+#error_reporting(0);
+error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
@@ -39,15 +40,29 @@ $armory->tpl->config_dir      = 'includes/locales/';
 $armory->tpl->left_delimiter  = '{{'; // remove JS brackets conflict
 $armory->tpl->right_delimiter = '}}'; // remove JS brackets conflict
 
-include('defines.php');
 include('UpdateFields.php');
-include('classes/class.utils.php');
+include('defines.php');
+if(!@include('classes/class.utils.php')) {
+    die('<b>Error:</b> can not load utils class!');
+}
+
 $utils = new Utils;
 
 /** Login **/
-/*if(isset($_GET['login']) && $_GET['login'] == 1) {
+if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml?rrid=' . rand());
-}*/
+}
+elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
+    $utils->logoffUser();
+    header('Location: index.xml?lid=' . rand());
+}
+if(isset($_SESSION['wow_login'])) {
+    $armory->tpl->assign('_wow_login', $_SESSION['username']);
+    $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
+    $armory->tpl->assign('myVaultCharacters', $utils->getCharsArray());
+    $armory->tpl->assign('selectedVaultCharacter', $utils->getCharacter());
+}
+/** End login **/
 
 if(isset($_GET['locale'])) {
     $tmp = strtolower($_GET['locale']);

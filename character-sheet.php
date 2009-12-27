@@ -32,7 +32,6 @@ define('load_mangos_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-error_reporting(0);
 // Доп. лист стилей
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 

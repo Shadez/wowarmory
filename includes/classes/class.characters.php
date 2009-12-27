@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 32
+ * @revision 37
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -88,6 +88,9 @@ Class Characters extends Connector {
         SELECT `guid`, `account`
             FROM `characters`
                 WHERE `name`=? AND `level`>=? LIMIT 1", $this->name, $this->armoryconfig['minlevel']);
+        if(!$guid) {
+            return false;
+        }
         $gmAccount = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $guid['account']);
         $showIt = ($gmAccount==$this->armoryconfig['minGmLevelToShow'] || $gmAccount < $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if($guid && $showIt) {
@@ -806,8 +809,8 @@ Class Characters extends Connector {
         $rating = Utils::GetRating($this->level);
         /* Basic data */
         $StatArray['effective_strenght'] = $this->GetDataField(UNIT_FIELD_STAT0);
-        $StatArray['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0));
-        $StatArray['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0));
+        $StatArray['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0), 0);
+        $StatArray['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0), 0);
         $StatArray['stat_strenght'] = $StatArray['effective_strenght']-$StatArray['bonus_strenght']-$StatArray['negative_strenght'];
         $StatArray['bonus_strenght_attackpower'] = Utils::GetAttackPowerForStat(STAT_STRENGTH, $StatArray['effective_strenght'], $this->class);
         if($this->class == CLASS_WARRIOR || $this->class == CLASS_PALADIN || $this->class == CLASS_SHAMAN) {
@@ -817,8 +820,8 @@ Class Characters extends Connector {
             $StatArray['bonus_strenght_block'] = '-1';
         }
         $StatArray['effective_agility'] =$this->GetDataField(UNIT_FIELD_STAT1);
-        $StatArray['bonus_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT1));
-        $StatArray['negative_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT1));
+        $StatArray['bonus_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT1), 0);
+        $StatArray['negative_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT1), 0);
         $StatArray['stat_agility'] = $StatArray['effective_agility']-$StatArray['bonus_agility']-$StatArray['negative_agility'];
         $StatArray['crit_agility'] = floor(Utils::GetCritChanceFromAgility($rating, $this->class, $StatArray['effective_agility']));
         $StatArray['bonus_agility_attackpower'] = Utils::GetAttackPowerForStat(STAT_AGILITY, $StatArray['effective_agility'], $this->class);
@@ -827,8 +830,8 @@ Class Characters extends Connector {
             $StatArray['bonus_agility_attackpower'] = '-1';
         }        
         $StatArray['effective_stamina'] = $this->GetDataField(UNIT_FIELD_STAT2);
-        $StatArray['bonus_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT2));
-        $StatArray['negative_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT2));
+        $StatArray['bonus_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT2), 0);
+        $StatArray['negative_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT2), 0);
         $StatArray['stat_stamina'] = $StatArray['effective_stamina']-$StatArray['bonus_stamina']-$StatArray['negative_stamina'];
         
         $StatArray['base_stamina'] = min(20, $StatArray['effective_stamina']);
@@ -839,8 +842,8 @@ Class Characters extends Connector {
             $StatArray['bonus_stamina_petstamina'] = '-1';
         }
         $StatArray['effective_intellect'] =$this->GetDataField(UNIT_FIELD_STAT3);
-        $StatArray['bonus_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT3));
-        $StatArray['negative_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT3));
+        $StatArray['bonus_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT3), 0);
+        $StatArray['negative_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT3), 0);
         $StatArray['stat_intellect'] = $StatArray['effective_intellect']-$StatArray['bonus_intellect']-$StatArray['negative_intellect'];
         if($this->class != CLASS_WARRIOR && $this->class != CLASS_ROGUE && $this->class != CLASS_DK) {
             $StatArray['base_intellect'] = min(20, $StatArray['effective_intellect']);
@@ -860,8 +863,8 @@ Class Characters extends Connector {
         }
         
         $StatArray['effective_spirit'] =$this->GetDataField(UNIT_FIELD_STAT4);
-        $StatArray['bonus_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT4));
-        $StatArray['negative_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT4));
+        $StatArray['bonus_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT4), 0);
+        $StatArray['negative_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT4), 0);
         $StatArray['stat_spirit'] = $StatArray['effective_spirit']-$StatArray['bonus_spirit']-$StatArray['negative_spirit'];
         $baseRatio = array(0, 0.625, 0.2631, 0.2, 0.3571, 0.1923, 0.625, 0.1724, 0.1212, 0.1282, 1, 0.1389);
         $StatArray['bonus_spirit_hpregeneration'] = $StatArray['effective_spirit'] * Utils::GetHRCoefficient($rating, $this->class);
@@ -885,7 +888,7 @@ Class Characters extends Connector {
         $StatArray['negative_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSNEGATIVE), 0);
         $StatArray['stat_armor'] = $StatArray['effective_armor']-$StatArray['bonus_armor']-$StatArray['negative_armor'];
         if($this->level > 59 ) {
-            $levelModifier = $levelModifier + (4.5 * ($levelModifier-59));
+            $levelModifier = $this->level + (4.5 * ($this->level-59));
         }
         $StatArray['bonus_armor_reduction'] = 0.1*$StatArray['effective_armor']/(8.5*$levelModifier + 40);
     	$StatArray['bonus_armor_reduction'] = $StatArray['bonus_armor_reduction']/(1+$StatArray['bonus_armor_reduction'])*100;
@@ -954,7 +957,7 @@ Class Characters extends Connector {
         
         $StatArray['parry_chance'] = Utils::getFloatValue($this->GetDataField(PLAYER_PARRY_PERCENTAGE), 2);
         $StatArray['stat_parry'] = $this->GetDataField(PLAYER_FIELD_PARRY_RATING);
-        $StatArray['stat_parry_pct'] = $StatArray['stat_parry']/Utils::GetRatingCoefficient($rating, 4);
+        $StatArray['stat_parry_pct'] = floor($StatArray['stat_parry']/Utils::GetRatingCoefficient($rating, 4));
         
         $StatArray['melee_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_MELEE_RATING);
         $StatArray['ranged_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_RANGED_RATING);
@@ -1004,12 +1007,13 @@ Class Characters extends Connector {
         $StatArray['spell_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_RESISTANCE);
         // Spell crit
         $StatArray['spell_crit_rating'] = $this->GetDataField(1213);
-        $StatArray['spell_crit_pct'] = $StatArray['spell_crit_rating']/ Utils::GetRatingCoefficient($rating, 11); 
+        $StatArray['spell_crit_pct'] = $StatArray['spell_crit_rating']/ Utils::GetRatingCoefficient($rating, 11);
+        $minCrit = $this->GetDataField(PLAYER_SPELL_CRIT_PERCENTAGE1+1);
         for($i=1;$i<7;$i++) {
             $scfield = PLAYER_SPELL_CRIT_PERCENTAGE1+$i;
             $s_crit_value = $this->GetDataField($scfield);
             $spellCrit[$i] =  Utils::getFloatValue($s_crit_value, 2);
-            $mincrit = min($minCrit, $spellCrit[$i]);
+            $minCrit = min($minCrit, $spellCrit[$i]);
         }
         $StatArray['spell_crit_holy'] = $spellCrit[1];
         $StatArray['spell_crit_fire'] = $spellCrit[2];

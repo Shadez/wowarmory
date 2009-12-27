@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 34
+ * @revision 37
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,36 +32,66 @@ Class Utils extends Connector {
     public $username;
     public $password;
     public $shaHash;
-    public $charsArray;
-    public $preferedChar;
+    
+    /** Profile functions are in development! **/
     
     public function authUser() {
         if(!$this->username || !$this->password) {
-            return false;
+            return 0x01;
         }
         $info = $this->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`=? LIMIT 1", $this->username);
         if(!$info) {
-            return false;
+            return 0x02;
         }
         elseif($info['sha_pass_hash'] != $this->createShaHash()) {
-            return false;
+            return 0x03;
         }
         else {
             $this->accountId = $info['id'];
+            $_SESSION['wow_login'] = true;
             $_SESSION['accountId'] = $this->accountId;
-            $_SESSION['username'] = $this->username;
-            $_SESSION['sha_pass_hash'] = $this->shaHash;
-            $_SESSION['password'] = $this->password;
-            $_SESSION['charsArray'] = $this->cDB->select("SELECT `guid`, `name`, `class`, `race`, `gender` FROM `characters` WHERE `account`=?", $this->accountId);
-            $_SESSION['preferedChar'] = $this->aDB->select("SELECT `guid`, `name`, `class");
-        }        
+            $_SESSION['username']  = $this->username;
+            return 0x00;
+        }
     }
     
-    public function getCharsArray() {
+    public function logoffUser() {
+        unset($_SESSION['wow_login']);
+        return true;
+    }
+    
+    public function getCharsArray($select=false) {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $chars = $this->cDB->select("SELECT `guid`, `name`, `class`, `race`, `gender` FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
+        if($select == true) {
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? AND `selected`<>1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
+            $chars['0']['show'] = true;
+            $chars['1']['show'] = true;
+        }
+        else {
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
+        }
+        // TODO: achievement points for each character
+        return $chars;
+    }
+    
+    public function getAllCharacters() {
+        if(!$_SESSION['accountId']) {
+            return false;
+        }
+        $gField = PLAYER_GUILDID+1;
+        $chars = $this->cDB->select("
+        SELECT
+        `characters`.`name`, 
+        `characters`.`class`, 
+        `characters`.`race`, 
+        `characters`.`gender`, 
+        `characters`.`level`,
+        `guild`.`name` AS `guildname`
+        FROM `characters` AS `characters`
+        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`characters`.`data`, ' ', ".$gField."), ' ', '-1') AS UNSIGNED)
+        WHERE `account`=?", $_SESSION['accountId']);
         return $chars;
     }
     
@@ -69,8 +99,22 @@ Class Utils extends Connector {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender` FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']);
+        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']);
+        if(!$data) {
+            return $this->loadRandomCharacter();
+        }
         return $data;
+    }
+    
+    public function loadRandomCharacter() {
+        if(!$_SESSION['accountId']) {
+            return false;
+        }
+        $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
+        $char['account'] = $_SESSION['accountId'];
+        $char['selected'] = 1;
+        $this->aDB->query("INSERT INTO `login_characters` (?#) VALUES (?a)", array_keys($char), array_values($char));
+        return $char;
     }
     
     public function assignCharacter($guid) {
@@ -313,7 +357,7 @@ Class Utils extends Connector {
             1411, 1412, 1413, 1415, 1414, 1416, 1417, 1418, 1419, 
             1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 1400, 456, 
             1402, 3117, 3259, 4078, 1463
-        )");
+        )"); // 3.2.2a IDs
         if(!$achievements_data) {
             return false;
         }
@@ -338,7 +382,7 @@ Class Utils extends Connector {
             switch ($class) {
                 case CLASS_WARRIOR:
                 case CLASS_PALADIN:
-                case CLASS_DEATH_KNIGHT:
+                case CLASS_DK:
                 case CLASS_DRUID:
                     $baseStr=min($effectiveStat,20);
                     $moreStr=$effectiveStat-$baseStr;

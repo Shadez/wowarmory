@@ -27,29 +27,20 @@ define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-if(isset($_POST['accountName'])) {
-    $utils->username = $_POST['accountName'];
-    $utils->password = $_POST['password'];
-    if(empty($utils->username)) {
-        $armory->tpl->assign('error_username', $armory->tpl->get_config_vars('armory_login_error_empty_username'));
-    }
-    elseif(empty($utils->password)) {
-        $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_empty_password'));
-    }
-    $armory->tpl->assign('accountName', $utils->username);
-    $loginResponse = $utils->authUser();
-    switch($loginResponse) {
-        case 0x00:
-            header('Location: index.xml');
-            break;
-        case 0x01:
-            $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_empty_password'));
-            break;
-        default:
-            $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_invalid_password'));
-            break;
-    }
+
+/** Profile functions are in development! **/
+
+// Доп. лист стилей
+$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
+$armory->tpl->assign('tpl2include', 'vault_select_character');
+$armory->tpl->assign('selected_char', $utils->getCharacter());
+$armory->tpl->assign('allCharacters', $utils->getAllCharacters());
+if($armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']) == 3) {
+    $armory->tpl->assign('disallowAddNewChar', true);
 }
-$armory->tpl->display('login_page.tpl');
+$armory->tpl->assign('selectedCharacters', $utils->getCharsArray(true));
+
+$armory->tpl->display('overall_header.tpl');
+$armory->tpl->display('character_sheet_start.tpl');
 exit();
 ?>

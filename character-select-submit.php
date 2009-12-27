@@ -27,29 +27,25 @@ define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-if(isset($_POST['accountName'])) {
-    $utils->username = $_POST['accountName'];
-    $utils->password = $_POST['password'];
-    if(empty($utils->username)) {
-        $armory->tpl->assign('error_username', $armory->tpl->get_config_vars('armory_login_error_empty_username'));
-    }
-    elseif(empty($utils->password)) {
-        $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_empty_password'));
-    }
-    $armory->tpl->assign('accountName', $utils->username);
-    $loginResponse = $utils->authUser();
-    switch($loginResponse) {
-        case 0x00:
-            header('Location: index.xml');
-            break;
-        case 0x01:
-            $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_empty_password'));
-            break;
-        default:
-            $armory->tpl->assign('error_password', $armory->tpl->get_config_vars('armory_login_error_invalid_password'));
-            break;
-    }
+
+/** Profile functions are in development! **/
+
+if(isset($_GET['n2'])) {
+    $guid = $armory->cDB->selectCell("SELECT `guid` FROM `characters` WHERE `name`=? AND `account`=?", $_GET['n2'], $_SESSION['accountId']);
+    $armory->aDB->query("DELETE FROM `login_characters` WHERE `guid`=? AND `account`=?", $guid, $_SESSION['accountId']);
 }
-$armory->tpl->display('login_page.tpl');
+elseif(isset($_GET['n4'])) {
+    $num = $armory->aDB->selectCell("SELECT MAX(`num`) FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']);
+    if($num == 3) {
+        exit();
+    }
+    $charInfo = $armory->cDB->selectRow("
+    SELECT `account`, `guid`, `name`, `class`, `race`, `gender`, `level`
+        FROM `characters`
+            WHERE `account`=? AND `name`=? LIMIT 1", $_SESSION['accountId'], $_GET['n4']);
+    $charInfo['num'] = $num+1;
+    $charInfo['selected'] = 0;
+    $armory->aDB->query("INSERT INTO `login_characters` (?#) VALUES (?a)", array_keys($charInfo), array_values($charInfo));
+}
 exit();
 ?>

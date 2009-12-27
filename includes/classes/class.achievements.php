@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 31
+ * @revision 37
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -150,7 +150,7 @@ Class Achievements extends Connector {
         }
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $LastAchievements = $this->aDB->select("
-        SELECT `id`, `name_".$locale."`, `description_".$locale."`, `points`
+        SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points`
             FROM `".$this->mysqlconfig['name_armory']."`.`achievements`
                 WHERE `id` IN 
                 (
@@ -159,16 +159,12 @@ Class Achievements extends Connector {
                     WHERE `guid`=?
                     ORDER BY `date`
 				)
-                LIMIT 5", $this->guid);#, $num);
-        foreach($LastAchievements as $result) {
-            $varAch[count($varAch)] = array (
-                'name' => $result['name_'.$locale],
-                'points'=> $result['points'],
-                'description'=> $result['description_'.$locale],
-                'date'=> $this->GetAchievementDate($guid, $result['id'])
-            );
+                LIMIT 5", $this->guid);
+        $count =count($LastAchievements);
+        for($i=0;$i<$count;$i++) {
+            $LastAchievements[$i]['date'] = $this->GetAchievementDate($this->guid, $LastAchievements[$i]['id']);
         }
-        return $varAch;
+        return $LastAchievements;
     }
     
     public function GetAchievementDate($guid='', $achId='') {
