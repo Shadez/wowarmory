@@ -1,8 +1,7 @@
 <div class="language" id="languageFooter">
 <div class="module">
-<!--
 <em>{{#armory_select_lang_string#}}</em><a class="langLink{{if $ArmoryConfig.locale=='en_gb'}} select{{/if}}" href="?locale=en_gb">English (EU)</a><span>|</span><a class="langLink{{if $ArmoryConfig.locale=='ru_ru'}} select{{/if}}" href="?locale=ru_ru">Русский</a>
---></div>
+</div>
 </div>
 <div class="footer">
 <a class="blizzard" href="http://www.blizzard.co.uk"></a>

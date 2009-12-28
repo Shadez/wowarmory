@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 38
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,25 +29,33 @@ define('load_items_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-$searchQuery = $_GET['searchQuery'];
+$searchQuery = isset($_GET['searchQuery']) ? $_GET['searchQuery'] : false;
 $queryLen = strlen($searchQuery);
-if(empty($searchQuery) || $queryLen < 2) {
+if(!$searchQuery || $queryLen < 2) {
     $armory->ArmoryError(false, false, true);
 }
 $armory->tpl->assign('searchQuery', $searchQuery);
 $armory->tpl->assign('realmName', $armory->armoryconfig['defaultRealmName']);
-switch($_GET['selectedTab']) {
-    case 'characters':
-    case 'items':
-    case 'arenateams':
-    case 'guilds':
-        $forced_tab = 'search_'.$_GET['selectedTab'];
-        $forced_cur_tab = $_GET['selectedTab'].'_tab';
-        break;
-    default:
-        break;        
+if(isset($_GET['selectedTab'])) {
+    switch($_GET['selectedTab']) {
+        case 'characters':
+        case 'items':
+        case 'arenateams':
+        case 'guilds':
+            $forced_tab = 'search_'.$_GET['selectedTab'];
+            $forced_cur_tab = $_GET['selectedTab'].'_tab';
+            break;
+        default:
+            break;
+    }
 }
-if($queryLen > 7) {
+$itemsResNum = false;
+$charsResNum = false;
+$guildsResNum = false;
+$arenateamsResNum = false;
+$currentTab = false;
+
+//if($queryLen > 7 ) {
     $itemsResNum = $utils->SearchItems($searchQuery, true);
     if($itemsResNum > 0) {
         $armory->tpl->assign('itemsResultNum', $itemsResNum);
@@ -55,7 +63,7 @@ if($queryLen > 7) {
         $currentTab = 'items_tab';
         $tpl2include = 'search_items';
     }
-}
+//}
 $arenateamsResNum = $utils->SearchArenaTeams($searchQuery, true);
 if($arenateamsResNum > 0) {
     $armory->tpl->assign('arenateamsResultNum', $arenateamsResNum);

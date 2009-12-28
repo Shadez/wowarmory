@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 38
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -362,8 +362,9 @@ Class Utils extends Connector {
             return false;
         }
         $countAch = count($achievements_data);
+        #die("`name_".$locale."`");
         for($i=0;$i<$countAch;$i++) {
-            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `achievement` WHERE `id`=? LIMIT 1", $achievement_data[$i]['achievement']);
+            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `achievements` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `achievements` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `achievements` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['timestamp'] = date('Y-m-d\TH:i:s:+00:00', $achievements_data[$i]['date']);
@@ -484,19 +485,20 @@ Class Utils extends Connector {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         return $this->aDB->selectCell("
         SELECT `tooltip_html`
             FROM `cache`
-                WHERE `id`=? AND `guid`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $this->armoryconfig['cache_lifetime']);
+                WHERE `id`=? AND `guid`=? AND `locale`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $locale, $this->armoryconfig['cache_lifetime']);
     }
     
-    public function writeCache($itemID, $guid, $tooltip) {
+    public function writeCache($itemID, $guid, $tooltip, $locale) {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
         $this->aDB->query("
-        INSERT IGNORE INTO `cache` (`id`, `guid`, `tooltip_html`, `date`)
-            VALUES (?, ?, ?, NOW())", $itemID, $guid, $tooltip);
+        INSERT IGNORE INTO `cache` (`id`, `guid`, `tooltip_html`, `date`, `locale`)
+            VALUES (?, ?, ?, NOW())", $itemID, $guid, $tooltip, $locale);
         return true;
     }
     

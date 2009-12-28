@@ -11,9 +11,75 @@
 <div class="inner-container">
 <div id="replaceMain">
 <div class="front-top">
+<!-- -->
+{{if $_wow_login}}
+<script type="text/javascript">
+        
+        function loadCalendarAlerts(data) {
+            if(!data.invites || !data.invites.length)
+                return;
+
+            $("#pendingInvitesNotification").show();
+
+            var bookmarks = $("#userSelect .js-bookmark-characters");
+            var names = bookmarks.find(".js-character-name"); // no
+            var realms = bookmarks.find(".js-character-realm");
+            var inviteNodes = bookmarks.find(".user-alerts");
+
+            for(var j = 0, invite, invites = data.invites; invite = invites[j]; j++) {
+                for(var i = 0; i < names.length; i++) {
+                    if($(names[i]).text() == invite.character && $(realms[i]).text() == invite.realm) {
+                        $(inviteNodes[i]).show().text(invite.invites);
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function() {
+           loadScript('vault/calendar/alerts-user.json', 'jsonAlerts');
+        });
+        
+        
+    </script>
+<div id="menuHolder" style="top: 64px; right: 10px;">
+<div id="myCharacters">
+<a href="character-select.xml" id="changeLink">[{{#armory_vault_change_characters_button#}}]</a>{{#armory_vault_my_characters#}}</div>
+{{foreach from=$myVaultCharacters item=char}}
+<div class="menuItem charlist">
+<a class="character-achievement staticTip" href="character-achievements.xml?r={{$realm}}&amp;n={{$char.name}}" onmouseover="setTipText('{{#armory_guild_info_achievement_points#}}');">{{$char.ach_points}}</a>
+<a class="charName js-character-name" href="character-sheet.xml?r={{$realm}}&amp;n={{$char.name}}"><em class="classId{{$char.class}} staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}')"></em>{{$char.name}}</a> - 
+<span class="js-character-realm">{{$realm}}</span>
+<p>{{#armory_character_sheet_level_string#}}&nbsp;{{$char.level}}&nbsp;&nbsp;{{get_wow_class class=$char.class}}</p>
+</div>
+{{/foreach}}
+<div id="myBookmarks">
+<div id="bmArrows">
+<a class="staticTip" href="javascript:void(0)" id="bmBack" onmouseover="setTipText('{{#armory_vault_previous#}}');"></a><a class="staticTip" href="javascript:void(0)" id="bmFwd" onmouseover="setTipText('{{#armory_vault_next#}}');"></a>
+</div>{{#armory_vault_bookmarks#}}</div>
+<div id="bookmarkHolder">
+<span id="bm-currPage" style="display: none;">1</span><span id="bm-totalPages" style="display: none;">1</span>
+<div class="bmPage" id="page1" style="display: block">
+<div class="menuItem bmlist">
+<a class="character-achievement staticTip" href="/character-achievements.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&amp;n=%D0%A1%D0%B8%D0%B3%D0%BD%D0%B5%D1%82" onMouseOver="setTipText('Очки достижений');">310</a><a class="rmBookmark staticTip" href="javascript:void(0);" onMouseOver="setTipText('Удалить закладку');">&nbsp;</a><em class="classId1 staticTip" onmouseover="setTipText('Воин')"></em><a class="charName" href="/character-sheet.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&amp;n=%D0%A1%D0%B8%D0%B3%D0%BD%D0%B5%D1%82">Сигнет</a><span>&nbsp;-&nbsp;Свежеватель Душ</span>
+<p>Уровень&nbsp;61&nbsp;&nbsp;Воин</p>
+</div>
+</div>
+</div>
+</div>
+<div class="clear">
+<!---->
+</div>
+<div class="user-mod loginbg" style="text-align: right; ">
+<a href="javascript:void(0)" id="bookmark-user" style="margin: 3px 6px 0 0;"></a><span class="loggedInAs">{{#armory_vault_you_logged_as#}}</span>
+<br />
+<a class="userName" href="character-sheet.xml?r={{$realm}}&amp;n={{$selectedVaultCharacter.name}}"><em class="classId{{$selectedVaultCharacter.class}} staticTip" onmouseover="setTipText('{{get_wow_class class=$selectedVaultCharacter.class}}')" style="margin: 2px 4px 0 0;"></em>{{$selectedVaultCharacter.name}}</a> |                        
+<a href="index.xml?logout=1" id="logoutLink">{{#armory_vault_logoff#}}</a>
+</div>
+{{else}}
 <div class="loginbg">
 <a class="loginLink" href="index.xml?login=1" id="loginLinkRedirect">{{#armory_login_string#}}</a>
 </div>
+{{/if}}
 <div class="logo">
 <a href="armoryLink"><span>World of Warcraft Armory</span></a>
 </div>

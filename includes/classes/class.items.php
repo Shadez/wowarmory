@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 38
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -108,7 +108,7 @@ Class Items extends Connector {
     
     public function GetItemSource($item) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-	    $returnString = '';
+	    $returnString = false;
 		$vendorLoot = $this->wDB->selectCell("
 		SELECT `entry`
 			FROM `npc_vendor`
@@ -204,7 +204,7 @@ Class Items extends Connector {
     public function BuildLootTable($item, $vendor) {
         $lootTable = '';
         switch($vendor) {
-			case "vendor":
+			case 'vendor':
 				$VendorLoot = $this->wDB->select("
 				SELECT `entry`
 					FROM `npc_vendor`
@@ -220,7 +220,7 @@ Class Items extends Connector {
 				}
 			break;
 			
-			case "boss":
+			case 'boss':
 				$BossLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `creature_loot_template`
@@ -238,12 +238,12 @@ Class Items extends Connector {
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
         						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
     						  );
-                        }						
+                        }
 					}
 				}
 			break;
 			
-			case "chest":
+			case 'chest':
 				$ChestLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `gameobject_loot_template`
@@ -258,12 +258,12 @@ Class Items extends Connector {
     							'difficult' => '&nbsp;',
     							'drop_percent' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
     						);
-                        }							
+                        }
 					}
 				}
 			break;
 			
-			case "quest":
+			case 'quest':
 				$QuestLoot = $this->wDB->select("
 				SELECT `entry`
 					FROM `quest_template`
@@ -281,7 +281,7 @@ Class Items extends Connector {
 				}
 			break;
             
-            case "item":
+            case 'item':
                 $ItemLoot = $this->wDB->select("
                 SELECT `entry`, `ChanceOrQuestChance`
                     FROM `item_loot_template`
@@ -296,7 +296,7 @@ Class Items extends Connector {
                 }
                 break;
                 
-            case "disenchant":
+            case 'disenchant':
                 $DisenchantLoot = $this->wDB->select("
                 SELECT `item`, `ChanceOrQuestChance`, `maxcount`
                     FROM `disenchant_loot_template`
@@ -314,7 +314,7 @@ Class Items extends Connector {
                 }
                 break;
                 
-            case "craft":
+            case 'craft':
                 $CraftLoot = $this->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
@@ -347,7 +347,7 @@ Class Items extends Connector {
                 }
                 break;
                 
-            case "currency":
+            case 'currency':
                 return false;
                 break;
         }

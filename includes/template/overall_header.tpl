@@ -4,7 +4,7 @@
 <link href="favicon.ico" rel="shortcut icon" />
 <title>{{#armory_site_title#}}</title>
 <meta content="text/html; charset={{$ArmoryConfig.siteCharset}}" http-equiv="Content-Type" />
-<meta content="{{#armory_meta_description#}}" name="description">
+<meta content="{{#armory_meta_description#}}" name="description" />
 <style media="screen, projection" type="text/css">
 		@import "_css/master.css";
 		@import "shared/global/menu/topnav/topnav.css";
@@ -33,7 +33,7 @@
 		else if($.browser.safari)				addStylesheet('_css/browser/safari.css');
 
 		//set global login var
-		var isLoggedIn = ("" != '');
+		var isLoggedIn = ("{{$_wow_login}}" != '');
 		var bookmarkToolTip = "{{#armory_remember_js_string#}}";
 
 		var isHomepage 		 = ("false" != "true");

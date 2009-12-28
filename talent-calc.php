@@ -28,14 +28,13 @@ if(!@include('includes/armory_loader.php')) {
 }
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
-$className = $_GET['c'];
-$classId   = (int) $_GET['cid'];
-$petId     = (int) $_GET['pid'];
-if(isset($petId)) {
+if(isset($_GET['pid'])) {
+    $petId = (int) $_GET['pid'];
     $armory->tpl->assign('openTree', $petId);
     $tpl2include = 'talent_calc_pet_'.$_locale;
 }
-elseif(isset($classId)) {
+elseif(isset($_GET['cid'])) {
+    $classId = (int) $_GET['cid'];
     switch($classId) {
         case 1:
             $subtab = 'tab_1';
@@ -83,7 +82,8 @@ elseif(isset($classId)) {
             break;
     }
 }
-elseif(isset($className)) {
+elseif(isset($_GET['c'])) {
+    $className = $_GET['c'];
     switch($className) {
         case 'Warrior':
             $subtab = 'tab_1';
@@ -145,7 +145,9 @@ else {
     $armory->tpl->assign('tpl2includecalc', $tpl2include);
     $armory->tpl->assign('tpl2include', 'talent_calc_start');
 }
-$armory->tpl->assign($subtab, 'selected-subTab');
+if(isset($subtab)) {
+    $armory->tpl->assign($subtab, 'selected-subTab');
+}
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('overall_start.tpl');
 exit();

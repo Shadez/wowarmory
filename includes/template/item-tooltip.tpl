@@ -20,12 +20,12 @@
 {{/if}}
 {{if $sockets}}{{$sockets}}
 <span class="setItemGray">{{#tooltip_socketbonus#}}&nbsp;{{$socket_bonus}}</span><br />{{/if}}
-{{if $durability.max > 0}}{{#tooltip_durability#}}&nbsp;{{$durability.current}} / {{$durability.max}}<br />{{/if}}{{if $races}}{{#tooltip_races#}}&nbsp;{{$races}}<br />{{/if}}{{if $classes}}{{#tooltip_classes#}}&nbsp;{{$classes}}<br />{{/if}}{{if $need_level}}{{#tooltip_required_level#}}&nbsp;{{$need_level}}<br />{{/if}} {{if $itemLevel > 0}}{{#armory_item_tooltip_itemlevel#}}: {{$itemLevel}}<br />{{/if}}  {{if $need_skill}}{{#tooltip_required_skill#}}&nbsp;{{$need_skill}} ({{$need_skill_rank}})<br />{{/if}}{{if $need_reputation_faction}}{{#tooltip_required_reputation#}} &nbsp;{{$need_reputation_rank}} {{$need_reputation_faction}}{{/if}}
+{{if $durability.max > 0}}{{#tooltip_durability#}}&nbsp;{{$durability.current}} / {{$durability.max}}<br />{{/if}}{{if $races}}{{#tooltip_races#}}&nbsp;{{$races}}<br />{{/if}}{{if $classes}}{{#tooltip_classes#}}&nbsp;{{$classes}}<br />{{/if}}{{if $need_level}}{{#tooltip_required_level#}}&nbsp;{{$need_level}}<br />{{/if}} {{if $itemLevel > 0}}{{#armory_item_tooltip_itemlevel#}}: {{$itemLevel}}<br />{{/if}}  {{if $need_skill}}{{#tooltip_required_skill#}}&nbsp;{{$need_skill}} ({{$need_skill_rank}})<br />{{/if}}{{if $need_reputation_faction}}  {{if $ArmoryConfig.locale == 'en_gb'}} {{#tooltip_required_reputation#}} {{$need_reputation_faction}} - {{$need_reputation_rank}}  {{else}}  {{#tooltip_required_reputation#}} &nbsp;{{$need_reputation_rank}} {{$need_reputation_faction}} {{/if}} {{/if}}
 {{if $description}}<span class="myYellow">"{{$description}}"</span><br />{{/if}}
 {{if $green_bonuses}}{{$green_bonuses}}{{/if}}
 <br />{{if $itemsetInfo}}<br />{{$itemsetInfo}}
 {{/if}}
-{{if $source}}<span class="tooltipContentSpecial" style="float: left;">{{#armory_item_tooltip_source#}}&nbsp;</span>{{$source}}<br />{{/if}}
+{{if $source}}<span class="tooltipContentSpecial" style="float: left;">{{#armory_item_tooltip_source#}}:&nbsp;</span>{{$source}}<br />{{/if}}
 {{if $boss}}
 <span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_boss#}}&nbsp;</span>{{$boss}}<br />
 <span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_drop_percent#}}&nbsp;</span>{{$drop_percent}}{{/if}}

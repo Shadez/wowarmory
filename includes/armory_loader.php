@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 38
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,14 +26,14 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 session_start();
-#error_reporting(0);
-error_reporting(E_ALL);
+error_reporting(0);
+//error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
+define('DB_VERSION', 'armory_r38');
 $armory = new Connector;
-
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
 $armory->tpl->config_dir      = 'includes/locales/';
@@ -127,5 +127,10 @@ if(defined('load_arenateams_class')) {
         die('<b>Error:</b> can not load arenateams class!');
     }
     $arenateams = new Arenateams;
+}
+
+$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `db_version`");
+if($dbVersion != DB_VERSION) {
+    $armory->ArmoryError('DbVersion Error', sprintf('Database error: field `version` in `db_version` table have \'%s\' value, but expected \'%s\'!<br />Apply all SQL updates from \'sql/updates\' folder and refresh this page again.', $dbVersion, DB_VERSION));
 }
 ?>

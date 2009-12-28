@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 33
+ * @revision 32
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,14 +36,18 @@ $itemID = (int) $_GET['i'];
 if($itemID==0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
     die($armory->tpl->get_config_vars('armory_item_tooltip_undefined_item'));
 }
-
-$utils->clearCache();
-$CacheItem = $utils->getCache($itemID, $_SESSION['char_guid']);
-if($CacheItem) {
-    echo $CacheItem;
-    exit;
+if(isset($_SESSION['char_guid'])) {
+    $utils->clearCache();
+    $CacheItem = $utils->getCache($itemID, $_SESSION['char_guid']);
+    if($CacheItem) {
+        echo $CacheItem;
+        exit;
+    }
+    
 }
-
+elseif(!isset($_SESSION['char_guid'])) {
+    $_SESSION['char_guid'] = false;
+}
 $quality_colors = array (
 	0 => 'myGray',
  	1 => 'myWhite',
@@ -210,12 +214,14 @@ $ench_array = array (
     26=>'gun',
     28=>'sigil'
 );
-$enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $_SESSION['char_guid']);
-if($enchantment) {
-    $armory->tpl->assign('ench', $armory->aDB->selectCell("
-    SELECT `text_" . $_locale ."`
-        FROM `enchantment`
-            WHERE `id`=? LIMIT 1", $enchantment));
+if(isset($_SESSION['char_guid'])) {
+    $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $_SESSION['char_guid']);
+    if($enchantment) {
+        $armory->tpl->assign('ench', $armory->aDB->selectCell("
+        SELECT `text_" . $_locale ."`
+            FROM `enchantment`
+                WHERE `id`=? LIMIT 1", $enchantment));
+    }
 }
 $armory->tpl->assign('first_bonuses', $o);
 $armory->tpl->assign('sockets', $s);
@@ -264,10 +270,12 @@ $armory->tpl->assign('source', $items->GetItemSource($itemID));
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {
-    $armory->tpl->display('overall_header.tpl');
+    $armory->tpl->display('index_header.tpl');
 }
 // Write tooltip to cache
-$utils->writeCache($itemID, $_SESSION['char_guid'], $armory->tpl->fetch('item-tooltip.tpl'));
+if(isset($_SESSION['char_guid'])) {
+    $utils->writeCache($itemID, $_SESSION['char_guid'], $armory->tpl->fetch('item-tooltip.tpl'), $_locale);
+}
 $armory->tpl->display('item-tooltip.tpl');
 exit();
 ?>
