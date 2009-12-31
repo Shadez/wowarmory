@@ -28,8 +28,8 @@
 <div class="upperRightCorner"></div>
 <a class="selected-subTab" href="guild-info.xml?r={{$realm}}&gn={{$guildName}}" id="guildRoster_subTab"><span>{{#armory_guild_info_guild_roster#}}</span></a>
 <a class="" href="guild-stats.xml?r={{$realm}}&gn={{$guildName}}" id="guildStats_subTab"><span>{{#armory_guild_info_statistic#}}</span></a>
-<a class="subTabLocked" href="vault/guild-bank-contents.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankContents_subTab"><span>{{#armory_guild_info_guildbank#}}</span></a>
-<a class="subTabLocked" href="vault/guild-bank-log.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankLog_subTab"><span>{{#armory_guild_info_guildbanklog#}}</span></a>
+<a class="subTabLocked" href="guild-bank-contents.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankContents_subTab"><span>{{#armory_guild_info_guildbank#}}</span></a>
+<a class="subTabLocked" href="guild-bank-log.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankLog_subTab"><span>{{#armory_guild_info_guildbanklog#}}</span></a>
 </div>
 <div class="full-list">
 <div class="info-pane">

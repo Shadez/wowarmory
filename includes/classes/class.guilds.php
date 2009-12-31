@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 32
+ * @revision 39
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -224,6 +224,84 @@ Class Guilds extends Connector {
                 WHERE `guid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=?) AND `level`>=?", $this->guildId, $this->armoryconfig['minlevel']);
         return $cList;
      }
+     
+     public function getGuildMotd() {
+        if(!$this->guildId) {
+            return false;
+        }
+        return $this->cDB->selectCell("SELECT `motd` FROM `guild` WHERE `guildid`=?", $this->guildId);
+     }
+     
+     public function getGuildInfo() {
+        if(!$this->guildId) {
+            return false;
+        }
+        return $this->cDB->selectCell("SELECT `info` FROM `guild` WHERE `guildid`=?", $this->guildId);
+     }
+     
+     public function getGuildBankTabs() {
+        if(!$this->guildId) {
+            return false;
+        }
+        $tabs = $this->cDB->select("
+        SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon`
+            FROM `guild_bank_tab`
+                WHERE `guildid`=?", $this->guildId);
+        return $tabs;
+     }
+     
+     public function showGuildBankContents() {
+        if(!$this->guildId) {
+            return false;
+        }
+        $GuildBankContents = '';
+        $GB = '';
+        $j = 0;      
+        for($bank=0;$bank<7;$bank++) {
+            $x = 0;
+            for($i=0;$i<14;$i++) {
+                if($x > 97) {
+                    return $GuildBankContents;
+                }
+                for($j=0;$j<7;$j++) {
+                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_entry'] = $this->cDB->selectCell("SELECT `item_entry` FROM `guild_bank_item` WHERE `SlotId`=? AND `TabId`=?", $x, $bank);
+                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_icon']  = Items::GetItemIcon($GuildBankContents[$bank][$i]['slot_'.$j]['item_entry']);
+                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = Items::GetItemDataField(14, $this->cDB->selectCell("SELECT `item_guid` FROM `guild_bank_item` WHERE `SlotId`=? AND `TabId`=?", $x, $bank));
+                    $x++;
+                    }
+            }
+        }
+        return $GuildBankContents;
+     }
+     
+     public function GetGuildBankMoney() {
+        if(!$this->guildId) {
+            return false;
+        }
+        $money = $this->cDB->selectCell("SELECT `BankMoney` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->guildId);
+        $getMoney['gold'] = floor($money/(100*100));
+        $money = $money-$getMoney['gold']*100*100;
+        $getMoney['silver'] = floor($money/100);
+        $money = $money-$getMoney['silver']*100;
+        $getMoney['copper'] = floor($money);
+        return $getMoney;
+     }
+     
+     public function BuildGuildBankItemList() {
+        if(!$this->guildId) {
+            return false;
+        }
+        $items = $this->cDB->select("SELECT `item_entry` AS `entry` FROM `guild_bank_item` WHERE `guildid`=?", $this->guildId);
+        if($items) {
+            $count = count($items);
+            for($i=0;$i<$count;$i++) {
+                $items[$i]['name'] = Items::getItemName($items[$i]['entry']);
+                $items[$i]['icon'] = Items::getItemIcon($items[$i]['entry']);
+                $items[$i]['Quality'] = Items::getItemInfo($items[$i]['entry'], 'quality');
+            }
+            return $items;
+        }
+        return false;
+     }
 }
-
 ?>

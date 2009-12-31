@@ -28,8 +28,8 @@
 <div class="upperRightCorner"></div>
 <a class="" href="guild-info.xml?r={{$realm}}&gn={{$guildName}}" id="guildRoster_subTab"><span>{{#armory_guild_info_guild_roster#}}</span></a>
 <a class="selected-subTab" href="guild-stats.xml?r={{$realm}}&gn={{$guildName}}" id="guildStats_subTab"><span>{{#armory_guild_info_statistic#}}</span></a>
-<a class="subTabLocked" href="vault/guild-bank-contents.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankContents_subTab"><span>{{#armory_guild_info_guildbank#}}</span></a>
-<a class="subTabLocked" href="vault/guild-bank-log.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankLog_subTab"><span>{{#armory_guild_info_guildbanklog#}}</span></a>
+<a class="subTabLocked" href="guild-bank-contents.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankContents_subTab"><span>{{#armory_guild_info_guildbank#}}</span></a>
+<a class="subTabLocked" href="guild-bank-log.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankLog_subTab"><span>{{#armory_guild_info_guildbanklog#}}</span></a>
 </div>
 <div class="full-list">
 <div class="info-pane">
@@ -134,8 +134,8 @@
 		availableArray[11] = [0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0];		
 
 		var genderStringArray = new Array;
-		genderStringArray[0]="Муж.";
-		genderStringArray[1]="Жен.";	
+		genderStringArray[0]="{{#armory_guild_info_gender_male#}}";
+		genderStringArray[1]="{{#armory_guild_info_gender_female#}}";	
 	
 		var raceSelected	=-1;
 		var classSelected	=-1;
@@ -200,12 +200,12 @@
 <div class="bluebutton-a"></div>
 <div class="bluebutton-b">
 <div class="reldiv">
-<div class="bluebutton-color">Очистить критерии</div>
-</div>Очистить критерии</div>
+<div class="bluebutton-color">{{#armory_guild_info_clear_critera#}}</div>
+</div>{{#armory_guild_info_clear_critera#}}</div>
 <div class="bluebutton-reload"></div>
 <div class="bluebutton-c"></div>
 </a>
-<div class="filtertitle" style="float: left; position: relative;">Фильтр по статистике гильдии</div>
+<div class="filtertitle" style="float: left; position: relative;">{{#armory_guild_stat_filter#}}</div>
 </div>
 <div class="filtercontainer">
 <form name="guildStats">
@@ -222,17 +222,17 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">Раса:&nbsp;
+<div class="bankcontentsfilter">{{#armory_guild_info_race#}}:&nbsp;
 						<div id="divReplaceOptionRace"></div>
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">Классы:&nbsp;
+<div class="bankcontentsfilter">{{#tooltip_classes#}}&nbsp;
 						<div id="divReplaceOptionClass"></div>
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 100px;">
-<div class="bankcontentsfilter">Мин. ур.:<br>
+<div class="bankcontentsfilter">{{#armory_guild_stat_minlevel#}}:<br>
 <span><input class="guildbankitemname" maxlength="2" name="inputMinLevel" onClick="javascript:this.form.inputMinLevel.select()" onKeyUp="javascript: changeMinLevel();" size="2" type="text" value="10"></span>
 </div>
 </div>
@@ -242,7 +242,7 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">Пол:<select class="guildbanksubtype" name="optionGender" onChange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">Оба</option><option value="0">Муж.</option><option value="1">Жен.</option></select>
+<div class="bankcontentsfilter">{{#armory_guild_info_gender#}}:<select class="guildbanksubtype" name="optionGender" onChange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">}{{#armory_guild_info_both_gender#}}</option><option value="0">{{#armory_guild_info_gender_male#}}</option><option value="1">{{#armory_guild_info_gender_female#}}</option></select>
 </div>
 </div>
 <div class="clearfilterboxsm"></div>
@@ -254,7 +254,7 @@
 
 	replaceString="";
 	replaceString='<select class="guildbanksubtype" onChange="changeStats(this.options[this.selectedIndex].value, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionRace">';
-	replaceString += '<option value="-1">Все</option>';
+	replaceString += '<option value="-1">{{#armory_guild_stat_allraces#}}</option>';
 	var raceArrayLength=thisRaceArray.length;
 	for (d=0; d < raceArrayLength; d++){
 		replaceString += '<option value="'+ d +'">'+ thisRaceArray[d][0] +'</option>';
@@ -266,7 +266,7 @@
 </script><script type="text/javascript">
 
 	replaceString="";
-	replaceString='<select onChange="changeStats(raceSelected, this.options[this.selectedIndex].value, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionClass"><option value="-1">Все</option>';
+	replaceString='<select onChange="changeStats(raceSelected, this.options[this.selectedIndex].value, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionClass"><option value="-1">{{#armory_guild_stat_allraces#}}</option>';
 	for (d=0; d < classStringArray.length; d++){
 		replaceString +='<option value="'+ d +'">'+ classStringArray[d][0] +'</option>';
 	}
@@ -275,12 +275,12 @@
 	document.getElementById('divReplaceOptionClass').innerHTML=replaceString;
 
 </script><script type="text/javascript">	
-	replaceString='Макс. ур.<br/> <span><input onKeyUp="javascript: changeMaxLevel();" type="text" name="inputMaxLevel" size="2" class="guildbankitemname" maxlength="2" value="'+ levelMax +'" onClick="javascript:this.form.inputMaxLevel.select()"/></span>';
+	replaceString='{{#armory_guild_stat_maxlevel#}}<br/> <span><input onKeyUp="javascript: changeMaxLevel();" type="text" name="inputMaxLevel" size="2" class="guildbankitemname" maxlength="2" value="'+ levelMax +'" onClick="javascript:this.form.inputMaxLevel.select()"/></span>';
 	document.getElementById('replaceMaxLevelInput').innerHTML=replaceString;
 </script>
 <div class="stats-wrapper">
 <div class="racial-stats">
-<h2>Статистика по расам</h2>
+<h2>{{#armory_guild_stat_race_statistic#}}</h2>
 <div class="race-container">
 <table>
 <thead>
@@ -414,7 +414,7 @@
 </div>
 </div>
 <div class="class-stats">
-<h2>Статистика по классам</h2>
+<h2>{{#armory_guild_stat_class_statistic#}}</h2>
 <div class="class-container">
 <table>
 <thead>
@@ -587,7 +587,7 @@
 </div>
 </div>
 <div class="level-stats">
-<h2>Статистика по уровню</h2>
+<h2>{{#armory_guild_stat_level_statistic#}}</h2>
 <div class="level-container">
 <table>
 <tbody>
@@ -1057,17 +1057,17 @@
 <div class="stats-console">
 <div class="stat-padding">
 <p>
-<span class="tooltipGuild">Всего персонажей в гильдии:</span><strong>&nbsp;{{$guildMembersCount}}</strong>
+<span class="tooltipGuild">{{#armory_guild_stat_total_chars_in_guild#}}</span><strong>&nbsp;{{$guildMembersCount}}</strong>
 </p>
 <p>
-<span class="tooltipGuild">Персонажей, отвечающим критериям:</span>&nbsp;<strong id="numReturnedResults"></strong>
+<span class="tooltipGuild">{{#armory_guild_stat_chars_matching_criteria#}}</span>&nbsp;<strong id="numReturnedResults"></strong>
 </p>
 <p>
-<span class="tooltipGuild" id="countSpecificLevel">Число персонажей уровня <b id="replaceLevelNum"></b> :
+<span class="tooltipGuild" id="countSpecificLevel">{{#armory_guild_stat_chars_level#}} <b id="replaceLevelNum"></b>{{if $ArmoryConfig.locale == 'en_gb'}}s {{/if}}:
 		</span>&nbsp;<strong id="printNum80"></strong>
 </p>
 <p>
-<span class="tooltipGuild">% уровня <b id="replaceLevelPercent"></b><b id="countSpecificLevel"></b> :
+<span class="tooltipGuild">% {{#armory_guild_stat_level#}} <b id="replaceLevelPercent"></b><b id="countSpecificLevel"></b>{{if $ArmoryConfig.locale == 'en_gb'}}s {{/if}}:
 		</span>&nbsp;<b id="printPercent80"></b>%</p>
 </div>
 </div>
@@ -1117,3 +1117,11 @@ document.getElementById('printPercent80').innerHTML=levelArray[levelMax][1];
 </div>
 </div>
 <div class="page-bot"></div>
+{{include file="faq_guild_stats.tpl"}}
+{{include file="overall_right_block.tpl"}}
+<script type="text/javascript">
+    faqSwitch(currentFaq);
+</script>
+</div>
+</div>
+{{include file="overall_footer.tpl"}}
