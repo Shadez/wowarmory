@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 32
+ * @revision 40
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,22 +31,24 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 $itemID = (int) $_GET['i'];
-
+if(isset($_GET['n'])) {
+    $characters->name = Utils::escape($_GET['n']);
+    $characters->GetCharacterGuid();
+}
 // Проверка
 if($itemID==0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
     die($armory->tpl->get_config_vars('armory_item_tooltip_undefined_item'));
 }
-if(isset($_SESSION['char_guid'])) {
+if($characters->guid) {
     $utils->clearCache();
-    $CacheItem = $utils->getCache($itemID, $_SESSION['char_guid']);
+    $CacheItem = $utils->getCache($itemID, $characters->guid);
     if($CacheItem) {
         echo $CacheItem;
         exit;
     }
-    
 }
-elseif(!isset($_SESSION['char_guid'])) {
-    $_SESSION['char_guid'] = false;
+elseif(!$characters->guid) {
+    $characters->guid = false;
 }
 $quality_colors = array (
 	0 => 'myGray',
@@ -141,7 +143,7 @@ $s = '';
 for($ii=1; $ii<4; $ii++) {
     switch($data['socketColor_'.$ii]) {
         case 1:
-            $gem = $items->extractSocketInfo($_SESSION['char_guid'], $itemID, $ii);
+            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
             }
@@ -150,7 +152,7 @@ for($ii=1; $ii<4; $ii++) {
             }
             break;
         case 2:
-            $gem = $items->extractSocketInfo($_SESSION['char_guid'], $itemID, $ii);
+            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
             }
@@ -159,7 +161,7 @@ for($ii=1; $ii<4; $ii++) {
             }
             break;
         case 4:
-            $gem = $items->extractSocketInfo($_SESSION['char_guid'], $itemID, $ii);
+            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
             }
@@ -168,7 +170,7 @@ for($ii=1; $ii<4; $ii++) {
             }            
             break;
         case 8:
-            $gem = $items->extractSocketInfo($_SESSION['char_guid'], $itemID, $ii);
+            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
             }
@@ -181,10 +183,8 @@ for($ii=1; $ii<4; $ii++) {
 $sBonus = $armory->tpl->get_config_vars('socketbonus_name_'.$data['socketBonus']);
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
-        $t[$i] = $armory->aDB->selectCell("
-        SELECT `tooltip` 
-            FROM `spells` 
-        	   WHERE `id`=? AND `tooltip` <> '_empty_'", $data['spellid_'.$i]);
+        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
+        $t[$i] = $items->spellReplace($spell_tmp, $utils->validateText($spell_tmp['Description']));
         if($t[$i]) {
             $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$t[$i].'&nbsp;</span><span class="">&nbsp;</span></span>';
         }
@@ -209,13 +209,16 @@ $ench_array = array (
     14=>'offhand',
     15=>'relic',
     16=>'back', 
+    17=>'stave',
     19=>'tabard',
+    20=>'chest',
+    21=>'mainhand',
     25=>'thrown',
     26=>'gun',
     28=>'sigil'
 );
-if(isset($_SESSION['char_guid'])) {
-    $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $_SESSION['char_guid']);
+if($characters->guid) {
+    $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->guid);
     if($enchantment) {
         $armory->tpl->assign('ench', $armory->aDB->selectCell("
         SELECT `text_" . $_locale ."`
@@ -226,7 +229,7 @@ if(isset($_SESSION['char_guid'])) {
 $armory->tpl->assign('first_bonuses', $o);
 $armory->tpl->assign('sockets', $s);
 $armory->tpl->assign('socket_bonus', $sBonus);
-$armory->tpl->assign('durability', $items->getItemDurability($_SESSION['char_guid'], $itemID));
+$armory->tpl->assign('durability', $items->getItemDurability($characters->guid, $itemID));
 
 if($data['AllowableRace'] > 0) {
     $armory->tpl->assign('races', $items->AllowableRaces($data['AllowableRace']));
@@ -270,11 +273,11 @@ $armory->tpl->assign('source', $items->GetItemSource($itemID));
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {
-    $armory->tpl->display('index_header.tpl');
+    $armory->tpl->display('overall_header.tpl');
 }
 // Write tooltip to cache
-if(isset($_SESSION['char_guid'])) {
-    $utils->writeCache($itemID, $_SESSION['char_guid'], $armory->tpl->fetch('item-tooltip.tpl'), $_locale);
+if($characters->guid) {
+    $utils->writeCache($itemID, $characters->guid, $armory->tpl->fetch('item-tooltip.tpl'), $_locale);
 }
 $armory->tpl->display('item-tooltip.tpl');
 exit();

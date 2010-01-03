@@ -124,8 +124,9 @@ Class Characters extends Connector {
      * @return int
      **/ 
     public function GetCharacterGuid() {
-        if(!$this->name)
+        if(!$this->name) {
             return false;
+        }
         $this->guid = $this->cDB->selectCell("SELECT `guid` FROM `characters` WHERE `name`=? LIMIT 1", $this->name);
         return $this->guid;
     }
@@ -183,16 +184,19 @@ Class Characters extends Connector {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $title = $this->aDB->selectRow("SELECT * FROM `titles` WHERE `id`=?", $this->GetDataField(PLAYER_CHOSEN_TITLE));
         $data = array();
-        switch($this->gender) {
-            case 1:
-                $data['title'] = $title['title_F_'.$locale];
-                break;
-            case 0:
-                $data['title'] = $title['title_M_'.$locale];
-                break;
+        if($title) {
+            switch($this->gender) {
+                case 1:
+                    $data['title'] = $title['title_F_'.$locale];
+                    break;
+                case 0:
+                    $data['title'] = $title['title_M_'.$locale];
+                    break;
+            }
+            $data['place'] = $title['place'];
+            return $data;
         }
-        $data['place'] = $title['place'];
-        return $data;
+        return false;
     }
     
     /**
@@ -311,7 +315,7 @@ Class Characters extends Connector {
                 return false;
             }
             $race = $this->race;
-        }  
+        }
         $text = $this->aDB->selectCell("
         SELECT `name_" . (isset($_SESSION['armoryLocale']) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale']) . "` 
             FROM `races` 
@@ -561,12 +565,15 @@ Class Characters extends Connector {
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENCHANTMENT, $guid);
 				break;
 			case "mainhand":
+            case "stave":
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENCHANTMENT, $guid);
 				break;
 			case "offhand":
+            case "gun":
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENCHANTMENT, $guid);
 			    break;
 			case "relic":
+            case "sigil":
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENCHANTMENT, $guid);
 				break;
 			case "tabard":

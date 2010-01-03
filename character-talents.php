@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 40
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -51,8 +51,6 @@ $armory->tpl->assign('name', $characters->name);
 $armory->tpl->assign('level', $characters->level);
 $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
 $armory->tpl->assign('portrait_path', $characters->characterAvatar());
-$armory->tpl->assign('class_text', $characters->returnClassText());
-$armory->tpl->assign('race_text', $characters->returnRaceText());
 $armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
 $armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
 $armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'horde' : 'alliance');

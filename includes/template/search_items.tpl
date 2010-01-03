@@ -27,22 +27,22 @@
 <div class="tabs">
 {{if $charactersResultNum > 0}}
 <div class="{{$characters_tab}}tab">
-<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=characters">Персонажи<span class="tab-count" style="display: inline;">({{$charactersResultNum}})</span></a>
+<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=characters">{{#armory_searchpage_characters#}}<span class="tab-count" style="display: inline;">({{$charactersResultNum}})</span></a>
 </div>
 {{/if}}
 {{if $arenateamsResultNum > 0}}
 <div class="{{$arenateams_tab}}tab">
-<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=arenateams">Команды Арены<span class="tab-count" style="display: inline;">({{$arenateamsResultNum}})</span></a>
+<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=arenateams">{{#armory_searchpage_arenateams#}}<span class="tab-count" style="display: inline;">({{$arenateamsResultNum}})</span></a>
 </div>
 {{/if}}
 {{if $guildsResultNum > 0}}
 <div class="{{$guilds_tab}}tab">
-<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=guilds">Гильдии<span class="tab-count" style="display: inline;">({{$guildsResultNum}})</span></a>
+<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=guilds">{{#armory_searchpage_guilds#}}<span class="tab-count" style="display: inline;">({{$guildsResultNum}})</span></a>
 </div>
 {{/if}}
 {{if $itemsResultNum > 0}}
 <div class="{{$items_tab}}tab">
-<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=items">Предметы<span class="tab-count" style="display: inline;">({{$itemsResultNum}})</span></a>
+<a href="search.xml?searchType=all&amp;searchQuery={{$searchQuery}}&amp;selectedTab=items">{{#armory_searchpage_items#}}<span class="tab-count" style="display: inline;">({{$itemsResultNum}})</span></a>
 </div>
 {{/if}}
 <div class="clear"></div>
@@ -56,12 +56,12 @@
 <blockquote>
 <b class="iitems">
 <h4>
-<a href="index.xml">Поиск по Оружейной</a>
+<a href="index.xml">{{#armory_searchpage_searcharmory#}}</a>
 </h4>
-<h3 id="replaceHeaderTitle">Предметы</h3>
+<h3 id="replaceHeaderTitle">{{#armory_item_info_items_string#}}</h3>
 </b>
 </blockquote>
-<div class="filter-containter" style="display: block; margin-bottom: 25px;">
+<!--<div class="filter-containter" style="display: block; margin-bottom: 25px;">
 <p>
 <div class="filter-loc">
 <div class="open-filter">
@@ -69,10 +69,10 @@
 </div>
 </div>
 </p>
-</div>
+</div>-->
 <div class="clear"></div>
 <div class="searchPageIeFix" id="showHideItemFilters">
-<form action="/search.xml" id="formItem" method="get" name="formItem" onSubmit="javascript: return menuCheckLength(document.formItem);">
+<form action="search.xml" id="formItem" method="get" name="formItem" onSubmit="javascript: return menuCheckLength(document.formItem);" style="display: none; ">
 <div class="detail-search-results">
 <div class="detail-search-results-top">
 <div id="parentItemName"></div>
@@ -757,7 +757,7 @@
 </div>
 <div id="childUsableBy">
 <div class="sub-label" style="font-size: 12px; color:#003333;">
-<img border="0" class="desiredHelp staticTip" onMouseOver="setTipText('Используйте этот фильтр, когда определитесь с категорией предмета и ячейкой, которую он должен занимать. Таким образом вы можете составить полный перечень самых нужных предметов для каждого класса и каждой ячейки.');" src="/_images/icons/icon-question.gif">Класс:</div>
+<img border="0" class="desiredHelp staticTip" onMouseOver="setTipText('Используйте этот фильтр, когда определитесь с категорией предмета и ячейкой, которую он должен занимать. Таким образом вы можете составить полный перечень самых нужных предметов для каждого класса и каждой ячейки.');" src="images/icons/icon-question.gif">Класс:</div>
 <select id="usbleBy" name="fl[usbleBy]" onChange="javascript: changeusbleBy(this.value)" onKeyUp="javascript: changeusbleBy(this.value)"><option id="usbleByall" name="usbleByall" value="all">Все классы</option><option id="usbleBy1" name="usbleBy1" value="1">Воин</option><option id="usbleBy2" name="usbleBy2" value="2">Паладин</option><option id="usbleBy3" name="usbleBy3" value="3">Охотник</option><option id="usbleBy4" name="usbleBy4" value="4">Разбойник</option><option id="usbleBy5" name="usbleBy5" value="5">Жрец</option><option id="usbleBy6" name="usbleBy6" value="6">Рыцарь смерти</option><option id="usbleBy7" name="usbleBy7" value="7">Шаман</option><option id="usbleBy8" name="usbleBy8" value="8">Маг</option><option id="usbleBy9" name="usbleBy9" value="9">Чернокнижник</option><option id="usbleBy11" name="usbleBy11" value="11">Друид</option></select>
 <div id="parentUsableBySpecific"></div>
 </div>
@@ -1335,25 +1335,25 @@
 <div class="pager page-body" id="pager" style="text-align:right;">
 <form id="pagingForm" onsubmit="return false;" style="margin: 0; padding: 0; display: inline;">
 <div id="searchTypeHolder"></div>
-<div style="float: left; margin-left: 5px;">Страница <input id="pagingInput" type="text"> из <span id="totalPages"></span>
+<div style="float: left; margin-left: 5px;">{{#armory_guild_info_page_string#}} <input id="pagingInput" type="text" /> {{#armory_guild_info_page_string_2#}} <span id="totalPages"></span>
 </div>
-<div style="float: left; margin-left: 25px; line-height: 24px; height: 24px;">Показать <span class="bold" id="currResults"></span> из <span class="bold" id="totalResults">{{$itemsResultNum}}</span> результатов</div>
+<div style="float: left; margin-left: 25px; line-height: 24px; height: 24px;">{{#armory_guild_info_show_string#}} <span class="bold" id="currResults"></span> {{#armory_guild_info_page_string_2#}} <span class="bold" id="totalResults">{{$itemsResultNum}}</span> {{#armory_guild_info_results_string#}}</div>
 <div id="pageSelector" style="float: right">
 <a class="firstPg firstPg-on" href="javascript:void(0)"></a><a class="prevPg prevPg-on" href="javascript:void(0)"></a><a class="p" href="javascript:void(0)" id="pageSelect1"></a><a class="p" href="javascript:void(0)" id="pageSelect2"></a><a class="p" href="javascript:void(0)" id="pageSelect3"></a><a class="nextPg nextPg-on" href="javascript:void(0)"></a><a class="lastPg lastPg-on" href="javascript:void(0)"></a>
-</div>Результатов на странице:<select id="pageSize"><option value="10">10</option><option selected value="20">20</option><option value="30">30</option><option value="40">40</option></select>
+</div>{{#armory_guild_info_results_per_page#}}:<select id="pageSize"><option value="10">10</option><option selected value="20">20</option><option value="30">30</option><option value="40">40</option></select>
 </form>
 </div>
 <div class="data">
 <table cellpadding="0" cellspacing="0" class="data-table sortTable" id="searchResultsTable" style="width: 100%">
 <thead>
 <tr class="masthead">
-<th><a>Предмет<span class="sortArw"></span></a></th><th style="width: 150px;"><a>Уров. предмета<span class="sortArw"></span></a></th><th style="width: 250px;"><a>Источник<span class="sortArw"></span></a></th><th style="width: 150px;"><a>Соответствие<span class="sortArw"></span></a></th>
+<th><a>{{#armory_searchitems_item#}}<span class="sortArw"></span></a></th><th style="width: 150px;"><a>{{#armory_searchitems_ilevel#}}<span class="sortArw"></span></a></th><th style="width: 250px;"><a>{{#armory_searchitems_source#}}<span class="sortArw"></span></a></th><th style="width: 150px;"><a>{{#armory_searchpage_relevance#}}<span class="sortArw"></span></a></th>
 </tr>
 </thead>
 <tbody>
 {{foreach from=$itemResults item=item}}
 <tr>
-<td><a class="rarity{{$item.Quality}} staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="{{$item.entry}}" style="background: url('wow-icons/_images/21x21/{{$item.icon}}.png') 0 0 no-repeat; padding: 2px 0 4px 25px;">{{$item.name}}</a></td><td class="leftNum">{{$item.ItemLevel}}</td><td>Неизвестно</td><td style="text-align:left;"><span style="display: none;">100%</span><q class="staticTip" onmouseover="setTipText('100%');"><del class="rel-container"><a><em style="width:100%"></em></a></del></q></td>
+<td><a class="rarity{{$item.Quality}} staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="{{$item.entry}}" style="background: url('wow-icons/_images/21x21/{{$item.icon}}.png') 0 0 no-repeat; padding: 2px 0 4px 25px;">{{$item.name}}</a></td><td class="leftNum">{{$item.ItemLevel}}</td><td><!-- Unknown source -->{{#string_class_10#}} <!-- // Unknown source--></td><td style="text-align:left;"><span style="display: none;">100%</span><q class="staticTip" onmouseover="setTipText('100%');"><del class="rel-container"><a><em style="width:100%"></em></a></del></q></td>
 </tr>
 {{/foreach}}
 </tbody>

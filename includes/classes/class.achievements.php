@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 40
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -320,6 +320,28 @@ Class Achievements extends Connector {
         $percent = $maxAch / 100;
         $progressPercent = $sum / $percent;
         return $progressPercent;
+    }
+    
+    public function buildAchievementsTree() {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `achievement_category` WHERE `parentCategory`=-1");
+        $achievementTree = '';
+        foreach($categoryIds as $cat) {
+            $i = 0;
+            $achievementTree .= '<div>
+            <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$cat['id'].'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$cat['id'].')">'.$cat['name_'.$locale].'</a>';
+            $child = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `achievement_category` WHERE `parentCategory`=?", $cat['id']);
+            if($child) {
+                $achievementTree .= '<div class="cat_list">';
+                foreach($child as $childcat) {
+                    $achievementTree .= '<div class="nav-subcat"><a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$i.'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$childcat['id'].')">'.$childcat['name_'.$locale].'</a></div>';
+                    $i++;
+                }
+                $achievementTree .= '</div>';
+            }
+            $achievementTree .= '</div>';
+        }
+        return $achievementTree;
     }
     
 }

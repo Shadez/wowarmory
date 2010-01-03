@@ -67,13 +67,13 @@
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="charHeaderTxt_Light">
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="forumLinks">
 <a class="smFrame" href="javascript:void(0)">
@@ -112,177 +112,7 @@ function loadAchievements(name, category)
 <div class="selected">
 <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode)">Обзор</a>
 </div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '92'); loadAchievements('{{$name}}', 92)">Общее</a>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '96'); loadAchievements('{{$name}}', 96)">Задания</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 14861)">World of Warcraft</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 14862)">The Burning Crusade</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 14863)">Wrath of the Lich King</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '97'); loadAchievements('{{$name}}', 97)">Исследование</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 14777)">Восточные королевства</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 14778)">Калимдор</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 14779)">Запределье</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '4'); loadAchievements('{{$name}}', 14780)">Нордскол</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '95'); loadAchievements('{{$name}}', 95)">PvP</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 165)">Арена</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 14801)">Альтеракская долина</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 14802)">Низина Арати</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '4'); loadAchievements('{{$name}}', 14803)">Око Бури</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '5'); loadAchievements('{{$name}}', 14804)">Ущелье Песни Войны</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '6'); loadAchievements('{{$name}}', 14881)">Берег Древних</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '7'); loadAchievements('{{$name}}', 14901)">Ледяные Оковы</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '8'); loadAchievements('{{$name}}', 15003)">Остров Завоеваний</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '168'); loadAchievements('{{$name}}', 168)">Подземелья и рейды</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 14808)">World of Warcraft</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 14805)">The Burning Crusade</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 14806)">Подземелья Lich King</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '4'); loadAchievements('{{$name}}', 14921)">Lich King (героич.)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '5'); loadAchievements('{{$name}}', 14922)">Рейды Lich King (10 игроков)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '6'); loadAchievements('{{$name}}', 14923)">Рейды Lich King (25 игроков)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '7'); loadAchievements('{{$name}}', 14961)">Тайны Ульдуара (10)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '8'); loadAchievements('{{$name}}', 14962)">Тайны Ульдуара (25)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '9'); loadAchievements('{{$name}}', 15001)">Призыв авангарда (10)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '10'); loadAchievements('{{$name}}', 15002)">Призыв авангарда (25)</a>
-</div>
-<!-- 
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.openSubcategory(this.parentNode, '11'); loadAchievements('{{$name}}', 15003)">Падение Короля-лича (10)</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.openSubcategory(this.parentNode, '12'); loadAchievements('{{$name}}', 15004)">Падение Короля-лича (25)</a>
-</div>-->
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '169'); loadAchievements('{{$name}}', 169)">Профессии</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 170)">Кулинария</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 171)">Рыбная ловля</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 172)">Первая помощь</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '201'); loadAchievements('{{$name}}', 201)">Репутация</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 14864)">World of Warcraft</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 14865)">The Burning Crusade</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 14866)">Wrath of the Lich King</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '155'); loadAchievements('{{$name}}', 155)">Игровые события</a>
-<div class="cat_list">
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '1'); loadAchievements('{{$name}}', 160)">Лунный фестиваль</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '2'); loadAchievements('{{$name}}', 187)">Любовная лихорадка</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '3'); loadAchievements('{{$name}}', 159)">Сад чудес</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '4'); loadAchievements('{{$name}}', 163)">Детская неделя</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '5'); loadAchievements('{{$name}}', 161)">Огненный солнцеворот</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '6'); loadAchievements('{{$name}}', 162)">Хмельной фестиваль</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '7'); loadAchievements('{{$name}}', 158)">Тыквовин</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '8'); loadAchievements('{{$name}}', 14981)">Пиршество странников</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '9'); loadAchievements('{{$name}}', 156)">Зимний Покров</a>
-</div>
-<div class="nav-subcat">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '10'); loadAchievements('{{$name}}', 14941)">Серебряный турнир</a>
-</div>
-</div>
-</div>
-<div>
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, '81'); loadAchievements('{{$name}}', 81)">Великие подвиги</a>
-</div>
+{{$achievementsTree}}
 </div>
 <div class="achv_bdr">
 <img src="images/achievements/achv_lnav_btm.jpg" /></div>
@@ -305,7 +135,7 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$achievement_progress_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">Всего выполнено: {{$achievement_count}} / 986</div>
+<div class="prog_int_text">Всего выполнено: {{$achievement_count}} / 1054</div>
 </div>
 </div>
 </div>
@@ -357,7 +187,7 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$ach_4_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">{{$ach_4}} / 164</div>
+<div class="prog_int_text">{{$ach_4}} / 166</div>
 </div>
 </div>
 </div>
@@ -370,7 +200,7 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$ach_5_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">{{$ach_5}} / 391</div>
+<div class="prog_int_text">{{$ach_5}} / 454</div>
 </div>
 </div>
 </div>
@@ -396,7 +226,7 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$ach_7_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">{{$ach_7}} / 44</div>
+<div class="prog_int_text">{{$ach_7}} / 45</div>
 </div>
 </div>
 </div>
@@ -409,7 +239,7 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$ach_8_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">{{$ach_8}} / 139</div>
+<div class="prog_int_text">{{$ach_8}} / 141</div>
 </div>
 </div>
 </div>

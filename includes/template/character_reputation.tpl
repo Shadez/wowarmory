@@ -72,13 +72,13 @@
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="charHeaderTxt_Light">
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="forumLinks">
 <a class="smFrame" href="javascript:void(0)">

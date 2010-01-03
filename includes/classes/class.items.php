@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 38
+ * @revision 40
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,7 +29,13 @@ if(!defined('__ARMORY__')) {
 session_start();
 
 Class Items extends Connector {
-    var $itemId;
+    
+    public $itemId;
+    
+    /**
+     * $charGuid used by item-tooltip.php (enchantments, sockets & item durability for current character)
+     **/
+    public $charGuid;
     
     public function getItemName($itemID) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
@@ -170,13 +176,12 @@ Class Items extends Connector {
             FROM `itemset`
                 WHERE `id`=? LIMIT 1", $itemset);
         $itemSetName = $query['name'];
-        $itemsCount = 0;	
-        //$equipped_itemsetinfo = explode(' ', $_SESSION['item_equip']);
+        $itemsCount = 0;
         for($i=1; $i !=9; $i++) {
             if($query['item_'.$i] > 0) {
                 $itemsCount++;
-                $curName = $this->GetItemName($query['item_'.$i]);
-                if(!empty($curName)) {	// TODO: разобраться с сетами гладиаторов
+                $curName = $this->getItemName($query['item_'.$i]);
+                if($curName) {	// TODO: разобраться с сетами гладиаторов
                     $itemsName .= '<span class="setItemGray">'.$curName.'</span><br />';
                 }
                     //setItem
@@ -185,19 +190,11 @@ Class Items extends Connector {
 		
         for($i=1; $i!=9; $i++) {
             if($query['bonus_'.$i] > 0) {
-                $itemSetBonuses .= '<span class="setItemGray">('.$i.') Комплект:&nbsp;'.
-				Mangos::GetSpellInfo($query['bonus_'.$i]).'</span><br />';
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $query['bonus_'.$i]);
+                $itemSetBonuses .= '<span class="setItemGray">('.$i.') Комплект:&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'])).'</span><br />';
             }
 		}
-		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span>
-<div class="setItemIndent">
-<br />
-%s
-<br />
-%s
-</div>
-<br />', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
-			
+		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div><br />', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
 		return $fullItemInfoString;
     }
     
@@ -400,6 +397,162 @@ Class Items extends Connector {
             FROM `item_instance` 
                 WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
         return $durability;
+    }
+    
+    public function GetItemDataField($field, $itemGuid) {
+        $dataField = $field+1;
+        $qData = $this->cDB->selectCell("
+        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
+            FROM `item_instance` 
+				WHERE `guid`=?", $itemGuid);
+        return $qData;
+    }
+    
+    // CSWOWD
+    public function spellReplace($spell, $text) {
+        $letter = array('${','}');
+        $values = array( '[',']');
+        $text = str_replace($letter, $values, $text);
+    
+    	$signs = array('+', '-', '/', '*', '%', '^');
+        $data = $text;
+    	$pos = 0;
+        $npos = 0;
+    	$str = '';
+        $cacheSpellData=array(); // Spell data for spell
+        $lastCount = 1;
+        while (false!==($npos=strpos($data, '$', $pos))) {
+    	   if ($npos!=$pos)
+                $str .= substr($data, $pos, $npos-$pos);
+    		$pos = $npos+1;
+    		if ('$' == substr($data, $pos, 1))
+    		{
+    			$str .= '$';
+    			$pos++;
+    			continue;
+    		}
+    
+    		if (!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result))
+    			continue;
+    		$pos += strlen($result[0]);
+    		$op = $result[3];
+    		$oparg = $result[4];
+    		$lookup = $result[5]? $result[5]:$spell['id'];
+    		$var = $result[6] ? $result[6]:$result[7];
+    		if (!$var)
+    			continue;
+            // l - размер последней величины == 1 ? 0 : 1
+            if ($var[0]=='l')
+            {
+                $select = explode(':', substr($var, 1));
+                $str.=@$select[$lastCount==1 ? 0:1];
+            }
+            // g - пол персонжа
+            else if ($var[0]=='g')
+            {
+                $select = explode(':', substr($var, 1));
+                $str.=$select[0];
+            }
+            else
+            {
+                $spellData = @$cacheSpellData[$lookup];
+                if ($spellData == 0)
+                {
+                    if ($lookup == $spell['id']) $cacheSpellData[$lookup] = $this->getSpellData($spell);
+                    else                         $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $lookup));
+                    $spellData = @$cacheSpellData[$lookup];
+                }
+                if ($spellData && $base = @$spellData[strtolower($var)])
+                {
+                    if ($op && is_numeric($oparg) && is_numeric($base))
+                    {
+                         $equation = $base.$op.$oparg;
+                         eval("\$base = $equation;");
+    		        }
+                    if (is_numeric($base)) $lastCount = $base;
+                }
+                else
+                    $base = $var;
+                $str.=$base;
+            }
+    	}
+    	$str .= substr($data, $pos);
+    	$str = preg_replace_callback("/\[.+[+\-\/*\d]\]/", array($this, 'my_replace'), $str);
+    	return $str;
+    }
+    
+    public function getSpellData($spell) {
+      // Basepoints
+      $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
+      $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
+      $s3 = abs($spell['EffectBasePoints_3']+$spell['EffectBaseDice_3']);
+      if ($spell['EffectDieSides_1']>$spell['EffectBaseDice_1']) $s1.=" - ".abs($spell['EffectBasePoints_1']+$spell['EffectDieSides_1']);
+      if ($spell['EffectDieSides_2']>$spell['EffectBaseDice_2']) $s2.=" - ".abs($spell['EffectBasePoints_2']+$spell['EffectDieSides_2']);
+      if ($spell['EffectDieSides_3']>$spell['EffectBaseDice_3']) $s3.=" - ".abs($spell['EffectBasePoints_3']+$spell['EffectDieSides_3']);
+    
+      $d  = 0;
+      if ($spell['DurationIndex'])
+       if ($spell_duration = $this->aDB->selectRow("SELECT * FROM `spell_duration` WHERE `id`=?", $spell['DurationIndex']))
+         $d = $spell_duration['duration_1']/1000;
+    
+      // Tick duration
+      $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
+      $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
+      $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
+    
+      // Points per tick
+      $o1 = @intval($s1*$d/$t1);
+      $o2 = @intval($s2*$d/$t2);
+      $o3 = @intval($s3*$d/$t3);
+    
+      $spellData['t1']=$t1;
+      $spellData['t2']=$t2;
+      $spellData['t3']=$t3;
+      $spellData['o1']=$o1;
+      $spellData['o2']=$o2;
+      $spellData['o3']=$o3;
+      $spellData['s1']=$s1;
+      $spellData['s2']=$s2;
+      $spellData['s3']=$s3;
+      $spellData['m1']=$s1;
+      $spellData['m2']=$s2;
+      $spellData['m3']=$s3;
+      $spellData['x1']= $spell['EffectChainTarget_1'];
+      $spellData['x2']= $spell['EffectChainTarget_2'];
+      $spellData['x3']= $spell['EffectChainTarget_3'];
+      $spellData['i'] = $spell['MaxAffectedTargets'];
+      $spellData['d'] = $d;
+      $spellData['d1']= Utils::getTimeText($d);
+      $spellData['d2']= Utils::getTimeText($d);
+      $spellData['d3']= Utils::getTimeText($d);
+      $spellData['v'] = $spell['AffectedTargetLevel'];
+      $spellData['u'] = $spell['StackAmount'];
+      $spellData['a1']= Utils::getRadius($spell['EffectRadiusIndex_1']);
+      $spellData['a2']= Utils::getRadius($spell['EffectRadiusIndex_2']);
+      $spellData['a3']= Utils::getRadius($spell['EffectRadiusIndex_3']);
+      $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
+      $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
+      $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
+      $spellData['e'] = $spell['EffectMultipleValue_1'];
+      $spellData['e1']= $spell['EffectMultipleValue_1'];
+      $spellData['e2']= $spell['EffectMultipleValue_2'];
+      $spellData['e3']= $spell['EffectMultipleValue_3'];
+      $spellData['f1']= $spell['DmgMultiplier_1'];
+      $spellData['f2']= $spell['DmgMultiplier_2'];
+      $spellData['f3']= $spell['DmgMultiplier_3'];
+      $spellData['q1']= $spell['EffectMiscValue_1'];
+      $spellData['q2']= $spell['EffectMiscValue_2'];
+      $spellData['q3']= $spell['EffectMiscValue_3'];
+      $spellData['h'] = $spell['procChance'];
+      $spellData['n'] = $spell['procCharges'];
+      $spellData['z'] = "<home>";
+      return $spellData;
+    }
+    
+    public function my_replace($matches) {
+        $text = str_replace( array('[',']'), array('', ''), $matches[0]);
+        eval("\$text = abs(".$text.");");
+        return intval($text);
     }
 }
 ?>

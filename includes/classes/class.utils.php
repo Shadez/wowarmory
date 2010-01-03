@@ -530,5 +530,75 @@ Class Utils extends Connector {
         }
         return $news;
     }
+    
+    public function validateText($text) {
+        $letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  );
+        $values = array("`",'&quot;',"&lt;","&gt;","&gt;",""  ,"<br>");
+        return str_replace($letter, $values, $text);
+    }
+    
+    public function getTimeText($seconds) {
+        $text = "";
+        if ($seconds >=24*3600) {$text.= intval($seconds/(24*3600))." days"; if ($seconds%=24*3600) $text.=" ";}
+        if ($seconds >=   3600) {$text.= intval($seconds/3600)." hours"; if ($seconds%=3600) $text.=" ";}
+        if ($seconds >=     60) {$text.= intval($seconds/60)." min"; if ($seconds%=60) $text.=" ";}
+        if ($seconds >       0) {$text.= $seconds." sec";}
+        return $text;
+    }
+    
+    public function getRadius($index) {
+        $gSpellRadiusIndex = array(
+         '7'=>array(2,0,2),
+         '8'=>array(5,0,5),
+         '9'=>array(20,0,20),
+        '10'=>array(30,0,30),
+        '11'=>array(45,0,45),
+        '12'=>array(100,0,100),
+        '13'=>array(10,0,10),
+        '14'=>array(8,0,8),
+        '15'=>array(3,0,3),
+        '16'=>array(1,0,1),
+        '17'=>array(13,0,13),
+        '18'=>array(15,0,15),
+        '19'=>array(18,0,18),
+        '20'=>array(25,0,25),
+        '21'=>array(35,0,35),
+        '22'=>array(200,0,200),
+        '23'=>array(40,0,40),
+        '24'=>array(65,0,65),
+        '25'=>array(70,0,70),
+        '26'=>array(4,0,4),
+        '27'=>array(50,0,50),
+        '28'=>array(50000,0,50000),
+        '29'=>array(6,0,6),
+        '30'=>array(500,0,500),
+        '31'=>array(80,0,80),
+        '32'=>array(12,0,12),
+        '33'=>array(99,0,99),
+        '35'=>array(55,0,55),
+        '36'=>array(0,0,0),
+        '37'=>array(7,0,7),
+        '38'=>array(21,0,21),
+        '39'=>array(34,0,34),
+        '40'=>array(9,0,9),
+        '41'=>array(150,0,150),
+        '42'=>array(11,0,11),
+        '43'=>array(16,0,16),
+        '44'=>array(0.5,0,0.5),
+        '45'=>array(10,0,10),
+        '46'=>array(5,0,10),
+        '47'=>array(15,0,15),
+        '48'=>array(60,0,60),
+        '49'=>array(90,0,90)
+        );
+        $radius = @$gSpellRadiusIndex[$index];
+        if ($radius == 0) {
+            return "Err index $index";
+        }        
+        if ($radius[0]==0 OR $radius[0]==$radius[2]) {
+            return $radius[2];
+        }
+        return $radius[0]." - ".$radius[2];
+    }
 }
 ?>

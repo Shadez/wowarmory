@@ -14,9 +14,8 @@ INSTALLATION STEPS:
    Attention! SQL Query will take a long time while uploading, be prepare for it!
    If you get error 'MySQL server has gone away', change Query limit in MySQL server config file (my.ini (or my.cnf)).
 	Google it, if you don't know what it is;
-4. Rename includes/classes/configuration.php.new to includes/classes/configuration.php;
-5. Edit includes/classes/configuration.php (read comments).
-6. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
+4. Edit includes/classes/configuration.php (read comments).
+5. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
 
 ========================
 Как установить Оружейную
@@ -34,6 +33,5 @@ INSTALLATION STEPS:
    Внимание! SQL запрос будет выполняться достаточно долгое время, будьте к этому готовы!
 	Если вы получаете ошибку 'MySQL Server has gone away', измените лимит запроса в конфигурационном файле сервера MySQL
 	(my.ini (или my.cnf)). Используйте Google, если не знаете что это и как менять;
-4. Переименуйте файл includes/classes/configuration.php.new в includes/classes/configuration.php;
-5. Отредактируйте файл includes/classes/configuration.php.
-6. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"
+4. Отредактируйте файл includes/classes/configuration.php.
+5. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"

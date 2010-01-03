@@ -120,13 +120,13 @@
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="charHeaderTxt_Light">
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{$class_text}}&nbsp;{{$race_text}}</span>
+{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
 </div>
 <div id="forumLinks">
 <a class="smFrame" href="javascript:void(0)">
@@ -187,22 +187,14 @@
 <div class="gearItem" style="
 					background-image: url('wow-icons/_images/51x51/{{$gear_shirt_icon}}.jpg')
 				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_shirt_item}}" id="i={{$gear_shirt_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
-<div class="upgradeBox"></div>
+<a class="staticTip noUpgrade itemToolTip gearFrame" href="item-info.xml?i={{$gear_shirt_item}}" id="i={{$gear_shirt_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
 </a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_shirt_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
 </div>
 <div class="gearItem" style="
 					background-image: url('wow-icons/_images/51x51/{{$gear_tabard_icon}}.jpg')
 				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_tabard_item}}" id="i={{$gear_tabard_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
-<div class="upgradeBox"></div>
+<a class="staticTip noUpgrade itemToolTip gearFrame" href="item-info.xml?i={{$gear_tabard_item}}" id="i={{$gear_tabard_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
 </a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_tabard_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
 </div>
 <div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$gear_wrist_icon}}.jpg')">
 <a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_wrist_item}}" id="i={{$gear_wrist_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=8">

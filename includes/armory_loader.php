@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 38
+ * @revision 40
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,13 +26,13 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 session_start();
-error_reporting(0);
-//error_reporting(E_ALL);
+//error_reporting(0);
+error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r38');
+define('DB_VERSION', 'armory_r40');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
