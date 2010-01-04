@@ -18,9 +18,9 @@ var currentPetTree;
 //                 Constants                  //
 /*--------------------------------------------*/
 
-var ICON_PREFIX      = '/wow-icons/_images/_talents31x31/';
-var ICON_PREFIX_GREY = '/wow-icons/_images/_talents31x31/grey/';
-var ICON_TREE_PREFIX = '/wow-icons/_images/21x21/'; 
+var ICON_PREFIX      = 'wow-icons/_images/_talents31x31/';
+var ICON_PREFIX_GREY = 'wow-icons/_images/_talents31x31/grey/';
+var ICON_TREE_PREFIX = 'wow-icons/_images/21x21/'; 
 
 /*--------------------------------------------*/
 //               Public Methods               //

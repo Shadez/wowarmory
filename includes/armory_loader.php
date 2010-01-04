@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 42
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,7 +32,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r40');
+define('DB_VERSION', 'armory_r42');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
@@ -50,11 +50,11 @@ $utils = new Utils;
 
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
-    header('Location: login.xml?rrid=' . rand());
+    header('Location: login.xml');
 }
 elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
     $utils->logoffUser();
-    header('Location: index.xml?lid=' . rand());
+    header('Location: index.xml');
 }
 if(isset($_SESSION['wow_login'])) {
     $armory->tpl->assign('_wow_login', $_SESSION['username']);

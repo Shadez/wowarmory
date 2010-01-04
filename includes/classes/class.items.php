@@ -112,7 +112,7 @@ Class Items extends Connector {
 		return $text;
 	}
     
-    public function GetItemSource($item) {
+    public function GetItemSource($item, $flag=false) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
 	    $returnString = false;
 		$vendorLoot = $this->wDB->selectCell("
@@ -137,7 +137,14 @@ Class Items extends Connector {
         SELECT `id`
             FROM `spell`
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
-			
+		if($flag == true) {
+            if($bossLoot) {
+                return 0x01;
+            }
+            elseif($chestLoot) {
+                return 0x02;
+            }
+		}
         if(!empty($bossLoot)) {
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=1");
         }
@@ -147,13 +154,13 @@ Class Items extends Connector {
             }
 			$returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=2");
 		}
-        if(!empty($chestLoot)) {
+        if(!empty($questLoot)) {
             if($returnString) {
                 $returnString .= ', ';
             }
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=3");
         }
-        if(!empty($questLoot)) {
+        if(!empty($chestLoot)) {
             if($returnString) {
                 $returnString .= ', ';
             }
@@ -168,7 +175,42 @@ Class Items extends Connector {
 		return $returnString;
     }
     
+    public function lootInfo($itemID) {
+        $bossLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=?", $itemID);
+        $chestLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `gameobject_loot_template` WHERE `item`=?", $itemID);
+        $loot = array();
+        if($bossLoot) {
+            $loot = array(
+                'source' =>   Mangos::GetNPCName($bossLoot['entry']),
+                'instance' => Mangos::GetNpcInfo($bossLoot['entry'], 'map'),
+                'percent' =>  Mangos::DropPercent($bossLoot['ChanceOrQuestChance'])
+            );
+        }
+        elseif($chestLoot) {
+            $loot = array(
+                'source' =>   Mangos::GameobjectInfo($chestLoot['entry'], 'name'),
+                'instance' => Mangos::GameobjectInfo($chestLoot['entry'], 'map'),
+                'percent' =>  Mangos::DropPercent($chestLoot['ChanceOrQuestChance'])
+            );
+        }
+        else {
+            $loot = array(
+                'source' => 'Unknown',
+                'instance' => 'Unknown',
+                'percent' => 'Unknown'
+            );
+        }
+        return $loot;
+    }
+    
     public function BuildItemSetInfo($itemset) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        if($locale == 'en_gb') {
+            $spell_locale = '_1';
+        }
+        else {
+            $spell_locale = false;
+        }
         $itemSetBonuses = '';
         $itemsName='';
         $query = $this->aDB->selectRow("
@@ -191,10 +233,10 @@ Class Items extends Connector {
         for($i=1; $i!=9; $i++) {
             if($query['bonus_'.$i] > 0) {
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $query['bonus_'.$i]);
-                $itemSetBonuses .= '<span class="setItemGray">('.$i.') Комплект:&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'])).'</span><br />';
+                $itemSetBonuses .= '<span class="setItemGray">('.$i.') Комплект:&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'.$spell_locale])).'</span><br />';
             }
 		}
-		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div><br />', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
+		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div>', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
 		return $fullItemInfoString;
     }
     
@@ -382,6 +424,7 @@ Class Items extends Connector {
             $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `enchantment` WHERE `id`=?", $socketInfo);
             $data['icon'] = $this->getItemIcon($data['item']);
             $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$locale."` FROM `enchantment` WHERE `id`=?", $socketInfo);
+            $data['enchant_id'] = $socketInfo;
             return $data;
         }
         return false;

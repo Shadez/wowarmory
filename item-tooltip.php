@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 42
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -68,6 +68,13 @@ $armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
 $armory->tpl->assign('item_name', $data['name']);
 $armory->tpl->assign('bonding', $armory->tpl->get_config_vars('bonding_' . $data['bonding']));
 
+// Spell Locale
+if($_locale == 'en_gb') {
+    $_spell_locale = '_1';
+}
+else {
+    $_spell_locale = false;
+}
 // Статы вещи и зеленые бонусы
 $o = '';
 $j = '';
@@ -88,6 +95,17 @@ for($i=1; $i!=11; $i++) {
                 break;
             case 7:
                 $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_7') . '</span><br>';
+                break;
+            case 43: // 
+                if($_locale == 'en_gb') {
+                    $j .= '<br /><span class="bonusGreen"><span class="">' . sprintf($armory->tpl->get_config_vars('bonus_name_43'), $data['stat_value'.$i]) . '&nbsp;</span><span class=""></span></span>';
+                }
+                else {
+                    $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_43') . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
+                }
+                break;
+            case 20:
+                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '%</span></span>';
                 break;
             default:
                 $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
@@ -146,6 +164,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Meta.png">'.$armory->tpl->get_config_vars('socket_meta').'</span><br>';
@@ -155,6 +174,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Red.png">'.$armory->tpl->get_config_vars('socket_red').'</span><br>';
@@ -164,15 +184,17 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Yellow.png">'.$armory->tpl->get_config_vars('socket_yellow').'</span><br>';
-            }            
+            }
             break;
         case 8:
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Blue.png">'.$armory->tpl->get_config_vars('socket_blue').'</span><br>';
@@ -180,13 +202,38 @@ for($ii=1; $ii<4; $ii++) {
             break;
     }
 }
-$sBonus = $armory->tpl->get_config_vars('socketbonus_name_'.$data['socketBonus']);
+if(isset($socketBonusCheck)) {
+    $socketBonusCheckCount = count($socketBonusCheck);
+    $socketMatches = 0;
+    foreach($socketBonusCheck as $socket) {
+        if($socket['color'] == $socket['current']) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 2 && ($socket['current'] == 6 || $socket['current'] == 10 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 4 && ($socket['current'] == 6 || $socket['current'] == 12 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 8 && ($socket['current'] == 10 || $socket['current'] == 12 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+    }
+    if($socketBonusCheckCount == $socketMatches) {
+        $armory->tpl->assign('socketBonusEnable', true);
+    }
+}
+
+$sBonus = $armory->aDB->selectCell("SELECT `text_".$_locale."` FROM `enchantment` WHERE `id`=?", $data['socketBonus']);
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
         $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
-        $t[$i] = $items->spellReplace($spell_tmp, $utils->validateText($spell_tmp['Description']));
-        if($t[$i]) {
-            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$t[$i].'&nbsp;</span><span class="">&nbsp;</span></span>';
+        if(!isset($spell_tmp['Description'.$_spell_locale])) {
+            $spell_tmp['Description'.$_spell_locale] = '';
+        }
+        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description'.$_spell_locale]));
+        if($spellInfo) {
+            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
         }
     }
 }
@@ -269,7 +316,13 @@ if(!empty($data['description'])) {
 if($data['Flags'] == 4104) {
     $armory->tpl->assign('is_heroic', true);
 }
-$armory->tpl->assign('source', $items->GetItemSource($itemID));
+/*
+if($items->GetItemSource($itemID, true) == 0x01 || $items->GetItemSource($itemID, true) == 0x02) {
+    $armory->tpl->assign('fullLootInfo', $items->lootInfo($itemID));
+}
+else {*/
+    $armory->tpl->assign('source', $items->GetItemSource($itemID));
+//}
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {

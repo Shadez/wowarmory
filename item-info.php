@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 42
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -54,10 +54,17 @@ $armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
 $armory->tpl->assign('item_name', $data['name']);
 $armory->tpl->assign('bonding', $armory->tpl->get_config_vars('bonding_' . $data['bonding']));
 
+// Spell Locale
+if($_locale == 'en_gb') {
+    $_spell_locale = '_1';
+}
+else {
+    $_spell_locale = false;
+}
 // Статы вещи и зеленые бонусы
 $o = '';
 $j = '';
-for($i=1; $i!=11; $i++) {
+for($i=1; $i<11; $i++) {
     if($data['stat_type'.$i]>0 && $data['stat_value'.$i]>0) {
         switch($data['stat_type' . $i]) {
             case 3:
@@ -74,6 +81,17 @@ for($i=1; $i!=11; $i++) {
                 break;
             case 7:
                 $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_7') . '</span><br>';
+                break;
+            case 43: // 
+                if($_locale == 'en_gb') {
+                    $j .= '<br /><span class="bonusGreen"><span class="">' . sprintf($armory->tpl->get_config_vars('bonus_name_43'), $data['stat_value'.$i]) . '&nbsp;</span><span class=""></span></span>';
+                }
+                else {
+                    $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_43') . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
+                }
+                break;
+            case 20:
+                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '%</span></span>';
                 break;
             default:
                 $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
@@ -144,39 +162,14 @@ for($ii=1; $ii<4; $ii++) {
 }
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
-        $t[$i] = $armory->aDB->selectCell("
-        SELECT `tooltip` 
-            FROM `spells` 
-        	   WHERE `id`=? AND `tooltip` <> '_empty_'", $data['spellid_'.$i]);
-        if($t[$i]) {
-            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$t[$i].'&nbsp;</span><span class="">&nbsp;</span></span>';
+        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
+        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description'.$_spell_locale]));
+        if($spellInfo) {
+            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
         }
     }
 }
 
-// Enchant
-$ench_array = array (
-	1 => 'head',
-    2 => 'neck',
-    3 => 'shoulder',
-    4 => 'shirt',
-    5 => 'chest', 
-    6 => 'belt', 
-    7 => 'legs', 
-    8 => 'boots',
-    9 => 'wrist',
-    10=> 'gloves',
-    11=>'ring1',
-    12=>'trinket1',
-    13=>'mainhand',
-    14=>'offhand',
-    15=>'relic',
-    16=>'back', 
-    19=>'tabard',
-    25=>'thrown',
-    26=>'gun',
-    28=>'sigil'
-);
 $armory->tpl->assign('first_bonuses', $o);
 $armory->tpl->assign('sockets', $s);
 $armory->tpl->assign('durability', $data['MaxDurability']);
@@ -221,9 +214,6 @@ if($data['Flags'] == 4104) {
 }
 $armory->tpl->assign('source', $items->GetItemSource($itemID));
 $armory->tpl->assign('green_bonuses', $j);
-if(isset($_GET['css'])) {
-    $armory->tpl->display('index_header.tpl');
-}
 $armory->tpl->assign('buyPrice',  $mangos->getMoney($data['BuyPrice']));
 $armory->tpl->assign('sellPrice', $mangos->getMoney($data['SellPrice']));
 $armory->tpl->assign('item_icon',  $items->getItemIcon($itemID));
@@ -243,6 +233,5 @@ $armory->tpl->assign('addCssSheet', '@import "_css/int.css";
     @import "_css/_region/eu/region.css";');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('overall_start.tpl');
-$_SESSION['itemTooltipX'] = true;
 exit();
 ?>

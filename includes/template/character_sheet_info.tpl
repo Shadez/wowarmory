@@ -429,7 +429,7 @@
 <h4>{{#armory_character_sheet_achievements_tab#}}</h4>
 <a class="achPointsLink" href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}"><span style="color: #FFF; float: right; margin: 0 0px 0 0;">{{$pts}}</span>{{#armory_character_sheet_achievement_points_string#}}</a>
 <div class="achieve-bar" style="text-align:center;">
-<div class="progressTxt">&nbsp;&nbsp;{{#armory_character_sheet_achievements_progress#}}&nbsp;{{$fullCharacterAchievementsCount}}/986</div>
+<div class="progressTxt">&nbsp;&nbsp;{{#armory_character_sheet_achievements_progress#}}&nbsp;{{$fullCharacterAchievementsCount}}/1054</div>
 <b style="width: {{$character_progress_percent}}%;"></b>
 </div>
 <div class="achList">
@@ -439,15 +439,15 @@
 <div class="achList">
 <span>{{$achievements_3}}/70</span>{{#achievements_category_3#}}</div>
 <div class="achList">
-<span>{{$achievements_4}}/164</span>{{#achievements_category_4#}}</div>
+<span>{{$achievements_4}}/166</span>{{#achievements_category_4#}}</div>
 <div class="achList">
-<span>{{$achievements_5}}/391</span>{{#achievements_category_5#}}</div>
+<span>{{$achievements_5}}/454</span>{{#achievements_category_5#}}</div>
 <div class="achList">
 <span>{{$achievements_6}}/75</span>{{#achievements_category_6#}}</div>
 <div class="achList">
-<span>{{$achievements_7}}/44</span>{{#achievements_category_7#}}</div>
+<span>{{$achievements_7}}/45</span>{{#achievements_category_7#}}</div>
 <div class="achList">
-<span>{{$achievements_8}}/139</span>{{#achievements_category_8#}}</div>
+<span>{{$achievements_8}}/141</span>{{#achievements_category_8#}}</div>
 <div class="achList">
 <span>{{$achievements_9}}</span>{{#achievements_category_9#}}</div>
 </div>

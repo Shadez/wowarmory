@@ -27,11 +27,11 @@ function calcTalentSpecs(){
 
 
 	if (highest > 0)
-		document.getElementById('talentSpecImage').src = "/images/icons/class/"+ theClassId +"/talents/"+ highest +".gif";
+		document.getElementById('talentSpecImage').src = "images/icons/class/"+ theClassId +"/talents/"+ highest +".gif";
 	else if (highest == 0)
-		document.getElementById('talentSpecImage').src = "/images/icons/class/talents/hybrid.gif";
+		document.getElementById('talentSpecImage').src = "images/icons/class/talents/hybrid.gif";
 	else
-		document.getElementById('talentSpecImage').src = "/images/icons/class/talents/untalented.gif";
+		document.getElementById('talentSpecImage').src = "images/icons/class/talents/untalented.gif";
 	
 	highest = -1;
 	
@@ -65,11 +65,11 @@ function calcTalentSpecs(){
 		if(document.getElementById("talentSpecImage2")){
 			//document.getElementById('replaceTalentSpecText2').innerHTML = talentSpecText;	
 			if (highest > 0)
-				document.getElementById('talentSpecImage2').src = "/images/icons/class/"+ theClassId +"/talents/"+ highest +".gif";
+				document.getElementById('talentSpecImage2').src = "images/icons/class/"+ theClassId +"/talents/"+ highest +".gif";
 			else if (highest == 0)
-				document.getElementById('talentSpecImage2').src = "/images/icons/class/talents/hybrid.gif";
+				document.getElementById('talentSpecImage2').src = "images/icons/class/talents/hybrid.gif";
 			else
-				document.getElementById('talentSpecImage2').src = "/images/icons/class/talents/untalented.gif";		
+				document.getElementById('talentSpecImage2').src = "images/icons/class/talents/untalented.gif";		
 		}
 	}catch(e){}
 	

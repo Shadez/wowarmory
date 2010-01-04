@@ -76,25 +76,32 @@
 <tr>
 <td valign="top">
 <div class="myTable">
-<span class="{{$quality_color}} myBold myItemName"><span class="">{{$item_name}}</span><span class=""> </span></span>
-{{if $is_heroic}}<br /><span class="bonusGreen">{{#armory_item_tooltip_item_heroic#}}</span>{{/if}}
-{{if $bonding}}<br />{{$bonding}}{{/if}}<br />{{if $quality}}{{$quality}}<br />{{/if}}
-<span class="tooltipRight" style="display: inline;">{{if $armor_type}}{{$armor_type}}{{/if}}</span>{{$item_equip}}<br />
-{{if $weapon_damage}}<span class="">{{$minDmg}}-{{$maxDmg}}&nbsp;</span><span class="">{{#tooltip_damage#}}</span><span class="tooltipRight">{{#tooltip_speed#}}&nbsp;{{$dmg_speed}}</span>
-<br />	
+<span class="{{$quality_color}} myBold myItemName"><span class="">{{$item_name}}</span><span class=""> </span></span><br />
+{{if $is_heroic}}<span class="bonusGreen">{{#armory_item_tooltip_item_heroic#}}</span><br />{{/if}}
+{{if $bonding}}{{$bonding}}<br />{{/if}}
+{{if $quality}}{{$quality}}<br />{{/if}}
+<span class="tooltipRight" style="display: inline;">
+{{if $armor_type}}{{$armor_type}}{{/if}}
+</span>
+{{if $item_equip}}{{$item_equip}}<br />{{/if}}
+{{if $weapon_damage}}
+<span class="">{{$minDmg}}-{{$maxDmg}}&nbsp;</span><span class="">{{#tooltip_damage#}}</span><span class="tooltipRight">{{#tooltip_speed#}}&nbsp;{{$dmg_speed}}</span>
+<br />
 (<span class="">{{$dmg_per_sec}}&nbsp;</span><span class="">{{#tooltip_dps#}}</span>)
 <br />{{/if}}
-{{if $item_armor}}<span class=""><span class="">{{$item_armor}}&nbsp;</span><span class="">{{#tooltip_armor#}}</span></span>
-<br />{{/if}}
+{{if $item_armor}}<span class=""><span class="">{{$item_armor}}&nbsp;</span><span class="">{{#tooltip_armor#}}</span></span><br />{{/if}}
 {{$first_bonuses}}
 {{if $sockets}}{{$sockets}}{{/if}}
 {{if $durability}}{{#tooltip_durability#}}&nbsp;{{$durability}} / {{$durability}}<br />{{/if}}{{if $races}}{{#tooltip_races#}}&nbsp;{{$races}}<br />{{/if}}{{if $classes}}{{#tooltip_classes#}}&nbsp;{{$classes}}<br />{{/if}}{{if $need_level}}{{#tooltip_required_level#}}&nbsp;{{$need_level}}<br />{{/if}}{{#armory_item_info_ilevel#}} {{$item_level}}<br />{{if $need_skill}}{{#tooltip_required_skill#}}&nbsp;{{$need_skill}} ({{$need_skill_rank}})<br />{{/if}}{{if $need_reputation_faction}}{{#tooltip_required_reputation#}} &nbsp;{{$need_reputation_rank}} {{$need_reputation_faction}}{{/if}}
-{{if $green_bonuses}}{{$green_bonuses}}{{/if}}
-<br />{{if $itemsetInfo}}<br />{{$itemsetInfo}}
+{{if $green_bonuses}}{{$green_bonuses}}<br />{{/if}}
+{{if $itemsetInfo}}<br />{{$itemsetInfo}}{{/if}}
+{{if $description}}<span class="myYellow">"{{$description}}"</span><br />{{/if}}
+{{if $source}}<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source#}}&nbsp;</span>{{$source}}<br />{{/if}}
+{{if $fullLootInfo}}
+<span class="tooltipContentSpecial" style="float: left;">{{#armory_item_tooltip_source#}}:&nbsp;{{$fullLootInfo.instance}}</span><br />
+<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_boss#}}&nbsp;</span>{{$fullLootInfo.source}}<br />
+<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_drop_percent#}}&nbsp;</span>{{$fullLootInfo.percent}}
 {{/if}}
-{{if $description}}<span class="myYellow">"{{$description}}"</span><br />{{/if}}{{if $source}}<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source#}}&nbsp;</span>{{$source}}<br>{{/if}}{{if $boss}}
-<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_boss#}}&nbsp;</span>{{$boss}}<br />
-<span class="tooltipContentSpecial" style="float: left;">{{#tooltip_source_drop_percent#}}&nbsp;</span>{{$drop_percent}}{{/if}}
 </div>
 </td>
 </tr>
