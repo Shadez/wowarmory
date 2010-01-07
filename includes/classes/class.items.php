@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 43
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -39,7 +39,7 @@ Class Items extends Connector {
     
     public function getItemName($itemID) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        switch($locale) {
+        switch(strtolower($locale)) {
             case 'en_gb':
                 $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
                 break;
@@ -61,6 +61,26 @@ Class Items extends Connector {
         $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
         $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `icons` WHERE `displayid`=? LIMIT 1", $displayId);
         return strtolower($itemIcon);
+    }
+    
+    public function getItemDescription($itemID) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        switch(strtolower($locale)) {
+            case 'en_gb':
+                $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+                break;
+            case 'ru_ru':
+                $itemDescription = $this->wDB->selectCell("SELECT `description_loc8` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
+                if(!$itemDescription) {
+                    // Lookup for original name
+                    $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+                }
+                break;
+            default:
+                return false;
+                break;
+        }
+        return $itemDescription;
     }
     
     public function AllowableRaces($mask) {
@@ -112,7 +132,7 @@ Class Items extends Connector {
 		return $text;
 	}
     
-    public function GetItemSource($item, $flag=false) {
+    public function GetItemSource($item) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
 	    $returnString = false;
 		$vendorLoot = $this->wDB->selectCell("
@@ -137,14 +157,6 @@ Class Items extends Connector {
         SELECT `id`
             FROM `spell`
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
-		if($flag == true) {
-            if($bossLoot) {
-                return 0x01;
-            }
-            elseif($chestLoot) {
-                return 0x02;
-            }
-		}
         if(!empty($bossLoot)) {
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=1");
         }
@@ -388,6 +400,37 @@ Class Items extends Connector {
                 
             case 'currency':
                 return false;
+                break;
+            case 'reagent':
+                $ReagentLoot = $this->aDB->select("
+                SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
+                        `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                        `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                        `SpellName`
+                        FROM `spell`
+                        WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR 
+                        `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
+                if($ReagentLoot) {
+                    $i = 0;
+                    foreach($ReagentLoot as $ReagentItem) {
+                        for($j=1;$j<4;$j++) {
+                            if($ReagentItem['EffectItemType_'.$j] > 0) {
+                                $lootTable[$i]['item_entry'] = $ReagentItem['EffectItemType_'.$j];
+                                $lootTable[$i]['item_name'] = $this->getItemName($ReagentItem['EffectItemType_'.$j]);
+                                $lootTable[$i]['item_icon'] = $this->getItemIcon($ReagentItem['EffectItemType_'.$j]);
+                                $lootTable[$i]['item_quality'] = $this->GetItemInfo($ReagentItem['EffectItemType_'.$j], 'quality');
+                            }
+                        }
+                        for($o=1;$o<9;$o++) {
+                            if($ReagentItem['Reagent_'.$o] > 0) {
+                                $lootTable[$i]['Reagent_'.$o] = $ReagentItem['Reagent_'.$o];
+                                $lootTable[$i]['ReagentIcon_'.$o] = $this->getItemIcon($ReagentItem['Reagent_'.$o]);
+                                $lootTable[$i]['ReagentCount_'.$o] = $ReagentItem['ReagentCount_'.$o];
+                            }
+                        }
+                        $i++;
+                    }
+                }
                 break;
         }
 		return $lootTable;
