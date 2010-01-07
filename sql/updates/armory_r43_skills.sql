@@ -10,7 +10,7 @@ MySQL - 5.0.45-community-nt : Database - armory
 
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-UPDATE `db_version` SET `version` = 'armory_r43' 
+UPDATE `db_version` SET `version` = 'armory_r43';
 DROP TABLE IF EXISTS `skills`;
 DROP TABLE IF EXISTS `spells`;
 
