@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 42
+ * @revision 43
  * @copyright (c) 2009 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -185,7 +185,7 @@ if($data['RequiredLevel'] > 0) {
 }
 if($data['RequiredSkill'] > 0) {
     $req_skill = $armory->aDB->selectCell("
-    SELECT `name`
+    SELECT `name_".$_locale."`
         FROM `skills`
             WHERE `id`=? LIMIT 1", $data['RequiredSkill']);
     $armory->tpl->assign('need_skill', $req_skill);
@@ -199,18 +199,14 @@ if($data['itemset'] > 0) {
     $armory->tpl->assign('itemsetInfo', $items->BuildItemSetInfo($data['itemset']));
 }
 if(!empty($data['description'])) {
-    $rus = $armory->aDB->selectCell("
-    SELECT `description_loc8`
-        FROM `locales_item`
-            WHERE `entry`=? LIMIT 1", $itemID);
-    if(!empty($rus)) {
-        $data['description'] = $rus;
-    }
-    $armory->tpl->assign('description', $data['description']);
+    $armory->tpl->assign('description', $items->getItemDescription($itemID));
 }
 // Heroic item (3.2.x)
 if($data['Flags'] == 4104) {
     $armory->tpl->assign('is_heroic', true);
+}
+if($data['startquest'] > 0) {
+    $armory->tpl->assign('startquest', true);
 }
 $armory->tpl->assign('source', $items->GetItemSource($itemID));
 $armory->tpl->assign('green_bonuses', $j);
@@ -224,6 +220,7 @@ $armory->tpl->assign('quest_loot', $items->BuildLootTable($itemID, 'quest'));
 $armory->tpl->assign('item_loot',  $items->BuildLootTable($itemID, 'item'));
 $armory->tpl->assign('disenchant_loot', $items->BuildLootTable($itemID, 'disenchant'));
 $armory->tpl->assign('craft_loot', $items->BuildLootTable($itemID, 'craft'));
+$armory->tpl->assign('reagent_loot', $items->BuildLootTable($itemID, 'reagent'));
 $armory->tpl->assign('item_level', $data['ItemLevel']);
 if($data['RequiredDisenchantSkill'] > 0) {
     $armory->tpl->assign('disenchant_info', $data['RequiredDisenchantSkill']);

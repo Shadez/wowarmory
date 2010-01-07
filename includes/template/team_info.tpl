@@ -19,7 +19,7 @@
 <div class="list">
 <div class="tabs">
 <div class="selected-tab" id="tab_teamInfo">
-<a href="team-info.xml?r={{$realm}}&amp;ts={{$team.type}}&amp;t={{$team.name}}">Профиль команды</a>
+<a href="team-info.xml?r={{$realm}}&amp;ts={{$team.type}}&amp;t={{$team.name}}">{{#armory_teaminfo_profile#}}</a>
 </div>
 <!--<div class="tab" id="tab_matchHistory">
 <a href="arena-team-game-chart.xml?r={{$realm}}&amp;ts={{$team.type}}&amp;t={{$team.name}}">История матчей</a>
@@ -73,7 +73,7 @@
 <div class="teamSide{{$team.faction}}"></div>
 <div class="teamRank">
 <span>&nbsp;<!--На прошлой неделе--></span>
-<p>Ранг</p>
+<p>{{#armory_arenaladder_rank#}}</p>
 </div>
 <div class="rank-num" id="arenarank2" style="padding-top: 5px;">
 <div id="arenarank2" style="display:none;"></div>
@@ -88,20 +88,23 @@
 </div>
 <div class="arenaBadge-icon" style="background-image:url(images/icons/badges/arena/arena-2.jpg);">
 <img class="p" src="images/badge-border-arena-gold.gif" /></div>
+
+<!-- Borders are not calculated now, it's static image -->
+
 </div>
 <a class="standing-link" href="arena-ladder.xml?ts=2"><img src="images/pixel.gif" /></a>
 </div>
-<div class="filterTitle">Статистика</div>
+<div class="filterTitle">{{#armory_teaminfo_statistic#}}</div>
 <div class="stats-container" style="margin-bottom: 10px;">
 <div class="arenaTeam-data">
 <div class="innerData">
 <table>
 <tr class="team-header">
-<td></td><td align="center"><strong>Поединки</strong></td><td align="center"><strong>Победы/пораж-я</strong></td><td align="center"><strong>% побед</strong></td><td align="center"><strong>Рейтинг команды</strong></td>
+<td></td><td align="center"><strong>{{#armory_teaminfo_games#}}</strong></td><td align="center"><strong>{{#armory_teaminfo_wins_losses#}}</strong></td><td align="center"><strong>{{#armory_teaminfo_wins_percent#}}</strong></td><td align="center"><strong>{{#armory_teaminfo_teamrating#}}</strong></td>
 </tr>
 <tr class="hl">
 <td>
-<p>На этой неделе</p>
+<p>{{#armory_teaminfo_this_week#}}</p>
 </td><td align="center">
 <p>{{$teamstats.games}}</p>
 </td><td align="center">
@@ -114,7 +117,7 @@
 </tr>
 <tr>
 <td>
-<p>За сезон</p>
+<p>{{#armory_teaminfo_this_season#}}</p>
 </td><td align="center">
 <p>{{$teamstats.played}}</p>
 </td><td align="center">
@@ -133,7 +136,7 @@
 <table cellpadding="0" cellspacing="0" class="data-table sortTable" id="teamsTable" style="width: 100%">
 <thead>
 <tr class="masthead">
-<th style="text-align:left; width: 150px;"><a>Участники команды<span class="sortArw"></span></a></th><th style="text-align:left; width: 240px;"><a>Гильдия<span class="sortArw"></span></a></th><th style="text-align:left; width: 130px;"><a>Раса/класс<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('Сыграно матчей')">СМ<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('Победы')">ПБД<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('Поражения')">ПРЖ<span class="sortArw"></span></a></th><th><a>% побед<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('Рейтинг персонажа')">РП<span class="sortArw"></span></a></th>
+<th style="text-align:left; width: 150px;"><a>{{#armory_teaminfo_team_members#}}<span class="sortArw"></span></a></th><th style="text-align:left; width: 240px;"><a>{{#armory_searchguilds_guild#}}<span class="sortArw"></span></a></th><th style="text-align:left; width: 130px;"><a>{{#armory_teaminfo_class_race#}}<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('{{#armory_teaminfo_tooltip_mp#}}')">{{#armory_teaminfo_mp#}}<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('{{#armory_teaminfo_wins_tooltip#}}')">{{#armory_teaminfo_wins#}}<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('{{#armory_teaminfo_losses_tooltip#}}')">{{#armory_teaminfo_losses#}}<span class="sortArw"></span></a></th><th><a>{{#armory_teaminfo_wins_percent#}}<span class="sortArw"></span></a></th><th><a class="staticTip" onmouseover="setTipText('{{#armory_teaminfo_pr_tooltip#}}')">{{#armory_teaminfo_pr#}}<span class="sortArw"></span></a></th>
 </tr>
 </thead>
 <tbody>

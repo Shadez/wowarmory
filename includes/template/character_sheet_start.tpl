@@ -26,7 +26,7 @@
 <div class="search-module">
 <em class="search-icon"></em>
 <form action="search.xml" method="get" name="formSearch" onSubmit="return menuCheckLength(document.formSearch);">
-<input id="armorySearch" maxlength="72" name="searchQuery" onkeypress="$('#formSearch_errorSearchLength').html('')" size="16" type="text" value=""><a class="submit" href="javascript:void(0);" onclick="return menuCheckLength(document.formSearch)"><span>{{#armory_search_button#}}</span></a>
+<input id="armorySearch" maxlength="72" name="searchQuery" onkeypress="$('#formSearch_errorSearchLength').html('')" size="16" type="text" value="{{$searchQuery}}"><a class="submit" href="javascript:void(0);" onclick="return menuCheckLength(document.formSearch)"><span>{{#armory_search_button#}}</span></a>
 <div id="errorSearchType"></div>
 <div id="formSearch_errorSearchLength"></div>
 <input name="searchType" type="hidden" value="all">

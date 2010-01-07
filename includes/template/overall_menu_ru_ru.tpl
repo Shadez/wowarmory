@@ -437,8 +437,8 @@
 <a href="item-search.xml">Расширенный поиск предметов</a>
 </li>
 </ul>
-</li>
--->
+</li>-->
+
 <!-- // ITEMS // -->
 <li class="fly toplevel-li">
 <a class="toplevel" href="javascript:void(0)">Арена</a>

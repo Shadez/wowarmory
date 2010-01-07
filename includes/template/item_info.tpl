@@ -80,6 +80,7 @@
 {{if $is_heroic}}<span class="bonusGreen">{{#armory_item_tooltip_item_heroic#}}</span><br />{{/if}}
 {{if $bonding}}{{$bonding}}<br />{{/if}}
 {{if $quality}}{{$quality}}<br />{{/if}}
+{{if $startquest}}{{#armory_item_tooltip_canstartnewquest#}}<br />{{/if}}
 <span class="tooltipRight" style="display: inline;">
 {{if $armor_type}}{{$armor_type}}{{/if}}
 </span>
@@ -273,6 +274,55 @@
 </div>
 </div>
 {{/if}}
+{{if $reagent_loot}}
+<div class="rel-tab">
+<p class="rel-reagentreq"></p>
+<h3>{{#armory_item_info_reagent_for#}}</h3>
+</div>
+<div id="big-results" style="clear: both;">
+<div class="data">
+<table class="data-table">
+<tr class="masthead">
+<td colspan="2"><a class="noLink">{{#armory_item_info_drop_name#}}</a></td><td><a class="noLink">{{#armory_item_info_reagents#}}</a></td>
+</tr>
+{{foreach from=$reagent_loot item=reagent}}
+<tr>
+<td width="55"><img class="p43 staticTip itemToolTip" id="{{$reagent.item_entry}}" src="wow-icons/_images/43x43/{{$reagent.item_icon}}.png" /></td>
+<td class="item-icon" width="50%"><q><a class="rarity{{$reagent.item_quality}} staticTip itemToolTip" href="item-info.xml?i={{$reagent.item_entry}}" id="{{$reagent.item_entry}}">{{$reagent.item_name}}</a></q></td>
+<td style="white-space:nowrap;">
+<q>
+{{if $reagent.Reagent_1 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_1}}" id="{{$reagent.Reagent_1}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_1}}.png" /><b>{{if $reagent.ReagentCount_1 > 1}}{{$reagent.ReagentCount_1}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_2 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_2}}" id="{{$reagent.Reagent_2}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_2}}.png" /><b>{{if $reagent.ReagentCount_2 > 1}}{{$reagent.ReagentCount_2}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_3 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_3}}" id="{{$reagent.Reagent_3}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_3}}.png" /><b>{{if $reagent.ReagentCount_3 > 1}}{{$reagent.ReagentCount_3}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_4 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_4}}" id="{{$reagent.Reagent_4}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_4}}.png" /><b>{{if $reagent.ReagentCount_4 > 1}}{{$reagent.ReagentCount_4}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_5 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_5}}" id="{{$reagent.Reagent_5}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_5}}.png" /><b>{{if $reagent.ReagentCount_5 > 1}}{{$reagent.ReagentCount_5}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_6 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_6}}" id="{{$reagent.Reagent_6}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_6}}.png" /><b>{{if $reagent.ReagentCount_6 > 1}}{{$reagent.ReagentCount_6}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_7 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_7}}" id="{{$reagent.Reagent_7}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_7}}.png" /><b>{{if $reagent.ReagentCount_7 > 1}}{{$reagent.ReagentCount_7}}{{/if}}</b></a>
+{{/if}}
+{{if $reagent.Reagent_8 > 0}}
+<a class="item-add staticTip itemToolTip" href="item-info.xml?i={{$reagent.Reagent_8}}" id="{{$reagent.Reagent_8}}"><img class="p21" src="wow-icons/_images/21x21/{{$reagent.ReagentIcon_8}}.png" /><b>{{if $reagent.ReagentCount_8 > 1}}{{$reagent.ReagentCount_8}}{{/if}}</b></a>
+{{/if}}
+</q>
+</td>
+</tr>
+{{/foreach}}
+</table>
+</div>
+</div>
+{{/if}}
 {{if $disenchant_loot}}
 <div class="rel-tab">
 <p class="rel-de"></p>
@@ -319,6 +369,8 @@
 </table>
 </div>
 {{/if}}
+<!---->
+
 <div class="clear">
 <!---->
 </div>
