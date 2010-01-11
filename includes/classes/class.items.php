@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 43
- * @copyright (c) 2009 Shadez  
+ * @revision 45
+ * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -227,25 +227,29 @@ Class Items extends Connector {
         $itemsName='';
         $query = $this->aDB->selectRow("
         SELECT *
-            FROM `itemset`
+            FROM `itemsetinfo`
                 WHERE `id`=? LIMIT 1", $itemset);
-        $itemSetName = $query['name'];
+        if(!$query) {
+            return false;
+        }
+        $itemSetName = $query['name_'.$locale];
         $itemsCount = 0;
         for($i=1; $i !=9; $i++) {
-            if($query['item_'.$i] > 0) {
+            if($query['item'.$i] > 0) {
                 $itemsCount++;
-                $curName = $this->getItemName($query['item_'.$i]);
+                $curName = $this->getItemName($query['item'.$i]);
                 if($curName) {	// TODO: разобраться с сетами гладиаторов
                     $itemsName .= '<span class="setItemGray">'.$curName.'</span><br />';
                 }
-                    //setItem
             }
         }
 		
-        for($i=1; $i!=9; $i++) {
-            if($query['bonus_'.$i] > 0) {
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $query['bonus_'.$i]);
-                $itemSetBonuses .= '<span class="setItemGray">('.$i.') Комплект:&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'.$spell_locale])).'</span><br />';
+        for($i=1; $i<9; $i++) {
+            if($query['bonus'.$i] > 0) {
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $query['bonus'.$i]);
+                $itemSetBonuses .= '<span class="setItemGray">('.$i.') ';
+                $itemSetBonuses .=  ($locale == 'ru_ru') ? 'Комплект' : 'Set';
+                $itemSetBonuses .=  ':&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'.$spell_locale])).'</span><br />';
             }
 		}
 		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div>', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);

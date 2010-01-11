@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
- * @copyright (c) 2009 Shadez  
+ * @revision 45
+ * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,8 +25,6 @@
 if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
-
-session_start();
 
 Class Mangos extends Connector {
     
@@ -95,54 +93,77 @@ Class Mangos extends Connector {
     }
     
     public function QuestInfo($quest, $infoType) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
-            case "title":
-                $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
+            case 'title':
+                $nameEn = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
                 $nameRus = $this->wDB->selectCell("SELECT `Title_loc8` FROM `locales_quest` WHERE `entry`=?", $quest);
-                if(!empty($nameRus)) {
-                    $info = $nameRus;
-                }
-				break;
-            
-            case "reqlevel":
+                $info = ($locale == 'ru_ru') ? $nameRus : $nameEn;
+				break;            
+            case 'reqlevel':
 				$info = $this->wDB->selectCell("SELECT `MinLevel` FROM `quest_template` WHERE `entry`=?", $quest);
-				break;
-				
-			case "map":
+				break;				
+			case 'map':
 				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_questrelation` WHERE `quest`=?", $quest);
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=?", $quester);
-				$info = $this->aDB->selectCell("SELECT `name` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name".$locale."` FROM `maps` WHERE `id`=?", $mapID);
 				break;
 			}
         return $info;
     }
     
     public function DropPercent($percent) {
-        if($percent>51) {
-            $string = 'высокая (100%)';	
-		}
-		elseif($percent>25) {
-		  $string = 'большая (51-100%)';
-        }
-        elseif($percent>15) {
-            $string = 'низкая (15-24%)'; 
-        }
-        elseif($percent>1) {
-            $string = 'крайне низкая (1-2%)';
-        }
-        elseif($percent<1) {
-            $string = 'крайне низкая (0%)'; 
-        }
-        elseif($percent==0) {
-            $string = 'неизвестно (0%)';
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $string = '';
+        switch($locale) {
+            case 'en_gb':
+                if($percent>51) {
+                    $string = 'High (100%)';	
+        		}
+        		elseif($percent>25) {
+        		  $string = 'Medium (51-100%)';
+                }
+                elseif($percent>15) {
+                    $string = 'Low (15-24%)'; 
+                }
+                elseif($percent>1) {
+                    $string = 'Very Low(1-2%)';
+                }
+                elseif($percent<1) {
+                    $string = 'Very Low (0%)'; 
+                }
+                elseif($percent==0) {
+                    $string = 'Unknown (0%)';
+                }
+                break;  
+            case 'ru_ru':
+                if($percent>51) {
+                    $string = 'высокая (100%)';	
+        		}
+        		elseif($percent>25) {
+        		  $string = 'большая (51-100%)';
+                }
+                elseif($percent>15) {
+                    $string = 'низкая (15-24%)'; 
+                }
+                elseif($percent>1) {
+                    $string = 'крайне низкая (1-2%)';
+                }
+                elseif($percent<1) {
+                    $string = 'крайне низкая (0%)'; 
+                }
+                elseif($percent==0) {
+                    $string = 'неизвестно (0%)';
+                }
+                break;        
         }
         return $string;
     }
     
     public function GameobjectInfo($entry, $infoType) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
             case 'name':
-                $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
                 switch($locale) {
                     case 'ru_ru':
                         $info = $this->wDB->selectCell("
@@ -160,7 +181,7 @@ Class Mangos extends Connector {
             
             case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=?", $entry);
-				$info = $this->aDB->selectCell("SELECT `name` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `maps` WHERE `id`=?", $mapID);
 				break;
 		}
 		return $info;
@@ -182,42 +203,37 @@ Class Mangos extends Connector {
     
     public function GetNpcInfo($npc, $infoType) {
         $info = '';
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
 		switch($infoType) {
-            case "level":
+            case 'level':
 				$info = $this->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=?", $npc);
 				break;
 				
-			case "map":
+			case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-				$info = $this->aDB->selectCell("SELECT `name` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `maps` WHERE `id`=?", $mapID);
 				break;
             
-            case "subname":
+            case 'subname':
                 $subname = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                 $subnameRus = $this->wDB->selectCell("SELECT `subname_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                $info = ($_SESSION['armoryLocale']=='ru_ru') ? $subnameRus : $subname;
+                $info = ($locale=='ru_ru') ? $subnameRus : $subname;
                 break;
 				
-			case "dungeonlevel":
+			case 'dungeonlevel':
                 $query = $this->wDB->selectCell("
 				SELECT `difficulty_entry_1`
 					FROM `creature_template` 
 						WHERE `entry`=? AND `difficulty_entry_1` <> 0", $npc);
-				if(!empty($query)) {
-					$info = '';
-				}
-				elseif($query!=0) {
-					$info = '&nbsp;(Героический)';
-				}
-				else {
-					$info = '';
+				if($query > 0) {
+					$info = ($locale == 'ru_ru') ? '&nbsp;(Героический)' : '&nbsp;(Heroic)';
 				}
                 break;
 				
-			case "isBoss": 
+			case 'isBoss': 
                 $rank = $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=? AND `rank`=3 LIMIT 1", $npc);
                 if($rank) {
-						$info = '&nbsp;Босс';
+                    $info = ($locale == 'ru_ru') ? '&nbsp;Босс' : '&nbsp;Boss';
 				}
 				break;
 		}
