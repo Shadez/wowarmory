@@ -8,8 +8,7 @@ Browser = {
 	opera : !!window.opera,
 	safari : Browser.a.indexOf('safari') != -1,
 	safari3 : Browser.a.indexOf('applewebkit/5') != -1,
-	mac : Browser.a.indexOf('mac') != -1,
-	iphone : Browser.a.indexOf('iphone') != -1
+	mac : Browser.a.indexOf('mac') != -1
 }
 function $blizz(e) {
 	if(typeof e == 'string')
@@ -320,4 +319,42 @@ function fnews_close(targ)
 function frst_valid(frm,fld)
 { if(fld.value =='') { fld.style.borderColor='#e00900'; } 
   else { frm.submit(); }
+}
+
+
+//The ARMORY_QUERY object provides Query String parameters to JS
+var armory_query = new Object();
+if(location.href.indexOf("?") > 0)
+{
+	try{ 	var qs = location.href.split("?")[1].split("&"); 
+			for(i=0; i<qs.length; i++){ armory_query[qs[i].split("=")[0]] = decodeURIComponent(qs[i].split("=")[1]) }
+			//console.log(armory_query)
+	   } 
+	catch(err){}
+}
+
+//uses ZeroClipboard in Shared/Third Party to copy data to the clipboard (Assumes source is a form field)
+function clipboard_init(target,source) {
+	var clip = null;
+	clip = new ZeroClipboard.Client();
+	clip.setHandCursor( true );
+	
+	clip.addEventListener('mouseOver', function(){ clip.setText($("#"+source).val());} );
+	clip.addEventListener('complete', zClipboard_complete);
+	
+	clip.glue(target,target+"_container");
+}
+
+
+
+//boolean for displaying dual tooltips or not
+function setDualTooltipCookie() {
+    if (document.getElementById('checkboxDualTooltip').checked)
+		{ setcookie("armory.cookieDualTooltip", 1);
+		  dualTipsEnabled = true;
+		}
+    else
+        { setcookie("armory.cookieDualTooltip", 0);
+		  dualTipsEnabled = false; 
+		}
 }

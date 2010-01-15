@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><strings>
+		<string key="stand" string="Покой"/>
+		<string key="dance" string="Танец"/>
+		<string key="laugh" string="Смех"/>
+		<string key="flex" string="Мускулы"/>
+		<string key="chicken" string="Цып"/>
+        <string key="crouch" string="Красться"/>
+        <string key="talk" string="Говорить"/>
+        <string key="bow" string="Поклон"/>
+        <string key="wave" string="Помахать"/>				
+        <string key="rude" string="Грубость"/>
+        <string key="kiss" string="Поцелуй"/>
+        <string key="cry" string="Плач"/>
+        <string key="point" string="Указать"/>				
+        <string key="salute" string="Честь"/>			
+        <string key="yes" string="Да"/>			
+        <string key="no" string="Нет"/>	
+        <string key="train" string="Паровоз"/>	
+
+		<string key="readyspelldirected" string="Применяется (цель)"/>
+		<string key="castdirected" string="Применение (цель)"/>
+		<string key="readyspellomni" string="Применяется (общее)"/>
+		<string key="castomni" string="Применение (общее)"/>
+		<string key="readythrown" string="Дальн. бой (покой)"/>
+		<string key="attackthrown" string="Дальн. бой (атака)"/>
+		
+		<!-- Melee (ClassIds 1,2,3,4,6) -->
+		<string key="ready1h" string="Ближн. бой (покой)"/>
+		<string key="attack1h" string="Ближн. бой (атака)"/>
+		<string key="ready2h" string="Ближн. бой (покой)"/>
+		<string key="ready2hl" string="Ближн. бой (покой)"/>
+		<string key="attack2h" string="Ближн. бой (атака)"/>
+		<string key="attack2hl" string="Ближн. бой (атака)"/>
+		<string key="attack1hpierce" string="Ближн. бой (атака)"/>
+		<string key="attackunarmed" string="Ближн. бой (атака)"/>
+		<string key="readyunarmed" string="Ближн. бой (покой)"/>
+				
+		<!-- Hunter (ClassId 3) -->
+		<string key="attackbow" string="Огонь"/>
+		<string key="readybow" string="Дальн. бой (покой)"/>
+		<string key="readygun" string="Дальн. бой (покой)"/>
+		<string key="attackgun" string="Огонь"/>
+		<string key="loadbow" string="Перезарядка"/>
+		<string key="loadgun" string="Перезарядка"/>
+		<string key="holdbow" string="Прицеливание"/>
+				
+		<string key="human" string="Штормград"/>
+		<string key="orc-troll" string="Оргриммар"/>
+		<string key="gnome-dwarf" string="Стальгорн"/>
+		<string key="nightelf" string="Дарнас"/>
+		<string key="undead" string="Подгород"/>
+		<string key="tauren" string="Громовой Утес"/>
+		<string key="gnome-dwarf" string="Стальгорн"/>
+		<string key="orc-troll" string="Оргриммар"/>
+		<string key="bloodelf" string="Луносвет"/>
+		<string key="draenei" string="Экзодар"/>
+
+		<!-- Special Attacks -->
+		<string key="whirlwind" string="Вихрь"/>
+		<string key="special1h" string="Спец. атака"/>
+		<string key="special2h" string="Спец. атака"/>
+		<string key="mutilate" string="Расправа"/>
+
+		<!-- Options Menu -->
+		<string key="equipmentHeader" string="Параметры"/>
+		<string key="showHelmet" string="Головной убор"/>
+		<string key="showCloak" string="Плащ"/>
+		<string key="showTabard" string="Гербовая накидка"/>
+		<string key="highQuality" string="Высокое"/>
+		<string key="mediumQuality" string="Среднее"/>
+		<string key="lowQuality" string="Низкое"/>
+		<string key="loginToPose" string="Войдите в Оружейную, чтобы сохранить позы персонажа по умолчанию."/> 
+		<string key="qualityHeader" string="Качество модели"/>
+		<string key="backgroundHeader" string="Фон"/>
+		<string key="embedDescription" string="Скопируйте эту ссылку на вашу веб-страницу, чтобы показать своего персонажа в окне просмотра Оружейной."/>
+		<string key="copy" string="Копировать"/>
+		<string key="embedCopied" string="Адрес ссылки скопирован в буфер обмена."/>
+		<string key="close" string="Закрыть"/>
+		<string key="embedTooltip" string="Ссылка на модель этого персонажа"/>
+		<string key="saveTooltip" string="Сохранить позу персонажа по умолчанию"/>
+
+		<!-- Backgrounds -->
+		<string key="argenttournament" string="Турнир"/>
+		<string key="dalaran" string="Даларан"/>
+		<string key="shattrath" string="Шаттрат"/>
+		<string key="shattrath2" string="Шаттрат 2"/>
+		<string key="wintergrasp" string="ОЛО"/>
+		<string key="alteracvalley_horde" string="Альтерак (О)"/>
+		<string key="alteracvalley_alliance" string="Альтерак (А)"/>
+		<string key="deathknight" string="Рыцарь смерти"/>
+		
+		<string key="loading" string="Загрузка..."/>
+		
+</strings>

@@ -1,25 +1,31 @@
 @charset "utf-8";
 /* global styles for all the character-related pages */
+a img { border:0; }
 
 .flash-profile{margin:0 0 0 130px;width:280px;height:120px}
 
+.profile-wrapper .profile { font-family:Calibri, Arial; }
+
+.profile_header { height:106px; position:relative;  }
+.emptyPrefix { overflow:hidden; }
+
 /* avatar */
-.profile-achieve img { margin: 16px 0 0 21px; }
+.profile-achieve img { margin: 17px 0 0 22px; }
 /* char profile level */
-#leveltext {position:absolute;margin:0;padding:0;width:38px;height:38px; top: 79px; left: 40px; }
-.faction-horde #leveltext { background:url('../../images/horde-gem.gif') no-repeat; }
-.faction-alliance #leveltext { background:url('../../images/alliance-gem.gif') no-repeat; } 
-.faction-propass #leveltext { background:url('../../images/propass-gem.gif') no-repeat; }
+#leveltext {position:absolute; width:37px; height:37px; top: 66px; left: 35px; font:bold 24px/36px Georgia; color:white; text-shadow:0 0 4px #000, 0 0 4px #000, 0 0 4px #000; text-align:center; }
+
+.header_Horde #leveltext { background:url('../../images/lvlbg_horde.png') no-repeat; }
+.header_Alliance #leveltext { background:url('../../images/lvlbg_alliance.png') no-repeat; } 
+.header_Propass #leveltext { background:url('../../images/lvlbg_propass.png') no-repeat; }
+
 /* points */
-.points { width: 84px; height: 23px !important; line-height: 23px !important; text-align:center; margin: 23px 0 0 10px; float: left; }
-.points a, .points a:visited { padding: 0 12px 0 0 !important; font-weight: bold; font-size: 14px!important;  font-family: Georgia, "Times New Roman", Times, serif; background: url('../../images/icon-charheader-achieve.gif') 100% 4px scroll no-repeat; text-decoration: none; height: 23px !important; line-height: 23px !important; } 
-.faction-horde .points a, .faction-horde .points a:visited { color: #FFFF00 !important; } 
-.faction-alliance .points a, .faction-alliance .points a:visited { color: #FFD200 !important; } 
-.faction-propass .points a, .faction-propass .points a:visited { color: #FFD200 !important; } 
+.points { position:absolute; top:60px; right:11px; }
+.points a, .points a:visited { padding: 0 32px 0 0 !important; color:white; font:bold 22px Georgia; text-decoration: none; } 
 .points a:hover { color: #FFF !important; }
 
 /* bg/forum frames links */
-#forumLinks { position: absolute; top: 110px; left: 130px;  }
+#forumLinks { position: absolute; top:28px; right:15px; }
+#forumLinks, #forumLinks a { color:#FFD200; text-decoration:none; font-size:13px; }
 
 
 .banner-container{height:1px;width:1px;margin:0 auto;position:relative;z-index:80}
@@ -33,42 +39,76 @@ a.realm-icon,a.battlegroup-icon{display:block;height:26px;width:40px;float:right
 a.realm-icon{background:url('../../images/icons/realm.gif') no-repeat 50% 0}
 a.battlegroup-icon{background:url('../../images/icons/battlegroup.gif') no-repeat 50% 0}
 .realm-info a.name{padding:3px 0 0 0;display:block}
-.profile-achieve { height: 170px; width: 158px; }
-.profile-right { height: 179px; float: right;  width: 420px;}
+.profile-achieve { width: 158px; }
+.profile-right { float: right;  width: 420px;}
 /*horde*/
-.faction-horde{background:url('../../images/profile-tile-h.jpg') repeat-x 0 0}
-.faction-horde .profile-right{background:url('../../images/profile-right-h.jpg') no-repeat 100% 0;}
-.faction-horde .profile-achieve{background:url('../../images/horde-banner-achieve.gif') no-repeat 0 0;}
+.header_Horde, .type_Horde .profile_header {background:url('../../images/profile_bg_horde.jpg') }
+.header_Horde .profile-right{background:url('../../images/profile-right-h.jpg') no-repeat 100% 0;}
+
 /*alliance*/
-.faction-alliance{background:url('../../images/profile-tile-a.jpg') repeat-x 0 0}
-.faction-alliance .profile-right{background:url('../../images/profile-right-a.jpg') no-repeat 100% 0;}
-.faction-alliance .profile-achieve{background:url('../../images/alliance-banner-achieve.gif') no-repeat 0 0;}
+.header_Alliance, .type_Alliance .profile_header { background:url('../../images/profile_bg_alliance.jpg') }
+
 /*propass*/
-.faction-propass{background:url('../../images/profile-tile-p.jpg') repeat-x 0 0}
-.faction-propass .profile-right{background:url('../../images/profile-right-p.jpg') no-repeat 100% 0;}
-.faction-propass .profile-achieve{background:url('../../images/propass-banner-achieve.gif') no-repeat 0 0;}
+.header_Propass, .type_Propass .profile_header {background:url('../../images/profile_bg_propass.jpg') }
+.header_Propass .profile-right{background:url('../../images/profile-right-p.jpg') no-repeat 100% 0;}
+
 
 /* guild name, char name, suffix/prefix */
-#charHeaderTxt_Dark, #charHeaderTxt_Light { position:absolute; top: 19px; left: 152px; text-align: left; } 
-#charHeaderTxt_Light {top: 17px; left: 150px; }
-.charGuildName, .charGuildName:visited { text-decoration:none; color: #FFD200; font-size: 20px; line-height: 21px; font-weight: bold; font-family:Georgia, 'Times New Roman', Times, serif; display: block; }
-.charGuildName:hover { color: #FFF; }
-.charNameHeader { font-size: 24px; line-height: 25px; font-family:Georgia, 'Times New Roman', Times, serif; font-weight: bold; color: #FFFFFF; display: block;  }
+#charHeaderTxt_Dark, #charHeaderTxt_Light { position:absolute; top:8px; left:152px; text-align: left; } 
+#charHeaderTxt_Light { left: 116px;  }
+.charGuildName { position:absolute; top:52px; white-space:nowrap; }
+.charGuildName a, .charGuildName a:visited { text-decoration:none; color: #FFD200; font-size: 20px; line-height: 21px; font-weight: bold; display: block; }
+.charGuildName a:hover { color: #FFF; }
+.charNameHeader { font-size: 28px; font-weight: bold; color:white; display: block;  }
 .charLvl { font-size: 11px; line-height: 14px;color: #FFF; display: block; text-transform:uppercase; font-weight: bold;}
-.prefix, .suffix { font-size: 16px; font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 400; color: #FFF7D2; }
+.prefix, .suffix { font-size: 15px; font-weight:normal; color:white; }
 .suffix { margin: 0 0 0 5px; }
+.suffix.no-margin { margin:0; } 
+.prefix { height:18px; display:block;  }
 .emptyPrefix { height: 10px; width: 10px; display: block }
 #charHeaderTxt_Dark span, #charHeaderTxt_Dark div, #charHeaderTxt_Dark a { color: #000 !important;}
 
 /* bookmark this character link */
-a#bmcLink {position:absolute;top:40px;right:45px;line-height:33px;background: #FFF url('../../images/bmc-right.gif') no-repeat 100% 0;padding:0 20px 0 0;cursor:pointer }
-a#bmcLink span {display:block;float:left;background:url('../../images/bmc-left.gif') no-repeat 0 0;line-height:33px;padding:0 0 0 20px;position:relative;left:-3px}
-a#bmcLink em {display:block;height:53px;width:49px;background:url('../../images/bmc-icon.gif') no-repeat 0 0;position:absolute;right:-42px;top:-10px}
-.bmcEnabled {position:absolute;top:30px;right:3px;height:53px;width:52px;background:url('../../images/bmc-icon-enabled.gif') no-repeat 0 0;}
-.bmcMaxed {position:absolute;top:30px;right:3px;height:53px;width:52px;background:url('../../images/bmc-icon-max.gif') no-repeat 0 0;}
+a#bmcLink, .bmcEnabled, .bmcMaxed {position:absolute; top:-38px; right:3px; display:block; background:url('../../images/add_bookmark.gif') no-repeat; width:68px; height:33px; }
+a#bmcLink:hover { background-position:top right; }
+
+.bmcEnabled { background-position:0 -33px; cursor:default; }
+.bmcMaxed { background-position:0 -66px; cursor:default;}
+/* New report spam icon in title bar */
+.calendar-report {height:21px;width:26px;background: transparent url(../../images/alert.gif) no-repeat;cursor:pointer;position:absolute;top:30px;right:70px;z-index:12345;}
+
+.header_break { background:url(../../images/header_break_bg.jpg) repeat-x; height:27px;}
+
+#gear-profile .rarityglow { display:block; height:100%; width:100%; background-repeat:no-repeat; background-position:8px 4px; }
+#gear-profile .rarity5 { background-image:url(../../images/quality5.png); } 
+#gear-profile .rarity4 { background-image:url(../../images/quality4.png); } 
+#gear-profile .rarity3 { background-image:url(../../images/quality3.png); } 
+#gear-profile .rarity2 { background-image:url(../../images/quality2.png); } 
+#gear-profile .rarity1 { background-image:url(../../images/quality1.png); } 
+#gear-profile .rarity0 { background-image:url(../../images/quality0.gif); } 
+#gear-profile .bottomItems .rarityglow { background-position:3px 4px; }
+ 
+.gearItem span { display:block; }
+
+.feed_icon { display:block; float:left; line-height:1px; margin-right:10px; }
+.feed_icon a { background:center no-repeat; display:block; }
+.td_icon { width:45px; }
+
+.share_container { position:absolute; right:13px; top:-11px;}
+.share_rss_icon, .share_fb_icon { height:31px; width:31px; display:block; float:right; }
+.share_rss_icon:hover, .share_fb_icon:hover { background-position:bottom; }
+.share_rss_icon { background:url(../../images/rss_icon.gif); }
+.share_fb_icon { background:url(../../images/facebook_icon.gif); }
 
 
+.statsOrange, .stats_rarity5 { color:#c24e00; }
+.statsPurple, .stats_rarity4 { color:#5716a8; }
+.statsBlue, .stats_rarity3 { color:#4473ae; }
+.statsGreen, .stats_rarity2 { color:#4c9248; }
+.statsWhite, .stats_rarity1, .statsGrey, .stats_rarity0 { color:#3c3c3c; }
 
+.feed_entry .achievement {  }
+.ach_tooltip { float:left; margin-right:10px;}
 
-
-
+/* New report spam icon in title bar */
+.calendar-report {height:21px;width:26px;background: transparent url(../../images/alert.gif) no-repeat;cursor:pointer;position:absolute;top:30px;right:70px;z-index:12345;}

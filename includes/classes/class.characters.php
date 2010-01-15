@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 46
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,8 +25,6 @@
 if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
-
-session_start();
 
 Class Characters extends Connector {
     
@@ -92,7 +90,7 @@ Class Characters extends Connector {
             return false;
         }
         $gmAccount = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $guid['account']);
-        $showIt = ($gmAccount==$this->armoryconfig['minGmLevelToShow'] || $gmAccount < $this->armoryconfig['minGmLevelToShow']) ? true : false;
+        $showIt = ($gmAccount == $this->armoryconfig['minGmLevelToShow'] || $gmAccount < $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if($guid && $showIt) {
             return true;
         }
@@ -715,6 +713,14 @@ Class Characters extends Connector {
         return $tree;
 	}
     
+    public function ReturnTalentTreeIcon($class, $tree) {
+        $icon = $this->aDB->selectCell("SELECT `icon` FROM `talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $class, $tree);
+        if($icon) {
+            return $icon;
+        }
+        return false;
+    }
+    
     public function getCharacterHonorKills() {
         return $this->GetDataField(PLAYER_FIELD_LIFETIME_HONORBALE_KILLS);
     }
@@ -735,7 +741,7 @@ Class Characters extends Connector {
             $p[$i] = array(
                 'name' => $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
                 'icon' => $this->aDB->selectCell("SELECT `icon` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
-                'skill_line' => $prof['value'] . ' / '. $prof['max'],
+                'value' => $prof['value'],
                 'pct' => Utils::getPercent($prof['max'], $prof['value'])
             );
             $i++;

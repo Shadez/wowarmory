@@ -7,7 +7,6 @@
 <div class="parch-bot">
 <div id="replaceMain">
 <tabInfo subTab="profile" tab="character" tabGroup="character" tabUrl="{{$character_url_string}}"></tabInfo>
-<link href="_css/character/sheet.css" rel="stylesheet" type="text/css" />
 <div id="dataElement">
 <div class="parchment-top">
 <div class="parchment-content">
@@ -61,8 +60,10 @@
                                 {{/if}}
 									calcTalentSpecs();
 									
-									setCharSheetUpgradeMenu();
-								
+								/*
+                                    // Disable `Upgrade` menu for items
+                                	setCharSheetUpgradeMenu();
+								*/
 								});	
 							</script>
 <link href="_css/character/global.css" rel="stylesheet" type="text/css" />
@@ -84,497 +85,457 @@
 <a class="" href="character-talents.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="talents_subTab"><span>{{#armory_character_sheet_talents_tab#}}</span></a>
 <a class="" href="character-reputation.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="reputation_subTab"><span>{{#armory_character_sheet_reputaion_tab#}}</span></a>
 <a class="" href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="achievements_subTab"><span>{{#armory_character_sheet_achievements_tab#}}</span></a>
-<a class="" href="character-statistics.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="statistics_subTab"><span>{{#armory_character_sheet_statistic_tab#}}</span></a>
-</div>
+<!--<a class="" href="character-statistics.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="statistics_subTab"><span>{{#armory_character_sheet_statistic_tab#}}</span></a>
+--></div>
 <div class="full-list">
 <div class="info-pane">
-<div class="profile-wrapper">
-<div class="profile">
+<div class="profile-wrapper char_sheet">
+<div class="profile type_{{$faction_string_class}}">
 <script type="text/javascript">
 		var charUrl = "{{$character_url_string}}";
 		var bookmarkMaxedToolTip = "{{#armory_you_can_remember_string#}}";
 		var bookmarkThisChar = "{{#armory_remember_this_character#}}";	
 	</script>
-<div class="faction-{{$faction_string_class}}">
-<div class="profile-right" id="profileRight">
-<a class="bmcLink" id="bmcLink"><span>{{#armory_login_to_remember_profile#}}</span><em></em></a>
-</div>
-<div class="profile-achieve">
-<img src="images/portraits/{{$portrait_path}}" /><div class="points">
+<div class="profile_header header_{{$faction_string_class}}">
+<div class="points">
 <a href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}">{{$pts}}</a>
 </div>
-<div>
-<link href="atom/character.xml?r={{$realm}}&amp;n={{$name}}" rel="alternate" title="WoW Feed" type="application/atom+xml" />
+<div id="forumLinks">
+<a class="staticTip" href="javascript:void();">{{$realm}}</a></div>
+<div class="profile-right" id="profileRight">
+<a class="bmcLink staticTip" id="bmcLink" onmouseover="setTipText('{{#armory_login_to_remember_profile#}}');">
+<!----></a>
 </div>
-<div id="leveltext" style="display:none;"></div>
-<script type="text/javascript">
-		var flashId="leveltext";
-		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
-		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
-		}else
-			printFlash("leveltext", "images/{{$ArmoryConfig.locale}}/flash/level.swf", "transparent", "", "", "38", "38", "best", "images/{{$ArmoryConfig.locale}}/flash", "charLevel={{$level}}&pts={{$pts}}", "<div class=level-noflash>{{$level}}<em>{{$level}}</em></div>")
-		
-		</script>
-</div>
-<div id="charHeaderTxt_Dark">
-<span class="prefix">{{$character_title_prefix}} </span>
-<div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
-</div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
+<div class="profile-achieve">
+<a class="staticTip" href="character-sheet.xml?r={{$realm}}&amp;cn={{$name}}" onmouseover="setTipText('{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_race race=$race}}&nbsp;{{get_wow_class class=$class}}')">
+<img src="images/portraits/{{$portrait_path}}" /></a>
+<div id="leveltext">{{$level}}</div>
 </div>
 <div id="charHeaderTxt_Light">
+{{if $guildName}}
+<div class="charGuildName">
+<a href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>
+</div>
+{{/if}}
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
-</div>
-<div id="forumLinks">
-<a class="smFrame" href="javascript:void(0)">
-<div>{{$realm}}</div>
-<img src="images/icon-header-realm.gif"></a>
 </div>
 </div>
-<div class="profile-master2">
-<div class="leftItems">
-<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$gear_head_icon}}.jpg')">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_head_item}}" id="i={{$gear_head_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=0">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_head_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+<div class="header_break">
+<!---->
+</div>
+<div class="detail_active" id="gear-profile">
+<div class="gear_display_option">
+<a class="toggle_gear_list staticTip" href="javascript:;" onclick="toggle_gear('list_active')" onmouseover="setTipText('{{#armory_character_sheet_gear_list#}}')"></a><a class="toggle_gear_detail staticTip" href="javascript:;" onclick="toggle_gear('detail_active')" onmouseover="setTipText('{{#armory_character_sheet_view_model#}}')"></a>
+</div>
+<div class="btn_dual_tooltip">
+<label><input id="checkboxDualTooltip" onClick="javascript:setDualTooltipCookie();" type="checkbox" />{{#armory_vault_dualtooltips#}}</label>
+</div>
+<div class="gear_bg">
+<div class="health_stat">{{#armory_character_sheet_health#}}:<em>{{$healthValue}}</em>
+</div>
+<div class="secondary_stat">
+<div class="{{$additionalBarInfo.class}}-stat">{{$additionalBarInfo.title}}:<em>{{$additionalBarInfo.value}}</em>
 </div>
 </div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_neck_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_neck_item}}" id="i={{$gear_neck_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=1">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_neck_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+<div class="leftItems">{{if $characterItems.0.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=0" onmouseover="setTipText(getEmptySlotToolTip('0','2'))"></a>
 </div>
 </div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_shoulder_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_shoulder_item}}" id="i={{$gear_shoulder_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=2">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_shoulder_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_back_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_back_item}}" id="i={{$gear_back_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=14">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_back_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_chest_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_chest_item}}" id="i={{$gear_chest_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_chest_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_shirt_icon}}.jpg')
-				">
-<a class="staticTip noUpgrade itemToolTip gearFrame" href="item-info.xml?i={{$gear_shirt_item}}" id="i={{$gear_shirt_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
-</a>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_tabard_icon}}.jpg')
-				">
-<a class="staticTip noUpgrade itemToolTip gearFrame" href="item-info.xml?i={{$gear_tabard_item}}" id="i={{$gear_tabard_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=4">
-</a>
-</div>
-<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$gear_wrist_icon}}.jpg')">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_wrist_item}}" id="i={{$gear_wrist_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=8">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_wrist_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-</div>
-<div class="rightItems">
-<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$gear_gloves_icon}}.jpg')">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_gloves_item}}" id="i={{$gear_gloves_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=9">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_gloves_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_belt_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_belt_item}}" id="i={{$gear_belt_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=5">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_belt_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_legs_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_legs_item}}" id="i={{$gear_legs_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=6">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_legs_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_boots_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_boots_item}}" id="i={{$gear_boots_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=7">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_boots_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_ring1_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_ring1_item}}" id="i={{$gear_ring1_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=10">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_ring1_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_ring2_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_ring2_item}}" id="i={{$gear_ring2_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=11">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_ring2_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_trinket1_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_trinket1_item}}" id="i={{$gear_trinket1_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=12">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_trinket1_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_trinket2_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_trinket2_item}}" id="i={{$gear_trinket2_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=13">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_trinket2_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-</div>
-<div class="bottomItems">
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_mainhand_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_mainhand_item}}" id="i={{$gear_mainhand_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=15">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_mainhand_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_offhand_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_offhand_item}}" id="i={{$gear_offhand_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=16">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_offhand_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-<div class="gearItem" style="
-					background-image: url('wow-icons/_images/51x51/{{$gear_relic_icon}}.jpg')
-				">
-<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$gear_relic_item}}" id="i={{$gear_relic_item}}&amp;r={{$realm}}&amp;n={{$name}}&amp;s=17">
-<div class="upgradeBox"></div>
-</a>
-<div class="fly-horz">
-<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$gear_relic_item}}">{{#armory_character_sheet_upgrade_gear#}}</a>
-</div>
-</div>
-</div>
-<div class="profileCenter">
-<div class="statsLeft">
-<div class="brownBox" style="height: 120px;">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
-<div class="spec">
-<h4>{{#armory_character_sheet_talnets_info#}}:</h4>
-<div class="spec-wrapper{{$disabledDS_0}}">
-{{if $disabledDS_1}}
-<div class="activeSpecTxt">{{#armory_character_sheet_active_dualspec#}}</div>
-{{/if}}
-<div style="position:absolute; left:12px;">
-<img id="talentSpecImage" src="images/icons/class/talents/untalented.gif" /></div>
-<h4>
-{{if $dualSpec}}
-<a href="character-talents.xml?r={{$realm}}&amp;cn={{$name}}&amp;group=1" id="replaceTalentSpecText">{{$treeName_0}}</a>
 {{else}}
-<a href="character-talents.xml?r={{$realm}}&amp;cn={{$name}}&amp;group=1" id="replaceTalentSpecText">{{$treeName}}</a>
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.0.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.0.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.0.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.0.entry}}" id="i={{$characterItems.0.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=0"><span class="upgradeBox"></span></a>
+</div>
+</div>
 {{/if}}
-</h4>
-{{if $dualSpec}}
-<span>{{$talents_builds_0}}</span>
+{{if $characterItems.1.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=1" onmouseover="setTipText(getEmptySlotToolTip('1','2'))"></a>
+</div>
+</div>
 {{else}}
-<span>{{$talents_builds}}</span>
-{{/if}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.1.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.1.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.1.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
 </div>
-{{if $dualSpec}}
-    {{if $dualSpecError}}
-    <div class="spec-wrapper{{$disabledDS_1}}">
-    <div style="position:absolute; left:12px;">
-    <img src="images/icons/class/talents/untalented.gif" /></div>
-    <h4>
-    <a class="staticTip" href="javascript:void(0)" id="replaceTalentSpecText2" onmouseover="setTipText('{{#armory_character_sheet_character_dont_have_dualspec#}}');">{{#armory_character_sheet_unknown#}}</a>
-    </h4>
-    <span>0 / 0 / 0</span>
-    </div>
-    {{else}}
-    <div class="spec-wrapper{{$disabledDS_1}}">
-    {{if $disabledDS_0}}
-    <div class="activeSpecTxt">{{#armory_character_sheet_active_dualspec#}}</div>
-    {{/if}}
-    <div style="position:absolute; left:12px;">
-    <img id="talentSpecImage2" src="images/icons/class/talents/untalented.gif" /></div>
-    <h4>
-    <a href="character-talents.xml?r={{$realm}}&amp;cn={{$name}}&amp;group=2" id="replaceTalentSpecText">{{$treeName_1}}</a>
-    </h4>
-    <span>{{$talents_builds_1}}</span>
-    </div>
-    {{/if}}
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.1.entry}}" id="i={{$characterItems.1.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=1"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.2.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=2" onmouseover="setTipText(getEmptySlotToolTip('2','2'))"></a>
+</div>
+</div>
 {{else}}
-<div class="spec-wrapper{{$disabledDS_1}}">
-<div style="position:absolute; left:12px;">
-<img src="images/icons/class/talents/untalented.gif" /></div>
-<h4>
-<a class="staticTip" href="javascript:void(0)" id="replaceTalentSpecText2" onmouseover="setTipText('{{#armory_character_sheet_character_dont_have_dualspec#}}');">{{#armory_character_sheet_unknown#}}</a>
-</h4>
-<span>0 / 0 / 0</span>
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.2.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.2.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.2.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.2.entry}}" id="i={{$characterItems.2.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=2"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.3.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=3" onmouseover="setTipText(getEmptySlotToolTip('3','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.3.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.3.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.3.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.3.entry}}" id="i={{$characterItems.3.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=3"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.4.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=4" onmouseover="setTipText(getEmptySlotToolTip('4','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.4.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.4.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.4.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.4.entry}}" id="i={{$characterItems.4.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=4"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.5.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=5" onmouseover="setTipText(getEmptySlotToolTip('5','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.5.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.5.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.5.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.5.entry}}" id="i={{$characterItems.5.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=5"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.6.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=6" onmouseover="setTipText(getEmptySlotToolTip('6','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.6.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.6.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.6.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.6.entry}}" id="i={{$characterItems.6.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=6"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.7.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=7" onmouseover="setTipText(getEmptySlotToolTip('7','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.7.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.7.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.7.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.7.entry}}" id="i={{$characterItems.7.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=7"><span class="upgradeBox"></span></a>
+</div>
 </div>
 {{/if}}
 </div>
-<div class="clear"></div>
-</div>
-<div class="brownBox" style="margin-top: 2px; height: 70px;">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
-<h4>{{#armory_character_sheet_primary_skills#}}:</h4>
-<div class="prof1" style="background:url('images/icons/professions/{{$primary_trade_skill_1.icon}}.gif') 0 50% no-repeat;">
-<div class="bar-container staticTip" onmouseover="setTipText('{{$primary_trade_skill_1.name}}')">
-<b style=" width: {{$primary_trade_skill_1.pct}}%">{{$primary_trade_skill_1.skill_line}}</b>
+<div class="rightItems">{{if $characterItems.8.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=8" onmouseover="setTipText(getEmptySlotToolTip('8','2'))"></a>
 </div>
 </div>
-<div class="prof1" style="background:url('images/icons/professions/{{$primary_trade_skill_2.icon}}.gif') 0 50% no-repeat;">
-<div class="bar-container staticTip" onmouseover="setTipText('{{$primary_trade_skill_2.name}}')">
-<b style=" width: {{$primary_trade_skill_2.pct}}%">{{$primary_trade_skill_2.skill_line}}</b>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.8.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.8.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.8.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.8.entry}}" id="i={{$characterItems.8.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=8"><span class="upgradeBox"></span></a>
 </div>
 </div>
-<div class="clear"></div>
-</div>
-<div class="brownBox hp_mana_stats">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
-<div class="health-stat">
-<p>
-<span>{{#armory_character_sheet_health#}}:&nbsp;&nbsp;{{$healthValue}}</span>
-</p>
-</div>
-<div class="{{$additionalBarInfo.class}}-stat">
-<p>
-<span>{{$additionalBarInfo.title}}:&nbsp;&nbsp;{{$additionalBarInfo.value}}</span>
-</p>
-</div>
-<div class="clear"></div>
+{{/if}}
+{{if $characterItems.9.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=9" onmouseover="setTipText(getEmptySlotToolTip('9','2'))"></a>
 </div>
 </div>
-<div class="achRight">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
-<h4>{{#armory_character_sheet_achievements_tab#}}</h4>
-<a class="achPointsLink" href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}"><span style="color: #FFF; float: right; margin: 0 0px 0 0;">{{$pts}}</span>{{#armory_character_sheet_achievement_points_string#}}</a>
-<div class="achieve-bar" style="text-align:center;">
-<div class="progressTxt">&nbsp;&nbsp;{{#armory_character_sheet_achievements_progress#}}&nbsp;{{$fullCharacterAchievementsCount}}/1054</div>
-<b style="width: {{$character_progress_percent}}%;"></b>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.9.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.9.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.9.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
 </div>
-<div class="achList">
-<span>{{$achievements_1}}/54</span>{{#achievements_category_1#}}</div>
-<div class="achList">
-<span>{{$achievements_2}}/49</span>{{#achievements_category_2#}}</div>
-<div class="achList">
-<span>{{$achievements_3}}/70</span>{{#achievements_category_3#}}</div>
-<div class="achList">
-<span>{{$achievements_4}}/166</span>{{#achievements_category_4#}}</div>
-<div class="achList">
-<span>{{$achievements_5}}/454</span>{{#achievements_category_5#}}</div>
-<div class="achList">
-<span>{{$achievements_6}}/75</span>{{#achievements_category_6#}}</div>
-<div class="achList">
-<span>{{$achievements_7}}/45</span>{{#achievements_category_7#}}</div>
-<div class="achList">
-<span>{{$achievements_8}}/141</span>{{#achievements_category_8#}}</div>
-<div class="achList">
-<span>{{$achievements_9}}</span>{{#achievements_category_9#}}</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.9.entry}}" id="i={{$characterItems.9.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=9"><span class="upgradeBox"></span></a>
 </div>
+</div>
+{{/if}}
+{{if $characterItems.10.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=10" onmouseover="setTipText(getEmptySlotToolTip('10','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.10.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.10.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.10.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.10.entry}}" id="i={{$characterItems.10.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=10"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.11.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=11" onmouseover="setTipText(getEmptySlotToolTip('11','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.11.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.11.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.11.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.11.entry}}" id="i={{$characterItems.11.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=11"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.12.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=12" onmouseover="setTipText(getEmptySlotToolTip('12','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.12.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.12.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.12.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.12.entry}}" id="i={{$characterItems.12.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=12"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.13.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=13" onmouseover="setTipText(getEmptySlotToolTip('13','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.13.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.13.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.13.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.13.entry}}" id="i={{$characterItems.13.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=13"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.14.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=14" onmouseover="setTipText(getEmptySlotToolTip('14','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.14.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.14.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.14.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.14.entry}}" id="i={{$characterItems.14.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=14"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.15.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=15" onmouseover="setTipText(getEmptySlotToolTip('15','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.15.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.15.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.15.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.15.entry}}" id="i={{$characterItems.15.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=15"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+</div>
+<div class="bottomItems">{{if $characterItems.16.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=16" onmouseover="setTipText(getEmptySlotToolTip('16','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.16.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.16.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.16.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.16.entry}}" id="i={{$characterItems.16.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=16"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.17.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=17" onmouseover="setTipText(getEmptySlotToolTip('17','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.17.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.17.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.17.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.17.entry}}" id="i={{$characterItems.17.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=17"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+{{if $characterItems.18.entry == 0}}
+<div class="gearItem">
+<div class="rarityglow rarity">
+<a class="staticTip noUpgrade gearFrame" href="javascript:void(0)" id="i=&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=18" onmouseover="setTipText(getEmptySlotToolTip('18','2'))"></a>
+</div>
+</div>
+{{else}}
+<div class="gearItem" style="background-image: url('wow-icons/_images/51x51/{{$characterItems.18.icon}}.jpg')">
+<div class="rarityglow rarity{{$characterItems.18.rarity}}">
+<div class="fly-horz">
+<a class="upgrd" href="search.xml?searchType=items&amp;pr={{$realm}}&amp;pn={{$name}}&amp;pi={{$characterItems.18.entry}}">{{#armory_character_sheet_upgrade_gear#}}</a>
+</div>
+<a class="staticTip itemToolTip gearFrame" href="item-info.xml?i={{$characterItems.18.entry}}" id="i={{$characterItems.18.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s=18"><span class="upgradeBox"></span></a>
+</div>
+</div>
+{{/if}}
+</div>
+<div id="debugtxt"></div>
+<div class="profileCenter" id="center_target">
+<div id="pose_saving">
+<span>Сохранение...</span>
+</div>
+<div id="pose_save_ok">
+<span>Поза сохранена!</span>
+</div>
+<div id="ModelViewer3">
+<div class="noFlash">
+<a class="noflash" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank">
+<img align="right" class="p" src="images/{{$ArmoryConfig.locale}}/getflash.gif" /></a>{{#armory_install_flash_player_string#}}</div>
+<script src="_js/character/charactermodel.js" type="text/javascript"></script>
+<script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script>
 <script type="text/javascript">
-		var varOverLeft = 0;
-
-		function dropdownMenuToggle(whichOne){
-			theStyle = document.getElementById(whichOne).style;
-	
-			if (theStyle.display == "none")	theStyle.display = "block";
-			else							theStyle.display = "none";	
-		}
-	</script>
-<div class="dropdown1" onMouseOut="javascript: varOverLeft = 0;" onMouseOver="javascript: varOverLeft = 1;">
-<a class="profile-stats" href="javascript: document.formDropdownLeft.dummyLeft.focus();" id="displayLeft">{{#armory_character_sheet_basic_stats#}}</a>
+		 if(!init3dvars) var init3dvars = null
+		 if(!charUrl) var charUrl = '{{$character_url_string}}'
+		  function buildModelViewer(attr)
+		  {		var lang = "{{$ArmoryConfig.locale}}".split("_")[0].toLowerCase()
+		  		var modelserver = "http://eu.media.battle.net.edgesuite.net/"
+                var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?{{$character_url_string}}&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
+				var stringslink = "/_content/{{$ArmoryConfig.locale}}/modelConfig_strings.xml";
+				var logolink = modelserver + "/models/images/logo/armory-logo-"+lang+".png" 
+				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
+                var attributes = { id:"ModelViewer3" };
+                var flashvars = { character: theCharName, modelUrl: "/character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
+								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
+								  loadingtxt:"{{#armory_character_achievements_loading_achievements#}}" //"
+								};
+				if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
+								for(xi in modelCookies) { flashvars[xi] = modelCookies[xi] } 
+							  }
+				if(init3dvars)	{ for (var i in init3dvars){ flashvars[i] = init3dvars[i]; } 
+									if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
+								}
+				if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
+                swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "9.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
+				$(document).ready(function () { bindMouseActions() });	
+		  }
+			var str_loginExpired = "{{#armory_character_sheet_loginExpired#}}" //"
+			buildModelViewer()
+            </script>
 </div>
-<div style="position: relative;">
-<div style="position: absolute;">
-<form id="formDropdownLeft" name="formDropdownLeft" style="height: 0px;">
-<input id="dummyLeft" onBlur="javascript: if(!varOverLeft) document.getElementById('dropdownHiddenLeft').style.display='none';" onFocus="javascript: dropdownMenuToggle('dropdownHiddenLeft');" size="2" style="position: relative; left: -5000px;" type="button">
-</form>
 </div>
 </div>
-<div class="drop-stats" id="dropdownHiddenLeft" onMouseOut="javascript: varOverLeft=0;" onMouseOver="javascript: varOverLeft=1;" style="display: none; z-index: 99999;">
-<div class="tooltip">
-<table width="98%">
+<div class="gear_list">
+<div class="gear_list_int">
+<table class="gear_list_table">
 <tr>
-<td class="tl"></td><td class="t"></td><td class="tr"></td>
+<th>
+<!----></th>
+<th class="glist_name">{{#armory_character_sheet_list_item_name#}}</th>
+<th>{{#armory_character_sheet_level_string#}}</th>
+<th>{{#armory_character_sheet_list_gems#}}</th>
+<th>{{#armory_character_sheet_list_enchants#}}</th>
 </tr>
+{{foreach from=$characterItems item=item}}
+{{if $item.entry > 0}}
 <tr>
-<td class="l"></td><td class="bg">
-<ul>
-<li>
-<a href="#" onClick="changeStats('Left', replaceStringBaseStats, 'BaseStats', baseStatsDisplay); return false;">{{#armory_character_sheet_basic_stats#}}<img class="checkmark" id="checkLeftBaseStats" src="images/icons/icon-check.gif" style="visibility: visible;" /></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Left', replaceStringMelee, 'Melee', meleeDisplay); return false;">{{#armory_character_sheet_melee_stats#}}<img class="checkmark" id="checkLeftMelee" src="images/icons/icon-check.gif" style="visibility: hidden;" /></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Left', replaceStringRanged, 'Ranged', rangedDisplay); return false;">{{#armory_character_sheet_ranged_stats#}}<img class="checkmark" id="checkLeftRanged" src="images/icons/icon-check.gif" style="visibility: hidden;" /></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Left', replaceStringSpell, 'Spell', spellDisplay); return false;">{{#armory_character_sheet_spells_stats#}}<img class="checkmark" id="checkLeftSpell" src="images/icons/icon-check.gif" style="visibility: hidden;" /></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Left', replaceStringDefenses, 'Defenses', defensesDisplay); return false;">{{#armory_character_sheet_defence_stats#}}<img class="checkmark" id="checkLeftDefenses" src="images/icons/icon-check.gif" style="visibility: hidden;" /></a>
-</li>
-</ul>
-</td><td class="r"></td>
+<td class="glist_icon">
+<a class="staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="i={{$item.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s={{$item.i}}">
+<img class="stats_rarity{{$item.rarity}}" src="wow-icons/_images/21x21/{{$item.icon}}.png" /></a>
+</td>
+<td class="glist_name"><a class="staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="i={{$item.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s={{$item.i}}"><span class="stats_rarity{{$item.rarity}}">{{$item.name}}</span></a></td><td class="glist_ilvl">{{$item.ilevel}}</td><td class="glist_gems"></td><td class="glist_ench"></td>
 </tr>
-<tr>
-<td class="bl"></td><td class="b"></td><td class="br"></td>
-</tr>
+{{/if}}
+{{/foreach}}
 </table>
 </div>
 </div>
-<script type="text/javascript">
-		var varOverRight = 0;
-
-		function dropdownMenuToggle(whichOne){
-			theStyle = document.getElementById(whichOne).style;
-	
-			if (theStyle.display == "none")	theStyle.display = "block";
-			else							theStyle.display = "none";	
-		}
-	</script>
-<div class="dropdown2" onMouseOut="javascript: varOverRight = 0;" onMouseOver="javascript: varOverRight = 1;">
-<a class="profile-stats" href="javascript: document.formDropdownRight.dummyRight.focus();" id="displayRight">{{#armory_character_sheet_basic_stats#}}</a>
-</div>
-<div style="position: relative;">
-<div style="position: absolute;">
-<form id="formDropdownRight" name="formDropdownRight" style="height: 0px;">
-<input id="dummyRight" onBlur="javascript: if(!varOverRight) document.getElementById('dropdownHiddenRight').style.display='none';" onFocus="javascript: dropdownMenuToggle('dropdownHiddenRight');" size="2" style="position: relative; left: -5000px;" type="button">
-</form>
+<div class="stats_drop">
+<div class="stat_drop_titles">
+<div class="stat_drop_titles_int">
+<a class="stats_page_right" href="javascript:;" onclick="page_stats(1)"></a><a class="stats_page_left" href="javascript:;" onclick="page_stats(-1)"></a>
+<div id="displayLeft">{{#armory_character_sheet_basic_stats#}}</div>
+<div id="displayRight">
+<!--Secondary Stat-->
 </div>
 </div>
-<div class="drop-stats" id="dropdownHiddenRight" onMouseOut="javascript: varOverRight=0;" onMouseOver="javascript: varOverRight=1;" style="display: none; z-index: 9999999; left: 190px;">
-<div class="tooltip">
-<table width="98%">
-<tr>
-<td class="tl"></td><td class="t"></td><td class="tr"></td>
-</tr>
-<tr>
-<td class="l"></td><td class="bg">
-<ul>
-<li>
-<a href="#" onClick="changeStats('Right', replaceStringBaseStats, 'BaseStats', baseStatsDisplay); return false;">{{#armory_character_sheet_basic_stats#}}<img class="checkmark" id="checkRightBaseStats" src="images/icons/icon-check.gif" style="visibility: hidden;"></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Right', replaceStringMelee, 'Melee', meleeDisplay); return false;">{{#armory_character_sheet_melee_stats#}}<img class="checkmark" id="checkRightMelee" src="images/icons/icon-check.gif" style="visibility: hidden;"></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Right', replaceStringRanged, 'Ranged', rangedDisplay); return false;">{{#armory_character_sheet_ranged_stats#}}<img class="checkmark" id="checkRightRanged" src="images/icons/icon-check.gif" style="visibility: hidden;"></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Right', replaceStringSpell, 'Spell', spellDisplay); return false;">{{#armory_character_sheet_spells_stats#}}<img class="checkmark" id="checkRightSpell" src="images/icons/icon-check.gif" style="visibility: hidden;"></a>
-</li>
-<li>
-<a href="#" onClick="changeStats('Right', replaceStringDefenses, 'Defenses', defensesDisplay); return false;">{{#armory_character_sheet_defence_stats#}}<img class="checkmark" id="checkRightDefenses" src="images/icons/icon-check.gif" style="visibility: hidden;"></a>
-</li>
-</ul>
-</td><td class="r"></td>
-</tr>
-<tr>
-<td class="bl"></td><td class="b"></td><td class="br"></td>
-</tr>
-</table>
 </div>
-</div>
+<div class="stats_holder">
 <div class="stats1">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
 <div class="character-stats">
 <div id="replaceStatsLeft"></div>
 </div>
 </div>
 <div class="stats2">
-<em class="ptl">
-<!----></em><em class="ptr">
-<!----></em><em class="pbl">
-<!----></em><em class="pbr">
-<!----></em>
 <div class="character-stats">
 <div id="replaceStatsRight"></div>
+</div>
 </div>
 </div>
 <script src="_js/character/functions.js" type="text/javascript"></script>
@@ -862,14 +823,76 @@
 		var theCharUrl = "{{$character_url_string}}";
 	
 	</script>
-    <script src="_js/_lang/{{$ArmoryConfig.locale}}/character-sheet.js" type="text/javascript"></script>
-    <script src="_js/character/textObjects.js" type="text/javascript"></script>
+<script src="_js/_lang/{{$ArmoryConfig.locale}}/character-sheet.js" type="text/javascript"></script>
+<script src="/_js/character/textObjects.js" type="text/javascript"></script>
 </div>
 </div>
-<div style="width: 500px; margin: 5px auto 20px;">
-<span style="float: right">{{#armory_character_sheet_total_honor_kills#}}: <strong>{{$playerHonorKills}}</strong></span><!--{{#armory_character_sheet_last_updated#}}:&nbsp;
-		<strong>14 Ноябрь 2009 г.</strong>-->
+<script>
+	    if(getcookie2("armory.cookieGearMode")){  toggle_gear(getcookie2("armory.cookieGearMode")); }
+	    if(location.href.indexOf("list=true")>0){ toggle_gear("list_active") }
+		if(getcookie2("armory.cookieDualTooltip") == 1){ $("#checkboxDualTooltip").attr("checked","checked"); }
+    </script>
+<div class="char-profile_stats">
+<div class="char-profile_stats_int">
+<div class="char-profile_name">{{$name}}<span class="desc">{{#armory_character_sheet_level_string#}}&nbsp;<span>{{$level}}</span>&nbsp;{{get_wow_race race=$race}}&nbsp;{{get_wow_class class=$class}}</span>
 </div>
+<div class="spec">
+<h4>{{#armory_character_sheet_talnets_info#}}</h4>
+{{if $dualSpec}}
+<a class="{{if $disabledDS_0}}left_spec{{else}}active_spec{{/if}}" href="character-talents.xml?{{$character_url_string}}&amp;group=1" id="replaceTalentSpecText"><span class="talent_icon"><img src="wow-icons/_images/43x43/{{$treeIcon_0}}.png" /></span><span class="talent_name">{{$treeName_0}}<span class="talent_value">{{$talents_builds_0}}</span></span></a>
+    {{if $dualSpecError}}
+        <a class="na_right_empty staticTip" href="javascript:void(0)" id="replaceTalentSpecText2" onmouseover="setTipText('{{#armory_character_sheet_character_dont_have_dualspec#}}');"><span class="talent_name">{{#armory_character_sheet_na_dualspec#}}</span></a>
+    {{else}}
+        <a class="{{if $disabledDS_1}}right_spec{{else}}active_spec{{/if}}" href="character-talents.xml?{{$character_url_string}}&amp;group=2" id="replaceTalentSpecText"><span class="talent_icon"><img src="wow-icons/_images/43x43/{{$treeIcon_1}}.png" /></span><span class="talent_name">{{$treeName_1}}<span class="talent_value">{{$talents_builds_1}}</span></span></a>
+    {{/if}}
+{{else}}
+<a class="active_spec" href="character-talents.xml?{{$character_url_string}}&amp;group=1" id="replaceTalentSpecText"><span class="talent_icon"><img src="wow-icons/_images/43x43/{{$currentTreeIcon}}.png" /></span><span class="talent_name">{{$treeName}}<span class="talent_value">{{$talents_builds}}</span></span></a>
+<a class="na_right_empty staticTip" href="javascript:void(0)" id="replaceTalentSpecText2" onmouseover="setTipText('{{#armory_character_sheet_character_dont_have_dualspec#}}');"><span class="talent_name">{{#armory_character_sheet_na_dualspec#}}</span></a>
+{{/if}}
+</div>
+<div class="prof">
+<h4>{{#armory_character_sheet_primary_skills#}}</h4>
+<div class="prof_bg">
+{{if $primary_trade_skill_1.name == '' && $primary_trade_skill_2 == ''}}
+<div class="no_skills">{{#armory_character_sheet_na_profession#}}</div>
+{{else}}
+    {{if $primary_trade_skill_1.name == ''}}
+    <div class="no_skills">{{#armory_character_sheet_na_profession#}}</div>
+    {{else}}
+    <div class="char_profession">
+    <div class="prof_icon">
+    <img src="images/icons/professions/{{$primary_trade_skill_1.icon}}.gif" /></div>
+    <div class="prof_name">
+    <div>{{$primary_trade_skill_1.name}}</div>
+    <div class="prof_value">{{$primary_trade_skill_1.value}}</div>
+    </div>
+    </div>
+    {{/if}}
+    
+    {{if $primary_trade_skill_2.name == ''}}
+    <div class="no_skills">{{#armory_character_sheet_na_profession#}}</div>
+    {{else}}
+    <div class="char_profession">
+    <div class="prof_icon">
+    <img src="images/icons/professions/{{$primary_trade_skill_2.icon}}.gif" /></div>
+    <div class="prof_name">
+    <div>{{$primary_trade_skill_2.name}}</div>
+    <div class="prof_value">{{$primary_trade_skill_2.value}}</div>
+    </div>
+    </div>
+    {{/if}}
+{{/if}}
+</div>
+</div>
+<div class="character_act">
+<div class="char_feed_title">
+<div class="share_container">
+<a class="share_rss_icon" href="javascript:void();" onclick="javascript:void();"></a>
+</div>{{#armory_character_sheet_recent_activity#}}</div>
+</div>
+</div>
+</div>
+<div class="last_modified"></div>
 </div>
 </div>
 </div>

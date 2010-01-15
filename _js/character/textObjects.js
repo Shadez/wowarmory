@@ -26,12 +26,14 @@ function calcTalentSpecs(){
 
 
 
+	/* replaced with node attribute 'icon'
 	if (highest > 0)
 		document.getElementById('talentSpecImage').src = "images/icons/class/"+ theClassId +"/talents/"+ highest +".gif";
 	else if (highest == 0)
 		document.getElementById('talentSpecImage').src = "images/icons/class/talents/hybrid.gif";
 	else
 		document.getElementById('talentSpecImage').src = "images/icons/class/talents/untalented.gif";
+	*/
 	
 	highest = -1;
 	
@@ -62,6 +64,7 @@ function calcTalentSpecs(){
 		else
 			talentSpecText = textUntalented;
 	
+	/* replaced with node attribute 'icon'
 		if(document.getElementById("talentSpecImage2")){
 			//document.getElementById('replaceTalentSpecText2').innerHTML = talentSpecText;	
 			if (highest > 0)
@@ -71,6 +74,7 @@ function calcTalentSpecs(){
 			else
 				document.getElementById('talentSpecImage2').src = "images/icons/class/talents/untalented.gif";		
 		}
+	*/
 	}catch(e){}
 	
 }
@@ -710,13 +714,14 @@ replaceStringDefenses += "</ul>";
 document.getElementById('replaceStatsLeft').innerHTML = replaceStringBaseStats;
 
 
+var current_page
 
 if (theClassId == 1 || theClassId == 4 || theClassId == 2 || theClassId == 6)
-	changeStats('Right', replaceStringMelee, 'Melee', meleeDisplay);
+	{ changeStats('Right', replaceStringMelee, 'Melee', meleeDisplay); current_page = 1; }
 else if (theClassId == 3)
-	changeStats('Right', replaceStringRanged, 'Ranged', rangedDisplay);
+	{ changeStats('Right', replaceStringRanged, 'Ranged', rangedDisplay); current_page = 2; }
 else
-	changeStats('Right', replaceStringSpell, 'Spell', spellDisplay);
+	{ changeStats('Right', replaceStringSpell, 'Spell', spellDisplay); current_page = 1; }
 	
 	/*if (theCharacter.resistances.arcane.diff)
 		document.getElementById('spanResistArcane').className = "mod";

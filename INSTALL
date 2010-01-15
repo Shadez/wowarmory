@@ -16,6 +16,7 @@ INSTALLATION STEPS:
 	Google it, if you don't know what it is;
 4. Edit includes/classes/configuration.php (read comments).
 5. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
+6. Rename file htaccess to .htaccess for correct site work.
 
 ========================
 Как установить Оружейную
@@ -35,3 +36,4 @@ INSTALLATION STEPS:
 	(my.ini (или my.cnf)). Используйте Google, если не знаете что это и как менять;
 4. Отредактируйте файл includes/classes/configuration.php.
 5. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"
+6. Переименуйте файл htaccess в .htaccess для правильной работы сайта.

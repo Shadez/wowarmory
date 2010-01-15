@@ -10,8 +10,8 @@ World of Warcraft Armory master layout file
 /* global elements */
 html{height:100%}
 body{background-color:black;font:12px/18px Arial,Helvetica,sans-serif;margin:0;padding:0;height:100%;}
-a:active{outline:none}
-a:focus{-moz-outline-style:none}
+object:active, a:active{outline:none}
+object:focus, a:focus{-moz-outline-style:none}
 input{border:1px solid #733d02;background:white;color:black;padding:2px;margin:0;font:bold 15px/16px Arial, Helvetica, sans-serif; }
 q{margin:0;padding:0;font:bold 11px/18px Georgia,"Times New Roman",Times,serif}
 q:before,q:after{content:""}
@@ -496,7 +496,7 @@ b.noflash{color:#b00700}
 .external a:hover{color:#b00700}
 .relatedlinknew	a, .relatedlinknew a:active, .relatedlinknew a:visited{background:url('../images/bullet.gif') no-repeat 0 -20px;color:#13a500;text-decoration:none;font:14px Arial,Helvetica,sans-serif;letter-spacing:-1px}
 .relatedlinknew	a:hover{color:white;}
-.hr{height:3px;margin-bottom:7px;border-bottom:1px solid #003255;overflow:hidden}
+.hr{height:5px;margin-bottom:5px;border-bottom:1px solid #003255}
 .faq-links,.faq-desc{padding:10px}
 .faq-links ol{margin:0;padding:0 0 0 15px}
 .faq-links a { display:block; font-weight:normal; color:#308ca0; }
@@ -804,7 +804,7 @@ th.headerSortUp .sortArw { background: url('../images/arrow-down.gif') no-repeat
 .inlineTxt { float: left; display: block; line-height: 20px; margin: 0 5px; height: 20px; }
 .filterTitle { margin: 5px 0 0 5px; background: url('../images/guildbank-arrow-light.gif') center left no-repeat; color: #a37516; letter-spacing: -1px; font-family: Georgia,"Times New Roman",Times,serif;  font-size: 20px;  line-height: 23px !important; height: 25px; padding: 4px 0 5px 20px; text-align: left; }
 .filterBox { background: transparent url(../images/filter-tabs.gif) repeat-x; border: 1px solid #C39749; height: 40px; margin: 0 6px; padding: 2px 6px 6px 6px; float: left; font-weight: bold; line-height: 22px;} 
-.filterInput { border: 1px solid #B29A47; color: #000; height: 15px; line-height: 15px; font-size: 12px; padding: 2px; margin: 0;  float: left; background: transparent url(../images/parch-search-bg1.gif) repeat-x; font-weight: normal; } 
+.filterInput { border: 1px solid #B29A47; color: #000; height: 15px; line-height: 15px; font-size: 12px; padding: 2px; margin: 0;  float: left; background: transparent url(../images/parch-search-bg1.gif) repeat 0 0; font-weight: normal; } 
 #filterButtonHolder { display: block; margin: 10px 3px 3px 0px; height: 22px; } 
 #resetFilterButton, #resetFilterButton:visited { margin: 0 0 0 10px; line-height: 23px; font-size: 13px !important; color: #005BA1; float: left; font-family:Arial, Helvetica, sans-serif;}
 #runFilterButton { padding: 0 9px 0 0; margin: 0 0 0 5px; background: url('../images/button-blue-right.gif') no-repeat top right; color: #FFCC00; line-height:23px; display: block; text-decoration: none; height: 23px; float: left; font-size: 13px !important; font-family:Arial, Helvetica, sans-serif; } 
@@ -814,7 +814,7 @@ th.headerSortUp .sortArw { background: url('../images/arrow-down.gif') no-repeat
 
 a.smFrame, a.smFrame:visited {line-height: 23px !important; background: url('../images/smallframe-right.png') no-repeat top right; height: 23px; float: left; padding: 0 22px 0 0;  text-decoration: none; display: block; } 
 .smFrame div { background: url('../images/smallframe-left.png') no-repeat top left; height: 23px; float: left;  display: block; color: #FFD200; padding: 0 35px 0 22px;  margin: 0 0 0 22px; line-height: 18px !important; cursor:pointer; }
-.smFrame img { border: none; margin: -1px 0 0 -30px; float: left; }
+.smFrame img { border: none; margin: -1px 0 0 -27px; float: left; }
 a.smFrame:hover { background-position: bottom right; }
 a.smFrame:hover div { background-position: bottom left; }
 

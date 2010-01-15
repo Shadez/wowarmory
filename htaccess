@@ -1,0 +1,10 @@
+Order Deny,Allow
+<FilesMatch "\.(tpl)$">
+	Deny from all
+</FilesMatch>
+Options -Indexes
+AddDefaultCharset utf8
+RewriteEngine on
+RewriteRule ^(.*).xml $1.php?%{QUERY_STRING}
+ErrorDocument 404 /index.xml
+ErrorDocument 403 /index.xml

@@ -9,8 +9,8 @@
 			<!--[if IE 6]>
 				<link rel="stylesheet" type="text/css" href="_css/login/master-ie6.css" />
 			<![endif]-->			
-			<script type="text/javascript" src="js/login/common.js"></script>
-			<script type="text/javascript" src="js/login/jquery.js"></script>
+			<script type="text/javascript" src="_js/login/common.js"></script>
+			<script type="text/javascript" src="_js/login/jquery.js"></script>
 			<script type="text/javascript">
 				var $j = jQuery.noConflict();
 				var processingStr = "{{#armory_login_processing_string#}}";
@@ -22,16 +22,34 @@
 		<form id="loginForm" class="submitForm" name="loginForm" autocomplete="off" method="post" action="?submit" onsubmit="login.disableButton('submit', this); return true;">
 			<div class="formRow accountName">
 				<label class="formLabel" for="accountName" style="margin-bottom:1px">{{#armory_login_accountname_label#}}</label>
-	            <input value="" id="accountName" 
-	            	name="accountName" maxlength="320" type="text" tabindex="1" class="text" />
+	            <input value="{{$accountName}}" id="accountName" name="accountName" maxlength="320" type="text" tabindex="1" class="text" />
+		{{if $error_username}}
+        <div class="errorTooltip">
+			<div class="tooltipBg">
+				<p>
+					{{$error_username}}<br />
+				</p>
+				<div class="arrow"></div>
+			</div>
+		</div>
+        {{/if}}
 				<script type="text/javascript">
 					document.getElementById('accountName').focus();
 				</script>
 			</div>
 			<div class="formRow password">
 				<label class="formLabel" for="password">{{#armory_login_password_label#}}</label>
-	            <input id="password" name="password" 
-	            	maxlength="16" type="password" tabindex="2" autocomplete="off" class="text" />
+	            <input id="password" name="password" maxlength="16" type="password" tabindex="2" autocomplete="off" class="text" />
+        {{if $error_password}}
+        <div class="errorTooltip">
+			<div class="tooltipBg">
+				<p>
+					{{$error_password}}<br />
+				</p>
+				<div class="arrow"></div>
+			</div>
+		</div>
+        {{/if}}
 	        </div>	
 	        <input type="submit" class="hiddenSubmit" />
 			<a class="submit" href="javascript:;" onclick="Form.submit(this)" tabindex="3">{{#armory_login_auth_button#}}</a>

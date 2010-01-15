@@ -30,10 +30,10 @@
 <h3>{{$achievement.name}}</h3>
 <div class="firsts_tshadow">
 <div class="firsts_desc">{{$achievement.description}}</div>
-<div class="briefchars">От <a href="character-sheet.xml?r={{$realmName}}&amp;n={{$achievement.charname}}">{{$achievement.charname}}</a> на {{$realmName}}</div>
+<div class="briefchars">{{#armory_afirsts_by#}} <a href="character-sheet.xml?r={{$realmName}}&amp;n={{$achievement.charname}}">{{$achievement.charname}}</a> {{#armory_afirsts_on#}}{{$realmName}}</div>
 <div class="allchars single">
 {{if $achievement.guildname}}<a class="gld" href="guild-info.xml?gn={{$achievement.guildname}}&amp;r={{$realmName}}">&lt;{{$achievement.guildname}}&gt;</a>&nbsp;{{/if}}<a href="character-sheet.xml?r={{$realmName}}&amp;n={{$achievement.charname}}">{{$achievement.charname}}</a><img src="images/icons/race/{{$achievement.race}}-{{$achievement.gender}}.gif"><img align="absmiddle" src="images/icons/class/{{$achievement.class}}.gif" /></div>
-<div class="firsts_timedate">изучено на [<a href="achievement-firsts.xml?r={{$realmName}}">{{$realmName}}</a>] <b class="timestamp-firsts">{{$achievement.timestamp}}</b>
+<div class="firsts_timedate">{{#armory_afirsts_earned#}} [<a href="achievement-firsts.xml?r={{$realmName}}">{{$realmName}}</a>] <b class="timestamp-firsts">{{$achievement.timestamp}}</b>
 </div>
 <br clear="all">
 </div>

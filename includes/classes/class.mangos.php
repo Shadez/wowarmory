@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 45
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 46
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,40 +27,7 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Mangos extends Connector {
-    
-    public $searchTerms;
-    public $searchCount;
-    public $searchResults;
-    
-    public function getSpellInfo($spellID) {
-        $tooltip = $this->aDB->selectCell("
-		SELECT `tooltip`
-			FROM `spells`
-				WHERE `id`=? LIMIT 1", $spellID);
-        if(!empty($tooltip)) {
-            return $tooltip;
-		}
-		return false;
-    }
-    
-    public function searchCharacters() {
-        if(!$this->searchTerms) {
-            return false;
-        }
-        if($this->searchCount == true) {
-            $x = $this->cDB->selectPage($count, "
-            SELECT `guid`
-                FROM `characters`
-                    WHERE `name` LIKE ?", '%'.$this->searchTerms.'%');
-            return $count;
-        }
-        $this->searchResults = $this->cDB->select("
-        SELECT `name`, `class`, `race`, `level`, `gender`
-            FROM `characters`
-                WHERE `name` LIKE ?", '%'.$this->searchTerms.'%');
-        return true;
-    }
-    
+
     public function getSkillFromItemID($id) {
         if($id==0) {
             return SKILL_UNARMED;
@@ -117,42 +84,42 @@ Class Mangos extends Connector {
         $string = '';
         switch($locale) {
             case 'en_gb':
-                if($percent>51) {
+                if($percent > 51) {
                     $string = 'High (100%)';	
         		}
-        		elseif($percent>25) {
+        		elseif($percent > 25) {
         		  $string = 'Medium (51-100%)';
                 }
-                elseif($percent>15) {
+                elseif($percent > 15) {
                     $string = 'Low (15-24%)'; 
                 }
-                elseif($percent>1) {
+                elseif($percent > 1) {
                     $string = 'Very Low(1-2%)';
                 }
-                elseif($percent<1) {
+                elseif($percent < 1) {
                     $string = 'Very Low (0%)'; 
                 }
-                elseif($percent==0) {
+                elseif($percent == 0) {
                     $string = 'Unknown (0%)';
                 }
                 break;  
             case 'ru_ru':
-                if($percent>51) {
+                if($percent > 51) {
                     $string = 'высокая (100%)';	
         		}
-        		elseif($percent>25) {
+        		elseif($percent > 25) {
         		  $string = 'большая (51-100%)';
                 }
-                elseif($percent>15) {
+                elseif($percent > 15) {
                     $string = 'низкая (15-24%)'; 
                 }
-                elseif($percent>1) {
+                elseif($percent > 1) {
                     $string = 'крайне низкая (1-2%)';
                 }
-                elseif($percent<1) {
+                elseif($percent < 1) {
                     $string = 'крайне низкая (0%)'; 
                 }
-                elseif($percent==0) {
+                elseif($percent == 0) {
                     $string = 'неизвестно (0%)';
                 }
                 break;        

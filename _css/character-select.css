@@ -1,0 +1,90 @@
+.pinselect {padding:5px 10px 0px 10px;background:url('../images/pin-char.gif') no-repeat;line-height:14px;min-height:90px; color:#ffb16c;float:right;width:250px;margin:40px 5px 0 10px;position:relative;z-index:20;}
+.pinselect label {color:white;display:block;line-height:20px;font-weight:bold;font-size:12px; width: 250px;margin: 0 0 3px 0;}
+.pinselect label input {position:relative; top:1px; left:0; background:none; margin-right:5px; }
+
+.charSelectTabDiv { margin: 0; padding: 0; }
+
+.charListIcons { width: 13px; height: 13px; display: block; float: left; margin: 2px 10px 0; background-repeat:no-repeat; }
+.add_on, .add_off {position:relative; top:2px;}
+.add_on { background: url('../images/icons/charselect-add.gif') 0 0; }
+.add_on:hover { background-position:0 -13px; }
+.add_off { background: url('../images/icons/charselect-add.gif') 0 100%; }
+
+.inactiveLicense { padding-right: 20px; background: url('../images/icons/alert-enabled.gif') no-repeat center right;}
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+
+.ui-tabs {padding: .2em; }
+.ui-tabs-nav { padding: .2em .2em 0 .2em;  position: relative; margin: 0 0 0 -2px }
+
+.ui-tabs-nav li { float: left; border-bottom: 0 !important; margin: 0 -2px 0px 0; padding: 0 5px 0 5px; background: url('../images/characterSelect/right-corner-off.gif') no-repeat top right;  }
+.ui-tabs-nav li a { color: #ffffff; display:block; text-decoration: none; margin-bottom: 0px; padding: 7px 6px 6px 12px; background: url('../images/characterSelect/left-corner-off.gif') no-repeat top left; }
+
+.ui-tabs-nav li.ui-tabs-selected {  border-bottom: 0; background: url('../images/characterSelect/right-corner.gif') no-repeat top right; }
+.ui-tabs-nav li.ui-tabs-selected a {  background: url('../images/characterSelect/left-corner.gif') no-repeat top left; }
+
+.ui-tabs-nav > li:hover { background: url('../images/characterSelect/right-corner-over.gif') no-repeat top right;} 
+.ui-tabs-nav > li:hover a { background: url('../images/characterSelect/left-corner-over.gif') no-repeat top left; }
+ 
+.ui-tabs-panel { padding: 0;  display: block; border: 0; background: none; }
+.ui-tabs-hide { display: none !important; }
+
+#searchTable .list {padding:0;}
+.list .full-list {padding:30px 3px 12px;}
+#searchTable .list .full-list {padding:3px 0 0;}
+#searchTable {margin:0; padding:0;}
+.tabs {left:22px; margin:0;}
+
+#charList {position:static; clear:both;}
+.topcharlist {height:287px; background:url(../images/select-topcharlist.gif) 0 0 no-repeat; position:relative; margin:0 0 -20px 0; top:0; left:0;}
+.topcharlist h5{font:bold 14px/26px Arial, Helvetica, sans-serif; margin:0 auto; text-align:center; display: block; letter-spacing:-1px; width:260px; height:26px; color:#724503; position:relative; top:23px;}
+.sel-char { }
+.sel-char h1 {color:#c3830a;padding:5px 0 10px 20px !important; background:url('../images/expand-tile.jpg') repeat-x 0 0; margin:0;}
+.sel-intro {min-height:1px; _height:1px;}
+.sel-intro p {margin:1.6em 320px 0 25px;}
+.select-charwrap {position:absolute; top:57px; left:70px; color:#fff;}
+.select-char1 {background:url(../images/select-char1.jpg) 0 0 no-repeat; width:749px; height:97px; position:relative;}
+.select-char1 div {margin:0; padding:0; position:absolute; left:17px; top:16px; width:600px; font:12px/1.3 Arial, Helvetica, sans-serif;}
+.select-char1 .primchar-avatar {float:left; margin:0 17px 0 0;}
+.select-char1 .char-realm {color:#9ddaff;}
+.select-char2 .char-realm {color:#d6f039;}
+.select-char1 h6 { font:bold 24px Georgia, "Times New Roman", Times, serif; color:#fff; letter-spacing:-1px; margin:0; padding:0;}
+.select-char1 h6 a {color:#fff; text-decoration:none;}
+.select-char1 h6 a:hover {text-decoration:underline;}
+.select-char1 span {display:block;}
+.select-char1 em {display:block; background:url(../images/icons/icon-guildmaster.gif) 0 0 no-repeat; width:18px; height:18px; position:absolute; top:11px; left:8px;}
+.select-char1 p {margin:0; padding:0 10px; height:23px; background:#5494bd; position:absolute; top:13px; right:58px; display:block;
+border-width:1px 1px 1px 1px;border-style:solid;border-color:#5494bd;-moz-border-radius-topleft:2px;  -moz-border-radius-topright:2px;  -moz-border-radius-bottomleft:2px;  
+-moz-border-radius-bottomright:2px;  -webkit-border-top-right-radius:2px; -webkit-border-top-left-radius:2px;  -webkit-border-bottom-left-radius:2px;  
+-webkit-border-bottom-right-radius:2px;}
+.select-char1 p label {color:#fff; line-height:23px; margin:0; padding:0;}
+.select-char1 input {position:relative; top:2px; margin:0 7px 0 0; background:none; _top:0;}
+
+.select-char2 {width:749px; height:31px; margin:4px 0 0;}
+.select-char2 h6 {display:inline; font:12px/31px Arial, Helvetica, sans-serif; color:#fff; margin:0 0 0 15px;}
+.select-char2 h6 a {color:#fff;}
+.select-char2 img {vertical-align:middle; margin:0 1px 0 0; position:relative; top:6px; float:left;}
+
+.selSecondaryChar {background:url('../images/icons/charselect-arrow.gif') 0 0 no-repeat; width:14px; height:14px; display: inline; margin:8px 21px 0 10px; float:left;}
+.selSecondaryChar:hover {background-position:0 -14px;}
+.select-char1 .delChar {background: url('../images/icons/charselect-close1.gif') 0 0 no-repeat;}
+.select-char2 .delChar {background: url('../images/icons/charselect-close2.gif') 0 0 no-repeat;}
+.delChar {width: 13px; height: 13px; display:block; float:right; position:relative; top:10px; right:6px; font-size:1px; line-height:0;}
+.delChar:hover {background-position:0 -13px;}
+
+.hide div div {float:left; display:inline; position:relative;}
+
+.noSelectedChars { padding: 10px; border-top: 2px solid #935202; background-color: #e3c574; }

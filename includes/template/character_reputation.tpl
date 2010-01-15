@@ -31,59 +31,46 @@
 <a class="" href="character-talents.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="talents_subTab"><span>{{#armory_character_sheet_talents_tab#}}</span></a>
 <a class="selected-subTab" href="character-reputation.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="reputation_subTab"><span>{{#armory_character_sheet_reputaion_tab#}}</span></a>
 <a class="" href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="achievements_subTab"><span>{{#armory_character_sheet_achievements_tab#}}</span></a>
-<a class="" href="character-statistics.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="statistics_subTab"><span>{{#armory_character_sheet_statistic_tab#}}</span></a>
-</div>
+<!--<a class="" href="character-statistics.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="statistics_subTab"><span>{{#armory_character_sheet_statistic_tab#}}</span></a>
+--></div>
 <div class="full-list">
 <div class="info-pane">
 <div class="profile-wrapper">
-<div class="profile">
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#repTableUngrouped').tablesorter({sortList: [[0,0]]});
 	});
 </script>
+<div class="profile type_{{$faction_string_class}}">
 <script type="text/javascript">
 		var charUrl = "{{$character_url_string}}";
 		var bookmarkMaxedToolTip = "{{#armory_you_can_remember_string#}}";
 		var bookmarkThisChar = "{{#armory_remember_this_character#}}";	
 	</script>
-<div class="faction-{{$faction_string_class}}">
-<div class="profile-right" id="profileRight">
-<a class="bmcLink" id="bmcLink"><span>{{#armory_login_to_remember_profile#}}</span><em></em></a>
-</div>
-<div class="profile-achieve">
-<img src="images/portraits/{{$portrait_path}}" /><div class="points">
+<div class="profile_header header_{{$faction_string_class}}">
+<div class="points">
 <a href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}">{{$pts}}</a>
 </div>
-<div>
-<link href="atom/character.xml?r={{$realm}}&amp;n={{$name}}" rel="alternate" title="WoW Feed" type="application/atom+xml" />
+<div id="forumLinks">
+<a class="staticTip" href="javascript:void();">{{$realm}}</a></div>
+<div class="profile-right" id="profileRight">
+<a class="bmcLink staticTip" id="bmcLink" onmouseover="setTipText('{{#armory_login_to_remember_profile#}}');">
+<!----></a>
 </div>
-<div id="leveltext" style="display:none;"></div>
-<script type="text/javascript">
-		var flashId="leveltext";
-		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
-		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
-		}else
-			printFlash("leveltext", "images/{{$ArmoryConfig.locale}}/flash/level.swf", "transparent", "", "", "38", "38", "best", "images/{{$ArmoryConfig.locale}}/flash", "charLevel={{$level}}&pts={{$pts}}", "<div class=level-noflash>{{$level}}<em>{{$level}}</em></div>")
-		
-		</script>
-</div>
-<div id="charHeaderTxt_Dark">
-<span class="prefix">{{$character_title_prefix}} </span>
-<div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
-</div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
+<div class="profile-achieve">
+<a class="staticTip" href="character-sheet.xml?r={{$realm}}&amp;cn={{$name}}" onmouseover="setTipText('{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_race race=$race}}&nbsp;{{get_wow_class class=$class}}')">
+<img src="images/portraits/{{$portrait_path}}" /></a>
+<div id="leveltext">{{$level}}</div>
 </div>
 <div id="charHeaderTxt_Light">
+{{if $guildName}}
+<div class="charGuildName">
+<a href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}">{{$guildName}}</a>
+</div>
+{{/if}}
 <span class="prefix">{{$character_title_prefix}} </span>
 <div class="charNameHeader">{{$name}}<span class="suffix">{{$character_title_suffix}}</span>
 </div>
-{{if $guildName}}<a class="charGuildName" href="guild-info.xml?r={{$realm}}&amp;gn={{$guildName}}&cn={{$name}}">{{$guildName}}</a>{{/if}}<span class="charLvl">{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_class class=$class}}&nbsp;{{get_wow_race race=$race}}</span>
-</div>
-<div id="forumLinks">
-<a class="smFrame" href="javascript:void(0)">
-<div>{{$realm}}</div>
-<img src="images/icon-header-realm.gif"></a>
 </div>
 </div>
 <div class="reputation-cont">

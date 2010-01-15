@@ -35,13 +35,14 @@
             });
         }
 	</script>
-<div class="sel-char">
-<div class="sel-intro">
-<h1>Выбор персонажа</h1>
+
+<span id="result"><div class='sel-char'>
+<div class='sel-intro'>
+<h1>{{#armory_vault_character_select#}}</h1>
 </div>
 <div id="charList">
 <div class="topcharlist">
-<h5>Мои персонажи</h5>
+<h5>{{#armory_vault_my_characters#}}</h5>
 <div class="select-charwrap">
 <div class="select-char1">
 <div>
@@ -52,61 +53,65 @@
 <span>Level {{$selected_char.level}}&nbsp;{{get_wow_race race=$selected_char.race}}&nbsp;{{get_wow_class class=$selected_char.class}}</span><span class="char-realm">{{$realm}}</span><q></q>
 </div>
 <em></em>
-<p class="staticTip" onmouseover="setTipText('При включении двойных подсказок к предметам вы сможете просматривать вторую подсказку с харакетристиками для данного типа экипировки в профиле вашего основного персонажа.');">
-<label><input id="checkboxDualTooltip" onClick="javascript:setDualTooltipCookie();" type="checkbox">Включить подсказки второго уровня</label>
+<p class="staticTip" onmouseover="setTipText('{{#armory_vault_dualtooltips_tip#}}');">
+<label><input id="checkboxDualTooltip" onClick="javascript:setDualTooltipCookie();" type="checkbox" />{{#armory_vault_dualtooltips#}}</label>
 </p>
 </div>
 {{foreach from=$selectedCharacters item=char}}
 <div class="select-char2">
 {{if $char.name}}
-<a class="selChar selSecondaryChar staticTip" href="javascript:void(0)" id="r={{$realm}}&amp;n={{$char.name}}" onmouseover="setTipText('Выбрать в качестве основного персонажа');"></a><a class="delChar staticTip" href="javascript:void(0)" onmouseover="setTipText('Удалить персонажа из меню &laquo;Мои персонажи&raquo;');"></a><img class="staticTip" onmouseover="setTipText('{{get_wow_race race=$char.race}}');" src="/images/icons/race/{{$char.race}}-{{$char.gender}}.gif"><img class="staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}');" src="/images/icons/class/{{$char.class}}.gif" /><h6>
+<a class="selChar selSecondaryChar staticTip" href="javascript:void(0)" id="r={{$realm}}&amp;n={{$char.name}}" onmouseover="setTipText('{{#armory_vault_select_main_char#}}');"></a>
+<a class="delChar staticTip" href="javascript:void(0)" onmouseover="setTipText('{{#armory_vault_delete_char#}}');"></a>
+<img class="staticTip" onmouseover="setTipText('{{get_wow_race race=$char.race}}');" src="images/icons/race/{{$char.race}}-{{$char.gender}}.gif" />
+<img class="staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}');" src="images/icons/class/{{$char.class}}.gif" />
+<h6>
 <a href="character-sheet.xml?r={{$realm}}&amp;n={{$char.name}}">{{$char.name}}</a>
 </h6>&nbsp;({{$char.level}}) - <span class="char-realm">{{$realm}}</span>
 {{else}}
-<h6>Свободная ячейка для персонажа</h6>
+<h6>{{#armory_vault_free_char_slot#}}</h6>
 {{/if}}
 </div>
 {{/foreach}}
 </div>
 </div>
 </div>
-<div id="searchTable">
-<ul id="navTabs">
+<div id='searchTable'>
+<ul id='navTabs'>
 <li>
-<a href="#{{$_wow_login}}">{{$_wow_login}}</a>
+<a href='#{{$_wow_login}}'>{{$_wow_login}}</a>
 </li>
 </ul>
-<div class="charSelectTabDiv data" id="{{$_wow_login}}" style="min-height: 100px;">
-<table cellpadding="0" cellspacing="0" class="data-table sortTable" width="100%">
+<div class='charSelectTabDiv data' id='{{$_wow_login}}' style='min-height: 100px;'>
+<table cellpadding='0' cellspacing='0' class='data-table sortTable' width='100%'>
 <thead>
-<tr class="masthead">
-<th style="text-align:left;"><a>Имя персонажа<span class="sortArw"></span></a></th><th class="numericSort"><a class="staticTip" onmouseover="setTipText(&quot;Очки достижений&quot;);">Очки...<span class="sortArw"></span></a></th><th><a>Уровень<span class="sortArw"></span></a></th><th><a>Раса<span class="sortArw"></span></a></th><th><a>Класс<span class="sortArw"></span></a></th><th><a>Фракция<span class="sortArw"></span></a></th><th style="text-align:left"><a>Гильдия<span class="sortArw"></span></a></th><th style="text-align:left;"><a>Игровой мир<span class="sortArw"></span></a></th><th class="headerSortUp"><a>Соответствие<span class="sortArw"></span></a></th>
+<tr class='masthead'>
+<th style='text-align:left;'><a>Имя персонажа<span class='sortArw'></span></a></th><th class='numericSort'><a class='staticTip' onmouseover='setTipText(&quot;Очки достижений&quot;);'>Очки...<span class='sortArw'></span></a></th><th><a>Уровень<span class='sortArw'></span></a></th><th><a>Раса<span class='sortArw'></span></a></th><th><a>Класс<span class='sortArw'></span></a></th><th><a>Фракция<span class='sortArw'></span></a></th><th style='text-align:left'><a>Гильдия<span class='sortArw'></span></a></th><th style='text-align:left;'><a>Игровой мир<span class='sortArw'></span></a></th><th class='headerSortUp'><a>Соответствие<span class='sortArw'></span></a></th>
 </tr>
 </thead>
 <tbody>
 {{foreach from=$allCharacters item=char}}
 <tr>
-<td style="text-align:left; padding-left: 3px;"><span style="display: none;">{{$char.name}}</span>
+<td style='text-align:left; padding-left: 3px;'><span style='display: none;'>{{$char.name}}</span>
 {{if $disallowAddNewChar}}
-<a class="charListIcons add_off staticTip" href="javascript:void(0)" onmouseover="setTipText({{#armory_vault_add_new_char_disallowed#}});"></a>
+<a class='charListIcons add_off staticTip' href='javascript:void(0)' onmouseover='setTipText({{#armory_vault_add_new_char_disallowed#}});'></a>
 {{else}}
-<a class="charListIcons add_on staticTip" href="javascript:void(0)" onmouseover="setTipText({{#armory_vault_add_character_to_list#}});"></a>
+<a class='charListIcons add_on staticTip' href='javascript:void(0)' onclick='select_character(add, {{$char.name}})' onmouseover='setTipText({{#armory_vault_add_character_to_list#}});'></a>
 {{/if}}
-<a href="character-sheet.xml?r={{$realm}}&amp;n={{$char.name}}">{{$char.name}}</a></td>
-<td style="text-align:right; padding-right:3px; font-weight: bold; width: 50px;"><span style="display: none;">0</span><span class="achievPtsSpan">0</span></td>
-<td class="rightNum"><strong>{{$char.level}}</strong></td>
-<td style="text-align:right; padding-right:3px;"><span style="display: none;">{{get_wow_race race=$char.race}}</span><img class="staticTip" onmouseover="setTipText('{{get_wow_race race=$char.race}}');" src="images/icons/race/{{$char.race}}-{{$char.gender}}.gif" /></td>
-<td style="text-align:left; padding-left:3px;"><span style="display: none;">{{get_wow_class class=$char.class}}</span><img class="staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}');" src="images/icons/class/{{$char.class}}.gif" /></td><td style="text-align:center;"><img class="staticTip" onmouseover="setTipText('{{get_wow_faction race=$char.race}}');" src="/images/icons/faction/icon-{{get_wow_faction race=$char.race numeric=true}}.gif" /></td>
-<td>{{if $char.guildname}}<a href="guild-info.xml?n={{$char.guildname}}&amp;r={{$realm}}">{{$char.guildname}}</a>{{/if}}</td>
-<td style="text-align:left; padding-left:3px;">{{$realm}}</td>
-<td class="relevance"><span style="display: none;">100%</span><q class="staticTip" onmouseover="setTipText('100%');"><del class="rel-container"><a><em style="width:100%"></em></a></del></q></td>
+<a href='character-sheet.xml?r={{$realm}}&amp;n={{$char.name}}'>{{$char.name}}</a></td>
+<td style='text-align:right; padding-right:3px; font-weight: bold; width: 50px;'><span style='display: none;'>0</span><span class='achievPtsSpan'>0</span></td>
+<td class='rightNum'><strong>{{$char.level}}</strong></td>
+<td style='text-align:right; padding-right:3px;'><span style='display: none;'>{{get_wow_race race=$char.race}}</span><img class='staticTip' onmouseover='setTipText({{get_wow_race race=$char.race}});' src='images/icons/race/{{$char.race}}-{{$char.gender}}.gif' /></td>
+<td style='text-align:left; padding-left:3px;'><span style='display: none;'>{{get_wow_class class=$char.class}}</span><img class='staticTip' onmouseover='setTipText({{get_wow_class class=$char.class}});' src='images/icons/class/{{$char.class}}.gif' /></td><td style='text-align:center;'><img class='staticTip' onmouseover='setTipText({{get_wow_faction race=$char.race}});' src='/images/icons/faction/icon-{{get_wow_faction race=$char.race numeric=true}}.gif' /></td>
+<td>{{if $char.guildname}}<a href='guild-info.xml?n={{$char.guildname}}&amp;r={{$realm}}'>{{$char.guildname}}</a>{{/if}}</td>
+<td style='text-align:left; padding-left:3px;'>{{$realm}}</td>
+<td class='relevance'><span style='display: none;'>100%</span><q class='staticTip' onmouseover='setTipText(100%);'><del class='rel-container'><a><em style='width:100%'></em></a></del></q></td>
 </tr>
 {{/foreach}}
 </tbody>
 </table>
 </div>
 </div>
-</div>
+</div></span>
 </div>
 </div>
 </div>

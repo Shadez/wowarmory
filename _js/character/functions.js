@@ -57,32 +57,36 @@ function isApplicable(theValue) {
 var hasChanged = false; //var to detect if change stats has fired yet
 function changeStats(whichSide, whichStats, theKey, theDisplay){
 
-	document.getElementById("dropdownHidden"+ whichSide).style.display = "none";
+//	document.getElementById("dropdownHidden"+ whichSide).style.display = "none";
 	document.getElementById("display"+ whichSide).innerHTML = theDisplay;
 	document.getElementById("replaceStats"+ whichSide).innerHTML = whichStats;
 
-	if (whichSide == "Left") {
-		document.getElementById('checkLeftBaseStats').style.visibility = "hidden";
-		document.getElementById('checkLeftMelee').style.visibility = "hidden";
-		document.getElementById('checkLeftRanged').style.visibility = "hidden";
-		document.getElementById('checkLeftSpell').style.visibility = "hidden";
-		document.getElementById('checkLeftDefenses').style.visibility = "hidden";
-	} else {
-		document.getElementById('checkRightBaseStats').style.visibility = "hidden";
-		document.getElementById('checkRightMelee').style.visibility = "hidden";
-		document.getElementById('checkRightRanged').style.visibility = "hidden";
-		document.getElementById('checkRightSpell').style.visibility = "hidden";
-		document.getElementById('checkRightDefenses').style.visibility = "hidden";
-	}
-	document.getElementById("check"+whichSide+theKey).style.visibility = "visible";	
-	
-	
 	if(hasChanged == false)
 		hasChanged = true;
 	else
 		bindToolTips();
 }
-	
+
+stats_pages = ["Melee", "Ranged", "Spell", "Defenses"]
+
+function page_stats(dir)
+{ 	current_page += dir; current_page=(current_page>=stats_pages.length)?0:(current_page<0)?stats_pages.length-1:current_page;
+    var cpg = stats_pages[current_page];
+	changeStats('Right', eval("replaceString"+cpg), cpg, eval(cpg.substring(0,1).toLowerCase()+cpg.substring(1)+"Display"))	
+}
+
+function toggle_gear(type)
+{
+	$("#gear-profile").attr("class",type);
+	setcookie("armory.cookieGearMode", type);
+}
+
+function enchanttip(name,desc,spelltxt)
+{ 
+	return "<span class='enchantspell'>"+name+" ("+spelltxt+")</span>"+desc.replace("****","<br/>")
+} 
+
+
 function getBaseStatsTitleAppend(base, diff) {
 
 	var returnArray = new Array;
@@ -351,5 +355,13 @@ function resistShadowObject(theResist, thePetBonus) {
     this.mouseover = defaultText;
 	*/
   }
+
+function TTcharacterIcons(raceId,genderId,classId,raceTxt,classTxt)
+{
+	var tiptext = '&lt;img src="../images/icons/race/'+raceId+'-'+genderId+'.gif" align="absmiddle" /&gt;  '+raceTxt+'&lt;br/&gt;&lt;img src="../images/icons/class/'+classId+'.gif" align="absmiddle"/&gt;  '+classTxt;
+	
+return tiptext
+
+}
 
 jsLoaded=true;

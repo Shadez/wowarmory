@@ -110,7 +110,7 @@ var rangedWeaponSkillDisplay = "Навык владения оружием: ";
 var rangedDamageTitle = "Дальний бой";
 var rangedDamageSpeed = "<span class='floatRight'>"+ theCharacter.ranged.damage.speed +"</span>Скорость атаки (с):<br/>";
 var rangedDamageDamage = "<span class='floatRight'>"+ theCharacter.ranged.damage.min +" - "+ theCharacter.ranged.damage.max;
-var rangedDamageDamagePercent = " <span "+ theCharacter.ranged.damage.effectiveColor +"> x "+ theCharacter.ranged.damage.percent +"</span><br/>";
+var rangedDamageDamagePercent = " <span "+ theCharacter.ranged.damage.effectiveColor +"> x "+ theCharacter.ranged.damage.percent +"%</span><br/>";
 var rangedDamageDisplay = "Урон: ";
 var rangedDamageDps = "<span class='floatRight'>"+ theCharacter.ranged.damage.dps +"</span>УВС: ";
 
@@ -188,9 +188,7 @@ var defensesParryPercent = "Увеличивает вероятность пар
 var defensesParryDisplay ="Парирование: ";
 
 var defensesBlockTitle = "Рейтинг блока ";
-//TODO: block %
-//var defensesBlockPercent = "Увеличивает вероятность блокировать удар на "+ theCharacter.defenses.block.increasePercent +"%" + "<br/>" + beforeDiminishingReturns;
-var defensesBlockPercent = "Увеличивает вероятность блокировать "+ theCharacter.defenses.block.increasePercent +" ед. удара" + "<br/>" + beforeDiminishingReturns;
+var defensesBlockPercent = "Увеличивает вероятность блокировать удар на "+ theCharacter.defenses.block.increasePercent +"%" + "<br/>" + beforeDiminishingReturns;
 var defensesBlockDisplay = "Блок: ";
 
 var defensesResilienceTitle = "Устойчивость ";

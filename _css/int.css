@@ -2,7 +2,7 @@
 /* World of Warcraft Armory master layout file (c) Blizzard Entertainment 2008. All rights reserved. */
 html{height:100%}
 body{background-color:black;font:12px/18px Arial,Helvetica,sans-serif;margin:0;padding:0;height:100%;}
-a span{display:none}
+/* a span{display:none} --- This element style is too broad */
 a:active{outline:none}
 a:focus{-moz-outline-style:none}
 input{border:1px solid #733d02;background:white;color:black;padding:2px;margin:0;font:bold 15px/16px Arial, Helvetica, sans-serif; }
@@ -38,16 +38,16 @@ a:hover{color:#b00700;text-decoration:none}
 .subTabs .upperLeftCorner { background: url('../images/talents/subtab-holder-left.gif') no-repeat 0 0; height: 30px; width: 6px; float: left; position: relative; top: 0px; left: -15px;  }
 .subTabs .upperRightCorner { background: url('../images/talents/subtab-holder-right.gif') no-repeat 0 0; height: 30px; width: 6px; float: right; position: relative; top: 0px; right: 0;   }
 .subTabs a, .subTabs a:visited { cursor: pointer; height: 23px !important; color: #5587aa;  background: url('../images/talents/subtab-inactive-left.gif') 0 0 no-repeat; display: block; color: #330000; font-weight: bold; font-size: 11px; padding: 0 4px; text-decoration: none; margin: 4px 1px 0px 1px; position:relative; top: 2px; display: block; float: left; }
-.subTabs a:hover { color: #FFF; }
-.subTabs a span { cursor: pointer; height: 21px; background: url('../images/talents/subtab-inactive-right.gif') 100% 0 no-repeat; float: left; display: block; padding: 2px 14px 0 11px }
+.subTabs a span { cursor: pointer; height: 21px; background: url('../images/talents/subtab-inactive-right.gif') 100% 0 no-repeat; float: left; display: block; padding: 2px 14px 0 11px } 
 .subTabs a.reqLogin { background: url('../images/tab-key.gif') no-repeat 5px 3px; padding: 1px 10px 1px 30px; }
 .subTabs a.selected-subTab, .subTabs a.selected-subTab:visited {  background: url('../images/talents/subtab-active-left.gif') 0 0 no-repeat; color: #330000;   }
 .subTabs a.selected-subTabLocked, .subTabs a.selected-subTabLocked:visited {  background: url('../images/talents/subtab-active-lock.gif') 0 0 no-repeat !important; }
-.subTabs a.selected-subTab span { color: #683525; background: url('../images/talents/subtab-active-right.gif') 100% 0 no-repeat; padding: 2px 14px 0 11px;  }
-.subTabs a.subTabLocked { background: url('../images/talents/subtab-inactive-lock.gif') 0 0 no-repeat; color: #330000;  padding: 0 4px 0 18px; } 
+.subTabs a.selected-subTab span { color:white; background: url('../images/talents/subtab-active-right.gif') 100% 0 no-repeat; padding: 2px 14px 0 11px;  }
+.subTabs a.subTabLocked { background: url('../images/talents/subtab-inactive-lock.gif') 0 0 no-repeat; padding: 0 4px 0 18px; } 
 .subTabs a.selected-subTabLocked {  background: url('../images/talents/subtab-active-lock.gif') 0 0 no-repeat; color: #330000;  padding: 0 4px 0 18px; }
 .subTabs a:hover { background-position: 0 100%; }
-.subTabs a:hover span { color: #FFF; background-position: 100% 100%; }
+.subTabs a:hover span { color: #5e0000; background-position: 100% 100%; }
+.subTabs a:hover.selected-subTab span { color:white }
 .subTabs a.subTabLocked span, .subTabs a.selected-subTabLocked span  { padding: 2px 15px 0 6px; }
 
 .int .search-module input {border:3px solid #5d0601;background:white;color:black;padding:4px 4px 3px 4px;margin:0;width:180px;float:left}
@@ -620,7 +620,7 @@ input#searchQuery{width:280px}
 .detail-search .filter-right{width:44%;float:right;background:#dbb44d;position:relative;right:30px;padding:2px 5px 5px;z-index:99991}
 /* search result filters */
 #showHideItemFilters { display: block; width: 96%; margin: 10px auto 0; height:auto; float: none; background-image:none; border: none; }
-.detail-search-results input{background:url('../images/parch-search-bg1.gif') repeat-x 0 0;border:1px solid #b29a47;height:15px;color:black;padding-left:3px;width:200px;margin:0 0 0 6px;font-size:12px}
+.detail-search-results input{background:url('../images/parch-search-bg1.gif') repeat 0 0;border:1px solid #b29a47;height:15px;color:black;padding-left:3px;width:200px;margin:0 0 0 6px;font-size:12px}
 .detail-search-results input:hover,.detail-search-results select:hover{border:1px solid #caf500}
 .detail-search-results input:focus{background-image:none;background-color:white}
 .detail-search-results select{margin:0 0 0 6px;font-size:12px;background:#ffffac}
@@ -634,7 +634,7 @@ span.shrb{position:absolute;top:-21px;left:0;background:url('../images/isr-hr2.g
 .detail-search-results #parentItemType .option-cont,.detail-search-results #parentSingle .option-cont{width:18%}
 .detail-search-results .filter-left{width:44%;float:left;position:relative;left:30px;background:#dfc36e;padding:2px 5px 5px}
 .detail-search-results .filter-right{width:44%;float:right;position:relative;right:30px;background:#dfc36e;padding:2px 5px 5px;z-index:99999}
-.detail-search-results a.button-lite{background:url('../images/button-lite.gif') no-repeat;height:21px;width:155px;display:block;padding:4px 0 0 14px;margin:0;text-decoration:none !important;cursor:pointer}
+.detail-search-results a.button-lite{background:url('../images/button-lite.gif') no-repeat;height:21px;width:180px;display:block;padding:4px 0 0 14px;margin:0;text-decoration:none !important;cursor:pointer}
 .usableByWhite{border:1px solid #caf500;background:white !important}
 img.allclasses{position:relative;top:5px}
 .allclasses-tooltip{width:125px;height:50px;position:absolute;left:264px;bottom:-15px}
@@ -652,14 +652,14 @@ p.color1{color:purple !important}
 .dungeoncaveat h1{font-size:18px;line-height:26px;padding:0;margin:0}
 .dungeoncaveat p{padding:10px 0 0 0;line-height:16px;margin:0;font-size:11px}
 .item-info{margin:0 auto;position:relative;width:90%;top:-8px}
-.item-bound{margin:0;width:320px;padding:15px 0 15px 89px;position:relative;}
+.item-bound{margin:0;width:320px;padding:15px 0 15px 80px;position:relative;}
 .item-padding{padding:25px 0 0 0}
 .item-background {background:url('../images/item-info-bg.jpg') repeat-y 13px 0;}
 .item-bottom {background:url('../images/item-info-bottom.jpg') no-repeat 13px 100%;}
-.item-top {padding:5px 0 0 0;background:url('../images/item-info-top.jpg') no-repeat 13px -6px;min-height:350px}
+.item-top {padding:5px 0 0 0;background:url('../images/item-info-top.jpg') no-repeat 13px -6px;min-height:350px; position:relative}
 .item-double{z-index:9909;position:absolute;top:15px;left:90px;width:300px;display:block;}
 .item-double table {width:100%;}
-.id{padding:10px 15px}
+.id{padding:10px 15px; position:relative}
 .id table{width:293px !important}
 .item-bound .myItemName{ font-size:20px;line-height:30px;font-family: Arial, Helvetica, sans-serif; }
 .item-bound .myTable {font-size: 12px; line-height:20px }
@@ -677,8 +677,11 @@ p.color1{color:purple !important}
 .alt-stats em{display:block;left:0 !important;top:0px !important;position:absolute;line-height:22px;width:155px;z-index:99;font-weight:bold;background:white !important;color:#b18100;font-style:normal;padding:0 0 0 5px;}
 .alt-stats p{margin:0;padding:3px 0;line-height:14px}
 .alt-stats p span{color:#602900;line-height:24px}
+.alt-stats p span.multiLine{line-height:18px;}
 .alt-stats p img{position:relative;top:4px;margin-right:4px;}
 .alt-stats a,.alt-stats a:active,.alt-stats a:visited{position:relative;z-index:90874;}
+.alt-stats a.itemToolTip{font-size:12px;text-decoration:none}
+.alt-stats a.itemToolTip:hover{text-decoration:underline}
 .skill-bar{height:15px;background:url('../images/bar-grey.gif') repeat-x;border:1px solid black;margin-left:15px;margin-top:4px;position:relative;z-index:90875}
 .skill-bar b{background:url('../images/bar-mana.gif') repeat-x;position:absolute;height:15px}
 .skill-bar img{position:absolute !important;top:-3px !important;left:-17px}
@@ -1178,7 +1181,7 @@ div.bankcontentsfiltercontainer{display: table; float: left; width: 19%; padding
 div.bankcontentsfilter-in{padding: 6px 8px;}
 select.guildbanksubtype { width: 150px; height: 18px; background-color: #ffffcc;}
 select.guildbankdropdown { width: 116px; background-color: #ffffcc;}
-input.guildbankitemname {background:url('../images/parch-search-bg1.gif') repeat-x 0 0;border:1px solid #b29a47;height:15px;color:black; margin:0!important; font-size:12px; width:140px;}
+input.guildbankitemname {background:url('../images/parch-search-bg1.gif') repeat 0 0;border:1px solid #b29a47;height:15px;color:black; margin:0!important; font-size:12px; width:140px;}
 select.guildbanksubtype:hover { border:1px solid #caf500;}
 select.guildbankdropdown:hover { border:1px solid #caf500;}
 input.guildbankitemname:hover {border:1px solid #caf500;}

@@ -4,7 +4,6 @@
  * !!! Requires jQuery  !!!
  * !!! Requires Sarissa !!!
  *****************************************************/
-
 //GLOBAL VARS
 var searchTimerId		= null; //timer id for search menu hiding
 var IS_ENABLED_XSLT		= $.browser.mozilla; //is xslt enabled
@@ -122,9 +121,40 @@ function setcookie(name,value,expire){
 	document.cookie = cookiestring;
 }
 
+//Gets all cookies based on type ie armory.cookie3dFoo and armory.cookie3dBar and returns them as an object ie modelCookies[foo] = bar 
+function getArmoryCookies(type) 
+{ 	var modelCookies = {}
+	var armory_cookies = document.cookie.toString().split(";") 
+	for(xi=0;xi<armory_cookies.length;xi++){ 
+			if(armory_cookies[xi].indexOf("armory.cookie"+type) > -1)
+			{ 	var tempck = armory_cookies[xi].split("=");  
+				modelCookies[tempck[0].split("cookie3d")[1].toLowerCase()] = tempck[1];				
+			} 
+	}
+	return modelCookies
+}
 
-
-
+if(!init3dvars) var init3dvars = null
+function demo3dCharacter(file,charName,attr)
+{ 	
+	var logolink = modelserver + "/models/images/logo/armory-logo-"+lang+".png" 
+	var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
+	var attributes = { id:"ModelViewer3" };
+	var flashvars = { character: charName, modelUrl:encodeURIComponent(file)+"?"+Math.floor(Math.random()*99991), fileServer: modelserver+"/models/", 
+					  embedlink:encodeURIComponent(String(window.location)), strings:stringslink, logoImg:logolink,
+					  loadingtxt:loadingText, embedded:true
+					};
+	if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
+					for(xi in modelCookies) { flashvars[xi] = modelCookies[xi] } 
+				  }
+	if(init3dvars)	{ for (var i in init3dvars){ flashvars[i] = init3dvars[i]; } 
+						if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
+					}
+	if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
+	swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "9.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
+	$(document).ready(function () { if(!bindMouseActions) loadScript("/_js/character/charactermodel.js"); bindMouseActions() });	
+}
+	
 
 
 //flash detection
@@ -388,12 +418,13 @@ function setCharSheetUpgradeMenu()
 
 	$(".upgradeBox").hover(
 		function(){
-			//mouseover actions		
-			$(this).parent().next().css("display","block");			
+			//mouseover actions	
+			if(tipsEnabled != false)
+			$(this).parent().siblings(".fly-horz").css("display","block");			
 		},
 		function(){
 			//mouseout actions
-			$(this).parent().next().css("display","none");			
+			$(this).parent().siblings(".fly-horz").css("display","none");			
 		});
 
 }
@@ -502,7 +533,8 @@ var xsltProcessor		 = null;
 var dualTipsEnabled		 = false;
 var isOnCharSheet		 = false;
 var toolVault 			 = [];
-
+var tipsEnabled 		 = true;
+var tipsEnabledFacebook = false;
 
 //set the (left,top) / (x,y) position of the tooltip
 function setToolTipPosition(tooltipObj,e)
@@ -523,8 +555,8 @@ function getXYCoords(tooltipObj,e)
 	var useMousePosition = false;
 	
 	//find current x,y position
-	var xPos = $(tooltipObj).offset().left;
-	var yPos = $(tooltipObj).offset().top;
+	var xPos = (tipsEnabledFacebook) ? e.pageX : $(tooltipObj).offset().left;
+	var yPos = (tipsEnabledFacebook) ? e.pageY : $(tooltipObj).offset().top;
 	
 	//if the position comes back as (0,0) use the mouse position instead
 	//(also adjust for scrolling!)
@@ -572,10 +604,14 @@ function getXYCoords(tooltipObj,e)
 		
 		//if tooltip is going to cause horizontal scrolling,
 		//put it to the left of the link instead
-		if((itemWidth + xPos + tooltipWidth + 5) > $(window).width()){
-			xPos = xPos - tooltipWidth - 5;			
-		}else{
-			xPos = xPos + itemWidth + 5;
+		if(!tipsEnabledFacebook) {
+			if((itemWidth + xPos + tooltipWidth + 5) > $(window).width()){
+				xPos = xPos - tooltipWidth - 5;			
+			}else{
+				xPos = xPos + itemWidth + 5;
+			}
+		} else {
+			xPos = xPos + 15;
 		}
 	}
 	
@@ -598,7 +634,7 @@ function getXYCoords(tooltipObj,e)
 
 //sets the html of thetooltip (div)
 function setTipText(tipStr)
-{
+{	
 	//store scoped reference
 	var tooltipTxt = $("#globalToolTip_text");	
 	
@@ -650,7 +686,7 @@ function getItemHtml(itemUrl)
 			//get the stylesheet			
 			var xslDoc = Sarissa.getDomDocument();
 			xslDoc.async = false;
-			xslDoc.load("/layout/items/tooltip.xsl");
+			xslDoc.load("/_layout/items/tooltip.xsl");
 			
 			xsltProcessor = new XSLTProcessor();
 			xsltProcessor.importStylesheet(xslDoc);		
@@ -693,7 +729,7 @@ function getItemHtml(itemUrl)
 
 
 //gets the "pretty" html for an item tooltip via ajax
-function getTipHTML(itemID, itemWithTip, mouseEvent, slotNum)
+function getTipHTML(itemID, itemWithTip, mouseEvent)
 {
 	//load XSL stylesheet if we haven't yet	
 	if(!($.browser.opera) && !($.browser.safari)){
@@ -702,7 +738,7 @@ function getTipHTML(itemID, itemWithTip, mouseEvent, slotNum)
 			//get the stylesheet			
 			var xslDoc = Sarissa.getDomDocument();
 			xslDoc.async = false;
-			xslDoc.load("/layout/items/tooltip.xsl");
+			xslDoc.load("/_layout/items/tooltip.xsl");
 			
 			xsltProcessor = new XSLTProcessor();
 			xsltProcessor.importStylesheet(xslDoc);		
@@ -718,12 +754,7 @@ function getTipHTML(itemID, itemWithTip, mouseEvent, slotNum)
 		setTipText(tLoading+"...");
 		setToolTipPosition(itemWithTip,mouseEvent);
 		
-		var urlstr = "";
-		
-		if(slotNum)
-			urlstr = "item-tooltip.php?i="+itemID;
-		else
-			urlstr = "item-tooltip.php?i="+itemID;
+		var urlstr = "/item-tooltip.xml?i="+itemID;
 		
 		$.ajax({
 			type: "GET",
@@ -770,21 +801,23 @@ function bindToolTips()
 		dualTipsEnabled = true;
 	
 	//see if we're on character sheet
-	if(location.href.indexOf("character-sheet.php") != -1)
+	if(location.href.indexOf("character-sheet.xml") != -1)
 		isOnCharSheet = true;
 
 	//store reference to the tooltip
-	theGlobalToolTip = $("#globalToolTip");	
+	theGlobalToolTip = $("#globalToolTip");
 	
 	//bind mouseover function for objects with class='tooltip'
 	$(".staticTip").mouseover(function (e){
-		
+
+		if(tipsEnabled == false) return
 		//need ajax call for tooltip text for items
 		if($(this).hasClass("itemToolTip"))
 		{	
 			//only show an "ajax" tooltip if the item we moused over has an ID
 			if(this.id != "")
 			{
+				
 				//set current item id to prevent async mixups (and clean the id)
 				currItemID = cleanID(this.id);		
 				
@@ -842,27 +875,27 @@ function getEmptySlotToolTip(slotid, classId)
 		case "0": slottext = textHead; 			break;
 		case "1": slottext = textNeck; 			break;
 		case "2": slottext = textShoulders; 	break;
-		case "3": slottext = textShirt; 		break;
+		case "3": slottext = textBack;          break;
 		case "4": slottext = textChest; 		break;
-		case "5": slottext = textWaist; 		break;
-		case "6": slottext = textLegs; 			break;
-		case "7": slottext = textFeet;			break;
-		case "8": slottext = textWrists; 		break;
-		case "9": slottext = textHands; 		break;
-		case "10":
-		case "11": slottext = textFinger; 		break;
+		case "5": slottext = textShirt;         break;
+		case "6": slottext = textTabard; 		break;
+		case "7": slottext = textWrists;		break;
+		case "8": slottext = textHands; 		break;
+		case "9": slottext = textWaist; 		break;
+		case "10": slottext = textLegs;         break;
+		case "11": slottext = textFeet; 		break;
 		case "12":
-		case "13": slottext = textTrinket; 		break;
-		case "14": slottext = textBack; 		break;
-		case "15": slottext = textMainHand; 	break;
-		case "16": slottext = textOffHand; 		break;
-		case "17":
+		case "13": slottext = textFinger; 		break;
+		case "14":
+		case "15": slottext = textTrinket;  	break;
+		case "16": slottext = textMainHand; 	break;
+		case "17": slottext = textOffHand; 		break;
+		case "18":
 			if((classId == 6) || (classId == 11) || (classId == 2) || (classId == 7))
 				slottext = textRelic;
 			else
 				slottext = textRanged;
 			break;
-		case "18": slottext = textTabard; 		break;
 	}
 	
 	return slottext;	
@@ -882,6 +915,8 @@ var asyncType 		 = (!($.browser.msie) && !($.browser.mozilla)) ? false : true;
 
 //bookmarks a character
 function ajaxBookmarkChar(){
+
+	$(theGlobalToolTip).hide();
 	//change "bookmark this character" img
 	if(asyncType == true){
 		$("#profileRight")[0].innerHTML = "<div class=\"bmcEnabled\"></div>";
@@ -937,7 +972,7 @@ function bindBookmarkMenu(sFromUrl, oTargetElement){
 			
 			//means we're on this page, so change the green check to "add bookmark"	
 			if(charUrl == removeBookmarkLink){
-				document.getElementById("profileRight").innerHTML = "<a id=\"bmcLink\" href=\"javascript:ajaxBookmarkChar()\"><span>"+bookmarkThisChar+"</span><em/></a>";
+				document.getElementById("profileRight").innerHTML = "<a id=\"bmcLink\" href=\"javascript:ajaxBookmarkChar()\"></a>";
 			}
 		}catch(e){ }
 		
@@ -981,6 +1016,11 @@ function setBookmarkPersistTimers()
 	
 	//when mousing over parchment, hide the menu
 	$(".parchment-top").mouseover(function(){
+		$("#menuHolder").hide()						   
+	});
+	
+	//we need to specify the same mousing over for the index page, since "parchemnt-top" doesn't exist there
+	$(".parch-front").mouseover(function(){
 		$("#menuHolder").hide()						   
 	});
 	

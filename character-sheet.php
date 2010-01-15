@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 46
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,9 +33,15 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 // Доп. лист стилей
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-
-$characters->name = Utils::escape($_GET['n']);
+$armory->tpl->assign('addCssSheet', '@import "_css/int.css";
+        @import "_css/character/sheet.css";');
+if(isset($_GET['n'])) {
+    $charname = $_GET['n'];
+}
+elseif(isset($_GET['cn'])) {
+    $charname = $_GET['cn'];
+}
+$characters->name = Utils::escape($charname);
 // Проверка
 if(!$characters->IsCharacter()) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
@@ -58,7 +64,7 @@ $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
 $armory->tpl->assign('portrait_path', $characters->characterAvatar());
 $armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
 $armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
-$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'horde' : 'alliance');
+$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'Horde' : 'Alliance');
 if($guilds->extractPlayerGuildId()) {
     $armory->tpl->assign('guildName', $guilds->getGuildName());
 }
@@ -85,8 +91,10 @@ if($armory->armoryconfig['useDualSpec'] == true) {
             $talent_trees = explode(' / ', $tp);
             $currentTree = Utils::GetMaxArray($talent_trees);
             $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
+            $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
             $armory->tpl->assign('talents_builds_'.$ds, $tp);
             $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
+            $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
             $armory->tpl->assign('ds_'.$ds, $talent_trees);
             $tp = ''; // Очищаем предыдущую ветку
             $ds++;
@@ -106,26 +114,15 @@ else {
     $talent_trees = explode(' / ', $tp);
     $currentTree = Utils::GetMaxArray($talent_trees);
     $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
+    $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
     $armory->tpl->assign('talents_builds', $tp);
     $armory->tpl->assign('treeName', $currentTreeName);
     $armory->tpl->assign('tree_js', $talent_trees);
     $armory->tpl->assign('disabledDS_1', ' disabledSpec');
+    $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
 }
 // Профессии
 $trade_skills = $characters->extractCharacterProfessions();
-// Если пусто
-if(empty($trade_skills[0]['name'])) {
-    $trade_skills[0]['name'] = $armory->tpl->get_config_vars('armory_string_not_available');
-    $trade_skills[0]['skill_line'] = $armory->tpl->get_config_vars('armory_string_not_available');
-    $trade_skills[0]['icon'] = 'None';
-    $trade_skills[0]['pct'] = '0';
-}
-if(empty($trade_skills[1]['name'])) {
-    $trade_skills[1]['name'] = $armory->tpl->get_config_vars('armory_string_not_available');
-    $trade_skills[1]['skill_line'] = $armory->tpl->get_config_vars('armory_string_not_available');
-    $trade_skills[1]['icon'] = 'None';
-    $trade_skills[1]['pct'] = '0';
-}
 // Обрезаем кол-во профессий до 2х (в случае, если на сервере выставлено
 // нестандартное кол-во первичных профессий, т.е. > 2)
 $armory->tpl->assign('primary_trade_skill_1', $trade_skills[0]);
@@ -135,25 +132,24 @@ $armory->tpl->assign('primary_trade_skill_2', $trade_skills[1]);
 $armory->tpl->assign('healthValue', $characters->getHealthValue());
 $armory->tpl->assign('additionalBarInfo', $characters->assignAdditionalEnergyBar());
 
-// Считаем кол-во ачивментов
-$characterAchievements = $achievements->countCharacterAchievements();
-$armory->tpl->assign('fullCharacterAchievementsCount', $characterAchievements);
-// И делаем прогресс-бар
-$armory->tpl->assign('character_progress_percent', $achievements->getAchievementProgressBar($characterAchievements));
-
-// Получаем кол-во ачивментов по каждой категории
-for($i=1;$i<10;$i++) {
-    $armory->tpl->assign('achievements_'.$i, $achievements->sortAchievements($i));
-}
-
 /*** Одежда персонажа ***/
 $gear_array = array('head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'wrist', 'gloves', 'belt', 'legs', 'boots', 
 'ring1', 'ring2', 'trinket1', 'trinket2', 'mainhand', 'offhand', 'relic');
+$i = 0;
+$characterItems = array();
 foreach($gear_array as $gear) {
     $gear_tmp = $characters->GetCharacterEquip($gear);
-    $armory->tpl->assign('gear_'.$gear.'_item', $gear_tmp);
-    $armory->tpl->assign('gear_'.$gear.'_icon', $items->getItemIcon($gear_tmp));
+    $characterItems[$i] = array(
+        'entry' => $gear_tmp,
+        'icon' => $items->getItemIcon($gear_tmp),
+        'rarity' => $items->GetItemInfo($gear_tmp, 'quality'),
+        'ilevel' => $armory->wDB->selectCell("SELECT `ItemLevel` FROM `item_template` WHERE `entry`=? LIMIT 1", $gear_tmp),
+        'i' => $i,
+        'name' => $items->GetItemName($gear_tmp)
+    );
+    $i++;
 }
+$armory->tpl->assign('characterItems', $characterItems);
 $armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
 
 /*** Звание ***/
@@ -161,6 +157,7 @@ $armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
 $charTitle = $characters->GetCharacterTitle();
 $armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
 $armory->tpl->assign('playerHonorKills', $characters->getCharacterHonorKills());
+$armory->tpl->assign('tpl2include', 'character_sheet_info');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('character_sheet_start.tpl');
 exit();

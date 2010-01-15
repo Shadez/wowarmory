@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 46
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,7 +33,13 @@ if(!@include('includes/armory_loader.php')) {
 // Доп. лист стилей
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
-$characters->name = Utils::escape($_GET['cn']);
+if(isset($_GET['n'])) {
+    $charname = $_GET['n'];
+}
+elseif(isset($_GET['cn'])) {
+    $charname = $_GET['cn'];
+}
+$characters->name = Utils::escape($charname);
 // Проверка
 if(!$characters->IsCharacter()) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
@@ -52,7 +58,7 @@ $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
 $armory->tpl->assign('portrait_path', $characters->characterAvatar());
 $armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
 $armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
-$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'horde' : 'alliance');
+$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'Horde' : 'Alliance');
 if($guilds->extractPlayerGuildId()) {
     $armory->tpl->assign('guildName', $guilds->getGuildName());
 }

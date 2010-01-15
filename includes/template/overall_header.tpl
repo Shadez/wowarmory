@@ -2,16 +2,16 @@
 <html>
 <head>
 <link href="favicon.ico" rel="shortcut icon" />
+<link href="/_content/ru_ru/searchplugin.xml" rel="search" title="Оружейная World of Warcraft" type="application/opensearchdescription+xml">
 <title>{{#armory_site_title#}}</title>
 <meta content="text/html; charset={{$ArmoryConfig.siteCharset}}" http-equiv="Content-Type" />
 <meta content="{{#armory_meta_description#}}" name="description" />
 <style media="screen, projection" type="text/css">
 		@import "_css/master.css";
 		@import "shared/global/menu/topnav/topnav.css";
-		
+        {{$addCssSheet}}		
 		@import "_css/_lang/{{$ArmoryConfig.locale}}/language.css";
 		@import "_css/_region/eu/region.css";
-        {{$addCssSheet}}
 	</style>
 <script src="shared/global/third-party/jquery/jquery.js" type="text/javascript"></script>
 <script src="shared/global/third-party/jquery/datefunctions.js" type="text/javascript"></script>
