@@ -2329,48 +2329,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_2">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ оружия жизни Земли&quot;,&quot;Великий символ&quot;,&quot;Увеличивает вероятность срабатывания эффекта &quot;Жизнь земли&quot; на 5%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ оружия жизни Земли</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ быстрины&quot;,&quot;Великий символ&quot;,&quot;Увеличивает время действия заклинания &quot;Быстрина&quot; на 6 с.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ быстрины</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ щита земли&quot;,&quot;Великий символ&quot;,&quot;Увеличивает количество здоровья, восстанавливаемого заклинанием &quot;Щит земли&quot;, на 20%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-3.gif">Символ щита земли</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ водного щита&quot;,&quot;Малый символ&quot;,&quot;Увеличивает количество зарядов заклинания &quot;Водный щит&quot; на 1.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ водного щита</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-<div id="glyphSet_1" style="display: none">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ лавы&quot;,&quot;Великий символ&quot;,&quot;Повышает силу заклинания &quot;Выброс лавы&quot; на 10% от вашей общей силы заклинаний.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ лавы</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ огненного шока&quot;,&quot;Великий символ&quot;,&quot;Периодический урон заклинания &quot;Огненный шок&quot; теперь может быть критическим.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ огненного шока</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ тотема гнева&quot;,&quot;Великий символ&quot;,&quot;При установке тотема гнева сила заклинаний шамана возрастает на 30% от бонуса силы заклинаний, обеспечиваемого тотемом. Время действия эффекта &ndash; 5 мин.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-3.gif">Символ тотема гнева</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ обновленной жизни&quot;,&quot;Малый символ&quot;,&quot;Способность &quot;Перерождение&quot; не требует реагентов.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ обновленной жизни</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

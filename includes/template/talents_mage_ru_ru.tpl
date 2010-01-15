@@ -2475,28 +2475,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_1">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ ледяной преграды&quot;,&quot;Великий символ&quot;,&quot;Увеличивает количество урона, поглощаемого заклинанием &quot;Ледяная преграда&quot;, на 30%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ ледяной преграды</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ стылой крови&quot;,&quot;Великий символ&quot;,&quot;При применении способности &quot;Стылая кровь&quot; с вас снимаются все эффекты, снижающие скорость передвижения и применения заклинаний.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ стылой крови</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ пингвина&quot;,&quot;Малый символ&quot;,&quot;Ваше заклинание &quot;Превращение в овцу&quot; обращает цель в пингвина.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ пингвина</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

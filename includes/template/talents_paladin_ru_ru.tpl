@@ -2266,28 +2266,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_1">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ вспышки Света&quot;,&quot;Великий символ&quot;,&quot;Повышает вероятность критического эффекта заклинания &quot;Вспышка Света&quot; на 5%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ вспышки Света</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ Света небес&quot;,&quot;Великий символ&quot;,&quot;Заклинание &quot;Свет небес&quot; также восстанавливает здоровье в объеме 10% от основного эффекта 5 дружественным целям в радиусе 8 м от цели заклинания.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ Света небес</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ благословения королей&quot;,&quot;Малый символ&quot;,&quot;Снижает затраты маны на заклинания &quot;Благословение королей&quot; и &quot;Великое благословение королей&quot; на 50%.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ благословения королей</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ благословения мудрости&quot;,&quot;Малый символ&quot;,&quot;Увеличивает время действия наложенного на себя заклинания &quot;Благословение мудрости&quot; на 20 м.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-2.gif">Символ благословения мудрости</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

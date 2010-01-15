@@ -2394,28 +2394,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_1">
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

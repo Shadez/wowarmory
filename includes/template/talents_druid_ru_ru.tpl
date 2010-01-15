@@ -2469,48 +2469,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_2" style="display: none">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ целительного прикосновения&quot;,&quot;Великий символ&quot;,&quot;Повышает эффективность заклинания &quot;Целительное прикосновение&quot;, уменьшая время произнесения на 1.5 с., затраты маны &ndash; на 25%, а количество восстанавливаемого здоровья &ndash; на 50%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ целительного прикосновения</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ гнева&quot;,&quot;Великий символ&quot;,&quot;Сокращает задержку произнесения заклинания &quot;Гнев&quot; при получении урона на 50%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ гнева</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-<div id="glyphSet_1">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ трепки&quot;,&quot;Великий символ&quot;,&quot;Увеличивает количество целей, поражаемых способностью &quot;Трепка&quot;, на 1.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ трепки</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ неистового восстановления&quot;,&quot;Великий символ&quot;,&quot;Увеличивает получаемое исцеление на 20%., пока вы находитесь под эффектом &quot;Неистового восстановления&quot; .&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ неистового восстановления</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ шипов&quot;,&quot;Малый символ&quot;,&quot;Увеличивает время действия заклинания &quot;Шипы&quot; на 50 м, когда вы применяете его на себя.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ шипов</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ безграничного возрождения&quot;,&quot;Малый символ&quot;,&quot;Для заклинания &quot;Возрождение&quot; больше не требуется реагент.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-2.gif">Символ безграничного возрождения</span>
-</div>
-<div class="glyph staticTip emptyGlyphminor" onmouseover="makeGlyphTooltip('Нет символа','Малый символ',' ')">
-<span>Нет символа</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

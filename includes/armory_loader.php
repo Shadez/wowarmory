@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 47
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r46');
+define('DB_VERSION', 'armory_r47');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
@@ -47,7 +47,7 @@ if(!@include('classes/class.utils.php')) {
 
 $utils = new Utils;
 
-/** Login **/
+/** Login 
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
 }
@@ -61,7 +61,7 @@ if(isset($_SESSION['wow_login'])) {
     $armory->tpl->assign('myVaultCharacters', $utils->getCharsArray());
     $armory->tpl->assign('selectedVaultCharacter', $utils->getCharacter());
 }
-/** End login **/
+ End login **/
 
 if(isset($_GET['locale'])) {
     $tmp = strtolower($_GET['locale']);

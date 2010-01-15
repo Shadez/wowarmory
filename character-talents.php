@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 47
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,6 +25,7 @@
 define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
+define('load_items_class', true);
 define('load_achievements_class', true);
 define('load_items_class', true);
 
@@ -64,8 +65,70 @@ if($guilds->extractPlayerGuildId()) {
     $armory->tpl->assign('guildName', $guilds->getGuildName());
 }
 //TODO: Dualspec
-$talents = $characters->extractCharacterTalents();
-$armory->tpl->assign('talents', $talents);
+// Таланты
+// Отображение 2й ветки талантов будет работать, если на ядро установлен соответствующий патч
+// !Поддерживается ТОЛЬКО порт от KiriX!
+$tp = '';/*
+if($armory->armoryconfig['useDualSpec'] == true) {
+    $ds = 0;
+    while($ds<2) {
+        for($i=0;$i<3;$i++) {
+            if($i) {
+                $tp .= " / ";
+            }
+            $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i), true, $ds);
+        }
+        // Если у персонажа ещё нет двойной специализации
+        if($tp == ' /  / ') {
+            $armory->tpl->assign('dualSpecError', true);
+        }
+        else {
+            $armory->tpl->assign('dualSpec', true);
+            $talent_trees = explode(' / ', $tp);
+            $currentTree = Utils::GetMaxArray($talent_trees);
+            $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
+            $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
+            $armory->tpl->assign('talents_builds_'.$ds, $tp);
+            $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
+            $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
+            $armory->tpl->assign('ds_'.$ds, $talent_trees);
+            $tp = ''; // Очищаем предыдущую ветку
+            $ds++;
+        }
+    }
+    $armory->tpl->assign('disabledDS_0', false);
+    $armory->tpl->assign('disabledDS_1', false);
+    $activespec = $armory->cDB->selectCell("SELECT `activespec` FROM `characters` WHERE `guid`=? LIMIT 1", $characters->guid);
+    $disabledspec = ($activespec == 1) ? 0 : 1;
+    $armory->tpl->assign('disabledDS_'.$disabledspec, true);
+    for($i=0;$i<2;$i++) {
+        $armory->tpl->assign('talents_'.$i, $characters->extractCharacterTalents(true, $i));
+    }
+}
+else {
+    */
+    for($i=0;$i<3;$i++) {
+        if($i) {
+            $tp .= " / ";
+        }
+        $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i));
+    }
+    $talent_trees = explode(' / ', $tp);
+    $currentTree = Utils::GetMaxArray($talent_trees);
+    $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
+    $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
+    $armory->tpl->assign('talents_builds', $tp);
+    $armory->tpl->assign('treeName', $currentTreeName);
+    $armory->tpl->assign('tree_js', $talent_trees);
+    $armory->tpl->assign('disabledDS_1', ' disabledSpec');
+    $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
+    $talents = $characters->extractCharacterTalents();
+    $armory->tpl->assign('talents', $talents);
+    $glyphs = $characters->extractCharacterGlyphs();
+    $armory->tpl->assign('bigGlyphs', $glyphs['big']);
+    $armory->tpl->assign('smallGlyphs', $glyphs['small']);
+//}
+
 switch($characters->class) {
     case 1:
         $tplName = 'warrior_'.$_locale;

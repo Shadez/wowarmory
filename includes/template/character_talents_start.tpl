@@ -109,28 +109,52 @@
 </div>
 </div>
 </div>
+<div class="header_break">
+<!---->
+</div>
 <script src="_js/character/talents.js" type="text/javascript"></script>
 <div class="talentGlyphBg">
 <div class="talentGlyphFooter">
-<div class="talentGlyphHeaderMultiSpec">
+<div class="talentGlyphHeader">
+<div id="glyphHolder">
+<div id="glyphSet_2" style="display: none">
+</div>
+<div id="glyphSet_1">
+{{foreach from=$bigGlyphs item=glyph}}
+<div class="staticTip glyph major" onmouseover="makeGlyphTooltip('{{$glyph.name}}','{{#armory_character_talents_major_glyph#}}','{{$glyph.description}}')">
+<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif" />{{$glyph.name}}</span>
+</div>
+
+{{/foreach}}
+
+{{foreach from=$smallGlyphs item=glyph}}
+<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip('{{$glyph.name}}','{{#armory_character_talents_major_glyph#}}','{{$glyph.description}}')">
+<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif" />{{$glyph.name}}</span>
+</div>
+
+{{/foreach}}
+</div>
+</div>
 {{if $dualSpec}}
 <div class="talentSpecSwitchHolder">
 <table class="talentSpecSwitch">
 <tr>
-<td id="group_1"><a class="inActiveTalents" href="javascript:void(0)" id="group_1_link" onclick="switchTalentSpec('','1', '{{$spec_0.build}}')">
+<td {{if $disabledDS_0 == true}}class="selectedSet"{{/if}} id="group_1">
+<a class="{{if $disabledDS_0 == false}}inA{{else}}a{{/if}}ctiveTalents" href="javascript:void(0)" id="group_1_link" onclick="switchTalentSpec('1','1', '{{$talents_0}}')">
 <div>
-<img src="wow-icons/_images/21x21/{{$spec_0.icon}}.png" />{{$spec_0.name}}</div>
+<img src="wow-icons/_images/21x21/{{$treeIcon_0}}.png" />{{$treeName_0}}</div>
 </a>
 <div class="buildPointer">
-
+<!---->
 </div>
 </td>
-<td  id="group_2"><a class="activeTalents" href="javascript:void(0)" id="group_2_link" onclick="switchTalentSpec('1','2', '{{$spec_1.build}}')">
+<td {{if $$disabledDS_1 == true}}class="selectedSet"{{/if}} id="group_2">
+<a class="{{if $disabledDS_1 == false}}inA{{else}}a{{/if}}ctiveTalents" href="javascript:void(0)" id="group_2_link" onclick="switchTalentSpec('','2', '{{$talents_1}}')">
 <div>
-<img src="wow-icons/_images/21x21/{{$spec_1.icon}}.png" />{{$spec_1.name}}</div>
+<img src="wow-icons/_images/21x21/{{$treeIcon_1}}.png" />{{$treeName_1}}</div>
 </a>
 <div class="buildPointer">
-
+<!---->
 </div>
 </td>
 </tr>

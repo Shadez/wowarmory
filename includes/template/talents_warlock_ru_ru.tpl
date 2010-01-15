@@ -2346,28 +2346,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_1">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ порчи&quot;,&quot;Великий символ&quot;,&quot;При нанесении урона заклинанием &quot;Порча&quot; вы с вероятностью 4% можете войти в состояние теневого транса. В этом состоянии время применения следующего заклинания &quot;Стрела Тьмы&quot; уменьшается на 100%.&quot;)">
-<span><img class="majorGlyphIcon" src="/_images/talents/glyph-small-major-1.gif">Символ порчи</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ камня здоровья&quot;,&quot;Великий символ&quot;,&quot;При использовании камня здоровья вы восстанавливаете на 30% больше здоровья.&quot;)">
-<span><img class="majorGlyphIcon" src="/_images/talents/glyph-small-major-2.gif">Символ камня здоровья</span>
-</div>
-<div class="glyph staticTip emptyGlyphmajor" onmouseover="makeGlyphTooltip('Нет символа','Великий символ',' ')">
-<span>Нет символа</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ Килрогга&quot;,&quot;Малый символ&quot;,&quot;Увеличивает скорость ока Килрогга на 50% и позволяет ему летать в тех зонах, где можно использовать летающие средства передвижения.&quot;)">
-<span><img class="minorGlyphIcon" src="/_images/talents/glyph-small-minor-1.gif">Символ Килрогга</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ похищения души&quot;,&quot;Малый символ&quot;,&quot;Заклинание &quot;Похищение души&quot; может создать дополнительный осколок души.&quot;)">
-<span><img class="minorGlyphIcon" src="/_images/talents/glyph-small-minor-2.gif">Символ похищения души</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ бесконечного дыхания&quot;,&quot;Малый символ&quot;,&quot;Цели, находящиеся под воздействием вашего эффекта &quot;Бесконечное дыхание&quot;, плавают на 20% быстрее.&quot;)">
-<span><img class="minorGlyphIcon" src="/_images/talents/glyph-small-minor-3.gif">Символ бесконечного дыхания</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -2374,48 +2374,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_2">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ слова силы: Щит&quot;,&quot;Великий символ&quot;,&quot;Заклинание &quot;Слово силы: Щит&quot; также восстанавливает цели количество здоровья, равное 20% поглощенного урона.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-1.gif">Символ слова силы: Щит</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ быстрого исцеления&quot;,&quot;Великий символ&quot;,&quot;Снижает затраты маны на заклинание &quot;Быстрое исцеление&quot; на 10%.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-2.gif">Символ быстрого исцеления</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ исповеди&quot;,&quot;Великий символ&quot;,&quot;Сокращает время восстановления заклинания &quot;Исповедь&quot; на 2 с.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-3.gif">Символ исповеди</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ исчадия Тьмы&quot;,&quot;Малый символ&quot;,&quot;Восполняет 5% максимального запаса маны, если ваше исчадие Тьмы погибает от полученного урона.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-1.gif">Символ исчадия Тьмы</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ левитации&quot;,&quot;Малый символ&quot;,&quot;Для произнесения заклинания &quot;Левитация&quot; больше не требуется реагент.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-2.gif">Символ левитации</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ стойкости&quot;,&quot;Малый символ&quot;,&quot;Снижает затраты маны на заклинания &quot;Слово силы: Стойкость&quot; и &quot;Молитва Стойкости&quot; на 50%.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-3.gif">Символ стойкости</span>
-</div>
-</div>
-<div id="glyphSet_1" style="display: none">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ слова Тьмы: Боль&quot;,&quot;Великий символ&quot;,&quot;Увеличивает урон, наносимый вашим заклинанием &quot;Пытка разума&quot;, на 10%, если цель находится под воздействием эффекта &quot;Слово Тьмы: Боль&quot;.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-1.gif">Символ слова Тьмы: Боль</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ Тьмы&quot;,&quot;Великий символ&quot;,&quot;При нанесении критических ударов заклинаниями прямого действия в облике Тьмы ваша сила заклинаний повышается на 10% от вашего духа на 10 сек.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-2.gif">Символ Тьмы</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ пытки разума&quot;,&quot;Великий символ&quot;,&quot;Увеличивает дальность действия заклинания &quot;Пытка разума&quot; на 10 м.&quot;)">
-<span><img class="majorGlyphIcon" src="/images/talents/glyph-small-major-3.gif">Символ пытки разума</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ левитации&quot;,&quot;Малый символ&quot;,&quot;Для произнесения заклинания &quot;Левитация&quot; больше не требуется реагент.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-1.gif">Символ левитации</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ исчадия Тьмы&quot;,&quot;Малый символ&quot;,&quot;Восполняет 5% максимального запаса маны, если ваше исчадие Тьмы погибает от полученного урона.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-2.gif">Символ исчадия Тьмы</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ стойкости&quot;,&quot;Малый символ&quot;,&quot;Снижает затраты маны на заклинания &quot;Слово силы: Стойкость&quot; и &quot;Молитва Стойкости&quot; на 50%.&quot;)">
-<span><img class="minorGlyphIcon" src="/images/talents/glyph-small-minor-3.gif">Символ стойкости</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 47
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -668,6 +668,33 @@ Class Characters extends Connector {
             if($points[$i] > $max) {$max = $points[$i]; $name = $tab;}
         }
         return $bild;
+    }
+    
+    public function extractCharacterGlyphs() {
+        if(!$this->guid) {
+            return false;
+        }
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $glyphData = array();
+        $glyphData['big'] = array();
+        $glyphData['small'] = array();
+        $glyphFields = array('0' => 1319, '1' => 1320, '2' => 1321, '3' => 1322, '4' => 1323, '5' => 1324);
+        for($i=0;$i<6;$i++) {
+            $glyph_id = $this->GetDataField($glyphFields[$i]);
+            $glyph_info = $this->aDB->selectRow("
+            SELECT `type`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`
+                FROM `glyphproperties` WHERE `id`=?", $glyph_id);
+            if(!$glyph_info) {
+                continue;
+            }
+            if($glyph_info['type'] == 0) {
+                $glyphData['big'][$i] = $glyph_info;
+            }
+            elseif($glyph_info['type'] == 1) {
+                $glyphData['small'][$i] = $glyph_info;
+            }
+        }
+        return $glyphData;
     }
     
     public function ReturnTalentTreesNames($class, $key) {

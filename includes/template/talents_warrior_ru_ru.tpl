@@ -2441,48 +2441,6 @@
 </table>
 </div>
 </div>
-<div id="glyphHolder">
-<div id="glyphSet_2" style="display: none">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ подрезанного сухожилия&quot;,&quot;Великий символ&quot;,&quot;10% вероятность того, что способность &quot;Подрезать сухожилия&quot; обездвижит цель на 5 сек.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ подрезанного сухожилия</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ смертельного удара&quot;,&quot;Великий символ&quot;,&quot;Увеличивает урон от способности &quot;Смертельный удар&quot; на 10%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ смертельного удара</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ стремительного рывка&quot;,&quot;Великий символ&quot;,&quot;Сокращает время восстановления способности &quot;Рывок&quot; на 7%.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-3.gif">Символ стремительного рывка</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ боевого крика&quot;,&quot;Малый символ&quot;,&quot;Увеличивает время действия способности &quot;Боевой крик&quot; на 2 мин.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ боевого крика</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ неоспоримой победы&quot;,&quot;Малый символ&quot;,&quot;Увеличивает время, в течение которого можно использовать способность &quot;Победный раж&quot;, на 5 с.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-2.gif">Символ неоспоримой победы</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ рывка&quot;,&quot;Малый символ&quot;,&quot;Увеличивает дальность действия способности &quot;Рывок&quot; на 5 м.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-3.gif">Символ рывка</span>
-</div>
-</div>
-<div id="glyphSet_1">
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ реванша&quot;,&quot;Великий символ&quot;,&quot;После применения способности &quot;Реванш&quot; не требуется ярости для применения способности &quot;Удар героя&quot;.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-1.gif">Символ реванша</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ раскола брони&quot;,&quot;Великий символ&quot;,&quot;Ваша способность &quot;Раскол брони&quot; действует еще на одну цель, находящуюся поблизости.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-2.gif">Символ раскола брони</span>
-</div>
-<div class="staticTip glyph major" onmouseover="makeGlyphTooltip(&quot;Символ блокирования&quot;,&quot;Великий символ&quot;,&quot;Увеличивает показатель блока на 10% на 10 сек. после применения способности &quot;Мощный удар щитом&quot;.&quot;)">
-<span><img class="majorGlyphIcon" src="images/talents/glyph-small-major-3.gif">Символ блокирования</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ рывка&quot;,&quot;Малый символ&quot;,&quot;Увеличивает дальность действия способности &quot;Рывок&quot; на 5 м.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-1.gif">Символ рывка</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ кровавой ярости&quot;,&quot;Малый символ&quot;,&quot;Уменьшает расход здоровья на использование способности &quot;Кровавая ярость&quot; на 100%.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-2.gif">Символ кровавой ярости</span>
-</div>
-<div class="staticTip glyph minor" onmouseover="makeGlyphTooltip(&quot;Символ боевого крика&quot;,&quot;Малый символ&quot;,&quot;Увеличивает время действия способности &quot;Боевой крик&quot; на 2 мин.&quot;)">
-<span><img class="minorGlyphIcon" src="images/talents/glyph-small-minor-3.gif">Символ боевого крика</span>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

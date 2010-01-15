@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 47
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -68,11 +68,8 @@ $armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction()
 if($guilds->extractPlayerGuildId()) {
     $armory->tpl->assign('guildName', $guilds->getGuildName());
 }
-
-// Таланты
-// Отображение 2й ветки талантов будет работать, если на ядро установлен соответствующий патч
-// !Поддерживается ТОЛЬКО порт от KiriX!
 $tp = '';
+/*
 if($armory->armoryconfig['useDualSpec'] == true) {
     $armory->tpl->assign('dualSpec', true);
     $ds = 0;
@@ -104,7 +101,7 @@ if($armory->armoryconfig['useDualSpec'] == true) {
     $disabledspec = ($activespec == 1) ? 0 : 1;
     $armory->tpl->assign('disabledDS_'.$disabledspec, ' disabledSpec');
 }
-else {
+else {*/
     for($i=0;$i<3;$i++) {
         if($i) {
             $tp .= " / ";
@@ -120,7 +117,7 @@ else {
     $armory->tpl->assign('tree_js', $talent_trees);
     $armory->tpl->assign('disabledDS_1', ' disabledSpec');
     $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
-}
+//}
 // Профессии
 $trade_skills = $characters->extractCharacterProfessions();
 // Обрезаем кол-во профессий до 2х (в случае, если на сервере выставлено
