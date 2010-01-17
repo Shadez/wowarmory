@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 47
+ * @revision 48
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -152,6 +152,8 @@ $armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
 /*** Звание ***/
 // TODO: расставить запятые
 $charTitle = $characters->GetCharacterTitle();
+$armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTeamInfo());
+$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
 $armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
 $armory->tpl->assign('playerHonorKills', $characters->getCharacterHonorKills());
 $armory->tpl->assign('tpl2include', 'character_sheet_info');

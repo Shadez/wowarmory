@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 48
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -75,6 +75,7 @@ for($i=1; $i<10; $i++) {
 }
 $armory->tpl->assign('tpl2include', 'character_achievement_main'); // Show achievements page
 $armory->tpl->assign('achievementsTree', $achievements->buildAchievementsTree()); // Achievement categories
+$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
 
 /*** Звание ***/
 $charTitle = $characters->GetCharacterTitle();

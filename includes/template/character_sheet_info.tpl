@@ -86,7 +86,11 @@
 <a class="" href="character-reputation.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="reputation_subTab"><span>{{#armory_character_sheet_reputaion_tab#}}</span></a>
 <a class="" href="character-achievements.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="achievements_subTab"><span>{{#armory_character_sheet_achievements_tab#}}</span></a>
 <!--<a class="" href="character-statistics.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}" id="statistics_subTab"><span>{{#armory_character_sheet_statistic_tab#}}</span></a>
---></div>
+-->
+{{if $characterArenaTeamInfoButton}}
+<a class="" href="character-arenateams.xml?r={{$realm}}&amp;cn={{$name}}{{if $guildName}}&amp;gn={{$guildName}}{{/if}}"><span>{{#armory_character_sheet_arena#}}</span></a>
+{{/if}}
+</div>
 <div class="full-list">
 <div class="info-pane">
 <div class="profile-wrapper char_sheet">
@@ -449,10 +453,10 @@
 <div id="debugtxt"></div>
 <div class="profileCenter" id="center_target">
 <div id="pose_saving">
-<span>Сохранение...</span>
+<span>РЎРѕС…СЂР°РЅРµРЅРёРµ...</span>
 </div>
 <div id="pose_save_ok">
-<span>Поза сохранена!</span>
+<span>РџРѕР·Р° СЃРѕС…СЂР°РЅРµРЅР°!</span>
 </div>
 <div id="ModelViewer3">
 <div class="noFlash">
@@ -824,7 +828,7 @@
 	
 	</script>
 <script src="_js/_lang/{{$ArmoryConfig.locale}}/character-sheet.js" type="text/javascript"></script>
-<script src="/_js/character/textObjects.js" type="text/javascript"></script>
+<script src="_js/character/textObjects.js" type="text/javascript"></script>
 </div>
 </div>
 <script>
@@ -893,6 +897,173 @@
 </div>
 </div>
 <div class="last_modified"></div>
+{{if $characterArenaTeamInfo}}
+<div class="bonus-stats">
+<table class="deco-frame">
+<thead>
+<tr>
+<td class="sl"></td><td class="ct st"></td><td class="sr"></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="sl"><b><em class="port"></em></b></td><td class="ct">
+<div class="arena-ranking">
+<h2>{{#armory_character_sheet_arena#}}</h2>
+</div>
+<ul class="badges-pvp">
+{{if $characterArenaTeamInfo.2x2.name==''}}
+<li>
+<div class="arena-team-faded">
+<h4>2{{#armory_arenaladder_versus#}}2</h4>
+<em><span>{{#armory_character_no_team#}}</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div class="arenacontainer">
+<h4>2{{#armory_arenaladder_versus#}}2</h4>
+<em><span>{{#armory_arenaladder_rating#}}: {{$characterArenaTeamInfo.2x2.rating}}</span></em>
+<div class="icon" onclick="window.location='team-info.xml?r={{$realm}}&amp;ts=2&amp;t={{$characterArenaTeamInfo.2x2.name}}'" style="background-image: url('images/icons/badges/arena/arena-4.jpg'); cursor: pointer;">
+<img border="0" src="images/badge-border-pvp-bronze.gif" /><div class="rank-num" id="arenarank2_2">
+<div id="arenarank2_2" style="display:none;"></div>
+<script type="text/javascript">
+		var flashId="arenarank2_2";
+		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
+		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
+		}else
+			printFlash("arenarank2_2", "images/rank.swf", "transparent", "", "", "100", "40", "best", "", "rankNum={{$characterArenaTeamInfo.2x2.rank}}", "<div class=teamicon-noflash><a target=_blank href=http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash><img src=images/{{$ArmoryConfig.locale}}/getflash.png class=p/></a></div>")
+		
+		</script>
+</div>
+</div>
+</div>
+</li>
+{{/if}}
+{{if $characterArenaTeamInfo.3x3.name==''}}
+<li>
+<div class="arena-team-faded">
+<h4>3{{#armory_arenaladder_versus#}}3</h4>
+<em><span>{{#armory_character_no_team#}}</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div class="arenacontainer">
+<h4>3{{#armory_arenaladder_versus#}}3</h4>
+<em><span>{{#armory_arenaladder_rating#}}: {{$characterArenaTeamInfo.3x3.rating}}</span></em>
+<div class="icon" onclick="window.location='team-info.xml?r={{$realm}}&amp;ts=3&amp;t={{$characterArenaTeamInfo.3x3.name}}'" style="background-image: url('images/icons/badges/arena/arena-5.jpg'); cursor: pointer;">
+<img border="0" src="images/badge-border-pvp-bronze.gif" /><div class="rank-num" id="arenarank2_3">
+<div id="arenarank2_3" style="display:none;"></div>
+<script type="text/javascript">
+		var flashId="arenarank2_3";
+		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
+		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
+		}else
+			printFlash("arenarank2_3", "images/rank.swf", "transparent", "", "", "100", "40", "best", "", "rankNum={{$characterArenaTeamInfo.3x3.rank}}", "<div class=teamicon-noflash><a target=_blank href=http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash><img src=images/{{$ArmoryConfig.locale}}/getflash.png class=p/></a></div>")
+		
+		</script>
+</div>
+</div>
+</div>
+</li>
+{{/if}}
+{{if $characterArenaTeamInfo.5x5.name==''}}
+<li>
+<div class="arena-team-faded">
+<h4>5{{#armory_arenaladder_versus#}}5</h4>
+<em><span>{{#armory_character_no_team#}}</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div class="arenacontainer">
+<h4>5{{#armory_arenaladder_versus#}}5</h4>
+<em><span>{{#armory_arenaladder_rating#}}: {{$characterArenaTeamInfo.5x5.rating}}</span></em>
+<div class="icon" onclick="window.location='team-info.xml?r={{$realm}}&amp;ts=5&amp;t={{$characterArenaTeamInfo.5x5.name}}'" style="background-image: url('images/icons/badges/arena/arena-5.jpg'); cursor: pointer;">
+<img border="0" src="images/badge-border-pvp-bronze.gif" /><div class="rank-num" id="arenarank2_5">
+<div id="arenarank2_5" style="display:none;"></div>
+<script type="text/javascript">
+		var flashId="arenarank2_5";
+		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
+		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
+		}else
+			printFlash("arenarank2_5", "images/rank.swf", "transparent", "", "", "100", "40", "best", "", "rankNum={{$characterArenaTeamInfo.5x5.rank}}", "<div class=teamicon-noflash><a target=_blank href=http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash><img src=images/{{$ArmoryConfig.locale}}/getflash.png class=p/></a></div>")
+		
+		</script>
+</div>
+</div>
+</div>
+</li>
+{{/if}}
+</ul>
+<ul class="badges-pvp personalrating">
+{{if $characterArenaTeamInfo.2x2.name}}
+<li>
+<div>
+<em><span><b>{{$characterArenaTeamInfo.2x2.name}}</b>
+<br />{{#armory_teaminfo_pr_tooltip#}}: {{$characterArenaTeamInfo.2x2.personalrating}}<br>
+</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div>
+<em><span><b></b>
+<br /><br />
+</span></em>
+</div>
+</li>
+{{/if}}
+{{if $characterArenaTeamInfo.3x3.name}}
+<li>
+<div>
+<em><span><b>{{$characterArenaTeamInfo.3x3.name}}</b>
+<br />{{#armory_teaminfo_pr_tooltip#}}: {{$characterArenaTeamInfo.3x3.personalrating}}<br>
+</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div>
+<em><span><b></b>
+<br /><br />
+</span></em>
+</div>
+</li>
+{{/if}}
+{{if $characterArenaTeamInfo.5x5.name}}
+<li>
+<div>
+<em><span><b>{{$characterArenaTeamInfo.5x5.name}}</b>
+<br />{{#armory_teaminfo_pr_tooltip#}}: {{$characterArenaTeamInfo.5x5.personalrating}}<br>
+</span></em>
+</div>
+</li>
+{{else}}
+<li>
+<div>
+<em><span><b></b>
+<br /><br />
+</span></em>
+</div>
+</li>
+{{/if}}
+</ul>
+</td><td class="sr"><b><em class="star"></em></b></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="sl"></td><td align="center" class="ct sb"></td><td class="sr"></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="clear"></div>
+<br />
+<br />
+{{/if}}
 </div>
 </div>
 </div>

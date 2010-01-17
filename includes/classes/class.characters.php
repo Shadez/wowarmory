@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 47
+ * @revision 48
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1147,6 +1147,60 @@ Class Characters extends Connector {
         }
         $skillInfo = $this->cDB->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $this->guid, $skill);
         return $skillInfo;
+    }
+    
+    public function getCharacterArenaTeamInfo($check = false) {
+        if(!$this->guid) {
+            return false;
+        }
+        $arenaTeamInfo = array();
+        $tmp_info = $this->cDB->select(
+        "SELECT 
+        `arena_team_member`.`arenateamid`,
+        `arena_team_member`.`guid`,
+        `arena_team_member`.`personal_rating`,
+        `arena_team`.`name`,
+        `arena_team`.`type`,
+        `arena_team_stats`.`rating`,
+        `arena_team_stats`.`rank`
+        FROM `arena_team_member` AS `arena_team_member`
+        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team_member`.`arenateamid`
+        LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`arena_team_member`.`arenateamid`
+        WHERE `arena_team_member`.`guid`=?", $this->guid);
+        if(!$tmp_info) {
+            return false;
+        }
+        if($check == true && $tmp_info) {
+            return true;
+        }
+        for($i=0;$i<3;$i++) {
+            if($tmp_info[$i]['type'] == '2') {
+                $arenaTeamInfo['2x2'] = array(
+                    'name' => $tmp_info[$i]['name'],
+                    'rank' => $tmp_info[$i]['rank'],
+                    'rating' => $tmp_info[$i]['rating'],
+                    'personalrating' => $tmp_info[$i]['personal_rating']
+                );
+            }
+            elseif($tmp_info[$i]['type'] == '3') {
+                $arenaTeamInfo['3x3'] = array(
+                    'name' => $tmp_info[$i]['name'],
+                    'rank' => $tmp_info[$i]['rank'],
+                    'rating' => $tmp_info[$i]['rating'],
+                    'personalrating' => $tmp_info[$i]['personal_rating']
+                );
+            }
+            elseif($tmp_info[$i]['type'] == '5') {
+                $arenaTeamInfo['5x5'] = array(
+                    'name' => $tmp_info[$i]['name'],
+                    'rank' => $tmp_info[$i]['rank'],
+                    'rating' => $tmp_info[$i]['rating'],
+                    'personalrating' => $tmp_info[$i]['personal_rating']
+                );
+            }
+            return $arenaTeamInfo;
+        }
+        return false;
     }
 }
 ?>

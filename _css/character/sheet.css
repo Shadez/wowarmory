@@ -262,18 +262,18 @@ a.more_char_act:hover { background-position:-18px -210px; }
 .deco-frame thead td,.deco-frame tfoot td{height:9px;width:12px}
 .deco-frame tfoot td.sb b{height:9px;width:1px;position:relative}
 .deco-frame td.sl b,.deco-frame td.sr b{width:12px;display:block;height:1px;position:relative}
-.deco-frame thead td.sl{background:url('../../images/toggle_btns.jpg)df-tl.gif') no-repeat 0 0 !important}
-.deco-frame thead td.sr{background:url('../../images/toggle_btns.jpg)df-tr.gif') no-repeat 0 0 !important}
-.deco-frame .st{background:url('../../images/toggle_btns.jpg)df-t.gif') repeat-x 0 0 !important}
-.deco-frame tbody td.sl{background:url('../../images/toggle_btns.jpg)df-l.gif') repeat-y 0 0 !important;vertical-align:middle !important}
-.deco-frame tbody td.sr{background:url('../../images/toggle_btns.jpg)df-r.gif') repeat-y 100% 0 !important;vertical-align:middle !important}
-.deco-frame tfoot td.sl{background:url('../../images/toggle_btns.jpg)df-bl.gif') no-repeat 0 0 !important}
-.deco-frame tfoot td.sr{background:url('../../images/toggle_btns.jpg)df-br.gif') no-repeat 0 0 !important}
-.deco-frame .sb{background:url('../../images/toggle_btns.jpg)df-b.gif') repeat-x 0 0 !important}
+.deco-frame thead td.sl{background:url('../../images/df-tl.gif') no-repeat 0 0 !important}
+.deco-frame thead td.sr{background:url('../../images/df-tr.gif') no-repeat 0 0 !important}
+.deco-frame .st{background:url('../../images/df-t.gif') repeat-x 0 0 !important}
+.deco-frame tbody td.sl{background:url('../../images/df-l.gif') repeat-y 0 0 !important;vertical-align:middle !important}
+.deco-frame tbody td.sr{background:url('../../images/df-r.gif') repeat-y 100% 0 !important;vertical-align:middle !important}
+.deco-frame tfoot td.sl{background:url('../../images/df-bl.gif') no-repeat 0 0 !important}
+.deco-frame tfoot td.sr{background:url('../../images/df-br.gif') no-repeat 0 0 !important}
+.deco-frame .sb{background:url('../../images/df-b.gif') repeat-x 0 0 !important}
 .deco-frame .ct{padding:2px;width:100% !important}
-.deco-frame em.port{background:url('../../images/toggle_btns.jpg)df-left.gif') no-repeat;width:25px;height:114px;top:-57px;left:-15px;display:block;position:absolute}
-.deco-frame em.star{background:url('../../images/toggle_btns.jpg)df-right.gif') no-repeat;width:25px;height:114px;top:-57px;right:-15px;display:block;position:absolute}
-.deco-frame em.foot{background:url('../../images/toggle_btns.jpg)df-bot.gif') no-repeat;width:136px;height:36px;top:4px;left:-68px;display:block;position:absolute}
+.deco-frame em.port{background:url('../../images/df-left.gif') no-repeat;width:25px;height:114px;top:-57px;left:-15px;display:block;position:absolute}
+.deco-frame em.star{background:url('../../images/df-right.gif') no-repeat;width:25px;height:114px;top:-57px;right:-15px;display:block;position:absolute}
+.deco-frame em.foot{background:url('../../images/df-bot.gif') no-repeat;width:136px;height:36px;top:4px;left:-68px;display:block;position:absolute}
 
 /* under level 10 */
 .under10{width:550px;margin:0 auto;}
@@ -288,25 +288,25 @@ a.more_char_act:hover { background-position:-18px -210px; }
 
 /* arena/pvp */
 .arena-ranking{padding:8px 8px 5px 8px;;}
-.arena-ranking h2{clear:both;height:25px;line-height:25px !important;margin:0;padding:0 0 0 6px;background:url(../../images/toggle_btns.jpg)achievetitle-bg.jpg) #f1db91 0 0 repeat-y;color:#f2e09a;font:18px 'Trebuchet MS',Arial,Helvetica,sans-serif;text-transform:uppercase}
+.arena-ranking h2{clear:both;height:25px;line-height:25px !important;margin:0;padding:0 0 0 6px;background:url(../../images/achievetitle-bg.jpg) #f1db91 0 0 repeat-y;color:#f2e09a;font:18px 'Trebuchet MS',Arial,Helvetica,sans-serif;text-transform:uppercase}
 .arena-ranking h2 a:link,.arena-ranking h2 a:hover,.arena-ranking h2 a:visited,.arena-ranking h2 a:active{float:right;position:relative;color:#005ba1;font:11px 'Trebuchet MS',Arial,Helvetica,sans-serif;display:block;height:25px;line-height:25px;text-transform:none;background:url('../../images/toggle_btns.jpg)more-arrow.gif') 100% 50% no-repeat;padding-right:21px}
-.arena-ranking h3{margin:0 0 3px 0;padding:0 0 0px 6px;text-transform:uppercase;color:#847240;font-size:12px;background:url('../../images/toggle_btns.jpg)achievetitle-bg.jpg') #f0da8d -250px 100% repeat-y;}
+.arena-ranking h3{margin:0 0 3px 0;padding:0 0 0px 6px;text-transform:uppercase;color:#847240;font-size:12px;background:url('../../images/achievetitle-bg.jpg') #f0da8d -250px 100% repeat-y;}
 .arena-ranking h3 strong{color:#533A00}
 
 ul.badges-pvp{margin:3px 0 3px 8px;padding:0;width:100%}
-ul.badges-pvp li{float:left;width:32%;margin:0 3px 3px 0;padding:0;list-style:none;position:relative;border:1px dotted #cbb166;text-align:center;background:url(../../images/toggle_btns.jpg)achieve-pvp-bg.jpg) 50% 0 repeat;color:#443b1f}
+ul.badges-pvp li{float:left;width:32%;margin:0 3px 3px 0;padding:0;list-style:none;position:relative;border:1px dotted #cbb166;text-align:center;background:url(../../images/achieve-pvp-bg.jpg) 50% 0 repeat;color:#443b1f}
 ul.badges-pvp li h4{display:block;margin:0;padding:17px 0 0 0;font:28px Georgia,"Times New Roman",Times,serif}
 ul.badges-pvp li em{display:block;text-transform:uppercase;font:12px 'Trebuchet MS',Arial,Helvetica,sans-serif;letter-spacing:0px}
-ul.badges-pvp li .arenacontainer{width:100%;height:160px;background:url(../../images/toggle_btns.jpg)achieve-pvp-wreath.jpg) 50% 0 no-repeat}
+ul.badges-pvp li .arenacontainer{width:100%;height:160px;background:url(../../images/achieve-pvp-wreath.jpg) 50% 0 no-repeat}
 ul.badges-pvp li .icon{width:149px;height:82px;margin:0 0 0 -74px;padding:0;background-position:48px 11px;background-repeat:no-repeat;background-image:none;position:absolute;top:66px;left:50%}
 ul.badges-pvp li .icon img{width:149px;height:82px}
 ul.badges-pvp li .rank-num{width:60px;height:40px;margin:0 0 0 -30px;padding:0;background:none;position:absolute;top:54px;left:36%}
 .personalrating span {font-size:10px;}
-.arena-team-faded{width:100%;height:160px;background:url(../../images/toggle_btns.jpg)achieve-pvp-wreath.jpg) 50% 0 no-repeat}
+.arena-team-faded{width:100%;height:160px;background:url(../../images/achieve-pvp-wreath.jpg) 50% 0 no-repeat}
 .arena-team-faded h4{color:#b09c61}
 .arena-team-faded em{color:#b09c61}
 
-.teamShortcut { background: url('../../images/toggle_btns.jpg)icons/arenareports/view-team.gif') no-repeat top left; height: 21px; width: 21px; display: block; float: left; margin: 2px; text-align:center; }
+.teamShortcut { background: url('../../images/icons/arenareports/view-team.gif') no-repeat top left; height: 21px; width: 21px; display: block; float: left; margin: 2px; text-align:center; }
 
 /* Embeded 3d Character Styles */
 

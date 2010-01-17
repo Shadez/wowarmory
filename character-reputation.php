@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 48
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -74,6 +74,7 @@ function cmp($a, $b) {
 }
 usort($rep, "cmp");
 $armory->tpl->assign('repList', $rep);
+$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
 
 $armory->tpl->assign('tpl2include', 'character_reputation');
 $armory->tpl->display('overall_header.tpl');
