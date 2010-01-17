@@ -1,4 +1,5 @@
---ALTER TABLE `icons` ADD `texture` VARCHAR( 255 ) NOT NULL ;
+UPDATE `db_version` SET `version` = 'armory_r48';
+ALTER TABLE `icons` ADD `texture` VARCHAR( 255 ) NOT NULL ;
 UPDATE `icons` SET `texture`='generic_huwk_01_sleeve_au' WHERE `displayid`=220;
 UPDATE `icons` SET `texture`='generic_dwpr_01_sleeve_au' WHERE `displayid`=369;
 UPDATE `icons` SET `texture`='generic_dwwr_01_sleeve_au' WHERE `displayid`=371;
