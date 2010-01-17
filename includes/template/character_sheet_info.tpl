@@ -107,8 +107,16 @@
 <div id="forumLinks">
 <a class="staticTip" href="javascript:void();">{{$realm}}</a></div>
 <div class="profile-right" id="profileRight">
+{{if $_wow_login}}
+<a class="staticTip" href="javascript:void(0);" onclick="window.location='bookmarks.xml?action=1&amp;n={{$name}}'" id="bmcLink" onmouseover="setTipText('{{#armory_remember_this_character#}}');">
+<!----></a>
+{{elseif $characterIsBookmarked}}
+<a class="bmcEnabled" href="javascript:;">
+<!----></a>
+{{else}}
 <a class="bmcLink staticTip" id="bmcLink" onmouseover="setTipText('{{#armory_login_to_remember_profile#}}');">
 <!----></a>
+{{/if}}
 </div>
 <div class="profile-achieve">
 <a class="staticTip" href="character-sheet.xml?r={{$realm}}&amp;cn={{$name}}" onmouseover="setTipText('{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_race race=$race}}&nbsp;{{get_wow_class class=$class}}')">
@@ -134,7 +142,7 @@
 <a class="toggle_gear_list staticTip" href="javascript:;" onclick="toggle_gear('list_active')" onmouseover="setTipText('{{#armory_character_sheet_gear_list#}}')"></a><a class="toggle_gear_detail staticTip" href="javascript:;" onclick="toggle_gear('detail_active')" onmouseover="setTipText('{{#armory_character_sheet_view_model#}}')"></a>
 </div>
 <div class="btn_dual_tooltip">
-<label><input id="checkboxDualTooltip" onClick="javascript:setDualTooltipCookie();" type="checkbox" />{{#armory_vault_dualtooltips#}}</label>
+<label><input id="checkboxDualTooltip" onclick="javascript:setDualTooltipCookie();" type="checkbox" />{{#armory_vault_dualtooltips#}}</label>
 </div>
 <div class="gear_bg">
 <div class="health_stat">{{#armory_character_sheet_health#}}:<em>{{$healthValue}}</em>

@@ -282,9 +282,9 @@ function menuCheckLength(formReference){
 
 function goToPropass() {
 	if (getcookie2("armory.cookiePropassBG"))
-		document.location.href = "/arena-ladder.xml?b="+encodeURI(getcookie2("armory.cookiePropassBG")) + "&ts=3";
+		document.location.href = "arena-ladder.xml?b="+encodeURI(getcookie2("armory.cookiePropassBG")) + "&ts=3";
 	else
-		document.location.href = "/battlegroups.xml#tournament";
+		document.location.href = "battlegroups.xml#tournament";
 }
 
 function fixReportLink(linkId, siteUrl){
@@ -738,7 +738,7 @@ function getTipHTML(itemID, itemWithTip, mouseEvent)
 			//get the stylesheet			
 			var xslDoc = Sarissa.getDomDocument();
 			xslDoc.async = false;
-			xslDoc.load("/_layout/items/tooltip.xsl");
+			xslDoc.load("_layout/items/tooltip.xsl");
 			
 			xsltProcessor = new XSLTProcessor();
 			xsltProcessor.importStylesheet(xslDoc);		
@@ -754,7 +754,7 @@ function getTipHTML(itemID, itemWithTip, mouseEvent)
 		setTipText(tLoading+"...");
 		setToolTipPosition(itemWithTip,mouseEvent);
 		
-		var urlstr = "/item-tooltip.xml?i="+itemID;
+		var urlstr = "item-tooltip.xml?i="+itemID;
 		
 		$.ajax({
 			type: "GET",
@@ -921,13 +921,13 @@ function ajaxBookmarkChar(){
 	if(asyncType == true){
 		$("#profileRight")[0].innerHTML = "<div class=\"bmcEnabled\"></div>";
 	}		
-	buildBookmarkMenu("/vault/bookmarks.xml?" + charUrl + "&action=1");
+	buildBookmarkMenu("bookmarks.xml?" + charUrl + "&action=1");
 }
 
 //removes a bookmarked character from the drop down list
-function ajaxRemoveChar(removedLink, clickedItem){	
+function ajaxRemoveChar(removedLink, clickedItem){
 	$(theGlobalToolTip).hide();	//hide tooltip	
-	buildBookmarkMenu("/vault/bookmarks.xml?" + removedLink + "&action=2");	
+	buildBookmarkMenu("bookmarks.xml?" + removedLink + "&action=2");	
 }
 
 

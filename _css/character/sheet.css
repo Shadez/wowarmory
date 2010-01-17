@@ -22,44 +22,44 @@ object:focus, a:focus{-moz-outline-style:none}
 
 
 /* gear */
-.profile-master2{ margin:0px;background:url('../../images/toggle_btns.jpg)profile-bg.jpg') no-repeat 50% 0; height: 460px; width: 100%;}
+.profile-master2{ margin:0px;background:url('../../images/profile-bg.jpg') no-repeat 50% 0; height: 460px; width: 100%;}
 
 #gear-profile { width:519px; background:url(../../images/profile_bg_sheet_left.jpg) no-repeat; float:left; position:relative; left:-1px; z-index:2; }
 
 .gear_bg { background:url(../../images/sheet_itemsbg.jpg) no-repeat; height:585px; position:relative; z-index:2;}
 .gearItem { height: 55px; width: 60px; margin: 0px 0 1px 0; position: relative; background-position: 100% 4px; background-repeat:no-repeat;}
 .gearItem a { width: 75px; height: 60px; display: block; padding: 4px 0 0 0; position: relative; margin: 0 0 0 5px; } 
-.gearItem .noUpgrade:hover { background:url('../../images/toggle_btns.jpg)icon-glass0.gif') no-repeat 11px 0 !important; }
+.gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat 11px 0 !important; }
 
 .upgradeBox { height: 50px; width: 10px; position:relative; float: left; top: 0px;}
 
 
 .leftItems { position: absolute; left:24px; top:58px; }
-.leftItems .gearItem a.gearFrame { background:url('../../images/toggle_btns.jpg)icon-glass-left.gif') no-repeat -75px -1px; top: -1px; left: -13px;  }
+.leftItems .gearItem a.gearFrame { background:url('../../images/icon-glass-left.gif') no-repeat -75px -1px; top: -1px; left: -13px;  }
 .leftItems .gearItem a.gearFrame:hover { background-position: -3px 0px; }
 .leftItems .upgradeBox { left: 5px; display:block; }
 .leftItems .fly-horz{top:-1px;left:-100px}
 
 .rightItems { position:absolute; left:433px; top:58px;}
-.rightItems .gearItem a.gearFrame { background:url('../../images/toggle_btns.jpg)icon-glass-right.gif') no-repeat -2px -1px; top: -1px; left: 0; width: 74px;  }
+.rightItems .gearItem a.gearFrame { background:url('../../images/icon-glass-right.gif') no-repeat -2px -1px; top: -1px; left: 0; width: 74px;  }
 .rightItems .gearItem a.gearFrame:hover { background-position: -75px 0;  }
-.rightItems .gearItem .noUpgrade:hover { background:url('../../images/toggle_btns.jpg)icon-glass0.gif') no-repeat -2px 0 !important; }
+.rightItems .gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat -2px 0 !important; }
 .rightItems .upgradeBox {left: 57px; }
 .rightItems .fly-horz{top:-1px; left:60px}
 
 .bottomItems { position:absolute; left:172px; top:516px; }
 .bottomItems .gearItem { float: left; display: block; width: 55px; height: 60px; }
-.bottomItems .gearItem a.gearFrame { height: 75px; width: 60px; background:url('../../images/toggle_btns.jpg)icon-glass-bot.gif') no-repeat 7px 0px; top: -1px; left: -13px; padding: 0 6px 0 0;}
+.bottomItems .gearItem a.gearFrame { height: 75px; width: 60px; background:url('../../images/icon-glass-bot.gif') no-repeat 7px 0px; top: -1px; left: -13px; padding: 0 6px 0 0;}
 .bottomItems .gearItem a.gearFrame:hover { background-position: 5px -75px; }
-.bottomItems .gearItem .noUpgrade:hover { background:url('../../images/toggle_btns.jpg)icon-glass0.gif') no-repeat 5px 1px !important; }
+.bottomItems .gearItem .noUpgrade:hover { background:url('../../images/icon-glass0.gif') no-repeat 5px 1px !important; }
 .bottomItems .upgradeBox { width: 50px; height: 10px; top: 57px; left: 10px; }
 .bottomItems .fly-horz{top:55px;left:-10px}
 .bottomItems .s_relic { background:url(../../images/relic.jpg) no-repeat 3px 4px; }
 
-.rightItems .fly-horz,.leftItems .fly-horz,.bottomItems .fly-horz{ display: none; position: absolute; width: 95px; height: 53px; background: url('../../images/toggle_btns.jpg)flyout.png') no-repeat 0 0; z-index: 9991; padding: 8px 0 0 12px; }
+.rightItems .fly-horz,.leftItems .fly-horz,.bottomItems .fly-horz{ display: none; position: absolute; width: 95px; height: 53px; background: url('../../images/flyout.png') no-repeat 0 0; z-index: 9991; padding: 8px 0 0 12px; }
 .fly-horz a,.fly-horz a:active,.fly-horz a:visited{color:#5c4500 !important;font-family:Arial,Helvetica,sans-serif !important}
 .fly-horz a:hover{color:black !important;}
-a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important; padding: 0 0 0 23px !important; background: url('../../images/toggle_btns.jpg)icons/upgrade.gif') no-repeat !important; position: relative !important; top: 6px !important; left: 0 !important; height: 30px !important; width: 55px !important; line-height: 14px; }
+a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important; padding: 0 0 0 23px !important; background: url('../../images/icons/upgrade.gif') no-repeat !important; position: relative !important; top: 6px !important; left: 0 !important; height: 30px !important; width: 55px !important; line-height: 14px; }
 
 /* center info of charcater sheet */ 
 .profileCenter { position:absolute; left:102px; top:62px; width:321px; height:444px; }
@@ -103,7 +103,7 @@ a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important
 .character-stats i{ float:right; font:14px Georgia; color:#6d420f; padding-right:13px; margin-top:-3px;}
 .character-stats .mod { color:#446d0f; }
 .character-stats .moddown{ color:#ff0000; }
-.stack1 em,.stack2 em,.stats1 em, .stats2 em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/toggle_btns.jpg)pc1.gif');background-repeat:no-repeat;}
+.stack1 em,.stack2 em,.stats1 em, .stats2 em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/pc1.gif');background-repeat:no-repeat;}
 .mod{ color:#7EFF00; }
 
 .char-profile_stats h4 { color:#815f3e; font-size:14px; clear:both; padding:15px 0 4px 0; margin:0; }
@@ -117,8 +117,8 @@ a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important
 .char-profile_stats .achRight .achPointsLink, .profileCenter .achRight .achPointsLink:visited { text-decoration: none; display: block; color: #FFD200; font-weight: bold; margin: 8px 0 0; padding: 0 10px 0; font-size: 14px; }
 
 
-.achieve-bar{line-height: 14px !important; width: 170px; margin: 12px 0 6px 4px; text-align:center;color:white;padding:0;height:16px; border:1px solid black;background:url('../../images/toggle_btns.jpg)bar-grey.gif') repeat-x;}
-.achieve-bar b{height:16px;margin:0;padding:0; background:url('../../images/toggle_btns.jpg)bar-life.gif') repeat-x; white-space: nowrap; float: left; }
+.achieve-bar{line-height: 14px !important; width: 170px; margin: 12px 0 6px 4px; text-align:center;color:white;padding:0;height:16px; border:1px solid black;background:url('../../images/bar-grey.gif') repeat-x;}
+.achieve-bar b{height:16px;margin:0;padding:0; background:url('../../images/bar-life.gif') repeat-x; white-space: nowrap; float: left; }
 .achieve-bar .progressTxt { position: absolute; left: 5px; top: 57px; display: inline; float: left;}
 
 
@@ -154,21 +154,21 @@ a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important
 .drop-stats a{display:block;width:100%;padding:0 0 0 4px;color:white !important;text-decoration:none}
 .drop-stats .tooltip{width:170px !important}
 .drop-stats a img{width:21px;height:13px;margin:1px 0 0 3px;border:0}
-.drop-stats a:hover{color:white;background:url('../../images/toggle_btns.jpg)UI-Listbox-Highlight.png') no-repeat}
+.drop-stats a:hover{color:white;background:url('../../images/UI-Listbox-Highlight.png') no-repeat}
 
 .dropdown1,.stats1{float:left}
 .dropdown2,.stats2{float:right}
 .buffs li,.debuffs li{width:21px !important;height:21px !important;padding:1px 0}
 .buffs li img,.debuffs li img{height:21px;width:21px;position:relative;left:0}
-.debuffs li p{background:url('../../images/toggle_btns.jpg)icons/debuff.png') no-repeat 0 0;height:24px;width:24px;position:absolute;left:-1px;top:3px;cursor:default !important}
-.debuffs li p:hover{background:url('../../images/toggle_btns.jpg)icons/debuff.png') no-repeat 0 0}
+.debuffs li p{background:url('../../images/icons/debuff.png') no-repeat 0 0;height:24px;width:24px;position:absolute;left:-1px;top:3px;cursor:default !important}
+.debuffs li p:hover{background:url('../../images/icons/debuff.png') no-repeat 0 0}
 .icon-holy,.icon-fire,.icon-nature,.icon-arcane,.icon-frost,.icon-shadow{height:14px;line-height:14px;padding-left:21px}
-.icon-holy{background:url('../../images/toggle_btns.jpg)icons/icon-holy.gif') 0 center no-repeat}
-.icon-fire{background:url('../../images/toggle_btns.jpg)icons/icon-fire.gif') 0 center no-repeat}
-.icon-nature{background:url('../../images/toggle_btns.jpg)icons/icon-nature.gif') 0 center no-repeat}
-.icon-arcane{background:url('../../images/toggle_btns.jpg)icons/icon-arcane.gif') 0 center no-repeat}
-.icon-frost{background:url('../../images/toggle_btns.jpg)icons/icon-frost.gif') 0 center no-repeat}
-.icon-shadow{background:url('../../images/toggle_btns.jpg)icons/icon-shadow.gif') 0 center no-repeat}
+.icon-holy{background:url('../../images/icons/icon-holy.gif') 0 center no-repeat}
+.icon-fire{background:url('../../images/icons/icon-fire.gif') 0 center no-repeat}
+.icon-nature{background:url('../../images/icons/icon-nature.gif') 0 center no-repeat}
+.icon-arcane{background:url('../../images/icons/icon-arcane.gif') 0 center no-repeat}
+.icon-frost{background:url('../../images/icons/icon-frost.gif') 0 center no-repeat}
+.icon-shadow{background:url('../../images/icons/icon-shadow.gif') 0 center no-repeat}
 
 .checkmark{vertical-align:top}
 .stack1,.stack2,.stack3,.stack4{width:365px;margin:0 auto;position:relative}
@@ -177,7 +177,7 @@ a.upgrd, a.upgrd:visited{ text-decoration: none !important; margin: 0 !important
 .stack2{height:50px}
 .stack3{height:132px}
 .stack4{height:70px}
-.stack1 em,.stack2 em,.stack3 em, .achRight em, .brownBox em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/toggle_btns.jpg)pc1.gif') !important;background-repeat:no-repeat;}
+.stack1 em,.stack2 em,.stack3 em, .achRight em, .brownBox em{position:absolute;height:3px;width:3px;display:block;background-image:url('../../images/pc1.gif') !important;background-repeat:no-repeat;}
 .resists,.profs,.stack2,.stats1,.stats2, .achRight, .brownBox{ position:relative;cursor:default}
 
 .last_modified { color:#a98128; font-size:14px; font-style:italic; padding:15px 30px; clear:both }
@@ -279,17 +279,17 @@ a.more_char_act:hover { background-position:-18px -210px; }
 .under10{width:550px;margin:0 auto;}
 .under10 table{width:495px !important}
 .under10 .bonus-stats{margin:0px 0 10px -10px;width:459px !important}
-.kids{height:352px;width:497px;background:url('../../images/toggle_btns.jpg)kids.jpg') no-repeat;z-index:90;position:relative}
+.kids{height:352px;width:497px;background:url('../../images/kids.jpg') no-repeat;z-index:90;position:relative}
 .kids h2{position:absolute;top:119px;left:-39px;width:564px;height:131px}
 .kids h2 span{display:none}
 .kids .levelBar-wrapper{position:absolute;top:-10px;right:-101px;width:71px;height:387px}
 .levelBar-wrapper div{height:387px;width:23px;position:relative}
-.levelBar-wrapper div a{display:block;width:21px;position:absolute;bottom:2px;left:2px;height:75%;background:url('../../images/toggle_btns.jpg)kidbar-tile.gif') repeat-y}
+.levelBar-wrapper div a{display:block;width:21px;position:absolute;bottom:2px;left:2px;height:75%;background:url('../../images/kidbar-tile.gif') repeat-y}
 
 /* arena/pvp */
 .arena-ranking{padding:8px 8px 5px 8px;;}
 .arena-ranking h2{clear:both;height:25px;line-height:25px !important;margin:0;padding:0 0 0 6px;background:url(../../images/achievetitle-bg.jpg) #f1db91 0 0 repeat-y;color:#f2e09a;font:18px 'Trebuchet MS',Arial,Helvetica,sans-serif;text-transform:uppercase}
-.arena-ranking h2 a:link,.arena-ranking h2 a:hover,.arena-ranking h2 a:visited,.arena-ranking h2 a:active{float:right;position:relative;color:#005ba1;font:11px 'Trebuchet MS',Arial,Helvetica,sans-serif;display:block;height:25px;line-height:25px;text-transform:none;background:url('../../images/toggle_btns.jpg)more-arrow.gif') 100% 50% no-repeat;padding-right:21px}
+.arena-ranking h2 a:link,.arena-ranking h2 a:hover,.arena-ranking h2 a:visited,.arena-ranking h2 a:active{float:right;position:relative;color:#005ba1;font:11px 'Trebuchet MS',Arial,Helvetica,sans-serif;display:block;height:25px;line-height:25px;text-transform:none;background:url('../../images/more-arrow.gif') 100% 50% no-repeat;padding-right:21px}
 .arena-ranking h3{margin:0 0 3px 0;padding:0 0 0px 6px;text-transform:uppercase;color:#847240;font-size:12px;background:url('../../images/achievetitle-bg.jpg') #f0da8d -250px 100% repeat-y;}
 .arena-ranking h3 strong{color:#533A00}
 

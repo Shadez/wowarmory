@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 38
+ * @revision 49
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -57,6 +57,8 @@ Class Utils extends Connector {
     
     public function logoffUser() {
         unset($_SESSION['wow_login']);
+        unset($_SESSION['username']);
+        unset($_SESSION['accountId']);
         return true;
     }
     
@@ -74,6 +76,19 @@ Class Utils extends Connector {
         }
         // TODO: achievement points for each character
         return $chars;
+    }
+    
+    public function guildBankRights($guildid) {
+        if(!$_SESSION['accountId']) {
+            return false;
+        }
+        $selectedCharData = $this->getCharacter();
+        /* Hack */
+        $characterGuildId = $this->ñDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=? LIMIT 1", $selectedCharData['guid']);
+        if(!$characterGuildId || $characterGuildId != $guildid) {
+            return false;
+        }
+        return true;
     }
     
     public function getAllCharacters() {
@@ -99,7 +114,7 @@ Class Utils extends Connector {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']);
+        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
         if(!$data) {
             return $this->loadRandomCharacter();
         }
@@ -111,20 +126,36 @@ Class Utils extends Connector {
             return false;
         }
         $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
+        if(!$char) {
+            return false;
+        }
         $char['account'] = $_SESSION['accountId'];
         $char['selected'] = 1;
         $this->aDB->query("INSERT INTO `login_characters` (?#) VALUES (?a)", array_keys($char), array_values($char));
         return $char;
     }
     
-    public function assignCharacter($guid) {
+    public function getCharacterBookmarks() {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $data1 = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender` FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
-        $data1['account'] = $_SESSION['accountId'];
-        $x = $this->cDB->query("INSERT IGNORE INTO `login_characters` VALUES (?a)", $data1);
-        return true;
+        $guids = $this->aDB->select("SELECT `guid` FROM `character_bookmarks` WHERE `account`=?", $_SESSION['accountId']);
+        if($guids) {
+            $bookmarks = array();
+            $i = 0;
+            foreach($guids as $char) {
+                $bookmarks[$i] = $this->cDB->selectRow("SELECT `name`, `class`, `level` FROM `characters` WHERE `guid`=? LIMIT 1", $char['guid']);
+                $charAchievements = $this->cDB->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=?", $char['guid']);
+                $countAchievements = count($charAchievements);
+                for($j=0;$j<$countAchievements;$j++) {
+                    $ach[$j] = $charAchievements[$j]['achievement'];
+                }
+                $bookmarks[$i]['apoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `achievements` WHERE `id` IN (?a)", $ach);
+                $i++;
+            }
+            return $bookmarks;
+        }
+        return false;
     }
     
     public function createShaHash() {

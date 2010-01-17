@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 39
+ * @revision 49
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,6 +33,9 @@ $guilds->guildName = Utils::escape($_GET['gn']);
 if(!$guilds->initGuild()) {
     $armory->tpl->display('error_sheet.tpl');
     die();
+}
+if(!isset($_SESSION['accountId']) || !$utils->guildBankRights($guilds->guildId)) {
+    header('Location: login.xml?guild-bank-contents');
 }
 $guilds->_structGuildInfo();
 // Доп. лист стилей

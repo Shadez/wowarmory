@@ -53,8 +53,16 @@
 <div id="forumLinks">
 <a class="staticTip" href="javascript:void();">{{$realm}}</a></div>
 <div class="profile-right" id="profileRight">
+{{if $_wow_login}}
+<a class="staticTip" href="javascript:void(0);" onclick="window.location='bookmarks.xml?action=1&amp;n={{$name}}'" id="bmcLink" onmouseover="setTipText('{{#armory_remember_this_character#}}');">
+<!----></a>
+{{elseif $characterIsBookmarked}}
+<a class="bmcEnabled" href="javascript:;">
+<!----></a>
+{{else}}
 <a class="bmcLink staticTip" id="bmcLink" onmouseover="setTipText('{{#armory_login_to_remember_profile#}}');">
 <!----></a>
+{{/if}}
 </div>
 <div class="profile-achieve">
 <a class="staticTip" href="character-sheet.xml?r={{$realm}}&amp;cn={{$name}}" onmouseover="setTipText('{{#armory_character_sheet_level_string#}}&nbsp;{{$level}}&nbsp;{{get_wow_race race=$race}}&nbsp;{{get_wow_class class=$class}}')">

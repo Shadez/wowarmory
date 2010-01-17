@@ -27,11 +27,11 @@
         //bind tooltips for primary/secondary characters
         function setCharacterToolTips(){				
             $(".secondaryChar").mouseover(function(){
-                setTipText("Профиль этого персонажа отмечен закладкой внутри профиля вашего основного персонажа. Щелкните по нему, чтобы выбрать этого персонажа в качестве основного.");
+                setTipText("{{#armory_vault_secondary_character_tooltip#}}");
             });
             
             $(".primaryChar").mouseover(function(){ 				
-                setTipText("Данный персонаж выбран в качестве вашего основного персонажа. Ссылка на его профиль будет показываться в правом верхнем углу Оружейной.");
+                setTipText("{{#armory_vault_primary_character_tooltip#}}");
             });
         }
 	</script>
@@ -60,8 +60,8 @@
 {{foreach from=$selectedCharacters item=char}}
 <div class="select-char2">
 {{if $char.name}}
-<a class="selChar selSecondaryChar staticTip" href="javascript:void(0)" id="r={{$realm}}&amp;n={{$char.name}}" onmouseover="setTipText('{{#armory_vault_select_main_char#}}');"></a>
-<a class="delChar staticTip" href="javascript:void(0)" onmouseover="setTipText('{{#armory_vault_delete_char#}}');"></a>
+<a class="selChar selSecondaryChar staticTip" href="javascript:void(0)" onclick="window.location='character-select-submit.xml?action=setmain&name={{$char.name}}'" id="r={{$realm}}&amp;n={{$char.name}}" onmouseover="setTipText('{{#armory_vault_select_main_char#}}');"></a>
+<a class="delChar staticTip" href="javascript:void(0)" onclick="window.location='character-select-submit.xml?action=delete&name={{$char.name}}'" onmouseover="setTipText('{{#armory_vault_delete_char#}}');"></a>
 <img class="staticTip" onmouseover="setTipText('{{get_wow_race race=$char.race}}');" src="images/icons/race/{{$char.race}}-{{$char.gender}}.gif" />
 <img class="staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}');" src="images/icons/class/{{$char.class}}.gif" />
 <h6>
@@ -85,7 +85,7 @@
 <table cellpadding='0' cellspacing='0' class='data-table sortTable' width='100%'>
 <thead>
 <tr class='masthead'>
-<th style='text-align:left;'><a>Имя персонажа<span class='sortArw'></span></a></th><th class='numericSort'><a class='staticTip' onmouseover='setTipText(&quot;Очки достижений&quot;);'>Очки...<span class='sortArw'></span></a></th><th><a>Уровень<span class='sortArw'></span></a></th><th><a>Раса<span class='sortArw'></span></a></th><th><a>Класс<span class='sortArw'></span></a></th><th><a>Фракция<span class='sortArw'></span></a></th><th style='text-align:left'><a>Гильдия<span class='sortArw'></span></a></th><th style='text-align:left;'><a>Игровой мир<span class='sortArw'></span></a></th><th class='headerSortUp'><a>Соответствие<span class='sortArw'></span></a></th>
+<th style='text-align:left;'><a>{{#armory_guild_info_character_name#}}<span class='sortArw'></span></a></th><th class='numericSort'><a class='staticTip' onmouseover='setTipText(&quot;{{#armory_guild_info_achievement_points#}}&quot;);'>{{#armory_vault_achievement_points#}}<span class='sortArw'></span></a></th><th><a>{{#armory_character_sheet_level_string#}}<span class='sortArw'></span></a></th><th><a>{{#armory_guild_info_race#}}<span class='sortArw'></span></a></th><th><a>{{#armory_guild_info_class#}}<span class='sortArw'></span></a></th><th><a>{{#armory_searchpage_faction#}}<span class='sortArw'></span></a></th><th style='text-align:left'><a>{{#armory_searchguilds_guild#}}<span class='sortArw'></span></a></th><th style='text-align:left;'><a>{{#armory_searchpage_realmname#}}<span class='sortArw'></span></a></th><th class='headerSortUp'><a>{{#armory_searchpage_relevance#}}<span class='sortArw'></span></a></th>
 </tr>
 </thead>
 <tbody>
@@ -95,7 +95,7 @@
 {{if $disallowAddNewChar}}
 <a class='charListIcons add_off staticTip' href='javascript:void(0)' onmouseover='setTipText({{#armory_vault_add_new_char_disallowed#}});'></a>
 {{else}}
-<a class='charListIcons add_on staticTip' href='javascript:void(0)' onclick='select_character(add, {{$char.name}})' onmouseover='setTipText({{#armory_vault_add_character_to_list#}});'></a>
+<a class='charListIcons add_on staticTip' href='javascript:void(0)' onclick="window.location='character-select-submit.xml?action=add&name={{$char.name}}'" onmouseover='setTipText({{#armory_vault_add_character_to_list#}});'></a>
 {{/if}}
 <a href='character-sheet.xml?r={{$realm}}&amp;n={{$char.name}}'>{{$char.name}}</a></td>
 <td style='text-align:right; padding-right:3px; font-weight: bold; width: 50px;'><span style='display: none;'>0</span><span class='achievPtsSpan'>0</span></td>

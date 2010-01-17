@@ -59,10 +59,12 @@
 <div id="bookmarkHolder">
 <span id="bm-currPage" style="display: none;">1</span><span id="bm-totalPages" style="display: none;">1</span>
 <div class="bmPage" id="page1" style="display: block">
+{{foreach from=$myVaultBookmarkCharacters item=char}}
 <div class="menuItem bmlist">
-<a class="character-achievement staticTip" href="/character-achievements.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&amp;n=%D0%A1%D0%B8%D0%B3%D0%BD%D0%B5%D1%82" onMouseOver="setTipText('Очки достижений');">310</a><a class="rmBookmark staticTip" href="javascript:void(0);" onMouseOver="setTipText('Удалить закладку');">&nbsp;</a><em class="classId1 staticTip" onmouseover="setTipText('Воин')"></em><a class="charName" href="/character-sheet.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&amp;n=%D0%A1%D0%B8%D0%B3%D0%BD%D0%B5%D1%82">Сигнет</a><span>&nbsp;-&nbsp;Свежеватель Душ</span>
-<p>Уровень&nbsp;61&nbsp;&nbsp;Воин</p>
+<a class="character-achievement staticTip" href="character-achievements.xml?r={{$realm}}&amp;cn={{$char.name}}" onmouseover="setTipText('{{#armory_guild_info_achievement_points#}}');">{{$char.apoints}}</a><a class="rmBookmark staticTip" href="javascript:void(0);" onclick="window.location='bookmarks.xml?action=2&amp;n={{$char.name}}'" onmouseover="setTipText('{{#armory_vault_remove_bookmark#}}');">&nbsp;</a><em class="classId{{$char.class}} staticTip" onmouseover="setTipText('{{get_wow_class class=$char.class}}')"></em><a class="charName" href="character-sheet.xml?r={{$realm}}&amp;cn={{$char.name}}">{{$char.name}}</a><span>&nbsp;-&nbsp;{{$realm}}</span>
+<p>{{#armory_character_sheet_level_string#}}&nbsp;{{$char.level}}&nbsp;&nbsp;{{get_wow_class class=$char.class}}</p>
 </div>
+{{/foreach}}
 </div>
 </div>
 </div>

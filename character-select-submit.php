@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 49
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,24 +28,33 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 
-/** Profile functions are in development! **/
+if(!isset($_SESSION['accountId'])) {
+    header('Location: login.xml');
+    exit;
+}
 
-if(isset($_GET['n2'])) {
-    $guid = $armory->cDB->selectCell("SELECT `guid` FROM `characters` WHERE `name`=? AND `account`=?", $_GET['n2'], $_SESSION['accountId']);
-    $armory->aDB->query("DELETE FROM `login_characters` WHERE `guid`=? AND `account`=?", $guid, $_SESSION['accountId']);
-}
-elseif(isset($_GET['n4'])) {
-    $num = $armory->aDB->selectCell("SELECT MAX(`num`) FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']);
-    if($num == 3) {
-        exit();
+if(isset($_GET['action'])) {
+    switch($_GET['action']) {
+        case 'add':
+            if(!$armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                if($data = $armory->cDB->selectRow("SELECT `guid`, `account`, `name`, `level`, `race`, `class`, `gender` FROM `characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                    $data['selected'] = 0;
+                    $armory->aDB->query("INSERT IGNORE INTO `login_characters` (?#) VALUES (?a)", array_keys($data), array_values($data));
+                }
+            }
+            break;
+        case 'delete':
+            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                $armory->aDB->query("DELETE FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId']);
+            }
+            break;
+        case 'setmain':
+            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                $armory->aDB->query("UPDATE `login_characters` SET `selected`=0 WHERE `account`=?", $_SESSION['accountId']);
+                $armory->aDB->query("UPDATE `login_characters` SET `selected`=1 WHERE `name`=? AND `account`=?", $_GET['name'], $_SESSION['accountId']);
+            }
+            break;
     }
-    $charInfo = $armory->cDB->selectRow("
-    SELECT `account`, `guid`, `name`, `class`, `race`, `gender`, `level`
-        FROM `characters`
-            WHERE `account`=? AND `name`=? LIMIT 1", $_SESSION['accountId'], $_GET['n4']);
-    $charInfo['num'] = $num+1;
-    $charInfo['selected'] = 0;
-    $armory->aDB->query("INSERT INTO `login_characters` (?#) VALUES (?a)", array_keys($charInfo), array_values($charInfo));
 }
-exit();
+header('Location: character-select.xml');
 ?>

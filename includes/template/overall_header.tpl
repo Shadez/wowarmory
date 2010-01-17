@@ -3,7 +3,7 @@
 <head>
 <link href="favicon.ico" rel="shortcut icon" />
 <link href="/_content/ru_ru/searchplugin.xml" rel="search" title="Оружейная World of Warcraft" type="application/opensearchdescription+xml">
-<title>{{#armory_site_title#}}</title>
+<title>{{#armory_site_title#}} {{if $name}}- {{$name}} @ {{$realm}}{{/if}}</title>
 <meta content="text/html; charset={{$ArmoryConfig.siteCharset}}" http-equiv="Content-Type" />
 <meta content="{{#armory_meta_description#}}" name="description" />
 <style media="screen, projection" type="text/css">
