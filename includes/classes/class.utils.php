@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 49
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,8 +32,6 @@ Class Utils extends Connector {
     public $username;
     public $password;
     public $shaHash;
-    
-    /** Profile functions are in development! **/
     
     public function authUser() {
         if(!$this->username || !$this->password) {
@@ -383,17 +381,16 @@ Class Utils extends Connector {
         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
         WHERE `character_achievement`.`achievement` IN 
         (
-            457, 467, 466, 465, 464, 463, 462, 461, 460, 459,
-            458, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
-            1411, 1412, 1413, 1415, 1414, 1416, 1417, 1418, 1419, 
-            1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 1400, 456, 
-            1402, 3117, 3259, 4078, 1463
-        )"); // 3.2.2a IDs
+            456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 
+            467, 1400, 1402, 1404, 1405, 1406, 1407, 1408, 1409, 
+            1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
+            1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
+            1463, 3117, 3259, 4078, 4576
+        )"); // 3.3.0a IDs
         if(!$achievements_data) {
             return false;
         }
         $countAch = count($achievements_data);
-        #die("`name_".$locale."`");
         for($i=0;$i<$countAch;$i++) {
             $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `achievements` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `achievements` WHERE `id`=?", $achievements_data[$i]['achievement']);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 40
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,8 +25,6 @@
 if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
-
-session_start();
 
 Class Achievements extends Connector {
     
@@ -72,12 +70,25 @@ Class Achievements extends Connector {
         return $pts;
     }
     
+    /**
+     * Returns % (0-100) for achievement progress bar width.
+     * @category Achievements class
+     * @example Achievements::getAchievementProgressBar(150)
+     * @todo Check ACH_MAX_COUNT_GAME
+     * @return int
+     **/
     public function getAchievementProgressBar($sum) {
         $percent = ACH_MAX_COUNT_GAME / 100;
         $progressPercent = $sum / $percent;
         return $progressPercent;
     }
     
+    /**
+     * Returns number of character completed achievements.
+     * @category Achievements class
+     * @example Achievements::countCharacterAchievements()
+     * @return int
+     **/
     public function countCharacterAchievements() {
         if(!$this->guid) {
             return false;
@@ -86,6 +97,12 @@ Class Achievements extends Connector {
         return $total;
     }
     
+    /**
+     * Returns number of achievements completed in $category. Requires $this->guid!
+     * @category Achievements class
+     * @example Achievemens::sortAchievements(5)
+     * @return int
+     **/
     public function sortAchievements($category) {
         if(!$this->guid) {
             return false;
@@ -109,7 +126,7 @@ Class Achievements extends Connector {
                 break;
             case 5:
                 // Dungeons & raids
-                $achs = ACH_CATEGORY_DUNGEONS.', '.ACH_CATEGORY_DUNGEONS_CLASSIC.', '.ACH_CATEGORY_DUNGEONS_TBC.', '.ACH_CATEGORY_DUNGEONS_WOTLK.', '.ACH_CATEGORY_DUNGEONS_WOTLK_H.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID_H.', '.ACH_CATEGORY_DUNGEONS_ULDUAR.', '.ACH_CATEGORY_DUNGEONS_ULDUAR_H.', '.ACH_CATEGORY_DUNGEONS_CRUSADE.', '.ACH_CATEGORY_DUNGEONS_CRUSADE_H;
+                $achs = ACH_CATEGORY_DUNGEONS.', '.ACH_CATEGORY_DUNGEONS_CLASSIC.', '.ACH_CATEGORY_DUNGEONS_TBC.', '.ACH_CATEGORY_DUNGEONS_WOTLK.', '.ACH_CATEGORY_DUNGEONS_WOTLK_H.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID_H.', '.ACH_CATEGORY_DUNGEONS_ULDUAR.', '.ACH_CATEGORY_DUNGEONS_ULDUAR_H.', '.ACH_CATEGORY_DUNGEONS_CRUSADE.', '.ACH_CATEGORY_DUNGEONS_CRUSADE_H.', '.ACH_CATEGORY_DUNGEONS_FALL_OF_THE_LICH_KING.', '.ACH_CATEGORY_DUNGEONS_FALL_OF_THE_LICH_KING_H;
                 break;
             case 6:
                 // Professions
@@ -144,7 +161,14 @@ Class Achievements extends Connector {
         return $achievementsCount;
     }
     
-    public function GetLastAchievements($num=5) {
+    /**
+     * Returns array with 5 latest completed achievements. Requires $this->guid!
+     * @category Achievements class
+     * @example Achievements::GetLastAchievements()
+     * @todo Full rewrite
+     * @return array
+     **/
+    public function GetLastAchievements() {
         if(!$this->guid) {
             return false;
         }
@@ -157,16 +181,21 @@ Class Achievements extends Connector {
                     SELECT `achievement`
                     FROM `".$this->mysqlconfig['name_characters']."`.`character_achievement`
                     WHERE `guid`=?
-                    ORDER BY `date`
 				)
                 LIMIT 5", $this->guid);
-        $count =count($LastAchievements);
+        $count = count($LastAchievements);
         for($i=0;$i<$count;$i++) {
             $LastAchievements[$i]['date'] = $this->GetAchievementDate($this->guid, $LastAchievements[$i]['id']);
         }
         return $LastAchievements;
     }
     
+    /**
+     * Returns achievement date. If $guid not provided, function will use $this->guid.
+     * @category Achievements class
+     * @example Achievements::GetAchievementDate(17, false)
+     * @return string
+     **/
     public function GetAchievementDate($guid='', $achId='') {
         if(empty($guid)) {
             $guid = $this->guid;
@@ -185,6 +214,13 @@ Class Achievements extends Connector {
         return $stringDate;
     }
     
+    /**
+     * Returns achievement criteria & progress info. Requires $this->achId!
+     * @category Achievements class
+     * @example Achievements::AchievementProgress()
+     * @todo Sort with achievement criteria types
+     * @return string
+     **/
     public function AchievementProgress() {
         $string_return = '';
         $tmp_str       = '';
@@ -286,7 +322,12 @@ Class Achievements extends Connector {
         return $string_return;
     }
     
-    // FIXME: rewrite this function to new coding format
+    /**
+     * Returns progress bar width % (0-100) for selected category ($achType)
+     * @category Achievements class
+     * @example Achievements::CountAchievementPercent(15, 4)
+     * @return int
+     **/
     public function CountAchievementPercent($sum, $achType) {
         switch($achType) {
             case 1:
@@ -299,19 +340,19 @@ Class Achievements extends Connector {
 				$maxAch = 70;
 				break;
 			case 4:
-				$maxAch = 149;
+				$maxAch = 166;
 				break;
 			case 5:
-				$maxAch = 366;
+				$maxAch = 454;
 				break;
 			case 6:
 				$maxAch = 75;
 				break;
 			case 7:
-				$maxAch = 44;
+				$maxAch = 45;
 				break;
 			case 8:
-				$maxAch = 124;
+				$maxAch = 141;
 				break;
 			case 9:
 				$maxAch = 126;
@@ -322,6 +363,12 @@ Class Achievements extends Connector {
         return $progressPercent;
     }
     
+    /**
+     * Generates achievement categories menu (for character-achievements.php)
+     * @category Achievements class
+     * @example Achievements::buildAchievementsTree()
+     * @return string
+     **/
     public function buildAchievementsTree() {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $categoryIds = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `achievement_category` WHERE `parentCategory`=-1");
@@ -343,6 +390,5 @@ Class Achievements extends Connector {
         }
         return $achievementTree;
     }
-    
 }
 ?>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 48
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -174,6 +174,12 @@ Class Characters extends Connector {
         return $this->race;
     }
     
+    /**
+     * Returns character selected title (if exists), place (suffix or prefix) according with character gender. Requries $this->gender! If $guid not provided, function will use $this->guid.
+     * @category Character class
+     * @example Characters::GetCharacterTitle(false)
+     * @return array
+     **/
     public function GetCharacterTitle($guid=false) {
         if($guid) {
             $this->guid = $guid;
@@ -252,7 +258,6 @@ Class Characters extends Connector {
         }
         $url_string = 'r=' . urlencode($this->armoryconfig['defaultRealmName']) . '&amp;n=' . urlencode($this->name);
         if($this->GetDataField(PLAYER_GUILDID)) {
-            // $guilds->guildId must be declared BEFORE this function!
             $url_string .= '&amp;gn=' . urlencode($this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->GetDataField(PLAYER_GUILDID)));
         }
         return $url_string;
@@ -326,6 +331,7 @@ Class Characters extends Connector {
      * !Requires $this->class!
      * @category Characters class
      * @example Characters::assignAdditionalEnergybar()
+     * @todo Store bars names in DB
      * @return string
      **/
     public function assignAdditionalEnergyBar() {
@@ -443,6 +449,12 @@ Class Characters extends Connector {
         return $pt;
 	}
     
+    /**
+     * Returns item id from $slot (head, neck, shoulder, etc.). Requires $this->guid!
+     * @category Character class
+     * @example Characters::getCharacterEquip('head')
+     * @return int
+     **/
     public function getCharacterEquip($slot) {
         if(!$this->guid) {
             return false;
@@ -512,6 +524,12 @@ Class Characters extends Connector {
         return $ItemInv;
     }
     
+    /**
+     * Returns enchantment id of item contained in $slot slot. If $guid not provided, function will use $this->guid.
+     * @category Character class
+     * @example Characters::getCharacterEnchant('head', 100)
+     * @return int
+     **/
     public function getCharacterEnchant($slot, $guid='') {
         if(empty($guid)) {
             $guid = $this->guid;
@@ -670,6 +688,12 @@ Class Characters extends Connector {
         return $bild;
     }
     
+    /**
+     * Returns array with character glyphs (great & small). Requires $this->guid!
+     * @category Character class
+     * @example Characters::extractCharacterGlyphs()
+     * @return array
+     **/
     public function extractCharacterGlyphs() {
         if(!$this->guid) {
             return false;
@@ -697,6 +721,13 @@ Class Characters extends Connector {
         return $glyphData;
     }
     
+    /**
+     * Returns talent tree name for selected class
+     * @category Character class
+     * @example Characters::ReturnTalentTreeNames(6, 2)
+     * @todo Move this function to Utils class & store trees names in DB
+     * @return string
+     **/
     public function ReturnTalentTreesNames($class, $key) {
 		switch($class) {
 			case 1:
@@ -740,6 +771,13 @@ Class Characters extends Connector {
         return $tree;
 	}
     
+    /**
+     * Returns icon name for selected class & talent tree
+     * @category Character class
+     * @example Characters::ReturnTalentTreeIcon(6, 2)
+     * @todo Move this function to Utils class
+     * @return string
+     **/
     public function ReturnTalentTreeIcon($class, $tree) {
         $icon = $this->aDB->selectCell("SELECT `icon` FROM `talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $class, $tree);
         if($icon) {
@@ -748,10 +786,22 @@ Class Characters extends Connector {
         return false;
     }
     
+    /**
+     * Returns character lifetime honorable kills. Requires $this->guid!
+     * @category Character class
+     * @example Characters::getCharacterHonorKills()
+     * @return int
+     **/
     public function getCharacterHonorKills() {
         return $this->GetDataField(PLAYER_FIELD_LIFETIME_HONORBALE_KILLS);
     }
     
+    /**
+     * Returns array with character's professions (name, icon & current skill value)
+     * @category Character class
+     * @example Characters::extractCharacterProfessions()
+     * @return array
+     **/
     public function extractCharacterProfessions() {
         // Извлекаем только 2 основные профессии. Первая помощь, кулинария и пр. сюда не входят
         $professions = $this->cDB->select("
@@ -768,14 +818,21 @@ Class Characters extends Connector {
             $p[$i] = array(
                 'name' => $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
                 'icon' => $this->aDB->selectCell("SELECT `icon` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
-                'value' => $prof['value'],
-                'pct' => Utils::getPercent($prof['max'], $prof['value'])
+                'value' => $prof['value']
             );
             $i++;
         }
         return $p;
     }
     
+    
+    /**
+     * Returns array with character reputation (faction name, description, value)
+     * @category Character class
+     * @example Characters::getCharacterReputation()
+     * @todo Make parent sections
+     * @return array
+     **/
     public function getCharacterReputation() {
         if(!$this->guid) {
             return false;
@@ -843,6 +900,13 @@ Class Characters extends Connector {
         return $this->GetDataField(UNIT_FIELD_POWER4);
     }
     
+    /**
+     * Returns array with character stats. Most functions taked from CSWOWD. Requires $this->guid!
+     * @category Character class
+     * @example Characters::ConstructCharacterData()
+     * @todo Update method to 3.3.0a `data` field
+     * @return array
+     **/
     public function ConstructCharacterData() {
         $guid = $this->guid;
         $StatArray = array();
@@ -1138,6 +1202,12 @@ Class Characters extends Connector {
         return $StatArray;
     }
     
+    /**
+     * Returns skill info for $skill. If $guid not provided, function will use $this->guid. Not used now.
+     * @category Character class
+     * @example Characters::getCharacterSkill()
+     * @return array
+     **/
     public function getCharacterSkill($skill, $guid=false) {
         if($guid) {
             $this->guid = $guid;
@@ -1149,6 +1219,12 @@ Class Characters extends Connector {
         return $skillInfo;
     }
     
+    /**
+     * Returns data for 2x2, 3x3 and 5x5 character arena teams (if exists). If $check == true, function will return boolean type. Used by character-*.php to check show or not 'Arena' button
+     * @category Character class
+     * @example Characters::getCharacterArenaTeamInfo(false)
+     * @return bool/array
+     **/
     public function getCharacterArenaTeamInfo($check = false) {
         if(!$this->guid) {
             return false;

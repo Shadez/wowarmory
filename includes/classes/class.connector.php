@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,23 +28,42 @@ if(!defined('__ARMORY__')) {
 
 Class Connector {
     
+    /** Armory database handler **/
     public $aDB;
+    
+    /** Character database hanlder **/
     public $cDB;
+    
+    /** Realm/accounts database handler **/
     public $rDB;
+    
+    /** Mangos/world database handler **/
     public $wDB;
     
+    /** MySQL connection configs **/
     public $mysqlconfig;
+    
+    /** Armory configs **/
     public $armoryconfig;
     
+    /** Template handler (Smarty class) **/
     public $tpl;
-        
+    
+    /** Character classes array (need to be dropped from here) **/
     public $classes;
+    
+    /** Character races array (need to be dropped from here) **/
     public $races;
     
+    /** Current armory locale (ru_ru or en_gb) **/
     public $_locale;
     
-    /*public $dbg;*/ // Not sure about it
-    
+    /**
+     * Initialize database & template handlers, sets up sql/site configs
+     * @category Main system functions
+     * @example Connector::__construct()
+     * @return bool
+     **/
     public function __construct() {
         include('configuration.php');
         require_once('libs/DbSimple/Generic.php');
@@ -110,6 +129,12 @@ Class Connector {
         return true;
     }
     
+    /**
+     * Shows error. If $Error == true, function will show black list with 'Error encountered' text.
+     * @category Main system functions
+     * @example Connector::ArmoryError('Error Title', 'Error Text', false)
+     * @return none
+     **/
     public function ArmoryError($title, $text, $Error=false) {
         if($Error == true) {
             $this->tpl->display('error_sheet.tpl');
@@ -126,6 +151,12 @@ Class Connector {
         exit();
     }
     
+    /**
+     * Shows database error
+     * @category Main system functions
+     * @example Connector::databaseError()
+     * @return none
+     **/
     public function databaseError() {
         $args = func_get_args();
         $tmpl =& $args[0];

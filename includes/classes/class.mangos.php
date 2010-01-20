@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 46
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,6 +28,7 @@ if(!defined('__ARMORY__')) {
 
 Class Mangos extends Connector {
 
+    /* CSWOWD */
     public function getSkillFromItemID($id) {
         if($id==0) {
             return SKILL_UNARMED;
@@ -59,6 +60,12 @@ Class Mangos extends Connector {
         return SKILL_UNARMED;
     }
     
+    /**
+     * Returns quest info by $infoType case
+     * @category Mangos class
+     * @example Mangos::QuestInfo(1500, 'reqlevel')
+     * @return int/string
+     **/
     public function QuestInfo($quest, $infoType) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
@@ -79,6 +86,12 @@ Class Mangos extends Connector {
         return $info;
     }
     
+    /**
+     * Assign text value to int drop percent (drop > 51 = High, etc.)
+     * @category Mangos class
+     * @example Mangos::DropPercent(51)
+     * @return string
+     **/
     public function DropPercent($percent) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $string = '';
@@ -127,6 +140,12 @@ Class Mangos extends Connector {
         return $string;
     }
     
+    /**
+     * Returns game object info ($infoType)
+     * @category Mangos class
+     * @example Mangos::GameobjectInfo(150000, 'name')
+     * @return string
+     **/
     public function GameobjectInfo($entry, $infoType) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
@@ -154,6 +173,12 @@ Class Mangos extends Connector {
 		return $info;
     }
     
+    /**
+     * Returns NPC name (according with current locale)
+     * @category Mangos class
+     * @example Mangos::GetNPCName(32078)
+     * @return string
+     **/
     public function GetNPCName($npc) {
         $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $NPCName = $this->wDB->selectCell("
@@ -168,6 +193,12 @@ Class Mangos extends Connector {
 		return $info;
 	}
     
+    /**
+     * Returns NPC info (infoType)
+     * @category Mangos class
+     * @example Mangos::GetNPCInfo(32078, 'level')
+     * @return mixed
+     **/
     public function GetNpcInfo($npc, $infoType) {
         $info = '';
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
@@ -207,6 +238,12 @@ Class Mangos extends Connector {
 		return $info;
 	}
     
+    /**
+     * Generates money value
+     * @category Mangos class
+     * @example Mangos::getMoney(150000000)
+     * @return array
+     **/
     public function getMoney($money) {
         $getMoney['gold'] = floor($money/(100*100));
         $money = $money-$getMoney['gold']*100*100;

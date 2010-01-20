@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 45
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,8 +26,6 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-session_start();
-
 Class Items extends Connector {
     
     public $itemId;
@@ -37,6 +35,12 @@ Class Items extends Connector {
      **/
     public $charGuid;
     
+    /**
+     * Returns item name according with defined locale (ru_ru or en_gb)
+     * @category Items class
+     * @example Items::getItemName(35000)
+     * @return string
+     **/
     public function getItemName($itemID) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch(strtolower($locale)) {
@@ -57,12 +61,24 @@ Class Items extends Connector {
         return $itemName;
     }
     
+    /**
+     * Returns item icon
+     * @category Items class
+     * @example Items::getItemIcon(35000)
+     * @return string
+     **/
     public function getItemIcon($itemID) {
         $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
         $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `icons` WHERE `displayid`=? LIMIT 1", $displayId);
         return strtolower($itemIcon);
     }
     
+    /**
+     * Returns item description (if isset) according with defined locale (ru_ru or en_gb)
+     * @category Items class
+     * @example Items::getItemDescription(35000)
+     * @return string
+     **/
     public function getItemDescription($itemID) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch(strtolower($locale)) {
@@ -83,6 +99,12 @@ Class Items extends Connector {
         return $itemDescription;
     }
     
+    /**
+     * Returns available races string (if mask > 0)
+     * @category Items class
+     * @example Items::AllowableRaces(690) // Horde only
+     * @return string
+     **/
     public function AllowableRaces($mask) {
         $mask&=0x7FF;
         $text = '';
@@ -107,6 +129,12 @@ Class Items extends Connector {
 		return $text;
     }
     
+    /**
+     * Returns available classes string (if mask > 0)
+     * @category Items class
+     * @example Items::AllowableClasses(16) // Priests
+     * @return string
+     **/
     public function AllowableClasses($mask) {
 		$mask&=0x5DF;
         $text = '';
@@ -132,6 +160,12 @@ Class Items extends Connector {
 		return $text;
 	}
     
+    /**
+     * Returns item source strin (vendor, drop, chest loot, etc.)
+     * @category Items class
+     * @example Items::GetItemSource(35000)
+     * @return string
+     **/
     public function GetItemSource($item) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
 	    $returnString = false;
@@ -187,6 +221,12 @@ Class Items extends Connector {
 		return $returnString;
     }
     
+    /**
+     * Return full loot info (not used now)
+     * @category Items class
+     * @example Items::lootInfo(35000)
+     * @return array
+     **/
     public function lootInfo($itemID) {
         $bossLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=?", $itemID);
         $chestLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `gameobject_loot_template` WHERE `item`=?", $itemID);
@@ -215,6 +255,13 @@ Class Items extends Connector {
         return $loot;
     }
     
+    /**
+     * Returns itemset info: item pieces & bonuses.
+     * @category Items class
+     * @example Items::BuildItemSetInfo(870)
+     * @todo Check & update itemset data in DB (some itemset pieces & bonuses are not displayed)
+     * @return string
+     **/
     public function BuildItemSetInfo($itemset) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         if($locale == 'en_gb') {
@@ -256,6 +303,13 @@ Class Items extends Connector {
 		return $fullItemInfoString;
     }
     
+    /**
+     * Return array with loot info: dropped by, contained in, disenchating to, reagent for, etc.
+     * @category Items class
+     * @example Items::BuildLootTable(35000, 'vendor')
+     * @todo Currency for
+     * @return array
+     **/
     public function BuildLootTable($item, $vendor) {
         $lootTable = '';
         switch($vendor) {
@@ -440,6 +494,13 @@ Class Items extends Connector {
 		return $lootTable;
     }
     
+    /**
+     * Some item info
+     * @category Items class
+     * @example Items::GetItemInfo(3500, 'quality')
+     * @todo Add more cases
+     * @return string
+     **/
     public function GetItemInfo($itemID, $type) {
         switch($type) {
             case 'quality':
@@ -452,9 +513,11 @@ Class Items extends Connector {
     }
     
     /**
-     * Sockets
-     **/
-     
+     * Returns array with socket info (gem icon, enchant string, enchant id, item id)
+     * @category Items class
+     * @example Items::extractSocketInfo(100, 3500, 1)
+     * @return array
+     **/ 
     public function extractSocketInfo($guid, $item, $socketNum) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $data = array();
@@ -477,6 +540,12 @@ Class Items extends Connector {
         return false;
     }
     
+    /**
+     * Returns array with current/max item durability for selected ($guid) character
+     * @category Items class
+     * @example Items::getItemDurability(100, 35000)
+     * @return array
+     **/
     public function getItemDurability($guid, $item) {
         $durability['current'] = $this->cDB->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 62), ' ', '-1') AS UNSIGNED)  
@@ -489,6 +558,12 @@ Class Items extends Connector {
         return $durability;
     }
     
+    /**
+     * Returns field ($field) value from `item_instance`.`data` field for current item guid (NOT char guid!)
+     * @category Items class
+     * @example Items::GetItemDataField(10, 333)
+     * @return int
+     **/
     public function GetItemDataField($field, $itemGuid) {
         $dataField = $field+1;
         $qData = $this->cDB->selectCell("
@@ -498,7 +573,7 @@ Class Items extends Connector {
         return $qData;
     }
     
-    // CSWOWD
+    // CSWOWD functions
     public function spellReplace($spell, $text) {
         $letter = array('${','}');
         $values = array( '[',']');
@@ -644,5 +719,7 @@ Class Items extends Connector {
         eval("\$text = abs(".$text.");");
         return intval($text);
     }
+    
+    // End of CSWOWD functions
 }
 ?>

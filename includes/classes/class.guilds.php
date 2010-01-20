@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 39
+ * @revision 50
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -152,7 +152,7 @@ Class Guilds extends Connector {
      }
      
      /**
-      * Set $this->guildtabard of selected guild ($this->guildId)
+      * Sets $this->guildtabard of selected guild ($this->guildId)
       * @category Guilds class
       * @example Guilds::getGuildTabardStyle()
       * @return bool
@@ -170,6 +170,12 @@ Class Guilds extends Connector {
         return true;
      }
      
+     /**
+      * Sets $this->guildFaction as $this->guildleaderguid's faction
+      * @category Guilds class
+      * @example Guilds::getGuildFaction()
+      * @return bool
+      **/
      public function getGuildFaction() {
         if(!$this->guildleaderguid) {
             return false;
@@ -179,6 +185,12 @@ Class Guilds extends Connector {
         return true;
      }
      
+     /**
+      * Returns array with guild members list. If $gm == true, returns his/her data only.
+      * @category Guilds class
+      * @example Guilds::buildGuildList(false)
+      * @return array
+      **/
      public function buildGuildList($gm=false) {
         if(!$this->guildId) {
             return false;
@@ -217,6 +229,12 @@ Class Guilds extends Connector {
         return $memberListTmp;
      }
      
+     /**
+      * Returns array with guild members info for guild-stats.php page
+      * @category Guilds class
+      * @example Guilds::BuildStatsList()
+      * @return array
+      **/
      public function BuildStatsList() {
         $cList = $this->cDB->select("
         SELECT `race`, `class`, `level`, `gender`
@@ -225,6 +243,12 @@ Class Guilds extends Connector {
         return $cList;
      }
      
+     /**
+      * Returns guild message of the day (if defined)
+      * @category Guilds class
+      * @example Guilds::getGuildMotd()
+      * @return string
+      **/
      public function getGuildMotd() {
         if(!$this->guildId) {
             return false;
@@ -232,6 +256,12 @@ Class Guilds extends Connector {
         return $this->cDB->selectCell("SELECT `motd` FROM `guild` WHERE `guildid`=?", $this->guildId);
      }
      
+     /**
+      * Returns guild info (if defined)
+      * @category Guilds class
+      * @example Guilds::getGuildInfo()
+      * @return string
+      **/
      public function getGuildInfo() {
         if(!$this->guildId) {
             return false;
@@ -239,6 +269,12 @@ Class Guilds extends Connector {
         return $this->cDB->selectCell("SELECT `info` FROM `guild` WHERE `guildid`=?", $this->guildId);
      }
      
+     /**
+      * Returns guild bank tabs info (name, icon)
+      * @category Guilds class
+      * @example Guilds::getGuildBankTabs()
+      * @return array
+      **/
      public function getGuildBankTabs() {
         if(!$this->guildId) {
             return false;
@@ -250,6 +286,13 @@ Class Guilds extends Connector {
         return $tabs;
      }
      
+     /**
+      * Generates array with guild bank contents.
+      * @category Guilds class
+      * @example Guilds::showGuildBankContents()
+      * @todo Manage rights to access some GB tabs
+      * @return array
+      **/
      public function showGuildBankContents() {
         if(!$this->guildId) {
             return false;
@@ -274,6 +317,12 @@ Class Guilds extends Connector {
         return $GuildBankContents;
      }
      
+     /**
+      * Returns guild bank money
+      * @category Guilds class
+      * @example Guilds::GetGuildBankMoney()
+      * @return array
+      **/
      public function GetGuildBankMoney() {
         if(!$this->guildId) {
             return false;
@@ -287,6 +336,12 @@ Class Guilds extends Connector {
         return $getMoney;
      }
      
+     /**
+      * Returns list of items that stored in guild bank
+      * @category Guilds class
+      * @example Guilds::BuildGuildBankItemList()
+      * @return array
+      **/
      public function BuildGuildBankItemList() {
         if(!$this->guildId) {
             return false;
