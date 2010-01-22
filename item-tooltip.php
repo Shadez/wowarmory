@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 43
+ * @revision 52
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,8 +31,8 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 $itemID = (int) $_GET['i'];
-if(isset($_GET['n'])) {
-    $characters->name = Utils::escape($_GET['n']);
+if(isset($_GET['cn'])) {
+    $characters->name = $_GET['cn'];
     $characters->GetCharacterGuid();
 }
 // Проверка
@@ -57,7 +57,8 @@ $quality_colors = array (
  	3 => 'myBlue',
 	4 => 'myPurple',
  	5 => 'myOrange',
- 	6 => 'myGold'
+ 	6 => 'myGold',
+    7 => 'myGold'
 );
 // TODO: remove * from query
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
@@ -122,7 +123,7 @@ switch($data['class']) {
         else {
             $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
         }
-    break;
+        break;
     case 2:
         $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('weapon_inventory_' . $data['subclass']));
         $armory->tpl->assign('armor_type', $armory->tpl->get_config_vars('weapon_name_' . $data['subclass']));
@@ -276,7 +277,15 @@ if($characters->guid) {
 $armory->tpl->assign('first_bonuses', $o);
 $armory->tpl->assign('sockets', $s);
 $armory->tpl->assign('socket_bonus', $sBonus);
-$armory->tpl->assign('durability', $items->getItemDurability($characters->guid, $itemID));
+if($characters->guid) {
+    $armory->tpl->assign('durability', $items->getItemDurability($characters->guid, $itemID));
+}
+else {
+    $m_durability['current'] = $data['MaxDurability'];
+    $m_durability['max'] = $data['MaxDurability'];
+    $armory->tpl->assign('durability', $m_durability);
+    unset($m_durability);
+}
 
 if($data['AllowableRace'] > 0) {
     $armory->tpl->assign('races', $items->AllowableRaces($data['AllowableRace']));

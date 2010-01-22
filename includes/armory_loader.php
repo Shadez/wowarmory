@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 51
+ * @revision 52
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -39,11 +39,18 @@ $armory->tpl->config_dir      = 'includes/locales/';
 $armory->tpl->left_delimiter  = '{{'; // remove JS brackets conflict
 $armory->tpl->right_delimiter = '}}'; // remove JS brackets conflict
 
-if(!@include('UpdateFields.php')) {
-	 die('<b>Error:</b> can not load UpdateFields.php!');
+if($armory->armoryconfig['server_version']) {
+    if(!@include('UpdateFields'.$armory->armoryconfig['server_version'].'.php')) {
+        die('<b>Error:</b> can not load UpdateFields'.$armory->armoryconfig['server_version'].'.php.!');
+    }
+}
+else {
+    if(!@include('UpdateFields.php')) {
+        die('<b>Error:</b> can not load UpdateFields.php!');
+    }
 }
 if(!@include('defines.php')) {
-	 die('<b>Error:</b> can not load defines.php!');
+    die('<b>Error:</b> can not load defines.php!');
 }
 if(!@include('classes/class.utils.php')) {
     die('<b>Error:</b> can not load utils class!');
@@ -63,11 +70,18 @@ if(isset($_SESSION['wow_login'])) {
     $armory->tpl->assign('_wow_login', $_SESSION['username']);
     $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
     $armory->tpl->assign('myVaultCharacters', $utils->getCharsArray());
-    $armory->tpl->assign('selectedVaultCharacter', $utils->getCharacter());
+    $selectedVaultCharacter = $utils->getCharacter();
+    if(!$selectedVaultCharacter) {
+        $armory->tpl->assign('noCharacters', true);
+    }
+    else {
+        $armory->tpl->assign('selectedVaultCharacter', $selectedVaultCharacter);
+    }
     $character_bookmarks = $utils->getCharacterBookmarks();
     if($character_bookmarks) {
         $armory->tpl->assign('myVaultBookmarkCharacters', $character_bookmarks);
     }
+    unset($selectedVaultCharacter);
     unset($character_bookmarks);
 }
 /** End login **/

@@ -72,9 +72,13 @@
 <!---->
 </div>
 <div class="user-mod loginbg" style="text-align: right; ">
+{{if $noCharacters}}
+<a href="javascript:void(0)" id="bookmark-user" style="margin: 3px 6px 0 0;"></a><span class="loggedInAs">{{#armory_vault_no_characters#}}</span><br />
+{{else}}
 <a href="javascript:void(0)" id="bookmark-user" style="margin: 3px 6px 0 0;"></a><span class="loggedInAs">{{#armory_vault_you_logged_as#}}</span>
 <br />
 <a class="userName" href="character-sheet.xml?r={{$realm}}&amp;n={{$selectedVaultCharacter.name}}"><em class="classId{{$selectedVaultCharacter.class}} staticTip" onmouseover="setTipText('{{get_wow_class class=$selectedVaultCharacter.class}}')" style="margin: 2px 4px 0 0;"></em>{{$selectedVaultCharacter.name}}</a> |                        
+{{/if}}
 <a href="index.xml?logout=1" id="logoutLink">{{#armory_vault_logoff#}}</a>
 </div>
 {{else}}

@@ -36,10 +36,14 @@
         }
 	</script>
 
-<span id="result"><div class='sel-char'>
-<div class='sel-intro'>
+<span id="result"><div class="sel-char">
+<div class="sel-intro">
 <h1>{{#armory_vault_character_select#}}</h1>
 </div>
+{{if $noCharacters}}
+<div class="page-body" style="padding-left: 20px;">{{#armory_vault_no_characters#}}<br />
+</div>
+{{else}}
 <div id="charList">
 <div class="topcharlist">
 <h5>{{#armory_vault_my_characters#}}</h5>
@@ -111,6 +115,7 @@
 </table>
 </div>
 </div>
+{{/if}}
 </div></span>
 </div>
 </div>

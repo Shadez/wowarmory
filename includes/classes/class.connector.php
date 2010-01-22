@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 52
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,12 +49,6 @@ Class Connector {
     /** Template handler (Smarty class) **/
     public $tpl;
     
-    /** Character classes array (need to be dropped from here) **/
-    public $classes;
-    
-    /** Character races array (need to be dropped from here) **/
-    public $races;
-    
     /** Current armory locale (ru_ru or en_gb) **/
     public $_locale;
     
@@ -96,36 +90,6 @@ Class Connector {
         $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
         
         $this->tpl = new Smarty;
-        
-        /* Need to be removed from this file */
-        $this->classes = array (
-			'1'=>'Воин|Warrior',
-			'2'=>'Паладин|Paladin',
-			'3'=>'Охотник|Hunter',
-			'4'=>'Разбойник|Rogue',
-			'5'=>'Жрец|Priest',
-			'6'=>'Рыцарь смерти|Death Knight',
-			'7'=>'Шаман|Shaman',
-			'8'=>'Маг|Mage',
-            '9'=>'Чернокнижник|Warlock',
-			'10'=>'unk|unk',
-			'11'=>'Друид|Druid'
-		);
-		
-        /* Need to be removed from this file */
-		$this->races = array (
-			'0'=>'none',
-			'1'=>'Человек|Human',
-			'2'=>'Орк|Orc',
-			'3'=>'Дворф|Dwarf',
-			'4'=>'Ночной эльф|Night elf',
-			'5'=>'Нежить|Undead',
-			'6'=>'Таурен|Tauren',
-			'7'=>'Гном|Gnome',
-			'8'=>'Тролль|Troll',
-			'10'=>'Эльф крови|Blood elf',
-			'11'=>'Дреней|Draenei'
-        );
         return true;
     }
     

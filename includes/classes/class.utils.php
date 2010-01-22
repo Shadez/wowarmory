@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 51
+ * @revision 52
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -529,7 +529,7 @@ Class Utils extends Connector {
         }
         $this->aDB->query("
         INSERT IGNORE INTO `cache` (`id`, `guid`, `tooltip_html`, `date`, `locale`)
-            VALUES (?, ?, ?, NOW())", $itemID, $guid, $tooltip, $locale);
+            VALUES (?, ?, ?, NOW(), ?)", $itemID, $guid, $tooltip, $locale);
         return true;
     }
     

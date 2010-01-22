@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 47
+ * @revision 52
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -51,11 +51,12 @@ $ArmoryConfig['mysql']['pass_mangos']         = '';
 $ArmoryConfig['mysql']['name_mangos']         = 'mangos';
 $ArmoryConfig['mysql']['charset_mangos']      = 'UTF8';
 
+$ArmoryConfig['settings']['server_version']   = '330'; // '322' or '330', without dots or something else
 $ArmoryConfig['settings']['siteCharset']      = 'utf-8';
 $ArmoryConfig['settings']['useNews']          = true;
 $ArmoryConfig['settings']['defaultRealmId']   = 1;
 $ArmoryConfig['settings']['defaultRealmName'] = 'MaNGOS';
-$ArmoryConfig['settings']['useCache']         = true;
+$ArmoryConfig['settings']['useCache']         = false;
 $ArmoryConfig['settings']['cache_lifetime']   = 2;  // In days
 $ArmoryConfig['settings']['minlevel']         = 10; // Character must have this level or higher to be shown in Armory
 $ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - only players, 1 - moderators, 2 - GMs, 3 - everyone
