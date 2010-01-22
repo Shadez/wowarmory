@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 49
+ * @revision 51
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -39,8 +39,12 @@ $armory->tpl->config_dir      = 'includes/locales/';
 $armory->tpl->left_delimiter  = '{{'; // remove JS brackets conflict
 $armory->tpl->right_delimiter = '}}'; // remove JS brackets conflict
 
-include('UpdateFields.php');
-include('defines.php');
+if(!@include('UpdateFields.php')) {
+	 die('<b>Error:</b> can not load UpdateFields.php!');
+}
+if(!@include('defines.php')) {
+	 die('<b>Error:</b> can not load defines.php!');
+}
 if(!@include('classes/class.utils.php')) {
     die('<b>Error:</b> can not load utils class!');
 }

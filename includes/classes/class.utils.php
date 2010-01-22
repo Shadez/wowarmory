@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 51
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -207,6 +207,9 @@ Class Utils extends Connector {
     
     public function getPercent($max, $min) {
         $percent = $max / 100;
+        if($percent == 0) {
+            return 0;
+        }
         $progressPercent = $min / $percent;
 		if($progressPercent > 100) {
 			$progressPercent = 100;
