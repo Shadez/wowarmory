@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 54
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,7 +28,6 @@ if(!@include('includes/armory_loader.php')) {
 }
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
-$armory->tpl->assign('tpl2includecalc', $tpl2include);
 $armory->tpl->assign('tpl2include', 'arena_calc_'.$_locale);
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('overall_start.tpl');
