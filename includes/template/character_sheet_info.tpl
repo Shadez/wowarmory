@@ -461,31 +461,29 @@
 <div id="debugtxt"></div>
 <div class="profileCenter" id="center_target">
 <div id="pose_saving">
-<span>РЎРѕС…СЂР°РЅРµРЅРёРµ...</span>
+<span>Сохранение...</span>
 </div>
 <div id="pose_save_ok">
-<span>РџРѕР·Р° СЃРѕС…СЂР°РЅРµРЅР°!</span>
+<span>Поза сохранена!!</span>
 </div>
 <div id="ModelViewer3">
 <div class="noFlash">
 <a class="noflash" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank">
 <img align="right" class="p" src="images/{{$ArmoryConfig.locale}}/getflash.gif" /></a>{{#armory_install_flash_player_string#}}</div>
-<script src="_js/character/charactermodel.js" type="text/javascript"></script>
-<script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script>
-<script type="text/javascript">
+<script src="_js/character/charactermodel.js" type="text/javascript"></script><script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script><script type="text/javascript">
 		 if(!init3dvars) var init3dvars = null
-		 if(!charUrl) var charUrl = '{{$character_url_string}}'
+		 if(!charUrl) var charUrl = 'r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&cn=%D0%9D%D0%B8%D0%BC%D1%80%D0%BE%D0%B4%D1%8D%D0%BB%D1%8C'
 		  function buildModelViewer(attr)
-		  {		var lang = "{{$ArmoryConfig.locale}}".split("_")[0].toLowerCase()
-		  		var modelserver = "http://eu.media.battle.net.edgesuite.net/"
-                var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?{{$character_url_string}}&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
-				var stringslink = "/_content/{{$ArmoryConfig.locale}}/modelConfig_strings.xml";
+		  {		var lang = "ru_ru".split("_")[0].toLowerCase()
+		  		var modelserver = "http://armory/"
+                var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&cn=%D0%9D%D0%B8%D0%BC%D1%80%D0%BE%D0%B4%D1%8D%D0%BB%D1%8C&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
+				var stringslink = "_content/ru_ru/modelConfig_strings.xml";
 				var logolink = modelserver + "/models/images/logo/armory-logo-"+lang+".png" 
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
-                var flashvars = { character: theCharName, modelUrl: "/character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
+                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
 								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
-								  loadingtxt:"{{#armory_character_achievements_loading_achievements#}}" //"
+								  loadingtxt:"Идет загрузка." //"
 								};
 				if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
 								for(xi in modelCookies) { flashvars[xi] = modelCookies[xi] } 
@@ -494,10 +492,10 @@
 									if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
 								}
 				if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
-                swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "9.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
+                swfobject.embedSWF("models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", "models/flash/expressInstall.swf", flashvars, params, attributes);
 				$(document).ready(function () { bindMouseActions() });	
 		  }
-			var str_loginExpired = "{{#armory_character_sheet_loginExpired#}}" //"
+			var str_loginExpired = "Введите имя пользователя." //"
 			buildModelViewer()
             </script>
 </div>
@@ -691,8 +689,8 @@
 			this.speed={{$characterStat.ranged_dps_speed}};
 			this.min={{$characterStat.ranged_dps_min}};
 			this.max={{$characterStat.ranged_dps_max}};
-			this.dps={{$characterStat.ranged_dps}};
-			this.percent={{$characterStat.ranged_dps_pct}};
+			this.dps={{$characterStat.ranged_dps_pct}};
+			this.percent=0;
 		
 			if (this.percent > 0)		this.effectiveColor="class='mod'";
 			else if (this.percent < 0)	this.effectiveColor="class='moddown'";
@@ -821,8 +819,8 @@
 		
 		function defensesBlockObject() {
 			this.percent={{$characterStat.block_pct}};
-			this.rating={{$characterStat.block_rating}};
-			this.increasePercent={{$characterStat.block_chance}};
+			this.rating={{$characterStat.block_chance}};
+			this.increasePercent={{$characterStat.block_rating}};
 		}
 		
 		function defensesResilienceObject() {

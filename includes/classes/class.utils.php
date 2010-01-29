@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 52
+ * @revision 57
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -233,9 +233,9 @@ Class Utils extends Connector {
 	}
     
     public function GetSpellBonusDamage($school, $guid) {
-        $field_done_pos = 1146+$school;
-        $field_done_neg = 1153+$school;
-        $field_done_pct = 1160+$school;
+        $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school;
+        $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school;
+        $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school;
         $damage_done_pos = $this->cDB->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_pos."), ' ', '-1') AS UNSIGNED)
             FROM `characters` 

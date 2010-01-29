@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 57
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -186,7 +186,7 @@ Class Characters extends Connector {
         }
         $this->GetCharacterGender();
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $title = $this->aDB->selectRow("SELECT * FROM `titles` WHERE `id`=?", $this->GetDataField(PLAYER_CHOSEN_TITLE));
+        $title = $this->aDB->selectRow("SELECT * FROM `titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
         $data = array();
         if($title) {
             switch($this->gender) {
@@ -953,7 +953,7 @@ Class Characters extends Connector {
             $StatArray['base_intellect'] = min(20, $StatArray['effective_intellect']);
             $StatArray['more_intellect'] = $StatArray['effective_intellect']-$StatArray['base_intellect'];
             $StatArray['mana_intellect'] = $StatArray['base_intellect']+$StatArray['more_intellect']*MANA_PER_INTELLECT;
-            $StatArray['bonus_intellect_spellcrit'] = Utils::GetSpellCritChanceFromIntellect($rating, $this->class, $StatArray['effective_intellect']);
+            $StatArray['bonus_intellect_spellcrit'] = round(Utils::GetSpellCritChanceFromIntellect($rating, $this->class, $StatArray['effective_intellect']), 2);
         }
         else {
             $StatArray['base_intellect'] = '-1';
@@ -977,7 +977,7 @@ Class Characters extends Connector {
             $StatArray['base_spirit'] = 50;
         }
         $StatArray['more_spirit'] = $StatArray['effective_spirit'] - $StatArray['base_spirit'];
-        $StatArray['bonus_spirit_hpregeneration'] = $StatArray['base_spirit'] * $baseRatio[$this->class] + $StatArray['more_spirit'] * Utils::GetHRCoefficient($rating, $this->class);
+        $StatArray['bonus_spirit_hpregeneration'] = floor($StatArray['base_spirit'] * $baseRatio[$this->class] + $StatArray['more_spirit'] * Utils::GetHRCoefficient($rating, $this->class));
         
         if($this->class != CLASS_WARRIOR && $this->class != CLASS_ROGUE && $this->class != CLASS_DK) {
             $StatArray['bonus_spitit_manaregeneration'] = sqrt($StatArray['effective_intellect']) * $StatArray['effective_spirit'] * Utils::GetMRCoefficient($rating, $this->class);
@@ -995,7 +995,7 @@ Class Characters extends Connector {
             $levelModifier = $this->level + (4.5 * ($this->level-59));
         }
         $StatArray['bonus_armor_reduction'] = 0.1*$StatArray['effective_armor']/(8.5*$levelModifier + 40);
-    	$StatArray['bonus_armor_reduction'] = $StatArray['bonus_armor_reduction']/(1+$StatArray['bonus_armor_reduction'])*100;
+    	$StatArray['bonus_armor_reduction'] = round($StatArray['bonus_armor_reduction']/(1+$StatArray['bonus_armor_reduction'])*100, 2);
     	if ($StatArray['bonus_armor_reduction'] > 75) $StatArray['bonus_armor_reduction'] = 75;
     	if ($StatArray['bonus_armor_reduction'] <  0) $StatArray['bonus_armor_reduction'] = 0;
         $StatArray['bonus_armor_petbonus'] = Utils::ComputePetBonus(4, $StatArray['effective_armor'], $this->class);
@@ -1006,15 +1006,15 @@ Class Characters extends Connector {
         /* Melee stats */
         $StatArray['min_melee_dmg'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINDAMAGE), 0);
         $StatArray['max_melee_dmg'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXDAMAGE), 0);
-        $StatArray['speed_melee_dmg'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000;
+        $StatArray['speed_melee_dmg'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000, 2);
         $StatArray['melee_dmg'] = ($StatArray['min_melee_dmg'] + $StatArray['max_melee_dmg']) * 0.5;
-        $StatArray['dps_melee_dmg'] = (max($StatArray['melee_dmg'], 1) / $StatArray['speed_melee_dmg']);
+        $StatArray['dps_melee_dmg'] = round((max($StatArray['melee_dmg'], 1) / $StatArray['speed_melee_dmg']), 1);
         if($StatArray['speed_melee_dmg'] < 0.1) {
             $StatArray['speed_melee_dmg'] = '0.1';
         }
         
-        $StatArray['hasterating_melee_dmg'] = $this->GetDataField(1220);
-        $StatArray['hastepct_melee_dmg'] = $StatArray['hasterating_melee_dmg'] / Utils::GetRatingCoefficient($rating, 19);
+        $StatArray['hasterating_melee_dmg'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+17);
+        $StatArray['hastepct_melee_dmg'] = round($StatArray['hasterating_melee_dmg'] / Utils::GetRatingCoefficient($rating, 19), 2);
         
         $StatArray['multipler_melee_ap'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_ATTACK_POWER_MULTIPLIER), 8);
         if($StatArray['multipler_melee_ap'] < 0) {
@@ -1028,39 +1028,39 @@ Class Characters extends Connector {
         $StatArray['stat_melee_ap'] = $StatArray['effective_melee_ap'] + $StatArray['bonus_melee_ap'];
         $StatArray['bonus_ap_dps'] = floor(max($StatArray['stat_melee_ap'], 0)/14);
                 
-        $StatArray['melee_hit_rating'] = $this->GetDataField(1208);
+        $StatArray['melee_hit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+5);
         $StatArray['melee_hit_ratingpct'] = floor($StatArray['melee_hit_rating']/Utils::GetRatingCoefficient($rating, 6));
         $StatArray['melee_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
         
         $StatArray['melee_crit'] = Utils::getFloatValue($this->GetDataField(PLAYER_CRIT_PERCENTAGE), 2);
-        $StatArray['melee_crit_rating'] = $this->GetDataField(1211);
+        $StatArray['melee_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+8);
         $StatArray['melee_crit_ratingpct'] = floor($StatArray['melee_crit_rating']/Utils::GetRatingCoefficient($rating, 9));
         
         $StatArray['melee_skill_id'] = Utils::getSkillFromItemID($this->getCharacterEquip('mainhand'));
         $character_data = $this->cDB->selectCell("SELECT `data` FROM `characters` WHERE `guid`=?", $this->guid);
         $StatArray['melee_skill'] = Utils::getSkill($StatArray['melee_skill_id'], $character_data);
-        $StatArray['melee_skill_defrating'] = $this->GetDataField(1223);
+        $StatArray['melee_skill_defrating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+20);
         $StatArray['melee_skill_ratingadd'] = $StatArray['melee_skill_defrating']/Utils::GetRatingCoefficient($rating, 2);
         $buff = $StatArray['melee_skill'][4]+$StatArray['melee_skill'][5]+intval($StatArray['melee_skill_ratingadd']);
-        $StatArray['stat_melee_skill'] = $StatArray['melee_skill'][2]+$buff;
+        $StatArray['stat_melee_skill'] = $StatArray['melee_skill'][2]+$buff;        
         
-        
-        $StatArray['defense_rating_skill'] = Utils::getSkill(SKILL_DEFENCE, $character_data);
-        $StatArray['rating_defense'] = $this->GetDataField(1204);
+        $gskill = $this->getCharacterSkill(SKILL_DEFENCE);
+        $StatArray['defense_rating_skill'] = $gskill['value'];
+        $StatArray['rating_defense'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
         $StatArray['rating_defense_add'] = $StatArray['rating_defense']/Utils::GetRatingCoefficient($rating, 2);
-        $buff = $StatArray['defense_rating_skill'][4]+$StatArray['defense_rating_skill'][5]+intval($StatArray['rating_defense_add']);
-        $StatArray['stat_defense_rating'] = $StatArray['rating_defense_add'][2]+$buff;
+        $buff = intval($StatArray['rating_defense_add']);
+        $StatArray['stat_defense_rating'] = $StatArray['rating_defense_add']+$buff;
         $StatArray['defense_percent'] = DODGE_PARRY_BLOCK_PERCENT_PER_DEFENSE * ($StatArray['stat_defense_rating'] - $this->level*5);
         $StatArray['defense_percent'] = max($StatArray['defense_percent'], 0);
         unset($character_data);
         
         $rating = Utils::GetRating($this->level);
         $StatArray['dodge_chance'] = Utils::getFloatValue($this->GetDataField(PLAYER_DODGE_PERCENTAGE), 2);
-        $StatArray['stat_dodge'] = $this->GetDataField(PLAYER_FIELD_DODGE_RATING);
+        $StatArray['stat_dodge'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+2);
         $StatArray['stat_dodge_pct'] = floor($StatArray['stat_dodge']/Utils::GetRatingCoefficient($rating, 3));
         
         $StatArray['parry_chance'] = Utils::getFloatValue($this->GetDataField(PLAYER_PARRY_PERCENTAGE), 2);
-        $StatArray['stat_parry'] = $this->GetDataField(PLAYER_FIELD_PARRY_RATING);
+        $StatArray['stat_parry'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+3);
         $StatArray['stat_parry_pct'] = floor($StatArray['stat_parry']/Utils::GetRatingCoefficient($rating, 4));
         
         $StatArray['melee_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_MELEE_RATING);
@@ -1075,25 +1075,25 @@ Class Characters extends Connector {
         
         $StatArray['mana_regen_out_of_cast'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER);
         $StatArray['mana_regen_cast'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER);
-        $StatArray['mana_regen_out_of_cast'] =  Utils::getFloatValue($StatArray['mana_regen_out_of_cast'],2)*5;
-        $StatArray['mana_regen_cast'] =  Utils::getFloatValue($StatArray['mana_regen_cast'],2)*5;
+        $StatArray['mana_regen_out_of_cast'] =  floor(Utils::getFloatValue($StatArray['mana_regen_out_of_cast'],2)*5);
+        $StatArray['mana_regen_cast'] =  round(Utils::getFloatValue($StatArray['mana_regen_cast'],2)*5, 2);
          
         
         $holySchool = 1;
         $minModifier = Utils::GetSpellBonusDamage($holySchool, $guid);
-        for ($i=$holySchool;$i<7;$i++) {
+        for ($i=1;$i<7;$i++) {
             $bonusDamage[$i] = Utils::GetSpellBonusDamage($i, $guid);
             $minModifier = min($minModifier, $bonusDamage);
         }
-        $StatArray['spd_holy'] = $bonusDamage[1];
+        $StatArray['spd_holy'] = $bonusDamage[2];
         $StatArray['spd_fire'] = $bonusDamage[2];
         $StatArray['spd_nature'] = $bonusDamage[3];
         $StatArray['spd_frost'] = $bonusDamage[4];
-        $StatArray['spd_arcane'] = $bonusDamage[5];
-        $StatArray['spd_shadow'] = $bonusDamage[6];
+        $StatArray['spd_shadow'] = $bonusDamage[5];
+        $StatArray['spd_arcane'] = $bonusDamage[6];
         $StatArray['pet_bonus_ap'] = '-1';
         $StatArray['pet_bonus_dmg'] = '-1';
-        if($this->class==3 || $this->class==9) {
+        if($this->class == 3 || $this->class == 9) {
             $shadow = Utils::GetSpellBonusDamage(5, $guid);
             $fire = Utils::GetSpellBonusDamage(2, $guid);
             $StatArray['pet_bonus_ap'] =  Utils::ComputePetBonus(6, max($shadow, $fire), $this->class);
@@ -1103,14 +1103,14 @@ Class Characters extends Connector {
         // spell heal bonus
         $StatArray['heal_bonus'] = $this->GetDataField(PLAYER_FIELD_MOD_HEALING_DONE_POS);
         // spell haste
-        $StatArray['spell_haste_rating'] = $this->GetDataField(1222);
-        $StatArray['spell_haste_pct'] = $StatArray['spell_haste_rating']/ Utils::GetRatingCoefficient($rating, 20);
+        $StatArray['spell_haste_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+19);
+        $StatArray['spell_haste_pct'] = round($StatArray['spell_haste_rating']/ Utils::GetRatingCoefficient($rating, 20), 2);
         // spell hit
-        $StatArray['spell_hit_rating'] = $this->GetDataField(1210);
+        $StatArray['spell_hit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+7);
         $StatArray['spell_hit_pct'] = floor($StatArray['spell_hit_rating']/ Utils::GetRatingCoefficient($rating, 8));
         $StatArray['spell_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_RESISTANCE);
         // Spell crit
-        $StatArray['spell_crit_rating'] = $this->GetDataField(1213);
+        $StatArray['spell_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+10);
         $StatArray['spell_crit_pct'] = $StatArray['spell_crit_rating']/ Utils::GetRatingCoefficient($rating, 11);
         $minCrit = $this->GetDataField(PLAYER_SPELL_CRIT_PERCENTAGE1+1);
         for($i=1;$i<7;$i++) {
@@ -1129,7 +1129,7 @@ Class Characters extends Connector {
         // block
         $blockvalue = $this->GetDataField(PLAYER_BLOCK_PERCENTAGE);
         $StatArray['block_pct'] =  Utils::getFloatValue($blockvalue,2);
-        $StatArray['block_rating'] = $this->GetDataField(1207);
+        $StatArray['block_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+4);
         //TODO: block %
         $StatArray['block_chance'] = $this->GetDataField(PLAYER_SHIELD_BLOCK);
         // ranged attack power
@@ -1166,19 +1166,19 @@ Class Characters extends Connector {
             $StatArray['ranged_speed_pct'] = '0';
         }
         else {
-            $StatArray['ranged_speed'] = round( Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME),2)/1000);
-            $StatArray['ranged_speed_rating'] = round($this->GetDataField(1221));
-            $StatArray['ranged_speed_pct'] = $StatArray['ranged_speed_rating']/ Utils::GetRatingCoefficient($rating, 19);
+            $StatArray['ranged_speed'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME),2)/1000, 2);
+            $StatArray['ranged_speed_rating'] = round($this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+18));
+            $StatArray['ranged_speed_pct'] = round($StatArray['ranged_speed_rating']/ Utils::GetRatingCoefficient($rating, 19), 2);
         }
         
         // ranged hit rating
-        $StatArray['ranged_hit'] = $this->GetDataField(1209);
+        $StatArray['ranged_hit'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+6);
         $StatArray['ranged_hit_pct'] = floor($StatArray['ranged_hit']/ Utils::GetRatingCoefficient($rating, 7));
         $StatArray['ranged_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
         
         // ranged crit
         $StatArray['ranged_crit'] =  Utils::getFloatValue($this->GetDataField(PLAYER_RANGED_CRIT_PERCENTAGE), 2);
-        $StatArray['ranged_crit_rating'] = $this->GetDataField(1212);
+        $StatArray['ranged_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+9);
         $StatArray['ranged_crit_pct'] = floor($StatArray['ranged_crit_rating']/ Utils::GetRatingCoefficient($rating, 10));
         if($rangedSkillID == SKILL_UNARMED) {
             $StatArray['ranged_dps'] = 0;
