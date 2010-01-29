@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 52
+ * @revision 55
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -321,7 +321,9 @@ if($data['Flags'] == 4104) {
 if($data['startquest'] > 0) {
     $armory->tpl->assign('startquest', true);
 }
-$armory->tpl->assign('source', $items->GetItemSource($itemID));
+if($data['ItemLevel'] > 1) {
+    $armory->tpl->assign('source', $items->GetItemSource($itemID));
+}
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
 if(isset($_GET['css'])) {

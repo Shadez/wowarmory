@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 43
+ * @revision 55
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,7 +33,7 @@ $itemID = (int) $_GET['i'];
 
 // Проверка
 if($itemID == 0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
-    header('Location: index.xml');
+    $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_item_not_exists_title'), $armory->tpl->get_config_vars('armory_error_item_not_exists_text'));
 }
 
 $quality_colors = array (
@@ -43,7 +43,8 @@ $quality_colors = array (
  	3 => 'myBlue',
 	4 => 'myPurple',
  	5 => 'myOrange',
- 	6 => 'myGold'
+ 	6 => 'myGold',
+    7 => 'myGold'
 );
 // TODO: remove * from query
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
@@ -142,7 +143,7 @@ switch($data['class']) {
         }
         break;
 }
-// Сокеты
+// Sockets
 $s = '';
 for($ii=1; $ii<4; $ii++) {
     switch($data['socketColor_'.$ii]) {
@@ -163,6 +164,9 @@ for($ii=1; $ii<4; $ii++) {
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
         $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
+        if(!isset($spell_tmp['Description'.$_spell_locale])) {
+            continue;
+        }
         $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description'.$_spell_locale]));
         if($spellInfo) {
             $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
@@ -208,7 +212,9 @@ if($data['Flags'] == 4104) {
 if($data['startquest'] > 0) {
     $armory->tpl->assign('startquest', true);
 }
-$armory->tpl->assign('source', $items->GetItemSource($itemID));
+if($data['ItemLevel'] > 1) {
+    $armory->tpl->assign('source', $items->GetItemSource($itemID));
+}
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('buyPrice',  $mangos->getMoney($data['BuyPrice']));
 $armory->tpl->assign('sellPrice', $mangos->getMoney($data['SellPrice']));

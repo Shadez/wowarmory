@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 55
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -173,21 +173,12 @@ Class Achievements extends Connector {
             return false;
         }
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $LastAchievements = $this->aDB->select("
-        SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points`
-            FROM `".$this->mysqlconfig['name_armory']."`.`achievements`
-                WHERE `id` IN 
-                (
-                    SELECT `achievement`
-                    FROM `".$this->mysqlconfig['name_characters']."`.`character_achievement`
-                    WHERE `guid`=?
-				)
-                LIMIT 5", $this->guid);
-        $count = count($LastAchievements);
-        for($i=0;$i<$count;$i++) {
-            $LastAchievements[$i]['date'] = $this->GetAchievementDate($this->guid, $LastAchievements[$i]['id']);
+        $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
+        $aCount = count($achievements);
+        for($i=0;$i<$aCount;$i++) {
+            $achievements[$i] = $this->GetAchievementInfo($achievements[$i]);
         }
-        return $LastAchievements;
+        return $achievements;
     }
     
     /**
@@ -389,6 +380,36 @@ Class Achievements extends Connector {
             $achievementTree .= '</div>';
         }
         return $achievementTree;
+    }
+    
+    /**
+     * Returns basic achievement info (name, description, points). 
+     * $achievementData must be in array format: array('achievement' => ACHIEVEMENT_ID, 'date' => TIMESTAMP_DATE)
+     * @category Achievements class
+     * @example Achievements::GetAchievementInfo(1263163814)
+     * @return string
+     **/
+    public function GetAchievementInfo(&$achievementData) {
+        if(!is_array($achievementData)) {
+            return false;
+        }
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points` FROM `achievements` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
+        if(!$achievementinfo) {
+            return false;
+        }
+        $achievementinfo['date'] = $this->GetDateFormat($achievementData['date']);
+        return $achievementinfo;
+    }
+    
+    /**
+     * Returns formatted date
+     * @category Achievements class
+     * @example Achievements::GetDateFormat(1263163814)
+     * @return string
+     **/
+    public function GetDateFormat($timestamp) {
+        return date('d/m/Y', $timestamp);
     }
 }
 ?>

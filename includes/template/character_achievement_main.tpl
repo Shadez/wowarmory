@@ -84,32 +84,26 @@
 <script type="text/javascript" language="JavaScript">
 function loadAchievements(name, category)
 {
-	// Create new JsHttpRequest object.
 	var req = new JsHttpRequest();
-	// Code automatically called on load finishing.
 	req.onreadystatechange = function()
 	{
 		if (req.readyState == 4)
 		{
-			// Write result to page element (_RESULT becomes responseJS). 
 			document.getElementById('result').innerHTML = req.responseJS.achievements;
 		}
 	}
-	// Prepare request object (automatically choose GET or POST).
    	req.open(null, 'achievements-loader.php?cn=' + name + '&c=' + category, true);
-	// Send data to backend.
 	document.getElementById('result').innerHTML = '{{#armory_character_achievements_loading_achievements#}}';
 	req.send( {  } );
 }
 </script>
-<!-- Хаковый способ реализации ачивментов. Надеюсь, временно. -->
 <div class="achievements">
 <div class="achv_lnav">
 <div class="achv_bdr">
 <img src="images/achievements/achv_lnav_top.jpg" /></div>
 <div class="category-root">
 <div class="selected">
-<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode)">Обзор</a>
+<a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode)">{{#armory_character_achievements_summary#}}</a>
 </div>
 {{$achievementsTree}}
 </div>
@@ -134,13 +128,13 @@ function loadAchievements(name, category)
 <div class="progress_fill" style="width:{{$achievement_progress_percent}}%">
 <!---->
 </div>
-<div class="prog_int_text">Всего выполнено: {{$achievement_count}} / 1054</div>
+<div class="prog_int_text">{{#armory_character_achievements_total_completed#}}: {{$achievement_count}} / 1054</div>
 </div>
 </div>
 </div>
 <div class="summary_progress_container">
 <div class="summary_progress">
-<div>Общее: </div>
+<div>{{#achievements_category_1#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -153,7 +147,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Задания: </div>
+<div>{{#achievements_category_2#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -166,7 +160,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Исследование: </div>
+<div>{{#achievements_category_3#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -179,7 +173,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>PvP: </div>
+<div>{{#achievements_category_4#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -192,7 +186,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Подземелья и рейды: </div>
+<div>{{#achievements_category_5#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -205,7 +199,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Профессии: </div>
+<div>{{#achievements_category_6#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -218,7 +212,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Репутация: </div>
+<div>{{#achievements_category_7#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -231,7 +225,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Игровые события: </div>
+<div>{{#achievements_category_8#}}: </div>
 <div>
 <div class="prog_bar blue">
 <div class="progress_int">
@@ -244,7 +238,7 @@ function loadAchievements(name, category)
 </div>
 </div>
 <div class="summary_progress">
-<div>Великие подвиги: </div>
+<div>{{#achievements_category_9#}}: </div>
 <div>
 <div class="null_progress">{{$ach_9}}</div>
 </div>
@@ -252,18 +246,18 @@ function loadAchievements(name, category)
 <br clear="all" />
 <br />
 </div>
-<div class="recent_header">Недавние достижения</div>
+<div class="recent_header">{{#armory_character_achievements_recent_achievements#}}</div>
 {{foreach from=$lastAchievements item=ach}}
 
 <div class="s_achievement">
-<div class="s_ach_stat">{{$ach.points}}<img src="images/achievements/tiny_shield.gif">
+<div class="s_ach_stat">{{if $ach.points>0}} {{$ach.points}}<img src="images/achievements/tiny_shield.gif" />{{/if}}
 	        	({{$ach.date}})
 	        </div>
 <span>{{$ach.name}}</span><span class="achv_desc">{{$ach.description}}</span>
 </div>
 {{/foreach}}
 </div>
-<div class="loading" id="result" style="display:none;">Идет загрузка.</div>
+<div class="loading" id="result" style="display:none;">{{#armory_character_achievements_loading_achievements#}}</div>
 </div>
 </div>
 <div class="achv_r_btm">
