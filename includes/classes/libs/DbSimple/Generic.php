@@ -110,7 +110,7 @@ class DbSimple_Generic
                 }
             }
         }
-        $object =& new $class($parsed);
+        $object = new $class($parsed);
         if (isset($parsed['ident_prefix'])) {
             $object->setIdentPrefix($parsed['ident_prefix']);
         }

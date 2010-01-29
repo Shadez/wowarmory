@@ -70,7 +70,7 @@ class DbSimple_Mysql extends DbSimple_Generic_Database
 
     function& _performNewBlob($blobid=null)
     {
-        $obj =& new DbSimple_Mysql_Blob($this, $blobid);
+        $obj = new DbSimple_Mysql_Blob($this, $blobid);
         return $obj;
     }
 
