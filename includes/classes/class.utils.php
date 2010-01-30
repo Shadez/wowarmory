@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 57
+ * @revision 58
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -261,9 +261,12 @@ Class Utils extends Connector {
      **/
     public function SearchItems($query, $num=false) {
         if($num == true) {
-            $Q = $this->wDB->selectPage($itemsNum, "SELECT `entry` FROM `item_template` WHERE `name` LIKE ?", '%' . $query .'%');
-            $QQ = $this->wDB->selectPage($itemsNumRuRU, "SELECT `entry` FROM `locales_item` WHERE `name_loc8` LIKE ?", '%' . $query . '%');
+            $Q = $this->wDB->selectPage($itemsNum, "SELECT `entry` FROM `item_template` WHERE `name` LIKE ? LIMIT 200", '%' . $query .'%');
+            $QQ = $this->wDB->selectPage($itemsNumRuRU, "SELECT `entry` FROM `locales_item` WHERE `name_loc8` LIKE ? LIMIT 200", '%' . $query . '%');
             $rNum = $itemsNum + $itemsNumRuRU;
+            if($rNum > 200) {
+                $rNum = 200;
+            }
             return $rNum;
         }
         $searchResults = $this->wDB->select("
@@ -274,7 +277,8 @@ Class Utils extends Connector {
                     SELECT `entry`
                     FROM `locales_item`
                     WHERE `name_loc8` LIKE ?
-                )", '%' . $query . '%', '%' . $query . '%');
+                )
+                LIMIT 200", '%' . $query . '%', '%' . $query . '%');
         if(!$searchResults) {
             return false;
         }
@@ -314,7 +318,7 @@ Class Utils extends Connector {
             $xQuery = $this->cDB->selectPage($teamsNum, "
             SELECT `arenateamid`
                 FROM `arena_team`
-                    WHERE `name` LIKE ?", '%'.$query.'%');
+                    WHERE `name` LIKE ? LIMIT 200", '%'.$query.'%');
             return $teamsNum;
         }
         $xQuery = $this->cDB->select("
@@ -322,7 +326,7 @@ Class Utils extends Connector {
             FROM `arena_team` AS `arena_team`
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team`.`arenateamid`=`arena_team_stats`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `arena_team`.`captainguid`=`characters`.`guid`
-                    WHERE `arena_team`.`name` LIKE ?", '%'.$query.'%');
+                    WHERE `arena_team`.`name` LIKE ? LIMIT 200", '%'.$query.'%');
         if($xQuery) {
             return $xQuery;
         }
@@ -334,14 +338,14 @@ Class Utils extends Connector {
             $xQuery = $this->cDB->selectPage($guildsNum, "
             SELECT `guildid`
                 FROM `guild`
-                    WHERE `name` LIKE ?", '%'.$query.'%');
+                    WHERE `name` LIKE ? LIMIT 200", '%'.$query.'%');
             return $guildsNum;
         }
         $xQuery = $this->cDB->select("
         SELECT `guild`.`name`, `characters`.`race`
             FROM `guild` AS `guild`
                 LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid`
-                    WHERE `guild`.`name` LIKE ?", '%'.$query.'%');
+                    WHERE `guild`.`name` LIKE ? LIMIT 200", '%'.$query.'%');
         if($xQuery) {
             return $xQuery;
         }
