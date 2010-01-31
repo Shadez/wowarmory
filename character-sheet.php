@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 48
+ * @revision 59
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,7 +32,7 @@ define('load_mangos_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-// Доп. лист стилей
+// Additional CSS
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";
         @import "_css/character/sheet.css";');
 if(isset($_GET['n'])) {
@@ -42,20 +42,20 @@ elseif(isset($_GET['cn'])) {
     $charname = $_GET['cn'];
 }
 $characters->name = Utils::escape($charname);
-// Проверка
+// Check
 if(!$characters->IsCharacter()) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
 }
-// Все нормально, генерируем основные параметры чарактера
+// All ok, generate basic character info
 $characters->_structCharacter();
 $achievements->guid = $characters->guid;
 $guilds->guid = $characters->guid;
 
-// Информация для тултипов
+// Tooltips info
 $_SESSION['char_guid'] = $characters->guid;
 $items->charGuid = $characters->guid;
 
-// Передаем параметры шаблонизатору
+// Send data to Smarty
 $armory->tpl->assign('class', $characters->class);
 $armory->tpl->assign('race', $characters->race);
 $armory->tpl->assign('name', $characters->name);
@@ -80,7 +80,7 @@ if($armory->armoryconfig['useDualSpec'] == true) {
             }
             $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i), true, $ds);
         }
-        // Если у персонажа ещё нет двойной специализации
+        // If character has no dual talent specialization
         if($tp == ' /  / ') {
             $armory->tpl->assign('dualSpecError', true);
         }
@@ -93,7 +93,7 @@ if($armory->armoryconfig['useDualSpec'] == true) {
             $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
             $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
             $armory->tpl->assign('ds_'.$ds, $talent_trees);
-            $tp = ''; // Очищаем предыдущую ветку
+            $tp = ''; // Clear previous tree
             $ds++;
         }
     }
@@ -118,18 +118,21 @@ else {*/
     $armory->tpl->assign('disabledDS_1', ' disabledSpec');
     $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
 //}
-// Профессии
+// Professions
 $trade_skills = $characters->extractCharacterProfessions();
-// Обрезаем кол-во профессий до 2х (в случае, если на сервере выставлено
-// нестандартное кол-во первичных профессий, т.е. > 2)
-$armory->tpl->assign('primary_trade_skill_1', $trade_skills[0]);
-$armory->tpl->assign('primary_trade_skill_2', $trade_skills[1]);
+// Show only 2 professions
+if(isset($trade_skills[0])) {
+    $armory->tpl->assign('primary_trade_skill_1', $trade_skills[0]);
+}
+if(isset($trade_skills[1])) {
+    $armory->tpl->assign('primary_trade_skill_2', $trade_skills[1]);
+}
 
-// Здоровье
+// Health & power bars
 $armory->tpl->assign('healthValue', $characters->getHealthValue());
 $armory->tpl->assign('additionalBarInfo', $characters->assignAdditionalEnergyBar());
 
-/*** Одежда персонажа ***/
+/*** Character gear ***/
 $gear_array = array('head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'wrist', 'gloves', 'belt', 'legs', 'boots', 
 'ring1', 'ring2', 'trinket1', 'trinket2', 'mainhand', 'offhand', 'relic');
 $i = 0;
@@ -149,8 +152,8 @@ foreach($gear_array as $gear) {
 $armory->tpl->assign('characterItems', $characterItems);
 $armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
 
-/*** Звание ***/
-// TODO: расставить запятые
+/*** Character Title ***/
+// TODO: show commas
 $charTitle = $characters->GetCharacterTitle();
 $armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTeamInfo());
 $armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));

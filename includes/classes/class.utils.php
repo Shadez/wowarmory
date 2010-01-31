@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 58
+ * @revision 59
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -82,7 +82,7 @@ Class Utils extends Connector {
         }
         $selectedCharData = $this->getCharacter();
         /* Hack */
-        $characterGuildId = $this->ñDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=? LIMIT 1", $selectedCharData['guid']);
+        $characterGuildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=? LIMIT 1", $selectedCharData['guid']);
         if(!$characterGuildId || $characterGuildId != $guildid) {
             return false;
         }
