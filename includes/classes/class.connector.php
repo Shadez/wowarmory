@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 52
+ * @revision 60
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,7 +70,9 @@ Class Connector {
         $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
         $this->rDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_realmd'].':'.$this->mysqlconfig['pass_realmd'].'@'.$this->mysqlconfig['host_realmd'].'/'.$this->mysqlconfig['name_realmd']);
         $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-        
+                
+        /*
+        temporary disabled
         // Test connection
         if(!$this->aDB->selectCell("SELECT `id` FROM `classes` LIMIT 1")) {
             $this->databaseError('Can not execute query to armory database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_armory']);
@@ -84,6 +86,7 @@ Class Connector {
         if(!$this->wDB->selectCell("SELECT `entry` FROM `item_template` LIMIT 1")) {
             $this->databaseError('Can not execute query to mangos database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_mangos']);
         }
+        */
         $this->aDB->query("SET NAMES ?", $this->mysqlconfig['charset_armory']);
         $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
@@ -121,16 +124,18 @@ Class Connector {
      * @example Connector::databaseError()
      * @return none
      **/
+
+    /*
     public function databaseError() {
         $args = func_get_args();
         $tmpl =& $args[0];
         for ($i=$c=count($args)-1; $i<$c+20; $i++) {
             $args[$i+1] = ''; // if placeholder not defined
         }
-        $errorInfo = '<title>Wowarmory :: Internal Server Error</title>';
-        $errorInfo .= '<h2 align="center">Internal Server Error:</h2>';
+        $errorInfo = '<title>Wowarmory :: Database Error</title>';
+        $errorInfo .= '<h2 align="center">Database Error:</h2>';
         $errorInfo .= '<h3 align="center">'.call_user_func_array('sprintf', $args).'</h3>';
         die($errorInfo);
-    }
+    }*/
 }
 ?>
