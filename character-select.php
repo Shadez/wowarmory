@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 37
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,19 +27,21 @@ define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
+if(!isset($_SESSION['accountId'])) {
+    header('Location: login.xml?character-select');
+    exit;
+}
 
-/** Profile functions are in development! **/
-
-// Доп. лист стилей
+// Additional CSS
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-$armory->tpl->assign('tpl2include', 'vault_select_character');
+
 $armory->tpl->assign('selected_char', $utils->getCharacter());
 $armory->tpl->assign('allCharacters', $utils->getAllCharacters());
-if($armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `login_characters` WHERE `account`=?", $_SESSION['accountId']) == 3) {
+if($armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']) == 3) {
     $armory->tpl->assign('disallowAddNewChar', true);
 }
 $armory->tpl->assign('selectedCharacters', $utils->getCharsArray(true));
-
+$armory->tpl->assign('tpl2include', 'vault_select_character');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('character_sheet_start.tpl');
 exit();

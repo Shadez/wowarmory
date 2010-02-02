@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 34
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,8 +27,8 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 if($armory->armoryconfig['useNews'] == true) {
-    // Show news from `news` db table
-    // To add news, fill rows in `news` table of `armory` DB. Row `date` must be in unix timestamp format.
+    // Show news from `armory_news` db table
+    // To add news, fill rows in `armory_news` table of `armory` DB. Row `date` must be in unix timestamp format.
     $armory->tpl->assign('armoryNews', $utils->showNews());
 }
 $armory->tpl->display('overall_header.tpl');

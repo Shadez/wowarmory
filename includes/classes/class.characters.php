@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 57
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -186,7 +186,7 @@ Class Characters extends Connector {
         }
         $this->GetCharacterGender();
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $title = $this->aDB->selectRow("SELECT * FROM `titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
+        $title = $this->aDB->selectRow("SELECT * FROM `armory_titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
         $data = array();
         if($title) {
             switch($this->gender) {
@@ -301,7 +301,7 @@ Class Characters extends Connector {
         }        
         $text = $this->aDB->selectCell("
         SELECT `name_" . (isset($_SESSION['armoryLocale']) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale']) . "` 
-            FROM `classes` 
+            FROM `armory_classes` 
                 WHERE `id`=?", $class);
         return $text;
     }
@@ -321,7 +321,7 @@ Class Characters extends Connector {
         }
         $text = $this->aDB->selectCell("
         SELECT `name_" . (isset($_SESSION['armoryLocale']) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale']) . "` 
-            FROM `races` 
+            FROM `armory_races` 
                 WHERE `id`=?", $race);
         return $text;
     }
@@ -427,9 +427,9 @@ Class Characters extends Connector {
 			$spells[] = $getSpell['spell'];
 		}
 		$resTal = $this->aDB->select("
-		SELECT `rank1`, `rank2`, `rank3`, `rank4`, `rank5` 
-			FROM `talent` 
-				WHERE `ref_tab` = ?", $tab);
+		SELECT `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5` 
+			FROM `armory_talents` 
+				WHERE `TalentTab` = ?", $tab);
 		foreach($resTal as $row) {
 			$ranks[] = $row;
 		}
@@ -437,11 +437,11 @@ Class Characters extends Connector {
 			foreach($spells as $k => $v) {
 				if(in_array($v, $val)) {
 					switch(array_search($v, $val)) {
-						case "rank1": $pt += 1; break;
-						case "rank2": $pt += 2; break;
-						case "rank3": $pt += 3; break;
-						case "rank4": $pt += 4; break;
-						case "rank5": $pt += 5; break;
+						case 'Rank_1': $pt += 1; break;
+						case 'Rank_2': $pt += 2; break;
+						case 'Rank_3': $pt += 3; break;
+						case 'Rank_4': $pt += 4; break;
+						case 'Rank_5': $pt += 5; break;
 					}
 				}
 			}
@@ -612,13 +612,13 @@ Class Characters extends Connector {
 		if($type == "tab") {
 			$field = $this->aDB->selectCell("
 			SELECT `id`
-				FROM `talenttab`
+				FROM `armory_talenttab`
 					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($class-1)), $tabnum);
 		}
 		else {
 			$field = $this->aDB->selectCell("
 			SELECT `name_" . $locale . "`
-				FROM `talenttab`
+				FROM `armory_talenttab`
 					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($class-1)), $tabnum);
 		}
 		return $field;
@@ -707,7 +707,7 @@ Class Characters extends Connector {
             $glyph_id = $this->GetDataField($glyphFields[$i]);
             $glyph_info = $this->aDB->selectRow("
             SELECT `type`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`
-                FROM `glyphproperties` WHERE `id`=?", $glyph_id);
+                FROM `armory_glyphproperties` WHERE `id`=?", $glyph_id);
             if(!$glyph_info) {
                 continue;
             }
@@ -779,7 +779,7 @@ Class Characters extends Connector {
      * @return string
      **/
     public function ReturnTalentTreeIcon($class, $tree) {
-        $icon = $this->aDB->selectCell("SELECT `icon` FROM `talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $class, $tree);
+        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $class, $tree);
         if($icon) {
             return $icon;
         }
@@ -816,8 +816,8 @@ Class Characters extends Connector {
         $i = 0;
         foreach($professions as $prof) {
             $p[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
-                'icon' => $this->aDB->selectCell("SELECT `icon` FROM `professions` WHERE `id`=? LIMIT 1", $prof['skill']),
+                'name' => $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
+                'icon' => $this->aDB->selectCell("SELECT `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
                 'value' => $prof['value']
             );
             $i++;
@@ -848,8 +848,8 @@ Class Characters extends Connector {
                 continue;
             }
             $factionReputation[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `faction` WHERE `id`=?", $faction['faction']),
-                'descr' => $this->aDB->selectCell("SELECT `description_".$locale."` FROM `faction` WHERE `id`=?", $faction['faction']),
+                'name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
+                'descr' => $this->aDB->selectCell("SELECT `description_".$locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
                 'standings' => Utils::getReputation($faction['standing']),
                 'standing' => $faction['standing']
             );

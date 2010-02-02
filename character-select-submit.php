@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 49
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,22 +36,22 @@ if(!isset($_SESSION['accountId'])) {
 if(isset($_GET['action'])) {
     switch($_GET['action']) {
         case 'add':
-            if(!$armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+            if(!$armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
                 if($data = $armory->cDB->selectRow("SELECT `guid`, `account`, `name`, `level`, `race`, `class`, `gender` FROM `characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
                     $data['selected'] = 0;
-                    $armory->aDB->query("INSERT IGNORE INTO `login_characters` (?#) VALUES (?a)", array_keys($data), array_values($data));
+                    $armory->aDB->query("INSERT IGNORE INTO `armory_login_characters` (?#) VALUES (?a)", array_keys($data), array_values($data));
                 }
             }
             break;
         case 'delete':
-            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                $armory->aDB->query("DELETE FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId']);
+            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                $armory->aDB->query("DELETE FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId']);
             }
             break;
         case 'setmain':
-            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                $armory->aDB->query("UPDATE `login_characters` SET `selected`=0 WHERE `account`=?", $_SESSION['accountId']);
-                $armory->aDB->query("UPDATE `login_characters` SET `selected`=1 WHERE `name`=? AND `account`=?", $_GET['name'], $_SESSION['accountId']);
+            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
+                $armory->aDB->query("UPDATE `armory_login_characters` SET `selected`=0 WHERE `account`=?", $_SESSION['accountId']);
+                $armory->aDB->query("UPDATE `armory_login_characters` SET `selected`=1 WHERE `name`=? AND `account`=?", $_GET['name'], $_SESSION['accountId']);
             }
             break;
     }

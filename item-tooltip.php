@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 55
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -35,10 +35,12 @@ if(isset($_GET['cn'])) {
     $characters->name = $_GET['cn'];
     $characters->GetCharacterGuid();
 }
-// Проверка
+// Check
 if($itemID==0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
     die($armory->tpl->get_config_vars('armory_item_tooltip_undefined_item'));
 }
+
+// Before we start to generate new tooltip, check cache for old one
 if($characters->guid) {
     $utils->clearCache();
     $CacheItem = $utils->getCache($itemID, $characters->guid);
@@ -76,7 +78,7 @@ if($_locale == 'en_gb') {
 else {
     $_spell_locale = false;
 }
-// Статы вещи и зеленые бонусы
+// Items stats & green bonuses
 $o = '';
 $j = '';
 for($i=1; $i!=11; $i++) {
@@ -157,7 +159,7 @@ switch($data['class']) {
         }
         break;
 }
-// Сокеты
+// Sockets
 $s = '';
 for($ii=1; $ii<4; $ii++) {
     switch($data['socketColor_'.$ii]) {
@@ -165,7 +167,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Meta.png">'.$armory->tpl->get_config_vars('socket_meta').'</span><br>';
@@ -175,7 +177,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Red.png">'.$armory->tpl->get_config_vars('socket_red').'</span><br>';
@@ -185,7 +187,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Yellow.png">'.$armory->tpl->get_config_vars('socket_yellow').'</span><br>';
@@ -195,7 +197,7 @@ for($ii=1; $ii<4; $ii++) {
             $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
             if($gem) {
                 $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
+                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
             }
             else {
                 $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Blue.png">'.$armory->tpl->get_config_vars('socket_blue').'</span><br>';
@@ -225,10 +227,10 @@ if(isset($socketBonusCheck)) {
     }
 }
 
-$sBonus = $armory->aDB->selectCell("SELECT `text_".$_locale."` FROM `enchantment` WHERE `id`=?", $data['socketBonus']);
+$sBonus = $armory->aDB->selectCell("SELECT `text_".$_locale."` FROM `armory_enchantment` WHERE `id`=?", $data['socketBonus']);
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
-        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
+        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
         if(!isset($spell_tmp['Description'.$_spell_locale])) {
             $spell_tmp['Description'.$_spell_locale] = '';
         }
@@ -270,7 +272,7 @@ if($characters->guid) {
     if($enchantment) {
         $armory->tpl->assign('ench', $armory->aDB->selectCell("
         SELECT `text_" . $_locale ."`
-            FROM `enchantment`
+            FROM `armory_enchantment`
                 WHERE `id`=? LIMIT 1", $enchantment));
     }
 }
@@ -299,7 +301,7 @@ if($data['RequiredLevel'] > 0) {
 if($data['RequiredSkill'] > 0) {
     $req_skill = $armory->aDB->selectCell("
     SELECT `name_".$_locale."`
-        FROM `skills`
+        FROM `armory_skills`
             WHERE `id`=? LIMIT 1", $data['RequiredSkill']);
     $armory->tpl->assign('need_skill', $req_skill);
     $armory->tpl->assign('need_skill_rank', $data['RequiredSkillRank']);

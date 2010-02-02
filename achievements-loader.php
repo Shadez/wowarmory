@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 31
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,17 +34,17 @@ if(!@include('includes/armory_loader.php')) {
 $characters->name = Utils::escape($_GET['cn']);
 $achievementsCategory = (int) $_GET['c'];
 $characters->_structCharacter();
-$faction = ($characters->faction==1) ? 0 : 1;    
+$faction = ($characters->faction == 1) ? 0 : 1;    
 if(empty($characters->name) || empty($achievementsCategory)) {
     die('{"js":{"achievements":"' . $armory->tpl->get_config_vars('armory_character_achievements_unable_to_load') . '"},"text":""}');
 }
 $query = $armory->aDB->select("
     SELECT `id`, `parentAchievement`, `name_".$_locale."`, `description_".$_locale."`, `points`, `iconname`, `titleReward_".$_locale."`
-        FROM `achievements`
+        FROM `armory_achievement`
             WHERE `categoryId`=? AND `factionFlag` IN (?, '-1')", $achievementsCategory, $faction);           
 $cc = $armory->aDB->selectPage($totalCount, 
     "SELECT `id`
-        FROM `achievements`
+        FROM `armory_achievement`
         WHERE `categoryId`=? AND `factionFlag` IN (?, '-1')", $achievementsCategory, $faction);
 $total = 0;
 $string = '';
@@ -70,23 +70,20 @@ foreach($query as $ach) {
     }
     else {
         if($achievementsCategory!=81) {
-            $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
-            $uncompleted .= $achievements->AchievementProgress();
-            if(!empty($ach['titleReward_'.$_locale])) {
-                $uncompleted .="<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
-            }
-            $uncompleted .= "<br clear='all'/></div>";
+                $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+                $uncompleted .= $achievements->AchievementProgress();
+                if(!empty($ach['titleReward_'.$_locale])) {
+                    $uncompleted .="<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
+                }
+                $uncompleted .= "<br clear='all'/></div>";
         }
-     }
+    }
 }
 if($achievementsCategory!=81) {
     $prestring = "<div><div><div><div class='prog_bar '><div class='progress_cap'><!----></div><div class='progress_cap_r' style='background-position:bottom'><!----></div><div class='progress_int'><div class='progress_fill' style='width:".$achievements->CountAchievementPercent($total, 1)."%'><!----></div><div class='prog_int_text'>".$total." / ".$totalCount."</div></div></div></div>";
 }
 echo '{"js":{"achievements":"'.$prestring.$string;
-if($achievementsCategory != 94442) {
-    // temporary hack
-    echo $uncompleted;
-}
+echo $uncompleted;
 echo '"},"text":""}';
 exit();
 ?>

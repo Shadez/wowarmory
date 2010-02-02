@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -80,7 +80,7 @@ Class Mangos extends Connector {
 			case 'map':
 				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_questrelation` WHERE `quest`=?", $quest);
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=?", $quester);
-				$info = $this->aDB->selectCell("SELECT `name".$locale."` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
 			}
         return $info;
@@ -167,7 +167,7 @@ Class Mangos extends Connector {
             
             case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=?", $entry);
-				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
 		}
 		return $info;
@@ -209,7 +209,7 @@ Class Mangos extends Connector {
 				
 			case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
             
             case 'subname':

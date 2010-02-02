@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 48
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,14 +25,12 @@
 define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
-define('load_items_class', true);
 define('load_achievements_class', true);
-define('load_items_class', true);
 
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-// Доп. лист стилей
+// Additional CSS
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
 if(isset($_GET['n'])) {
@@ -42,16 +40,16 @@ elseif(isset($_GET['cn'])) {
     $charname = $_GET['cn'];
 }
 $characters->name = Utils::escape($charname);
-// Проверка
+// Check
 if(!$characters->IsCharacter()) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
 }
-// Все нормально, генерируем основные параметры чарактера
+// All ok, generate basic character info
 $characters->_structCharacter();
 $achievements->guid = $characters->guid;
 $guilds->guid = $characters->guid;
 
-// Передаем параметры шаблонизатору
+// Send data to Smarty
 $armory->tpl->assign('class', $characters->class);
 $armory->tpl->assign('race', $characters->race);
 $armory->tpl->assign('name', $characters->name);
@@ -65,9 +63,9 @@ if($guilds->extractPlayerGuildId()) {
     $armory->tpl->assign('guildName', $guilds->getGuildName());
 }
 //TODO: Dualspec
-// Таланты
-// Отображение 2й ветки талантов будет работать, если на ядро установлен соответствующий патч
-// !Поддерживается ТОЛЬКО порт от KiriX!
+// Talents
+// Displaying second talents tree will work only with core patch!
+// !Supports KiriX's port only!
 $tp = '';/*
 if($armory->armoryconfig['useDualSpec'] == true) {
     $ds = 0;
@@ -78,7 +76,7 @@ if($armory->armoryconfig['useDualSpec'] == true) {
             }
             $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i), true, $ds);
         }
-        // Если у персонажа ещё нет двойной специализации
+        // If character has no dual talent specialization
         if($tp == ' /  / ') {
             $armory->tpl->assign('dualSpecError', true);
         }
@@ -92,7 +90,7 @@ if($armory->armoryconfig['useDualSpec'] == true) {
             $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
             $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
             $armory->tpl->assign('ds_'.$ds, $talent_trees);
-            $tp = ''; // Очищаем предыдущую ветку
+            $tp = ''; // Clear previous tree
             $ds++;
         }
     }

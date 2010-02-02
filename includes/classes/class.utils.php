@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 59
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -65,12 +65,12 @@ Class Utils extends Connector {
             return false;
         }
         if($select == true) {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? AND `selected`<>1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected`<>1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
             $chars['0']['show'] = true;
             $chars['1']['show'] = true;
         }
         else {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
         }
         // TODO: achievement points for each character
         return $chars;
@@ -112,7 +112,7 @@ Class Utils extends Connector {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
+        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
         if(!$data) {
             return $this->loadRandomCharacter();
         }
@@ -129,7 +129,7 @@ Class Utils extends Connector {
         }
         $char['account'] = $_SESSION['accountId'];
         $char['selected'] = 1;
-        $this->aDB->query("INSERT INTO `login_characters` (?#) VALUES (?a)", array_keys($char), array_values($char));
+        $this->aDB->query("INSERT INTO `armory_login_characters` (?#) VALUES (?a)", array_keys($char), array_values($char));
         return $char;
     }
     
@@ -137,7 +137,7 @@ Class Utils extends Connector {
         if(!$_SESSION['accountId']) {
             return false;
         }
-        $guids = $this->aDB->select("SELECT `guid` FROM `character_bookmarks` WHERE `account`=?", $_SESSION['accountId']);
+        $guids = $this->aDB->select("SELECT `guid` FROM `armory_bookmarks` WHERE `account`=?", $_SESSION['accountId']);
         if($guids) {
             $bookmarks = array();
             $i = 0;
@@ -148,7 +148,7 @@ Class Utils extends Connector {
                 for($j=0;$j<$countAchievements;$j++) {
                     $ach[$j] = $charAchievements[$j]['achievement'];
                 }
-                $bookmarks[$i]['apoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `achievements` WHERE `id` IN (?a)", $ach);
+                $bookmarks[$i]['apoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (?a)", $ach);
                 $i++;
             }
             return $bookmarks;
@@ -197,7 +197,7 @@ Class Utils extends Connector {
     }
     
     public function GetRating($level) {
-        $rating = $this->aDB->selectRow("SELECT * FROM `rating` WHERE `level`=?", $level);
+        $rating = $this->aDB->selectRow("SELECT * FROM `armory_rating` WHERE `level`=?", $level);
         return $rating;
     }
     
@@ -362,7 +362,7 @@ Class Utils extends Connector {
                 $value = $rep - $current;
                 $repData = array (
                     'rank'=>$i, 
-                    'rank_name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `reputation_ranks` WHERE `id`=?", $i+1),
+                    'rank_name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_reputation_ranks` WHERE `id`=?", $i+1),
                     'rep'=>$value,
                     'max'=>$gRepStep[$i],
                     'percent'=>Utils::getPercent($gRepStep[$i], $value),
@@ -370,7 +370,7 @@ Class Utils extends Connector {
                 return $repData;
             }
         }
-        return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$locale."` FROM `reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
+        return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
     }
     
     public function realmFirsts() {
@@ -399,9 +399,9 @@ Class Utils extends Connector {
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `achievements` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `achievements` WHERE `id`=?", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `achievements` WHERE `id`=?", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['timestamp'] = date('Y-m-d\TH:i:s:+00:00', $achievements_data[$i]['date']);
             $achievements_data[$i]['guildid'] = Characters::GetDataField(PLAYER_GUILDID, $achievements_data[$i]['guid']);
             if($achievements_data[$i]['guildid'] > 0) {
@@ -523,7 +523,7 @@ Class Utils extends Connector {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         return $this->aDB->selectCell("
         SELECT `tooltip_html`
-            FROM `cache`
+            FROM `armory_cache`
                 WHERE `id`=? AND `guid`=? AND `locale`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $locale, $this->armoryconfig['cache_lifetime']);
     }
     
@@ -532,7 +532,7 @@ Class Utils extends Connector {
             return false;
         }
         $this->aDB->query("
-        INSERT IGNORE INTO `cache` (`id`, `guid`, `tooltip_html`, `date`, `locale`)
+        INSERT IGNORE INTO `armory_cache` (`id`, `guid`, `tooltip_html`, `date`, `locale`)
             VALUES (?, ?, ?, NOW(), ?)", $itemID, $guid, $tooltip, $locale);
         return true;
     }
@@ -542,10 +542,10 @@ Class Utils extends Connector {
             return false;
         }
         if($full == true) {
-            $this->aDB->query("TRUNCATE TABLE `cache`");
+            $this->aDB->query("TRUNCATE TABLE `armory_cache`");
 			return true;
         }
-        $this->aDB->query("DELETE FROM `cache` WHERE `id`=? AND `guid`=?", $itemID, $guid);
+        $this->aDB->query("DELETE FROM `armory_cache` WHERE `id`=? AND `guid`=?", $itemID, $guid);
         return true;
     }
     
@@ -553,12 +553,12 @@ Class Utils extends Connector {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
-        $this->aDB->query("DELETE FROM `cache` WHERE TO_DAYS(NOW()) - TO_DAYS(`date`) >= ?", $this->armoryconfig['cache_lifetime']);
+        $this->aDB->query("DELETE FROM `armory_cache` WHERE TO_DAYS(NOW()) - TO_DAYS(`date`) >= ?", $this->armoryconfig['cache_lifetime']);
         return true;
     }
     
     public function showNews() {
-        $news = $this->aDB->select("SELECT * FROM `news` ORDER BY `id` DESC");
+        $news = $this->aDB->select("SELECT * FROM `armory_news` ORDER BY `id` DESC");
         $count = count($news);
         for($i=0;$i<$count;$i++) {
             $news[$i]['date'] = date('Y-m-d\TH:i:s', $news[$i]['date']);

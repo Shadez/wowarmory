@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 50
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,7 +69,7 @@ Class Items extends Connector {
      **/
     public function getItemIcon($itemID) {
         $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-        $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `icons` WHERE `displayid`=? LIMIT 1", $displayId);
+        $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=? LIMIT 1", $displayId);
         return strtolower($itemIcon);
     }
     
@@ -116,7 +116,7 @@ Class Items extends Connector {
 		$i=1;
 		while($mask) {
 			if($mask & 1) {
-                $name = $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `races` WHERE `id`=?", $i);
+                $name = $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `armory_races` WHERE `id`=?", $i);
 				$data = @$name; if ($data == "") $data = $i;
 				$text.=$data;
 				if($mask!=1) {
@@ -147,7 +147,7 @@ Class Items extends Connector {
 		while($mask)
 		{
 			if($mask & 1) {
-                $name = $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `classes` WHERE `id`=?", $i);
+                $name = $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `armory_classes` WHERE `id`=?", $i);
 				$data = @$name; if($data == "") $data = $i;
 				$text.=$data;
 				if ($mask!=1) {
@@ -189,7 +189,7 @@ Class Items extends Connector {
 		$item, $item, $item);
         $craftLoot = $this->aDB->selectCell("
         SELECT `id`
-            FROM `spell`
+            FROM `armory_spell`
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         if(!empty($bossLoot)) {
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=1");
@@ -274,7 +274,7 @@ Class Items extends Connector {
         $itemsName='';
         $query = $this->aDB->selectRow("
         SELECT *
-            FROM `itemsetinfo`
+            FROM `armory_itemsetinfo`
                 WHERE `id`=? LIMIT 1", $itemset);
         if(!$query) {
             return false;
@@ -293,9 +293,13 @@ Class Items extends Connector {
 		
         for($i=1; $i<9; $i++) {
             if($query['bonus'.$i] > 0) {
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $query['bonus'.$i]);
+                $spell_tmp = array();
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $query['bonus'.$i]);
                 $itemSetBonuses .= '<span class="setItemGray">('.$i.') ';
                 $itemSetBonuses .=  ($locale == 'ru_ru') ? 'Комплект' : 'Set';
+                if(!isset($spell_tmp['Description'.$spell_locale])) {
+                    $spell_tmp['Description'.$spell_locale] = '';
+                }
                 $itemSetBonuses .=  ':&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'.$spell_locale])).'</span><br />';
             }
 		}
@@ -429,7 +433,7 @@ Class Items extends Connector {
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
                         `SpellName`
-                        FROM `spell`
+                        FROM `armory_spell`
                             WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
                 if(!empty($CraftLoot)) {
                     $i=0;
@@ -465,7 +469,7 @@ Class Items extends Connector {
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
                         `SpellName`
-                        FROM `spell`
+                        FROM `armory_spell`
                         WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR 
                         `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
                 if($ReagentLoot) {
@@ -531,9 +535,9 @@ Class Items extends Connector {
             FROM `item_instance` 
                 WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
         if($socketInfo > 0) {
-            $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `enchantment` WHERE `id`=?", $socketInfo);
+            $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             $data['icon'] = $this->getItemIcon($data['item']);
-            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$locale."` FROM `enchantment` WHERE `id`=?", $socketInfo);
+            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$locale."` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             $data['enchant_id'] = $socketInfo;
             return $data;
         }
@@ -624,7 +628,7 @@ Class Items extends Connector {
                 if ($spellData == 0)
                 {
                     if ($lookup == $spell['id']) $cacheSpellData[$lookup] = $this->getSpellData($spell);
-                    else                         $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $lookup));
+                    else                         $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $lookup));
                     $spellData = @$cacheSpellData[$lookup];
                 }
                 if ($spellData && $base = @$spellData[strtolower($var)])
@@ -657,7 +661,7 @@ Class Items extends Connector {
     
       $d  = 0;
       if ($spell['DurationIndex'])
-       if ($spell_duration = $this->aDB->selectRow("SELECT * FROM `spell_duration` WHERE `id`=?", $spell['DurationIndex']))
+       if ($spell_duration = $this->aDB->selectRow("SELECT * FROM `armory_spell_duration` WHERE `id`=?", $spell['DurationIndex']))
          $d = $spell_duration['duration_1']/1000;
     
       // Tick duration

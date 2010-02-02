@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 55
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -58,7 +58,7 @@ Class Achievements extends Connector {
         }
         $pts = $this->aDB->selectCell("
         SELECT SUM(`points`)
-            FROM `achievements`
+            FROM `armory_achievement`
                 WHERE `id` IN 
                 (
                     SELECT `achievement` 
@@ -154,7 +154,7 @@ Class Achievements extends Connector {
             WHERE `achievement` IN 
             (
                 SELECT `id` 
-                FROM `".$this->mysqlconfig['name_armory']."`.`achievements` 
+                FROM `".$this->mysqlconfig['name_armory']."`.`armory_achievement` 
                 WHERE `categoryId` IN (".$achs.")
             )
             AND `guid`=?", $this->guid);
@@ -215,7 +215,7 @@ Class Achievements extends Connector {
     public function AchievementProgress() {
         $string_return = '';
         $tmp_str       = '';
-        $data = $this->aDB->select("SELECT * FROM `achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
+        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
         $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>{CURRENT_NUM} / {FULLCOUNT}</div></div></div></div></ul>";
         $progress_list_string = "<ul class='criteria c_list'>{CRITERIA_LIST}</ul>";
         // Check if data exists
@@ -362,13 +362,13 @@ Class Achievements extends Connector {
      **/
     public function buildAchievementsTree() {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `achievement_category` WHERE `parentCategory`=-1");
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `armory_achievement_category` WHERE `parentCategory`=-1");
         $achievementTree = '';
         foreach($categoryIds as $cat) {
             $i = 0;
             $achievementTree .= '<div>
             <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$cat['id'].'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$cat['id'].')">'.$cat['name_'.$locale].'</a>';
-            $child = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `achievement_category` WHERE `parentCategory`=?", $cat['id']);
+            $child = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
             if($child) {
                 $achievementTree .= '<div class="cat_list">';
                 foreach($child as $childcat) {
@@ -394,7 +394,7 @@ Class Achievements extends Connector {
             return false;
         }
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points` FROM `achievements` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
         if(!$achievementinfo) {
             return false;
         }

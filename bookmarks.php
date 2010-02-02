@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 49
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -46,12 +47,12 @@ if(isset($_GET['action'])) {
     switch($_GET['action']) {
         case 1: // Add new character bookmark
             if($guid) {
-                $armory->aDB->query("INSERT IGNORE INTO `character_bookmarks` (`account`, `guid`) VALUES (?, ?)", $_SESSION['accountId'], $guid);
+                $armory->aDB->query("INSERT IGNORE INTO `armory_bookmarks` (`account`, `guid`) VALUES (?, ?)", $_SESSION['accountId'], $guid);
             }
             break;
         case 2: // Delete character bookmark
             if($guid) {
-                $armory->aDB->query("DELETE FROM `character_bookmarks` WHERE `account`=? AND `guid`=? LIMIT 1", $_SESSION['accountId'], $guid);
+                $armory->aDB->query("DELETE FROM `armory_bookmarks` WHERE `account`=? AND `guid`=? LIMIT 1", $_SESSION['accountId'], $guid);
             }
             break;
     }

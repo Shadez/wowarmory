@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 55
+ * @revision 61
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('includes/armory_loader.php')) {
 }
 $itemID = (int) $_GET['i'];
 
-// Проверка
+// Check
 if($itemID == 0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_item_not_exists_title'), $armory->tpl->get_config_vars('armory_error_item_not_exists_text'));
 }
@@ -49,7 +49,9 @@ $quality_colors = array (
 // TODO: remove * from query
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
 $data['name'] = $items->getItemName($itemID);
-
+if(isset($_GET['data'])) {
+    die('DisplayID: '.$data['displayid']);
+}
 // `Quality`, `bonding`, `subclass`, `InventoryType` 
 $armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
 $armory->tpl->assign('item_name', $data['name']);
@@ -62,7 +64,7 @@ if($_locale == 'en_gb') {
 else {
     $_spell_locale = false;
 }
-// Статы вещи и зеленые бонусы
+// Item stats & green bonuses
 $o = '';
 $j = '';
 for($i=1; $i<11; $i++) {
@@ -163,7 +165,7 @@ for($ii=1; $ii<4; $ii++) {
 }
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
-        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `spell` WHERE `id`=?", $data['spellid_'.$i]);
+        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
         if(!isset($spell_tmp['Description'.$_spell_locale])) {
             continue;
         }
@@ -190,7 +192,7 @@ if($data['RequiredLevel'] > 0) {
 if($data['RequiredSkill'] > 0) {
     $req_skill = $armory->aDB->selectCell("
     SELECT `name_".$_locale."`
-        FROM `skills`
+        FROM `armory_skills`
             WHERE `id`=? LIMIT 1", $data['RequiredSkill']);
     $armory->tpl->assign('need_skill', $req_skill);
     $armory->tpl->assign('need_skill_rank', $data['RequiredSkillRank']);
@@ -215,6 +217,9 @@ if($data['startquest'] > 0) {
 if($data['ItemLevel'] > 1) {
     $armory->tpl->assign('source', $items->GetItemSource($itemID));
 }
+if($data['RequiredDisenchantSkill'] > 0) {
+    $armory->tpl->assign('disenchant_info', $data['RequiredDisenchantSkill']);
+}
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('buyPrice',  $mangos->getMoney($data['BuyPrice']));
 $armory->tpl->assign('sellPrice', $mangos->getMoney($data['SellPrice']));
@@ -228,9 +233,6 @@ $armory->tpl->assign('disenchant_loot', $items->BuildLootTable($itemID, 'disench
 $armory->tpl->assign('craft_loot', $items->BuildLootTable($itemID, 'craft'));
 $armory->tpl->assign('reagent_loot', $items->BuildLootTable($itemID, 'reagent'));
 $armory->tpl->assign('item_level', $data['ItemLevel']);
-if($data['RequiredDisenchantSkill'] > 0) {
-    $armory->tpl->assign('disenchant_info', $data['RequiredDisenchantSkill']);
-}
 $armory->tpl->assign('tpl2include', 'item_info');
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";
     @import "_css/_region/eu/region.css";');
