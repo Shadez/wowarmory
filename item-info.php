@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 63
+ * @revision 64
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -166,10 +166,10 @@ for($ii=1; $ii<4; $ii++) {
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
         $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
-        if(!isset($spell_tmp['Description'.$_spell_locale])) {
+        if(!isset($spell_tmp['Description_'.$_locale])) {
             continue;
         }
-        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description'.$_spell_locale]));
+        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$_locale]));
         if($spellInfo) {
             $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
         }
@@ -237,6 +237,10 @@ $armory->tpl->assign('disenchant_loot', $items->BuildLootTable($itemID, 'disench
 $armory->tpl->assign('craft_loot', $items->BuildLootTable($itemID, 'craft'));
 $armory->tpl->assign('reagent_loot', $items->BuildLootTable($itemID, 'reagent'));
 /** Loot tables **/
+$extended_cost = $armory->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $itemID);
+if($extended_cost > 0) {
+    $armory->tpl->assign('price', $mangos->GetExtendedCost($extended_cost));
+}
 $armory->tpl->assign('item_level', $data['ItemLevel']);
 $armory->tpl->assign('tpl2include', 'item_info');
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";

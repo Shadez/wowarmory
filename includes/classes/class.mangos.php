@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 63
+ * @revision 64
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -275,6 +275,20 @@ Class Mangos extends Connector {
         $money = $money-$getMoney['silver']*100;
         $getMoney['copper'] = floor($money);
         return $getMoney;
+    }
+    
+    public function GetExtendedCost($costId) {
+        $costInfo = $this->aDB->selectRow("SELECT * FROM `armory_extended_cost` WHERE `id`=? LIMIT 1", $costId);
+        if(!$costInfo) {
+            return false;
+        }
+        for($i=1;$i<6;$i++) {
+            if($costInfo['item'.$i] > 0) {
+                $costInfo['item'.$i.'icon'] = Items::getItemIcon($costInfo['item'.$i]);
+                $costInfo['item'.$i.'name'] = Items::getItemName($costInfo['item'.$i]);
+            }
+        }
+        return $costInfo;
     }
 }
 ?>

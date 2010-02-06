@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 63
+ * @revision 64
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -264,12 +264,6 @@ Class Items extends Connector {
      **/
     public function BuildItemSetInfo($itemset) {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        if($locale == 'en_gb') {
-            $spell_locale = '_1';
-        }
-        else {
-            $spell_locale = false;
-        }
         $itemSetBonuses = '';
         $itemsName='';
         $query = $this->aDB->selectRow("
@@ -297,10 +291,10 @@ Class Items extends Connector {
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $query['bonus'.$i]);
                 $itemSetBonuses .= '<span class="setItemGray">('.$i.') ';
                 $itemSetBonuses .=  ($locale == 'ru_ru') ? 'Комплект' : 'Set';
-                if(!isset($spell_tmp['Description'.$spell_locale])) {
-                    $spell_tmp['Description'.$spell_locale] = '';
+                if(!isset($spell_tmp['Description_'.$locale])) {
+                    $spell_tmp['Description_'.$locale] = '';
                 }
-                $itemSetBonuses .=  ':&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description'.$spell_locale])).'</span><br />';
+                $itemSetBonuses .=  ':&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$locale])).'</span><br />';
             }
 		}
 		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div>', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
@@ -319,7 +313,7 @@ Class Items extends Connector {
         switch($vendor) {
 			case 'vendor':
 				$VendorLoot = $this->wDB->select("
-				SELECT `entry`
+				SELECT `entry`, `ExtendedCost`
 					FROM `npc_vendor`
 						WHERE `item`=?", $item);
 				if(!empty($VendorLoot)) {
@@ -328,7 +322,8 @@ Class Items extends Connector {
 						$lootTable[$i] = array (
 							'name' => Mangos::GetNpcName($vItem['entry']),
 							'level'=> Mangos::GetNpcInfo($vItem['entry'], 'level'),
-							'map' => Mangos::GetNpcInfo($vItem['entry'], 'map')
+							'map' => Mangos::GetNpcInfo($vItem['entry'], 'map'),
+                            'extended_cost' => Mangos::GetExtendedCost($vItem['ExtendedCost'])
 						);
                         $i++;
 					}
@@ -770,7 +765,7 @@ Class Items extends Connector {
     
     public function my_replace($matches) {
         $text = str_replace( array('[',']'), array('', ''), $matches[0]);
-        eval("\$text = abs(".$text.");");
+        //eval("\$text = abs(".$text.");");
         return intval($text);
     }
     
