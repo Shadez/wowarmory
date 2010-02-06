@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 63
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -314,7 +314,7 @@ Class Items extends Connector {
      * @todo Currency for
      * @return array
      **/
-    public function BuildLootTable($item, $vendor) {
+    public function BuildLootTable($item, $vendor, $data=false) {
         $lootTable = '';
         switch($vendor) {
 			case 'vendor':
@@ -323,110 +323,160 @@ Class Items extends Connector {
 					FROM `npc_vendor`
 						WHERE `item`=?", $item);
 				if(!empty($VendorLoot)) {
+				    $i = 0;
 					foreach($VendorLoot as $vItem) {
-						$lootTable[count($lootTable)] = array (
+						$lootTable[$i] = array (
 							'name' => Mangos::GetNpcName($vItem['entry']),
 							'level'=> Mangos::GetNpcInfo($vItem['entry'], 'level'),
 							'map' => Mangos::GetNpcInfo($vItem['entry'], 'map')
 						);
+                        $i++;
 					}
 				}
-			break;
-			
+                break;			
 			case 'boss':
 				$BossLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `creature_loot_template`
-						WHERE `item`=?", $item);
+						WHERE `item`=?", $item);                        
 				if(!empty($BossLoot)) {
+				    $i = 0;
 					foreach($BossLoot as $bItem) {
 					    $map_npc = Mangos::GetNpcInfo($bItem['entry'], 'map');
                            if(!empty($map_npc)) {
-                               $lootTable[count($lootTable)] = array (
+                               $lootTable[$i] = array (
                                     'entry' => $bItem['entry'],
         							'name' => Mangos::GetNpcName($bItem['entry']),
         							'level'=> Mangos::GetNpcInfo($bItem['entry'], 'level'),
         							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
         							'map' => $map_npc,
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
-        						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
+        						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance']),
+                                    'makro' => '1'
     						  );
+                              $i++;
                         }
 					}
 				}
-			break;
-			
+                break;			
 			case 'chest':
 				$ChestLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `gameobject_loot_template`
 						WHERE `item`=?", $item);
 				if(!empty($ChestLoot)) {
+				    $i = 0;
 					foreach($ChestLoot as $cItem) {
 					    $map_chest = Mangos::GameobjectInfo($cItem['entry'], 'map');
                         if(!empty($map_chest)) {
-                            $lootTable[count($lootTable)] = array (
+                            $lootTable[$i] = array (
                                 'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
     							'map' => $map_chest,
     							'difficult' => '&nbsp;',
     							'drop_percent' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
     						);
+                            $i++;
                         }
 					}
 				}
-			break;
-			
-			case 'quest':
+                break;			
+			case 'questreward':
 				$QuestLoot = $this->wDB->select("
-				SELECT `entry`
+				SELECT `entry`, `MinLevel`
 					FROM `quest_template`
 						WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
 						`RewChoiceItemId4` = ? OR `RewChoiceItemId5` = ? OR `RewChoiceItemId6` = ?", $item, $item, $item, 
 						$item, $item, $item);
 				if(!empty($QuestLoot)) {
+				    $i = 0;
 					foreach($QuestLoot as $qItem) {
-						$lootTable[count($lootTable)] = array (
+						$lootTable[$i] = array (
 							'title' => Mangos::QuestInfo($qItem['entry'], 'title'),
-							'reqlevel' => Mangos::QuestInfo($qItem['entry'], 'reqlevel'),
+							'reqlevel' => $qItem['MinLevel'],
 							'map' => Mangos::QuestInfo($qItem['entry'], 'map')
 						);
+                        $i++;
 					}
 				}
-			break;
-            
+                break;            
+            case 'queststart':
+                $QuestStart = $this->wDB->selectCell("SELECT `startquest` FROM `item_template` WHERE `entry`=?", $item);
+                if(!$QuestStart) {
+                    return false;
+                }
+                $lootTable[0] = array(
+                    'title' => Mangos::QuestInfo($QuestStart, 'title'),
+                    'reqlevel' => Mangos::QuestInfo($QuestStart, 'reqlevel'),
+                    'map' => Mangos::QuestInfo($QuestStart, 'map')
+                );
+                break;            
+            case 'providedfor':
+                $QuestInfo = $this->wDB->select("SELECT `entry`, `MinLevel` FROM `quest_template` WHERE `SrcItemId`=?", $item);
+                if(!$QuestInfo) {
+                    return false;
+                }
+                $i = 0;
+                foreach($QuestInfo as $quest) {
+                    $lootTable[$i] = array(
+                        'title' => Mangos::QuestInfo($quest['entry'], 'title'),
+                        'reqlevel' => $quest['MinLevel'],
+                        'map' => Mangos::QuestInfo($quest['entry'], 'map')
+                    );
+                }                
+                break;            
+            case 'objectiveof':
+                $QuestInfo = $this->wDB->select("
+                SELECT `entry`, `MinLevel`
+                    FROM `quest_template`
+                        WHERE `ReqItemId1`=? OR `ReqItemId2`=? OR `ReqItemId3`=?
+                        OR `ReqItemId4`=? OR `ReqItemId5`=?", $item, $item, $item, $item, $item);
+                if(!$QuestInfo) {
+                    return false;
+                }
+                $i = 0;
+                foreach($QuestInfo as $quest) {
+                    $lootTable[$i] = array(
+                        'title' => Mangos::QuestInfo($quest['entry'], 'title'),
+                        'reqlevel' => $quest['MinLevel'],
+                        'map' => Mangos::QuestInfo($quest['entry'], 'map')
+                    );
+                }                
+                break;            
             case 'item':
                 $ItemLoot = $this->wDB->select("
                 SELECT `entry`, `ChanceOrQuestChance`
                     FROM `item_loot_template`
                         WHERE `item`=?", $item);
                 if(!empty($ItemLoot)) {
+                    $i = 0;
                     foreach($ItemLoot as $iItem) {
-                        $lootTable[count($lootTable)] = array (
+                        $lootTable[$i] = array (
                             'name' => Items::GetItemName($iItem['entry']),
                             'drop_percent' => Mangos::DropPercent($iItem['ChanceOrQuestChance'])
                         );
+                        $i++;
                     }
                 }
-                break;
-                
+                break;                
             case 'disenchant':
                 $DisenchantLoot = $this->wDB->select("
                 SELECT `item`, `ChanceOrQuestChance`, `maxcount`
                     FROM `disenchant_loot_template`
                         WHERE `entry`=?", $item);
                 if(!empty($DisenchantLoot)) {
+                    $i = 0;
                     foreach($DisenchantLoot as $dItem) {
-                        $lootTable[count($lootTable)] = array (
+                        $lootTable[$i] = array (
                             'entry' => $dItem['item'],
                             'name' => $this->GetItemName($dItem['item']),
                             'drop_percent' => Mangos::DropPercent($dItem['ChanceOrQuestChance']),
                             'count' => $dItem['maxcount'],
                             'icon' => $this->GetItemIcon($dItem['item'])
                         );
+                        $i++;
                     }
                 }
-                break;
-                
+                break;                
             case 'craft':
                 $CraftLoot = $this->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,

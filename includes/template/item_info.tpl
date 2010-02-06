@@ -135,7 +135,7 @@
 </tr>
 {{foreach from=$boss_loot item=boss}}
 <tr>
-<td><q><span id="{{$boss.entry}}"><i class="mobName"><a href="javascript:;">{{$boss.name}}</a></i></span></q></td>
+<td><q><span><i class="mobName">{{$boss.name}}</i></span></q></td>
 <td align="center"><q>{{$boss.level}}{{$boss.boss}}</q></td>
 <td align="center"><q>{{$boss.map}}{{$boss.difficult}}</q></td>
 <td align="center"><q>{{$boss.drop_percent}}</q></td>
@@ -144,8 +144,6 @@
 </table>
 </div>
 {{/if}}
-
-
 <!---->
 {{if $chest_loot}}
 <div class="rel-tab">
@@ -160,7 +158,6 @@
 <td align="center"><a class="noLink">{{#armory_item_info_drop_chance#}}</a></td>
 </tr>
 {{foreach from=$chest_loot item=chest}}
-
 <tr>
 <td><q><span><i>{{$chest.name}}</i></span></q></td>
 <td><q><a href="javascript:;">{{$chest.map}}{{$chest.difficult}}</a></q></td>
@@ -184,7 +181,6 @@
 <td align="center"><a class="noLink">{{#armory_item_info_drop_chance#}}</a></td>
 </tr>
 {{foreach from=$item_loot item=item}}
-
 <tr>
 <td><q><span><i>{{$item.name}}</i></span></q></td>
 <!--<td><q><a href="javascript:;">{{$item.map}}</a></q></td>-->
@@ -195,7 +191,6 @@
 </table>
 </div>
 {{/if}}
-
 <!---->
 {{if $vendor_loot}}
 <div class="rel-tab">
@@ -210,7 +205,6 @@
 <td><a class="noLink">{{#armory_item_info_zone_string#}}</a></td>
 </tr>
 {{foreach from=$vendor_loot item=vendor}}
-
 <tr>
 <td><q><span><i>{{$vendor.name}}</i></span></q></td>
 <td align="center"><q>{{$vendor.level}}</q></td>
@@ -218,11 +212,9 @@
 </tr>
 
 {{/foreach}}
-
 </table>
 </div>
 {{/if}}
-
 {{if $craft_loot}}
 <div class="rel-tab">
 <p class="rel-reagentreq"></p>
@@ -370,6 +362,69 @@
 </div>
 {{/if}}
 <!---->
+{{if $queststart}}
+<div class="rel-tab">
+<p class="rel-queststart"></p>
+<h3>{{#armory_item_info_startquestitem#}}</h3>
+</div>
+<div class="data" style="clear: both;">
+<table class="data-table">
+<tr class="masthead">
+<td><a class="noLink">{{#armory_item_info_reward_title#}}</a></td>
+<td align="center"><a class="noLink">{{#armory_item_info_reward_requires_level#}}</a></td>
+<td><a class="noLink">{{#armory_item_info_zone_string#}}</a></td>
+</tr>
+{{foreach from=$queststart item=quest}}
+<tr>
+<td><q><span><i>{{$quest.title}}</i></span></q></td><td align="center"><q>{{$quest.reqlevel}}</q></td><td><q>{{$quest.map}}</q></td>
+</tr>
+{{/foreach}}
+</table>
+</div>
+<!---->
+{{/if}}
+{{if $providedfor}}
+<div class="rel-tab">
+<p class="rel-provided"></p>
+<h3>{{#armory_item_info_providedquestitem#}}</h3>
+</div>
+<div class="data" style="clear: both;">
+<table class="data-table">
+<tr class="masthead">
+<td><a class="noLink">{{#armory_item_info_reward_title#}}</a></td>
+<td align="center"><a class="noLink">{{#armory_item_info_reward_requires_level#}}</a></td>
+<td><a class="noLink">{{#armory_item_info_zone_string#}}</a></td>
+</tr>
+{{foreach from=$providedfor item=quest}}
+<tr>
+<td><q><span><i>{{$quest.title}}</i></span></q></td><td align="center"><q>{{$quest.reqlevel}}</q></td><td><q>{{$quest.map}}</q></td>
+</tr>
+{{/foreach}}
+</table>
+</div>
+<!---->
+{{/if}}
+{{if $objectiveof}}
+<div class="rel-tab">
+<p class="rel-objective"></p>
+<h3>{{#armory_item_info_objectivequestitem#}}</h3>
+</div>
+<div class="data" style="clear: both;">
+<table class="data-table">
+<tr class="masthead">
+<td><a class="noLink">{{#armory_item_info_reward_title#}}</a></td>
+<td align="center"><a class="noLink">{{#armory_item_info_reward_requires_level#}}</a></td>
+<td><a class="noLink">{{#armory_item_info_zone_string#}}</a></td>
+</tr>
+{{foreach from=$objectiveof item=quest}}
+<tr>
+<td><q><span><i>{{$quest.title}}</i></span></q></td><td align="center"><q>{{$quest.reqlevel}}</q></td><td><q>{{$quest.map}}</q></td>
+</tr>
+{{/foreach}}
+</table>
+</div>
+<!---->
+{{/if}}
 
 <div class="clear">
 <!---->

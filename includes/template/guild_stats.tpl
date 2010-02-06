@@ -232,8 +232,8 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 100px;">
-<div class="bankcontentsfilter">{{#armory_guild_stat_minlevel#}}:<br>
-<span><input class="guildbankitemname" maxlength="2" name="inputMinLevel" onClick="javascript:this.form.inputMinLevel.select()" onKeyUp="javascript: changeMinLevel();" size="2" type="text" value="10"></span>
+<div class="bankcontentsfilter">{{#armory_guild_stat_minlevel#}}:<br />
+<span><input class="guildbankitemname" maxlength="2" name="inputMinLevel" onclick="javascript:this.form.inputMinLevel.select()" onkeyup="javascript: changeMinLevel();" size="2" type="text" value="10" /></span>
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 100px;">
@@ -242,7 +242,7 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">{{#armory_guild_info_gender#}}:<select class="guildbanksubtype" name="optionGender" onChange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">}{{#armory_guild_info_both_gender#}}</option><option value="0">{{#armory_guild_info_gender_male#}}</option><option value="1">{{#armory_guild_info_gender_female#}}</option></select>
+<div class="bankcontentsfilter">{{#armory_guild_info_gender#}}:<select class="guildbanksubtype" name="optionGender" onchange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">{{#armory_guild_info_both_gender#}}</option><option value="0">{{#armory_guild_info_gender_male#}}</option><option value="1">{{#armory_guild_info_gender_female#}}</option></select>
 </div>
 </div>
 <div class="clearfilterboxsm"></div>

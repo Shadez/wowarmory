@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 63
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -224,14 +224,19 @@ $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('buyPrice',  $mangos->getMoney($data['BuyPrice']));
 $armory->tpl->assign('sellPrice', $mangos->getMoney($data['SellPrice']));
 $armory->tpl->assign('item_icon',  $items->getItemIcon($itemID));
+/** Loot tables **/
 $armory->tpl->assign('boss_loot',  $items->BuildLootTable($itemID, 'boss'));
 $armory->tpl->assign('vendor_loot',$items->BuildLootTable($itemID, 'vendor'));
 $armory->tpl->assign('chest_loot', $items->BuildLootTable($itemID, 'chest'));
-$armory->tpl->assign('quest_loot', $items->BuildLootTable($itemID, 'quest'));
+$armory->tpl->assign('quest_loot', $items->BuildLootTable($itemID, 'questreward'));
+$armory->tpl->assign('queststart', $items->BuildLootTable($itemID, 'queststart'));
+$armory->tpl->assign('providedfor', $items->BuildLootTable($itemID, 'providedfor'));
+$armory->tpl->assign('objectiveof', $items->BuildLootTable($itemID, 'objectiveof'));
 $armory->tpl->assign('item_loot',  $items->BuildLootTable($itemID, 'item'));
 $armory->tpl->assign('disenchant_loot', $items->BuildLootTable($itemID, 'disenchant'));
 $armory->tpl->assign('craft_loot', $items->BuildLootTable($itemID, 'craft'));
 $armory->tpl->assign('reagent_loot', $items->BuildLootTable($itemID, 'reagent'));
+/** Loot tables **/
 $armory->tpl->assign('item_level', $data['ItemLevel']);
 $armory->tpl->assign('tpl2include', 'item_info');
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";

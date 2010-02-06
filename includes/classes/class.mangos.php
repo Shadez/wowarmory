@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 63
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,18 +70,26 @@ Class Mangos extends Connector {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
             case 'title':
-                $nameEn = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
-                $nameRus = $this->wDB->selectCell("SELECT `Title_loc8` FROM `locales_quest` WHERE `entry`=?", $quest);
-                $info = ($locale == 'ru_ru') ? $nameRus : $nameEn;
+                switch($locale) {
+                    case 'en_gb':
+                        $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
+                        break;
+                    case 'ru_ru':
+                        $info = $this->wDB->selectCell("SELECT `Title_loc8` FROM `locales_quest` WHERE `entry`=?", $quest);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
+                        }
+                        break;
+                }
 				break;            
             case 'reqlevel':
 				$info = $this->wDB->selectCell("SELECT `MinLevel` FROM `quest_template` WHERE `entry`=?", $quest);
 				break;				
 			case 'map':
-				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_questrelation` WHERE `quest`=?", $quest);
+				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_involvedrelation` WHERE `quest`=?", $quest);
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=?", $quester);
-				$info = $this->aDB->selectCell("SELECT `name".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
-				break;
+				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
+                break;
 			}
         return $info;
     }
@@ -156,6 +164,12 @@ Class Mangos extends Connector {
                         SELECT `name_loc8`
                             FROM `locales_gameobject`
                                 WHERE `entry`=?", $entry);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("
+                            SELECT `name`
+                                FROM `gameobject_template`
+                                    WHERE `entry`=?", $entry);
+                        }
                     default:
                         $info = $this->wDB->selectCell("
                         SELECT `name`
@@ -188,9 +202,19 @@ Class Mangos extends Connector {
         $NPCNameRU = $this->wDB->selectCell("
         SELECT `name_loc8`
             FROM `locales_creature`
-                WHERE `entry`=? LIMIT 1", $npc);        
-        $info = ($_locale=='ru_ru') ? $NPCNameRU : $NPCName;
-		return $info;
+                WHERE `entry`=? LIMIT 1", $npc);
+        switch($_locale) {
+            case 'en_gb':
+                $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                break;
+            case 'ru_ru':
+                $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                if(!$name) {
+                    $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                }
+                break;
+        }
+        return $name;
 	}
     
     /**
