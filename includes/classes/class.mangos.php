@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 64
+ * @revision 66
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,14 +30,14 @@ Class Mangos extends Connector {
 
     /* CSWOWD */
     public function getSkillFromItemID($id) {
-        if($id==0) {
+        if($id == 0) {
             return SKILL_UNARMED;
         }
         $item = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=? LIMIT 1", $id);
         if(empty($item)) {
             return SKILL_UNARMED;
         }
-        if($item['class']!=2) {
+        if($item['class'] != 2) {
             return SKILL_UNARMED;
         }
         switch ($item['subclass']) {
@@ -237,25 +237,50 @@ Class Mangos extends Connector {
 				break;
             
             case 'subname':
-                $subname = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                $subnameRus = $this->wDB->selectCell("SELECT `subname_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                $info = ($locale=='ru_ru') ? $subnameRus : $subname;
+                switch($locale) {
+                    case 'en_gb':
+                        $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        break;
+                    case 'ru_ru':
+                        $info = $this->wDB->selectCell("SELECT `subname_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        }
+                        break;
+                }
                 break;
 				
 			case 'dungeonlevel':
-                $query = $this->wDB->selectCell("
-				SELECT `difficulty_entry_1`
+                $query = $this->wDB->selectRow("
+				SELECT `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`
 					FROM `creature_template` 
-						WHERE `entry`=? AND `difficulty_entry_1` <> 0", $npc);
-				if($query > 0) {
-					$info = ($locale == 'ru_ru') ? '&nbsp;(Героический)' : '&nbsp;(Heroic)';
+						WHERE `entry`=? AND `difficulty_entry_1` > 0 or `difficulty_entry_2` > 0 or `difficulty_entry_3` > 0", $npc);
+                if(!$query) {
+                    // 10 Normal
+                    return 0;
+                }
+				if($query['difficulty_entry_1'] > 0) {
+				    // 25 Normal
+				    return 1;
 				}
+                elseif($query['difficulty_entry_2'] > 0) {
+                    // 10 Heroic
+                    return 2;
+                }
+                elseif($query['difficulty_entry_3' > 0]) {
+                    // 25 Heroic
+                    return 3;
+                }
+                else {
+                    // 10 Normal
+                    return 0;
+                }
                 break;
 				
 			case 'isBoss': 
-                $rank = $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=? AND `rank`=3 LIMIT 1", $npc);
-                if($rank) {
-                    $info = ($locale == 'ru_ru') ? '&nbsp;Босс' : '&nbsp;Boss';
+                $rank = $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                if($rank == 3) {
+                    return true;
 				}
 				break;
 		}

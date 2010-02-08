@@ -6,5 +6,10 @@ Options -Indexes
 AddDefaultCharset utf8
 RewriteEngine on
 RewriteRule ^(.*).xml $1.php?%{QUERY_STRING}
-ErrorDocument 404 /index.xml
-ErrorDocument 403 /index.xml
+
+#
+# Set correct path to error-page.xml (for expample, /armory/error-page.xml)
+#
+
+ErrorDocument 404 /error-page.xml
+ErrorDocument 403 /error-page.xml

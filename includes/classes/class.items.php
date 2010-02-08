@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 66
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -334,11 +334,10 @@ Class Items extends Connector {
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `creature_loot_template`
 						WHERE `item`=?", $item);                        
-				if(!empty($BossLoot)) {
+				if($BossLoot) {
 				    $i = 0;
 					foreach($BossLoot as $bItem) {
 					    $map_npc = Mangos::GetNpcInfo($bItem['entry'], 'map');
-                           if(!empty($map_npc)) {
                                $lootTable[$i] = array (
                                     'entry' => $bItem['entry'],
         							'name' => Mangos::GetNpcName($bItem['entry']),
@@ -346,11 +345,9 @@ Class Items extends Connector {
         							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
         							'map' => $map_npc,
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
-        						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance']),
-                                    'makro' => '1'
+        						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
     						  );
                               $i++;
-                        }
 					}
 				}
                 break;			
@@ -363,7 +360,6 @@ Class Items extends Connector {
 				    $i = 0;
 					foreach($ChestLoot as $cItem) {
 					    $map_chest = Mangos::GameobjectInfo($cItem['entry'], 'map');
-                        if(!empty($map_chest)) {
                             $lootTable[$i] = array (
                                 'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
     							'map' => $map_chest,
@@ -371,7 +367,6 @@ Class Items extends Connector {
     							'drop_percent' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
     						);
                             $i++;
-                        }
 					}
 				}
                 break;			
