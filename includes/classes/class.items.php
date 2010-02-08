@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 66
+ * @revision 67
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -191,28 +191,36 @@ Class Items extends Connector {
         SELECT `id`
             FROM `armory_spell`
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
-        if(!empty($bossLoot)) {
+        $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
+        if($bossLoot) {
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=1");
         }
-		if(!empty($vendorLoot)) {
+		if($vendorLoot && $reputationReward > 0) {
+            if($returnString) {
+		      $returnString .= ', ';
+            }
+			$returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=6");
+		}
+        elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
             if($returnString) {
 		      $returnString .= ', ';
             }
 			$returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=2");
-		}
-        if(!empty($questLoot)) {
+        }
+        //
+        if($questLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=3");
         }
-        if(!empty($chestLoot)) {
+        if($chestLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
             $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=4");
         }
-        if(!empty($craftLoot)) {
+        if($craftLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
@@ -309,7 +317,7 @@ Class Items extends Connector {
      * @return array
      **/
     public function BuildLootTable($item, $vendor, $data=false) {
-        $lootTable = '';
+        $lootTable = array();
         switch($vendor) {
 			case 'vendor':
 				$VendorLoot = $this->wDB->select("
