@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 65
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,21 +30,24 @@ define('load_mangos_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
-
-$characters->name = Utils::escape($_GET['cn']);
-$achievementsCategory = (int) $_GET['c'];
-$characters->_structCharacter();
-$faction = ($characters->faction == 1) ? 0 : 1;    
-if(empty($characters->name) || empty($achievementsCategory)) {
+if(isset($_GET['cn'])) {
+    $characters->name = Utils::escape($_GET['cn']);
+}
+if(isset($_GET['c'])) {
+    $achievementsCategory = (int) $_GET['c'];
+}
+if(!$characters->name || !$achievementsCategory) {
     die('{"js":{"achievements":"' . $armory->tpl->get_config_vars('armory_character_achievements_unable_to_load') . '"},"text":""}');
 }
+$characters->_structCharacter();
+$faction = ($characters->faction == 1) ? 0 : 1;
 $query = $armory->aDB->select("
-    SELECT `id`, `parentAchievement`, `name_".$_locale."`, `description_".$_locale."`, `points`, `iconname`, `titleReward_".$_locale."`
+SELECT `id`, `parentAchievement`, `name_".$_locale."`, `description_".$_locale."`, `points`, `categoryId`, `iconname`, `titleReward_".$_locale."`
         FROM `armory_achievement`
             WHERE `categoryId`=? AND `factionFlag` IN (?, '-1')", $achievementsCategory, $faction);           
-$cc = $armory->aDB->selectPage($totalCount, 
-    "SELECT `id`
-        FROM `armory_achievement`
+$totalCount = $armory->aDB->selectCell("
+SELECT COUNT(`id`)
+    FROM `armory_achievement`
         WHERE `categoryId`=? AND `factionFlag` IN (?, '-1')", $achievementsCategory, $faction);
 $total = 0;
 $string = '';
@@ -56,7 +59,7 @@ foreach($query as $ach) {
     $completed = $achievements->GetAchievementDate();
     if(!empty($completed)) {
         $string .= "<div class='achievement' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'>";
-        if($achievementsCategory!=81) {
+        if($achievementsCategory != 81) { // 'Feats of Strenght' category do not have achievement points
             $string .= "<div class='pointshield'><div>".$ach['points']."</div></div>";
         }
         $string .= "<div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
@@ -69,17 +72,30 @@ foreach($query as $ach) {
         $total++;
     }
     else {
-        if($achievementsCategory!=81) {
-                $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
-                $uncompleted .= $achievements->AchievementProgress();
-                if(!empty($ach['titleReward_'.$_locale])) {
-                    $uncompleted .="<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
+        if($achievementsCategory != 81) { // Do not show incompleted achievements in 'Feats of Strenght' category
+                if($ach['parentAchievement'] > 0) {
+                    if($achievements->IsAchievementCompleted($ach['parentAchievement'])) {
+                        $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+                        $uncompleted .= $achievements->AchievementProgress();
+                        if(!empty($ach['titleReward_'.$_locale])) {
+                            $uncompleted .= "<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
+                        }
+                        $uncompleted .= "<br clear='all'/></div>";
+                    }
                 }
-                $uncompleted .= "<br clear='all'/></div>";
+                else {
+                    $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+                    $uncompleted .= $achievements->AchievementProgress();
+                    if(!empty($ach['titleReward_'.$_locale])) {
+                        $uncompleted .= "<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
+                    }
+                    $uncompleted .= "<br clear='all'/></div>";
+                }
+                
         }
     }
 }
-if($achievementsCategory!=81) {
+if($achievementsCategory != 81) { // Do not show progress bar in 'Feats of Strenght' category
     $prestring = "<div><div><div><div class='prog_bar '><div class='progress_cap'><!----></div><div class='progress_cap_r' style='background-position:bottom'><!----></div><div class='progress_int'><div class='progress_fill' style='width:".$achievements->CountAchievementPercent($total, 1)."%'><!----></div><div class='prog_int_text'>".$total." / ".$totalCount."</div></div></div></div>";
 }
 echo '{"js":{"achievements":"'.$prestring.$string;

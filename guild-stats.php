@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 65
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,7 +36,7 @@ if(!$guilds->initGuild()) {
     die();
 }
 $guilds->_structGuildInfo();
-// Доп. лист стилей
+// Additional CSS
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
 $armory->tpl->assign('guildName', $guilds->guildName);
@@ -48,6 +48,7 @@ $armory->tpl->assign('guildMembersCount', $guilds->countGuildMembers());
 $armory->tpl->assign('guildEmblemStyle', $guilds->guildtabard);
 $armory->tpl->assign('statList', $guilds->BuildStatsList());
 
+$armory->tpl->assign('titleName', $guilds->guildName);
 $armory->tpl->assign('tpl2include', 'guild_stats');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('overall_start.tpl');

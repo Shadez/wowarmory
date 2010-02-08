@@ -461,29 +461,32 @@
 <div id="debugtxt"></div>
 <div class="profileCenter" id="center_target">
 <div id="pose_saving">
-<span>Сохранение...</span>
+<span>Saving...</span>
 </div>
 <div id="pose_save_ok">
-<span>Поза сохранена!!</span>
+<span>Pose saved!</span>
 </div>
 <div id="ModelViewer3">
 <div class="noFlash">
 <a class="noflash" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank">
 <img align="right" class="p" src="images/{{$ArmoryConfig.locale}}/getflash.gif" /></a>{{#armory_install_flash_player_string#}}</div>
-<script src="_js/character/charactermodel.js" type="text/javascript"></script><script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script><script type="text/javascript">
+<script src="_js/character/charactermodel.js" type="text/javascript"></script>
+<script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script>
+<script type="text/javascript">
 		 if(!init3dvars) var init3dvars = null
-		 if(!charUrl) var charUrl = 'r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&cn=%D0%9D%D0%B8%D0%BC%D1%80%D0%BE%D0%B4%D1%8D%D0%BB%D1%8C'
+		 if(!charUrl) var charUrl = 'r={{$realm}}&cn={{$name}}'
 		  function buildModelViewer(attr)
-		  {		var lang = "ru_ru".split("_")[0].toLowerCase()
-		  		var modelserver = "http://armory/"
-                var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?r=%D0%A1%D0%B2%D0%B5%D0%B6%D0%B5%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C+%D0%94%D1%83%D1%88&cn=%D0%9D%D0%B8%D0%BC%D1%80%D0%BE%D0%B4%D1%8D%D0%BB%D1%8C&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
-				var stringslink = "_content/ru_ru/modelConfig_strings.xml";
+		  {		var lang = "{{$ArmoryConfig.locale}}".split("_")[0].toLowerCase()
+		  		if ("{{$ArmoryConfig.locale}}".indexOf("cn") > -1) lang = "zh_tw"
+		  		var modelserver = "http://eu.media.battle.net.edgesuite.net/"
+                var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?r={{$realm}}&cn={{$name}}&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
+				var stringslink = "_content/{{$ArmoryConfig.locale}}/modelConfig_strings.xml";
 				var logolink = modelserver + "/models/images/logo/armory-logo-"+lang+".png" 
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
                 var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
 								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
-								  loadingtxt:"Идет загрузка." //"
+								  loadingtxt:"Loading." //"
 								};
 				if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
 								for(xi in modelCookies) { flashvars[xi] = modelCookies[xi] } 
@@ -492,10 +495,10 @@
 									if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
 								}
 				if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
-                swfobject.embedSWF("models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", "models/flash/expressInstall.swf", flashvars, params, attributes);
+                swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
 				$(document).ready(function () { bindMouseActions() });	
 		  }
-			var str_loginExpired = "Введите имя пользователя." //"
+			var str_loginExpired = "Enter username." //"
 			buildModelViewer()
             </script>
 </div>
@@ -519,7 +522,12 @@
 <a class="staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="i={{$item.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s={{$item.i}}">
 <img class="stats_rarity{{$item.rarity}}" src="wow-icons/_images/21x21/{{$item.icon}}.png" /></a>
 </td>
-<td class="glist_name"><a class="staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="i={{$item.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s={{$item.i}}"><span class="stats_rarity{{$item.rarity}}">{{$item.name}}</span></a></td><td class="glist_ilvl">{{$item.ilevel}}</td><td class="glist_gems"></td><td class="glist_ench"></td>
+<td class="glist_name">
+<a class="staticTip itemToolTip" href="item-info.xml?i={{$item.entry}}" id="i={{$item.entry}}&amp;r={{$realm}}&amp;cn={{$name}}&amp;s={{$item.i}}"><span class="stats_rarity{{$item.rarity}}">{{$item.name}}</span></a>
+</td>
+<td class="glist_ilvl">{{$item.ilevel}}</td>
+<td class="glist_gems"></td>
+<td class="glist_ench"></td>
 </tr>
 {{/if}}
 {{/foreach}}

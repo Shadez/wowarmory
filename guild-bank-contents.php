@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 49
+ * @revision 65
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -38,7 +38,7 @@ if(!isset($_SESSION['accountId']) || !$utils->guildBankRights($guilds->guildId))
     header('Location: login.xml?guild-bank-contents');
 }
 $guilds->_structGuildInfo();
-// Доп. лист стилей
+// Additional CSS
 $armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
 
 $armory->tpl->assign('guildName', $guilds->guildName);
@@ -55,6 +55,7 @@ $armory->tpl->assign('GuildBankContents', $guilds->showGuildBankContents());
 $armory->tpl->assign('GuildBankMoney', $guilds->getGuildBankMoney());
 $armory->tpl->assign('GuildBankItemList', $guilds->BuildGuildBankItemList());
 
+$armory->tpl->assign('titleName', $guilds->guildName);
 $armory->tpl->assign('tpl2include', 'guild_bank_contents');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('overall_start.tpl');

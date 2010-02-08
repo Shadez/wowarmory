@@ -1,6 +1,6 @@
 <?php
 
-// Auto generated for version 3.3.0.11159
+// Auto generated for version 3.3.2.11403
 
 define('OBJECT_FIELD_GUID', 0x0000); // Size: 2, Type: LONG, Flags: PUBLIC
 define('OBJECT_FIELD_TYPE', 0x0002); // Size: 1, Type: INT, Flags: PUBLIC

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 65
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -216,6 +216,7 @@ Class Achievements extends Connector {
         $string_return = '';
         $tmp_str       = '';
         $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
+        
         $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>{CURRENT_NUM} / {FULLCOUNT}</div></div></div></div></ul>";
         $progress_list_string = "<ul class='criteria c_list'>{CRITERIA_LIST}</ul>";
         // Check if data exists
@@ -230,28 +231,29 @@ Class Achievements extends Connector {
         if(empty($character_progress) || !$character_progress) {
             $character_progress = 0;
         }
-        // if(!empty($character_progress))
-        //{
         switch($data[0]['requiredType']) {
-            case 7: // Skills
-            case 9:  // Quests
-            case 10: // Daily quests
-            case 11: // Quest counter
-            case 14: // Daily quests
-            case 29: // Items
-            case 13: // PvP Kills
-            case 37: // Arena Wins
-            case 41: // Food & drinks
-            case 42: // Badges
-		    case 45: // Bank safe
-            case 47: // Reputation
-            case 56: // PvP Kills
-            case 62: // Money
-            case 67: // Money drop
-            case 75: // Pets
-            case 109: // Fishing
-            case 113: // PvP wins
-                if($data[0]['requiredType'] == 62 || $data[0]['requiredType'] == 67) { // Make money
+            /** COUNTERS **/
+            case ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST_COUNT:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST_DAILY:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUESTS_IN_ZONE:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST:
+            case ACHIEVEMENT_CRITERIA_TYPE_CAST_SPELL:
+            case ACHIEVEMENT_CRITERIA_TYPE_DAMAGE_DONE:
+            case ACHIEVEMENT_CRITERIA_TYPE_WIN_RATED_ARENA:
+            case ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM:
+            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM:
+            case ACHIEVEMENT_CRITERIA_TYPE_BUY_BANK_SLOT:
+            case ACHIEVEMENT_CRITERIA_TYPE_GAIN_EXALTED_REPUTATION:
+            case ACHIEVEMENT_CRITERIA_TYPE_GET_KILLING_BLOWS:
+            case ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD:
+            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY:
+            case ACHIEVEMENT_CRITERIA_TYPE_LEARN_SKILLLINE_SPELLS:
+            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_TYPE:
+            case ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL:
+            case ACHIEVEMENT_CRITERIA_TYPE_LFD_PASSED:
+            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
+                if($data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD || $data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY) {
                     $money = Mangos::getMoney($character_progress);
                     $money_need = Mangos::getMoney($data[0]['value']);
                     $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>";
@@ -266,27 +268,30 @@ Class Achievements extends Connector {
                     }
                     $progress_bar_string .= " / ".$money_need['gold']."<img alt='' class='p' src='images/icons/money-gold-small.png'/></div></div></div></div></ul>";
                 }
+                if($data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2 && $data[0]['value'] == 1) {
+                    return;
+                }
                 $percent_value = floor(Utils::getPercent($data['0']['value'], $character_progress));
                 $progress_bar_string = str_replace("{PERCENT}", $percent_value, $progress_bar_string);
                 $progress_bar_string = str_replace("{CURRENT_NUM}", $character_progress, $progress_bar_string);
                 $progress_bar_string = str_replace("{FULLCOUNT}", $data[0]['value'], $progress_bar_string);
                 $string_return = $progress_bar_string;
                 break;
-            case 0:  // Pest control
-            case 8:  // PvP (?)
-            case 27: // Quests
-            case 28: // NPCs
-            case 36: // Keys
-            case 43: // Exploration
-            case 46: // Reputation list
-            case 49: // Item levels
-            case 52: // PvP (classes)
-            case 53: // PvP (races)
-            case 54: // All squirells I love'd before...
-            case 68: // Read books
-            case 69: // NPCs
-            case 70: // PvP Kills
-            case 72: // Fishing
+            case ACHIEVEMENT_CRITERIA_TYPE_KILL_CREATURE:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_ACHIEVEMENT:
+            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST:
+            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET:
+            case ACHIEVEMENT_CRITERIA_TYPE_OWN_ITEM:
+            case ACHIEVEMENT_CRITERIA_TYPE_EXPLORE_AREA:
+            case ACHIEVEMENT_CRITERIA_TYPE_GAIN_REPUTATION:
+            case ACHIEVEMENT_CRITERIA_TYPE_EQUIP_EPIC_ITEM:
+            case ACHIEVEMENT_CRITERIA_TYPE_HK_CLASS:
+            case ACHIEVEMENT_CRITERIA_TYPE_HK_RACE:
+            case ACHIEVEMENT_CRITERIA_TYPE_DO_EMOTE:
+            case ACHIEVEMENT_CRITERIA_TYPE_USE_GAMEOBJECT:
+            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
+            case ACHIEVEMENT_CRITERIA_TYPE_SPECIAL_PVP_KILL:
+            case ACHIEVEMENT_CRITERIA_TYPE_FISH_IN_GAMEOBJECT:
                 $i=0;
                 foreach($data as $criteria) {
                     $counter = $this->cDB->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `criteria`=? AND `guid`=?", $criteria['id'], $this->guid);
@@ -298,7 +303,7 @@ Class Achievements extends Connector {
                         $tmp_str .= "'";
                     }
                     if($i%2) {
-                        $tmp_str .= " style='float:left'";
+                        $tmp_str .= " style='float:left;'";
                     }
                     $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
                     $tmp_str .= '>'.$criteria['name_'.$_locale].'</li>';
@@ -308,8 +313,7 @@ Class Achievements extends Connector {
                 break;
             }
         // Hack
-        error_reporting(ALL);
-        //}
+        error_reporting(E_ALL);
         return $string_return;
     }
     
@@ -410,6 +414,28 @@ Class Achievements extends Connector {
      **/
     public function GetDateFormat($timestamp) {
         return date('d/m/Y', $timestamp);
+    }
+    
+    public function IsAchievementCompleted($achId) {
+        if(!$this->guid || !$achId) {
+            return false;
+        }
+        if($achId == 0 || $achId == '-1' || !$this->IsAchievementExists($achId)) {
+            return true;
+        }
+        $date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=? AND `achievement`=?", $this->guid, $achId);
+        if($date) {
+            return true;
+        }
+        return false;
+    }
+    
+    public function IsAchievementExists($achId) {
+        $data = $this->aDB->selectCell("SELECT `name_en_gb` FROM `armory_achievement` WHERE `id`=?", $achId);
+        if($data) {
+            return true;
+        }
+        return false;
     }
 }
 ?>

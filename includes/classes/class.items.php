@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 64
+ * @revision 65
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -596,14 +596,8 @@ Class Items extends Connector {
      * @return array
      **/
     public function getItemDurability($guid, $item) {
-        $durability['current'] = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 62), ' ', '-1') AS UNSIGNED)  
-            FROM `item_instance` 
-                WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
-        $durability['max'] = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ',    63), ' ', '-1') AS UNSIGNED)  
-            FROM `item_instance` 
-                WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
+        $durability['current'] = $this->GetItemDataField(ITEM_FIELD_DURABILITY, $item, $guid);
+        $durability['max'] = $this->GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, $guid);
         return $durability;
     }
     
@@ -613,12 +607,12 @@ Class Items extends Connector {
      * @example Items::GetItemDataField(10, 333)
      * @return int
      **/
-    public function GetItemDataField($field, $itemGuid) {
+    public function GetItemDataField($field, $itemid, $owner_guid) {
         $dataField = $field+1;
         $qData = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
+        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 62), ' ', '-1') AS UNSIGNED)  
             FROM `item_instance` 
-				WHERE `guid`=?", $itemGuid);
+                WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $owner_guid, $itemid);
         return $qData;
     }
     
