@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 68
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -991,7 +991,8 @@ Class Characters extends Connector {
         $StatArray['bonus_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSPOSITIVE), 0);
         $StatArray['negative_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSNEGATIVE), 0);
         $StatArray['stat_armor'] = $StatArray['effective_armor']-$StatArray['bonus_armor']-$StatArray['negative_armor'];
-        if($this->level > 59 ) {
+        $levelModifier = 0;
+		  if($this->level > 59 ) {
             $levelModifier = $this->level + (4.5 * ($this->level-59));
         }
         $StatArray['bonus_armor_reduction'] = 0.1*$StatArray['effective_armor']/(8.5*$levelModifier + 40);
