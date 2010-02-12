@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 67
+ * @revision 69
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -610,12 +610,21 @@ Class Items extends Connector {
      * @example Items::GetItemDataField(10, 333)
      * @return int
      **/
-    public function GetItemDataField($field, $itemid, $owner_guid) {
+    public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid=0) {
         $dataField = $field+1;
-        $qData = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 62), ' ', '-1') AS UNSIGNED)  
-            FROM `item_instance` 
-                WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $owner_guid, $itemid);
+        if($use_item_guid > 0) {
+            $qData = $this->cDB->selectCell("
+            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$dataField."), ' ', '-1') AS UNSIGNED)
+                FROM `item_instance`
+                    WHERE `guid`= ?", $use_item_guid);
+            return $qData;
+        }
+        else {
+            $qData = $this->cDB->selectCell("
+            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$dataField."), ' ', '-1') AS UNSIGNED)  
+                FROM `item_instance` 
+                    WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $owner_guid, $itemid);
+        }        
         return $qData;
     }
     
