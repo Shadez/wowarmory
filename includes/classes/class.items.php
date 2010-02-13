@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 69
+ * @revision 70
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -353,6 +353,7 @@ Class Items extends Connector {
         							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
         							'map' => $map_npc,
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
+                                    'instance_type' => Mangos::GetNpcInfo($bItem['entry'], 'instance_type'),
         						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
     						  );
                               $i++;

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 66
+ * @revision 70
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -236,6 +236,10 @@ Class Mangos extends Connector {
 				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
             
+            case 'mapID':
+                $info = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
+                break;
+            
             case 'subname':
                 switch($locale) {
                     case 'en_gb':
@@ -256,13 +260,13 @@ Class Mangos extends Connector {
 					FROM `creature_template` 
 						WHERE `entry`=? AND `difficulty_entry_1` > 0 or `difficulty_entry_2` > 0 or `difficulty_entry_3` > 0", $npc);
                 if(!$query) {
-                    // 10 Normal
+                    // 10 Normal or 5 Normal
                     return 0;
                 }
 				if($query['difficulty_entry_1'] > 0) {
-				    // 25 Normal
-				    return 1;
-				}
+                    // 25 Normal or 5 Heroic
+                    return 1;
+                }
                 elseif($query['difficulty_entry_2'] > 0) {
                     // 10 Heroic
                     return 2;
@@ -272,8 +276,21 @@ Class Mangos extends Connector {
                     return 3;
                 }
                 else {
-                    // 10 Normal
+                    // 10 Normal or 5 Normal
                     return 0;
+                }
+                break;
+            
+            case 'instance_type':
+                $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
+                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `armory_instances` WHERE `mapID`=?", $mapID);
+                if($instanceInfo == 5) {
+                    // Dungeon
+                    return 1;
+                }
+                elseif($instanceInfo > 5) {
+                    // Raid
+                    return 2;
                 }
                 break;
 				

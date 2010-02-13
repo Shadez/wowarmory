@@ -141,13 +141,17 @@
 {{foreach from=$boss_loot item=boss}}
 <tr>
 <td><q><span><i class="mobName">{{$boss.name}}</i></span></q></td>
-<td align="center"><q>{{$boss.level}}{{if $boss.boss}} ({{#armory_item_info_boss_string#}}{{/if}})</q></td>
+<td align="center"><q>{{$boss.level}}{{if $boss.boss}} ({{#armory_item_info_boss_string#}}{{/if}}</q></td>
 <td align="center"><q>
 {{if $boss.map}}
     {{$boss.map}}
-    {{if $boss.difficult == 0}}
+    {{if $boss.difficult == 0 and $boss.instance_type == 1}}
+    &nbsp;
+    {{elseif $boss.difficult == 0 and $boss.instance_type == 2}}
     (10)
-    {{elseif $boss.difficult == 1}}
+    {{elseif $boss.difficult == 1 and $boss.instance_type == 1}}
+    ({{#armory_item_info_heroic_dungeon#}})
+    {{elseif $boss.difficult == 1 and $boss.instance_type == 2}}
     (25)
     {{elseif $boss.difficult == 2}}
     (10) ({{#armory_item_info_heroic_dungeon#}})
