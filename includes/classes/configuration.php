@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 52
+ * @revision 71
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -51,7 +51,7 @@ $ArmoryConfig['mysql']['pass_mangos']         = '';
 $ArmoryConfig['mysql']['name_mangos']         = 'mangos';
 $ArmoryConfig['mysql']['charset_mangos']      = 'UTF8';
 
-$ArmoryConfig['settings']['server_version']   = '330'; // '322' or '330', without dots or something else
+$ArmoryConfig['settings']['server_version']   = '332'; // '322' or '332', without dots or something else
 $ArmoryConfig['settings']['siteCharset']      = 'utf-8';
 $ArmoryConfig['settings']['useNews']          = true;
 $ArmoryConfig['settings']['defaultRealmId']   = 1;
