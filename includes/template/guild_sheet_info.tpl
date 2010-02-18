@@ -47,7 +47,7 @@
 <tr>
 <td>
 <h1>{{$guildName}}</h1>
-<h2>{{$guildMembersCount}}&nbsp;{{#armory_guild_info_members_string#}}</h2>
+<h2>{{$guildMembersCount}}&nbsp;{{if $declinedString}}{{$declinedString}}{{else}}{{#armory_guild_info_members_string#}}{{/if}}</h2>
 </td>
 </tr>
 </table>
@@ -57,7 +57,7 @@
 <tr>
 <td>
 <h1>{{$guildName}}</h1>
-<h2>{{$guildMembersCount}}&nbsp;{{#armory_guild_info_members_string#}}</h2>
+<h2>{{$guildMembersCount}}&nbsp;{{if $declinedString}}{{$declinedString}}{{else}}{{#armory_guild_info_members_string#}}{{/if}}</h2>
 </td>
 </tr>
 </table>
@@ -102,19 +102,27 @@
 </div>
 <div class="filterBox" id="nameFilter">{{#armory_guild_info_race#}}<br>
 {{if $gFaction == '1'}}
-<select id="filRaceSelect" onchange="runGuildRosterFilters();"><option value="-1">Все типы</option><option value="2">Орк</option><option value="5">Нежить</option><option value="10">Эльф крови</option><option value="6">Таурен</option><option value="8">Тролль</option></select>
+<select id="filRaceSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_classes_alltypes#}}</option><option value="2">{{#string_race_2#}}</option><option value="5">{{#string_race_5#}}</option><option value="10">{{#string_race_10#}}</option><option value="6">{{#string_race_6#}}</option><option value="8">{{#string_race_8#}}</option></select>
 {{else}}
-<select id="filRaceSelect" onchange="runGuildRosterFilters();"><option value="-1">Все типы</option><option value="3">Дворф</option><option value="1">Человек</option><option value="4">Ночной эльф</option><option value="7">Гном</option><option value="11">Дреней</option></select>
+<select id="filRaceSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_classes_alltypes#}}</option><option value="3">{{#string_race_3#}}</option><option value="1">{{#string_race_1#}}</option><option value="4">{{#string_race_4#}}</option><option value="7">{{#string_race_7#}}</option><option value="11">{{#string_race_11#}}</option></select>
 {{/if}}
 </div>
 <div class="filterBox" id="nameFilter">{{#armory_guild_info_gender#}}:<br>
 <select id="filGenderSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_both_gender#}}</option><option value="0">{{#armory_guild_info_gender_male#}}</option><option value="1">{{#armory_guild_info_gender_female#}}</option></select>
 </div>
 <div class="filterBox" id="nameFilter">{{#armory_guild_info_class#}}<br>
-<select id="filClassSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_classes_alltypes#}}</option><option value="6">Рыцарь смерти</option><option value="11">Друид</option><option value="2">Паладин</option><option value="3">Охотник</option><option value="4">Разбойник</option><option value="5">Жрец</option><option value="7">Шаман</option><option value="8">Маг</option><option value="9">Чернокнижник</option><option value="1">Воин</option></select>
+<select id="filClassSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_classes_alltypes#}}</option><option value="6">{{#string_class_6#}}</option><option value="11">{{#string_class_11#}}</option><option value="2">{{#string_class_2#}}</option><option value="3">{{#string_class_3#}}</option><option value="4">{{#string_class_4#}}</option><option value="5">{{#string_class_5#}}</option><option value="7">{{#string_class_7#}}</option><option value="8">{{#string_class_8#}}</option><option value="9">{{#string_class_9#}}</option><option value="1">{{#string_class_1#}}</option></select>
 </div>
 <div class="filterBox" id="nameFilter">{{#armory_guild_info_guildrank#}}<br>
-<select id="filRankSelect" onchange="runGuildRosterFilters();"><option value="-1">Все</option><option value="0">{{#armory_guild_info_gm#}}</option><option value="5">Ранг 5</option><option value="3">Ранг 3</option><option value="1">Ранг 1</option><option value="2">Ранг 2</option><option value="4">Ранг 4</option></select>
+<select id="filRankSelect" onchange="runGuildRosterFilters();"><option value="-1">{{#armory_guild_info_all_ranks#}}</option>
+{{foreach from=$gRanks item=rank}}
+{{if $rank.rid == '0'}}
+<option value="0">{{#armory_guild_info_gm#}}</option>
+{{else}}
+<option value="{{$rank.rid}}">{{#armory_guild_info_guildrank#}} {{$rank.rid}}</option>
+{{/if}}
+{{/foreach}}
+</select>
 </div>
 <div class="clear"></div>
 <div id="filterButtonHolder">

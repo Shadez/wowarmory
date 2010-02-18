@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 69
+ * @revision 72
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -218,10 +218,8 @@ Class Guilds extends Connector {
             FROM `characters` AS `characters`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`guildid`=?
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=?
-            WHERE `guild`.`guildid`=? AND `characters`.`level`>=? AND `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`rank` <> 0
-            GROUP BY `guild_member`.`rank`", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
+            WHERE `guild`.`guildid`=? AND `characters`.`level`>=? AND `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`rank` <> 0", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
         }
-        $i = 0;
         $countMembers = count($memberListTmp);
         for($i=0;$i<$countMembers;$i++) {
             $memberListTmp[$i]['ach_points'] = Achievements::calculateAchievementPoints($memberListTmp[$i]['guid']);
@@ -355,6 +353,23 @@ Class Guilds extends Connector {
                 $items[$i]['Quality'] = Items::getItemInfo($items[$i]['entry'], 'quality');
             }
             return $items;
+        }
+        return false;
+     }
+     
+     /**
+      * Returns array with guild ranks id (not titles). Requires $this->guildId!
+      * @category Guilds class
+      * @example Guilds::GetGuildRanks()
+      * @return array
+      **/
+     public function GetGuildRanks() {
+        if(!$this->guildId) {
+            return false;
+        }
+        $gRanks = $this->cDB->select("SELECT `rid` FROM `guild_rank` WHERE `guildid`=?", $this->guildId);
+        if($gRanks) {
+            return $gRanks;
         }
         return false;
      }

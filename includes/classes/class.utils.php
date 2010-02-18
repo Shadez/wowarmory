@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 72
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -634,6 +634,24 @@ Class Utils extends Connector {
             return $radius[2];
         }
         return $radius[0]." - ".$radius[2];
+    }
+    
+    public function GetDeclinedString(&$string) {
+        if(!is_array($string)) {
+            return false;
+        }
+        $num = abs($string['num']) % 100;
+	  	$n1 = $num % 10;	
+	  	if($num > 10 && $num < 20) {
+	  	    return $string['string3'];
+	  	}
+	  	if($n1 > 1 && $n1 < 5) {
+	  	    return $string['string2'];
+	  	}
+	  	if($n1 == 1) {
+	  	    return $string['string1'];
+	  	}
+  		return $string['string3'];
     }
 }
 ?>

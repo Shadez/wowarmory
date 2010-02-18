@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 72
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,6 +49,16 @@ $armory->tpl->assign('guildEmblemStyle', $guilds->guildtabard);
 $armory->tpl->assign('gmList', $guilds->buildGuildList(true));
 $armory->tpl->assign('guildList', $guilds->buildGuildList());
 $armory->tpl->assign('gFaction', $guilds->guildFaction);
+$armory->tpl->assign('gRanks', $guilds->GetGuildRanks());
+if($_locale == 'ru_ru') {
+    $str_members = array(
+        'num' => $guilds->countGuildMembers(),
+        'string1' => $armory->tpl->get_config_vars('armory_guild_info_members_string_1'),
+        'string2' => $armory->tpl->get_config_vars('armory_guild_info_members_string_2'),
+        'string3' => $armory->tpl->get_config_vars('armory_guild_info_members_string_3'),
+    );
+    $armory->tpl->assign('declinedString', $utils->GetDeclinedString($str_members));
+}
 
 $armory->tpl->assign('titleName', $guilds->guildName);
 $armory->tpl->assign('tpl2include', 'guild_sheet_info');
