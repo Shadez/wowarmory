@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 70
+ * @revision 74
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -575,9 +575,9 @@ Class Items extends Connector {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $data = array();
         $socketfield = array(
-            1 => '29',
-            2 => '32',
-            3 => '35'
+            1 => ITEM_FIELD_ENCHANTMENT_3_2,
+            2 => ITEM_FIELD_ENCHANTMENT_4_2,
+            3 => ITEM_FIELD_ENCHANTMENT_5_2
         );
         $socketInfo = $this->cDB->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  

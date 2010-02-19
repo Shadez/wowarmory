@@ -1508,7 +1508,7 @@
 	</script>
 <div class="talContainer" id="talContainer_sdfkte75">
 <div class="talentFrame">
-<div class="talentTree" id="Discipline_tree_sdfkte75" style="margin-right: 3px; background-image: url('/images/talents/bg/small/PriestDiscipline.jpg')">
+<div class="talentTree" id="Discipline_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/PriestDiscipline.jpg')">
 <div class="tier">
 <div class="talent staticTip col1" id="342_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/spell_magic_magearmor.jpg');">
 <div class="talentHolder
@@ -1797,7 +1797,7 @@
 <span id="treeName_0_sdfkte75" style="font-weight: bold;">Послушание</span> &nbsp;<span id="treeSpent_0_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Holy_tree_sdfkte75" style="margin-right: 3px; background-image: url('/images/talents/bg/small/PriestHoly.jpg')">
+<div class="talentTree" id="Holy_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/PriestHoly.jpg')">
 <div class="tier">
 <div class="talent staticTip col0" id="410_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/spell_holy_healingfocus.jpg');">
 <div class="talentHolder
@@ -2079,7 +2079,7 @@
 <span id="treeName_1_sdfkte75" style="font-weight: bold;">Свет</span> &nbsp;<span id="treeSpent_1_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Shadow_tree_sdfkte75" style="background-image: url('/images/talents/bg/small/PriestShadow.jpg');">
+<div class="talentTree" id="Shadow_tree_sdfkte75" style="background-image: url('images/talents/bg/small/PriestShadow.jpg');">
 <div class="tier">
 <div class="talent staticTip col0" id="465_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/spell_shadow_requiem.jpg');">
 <div class="talentHolder

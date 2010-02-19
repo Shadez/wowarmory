@@ -437,5 +437,59 @@ Class Achievements extends Connector {
         }
         return false;
     }
+    /*
+    public function MergeCompletedAchievements($check = false) {
+        if(!$this->guid || !$this->achId) {
+            return false;
+        }
+        if($check == true) {
+            $tmp_data = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $achId);
+            if($tmp_data) {
+                if($this->IsAchievementCompleted($tmp_data)) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        $loop = true;
+        $achievementsArray = array();
+        $i = 0;
+        $achId = $this->achId;
+        $macro = false;
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        while($loop == true) {
+            $tmp_data = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $achId);
+            if($tmp_data) {
+                if($this->IsAchievementCompleted($tmp_data)) {
+                    $achievementsArray[$i] = $this->cDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `points` FROM `armory_achievement` WHERE `id`=?", $tmp_data);
+                    $achId = $tmp_data;
+                    $macro = true;
+                }
+            }
+            else {
+                $loop = false;
+            }
+            $i++;
+        }
+        if($macro == true) {
+            $returnString = "<ul class='criteria c_list'>";
+            $i = 0;
+            foreach($achievementsArray as $achievement) {
+                $returnString .= "<li class='c_list_col criteriamet' id='ach".$achievement['id']."'";
+                if($i%2) {
+                    $returnString .= ">";
+                }
+                else {
+                    $returnString .= " style='float:left'>";
+                }
+                $returnString .= $achievement['name'].' ('.$achievement['points'].')'.'</li>';
+                $i++;
+            }
+            $returnString .= '</ul>';
+            return $achievementsArray;
+        }
+        return false;
+    }
+    */
 }
 ?>

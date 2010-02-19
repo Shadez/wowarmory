@@ -141,7 +141,7 @@
 {{foreach from=$boss_loot item=boss}}
 <tr>
 <td><q><span><i class="mobName">{{$boss.name}}</i></span></q></td>
-<td align="center"><q>{{$boss.level}}{{if $boss.boss}} ({{#armory_item_info_boss_string#}}{{/if}}</q></td>
+<td align="center"><q>{{$boss.level}}{{if $boss.boss}} ({{#armory_item_info_boss_string#}}){{/if}}</q></td>
 <td align="center"><q>
 {{if $boss.map}}
     {{$boss.map}}

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 72
+ * @revision 74
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -393,7 +393,7 @@ Class Utils extends Connector {
             1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
             1463, 3117, 3259, 4078, 4576
-        )"); // 3.3.0a IDs
+        )"); // 3.3.2 IDs
         if(!$achievements_data) {
             return false;
         }
