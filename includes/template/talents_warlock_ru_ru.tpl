@@ -1496,7 +1496,7 @@
 	</script>
 <div class="talContainer" id="talContainer_sdfkte75">
 <div class="talentFrame">
-<div class="talentTree" id="Affliction_tree_sdfkte75" style="margin-right: 3px; background-image: url('/_images/talents/bg/small/WarlockCurses.jpg')">
+<div class="talentTree" id="Affliction_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/WarlockCurses.jpg')">
 <div class="tier">
 <div class="talent staticTip col0" id="1284_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/spell_shadow_curseofsargeras.jpg');">
 <div class="talentHolder
@@ -1784,7 +1784,7 @@
 <span id="treeName_0_sdfkte75" style="font-weight: bold;">Колдовство</span> &nbsp;<span id="treeSpent_0_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Demonology_tree_sdfkte75" style="margin-right: 3px; background-image: url('/_images/talents/bg/small/WarlockSummoning.jpg')">
+<div class="talentTree" id="Demonology_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/WarlockSummoning.jpg')">
 <div class="tier">
 <div class="talent staticTip col0" id="1221_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/inv_stone_04.jpg');">
 <div class="talentHolder
@@ -2064,7 +2064,7 @@
 <span id="treeName_1_sdfkte75" style="font-weight: bold;">Демонология</span> &nbsp;<span id="treeSpent_1_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Destruction_tree_sdfkte75" style="background-image: url('/_images/talents/bg/small/WarlockDestruction.jpg');">
+<div class="talentTree" id="Destruction_tree_sdfkte75" style="background-image: url('images/talents/bg/small/WarlockDestruction.jpg');">
 <div class="tier">
 <div class="talent staticTip col1" id="944_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/spell_shadow_shadowbolt.jpg');">
 <div class="talentHolder

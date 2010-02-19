@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 73
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,6 +30,7 @@ define('load_mangos_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
+$achievementsCategory = false;
 if(isset($_GET['cn'])) {
     $characters->name = Utils::escape($_GET['cn']);
 }
@@ -62,7 +63,7 @@ foreach($query as $ach) {
         if($achievementsCategory != 81) { // 'Feats of Strenght' category do not have achievement points
             $string .= "<div class='pointshield'><div>".$ach['points']."</div></div>";
         }
-        $string .= "<div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+        $string .= "<div class='firsts_icon' style='background-image:url(&quot;wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
         $string .= "<div class='achv_date'>".$completed."</div>";
         $string .= $achievements->AchievementProgress();
         if(!empty($ach['titleReward_'.$_locale])) {
@@ -75,7 +76,7 @@ foreach($query as $ach) {
         if($achievementsCategory != 81) { // Do not show incompleted achievements in 'Feats of Strenght' category
                 if($ach['parentAchievement'] > 0) {
                     if($achievements->IsAchievementCompleted($ach['parentAchievement'])) {
-                        $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+                        $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
                         $uncompleted .= $achievements->AchievementProgress();
                         if(!empty($ach['titleReward_'.$_locale])) {
                             $uncompleted .= "<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";
@@ -84,7 +85,7 @@ foreach($query as $ach) {
                     }
                 }
                 else {
-                    $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;/wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
+                    $uncompleted .= "<div class='achievement locked' id='ach".$ach['id']."' onclick='Armory.Achievements.select(this, true)'><div class='pointshield'><div>".$ach['points']."</div></div><div class='firsts_icon' style='background-image:url(&quot;wow-icons/_images/51x51/".$ach['iconname'].".jpg&quot;)'><img class='p' src='images/achievements/fst_iconframe.png'/></div><div class='achv_title'>".$ach['name_'.$_locale]."</div><div class='achv_desc'>".$ach['description_'.$_locale]."</div>";
                     $uncompleted .= $achievements->AchievementProgress();
                     if(!empty($ach['titleReward_'.$_locale])) {
                         $uncompleted .= "<br clear='all' /><div class='achv_reward_bg'>".$ach['titleReward_'.$_locale]."</div>";

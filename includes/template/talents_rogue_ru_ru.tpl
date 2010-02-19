@@ -1526,7 +1526,7 @@
 	</script>
 <div class="talContainer" id="talContainer_sdfkte75">
 <div class="talentFrame">
-<div class="talentTree" id="Assassination_tree_sdfkte75" style="margin-right: 3px; background-image: url('/_images/talents/bg/small/RogueAssassination.jpg')">
+<div class="talentTree" id="Assassination_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/RogueAssassination.jpg')">
 <div class="tier">
 <div class="talent staticTip col0" id="276_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/ability_rogue_eviscerate.jpg');">
 <div class="talentHolder
@@ -1803,7 +1803,7 @@
 <span id="treeName_0_sdfkte75" style="font-weight: bold;">Ликвидация</span> &nbsp;<span id="treeSpent_0_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Combat_tree_sdfkte75" style="margin-right: 3px; background-image: url('/_images/talents/bg/small/RogueCombat.jpg')">
+<div class="talentTree" id="Combat_tree_sdfkte75" style="margin-right: 3px; background-image: url('images/talents/bg/small/RogueCombat.jpg')">
 <div class="tier">
 <div class="talent staticTip col0" id="203_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/ability_gouge.jpg');">
 <div class="talentHolder
@@ -2092,7 +2092,7 @@
 <span id="treeName_1_sdfkte75" style="font-weight: bold;">Бой</span> &nbsp;<span id="treeSpent_1_sdfkte75">0</span>
 </div>
 </div>
-<div class="talentTree" id="Subtlety_tree_sdfkte75" style="background-image: url('/_images/talents/bg/small/RogueSubtlety.jpg');">
+<div class="talentTree" id="Subtlety_tree_sdfkte75" style="background-image: url('images/talents/bg/small/RogueSubtlety.jpg');">
 <div class="tier">
 <div class="talent staticTip col0" id="2244_iconHolder_sdfkte75" style="background-image:url('wow-icons/_images/_talents31x31/ability_warrior_decisivestrike.jpg');">
 <div class="talentHolder
