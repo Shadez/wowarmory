@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 75
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -108,15 +108,24 @@ else {*/
         }
         $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i));
     }
-    $talent_trees = explode(' / ', $tp);
-    $currentTree = Utils::GetMaxArray($talent_trees);
-    $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
-    $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
-    $armory->tpl->assign('talents_builds', $tp);
-    $armory->tpl->assign('treeName', $currentTreeName);
-    $armory->tpl->assign('tree_js', $talent_trees);
-    $armory->tpl->assign('disabledDS_1', ' disabledSpec');
-    $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
+    if($tp == ' /  / ') {
+        // No talents
+        $armory->tpl->assign('talents_builds', '');
+        $armory->tpl->assign('treeName', $armory->tpl->get_config_vars('armory_character_sheet_na_dualspec'));
+        $armory->tpl->assign('currentTreeIcon', 'ability_seal');
+        $armory->tpl->assign('disabledDS_1', ' disabledSpec');
+    }
+    else {
+        $talent_trees = explode(' / ', $tp);
+        $currentTree = Utils::GetMaxArray($talent_trees);
+        $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
+        $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
+        $armory->tpl->assign('talents_builds', $tp);
+        $armory->tpl->assign('treeName', $currentTreeName);
+        $armory->tpl->assign('tree_js', $talent_trees);
+        $armory->tpl->assign('disabledDS_1', ' disabledSpec');
+        $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
+    }
 //}
 // Professions
 $trade_skills = $characters->extractCharacterProfessions();

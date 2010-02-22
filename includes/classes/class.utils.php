@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 74
+ * @revision 75
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -373,6 +373,13 @@ Class Utils extends Connector {
         return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
     }
     
+    /**
+     * Returns array with Realm firsts achievements
+     * @category Utils class
+     * @example Utils::realmFirsts()
+     * @todo Merge characters who earned same achievement (realm first boss kill) into one group
+     * @return array
+     **/
     public function realmFirsts() {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $achievements_data = $this->cDB->select("
@@ -383,16 +390,20 @@ Class Utils extends Connector {
         `characters`.`name` AS `charname`,
         `characters`.`race`,
         `characters`.`class`,
-        `characters`.`gender`
+        `characters`.`gender`,
+        `guild`.`name` AS `guildname`,
+        `guild_member`.`guildid`
         FROM `character_achievement` AS `character_achievement`
         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
+        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`character_achievement`.`guid`
+        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
         WHERE `character_achievement`.`achievement` IN 
         (
-            456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 
-            467, 1400, 1402, 1404, 1405, 1406, 1407, 1408, 1409, 
+            457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 
+            467, 1404, 1405, 1406, 1407, 1408, 1409, 
             1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
-            1463, 3117, 3259, 4078, 4576
+            1463, 3259, 456, 1400, 1402, 3117, 4078, 4576
         )"); // 3.3.2 IDs
         if(!$achievements_data) {
             return false;
@@ -403,12 +414,13 @@ Class Utils extends Connector {
             $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['timestamp'] = date('Y-m-d\TH:i:s:+00:00', $achievements_data[$i]['date']);
-            $achievements_data[$i]['guildid'] = Characters::GetDataField(PLAYER_GUILDID, $achievements_data[$i]['guid']);
-            if($achievements_data[$i]['guildid'] > 0) {
-                $achievements_data[$i]['guildname'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $achievements_data[$i]['guildid']);
-            }            
-            unset($achievements_data[$i]['guildid']);
         }
+        /*
+        $start_id = $countAch+1;
+        //                   Sartharion Malygos Kel'thuzed Yogg-Saron ToGC  The Lich King
+        $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
+        $bosses = array();
+        */
         return $achievements_data;
     }
     
