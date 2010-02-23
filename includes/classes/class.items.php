@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 74
+ * @revision 76
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -318,6 +318,7 @@ Class Items extends Connector {
      **/
     public function BuildLootTable($item, $vendor, $data=false) {
         $lootTable = array();
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($vendor) {
 			case 'vendor':
 				$VendorLoot = $this->wDB->select("
@@ -481,13 +482,13 @@ Class Items extends Connector {
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName`
+                        `SpellName_".$locale."`
                         FROM `armory_spell`
                             WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
                 if(!empty($CraftLoot)) {
                     $i=0;
                     foreach($CraftLoot as $craftItem) {
-                        $lootTable[$i]['name'] = $craftItem['SpellName'];
+                        $lootTable[$i]['name'] = $craftItem['SpellName_'.$locale];
                         for($o=1;$o<9;$o++) {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $lootTable[$i]['entry_reagent_'.$o] = $craftItem['Reagent_'.$o];
