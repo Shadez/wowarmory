@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 71
+ * @revision 77
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,30 +27,35 @@ if(!defined('__ARMORY__')) {
 }
 
 $ArmoryConfig = array();
+/* Armory Database configuration */
 $ArmoryConfig['mysql']['host_armory']     = 'localhost';
 $ArmoryConfig['mysql']['user_armory']     = 'root';
 $ArmoryConfig['mysql']['pass_armory']     = '';
 $ArmoryConfig['mysql']['name_armory']     = 'armory';
 $ArmoryConfig['mysql']['charset_armory']  = 'UTF8';
 
+/* Characters Database configuration */
 $ArmoryConfig['mysql']['host_characters']     = 'localhost';
 $ArmoryConfig['mysql']['user_characters']     = 'root';
 $ArmoryConfig['mysql']['pass_characters']     = '';
 $ArmoryConfig['mysql']['name_characters']     = 'characters';
 $ArmoryConfig['mysql']['charset_characters']  = 'UTF8';
 
+/* Accounts (realmd) Database configuration */
 $ArmoryConfig['mysql']['host_realmd']         = 'localhost';
 $ArmoryConfig['mysql']['user_realmd']         = 'root';
 $ArmoryConfig['mysql']['pass_realmd']         = '';
 $ArmoryConfig['mysql']['name_realmd']         = 'realmd';
 $ArmoryConfig['mysql']['charset_realmd']      = 'UTF8';
 
+/* World (mangos) Database configuration */
 $ArmoryConfig['mysql']['host_mangos']         = 'localhost';
 $ArmoryConfig['mysql']['user_mangos']         = 'root';
 $ArmoryConfig['mysql']['pass_mangos']         = '';
 $ArmoryConfig['mysql']['name_mangos']         = 'mangos';
 $ArmoryConfig['mysql']['charset_mangos']      = 'UTF8';
 
+/* Armory Settings */
 $ArmoryConfig['settings']['server_version']   = '332'; // '322' or '332', without dots or something else
 $ArmoryConfig['settings']['siteCharset']      = 'utf-8';
 $ArmoryConfig['settings']['useNews']          = true;
