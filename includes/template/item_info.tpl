@@ -249,6 +249,7 @@
 <td colspan="2"><a class="noLink">{{#armory_item_info_drop_name#}}</a></td><td><a class="noLink">{{#armory_item_info_reagents#}}</a></td>
 </tr>
 {{foreach from=$craft_loot item=craft}}
+{{if $craft.item_name_1}}
 <tr>
 <td width="55"><img class="p43" src="wow-icons/_images/43x43/{{$craft.item_icon_1}}.png" /></td>
 <td>
@@ -283,6 +284,7 @@
 </q>
 </td>
 </tr>
+{{/if}}
 {{/foreach}}
 </table>
 </div>
@@ -300,6 +302,7 @@
 <td colspan="2"><a class="noLink">{{#armory_item_info_drop_name#}}</a></td><td><a class="noLink">{{#armory_item_info_reagents#}}</a></td>
 </tr>
 {{foreach from=$reagent_loot item=reagent}}
+{{if $reagent.item_name}}
 <tr>
 <td width="55"><img class="p43 staticTip itemToolTip" id="{{$reagent.item_entry}}" src="wow-icons/_images/43x43/{{$reagent.item_icon}}.png" /></td>
 <td class="item-icon" width="50%"><q><a class="rarity{{$reagent.item_quality}} staticTip itemToolTip" href="item-info.xml?i={{$reagent.item_entry}}" id="{{$reagent.item_entry}}">{{$reagent.item_name}}</a></q></td>
@@ -332,6 +335,7 @@
 </q>
 </td>
 </tr>
+{{/if}}
 {{/foreach}}
 </table>
 </div>
