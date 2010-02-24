@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 70
+ * @revision 78
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -195,14 +195,6 @@ Class Mangos extends Connector {
      **/
     public function GetNPCName($npc) {
         $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $NPCName = $this->wDB->selectCell("
-        SELECT `name`
-            FROM `creature_template`
-                WHERE `entry`=? LIMIT 1", $npc);        
-        $NPCNameRU = $this->wDB->selectCell("
-        SELECT `name_loc8`
-            FROM `locales_creature`
-                WHERE `entry`=? LIMIT 1", $npc);
         switch($_locale) {
             case 'en_gb':
                 $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
@@ -210,7 +202,24 @@ Class Mangos extends Connector {
             case 'ru_ru':
                 $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
                 if(!$name) {
-                    $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                    // Check KillCredit(s)
+                    $kc_entry = 0;
+                    $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                    if($KillCredit['KillCredit1'] > 0) {
+                        $kc_entry = $KillCredit['KillCredit1'];
+                    }
+                    elseif($KillCredit['KillCredit2'] > 0) {
+                        $kc_entry = $KillCredit['KillCredit2'];
+                    }
+                    if($kc_entry > 0) {
+                        $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=?", $kc_entry);
+                        if(!$name) {
+                            $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        }
+                    }
+                    else {
+                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                    }
                 }
                 break;
         }
@@ -283,7 +292,7 @@ Class Mangos extends Connector {
             
             case 'instance_type':
                 $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `armory_instances` WHERE `mapID`=?", $mapID);
+                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `armory_instances_difficulty` WHERE `mapID`=?", $mapID);
                 if($instanceInfo == 5) {
                     // Dungeon
                     return 1;

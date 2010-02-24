@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 76
+ * @revision 78
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -346,13 +346,12 @@ Class Items extends Connector {
 				if($BossLoot) {
 				    $i = 0;
 					foreach($BossLoot as $bItem) {
-					    $map_npc = Mangos::GetNpcInfo($bItem['entry'], 'map');
                                $lootTable[$i] = array (
                                     'entry' => $bItem['entry'],
         							'name' => Mangos::GetNpcName($bItem['entry']),
         							'level'=> Mangos::GetNpcInfo($bItem['entry'], 'level'),
         							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
-        							'map' => $map_npc,
+        							'map' => Mangos::GetNpcInfo($bItem['entry'], 'map'),
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
                                     'instance_type' => Mangos::GetNpcInfo($bItem['entry'], 'instance_type'),
         						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
@@ -369,10 +368,9 @@ Class Items extends Connector {
 				if(!empty($ChestLoot)) {
 				    $i = 0;
 					foreach($ChestLoot as $cItem) {
-					    $map_chest = Mangos::GameobjectInfo($cItem['entry'], 'map');
                             $lootTable[$i] = array (
                                 'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
-    							'map' => $map_chest,
+    							'map' => Mangos::GameobjectInfo($cItem['entry'], 'map'),
     							'difficult' => '&nbsp;',
     							'drop_percent' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
     						);
@@ -518,7 +516,7 @@ Class Items extends Connector {
                 SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName`
+                        `SpellName_".$locale."` AS `SpellName`
                         FROM `armory_spell`
                         WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR 
                         `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
