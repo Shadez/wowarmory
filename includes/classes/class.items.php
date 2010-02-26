@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 78
+ * @revision 82
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -354,12 +354,12 @@ Class Items extends Connector {
         							'map' => Mangos::GetNpcInfo($bItem['entry'], 'map'),
         							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
                                     'instance_type' => Mangos::GetNpcInfo($bItem['entry'], 'instance_type'),
-        						 	'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
+       						 	    'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
     						  );
                               $i++;
 					}
 				}
-                break;			
+                break;
 			case 'chest':
 				$ChestLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
@@ -776,5 +776,14 @@ Class Items extends Connector {
     }
     
     // End of CSWOWD functions
+    
+    public function GetItemSourceByKey($key) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $name = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?)", $key);
+        if($name) {
+            return $name;
+        }
+        return false;
+    }
 }
 ?>

@@ -137,10 +137,12 @@
 </script>
 </div>
 <script type="text/javascript">
+{literal}
     function setArmorySearchFocus() {
         document.formSearch.armorySearch.focus();
     }
-    window.onload = setArmorySearchFocus;	
+    window.onload = setArmorySearchFocus;
+{/literal}
 </script>
 </div>
 </div>

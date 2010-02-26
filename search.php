@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 38
+ * @revision 82
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,9 +29,10 @@ define('load_items_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
+$armory->tpl->assign('locale', $_locale); // hack
 $searchQuery = isset($_GET['searchQuery']) ? $_GET['searchQuery'] : false;
 $queryLen = strlen($searchQuery);
-if(!$searchQuery || $queryLen < 2) {
+if( (!$searchQuery && !isset($_GET['source'])) || ($queryLen < 2 && !isset($_GET['source']))) {
     $armory->ArmoryError(false, false, true);
 }
 $armory->tpl->assign('searchQuery', $searchQuery);
@@ -54,8 +55,20 @@ $charsResNum = false;
 $guildsResNum = false;
 $arenateamsResNum = false;
 $currentTab = false;
-
-//if($queryLen > 7 ) {
+if(isset($_GET['source'])) {
+    $itemsResNum = $utils->AdvancedItemSearch($_GET, true);
+    if($itemsResNum > 0) {
+        $armory->tpl->assign('itemsResultNum', $itemsResNum);
+        $armory->tpl->assign('itemResults', $utils->AdvancedItemSearch($_GET));
+        $currentTab = 'items_tab';
+        $armory->tpl->assign('search_filters', $_GET);
+        $tpl2include = 'search_items';
+    }
+}
+else {
+    if(!$searchQuery || $queryLen < 2) {
+        //$armory->ArmoryError(false, false, true);
+    }
     $itemsResNum = $utils->SearchItems($searchQuery, true);
     if($itemsResNum > 0) {
         $armory->tpl->assign('itemsResultNum', $itemsResNum);
@@ -63,28 +76,29 @@ $currentTab = false;
         $currentTab = 'items_tab';
         $tpl2include = 'search_items';
     }
-//}
-$arenateamsResNum = $utils->SearchArenaTeams($searchQuery, true);
-if($arenateamsResNum > 0) {
-    $armory->tpl->assign('arenateamsResultNum', $arenateamsResNum);
-    $armory->tpl->assign('arenateamsResult', $utils->SearchArenaTeams($searchQuery));
-    $currentTab = 'arenateams_tab';
-    $tpl2include = 'search_arenateams';
+    $arenateamsResNum = $utils->SearchArenaTeams($searchQuery, true);
+    if($arenateamsResNum > 0) {
+        $armory->tpl->assign('arenateamsResultNum', $arenateamsResNum);
+        $armory->tpl->assign('arenateamsResult', $utils->SearchArenaTeams($searchQuery));
+        $currentTab = 'arenateams_tab';
+        $tpl2include = 'search_arenateams';
+    }
+    $guildsResNum = $utils->SearchGuilds($searchQuery, true);
+    if($guildsResNum > 0) {
+        $armory->tpl->assign('guildsResultNum', $guildsResNum);
+        $armory->tpl->assign('guildsResult', $utils->SearchGuilds($searchQuery));
+        $currentTab = 'guilds_tab';
+        $tpl2include = 'search_guilds';
+    }
+    $charsResNum = $utils->SearchCharacters($searchQuery, true);
+    if($charsResNum > 0) {
+        $armory->tpl->assign('charactersResultNum', $charsResNum);
+        $armory->tpl->assign('charactersResult', $utils->SearchCharacters($searchQuery));
+        $currentTab = 'characters_tab';
+        $tpl2include = 'search_characters';
+    }
 }
-$guildsResNum = $utils->SearchGuilds($searchQuery, true);
-if($guildsResNum > 0) {
-    $armory->tpl->assign('guildsResultNum', $guildsResNum);
-    $armory->tpl->assign('guildsResult', $utils->SearchGuilds($searchQuery));
-    $currentTab = 'guilds_tab';
-    $tpl2include = 'search_guilds';
-}
-$charsResNum = $utils->SearchCharacters($searchQuery, true);
-if($charsResNum > 0) {
-    $armory->tpl->assign('charactersResultNum', $charsResNum);
-    $armory->tpl->assign('charactersResult', $utils->SearchCharacters($searchQuery));
-    $currentTab = 'characters_tab';
-    $tpl2include = 'search_characters';
-}
+
 if($itemsResNum == 0 && $arenateamsResNum == 0 && $charsResNum == 0 && $guildsResNum == 0) {
     $tpl2include = 'search_error';
 }
