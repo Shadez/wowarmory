@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 78
+ * @revision 80
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,13 +31,13 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r78');
+define('DB_VERSION', 'armory_r79');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
 $armory->tpl->config_dir      = 'includes/locales/';
-$armory->tpl->left_delimiter  = '{{'; // remove JS brackets conflict
-$armory->tpl->right_delimiter = '}}'; // remove JS brackets conflict
+$armory->tpl->left_delimiter  = '{';
+$armory->tpl->right_delimiter = '}';
 
 if($armory->armoryconfig['server_version']) {
     if(!@include('UpdateFields'.$armory->armoryconfig['server_version'].'.php')) {

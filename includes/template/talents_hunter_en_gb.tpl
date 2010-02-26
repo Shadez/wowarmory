@@ -1122,7 +1122,7 @@
 
 		var petTalentCalc = new TalentCalculator();
 
-		$(document).ready(function() {
+		$(document).ready(function() { {/literal} 
 
 			petTalentCalc.initTalentCalc(
 				"1", 
@@ -1133,7 +1133,7 @@
 				talentData_dsgjkb43,
 				petData_dsgjkb43
 			);
-		});
+		{literal} }); {/literal}
 	</script>
 <div class="talContainer petContainer" id="talContainer_dsgjkb43">
 <div class="talentFrame">
@@ -1849,7 +1849,7 @@
 <script src="/_js/tools/talent-calc.js" type="text/javascript"></script>
 </xsl-template>
 <script type="text/javascript">
-		var talentData_sdfkte75 = [
+		{literal} var talentData_sdfkte75 = [
 		
 			{
 				id:   "BeastMastery",
@@ -3352,18 +3352,18 @@
 
 		var talentCalc = new TalentCalculator();
 
-		$(document).ready(function() {
+		$(document).ready(function() { {/literal} 
 
 			talentCalc.initTalentCalc(
 				"3", 
-				"{{$talents}}", 
+				"{$talents}", 
 				"charPage",
 				"false",
 				"sdfkte75",
 				talentData_sdfkte75,
 				petData_sdfkte75
 			);
-		});
+		{literal} }); {/literal}
 	</script>
 <div class="talContainer" id="talContainer_sdfkte75">
 <div class="talentFrame">
@@ -4231,9 +4231,9 @@
 </div>
 </div>
 <script type="text/javascript">
-				$(document).ready(function(){
+				{literal} $(document).ready(function(){ {/literal}
 					initCharTalents();			
-				});
+				{literal} }); {/literal}
 			</script>
 </div>
 </div>

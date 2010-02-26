@@ -6,7 +6,7 @@
 <script src="_js/tools/talent-calc.js" type="text/javascript"></script>
 </xsl-template>
 <script type="text/javascript">
-		var talentData_wenld36 = [
+		{literal} var talentData_wenld36 = [
 		
 			{
 				id:   "Elemental",
@@ -1485,18 +1485,18 @@
 
 		var talentCalc = new TalentCalculator();
 
-		$(document).ready(function() {
+		$(document).ready(function() { {/literal} 
 
 			talentCalc.initTalentCalc(
 				"7", 
-				"{{$talentTree}}", 
+				"{$talentTree}", 
 				"calc",
 				"false",
 				"wenld36",
 				talentData_wenld36,
 				petData_wenld36
 			);
-		});
+		{literal} }); {/literal}
 	</script>
 <div class="calcInfo">
 <a class="awesomeButton awesomeButton-exportBuild" href="#" id="linkToBuild_wenld36"><span>

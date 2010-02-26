@@ -769,7 +769,7 @@
 </div>
 </div>
 <script type="text/javascript">
-
+{literal}
 function calcItemCost(thePointsNeeded){
 	if (thePointsNeeded == '' || thePointsNeeded == 0 || !thePointsNeeded) {
 		document.getElementById('inputArmorCostGoal').value = 0;
@@ -1158,7 +1158,7 @@ calcPoints(gBaseArenaPoints);
 
 if (Browser.opera || Browser.safari)
 	document.getElementById('hideOpera').style.display = "none";
-
+{/literal}
 </script>
 </div>
 </div>
@@ -1178,11 +1178,11 @@ if (Browser.opera || Browser.safari)
 </div>
 <div class="page-bot"></div>
 <div class="page-bot"></div>
-{{include file="faq_arenacalc.tpl"}}
-{{include file="overall_right_block.tpl"}}
+{include file="faq_arenacalc.tpl"}
+{include file="overall_right_block.tpl"}
 <script type="text/javascript">
     faqSwitch(currentFaq);
 </script>
 </div>
 </div>
-{{include file="overall_footer.tpl"}}
+{include file="overall_footer.tpl"}

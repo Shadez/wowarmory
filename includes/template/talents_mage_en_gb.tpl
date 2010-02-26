@@ -2,7 +2,7 @@
 <script src="_js/tools/talent-calc.js" type="text/javascript"></script>
 </xsl-template>
 <script type="text/javascript">
-		var talentData_sdfkte75 = [
+		{literal} var talentData_sdfkte75 = [
 		
 			{
 				id:   "Arcane",
@@ -1559,18 +1559,18 @@
 
 		var talentCalc = new TalentCalculator();
 
-		$(document).ready(function() {
+		$(document).ready(function() { {/literal} 
 
 			talentCalc.initTalentCalc(
 				"8", 
-				"{{$talents}}", 
+				"{$talents}", 
 				"charPage",
 				"false",
 				"sdfkte75",
 				talentData_sdfkte75,
 				petData_sdfkte75
 			);
-		});
+		{literal} }); {/literal}
 	</script>
 <div class="talContainer" id="talContainer_sdfkte75">
 <div class="talentFrame">
@@ -2488,9 +2488,9 @@
 </div>
 </div>
 <script type="text/javascript">
-				$(document).ready(function(){
+				{literal} $(document).ready(function(){ {/literal}
 					initCharTalents();			
-				});
+				{literal} }); {/literal}
 			</script>
 </div>
 </div>

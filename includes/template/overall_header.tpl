@@ -2,15 +2,15 @@
 <html>
 <head>
 <link href="favicon.ico" rel="shortcut icon" />
-<link href="_content/{{$ArmoryConfig.locale}}/searchplugin.xml" rel="search" title="{{#armory_site_title#}}" type="application/opensearchdescription+xml" />
-<title>{{#armory_site_title#}}{{if $titleName}} - {{$titleName}} @ {{$realm}}{{/if}}</title>
-<meta content="text/html; charset={{$ArmoryConfig.siteCharset}}" http-equiv="Content-Type" />
-<meta content="{{#armory_meta_description#}}" name="description" />
+<link href="_content/{$ArmoryConfig.locale}/searchplugin.xml" rel="search" title="{#armory_site_title#}" type="application/opensearchdescription+xml" />
+<title>{#armory_site_title#}{if $titleName} - {$titleName} @ {$realm}{/if}</title>
+<meta content="text/html; charset={$ArmoryConfig.siteCharset}" http-equiv="Content-Type" />
+<meta content="{#armory_meta_description#}" name="description" />
 <style media="screen, projection" type="text/css">
 		@import "_css/master.css";
 		@import "shared/global/menu/topnav/topnav.css";
-        {{$addCssSheet}}		
-		@import "_css/_lang/{{$ArmoryConfig.locale}}/language.css";
+        {$addCssSheet}		
+		@import "_css/_lang/{$ArmoryConfig.locale}/language.css";
 		@import "_css/_region/eu/region.css";
 	</style>
 <script src="shared/global/third-party/jquery/jquery.js" type="text/javascript"></script>
@@ -23,6 +23,7 @@
 <script src="_js/common.js" type="text/javascript"></script>
 <script src="_js/armory.js" type="text/javascript"></script>
 <script type="text/javascript">
+{literal}
 		//browser detection		
 		if($.browser.msie){
 			if($.browser.version == "7.0")		addStylesheet('_css/browser/ie7.css');
@@ -31,16 +32,16 @@
 			if(parseFloat($.browser.version) <= 1.9)	addStylesheet('_css/browser/firefox2.css');
 		}else if($.browser.opera)				addStylesheet('_css/browser/opera.css');
 		else if($.browser.safari)				addStylesheet('_css/browser/safari.css');
-
+{/literal}
 		//set global login var
-		var isLoggedIn = ("{{$_wow_login}}" != '');
-		var bookmarkToolTip = "{{#armory_remember_js_string#}}";
+		var isLoggedIn = ("{$_wow_login}" != '');
+		var bookmarkToolTip = "{#armory_remember_js_string#}";
 
 		var isHomepage 		 = ("false" != "true");
 		var globalSearch 	 = "1";
-		var theLang 		 = "{{$ArmoryConfig.locale}}";
+		var theLang 		 = "{$ArmoryConfig.locale}";
 		var region 			 = "EU"; //in language.xsl DO NOT REMOVE
-		
+{literal}		
 		var regionUrl = {
 			armory: 	"",
 			forums: 	"",
@@ -51,6 +52,7 @@
 		$(document).ready(function() {		
 			initializeArmory(); //initialize the armory!
 		});		
-		/* */		
+		/* */
+{/literal}		
 </script>
 </head>

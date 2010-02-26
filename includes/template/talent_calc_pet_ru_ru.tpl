@@ -39,7 +39,7 @@
 </xsl-template>
 <script type="text/javascript">
 		var talentData_tkwen68 = [
-		
+{literal}		
 			{
 				id:   "Ferocity",
 				name: "Свирепость",
@@ -1330,18 +1330,18 @@
 
 		var petTalentCalc = new TalentCalculator();
 
-		$(document).ready(function() {
+		$(document).ready(function() { {/literal} 
 
 			petTalentCalc.initTalentCalc(
-				"{{$openTree}}", 
-				"{{$talentTree}}", 
+				"{$openTree}", 
+				"{$talentTree}", 
 				"calc",
 				"true",
 				"tkwen68",
 				talentData_tkwen68,
 				petData_tkwen68
 			);
-		});
+		{literal} }); {/literal}
 	</script>
 <div class="calcInfo">
 <a class="awesomeButton awesomeButton-exportBuild" href="#" id="linkToBuild_tkwen68"><span>
@@ -2273,11 +2273,11 @@
 </div>
 </div>
 <div class="page-bot"></div>
-{{include file="faq_index.tpl"}}
-{{include file="overall_right_block.tpl"}}
+{include file="faq_index.tpl"}
+{include file="overall_right_block.tpl"}
 <script type="text/javascript">
     faqSwitch(currentFaq);
 </script>
 </div>
 </div>
-{{include file="overall_footer.tpl"}}
+{include file="overall_footer.tpl"}

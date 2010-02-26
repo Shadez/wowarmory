@@ -6,30 +6,29 @@
 <div class="parch-int">
 <div class="parch-bot">
 <div id="replaceMain">
-<tabInfo subTab="guildStats" tab="guild" tabGroup="guild" tabUrl=""></tabInfo>
 <div id="dataElement">
 <div class="parchment-top">
 <div class="parchment-content">
 <div class="list">
 <link href="_css/guild/global.css" rel="stylesheet" type="text/css" />
 <div class="tabs">
-{{if $name}}
+{if $name}
 <div class="tab" id="tab_character">
-<a href="character-sheet.xml?r={{$realm}}&amp;n={{$name}}&amp;gn={{$guildName}}">{{#armory_character_sheet_character_string#}}</a>
+<a href="character-sheet.xml?r={$realm}&amp;n={$name}&amp;gn={$guildName}">{#armory_character_sheet_character_string#}</a>
 </div>
-{{/if}}
+{/if}
 <div class="selected-tab" id="tab_guild">
-<a href="guild-info.xml?r={{$realm}}&gn={{$guildName}}">{{#armory_character_sheet_guild_string#}}</a>
+<a href="guild-info.xml?r={$realm}&gn={$guildName}">{#armory_character_sheet_guild_string#}</a>
 </div>
 <div class="clear"></div>
 </div>
 <div class="subTabs">
 <div class="upperLeftCorner"></div>
 <div class="upperRightCorner"></div>
-<a class="" href="guild-info.xml?r={{$realm}}&gn={{$guildName}}" id="guildRoster_subTab"><span>{{#armory_guild_info_guild_roster#}}</span></a>
-<a class="selected-subTab" href="guild-stats.xml?r={{$realm}}&gn={{$guildName}}" id="guildStats_subTab"><span>{{#armory_guild_info_statistic#}}</span></a>
-<a class="subTabLocked" href="guild-bank-contents.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankContents_subTab"><span>{{#armory_guild_info_guildbank#}}</span></a>
-<a class="subTabLocked" href="guild-bank-log.xml?r={{$realm}}&gn={{$guildName}}" id="guildBankLog_subTab"><span>{{#armory_guild_info_guildbanklog#}}</span></a>
+<a class="" href="guild-info.xml?r={$realm}&gn={$guildName}" id="guildRoster_subTab"><span>{#armory_guild_info_guild_roster#}</span></a>
+<a class="selected-subTab" href="guild-stats.xml?r={$realm}&gn={$guildName}" id="guildStats_subTab"><span>{#armory_guild_info_statistic#}</span></a>
+<a class="subTabLocked" href="guild-bank-contents.xml?r={$realm}&gn={$guildName}" id="guildBankContents_subTab"><span>{#armory_guild_info_guildbank#}</span></a>
+<a class="subTabLocked" href="guild-bank-log.xml?r={$realm}&gn={$guildName}" id="guildBankLog_subTab"><span>{#armory_guild_info_guildbanklog#}</span></a>
 </div>
 <div class="full-list">
 <div class="info-pane">
@@ -46,8 +45,8 @@
 <table>
 <tr>
 <td>
-<h1>{{$guildName}}</h1>
-<h2>{{$guildMembersCount}}&nbsp;{{#armory_guild_info_members_string#}}</h2>
+<h1>{$guildName}</h1>
+<h2>{$guildMembersCount}&nbsp;{#armory_guild_info_members_string#}</h2>
 </td>
 </tr>
 </table>
@@ -56,8 +55,8 @@
 <table>
 <tr>
 <td>
-<h1>{{$guildName}}</h1>
-<h2>{{$guildMembersCount}}&nbsp;{{#armory_guild_info_members_string#}}</h2>
+<h1>{$guildName}</h1>
+<h2>{$guildMembersCount}&nbsp;{#armory_guild_info_members_string#}</h2>
 </td>
 </tr>
 </table>
@@ -68,16 +67,16 @@
 <div id="guild_emblem" style="display:none;"></div>
 <script type="text/javascript">
 		var flashId="guild_emblem";
-		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback")){//kill the searchbox flash for safari or linux
+		if ((Browser.safari && flashId=="flashback") || (Browser.linux && flashId=="flashback"))//kill the searchbox flash for safari or linux
 		   document.getElementById("searchFlash").innerHTML = '<div class="search-noflash"></div>';
-		}else
-			printFlash("guild_emblem", "images/emblem_ex.swf", "transparent", "", "", "230", "200", "best", "", "{{$guildEmblemStyle}}", "")
+		else
+			printFlash("guild_emblem", "images/emblem_ex.swf", "transparent", "", "", "230", "200", "best", "", "{$guildEmblemStyle}", "")
 		
 		</script>
 </div>
 <div style="position: absolute; margin: 116px 0 0 210px;">
 <a class="smFrame" href="javascript:void(0);">
-<div>{{$realm}}</div>
+<div>{$realm}</div>
 <img src="images/icon-header-realm.gif" /></a>
 </div>
 </div>
@@ -134,8 +133,8 @@
 		availableArray[11] = [0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0];		
 
 		var genderStringArray = new Array;
-		genderStringArray[0]="{{#armory_guild_info_gender_male#}}";
-		genderStringArray[1]="{{#armory_guild_info_gender_female#}}";	
+		genderStringArray[0]="{#armory_guild_info_gender_male#}";
+		genderStringArray[1]="{#armory_guild_info_gender_female#}";	
 	
 		var raceSelected	=-1;
 		var classSelected	=-1;
@@ -144,12 +143,13 @@
 		//find out how many classes there are
 		classMax = 0;
 		var csaLength=classStringArray.length;
+{literal}
 		for(i=0; i < csaLength; i++) {
 			newClassMax=classStringArray[i][1];
 			if (classMax < newClassMax)
 				classMax=newClassMax;
 		}
-
+{/literal}
 		var completeArray = new Array;  //array that holds all the info
 		
 		var classArray	  = new Array;
@@ -161,15 +161,15 @@
 		var x			  = 0;		
 	</script>
     
-    {{foreach from=$statList item=stat}}
+    {foreach from=$statList item=stat}
     <script type="text/javascript">			
-			theRace		= {{$stat.race}};
-			theClass	= {{$stat.class}};
-			theLevel	= {{$stat.level}};
-			theGender	= {{$stat.gender}};	
+			theRace		= {$stat.race};
+			theClass	= {$stat.class};
+			theLevel	= {$stat.level};
+			theGender	= {$stat.gender};	
 			completeArray[x]=[theRace, theClass, theLevel, theGender];
 			x++;
-			
+			{literal}
 			if (theFaction == 0){
 				if (theRace== 1 || theRace== 3 || theRace== 4 || theRace== 7 || theRace== 11) {
 					thisRaceArray = allianceRaceArray;
@@ -190,22 +190,22 @@
 					}
 				}		
 			}
-		
+		{/literal}
 		</script>
         <script src="_js/guild/guild-stats.js" type="text/javascript"></script>
-        {{/foreach}}
+        {/foreach}
 <div class="guild-stats-container">
 <div class="filtercrest">
 <a class="bluebutton" href="javascript: changeStats(-1, -1, levelMin, levelMax, -1, completeArray, 1);" id="loginreloadbutton">
 <div class="bluebutton-a"></div>
 <div class="bluebutton-b">
 <div class="reldiv">
-<div class="bluebutton-color">{{#armory_guild_info_clear_critera#}}</div>
-</div>{{#armory_guild_info_clear_critera#}}</div>
+<div class="bluebutton-color">{#armory_guild_info_clear_critera#}</div>
+</div>{#armory_guild_info_clear_critera#}</div>
 <div class="bluebutton-reload"></div>
 <div class="bluebutton-c"></div>
 </a>
-<div class="filtertitle" style="float: left; position: relative;">{{#armory_guild_stat_filter#}}</div>
+<div class="filtertitle" style="float: left; position: relative;">{#armory_guild_stat_filter#}</div>
 </div>
 <div class="filtercontainer">
 <form name="guildStats">
@@ -222,17 +222,17 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">{{#armory_guild_info_race#}}:&nbsp;
+<div class="bankcontentsfilter">{#armory_guild_info_race#}:&nbsp;
 						<div id="divReplaceOptionRace"></div>
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">{{#tooltip_classes#}}&nbsp;
+<div class="bankcontentsfilter">{#tooltip_classes#}&nbsp;
 						<div id="divReplaceOptionClass"></div>
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 100px;">
-<div class="bankcontentsfilter">{{#armory_guild_stat_minlevel#}}:<br />
+<div class="bankcontentsfilter">{#armory_guild_stat_minlevel#}:<br />
 <span><input class="guildbankitemname" maxlength="2" name="inputMinLevel" onclick="javascript:this.form.inputMinLevel.select()" onkeyup="javascript: changeMinLevel();" size="2" type="text" value="10" /></span>
 </div>
 </div>
@@ -242,7 +242,7 @@
 </div>
 </div>
 <div class="bankcontentsfiltercontainer" style="width: 200px;">
-<div class="bankcontentsfilter">{{#armory_guild_info_gender#}}:<select class="guildbanksubtype" name="optionGender" onchange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">{{#armory_guild_info_both_gender#}}</option><option value="0">{{#armory_guild_info_gender_male#}}</option><option value="1">{{#armory_guild_info_gender_female#}}</option></select>
+<div class="bankcontentsfilter">{#armory_guild_info_gender#}:<select class="guildbanksubtype" name="optionGender" onchange="changeStats(raceSelected, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, this.options[this.selectedIndex].value, completeArray, 1);"><option value="-1">{#armory_guild_info_both_gender#}</option><option value="0">{#armory_guild_info_gender_male#}</option><option value="1">{#armory_guild_info_gender_female#}</option></select>
 </div>
 </div>
 <div class="clearfilterboxsm"></div>
@@ -251,36 +251,40 @@
 <div class="bottomshadow"></div>
 </div>
 <script type="text/javascript">
-
 	replaceString="";
 	replaceString='<select class="guildbanksubtype" onChange="changeStats(this.options[this.selectedIndex].value, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionRace">';
-	replaceString += '<option value="-1">{{#armory_guild_stat_allraces#}}</option>';
+	replaceString += '<option value="-1">{#armory_guild_stat_allraces#}</option>';
+    {literal}
 	var raceArrayLength=thisRaceArray.length;
 	for (d=0; d < raceArrayLength; d++){
 		replaceString += '<option value="'+ d +'">'+ thisRaceArray[d][0] +'</option>';
 	}
+    {/literal}
 	replaceString += '</select>';
 
 	document.getElementById('divReplaceOptionRace').innerHTML=replaceString;
 
-</script><script type="text/javascript">
-
+</script>
+<script type="text/javascript">
 	replaceString="";
-	replaceString='<select onChange="changeStats(raceSelected, this.options[this.selectedIndex].value, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionClass"><option value="-1">{{#armory_guild_stat_allraces#}}</option>';
-	for (d=0; d < classStringArray.length; d++){
+	replaceString='<select onChange="changeStats(raceSelected, this.options[this.selectedIndex].value, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray, 1);" name="optionClass"><option value="-1">{#armory_guild_stat_allraces#}</option>';
+	{literal}
+    for (d=0; d < classStringArray.length; d++){
 		replaceString +='<option value="'+ d +'">'+ classStringArray[d][0] +'</option>';
 	}
+    {/literal}
 	replaceString += '</select>';
 
 	document.getElementById('divReplaceOptionClass').innerHTML=replaceString;
 
-</script><script type="text/javascript">	
-	replaceString='{{#armory_guild_stat_maxlevel#}}<br/> <span><input onKeyUp="javascript: changeMaxLevel();" type="text" name="inputMaxLevel" size="2" class="guildbankitemname" maxlength="2" value="'+ levelMax +'" onClick="javascript:this.form.inputMaxLevel.select()"/></span>';
+</script>
+<script type="text/javascript">
+	replaceString='{#armory_guild_stat_maxlevel#}<br/> <span><input onKeyUp="javascript: changeMaxLevel();" type="text" name="inputMaxLevel" size="2" class="guildbankitemname" maxlength="2" value="'+ levelMax +'" onClick="javascript:this.form.inputMaxLevel.select()"/></span>';
 	document.getElementById('replaceMaxLevelInput').innerHTML=replaceString;
 </script>
 <div class="stats-wrapper">
 <div class="racial-stats">
-<h2>{{#armory_guild_stat_race_statistic#}}</h2>
+<h2>{#armory_guild_stat_race_statistic#}</h2>
 <div class="race-container">
 <table>
 <thead>
@@ -312,7 +316,7 @@
 </div>
 </div>
 </td><script type="text/javascript">	
-
+{literal}
 	for (var i=0; i < 2; i++) {
 		if (!genderArray[i][0])
 			genderArray[i][0]=0;
@@ -327,7 +331,7 @@
 
 
 	}
-	
+{/literal}
 </script>
 </tr>
 </thead>
@@ -367,15 +371,15 @@
 </tr>
 </tbody>
 <tr>
-<td><a href="javascript: changeStats(0, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onMouseOver="javascript: this.style.cursor='hand';">
+<td><a href="javascript: changeStats(0, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onmouseover="javascript: this.style.cursor='hand';">
 <div class="raceicon" id="raceShield0"></div>
-</a></td><td><a href="javascript: changeStats(1, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onMouseOver="javascript: this.style.cursor='hand';">
+</a></td><td><a href="javascript: changeStats(1, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onmouseover="javascript: this.style.cursor='hand';">
 <div class="raceicon" id="raceShield1"></div>
-</a></td><td><a href="javascript: changeStats(2, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onMouseOver="javascript: this.style.cursor='hand';">
+</a></td><td><a href="javascript: changeStats(2, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onmouseover="javascript: this.style.cursor='hand';">
 <div class="raceicon" id="raceShield2"></div>
-</a></td><td><a href="javascript: changeStats(3, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onMouseOver="javascript: this.style.cursor='hand';">
+</a></td><td><a href="javascript: changeStats(3, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onmouseover="javascript: this.style.cursor='hand';">
 <div class="raceicon" id="raceShield3"></div>
-</a></td><td><a href="javascript: changeStats(4, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onMouseOver="javascript: this.style.cursor='hand';">
+</a></td><td><a href="javascript: changeStats(4, classSelected, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, -1, completeArray);" onmouseover="javascript: this.style.cursor='hand';">
 <div class="raceicon" id="raceShield4"></div>
 </a></td>
 </tr>
@@ -414,7 +418,7 @@
 </div>
 </div>
 <div class="class-stats">
-<h2>{{#armory_guild_stat_class_statistic#}}</h2>
+<h2>{#armory_guild_stat_class_statistic#}</h2>
 <div class="class-container">
 <table>
 <thead>
@@ -500,43 +504,43 @@
 <tr>
 <td>
 <div class="classicon" id="classIcon0">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 0, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[0][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 0, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[0][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon1">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 1, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[1][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 1, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[1][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon2">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 2, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[2][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 2, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[2][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon3">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 3, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[3][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 3, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[3][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon4">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 4, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[4][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 4, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[4][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon5">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 5, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[5][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 5, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[5][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon6">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 6, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[6][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 6, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[6][0])"></a>
 </div>
 </td><td>
 <div class="classicon staticTip" id="classIcon7">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 7, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[7][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 7, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[7][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon8">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 8, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[8][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 8, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[8][0])"></a>
 </div>
 </td><td>
 <div class="classicon" id="classIcon9">
-<a class="staticTip" href="#" onClick="changeStats(raceSelected, 9, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[9][0])"></a>
+<a class="staticTip" href="#" onclick="changeStats(raceSelected, 9, document.guildStats.inputMinLevel.value, document.guildStats.inputMaxLevel.value, genderSelected, completeArray); return false;" onmouseover="setTipText(classStringArray[9][0])"></a>
 </div>
 </td>
 </tr>
@@ -587,432 +591,432 @@
 </div>
 </div>
 <div class="level-stats">
-<h2>{{#armory_guild_stat_level_statistic#}}</h2>
+<h2>{#armory_guild_stat_level_statistic#}</h2>
 <div class="level-container">
 <table>
 <tbody>
 <tr class="graph-layout">
-<td onMouseOver="javascript: showTheLevel(10);">
+<td onmouseover="javascript: showTheLevel(10);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar10">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(11);">
+</td><td onmouseover="javascript: showTheLevel(11);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar11">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(12);">
+</td><td onmouseover="javascript: showTheLevel(12);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar12">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(13);">
+</td><td onmouseover="javascript: showTheLevel(13);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar13">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(14);">
+</td><td onmouseover="javascript: showTheLevel(14);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar14">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(15);">
+</td><td onmouseover="javascript: showTheLevel(15);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar15">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(16);">
+</td><td onmouseover="javascript: showTheLevel(16);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar16">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(17);">
+</td><td onmouseover="javascript: showTheLevel(17);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar17">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(18);">
+</td><td onmouseover="javascript: showTheLevel(18);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar18">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(19);">
+</td><td onmouseover="javascript: showTheLevel(19);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar19">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(20);">
+</td><td onmouseover="javascript: showTheLevel(20);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar20">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(21);">
+</td><td onmouseover="javascript: showTheLevel(21);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar21">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(22);">
+</td><td onmouseover="javascript: showTheLevel(22);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar22">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(23);">
+</td><td onmouseover="javascript: showTheLevel(23);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar23">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(24);">
+</td><td onmouseover="javascript: showTheLevel(24);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar24">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(25);">
+</td><td onmouseover="javascript: showTheLevel(25);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar25">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(26);">
+</td><td onmouseover="javascript: showTheLevel(26);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar26">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(27);">
+</td><td onmouseover="javascript: showTheLevel(27);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar27">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(28);">
+</td><td onmouseover="javascript: showTheLevel(28);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar28">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(29);">
+</td><td onmouseover="javascript: showTheLevel(29);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar29">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(30);">
+</td><td onmouseover="javascript: showTheLevel(30);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar30">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(31);">
+</td><td onmouseover="javascript: showTheLevel(31);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar31">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(32);">
+</td><td onmouseover="javascript: showTheLevel(32);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar32">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(33);">
+</td><td onmouseover="javascript: showTheLevel(33);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar33">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(34);">
+</td><td onmouseover="javascript: showTheLevel(34);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar34">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(35);">
+</td><td onmouseover="javascript: showTheLevel(35);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar35">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(36);">
+</td><td onmouseover="javascript: showTheLevel(36);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar36">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(37);">
+</td><td onmouseover="javascript: showTheLevel(37);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar37">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(38);">
+</td><td onmouseover="javascript: showTheLevel(38);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar38">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(39);">
+</td><td onmouseover="javascript: showTheLevel(39);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar39">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(40);">
+</td><td onmouseover="javascript: showTheLevel(40);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar40">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(41);">
+</td><td onmouseover="javascript: showTheLevel(41);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar41">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(42);">
+</td><td onmouseover="javascript: showTheLevel(42);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar42">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(43);">
+</td><td onmouseover="javascript: showTheLevel(43);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar43">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(44);">
+</td><td onmouseover="javascript: showTheLevel(44);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar44">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(45);">
+</td><td onmouseover="javascript: showTheLevel(45);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar45">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(46);">
+</td><td onmouseover="javascript: showTheLevel(46);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar46">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(47);">
+</td><td onmouseover="javascript: showTheLevel(47);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar47">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(48);">
+</td><td onmouseover="javascript: showTheLevel(48);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar48">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(49);">
+</td><td onmouseover="javascript: showTheLevel(49);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar49">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(50);">
+</td><td onmouseover="javascript: showTheLevel(50);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar50">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(51);">
+</td><td onmouseover="javascript: showTheLevel(51);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar51">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(52);">
+</td><td onmouseover="javascript: showTheLevel(52);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar52">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(53);">
+</td><td onmouseover="javascript: showTheLevel(53);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar53">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(54);">
+</td><td onmouseover="javascript: showTheLevel(54);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar54">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(55);">
+</td><td onmouseover="javascript: showTheLevel(55);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar55">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(56);">
+</td><td onmouseover="javascript: showTheLevel(56);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar56">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(57);">
+</td><td onmouseover="javascript: showTheLevel(57);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar57">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(58);">
+</td><td onmouseover="javascript: showTheLevel(58);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar58">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(59);">
+</td><td onmouseover="javascript: showTheLevel(59);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar59">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(60);">
+</td><td onmouseover="javascript: showTheLevel(60);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar60">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(61);">
+</td><td onmouseover="javascript: showTheLevel(61);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar61">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(62);">
+</td><td onmouseover="javascript: showTheLevel(62);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar62">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(63);">
+</td><td onmouseover="javascript: showTheLevel(63);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar63">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(64);">
+</td><td onmouseover="javascript: showTheLevel(64);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar64">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(65);">
+</td><td onmouseover="javascript: showTheLevel(65);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar65">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(66);">
+</td><td onmouseover="javascript: showTheLevel(66);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar66">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(67);">
+</td><td onmouseover="javascript: showTheLevel(67);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar67">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(68);">
+</td><td onmouseover="javascript: showTheLevel(68);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar68">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(69);">
+</td><td onmouseover="javascript: showTheLevel(69);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar69">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(70);">
+</td><td onmouseover="javascript: showTheLevel(70);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar70">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(71);">
+</td><td onmouseover="javascript: showTheLevel(71);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar71">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(72);">
+</td><td onmouseover="javascript: showTheLevel(72);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar72">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(73);">
+</td><td onmouseover="javascript: showTheLevel(73);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar73">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(74);">
+</td><td onmouseover="javascript: showTheLevel(74);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar74">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(75);">
+</td><td onmouseover="javascript: showTheLevel(75);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar75">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(76);">
+</td><td onmouseover="javascript: showTheLevel(76);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar76">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(77);">
+</td><td onmouseover="javascript: showTheLevel(77);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar77">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(78);">
+</td><td onmouseover="javascript: showTheLevel(78);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar78">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(79);">
+</td><td onmouseover="javascript: showTheLevel(79);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar79">
 <!--ie-->
 </div>
 </div>
-</td><td onMouseOver="javascript: showTheLevel(80);">
+</td><td onmouseover="javascript: showTheLevel(80);">
 <div class="level-graph">
 <div class="levelbar" id="levelBar80">
 <!--ie-->
@@ -1057,17 +1061,17 @@
 <div class="stats-console">
 <div class="stat-padding">
 <p>
-<span class="tooltipGuild">{{#armory_guild_stat_total_chars_in_guild#}}</span><strong>&nbsp;{{$guildMembersCount}}</strong>
+<span class="tooltipGuild">{#armory_guild_stat_total_chars_in_guild#}</span><strong>&nbsp;{$guildMembersCount}</strong>
 </p>
 <p>
-<span class="tooltipGuild">{{#armory_guild_stat_chars_matching_criteria#}}</span>&nbsp;<strong id="numReturnedResults"></strong>
+<span class="tooltipGuild">{#armory_guild_stat_chars_matching_criteria#}</span>&nbsp;<strong id="numReturnedResults"></strong>
 </p>
 <p>
-<span class="tooltipGuild" id="countSpecificLevel">{{#armory_guild_stat_chars_level#}} <b id="replaceLevelNum"></b>{{if $ArmoryConfig.locale == 'en_gb'}}s {{/if}}:
+<span class="tooltipGuild" id="countSpecificLevel">{#armory_guild_stat_chars_level#} <b id="replaceLevelNum"></b>{if $ArmoryConfig.locale == 'en_gb'}s {/if}:
 		</span>&nbsp;<strong id="printNum80"></strong>
 </p>
 <p>
-<span class="tooltipGuild">% {{#armory_guild_stat_level#}} <b id="replaceLevelPercent"></b><b id="countSpecificLevel"></b>{{if $ArmoryConfig.locale == 'en_gb'}}s {{/if}}:
+<span class="tooltipGuild">% {#armory_guild_stat_level#} <b id="replaceLevelPercent"></b><b id="countSpecificLevel"></b>{if $ArmoryConfig.locale == 'en_gb'}s {/if}:
 		</span>&nbsp;<b id="printPercent80"></b>%</p>
 </div>
 </div>
@@ -1075,7 +1079,7 @@
 </div>
 </div>
 <script type="text/javascript">	
-
+{literal}
 	document.getElementById('replaceLevelNum').innerHTML=levelMax;
 	document.getElementById('replaceLevelPercent').innerHTML=levelMax;
 
@@ -1098,7 +1102,7 @@ changeStatsWrapper();
 
 document.getElementById('printNum80').innerHTML=levelArray[levelMax][0];
 document.getElementById('printPercent80').innerHTML=levelArray[levelMax][1];
-
+{/literal}
 </script>
 </div>
 </div>
@@ -1117,11 +1121,11 @@ document.getElementById('printPercent80').innerHTML=levelArray[levelMax][1];
 </div>
 </div>
 <div class="page-bot"></div>
-{{include file="faq_guild_stats.tpl"}}
-{{include file="overall_right_block.tpl"}}
+{include file="faq_guild_stats.tpl"}
+{include file="overall_right_block.tpl"}
 <script type="text/javascript">
     faqSwitch(currentFaq);
 </script>
 </div>
 </div>
-{{include file="overall_footer.tpl"}}
+{include file="overall_footer.tpl"}

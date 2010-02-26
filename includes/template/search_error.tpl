@@ -14,17 +14,17 @@
 <div class="info-pane">
 <div class="generic-content">
 <div class="nrcontent">
-<div class="noresult-header">{{#armory_error_not_found#}}</div>
+<div class="noresult-header">{#armory_error_not_found#}</div>
 <div class="noresults">
-<h5>{{#armory_error_not_found_2#}}</h5>
+<h5>{#armory_error_not_found_2#}</h5>
 <div class="default-list">
 <ul>
-{{#armory_error_not_found_list#}}
+{#armory_error_not_found_list#}
 </ul>
 </div>
 </div>
 <div class="noresult-footer">
-<a href="index.xml">{{#armory_error_go_back#}}</a>
+<a href="index.xml">{#armory_error_go_back#}</a>
 </div>
 </div>
 </div>
@@ -43,11 +43,11 @@
 </div>
 </div>
 <div class="page-bot"></div>
-{{include file="faq_character_sheet.tpl"}}
-{{include file="overall_right_block.tpl"}}
+{include file="faq_character_sheet.tpl"}
+{include file="overall_right_block.tpl"}
 <script type="text/javascript">
     faqSwitch(currentFaq);
 </script>
 </div>
 </div>
-{{include file="overall_footer.tpl"}}
+{include file="overall_footer.tpl"}
