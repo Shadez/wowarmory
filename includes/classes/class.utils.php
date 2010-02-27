@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 82
+ * @revision 83
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -692,6 +692,11 @@ Class Utils extends Connector {
         if(!isset($get_array['boss'])) {
             $get_array['boss'] = 'all';
         }
+        if(isset($get_array['searchQuery'])) {
+            $searchQuery = $get_array['searchQuery'];
+            $searchLen = strlen($searchQuery);
+            $itemIDs = $this->wDB->select("SELECT `entry` AS `0` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc8` LIKE ?)", '%'.$searchQuery.'%', '%'.$searchQuery.'%');
+        }
         switch($get_array['source']) {
             case 'dungeon':
                 if($get_array['dungeon'] == 'all') {
@@ -720,7 +725,12 @@ Class Utils extends Connector {
                     $ids_array = array();
                     $o = 0;
                     for($i=0;$i<$extended_count;$i++) {
-                        $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a)", $extended_array[$i]);
+                        if(isset($searchQuery)) {
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) AND `item` IN (?a)", $extended_array[$i], $itemIDs[0]);
+                        }
+                        else {
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a)", $extended_array[$i]);
+                        }
                         foreach($ids_array[$i] as $id) {
                             if($o > 199 && !$count) {
                                 return $item_data;
@@ -814,7 +824,12 @@ Class Utils extends Connector {
                 $ids_array = array();
                 $o = 0;
                 for($i=0;$i<$count_bosses;$i++) {
-                    $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a)", $bosses_array[$i]);
+                    if(isset($searchQuery)) {
+                        $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a)", $bosses_array[$i], $itemIDs[0]);
+                    }
+                    else {
+                        $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a)", $bosses_array[$i]);
+                    }                    
                     if(!$ids_array[$i]) {
                         return false;
                     }
