@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 86
+ * @revision 91
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -193,6 +193,10 @@ Class Items extends Connector {
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
         if($bossLoot) {
+            if(Mangos::GetNpcInfo($bossLoot, 'isBoss')) {
+                // We got boss loot, generate improved tooltip.
+                return $this->GetImprovedItemSource($item, $bossLoot);
+            }
             $returnString .= Utils::GetArmoryString(1);
         }
 		if($vendorLoot && $reputationReward > 0) {
@@ -215,7 +219,10 @@ Class Items extends Connector {
             $returnString .= Utils::GetArmoryString(3);
         }
         if($chestLoot) {
-            if($returnString) {
+            if(!$returnString && $chest_data = $this->GetImprovedItemSource($item, $chestLoot)) {
+                return $chest_data;
+            }
+            else {
                 $returnString .= ', ';
             }
             $returnString .= Utils::GetArmoryString(4);
@@ -784,6 +791,16 @@ Class Items extends Connector {
             return $name;
         }
         return false;
+    }
+    
+    public function GetImprovedItemSource($itemID, $bossID) {
+        $data = array();
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $data['percent'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
+        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$locale."` AS `name` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $data['boss'] = $dungeonData['name'];
+        $data['dungeon'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+        return $data;
     }
 }
 ?>

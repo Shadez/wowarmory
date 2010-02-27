@@ -47,9 +47,9 @@
 {if $green_bonuses}{$green_bonuses}<br />{/if}
 {if $itemsetInfo}<br />{$itemsetInfo}<br />{/if}
 {if $source}<span class="tooltipContentSpecial" style="float: left;">{#armory_item_tooltip_source#}:&nbsp;</span>{$source}<br />{/if}
-{if $fullLootInfo}
-<span class="tooltipContentSpecial" style="float: left;">{#armory_item_tooltip_source#}:&nbsp;{$fullLootInfo.instance}</span><br />
-<span class="tooltipContentSpecial" style="float: left;">{#tooltip_source_boss#}&nbsp;</span>{$fullLootInfo.source}<br />
+{if $fullLootInfo}<br />
+<span class="tooltipContentSpecial" style="float: left;">{#armory_item_tooltip_source#}:&nbsp;</span>{$fullLootInfo.dungeon}<br />
+<span class="tooltipContentSpecial" style="float: left;">{#tooltip_source_boss#}&nbsp;</span>{$fullLootInfo.boss}<br />
 <span class="tooltipContentSpecial" style="float: left;">{#tooltip_source_drop_percent#}&nbsp;</span>{$fullLootInfo.percent}
 {/if}
 </div>

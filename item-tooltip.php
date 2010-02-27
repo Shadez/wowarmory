@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 64
+ * @revision 91
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -71,17 +71,10 @@ $armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
 $armory->tpl->assign('item_name', $data['name']);
 $armory->tpl->assign('bonding', $armory->tpl->get_config_vars('bonding_' . $data['bonding']));
 
-// Spell Locale
-if($_locale == 'en_gb') {
-    $_spell_locale = '_1';
-}
-else {
-    $_spell_locale = false;
-}
 // Items stats & green bonuses
 $o = '';
 $j = '';
-for($i=1; $i!=11; $i++) {
+for($i=1; $i<11; $i++) {
     if($data['stat_type'.$i]>0 && $data['stat_value'.$i]>0) {
         switch($data['stat_type' . $i]) {
             case 3:
@@ -324,7 +317,14 @@ if($data['startquest'] > 0) {
     $armory->tpl->assign('startquest', true);
 }
 if($data['ItemLevel'] > 1) {
-    $armory->tpl->assign('source', $items->GetItemSource($itemID));
+    $item_source = $items->GetItemSource($itemID);
+    if(is_array($item_source)) {
+        // improved
+        $armory->tpl->assign('fullLootInfo', $item_source);
+    }
+    else {
+        $armory->tpl->assign('source', $item_source);
+    }    
 }
 $armory->tpl->assign('green_bonuses', $j);
 $armory->tpl->assign('itemLevel', $data['ItemLevel']);
