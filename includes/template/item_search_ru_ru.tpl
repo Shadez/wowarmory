@@ -19,7 +19,7 @@
 <div class="genericHeader">
 <p class="items-icon"></p>
 <div class="item-title"></div>
-<form action="/search.xml" id="formItem" method="get" name="formItem" onSubmit="javascript: return menuCheckLength(document.formItem);">
+<form action="search.xml" id="formItem" method="get" name="formItem" onSubmit="javascript: return menuCheckLength(document.formItem);">
 <div class="detail-search">
 <div class="detail-search-top">
 <div id="parentItemName"></div>

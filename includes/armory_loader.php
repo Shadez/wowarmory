@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 86
+ * @revision 87
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r86');
+define('DB_VERSION', 'armory_r87');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
@@ -155,6 +155,12 @@ if(defined('load_arenateams_class')) {
         die('<b>Error:</b> can not load arenateams class!');
     }
     $arenateams = new Arenateams;
+}
+if(defined('load_search_class')) {
+    if(!@include('classes/class.search.php')) {
+        die('<b>Error:</b> can not load search engine class!');
+    }
+    $search = new SearchMgr;
 }
 
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");

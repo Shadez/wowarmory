@@ -152,7 +152,8 @@
 							document.getElementsByName(filterName + filterValue)[0].selected=1;
 						}
 					}
-{/literal}                    
+{/literal}          
+        {if $search_filters.dungeon}          
                     var filterName="dungeon";
 					var filterValue="{$search_filters.dungeon}";
 	
@@ -175,7 +176,9 @@
 							document.getElementsByName(filterName + filterValue)[0].selected=1;
 						}
 					}
-				
+{/literal}
+        {/if}
+{literal}
 			
 					var filterName="rrt";
 					var filterValue="all";
@@ -199,10 +202,10 @@
 							document.getElementsByName(filterName + filterValue)[0].selected=1;
 						}
 					}
-{/literal}				
+{/literal}
+        {if $search_filters.boss}				
                     var filterName="boss";
 					var filterValue="{$search_filters.boss}";
-	
 {literal}	
 					if(!(filterName == "selSubTp") && !(filterName == "selSlot") && !(filterName == "selType")){
 					
@@ -222,7 +225,9 @@
 							document.getElementsByName(filterName + filterValue)[0].selected=1;
 						}
 					}
-			
+{/literal}
+        {/if}
+{literal}		
 					var filterName="andor";
 					var filterValue="and";
 	
@@ -344,9 +349,31 @@
 							document.getElementsByName(filterName + filterValue)[0].selected=1;
 						}
 					}
-				
+					{/literal}
+                    
+                    var filterName="faction";
+					var filterValue="{$search_filters.faction}";
 	
-	
+	               {literal}
+					if(!(filterName == "selSubTp") && !(filterName == "selSlot") && !(filterName == "selType")){
+					
+						var formElement=document.getElementsByName('fl['+ filterName +']')[0];
+						
+						if (formElement.nodeName == "INPUT" && filterValue != "all") {
+							if (filterValue == "and")
+								document.getElementsByName('fl[andor]')[0].checked=1;
+							else if (filterValue == "or")
+								document.getElementsByName('fl[andor]')[1].checked=1;
+							else
+								formElement.value=filterValue;
+						}else if (formElement.nodeName == "SELECT") {		
+							if (window.changefaction)
+								changefaction(filterValue);
+							
+							document.getElementsByName(filterName + filterValue)[0].selected=1;
+						}
+					}		
+
 		for (y=0; y < advOptArray.length; y++) {
 			theString = advOptArray[y];
 			theString = theString.split("_");
@@ -394,7 +421,8 @@
 <tbody>
 {foreach from=$itemResults item=item}
 <tr>
-<td><a class="rarity{$item.Quality} staticTip itemToolTip" href="item-info.xml?i={$item.entry}" id="{$item.entry}" style="background: url('wow-icons/_images/21x21/{$item.icon}.png') 0 0 no-repeat; padding: 2px 0 4px 25px;">{$item.name}</a></td><td class="leftNum">{$item.ItemLevel}</td><td><!-- Unknown source -->{#string_class_10#} <!-- // Unknown source--></td><td style="text-align:left;"><span style="display: none;">100%</span><q class="staticTip" onmouseover="setTipText('100%');"><del class="rel-container"><a><em style="width:100%"></em></a></del></q></td>
+<td><a class="rarity{$item.Quality} staticTip itemToolTip" href="item-info.xml?i={$item.entry}" id="{$item.entry}" style="background: url('wow-icons/_images/21x21/{$item.icon}.png') 0 0 no-repeat; padding: 2px 0 4px 25px;">{$item.name}</a></td><td class="leftNum">{$item.ItemLevel}</td><td>{if $item.source}
+<a href="search.xml?source=dungeon&amp;dungeon={$item.source_instance_key}&amp;boss={if $item.source_boss_key}{$item.source_boss_key}{else}all{/if}&amp;difficulty=all&amp;type=all&amp;searchType=items">{$item.source}</a>{else}<!-- Unknown source -->{#string_class_10#} <!-- // Unknown source-->{/if}</td><td style="text-align:left;"><span style="display: none;">100%</span><q class="staticTip" onmouseover="setTipText('100%');"><del class="rel-container"><a><em style="width:100%"></em></a></del></q></td>
 </tr>
 {/foreach}
 </tbody>

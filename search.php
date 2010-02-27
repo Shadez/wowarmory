@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 82
+ * @revision 87
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,6 +23,7 @@
  **/
 
 define('__ARMORY__', true);
+define('load_search_class', true);
 define('load_characters_class', true);
 define('load_mangos_class', true);
 define('load_items_class', true);
@@ -30,12 +31,12 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 $armory->tpl->assign('locale', $_locale); // hack
-$searchQuery = isset($_GET['searchQuery']) ? $_GET['searchQuery'] : false;
-$queryLen = strlen($searchQuery);
-if( (!$searchQuery && !isset($_GET['source'])) || ($queryLen < 2 && !isset($_GET['source']))) {
+$search->searchQuery = isset($_GET['searchQuery']) ? $_GET['searchQuery'] : false;
+$queryLen = strlen($search->searchQuery);
+if( (!$search->searchQuery && !isset($_GET['source'])) || ($queryLen < 2 && !isset($_GET['source']))) {
     $armory->ArmoryError(false, false, true);
 }
-$armory->tpl->assign('searchQuery', $searchQuery);
+$armory->tpl->assign('searchQuery', $search->searchQuery);
 $armory->tpl->assign('realmName', $armory->armoryconfig['defaultRealmName']);
 if(isset($_GET['selectedTab'])) {
     switch($_GET['selectedTab']) {
@@ -50,50 +51,48 @@ if(isset($_GET['selectedTab'])) {
             break;
     }
 }
-$itemsResNum = false;
-$charsResNum = false;
-$guildsResNum = false;
-$arenateamsResNum = false;
+$itemsResNum = 0;
+$charsResNum = 0;
+$guildsResNum = 0;
+$arenateamsResNum = 0;
 $currentTab = false;
 if(isset($_GET['source'])) {
-    $itemsResNum = $utils->AdvancedItemSearch($_GET, true);
+    $search->get_array = $_GET;
+    $itemsResNum = $search->AdvancedItemSearch($_GET, true);
     if($itemsResNum > 0) {
         $armory->tpl->assign('itemsResultNum', $itemsResNum);
-        $armory->tpl->assign('itemResults', $utils->AdvancedItemSearch($_GET));
+        $armory->tpl->assign('itemResults', $search->AdvancedItemSearch());
         $currentTab = 'items_tab';
         $armory->tpl->assign('search_filters', $_GET);
         $tpl2include = 'search_items';
     }
 }
-else {
-    if(!$searchQuery || $queryLen < 2) {
-        //$armory->ArmoryError(false, false, true);
-    }
-    $itemsResNum = $utils->SearchItems($searchQuery, true);
+elseif(!isset($_GET['source'])) {
+    $itemsResNum = $search->SearchItems(true);
     if($itemsResNum > 0) {
         $armory->tpl->assign('itemsResultNum', $itemsResNum);
-        $armory->tpl->assign('itemResults', $utils->SearchItems($searchQuery));
+        $armory->tpl->assign('itemResults', $search->SearchItems());
         $currentTab = 'items_tab';
         $tpl2include = 'search_items';
     }
-    $arenateamsResNum = $utils->SearchArenaTeams($searchQuery, true);
+    $arenateamsResNum = $search->SearchArenaTeams(true);
     if($arenateamsResNum > 0) {
         $armory->tpl->assign('arenateamsResultNum', $arenateamsResNum);
-        $armory->tpl->assign('arenateamsResult', $utils->SearchArenaTeams($searchQuery));
+        $armory->tpl->assign('arenateamsResult', $search->SearchArenaTeams());
         $currentTab = 'arenateams_tab';
         $tpl2include = 'search_arenateams';
     }
-    $guildsResNum = $utils->SearchGuilds($searchQuery, true);
+    $guildsResNum = $search->SearchGuilds(true);
     if($guildsResNum > 0) {
         $armory->tpl->assign('guildsResultNum', $guildsResNum);
-        $armory->tpl->assign('guildsResult', $utils->SearchGuilds($searchQuery));
+        $armory->tpl->assign('guildsResult', $search->SearchGuilds());
         $currentTab = 'guilds_tab';
         $tpl2include = 'search_guilds';
     }
-    $charsResNum = $utils->SearchCharacters($searchQuery, true);
+    $charsResNum = $search->SearchCharacters(true);
     if($charsResNum > 0) {
         $armory->tpl->assign('charactersResultNum', $charsResNum);
-        $armory->tpl->assign('charactersResult', $utils->SearchCharacters($searchQuery));
+        $armory->tpl->assign('charactersResult', $search->SearchCharacters());
         $currentTab = 'characters_tab';
         $tpl2include = 'search_characters';
     }
