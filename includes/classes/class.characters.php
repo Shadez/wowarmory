@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 68
+ * @revision 86
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -337,17 +337,11 @@ Class Characters extends Connector {
     public function assignAdditionalEnergyBar() {
         if(!$this->class) {
             return false;
-        }
-        
+        }        
         $mana = 'mana';
         $rage = 'rage';
         $energy = 'energy';
         $runic = 'runic';
-        
-        $mana_text = 'Мана|Mana';
-        $rage_text = 'Ярость|Rage';
-        $energy_text = 'Энергия|Energy';
-        $runic_text = 'Сила рун|Runic power';
         
         $switch = array (
             '1' => $rage,
@@ -361,22 +355,6 @@ Class Characters extends Connector {
             '9' => $mana,
             '11'=> $mana
         );
-        $switch_text = array (
-            '1' => $rage_text,
-            '2' => $mana_text,
-            '3' => $mana_text,
-            '4' => $energy_text,
-            '5' => $mana_text,
-            '6' => $runic_text,
-            '7' => $mana_text,
-            '8' => $mana_text,
-            '9' => $mana_text,
-            '11'=> $mana_text
-        );
-        $titles_locales = array ('en_gb' => 1, 'ru_ru' => 0);
-        $text = explode('|', $switch_text[$this->class]);
-        $data['title'] = (isset($_SESSION['armoryLocale'])) ? $text[$titles_locales[$_SESSION['armoryLocale']]] : $text[$titles_locales[$this->armoryconfig['defaultLocale']]];
-        
         $data['class'] = $switch[$this->class];
         switch($this->class) {
             case 2:
@@ -386,13 +364,19 @@ Class Characters extends Connector {
             case 8:
             case 9:
             case 11:
+                $data['title'] = Utils::GetArmoryString(7);
                 $data['value'] = $this->getManaValue();
                 break;
             case 1:
+                $data['title'] = Utils::GetArmoryString(8);
                 $data['value'] = $this->getRageValue();
                 break;
             case 4:
+                $data['title'] = Utils::GetArmoryString(9);
+                $data['value'] = $this->getEnergyValue();
+                break;
             case 6:
+                $data['title'] = Utils::GetArmoryString(10);
                 $data['value'] = $this->getEnergyValue();
                 break;
         }
@@ -991,8 +975,7 @@ Class Characters extends Connector {
         $StatArray['bonus_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSPOSITIVE), 0);
         $StatArray['negative_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSNEGATIVE), 0);
         $StatArray['stat_armor'] = $StatArray['effective_armor']-$StatArray['bonus_armor']-$StatArray['negative_armor'];
-        $levelModifier = 0;
-		  if($this->level > 59 ) {
+        if($this->level > 59 ) {
             $levelModifier = $this->level + (4.5 * ($this->level-59));
         }
         $StatArray['bonus_armor_reduction'] = 0.1*$StatArray['effective_armor']/(8.5*$levelModifier + 40);

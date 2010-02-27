@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 82
+ * @revision 86
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -193,38 +193,38 @@ Class Items extends Connector {
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
         if($bossLoot) {
-            $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=1");
+            $returnString .= Utils::GetArmoryString(1);
         }
 		if($vendorLoot && $reputationReward > 0) {
             if($returnString) {
 		      $returnString .= ', ';
             }
-			$returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=6");
+			$returnString .= Utils::GetArmoryString(6);
 		}
         elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
             if($returnString) {
 		      $returnString .= ', ';
             }
-			$returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=2");
+			$returnString .= Utils::GetArmoryString(2);
         }
         //
         if($questLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
-            $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=3");
+            $returnString .= Utils::GetArmoryString(3);
         }
         if($chestLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
-            $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=4");
+            $returnString .= Utils::GetArmoryString(4);
         }
         if($craftLoot) {
             if($returnString) {
                 $returnString .= ', ';
             }
-            $returnString .= $this->aDB->selectCell("SELECT `string_" . $locale . "` FROM `armory_string` WHERE `id`=5");
+            $returnString .= Utils::GetArmoryString(5);
         }
 		return $returnString;
     }

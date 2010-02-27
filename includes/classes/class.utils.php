@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 84
+ * @revision 86
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -958,6 +958,12 @@ Class Utils extends Connector {
                 break;
         }
         return $data;
+    }
+    
+    public function GetArmoryString($id) {
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        $str = $this->aDB->selectCell("SELECT `string_".$locale."` FROM `armory_string` WHERE `id`=?", $id);
+        return $str;
     }
 }
 ?>
