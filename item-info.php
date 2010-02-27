@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 64
+ * @revision 92
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,7 +30,6 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> can not load main system files!');
 }
 $itemID = (int) $_GET['i'];
-
 // Check
 if($itemID == 0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
     $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_item_not_exists_title'), $armory->tpl->get_config_vars('armory_error_item_not_exists_text'));
@@ -208,7 +207,7 @@ if(!empty($data['description'])) {
     $armory->tpl->assign('description', $items->getItemDescription($itemID));
 }
 // Heroic item (3.2.x)
-if($data['Flags'] == 4104) {
+if($data['Flags'] == 8) {
     $armory->tpl->assign('is_heroic', true);
 }
 if($data['startquest'] > 0) {
