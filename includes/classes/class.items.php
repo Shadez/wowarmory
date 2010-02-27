@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 91
+ * @revision 92
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -219,8 +219,10 @@ Class Items extends Connector {
             $returnString .= Utils::GetArmoryString(3);
         }
         if($chestLoot) {
-            if(!$returnString && $chest_data = $this->GetImprovedItemSource($item, $chestLoot)) {
-                return $chest_data;
+            if(!$returnString) {
+                if($chest_data = $this->GetImprovedItemSource($item, $chestLoot)) {
+                    return $chest_data;
+                }                
             }
             else {
                 $returnString .= ', ';
@@ -798,6 +800,9 @@ Class Items extends Connector {
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $data['percent'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$locale."` AS `name` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        if(!$dungeonData) {
+            return false;
+        }
         $data['boss'] = $dungeonData['name'];
         $data['dungeon'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
         return $data;
