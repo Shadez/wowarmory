@@ -16,7 +16,7 @@ INSTALLATION STEPS:
 	Google it, if you don't know what it is;
 4. Edit includes/classes/configuration.php (read comments).
 5. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
-6. Rename file htaccess to .htaccess for correct site work.
+6. Unzip htaccess.zip archive and place unpacked .htaccess file to root site dir for correct scripts work.
 7. If there are some sql updates in 'sql/updates' dir (rev. 82 or higher), you need to upload it to DB too.
 8. Run tools/build_loot_tables.php to generate bosses lootIds for search engine. Read tools/build_loot_tables_README.txt for more info.
 	If you using YTDB database, you can miss this step - there are already stored data in armory DB for this database.
@@ -40,7 +40,7 @@ INSTALLATION STEPS:
 	(my.ini (или my.cnf)). Используйте Google, если не знаете что это и как менять;
 4. Отредактируйте файл includes/classes/configuration.php.
 5. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"
-6. Переименуйте файл htaccess в .htaccess для правильной работы сайта.
+6. Распакуйте архив htaccess.zip и поместите распакованный файл .htaccess в корень сайта для правильной работы скриптов.
 7. Если в папке 'sql/updates' присутствуют обновления для базы (ревизии 82 и выше), вам будет необходимо так же залить их базу. 
 8. Запустите tools/build_loot_tables.php для генерации lootid боссов (необходимо для работы поискового движка). Подробнее - в файле tools/build_loot_tables_README.txt
    Если ваша база - YTDB, то этот скрипт можно не выполнять, в базе уже имеются данные для этой базы.
