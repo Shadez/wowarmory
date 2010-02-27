@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 78
+ * @revision 93
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -304,10 +304,24 @@ Class Mangos extends Connector {
                 break;
 				
 			case 'isBoss': 
-                $rank = $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                if($rank == 3) {
+                $npc_data = $this->wDB->selectRow("SELECT `rank`, `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                if($npc_data['KillCredit1'] > 0) {
+                    $kc_entry = $npc_data['KillCredit1'];
+                }
+                elseif($npc_data['KillCredit2'] > 0) {
+                    $kc_entry = $npc_data['KillCredit2'];
+                }
+                else {
+                    $kc_entry = false;
+                }
+                $map = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? OR `id`=? LIMIT 1", $npc, $kc_entry);
+                $isDungeon = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `map`=? LIMIT 1", $map);
+                if($npc_data['rank'] == 3 || $isDungeon > 0) {
                     return true;
 				}
+                else {
+                    return false;
+                }
 				break;
 		}
 		return $info;

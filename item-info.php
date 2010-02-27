@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 92
+ * @revision 93
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -48,9 +48,7 @@ $quality_colors = array (
 // TODO: remove * from query
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
 $data['name'] = $items->getItemName($itemID);
-if(isset($_GET['data'])) {
-    die('DisplayID: '.$data['displayid']);
-}
+
 // `Quality`, `bonding`, `subclass`, `InventoryType` 
 $armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
 $armory->tpl->assign('item_name', $data['name']);
@@ -214,7 +212,10 @@ if($data['startquest'] > 0) {
     $armory->tpl->assign('startquest', true);
 }
 if($data['ItemLevel'] > 1) {
-    $armory->tpl->assign('source', $items->GetItemSource($itemID));
+    $item_source = $items->GetItemSource($itemID);
+    if(is_array($item_source)) {
+        $armory->tpl->assign('fullLootInfo', $item_source);
+    }
 }
 if($data['RequiredDisenchantSkill'] > 0) {
     $armory->tpl->assign('disenchant_info', $data['RequiredDisenchantSkill']);

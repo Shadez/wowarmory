@@ -37,6 +37,13 @@
 <div class="as-top">
 <div class="as-bot">
 <em>{#armory_item_info_string#}</em>
+{if $fullLootInfo}
+<p>
+<span>{#armory_item_info_dropped_by#}:</span>
+<br />
+<strong><a href="search.xml?searchType=items&amp;source=dungeon&amp;dungeon={$fullLootInfo.dungeon_key}&amp;difficulty=all&amp;boss={$fullLootInfo.boss_id}">{$fullLootInfo.boss}</a></strong>
+</p>
+{/if}
 <p>
 <span>{#armory_item_info_ilevel#}:</span>
 <br />
@@ -102,12 +109,6 @@
 {if $green_bonuses}{$green_bonuses}<br />{/if}
 {if $itemsetInfo}<br />{$itemsetInfo}{/if}
 {if $description}<span class="myYellow">"{$description}"</span><br />{/if}
-{if $source}<span class="tooltipContentSpecial" style="float: left;">{#tooltip_source#}&nbsp;</span>{$source}<br />{/if}
-{if $fullLootInfo}
-<span class="tooltipContentSpecial" style="float: left;">{#armory_item_tooltip_source#}:&nbsp;{$fullLootInfo.instance}</span><br />
-<span class="tooltipContentSpecial" style="float: left;">{#tooltip_source_boss#}&nbsp;</span>{$fullLootInfo.source}<br />
-<span class="tooltipContentSpecial" style="float: left;">{#tooltip_source_drop_percent#}&nbsp;</span>{$fullLootInfo.percent}
-{/if}
 </div>
 </td>
 </tr>

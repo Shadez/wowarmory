@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 92
+ * @revision 93
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -805,6 +805,8 @@ Class Items extends Connector {
         }
         $data['boss'] = $dungeonData['name'];
         $data['dungeon'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+        $data['dungeon_key'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+        $data['boss_id'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         return $data;
     }
 }
