@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 87
+ * @revision 89
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -95,7 +95,7 @@ Class SearchMgr extends Connector {
                         }
                         foreach($ids_array[$i] as $id) {
                             if($o > 199 && !$count) {
-                                return $item_data;
+                                return $this->MakeUniqueArray($item_data);
                             }
                             elseif($o > 199 && $count == true) {
                                 return $o;
@@ -205,7 +205,7 @@ Class SearchMgr extends Connector {
                     }
                     foreach($ids_array[$i] as $id) {
                         if($o > 199 && !$count) {
-                            return $item_data;
+                            return $this->MakeUniqueArray($item_data);
                         }
                         elseif($o > 199 && $count == true) {
                             return $o;
@@ -409,6 +409,30 @@ Class SearchMgr extends Connector {
         }
         $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         return $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
+    }
+    
+    public function MakeUniqueArray($array, $preserveKeys=false) {
+        // Unique Array for return  
+        $arrayRewrite = array();  
+        // Array with the md5 hashes  
+        $arrayHashes = array();  
+        foreach($array as $key => $item) {
+            // Serialize the current element and create a md5 hash  
+            $hash = md5(serialize($item));  
+            // If the md5 didn't come up yet, add the element to  
+            // to arrayRewrite, otherwise drop it  
+            if (!isset($arrayHashes[$hash])) {
+                // Save the current element hash  
+                $arrayHashes[$hash] = $hash;  
+                // Add element to the unique Array  
+                if ($preserveKeys) {
+                    $arrayRewrite[$key] = $item;
+                } else {  
+                    $arrayRewrite[] = $item;
+                }
+            }
+        }
+        return $arrayRewrite;  
     }
 }
 
