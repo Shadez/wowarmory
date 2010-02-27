@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 83
+ * @revision 84
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -825,13 +825,21 @@ Class Utils extends Connector {
                 $o = 0;
                 for($i=0;$i<$count_bosses;$i++) {
                     if(isset($searchQuery)) {
-                        $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a)", $bosses_array[$i], $itemIDs[0]);
+                        if(is_numeric($get_array['boss']) && $get_array['boss'] > 100000) {
+                            // We got Gobject
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `gameobject_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a)", $bosses_array[$i], $itemIDs[0]);
+                        }
+                        else {
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a)", $bosses_array[$i], $itemIDs[0]);
+                        }
                     }
                     else {
-                        $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a)", $bosses_array[$i]);
-                    }                    
-                    if(!$ids_array[$i]) {
-                        return false;
+                        if(is_numeric($get_array['boss']) && $get_array['boss'] > 100000) {
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `gameobject_loot_template` WHERE `entry` IN (?a)", $bosses_array[$i]);
+                        }
+                        else {
+                            $ids_array[$i] = $this->wDB->select("SELECT `item` AS `0` FROM `creature_loot_template` WHERE `entry` IN (?a)", $bosses_array[$i]);
+                        }                        
                     }
                     foreach($ids_array[$i] as $id) {
                         if($o > 199 && !$count) {
@@ -861,7 +869,23 @@ Class Utils extends Connector {
                 break;
                 
             case 'reputation':
-                
+                if(!isset($get_array['faction']) || $get_array['faction'] == 0 || $get_array['faction'] == '-1') {
+                    $item_data = $this->wDB->select("SELECT `entry`, `ItemLevel`, `Quality` FROM `item_template` WHERE `RequiredReputationFaction` > 0 LIMIT 200 ORDER BY `ItemLevel` DESC");
+                }
+                else {
+                    $item_data = $this->wDB->select("SELECT `entry`, `ItemLevel`, `Quality` FROM `item_template` WHERE `RequiredReputationFaction`=? LIMIT 200 ORDER BY `ItemLevel` DESC", $get_array['faction']);
+                }
+                $count = count($item_data);
+                if($count == true) {
+                    return $count;
+                }
+                else {
+                    for($i=0;$i<$count;$i++) {
+                        $item_data[$i]['name'] = Items::getItemName($item_data[$i]['entry']);
+                        $item_data[$i]['icon'] = Items::getItemIcon($item_data[$i]['entry']);
+                    }
+                    return $item_data;
+                }
                 break;
             
             case 'quest':
@@ -878,6 +902,62 @@ Class Utils extends Connector {
             return true;
         }
         return false;
+    }
+    
+    public function GetDungeonList($expansion) {
+        $data = array();
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        switch($expansion) {
+            case 0: // WoW Classic
+                $data = $this->aDB->select("
+                SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                    FROM `armory_instance_template`
+                        WHERE `expansion`=0");                
+                break;
+            case 1: // WoW TBC
+                $data = $this->aDB->select("
+                SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                    FROM `armory_instance_template`
+                        WHERE `expansion`=1");   
+                break;
+            case 2: // WoW WotLK
+                $data = $this->aDB->select("
+                    SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                        FROM `armory_instance_template`
+                            WHERE `expansion`=2");   
+                break;
+        }
+        $count = count($data);
+        for($i=0;$i<$count;$i++) {
+            $data[$i]['bosses'] = $this->aDB->select("SELECT `id`, `name_".$locale."` AS `bossname` FROM `armory_instance_data` WHERE `instance_id`=?", $data[$i]['id']);
+        }
+        return $data;
+    }
+    
+    public function GetFactionList($expansion) {
+        $data = array();
+        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        switch($expansion) {
+            case 0: // WoW Classic
+                $data = $this->aDB->select("
+                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                    FROM `armory_faction`
+                        WHERE `expansion`=0 AND `hasRewards`=1");
+                break;
+            case 1: // WoW TBC
+                $data = $this->aDB->select("
+                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                    FROM `armory_faction`
+                        WHERE `expansion`=1 AND `hasRewards`=1");
+                break;
+            case 2: // WoW WotLK
+                $data = $this->aDB->select("
+                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                    FROM `armory_faction`
+                        WHERE `expansion`=2 AND `hasRewards`=1");
+                break;
+        }
+        return $data;
     }
 }
 ?>
