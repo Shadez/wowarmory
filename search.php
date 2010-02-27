@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 89
+ * @revision 90
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -62,7 +62,6 @@ if(isset($_GET['source'])) {
     $itemsResNum = count($itemResults);
     if($itemsResNum > 0) {
         $armory->tpl->assign('itemsResultNum', $itemsResNum);
-        $itemResults = $search->AdvancedItemSearch();
         $armory->tpl->assign('itemResults', $itemResults);
         $currentTab = 'items_tab';
         $armory->tpl->assign('search_filters', $_GET);
