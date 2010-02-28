@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 93
+ * @revision 94
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -215,6 +215,26 @@ if($data['ItemLevel'] > 1) {
     $item_source = $items->GetItemSource($itemID);
     if(is_array($item_source)) {
         $armory->tpl->assign('fullLootInfo', $item_source);
+    }
+}
+if($data['Faction'] == 1) {
+    $armory->tpl->assign('itemFaction', 'horde');
+    $side_equivalent = array();
+    if($side_equivalent['entry'] = $armory->aDB->selectCell("SELECT `item_alliance` FROM `armory_item_equivalents` WHERE `item_horde`=?", $itemID)) {
+        $side_equivalent['Quality'] = $items->GetItemInfo($side_equivalent['entry'], 'quality');
+        $side_equivalent['icon'] = $items->getItemIcon($side_equivalent['entry']);
+        $side_equivalent['name'] = $items->getItemName($side_equivalent['entry']);
+        $armory->tpl->assign('side_equivalent', $side_equivalent);
+    }
+}
+elseif($data['Faction'] == 2) {
+    $armory->tpl->assign('itemFaction', 'alliance');
+    $side_equivalent = array();
+    if($side_equivalent['entry'] = $armory->aDB->selectCell("SELECT `item_horde` FROM `armory_item_equivalents` WHERE `item_alliance`=?", $itemID)) {
+        $side_equivalent['Quality'] = $items->GetItemInfo($side_equivalent['entry'], 'quality');
+        $side_equivalent['icon'] = $items->getItemIcon($side_equivalent['entry']);
+        $side_equivalent['name'] = $items->getItemName($side_equivalent['entry']);
+        $armory->tpl->assign('side_equivalent', $side_equivalent);
     }
 }
 if($data['RequiredDisenchantSkill'] > 0) {

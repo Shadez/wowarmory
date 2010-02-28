@@ -30,6 +30,11 @@
 <div class="item-background">
 <div class="item-bottom">
 <div class="item-top">
+{if $itemFaction}
+<div class="transition-logo-{$itemFaction}">
+<!---->
+</div>
+{/if}
 <img height="250" src="images/pixel.gif" style="float: left;" width="1" /><div class="icon-container">
 <p></p>
 <img class="p" src="wow-icons/_images/64x64/{$item_icon}.jpg" /></div>
@@ -39,7 +44,7 @@
 <em>{#armory_item_info_string#}</em>
 {if $fullLootInfo}
 <p>
-<span>{#armory_item_info_dropped_by#}:</span>
+<span>{#armory_item_info_drops_from#}:</span>
 <br />
 <strong><a href="search.xml?searchType=items&amp;source=dungeon&amp;dungeon={$fullLootInfo.dungeon_key}&amp;difficulty=all&amp;boss={$fullLootInfo.boss_id}">{$fullLootInfo.boss}</a></strong>
 </p>
@@ -76,6 +81,22 @@
 <b style="width:100%"></b><img class="staticTip" onmouseover="javascript: setTipText('{#armory_item_info_disenchanting_1#} <strong>{$disenchant_info}</strong> {#armory_item_info_disenchanting_2#}');" src="images/icons/icon-disenchant-sm.gif" /><strong class="staticTip" onMouseOver="javascript: setTipText('{#armory_item_info_disenchanting_1#} <strong>{$disenchant_info}</strong> {#armory_item_info_disenchanting_2#}');">{$disenchant_info}</strong>
 </div>
 </p>
+{/if}
+{if $side_equivalent && $itemFaction}
+<p style="margin-top:5px">
+<span>{if $itemFaction == 'horde'}{#armory_item_info_alliance_equivalent#}{elseif $itemFaction == 'alliance'}{#armory_item_info_horde_equivalent#}{/if}:</span>
+</p>
+<div style="position:relative">
+<table border="0" cellpadding="0" cellspacing="0" style="position:relative">
+<tr>
+<td style="vertical-align:middle;line-height:1em">
+<div class="transition-logo-{if $itemFaction == 'horde'}alliance{elseif $itemFaction == 'alliance'}horde{/if}-small">
+<!---->
+</div>
+<img class="p21s staticTip itemToolTip" id="i={$side_equivalent.entry}" src="wow-icons/_images/21x21/{$side_equivalent.icon}.png" /></td><td style="vertical-align:middle; padding-left:7px"><a class="rarity{$side_equivalent.Quality} staticTip itemToolTip" href="item-info.xml?i={$side_equivalent.entry}" id="i={$side_equivalent.entry}">{$side_equivalent.name}</a></td>
+</tr>
+</table>
+</div>
 {/if}
 </div>
 </div>
