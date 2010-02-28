@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 95
+ * @revision 97
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -488,7 +488,7 @@ Class Items extends Connector {
                 if(!empty($CraftLoot)) {
                     $i=0;
                     foreach($CraftLoot as $craftItem) {
-                        $lootTable[$i]['name'] = $craftItem['SpellName_'.$locale];
+                        $lootTable[$i]['name'] = $craftItem['SpellName_'.$this->_locale];
                         for($o=1;$o<9;$o++) {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $lootTable[$i]['entry_reagent_'.$o] = $craftItem['Reagent_'.$o];
