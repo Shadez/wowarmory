@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 89
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,7 +33,6 @@ Class SearchMgr extends Connector {
             echo 'get_array fail';
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $bosses_array = array();
         $bosses_keys = array();
         $extended_array = array(); // Extended costs for badges
@@ -391,8 +390,7 @@ Class SearchMgr extends Connector {
         if(!$this->bossSearchKey) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        return $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?) LIMIT 1", $this->bossSearchKey);
+        return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?) LIMIT 1", $this->bossSearchKey);
     }
     
     public function GetBossKeyById() {
@@ -407,8 +405,7 @@ Class SearchMgr extends Connector {
         if(!$this->instanceSearchKey) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        return $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
+        return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
     }
     
     public function MakeUniqueArray($array, $preserveKeys=false) {

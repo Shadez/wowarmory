@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 60
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,32 +70,17 @@ Class Connector {
         $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
         $this->rDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_realmd'].':'.$this->mysqlconfig['pass_realmd'].'@'.$this->mysqlconfig['host_realmd'].'/'.$this->mysqlconfig['name_realmd']);
         $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-                
-        /*
-        temporary disabled
-        // Test connection
-        if(!$this->aDB->selectCell("SELECT `id` FROM `classes` LIMIT 1")) {
-            $this->databaseError('Can not execute query to armory database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_armory']);
-        }
-        if(!$this->cDB->selectCell("SELECT `guid` FROM `characters` LIMIT 1")) {
-            $this->databaseError('Can not execute query to characters database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_characters']);
-        }
-        if(!$this->rDB->selectCell("SELECT `name` FROM `realmlist` LIMIT 1")) {
-            $this->databaseError('Can not execute query to realmd database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_realmd']);
-        }
-        if(!$this->wDB->selectCell("SELECT `entry` FROM `item_template` LIMIT 1")) {
-            $this->databaseError('Can not execute query to mangos database ("<i>%s</i>")!<br />Check you configuration.php for correct values.', $this->mysqlconfig['name_mangos']);
-        }
-        */
+
         $this->aDB->query("SET NAMES ?", $this->mysqlconfig['charset_armory']);
         $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
         $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
         
         $this->tpl = new Smarty;
+        $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
         return true;
     }
-    
+        
     /**
      * Shows error. If $Error == true, function will show black list with 'Error encountered' text.
      * @category Main system functions
@@ -117,25 +102,5 @@ Class Connector {
         $this->tpl->display('overall_footer.tpl');
         exit();
     }
-    
-    /**
-     * Shows database error
-     * @category Main system functions
-     * @example Connector::databaseError()
-     * @return none
-     **/
-
-    /*
-    public function databaseError() {
-        $args = func_get_args();
-        $tmpl =& $args[0];
-        for ($i=$c=count($args)-1; $i<$c+20; $i++) {
-            $args[$i+1] = ''; // if placeholder not defined
-        }
-        $errorInfo = '<title>Wowarmory :: Database Error</title>';
-        $errorInfo .= '<h2 align="center">Database Error:</h2>';
-        $errorInfo .= '<h3 align="center">'.call_user_func_array('sprintf', $args).'</h3>';
-        die($errorInfo);
-    }*/
 }
 ?>

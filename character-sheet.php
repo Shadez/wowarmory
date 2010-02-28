@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 75
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -108,7 +108,7 @@ else {*/
         }
         $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i));
     }
-    if($tp == ' /  / ') {
+    if($tp == ' /  / ' || $tp == '0 / 0 / 0') {
         // No talents
         $armory->tpl->assign('talents_builds', '');
         $armory->tpl->assign('treeName', $armory->tpl->get_config_vars('armory_character_sheet_na_dualspec'));

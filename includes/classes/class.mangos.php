@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 93
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -67,10 +67,9 @@ Class Mangos extends Connector {
      * @return int/string
      **/
     public function QuestInfo($quest, $infoType) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
             case 'title':
-                switch($locale) {
+                switch($this->_locale) {
                     case 'en_gb':
                         $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
                         break;
@@ -88,7 +87,7 @@ Class Mangos extends Connector {
 			case 'map':
 				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_involvedrelation` WHERE `quest`=?", $quest);
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=?", $quester);
-				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
                 break;
 			}
         return $info;
@@ -101,9 +100,8 @@ Class Mangos extends Connector {
      * @return string
      **/
     public function DropPercent($percent) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $string = '';
-        switch($locale) {
+        switch($this->_locale) {
             case 'en_gb':
                 if($percent > 51) {
                     $string = 'High (100%)';	
@@ -155,10 +153,9 @@ Class Mangos extends Connector {
      * @return string
      **/
     public function GameobjectInfo($entry, $infoType) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($infoType) {
             case 'name':
-                switch($locale) {
+                switch($this->_locale) {
                     case 'ru_ru':
                         $info = $this->wDB->selectCell("
                         SELECT `name_loc8`
@@ -181,7 +178,7 @@ Class Mangos extends Connector {
             
             case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=?", $entry);
-				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
 		}
 		return $info;
@@ -194,8 +191,7 @@ Class Mangos extends Connector {
      * @return string
      **/
     public function GetNPCName($npc) {
-        $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        switch($_locale) {
+        switch($this->_locale) {
             case 'en_gb':
                 $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                 break;
@@ -234,15 +230,14 @@ Class Mangos extends Connector {
      **/
     public function GetNpcInfo($npc, $infoType) {
         $info = '';
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-		switch($infoType) {
+        switch($infoType) {
             case 'level':
 				$info = $this->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=?", $npc);
 				break;
 				
 			case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-				$info = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
             
             case 'mapID':

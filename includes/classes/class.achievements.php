@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -172,7 +172,6 @@ Class Achievements extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
         $aCount = count($achievements);
         for($i=0;$i<$aCount;$i++) {
@@ -305,8 +304,7 @@ Class Achievements extends Connector {
                     if($i%2) {
                         $tmp_str .= " style='float:left;'";
                     }
-                    $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-                    $tmp_str .= '>'.$criteria['name_'.$_locale].'</li>';
+                    $tmp_str .= '>'.$criteria['name_'.$this->_locale].'</li>';
                     $i++;
                 }
                 $string_return = str_replace("{CRITERIA_LIST}", $tmp_str, $progress_list_string);
@@ -365,18 +363,17 @@ Class Achievements extends Connector {
      * @return string
      **/
     public function buildAchievementsTree() {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `armory_achievement_category` WHERE `parentCategory`=-1");
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` FROM `armory_achievement_category` WHERE `parentCategory`=-1");
         $achievementTree = '';
         foreach($categoryIds as $cat) {
             $i = 0;
             $achievementTree .= '<div>
-            <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$cat['id'].'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$cat['id'].')">'.$cat['name_'.$locale].'</a>';
-            $child = $this->aDB->select("SELECT `id`, `name_".$locale."` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
+            <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$cat['id'].'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$cat['id'].')">'.$cat['name_'.$this->_locale].'</a>';
+            $child = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
             if($child) {
                 $achievementTree .= '<div class="cat_list">';
                 foreach($child as $childcat) {
-                    $achievementTree .= '<div class="nav-subcat"><a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$i.'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$childcat['id'].')">'.$childcat['name_'.$locale].'</a></div>';
+                    $achievementTree .= '<div class="nav-subcat"><a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$i.'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$childcat['id'].')">'.$childcat['name_'.$this->_locale].'</a></div>';
                     $i++;
                 }
                 $achievementTree .= '</div>';
@@ -397,8 +394,7 @@ Class Achievements extends Connector {
         if(!is_array($achievementData)) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`, `points` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`, `points` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
         if(!$achievementinfo) {
             return false;
         }
@@ -437,59 +433,5 @@ Class Achievements extends Connector {
         }
         return false;
     }
-    /*
-    public function MergeCompletedAchievements($check = false) {
-        if(!$this->guid || !$this->achId) {
-            return false;
-        }
-        if($check == true) {
-            $tmp_data = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $achId);
-            if($tmp_data) {
-                if($this->IsAchievementCompleted($tmp_data)) {
-                    return true;
-                }
-                return false;
-            }
-        }
-        $loop = true;
-        $achievementsArray = array();
-        $i = 0;
-        $achId = $this->achId;
-        $macro = false;
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        while($loop == true) {
-            $tmp_data = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $achId);
-            if($tmp_data) {
-                if($this->IsAchievementCompleted($tmp_data)) {
-                    $achievementsArray[$i] = $this->cDB->selectRow("SELECT `id`, `name_".$locale."` AS `name`, `points` FROM `armory_achievement` WHERE `id`=?", $tmp_data);
-                    $achId = $tmp_data;
-                    $macro = true;
-                }
-            }
-            else {
-                $loop = false;
-            }
-            $i++;
-        }
-        if($macro == true) {
-            $returnString = "<ul class='criteria c_list'>";
-            $i = 0;
-            foreach($achievementsArray as $achievement) {
-                $returnString .= "<li class='c_list_col criteriamet' id='ach".$achievement['id']."'";
-                if($i%2) {
-                    $returnString .= ">";
-                }
-                else {
-                    $returnString .= " style='float:left'>";
-                }
-                $returnString .= $achievement['name'].' ('.$achievement['points'].')'.'</li>';
-                $i++;
-            }
-            $returnString .= '</ul>';
-            return $achievementsArray;
-        }
-        return false;
-    }
-    */
 }
 ?>

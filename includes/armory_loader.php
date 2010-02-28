@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 94
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 
-define('DB_VERSION', 'armory_r94');
+define('DB_VERSION', 'armory_r95');
 $armory = new Connector;
 $armory->tpl->template_dir    = 'includes/template/';
 $armory->tpl->compile_dir     = 'includes/cache/';
@@ -109,7 +109,6 @@ if(isset($_GET['locale'])) {
     header('Location: '.$returnUrl);
 }
 $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
-$armory->_locale = $_locale;
 $armory->tpl->assign('menu_file', 'overall_menu_'.$_locale);
 $armory->tpl->config_load($_locale . '.conf');
 

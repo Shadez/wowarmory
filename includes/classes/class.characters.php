@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 86
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -185,16 +185,15 @@ Class Characters extends Connector {
             $this->guid = $guid;
         }
         $this->GetCharacterGender();
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $title = $this->aDB->selectRow("SELECT * FROM `armory_titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
         $data = array();
         if($title) {
             switch($this->gender) {
                 case 1:
-                    $data['title'] = $title['title_F_'.$locale];
+                    $data['title'] = $title['title_F_'.$this->_locale];
                     break;
                 case 0:
-                    $data['title'] = $title['title_M_'.$locale];
+                    $data['title'] = $title['title_M_'.$this->_locale];
                     break;
             }
             $data['place'] = $title['place'];
@@ -300,7 +299,7 @@ Class Characters extends Connector {
             $class = $this->class;
         }        
         $text = $this->aDB->selectCell("
-        SELECT `name_" . (isset($_SESSION['armoryLocale']) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale']) . "` 
+        SELECT `name_" . $this->_locale . "` 
             FROM `armory_classes` 
                 WHERE `id`=?", $class);
         return $text;
@@ -320,7 +319,7 @@ Class Characters extends Connector {
             $race = $this->race;
         }
         $text = $this->aDB->selectCell("
-        SELECT `name_" . (isset($_SESSION['armoryLocale']) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale']) . "` 
+        SELECT `name_" . $this->_locale . "` 
             FROM `armory_races` 
                 WHERE `id`=?", $race);
         return $text;
@@ -592,8 +591,7 @@ Class Characters extends Connector {
 	
     //get a tab from TalentTab
     public function getTabOrBuild($class, $type, $tabnum) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-		if($type == "tab") {
+        if($type == "tab") {
 			$field = $this->aDB->selectCell("
 			SELECT `id`
 				FROM `armory_talenttab`
@@ -601,7 +599,7 @@ Class Characters extends Connector {
 		}
 		else {
 			$field = $this->aDB->selectCell("
-			SELECT `name_" . $locale . "`
+			SELECT `name_" . $this->_locale . "`
 				FROM `armory_talenttab`
 					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($class-1)), $tabnum);
 		}
@@ -682,7 +680,6 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $glyphData = array();
         $glyphData['big'] = array();
         $glyphData['small'] = array();
@@ -690,7 +687,7 @@ Class Characters extends Connector {
         for($i=0;$i<6;$i++) {
             $glyph_id = $this->GetDataField($glyphFields[$i]);
             $glyph_info = $this->aDB->selectRow("
-            SELECT `type`, `name_".$locale."` AS `name`, `description_".$locale."` AS `description`
+            SELECT `type`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`
                 FROM `armory_glyphproperties` WHERE `id`=?", $glyph_id);
             if(!$glyph_info) {
                 continue;
@@ -709,50 +706,10 @@ Class Characters extends Connector {
      * Returns talent tree name for selected class
      * @category Character class
      * @example Characters::ReturnTalentTreeNames(6, 2)
-     * @todo Move this function to Utils class & store trees names in DB
      * @return string
      **/
-    public function ReturnTalentTreesNames($class, $key) {
-		switch($class) {
-			case 1:
-				$trees = array('Оружие|Arms', 'Неистовство|Fury', 'Защита|Protection');
-                break;
-            case 2:
-				$trees = array('Свет|Holy', 'Защита|Protection', 'Воздаяние|Retribution');
-                break;
-            case 3:
-				$trees = array('Чувство зверя|Beast mastery', 'Стрельба|Marksmanship', 'Выживание|Survival');
-                break;
-            case 4:
-				$trees = array('Ликвидация|Assassination', 'Бой|Combat', 'Скрытность|Subletly');
-                break;
-            case 5:
-				$trees = array('Послушание|Discipline', 'Свет|Holy', 'Тьма|Shadow');
-                break;
-            case 6:
-				$trees = array('Кровь|Blood', 'Лед|Frost', 'Нечестивость|Unholy');
-                break;			
-			case 7:
-				$trees = array('Стихии|Elemental', 'Совершенствование|Enhancement', 'Исцеление|Restoration');
-                break;			
-			case 8:
-				$trees = array('Тайная магия|Arcane', 'Огонь|Fire', 'Лед|Frost');
-                break;			
-			case 9:
-				$trees = array('Колдовство|Affliction', 'Демонология|Demonology', 'Разрушение|Destruction');
-                break;
-			case 11:
-				$trees = array('Баланс|Balance', 'Сила зверя|Feral Combat', 'Исцеление|Restoration');
-                break;			
-			default:
-				$trees = array('Неизвестно|Unknown');
-                break;
-		}
-        $name_locales = array ('en_gb' => 1, 'ru_ru' => 0);
-        $name = $trees[$key];
-        $name_exp = explode('|', $name);
-        $tree = (isset($_SESSION['armoryLocale'])) ? $name_exp[$name_locales[$_SESSION['armoryLocale']]] : $name_exp[$name_locales[$this->armoryconfig['defaultLocale']]];
-        return $tree;
+    public function ReturnTalentTreesNames($class, $spec) {
+		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=?", $class, $spec);
 	}
     
     /**
@@ -787,7 +744,6 @@ Class Characters extends Connector {
      * @return array
      **/
     public function extractCharacterProfessions() {
-        // Извлекаем только 2 основные профессии. Первая помощь, кулинария и пр. сюда не входят
         $professions = $this->cDB->select("
         SELECT * FROM `character_skills`
             WHERE `skill` IN (164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773)
@@ -795,12 +751,11 @@ Class Characters extends Connector {
         if(!$professions) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
             $p[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_" . $locale . "` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
+                'name' => $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
                 'icon' => $this->aDB->selectCell("SELECT `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
                 'value' => $prof['value']
             );
@@ -821,7 +776,6 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $repData = $this->cDB->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=?", $this->guid); 
         if(!$repData) {
             return false;
@@ -832,8 +786,8 @@ Class Characters extends Connector {
                 continue;
             }
             $factionReputation[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
-                'descr' => $this->aDB->selectCell("SELECT `description_".$locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
+                'name' => $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
+                'descr' => $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
                 'standings' => Utils::getReputation($faction['standing']),
                 'standing' => $faction['standing']
             );

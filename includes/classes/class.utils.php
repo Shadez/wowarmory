@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 87
+ * @revision 95
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -254,7 +254,6 @@ Class Utils extends Connector {
     }
     
     public function getReputation($rep) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $gBaseRep = -42000;
         $gRepStep = array(36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000);
         $current  = $gBaseRep;
@@ -263,7 +262,7 @@ Class Utils extends Connector {
                 $value = $rep - $current;
                 $repData = array (
                     'rank'=>$i, 
-                    'rank_name' => $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_reputation_ranks` WHERE `id`=?", $i+1),
+                    'rank_name' => $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_reputation_ranks` WHERE `id`=?", $i+1),
                     'rep'=>$value,
                     'max'=>$gRepStep[$i],
                     'percent'=>Utils::getPercent($gRepStep[$i], $value),
@@ -271,7 +270,7 @@ Class Utils extends Connector {
                 return $repData;
             }
         }
-        return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
+        return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
     }
     
     /**
@@ -282,7 +281,6 @@ Class Utils extends Connector {
      * @return array
      **/
     public function realmFirsts() {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         $achievements_data = $this->cDB->select("
         SELECT
         `character_achievement`.`achievement`,
@@ -311,8 +309,8 @@ Class Utils extends Connector {
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
             $achievements_data[$i]['timestamp'] = date('Y-m-d\TH:i:s:+00:00', $achievements_data[$i]['date']);
         }
@@ -433,11 +431,10 @@ Class Utils extends Connector {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         return $this->aDB->selectCell("
         SELECT `tooltip_html`
             FROM `armory_cache`
-                WHERE `id`=? AND `guid`=? AND `locale`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $locale, $this->armoryconfig['cache_lifetime']);
+                WHERE `id`=? AND `guid`=? AND `locale`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $this->_locale, $this->armoryconfig['cache_lifetime']);
     }
     
     public function writeCache($itemID, $guid, $tooltip, $locale) {
@@ -569,53 +566,51 @@ Class Utils extends Connector {
 
     public function GetDungeonList($expansion) {
         $data = array();
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($expansion) {
             case 0: // WoW Classic
                 $data = $this->aDB->select("
-                SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
                     FROM `armory_instance_template`
                         WHERE `expansion`=0");                
                 break;
             case 1: // WoW TBC
                 $data = $this->aDB->select("
-                SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
                     FROM `armory_instance_template`
                         WHERE `expansion`=1");   
                 break;
             case 2: // WoW WotLK
                 $data = $this->aDB->select("
-                    SELECT `id`, `name_".$locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
+                    SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
                         FROM `armory_instance_template`
                             WHERE `expansion`=2");   
                 break;
         }
         $count = count($data);
         for($i=0;$i<$count;$i++) {
-            $data[$i]['bosses'] = $this->aDB->select("SELECT `id`, `name_".$locale."` AS `bossname` FROM `armory_instance_data` WHERE `instance_id`=?", $data[$i]['id']);
+            $data[$i]['bosses'] = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `bossname` FROM `armory_instance_data` WHERE `instance_id`=?", $data[$i]['id']);
         }
         return $data;
     }
     
     public function GetFactionList($expansion) {
         $data = array();
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($expansion) {
             case 0: // WoW Classic
                 $data = $this->aDB->select("
-                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
                     FROM `armory_faction`
                         WHERE `expansion`=0 AND `hasRewards`=1");
                 break;
             case 1: // WoW TBC
                 $data = $this->aDB->select("
-                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
                     FROM `armory_faction`
                         WHERE `expansion`=1 AND `hasRewards`=1");
                 break;
             case 2: // WoW WotLK
                 $data = $this->aDB->select("
-                SELECT `id`, `name_".$locale."` AS `name`, `friendlyTo` AS `side`
+                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
                     FROM `armory_faction`
                         WHERE `expansion`=2 AND `hasRewards`=1");
                 break;
@@ -624,8 +619,7 @@ Class Utils extends Connector {
     }
     
     public function GetArmoryString($id) {
-        $locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
-        $str = $this->aDB->selectCell("SELECT `string_".$locale."` FROM `armory_string` WHERE `id`=?", $id);
+        $str = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
         return $str;
     }
 }
