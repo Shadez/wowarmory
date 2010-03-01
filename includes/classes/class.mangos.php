@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 95
+ * @revision 99
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -233,19 +233,52 @@ Class Mangos extends Connector {
         switch($infoType) {
             case 'level':
 				$info = $this->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=?", $npc);
-				break;
-				
+				break;				
 			case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
+                if(!$mapID) {
+                    $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                    if($killCredit['KillCredit1'] > 0) {
+                        $kc_entry = $killCredit['KillCredit1'];
+                    }
+                    elseif($killCredit['KillCredit2'] > 0) {
+                        $kc_entry = $killCredit['KillCredit2'];
+                    }
+                    else {
+                        $kc_entry = false;
+                    }
+                    $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $kc_entry);
+                    if(!$mapID) {
+                        return false;
+                    }
+                }
+                if($dungeon_data = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
+                    $boss_data = $this->aDB->selectRow("
+                    SELECT `instance_id`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`
+                        FROM `armory_instance_data`
+                            WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?",
+                            $npc, $npc, $npc, $npc, $npc);
+                    $dungeon_data['is_heroic'] = false;
+                    $dungeon_data['diff_2'] = false;
+                    if($boss_data) {
+                        for($i=1;$i<5;$i++) {
+                            if($boss_data['lootid_'.$i] == $npc) {
+                                if($i == 3 || $i == 4) {
+                                    $dungeon_data['is_heroic'] = true;
+                                }
+                            }
+                        }
+                    }
+                    $dungeon_data['boss_id'] = $npc;
+                    return $dungeon_data;
+                }
 				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
-				break;
-            
+				break;            
             case 'mapID':
                 $info = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-                break;
-            
+                break;            
             case 'subname':
-                switch($locale) {
+                switch($this->_locale) {
                     case 'en_gb':
                         $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                         break;
@@ -256,8 +289,7 @@ Class Mangos extends Connector {
                         }
                         break;
                 }
-                break;
-				
+                break;				
 			case 'dungeonlevel':
                 $query = $this->wDB->selectRow("
 				SELECT `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`
@@ -283,8 +315,7 @@ Class Mangos extends Connector {
                     // 10 Normal or 5 Normal
                     return 0;
                 }
-                break;
-            
+                break;            
             case 'instance_type':
                 $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
                 $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `armory_instances_difficulty` WHERE `mapID`=?", $mapID);
@@ -296,8 +327,7 @@ Class Mangos extends Connector {
                     // Raid
                     return 2;
                 }
-                break;
-				
+                break;				
 			case 'isBoss': 
                 $npc_data = $this->wDB->selectRow("SELECT `rank`, `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                 if($npc_data['KillCredit1'] > 0) {
@@ -318,6 +348,31 @@ Class Mangos extends Connector {
                     return false;
                 }
 				break;
+            case 'bossData':
+                $data = $this->aDB->selectRow("
+                SELECT `instance_id`, `key`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`
+                    FROM `armory_instance_data`
+                        WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?",
+                        $npc, $npc, $npc, $npc, $npc);
+                if(!$data) {
+                    return false;
+                }
+                $info = array(
+                    'difficulty' => 'all',
+                    'key' => $data['key'],
+                    'dungeon_key' => $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=?", $data['instance_id'])
+                );
+                for($i=1;$i<5;$i++) {
+                    if($data['lootid_'.$i] == $npc) {
+                        if($i == 1 || $i == 2) {
+                            $info['difficulty'] = 'normal';
+                        }
+                        else {
+                            $info['difficulty'] = 'heroic';
+                        }
+                    }
+                }
+                break;
 		}
 		return $info;
 	}

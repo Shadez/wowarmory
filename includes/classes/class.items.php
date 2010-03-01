@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 97
+ * @revision 99
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -188,7 +188,7 @@ Class Items extends Connector {
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
         if($bossLoot) {
-            if(Mangos::GetNpcInfo($bossLoot, 'isBoss')) {
+            if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && $this->IsUniqueLoot($item)) {
                 // We got boss loot, generate improved tooltip.
                 return $this->GetImprovedItemSource($item, $bossLoot);
             }
@@ -354,9 +354,8 @@ Class Items extends Connector {
         							'level'=> Mangos::GetNpcInfo($bItem['entry'], 'level'),
         							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
         							'map' => Mangos::GetNpcInfo($bItem['entry'], 'map'),
-        							'difficult' => Mangos::GetNpcInfo($bItem['entry'], 'dungeonlevel'),
-                                    'instance_type' => Mangos::GetNpcInfo($bItem['entry'], 'instance_type'),
-       						 	    'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance'])
+       						 	    'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance']),
+                                    'boss_data' => Mangos::GetNpcInfo($bItem['entry'], 'bossData')
     						  );
                               $i++;
 					}
@@ -798,6 +797,14 @@ Class Items extends Connector {
         $data['dungeon_key'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
         $data['boss_id'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         return $data;
+    }
+    
+    public function IsUniqueLoot($itemID) {
+        $item_count = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `creature_loot_template` WHERE `item`=?", $itemID);
+        if($item_count > 2) {
+            return false;
+        }
+        return true;
     }
 }
 ?>
