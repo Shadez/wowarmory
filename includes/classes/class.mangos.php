@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 99
+ * @revision 100
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -341,9 +341,12 @@ Class Mangos extends Connector {
                 }
                 $map = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? OR `id`=? LIMIT 1", $npc, $kc_entry);
                 $isDungeon = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `map`=? LIMIT 1", $map);
-                if($npc_data['rank'] == 3 || $isDungeon > 0) {
-                    return true;
+                if($npc_data['rank'] == 3) {
+                    return 'boss';
 				}
+                elseif($isDungeon > 0) {
+                    return 'elite';
+                }
                 else {
                     return false;
                 }

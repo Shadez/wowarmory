@@ -62,6 +62,13 @@
 {if $price}
 <strong>
 {if $price.item1>0}<a class="item-count staticTip itemToolTip" href="item-info.xml?i={$price.item1}" id="i={$price.item1}"><span><b>{$price.item1count}</b>{$price.item1count}</span><img class="p21" src="wow-icons/_images/21x21/{$price.item1icon}.png" /></a>{/if}{if $price.item2>0}<a class="item-count staticTip itemToolTip" href="item-info.xml?i={$price.item2}" id="i={$price.item2}"><span><b>{$price.item2count}</b>{$price.item2count}</span><img class="p21" src="wow-icons/_images/21x21/{$price.item2icon}.png" /></a>{/if}{if $price.item3>0}<a class="item-count staticTip itemToolTip" href="item-info.xml?i={$price.item3}" id="i={$price.item3}"><span><b>{$price.item3count}</b>{$price.item3count}</span><img class="p21" src="wow-icons/_images/21x21/{$price.item3icon}.png" /></a>{/if}{if $price.item4>0}<a class="item-count staticTip itemToolTip" href="item-info.xml?i={$price.item4}" id="i={$price.item4}"><span><b>{$price.item4count}</b>{$price.item4count}</span><img class="p21" src="wow-icons/_images/21x21/{$price.item4icon}.png" /></a>{/if}{if $price.item5>0}<a class="item-count staticTip itemToolTip" href="item-info.xml?i={$price.item5}" id="i={$price.item5}"><span><b>{$price.item5count}</b>{$price.item5count}</span><img class="p21" src="wow-icons/_images/21x21/{$price.item5icon}.png" /></a>{/if}
+{if $price.arenaPoints > 0}
+<span>{$price.arenaPoints}</span> <img class="staticTip" onmouseover="setTipText('{#armory_item_info_arenapoints#}')" src="images/icons/arena.gif" />
+{/if}
+{if $price.honorPoints > 0}
+<span>{$price.honorPoints}</span><img class="staticTip" onmouseover="setTipText('{#armory_item_info_honorpoints#}')" src="images/icons/honor{if $itemFaction == 'alliance'}0{else}1{/if}.gif" />
+{/if}
+</p>
 </strong>
 {/if}
 </p>
@@ -168,7 +175,7 @@
 {else}
 {$boss.name}
 {/if}</i></span></q></td>
-<td align="center"><q>{$boss.level}{if $boss.boss} ({#armory_item_info_boss_string#}){/if}</q></td>
+<td align="center"><q>{$boss.level}{if $boss.boss == 'boss'} ({#armory_item_info_boss_string#}){elseif $boss.boss == 'elite'} ({#armory_item_info_elite_string#}){/if}</q></td>
 <td align="center"><q>
 {if $boss.map}
     {if is_array($boss.map)}
