@@ -55,14 +55,14 @@
 		  {		{/literal}
                 var lang = "{$ArmoryConfig.locale}".split("_")[0].toLowerCase()
 		  		if ("{$ArmoryConfig.locale}" == "zh_tw") lang = "zh_tw"
-		  		var modelserver = "{$ArmoryConfig.modelserver}"
+		  		var modelserver = ""
                 var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?r={$realm}&cn={$name}&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
-				var stringslink = "/_content/{$ArmoryConfig.locale}/modelConfig_strings.xml";
-				var logolink = "{$ArmoryConfig.modelserver}/models/images/logo/armory-logo-"+lang+".png" 
+				var stringslink = "_content/{$ArmoryConfig.locale}/modelConfig_strings.xml";
+				var logolink = "models/images/logo/armory-logo-"+lang+".png" 
                 {literal}
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
-                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: {/literal}"{$ArmoryConfig.modelserver}models/", {literal}
+                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: {/literal}"models/", {literal}
 								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
 								  loadingtxt:"Loading." //"
 								};
@@ -74,7 +74,7 @@
 								}
 				if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
                 {/literal}
-                swfobject.embedSWF("{$ArmoryConfig.modelserver}/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", "{$ArmoryConfig.modelserver}/models/flash/expressInstall.swf", flashvars, params, attributes);
+                swfobject.embedSWF("models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", "models/flash/expressInstall.swf", flashvars, params, attributes);
 				{literal}
                 $(document).ready(function () { bindMouseActions() });	
 		  }

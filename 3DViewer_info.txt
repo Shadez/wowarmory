@@ -2,11 +2,7 @@ Attention!
 Currently 3D Viewer is not completed full - there's no animations, saving character poses 
 and some other features.
 
-For correctly work, you need to download an archive with textures (rather large file - 198 MB) and configure the config file:
-includes/classes/configuration.php:
-$ArmoryConfig['settings']['modelserver'] = '';
-in this parameter must specify the complete URL-address to the root folder of the Armory
-(eg, http://armory.my-super-wow-server.com or http://my-super-wow-server.com/armory) WITHOUT slash at the end of the address.
+For correctly work, you need to download an archive with textures (rather large file - 198 MB).
 
 'models' folder from the archive should be placed in the root of the site. The unpacked file is approximately 420 megabytes.
 
@@ -24,11 +20,7 @@ http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
 На данный момент 3D Viewer не завершен полностью - отсутствует проигрывание анимаций, сохранение позы персонажа 
 и некоторые другие возможности.
 
-Для корректной работы необходимо скачать архив с текстурами (архив довольно большой - 198 мегабайт) и настроить конфиг-файл:
-includes/classes/configuration.php:
-$ArmoryConfig['settings']['modelserver'] = '';
-в этом параметре необходимо указать ПОЛНЫЙ URL-адрес до корневой папки Оружейной 
-(например, http://armory.my-super-wow-server.com или http://my-super-wow-server.com/armory) БЕЗ слэша в конце адреса.
+Для корректной работы необходимо скачать архив с текстурами (архив довольно большой - 198 мегабайт).
 
 Папку 'models' из архива необходимо поместить в корень сайта. Распакованные файлы занимают примерно 420 мегабайт.
 
