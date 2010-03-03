@@ -152,7 +152,7 @@ function demo3dCharacter(file,charName,attr)
 					}
 	if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
 	swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "9.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
-	$(document).ready(function () { if(!bindMouseActions) loadScript("/_js/character/charactermodel.js"); bindMouseActions() });	
+	$(document).ready(function () { if(!bindMouseActions) loadScript("_js/character/charactermodel.js"); bindMouseActions() });	
 }
 	
 
@@ -749,7 +749,7 @@ function getTipHTML(itemID, itemWithTip, mouseEvent)
 	
 	//get the "pretty-html" for the tooltip
 	if(toolVault[itemID] == null)
-	{		
+	{
 		//set loading text  
 		setTipText(tLoading+"...");
 		setToolTipPosition(itemWithTip,mouseEvent);

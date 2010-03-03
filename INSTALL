@@ -21,7 +21,7 @@ INSTALLATION STEPS:
 8. Run tools/build_loot_tables.php to generate bosses lootIds for search engine. Read tools/build_loot_tables_README.txt for more info.
 	If you using YTDB database, you can miss this step - there are already stored data in armory DB for this database.
 9. Update your armory database with sql/armory_instance_data.sql - this is data for loot that stored in chests (gameobjects).
-
+10. For 3D Viewer installation info read 3DViewer_info.txt
 ========================
 Как установить Оружейную
 ========================
@@ -45,3 +45,4 @@ INSTALLATION STEPS:
 8. Запустите tools/build_loot_tables.php для генерации lootid боссов (необходимо для работы поискового движка). Подробнее - в файле tools/build_loot_tables_README.txt
    Если ваша база - YTDB, то этот скрипт можно не выполнять, в базе уже имеются данные для этой базы.
 9. Обновите базу файлом sql/armory_instance_data.sql - данные для добычи, которая находится в сундуках (игровые объекты).
+10. Как установить и настроить 3D просмотрщик читайте в файле 3DViewer_info.txt

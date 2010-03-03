@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 97
+ * @revision 101
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -168,6 +168,7 @@ $armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
 // TODO: show commas
 $charTitle = $characters->GetCharacterTitle();
 $armory->tpl->assign('titleName', $characters->name);
+$armory->tpl->assign('urlName', 'r='.urlencode($armory->armoryconfig['defaultRealmName']).'&cn='.urlencode($characters->name));
 $armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTeamInfo());
 $armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
 $armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);

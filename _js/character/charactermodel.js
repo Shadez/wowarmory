@@ -19,7 +19,7 @@ function bindMouseActions(){
 		RightClick.init("ModelViewer3","center_target");
 		$("#center_target").bind("mousedown",function(e){ tipsEnabled = false });
 	if(!mouseActionsInit){
-		$(document).bind("mouseup",function(e){ tipsEnabled = true;
+		$(window).bind("mouseup",function(e){ tipsEnabled = true;
 											    if(e.button == 0){ try{document.getElementById("ModelViewer3").leftClickRelease(); } catch(err){} }
 												if(e.button == 2){ try{document.getElementById("ModelViewer3").rightClickRelease();} catch(err){} } });
 		$(window).unload( function(){       try{ document.getElementById("ModelViewer3").stopall(); } catch(err){} }); 	
@@ -114,7 +114,7 @@ var RightClick = {
 		}
 	},
 	/* Main call to Flash External Interface */
-	call: function() { if(Browser.opera) return;
+	call: function() { if(Browser.opera || (Browser.mac && Browser.firefox)) return;
 		try{document.getElementById(this.FlashObjectID).rightClick();}
 		catch(err){}
 	}

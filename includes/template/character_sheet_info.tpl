@@ -100,7 +100,7 @@
 <div class="profile-wrapper char_sheet">
 <div class="profile type_{$faction_string_class}">
 <script type="text/javascript">
-		var charUrl = "{$character_url_string}";
+		var charUrl = "{$urlName}";
 		var bookmarkMaxedToolTip = "{#armory_you_can_remember_string#}";
 		var bookmarkThisChar = "{#armory_remember_this_character#}";	
 	</script>
@@ -474,25 +474,23 @@
 <div class="noFlash">
 <a class="noflash" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank">
 <img align="right" class="p" src="images/{$ArmoryConfig.locale}/getflash.gif" /></a>{#armory_install_flash_player_string#}</div>
-<!--<script src="_js/character/charactermodel.js" type="text/javascript"></script>
+<script src="_js/character/charactermodel.js" type="text/javascript"></script>
 <script src="shared/global/third-party/swfobject2/swfobject.js" type="text/javascript"></script>
 <script type="text/javascript">
 		 if(!init3dvars) var init3dvars = null
-		 if(!charUrl) var charUrl = 'r={$realm}&cn={$name}'
-{literal}
-		  function buildModelViewer(attr)
-		  {		
-{/literal}		       
+		 if(!charUrl) var charUrl = '{$urlName}'
+		  function buildModelViewer(attr) {literal}
+		  {		{/literal}
                 var lang = "{$ArmoryConfig.locale}".split("_")[0].toLowerCase()
-		  		if ("{$ArmoryConfig.locale}".indexOf("cn") > -1) lang = "zh_tw"
-		  		var modelserver = "http://eu.media.battle.net.edgesuite.net/"
+		  		if ("{$ArmoryConfig.locale}" == "zh_tw") lang = "zh_tw"
+		  		var modelserver = "http://armory"
                 var embedlink = '<iframe src="'+String(window.location).split('character')[0]+'character-model-embed.xml?r={$realm}&cn={$name}&rhtml=true" scrolling="no" height="588" width="321" frameborder="0"></iframe>'
-				var stringslink = "_content/{$ArmoryConfig.locale}/modelConfig_strings.xml";
-				var logolink = modelserver + "/models/images/logo/armory-logo-"+lang+".png" 
-{literal}
+				var stringslink = "/_content/{$ArmoryConfig.locale}/modelConfig_strings.xml";
+				var logolink = "http://armory/models/images/logo/armory-logo-"+lang+".png" 
+                {literal}
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
-                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
+                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: "models/", 
 								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
 								  loadingtxt:"Loading." //"
 								};
@@ -503,13 +501,13 @@
 									if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
 								}
 				if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
-                swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
+                swfobject.embedSWF("http://armory/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", "http://armory/models/flash/expressInstall.swf", flashvars, params, attributes);
 				$(document).ready(function () { bindMouseActions() });	
 		  }
-{/literal}
 			var str_loginExpired = "Enter username." //"
 			buildModelViewer()
-            </script>-->
+            {/literal}
+            </script>
 </div>
 </div>
 </div>

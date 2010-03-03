@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 100
+ * @revision 101
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -559,6 +559,9 @@ Class Items extends Connector {
             case 'quality':
                 $info = $this->wDB->selectCell("SELECT `Quality` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
                 break;
+            case 'displayid':
+                $info = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+                break;
             default:
                 $info = false;
         }
@@ -805,6 +808,19 @@ Class Items extends Connector {
             return false;
         }
         return true;
+    }
+    
+    public function GetItemModelData($displayId, $row='', $itemid=0) {
+        if($itemid > 0) {
+            $displayId = $this->GetItemInfo($itemid, 'displayid');
+        }
+        if($row == '') {
+            $data = $this->aDB->selectRow("SELECT * FROM `armory_itemdisplayinfo` WHERE `displayid`=?", $displayId);
+        }
+        else {
+            $data = $this->aDB->selectCell("SELECT `".$row."` FROM `armory_itemdisplayinfo` WHERE `displayid`=?", $displayId);
+        }
+        return $data;
     }
 }
 ?>
