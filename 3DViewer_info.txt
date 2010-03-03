@@ -15,6 +15,8 @@ http://getmangos.com/community/showthread.php?12096-World-of-Warcraft-Armory
 
 You can find textures archive on filekeeper.org (when it will be uploaded on FTP server):
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
+Direct link:
+http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
 
 -----------------------
 
@@ -35,3 +37,5 @@ http://getmangos.com/community/showthread.php?12096-World-of-Warcraft-Armory
 
 Архив с текстурами можно найти на filekeeper.org (как только будет загружен на ФТП сервер):
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
+Прямая ссылка:
+http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
