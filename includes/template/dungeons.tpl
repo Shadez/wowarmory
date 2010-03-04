@@ -53,7 +53,7 @@
 <td width="25"></td>
 <td width="250"><span>{#armory_dungeons_dungeon_str#}</span></td>
 <td width="120"><span>{#armory_dungeons_bosses_str#}</span></td>
-<td width="80"><span>{#armory_dungeons_bosses_str#}</span></td>
+<td width="80"><span>{#armory_dungeons_level_str#}</span></td>
 <td width="150"><span>{#armory_dungeons_category_str#}</span></td>
 </tr>
 </table>
