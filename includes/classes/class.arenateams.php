@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 106
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -35,6 +35,7 @@ Class Arenateams extends Connector {
     public $teamtype;
     public $teamstats;
     public $players;
+    public $guid;
     
     public function _initTeam() {
         if(!$this->teamname) {
@@ -57,6 +58,28 @@ Class Arenateams extends Connector {
             return false;
         }
         return true;
+    }
+    
+    public function GetCharacterArenaTeamInfo($type=2) {
+        if(!$this->guid) {
+            return false;
+        }
+        $team_id = $this->cDB->selectCell("SELECT `arenateamid` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=?) AND `type`=?", $this->guid, $type);
+        if(!$team_id) {
+            return false;
+        }
+        $team_info = $this->cDB->selectRow("SELECT `name`, `BackgroundColor`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor` FROM `arena_team` WHERE `arenateamid`=?", $team_id);
+        $team_info['members'] = $this->cDB->select("SELECT * FROM `arena_team_member` WHERE `arenateamid`=?", $team_id);
+        $team_info['stats'] = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=?", $team_id);
+        $count_members = count($team_info['members']);
+        for($i=0;$i<$count_members;$i++) {
+            $team_info['members'][$i]['name'] = $this->cDB->selectCell("SELECT `name` FROM `characters` WHERE `guid`=?", $team_info['members'][$i]['guid']);
+            $team_info['members'][$i]['percent'] = Utils::getPercent($team_info['members'][$i]['played_week'], $team_info['members'][$i]['wons_week']);
+        }
+        if(isset($team_info['stats']['played'])) {
+            $team_info['stats']['percent'] = Utils::getPercent($team_info['stats']['played'], $team_info['stats']['wins']);
+        }
+        return $team_info;
     }
     
     public function getTeamStats() {
