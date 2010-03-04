@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 92
+ * @revision 107
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -310,7 +310,7 @@ if(!empty($data['description'])) {
     $armory->tpl->assign('description', $items->getItemDescription($itemID));
 }
 // Heroic item (3.2.x)
-if($data['Flags'] == 8) {
+if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
     $armory->tpl->assign('is_heroic', true);
 }
 if($data['startquest'] > 0) {
