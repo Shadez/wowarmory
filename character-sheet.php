@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 109
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -173,6 +173,9 @@ $armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTea
 $armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
 $armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
 $armory->tpl->assign('playerHonorKills', $characters->getCharacterHonorKills());
+
+$armory->tpl->assign('characterFeed', $characters->GetCharacterFeed());
+
 $armory->tpl->assign('tpl2include', 'character_sheet_info');
 $armory->tpl->display('overall_header.tpl');
 $armory->tpl->display('character_sheet_start.tpl');

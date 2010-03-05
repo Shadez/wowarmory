@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 109
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -339,4 +339,9 @@ define('INV_MAIN_HAND', 15);
 define('INV_OFF_HAND', 16);
 define('INV_RANGED_RELIC', 17);
 define('INV_TABARD', 18);
+
+/* Character feed */
+define('TYPE_ACHIEVEMENT_FEED', 1);
+define('TYPE_ITEM_FEED',        2);
+define('TYPE_BOSS_FEED',        3);
 ?>

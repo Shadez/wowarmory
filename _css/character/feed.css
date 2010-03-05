@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+a img { border:0; }
+.header_break { display:none; }
+
+.tabs { margin-top:25px; }
+.sel-char_int { padding:0 15px 0 18px; }
+
+.activity_bg { background:url(../../images/feed_page_bg.jpg) no-repeat; padding:39px 29px; position:relative; }
+.activity_bg h1 { color:#184869; font-size:28px; text-transform:uppercase; font-weight:normal; letter-spacing:normal; margin:0; padding:0 0 11px 4px;  }
+.activity_bg h1 span { color:#916B2D; display:block; font-size:14px; text-transform:none; padding:5px 7px 0; }
+.activity_bg .share_container { border:1px solid #DEAE1C; right:45px; top:45px; position:absolute; }
+
+.activity_body_rpt { background:url(../../images/feed_body_rpt.jpg) repeat-y; width:819px; } 
+.activity_body_top { background:url(../../images/feed_body_top.jpg) no-repeat; } 
+.activity_body_btm { background:url(../../images/feed_body_btm.jpg) 0 bottom no-repeat; } 
+.activity_body_int { padding:13px; font-size:13px; }
+
+.feed_entry { padding:3px 15px; }
+.feed_entry table { width:100%; margin:0; padding:0; }
+.feed_entry .timestamp { float:right; padding:0 10px; color:#9a7118; }
+.feed_entry.zebra { background:url(../../images/feed_zebra.png); }
+.activity_body_int h3 { background:url(../../images/feed_header_bg.jpg) repeat-x; color:#24325f; line-height:35px; text-transform:uppercase; margin:0; padding:0 23px; }
+
+.type_Horde h3 { color:#591F11; } 
+.type_Horde h1 { color:#96351f }
+.type_Propass h3 { color:#262626 } 
+.type_Propass h1 { color:#79746d } 
+
+.form_bg_rpt { background:url(../../images/feed_form_rpt.jpg) repeat-y; width:569px; margin:30px 0;  float:left; }
+.form_bg_top { background:url(../../images/feed_form_top.jpg) no-repeat; }
+.form_bg_btm { background:url(../../images/feed_form_btm.jpg) bottom no-repeat; }
+
+.custom_rss_container { padding:36px 0 22px; font:13px Calibri, Arial; color:#7f5125; overflow:hidden; }
+.url_output, .filter_options { padding: 0 35px; }
+
+.custom_rss_container h2 { font-size:24px; color:#5d3209; padding:0; margin:0px 0 13px; font-family:Century gothic, Arial Black; }
+
+.custom_rss_container h3, .custom_info_int h3 { font-size:15px; padding:25px 0 5px; margin:0; }
+.custom_rss_container h3 span { font-size:12px; margin:0 15px; color:#A5742F; }
+#def_realm { display:block; }
+.filter_options { overflow:hidden;  }
+.filter_option { line-height:24px; font-size:14px; clear:left; }
+.custom_rss_container .check_box { background:url(../../images/rss_check_bg.gif) 50% 0 no-repeat; height:24px; width:43px; display:block; float:left; }
+.custom_rss_container .check_box.checked { background-position:50% -48px }
+.custom_rss_container .check_box:hover { background-position:50% -24px }
+.custom_rss_container .check_box.checked:hover { background-position:50% -72px }
+#feed_return { position:absolute; top:49px; left:38px; font:13px Calibri, Arial; text-decoration:none;  } 
+
+.filter_option .filter_desc { float:left; cursor:default;  }
+.feed_filter_arrow { font-size:12px; margin:0 4px; }
+.feed_filter_arrow span, .feed_filter_arrow.less span.more { display:none; }
+.feed_filter_arrow.less span, .feed_filter_arrow .more { display:inline; }
+.top_level {  }
+
+#achievement_subfilter { width:90%; margin:0 0 15px 30px; display:none; overflow:hidden; clear:both;}
+.sub_filter_option .sub { width:43%; float:left; clear:none; }
+.sub_filter_option .deselected { color:#beaa6e; text-decoration:line-through; }
+
+#loot_subfilter { margin:0 0 10px 39px; font-size:12px; display:none;  }
+#loot_subfilter td { padding:2px 5px; }
+#loot_ilvl { width:40px; font-weight:bold; text-align:center; color:#8e6111;  }
+
+.custom_rss_container input, .custom_rss_container textarea { border:1px solid #c8a23a; font:15px Calibri; font-size:18px; }
+.custom_rss_container textarea { width:98%; font-size:13px; line-height:14px; padding:3px; }
+
+#character_container { padding:0 14px 0 13px;  }
+#character_container h3 { padding-left:21px; }
+.character_row {  line-height:40px; padding:0 21px; overflow:hidden; }
+.character_row .rss_port { display:none; float:left; padding:2px 0 0 3px; line-height:normal; }
+.character_row .rss_port a, .character_row .rss_port a:hover {  background-position:-1px -0px; background-repeat:no-repeat;}
+.character_row .rss_port a:hover img { border-color:#d11313; }
+.character_row .rss_port img { height:29px; width:29px; border:2px solid #5DFF2E; }
+.character_row.ok {  }
+.character_row.ok .rss_port { display:block;  }
+.char_add_field { float:left; position:relative; }
+.character_row a { display:block; float:left; height:39px; width:38px; background:url(../../images/rss_form_add.jpg);}
+.character_row a:hover { background-position:bottom; }
+
+#rss_link_copy_container { position:relative;   }
+#rss_link_copy { height:45px; background:url(../../images/copy_bg.jpg) no-repeat; float:right; display:block; text-decoration:none;}
+#rss_link_copy span { background:url(../../images/copy_cap.jpg) right top no-repeat; padding:0 45px; line-height:45px; display:block; }
+#rss_link_copy.hover { color:#b00700; background-position:left bottom; }
+#rss_link_copy.hover span { background-position:right bottom; }
+#copy_ok { line-height:45px; padding-right:50px; float:right; margin:0 5px; background:url(../../images/check_ok.jpg) right 50% no-repeat; display:none; font-size:16px; font-weight:bold;  } 
+.ajax_error { float:right; font-size:15px; }
+
+.character_row { display:none; }  
+
+.custom_rss_info { background:url(../../images/moreinfo_bg.jpg); float:right;  margin:50px 0; width:283px; font:14px calibri; }
+.custom_info_int { padding:15px; border:1px solid #CC932A; }
+.custom_info_int h3 { padding:0 0 15px; color:#5D3209 }

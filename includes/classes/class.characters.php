@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 109
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1223,6 +1223,58 @@ Class Characters extends Connector {
             return $arenaTeamInfo;
         }
         return false;
+    }
+    
+    /**
+     * DEVELOPMENT
+     **/
+    public function GetCharacterFeed($full=false) {
+        if(!$this->guid) {
+            return false;
+        }
+        if($full == false) {
+            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
+        }
+        else {
+            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
+        }
+        if(!$data) {
+            return false;
+        }
+        $feed_data = array();
+        $i = 0;
+        foreach($data as $feed) {
+            switch($feed['type']) {
+                case TYPE_ACHIEVEMENT_FEED:
+                    if($tmp = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=? AND `achievement`=?", $this->guid, $feed['data'])) {
+                        if($tmp != strtotime($feed['date'])) {
+                            continue;
+                        }
+                    }
+                    $feed_data[$i] = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`, `points`, `iconname` FROM `armory_achievement` WHERE `id`=?", $feed['data']);
+                    $feed_data[$i]['type'] = $feed['type'];
+                    $feed_data[$i]['date'] = strtotime($feed['date']);
+                    $feed_data[$i]['data'] = $feed['data'];
+                    break;
+                case TYPE_ITEM_FEED:
+                    $feed_data[$i]['name'] = Items::getItemName($feed['data']);
+                    $feed_data[$i]['quality'] = Items::GetItemInfo($feed['data'], 'quality');
+                    $feed_data[$i]['icon'] = Items::getItemIcon($feed['data']);
+                    $feed_data[$i]['type'] = $feed['type'];
+                    $feed_data[$i]['date'] = strtotime($feed['date']);
+                    $feed_data[$i]['data'] = $feed['data'];
+                    break;
+                case TYPE_BOSS_FEED:
+                    $feed_data[$i]['name'] = Mangos::GetNPCName($feed['data']);
+                    $feed_data[$i]['counter'] = $feed['counter'];
+                    $feed_data[$i]['type'] = $feed['type'];
+                    $feed_data[$i]['date'] = strtotime($feed['date']);
+                    $feed_data[$i]['data'] = $feed['data'];
+                    break;
+            }
+            $i++;
+        }
+        return $feed_data;
     }
 }
 ?>

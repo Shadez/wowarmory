@@ -33,6 +33,7 @@
 <a class="selected-subTab" href="character-achievements.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="achievements_subTab"><span>{#armory_character_sheet_achievements_tab#}</span></a>
 <!--<a class="" href="character-statistics.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="statistics_subTab"><span>{#armory_character_sheet_statistic_tab#}</span></a>
 -->
+<a class="" href="character-feed.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="feed_subTab"><span>{#armory_character_sheet_feed_tab#}</span></a>
 {if $characterArenaTeamInfoButton}
 <a class="" href="character-arenateams.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}"><span>{#armory_character_sheet_arena#}</span></a>
 {/if}

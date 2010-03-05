@@ -91,6 +91,7 @@
 <a class="" href="character-achievements.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="achievements_subTab"><span>{#armory_character_sheet_achievements_tab#}</span></a>
 <!--<a class="" href="character-statistics.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="statistics_subTab"><span>{#armory_character_sheet_statistic_tab#}</span></a>
 -->
+<a class="" href="character-feed.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}" id="feed_subTab"><span>{#armory_character_sheet_feed_tab#}</span></a>
 {if $characterArenaTeamInfoButton}
 <a class="" href="character-arenateams.xml?r={$realm}&amp;cn={$name}{if $guildName}&amp;gn={$guildName}{/if}"><span>{#armory_character_sheet_arena#}</span></a>
 {/if}
@@ -985,6 +986,44 @@
 <div class="share_container">
 <a class="share_rss_icon" href="javascript:void();" onclick="javascript:void();"></a>
 </div>{#armory_character_sheet_recent_activity#}</div>
+{foreach from=$characterFeed item=feed}
+<div class="feed_entry">
+<table>
+<tr>
+<td class="td_icon">
+<div class="feed_icon">
+{if $feed.type == 1}
+<a class="staticTip" onmouseover="setTipText('<div class=\&quot;myTable\&quot;\><img src=\&quot;/wow-icons/_images/51x51/{$feed.iconname}.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\><strong style=\&quot;color: #fff;\&quot;\>{$feed.name} ({$feed.points})</strong\><br /\>{$feed.description}');"><img class="p" src="images/feed_icon_achievement.png" /></a>
+</div>
+</td>
+<td>
+{#armory_character_feed_achievement_1#} <strong>[<a class="criteria staticTip" href="character-achievements.xml?r={$realm}&amp;cn={$name}" onmouseover="setTipText('<div class=\&quot;myTable\&quot;\><img src=\&quot;/wow-icons/_images/51x51/{$feed.iconname}.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\><strong style=\&quot;color: #fff;\&quot;\>{$feed.name} ({$feed.points})</strong\><br /\>{$feed.description}')">{$feed.name}</a>]</strong> {#armory_character_feed_achievement_2#} {$feed.points} {#armory_character_feed_achievement_3#}.                    
+&nbsp;<span class="timestamp">{$feed.date|date_format:"%d.%m.%Y"}</span>
+</td>
+{elseif $feed.type == 2}
+<a class="staticTip itemToolTip" href="item-info.xml?i={$feed.data}" id="i={$feed.data}" style="background-image:url(/wow-icons/_images/21x21/{$feed.icon}.png)"><img class="p" src="images/feed_icon_loot.png" /></a>
+</div>
+</td>
+<td>
+<div class="timestamp">{$feed.date|date_format:"%d.%m.%Y"}</div>
+{#armory_character_feed_obtained#} <a class="staticTip itemToolTip" href="item-info.xml?i={$feed.data}" id="i={$feed.data}"><span class="stats_rarity{$feed.quality}">[{$feed.name}]</span></a>.
+</td>
+{elseif $feed.type == 3}
+<a class="event_bosskill"><img class="p" src="images/feed_icon_bosskill.png" /></a>
+</div>
+</td><td>
+<div class="timestamp">{$feed.date|date_format:"%d.%m.%Y"}</div>
+{if $ArmoryConfig.locale == 'en_gb'}{$feed.counter} {$feed.name} {#armory_character_feed_boss_kill#}.
+{else}
+{$feed.counter} {#armory_character_feed_boss_kill#} {$feed.name}.
+{/if}
+</td>
+{/if}
+</tr>
+</table>
+</div>
+{/foreach}
+<a class="more_char_act" href="character-feed.xml?r={$realm}&amp;cn={$name}">{#armory_character_sheet_view_feed#}</a>
 </div>
 </div>
 </div>
@@ -1094,7 +1133,7 @@
 <li>
 <div>
 <em><span><b>{$characterArenaTeamInfo.2x2.name}</b>
-<br />{#armory_teaminfo_pr_tooltip#}: {$characterArenaTeamInfo.2x2.personalrating}<br>
+<br />{#armory_teaminfo_pr_tooltip#}: {$characterArenaTeamInfo.2x2.personalrating}<br />
 </span></em>
 </div>
 </li>
@@ -1111,7 +1150,7 @@
 <li>
 <div>
 <em><span><b>{$characterArenaTeamInfo.3x3.name}</b>
-<br />{#armory_teaminfo_pr_tooltip#}: {$characterArenaTeamInfo.3x3.personalrating}<br>
+<br />{#armory_teaminfo_pr_tooltip#}: {$characterArenaTeamInfo.3x3.personalrating}<br />
 </span></em>
 </div>
 </li>
