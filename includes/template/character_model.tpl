@@ -2,28 +2,45 @@
   <tabInfo tab="character" tabGroup="character" tabUrl="r={$realm}&amp;cn={$name}"/>
   <character>
     <models>
-      <model baseY="0.97" facedY="1.6" hideCape="1" hideHelm="1" id="0" modelFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}.m2" name="base" scale="1.7" skinFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}00.skin">
+      <model baseY="0.97" facedY="1.6" hideCape="{$character_model_data.hide_cloak}" hideHelm="{$character_model_data.hide_helm}" id="0" modelFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}.m2" name="base" scale="1.7" skinFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}00.skin">
         <components>
+          {*
+          Need more info about these components...
+          Known:
+              hair_style - generic
+              leggs_type - 1301 (male) / 1302 (female)
+              eyes_glow - 1702 (dk?)
+              dk_eyes - 1703
+              tabard - 1202 (?)
+              cape - 1502
+          *}
           <component n="100"/>
           <component n="200"/>
           <component n="801"/>
           <component n="401"/>
-          <component n="1702"/>
+          {if $character_model_data.class == 6}
+          <component n="1703"/>
+          {/if}
           <component n="601"/>
-          <component n="2"/>
+          <component n="{$character_model_data.hair_style}"/>
+          <component n="130{if $character_model_data.gender_1 == 'm'}1{else}2{/if}"/>
           <component n="901"/>
           <component n="302"/>
           <component n="1600"/>
           <component n="1201"/>
-          <component n="1302"/>
           <component n="702"/>
           <component n="1001"/>
           <component n="1401"/>
           <component n="1501"/>
           <component n="0"/>
+          <component n="101"/>
+          <component n="301"/>
+          <component n="1101"/>
+          <component n="502"/>
+          <component n="1502"/>
         </components>
         <textures>
-          <texture file="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}skin00_00.png" id="1">
+          <texture file="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}skin00_{$character_model_data.skin_style}.png" id="1">
             {if isset($model_data.shirt_au.file) && $model_data.shirt_au.file != 'item/texturecomponents/armuppertexture/_u.png' && $model_data.shirt_au.file != ''}
             <subTexture file="{$model_data.shirt_au.file}" fileBackup="{$model_data.shirt_au.fileBackup}" h="0.25" w="0.5" x="0.0" y="0.0"/>
             {/if}
@@ -89,10 +106,13 @@
             <subTexture file="{$model_data.boot_fo.file}" fileBackup="{$model_data.boot_fo.fileBackup}" h="0.125" w="0.5" x="0.5" y="0.875"/>
             {/if}
           </texture>
-          <texture file="character/{$character_model_data.race}/hair00_02.png" id="6"/>
+          <texture file="character/{$character_model_data.race}/hair00_{$character_model_data.hair_color}.png" id="6"/>
+          {if $character_model_data.hide_cloak == 0 && $model_data.back_texture.file}
+          <texture file="{$model_data.back_texture.file}" id="2"/>
+          {/if}
         </textures>
         <attachments>
-          {if $model_data.helm_texture.modelFile}
+          {if $model_data.helm_texture.modelFile && $character_model_data.hide_helm == 0}
           <attachment linkPoint="11" modelFile="{$model_data.helm_texture.modelFile}" skinFile="{$model_data.helm_texture.skinFile}" texture="{$model_data.helm_texture.texture}" type="none"/>
           {/if}
           {if $model_data.left_shoulder_texture.modelFile && $model_data.right_shoulder_texture.modelFile}

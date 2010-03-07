@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 110
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -67,16 +67,28 @@ else {
     $character_model_data['gender_1'] = 'm';
 }
 $character_model_data['race_gender'] = $armory->aDB->selectCell("SELECT `modeldata_2` FROM `armory_races` WHERE `id`=?", $characters->race).$character_model_data['gender_1'];
-/*
-// I need some data how to use playerBytes & playerBytes2 fields where facial info are stored.
-$player_bytes = $armory->cDB->selectCell("SELECT `playerBytes` FROM `characters` WHERE `guid`=?", $characters->guid);
-$player_bytes2 = $armory->cDB->selectCell("SELECT `playerBytes2` FROM `characters` WHERE `guid`=?", $characters->guid);
-$character_model_data['face_style'] = ($player_bytes>>8)&255;
-$character_model_data['hair_style'] = ($player_bytes>>16)&255;
-$character_model_data['hair_color'] = ($player_bytes>>24)&255;
-$character_model_data['skin_color'] = ($player_bytes2>>0)&0x0000FFFF;
-$character_model_data['facial_hair'] = ($player_bytes2>>0)&0x0000FFFF;
-*/
+
+$player_model = $armory->cDB->selectRow("SELECT `playerBytes`, `playerBytes2`, `playerFlags` FROM `characters` WHERE `guid`=?", $characters->guid);
+$character_model_data['face_color'] = ($player_model['playerBytes']>>8)%256;
+$character_model_data['hair_style'] = ($player_model['playerBytes']>>16)%256;
+$character_model_data['hair_color'] = ($player_model['playerBytes']>>24)%256;
+$character_model_data['skin_style'] = $player_model['playerBytes']%256;
+$character_model_data['facial_hair'] = $player_model['playerBytes2']%256;
+$character_model_data['hide_helm'] = 0;
+$character_model_data['hide_cloak'] = 0;
+if($player_model['playerFlags']&0x00000400) {
+    $character_model_data['hide_helm'] = 1;
+}
+if($player_model['playerFlags']&0x00000800) {
+    $character_model_data['hide_cloak'] = 1;
+}
+if(count($character_model_data['hair_color']) == 1) {
+    $character_model_data['hair_color'] = '0'.$character_model_data['hair_color'];
+}
+if(count($character_model_data['skin_style']) == 1) {
+    $character_model_data['skin_style'] = '0'.$character_model_data['skin_style'];
+}
+$character_model_data['class'] = $characters->class;
 
 /**
  *  Construct our XML config file
