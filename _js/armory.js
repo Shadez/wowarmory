@@ -6,7 +6,6 @@
  *****************************************************/
 //GLOBAL VARS
 var searchTimerId		= null; //timer id for search menu hiding
-var IS_ENABLED_XSLT		= $.browser.mozilla; //is xslt enabled
 var region				= ""; //for determining region
 var region				= ""; //region
 
@@ -294,10 +293,7 @@ function fixReportLink(linkId, siteUrl){
 		ele = ele.get(0);
 		
 		var replaceUrl="";
-	    if(IS_ENABLED_XSLT && window.historyStorage)
-	        replaceUrl = siteUrl + "/" + window.historyStorage.getCurrentPage();
-	    else
-	        replaceUrl = document.location.href;
+	   replaceUrl = document.location.href;
 	
 		var browserVer = "";
 		jQuery.each(jQuery.browser, function(i, val) {
@@ -527,9 +523,7 @@ L10n.formatTimestamps = function(domQuery, formatConfig) {
  *****************************************************/
 
 //GLOBAL VARS
-var itemToolTipXSLLoaded = false;
 var theGlobalToolTip	 = null; //global tooltip
-var xsltProcessor		 = null;
 var dualTipsEnabled		 = false;
 var isOnCharSheet		 = false;
 var toolVault 			 = [];
@@ -679,43 +673,16 @@ function setTipText(tipStr)
 //get the html for an item via ajax
 function getItemHtml(itemUrl)
 {
-	//load XSL stylesheet if we haven't yet	
-	if(!($.browser.opera) && !($.browser.safari)){
-		if(itemToolTipXSLLoaded == false)
-		{
-			//get the stylesheet			
-			var xslDoc = Sarissa.getDomDocument();
-			xslDoc.async = false;
-			xslDoc.load("/_layout/items/tooltip.xsl");
-			
-			xsltProcessor = new XSLTProcessor();
-			xsltProcessor.importStylesheet(xslDoc);		
-			
-			itemToolTipXSLLoaded = true;
-		}
-	}	
-	
 	$.ajax({
 		type: "GET",
 		url: itemUrl,
 		success: function(msg){		
 			
 			//cache the tooltip text based on browser
-			if(($.browser.opera) || ($.browser.safari)){
-				toolVault[itemUrl] = msg;
-				
-				if(toolVault[itemUrl].length <= 4)
-					toolVault[itemUrl] = errorLoadingToolTip;
-			}else{
-				var bufferedDiv = document.createElement("div");
-				bufferedDiv.innerHTML = "";
-				bufferedDiv.appendChild(xsltProcessor.transformToFragment(msg,window.document));					
-				toolVault[itemUrl] = bufferedDiv.innerHTML;
-				
-				//set error message
-				if(toolVault[itemUrl].length <= 4)
-					toolVault[itemUrl] = errorLoadingToolTip;					
-			}
+			toolVault[itemUrl] = msg;
+            
+			if(toolVault[itemUrl].length <= 4)
+				toolVault[itemUrl] = errorLoadingToolTip;
 		},
 		error: function(msg){				
 			toolVault[itemUrl] = errorLoadingToolTip;
@@ -731,22 +698,6 @@ function getItemHtml(itemUrl)
 //gets the "pretty" html for an item tooltip via ajax
 function getTipHTML(itemID, itemWithTip, mouseEvent)
 {
-	//load XSL stylesheet if we haven't yet	
-	if(!($.browser.opera) && !($.browser.safari)){
-		if(itemToolTipXSLLoaded == false)
-		{
-			//get the stylesheet			
-			var xslDoc = Sarissa.getDomDocument();
-			xslDoc.async = false;
-			xslDoc.load("_layout/items/tooltip.xsl");
-			
-			xsltProcessor = new XSLTProcessor();
-			xsltProcessor.importStylesheet(xslDoc);		
-			
-			itemToolTipXSLLoaded = true;
-		}
-	}
-	
 	//get the "pretty-html" for the tooltip
 	if(toolVault[itemID] == null)
 	{
@@ -761,21 +712,10 @@ function getTipHTML(itemID, itemWithTip, mouseEvent)
 			url: urlstr,
 			success: function(msg){				
 				//cache the tooltip text based on browser
-				if(($.browser.opera) || ($.browser.safari)){
-					toolVault[itemID] = msg;
-					
-					if(toolVault[itemID].length <= 4)
-						toolVault[itemID] = errorLoadingToolTip;
-				}else{
-					var bufferedDiv = document.createElement("div");
-					bufferedDiv.innerHTML = "";
-					bufferedDiv.appendChild(xsltProcessor.transformToFragment(msg,window.document));					
-					toolVault[itemID] = bufferedDiv.innerHTML;
-					
-					//set error message
-					if(toolVault[itemID].length <= 4)
-						toolVault[itemID] = errorLoadingToolTip;					
-				}
+				toolVault[itemID] = msg;
+				
+				if(toolVault[itemID].length <= 4)
+					toolVault[itemID] = errorLoadingToolTip;
 				
 				//prevent showing the wrong item or an empty tooltip
 				if(currItemID == itemID){					
