@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 109
+ * @revision 113
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -145,7 +145,7 @@ $armory->tpl->assign('healthValue', $characters->getHealthValue());
 $armory->tpl->assign('additionalBarInfo', $characters->assignAdditionalEnergyBar());
 
 /*** Character gear ***/
-$gear_array = array('head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'wrist', 'gloves', 'belt', 'legs', 'boots', 
+$gear_array = array('head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'belt', 'gloves', 'wrist', 'legs', 'boots', 
 'ring1', 'ring2', 'trinket1', 'trinket2', 'mainhand', 'offhand', 'relic');
 $i = 0;
 $characterItems = array();
