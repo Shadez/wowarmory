@@ -19,7 +19,7 @@ index b460b57..7fa5153 100644
          if ( count > pProto->GetMaxStackSize())
              count = pProto->GetMaxStackSize();
  
-+		if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->class == 2 || pProto->class == 4) && player)
++		if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +		{
 +			/* WoWArmory Feed Log */
 +		    std::ostringstream ss;
