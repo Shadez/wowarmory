@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 115
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,6 +53,13 @@ Class Items extends Connector {
                     $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
                 }
                 break;
+            case 'es_es':
+                $itemName = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
+                if(!$itemName) {
+                    // Lookup for original name
+                    $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+                }
+                break;
             default:
                 return false;
                 break;
@@ -85,6 +92,13 @@ Class Items extends Connector {
                 break;
             case 'ru_ru':
                 $itemDescription = $this->wDB->selectCell("SELECT `description_loc8` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
+                if(!$itemDescription) {
+                    // Lookup for original name
+                    $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+                }
+                break;
+            case 'es_es':
+                $itemDescription = $this->wDB->selectCell("SELECT `description_loc6` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
                 if(!$itemDescription) {
                     // Lookup for original name
                     $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);

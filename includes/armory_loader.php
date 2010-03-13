@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 101
+ * @revision 115
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,11 +91,18 @@ if(isset($_GET['locale'])) {
     switch($tmp) {
         case 'ru_ru':
         case 'ruru':
+        case 'ru':
             $_SESSION['armoryLocale'] = 'ru_ru';
             break;
         case 'en_gb':
         case 'engb':
+        case 'en':
             $_SESSION['armoryLocale'] = 'en_gb';
+            break;
+        case 'es_es':
+        case 'eses':
+        case 'es':
+            $_SESSION['armoryLocale'] = 'es_es';
             break;
     }
     $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];

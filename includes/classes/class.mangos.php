@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 100
+ * @revision 115
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -79,6 +79,12 @@ Class Mangos extends Connector {
                             $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
                         }
                         break;
+                    case 'es_es':
+                        $info = $this->wDB->selectCell("SELECT `Title_loc6` FROM `locales_quest` WHERE `entry`=?", $quest);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
+                        }
+                        break;
                 }
 				break;            
             case 'reqlevel':
@@ -121,7 +127,7 @@ Class Mangos extends Connector {
                 elseif($percent == 0) {
                     $string = 'Unknown (0%)';
                 }
-                break;  
+                break;
             case 'ru_ru':
                 if($percent > 51) {
                     $string = 'высокая (100%)';	
@@ -135,13 +141,27 @@ Class Mangos extends Connector {
                 elseif($percent > 1) {
                     $string = 'крайне низкая (1-2%)';
                 }
-                elseif($percent < 1) {
-                    $string = 'крайне низкая (0%)'; 
-                }
                 elseif($percent == 0) {
                     $string = 'неизвестно (0%)';
                 }
-                break;        
+                break;
+            case 'es_es':
+                if($percent > 51) {
+                    $string = 'Alta (100%)';	
+        		}
+        		elseif($percent > 25) {
+        		  $string = 'Media (51-100%)';
+                }
+                elseif($percent > 15) {
+                    $string = 'Baja (15-24%)'; 
+                }
+                elseif($percent > 1) {
+                    $string = 'Muy baja (1-2%)';
+                }
+                elseif($percent == 0) {
+                    $string = 'Nula (0%)';
+                }
+                break;
         }
         return $string;
     }
@@ -167,6 +187,19 @@ Class Mangos extends Connector {
                                 FROM `gameobject_template`
                                     WHERE `entry`=?", $entry);
                         }
+                        break;
+                    case 'es_es':
+                        $info = $this->wDB->selectCell("
+                        SELECT `name_loc6`
+                            FROM `locales_gameobject`
+                                WHERE `entry`=?", $entry);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("
+                            SELECT `name`
+                                FROM `gameobject_template`
+                                    WHERE `entry`=?", $entry);
+                        }
+                        break;
                     default:
                         $info = $this->wDB->selectCell("
                         SELECT `name`
@@ -209,6 +242,29 @@ Class Mangos extends Connector {
                     }
                     if($kc_entry > 0) {
                         $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=?", $kc_entry);
+                        if(!$name) {
+                            $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        }
+                    }
+                    else {
+                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                    }
+                }
+                break;
+            case 'es_es':
+                $name = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                if(!$name) {
+                    // Check KillCredit(s)
+                    $kc_entry = 0;
+                    $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                    if($KillCredit['KillCredit1'] > 0) {
+                        $kc_entry = $KillCredit['KillCredit1'];
+                    }
+                    elseif($KillCredit['KillCredit2'] > 0) {
+                        $kc_entry = $KillCredit['KillCredit2'];
+                    }
+                    if($kc_entry > 0) {
+                        $name = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_creature` WHERE `entry`=?", $kc_entry);
                         if(!$name) {
                             $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                         }
@@ -284,6 +340,12 @@ Class Mangos extends Connector {
                         break;
                     case 'ru_ru':
                         $info = $this->wDB->selectCell("SELECT `subname_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        }
+                        break;
+                    case 'es_es':
+                        $info = $this->wDB->selectCell("SELECT `subname_loc6` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
                         if(!$info) {
                             $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
                         }

@@ -1,0 +1,85 @@
+<strings>
+<string key="stand" string="Parado"/>
+<string key="dance" string="Bailar"/>
+<string key="laugh" string="Reír"/>
+<string key="flex" string="Cachas"/>
+<string key="chicken" string="Gallina"/>
+<string key="crouch" string="De cuclillas"/>
+<string key="talk" string="Hablar"/>
+<string key="bow" string="Reverenciar"/>
+<string key="wave" string="Saludar"/>
+<string key="rude" string="Grosero"/>
+<string key="kiss" string="Besar"/>
+<string key="cry" string="Llorar"/>
+<string key="point" string="Señalar"/>
+<string key="salute" string="Saludo"/>
+<string key="yes" string="Asentir"/>
+<string key="no" string="No"/>
+<string key="train" string="Tren"/>
+<string key="readyspelldirected" string="Lanzar (objetivo)"/>
+<string key="castdirected" string="Hechizo (objetivo)"/>
+<string key="readyspellomni" string="Lanzar (general)"/>
+<string key="castomni" string="Hechizo (general)"/>
+<string key="readythrown" string="A distancia, parado"/>
+<string key="attackthrown" string="A distancia, ataque"/>
+<!-- Melee (ClassIds 1,2,3,4,6) -->
+<string key="ready1h" string="Melé, parado"/>
+<string key="attack1h" string="Melé, ataque"/>
+<string key="ready2h" string="Melé, parado"/>
+<string key="ready2hl" string="Melé, parado"/>
+<string key="attack2h" string="Melé, ataque"/>
+<string key="attack2hl" string="Melé, ataque"/>
+<string key="attack1hpierce" string="Melé, ataque"/>
+<string key="attackunarmed" string="Melé, ataque"/>
+<string key="readyunarmed" string="Melé, parado"/>
+<!-- Hunter (ClassId 3) -->
+<string key="attackbow" string="Fuego"/>
+<string key="readybow" string="A distancia, parado"/>
+<string key="readygun" string="A distancia, parado"/>
+<string key="attackgun" string="Fuego"/>
+<string key="loadbow" string="Recargar"/>
+<string key="loadgun" string="Recargar"/>
+<string key="holdbow" string="Apuntar"/>
+<string key="human" string="Humano"/>
+<string key="orc-troll" string="Orco/Trol"/>
+<string key="gnome-dwarf" string="Gnomo/Enano"/>
+<string key="nightelf" string="Elfo de la noche"/>
+<string key="undead" string="No-muerto"/>
+<string key="tauren" string="Tauren"/>
+<string key="gnome-dwarf" string="Gnomo/Enano"/>
+<string key="orc-troll" string="Orco/Trol"/>
+<string key="bloodelf" string="Elfo de sangre"/>
+<string key="draenei" string="Draenei"/>
+<!-- Special Attacks -->
+<string key="whirlwind" string="Torbellino"/>
+<string key="special1h" string="Ataque especial"/>
+<string key="special2h" string="Ataque especial"/>
+<string key="mutilate" string="Mutilar"/>
+<!-- Options Menu -->
+<string key="equipmentHeader" string="Visualización: opciones"/>
+<string key="showHelmet" string="Casco"/>
+<string key="showCloak" string="Capa"/>
+<string key="showTabard" string="Tabardo"/>
+<string key="highQuality" string="Alta"/>
+<string key="mediumQuality" string="Media"/>
+<string key="lowQuality" string="Baja"/>
+<string key="loginToPose" string="Inicia sesión para asignar poses por defecto a los personajes de tu cuenta"/>
+<string key="qualityHeader" string="Calidad de modelo"/>
+<string key="backgroundHeader" string="Fondo"/>
+<string key="embedDescription" string="Incluir esta dirección HTML en una página web para mostrar una versión autónoma del Model Viewer de la Armería para este personaje."/>
+<string key="copy" string="Copiar"/>
+<string key="embedCopied" string="La dirección HTML se ha copiado en tu portapapeles."/>
+<string key="close" string="Cerrar"/>
+<string key="embedTooltip" string="Enlazar al Model Viewer de este personaje"/>
+<string key="saveTooltip" string="Guardar esta pose como defecto para todos los que visiten este perfil"/>
+<!-- Backgrounds -->
+<string key="argenttournament" string="Torneo"/>
+<string key="dalaran" string="Dalaran"/>
+<string key="shattrath" string="Ciudad de Shattrath"/>
+<string key="shattrath2" string="Ciudad de Shattrath Nº2"/>
+<string key="wintergrasp" string="Conquista del Invierno"/>
+<string key="alteracvalley_horde" string="Lobo Gélido, Valle de Alterac"/>
+<string key="alteracvalley_alliance" string="Pico Tormenta, Valle de Alterac"/>
+<string key="deathknight" string="Caballero de la muerte"/>
+<string key="loading" string="Cargando..."/>
+</strings>

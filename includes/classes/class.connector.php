@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 96
+ * @revision 115
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,7 +49,7 @@ Class Connector {
     /** Template handler (Smarty class) **/
     public $tpl;
     
-    /** Current armory locale (ru_ru or en_gb) **/
+    /** Current armory locale (ru_ru, en_gb or es_es) **/
     public $_locale;
     
     /**
@@ -97,7 +97,7 @@ Class Connector {
         $this->tpl->assign('addCssSheet', '@import "_css/int.css";');
         $this->tpl->display('overall_header.tpl');
         $this->tpl->display('overall_body_starter.tpl');
-        $this->tpl->display('overall_menu_ru_ru.tpl');
+        $this->tpl->display('overall_menu_'.$this->_locale.'.tpl');
         $this->tpl->display('error_page.tpl');
         $this->tpl->display('overall_footer.tpl');
         exit();

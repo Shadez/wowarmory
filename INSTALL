@@ -22,6 +22,8 @@ INSTALLATION STEPS:
 	If you using YTDB database, you can miss this step - there are already stored data in armory DB for this database.
 9. Update your armory database with sql/armory_instance_data.sql - this is data for loot that stored in chests (gameobjects).
 10. For 3D Viewer installation info read 3DViewer_info.txt
+11. If you want to add new language (currently only Spanish language is available), just unpack sql/langpacks/<lang>/armory_<lang>.7z 
+   archive and upload SQL file to `armory` DB.
 ========================
 Как установить Оружейную
 ========================
@@ -46,3 +48,5 @@ INSTALLATION STEPS:
    Если ваша база - YTDB, то этот скрипт можно не выполнять, в базе уже имеются данные для этой базы.
 9. Обновите базу файлом sql/armory_instance_data.sql - данные для добычи, которая находится в сундуках (игровые объекты).
 10. Как установить и настроить 3D просмотрщик читайте в файле 3DViewer_info.txt
+11. Для установки отдельного языка (на данный момент доступен только испанский) распакуйте архив sql/langpacks/<язык>/armory_<язык>.7z
+    и залейте SQL файл в базу `armory`.
