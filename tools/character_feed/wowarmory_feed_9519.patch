@@ -19,7 +19,7 @@ index b460b57..7fa5153 100644
          if ( count > pProto->GetMaxStackSize())
              count = pProto->GetMaxStackSize();
  
-+		if (pProto->Quality > 2 && pProto->Flags != 2048)
++		if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->class == 2 || pProto->class == 4) && player)
 +		{
 +			/* WoWArmory Feed Log */
 +		    std::ostringstream ss;
@@ -36,6 +36,7 @@ index b460b57..7fa5153 100644
 +				ss << "INSERT INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
 +				CharacterDatabase.PExecute( ss.str().c_str() );
 +			}
++        delete result;
 +		}
          assert(count !=0 && "pProto->Stackable==0 but checked at loading already");
  
@@ -69,6 +70,7 @@ index 893b803..f37ccd3 100644
 +		{
 +			CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, counter) VALUES('%u', %d, '%u', 1)", pGuid, type, data);
 +		}
++     delete result;
 +	}
 +	else
 +	{
