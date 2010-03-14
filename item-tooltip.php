@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 107
+ * @revision 119
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -256,6 +256,9 @@ $ench_array = array (
     19=>'tabard',
     20=>'chest',
     21=>'mainhand',
+    22=>'',
+    23=>'offhand',
+    24=>'',
     25=>'thrown',
     26=>'gun',
     28=>'sigil'
