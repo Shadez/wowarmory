@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 110
+ * @revision 120
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -376,6 +376,7 @@ $armory->tpl->assign('character_model_data', $character_model_data);
 $armory->tpl->assign('model_data', $model_data);
 $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
 $armory->tpl->assign('name', $characters->name);
+$armory->tpl->assign('urlName', 'r='.urlencode($armory->armoryconfig['defaultRealmName']).'&amp;cn='.urlencode($characters->name));
 $armory->tpl->display('character_model.tpl');
 exit();
 ?>

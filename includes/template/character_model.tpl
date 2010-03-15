@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="{$ArmoryConfig.locale}" requestUrl="character-model.xml">
-  <tabInfo tab="character" tabGroup="character" tabUrl="r={$realm}&amp;cn={$name}"/>
+  <tabInfo tab="character" tabGroup="character" tabUrl="r={$urlName}"/>
   <character>
     <models>
       <model baseY="0.97" facedY="1.6" hideCape="{$character_model_data.hide_cloak}" hideHelm="{$character_model_data.hide_helm}" id="0" modelFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}.m2" name="base" scale="1.7" skinFile="character/{$character_model_data.race}/{$character_model_data.gender}/{$character_model_data.race}{$character_model_data.gender}00.skin">
