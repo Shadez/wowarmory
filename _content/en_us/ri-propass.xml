@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arena Tournament">
+	<faqlist>
+		<faq question="What Arena Tournament information appears on the Armory?">
+			Team and character profiles for every Tournament character and arena team are searchable on the Armory. In addition, the ladder for the special Coliseum battlegroup is updated daily. 
+		</faq>
+		<faq question="How are profiles different from the live Armory?">
+			Every character and team participating in the Arena Tournament has its own profiles that are slightly different than the profiles appearing for the live realms. The PvP information is highlighted more prominently, while information that does not apply to Tournament realms (such as guilds) are omitted. On the character profiles for example, the right side panel is replaced with the team roster and ranking, the Profession pane is replaced with personal ranking information, and the player’s guild name is replaced with his team name. 
+		</faq>
+		<faq question="How can I view the Tournament ladders for the other regions?">
+			From the "Browse the Armory" menu in the top left, navigate to the Arena Tournament ladder page. This will bring up the updated ladder for your default region: North America, Europe, or Korea. Use the links at the bottom of the ladder to navigate to the other regions. We encourage all Tournament participants to keep tabs on how the other regions are doing for additional insight and context. 
+		</faq>
+		<faq question="Where can I learn more about the Arena Tournament?">
+			Refer to our Arena Tournament Information Page for details on this competitive, specialized World of Warcraft game experience. On that page you will find links to register for the Tournament as well.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Tournament Ladders" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Arena Tournament Info" url="http://www.worldofwarcraft.com/pvp/tournament/index.xml"/>
+		<relatedlink name="Register" url="http://www.worldofwarcraft.com/account/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

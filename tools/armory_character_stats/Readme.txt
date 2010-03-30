@@ -1,0 +1,1 @@
+This patch required for correct work some character pages since `data` blob was removed from `characters` table.

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Esc. de posiciones de la arena">
+	<faqlist>
+		<faq question="¿Qué es la escala de posiciones de la arena?">
+			Es un sistema de competencia para los jugadores que participan en combate JcJ por equipos. El sistema enfrentará a equipos equivalentes en una de tres categorías: 2c2, 3c3 y 5c5. Los equipos obtendrán puntos de arena según su clasificación, y éstos podrán ser usados para comprar objetos y otras recompensas.
+		</faq>
+		<faq question="¿Cómo se determina la clasificación?">
+			La clasificación se determina con base en las victorias y derrotas de tu equipo contra otros de clasificación similar. Las victorias contra aquellos que estén mejor clasificados aumentarán considerablemente tu calificación de equipo, mientras que las victorias contra aquellos de menor clasificación la aumentarán en menor medida. El principio básico es similar al sistema de puntuación de Elo, que se utiliza en el ajedrez a nivel profesional.
+		</faq>
+		<faq question="¿Cuánto dura una temporada?">
+			Cada temporada dura varios meses.
+		</faq>
+				
+		<faq question="¿Cuál es la clasificación de equipo necesaria para obtener los títulos al final de la temporada de arena?">
+			Al final de cada temporada, los miembros de un equipo de clasificación alta que hayan participado en al menos 20% del total de partidas jugadas recibirán un título especial para conmemorar lo que han logrado. Los títulos persisten durante la temporada siguiente y se describen a continuación junto con la clasificación necesaria para obtenerlos:
+			<ul>
+				<li>Gladiador: el primer 0.5% de la clasificación</li>
+				<li>Duelista:  0.5% - 3%</li>
+				<li>Rival: 3% - 10%</li>
+				<li>Contendiente: 10% - 35%</li>
+			</ul>
+			Además, el equipo que obtenga el primer lugar de su categoría recibirá un título especial, idéntico al nombre del armamento de la temporada, por ejemplo: "Gladiador Brutal".
+		</faq>				
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculadora de Arena" url="/arena-calculator.xml"/>	
+		<relatedlink type="hr"/>
+		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
+		<relatedlink name="Las arenas a detalle" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/arena.xml"/>
+		<relatedlink name="Recompensas de la arena: armas" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
+		<relatedlink name="Recompensas de la arena: armaduras" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

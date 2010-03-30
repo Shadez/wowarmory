@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 109
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,7 +27,7 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Characters extends Connector {
-    
+
     /**
      * Player GUID
      **/
@@ -66,8 +66,13 @@ Class Characters extends Connector {
     /**
      * Character stat calculating variable
      **/
-     public $rating;
+    public $rating;
     
+    /**
+     * Character title data (title, prefix, suffix, titleId)
+     **/
+    public $character_title = array('prefix' => null, 'suffix' => null, 'titleId' => 0);
+        
     /******************************/
     /***  Basic character info  ***/
     /******************************/
@@ -90,7 +95,7 @@ Class Characters extends Connector {
             return false;
         }
         $gmAccount = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $guid['account']);
-        $showIt = ($gmAccount == $this->armoryconfig['minGmLevelToShow'] || $gmAccount < $this->armoryconfig['minGmLevelToShow']) ? true : false;
+        $showIt = ($gmAccount <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if($guid && $showIt) {
             return true;
         }
@@ -104,14 +109,19 @@ Class Characters extends Connector {
      * @return bool
      **/
     public function _structCharacter() {
-        if(!$this->name)
+        if(!$this->name) {
             return false;
-        $this->GetCharacterGuid();
-        $this->GetCharacterLevel();
-        $this->GetCharacterRace();
-        $this->GetCharacterClass();
-        $this->GetCharacterFaction();
-        $this->GetCharacterGender();
+        }
+        $character_info = $this->cDB->selectRow("SELECT `guid`, `level`, `class`, `race`, `gender` FROM `characters` WHERE `name`=?", $this->name);
+        if(!$character_info) {
+            return false;
+        }
+        $this->guid   = $character_info['guid'];
+        $this->level  = $character_info['level'];
+        $this->race   = $character_info['race'];
+        $this->class  = $character_info['class'];
+        $this->gender = $character_info['gender'];
+        self::GetCharacterFaction();
         return true;
     }
     
@@ -175,31 +185,48 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns character selected title (if exists), place (suffix or prefix) according with character gender. Requries $this->gender! If $guid not provided, function will use $this->guid.
+     * Fills $this->character_title with character selected title (if exists), place (suffix or prefix) and ID according with character gender. Requries $this->gender! If $guid not provided, function will use $this->guid.
      * @category Character class
      * @example Characters::GetCharacterTitle(false)
-     * @return array
+     * @return none
      **/
     public function GetCharacterTitle($guid=false) {
         if($guid) {
             $this->guid = $guid;
         }
-        $this->GetCharacterGender();
-        $title = $this->aDB->selectRow("SELECT * FROM `armory_titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
-        $data = array();
+        if(!$this->gender) {
+            $this->GetCharacterGender();
+        }        
+        $title = $this->aDB->selectRow("SELECT `id`, `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
         if($title) {
             switch($this->gender) {
                 case 1:
-                    $data['title'] = $title['title_F_'.$this->_locale];
+                    if($title['place'] == 'suffix') {
+                        $this->character_title['suffix'] = $title['titleF'];
+                        $this->character_title['prefix'] = '';
+                    }
+                    elseif($title['place'] == 'prefix') {
+                        $this->character_title['suffix'] = '';
+                        $this->character_title['prefix'] = $title['titleF'];
+                    }
                     break;
                 case 0:
-                    $data['title'] = $title['title_M_'.$this->_locale];
+                    if($title['place'] == 'suffix') {
+                        $this->character_title['suffix'] = $title['titleM'];
+                        $this->character_title['prefix'] = '';
+                    }
+                    elseif($title['place'] == 'prefix') {
+                        $this->character_title['suffix'] = '';
+                        $this->character_title['prefix'] = $title['titleM'];
+                    }
+                    break;
+                default:
+                    $this->character_title['suffix'] = null;
+                    $this->character_title['prefix'] = null;
                     break;
             }
-            $data['place'] = $title['place'];
-            return $data;
+            $this->character_title['titleId'] = isset($title['id']) ? $title['id'] : null;
         }
-        return false;
     }
     
     /**
@@ -236,13 +263,14 @@ Class Characters extends Connector {
      * @example Characters::GetCharacterFaction()
      * @return int
      **/
-    public function GetCharacterFaction($race=false) {
+    public function GetCharacterFaction($race = null) {
         // 1 - Horde, 0 - Alliance
-        if(!$race) {
+        if($race == null) {
             $race = $this->race;
+            $this->faction = ($race == 1 || $race == 3 || $race == 4 || $race == 7 || $race == 11) ? 0 : 1;
+            return $this->faction;
         }
-        $this->faction = ($race==1 or $race==3 or $race==4 or $race==7 or $race==11) ? '0' : '1';
-        return $this->faction;
+        return ($race == 1 || $race == 3 || $race == 4 || $race == 7 || $race == 11) ? 0 : 1;
     }
     
     /**
@@ -255,34 +283,11 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $url_string = 'r=' . urlencode($this->armoryconfig['defaultRealmName']) . '&amp;n=' . urlencode($this->name);
-        if($this->GetDataField(PLAYER_GUILDID)) {
-            $url_string .= '&amp;gn=' . urlencode($this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->GetDataField(PLAYER_GUILDID)));
+        $url_string = 'r=' . urlencode($this->armoryconfig['defaultRealmName']) . '&cn=' . urlencode($this->name);
+        if($guildID = $this->GetDataField(PLAYER_GUILDID)) {
+            $url_string .= '&gn=' . urlencode($this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $guildID));
         }
         return $url_string;
-    }
-        
-    /**
-     * Returns character avatar path. !Requires $this->guid!
-     * @category Characters class
-     * @example Characters::characterAvatar()
-     * @return string
-     **/
-    public function characterAvatar() {
-        if($this->level == 80) {
-            $avatar_path = 'wow-80/';
-        }
-        elseif($this->level > 70) {
-            $avatar_path = 'wow-70/';
-        }
-        elseif($this->level > 60) {
-            $avatar_path = 'wow/';
-        }
-        else {
-            $avatar_path = 'wow-default/';
-        }
-        $avatar_path .= $this->gender . '-' . $this->race . '-' . $this->class . '.gif';
-        return $avatar_path;
     }
     
     /**
@@ -291,8 +296,8 @@ Class Characters extends Connector {
      * @example Characters::returnClassText()
      * @return string
      **/
-    public function returnClassText($class='') {
-        if($class=='') {
+    public function returnClassText($class = null) {
+        if($class == null) {
             if(!$this->class) {
                 return false;
             }
@@ -311,8 +316,8 @@ Class Characters extends Connector {
      * @example Characters::returnRaceText()
      * @return string
      **/
-    public function returnRaceText($race='') {
-        if($race=='') {
+    public function returnRaceText($race = null) {
+        if($race == null) {
             if(!$this->race) {
                 return false;
             }
@@ -326,21 +331,20 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns additional energy bar string (mana for paladins, mages, warlocks & hunters, etc.)
+     * Returns array with additional energy bar data (mana for paladins, mages, warlocks & hunters, etc.)
      * !Requires $this->class!
      * @category Characters class
-     * @example Characters::assignAdditionalEnergybar()
-     * @todo Store bars names in DB
-     * @return string
+     * @example Characters::GetSecondBar()
+     * @return array
      **/
-    public function assignAdditionalEnergyBar() {
+    public function GetSecondBar() {
         if(!$this->class) {
             return false;
         }        
-        $mana = 'mana';
-        $rage = 'rage';
-        $energy = 'energy';
-        $runic = 'runic';
+        $mana   = 'm';
+        $rage   = 'r';
+        $energy = 'e';
+        $runic  = 'p';
         
         $switch = array (
             '1' => $rage,
@@ -354,7 +358,6 @@ Class Characters extends Connector {
             '9' => $mana,
             '11'=> $mana
         );
-        $data['class'] = $switch[$this->class];
         switch($this->class) {
             case 2:
             case 3:
@@ -363,20 +366,27 @@ Class Characters extends Connector {
             case 8:
             case 9:
             case 11:
-                $data['title'] = Utils::GetArmoryString(7);
-                $data['value'] = $this->getManaValue();
+                $data['casting']    = 0;
+                $data['notCasting'] = '22';
+                $data['effective']  = $this->GetMaxMana();
+                $data['type']       = $switch[$this->class];
                 break;
             case 1:
-                $data['title'] = Utils::GetArmoryString(8);
-                $data['value'] = $this->getRageValue();
+                $data['casting']    = '-1';
+                $data['effective']  = $this->GetMaxRage();
+                $data['notCasting'] = '-1';
+                $data['perFive']    = '-1';
+                $data['type']       = $switch[$this->class];
                 break;
             case 4:
-                $data['title'] = Utils::GetArmoryString(9);
-                $data['value'] = $this->getEnergyValue();
+                $data['casting']   = '-1';
+                $data['effective'] = $this->GetMaxEnergy();
+                $data['type']      = $switch[$this->class];
                 break;
             case 6:
-                $data['title'] = Utils::GetArmoryString(10);
-                $data['value'] = $this->getEnergyValue();
+                $data['casting']   = '-1';
+                $data['effective'] = $this->GetMaxEnergy();
+                $data['type']      = $switch[$this->class];
                 break;
         }
         return $data;
@@ -386,7 +396,7 @@ Class Characters extends Connector {
     Function from MBA
     ******************/
     
-    public function talentCounting($tab, $dualSpec = false, $spec='') {
+    public function talentCounting($tab, $dualSpec = false, $spec = null) {
         if(!$this->guid) {
             return false;
         }
@@ -401,7 +411,7 @@ Class Characters extends Connector {
             $resSpell = $this->cDB->select("
             SELECT `spell`
                 FROM `character_spell` 
-    				WHERE `guid` = ? AND `disabled` = '0'", $this->guid);
+    				WHERE `guid`=? AND `disabled`=0", $this->guid);
         }
         if(!$resSpell) {
             return false;
@@ -443,68 +453,67 @@ Class Characters extends Connector {
             return false;
         }
         switch($slot) {
-            case "head":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENTRYID);
+            case 'head':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_HEAD);
                 break;
-            case "neck":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENTRYID);
+            case 'neck':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_NECK);
 				break;
-			case "shoulder":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENTRYID);
+			case 'shoulder':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_SHOULDER);
 				break;
-			case "shirt":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENTRYID);
+			case 'shirt':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_SHIRT);
 				break;
-			case "chest":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENTRYID);
+			case 'chest':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_CHEST);
 				break;
-			case "wrist":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENTRYID);
+			case 'wrist':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BRACERS);
 				break;
-			case "legs":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENTRYID);
+			case 'legs':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_LEGS);
 				break;
-			case "boots":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENTRYID);
+			case 'boots':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BOOTS);
 				break;
-			case "belt":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENTRYID);
+			case 'belt':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BELT);
 				break;
-			case "gloves":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENTRYID);
+			case 'gloves':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_GLOVES);
 				break;
-			case "ring1":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENTRYID);
+			case 'ring1':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RING_1);
 				break;
-			case "ring2":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENTRYID);
+			case 'ring2':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RING_2);
 				break;
-			case "trinket1":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENTRYID);
+			case 'trinket1':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TRINKET_1);
 				break;
-            case "trinket2":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENTRYID);
+            case 'trinket2':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TRINKET_2);
 				break;
-			case "back":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENTRYID);
+			case 'back':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BACK);
 				break;
-			case "mainhand":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENTRYID);
+			case 'mainhand':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_MAIN_HAND);
 				break;
-			case "offhand":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENTRYID);
+			case 'offhand':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_OFF_HAND);
 			    break;
-			case "relic":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID);
+			case 'relic':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RANGED_RELIC);
 				break;
-			case "tabard":
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENTRYID);
+			case 'tabard':
+				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TABARD);
 				break;
 			default:
-				$ItemInv = '0';
+                return 0;
 				break;
         }
-        return $ItemInv;
     }
     
     public function GetCharacterEquipBySlot($slotID) {
@@ -525,64 +534,64 @@ Class Characters extends Connector {
             $guid = $this->guid;
         }
         switch($slot) {
-            case "head":
+            case 'head':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT, $guid);
                 break;
-            case "neck":
+            case 'neck':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENCHANTMENT, $guid);
 				break;
-			case "shoulder":
+			case 'shoulder':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENCHANTMENT, $guid);
 				break;
-			case "shirt":
+			case 'shirt':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENCHANTMENT, $guid);
 				break;
-			case "chest":
+			case 'chest':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENCHANTMENT, $guid);
 				break;
-			case "wrist":
+			case 'wrist':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENCHANTMENT, $guid);
 				break;
-			case "legs":
+			case 'legs':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENCHANTMENT, $guid);
 				break;
-			case "boots":
+			case 'boots':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENCHANTMENT, $guid);
 				break;
-			case "belt":
+			case 'belt':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENCHANTMENT, $guid);
 				break;
-			case "gloves":
+			case 'gloves':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENCHANTMENT, $guid);
 				break;
-			case "ring1":
+			case 'ring1':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENCHANTMENT, $guid);
 				break;
-			case "ring2":
+			case 'ring2':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENCHANTMENT, $guid);
 				break;
-			case "trinket1":
+			case 'trinket1':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENCHANTMENT, $guid);
 				break;
-            case "trinket2":
+            case 'trinket2':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENCHANTMENT, $guid);
 				break;
-			case "back":
+			case 'back':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENCHANTMENT, $guid);
 				break;
-			case "mainhand":
-            case "stave":
+			case 'mainhand':
+            case 'stave':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENCHANTMENT, $guid);
 				break;
-			case "offhand":
-            case "gun":
+			case 'offhand':
+            case 'gun':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENCHANTMENT, $guid);
 			    break;
-			case "relic":
-            case "sigil":
+			case 'relic':
+            case 'sigil':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENCHANTMENT, $guid);
 				break;
-			case "tabard":
+			case 'tabard':
 				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
 				break;
 			default:
@@ -597,18 +606,18 @@ Class Characters extends Connector {
 	******************/
 	
     //get a tab from TalentTab
-    public function getTabOrBuild($class, $type, $tabnum) {
+    public function getTabOrBuild($type, $tabnum) {
         if($type == "tab") {
 			$field = $this->aDB->selectCell("
 			SELECT `id`
 				FROM `armory_talenttab`
-					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($class-1)), $tabnum);
+					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($this->class-1)), $tabnum);
 		}
 		else {
 			$field = $this->aDB->selectCell("
 			SELECT `name_" . $this->_locale . "`
 				FROM `armory_talenttab`
-					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($class-1)), $tabnum);
+					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($this->class-1)), $tabnum);
 		}
 		return $field;
 	}
@@ -617,7 +626,7 @@ Class Characters extends Connector {
 	Function from CSWOWD
 	********************/
     
-    public function extractCharacterTalents($dualSpec=false, $specCount='') {
+    public function extractCharacterTalents() {
         if(!$this->class || !$this->guid) {
             return false;
         }
@@ -637,12 +646,10 @@ Class Characters extends Connector {
         if (!$tab_set){
             return;
         }
-        if($dualSpec == true) {
-            $spellList = $this->cDB->select("SELECT `spell` AS ARRAY_KEY  FROM `character_talent` WHERE `guid` = ?d and `spec` = ?", $this->guid, $specCount);
-        }
-        else {
-            $spellList = $this->cDB->select("SELECT `spell` AS ARRAY_KEY  FROM `character_spell` WHERE `guid` = ?d and `disabled` = 0", $this->guid);
-        }
+        $spellList = $this->cDB->select("
+        SELECT `spell` AS ARRAY_KEY
+            FROM `character_spell`
+                WHERE `guid`=? AND `disabled`=0", $this->guid);
         $bild = '';
         $tinfo = $this->aDB->select(
           "SELECT
@@ -658,21 +665,22 @@ Class Characters extends Connector {
         $points = array(0, 0, 0);
         $total  = 0;
         $max    = 0;
-        $name   = "Undefined";
         foreach($tab_set as $i=>$tab) {
             foreach($tinfo[$tab] as $row=>$rows)
                 foreach($rows as $col=>$data) {
                     $rank = 0;
-                    if (isset($spellList[$data['Rank_5']])) $rank = 5;
-                    else if (isset($spellList[$data['Rank_4']])) $rank = 4;
-                    else if (isset($spellList[$data['Rank_3']])) $rank = 3;
-                    else if (isset($spellList[$data['Rank_2']])) $rank = 2;
-                    else if (isset($spellList[$data['Rank_1']])) $rank = 1;
-                    $bild.= $rank;
+                        if(isset($spellList[$data['Rank_5']]) && $spellList[$data['Rank_5']] > 0) $rank = 5;
+                    elseif(isset($spellList[$data['Rank_4']]) && $spellList[$data['Rank_4']] > 0) $rank = 4;
+                    elseif(isset($spellList[$data['Rank_3']]) && $spellList[$data['Rank_3']] > 0) $rank = 3;
+                    elseif(isset($spellList[$data['Rank_2']]) && $spellList[$data['Rank_2']] > 0) $rank = 2;
+                    elseif(isset($spellList[$data['Rank_1']]) && $spellList[$data['Rank_1']] > 0) $rank = 1;
+                    $bild .= $rank;
                     $points[$i]+=$rank;
                     $total+=$rank;
                 }
-            if($points[$i] > $max) {$max = $points[$i]; $name = $tab;}
+            if($points[$i] > $max) {
+                $max = $points[$i];
+            }
         }
         return $bild;
     }
@@ -690,20 +698,22 @@ Class Characters extends Connector {
         $glyphData = array();
         $glyphData['big'] = array();
         $glyphData['small'] = array();
-        $glyphFields = array('0' => 1319, '1' => 1320, '2' => 1321, '3' => 1322, '4' => 1323, '5' => 1324);
+        $glyphFields = array(0 => 1319, 1 => 1320, 2 => 1321, 3 => 1322, 4 => 1323, 5 => 1324);
         for($i=0;$i<6;$i++) {
             $glyph_id = $this->GetDataField($glyphFields[$i]);
             $glyph_info = $this->aDB->selectRow("
-            SELECT `type`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`
+            SELECT `id`, `type`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`
                 FROM `armory_glyphproperties` WHERE `id`=?", $glyph_id);
             if(!$glyph_info) {
                 continue;
             }
             if($glyph_info['type'] == 0) {
                 $glyphData['big'][$i] = $glyph_info;
+                $glyphData['big'][$i]['type'] = 'major';
             }
             elseif($glyph_info['type'] == 1) {
                 $glyphData['small'][$i] = $glyph_info;
+                $glyphData['small'][$i]['type'] = 'minor';
             }
         }
         return $glyphData;
@@ -712,22 +722,22 @@ Class Characters extends Connector {
     /**
      * Returns talent tree name for selected class
      * @category Character class
-     * @example Characters::ReturnTalentTreeNames(6, 2)
+     * @example Characters::ReturnTalentTreeNames(2)
      * @return string
      **/
-    public function ReturnTalentTreesNames($class, $spec) {
-		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=?", $class, $spec);
+    public function ReturnTalentTreesNames($spec) {
+		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=?", $this->class, $spec);
 	}
     
     /**
      * Returns icon name for selected class & talent tree
      * @category Character class
-     * @example Characters::ReturnTalentTreeIcon(6, 2)
+     * @example Characters::ReturnTalentTreeIcon(2)
      * @todo Move this function to Utils class
      * @return string
      **/
-    public function ReturnTalentTreeIcon($class, $tree) {
-        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $class, $tree);
+    public function ReturnTalentTreeIcon($tree) {
+        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $this->class, $tree);
         if($icon) {
             return $icon;
         }
@@ -761,11 +771,11 @@ Class Characters extends Connector {
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
-            $p[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
-                'icon' => $this->aDB->selectCell("SELECT `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']),
-                'value' => $prof['value']
-            );
+            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']);
+            $p[$i]['value'] = $prof['value'];
+            $p[$i]['key'] = str_replace('-sm', '', $p[$i]['icon']);
+            $p[$i]['max'] = 450;
+            unset($p[$i]['icon']);
             $i++;
         }
         return $p;
@@ -779,7 +789,7 @@ Class Characters extends Connector {
      * @todo Make parent sections
      * @return array
      **/
-    public function getCharacterReputation() {
+    public function GetCharacterReputation() {
         if(!$this->guid) {
             return false;
         }
@@ -792,12 +802,13 @@ Class Characters extends Connector {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = array(
-                'name' => $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
-                'descr' => $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $faction['faction']),
-                'standings' => Utils::getReputation($faction['standing']),
-                'standing' => $faction['standing']
-            );
+            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `key` FROM `armory_faction` WHERE `id`=?", $faction['faction']);
+            if($faction['standing'] > 42999) {
+                $factionReputation[$i]['reputation'] = 42999;
+            }
+            else {
+                $factionReputation[$i]['reputation'] = $faction['standing'];
+            }
             $i++;
         }
         return $factionReputation;
@@ -811,7 +822,7 @@ Class Characters extends Connector {
      * Returns value of $fieldNum field. !Requires $this->guid or $guid as second parameter!
      * @category Characters class
      * @exapmle Characters::GetDataField(1203)
-     * @return mixed
+     * @return int
      **/
     public function GetDataField($fieldNum, $guid='') {
         if($guid=='') {
@@ -820,266 +831,527 @@ Class Characters extends Connector {
         $dataField = $fieldNum+1;
         $qData = $this->cDB->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
-            FROM `characters` 
+            FROM `armory_character_stats` 
 				WHERE `guid`=?", $guid);
         return $qData;
     }
     
     // Health value
-    public function getHealthValue() {
+    public function GetMaxHealth() {
         return $this->GetDataField(UNIT_FIELD_HEALTH);
     }
     
     // Mana value
-    public function getManaValue() {
+    public function GetMaxMana() {
         return $this->GetDataField(UNIT_FIELD_POWER1);
     }
     
     // Rage value
-    public function getRageValue() {
+    public function GetMaxRage() {
         return $this->GetDataField(UNIT_FIELD_POWER2);
     }
     
     // Energy (or Runic power for DK) value
-    public function getEnergyValue() {
+    public function GetMaxEnergy() {
         return $this->GetDataField(UNIT_FIELD_POWER4);
     }
     
+    public function SetRating() {
+        if($this->rating) {
+            return $this->rating;
+        }
+        else {
+            $this->rating = Utils::GetRating($this->level);
+            return $this->rating;
+        }
+    }
+    
     /**
-     * Returns array with character stats. Most functions taked from CSWOWD. Requires $this->guid!
-     * @category Character class
-     * @example Characters::ConstructCharacterData()
-     * @todo Update method to 3.3.0a `data` field
-     * @return array
+     * Returns $stat_string stat for current player
      **/
-    public function ConstructCharacterData() {
-        $guid = $this->guid;
-        $StatArray = array();
-        $rating = Utils::GetRating($this->level);
-        /* Basic data */
-        $StatArray['effective_strenght'] = $this->GetDataField(UNIT_FIELD_STAT0);
-        $StatArray['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0), 0);
-        $StatArray['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0), 0);
-        $StatArray['stat_strenght'] = $StatArray['effective_strenght']-$StatArray['bonus_strenght']-$StatArray['negative_strenght'];
-        $StatArray['bonus_strenght_attackpower'] = Utils::GetAttackPowerForStat(STAT_STRENGTH, $StatArray['effective_strenght'], $this->class);
+    public function GetCharacterStat($stat_string, $type=false) {
+        switch($stat_string) {
+            case 'strength':
+                return $this->GetCharacterStrength();
+                break;
+            case 'agility':
+                return $this->GetCharacterAgility();
+                break;
+            case 'stamina':
+                return $this->GetCharacterStamina();
+                break;
+            case 'intellect':
+                return $this->GetCharacterIntellect();
+                break;
+            case 'spirit':
+                return $this->GetCharacterSpirit();
+                break;
+            case 'armor':
+                return $this->GetCharacterArmor();
+                break;                
+            case 'mainHandDamage':
+                return $this->GetCharacterMainHandMeleeDamage();
+                break;
+            case 'offHandDamage':
+                return $this->GetCharacterOffHandMeleeDamage();
+                break;
+            case 'mainHandSpeed':
+                return $this->GetCharacterMainHandMeleeHaste();
+                break;
+            case 'offHandSpeed':
+                return $this->GetCharacterOffHandMeleeHaste();
+                break;
+            case 'power':
+                if(!$type) {
+                    return $this->GetCharacterAttackPower();
+                }
+                elseif($type == 1) {
+                    return $this->GetCharacterRangedAttackPower();
+                }
+                break;
+            case 'hitRating':
+                if(!$type) {
+                    return $this->GetCharacterMeleeHitRating();
+                }
+                elseif($type == 1) {
+                    return $this->GetCharacterRangedHitRating();
+                }
+                elseif($type == 2) {
+                    return $this->GetCharacterSpellHitRating();
+                }
+                break;
+            case 'critChance':
+                if(!$type) {
+                    return $this->GetCharacterMeleeCritChance();
+                }
+                elseif($type == 1) {
+                    return $this->GetCharacterRangedCritChance();
+                }
+                elseif($type == 2) {
+                    return $this->GetCharacterSpellCritChance();
+                }
+                break;
+            case 'expertise':
+                return $this->GetCharacterMainHandMeleeSkill();
+                break;
+            case 'damage':
+                return $this->GetCharacterRangedDamage();
+                break;
+            case 'speed':
+                return $this->GetCharacterRangedHaste();
+                break;
+            case 'weaponSkill':
+                return $this->GetCharacterRangedWeaponSkill();
+                break;
+            case 'bonusDamage':
+                return $this->GetCharacterSpellBonusDamage();
+                break;
+            case 'bonusHealing':
+                return $this->GetCharacterSpellBonusHeal();
+                break;
+            case 'hasteRating':
+                return $this->GetCharacterSpellHaste();
+                break;
+            case 'penetration':
+                return $this->GetCharacterSpellPenetration();
+                break;
+            case 'manaRegen':
+                return $this->GetCharacterSpellManaRegen();
+                break;
+            case 'defense':
+                return $this->GetCharacterDefense();
+                break;
+            case 'dodge':
+                return $this->GetCharacterDodge();
+                break;
+            case 'parry':
+                return $this->GetCharacterParry();
+                break;
+            case 'block':
+                return $this->GetCharacterBlock();
+                break;
+            case 'resilience':
+                return $this->GetCharacterResilence();
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+    
+    /**
+     * Returns array with character strenght data (for <baseStats>)
+     **/
+    public function GetCharacterStrength() {
+        $tmp_stats    = array();
+        
+        $tmp_stats['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0), 0);
+        $tmp_stats['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0), 0);        
+        $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_STAT0);
+        $tmp_stats['attack'] = Utils::GetAttackPowerForStat(STAT_STRENGTH, $tmp_stats['effective'], $this->class);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_strenght']-$tmp_stats['negative_strenght'];
         if($this->class == CLASS_WARRIOR || $this->class == CLASS_PALADIN || $this->class == CLASS_SHAMAN) {
-            $StatArray['bonus_strenght_block'] = max(0, $StatArray['effective_strenght']*BLOCK_PER_STRENGTH - 10);
+            $tmp_stats['block'] = max(0, $tmp_stats['effective']*BLOCK_PER_STRENGTH - 10);
         }
         else {
-            $StatArray['bonus_strenght_block'] = '-1';
+            $tmp_stats['block'] = '-1';
         }
-        $StatArray['effective_agility'] =$this->GetDataField(UNIT_FIELD_STAT1);
-        $StatArray['bonus_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT1), 0);
-        $StatArray['negative_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT1), 0);
-        $StatArray['stat_agility'] = $StatArray['effective_agility']-$StatArray['bonus_agility']-$StatArray['negative_agility'];
-        $StatArray['crit_agility'] = floor(Utils::GetCritChanceFromAgility($rating, $this->class, $StatArray['effective_agility']));
-        $StatArray['bonus_agility_attackpower'] = Utils::GetAttackPowerForStat(STAT_AGILITY, $StatArray['effective_agility'], $this->class);
-        $StatArray['bonus_agility_armor'] = $StatArray['effective_agility'] * ARMOR_PER_AGILITY;
-        if($StatArray['bonus_agility_attackpower'] == 0) {
-            $StatArray['bonus_agility_attackpower'] = '-1';
-        }        
-        $StatArray['effective_stamina'] = $this->GetDataField(UNIT_FIELD_STAT2);
-        $StatArray['bonus_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT2), 0);
-        $StatArray['negative_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT2), 0);
-        $StatArray['stat_stamina'] = $StatArray['effective_stamina']-$StatArray['bonus_stamina']-$StatArray['negative_stamina'];
+        $player_stats = array(
+            'attack'    => $tmp_stats['attack'],
+            'base'      => $tmp_stats['base'],
+            'block'     => $tmp_stats['block'],
+            'effective' => $tmp_stats['effective']
+        );
         
-        $StatArray['base_stamina'] = min(20, $StatArray['effective_stamina']);
-        $StatArray['more_stamina'] = $StatArray['effective_stamina'] - $StatArray['base_stamina'];
-        $StatArray['bonus_stamina_health'] = $StatArray['base_stamina'] + ($StatArray['more_stamina'] * HEALTH_PER_STAMINA);
-        $StatArray['bonus_stamina_petstamina'] = Utils::ComputePetBonus(2, $StatArray['effective_stamina'], $this->class);
-        if($StatArray['bonus_stamina_petstamina'] == 0) {
-            $StatArray['bonus_stamina_petstamina'] = '-1';
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterAgility() {
+        $tmp_stats    = array();
+        $rating       = $this->SetRating();
+        
+        $tmp_stats['effective'] =$this->GetDataField(UNIT_FIELD_STAT1);
+        $tmp_stats['bonus_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT1), 0);
+        $tmp_stats['negative_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT1), 0);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_agility']-$tmp_stats['negative_agility'];
+        $tmp_stats['critHitPercent'] = floor(Utils::GetCritChanceFromAgility($rating, $this->class, $tmp_stats['effective']));
+        $tmp_stats['attack'] = Utils::GetAttackPowerForStat(STAT_AGILITY, $tmp_stats['effective'], $this->class);
+        $tmp_stats['armor'] = $tmp_stats['effective'] * ARMOR_PER_AGILITY;
+        if($tmp_stats['attack'] == 0) {
+            $tmp_stats['attack'] = '-1';
         }
-        $StatArray['effective_intellect'] =$this->GetDataField(UNIT_FIELD_STAT3);
-        $StatArray['bonus_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT3), 0);
-        $StatArray['negative_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT3), 0);
-        $StatArray['stat_intellect'] = $StatArray['effective_intellect']-$StatArray['bonus_intellect']-$StatArray['negative_intellect'];
+        $player_stats = array(
+            'armor'          => $tmp_stats['armor'],
+            'attack'         => $tmp_stats['attack'],
+            'base'           => $tmp_stats['base'],
+            'critHitPercent' => $tmp_stats['critHitPercent'],
+            'effective'      => $tmp_stats['effective']
+        );
+        
+        unset($rating);
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterStamina() {
+        $tmp_stats = array();
+        
+        $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_STAT2);
+        $tmp_stats['bonus_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT2), 0);
+        $tmp_stats['negative_stamina'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT2), 0);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_stamina']-$tmp_stats['negative_stamina'];
+        
+        $tmp_stats['base_stamina'] = min(20, $tmp_stats['effective']);
+        $tmp_stats['more_stamina'] = $tmp_stats['effective'] - $tmp_stats['base_stamina'];
+        $tmp_stats['health'] = $tmp_stats['base_stamina'] + ($tmp_stats['more_stamina'] * HEALTH_PER_STAMINA);
+        $tmp_stats['petBonus'] = Utils::ComputePetBonus(2, $tmp_stats['effective'], $this->class);
+        if($tmp_stats['petBonus'] == 0) {
+            $tmp_stats['petBonus'] = '-1';
+        }
+        $player_stats = array(
+            'base'      => $tmp_stats['base'],
+            'effective' => $tmp_stats['effective'],
+            'health'    => $tmp_stats['health'],
+            'petBonus'  => $tmp_stats['petBonus']
+        );
+        
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterIntellect() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        
+        $tmp_stats['effective'] =$this->GetDataField(UNIT_FIELD_STAT3);
+        $tmp_stats['bonus_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT3), 0);
+        $tmp_stats['negative_intellect'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT3), 0);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_intellect']-$tmp_stats['negative_intellect'];
         if($this->class != CLASS_WARRIOR && $this->class != CLASS_ROGUE && $this->class != CLASS_DK) {
-            $StatArray['base_intellect'] = min(20, $StatArray['effective_intellect']);
-            $StatArray['more_intellect'] = $StatArray['effective_intellect']-$StatArray['base_intellect'];
-            $StatArray['mana_intellect'] = $StatArray['base_intellect']+$StatArray['more_intellect']*MANA_PER_INTELLECT;
-            $StatArray['bonus_intellect_spellcrit'] = round(Utils::GetSpellCritChanceFromIntellect($rating, $this->class, $StatArray['effective_intellect']), 2);
+            $tmp_stats['base_intellect'] = min(20, $tmp_stats['effective']);
+            $tmp_stats['more_intellect'] = $tmp_stats['effective']-$tmp_stats['base_intellect'];
+            $tmp_stats['mana'] = $tmp_stats['base_intellect']+$tmp_stats['more_intellect']*MANA_PER_INTELLECT;
+            $tmp_stats['critHitPercent'] = round(Utils::GetSpellCritChanceFromIntellect($rating, $this->class, $tmp_stats['effective']), 2);
         }
         else {
-            $StatArray['base_intellect'] = '-1';
-            $StatArray['more_intellect'] = '-1';
-            $StatArray['mana_intellect'] = '-1';
-            $StatArray['bonus_intellect_spellcrit'] = '-1';
+            $tmp_stats['base_intellect'] = '-1';
+            $tmp_stats['more_intellect'] = '-1';
+            $tmp_stats['mana'] = '-1';
+            $tmp_stats['critHitPercent'] = '-1';
         }
-        $StatArray['bonus_intellect_petintellect'] = Utils::ComputePetBonus(7, $StatArray['effective_intellect'], $this->class);
-        if($StatArray['bonus_intellect_petintellect'] == 0) {
-            $StatArray['bonus_intellect_petintellect'] = '-1';
+        $tmp_stats['petBonus'] = Utils::ComputePetBonus(7, $tmp_stats['effective'], $this->class);
+        if($tmp_stats['petBonus'] == 0) {
+            $tmp_stats['petBonus'] = '-1';
         }
+        $player_stats = array(
+            'base' => $tmp_stats['base'],
+            'critHitPercent' => $tmp_stats['critHitPercent'],
+            'effective'      => $tmp_stats['effective'],
+            'mana'           => $tmp_stats['mana'],
+            'petBonus'       => $tmp_stats['petBonus']
+        );
         
-        $StatArray['effective_spirit'] =$this->GetDataField(UNIT_FIELD_STAT4);
-        $StatArray['bonus_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT4), 0);
-        $StatArray['negative_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT4), 0);
-        $StatArray['stat_spirit'] = $StatArray['effective_spirit']-$StatArray['bonus_spirit']-$StatArray['negative_spirit'];
+        unset($rating);
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterSpirit() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        
+        $tmp_stats['effective'] =$this->GetDataField(UNIT_FIELD_STAT4);
+        $tmp_stats['bonus_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT4), 0);
+        $tmp_stats['negative_spirit'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT4), 0);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_spirit']-$tmp_stats['negative_spirit'];
         $baseRatio = array(0, 0.625, 0.2631, 0.2, 0.3571, 0.1923, 0.625, 0.1724, 0.1212, 0.1282, 1, 0.1389);
-        $StatArray['bonus_spirit_hpregeneration'] = $StatArray['effective_spirit'] * Utils::GetHRCoefficient($rating, $this->class);
-        $StatArray['base_spirit'] = $StatArray['effective_spirit'];
-        if($StatArray['base_spirit'] > 50) {
-            $StatArray['base_spirit'] = 50;
+        //$tmp_stats['healthRegen'] = $tmp_stats['effective'] * Utils::GetHRCoefficient($rating, $this->class);
+        $tmp_stats['base_spirit'] = $tmp_stats['effective'];
+        if($tmp_stats['base_spirit'] > 50) {
+            $tmp_stats['base_spirit'] = 50;
         }
-        $StatArray['more_spirit'] = $StatArray['effective_spirit'] - $StatArray['base_spirit'];
-        $StatArray['bonus_spirit_hpregeneration'] = floor($StatArray['base_spirit'] * $baseRatio[$this->class] + $StatArray['more_spirit'] * Utils::GetHRCoefficient($rating, $this->class));
+        $tmp_stats['more_spirit'] = $tmp_stats['effective'] - $tmp_stats['base_spirit'];
+        $tmp_stats['healthRegen'] = floor($tmp_stats['base_spirit'] * $baseRatio[$this->class] + $tmp_stats['more_spirit'] * Utils::GetHRCoefficient($rating, $this->class));
         
         if($this->class != CLASS_WARRIOR && $this->class != CLASS_ROGUE && $this->class != CLASS_DK) {
-            $StatArray['bonus_spitit_manaregeneration'] = sqrt($StatArray['effective_intellect']) * $StatArray['effective_spirit'] * Utils::GetMRCoefficient($rating, $this->class);
-            $StatArray['bonus_spitit_manaregeneration'] = floor($StatArray['bonus_spitit_manaregeneration']*5);
+            $intellect_tmp = $this->GetCharacterIntellect();
+            $tmp_stats['manaRegen'] = sqrt($intellect_tmp['effective']) * $tmp_stats['effective'] * Utils::GetMRCoefficient($rating, $this->class);
+            $tmp_stats['manaRegen'] = floor($tmp_stats['manaRegen']*5);
         }
         else {
-            $StatArray['bonus_spitit_manaregeneration'] = '-1';
+            $tmp_stats['manaRegen'] = '-1';
         }
+        $player_stats = array(
+            'base'        => $tmp_stats['base'],
+            'effective'   => $tmp_stats['effective'],
+            'healthRegen' => $tmp_stats['healthRegen'],
+            'manaRegen'   => $tmp_stats['manaRegen']
+        );
         
-        $StatArray['effective_armor'] = $this->GetDataField(UNIT_FIELD_RESISTANCES);
-        $StatArray['bonus_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSPOSITIVE), 0);
-        $StatArray['negative_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSNEGATIVE), 0);
-        $StatArray['stat_armor'] = $StatArray['effective_armor']-$StatArray['bonus_armor']-$StatArray['negative_armor'];
-        $levelModifier = 0;
+        unset($rating);
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterArmor() {
+        $tmp_stats = array();
+        $levelModifier = 0;        
+        
+        $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_RESISTANCES);
+        $tmp_stats['bonus_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSPOSITIVE), 0);
+        $tmp_stats['negative_armor'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RESISTANCEBUFFMODSNEGATIVE), 0);
+        $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_armor']-$tmp_stats['negative_armor'];
         if($this->level > 59 ) {
             $levelModifier = $this->level + (4.5 * ($this->level-59));
         }
-        $StatArray['bonus_armor_reduction'] = 0.1*$StatArray['effective_armor']/(8.5*$levelModifier + 40);
-    	$StatArray['bonus_armor_reduction'] = round($StatArray['bonus_armor_reduction']/(1+$StatArray['bonus_armor_reduction'])*100, 2);
-    	if ($StatArray['bonus_armor_reduction'] > 75) $StatArray['bonus_armor_reduction'] = 75;
-    	if ($StatArray['bonus_armor_reduction'] <  0) $StatArray['bonus_armor_reduction'] = 0;
-        $StatArray['bonus_armor_petbonus'] = Utils::ComputePetBonus(4, $StatArray['effective_armor'], $this->class);
-        if($StatArray['bonus_armor_petbonus'] == 0) {
-            $StatArray['bonus_armor_petbonus'] = '-1';
+        $tmp_stats['reductionPercent'] = 0.1*$tmp_stats['effective']/(8.5*$levelModifier + 40);
+    	$tmp_stats['reductionPercent'] = round($tmp_stats['reductionPercent']/(1+$tmp_stats['reductionPercent'])*100, 2);
+    	if($tmp_stats['reductionPercent'] > 75) {
+    	   $tmp_stats['reductionPercent'] = 75;
+    	}
+    	if($tmp_stats['reductionPercent'] <  0) {
+    	   $tmp_stats['reductionPercent'] = 0;
+    	}
+        $tmp_stats['petBonus'] = Utils::ComputePetBonus(4, $tmp_stats['effective'], $this->class);
+        if($tmp_stats['petBonus'] == 0) {
+            $tmp_stats['petBonus'] = '-1';
         }
+        $player_stats = array(
+            'base'      => $tmp_stats['base'],
+            'effective' => $tmp_stats['effective'],
+            'percent'   => $tmp_stats['reductionPercent'],
+            'petBonus'  => $tmp_stats['petBonus']
+        );
         
-        /* Melee stats */
-        $StatArray['min_melee_dmg'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINDAMAGE), 0);
-        $StatArray['max_melee_dmg'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXDAMAGE), 0);
-        $StatArray['speed_melee_dmg'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000, 2);
-        $StatArray['melee_dmg'] = ($StatArray['min_melee_dmg'] + $StatArray['max_melee_dmg']) * 0.5;
-        $StatArray['dps_melee_dmg'] = round((max($StatArray['melee_dmg'], 1) / $StatArray['speed_melee_dmg']), 1);
-        if($StatArray['speed_melee_dmg'] < 0.1) {
-            $StatArray['speed_melee_dmg'] = '0.1';
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterMainHandMeleeSkill() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        $character_data = $this->cDB->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=?", $this->guid);
+        
+        $tmp_stats['melee_skill_id'] = Utils::getSkillFromItemID($this->getCharacterEquip('mainhand'));
+        $tmp_stats['melee_skill'] = Utils::getSkill($tmp_stats['melee_skill_id'], $character_data);
+        $tmp_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+20);
+        $tmp_stats['additional'] = $tmp_stats['rating']/Utils::GetRatingCoefficient($rating, 2);
+        $buff = $tmp_stats['melee_skill'][4]+$tmp_stats['melee_skill'][5]+intval($tmp_stats['additional']);
+        $tmp_stats['value'] = $tmp_stats['melee_skill'][2]+$buff;
+        
+        $player_stats = array(
+            'value'      => $tmp_stats['value'],
+            'rating'     => $tmp_stats['rating'],
+            'additional' => $tmp_stats['additional'],
+            'percent'    => '0.00'
+        );
+        
+        unset($tmp_stats);
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterOffHandMeleeSkill() {
+        return array('value' => '', 'rating' => '');
+    }
+    
+    public function GetCharacterMainHandMeleeDamage() {
+        $tmp_stats = array();
+        
+        $tmp_stats['min'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINDAMAGE), 0);
+        $tmp_stats['max'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXDAMAGE), 0);
+        $tmp_stats['speed'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000, 2);
+        $tmp_stats['melee_dmg'] = ($tmp_stats['min'] + $tmp_stats['max']) * 0.5;
+        $tmp_stats['dps'] = 0;//round((max($tmp_stats['melee_dmg'], 1) / $tmp_stats['speed']), 1);
+        if($tmp_stats['speed'] < 0.1) {
+            $tmp_stats['speed'] = '0.1';
         }
+        $player_stats = array(
+            'dps'     => $tmp_stats['dps'],
+            'max'     => $tmp_stats['max'],
+            'min'     => $tmp_stats['min'],
+            'percent' => 0,
+            'speed'   => $tmp_stats['speed']
+        );
         
-        $StatArray['hasterating_melee_dmg'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+17);
-        $StatArray['hastepct_melee_dmg'] = round($StatArray['hasterating_melee_dmg'] / Utils::GetRatingCoefficient($rating, 19), 2);
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterOffHandMeleeDamage() {
+        return array('speed' => 0, 'min' => 0, 'max'  => 0, 'percent' => 0, 'dps' => '0.0');
+    }
+    
+    public function GetCharacterMainHandMeleeHaste() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
         
-        $StatArray['multipler_melee_ap'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_ATTACK_POWER_MULTIPLIER), 8);
-        if($StatArray['multipler_melee_ap'] < 0) {
-            $StatArray['multipler_melee_ap'] = 0;
+        $tmp_stats['value'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000, 2);
+        $tmp_stats['hasteRating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+17);
+        $tmp_stats['hastePercent'] = round($tmp_stats['hasteRating'] / Utils::GetRatingCoefficient($rating, 19), 2);
+        
+        unset($rating);
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterOffHandMeleeHaste() {
+        return array('hastePercent' => 0, 'hasteRating' => 0, 'value' => 0);
+    }
+    
+    public function GetCharacterAttackPower() {
+        $tmp_stats = array();
+        
+        $tmp_stats['multipler_melee_ap'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_ATTACK_POWER_MULTIPLIER), 8);
+        if($tmp_stats['multipler_melee_ap'] < 0) {
+            $tmp_stats['multipler_melee_ap'] = 0;
         }
         else {
-            $StatArray['multipler_melee_ap']+=1;
+            $tmp_stats['multipler_melee_ap']+=1;
         }
-        $StatArray['effective_melee_ap'] = $this->GetDataField(UNIT_FIELD_ATTACK_POWER) * $StatArray['multipler_melee_ap'];
-        $StatArray['bonus_melee_ap'] = $this->GetDataField(UNIT_FIELD_ATTACK_POWER_MODS) * $StatArray['multipler_melee_ap'];
-        $StatArray['stat_melee_ap'] = $StatArray['effective_melee_ap'] + $StatArray['bonus_melee_ap'];
-        $StatArray['bonus_ap_dps'] = floor(max($StatArray['stat_melee_ap'], 0)/14);
-                
-        $StatArray['melee_hit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+5);
-        $StatArray['melee_hit_ratingpct'] = floor($StatArray['melee_hit_rating']/Utils::GetRatingCoefficient($rating, 6));
-        $StatArray['melee_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
+        $tmp_stats['base'] = $this->GetDataField(UNIT_FIELD_ATTACK_POWER) * $tmp_stats['multipler_melee_ap'];
+        $tmp_stats['bonus_melee_ap'] = $this->GetDataField(UNIT_FIELD_ATTACK_POWER_MODS) * $tmp_stats['multipler_melee_ap'];
+        $tmp_stats['effective'] = $tmp_stats['base'] + $tmp_stats['bonus_melee_ap'];
+        $tmp_stats['increasedDps'] = floor(max($tmp_stats['effective'], 0)/14);
         
-        $StatArray['melee_crit'] = Utils::getFloatValue($this->GetDataField(PLAYER_CRIT_PERCENTAGE), 2);
-        $StatArray['melee_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+8);
-        $StatArray['melee_crit_ratingpct'] = floor($StatArray['melee_crit_rating']/Utils::GetRatingCoefficient($rating, 9));
+        $player_stats = array(
+            'base'         => $tmp_stats['base'],
+            'effective'    => $tmp_stats['effective'],
+            'increasedDps' => $tmp_stats['increasedDps']
+        );
         
-        $StatArray['melee_skill_id'] = Utils::getSkillFromItemID($this->getCharacterEquip('mainhand'));
-        $character_data = $this->cDB->selectCell("SELECT `data` FROM `characters` WHERE `guid`=?", $this->guid);
-        $StatArray['melee_skill'] = Utils::getSkill($StatArray['melee_skill_id'], $character_data);
-        $StatArray['melee_skill_defrating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+20);
-        $StatArray['melee_skill_ratingadd'] = $StatArray['melee_skill_defrating']/Utils::GetRatingCoefficient($rating, 2);
-        $buff = $StatArray['melee_skill'][4]+$StatArray['melee_skill'][5]+intval($StatArray['melee_skill_ratingadd']);
-        $StatArray['stat_melee_skill'] = $StatArray['melee_skill'][2]+$buff;        
+        unset($tmp_stats);
+        return $player_stats;
+    }
+    
+    public function GetCharacterMeleeHitRating() {
+        $player_stats = array();
+        $rating       = $this->SetRating();
+
+        $player_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+5);
+        $player_stats['increasedHitPercent'] = floor($player_stats['value']/Utils::GetRatingCoefficient($rating, 6));
+        $player_stats['armorPenetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
+        $player_stats['reducedArmorPercent'] = '0.00';
         
-        $gskill = $this->getCharacterSkill(SKILL_DEFENCE);
-        $StatArray['defense_rating_skill'] = $gskill['value'];
-        $StatArray['rating_defense'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
-        $StatArray['rating_defense_add'] = $StatArray['rating_defense']/Utils::GetRatingCoefficient($rating, 2);
-        $buff = intval($StatArray['rating_defense_add']);
-        $StatArray['stat_defense_rating'] = $StatArray['rating_defense_add']+$buff;
-        $StatArray['defense_percent'] = DODGE_PARRY_BLOCK_PERCENT_PER_DEFENSE * ($StatArray['stat_defense_rating'] - $this->level*5);
-        $StatArray['defense_percent'] = max($StatArray['defense_percent'], 0);
-        unset($character_data);
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterMeleeCritChance() {
+        $rating = $this->SetRating();
+        $player_stats = array();
         
-        $rating = Utils::GetRating($this->level);
-        $StatArray['dodge_chance'] = Utils::getFloatValue($this->GetDataField(PLAYER_DODGE_PERCENTAGE), 2);
-        $StatArray['stat_dodge'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+2);
-        $StatArray['stat_dodge_pct'] = floor($StatArray['stat_dodge']/Utils::GetRatingCoefficient($rating, 3));
+        $player_stats['percent'] = Utils::getFloatValue($this->GetDataField(PLAYER_CRIT_PERCENTAGE), 2);
+        $player_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+8);
+        $player_stats['plusPercent'] = floor($player_stats['rating']/Utils::GetRatingCoefficient($rating, 9));
         
-        $StatArray['parry_chance'] = Utils::getFloatValue($this->GetDataField(PLAYER_PARRY_PERCENTAGE), 2);
-        $StatArray['stat_parry'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+3);
-        $StatArray['stat_parry_pct'] = floor($StatArray['stat_parry']/Utils::GetRatingCoefficient($rating, 4));
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterRangedWeaponSkill() {
+        return array('value' => '-1', 'rating' => '-1');
+    }
+    
+    public function GetCharacterRangedDamage() {
+        $tmp_stats     = array();
+        $rangedSkillID = Mangos::getSkillFromItemID($this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID));
         
-        $StatArray['melee_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_MELEE_RATING);
-        $StatArray['ranged_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_RANGED_RATING);
-        $StatArray['spell_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_SPELL_RATING);
-        
-        $StatArray['min_resilence'] = min($StatArray['melee_resilence'], $StatArray['ranged_resilence'], $StatArray['spell_resilence']);
-        
-        $StatArray['melee_resilence_pct'] = $StatArray['melee_resilence']/Utils::GetRatingCoefficient($rating, 15);
-        $StatArray['ranged_resilence_pct'] = $StatArray['ranged_resilence']/Utils::GetRatingCoefficient($rating, 16);
-        $StatArray['spell_resilence_pct'] = $StatArray['spell_resilence']/Utils::GetRatingCoefficient($rating, 17);
-        
-        $StatArray['mana_regen_out_of_cast'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER);
-        $StatArray['mana_regen_cast'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER);
-        $StatArray['mana_regen_out_of_cast'] =  floor(Utils::getFloatValue($StatArray['mana_regen_out_of_cast'],2)*5);
-        $StatArray['mana_regen_cast'] =  round(Utils::getFloatValue($StatArray['mana_regen_cast'],2)*5, 2);
-         
-        
-        $holySchool = 1;
-        $minModifier = Utils::GetSpellBonusDamage($holySchool, $guid);
-        for ($i=1;$i<7;$i++) {
-            $bonusDamage[$i] = Utils::GetSpellBonusDamage($i, $guid);
-            $minModifier = min($minModifier, $bonusDamage);
+        if($rangedSkillID == SKILL_UNARMED) {
+            $tmp_stats['min'] = 0;
+            $tmp_stats['max'] = 0;
+            $tmp_stats['speed'] = 0;
+            $tmp_stats['dps'] = 0;
         }
-        $StatArray['spd_holy'] = $bonusDamage[2];
-        $StatArray['spd_fire'] = $bonusDamage[2];
-        $StatArray['spd_nature'] = $bonusDamage[3];
-        $StatArray['spd_frost'] = $bonusDamage[4];
-        $StatArray['spd_shadow'] = $bonusDamage[5];
-        $StatArray['spd_arcane'] = $bonusDamage[6];
-        $StatArray['pet_bonus_ap'] = '-1';
-        $StatArray['pet_bonus_dmg'] = '-1';
-        if($this->class == 3 || $this->class == 9) {
-            $shadow = Utils::GetSpellBonusDamage(5, $guid);
-            $fire = Utils::GetSpellBonusDamage(2, $guid);
-            $StatArray['pet_bonus_ap'] =  Utils::ComputePetBonus(6, max($shadow, $fire), $this->class);
-            $StatArray['pet_bonus_dmg'] =  Utils::ComputePetBonus(5, max($shadow, $fire), $this->class);
+        else {
+            $tmp_stats['min'] =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINRANGEDDAMAGE), 0);
+            $tmp_stats['max'] =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXRANGEDDAMAGE), 0);
+            $tmp_stats['speed'] = round( Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME), 2)/1000, 2);
+            $tmp_stats['ranged_dps'] = ($tmp_stats['min'] + $tmp_stats['max']) * 0.5;
+            if($tmp_stats['speed'] < 0.1) {
+                $tmp_stats['speed'] = 0.1;
+            }
+            $tmp_stats['dps'] = round((max($tmp_stats['ranged_dps'], 1) / $tmp_stats['speed']));
         }
         
-        // spell heal bonus
-        $StatArray['heal_bonus'] = $this->GetDataField(PLAYER_FIELD_MOD_HEALING_DONE_POS);
-        // spell haste
-        $StatArray['spell_haste_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+19);
-        $StatArray['spell_haste_pct'] = round($StatArray['spell_haste_rating']/ Utils::GetRatingCoefficient($rating, 20), 2);
-        // spell hit
-        $StatArray['spell_hit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+7);
-        $StatArray['spell_hit_pct'] = floor($StatArray['spell_hit_rating']/ Utils::GetRatingCoefficient($rating, 8));
-        $StatArray['spell_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_RESISTANCE);
-        // Spell crit
-        $StatArray['spell_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+10);
-        $StatArray['spell_crit_pct'] = $StatArray['spell_crit_rating']/ Utils::GetRatingCoefficient($rating, 11);
-        $minCrit = $this->GetDataField(PLAYER_SPELL_CRIT_PERCENTAGE1+1);
-        for($i=1;$i<7;$i++) {
-            $scfield = PLAYER_SPELL_CRIT_PERCENTAGE1+$i;
-            $s_crit_value = $this->GetDataField($scfield);
-            $spellCrit[$i] =  Utils::getFloatValue($s_crit_value, 2);
-            $minCrit = min($minCrit, $spellCrit[$i]);
-        }
-        $StatArray['spell_crit_holy'] = $spellCrit[1];
-        $StatArray['spell_crit_fire'] = $spellCrit[2];
-        $StatArray['spell_crit_nature'] = $spellCrit[3];
-        $StatArray['spell_crit_frost'] = $spellCrit[4];
-        $StatArray['spell_crit_arcane'] = $spellCrit[5];
-        $StatArray['spell_crit_shadow'] = $spellCrit[6];
+        $player_stats = array(
+            'speed'   => $tmp_stats['speed'],
+            'min'     => $tmp_stats['min'],
+            'max'     => $tmp_stats['max'],
+            'dps'     => $tmp_stats['dps'],
+            'percent' => '0.00'
+        );
         
-        // block
-        $blockvalue = $this->GetDataField(PLAYER_BLOCK_PERCENTAGE);
-        $StatArray['block_pct'] =  Utils::getFloatValue($blockvalue,2);
-        $StatArray['block_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+4);
-        //TODO: block %
-        $StatArray['block_chance'] = $this->GetDataField(PLAYER_SHIELD_BLOCK);
-        // ranged attack power
-        $multipler =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGED_ATTACK_POWER_MULTIPLIER), 8);
+        unset($tmp_stats);
+        unset($rangedSkillID);
+        return $player_stats;
+    }
+    
+    public function GetCharacterRangedHaste() {
+        $player_stats  = array();
+        $rating        = $this->SetRating();
+        $rangedSkillID = Mangos::getSkillFromItemID($this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID));
+        
+        if($rangedSkillID == SKILL_UNARMED) {
+            $player_stats['value'] = '0';
+            $player_stats['hasteRating'] = '0';
+            $player_stats['hastePercent'] = '0';
+        }
+        else {
+            $player_stats['value'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME),2)/1000, 2);
+            $player_stats['hasteRating'] = round($this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+18));
+            $player_stats['hastePercent'] = round($player_stats['hasteRating']/ Utils::GetRatingCoefficient($rating, 19), 2);
+        }
+        
+        unset($rating);
+        unset($rangedSkillID);
+        return $player_stats;
+    }
+    
+    public function GetCharacterRangedAttackPower() {
+        $player_stats = array();
+        
+        $multipler =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGED_ATTACK_POWER_MULTIPLIER), 8);        
         if($multipler < 0) {
             $multipler = 0;
         }
@@ -1098,54 +1370,213 @@ Class Characters extends Connector {
             $negBuff = $buff;
         }
         $stat = $effectiveStat+$buff;
-        $StatArray['ranged_base'] = floor($effectiveStat);
-        $StatArray['ranged_effective'] = floor($stat);
-        $StatArray['ranged_dps_ap'] = floor(max($stat, 0)/14);
-        $StatArray['ranged_pet_ap'] = floor( Utils::ComputePetBonus(0, $stat, $this->class));
-        $StatArray['ranged_pet_spd'] = floor( Utils::ComputePetBonus(1, $stat, $this->class));
+        $player_stats['base'] = floor($effectiveStat);
+        $player_stats['effective'] = floor($stat);
+        $player_stats['increasedDps'] = floor(max($stat, 0)/14);
+        $player_stats['petAttack'] = floor(Utils::ComputePetBonus(0, $stat, $this->class));
+        $player_stats['petSpell'] = floor(Utils::ComputePetBonus(1, $stat, $this->class));
         
-        // ranged speed
-        $rangedSkillID = Mangos::getSkillFromItemID($this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID));
-        if($rangedSkillID == SKILL_UNARMED) {
-            $StatArray['ranged_speed'] = '0';
-            $StatArray['ranged_speed_rating'] = '0';
-            $StatArray['ranged_speed_pct'] = '0';
+        return $player_stats;
+    }
+    
+    public function GetCharacterRangedHitRating() {
+        $player_stats = array();
+        $rating       = $this->SetRating();
+        
+        $player_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+6);
+        $player_stats['increasedHitPercent'] = floor($player_stats['value']/ Utils::GetRatingCoefficient($rating, 7));
+        $player_stats['reducedArmorPercent'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
+        $player_stats['penetration'] = '';
+        
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterRangedCritChance() {
+        $player_stats = array();
+        $rating       = $this->SetRating();        
+        
+        $player_stats['percent'] =  Utils::getFloatValue($this->GetDataField(PLAYER_RANGED_CRIT_PERCENTAGE), 2);
+        $player_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+9);
+        $player_stats['plusPercent'] = floor($player_stats['rating']/ Utils::GetRatingCoefficient($rating, 10));
+        
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterSpellBonusDamage() {
+        $tmp_stats  = array();
+        $holySchool = 1;
+        $minModifier = Utils::GetSpellBonusDamage($holySchool, $this->guid);
+        
+        for ($i=1;$i<7;$i++) {
+            $bonusDamage[$i] = Utils::GetSpellBonusDamage($i, $this->guid);
+            $minModifier = min($minModifier, $bonusDamage);
         }
-        else {
-            $StatArray['ranged_speed'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME),2)/1000, 2);
-            $StatArray['ranged_speed_rating'] = round($this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+18));
-            $StatArray['ranged_speed_pct'] = round($StatArray['ranged_speed_rating']/ Utils::GetRatingCoefficient($rating, 19), 2);
+        $tmp_stats['arcane'] = $bonusDamage[6];
+        $tmp_stats['fire']   = $bonusDamage[2];
+        $tmp_stats['frost']  = $bonusDamage[4];
+        $tmp_stats['holy']   = $bonusDamage[2];
+        $tmp_stats['nature'] = $bonusDamage[3];
+        $tmp_stats['shadow'] = $bonusDamage[5];
+        
+        $tmp_stats['attack'] = '-1';
+        $tmp_stats['damage'] = '-1';
+        if($this->class == 3 || $this->class == 9) {
+            $shadow = Utils::GetSpellBonusDamage(5, $this->guid);
+            $fire   = Utils::GetSpellBonusDamage(2, $this->guid);
+            $tmp_stats['attack'] = Utils::ComputePetBonus(6, max($shadow, $fire), $this->class);
+            $tmp_stats['damage'] = Utils::ComputePetBonus(5, max($shadow, $fire), $this->class);
         }
+        $tmp_stats['fromType'] = '';
         
-        // ranged hit rating
-        $StatArray['ranged_hit'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+6);
-        $StatArray['ranged_hit_pct'] = floor($StatArray['ranged_hit']/ Utils::GetRatingCoefficient($rating, 7));
-        $StatArray['ranged_hit_penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterSpellCritChance() {
+        $player_stats = array();
+        $spellCrit    = array();
+        $rating       = $this->SetRating();
         
-        // ranged crit
-        $StatArray['ranged_crit'] =  Utils::getFloatValue($this->GetDataField(PLAYER_RANGED_CRIT_PERCENTAGE), 2);
-        $StatArray['ranged_crit_rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+9);
-        $StatArray['ranged_crit_pct'] = floor($StatArray['ranged_crit_rating']/ Utils::GetRatingCoefficient($rating, 10));
-        if($rangedSkillID == SKILL_UNARMED) {
-            $StatArray['ranged_dps'] = 0;
-            $StatArray['ranged_dps_min'] = 0;
-            $StatArray['ranged_dps_max'] = 0;
-            $StatArray['ranged_dps_speed'] = 0;
-            $StatArray['ranged_dps_pct'] = 0;
+        $player_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+10);
+        $player_stats['spell_crit_pct'] = $player_stats['rating']/ Utils::GetRatingCoefficient($rating, 11);
+        $minCrit = $this->GetDataField(PLAYER_SPELL_CRIT_PERCENTAGE1+1);
+        for($i=1;$i<7;$i++) {
+            $scfield = PLAYER_SPELL_CRIT_PERCENTAGE1+$i;
+            $s_crit_value = $this->GetDataField($scfield);
+            $spellCrit[$i] =  Utils::getFloatValue($s_crit_value, 2);
+            $minCrit = min($minCrit, $spellCrit[$i]);
         }
-        else {
-            $StatArray['ranged_dps_min'] =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINRANGEDDAMAGE), 0);
-            $StatArray['ranged_dps_max'] =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXRANGEDDAMAGE), 0);
-            $StatArray['ranged_dps_speed'] = round( Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGEDATTACKTIME), 2)/1000, 2);
-            $StatArray['ranged_dps'] = ($StatArray['ranged_dps_min'] + $StatArray['ranged_dps_max']) * 0.5;
-            if($StatArray['ranged_dps_speed'] < 0.1) {
-                $StatArray['ranged_dps_speed'] = 0.1;
-            }
-            $StatArray['ranged_dps_pct'] = round((max($StatArray['ranged_dps'], 1) / $StatArray['ranged_dps_speed']));
-        }
+        $player_stats['arcane'] = $spellCrit[5];
+        $player_stats['fire']   = $spellCrit[2];
+        $player_stats['frost']  = $spellCrit[4];
+        $player_stats['holy']   = $spellCrit[2];
+        $player_stats['nature'] = $spellCrit[3];        
+        $player_stats['shadow'] = $spellCrit[6];
         
+        unset($rating);
+        unset($spellCrit);
+        unset($player_stats['spell_crit_pct']);
+        return $player_stats;
+    }
+    
+    public function GetCharacterSpellHitRating() {
+        $player_stats = array();
+        $rating       = $this->SetRating();
         
-        return $StatArray;
+        $player_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+7);
+        $player_stats['increasedHitPercent'] = floor($player_stats['value']/ Utils::GetRatingCoefficient($rating, 8));
+        $player_stats['penetration'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_RESISTANCE);
+        $player_stats['reducedResist'] = '0';
+
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterSpellBonusHeal() {
+        return array('value' => $this->GetDataField(PLAYER_FIELD_MOD_HEALING_DONE_POS));
+    }
+    
+    public function GetCharacterSpellHaste() {
+        $player_stats = array();
+        $rating       = $this->SetRating();
+        $player_stats['hasteRating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+19);
+        $player_stats['hastePercent'] = round($player_stats['hasteRating']/ Utils::GetRatingCoefficient($rating, 20), 2);
+        
+        unset($rating);
+        return $player_stats;
+    }
+    
+    public function GetCharacterSpellPenetration() {
+        return array('value' => 0);
+    }
+    
+    public function GetCharacterSpellManaRegen() {
+        $player_stats = array();
+        
+        $player_stats['notCasting'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER);
+        $player_stats['casting'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER);
+        $player_stats['notCasting'] =  floor(Utils::getFloatValue($player_stats['notCasting'],2)*5);
+        $player_stats['casting'] =  round(Utils::getFloatValue($player_stats['casting'],2)*5, 2);
+        
+        return $player_stats;
+    }
+    
+    public function GetCharacterDefense() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        $gskill = $this->getCharacterSkill(SKILL_DEFENCE);
+        
+        $tmp_stats['defense_rating_skill'] = $gskill['value'];
+        $tmp_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
+        $tmp_stats['plusDefense'] = $tmp_stats['value']/Utils::GetRatingCoefficient($rating, 2);
+        $buff = intval($tmp_stats['plusDefense']);
+        $tmp_stats['rating'] = $tmp_stats['plusDefense']+$buff;
+        $tmp_stats['increasePercent'] = DODGE_PARRY_BLOCK_PERCENT_PER_DEFENSE * ($tmp_stats['rating'] - $this->level*5);
+        $tmp_stats['increasePercent'] = max($tmp_stats['increasePercent'], 0);
+        $tmp_stats['decreasePercent'] = $tmp_stats['increasePercent'];
+        
+        unset($rating);
+        unset($gskill);
+        unset($tmp_stats['defense_rating_skill']);
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterDodge() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        
+        $tmp_stats['percent'] = Utils::getFloatValue($this->GetDataField(PLAYER_DODGE_PERCENTAGE), 2);
+        $tmp_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+2);
+        $tmp_stats['increasePercent'] = floor($tmp_stats['rating']/Utils::GetRatingCoefficient($rating, 3));
+        
+        unset($rating);
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterParry() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        
+        $tmp_stats['percent'] = Utils::getFloatValue($this->GetDataField(PLAYER_PARRY_PERCENTAGE), 2);
+        $tmp_stats['rating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+3);
+        $tmp_stats['increasePercent'] = floor($tmp_stats['rating']/Utils::GetRatingCoefficient($rating, 4));
+        
+        unset($rating);
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterBlock() {
+        $tmp_stats = array();
+                
+        $blockvalue = $this->GetDataField(PLAYER_BLOCK_PERCENTAGE);
+        $tmp_stats['percent'] =  Utils::getFloatValue($blockvalue,2);
+        $tmp_stats['increasePercent'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+4);
+        $tmp_stats['rating'] = $this->GetDataField(PLAYER_SHIELD_BLOCK);
+        
+        return $tmp_stats;
+    }
+    
+    public function GetCharacterResilence() {
+        $tmp_stats = array();
+        $rating    = $this->SetRating();
+        
+        $tmp_stats['melee_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_MELEE_RATING);
+        $tmp_stats['ranged_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_RANGED_RATING);
+        $tmp_stats['spell_resilence'] = $this->GetDataField(PLAYER_FIELD_CRIT_TAKEN_SPELL_RATING);        
+        $tmp_stats['value'] = min($tmp_stats['melee_resilence'], $tmp_stats['ranged_resilence'], $tmp_stats['spell_resilence']);
+        $tmp_stats['damagePercent'] = $tmp_stats['melee_resilence']/Utils::GetRatingCoefficient($rating, 15);
+        $tmp_stats['ranged_resilence_pct'] = $tmp_stats['ranged_resilence']/Utils::GetRatingCoefficient($rating, 16);
+        $tmp_stats['hitPercent'] = $tmp_stats['spell_resilence']/Utils::GetRatingCoefficient($rating, 17);
+        
+        $player_stats = array(
+            'value'         => $tmp_stats['value'],
+            'hitPercent'    => $tmp_stats['hitPercent'],
+            'damagePercent' => $tmp_stats['damagePercent']
+        );
+        unset($rating);
+        unset($tmp_stats);
+        return $player_stats;
     }
     
     /**
@@ -1226,18 +1657,13 @@ Class Characters extends Connector {
     }
     
     /**
-     * DEVELOPMENT
+     * IN DEVELOPMENT
      **/
-    public function GetCharacterFeed($full=false) {
+    public function GetCharacterFeed() {
         if(!$this->guid) {
             return false;
         }
-        if($full == false) {
-            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
-        }
-        else {
-            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
-        }
+        $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
         if(!$data) {
             return false;
         }
@@ -1251,10 +1677,16 @@ Class Characters extends Connector {
                             continue;
                         }
                     }
-                    $feed_data[$i] = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`, `points`, `iconname` FROM `armory_achievement` WHERE `id`=?", $feed['data']);
-                    $feed_data[$i]['type'] = $feed['type'];
-                    $feed_data[$i]['date'] = strtotime($feed['date']);
-                    $feed_data[$i]['data'] = $feed['data'];
+                    $feed_data[$i]['data'] = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `points`, `iconname` FROM `armory_achievement` WHERE `id`=?", $feed['data']);
+                    $feed_data[$i]['header'] = array(
+                        'type'    => 'achievement',
+                        'date'    => date('d.m.Y', strtotime($feed['date'])),
+                        'time'    => date('H:i:s', strtotime($feed['date'])),
+                        'reldate' => '',
+                        'id'      => $feed['data'],
+                        'sort'    => 'earlier',
+                        'points'  => $feed_data[$i]['data']['points']
+                    );
                     break;
                 case TYPE_ITEM_FEED:
                     $feed_data[$i]['name'] = Items::getItemName($feed['data']);
@@ -1275,6 +1707,51 @@ Class Characters extends Connector {
             $i++;
         }
         return $feed_data;
+    }
+    
+    /**
+     * @todo enchantments
+     **/
+    public function GetCharacterItemInfo($slot) {
+        if(!$this->guid) {
+            return false;
+        }
+        $item_id = $this->getCharacterEquip($slot['slot']);
+        if(!$item_id) {
+            return false;
+        }
+        $durability = Items::getItemDurability($this->guid, $item_id);
+        $gems = array(
+            'g0' => Items::extractSocketInfo($this->guid, $item_id, 1),
+            'g1' => Items::extractSocketInfo($this->guid, $item_id, 2),
+            'g2' => Items::extractSocketInfo($this->guid, $item_id, 3)
+        );
+        $enchantment = $this->getCharacterEnchant($slot);
+        $item_info = array(
+            'displayInfoId'          => Items::GetItemInfo($item_id, 'displayid'),
+            'durability'             => $durability['current'],
+            'icon'                   => Items::getItemIcon($item_id),
+            'id'                     => $item_id,
+            'level'                  => Items::GetItemInfo($item_id, 'itemlevel'),
+            'maxDurability'          => $durability['max'],
+            'name'                   => Items::getItemName($item_id),
+            'permanentEnchantIcon'   => '0',
+            'permanentEnchantItemId' => '0',
+            'permanentenchant'       => '',
+            'pickUp'                 => 'PickUpLargeChain',
+            'putDown'                => 'PutDownLArgeChain',
+            'randomPropertiesId'     => '0',
+            'rarity'                 => Items::GetItemInfo($item_id, 'quality'),
+            'seed'                   => '0',
+            'slot'                   => $slot['slotid']
+        );
+        for($i=0;$i<3;$i++) {
+            if($gems['g'.$i]['item'] > 0) {
+                $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
+                $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
+            }
+        }
+        return $item_info;
     }
 }
 ?>

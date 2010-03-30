@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+
+<!--<str id="serverFirst.realm.first."></str>
+<str id="regionFirst.realm.first."></str>-->
+
+<str id="serverFirst.realm.first.level.80">
+    <param-html1/> is the first character to reach level 80 on the <param-html2/> realm!</str>
+<str id="regionFirst.realm.first.level.80">Congratulations to <param-html1/> of <param-html2/> for being the first character across all realms to reach level 80! </str>
+
+<str id="serverFirst.realm.first.level.80.classrace">
+    <param-html1/> is the first <param-html3/> to reach level 80 on the <param-html2/> realm! </str>
+<str id="regionFirst.realm.first.level.80.classrace">Congratulations to <param-html1/> of <param-html2/> for being the first <param-html3/> across all realms to reach level 80! </str>
+
+<str id="serverFirst.realm.first.northrend.vanguard">
+    <param-html1/> is the first character to achieve Exalted reputation with the Argent Crusade, Wyrmrest Accord, Kirin Tor, and Knights of the Ebon Blade on the <param-html2/> realm!</str>
+
+<str id="regionFirst.realm.first.northrend.vanguard">Congratulations to <param-html1/>, the first character across all realms to achieve Exalted reputation with the Argent Crusade, Wyrmrest Accord, Kirin Tor, and Knights of the Ebon Blade! </str>
+
+<str id="serverFirst.realm.first.grand.master.profession">
+    <param-html1/> is the first character to attain 450 skill in <param-html3/> on the <param-html2/> realm!</str>
+
+<str id="regionFirst.realm.first.grand.master.profession">Congratulations to <param-html1/> of <param-html2/> for being the first character across all realms to attain 450 skill in <param-html3/>!</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas">
+    <param-html1/> are the first guilds to defeat Kel’Thuzad in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "Conqueror of Naxxramas."</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat Kel’Thuzad in Heroic difficulty! The characters who took part have each earned the title, "Conqueror of Naxxramas."</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas.single">
+    <param-html1/> is the first guild to defeat Kel’Thuzad in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "Conqueror of Naxxramas."</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat Kel’Thuzad in Heroic difficulty! The characters who took part have each earned the title, "Conqueror of Naxxramas."</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer">
+    <param-html1/> are the first guilds to defeat Sartharion the Onyx Guardian in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "Obsidian Slayer."</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat Sartharion the Onyx Guardian in Heroic difficulty! The characters who took part have each earned the title, "Obsidian Slayer."</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer.single">
+    <param-html1/> is the first guild to defeat Sartharion the Onyx Guardian in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "Obsidian Slayer."</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat Sartharion the Onyx Guardian in Heroic difficulty! The characters who took part have each earned the title, "Obsidian Slayer."</str>
+
+<str id="serverFirst.realm.first.magic.seeker">
+    <param-html1/> are the first guilds to defeat Malygos in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "The Magic Seeker."</str>
+
+<str id="regionFirst.realm.first.magic.seeker">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat Malygos in Heroic difficulty! The characters who took part have each earned the title, "The Magic Seeker."</str>
+
+<str id="serverFirst.realm.first.magic.seeker.single">
+    <param-html1/> is the first guild to defeat Malygos in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "The Magic Seeker."</str>
+
+<str id="regionFirst.realm.first.magic.seeker.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat Malygos in Heroic difficulty! The characters who took part have each earned the title, "The Magic Seeker."</str>
+<str id="serverFirst.realm.first.celestial.defender">
+    <param-html1/> are the first guilds to defeat Algalon the Observer in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "The Celestial Defender."</str>
+<str id="regionFirst.realm.first.celestial.defender">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat Algalon the Observer in Heroic difficulty! The characters who took part have each earned the title, "The Celestial Defender."</str>
+<str id="serverFirst.realm.first.celestial.defender.single">
+    <param-html1/> is the first guild to defeat Algalon the Observer in Heroic Difficulty on the <param-html2/> realm! The characters who took part have each earned the title, "The Celestial Defender."</str>
+<str id="regionFirst.realm.first.celestial.defender.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat Algalon the Observer in Heroic difficulty! The characters who took part have each earned the title, "The Celestial Defender."</str>
+<str id="serverFirst.realm.first.deaths.demise">
+    <param-html1/> are the first guilds to defeat Yogg-Saron in Heroic Difficulty without the assistance of any Keepers on the <param-html2/> realm! The characters who took part have each earned the title, "Death's Demise."</str>
+<str id="regionFirst.realm.first.deaths.demise">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat Yogg-Saron in Heroic Difficulty without the assistance of any Keepers! The characters who took part have each earned the title, "Death's Demise."</str>
+<str id="serverFirst.realm.first.deaths.demise.single">
+    <param-html1/> is the first guild to defeat Yogg-Saron in Heroic Difficulty without the assistance of any Keepers on the <param-html2/> realm! The characters who took part have each earned the title, "Death's Demise."</str>
+<str id="regionFirst.realm.first.deaths.demise.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat Yogg-Saron in Heroic Difficulty without the assistance of any Keepers! The characters who took part have each earned the title, "Death's Demise."</str>
+<str id="serverFirst.realm.first.grand.crusader">
+    <param-html1/> are the first guilds to overcome the Trial of the Grand Crusader with 50 attempts remaining on the <param-html2/> realm! The characters who took part have each earned the title, "Grand Crusader."</str>
+<str id="regionFirst.realm.first.grand.crusader">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to overcome the Trial of the Grand Crusader with 50 attempts remaining! The characters who took part have each earned the title, "Grand Crusader."</str>
+<str id="serverFirst.realm.first.grand.crusader.single">
+    <param-html1/> is the first guild to overcome the Trial of the Grand Crusader with 50 attempts remaining on the <param-html2/> realm! The characters who took part have each earned the title, "Grand Crusader."</str>
+<str id="regionFirst.realm.first.grand.crusader.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to overcome the Trial of the Grand Crusader with 50 attempts remaining! The characters who took part have each earned the title, "Grand Crusader."</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king">
+    <param-html1/> are the first guilds to defeat the Lich King in 25-player Heroic difficulty on the <param-html2/> realm!</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king">Congratulations to <param-html1/> of <param-html2/>, the first guilds across all realms to defeat the Lich King in 25-player Heroic difficulty!</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king.single">
+    <param-html1/> is the first guild to defeat the Lich King in 25-player Heroic difficulty on the <param-html2/> realm!</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king.single">Congratulations to <param-html1/> of <param-html2/>, the first guild across all realms to defeat the Lich King in 25-player Heroic difficulty!</str>
+<str id="level80pos">23</str>
+
+<str id="blood.elf.name">blood elf</str>
+<str id="death.knight.name">death knight</str>
+<str id="draenei.name">draenei</str>
+<str id="druid.name">druid</str>
+<str id="dwarf.name">dwarf</str>
+<str id="forsaken.name">forsaken</str>
+<str id="gnome.name">gnome</str>
+<str id="human.name">human</str>
+<str id="hunter.name">hunter</str>
+<str id="mage.name">mage</str>
+<str id="night.elf.name">night elf</str>
+<str id="orc.name">orc</str>
+<str id="paladin.name">paladin</str>
+<str id="priest.name">priest</str>
+<str id="rogue.name">rogue</str>
+<str id="shaman.name">shaman</str>
+<str id="tauren.name">tauren</str>
+<str id="troll.name">troll</str>
+<str id="warlock.name">warlock</str>
+<str id="warrior.name">warrior</str>
+
+<str id="cooking.grand.master.type">cooking</str>
+<str id="first.aid.grand.master.type">first aid</str>
+<str id="grand.master.alchemist.type">alchemy</str>
+<str id="grand.master.angler.type">fishing</str>
+<str id="grand.master.blacksmith.type">blacksmithing</str>
+<str id="grand.master.enchanter.type">enchanting</str>
+<str id="grand.master.engineer.type">engineering</str>
+<str id="grand.master.herbalist.type">herbalism</str>
+<str id="grand.master.jewelcrafter.type">jewelcrafting</str>
+<str id="grand.master.leatherworker.type">leatherworking</str>
+<str id="grand.master.miner.type">mining</str>
+<str id="grand.master.scribe.type">inscription</str>
+<str id="grand.master.skinner.type">skinning</str>
+<str id="grand.master.tailor.type">tailoring</str>
+
+</strs>

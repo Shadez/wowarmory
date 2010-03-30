@@ -1,0 +1,24 @@
+.battlegroups {background:url('../images/battlegroups/battlegroups-bg.jpg') 100% 0px no-repeat;}
+
+.battlegroups .battlegroupList{width:840px;margin:0 auto;}
+
+.battlegroups .battlegroupList .selectTitle{font-weight:bold;color:#3e5a69; float: left; padding-left: 4px; padding-top: 10px}
+
+.battlegroups .battlegroupList .realmSelect{float:right;font-weight:bold; margin:5px 3px 5px 0;} 
+.battlegroups .battlegroupList .realmSelect select{margin:0 0 0 5px;}
+
+.battlegroups .battlegroupList .battlegroup{cursor:pointer;width:270px;height:48px;background:url('../images/battlegroups/button.jpg') 0 0 no-repeat;float:left;border:1px solid #c39749;margin:3px;}
+.battlegroups .battlegroupList .battlegroup:hover{background-position:0 -48px;}
+.battlegroups .battlegroupList .battlegroup a.title,.battlegroups .battlegroupList .battlegroup a.title:visited{text-decoration:none;display:block;color:#668597;font-weight:bold;text-align:center;width:270px;padding:6px 0 0 0;font-size:16px; }
+.battlegroups .battlegroupList .battlegroup:hover a.title{color:#ab5a19}
+
+.battlegroups .battlegroupList .ladderChoice{text-align:center;height:20px;margin:0 auto -20px;width:150px;}
+
+.battlegroups .battlegroupList .battlegroup .ladderChoice table{width:105px;margin:0 auto;}
+.battlegroups .battlegroupList .battlegroup .ladderChoice td{width:35px;height:18px;}
+.battlegroups .battlegroupList .battlegroup .ladderChoice a,.battlegroups .battlegroupList .battlegroup .ladderChoice a:visited{font-weight:normal;color:#7d4212;padding: 0px 4px;text-decoration:underline;display:block;width:27px;}
+.battlegroups .battlegroupList .battlegroup .ladderChoice a.selected{font-weight:bold;color:#7d4212;}
+
+.battlegroups .battlegroupList .tournamentRealm{height:33px!important;padding-top:13px!important; }
+
+.battlegroups .tournamentRealms{background:url('../images/battlegroups/battlegroups-arena-bg.gif') 0 5px no-repeat;padding:0 0 30px 0}

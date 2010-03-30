@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arenaturnier">
+	<faqlist>
+		<faq question="Welche Daten des Arenaturniers tauchen im Arsenal auf?">
+			Team- und Charakterprofile für jeden Turniercharakter und jedes Turnierteam erscheinen im Arsenal. Zusätzlich wird die Rangliste für den speziellen Realmpool "Coliseum" täglich aktualisiert.
+		</faq>
+		<faq question="Inwiefern unterscheiden sich die Profile von denen der regulären Realms?">
+			Jeder Charakter und jedes Team im Arenaturnier verfügt über ein eigenes Profil, das sich leicht von den Profilen der regulären Realms unterscheidet. Die PvP-Daten werden auffälliger hervorgehoben, während Informationen, die nicht auf die Turnier-Realms zutreffen (wie etwa die Gildenzugehörigkeit), übergangen werden. In den Charakterprofilen wird beispielsweise der rechte Bereich mit der Teamzusammensetzung und -wertung ersetzt. Anstatt der Berufe wird die persönliche Wertung dargestellt und der Gildenname des Spielers wird mit seinem Teamnamen ersetzt.
+		</faq>
+		<faq question="Wie kann ich mir die Turnier-Ranglisten der anderen regionen ansehen?">
+			Bewegt euch im linken oberen Menü "Betretet das Arsenal" zur Rangliste des Arenaturniers. Dies wird die Rangliste für eure Standard-Region darstellen: Nordamerika, Europa, oder Korea. Nutzt die Links unterhalb der Rangliste, um die angezeigte Region zu wechseln. Wir empfehlen allen Turnierteilnehmern, auch betreffend der anderen Regionen auf dem laufenden zu bleiben.
+		</faq>
+		<faq question="Wo kann ich mehr über das Arenaturnier erfahren?">
+			Auf der Informationsseite des Arenaturniers erfahrt ihr mehr über diese spezielle konkurrenzbetone Spielerfahrung in World of Warcraft. Auf dieser Seite werdet ihr auch Links finden, mit denen ihr euch für das Turnier selbst anmelden könnt.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arenaturnier: Ranglisten" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Arenaturnier: Informationen" url="http://www.wow-europe.com/de/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Arenaturnier: Anmelden" url="http://www.wow-europe.com/account/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

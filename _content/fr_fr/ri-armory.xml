@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Informations sur l'Armurerie">
+	<faqlist>
+		<faq question="Qu'est-ce que l'Armurerie ?">
+			L’Armurerie est une vaste base de données interrogeable qui fournit des informations prises en direct des royaumes de World of Warcraft et présentée de façon conviviale. Comme l’Armurerie prend ses données directement des royaumes de jeux, c’est la source la plus complète et la plus à jour qui soit en matière de personnages, équipes d’arène, guildes et d’objets qui soit.
+		</faq>
+		<faq question="Que puis-je rechercher dans l'Armurerie ?">
+			Vous pouvez rechercher des personnages, des objets, des guildes, des équipes d'arène ainsi que des récompenses de faction. Vous pouvez sémectionner l'une de ces grandes catégories par le menu déroulant en haut de page.
+		</faq>
+		<faq question="Quelles fonctionnalités supplémentaires sont accessibles après s'être identifié dans l'Armurerie ?">
+			Cliquez sur le lien « Connexion » dans le coin supérieur droit de l'Armurerie pour vous identifier à l'aide des informations de votre compte World of Warcraft. Une fois connecté, vous aurez accès au contenu protégé de vos personnages, comme les banques de guilde et le calendrier en jeu.
+			<p/>
+			Tous les détails sur l'interface de sélection de personnage et sur le processus d'identification sont disponibles sur notre <a href="/faq-login.xml">F.A.Q. de connexion</a> à l'Armurerie.
+		</faq>
+		<faq question="Pourquoi est-ce que ma feuille de personnage a une apparence différente ?">
+			Avec l'arrivée de la mise à jour 3.3 (la Chute du roi-liche), les feuilles de personnages de l'Armurerie ont été reconçues et améliorées. Vou y trouverez un visualisateur 3D, des flux d'activité et plus encore. Pour davantage de détails, consultez notre <a href="/updates.xml">page des mises à jour</a>.
+		</faq>	
+		<faq exclude="CN,TW" question="Qu'est-ce que l'Armurerie mobile ?">
+			Emportez l’Armurerie avec vous où que vous alliez grâce à la toute nouvelle Armurerie mobile de World of Warcraft, la version mobile de la base de données officielle et consultable du jeu, spécialement conçue pour l’iPhone™ et l’iPod touch®. Cette application gratuite, à télécharger depuis l'App Store d'iTunes®, met à votre disposition la plupart des fonctionnalités du site de l’Armurerie. Pour de plus amples renseignements, rendez-vous sur la page de l'<a href="/iphone.xml">Armurerie mobile</a>.
+		</faq>
+		<faq question="Quels sont les navigateurs Internet compatibles et recommandés pour l'Armurerie ?">
+			L'armurerie est compatible avec Internet Explorer (versions 6.0 et supérieures), Firefox, Opera 9, Safari et Chrome, et a été optimisée pour les versions les plus récentes de ces navigateurs. De plus, vous devez avoir installé <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&amp;promoid=BIOW">Flash Player</a> pour accéder à certaines fonctionnalités.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Mise à jour - 19 novembre 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="Récompenses des emblèmes de givre" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Récompenses d’Emblèmes de triomphe" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Objets « Héritage »" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Calculateur d'arène" url="/arena-calculator.xml"/>
+		<relatedlink name="Armurerie mobile de World of Warcraft" url="/iphone.xml"/>
+		<relatedlink name="Module de recherche pour navigateur" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Mises à jour de l'Armurerie" url="/updates.xml"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

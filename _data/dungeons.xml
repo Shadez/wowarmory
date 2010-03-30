@@ -1,0 +1,2332 @@
+<?xml version="1.0" encoding="UTF-8"?><config>
+<tokens>
+	<token currencyItemId="49426" id="emblemoffrost"/>
+	<token currencyItemId="47241" id="emblemoftriumph"/>
+	<token currencyItemId="45624" id="emblemofconquest"/>
+	<token currencyItemId="40753" id="emblemofvalor"/>
+	<token currencyItemId="40752" id="emblemofheroism"/>
+	<token currencyItemId="29434" id="badgeofjustice"/>
+</tokens>
+
+<dungeons>
+<!--  Lich King -->
+
+<dungeon hasHeroic="1" id="4812" key="icecrowncitadel25" levelMax="80" levelMin="80" nameId="4812" partySize="25" raid="1" release="2" showPartySize="true">
+    <bosses>
+    <boss id="37957" key="lordmarrowgar" nameId="36612" type="npc">
+        <lootTable difficulty="n" id="37957" type="npc"/>
+        <lootTable difficulty="h" id="37959" type="npc"/>
+    </boss>
+    <boss id="38106" key="ladydeathwhisper" nameId="36855" type="npc">
+        <lootTable difficulty="n" id="38106" type="npc"/>
+        <lootTable difficulty="h" id="38297" type="npc"/>
+    </boss>
+    <boss id="202180" key="GunshipArmory" type="object">
+        <lootTable difficulty="n" id="202180" type="object"/>
+        <lootTable difficulty="n" id="201874" type="object"/>
+        <lootTable difficulty="h" id="202179" type="object"/>
+        <lootTable difficulty="h" id="201875" type="object"/>
+    </boss>
+    <boss id="38582" key="deathbringersaurfang" nameId="37813" type="npc">
+        <lootTable difficulty="n" id="202240" type="object"/>
+        <lootTable difficulty="h" id="202241" type="object"/>
+    </boss>
+    <boss id="37504" key="festergut" nameId="36626" type="npc">
+        <lootTable difficulty="n" id="37504" type="npc"/>
+        <lootTable difficulty="h" id="37506" type="npc"/>
+    </boss>
+    <boss id="38390" key="rotface" nameId="36627" type="npc">
+        <lootTable difficulty="n" id="38390" type="npc"/>
+        <lootTable difficulty="h" id="38550" type="npc"/>
+    </boss>
+    <boss id="38431" key="profputricide" nameId="36678" type="npc">
+        <lootTable difficulty="n" id="38431" type="npc"/>
+        <lootTable difficulty="h" id="38586" type="npc"/>
+    </boss>
+    <boss id="38401" key="bloodprincecouncil" nameId="37970" type="npc">
+        <lootTable difficulty="n" id="38401" type="npc"/>
+        <lootTable difficulty="h" id="38785" type="npc"/>
+    </boss>
+    <boss id="38434" key="bloodqueenlanathel" nameId="37955" type="npc">
+        <lootTable difficulty="n" id="38434" type="npc"/>
+        <lootTable difficulty="h" id="38436" type="npc"/>
+    </boss>
+    <boss id="202339" key="valithriadreamwalker" type="object">
+        <lootTable difficulty="n" id="202339" type="object"/>
+        <lootTable difficulty="h" id="202340" type="object"/>
+    </boss>
+    <boss id="38265" key="sindragosa" nameId="36853" type="npc">
+        <lootTable difficulty="n" id="38265" type="npc"/>
+        <lootTable difficulty="h" id="38267" type="npc"/>
+    </boss>
+    <boss id="39166" key="thelichking" nameId="36597" type="npc">
+        <lootTable difficulty="n" id="39166" type="npc"/>
+        <lootTable difficulty="h" id="39168" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4812" key="icecrowncitadel10" levelMax="80" levelMin="80" nameId="4812" partySize="10" raid="1" release="2" showPartySize="true">
+    <bosses>
+    <boss id="36612" key="lordmarrowgar" type="npc">
+        <lootTable difficulty="n" id="36612" type="npc"/>
+        <lootTable difficulty="h" id="37958" type="npc"/>
+    </boss>
+    <boss id="36855" key="ladydeathwhisper" type="npc">
+        <lootTable difficulty="n" id="36855" type="npc"/>
+        <lootTable difficulty="h" id="38296" type="npc"/>
+    </boss>
+    <boss id="202178" key="GunshipArmory" type="object">
+        <lootTable difficulty="n" id="202178" type="object"/>
+        <lootTable difficulty="n" id="201873" type="object"/>
+        <lootTable difficulty="h" id="202177" type="object"/>
+        <lootTable difficulty="h" id="201872" type="object"/>
+    </boss>
+    <boss id="37813" key="deathbringersaurfang" type="npc">
+        <lootTable difficulty="n" id="202239" type="object"/>
+        <lootTable difficulty="h" id="202238" type="object"/>
+    </boss>
+    <boss id="36626" key="festergut" type="npc">
+        <lootTable difficulty="n" id="36626" type="npc"/>
+        <lootTable difficulty="h" id="37505" type="npc"/>
+    </boss>
+    <boss id="36627" key="rotface" type="npc">
+        <lootTable difficulty="n" id="36627" type="npc"/>
+        <lootTable difficulty="h" id="38549" type="npc"/>
+    </boss>
+    <boss id="36678" key="profputricide" type="npc">
+        <lootTable difficulty="n" id="36678" type="npc"/>
+        <lootTable difficulty="h" id="38585" type="npc"/>
+    </boss>
+    <boss id="37970" key="bloodprincecouncil" type="npc">
+        <lootTable difficulty="n" id="37970" type="npc"/>
+        <lootTable difficulty="h" id="38784" type="npc"/>
+    </boss>
+    <boss id="37955" key="bloodqueenlanathel" type="npc">
+        <lootTable difficulty="n" id="37955" type="npc"/>
+        <lootTable difficulty="h" id="38435" type="npc"/>
+    </boss>
+    <boss id="201959" key="valithriadreamwalker" type="object">
+        <lootTable difficulty="n" id="201959" type="object"/>
+        <lootTable difficulty="h" id="202338" type="object"/>
+    </boss>
+    <boss id="36853" key="sindragosa" type="npc">
+        <lootTable difficulty="n" id="36853" type="npc"/>
+        <lootTable difficulty="h" id="38266" type="npc"/>
+    </boss>
+    <boss id="36597" key="thelichking" nameId="36597" type="npc">
+        <lootTable difficulty="n" id="36597" type="npc"/>
+        <lootTable difficulty="h" id="39167" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4809" key="forgeofsouls" levelMax="80" levelMin="80" nameId="4809" partySize="5" raid="0" release="2">
+    <bosses>
+    <boss id="36497" key="bronjahm" type="npc">
+        <lootTable difficulty="n" id="36497" type="npc"/>
+        <lootTable difficulty="h" id="36498" type="npc"/>
+    </boss>
+    <boss id="36502" key="DevourerofSouls" type="npc">
+        <lootTable difficulty="n" id="36502" type="npc"/>
+        <lootTable difficulty="h" id="37677" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4813" key="pitofsaron" levelMax="80" levelMin="80" nameId="4813" partySize="5" raid="0" release="2">
+    <bosses>
+    <boss id="36494" key="forgemastergarfrost" type="npc">
+        <lootTable difficulty="n" id="36494" type="npc"/>
+        <lootTable difficulty="h" id="37613" type="npc"/>
+    </boss>
+    <boss id="36476" key="ick" type="npc">
+        <lootTable difficulty="n" id="36476" type="npc"/>
+        <lootTable difficulty="h" id="37627" type="npc"/>
+    </boss>
+    <boss id="36658" key="scourgemastertyrannus" type="npc">
+        <lootTable difficulty="n" id="36658" type="npc"/>
+        <lootTable difficulty="h" id="36938" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4820" key="hallsofreflection" levelMax="80" levelMin="80" nameId="4820" partySize="25" raid="0" release="2">
+    <bosses>
+    <boss id="38112" key="Falric" type="npc">
+        <lootTable difficulty="n" id="38112" type="npc"/>
+        <lootTable difficulty="h" id="38599" type="npc"/>
+    </boss>
+    <boss id="38113" key="Marwyn" type="npc">
+        <lootTable difficulty="n" id="38113" type="npc"/>
+        <lootTable difficulty="h" id="38603" type="npc"/>
+    </boss>
+    <boss id="201710" key="TheLichKing" type="object">
+        <lootTable difficulty="n" id="201710" type="object"/>
+        <lootTable difficulty="n" id="201712" type="object"/>
+        <lootTable difficulty="h" id="202337" type="object"/>
+        <lootTable difficulty="h" id="202336" type="object"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="2159" key="onyxiaslair" levelMax="80" levelMin="80" nameId="2159" partySize="25" raid="1" release="2">
+    <bosses>
+    <boss id="10184" key="onyxia" type="npc">
+        <lootTable difficulty="n" id="10184" type="npc"/>
+        <lootTable difficulty="h" id="36538" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4722" key="trialofthecrusader25" levelMax="80" levelMin="80" nameId="4722" partySize="25" raid="1" release="2" showPartySize="true">
+	<bosses>
+	<boss id="34566" key="anubarak" nameId="34564" type="npc">
+		<lootTable difficulty="n" id="34566" type="npc"/>
+		<lootTable difficulty="h" id="35616" type="npc"/>
+	</boss>
+	<boss id="35347" key="eydis" nameId="34496" type="npc">
+		<lootTable difficulty="n" id="35347" type="npc"/>
+		<lootTable difficulty="h" id="35349" type="npc"/>
+	</boss>
+	<boss id="35350" key="fjola" nameId="34497" type="npc">
+		<lootTable difficulty="n" id="35350" type="npc"/>
+		<lootTable difficulty="h" id="35352" type="npc"/>
+	</boss>
+	<boss id="195633" key="champions" nameId="195631" type="object">
+		<lootTable difficulty="n" id="195633" type="object"/>
+		<lootTable difficulty="h" id="195635" type="object"/>
+	</boss>
+	<boss id="35216" key="jaraxxus" nameId="34780" type="npc">
+		<lootTable difficulty="n" id="35216" type="npc"/>
+		<lootTable difficulty="h" id="35269" type="npc"/>
+	</boss>
+	<boss id="35447" key="beasts" nameId="34797" type="npc">
+		<lootTable difficulty="n" id="35447" type="npc"/>
+		<lootTable difficulty="h" id="35449" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4722" key="trialofthecrusader10" levelMax="80" levelMin="80" nameId="4722" partySize="10" raid="1" release="2" showPartySize="true">
+	<bosses>
+	<boss id="34564" key="anubarak" type="npc">
+		<lootTable difficulty="n" id="34564" type="npc"/>
+		<lootTable difficulty="h" id="35615" type="npc"/>
+	</boss>
+	<boss id="34496" key="eydis" type="npc">
+		<lootTable difficulty="n" id="34496" type="npc"/>
+		<lootTable difficulty="h" id="35348" type="npc"/>
+	</boss>
+	<boss id="34497" key="fjola" type="npc">
+		<lootTable difficulty="n" id="34497" type="npc"/>
+		<lootTable difficulty="h" id="35351" type="npc"/>
+	</boss>
+	<boss id="195631" key="champions" type="object">
+		<lootTable difficulty="n" id="195631" type="object"/>
+		<lootTable difficulty="h" id="195632" type="object"/>
+	</boss>
+	<boss id="34780" key="jaraxxus" type="npc">
+		<lootTable difficulty="n" id="34780" type="npc"/>
+		<lootTable difficulty="h" id="35268" type="npc"/>
+	</boss>
+	<boss id="34797" key="beasts" type="npc">
+		<lootTable difficulty="n" id="34797" type="npc"/>
+		<lootTable difficulty="h" id="35448" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4723" key="trialofthechampion" levelMax="80" levelMin="80" nameId="4723" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="35451" key="blackknight" type="npc">
+		<lootTable difficulty="n" id="35451" type="npc"/>
+		<lootTable difficulty="h" id="35490" type="npc"/>
+	</boss>
+	<boss id="195374" key="eadric" type="object">
+		<lootTable difficulty="n" id="195374" type="object"/>
+		<lootTable difficulty="h" id="195375" type="object"/>
+	</boss>
+	<boss id="195323" key="confessor" type="object">
+		<lootTable difficulty="n" id="195323" type="object"/>
+		<lootTable difficulty="h" id="195324" type="object"/>
+	</boss>
+	<boss id="195709" key="champions" type="object">
+		<lootTable difficulty="n" id="195709" type="object"/>
+		<lootTable difficulty="h" id="195710" type="object"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4273" key="ulduar" levelMax="80" levelMin="80" nameId="4273" partySize="25" raid="1" release="2">
+	<bosses>
+	<boss id="32871" key="Algalon" type="npc">
+		<lootTable difficulty="n" id="32871" type="npc"/>
+		<lootTable difficulty="h" id="33070" type="npc"/>
+		<lootTable difficulty="h" id="194822" type="object"/>
+	</boss>
+	<boss id="33113" key="FlameLeviathan" type="npc">
+		<lootTable difficulty="n" id="33113" type="npc"/>
+		<lootTable difficulty="h" id="34003" type="npc"/>
+	</boss>
+	<boss id="33186" key="RazorScale" type="npc">
+		<lootTable difficulty="n" id="33186" type="npc"/>
+		<lootTable difficulty="h" id="33724" type="npc"/>
+	</boss>
+	<boss id="33293" key="xt002" type="npc">
+		<lootTable difficulty="n" id="33293" type="npc"/>
+		<lootTable difficulty="h" id="33885" type="npc"/>
+	</boss>
+	<boss id="33118" key="Ignis" type="npc">
+		<lootTable difficulty="n" id="33118" type="npc"/>
+		<lootTable difficulty="h" id="33190" type="npc"/>
+	</boss>
+	<boss id="32867" key="SteelBreaker" type="npc">
+		<lootTable difficulty="n" id="32867" type="npc"/>
+		<lootTable difficulty="h" id="33693" type="npc"/>
+	</boss>
+	<boss id="32927" key="RunemasterMolgeim" type="npc">
+		<lootTable difficulty="n" id="32927" type="npc"/>
+		<lootTable difficulty="h" id="33692" type="npc"/>
+	</boss>
+	<boss id="32857" key="StormcallerBrundir" type="npc">
+		<lootTable difficulty="n" id="32857" type="npc"/>
+		<lootTable difficulty="h" id="33694" type="npc"/>
+	</boss>
+	<boss id="195046" key="Kologarn" type="object">
+		<lootTable difficulty="n" id="195046" type="object"/>
+		<lootTable difficulty="h" id="195047" type="object"/>
+	</boss>
+	<boss id="33515" key="Auriaya" type="npc">
+		<lootTable difficulty="n" id="33515" type="npc"/>
+		<lootTable difficulty="h" id="34175" type="npc"/>
+	</boss>
+	<boss id="194957" key="Mimiron" type="object">
+		<lootTable difficulty="n" id="194957" type="object"/>
+		<lootTable difficulty="h" id="194958" type="object"/>
+		<lootTable difficulty="h" id="194956" type="object"/>
+	</boss>
+	<boss id="194308" key="Hodir" type="object">
+		<lootTable difficulty="n" id="194200" type="object"/>
+		<lootTable difficulty="h" id="194201" type="object"/>
+		<lootTable difficulty="h" id="194308" type="object"/>
+	</boss>
+	<boss id="194312" key="Thorim" type="object">
+		<lootTable difficulty="n" id="194313" type="object"/>
+		<lootTable difficulty="h" id="194314" type="object"/>
+		<lootTable difficulty="h" id="194315" type="object"/>
+	</boss>
+	<boss id="194331" key="Freya" type="object">
+		<lootTable difficulty="n" id="194327" type="object"/>
+		<lootTable difficulty="h" id="194331" type="object"/>
+	</boss>
+	<boss id="33271" key="GeneralVezax" type="npc">
+		<lootTable difficulty="n" id="33271" type="npc"/>
+		<lootTable difficulty="h" id="33449" type="npc"/>
+	</boss>
+	<boss id="33288" key="YoggSaron" type="npc">
+		<lootTable difficulty="n" id="33288" type="npc"/>
+		<lootTable difficulty="h" id="33955" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="4500" key="theeyeofeternity" levelMax="80" levelMin="80" nameId="4500" partySize="25" raid="1" release="2">
+    <bosses>
+    <boss id="28859" key="Malygos" type="npc">
+        <lootTable difficulty="n" id="193905" type="object"/>
+        <lootTable difficulty="h" id="193967" type="object"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="4493" key="theobsidiansanctum" levelMax="80" levelMin="80" nameId="4493" partySize="25" raid="1" release="2">
+    <bosses>
+    <boss id="28860" key="sartharion" type="npc">
+        <lootTable difficulty="n" id="28860" type="npc"/>
+        <lootTable difficulty="h" id="31311" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3456" key="naxxramas" levelMax="80" levelMin="80" nameId="3456" partySize="25" raid="1" release="2">
+    <bosses>
+    <boss id="181366" key="fourhorseman" type="object">
+        <lootTable difficulty="n" id="181366" type="object"/>
+        <lootTable difficulty="h" id="193426" type="object"/>
+    </boss>
+    <boss id="15956" key="Anubrekhan" type="npc">
+        <lootTable difficulty="n" id="15956" type="npc"/>
+        <lootTable difficulty="h" id="29249" type="npc"/>
+    </boss>
+    <boss id="15932" key="Gluth" type="npc">
+        <lootTable difficulty="n" id="15932" type="npc"/>
+        <lootTable difficulty="h" id="29417" type="npc"/>
+    </boss>
+    <boss id="16060" key="Gothik the Harvester" type="npc">
+        <lootTable difficulty="n" id="16060" type="npc"/>
+        <lootTable difficulty="h" id="29955" type="npc"/>
+    </boss>
+    <boss id="15953" key="Faerlina" type="npc">
+        <lootTable difficulty="n" id="15953" type="npc"/>
+        <lootTable difficulty="h" id="29268" type="npc"/>
+    </boss>
+    <boss id="15931" key="Grobbulus" type="npc">
+        <lootTable difficulty="n" id="15931" type="npc"/>
+        <lootTable difficulty="h" id="29373" type="npc"/>
+    </boss>
+    <boss id="15936" key="Heigan the Unclean" type="npc">
+        <lootTable difficulty="n" id="15936" type="npc"/>
+        <lootTable difficulty="h" id="29701" type="npc"/>
+    </boss>
+    <boss id="16061" key="Instructor Razuvious" type="npc">
+        <lootTable difficulty="n" id="16061" type="npc"/>
+        <lootTable difficulty="h" id="29940" type="npc"/>
+    </boss>
+    <boss id="15990" key="Kelthuzad" type="npc">
+        <lootTable difficulty="n" id="15990" type="npc"/>
+        <lootTable difficulty="h" id="30061" type="npc"/>
+    </boss>
+    <boss id="16011" key="Loatheb" type="npc">
+        <lootTable difficulty="n" id="16011" type="npc"/>
+        <lootTable difficulty="h" id="29718" type="npc"/>
+    </boss>
+    <boss id="15952" key="Maexxna" type="npc">
+        <lootTable difficulty="n" id="15952" type="npc"/>
+        <lootTable difficulty="h" id="29278" type="npc"/>
+    </boss>
+    <boss id="15954" key="Noth the Plaguebringer" type="npc">
+        <lootTable difficulty="n" id="15954" type="npc"/>
+        <lootTable difficulty="h" id="29615" type="npc"/>
+    </boss>
+    <boss id="16028" key="Patchwerk" type="npc">
+        <lootTable difficulty="n" id="16028" type="npc"/>
+        <lootTable difficulty="h" id="29324" type="npc"/>
+    </boss>
+    <boss id="15989" key="Sapphiron" type="npc">
+        <lootTable difficulty="n" id="15989" type="npc"/>
+        <lootTable difficulty="h" id="29991" type="npc"/>
+    </boss>
+    <boss id="15928" key="Thaddius" type="npc">
+        <lootTable difficulty="n" id="15928" type="npc"/>
+        <lootTable difficulty="h" id="29448" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="4603" key="vaultarchavon" levelMax="80" levelMin="80" nameId="4603" partySize="25" raid="1" release="2">
+	<bosses>
+	<boss id="31125" key="Archavon" type="npc">
+		<lootTable difficulty="n" id="31125" type="npc"/>
+		<lootTable difficulty="h" id="31722" type="npc"/>
+	</boss>
+	<boss id="33993" key="Emalon" type="npc">
+		<lootTable difficulty="n" id="33993" type="npc"/>
+		<lootTable difficulty="h" id="33994" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4100" key="cullingofstratholme" levelMax="80" levelMin="78" nameId="4100" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="26530" key="salramm" type="npc">
+		<lootTable difficulty="n" id="26530" type="npc"/>
+		<lootTable difficulty="h" id="31212" type="npc"/>
+	</boss>
+	<boss id="26529" key="meathook" type="npc">
+		<lootTable difficulty="n" id="26529" type="npc"/>
+		<lootTable difficulty="h" id="31211" type="npc"/>
+	</boss>
+	<boss id="26533" key="malganis" type="npc">
+		<lootTable difficulty="n" id="26533" type="npc"/>
+		<lootTable difficulty="h" id="31217" type="npc"/>
+	</boss>
+	<boss id="26532" key="chronolordepoch" type="npc">
+		<lootTable difficulty="n" id="26532" type="npc"/>
+		<lootTable difficulty="h" id="31215" type="npc"/>
+	</boss>
+	<boss id="32273" key="infinitecorruptor" type="npc">
+		<lootTable difficulty="h" id="32313" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4272" key="hallsoflightning" levelMax="80" levelMin="75" nameId="4272" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="28586" key="generalbjarngrim" type="npc">
+		<lootTable difficulty="n" id="28586" type="npc"/>
+		<lootTable difficulty="h" id="31533" type="npc"/>
+	</boss>
+	<boss id="28546" key="ionar" type="npc">
+		<lootTable difficulty="n" id="28546" type="npc"/>
+		<lootTable difficulty="h" id="31537" type="npc"/>
+	</boss>
+	<boss id="28587" key="volkhan" type="npc">
+		<lootTable difficulty="n" id="28587" type="npc"/>
+		<lootTable difficulty="h" id="31536" type="npc"/>
+	</boss>
+	<boss id="28923" key="loken" type="npc">
+		<lootTable difficulty="n" id="28923" type="npc"/>
+		<lootTable difficulty="h" id="31538" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4228" key="theoculus" levelMax="80" levelMin="78" nameId="4228" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="27654" key="drakos" type="npc">
+		<lootTable difficulty="n" id="27654" type="npc"/>
+		<lootTable difficulty="h" id="31558" type="npc"/>
+	</boss>
+	<boss id="27447" key="varos" type="npc">
+		<lootTable difficulty="n" id="27447" type="npc"/>
+		<lootTable difficulty="h" id="31559" type="npc"/>
+	</boss>
+	<boss id="27655" key="urom" type="npc">
+		<lootTable difficulty="n" id="27655" type="npc"/>
+		<lootTable difficulty="h" id="31560" type="npc"/>
+	</boss>
+	<boss id="27656" key="eregos" type="npc">
+		<lootTable difficulty="n" id="27656" type="npc"/>
+		<lootTable difficulty="h" id="31561" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="1196" key="utgardepinnacle" levelMax="80" levelMin="78" nameId="1196" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="26668" key="svalasorrowgrave" type="npc">
+		<lootTable difficulty="n" id="26668" type="npc"/>
+		<lootTable difficulty="h" id="30810" type="npc"/>
+	</boss>
+	<boss id="26687" key="gortokpalehoof" type="npc">
+		<lootTable difficulty="n" id="26687" type="npc"/>
+		<lootTable difficulty="h" id="30774" type="npc"/>
+	</boss>
+	<boss id="26693" key="skaditheruthless" type="npc">
+		<lootTable difficulty="n" id="26693" type="npc"/>
+		<lootTable difficulty="h" id="30807" type="npc"/>
+	</boss>
+	<boss id="26861" key="" type="npc">
+		<lootTable difficulty="n" id="26861" type="npc"/>
+		<lootTable difficulty="h" id="30788" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4264" key="hallsofstone" levelMax="80" levelMin="75" nameId="4264" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="190586" key="tribunalofages" type="object">
+		<lootTable difficulty="n" id="190586" type="object"/>
+		<lootTable difficulty="h" id="193996" type="object"/>
+	</boss>
+	<boss id="27978" key="sjonnir" type="npc">
+		<lootTable difficulty="n" id="27978" type="npc"/>
+		<lootTable difficulty="h" id="31386" type="npc"/>
+	</boss>
+	<boss id="27975" key="maidenofgrief" type="npc">
+		<lootTable difficulty="n" id="27975" type="npc"/>
+		<lootTable difficulty="h" id="31384" type="npc"/>
+	</boss>
+	<boss id="27977" key="krystallus" type="npc">
+		<lootTable difficulty="n" id="27977" type="npc"/>
+		<lootTable difficulty="h" id="31381" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4416" key="gundrak" levelMax="80" levelMin="76" nameId="4416" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="29304" key="sladran" type="npc">
+		<lootTable difficulty="n" id="29304" type="npc"/>
+		<lootTable difficulty="h" id="31370" type="npc"/>
+	</boss>
+	<boss id="29305" key="moorabi" type="npc">
+		<lootTable difficulty="n" id="29305" type="npc"/>
+		<lootTable difficulty="h" id="30530" type="npc"/>
+	</boss>
+	<boss id="29306" key="galdarah" type="npc">
+		<lootTable difficulty="n" id="29306" type="npc"/>
+		<lootTable difficulty="h" id="31368" type="npc"/>
+	</boss>
+	<!-- Drop tables for this mob come from the Drakkari Elemental it spawns into -->
+	<boss id="29307" key="drakkaricolossus" type="npc">
+		<lootTable difficulty="n" id="29573" type="npc"/>
+		<lootTable difficulty="h" id="31367" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4415" key="violethold" levelMax="79" levelMin="73" nameId="4415" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="29315" key="erekem" type="npc">
+		<lootTable difficulty="n" id="29315" type="npc"/>
+		<lootTable difficulty="h" id="31507" type="npc"/>
+	</boss>
+	<boss id="29316" key="moragg" type="npc">
+		<lootTable difficulty="n" id="29316" type="npc"/>
+		<lootTable difficulty="h" id="31510" type="npc"/>
+	</boss>
+	<boss id="29313" key="ichoron" type="npc">
+		<lootTable difficulty="n" id="29313" type="npc"/>
+		<lootTable difficulty="h" id="31508" type="npc"/>
+	</boss>
+	<boss id="29266" key="xevozz" type="npc">
+		<lootTable difficulty="n" id="29266" type="npc"/>
+		<lootTable difficulty="h" id="31511" type="npc"/>
+	</boss>
+	<boss id="29312" key="lavanthor" type="npc">
+		<lootTable difficulty="n" id="29312" type="npc"/>
+		<lootTable difficulty="h" id="31509" type="npc"/>
+	</boss>
+	<boss id="29314" key="zuramat" type="npc">
+		<lootTable difficulty="n" id="29314" type="npc"/>
+		<lootTable difficulty="h" id="31512" type="npc"/>
+	</boss>
+	<boss id="31134" key="cyanigosa" type="npc">
+		<lootTable difficulty="n" id="31134" type="npc"/>
+		<lootTable difficulty="h" id="31506" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4196" key="draktharonkeep" levelMax="78" levelMin="72" nameId="4196" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="26630" key="trollgore" type="npc">
+		<lootTable difficulty="n" id="26630" type="npc"/>
+		<lootTable difficulty="h" id="31362" type="npc"/>
+	</boss>
+	<boss id="26631" key="novosthesummoner" type="npc">
+		<lootTable difficulty="n" id="26631" type="npc"/>
+		<lootTable difficulty="h" id="31350" type="npc"/>
+	</boss>
+	<boss id="27483" key="kingdred" type="npc">
+		<lootTable difficulty="n" id="27483" type="npc"/>
+		<lootTable difficulty="h" id="31349" type="npc"/>
+	</boss>
+	<boss id="26632" key="theprophettharonja" type="npc">
+		<lootTable difficulty="n" id="26632" type="npc"/>
+		<lootTable difficulty="h" id="31360" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4494" key="ahnkahet" levelMax="78" levelMin="71" nameId="4494" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="29308" key="princetaldaram" type="npc">
+		<lootTable difficulty="n" id="29308" type="npc"/>
+		<lootTable difficulty="h" id="31469" type="npc"/>
+	</boss>
+	<boss id="29309" key="eldernadox" type="npc">
+		<lootTable difficulty="n" id="29309" type="npc"/>
+		<lootTable difficulty="h" id="31456" type="npc"/>
+	</boss>
+	<boss id="29310" key="jedogashadowseeker" type="npc">
+		<lootTable difficulty="n" id="29310" type="npc"/>
+		<lootTable difficulty="h" id="31465" type="npc"/>
+	</boss>
+	<boss id="30258" key="amanitar" type="npc">
+		<lootTable difficulty="n" id="30258" type="npc"/>
+		<lootTable difficulty="h" id="31463" type="npc"/>
+	</boss>
+	<boss id="29311" key="heraldvolazj" type="npc">
+		<lootTable difficulty="n" id="29311" type="npc"/>
+		<lootTable difficulty="h" id="31464" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4277" key="azjol-nerub" levelMax="77" levelMin="70" nameId="4277" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="28684" key="krikthir" type="npc">
+		<lootTable difficulty="n" id="28684" type="npc"/>
+		<lootTable difficulty="h" id="31612" type="npc"/>
+	</boss>
+	<boss id="28921" key="Hadronox" type="npc">
+		<lootTable difficulty="n" id="28921" type="npc"/>
+		<lootTable difficulty="h" id="31611" type="npc"/>
+	</boss>
+	<boss id="29120" key="Anubarak" type="npc">
+		<lootTable difficulty="n" id="29120" type="npc"/>
+		<lootTable difficulty="h" id="31610" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4265" key="thenexus" levelMax="75" levelMin="70" nameId="4265" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="26723" key="keristrasza" type="npc">
+		<lootTable difficulty="n" id="26723" type="npc"/>
+		<lootTable difficulty="h" id="30540" type="npc"/>
+	</boss>
+	<boss id="26731" key="GrandMagusTelestra" type="npc">
+		<lootTable difficulty="n" id="26731" type="npc"/>
+		<lootTable difficulty="h" id="30510" type="npc"/>
+	</boss>
+	<boss id="26763" key="Anomalus" type="npc">
+		<lootTable difficulty="n" id="26763" type="npc"/>
+		<lootTable difficulty="h" id="30529" type="npc"/>
+	</boss>
+	<boss id="26794" key="OrmoroktheTreeShaper" type="npc">
+		<lootTable difficulty="n" id="26794" type="npc"/>
+		<lootTable difficulty="h" id="30532" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="206" key="utgardekeep" levelMax="75" levelMin="68" nameId="206" partySize="5" raid="0" release="2">
+	<bosses>
+	<boss id="23953" key="princekeleseth" type="npc">
+		<lootTable difficulty="n" id="23953" type="npc"/>
+		<lootTable difficulty="h" id="30748" type="npc"/>
+	</boss>
+	<boss id="24200" key="skarvaldtheconstructor" type="npc">
+		<lootTable difficulty="n" id="24200" type="npc"/>
+		<lootTable difficulty="h" id="31679" type="npc"/>
+	</boss>
+	<boss id="24201" key="dalronnthecontroller" type="npc">
+		<lootTable difficulty="n" id="24201" type="npc"/>
+		<lootTable difficulty="h" id="31656" type="npc"/>
+	</boss>
+	<boss id="23980" key="ingvartheplunderer" type="npc">
+		<lootTable difficulty="n" id="23980" type="npc"/>
+		<lootTable difficulty="h" id="31674" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="0" id="4075" key="sunwellplateau" levelMax="70" levelMin="70" nameId="4075" partySize="25" raid="1" release="1">
+	<bosses>
+	<boss id="24850" key="kalecgos" type="npc">
+		<lootTable difficulty="n" id="24892" type="npc"/>
+	</boss>
+	<boss id="24882" key="brutallus" type="npc">
+		<lootTable difficulty="n" id="24882" type="npc"/>
+	</boss>
+	<boss id="25038" key="felmyst" type="npc">
+		<lootTable difficulty="n" id="25038" type="npc"/>
+	</boss>
+	<boss id="25165" key="sacrolash" type="npc">
+		<lootTable difficulty="n" id="25165" type="npc"/>
+	</boss>
+	<boss id="25166" key="alythess" type="npc">
+		<lootTable difficulty="n" id="25166" type="npc"/>
+	</boss>
+	<boss id="25741" key="muru" type="npc">
+		<lootTable difficulty="n" id="25840" type="npc"/>
+	</boss>
+	<boss id="25315" key="kiljaeden" type="npc">
+		<lootTable difficulty="n" id="25315" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="0" id="3959" key="blacktemple" levelMax="70" levelMin="70" nameId="3959" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="23420" key="anger" type="npc">
+        <lootTable difficulty="n" id="23420" type="npc"/>
+    </boss>
+    <boss id="22949" key="gathios" type="npc">
+        <lootTable difficulty="n" id="22949" type="npc"/>
+    </boss>
+    <boss id="22950" key="zerevor" type="npc">
+        <lootTable difficulty="n" id="22950" type="npc"/>
+    </boss>
+    <boss id="22951" key="malande" type="npc">
+        <lootTable difficulty="n" id="22951" type="npc"/>
+    </boss>
+    <boss id="22947" key="shahraz" type="npc">
+        <lootTable difficulty="n" id="22947" type="npc"/>
+    </boss>
+    <boss id="22871" key="gorefiend" type="npc">
+        <lootTable difficulty="n" id="22871" type="npc"/>
+    </boss>
+    <boss id="22952" key="darkshadow" type="npc">
+        <lootTable difficulty="n" id="22952" type="npc"/>
+    </boss>
+    <boss id="22887" key="highwarlordnajentus" type="npc">
+        <lootTable difficulty="n" id="22887" type="npc"/>
+    </boss>
+    <boss id="22898" key="supremus" type="npc">
+        <lootTable difficulty="n" id="22898" type="npc"/>
+    </boss>
+    <boss id="22948" key="gurtoggbloodboil" type="npc">
+        <lootTable difficulty="n" id="22948" type="npc"/>
+    </boss>
+    <boss id="22841" key="shadeofakama" type="npc">
+        <lootTable difficulty="n" id="22841" type="npc"/>
+    </boss>
+    <boss id="22917" key="Illidan" type="npc">
+        <lootTable difficulty="n" id="22917" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="0" id="3606" key="hyjalsummit" levelMax="70" levelMin="70" nameId="3606" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="17808" key="anetheron" type="npc">
+        <lootTable difficulty="n" id="17808" type="npc"/>
+    </boss>
+    <boss id="17842" key="azgalor" type="npc">
+        <lootTable difficulty="n" id="17842" type="npc"/>
+    </boss>
+    <boss id="17888" key="kazrogal" type="npc">
+        <lootTable difficulty="n" id="17888" type="npc"/>
+    </boss>
+    <boss id="17767" key="ragewinterchill" type="npc">
+        <lootTable difficulty="n" id="17767" type="npc"/>
+    </boss>
+    <boss id="17968" key="archimonde" type="npc">
+        <lootTable difficulty="n" id="17968" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon id="3845" key="eye" levelMax="70" levelMin="70" nameId="3845" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="19514" key="alar" type="npc">
+        <lootTable difficulty="n" id="19514" type="npc"/>
+    </boss>
+    <boss id="18805" type="npc">
+        <lootTable difficulty="n" id="18805" type="npc"/>
+    </boss>
+    <boss id="19622" type="npc">
+        <lootTable difficulty="n" id="19622" type="npc"/>
+    </boss>
+    <boss id="19516" type="npc">
+        <lootTable difficulty="n" id="19516" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="3607" key="serpentshrinecavern" levelMax="70" levelMin="70" nameId="3607" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="21214" key="fathomlordkarathress" type="npc">
+        <lootTable difficulty="n" id="21214" type="npc"/>
+    </boss>
+    <boss id="21216" key="hydrosstheunstable" type="npc">
+        <lootTable difficulty="n" id="21216" type="npc"/>
+    </boss>
+    <boss id="21215" key="leotherastheblind" type="npc">
+        <lootTable difficulty="n" id="21215" type="npc"/>
+    </boss>
+    <boss id="21213" key="morogrimtidewalker" type="npc">
+        <lootTable difficulty="n" id="21213" type="npc"/>
+    </boss>
+    <boss id="21212" key="ladyvashj" type="npc">
+        <lootTable difficulty="n" id="21212" type="npc"/>
+    </boss>
+    <boss id="21217" key="thelurkerbelow" type="npc">
+        <lootTable difficulty="n" id="21217" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="0" id="3805" key="zulaman" levelMax="70" levelMin="70" nameId="3805" partySize="10" raid="1" release="1">
+    <bosses>
+    <boss id="23576" key="nalorakk" type="npc">
+        <lootTable difficulty="n" id="23576" type="npc"/>
+    </boss>
+    <boss id="23574" key="akilzon" type="npc">
+        <lootTable difficulty="n" id="23574" type="npc"/>
+    </boss>
+    <boss id="23578" key="janalai" type="npc">
+        <lootTable difficulty="n" id="23578" type="npc"/>
+    </boss>
+    <boss id="23577" key="halazzi" type="npc">
+        <lootTable difficulty="n" id="23577" type="npc"/>
+    </boss>
+    <boss id="24363" key="malacrass" type="npc">
+        <lootTable difficulty="n" id="24363" type="npc"/>
+    </boss>
+    <boss id="23863" key="zuljin" type="npc">
+        <lootTable difficulty="n" id="23863" type="npc"/>
+    </boss>
+    <boss id="186672" key="ashlisbag" type="object">
+        <lootTable difficulty="n" id="186672" type="object"/>
+    </boss>
+    <boss id="186667" key="krazspackage" type="object">
+        <lootTable difficulty="n" id="186667" type="object"/>
+    </boss>
+    <boss id="187021" key="harkorssatchel" type="object">
+        <lootTable difficulty="n" id="187021" type="object"/>
+    </boss>
+    <boss id="186648" key="tanzarstrunk" type="object">
+        <lootTable difficulty="n" id="186648" type="object"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon id="3836" key="magtheridonslair" levelMax="70" levelMin="70" nameId="3836" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="17257" key="magtheridon" type="npc">
+        <lootTable difficulty="n" id="17257" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="3923" key="gruulslair" levelMax="70" levelMin="70" nameId="3923" partySize="25" raid="1" release="1">
+    <bosses>
+    <boss id="19044" key="gruulthedragonkiller" type="npc">
+        <lootTable difficulty="n" id="19044" type="npc"/>
+    </boss>
+    <boss id="18831" key="highkingmaulgar" type="npc">
+        <lootTable difficulty="n" id="18831" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon id="3457" key="karazhan" levelMax="70" levelMin="70" nameId="3457" partySize="10" raid="1" release="1">
+    <bosses>
+    <boss id="16152" key="attumenthehuntsman" type="npc">
+        <lootTable difficulty="n" id="16152" type="npc"/>
+    </boss>
+    <boss id="17521" key="bigbadwolf" type="npc">
+        <lootTable difficulty="n" id="17521" type="npc"/>
+    </boss>
+    <boss id="185119" key="chessevent" type="object">
+        <lootTable difficulty="n" id="185119" type="object"/>
+    </boss>
+    <boss id="18168" key="crone" type="npc">
+        <lootTable difficulty="n" id="18168" type="npc"/>
+    </boss>
+    <boss id="15691" key="curator" type="npc">
+        <lootTable difficulty="n" id="15691" type="npc"/>
+    </boss>
+    <boss id="16179" key="hyakissthelurker" type="npc">
+        <lootTable difficulty="n" id="16179" type="npc"/>
+    </boss>
+    <boss id="17534" key="julianne" type="npc">
+        <lootTable difficulty="n" id="17534" type="npc"/>
+    </boss>
+    <boss id="16457" key="maidenofvirtue" type="npc">
+        <lootTable difficulty="n" id="16457" type="npc"/>
+    </boss>
+    <boss id="15687" key="moroes" type="npc">
+        <lootTable difficulty="n" id="15687" type="npc"/>
+    </boss>
+    <boss id="15689" key="netherspite" type="npc">
+        <lootTable difficulty="n" id="15689" type="npc"/>
+    </boss>
+    <boss id="17225" key="nightbane" type="npc">
+        <lootTable difficulty="n" id="17225" type="npc"/>
+    </boss>
+    <boss id="15690" key="princemalchezaar" type="npc">
+        <lootTable difficulty="n" id="15690" type="npc"/>
+    </boss>
+    <boss id="16181" key="rokadtheravager" type="npc">
+        <lootTable difficulty="n" id="16181" type="npc"/>
+    </boss>
+    <boss id="17533" key="romulo" type="npc">
+        <lootTable difficulty="n" id="17533" type="npc"/>
+    </boss>
+    <boss id="16524" key="shadeofaran" type="npc">
+        <lootTable difficulty="n" id="16524" type="npc"/>
+    </boss>
+    <boss id="16180" key="shadikiththeglider" type="npc">
+        <lootTable difficulty="n" id="16180" type="npc"/>
+    </boss>
+    <boss id="15688" key="terestianillhoof" type="npc">
+        <lootTable difficulty="n" id="15688" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4131" key="magistersterrace" levelMax="72" levelMin="69" nameId="4131" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="24723" key="selinfireheart" type="npc">
+		<lootTable difficulty="n" id="24723" type="npc"/>
+		<lootTable difficulty="h" id="25562" type="npc"/>
+	</boss>
+	<boss id="24744" key="vexallus" type="npc">
+		<lootTable difficulty="n" id="24744" type="npc"/>
+		<lootTable difficulty="h" id="25573" type="npc"/>
+	</boss>
+	<boss id="24560" key="priestessdelrissa" type="npc">
+		<lootTable difficulty="n" id="24560" type="npc"/>
+		<lootTable difficulty="h" id="25560" type="npc"/>
+	</boss>
+	<boss id="24664" key="kaelthas" type="npc">
+		<lootTable difficulty="n" id="24664" type="npc"/>
+		<lootTable difficulty="h" id="24857" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="3848" key="arcatraz" levelMax="72" levelMin="69" nameId="3848" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="20885" key="dalliahthedoomsayer" type="npc">
+		<lootTable difficulty="n" id="20885" type="npc"/>
+		<lootTable difficulty="h" id="21590" type="npc"/>
+	</boss>
+	<boss id="20912" key="harbingerskyriss" type="npc">
+		<lootTable difficulty="n" id="20912" type="npc"/>
+		<lootTable difficulty="h" id="21599" type="npc"/>
+	</boss>
+	<boss id="20886" key="wrathscryersoccothrates" type="npc">
+		<lootTable difficulty="n" id="20886" type="npc"/>
+		<lootTable difficulty="h" id="21624" type="npc"/>
+	</boss>
+	<boss id="20870" key="zerekeththeunbound" type="npc">
+		<lootTable difficulty="n" id="20870" type="npc"/>
+		<lootTable difficulty="h" id="21626" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3790" key="auchenaicrypts" levelMax="72" levelMin="64" nameId="3790" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="18373" key="exarchmaladaar" type="npc">
+		<lootTable difficulty="n" id="18373" type="npc"/>
+		<lootTable difficulty="h" id="20306" type="npc"/>
+	</boss>
+	<boss id="18371" key="shirrakthedeadwatcher" type="npc">
+		<lootTable difficulty="n" id="18371" type="npc"/>
+		<lootTable difficulty="h" id="20318" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="2366" key="blackmorass" levelMax="72" levelMin="68" nameId="2366" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17881" key="aeonus" type="npc">
+		<lootTable difficulty="n" id="17881" type="npc"/>
+		<lootTable difficulty="h" id="20737" type="npc"/>
+	</boss>
+	<boss id="17879" key="chronolorddeja" type="npc">
+		<lootTable difficulty="n" id="17879" type="npc"/>
+		<lootTable difficulty="h" id="20738" type="npc"/>
+	</boss>
+	<boss id="17880" key="temporus" type="npc">
+		<lootTable difficulty="n" id="17880" type="npc"/>
+		<lootTable difficulty="h" id="20745" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3713" key="bloodfurnace" levelMax="68" levelMin="60" nameId="3713" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17380" key="broggok" type="npc">
+		<lootTable difficulty="n" id="17380" type="npc"/>
+		<lootTable difficulty="h" id="18601" type="npc"/>
+	</boss>
+	<boss id="17377" key="kelidanthebreaker" type="npc">
+		<lootTable difficulty="n" id="17377" type="npc"/>
+		<lootTable difficulty="h" id="18607" type="npc"/>
+	</boss>
+	<boss id="17381" key="themaker" type="npc">
+		<lootTable difficulty="n" id="17381" type="npc"/>
+		<lootTable difficulty="h" id="18621" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3847" key="botanica" levelMax="72" levelMin="69" nameId="3847" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="3847" key="commandersarannis" type="npc">
+		<lootTable difficulty="n" id="17976" type="npc"/>
+		<lootTable difficulty="h" id="21551" type="npc"/>
+	</boss>
+	<boss id="17975" key="highbotanistfreywinn" type="npc">
+		<lootTable difficulty="n" id="17975" type="npc"/>
+		<lootTable difficulty="h" id="21558" type="npc"/>
+	</boss>
+	<boss id="17980" key="laj" type="npc">
+		<lootTable difficulty="n" id="17980" type="npc"/>
+		<lootTable difficulty="h" id="21559" type="npc"/>
+	</boss>
+	<boss id="17978" key="thorngrinthetender" type="npc">
+		<lootTable difficulty="n" id="17978" type="npc"/>
+		<lootTable difficulty="h" id="21581" type="npc"/>
+	</boss>
+	<boss id="17977" key="warpsplinter" type="npc">
+		<lootTable difficulty="n" id="17977" type="npc"/>
+		<lootTable difficulty="h" id="21582" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3562" key="hellfireramparts" levelMax="67" levelMin="59" nameId="3562" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17308" key="omortheunscarred" type="npc">
+		<lootTable difficulty="n" id="17308" type="npc"/>
+		<lootTable difficulty="h" id="18433" type="npc"/>
+	</boss>
+	<boss id="17536" key="nazan" type="npc">
+		<lootTable difficulty="n" id="17536" type="npc"/>
+		<lootTable difficulty="n" id="185168" type="object"/>
+		<lootTable difficulty="h" id="185169" type="object"/>
+	</boss>
+	<boss id="17306" key="watchkeepergargolmar" type="npc">
+		<lootTable difficulty="n" id="17306" type="npc"/>
+		<lootTable difficulty="h" id="18436" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3792" key="manatombs" levelMax="71" levelMin="63" nameId="3792" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="18344" key="nexusprinceshaffar" type="npc">
+		<lootTable difficulty="n" id="18344" type="npc"/>
+		<lootTable difficulty="h" id="20266" type="npc"/>
+	</boss>
+	<boss id="18341" key="pandemonius" type="npc">
+		<lootTable difficulty="n" id="18341" type="npc"/>
+		<lootTable difficulty="h" id="20267" type="npc"/>
+	</boss>
+	<boss id="18343" key="tavarok" type="npc">
+		<lootTable difficulty="n" id="18343" type="npc"/>
+		<lootTable difficulty="h" id="20268" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3849" key="mechanar" levelMax="72" levelMin="68" nameId="3849" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="184465" key="cacheofthelegion" type="object">
+		<lootTable difficulty="n" id="184465" type="object"/>
+		<lootTable difficulty="h" id="184849" type="object"/>
+	</boss>
+	<boss id="19218" key="gatewatchergyrokill" type="npc">
+		<lootTable difficulty="n" id="19218" type="npc"/>
+		<lootTable difficulty="h" id="21525" type="npc"/>
+	</boss>
+	<boss id="19710" key="gatewatcherironhand" type="npc">
+		<lootTable difficulty="n" id="19710" type="npc"/>
+		<lootTable difficulty="h" id="21526" type="npc"/>
+	</boss>
+	<boss id="19219" key="mechanolordcapacitus" type="npc">
+		<lootTable difficulty="n" id="19219" type="npc"/>
+		<lootTable difficulty="h" id="21533" type="npc"/>
+	</boss>
+	<boss id="19221" key="nethermancersepethrea" type="npc">
+		<lootTable difficulty="n" id="19221" type="npc"/>
+		<lootTable difficulty="h" id="21536" type="npc"/>
+	</boss>
+	<boss id="19220" key="pathaleonthecalculator" type="npc">
+		<lootTable difficulty="n" id="19220" type="npc"/>
+		<lootTable difficulty="h" id="21537" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="2367" key="oldhillsbradfoothills" levelMax="72" levelMin="66" nameId="2367" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17862" key="captainskarloc" type="npc">
+		<lootTable difficulty="n" id="17862" type="npc"/>
+		<lootTable difficulty="h" id="20521" type="npc"/>
+	</boss>
+	<boss id="18096" key="epochhunter" type="npc">
+		<lootTable difficulty="n" id="18096" type="npc"/>
+		<lootTable difficulty="h" id="20531" type="npc"/>
+	</boss>
+	<boss id="17848" key="lieutenantdrake" type="npc">
+		<lootTable difficulty="n" id="17848" type="npc"/>
+		<lootTable difficulty="h" id="20535" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3791" key="sethekkhalls" levelMax="72" levelMin="66" nameId="3791" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="18472" key="darkweaversyth" type="npc">
+		<lootTable difficulty="n" id="18472" type="npc"/>
+		<lootTable difficulty="h" id="20690" type="npc"/>
+	</boss>
+	<boss id="18473" key="talonkingikiss" type="npc">
+		<lootTable difficulty="n" id="18473" type="npc"/>
+		<lootTable difficulty="h" id="20706" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3789" key="shadowlabyrinth" levelMax="72" levelMin="69" nameId="3789" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="18731" key="ambassadorhellmaw" type="npc">
+		<lootTable difficulty="n" id="18731" type="npc"/>
+		<lootTable difficulty="h" id="20636" type="npc"/>
+	</boss>
+	<boss id="18667" key="blackhearttheinciter" type="npc">
+		<lootTable difficulty="n" id="18667" type="npc"/>
+		<lootTable difficulty="h" id="20637" type="npc"/>
+	</boss>
+	<boss id="18732" key="grandmastervorpil" type="npc">
+		<lootTable difficulty="n" id="18732" type="npc"/>
+		<lootTable difficulty="h" id="20653" type="npc"/>
+	</boss>
+	<boss id="18708" key="murmur" type="npc">
+		<lootTable difficulty="n" id="18708" type="npc"/>
+		<lootTable difficulty="h" id="20657" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3714" key="shatteredhalls" levelMax="72" levelMin="69" nameId="3714" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="20923" key="bloodguardporung" type="npc">
+		<lootTable difficulty="n" id="20923" type="npc"/>
+		<lootTable difficulty="h" id="20993" type="npc"/>
+	</boss>
+	<boss id="16807" key="grandwarlocknethekurse" type="npc">
+		<lootTable difficulty="n" id="16807" type="npc"/>
+		<lootTable difficulty="h" id="20568" type="npc"/>
+	</boss>
+	<boss id="16809" key="warbringeromrogg" type="npc">
+		<lootTable difficulty="n" id="16809" type="npc"/>
+		<lootTable difficulty="h" id="20596" type="npc"/>
+	</boss>
+	<boss id="16808" key="warchiefkargathbladefist" type="npc">
+		<lootTable difficulty="n" id="16808" type="npc"/>
+		<lootTable difficulty="h" id="20597" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3717" key="slavepens" levelMax="69" levelMin="61" nameId="3717" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17941" key="mennuthebetrayer" type="npc">
+		<lootTable difficulty="n" id="17941" type="npc"/>
+		<lootTable difficulty="h" id="19893" type="npc"/>
+	</boss>
+	<boss id="17942" key="quagmirran" type="npc">
+		<lootTable difficulty="n" id="17942" type="npc"/>
+		<lootTable difficulty="h" id="19894" type="npc"/>
+	</boss>
+	<boss id="17991" key="rokmarthecrackler" type="npc">
+		<lootTable difficulty="n" id="17991" type="npc"/>
+		<lootTable difficulty="h" id="19895" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3715" key="steamvault" levelMax="72" levelMin="69" nameId="3715" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17797" key="hydromancerthespia" type="npc">
+		<lootTable difficulty="n" id="17797" type="npc"/>
+		<lootTable difficulty="h" id="20629" type="npc"/>
+	</boss>
+	<boss id="17796" key="mekgineersteamrigger" type="npc">
+		<lootTable difficulty="n" id="17796" type="npc"/>
+		<lootTable difficulty="h" id="20630" type="npc"/>
+	</boss>
+	<boss id="17798" key="warlordkalithresh" type="npc">
+		<lootTable difficulty="n" id="17798" type="npc"/>
+		<lootTable difficulty="h" id="20633" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon hasHeroic="1" id="3716" key="underbog" levelMax="70" levelMin="62" nameId="3716" partySize="5" raid="0" release="1">
+	<bosses>
+	<boss id="17882" key="blackstalker" type="npc">
+		<lootTable difficulty="n" id="17882" type="npc"/>
+		<lootTable difficulty="h" id="20184" type="npc"/>
+	</boss>
+	<boss id="18105" key="ghazan" type="npc">
+		<lootTable difficulty="n" id="18105" type="npc"/>
+		<lootTable difficulty="h" id="20168" type="npc"/>
+	</boss>
+	<boss id="17770" key="hungarfen" type="npc">
+		<lootTable difficulty="n" id="17770" type="npc"/>
+		<lootTable difficulty="h" id="20169" type="npc"/>
+	</boss>
+	<boss id="17826" key="swamplordmuselek" type="npc">
+		<lootTable difficulty="n" id="17826" type="npc"/>
+		<lootTable difficulty="h" id="20183" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="3428" key="templeofahnqiraj" levelMax="60" levelMin="60" nameId="3428" partySize="40" raid="1" release="0">
+    <bosses>
+    <boss id="15516" key="" type="npc">
+        <lootTable difficulty="n" id="15516" type="npc"/>
+    </boss>
+    <boss id="15727" key="" type="npc">
+        <lootTable difficulty="n" id="15727" type="npc"/>
+    </boss>
+    <boss id="15276" key="" type="npc">
+        <lootTable difficulty="n" id="15276" type="npc"/>
+    </boss>
+    <boss id="15275" key="" type="npc">
+        <lootTable difficulty="n" id="15275" type="npc"/>
+    </boss>
+    <boss id="15510" key="" type="npc">
+        <lootTable difficulty="n" id="15510" type="npc"/>
+    </boss>
+    <boss id="15511" key="" type="npc">
+        <lootTable difficulty="n" id="15511" type="npc"/>
+    </boss>
+    <boss id="15517" key="" type="npc">
+        <lootTable difficulty="n" id="15517" type="npc"/>
+    </boss>
+    <boss id="15509" key="" type="npc">
+        <lootTable difficulty="n" id="15509" type="npc"/>
+    </boss>
+    <boss id="15543" key="" type="npc">
+        <lootTable difficulty="n" id="15543" type="npc"/>
+    </boss>
+    <boss id="15263" key="" type="npc">
+        <lootTable difficulty="n" id="15263" type="npc"/>
+    </boss>
+    <boss id="15544" key="" type="npc">
+        <lootTable difficulty="n" id="15544" type="npc"/>
+    </boss>
+    <boss id="15299" key="" type="npc">
+        <lootTable difficulty="n" id="15299" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="2677" key="blackwinglair" levelMax="60" levelMin="60" nameId="2677" partySize="40" raid="1" release="0">
+    <bosses>
+    <boss id="12017" key="" type="npc">
+        <lootTable difficulty="n" id="12017" type="npc"/>
+    </boss>
+    <boss id="14020" key="" type="npc">
+        <lootTable difficulty="n" id="14020" type="npc"/>
+    </boss>
+    <boss id="14601" key="" type="npc">
+        <lootTable difficulty="n" id="14601" type="npc"/>
+    </boss>
+    <boss id="11983" key="" type="npc">
+        <lootTable difficulty="n" id="11983" type="npc"/>
+    </boss>
+    <boss id="11981" key="" type="npc">
+        <lootTable difficulty="n" id="11981" type="npc"/>
+    </boss>
+    <boss id="11583" key="" type="npc">
+        <lootTable difficulty="n" id="11583" type="npc"/>
+    </boss>
+    <boss id="12435" key="" type="npc">
+        <lootTable difficulty="n" id="12435" type="npc"/>
+    </boss>
+    <boss id="13020" key="" type="npc">
+        <lootTable difficulty="n" id="13020" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="2717" key="moltencore" levelMax="60" levelMin="60" nameId="2717" partySize="40" raid="1" release="0">
+    <bosses>
+    <boss id="12056" key="" type="npc">
+        <lootTable difficulty="n" id="12056" type="npc"/>
+    </boss>
+    <boss id="12057" key="" type="npc">
+        <lootTable difficulty="n" id="12057" type="npc"/>
+    </boss>
+    <boss id="12259" key="" type="npc">
+        <lootTable difficulty="n" id="12259" type="npc"/>
+    </boss>
+    <boss id="11988" key="" type="npc">
+        <lootTable difficulty="n" id="11988" type="npc"/>
+    </boss>
+    <boss id="12118" key="" type="npc">
+        <lootTable difficulty="n" id="12118" type="npc"/>
+    </boss>
+    <boss id="11982" key="" type="npc">
+        <lootTable difficulty="n" id="11982" type="npc"/>
+    </boss>
+    <boss id="12018" key="majordomo" type="npc">
+        <lootTable difficulty="n" id="179703" type="object"/>
+    </boss>
+    <boss id="11502" key="" type="npc">
+        <lootTable difficulty="n" id="11502" type="npc"/>
+    </boss>
+    <boss id="12264" key="" type="npc">
+        <lootTable difficulty="n" id="12264" type="npc"/>
+    </boss>
+    <boss id="12098" key="" type="npc">
+        <lootTable difficulty="n" id="12098" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+
+<dungeon id="3429" key="ruinsofahnqiraj" levelMax="60" levelMin="60" nameId="3429" partySize="20" raid="1" release="0">
+    <bosses>
+    <boss id="15369" key="" type="npc">
+        <lootTable difficulty="n" id="15369" type="npc"/>
+    </boss>
+    <boss id="15370" key="" type="npc">
+        <lootTable difficulty="n" id="15370" type="npc"/>
+    </boss>
+    <boss id="15341" key="" type="npc">
+        <lootTable difficulty="n" id="15341" type="npc"/>
+    </boss>
+    <boss id="15348" key="" type="npc">
+        <lootTable difficulty="n" id="15348" type="npc"/>
+    </boss>
+    <boss id="15340" key="" type="npc">
+        <lootTable difficulty="n" id="15340" type="npc"/>
+    </boss>
+    <boss id="15339" key="" type="npc">
+        <lootTable difficulty="n" id="15339" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="1977" key="zulgurub" levelMax="60" levelMin="60" nameId="1977" partySize="20" raid="1" release="0">
+    <bosses>
+    <boss id="11382" key="" type="npc">
+        <lootTable difficulty="n" id="11382" type="npc"/>
+    </boss>
+    <boss id="15114" key="" type="npc">
+        <lootTable difficulty="n" id="15114" type="npc"/>
+    </boss>
+    <boss id="14834" key="" type="npc">
+        <lootTable difficulty="n" id="14834" type="npc"/>
+    </boss>
+    <boss id="14509" key="" type="npc">
+        <lootTable difficulty="n" id="14509" type="npc"/>
+    </boss>
+    <boss id="14507" key="" type="npc">
+        <lootTable difficulty="n" id="14507" type="npc"/>
+    </boss>
+    <boss id="14515" key="" type="npc">
+        <lootTable difficulty="n" id="14515" type="npc"/>
+    </boss>
+    <boss id="14517" key="" type="npc">
+        <lootTable difficulty="n" id="14517" type="npc"/>
+    </boss>
+    <boss id="14510" key="" type="npc">
+        <lootTable difficulty="n" id="14510" type="npc"/>
+    </boss>
+    <boss id="11380" key="" type="npc">
+        <lootTable difficulty="n" id="11380" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="719" key="blackfathomdepths" levelMax="28" levelMin="20" nameId="719" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="4829" key="akumai" type="npc">
+		<lootTable difficulty="n" id="4829" type="npc"/>
+	</boss>
+	<boss id="12876" key="baronaquanis" type="npc">
+		<lootTable difficulty="n" id="12876" type="npc"/>
+	</boss>
+	<boss id="6243" key="gelihast" type="npc">
+		<lootTable difficulty="n" id="6243" type="npc"/>
+	</boss>
+	<boss id="4887" key="ghamoora" type="npc">
+		<lootTable difficulty="n" id="4887" type="npc"/>
+	</boss>
+	<boss id="4831" key="ladysarevess" type="npc">
+		<lootTable difficulty="n" id="4831" type="npc"/>
+	</boss>
+	<boss id="12902" key="lorgusjett" type="npc">
+		<lootTable difficulty="n" id="12902" type="npc"/>
+	</boss>
+	<boss id="4830" key="oldserrakis" type="npc">
+		<lootTable difficulty="n" id="4830" type="npc"/>
+	</boss>
+	<boss id="4832" key="twilightlordkelris" type="npc">
+		<lootTable difficulty="n" id="4832" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+<dungeon id="1583" key="blackrockspire" levelMax="60" levelMin="56" nameId="1583" partySize="10" raid="1" release="0">
+    <bosses>
+    <boss id="9596" key="bannokgrimaxe" type="npc">
+        <lootTable difficulty="n" id="9596" type="npc"/>
+    </boss>
+    <boss id="10263" key="burningfelguard" type="npc">
+        <lootTable difficulty="n" id="10263" type="npc"/>
+    </boss>
+    <boss id="10376" key="crystalfang" type="npc">
+        <lootTable difficulty="n" id="10376" type="npc"/>
+    </boss>
+    <boss id="10363" key="generaldrakkisath" type="npc">
+        <lootTable difficulty="n" id="10363" type="npc"/>
+    </boss>
+    <boss id="9718" key="ghokbashguud" type="npc">
+        <lootTable difficulty="n" id="9718" type="npc"/>
+    </boss>
+    <boss id="10268" key="gizrultheslavener" type="npc">
+        <lootTable difficulty="n" id="10268" type="npc"/>
+    </boss>
+    <boss id="10899" key="" type="npc">
+        <lootTable difficulty="n" id="10899" type="npc"/>
+    </boss>
+    <boss id="10339" key="" type="npc">
+        <lootTable difficulty="n" id="10339" type="npc"/>
+    </boss>
+    <boss id="10220" key="" type="npc">
+        <lootTable difficulty="n" id="10220" type="npc"/>
+    </boss>
+    <boss id="9196" key="" type="npc">
+        <lootTable difficulty="n" id="9196" type="npc"/>
+    </boss>
+    <boss id="10509" key="" type="npc">
+        <lootTable difficulty="n" id="10509" type="npc"/>
+    </boss>
+    <boss id="16042" key="" type="npc">
+        <lootTable difficulty="n" id="16042" type="npc"/>
+    </boss>
+    <boss id="16080" key="" type="npc">
+        <lootTable difficulty="n" id="16080" type="npc"/>
+    </boss>
+    <boss id="10596" key="" type="npc">
+        <lootTable difficulty="n" id="10596" type="npc"/>
+    </boss>
+    <boss id="9568" key="" type="npc">
+        <lootTable difficulty="n" id="9568" type="npc"/>
+    </boss>
+    <boss id="9816" key="" type="npc">
+        <lootTable difficulty="n" id="9816" type="npc"/>
+    </boss>
+    <boss id="9736" key="" type="npc">
+        <lootTable difficulty="n" id="9736" type="npc"/>
+    </boss>
+    <boss id="9236" key="" type="npc">
+        <lootTable difficulty="n" id="9236" type="npc"/>
+    </boss>
+    <boss id="10264" key="" type="npc">
+        <lootTable difficulty="n" id="10264" type="npc"/>
+    </boss>
+    <boss id="9218" key="" type="npc">
+        <lootTable difficulty="n" id="9218" type="npc"/>
+    </boss>
+    <boss id="9219" key="" type="npc">
+        <lootTable difficulty="n" id="9219" type="npc"/>
+    </boss>
+    <boss id="9217" key="" type="npc">
+        <lootTable difficulty="n" id="9217" type="npc"/>
+    </boss>
+    <boss id="10430" key="" type="npc">
+        <lootTable difficulty="n" id="10430" type="npc"/>
+    </boss>
+    <boss id="10584" key="" type="npc">
+        <lootTable difficulty="n" id="10584" type="npc"/>
+    </boss>
+    <boss id="9237" key="" type="npc">
+        <lootTable difficulty="n" id="9237" type="npc"/>
+    </boss>
+    <boss id="10429" key="" type="npc">
+        <lootTable difficulty="n" id="10429" type="npc"/>
+    </boss>
+    </bosses>
+</dungeon>
+
+
+<dungeon id="1584" key="blackrockdepths" levelMax="60" levelMin="48" nameId="1584" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="9156" key="ambassadorflamelash" type="npc">
+		<lootTable difficulty="n" id="9156" type="npc"/>
+	</boss>
+	<boss id="181074" key="arenaspoils" type="object">
+		<lootTable difficulty="n" id="181074" type="object"/>
+	</boss>
+	<boss id="9031" key="anubshiah" type="npc">
+		<lootTable difficulty="n" id="9031" type="npc"/>
+	</boss>
+	<boss id="9016" key="baelgar" type="npc">
+		<lootTable difficulty="n" id="9016" type="npc"/>
+	</boss>
+	<boss id="169243" key="chestoftheseven" type="object">
+		<lootTable difficulty="n" id="169243" type="object"/>
+	</boss>
+	<boss id="9438" key="darkkeeperbethek" type="npc">
+		<lootTable difficulty="n" id="9438" type="npc"/>
+	</boss>
+	<boss id="9442" key="darkkeeperofgut" type="npc">
+		<lootTable difficulty="n" id="9442" type="npc"/>
+	</boss>
+	<boss id="9443" key="darkkeeperpelver" type="npc">
+		<lootTable difficulty="n" id="9443" type="npc"/>
+	</boss>
+	<boss id="9439" key="darkkeeperuggel" type="npc">
+		<lootTable difficulty="n" id="9439" type="npc"/>
+	</boss>
+	<boss id="9437" key="darkkeepervorfalk" type="npc">
+		<lootTable difficulty="n" id="9437" type="npc"/>
+	</boss>
+	<boss id="9441" key="darkkeeperzimrel" type="npc">
+		<lootTable difficulty="n" id="9441" type="npc"/>
+	</boss>
+	<boss id="9019" key="emporerdagranthaurissan" type="npc">
+		<lootTable difficulty="n" id="9019" type="npc"/>
+	</boss>
+	<boss id="9029" key="eviscerator" type="npc">
+		<lootTable difficulty="n" id="9029" type="npc"/>
+	</boss>
+	<boss id="9056" key="fineousdarkvire" type="npc">
+		<lootTable difficulty="n" id="9056" type="npc"/>
+	</boss>
+	<boss id="9033" key="generalangerforge" type="npc">
+		<lootTable difficulty="n" id="9033" type="npc"/>
+	</boss>
+	<boss id="8983" key="golemlordargelmach" type="npc">
+		<lootTable difficulty="n" id="8983" type="npc"/>
+	</boss>
+	<boss id="9027" key="goroshthedervish" type="npc">
+		<lootTable difficulty="n" id="9027" type="npc"/>
+	</boss>
+	<boss id="9028" key="grizzle" type="npc">
+		<lootTable difficulty="n" id="9028" type="npc"/>
+	</boss>
+	<boss id="9032" key="hedrumthecreeper" type="npc">
+		<lootTable difficulty="n" id="9032" type="npc"/>
+	</boss>
+	<boss id="9018" key="highinterrogatorgerstahn" type="npc">
+		<lootTable difficulty="n" id="9018" type="npc"/>
+	</boss>
+	<boss id="10076" key="highpriestessofthaurissan" type="npc">
+		<lootTable difficulty="n" id="10076" type="npc"/>
+	</boss>
+	<boss id="9319" key="houndmastergrebmar" type="npc">
+		<lootTable difficulty="n" id="9319" type="npc"/>
+	</boss>
+	<boss id="9537" key="hurleyblackbreath" type="npc">
+		<lootTable difficulty="n" id="9537" type="npc"/>
+	</boss>
+	<boss id="9017" key="lordincendius" type="npc">
+		<lootTable difficulty="n" id="9017" type="npc"/>
+	</boss>
+	<boss id="9025" key="lordroccor" type="npc">
+		<lootTable difficulty="n" id="9025" type="npc"/>
+	</boss>
+	<boss id="9938" key="magmus" type="npc">
+		<lootTable difficulty="n" id="9938" type="npc"/>
+	</boss>
+	<boss id="9030" key="okthorthebreaker" type="npc">
+		<lootTable difficulty="n" id="9030" type="npc"/>
+	</boss>
+	<boss id="8923" key="panzortheinvincible" type="npc">
+		<lootTable difficulty="n" id="8923" type="npc"/>
+	</boss>
+	<boss id="9502" key="phalanx" type="npc">
+		<lootTable difficulty="n" id="9502" type="npc"/>
+	</boss>
+	<boss id="9499" key="pluggerspazzring" type="npc">
+		<lootTable difficulty="n" id="9499" type="npc"/>
+	</boss>
+	<boss id="8929" key="princessmoirabronzebeard" type="npc">
+		<lootTable difficulty="n" id="8929" type="npc"/>
+	</boss>
+	<boss id="9024" key="pyromancerloregrain" type="npc">
+		<lootTable difficulty="n" id="9024" type="npc"/>
+	</boss>
+	<boss id="9543" key="ribblyscrewspigot" type="npc">
+		<lootTable difficulty="n" id="9543" type="npc"/>
+	</boss>
+	<boss id="16059" key="theldren" type="npc">
+		<lootTable difficulty="n" id="16059" type="npc"/>
+	</boss>
+	<boss id="9042" key="verek" type="npc">
+		<lootTable difficulty="n" id="9042" type="npc"/>
+	</boss>
+	<boss id="9041" key="warderstilgiss" type="npc">
+		<lootTable difficulty="n" id="9041" type="npc"/>
+	</boss>
+	<boss id="9476" key="watchmandoomgrip" type="npc">
+		<lootTable difficulty="n" id="9476" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="1581" key="deadmines" levelMax="24" levelMin="16" nameId="1581" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="596" key="" type="npc">
+		<lootTable difficulty="n" id="596" type="npc"/>
+	</boss>
+	<boss id="647" key="" type="npc">
+		<lootTable difficulty="n" id="647" type="npc"/>
+	</boss>
+	<boss id="645" key="" type="npc">
+		<lootTable difficulty="n" id="645" type="npc"/>
+	</boss>
+	<boss id="639" key="" type="npc">
+		<lootTable difficulty="n" id="639" type="npc"/>
+	</boss>
+	<boss id="626" key="" type="npc">
+		<lootTable difficulty="n" id="626" type="npc"/>
+	</boss>
+	<boss id="1763" key="" type="npc">
+		<lootTable difficulty="n" id="1763" type="npc"/>
+	</boss>
+	<boss id="599" key="" type="npc">
+		<lootTable difficulty="n" id="599" type="npc"/>
+	</boss>
+	<boss id="3586" key="" type="npc">
+		<lootTable difficulty="n" id="3586" type="npc"/>
+	</boss>
+	<boss id="646" key="" type="npc">
+		<lootTable difficulty="n" id="646" type="npc"/>
+	</boss>
+	<boss id="644" key="" type="npc">
+		<lootTable difficulty="n" id="644" type="npc"/>
+	</boss>
+	<boss id="643" key="" type="npc">
+		<lootTable difficulty="n" id="643" type="npc"/>
+	</boss>
+	<boss id="642" key="" type="npc">
+		<lootTable difficulty="n" id="642" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="2557" key="diremaul" levelMax="61" levelMin="54" nameId="2557" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="11492" key="" type="npc">
+		<lootTable difficulty="n" id="11492" type="npc"/>
+	</boss>
+	<boss id="14325" key="" type="npc">
+		<lootTable difficulty="n" id="14325" type="npc"/>
+	</boss>
+	<boss id="14324" key="" type="npc">
+		<lootTable difficulty="n" id="14324" type="npc"/>
+	</boss>
+	<boss id="14308" key="" type="npc">
+		<lootTable difficulty="n" id="14308" type="npc"/>
+	</boss>
+	<boss id="14321" key="" type="npc">
+		<lootTable difficulty="n" id="14321" type="npc"/>
+	</boss>
+	<boss id="14326" key="" type="npc">
+		<lootTable difficulty="n" id="14326" type="npc"/>
+	</boss>
+	<boss id="14323" key="" type="npc">
+		<lootTable difficulty="n" id="14323" type="npc"/>
+	</boss>
+	<boss id="13280" key="" type="npc">
+		<lootTable difficulty="n" id="13280" type="npc"/>
+	</boss>
+	<boss id="11488" key="" type="npc">
+		<lootTable difficulty="n" id="11488" type="npc"/>
+	</boss>
+	<boss id="11496" key="" type="npc">
+		<lootTable difficulty="n" id="11496" type="npc"/>
+	</boss>
+	<boss id="16097" key="" type="npc">
+		<lootTable difficulty="n" id="16097" type="npc"/>
+	</boss>
+	<boss id="11501" key="" type="npc">
+		<lootTable difficulty="n" id="11501" type="npc"/>
+	</boss>
+	<boss id="14327" key="" type="npc">
+		<lootTable difficulty="n" id="14327" type="npc"/>
+	</boss>
+	<boss id="14506" key="" type="npc">
+		<lootTable difficulty="n" id="14506" type="npc"/>
+	</boss>
+	<boss id="11487" key="" type="npc">
+		<lootTable difficulty="n" id="11487" type="npc"/>
+	</boss>
+	<boss id="14349" key="" type="npc">
+		<lootTable difficulty="n" id="14349" type="npc"/>
+	</boss>
+	<boss id="11486" key="" type="npc">
+		<lootTable difficulty="n" id="11486" type="npc"/>
+	</boss>
+	<boss id="14354" key="" type="npc">
+		<lootTable difficulty="n" id="14354" type="npc"/>
+	</boss>
+	<boss id="14322" key="" type="npc">
+		<lootTable difficulty="n" id="14322" type="npc"/>
+	</boss>
+	<boss id="11489" key="" type="npc">
+		<lootTable difficulty="n" id="11489" type="npc"/>
+	</boss>
+	<boss id="11467" key="" type="npc">
+		<lootTable difficulty="n" id="11467" type="npc"/>
+	</boss>
+	<boss id="11490" key="" type="npc">
+		<lootTable difficulty="n" id="11490" type="npc"/>
+	</boss>
+	<boss id="179564" key="gordoktribute" type="object">
+		<lootTable difficulty="n" id="179564" type="object"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="721" key="gnomeregan" levelMax="32" levelMin="24" nameId="721" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="6229" key="" type="npc">
+		<lootTable difficulty="n" id="6229" type="npc"/>
+	</boss>
+	<boss id="6228" key="" type="npc">
+		<lootTable difficulty="n" id="6228" type="npc"/>
+	</boss>
+	<boss id="6235" key="" type="npc">
+		<lootTable difficulty="n" id="6235" type="npc"/>
+	</boss>
+	<boss id="7361" key="" type="npc">
+		<lootTable difficulty="n" id="7361" type="npc"/>
+	</boss>
+	<boss id="7800" key="" type="npc">
+		<lootTable difficulty="n" id="7800" type="npc"/>
+	</boss>
+	<boss id="6231" key="" type="npc">
+		<lootTable difficulty="n" id="6231" type="npc"/>
+	</boss>
+	<boss id="7079" key="" type="npc">
+		<lootTable difficulty="n" id="7079" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="2100" key="maraudon" levelMax="52" levelMin="40" nameId="2100" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="12225" key="" type="npc">
+		<lootTable difficulty="n" id="12225" type="npc"/>
+	</boss>
+	<boss id="12203" key="" type="npc">
+		<lootTable difficulty="n" id="12203" type="npc"/>
+	</boss>
+	<boss id="12236" key="" type="npc">
+		<lootTable difficulty="n" id="12236" type="npc"/>
+	</boss>
+	<boss id="12237" key="" type="npc">
+		<lootTable difficulty="n" id="12237" type="npc"/>
+	</boss>
+	<boss id="13282" key="" type="npc">
+		<lootTable difficulty="n" id="13282" type="npc"/>
+	</boss>
+	<boss id="12201" key="" type="npc">
+		<lootTable difficulty="n" id="12201" type="npc"/>
+	</boss>
+	<boss id="12258" key="" type="npc">
+		<lootTable difficulty="n" id="12258" type="npc"/>
+	</boss>
+	<boss id="13596" key="" type="npc">
+		<lootTable difficulty="n" id="13596" type="npc"/>
+	</boss>
+	<boss id="13718" key="" type="npc">
+		<lootTable difficulty="n" id="13718" type="npc"/>
+	</boss>
+	<boss id="13601" key="" type="npc">
+		<lootTable difficulty="n" id="13601" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="2437" key="ragefirechasm" levelMax="20" levelMin="13" nameId="2437" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="11519" key="" type="npc">
+		<lootTable difficulty="n" id="11519" type="npc"/>
+	</boss>
+	<boss id="11518" key="" type="npc">
+		<lootTable difficulty="n" id="11518" type="npc"/>
+	</boss>
+	<boss id="11517" key="" type="npc">
+		<lootTable difficulty="n" id="11517" type="npc"/>
+	</boss>
+	<boss id="11520" key="" type="npc">
+		<lootTable difficulty="n" id="11520" type="npc"/>
+	</boss>
+	<boss id="17830" key="" type="npc">
+		<lootTable difficulty="n" id="17830" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="722" key="razorfendowns" levelMax="41" levelMin="33" nameId="722" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="7358" key="" type="npc">
+		<lootTable difficulty="n" id="7358" type="npc"/>
+	</boss>
+	<boss id="8567" key="" type="npc">
+		<lootTable difficulty="n" id="8567" type="npc"/>
+	</boss>
+	<boss id="7357" key="" type="npc">
+		<lootTable difficulty="n" id="7357" type="npc"/>
+	</boss>
+	<boss id="7356" key="" type="npc">
+		<lootTable difficulty="n" id="7356" type="npc"/>
+	</boss>
+	<boss id="7354" key="" type="npc">
+		<lootTable difficulty="n" id="7354" type="npc"/>
+	</boss>
+	<boss id="7355" key="" type="npc">
+		<lootTable difficulty="n" id="7355" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="491" key="razorfenkraul" levelMax="31" levelMin="23" nameId="491" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="4422" key="" type="npc">
+		<lootTable difficulty="n" id="4422" type="npc"/>
+	</boss>
+	<boss id="4424" key="" type="npc">
+		<lootTable difficulty="n" id="4424" type="npc"/>
+	</boss>
+	<boss id="4425" key="" type="npc">
+		<lootTable difficulty="n" id="4425" type="npc"/>
+	</boss>
+	<boss id="4421" key="" type="npc">
+		<lootTable difficulty="n" id="4421" type="npc"/>
+	</boss>
+	<boss id="4428" key="" type="npc">
+		<lootTable difficulty="n" id="4428" type="npc"/>
+	</boss>
+	<boss id="4842" key="" type="npc">
+		<lootTable difficulty="n" id="4842" type="npc"/>
+	</boss>
+	<boss id="4420" key="" type="npc">
+		<lootTable difficulty="n" id="4420" type="npc"/>
+	</boss>
+	<boss id="6168" key="" type="npc">
+		<lootTable difficulty="n" id="6168" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="796" key="scarletmonastery" levelMax="36" levelMin="28" nameId="796" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="6487" key="" type="npc">
+		<lootTable difficulty="n" id="6487" type="npc"/>
+	</boss>
+	<boss id="6490" key="" type="npc">
+		<lootTable difficulty="n" id="6490" type="npc"/>
+	</boss>
+	<boss id="4543" key="" type="npc">
+		<lootTable difficulty="n" id="4543" type="npc"/>
+	</boss>
+	<boss id="6488" key="" type="npc">
+		<lootTable difficulty="n" id="6488" type="npc"/>
+	</boss>
+	<boss id="3975" key="" type="npc">
+		<lootTable difficulty="n" id="3975" type="npc"/>
+	</boss>
+	<boss id="4542" key="" type="npc">
+		<lootTable difficulty="n" id="4542" type="npc"/>
+	</boss>
+	<boss id="3977" key="" type="npc">
+		<lootTable difficulty="n" id="3977" type="npc"/>
+	</boss>
+	<boss id="3974" key="" type="npc">
+		<lootTable difficulty="n" id="3974" type="npc"/>
+	</boss>
+	<boss id="3983" key="" type="npc">
+		<lootTable difficulty="n" id="3983" type="npc"/>
+	</boss>
+	<boss id="6489" key="" type="npc">
+		<lootTable difficulty="n" id="6489" type="npc"/>
+	</boss>
+	<boss id="3976" key="" type="npc">
+		<lootTable difficulty="n" id="3976" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="2057" key="scholomance" levelMax="61" levelMin="56" nameId="2057" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="1853" key="" type="npc">
+		<lootTable difficulty="n" id="1853" type="npc"/>
+	</boss>
+	<boss id="14516" key="" type="npc">
+		<lootTable difficulty="n" id="14516" type="npc"/>
+	</boss>
+	<boss id="11261" key="" type="npc">
+		<lootTable difficulty="n" id="11261" type="npc"/>
+	</boss>
+	<boss id="10505" key="" type="npc">
+		<lootTable difficulty="n" id="10505" type="npc"/>
+	</boss>
+	<boss id="10503" key="" type="npc">
+		<lootTable difficulty="n" id="10503" type="npc"/>
+	</boss>
+	<boss id="10506" key="" type="npc">
+		<lootTable difficulty="n" id="10506" type="npc"/>
+	</boss>
+	<boss id="16118" key="" type="npc">
+		<lootTable difficulty="n" id="16118" type="npc"/>
+	</boss>
+	<boss id="10502" key="" type="npc">
+		<lootTable difficulty="n" id="10502" type="npc"/>
+	</boss>
+	<boss id="10504" key="" type="npc">
+		<lootTable difficulty="n" id="10504" type="npc"/>
+	</boss>
+	<boss id="10901" key="" type="npc">
+		<lootTable difficulty="n" id="10901" type="npc"/>
+	</boss>
+	<boss id="10433" key="" type="npc">
+		<lootTable difficulty="n" id="10433" type="npc"/>
+	</boss>
+	<boss id="10508" key="" type="npc">
+		<lootTable difficulty="n" id="10508" type="npc"/>
+	</boss>
+	<boss id="11622" key="" type="npc">
+		<lootTable difficulty="n" id="11622" type="npc"/>
+	</boss>
+	<boss id="10507" key="" type="npc">
+		<lootTable difficulty="n" id="10507" type="npc"/>
+	</boss>
+	<boss id="10432" key="" type="npc">
+		<lootTable difficulty="n" id="10432" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="209" key="shadowfangkeep" levelMax="25" levelMin="17" nameId="209" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="4275" key="" type="npc">
+		<lootTable difficulty="n" id="4275" type="npc"/>
+	</boss>
+	<boss id="3887" key="" type="npc">
+		<lootTable difficulty="n" id="3887" type="npc"/>
+	</boss>
+	<boss id="4278" key="" type="npc">
+		<lootTable difficulty="n" id="4278" type="npc"/>
+	</boss>
+	<boss id="3872" key="" type="npc">
+		<lootTable difficulty="n" id="3872" type="npc"/>
+	</boss>
+	<boss id="4274" key="" type="npc">
+		<lootTable difficulty="n" id="4274" type="npc"/>
+	</boss>
+	<boss id="4279" key="" type="npc">
+		<lootTable difficulty="n" id="4279" type="npc"/>
+	</boss>
+	<boss id="3886" key="" type="npc">
+		<lootTable difficulty="n" id="3886" type="npc"/>
+	</boss>
+	<boss id="3914" key="" type="npc">
+		<lootTable difficulty="n" id="3914" type="npc"/>
+	</boss>
+	<boss id="3927" key="" type="npc">
+		<lootTable difficulty="n" id="3927" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="717" key="stockade" levelMax="29" levelMin="21" nameId="717" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="1716" key="" type="npc">
+		<lootTable difficulty="n" id="1716" type="npc"/>
+	</boss>
+	<boss id="1720" key="" type="npc">
+		<lootTable difficulty="n" id="1720" type="npc"/>
+	</boss>
+	<boss id="1663" key="" type="npc">
+		<lootTable difficulty="n" id="1663" type="npc"/>
+	</boss>
+	<boss id="1717" key="" type="npc">
+		<lootTable difficulty="n" id="1717" type="npc"/>
+	</boss>
+	<boss id="1666" key="" type="npc">
+		<lootTable difficulty="n" id="1666" type="npc"/>
+	</boss>
+	<boss id="1696" key="" type="npc">
+		<lootTable difficulty="n" id="1696" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="2017" key="stratholme" levelMax="61" levelMin="56" nameId="2017" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="10811" key="" type="npc">
+		<lootTable difficulty="n" id="10811" type="npc"/>
+	</boss>
+	<boss id="10812" key="grandcrusaderdathrohan" type="npc">
+		<lootTable difficulty="n" id="10812" type="npc"/>
+	</boss>
+	<boss id="10813" key="" type="npc">
+		<lootTable difficulty="n" id="10813" type="npc"/>
+	</boss>
+	<boss id="10440" key="" type="npc">
+		<lootTable difficulty="n" id="10440" type="npc"/>
+	</boss>
+	<boss id="10436" key="" type="npc">
+		<lootTable difficulty="n" id="10436" type="npc"/>
+	</boss>
+	<boss id="11121" key="" type="npc">
+		<lootTable difficulty="n" id="11121" type="npc"/>
+	</boss>
+	<boss id="10997" key="" type="npc">
+		<lootTable difficulty="n" id="10997" type="npc"/>
+	</boss>
+	<boss id="11120" key="" type="npc">
+		<lootTable difficulty="n" id="11120" type="npc"/>
+	</boss>
+	<boss id="11058" key="" type="npc">
+		<lootTable difficulty="n" id="11058" type="npc"/>
+	</boss>
+	<boss id="10558" key="" type="npc">
+		<lootTable difficulty="n" id="10558" type="npc"/>
+	</boss>
+	<boss id="16101" key="" type="npc">
+		<lootTable difficulty="n" id="16101" type="npc"/>
+	</boss>
+	<boss id="10435" key="" type="npc">
+		<lootTable difficulty="n" id="10435" type="npc"/>
+	</boss>
+	<boss id="10438" key="" type="npc">
+		<lootTable difficulty="n" id="10438" type="npc"/>
+	</boss>
+	<boss id="11032" key="" type="npc">
+		<lootTable difficulty="n" id="11032" type="npc"/>
+	</boss>
+	<boss id="10437" key="" type="npc">
+		<lootTable difficulty="n" id="10437" type="npc"/>
+	</boss>
+	<boss id="11143" key="" type="npc">
+		<lootTable difficulty="n" id="11143" type="npc"/>
+	</boss>
+	<boss id="10439" key="" type="npc">
+		<lootTable difficulty="n" id="10439" type="npc"/>
+	</boss>
+	<boss id="10393" key="" type="npc">
+		<lootTable difficulty="n" id="10393" type="npc"/>
+	</boss>
+	<boss id="16102" key="" type="npc">
+		<lootTable difficulty="n" id="16102" type="npc"/>
+	</boss>
+	<boss id="10809" key="" type="npc">
+		<lootTable difficulty="n" id="10809" type="npc"/>
+	</boss>
+	<boss id="11082" key="" type="npc">
+		<lootTable difficulty="n" id="11082" type="npc"/>
+	</boss>
+	<boss id="10516" key="" type="npc">
+		<lootTable difficulty="n" id="10516" type="npc"/>
+	</boss>
+	<boss id="10808" key="" type="npc">
+		<lootTable difficulty="n" id="10808" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="1477" key="sunkentemple" levelMax="54" levelMin="45" nameId="1417" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="8580" key="" type="npc">
+		<lootTable difficulty="n" id="8580" type="npc"/>
+	</boss>
+	<boss id="8443" key="" type="npc">
+		<lootTable difficulty="n" id="8440" type="npc"/>
+	</boss>
+	<boss id="5721" key="" type="npc">
+		<lootTable difficulty="n" id="5721" type="npc"/>
+	</boss>
+	<boss id="5713" key="" type="npc">
+		<lootTable difficulty="n" id="5713" type="npc"/>
+	</boss>
+	<boss id="5722" key="" type="npc">
+		<lootTable difficulty="n" id="5722" type="npc"/>
+	</boss>
+	<boss id="5715" key="" type="npc">
+		<lootTable difficulty="n" id="5715" type="npc"/>
+	</boss>
+	<boss id="1063" key="" type="npc">
+		<lootTable difficulty="n" id="1063" type="npc"/>
+	</boss>
+	<boss id="5710" key="" type="npc">
+		<lootTable difficulty="n" id="5710" type="npc"/>
+	</boss>
+	<boss id="5401" key="" type="npc">
+		<lootTable difficulty="n" id="5401" type="npc"/>
+	</boss>
+	<boss id="5714" key="" type="npc">
+		<lootTable difficulty="n" id="5714" type="npc"/>
+	</boss>
+	<boss id="5717" key="" type="npc">
+		<lootTable difficulty="n" id="5717" type="npc"/>
+	</boss>
+	<boss id="5719" key="" type="npc">
+		<lootTable difficulty="n" id="5719" type="npc"/>
+	</boss>
+	<boss id="5711" key="" type="npc">
+		<lootTable difficulty="n" id="5711" type="npc"/>
+	</boss>
+	<boss id="5709" key="" type="npc">
+		<lootTable difficulty="n" id="5709" type="npc"/>
+	</boss>
+	<boss id="5708" key="" type="npc">
+		<lootTable difficulty="n" id="5708" type="npc"/>
+	</boss>
+	<boss id="5399" key="" type="npc">
+		<lootTable difficulty="n" id="5399" type="npc"/>
+	</boss>
+	<boss id="5720" key="" type="npc">
+		<lootTable difficulty="n" id="5720" type="npc"/>
+	</boss>
+	<boss id="5400" key="" type="npc">
+		<lootTable difficulty="n" id="5400" type="npc"/>
+	</boss>
+	<boss id="5712" key="" type="npc">
+		<lootTable difficulty="n" id="5712" type="npc"/>
+	</boss>
+	<boss id="5716" key="" type="npc">
+		<lootTable difficulty="n" id="5716" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="1337" key="uldaman" levelMax="44" levelMin="36" nameId="1337" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="7206" key="" type="npc">
+		<lootTable difficulty="n" id="7206" type="npc"/>
+	</boss>
+	<boss id="2748" key="" type="npc">
+		<lootTable difficulty="n" id="2748" type="npc"/>
+	</boss>
+	<boss id="6906" key="" type="npc">
+		<lootTable difficulty="n" id="6906" type="npc"/>
+	</boss>
+	<boss id="7057" key="" type="npc">
+		<lootTable difficulty="n" id="7057" type="npc"/>
+	</boss>
+	<boss id="6907" key="" type="npc">
+		<lootTable difficulty="n" id="6907" type="npc"/>
+	</boss>
+	<boss id="7291" key="" type="npc">
+		<lootTable difficulty="n" id="7291" type="npc"/>
+	</boss>
+	<boss id="4854" key="" type="npc">
+		<lootTable difficulty="n" id="4854" type="npc"/>
+	</boss>
+	<boss id="7228" key="" type="npc">
+		<lootTable difficulty="n" id="7228" type="npc"/>
+	</boss>
+	<boss id="2932" key="" type="npc">
+		<lootTable difficulty="n" id="2932" type="npc"/>
+	</boss>
+	<boss id="7023" key="" type="npc">
+		<lootTable difficulty="n" id="7023" type="npc"/>
+	</boss>
+	<boss id="6908" key="" type="npc">
+		<lootTable difficulty="n" id="6908" type="npc"/>
+	</boss>
+	<boss id="6910" key="" type="npc">
+		<lootTable difficulty="n" id="6910" type="npc"/>
+	</boss>
+	<boss id="4857" key="" type="npc">
+		<lootTable difficulty="n" id="4857" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="718" key="wailingcaverns" levelMax="24" levelMin="16" nameId="718" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="5912" key="" type="npc">
+		<lootTable difficulty="n" id="5912" type="npc"/>
+	</boss>
+	<boss id="3653" key="" type="npc">
+		<lootTable difficulty="n" id="3653" type="npc"/>
+	</boss>
+	<boss id="3671" key="" type="npc">
+		<lootTable difficulty="n" id="3671" type="npc"/>
+	</boss>
+	<boss id="3669" key="" type="npc">
+		<lootTable difficulty="n" id="3669" type="npc"/>
+	</boss>
+	<boss id="3670" key="" type="npc">
+		<lootTable difficulty="n" id="3670" type="npc"/>
+	</boss>
+	<boss id="3673" key="" type="npc">
+		<lootTable difficulty="n" id="3673" type="npc"/>
+	</boss>
+	<boss id="3655" key="" type="npc">
+		<lootTable difficulty="n" id="3655" type="npc"/>
+	</boss>
+	<boss id="3654" key="" type="npc">
+		<lootTable difficulty="n" id="3654" type="npc"/>
+	</boss>
+	<boss id="3674" key="" type="npc">
+		<lootTable difficulty="n" id="3674" type="npc"/>
+	</boss>
+	<boss id="3652" key="" type="npc">
+		<lootTable difficulty="n" id="3652" type="npc"/>
+	</boss>
+	<boss id="5775" key="" type="npc">
+		<lootTable difficulty="n" id="5775" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+<dungeon id="1176" key="zulfarrak" levelMax="50" levelMin="42" nameId="1176" partySize="5" raid="0" release="0">
+	<bosses>
+	<boss id="8127" key="" type="npc">
+		<lootTable difficulty="n" id="8127" type="npc"/>
+	</boss>
+	<boss id="7267" key="" type="npc">
+		<lootTable difficulty="n" id="7267" type="npc"/>
+	</boss>
+	<boss id="10081" key="" type="npc">
+		<lootTable difficulty="n" id="10081" type="npc"/>
+	</boss>
+	<boss id="7273" key="" type="npc">
+		<lootTable difficulty="n" id="7273" type="npc"/>
+	</boss>
+	<boss id="7795" key="" type="npc">
+		<lootTable difficulty="n" id="7795" type="npc"/>
+	</boss>
+	<boss id="7796" key="" type="npc">
+		<lootTable difficulty="n" id="7796" type="npc"/>
+	</boss>
+	<boss id="7797" key="" type="npc">
+		<lootTable difficulty="n" id="7797" type="npc"/>
+	</boss>
+	<boss id="10080" key="" type="npc">
+		<lootTable difficulty="n" id="10080" type="npc"/>
+	</boss>
+	<boss id="7274" key="" type="npc">
+		<lootTable difficulty="n" id="7274" type="npc"/>
+	</boss>
+	<boss id="7275" key="" type="npc">
+		<lootTable difficulty="n" id="7275" type="npc"/>
+	</boss>
+	<boss id="7272" key="" type="npc">
+		<lootTable difficulty="n" id="7272" type="npc"/>
+	</boss>
+	<boss id="7271" key="" type="npc">
+		<lootTable difficulty="n" id="7271" type="npc"/>
+	</boss>
+	<boss id="10082" key="" type="npc">
+		<lootTable difficulty="n" id="10082" type="npc"/>
+	</boss>
+	</bosses>
+</dungeon>
+
+
+</dungeons>
+
+</config>

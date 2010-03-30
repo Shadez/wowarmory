@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="DruidBalance" icon="spell_nature_starfall" key="Balance" name="Equilibre" order="0">
+      <talent column="1" icon="spell_nature_abolishmagic" key="762" name="Colère stellaire" tier="0">
+        <rank description="Réduit le temps d'incantation de vos sorts Colère et Feu Stellaire de 0.1 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Colère et Feu Stellaire de 0.2 sec." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Colère et Feu Stellaire de 0.3 sec." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Colère et Feu Stellaire de 0.4 sec." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Colère et Feu Stellaire de 0.5 sec." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_arcane03" key="2238" name="Genèse" tier="0">
+        <rank description="Augmente les dégâts et les soins produits par les effets de dégâts et de soins de vos sorts périodiques de 1%." lvl="1"/>
+        <rank description="Augmente les dégâts et les soins produits par les effets de dégâts et de soins de vos sorts périodiques de 2%." lvl="2"/>
+        <rank description="Augmente les dégâts et les soins produits par les effets de dégâts et de soins de vos sorts périodiques de 3%." lvl="3"/>
+        <rank description="Augmente les dégâts et les soins produits par les effets de dégâts et de soins de vos sorts périodiques de 4%." lvl="4"/>
+        <rank description="Augmente les dégâts et les soins produits par les effets de dégâts et de soins de vos sorts périodiques de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_sentinal" key="783" name="Lueur de la lune" tier="1">
+        <rank description="Réduit de 3% le coût en mana de vos sorts Eclat lunaire, Feu stellaire, Météores, Colère, Toucher guérisseur, Nourrir, Rétablissement et Récupération." lvl="1"/>
+        <rank description="Réduit de 6% le coût en mana de vos sorts Eclat lunaire, Feu stellaire, Météores, Colère, Toucher guérisseur, Nourrir, Rétablissement et Récupération." lvl="2"/>
+        <rank description="Réduit de 9% le coût en mana de vos sorts Eclat lunaire, Feu stellaire, Météores, Colère, Toucher guérisseur, Nourrir, Rétablissement et Récupération." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_staff_01" key="1822" name="Majesté de la nature" tier="1">
+        <rank description="Augmente de 2% les chances d'infliger un coup critique avec vos sorts Colère, Feu stellaire, Météores, Nourrir et Toucher guérisseur." lvl="1"/>
+        <rank description="Augmente de 4% les chances d'infliger un coup critique avec vos sorts Colère, Feu stellaire, Météores, Nourrir et Toucher guérisseur." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_starfall" key="763" name="Eclat lunaire amélioré" tier="1">
+        <rank description="Augmente les points de dégâts et les chances de porter un coup critique avec votre sort Eclat lunaire de 5%." lvl="1"/>
+        <rank description="Augmente les points de dégâts et les chances de porter un coup critique avec votre sort Eclat lunaire de 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_thorns" key="782" name="Ronces" tier="2">
+        <rank description="Les dégâts infligés par vos Epines et Sarments sont augmentés de 25% et les attaques de vos Tréants sont augmentées de 5%. De plus, les dégâts infligés par vos Tréants et les attaques avec Ecorce activé ont 5% de chances d'hébéter la cible pendant 3 sec." lvl="1"/>
+        <rank description="Les dégâts infligés par vos Epines et Sarments sont augmentés de 50% et les attaques de vos Tréants sont augmentées de 10%. De plus, les dégâts infligés par vos Tréants et les attaques avec Ecorce activé ont 10% de chances d'hébéter la cible pendant 3 sec." lvl="2"/>
+        <rank description="Les dégâts infligés par vos Epines et Sarments sont augmentés de 75% et les attaques de vos Tréants sont augmentées de 15%. De plus, les dégâts infligés par vos Tréants et les attaques avec Ecorce activé ont 15% de chances d'hébéter la cible pendant 3 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_naturesblessing" key="789" name="Grâce de la nature" requires="1822" tier="2">
+        <rank description="Tous les coups critiques non périodiques des sorts ont 33% de chances de vous octroyer une Bénédiction de la nature. Cette dernière augmente de 20% votre vitesse d'incantation des sorts pendant 3 sec." lvl="1"/>
+        <rank description="Tous les coups critiques non périodiques des sorts ont 66% de chances de vous octroyer une Bénédiction de la nature. Cette dernière augmente de 20% votre vitesse d'incantation des sorts pendant 3 sec." lvl="2"/>
+        <rank description="Tous les coups critiques non périodiques des sorts ont 100% de chances de vous octroyer une Bénédiction de la nature. Cette dernière augmente de 20% votre vitesse d'incantation des sorts pendant 3 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_natureguardian" key="2240" name="Splendeur de la nature" requires="1822" tier="2">
+        <rank description="Augmente la durée de vos sorts Eclat lunaire et Récupération de 3 sec., Rétablissement de 6 sec. ainsi qu'Essaim d'insectes et Fleur de vie de 2 sec." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_naturetouchgrow" key="764" name="Allonge de la Nature" tier="2">
+        <rank description="Augmente la portée de vos sorts d'Équilibre et de la technique Lucioles (farouche) de 10%, et réduit la menace générée par vos sorts d'Equilibre de 15%." lvl="1"/>
+        <rank description="Augmente la portée de vos sorts d'Équilibre et de la technique Lucioles (farouche) de 20%, et réduit la menace générée par vos sorts d'Equilibre de 30%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_purge" key="792" name="Vengeance" tier="3">
+        <rank description="Augmente de 20% le bonus de dégâts supplémentaires infligés par les coups critiques avec vos sorts Feu stellaire, Météores, Eclat lunaire et Colère." lvl="1"/>
+        <rank description="Augmente de 40% le bonus de dégâts supplémentaires infligés par les coups critiques avec vos sorts Feu stellaire, Météores, Eclat lunaire et Colère." lvl="2"/>
+        <rank description="Augmente de 60% le bonus de dégâts supplémentaires infligés par les coups critiques avec vos sorts Feu stellaire, Météores, Eclat lunaire et Colère." lvl="3"/>
+        <rank description="Augmente de 80% le bonus de dégâts supplémentaires infligés par les coups critiques avec vos sorts Feu stellaire, Météores, Eclat lunaire et Colère." lvl="4"/>
+        <rank description="Augmente de 100% le bonus de dégâts supplémentaires infligés par les coups critiques avec vos sorts Feu stellaire, Météores, Eclat lunaire et Colère." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_starfire" key="784" name="Focalisation céleste" tier="3">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Feu stellaire, Hibernation et Ouragan, en plus d'augmenter votre total de hâte des sorts de 1%." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Feu stellaire, Hibernation et Ouragan, en plus d'augmenter votre total de hâte des sorts de 2%." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Feu stellaire, Hibernation et Ouragan, en plus d'augmenter votre total de hâte des sorts de 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_lunarguidance" key="1782" name="Soutien lunaire" tier="4">
+        <rank description="Augmente la puissance de vos sorts de 4% de votre total d'Intelligence." lvl="1"/>
+        <rank description="Augmente la puissance de vos sorts de 8% de votre total d'Intelligence." lvl="2"/>
+        <rank description="Augmente la puissance de vos sorts de 12% de votre total d'Intelligence." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_insectswarm" key="788" name="Essaim d'insectes" tier="4">
+        <rank description="La cible ennemie est assaillie par des insectes. Ses chances de toucher sont réduites de 3% et elle subit 144 points de dégâts de Nature en 12 sec." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_insectswarm" key="2239" name="Essaim d'insectes amélioré" requires="788" tier="4">
+        <rank description="Augmente les dégâts infligés par votre sort Colère aux cibles affectées par votre sort Essaim d'insectes de 1%, et augmente les chances de coup critique de votre sort Feu stellaire de 1% sur les cibles affectées par votre sort Eclat lunaire." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre sort Colère aux cibles affectées par votre sort Essaim d'insectes de 2%, et augmente les chances de coup critique de votre sort Feu stellaire de 2% sur les cibles affectées par votre sort Eclat lunaire." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre sort Colère aux cibles affectées par votre sort Essaim d'insectes de 3%, et augmente les chances de coup critique de votre sort Feu stellaire de 3% sur les cibles affectées par votre sort Eclat lunaire." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_dreamstate" key="1784" name="Etat de rêve" tier="5">
+        <rank description="Régénère une quantité de mana égale à 4% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="1"/>
+        <rank description="Régénère une quantité de mana égale à 7% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="2"/>
+        <rank description="Régénère une quantité de mana égale à 10% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_moonglow" key="790" name="Fureur lunaire" tier="5">
+        <rank description="Augmente de 3% les dégâts infligés par vos sorts Feu stellaire, Eclat lunaire et Colère." lvl="1"/>
+        <rank description="Augmente de 6% les dégâts infligés par vos sorts Feu stellaire, Eclat lunaire et Colère." lvl="2"/>
+        <rank description="Augmente de 10% les dégâts infligés par vos sorts Feu stellaire, Eclat lunaire et Colère." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_balanceofpower" key="1783" name="Equilibre de la puissance" tier="5">
+        <rank description="Augmente vos chances de toucher avec tous les sorts de 2% et réduit les dégâts que vous infligent tous les sorts de 3%." lvl="1"/>
+        <rank description="Augmente vos chances de toucher avec tous les sorts de 4% et réduit les dégâts que vous infligent tous les sorts de 6%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_forceofnature" key="793" name="Forme de sélénien" tier="6">
+        <rank description="Le druide adopte sa forme de sélénien. Tant qu'il est sous cette forme, la valeur d'armure apportée par les objets est augmentée de 370%, les dégâts qu'il subit alors qu'il est étourdi sont réduits de 15% et tous les membres du groupe et du raid se trouvant à moins de 45 mètres voient leurs chances d'obtenir un coup critique avec les sorts augmenter de 5%. Les critiques réussis avec les sorts monocibles sous cette forme ont une chance de régénérer instantanément 2% de votre total de mana. Le sélénien ne peut pas lancer de sorts de soins ou de résurrection tant qu'il est transformé.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des métamorphoses et des effets qui affectent le déplacement." lvl="1"/>
+        <spell castTime="0">
+          <power cost="13" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_improvedmoonkinform" key="1912" name="Forme de sélénien améliorée" requires="793" tier="6">
+        <rank description="Votre Aura de sélénien permet aussi aux cibles affectées de voir leur hâte augmenter de 1%, et vous bénéficiez d'un montant de dégâts des sorts supplémentaire égal à 10% de votre Esprit." lvl="1"/>
+        <rank description="Votre Aura de sélénien permet aussi aux cibles affectées de voir leur hâte augmenter de 2%, et vous bénéficiez d'un montant de dégâts des sorts supplémentaire égal à 20% de votre Esprit." lvl="2"/>
+        <rank description="Votre Aura de sélénien permet aussi aux cibles affectées de voir leur hâte augmenter de 3%, et vous bénéficiez d'un montant de dégâts des sorts supplémentaire égal à 30% de votre Esprit." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_faeriefire" key="1785" name="Lucioles améliorées" tier="6">
+        <rank description="Votre sort Lucioles augmente aussi les chances que la cible soit touchée par les attaques avec les sorts de 1% ainsi que vos chances de coup critique avec les sorts infligeant des dégâts sur les cibles affectées par Lucioles de 1%." lvl="1"/>
+        <rank description="Votre sort Lucioles augmente aussi les chances que la cible soit touchée par les attaques avec les sorts de 2% ainsi que vos chances de coup critique avec les sorts infligeant des dégâts sur les cibles affectées par Lucioles de 2%." lvl="2"/>
+        <rank description="Votre sort Lucioles augmente aussi les chances que la cible soit touchée par les attaques avec les sorts de 3% ainsi que vos chances de coup critique avec les sorts infligeant des dégâts sur les cibles affectées par Lucioles de 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_owlkinfrenzy" key="1913" name="Frénésie du chouettide" requires="793" tier="7">
+        <rank description="Les attaques que vous subissez lorsque vous êtes en forme de sélénien ont 5% de chances de vous faire entrer dans un état de frénésie, qui augmente vos dégâts de 10%, vous rend insensible aux interruptions pendant l'incantation de sorts d'Equilibre et vous donne 2% de votre mana de base toutes les 2 sec. Dure 10 sec." lvl="1"/>
+        <rank description="Les attaques que vous subissez lorsque vous êtes en forme de sélénien ont 10% de chances de vous faire entrer dans un état de frénésie, qui augmente vos dégâts de 10%, vous rend insensible aux interruptions pendant l'incantation de sorts d'Equilibre et vous donne 2% de votre mana de base toutes les 2 sec. Dure 10 sec." lvl="2"/>
+        <rank description="Les attaques que vous subissez lorsque vous êtes en forme de sélénien ont 15% de chances de vous faire entrer dans un état de frénésie, qui augmente vos dégâts de 10%, vous rend insensible aux interruptions pendant l'incantation de sorts d'Equilibre et vous donne 2% de votre mana de base toutes les 2 sec. Dure 10 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_twilightswrath" key="1786" name="Colère de Cénarius" tier="7">
+        <rank description="Votre sort Feu stellaire bénéficie de 4% supplémentaires et votre Colère de 2% supplémentaires des effets du bonus aux dégâts." lvl="1"/>
+        <rank description="Votre sort Feu stellaire bénéficie de 8% supplémentaires et votre Colère de 4% supplémentaires des effets du bonus aux dégâts." lvl="2"/>
+        <rank description="Votre sort Feu stellaire bénéficie de 12% supplémentaires et votre Colère de 6% supplémentaires des effets du bonus aux dégâts." lvl="3"/>
+        <rank description="Votre sort Feu stellaire bénéficie de 16% supplémentaires et votre Colère de 8% supplémentaires des effets du bonus aux dégâts." lvl="4"/>
+        <rank description="Votre sort Feu stellaire bénéficie de 20% supplémentaires et votre Colère de 10% supplémentaires des effets du bonus aux dégâts." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_druid_eclipse" key="1924" name="Eclipse" tier="8">
+        <rank description="Quand vous réussissez un coup critique avec Feu stellaire, vous avez 33% de chances d'augmenter de 40% les dégâts infligés par Colère. Quand vous réussissez un coup critique avec Colère, vous avez 20% de chances d'augmenter vos chances de coup critique avec Feu stellaire de 40%. Chaque effet dure 15 sec. et a un temps de recharge distinct de 30 sec. Les deux effets ne peuvent se produire simultanément." lvl="1"/>
+        <rank description="Quand vous réussissez un coup critique avec Feu stellaire, vous avez 66% de chances d'augmenter de 40% les dégâts infligés par Colère. Quand vous réussissez un coup critique avec Colère, vous avez 40% de chances d'augmenter vos chances de coup critique avec Feu stellaire de 40%. Chaque effet dure 15 sec. et a un temps de recharge distinct de 30 sec. Les deux effets ne peuvent se produire simultanément." lvl="2"/>
+        <rank description="Quand vous réussissez un coup critique avec Feu stellaire, vous avez 100% de chances d'augmenter de 40% les dégâts infligés par Colère. Quand vous réussissez un coup critique avec Colère, vous avez 60% de chances d'augmenter vos chances de coup critique avec Feu stellaire de 40%. Chaque effet dure 15 sec. et a un temps de recharge distinct de 30 sec. Les deux effets ne peuvent se produire simultanément." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_typhoon" key="1923" name="Typhon" requires="793" tier="8">
+        <rank description="Vous invoquez un violent Typhon qui inflige 400 points de dégâts de Nature quand il entre en contact avec des cibles hostiles. Il les fait tomber à la renverse et les hébète pendant 6 sec." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30">
+          <power cost="32" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_forceofnature" key="1787" name="Force de la nature" tier="8">
+        <rank description="Invoque 3 tréants qui attaquent les cibles ennemies pendant 30 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_druid_galewinds" key="1925" name="Grands vents" tier="8">
+        <rank description="Augmente de 15% les dégâts infligés par vos sorts Ouragan et Typhon, et augmente la portée de votre sort Cyclone de 2 mètres." lvl="1"/>
+        <rank description="Augmente de 30% les dégâts infligés par vos sorts Ouragan et Typhon, et augmente la portée de votre sort Cyclone de 4 mètres." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_earthandsky" key="1928" name="Terre et lune" tier="9">
+        <rank description="Vos sorts Colère et Feu stellaire ont 100% de chances d'appliquer l'effet Terre et lune sur la cible. Celui-ci augmente les dégâts des sorts infligés à la cible de 4% pendant 12 sec. Augmente également vos dégâts des sorts de 2%." lvl="1"/>
+        <rank description="Vos sorts Colère et Feu stellaire ont 100% de chances d'appliquer l'effet Terre et lune sur la cible. Celui-ci augmente les dégâts des sorts infligés à la cible de 9% pendant 12 sec. Augmente également vos dégâts des sorts de 4%." lvl="2"/>
+        <rank description="Vos sorts Colère et Feu stellaire ont 100% de chances d'appliquer l'effet Terre et lune sur la cible. Celui-ci augmente les dégâts des sorts infligés à la cible de 13% pendant 12 sec. Augmente également vos dégâts des sorts de 6%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_starfall" key="1926" name="Météores" tier="10">
+        <rank description="Un déluge de météores tombe du ciel sur toutes les cibles se trouvant à moins de 30 mètres du lanceur de sorts et chacun inflige 111 à 129 points de dégâts des Arcanes. Inflige également 20 points de dégâts des Arcanes à tous les autres ennemis se trouvant à moins de 5 mètres de la cible ennemie. 20 météores au maximum. Dure 10 sec. Si vous changez de forme ou utilisez une monture, l'effet est annulé. Tout effet qui vous fait perdre le contrôle de votre personnage l'annule également." lvl="1"/>
+        <spell castTime="0" cooldown="90000">
+          <power cost="35" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="DruidFeralCombat" icon="ability_racial_bearform" key="FeralCombat" name="Combat farouche" order="1">
+      <talent column="1" icon="ability_hunter_pet_hyena" key="796" name="Férocité" tier="0">
+        <rank description="Réduit le coût en rage ou en énergie de vos techniques Mutiler, Balayage, Griffe, Griffure et Mutilation de 1." lvl="1"/>
+        <rank description="Réduit le coût en rage ou en énergie de vos techniques Mutiler, Balayage, Griffe, Griffure et Mutilation de 2." lvl="2"/>
+        <rank description="Réduit le coût en rage ou en énergie de vos techniques Mutiler, Balayage, Griffe, Griffure et Mutilation de 3." lvl="3"/>
+        <rank description="Réduit le coût en rage ou en énergie de vos techniques Mutiler, Balayage, Griffe, Griffure et Mutilation de 4." lvl="4"/>
+        <rank description="Réduit le coût en rage ou en énergie de vos techniques Mutiler, Balayage, Griffe, Griffure et Mutilation de 5." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_demoralizingroar" key="795" name="Agressivité farouche" tier="0">
+        <rank description="Augmente les effets de réduction de la puissance d'attaque de votre Rugissement démoralisant de 8% et les dégâts infligés par votre Morsure féroce de 3%." lvl="1"/>
+        <rank description="Augmente les effets de réduction de la puissance d'attaque de votre Rugissement démoralisant de 16% et les dégâts infligés par votre Morsure féroce de 6%." lvl="2"/>
+        <rank description="Augmente les effets de réduction de la puissance d'attaque de votre Rugissement démoralisant de 24% et les dégâts infligés par votre Morsure féroce de 9%." lvl="3"/>
+        <rank description="Augmente les effets de réduction de la puissance d'attaque de votre Rugissement démoralisant de 32% et les dégâts infligés par votre Morsure féroce de 12%." lvl="4"/>
+        <rank description="Augmente les effets de réduction de la puissance d'attaque de votre Rugissement démoralisant de 40% et les dégâts infligés par votre Morsure féroce de 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_ambush" key="799" name="Instinct farouche" tier="1">
+        <rank description="Augmente de 10% les dégâts infligés par votre technique Balayage et réduit les chances de vous détecter de vos ennemis lorsque vous rôdez." lvl="1"/>
+        <rank description="Augmente de 20% les dégâts infligés par votre technique Balayage et réduit les chances de vous détecter de vos ennemis lorsque vous rôdez." lvl="2"/>
+        <rank description="Augmente de 30% les dégâts infligés par votre technique Balayage et réduit les chances de vous détecter de vos ennemis lorsque vous rôdez." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_ravage" key="805" name="Furie sauvage" tier="1">
+        <rank description="Augmente les dégâts infligés par vos techniques Griffe, Griffure, Mutilation (félin), Mutilation (ours) et Mutiler de 10%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos techniques Griffe, Griffure, Mutilation (félin), Mutilation (ours) et Mutiler de 20%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_pelt_bear_03" key="794" name="Peau épaisse" tier="1">
+        <rank description="Augmente de 4% la valeur d'armure apportée par les objets en tissu et en cuir." lvl="1"/>
+        <rank description="Augmente de 7% la valeur d'armure apportée par les objets en tissu et en cuir." lvl="2"/>
+        <rank description="Augmente de 10% la valeur d'armure apportée par les objets en tissu et en cuir." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_spiritwolf" key="807" name="Célérité farouche" tier="2">
+        <rank description="Augmente votre vitesse de déplacement de 15% avec votre forme de félin et augmente vos chances d'esquiver lorsque vous êtes en forme de félin, d'ours et d'ours redoutable de 2%." lvl="1"/>
+        <rank description="Augmente votre vitesse de déplacement de 30% avec votre forme de félin et augmente vos chances d'esquiver lorsque vous êtes en forme de félin, d'ours et d'ours redoutable de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_tigersroar" key="1162" name="Instincts de survie" tier="2">
+        <rank description="Activée, cette technique vous confère temporairement 30% de votre maximum de points de vie en plus pendant 20 sec lorsque vous êtes en forme d'ours, de félin ou d'ours redoutable. Lorsque l'effet expire, les points de vie sont perdus." lvl="1"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_04" key="798" name="Griffes aiguisées" tier="2">
+        <rank description="Augmente de 2% vos chances d'infliger un coup critique lorsque vous êtes transformée en ours, en ours redoutable ou en félin." lvl="1"/>
+        <rank description="Augmente de 4% vos chances d'infliger un coup critique lorsque vous êtes transformée en ours, en ours redoutable ou en félin." lvl="2"/>
+        <rank description="Augmente de 6% vos chances d'infliger un coup critique lorsque vous êtes transformée en ours, en ours redoutable ou en félin." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_vampiricaura" key="802" name="Attaques lacérantes" tier="3">
+        <rank description="Réduit de 9 le coût en énergie de votre technique Lambeau et de 1 le coût en rage de votre technique Lacérer." lvl="1"/>
+        <rank description="Réduit de 18 le coût en énergie de votre technique Lambeau et de 2 le coût en rage de votre technique Lacérer." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_cat" key="803" name="Frappes de prédateur" tier="3">
+        <rank description="Augmente votre puissance d'attaque en mêlée en forme de félin, d'ours et d'ours redoutable de 50% de votre niveau et de 7% la puissance d'attaque de votre arme équipée. De plus, vos coups de grâce ont 7% de chances par point de combo de faire de votre prochain sort de Nature au temps d'incantation de base inférieur à 10 sec. un sort instantané." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque en mêlée en forme de félin, d'ours et d'ours redoutable de 100% de votre niveau et de 14% la puissance d'attaque de votre arme équipée. De plus, vos coups de grâce ont 13% de chances par point de combo de faire de votre prochain sort de Nature au temps d'incantation de base inférieur à 10 sec. un sort instantané." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque en mêlée en forme de félin, d'ours et d'ours redoutable de 150% de votre niveau et de 20% la puissance d'attaque de votre arme équipée. De plus, vos coups de grâce ont 20% de chances par point de combo de faire de votre prochain sort de Nature au temps d'incantation de base inférieur à 10 sec. un sort instantané." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_racial_cannibalize" key="801" name="Fureur primitive" requires="798" tier="3">
+        <rank description="Vous confère 50% de chances de générer 5 points de rage supplémentaires chaque fois que vous réussissez un coup critique en forme d'ours et d'ours redoutable et vos coups critiques obtenus avec les techniques de la forme de félin qui ajoutent des points de combo ont 50% de chances d'ajouter un point de combo supplémentaire." lvl="1"/>
+        <rank description="Vous confère 100% de chances de générer 5 points de rage supplémentaires chaque fois que vous réussissez un coup critique en forme d'ours et d'ours redoutable et vos coups critiques obtenus avec les techniques de la forme de félin qui ajoutent des points de combo ont 100% de chances d'ajouter un point de combo supplémentaire." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_primalprecision" key="1914" name="Précision primale" requires="798" tier="3">
+        <rank description="Augmente votre expertise de 5, et vous êtes remboursé de 40% du coût en énergie d'un coup de grâce si celui-ci échoue." lvl="1"/>
+        <rank description="Augmente votre expertise de 10, et vous êtes remboursé de 80% du coût en énergie d'un coup de grâce si celui-ci échoue." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_bash" key="797" name="Impact brutal" tier="4">
+        <rank description="Augmente la durée d'étourdissement de vos techniques Sonner et Traquenard de 0.5 sec. et réduit le temps de recharge de Sonner de 15 sec." lvl="1"/>
+        <rank description="Augmente la durée d'étourdissement de vos techniques Sonner et Traquenard de 1 sec. et réduit le temps de recharge de Sonner de 30 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_bear" key="804" name="Charge farouche" tier="4">
+        <rank description="Apprend Charge farouche (ours) et Charge farouche (félin).&lt;br/&gt;&lt;br/&gt;Charge farouche (ours) - Vous chargez un ennemi, l'immobilisez et interrompez le sort qu'il incantait pendant 4 sec. Cette technique ne peut être utilisée qu'en forme d'ours et d'ours redoutable. Temps de recharge de 15 secondes.&lt;br/&gt;&lt;br/&gt;Charge farouche (félin) - Vous bondissez derrière un ennemi et l'hébétez pendant 3 sec. Temps de recharge de 30 secondes." lvl="1"/>
+      </talent>
+      <talent column="3" icon="ability_druid_healinginstincts" key="1792" name="Instinct nourricier" tier="4">
+        <rank description="Augmente vos sorts de soins d'un montant égal à 35% au maximum de votre Agilité, et augmente les soins qui vous sont prodigués de 10% quand vous êtes en forme de félin." lvl="1"/>
+        <rank description="Augmente vos sorts de soins d'un montant égal à 70% au maximum de votre Agilité, et augmente les soins qui vous sont prodigués de 20% quand vous êtes en forme de félin." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_bullrush" key="2242" name="Réaction naturelle" tier="5">
+        <rank description="Augmente votre score d'esquive en forme d'ours ou d'ours redoutable de 2%, et vous régénérez 1 points de rage chaque fois que vous esquivez en forme d'ours ou d'ours redoutable." lvl="1"/>
+        <rank description="Augmente votre score d'esquive en forme d'ours ou d'ours redoutable de 4%, et vous régénérez 2 points de rage chaque fois que vous esquivez en forme d'ours ou d'ours redoutable." lvl="2"/>
+        <rank description="Augmente votre score d'esquive en forme d'ours ou d'ours redoutable de 6%, et vous régénérez 3 points de rage chaque fois que vous esquivez en forme d'ours ou d'ours redoutable." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofagility" key="808" name="Cœur de fauve" requires="803" tier="5">
+        <rank description="Augmente votre Intelligence de 4%. De plus, votre Endurance est augmentée de 2% lorsque vous êtes en forme d'ours ou d'ours redoutable et votre puissance d'attaque est augmentée de 2% lorsque vous êtes en forme de félin." lvl="1"/>
+        <rank description="Augmente votre Intelligence de 8%. De plus, votre Endurance est augmentée de 4% lorsque vous êtes en forme d'ours ou d'ours redoutable et votre puissance d'attaque est augmentée de 4% lorsque vous êtes en forme de félin." lvl="2"/>
+        <rank description="Augmente votre Intelligence de 12%. De plus, votre Endurance est augmentée de 6% lorsque vous êtes en forme d'ours ou d'ours redoutable et votre puissance d'attaque est augmentée de 6% lorsque vous êtes en forme de félin." lvl="3"/>
+        <rank description="Augmente votre Intelligence de 16%. De plus, votre Endurance est augmentée de 8% lorsque vous êtes en forme d'ours ou d'ours redoutable et votre puissance d'attaque est augmentée de 8% lorsque vous êtes en forme de félin." lvl="4"/>
+        <rank description="Augmente votre Intelligence de 20%. De plus, votre Endurance est augmentée de 10% lorsque vous êtes en forme d'ours ou d'ours redoutable et votre puissance d'attaque est augmentée de 10% lorsque vous êtes en forme de félin." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_enrage" key="1794" name="Survie du plus apte" tier="5">
+        <rank description="Augmente toutes les caractéristiques de 2%, réduit la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée de 2% et augmente de 11% la valeur d'armure apportée par les objets en tissu et en cuir quand vous êtes en forme d'ours et d'ours redoutable." lvl="1"/>
+        <rank description="Augmente toutes les caractéristiques de 4%, réduit la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée de 4% et augmente de 22% la valeur d'armure apportée par les objets en tissu et en cuir quand vous êtes en forme d'ours et d'ours redoutable." lvl="2"/>
+        <rank description="Augmente toutes les caractéristiques de 6%, réduit la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée de 6% et augmente de 33% la valeur d'armure apportée par les objets en tissu et en cuir quand vous êtes en forme d'ours et d'ours redoutable." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_unyeildingstamina" key="809" name="Chef de la meute" tier="6">
+        <rank description="Pendant qu'il est en forme de félin, d'ours ou d'ours redoutable, le Chef de la meute augmente de 5% les chances de tous les membres du groupe se trouvant à moins de 45 mètres d'obtenir un coup critique avec les attaques à distance et en mêlée." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="1798" name="Chef de la meute amélioré" requires="809" tier="6">
+        <rank description="Votre technique Chef de la meute permet aussi aux cibles affectées d'être soignées pour un montant égal à 2% de leur total de points de vie lorsqu'elles réussissent un coup critique avec une attaque en mêlée ou à distance. L'effet de soins ne peut se produire plus d'une fois toutes les 6 sec. De plus, vous recevez 4% de votre maximum de mana quand vous bénéficiez de ce soin." lvl="1"/>
+        <rank description="Votre technique Chef de la meute permet aussi aux cibles affectées d'être soignées pour un montant égal à 4% de leur total de points de vie lorsqu'elles réussissent un coup critique avec une attaque en mêlée ou à distance. L'effet de soins ne peut se produire plus d'une fois toutes les 6 sec. De plus, vous recevez 8% de votre maximum de mana quand vous bénéficiez de ce soin." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_primaltenacity" key="1793" name="Ténacité primordiale" tier="6">
+        <rank description="Réduit de 10% la durée des effets de Peur et de 10% tous les dégâts subis quand vous êtes en forme de félin alors que vous êtes étourdi." lvl="1"/>
+        <rank description="Réduit de 20% la durée des effets de Peur et de 20% tous les dégâts subis quand vous êtes en forme de félin alors que vous êtes étourdi." lvl="2"/>
+        <rank description="Réduit de 30% la durée des effets de Peur et de 30% tous les dégâts subis quand vous êtes en forme de félin alors que vous êtes étourdi." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_challangingroar" key="2241" name="Protecteur de la meute" requires="809" tier="7">
+        <rank description="Augmente votre puissance d'attaque de 2% et réduit les dégâts que vous subissez de 4% tant que vous êtes en forme d'ours ou d'ours redoutable." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque de 4% et réduit les dégâts que vous subissez de 8% tant que vous êtes en forme d'ours ou d'ours redoutable." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque de 6% et réduit les dégâts que vous subissez de 12% tant que vous êtes en forme d'ours ou d'ours redoutable." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_predatoryinstincts" key="1795" name="Instincts de prédateur" tier="7">
+        <rank description="Lorsque vous êtes en forme de félin, augmente les dégâts de vos coups critiques en mêlée de 3% et réduit les dégâts que vous infligent les attaques à zone d'effet de 10%." lvl="1"/>
+        <rank description="Lorsque vous êtes en forme de félin, augmente les dégâts de vos coups critiques en mêlée de 7% et réduit les dégâts que vous infligent les attaques à zone d'effet de 20%." lvl="2"/>
+        <rank description="Lorsque vous êtes en forme de félin, augmente les dégâts de vos coups critiques en mêlée de 10% et réduit les dégâts que vous infligent les attaques à zone d'effet de 30%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_druid_infectedwound" key="1919" name="Blessures infectées" tier="7">
+        <rank description="Vos attaques Lambeau, Mutiler et Mutilation infligent une blessure infectée à la cible. La Blessure infectée réduit la vitesse de déplacement de la cible de 16% et sa vitesse d'attaque de 6%. Dure 12 sec." lvl="1"/>
+        <rank description="Vos attaques Lambeau, Mutiler et Mutilation infligent une blessure infectée à la cible. La Blessure infectée réduit la vitesse de déplacement de la cible de 34% et sa vitesse d'attaque de 14%. Dure 12 sec." lvl="2"/>
+        <rank description="Vos attaques Lambeau, Mutiler et Mutilation infligent une blessure infectée à la cible. La Blessure infectée réduit la vitesse de déplacement de la cible de 50% et sa vitesse d'attaque de 20%. Dure 12 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_kingofthejungle" key="1921" name="Roi de la jungle" tier="8">
+        <rank description="Lorsque vous utilisez votre technique Enragé en forme d'ours ou d'ours redoutable, vos dégâts sont augmentés de 5%, et votre technique Fureur du tigre vous rend aussi immédiatement 20 points d'énergie. De plus, le coût en mana des formes d'ours, de félin et d'ours redoutable est réduit de 20%." lvl="1"/>
+        <rank description="Lorsque vous utilisez votre technique Enragé en forme d'ours ou d'ours redoutable, vos dégâts sont augmentés de 10%, et votre technique Fureur du tigre vous rend aussi immédiatement 40 points d'énergie. De plus, le coût en mana des formes d'ours, de félin et d'ours redoutable est réduit de 40%." lvl="2"/>
+        <rank description="Lorsque vous utilisez votre technique Enragé en forme d'ours ou d'ours redoutable, vos dégâts sont augmentés de 15%, et votre technique Fureur du tigre vous rend aussi immédiatement 60 points d'énergie. De plus, le coût en mana des formes d'ours, de félin et d'ours redoutable est réduit de 60%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_mangle2" key="1796" name="Mutilation" requires="809" tier="8">
+        <rank description="Mutile la cible, lui inflige des dégâts et fait augmenter les dégâts infligés par les effets de saignement pendant 12 sec. Cette technique peut être utilisée en forme de félin ou d'ours redoutable." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_mangle2" key="1920" name="Mutilation améliorée" requires="1796" tier="8">
+        <rank description="Réduit le temps de recharge de votre technique Mutilation (ours) de 0.5 sec., et réduit le coût en énergie de votre technique Mutilation (félin) de 2." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre technique Mutilation (ours) de 1.0 sec., et réduit le coût en énergie de votre technique Mutilation (félin) de 4." lvl="2"/>
+        <rank description="Réduit le temps de recharge de votre technique Mutilation (ours) de 1.5 sec., et réduit le coût en énergie de votre technique Mutilation (félin) de 6." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_primalagression" key="1918" name="Pourfendre et déchirer" tier="9">
+        <rank description="Augmente les dégâts infligés par les attaques Mutiler et Lambeau sur les cibles qui saignent de 4%, et augmente les chances de coup critique de votre technique Morsure féroce sur les cibles qui saignent de 5%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par les attaques Mutiler et Lambeau sur les cibles qui saignent de 8%, et augmente les chances de coup critique de votre technique Morsure féroce sur les cibles qui saignent de 10%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par les attaques Mutiler et Lambeau sur les cibles qui saignent de 12%, et augmente les chances de coup critique de votre technique Morsure féroce sur les cibles qui saignent de 15%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par les attaques Mutiler et Lambeau sur les cibles qui saignent de 16%, et augmente les chances de coup critique de votre technique Morsure féroce sur les cibles qui saignent de 20%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par les attaques Mutiler et Lambeau sur les cibles qui saignent de 20%, et augmente les chances de coup critique de votre technique Morsure féroce sur les cibles qui saignent de 25%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_rake" key="2266" name="Lacération primitive" requires="1918" tier="9">
+        <rank description="Les dégâts périodiques de vos techniques Lacérer et Déchirure peuvent être critiques." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_druid_berserk" key="1927" name="Berserk" tier="10">
+        <rank description="Activée, cette technique permet à votre technique Mutilation (ours) d'atteindre un maximum de 3 cibles en plus de fonctionner sans temps de recharge, et réduit le coût en énergie de toutes vos techniques en forme de félin de 50%. Dure 15 sec. Vous ne pouvez pas utiliser Fureur du tigre quand Berserk est actif. &lt;br/&gt;&lt;br/&gt;Annule l'effet de Peur et vous rend insensible à Peur pendant toute sa durée." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+    </tree>
+    <tree bgImage="DruidRestoration" icon="spell_nature_healingtouch" key="Restoration" name="Restauration" order="2">
+      <talent column="0" icon="spell_nature_regeneration" key="821" name="Marque du fauve améliorée" tier="0">
+        <rank description="Augmente les effets de vos sorts Marque du fauve et Don du fauve de 20%, et augmente l'ensemble de vos totaux de caractéristiques de 1%." lvl="1"/>
+        <rank description="Augmente les effets de vos sorts Marque du fauve et Don du fauve de 40%, et augmente l'ensemble de vos totaux de caractéristiques de 2%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavegreater" key="823" name="Focalisation de la nature" tier="0">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Toucher guérisseur, Colère, Sarments, Cyclone, Nourrir, Rétablissement et Tranquillité." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Toucher guérisseur, Colère, Sarments, Cyclone, Nourrir, Rétablissement et Tranquillité." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Toucher guérisseur, Colère, Sarments, Cyclone, Nourrir, Rétablissement et Tranquillité." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_blessingofstamina" key="822" name="Fureur" tier="0">
+        <rank description="Vous confère 20% de chances de gagner 10 points de rage lorsque vous vous transformez en ours et ours redoutable. Vous conservez jusqu'à 20 de vos points d'énergie lorsque vous vous transformez en félin. Augmente de 2% votre total d'Intelligence lorsque vous êtes en forme de sélénien." lvl="1"/>
+        <rank description="Vous confère 40% de chances de gagner 10 points de rage lorsque vous vous transformez en ours et ours redoutable. Vous conservez jusqu'à 40 de vos points d'énergie lorsque vous vous transformez en félin. Augmente de 4% votre total d'Intelligence lorsque vous êtes en forme de sélénien." lvl="2"/>
+        <rank description="Vous confère 60% de chances de gagner 10 points de rage lorsque vous vous transformez en ours et ours redoutable. Vous conservez jusqu'à 60 de vos points d'énergie lorsque vous vous transformez en félin. Augmente de 6% votre total d'Intelligence lorsque vous êtes en forme de sélénien." lvl="3"/>
+        <rank description="Vous confère 80% de chances de gagner 10 points de rage lorsque vous vous transformez en ours et ours redoutable. Vous conservez jusqu'à 80 de vos points d'énergie lorsque vous vous transformez en félin. Augmente de 8% votre total d'Intelligence lorsque vous êtes en forme de sélénien." lvl="4"/>
+        <rank description="Vous confère 100% de chances de gagner 10 points de rage lorsque vous vous transformez en ours et ours redoutable. Vous conservez jusqu'à 100 de vos points d'énergie lorsque vous vous transformez en félin. Augmente de 10% votre total d'Intelligence lorsque vous êtes en forme de sélénien." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_healingtouch" key="824" name="Naturaliste" tier="1">
+        <rank description="Réduit le temps d'incantation de votre sort Toucher guérisseur de 0.1 sec. et augmente les dégâts que vous infligez avec les attaques physiques sous toutes les formes de 2%." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de votre sort Toucher guérisseur de 0.2 sec. et augmente les dégâts que vous infligez avec les attaques physiques sous toutes les formes de 4%." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de votre sort Toucher guérisseur de 0.3 sec. et augmente les dégâts que vous infligez avec les attaques physiques sous toutes les formes de 6%." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de votre sort Toucher guérisseur de 0.4 sec. et augmente les dégâts que vous infligez avec les attaques physiques sous toutes les formes de 8%." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de votre sort Toucher guérisseur de 0.5 sec. et augmente les dégâts que vous infligez avec les attaques physiques sous toutes les formes de 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_eyeoftheowl" key="841" name="Discrétion" tier="1">
+        <rank description="Réduit de 10% la menace générée par vos sorts de restauration et réduit de 10% la probabilité que vos sorts bénéfiques, Eclat lunaire et Essaim d'insectes soient dissipés." lvl="1"/>
+        <rank description="Réduit de 20% la menace générée par vos sorts de restauration et réduit de 20% la probabilité que vos sorts bénéfiques, Eclat lunaire et Essaim d'insectes soient dissipés." lvl="2"/>
+        <rank description="Réduit de 30% la menace générée par vos sorts de restauration et réduit de 30% la probabilité que vos sorts bénéfiques, Eclat lunaire et Essaim d'insectes soient dissipés." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_wispsplode" key="826" name="Changeforme naturel" tier="1">
+        <rank description="Réduit le coût en mana de tous les changements de forme de 10%." lvl="1"/>
+        <rank description="Réduit le coût en mana de tous les changements de forme de 20%." lvl="2"/>
+        <rank description="Réduit le coût en mana de tous les changements de forme de 30%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_windwalkon" key="829" name="Intensité" tier="2">
+        <rank description="Vous confère 17% de votre vitesse de récupération du mana normale pendant l'incantation. Votre technique Enrager génère instantanément 4 points de rage." lvl="1"/>
+        <rank description="Vous confère 33% de votre vitesse de récupération du mana normale pendant l'incantation. Votre technique Enrager génère instantanément 7 points de rage." lvl="2"/>
+        <rank description="Vous confère 50% de votre vitesse de récupération du mana normale pendant l'incantation. Votre technique Enrager génère instantanément 10 points de rage." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_crystalball" key="827" name="Augure de clarté" tier="2">
+        <rank description="Tous les dégâts, sorts de soins et attaques automatiques du druide ont une chance de faire entrer le lanceur de sorts dans un état d'Idées claires. Cet état réduit le coût en mana, en rage ou en énergie de votre prochain sort de dégât ou de soins ou de votre prochaine technique offensive de 100%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_mastershapeshifter" key="1915" name="Maître changeforme" requires="826" tier="2">
+        <rank description="Le druide bénéficie d'un effet tant qu'il conserve la forme concernée.&lt;br/&gt;&lt;br/&gt;Forme d'ours - Augmente les dégâts physiques de 2%.&lt;br/&gt;&lt;br/&gt;Forme de félin - Augmente les chances de coup critique de 2%.&lt;br/&gt;&lt;br/&gt;Forme de sélénien - Augmente les dégâts des sorts de 2%.&lt;br/&gt;&lt;br/&gt;Forme d'arbre de vie - Augmente les soins de 2%." lvl="1"/>
+        <rank description="Le druide bénéficie d'un effet tant qu'il conserve la forme concernée.&lt;br/&gt;&lt;br/&gt;Forme d'ours - Augmente les dégâts physiques de 4%.&lt;br/&gt;&lt;br/&gt;Forme de félin - Augmente les chances de coup critique de 4%.&lt;br/&gt;&lt;br/&gt;Forme de sélénien - Augmente les dégâts des sorts de 4%.&lt;br/&gt;&lt;br/&gt;Forme d'arbre de vie - Augmente les soins de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_elunesgrace" key="843" name="Tranquillité de l'esprit" tier="3">
+        <rank description="Réduit le coût en mana de vos sorts Toucher guérisseur, Nourrir et Tranquillité de 2%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts Toucher guérisseur, Nourrir et Tranquillité de 4%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts Toucher guérisseur, Nourrir et Tranquillité de 6%." lvl="3"/>
+        <rank description="Réduit le coût en mana de vos sorts Toucher guérisseur, Nourrir et Tranquillité de 8%." lvl="4"/>
+        <rank description="Réduit le coût en mana de vos sorts Toucher guérisseur, Nourrir et Tranquillité de 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_rejuvenation" key="830" name="Récupération améliorée" tier="3">
+        <rank description="Augmente les effets de votre sort Récupération de 5%." lvl="1"/>
+        <rank description="Augmente les effets de votre sort Récupération de 10%." lvl="2"/>
+        <rank description="Augmente les effets de votre sort Récupération de 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_ravenform" key="831" name="Rapidité de la nature" requires="829" tier="4">
+        <rank description="Lorsque cette technique est activée, votre prochain sort de Nature dont le temps d'incantation de base est inférieur à 10 sec. devient un sort instantané." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="1" icon="spell_nature_protectionformnature" key="828" name="Don de la Nature" tier="4">
+        <rank description="Augmente les effets de tous les sorts de soins de 2%." lvl="1"/>
+        <rank description="Augmente les effets de tous les sorts de soins de 4%." lvl="2"/>
+        <rank description="Augmente les effets de tous les sorts de soins de 6%." lvl="3"/>
+        <rank description="Augmente les effets de tous les sorts de soins de 8%." lvl="4"/>
+        <rank description="Augmente les effets de tous les sorts de soins de 10%." lvl="5"/>
+      </talent>
+      <talent column="3" icon="spell_nature_tranquility" key="842" name="Tranquillité améliorée" tier="4">
+        <rank description="Diminue le niveau de menace généré par Tranquillité de 50%, et réduit le temps de recharge de 30%." lvl="1"/>
+        <rank description="Diminue le niveau de menace généré par Tranquillité de 100%, et réduit le temps de recharge de 60%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_empoweredtouch" key="1788" name="Toucher surpuissant" tier="5">
+        <rank description="Votre sort Toucher guérisseur bénéficie de 20% supplémentaires et votre sort Nourrir de 10% des effets du bonus relatif aux soins." lvl="1"/>
+        <rank description="Votre sort Toucher guérisseur bénéficie de 40% supplémentaires et votre sort Nourrir de 20% des effets du bonus relatif aux soins." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_resistnature" key="825" name="Bonté de la nature" requires="830" tier="5">
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Rétablissement et Nourrir de 5%." lvl="1"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Rétablissement et Nourrir de 10%." lvl="2"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Rétablissement et Nourrir de 15%." lvl="3"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Rétablissement et Nourrir de 20%." lvl="4"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Rétablissement et Nourrir de 25%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_giftofthewaterspirit" key="1797" name="Esprit vif" tier="6">
+        <rank description="Augmente votre total d'Esprit de 5%." lvl="1"/>
+        <rank description="Augmente votre total d'Esprit de 10%." lvl="2"/>
+        <rank description="Augmente votre total d'Esprit de 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_relics_idolofrejuvenation" key="844" name="Prompte guérison" requires="828" tier="6">
+        <rank description="Consume un effet de Récupération ou de Rétablissement sur une cible alliée pour lui rendre instantanément le montant de points de vie équivalent à 12 sec. de Récupération ou 18 sec. de Rétablissement." lvl="1"/>
+        <spell castTime="0" cooldown="15000" maxRange="40">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_naturalperfection" key="1790" name="Perfection naturelle" tier="6">
+        <rank description="Vos chances d'obtenir un coup critique avec tous les sorts sont augmentées de 1% et les coups critiques contre vous vous font bénéficier de l'effet de Perfection naturelle qui réduit tous les dégâts que vous subissez de 2%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="1"/>
+        <rank description="Vos chances d'obtenir un coup critique avec tous les sorts sont augmentées de 2% et les coups critiques contre vous vous font bénéficier de l'effet de Perfection naturelle qui réduit tous les dégâts que vous subissez de 3%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="2"/>
+        <rank description="Vos chances d'obtenir un coup critique avec tous les sorts sont augmentées de 3% et les coups critiques contre vous vous font bénéficier de l'effet de Perfection naturelle qui réduit tous les dégâts que vous subissez de 4%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_empoweredrejuvination" key="1789" name="Récupération surpuissante" tier="7">
+        <rank description="Les effets du bonus relatif aux soins de vos sorts de soins sur la durée sont augmentés de 4%." lvl="1"/>
+        <rank description="Les effets du bonus relatif aux soins de vos sorts de soins sur la durée sont augmentés de 8%." lvl="2"/>
+        <rank description="Les effets du bonus relatif aux soins de vos sorts de soins sur la durée sont augmentés de 12%." lvl="3"/>
+        <rank description="Les effets du bonus relatif aux soins de vos sorts de soins sur la durée sont augmentés de 16%." lvl="4"/>
+        <rank description="Les effets du bonus relatif aux soins de vos sorts de soins sur la durée sont augmentés de 20%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_giftoftheearthmother" key="1922" name="Graine de vie" tier="7">
+        <rank description="Quand vous réussissez des soins critiques avec vos sorts Prompte guérison, Rétablissement, Nourrir ou Toucher guérisseur, vous avez 33% de chances de planter une Graine de vie sur la cible pour un montant égal à 30% des points de vie rendus. La Graine de vie fleurira lors de la prochaine attaque sur la cible. Dure 15 sec." lvl="1"/>
+        <rank description="Quand vous réussissez des soins critiques avec vos sorts Prompte guérison, Rétablissement, Nourrir ou Toucher guérisseur, vous avez 66% de chances de planter une Graine de vie sur la cible pour un montant égal à 30% des points de vie rendus. La Graine de vie fleurira lors de la prochaine attaque sur la cible. Dure 15 sec." lvl="2"/>
+        <rank description="Quand vous réussissez des soins critiques avec vos sorts Prompte guérison, Rétablissement, Nourrir ou Toucher guérisseur, vous avez 100% de chances de planter une Graine de vie sur la cible pour un montant égal à 30% des points de vie rendus. La Graine de vie fleurira lors de la prochaine attaque sur la cible. Dure 15 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_replenish" key="1929" name="Revitaliser" tier="8">
+        <rank description="Vos sorts Récupération et Croissance sauvage ont 5% de chances de rendre 8 points d'énergie, 4 points de rage, 1% du mana ou 16 points de puissance runique par itération." lvl="1"/>
+        <rank description="Vos sorts Récupération et Croissance sauvage ont 10% de chances de rendre 8 points d'énergie, 4 points de rage, 1% du mana ou 16 points de puissance runique par itération." lvl="2"/>
+        <rank description="Vos sorts Récupération et Croissance sauvage ont 15% de chances de rendre 8 points d'énergie, 4 points de rage, 1% du mana ou 16 points de puissance runique par itération." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_treeoflife" key="1791" name="Arbre de vie" requires="1789" tier="8">
+        <rank description="Réduit le coût en mana de vos sorts de soins sur la durée de 20% et permet d'adopter la forme de l'Arbre de vie. Tant que vous êtes sous cette forme, les soins reçus sont augmentés de 6% pour tous les membres du groupe et du raid se trouvant à moins de 45 mètres, et vous ne pouvez lancer que des sorts de Restauration en plus d'Innervation, Ecorce, Emprise de la nature et Epines.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des effets qui le ralentissent et des métamorphoses." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_improvedtreeform" key="1930" name="Arbre de vie amélioré" requires="1791" tier="8">
+        <rank description="Augmente de 67% la valeur d'armure apportée par les objets lorsque vous êtes en forme d'Arbre de vie, et augmente votre puissance des sorts de 5% de votre Esprit lorsque vous êtes en forme d'Arbre de vie." lvl="1"/>
+        <rank description="Augmente de 133% la valeur d'armure apportée par les objets lorsque vous êtes en forme d'Arbre de vie, et augmente votre puissance des sorts de 10% de votre Esprit lorsque vous êtes en forme d'Arbre de vie." lvl="2"/>
+        <rank description="Augmente de 200% la valeur d'armure apportée par les objets lorsque vous êtes en forme d'Arbre de vie, et augmente votre puissance des sorts de 15% de votre Esprit lorsque vous êtes en forme d'Arbre de vie." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stoneclawtotem" key="2264" name="Ecorce améliorée" tier="9">
+        <rank description="Augmente de 80% la valeur d’armure apportée par les objets en tissu et en cuir lorsque vous êtes en forme de voyage ou que vous n'avez pas changé de forme, augmente la réduction de dégâts conférée par votre sort Ecorce de 5% et réduit la probabilité que votre Ecorce soit dissipée de 35%." lvl="1"/>
+        <rank description="Augmente de 160% la valeur d’armure apportée par les objets en tissu et en cuir lorsque vous êtes en forme de voyage ou que vous n'avez pas changé de forme, augmente la réduction de dégâts conférée par votre sort Ecorce de 10% et réduit la probabilité que votre Ecorce soit dissipée de 70%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_druid_manatree" key="1916" name="Don de la Terre-mère" tier="9">
+        <rank description="Augmente votre total de hâte des sorts de 2% et réduit le temps de recharge de base de votre sort Fleur de vie de 2%." lvl="1"/>
+        <rank description="Augmente votre total de hâte des sorts de 4% et réduit le temps de recharge de base de votre sort Fleur de vie de 4%." lvl="2"/>
+        <rank description="Augmente votre total de hâte des sorts de 6% et réduit le temps de recharge de base de votre sort Fleur de vie de 6%." lvl="3"/>
+        <rank description="Augmente votre total de hâte des sorts de 8% et réduit le temps de recharge de base de votre sort Fleur de vie de 8%." lvl="4"/>
+        <rank description="Augmente votre total de hâte des sorts de 10% et réduit le temps de recharge de base de votre sort Fleur de vie de 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_druid_flourish" key="1917" name="Croissance sauvage" requires="1791" tier="10">
+        <rank description="Rend à 5 membres au maximum du groupe ou du raid alliés se trouvant à moins de 15 mètres de la cible 686 points de vie en 7 sec. Les soins sont prodigués rapidement au début, et ralentissent au fur et à mesure que Croissance sauvage atteint la fin de sa durée." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="23" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

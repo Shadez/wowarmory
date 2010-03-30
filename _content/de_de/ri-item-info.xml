@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Gegenstände">
+	<faqlist>
+		<faq question="Was bewirkt der Suchfilter &quot;Gewünscht von&quot;?">
+			Der Zweck dieses Filters liegt darin, euch die meistgesuchten Gegenstände für verschiedene Klassen so schnell und einfach wie möglich anzuzeigen. Sie verwenden die für diese Klasse wichtigsten Werte, um schnelle und nützliche Ergebnisse zu liefern. Der Filter "Gewünscht von" erscheint, nachdem eine Gegenstandsart im entsprechenden Menü ausgewählt wurde. Jede Klasse besitzt ihren eigenen Filter und manche Klassen verfügen über weitere spezifische Filter, um den verschiedenen möglichen Charakterspezialisierungen Rechnung zu tragen. 
+			<p/>
+			Dieser Filter wird am besten verwendet, nachdem Gegenstandsart und Rüstungsplatz ausgewählt wurden. Eine Suche nach Gegenstandsart, Rüstungsplatz und diesem Filter gibt eine Liste der Gegenstände aus, nach denen diese Klassen am ehesten suchen würden. Auf diese Weise könnt ihr schnell eine Liste aller relevanten Gegenstände für jede Klasse und jeden Rüstungsplatz erhalten. Eine Suche mit <stong>nur der Gegenstandsart, dem Platz und dem Filter Gewünscht von</stong> wird eine Ergebnisliste von Gegenständen anzeigen, nach denen diese Charakterklasse häufig suchen wird. Hierdurch könnt ihr eine "Hauptliste" der meistgesuchten Gegenstände für jede Klasse für jeden Platz bekommen.
+		</faq>
+		<faq question="Was bedeutet &quot;Stufe des Gegenstands&quot; bei einem Gegenstand?">
+			Die Stufe eines Gegenstands ist ein Hinweis auf seine Qualität. Die Gegenstandsstufe zusammen mit der Seltenheit legen das Budget des Gegenstands fest. Dieses Gegenstandsbudget wird für verschiedene Werte verbraucht. Ein seltener oder epischer Gegenstand derselben Gegenstandsstufe werden verschiedene Budgets haben (das epische Budget ist hierbei höher), welches die Unterschiede zwischen Gegenständen derselben Gegenstandsstufe erklärt. Die Gegenstandsstufe sollte nicht mit der benötigten Stufe verwechselt werden, welche die Mindeststufe beschreibt, die ein Charakter haben muss, um diesen Gegenstand zu tragen.
+		</faq>
+		<faq question="Was bewirkt die Option &quot;Alle / Mindestens ein Filter&quot;?">
+			Diese Option, gefunden unter den Erweiterten Waffenfiltern, kontrolliert, welche eurer erweiterten Filter auf eure Suche angewandt werden. Die Option "Alle Filter" bewirkt, dass nur Gegenstände gefunden werden, die allen euren Filtern entsprechen, während bei Auswahl der Option "Mindestens ein Filter" alle Gegenstände angezeigt werden, die mindestens einem eurer erweiterten Filter entsprechen. Diese Optionsauswahl wird nur angezeigt, wenn zwei oder mehr erweiterte Filter ausgewählt wurden.
+		</faq>	
+		<faq question="Wenn ich den Filter Seltenheit nutze, warum sehe ich trotzdem Gegenstände, die eine andere Seltenheit haben, als die gewählte?">
+			Die Seltenheit wird wie beim Auktionshaus im Spiel angezeigt; dies bedeutet, dass Gegenstände, die Seltener sind als die gewählte Seltenheitsstufe werden ebenfalls angezeigt. Hierbei ist zu beachten, dass die Gegenstände, die eine niedrigere Qualität haben nicht angezeigt werden - wenn ihr nach Gegenständen epischer Qualität sucht, so werdet ihr keine Gegenstände seltener oder außergewöhnlicher Qualität finden.
+		</faq>	
+		<faq question="Was bewirkt die Option &quot;Besseren Gegenstand finden&quot; bei Gegenständen im Charakterprofil?">
+			Beim Überfahren eines Gegenstands in einem Charakterprofil mit der Maus wird ein kleiner Pfeil angezeigt, der zu einer Schaltfläche wird. Beim Klick auf diese führt ihr eine Suche nach einem möglichen besseren Ersatz für diesen Gegenstand und Charakter durch.
+			<p/>
+			Die angezeigten Ergebnisse berücksichtigen die Klasse, Werte und generelle Ausrüstungsqualität des ausgewählten Charakters. Auf diese Weise könnt ihr nach Verbesserungen sowohl für euren eigenen als auch für alle anderen Charaktere in World of Warcraft suchen. Dieses Feature ist besonders nützlich für Charaktere mit verschiedenen Ausrüstungssets, da diese so Verbesserungen für all ihre Ausrüstung finden können.
+			<p/>
+			Mehr hierzu findet ihr in unserer <a href="faq-item-info-recommended.xml;">FAQ zu "Besseren Gegenstand finden"</a>.
+		</faq>
+		<faq question="Kann ich nach Gegenständen suchen, die mit einem bestimmten Beruf verbunden sind?">
+			Momentan stehen Berufe nicht als Suchfilter zur Verfügung. Ihr könnt jedoch nach individuellen hergestellten Gegenständen und ihren Rezepten suchen.
+		</faq>
+		<faq question="Kann ich nach Questbelohnungen suchen?">
+			Questbelohnungen sind eine eigene Kategorie des Arsenals und können im Filter "Quelle" ausgewählt werden. Momentan kann nicht nach Questbelohnungen auf Basis von Queststufe oder -name gesucht werden.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Belohnungen: Embleme des Frosts" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Belohnungen: Embleme des Triumphs" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Gegenstände: Erbstücke" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeons und Schlachtzugdungeons" url="/dungeons.xml"/>
+		<relatedlink name="Belohnungen für Ruf" url="/factions.xml"/>
+		<relatedlink name="Belohnungen für PvP" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Kampfwertungen" type="external" url="http://www.wow-europe.com/de/info/basics/characters.html"/>				
+		<relatedlink name="Gegenstände" type="external" url="http://www.wow-europe.com/de/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

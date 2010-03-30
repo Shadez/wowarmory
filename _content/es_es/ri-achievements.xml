@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Logros">
+	<faqlist>
+		<faq question="¿Cuál es la utilidad de las pestañas de Logros y Estadísticas?">
+			Las páginas de logros y estadísticas que aparecen en los perfiles del personaje se han diseñado para que se parezcan y funcionen de una manera similar a las del juego, con algunas opciones exclusivas en la Armería. Se ha ampliado la posibilidad de comparar logros y estadísticas entre varios personajes, lo que te permitirá comparar hasta cuatro personajes, aunque sean de reinos diferentes.
+		</faq>
+		<faq question="¿Cómo puedo pasar de una categoría a otra en las pestañas de Logros y Estadísticas?">
+			Al igual que en el juego, sólo tienes que hacer clic en la categoría o subcategoría de logros y estadísticas en el menú de la parte izquierda.
+		</faq>
+		<faq question="¿Cómo puedo comparar los logros y estadísticas de varios personajes?">
+			Para comparar varios personajes, sólo tienes que hacer clic en la pestaña “Añadir personaje para comparar” en la parte superior derecha de la interfaz de Logros o Estadísticas. Escribe el nombre y reino del personaje que deseas comparar con el que ya estás viendo. La imagen del segundo personaje y sus logros aparecerán junto al primero. Puedes añadir varios personajes de esta manera, hasta un total de cuatro al mismo tiempo.
+		</faq>
+		<faq question="¿Tengo que haber iniciado sesión para ver los logros y estadísticas de un personaje?">
+			No es necesario ya que los logros y estadísticas de un personaje se considera información “pública” y por lo tanto no están protegidas bajo contraseña en la Armería.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Sistema de logros" url="http://www.wow-europe.com/wrath/features/gameplay/achievements.xml&amp;locale=es_es"/>
+	</relatedlinks>
+</relatedinfo>

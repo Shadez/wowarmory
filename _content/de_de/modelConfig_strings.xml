@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><strings>
+		<string key="stand" string="Untätig"/>
+		<string key="dance" string="Tanzen"/>
+		<string key="laugh" string="Lachen"/>
+		<string key="flex" string="Angeben"/>
+		<string key="chicken" string="Huhn"/>
+        <string key="crouch" string="Ducken"/>
+        <string key="talk" string="Sagen"/>
+        <string key="bow" string="Verbeugen"/>
+        <string key="wave" string="Winken"/>				
+        <string key="rude" string="Anschnauzen"/>
+        <string key="kiss" string="Kuss"/>
+        <string key="cry" string="Wehklagen"/>
+        <string key="point" string="Zeigen"/>				
+        <string key="salute" string="Salutieren"/>			
+        <string key="yes" string="Zustimmen"/>			
+        <string key="no" string="Ablehnen"/>	
+        <string key="train" string="Zug"/>	
+
+		<string key="readyspelldirected" string="Wirken (anvisiert)"/>
+		<string key="castdirected" string="Wirken (anvisiert)"/>
+		<string key="readyspellomni" string="Wirken (allgemein)"/>
+		<string key="castomni" string="Wirken (allgemein)"/>
+		<string key="readythrown" string="Fernkampf (untätig)"/>
+		<string key="attackthrown" string="Fernkampf (Angriff)"/>
+		
+		<!-- Melee (ClassIds 1,2,3,4,6) -->
+		<string key="ready1h" string="Nahkampf (untätig)"/>
+		<string key="attack1h" string="Nahkampf (Angriff)"/>
+		<string key="ready2h" string="Nahkampf (untätig)"/>
+		<string key="ready2hl" string="Nahkampf (untätig)"/>
+		<string key="attack2h" string="Nahkampf (Angriff)"/>
+		<string key="attack2hl" string="Nahkampf (Angriff)"/>
+		<string key="attack1hpierce" string="Nahkampf (Angriff)"/>
+		<string key="attackunarmed" string="Nahkampf (Angriff)"/>
+		<string key="readyunarmed" string="Nahkampf (untätig)"/>
+				
+		<!-- Hunter (ClassId 3) -->
+		<string key="attackbow" string="Feuer"/>
+		<string key="readybow" string="Fernkampf (untätig)"/>
+		<string key="readygun" string="Fernkampf (untätig)"/>
+		<string key="attackgun" string="Feuer"/>
+		<string key="loadbow" string="Nachladen"/>
+		<string key="loadgun" string="Nachladen"/>
+		<string key="holdbow" string="Ziel"/>
+				
+		<string key="human" string="Mensch"/>
+		<string key="orc-troll" string="Ork/Troll"/>
+		<string key="gnome-dwarf" string="Gnom/Zwerg"/>
+		<string key="nightelf" string="Nachtelf"/>
+		<string key="undead" string="Untoter"/>
+		<string key="tauren" string="Taure"/>
+		<string key="gnome-dwarf" string="Gnom/Zwerg"/>
+		<string key="orc-troll" string="Ork/Troll"/>
+		<string key="bloodelf" string="Blutelf"/>
+		<string key="draenei" string="Draenei"/>
+
+		<!-- Special Attacks -->
+		<string key="whirlwind" string="Wirbelwind"/>
+		<string key="special1h" string="Spezialangriff"/>
+		<string key="special2h" string="Spezialangriff"/>
+		<string key="mutilate" string="Verstümmeln"/>
+
+		<!-- Options Menu -->
+		<string key="equipmentHeader" string="Optionen anzeigen"/>
+		<string key="showHelmet" string="Helm"/>
+		<string key="showCloak" string="Umhang"/>
+		<string key="showTabard" string="Wappenrock"/>
+		<string key="highQuality" string="Hoch"/>
+		<string key="mediumQuality" string="Mittel"/>
+		<string key="lowQuality" string="Niedrig"/>
+		<string key="loginToPose" string="Einloggen, um Standardposen für Charaktere festzulegen"/>
+		<string key="qualityHeader" string="Modellqualität"/>
+		<string key="backgroundHeader" string="Hintergrund"/>
+		<string key="embedDescription" string="Integriert diesen HTML-Code auf einer Webseite, um eine eigenständige Version des Modelviewers des Arsenals für diesen Charakter anzuzeigen"/>
+		<string key="copy" string="Kopieren"/>
+		<string key="embedCopied" string="Dieser HTML-Code wurde in eure Ablage kopiert."/>
+		<string key="close" string="Schließen"/>
+		<string key="embedTooltip" string="Verlinkt zu dem Modelviewer dieses Charakters"/>
+		<string key="saveTooltip" string="Speichert diese Pose als Standardansicht für alle Besucher dieses Profils"/>
+
+		<!-- Backgrounds -->
+		<string key="argenttournament" string="Argentumturnier"/>
+		<string key="dalaran" string="Dalaran"/>
+		<string key="shattrath" string="Shattrath"/>
+		<string key="shattrath2" string="Shattrath 2"/>
+		<string key="wintergrasp" string="Tausendwinter"/>
+		<string key="alteracvalley_horde" string="AV (Frostwolf)"/>
+		<string key="alteracvalley_alliance" string="AV (Sturmlanzen)"/>
+		<string key="deathknight" string="Todesritter"/>
+		
+		<string key="loading" string="Lädt..."/>
+		
+</strings>

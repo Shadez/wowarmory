@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Besseren Gegenstand finden">
+	<faqlist>
+		<faq question="Wie werden die empfohlenen Verbesserungen ausgewählt?">
+			Wenn einer der Gegenstände eines Charakters angefordert wird, überprüft das Arsenal zuerst alle angelegten Rüstungsteile dieses Charakters und erstellt daraus eine allgemeine Bewertung der Ausrüstungsqualität, auf der alle gemachten Vorschläge aufbauen. Diese Bewertung wird von den Stufen der Gegenstände, ihrer Seltenheit und anderen Faktoren beeinflusst. Hierbei werden die Klasse und Talentverteilung des Charakters vernachlässigt. Zusätzlich werden aber die Werte (wie z.B. Zauberschaden, Angriffskraft und Ausdauer) registriert, die am stärksten verbessert wurden. Hieraus ergeben sich letztendlich auch Empfehlungen, die diese Werte verbessern.
+		</faq>
+		<faq question="Wie kann man das Upgrade suchen-Feature am sinnvollsten einsetzen?">
+		Hier findet ihr einige Tipps, um diese Funktion an besten nutzen zu können. Bitte beachtet hierbei, dass die Ausrüstung eures Charakters sicher erst dann im Charakterprofil ändert, wenn ihr euch vom Spiel abgemeldet habt.
+		<ul>
+			<li>
+          <strong>Legt die Gegenstände an, die am sinnvollsten für eure Spielart und Spezialisierung ist und zu der ihr auch Verbesserungen sucht.</strong> Zum Beispiel solltet ihr euch mit eurer vollständigen Schlachtzugausrüstung abmelden, wenn ihr im Spiel vor allem auf Schlachtzüge wert legt. Wollt ihr euer PvP-Set verbessern, dann solltet ihr eure aktuelle PvP-Ausrüstung anlegen.</li>
+			<li>
+          <strong>Probiert verschiedene Ausrüstungssets aus.</strong> Viele Klassen haben mehrere Ausrüstungssets dabei, um sie in verschiedenen Situationen zu nutzen: im Solospiel, in Schlachtzügen, beim PvP. Für alle Sets die geeigneten Verbesserungen zu finden ist einfach, da man hierzu diese nur einmal anziehen muss und sich danach einmal abmeldet. Wenn ihr allerdings von verschiedenen Sets einzelne Teile gleichzeitig anzieht, werden eure Ergebnisse bei der Suche nach Verbesserungen sich nicht so stark auf ein bestimmtes Set und somit eine bestimmte Spezialisierung konzentrieren.</li>
+			<li>
+          <strong>Denkt immer an Faktoren, die vom Arsenal nicht berücksichtigt werden können, wenn ihr nach Upgrades sucht.</strong> Die vorgeschlagenen Upgrades betrachten vor allem die aktuellen Werte des Charakters und die allgemeine Qualität der Gegenstände. Das Arsenal schaut nur auf die Klasse des Charakters, wenn nach Rüstung gesucht wird und nach Waffenarten, die diese Klasse nicht nutzen kann. Die Talentverteilung wird zum Beispiel nicht berücksichtigt.</li>
+			<li>
+          <strong>Zu Gegenstandsstufen und -seltenheit.</strong> Beim Suchen der Vorschläge wird im Arsenal zunächst einmal die Ausrüstung des Charakters angeschaut, um einen allgemeinen Richtwert der Gegenstandsqualität zu bekommen, an dem sich die Vorschläge für den Charakter dann orientieren. Dieser Richtwert wird vor allem von der Gegenstandsstufe und der Seltenheit des Gegenstands bestimmt. Das Ausrüsten von selbst nur einem Gegenstand, der sehr selten ist sowie eine hohe Gegenstandsstufe besitzt, kann zu einer deutlichen Änderung der Empfehlungen für andere Gegenstände führen.</li>
+		</ul>		
+		</faq>
+		<faq question="Wie wird die Liste der empfohlenen Verbesserungen sortiert?">
+			Die Liste wird wie bei jeder anderen Gegenstandssuche nach Relevanz sortiert. Bei den empfohlenen Upgrades bedeutet die Relevanz, dass der Gegenstand den Richtwerten, die aus der Gegenstandsqualität und den bevorzugten Werten bestimmt werden, entspricht. Es bedeutet nicht unbedingt, dass der Gegenstand mit einer höheren Relevan unbedingt "besser" ist oder auch geeigneter als ein Gegenstand mit niedriger Relevanz. Die Upgrade-Funktion sollte eher als eine Funktion zum Auffinden ähnlicher Gegenstände gesehen werden, die auch danach sortiert wurde, wie ähnlich die Gegenstände den aktuellen Gegenständen des Charakters sind.
+		</faq>
+		<faq question="Werden meine Empfehlungen von externen Faktoren wie Stärkungs- und Schwächungszaubern beeinflusst?">
+			Nein, alle Stärkungs- sowie Schwächungszauber, die euren Charakter zum Zeitpunkt des Ausloggens betreffen, werden nicht mehr länger in dem Arsenal angezeigt.
+		</faq>
+		<faq question="Kann ich Empfehlungen für verschiedene Ausrüstungssets erhalten, indem ich meine Rüstung wechsle und das Spiel verlasse?">
+			Ja, dies ist möglich und wird von uns empfohlen.
+		</faq>												
+		<faq question="Warum sehe ich Questbelohnungen, die nur die gegnerische Fraktion bekommen kann als empfohlenen Gegenstand?">
+			Zur Zeit ist das Arsenal nicht in der Lage die Fraktion bei der Suche nach empfohlenen Upgrades zu berücksichtigen. Dies wird eventuell zu einem späteren Zeitpunkt korrigiert.
+		</faq>
+		<faq question="Warum erscheint der Gegenstand, für den ich eine Verbesserung suche, selbst in der Liste der Empfehlungen?">
+			Die Position des Gegenstandes in der Liste der empfohlenen Upgrades soll einen Anhaltspunkt dafür geben, wo sich der ursprüngliche Gegenstand im Spektrum der empfohlenen Upgrades für diesen Gegenstand befindet. Anders gesagt: Sollte der ursprüngliche Gegenstand in der Liste erscheinen, so ist der Gegenstand im Vergleich zu den anderen Gegenständen, die der Charakter trägt, passend. An der Positionierung des Gegenstandes könnt ihr sehen wie gut euer Gegenstand ist im Vergleich zu anderen erhältlichen Gegenständen. Allerdings sollte man nicht zu stark auf die Relevanz des Gegenstandes achten.
+		</faq>
+		<faq question="Ich habe erwartet, dass der Gegenstand X in der Liste meiner Empfehlungen auftaucht, das tut er aber nicht - warum?">
+			Dies könnte eine Reihe von Gründen haben. Möglicherweise ist die benötigte Stufe des Gegenstands zu hoch, oder die Gegenstandsstufe ist im Vergleich zu den angelegten Gegenständen zu hoch / zu niedrig. Es könnte auch daran liegen, dass der Gegenstand X ähnliche Werte besitzt, aber tatsächlich keinen einzigen der "bevorzugten Werte" verbessert.
+		</faq>
+		<faq question="Werden auch zufallsgenerierte Gegenstände (z.B. 'des Adlers als Empfehlungen angezeigt?">
+			Ja, allerdings werden sie in ihrer neutralen Form ohne die zufällig addierten Werte angezeigt. Besucht die Infoseite dieses Gegenstands, um alle möglichen zufälligen Verzauberungen für ihn anzusehen. Beachtet, dass solche Gegenstände möglicherweise auf einer schlechteren Position angezeigt werden, als man meinen könnte.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Belohnungen: Embleme des Frosts" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Belohnungen: Embleme des Triumphs" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Gegenstände: Erbstücke" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeons und Schlachtzugdungeons" url="/dungeons.xml"/>
+		<relatedlink name="Belohnungen für Ruf" url="/factions.xml"/>
+		<relatedlink name="Belohnungen für PvP" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Kampfwertungen" type="external" url="http://www.wow-europe.com/de/info/basics/characters.html"/>				
+		<relatedlink name="Gegenstände" type="external" url="http://www.wow-europe.com/de/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

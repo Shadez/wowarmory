@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Mobile Armory">
+	<faqlist>
+		<faq question="What is the Mobile Armory?">
+			The World of Warcraft Mobile Armory is a mobile version of World of Warcraft’s official searchable database for the iPhone™ and iPod touch®. This free application, available for download from the iTunes® App Store, replicates much of the functionality and information found on the Armory website.
+		</faq>
+		<faq question="How much does the Mobile Armory cost?">
+			The World of Warcraft Mobile Armory for iPhone and iPod touch is completely free to download and use.
+		</faq>
+		<faq question="What mobile devices can use the Mobile Armory?">
+			The World of Warcraft Mobile Armory is currently available for the Apple iPhone and iPod touch and can be downloaded from the iTunes App Store. To use the Mobile Armory on an iPod touch, you must have a valid Wi-Fi connection. Additional mobile devices may be supported in the future; distribution details and cost may vary for each platform.
+		</faq>			
+		<faq question="What iPhone OS versions is the Mobile Armory compatible with?">
+			The Mobile Armory is compatible with iPhone versions 2.2.1 onward, including full compatibility with OS 3.0.
+		</faq>
+		<faq question="What languages does the Mobile Armory support?">
+			The Mobile Armory currently supports English, Spanish (European), Spanish (Latin American), Korean, French, German, and Russian.
+		</faq>
+		<faq question="Does the Mobile Armory have a login feature?">
+			To use the Mobile Armory, you must log in with a World of Warcraft or Battle.net account.  
+		</faq>
+		<faq question="Which World of Warcraft and Battle.net account regions are supported by the Mobile Armory?">
+			Currently, accounts originating from the Americas, Europe, and Korea are supported by the Mobile Armory.
+		</faq>
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Download from iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Armory Updates" url="/updates.xml"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

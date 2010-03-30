@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arena Ladder">
+	<faqlist>
+		<faq question="What is the Arena Ladder?">
+			The Arena Ladder is a competitive ladder system for players participating in team-based player-vs.-player (PvP) combat. The system will rank teams against other teams in one of three brackets: 2-vs.-2, 3-vs.-3, and 5-vs.-5. Teams will earn arena points based on their current team ranking. Accumulated arena points can be used to purchase items and other rewards.
+		</faq>
+		<faq question="How are rankings determined?">
+			Rankings are determined based on your team's wins and losses against similarly ranked teams. Wins against higher ranked teams will increase your ranking while victories against lower ranked teams might yield smaller positive gains. Losing against a lower ranked team will decrease your ranking. The basic idea is similar to the Elo rating system used for professional chess.
+		</faq>
+		<faq question="How long is a season?">
+			Each season lasts several months.
+		</faq>
+		
+		
+		
+		<faq question="What are the team rank requirements for the end-of-season Arena titles?">
+			At the conclusion of each Arena season, team members who played in at least 20% of a highly-ranked Arena team’s matches for the season are eligible for special titles commemorating their achievement. These titles persist through the following season. Here are the special titles along with their ranking thresholds:
+			<ul>
+				<li>Gladiator: Top 0.5%</li>
+				<li>Duelist:  0.5% - 3%</li>
+				<li>Rival: 3% - 10%</li>
+				<li>Challenger: 10% - 35%</li>
+			</ul>
+			In addition, the first-place team in each bracket earns a special title whose name matches that season's arena gear, such as "Brutal Gladiator".
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Calculator" url="/arena-calculator.xml"/>	
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
+		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
+		<relatedlink name="Arena Weapon Rewards" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
+		<relatedlink name="Arena Class Armor Rewards" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below.  Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

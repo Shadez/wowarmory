@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Find an Upgrade">
+	<faqlist>
+		<faq question="How are these recommended upgrades determined?">
+			When a character’s item is queried, the Armory first checks all of that character’s currently equipped gear and determines an overall average benchmark of item quality that guides all its recommendations for that character. This benchmark is determined by item levels, item rarity, and other factors. In doing so, it does not take into account that character’s class or talent specialization. In addition, it takes note of the stats (such as spell damage, attack power, and stamina) that have been improved the most and tends to favor item recommendations that also raise these “favored stats.”
+		</faq>
+		<faq question="What are some tips on how to best use the Find an Upgrade feature?">
+Here are some tips to get the most out of the feature. Note that any changes made to your character’s gear will be reflected in your character profile only after logging out of the game.
+		<ul>
+			<li>
+          <strong>Equip the gear that is most relevant to the style of play you wish to obtain upgrades for.</strong> For example, if you are interested on seeing gear upgrades that emphasize raiding, then log out with your full raiding gear. If you want upgrades to your PvP set, then have your full PvP set equipped, and so on.</li>
+			<li>
+          <strong>Try out different gear sets.</strong> Many classes will tend to carry multiple sets of gear for different purposes, such as soloing, raiding, and PvP. Finding upgrades for all your sets is as easy as changing into them before logging out. Along these lines, if you have gear from multiple sets on at the same time, your results won’t be as focused.</li>
+			<li>
+          <strong>Keep in mind what factors are, and which aren’t considered by the Armory in making its upgrade calculations.</strong> Mainly, these recommended upgrades will take into account the character’s statistics and overall gear quality. The Armory only considers one’s character class for the purpose of screening armor and weapon types that are unavailable to that class. Talent specialization is not considered at all.</li>
+			<li>
+          <strong>Item levels and item rarity matter.</strong> In making its recommendations, the Armory first checks all of that character’s currently equipped gear and determines an overall average benchmark of item quality that guides all its recommendations for that character. This benchmark is determined primarily by item levels and item rarity. Equipping even one item that has a high rarity and item level combination can noticeably affect your recommendations.</li>
+		</ul>
+		</faq>
+		<faq question="How is the list of recommended upgrades sorted?">
+			The list is sorted by relevance like any other item search. In the case of recommended upgrades, an item’s relevance means how well the item matches up to the Armory’s benchmarks of overall item quality and favored stats. It is not necessarily true that an item with higher relevance than another is “better” or even more appropriate for you than an item with lower relevance. The upgrades should be seen more as related items that have been sorted by similarity to what you are currently wearing.
+		</faq>
+		<faq question="Are my recommendations influenced by external effects such as buffs and debuffs?">
+			No, any buffs or debuffs affecting your character at time of logout are no longer reflected on the Armory.
+		</faq>
+		<faq question="Can I find upgrades for different gear sets, by switching gear and logging out?">
+			Yes, this is encouraged.
+		</faq>												
+		<faq question="Why am I seeing quest rewards that are only available to the opposite faction among my recommended upgrades?">
+			At this time, the Armory is unable to filter out cross-faction quest rewards from its recommended upgrades. We may address and change this occurrence in the future.
+		</faq>
+		<faq question="Why is the item I am searching for upgrades to also appearing in that item’s list of suggested upgrades?">
+			An item’s placement on its own list of recommended upgrades is intended to be an indication of the original item’s status in the spectrum of recommended upgrades for that item. In other words, you can consider the appearance of the original item on its list of upgrades as an indication the item is well-matched for its owner. The relative placement of your item can be helpful for seeing how your items stack up against all items currently available. However, like for any item that is on a given list of upgrades, too much stock should not be put on how high the item’s relevance is.
+		</faq>
+		<faq question="I expected item X to be included in my recommended upgrades, but it’s not there – what gives?">
+			A given item’s absence from a recommended upgrades list could be due to a number of reasons. These include the item having too high a required level, or too high/too low an item level compared to your equipped items. Another common instance is where item X has similar stats as, but doesn’t actually increase any single “favored stat” over the item being queried.
+		</faq>
+		<faq question="Are items with random enchantments (i.e. “of the Eagle”) eligible to be suggested?">
+			Yes, items with random enchantments are eligible. However, they are displayed in their neutral form with no particular enchantment suffix attached. Click on any of these items to see a list of all possible enchants for that item on its Item Details page. Note that these items may seem to be ranked lower on a given list of upgrades than what may be considered reasonable. 
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Emblem of Frost Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Emblem of Triumph Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Heirloom Items" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeon &amp; Raid Drops" url="/dungeons.xml"/>
+		<relatedlink name="Faction Rewards" url="/factions.xml"/>
+		<relatedlink name="PvP Rewards" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Combat Ratings" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=106616906&amp;postId=1065875827&amp;sid=1"/>				
+		<relatedlink name="Item Basics" type="external" url="http://www.worldofwarcraft.com/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

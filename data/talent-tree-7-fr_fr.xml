@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="ShamanEnhancement" icon="spell_nature_lightningshield" key="Enhancement" name="Amélioration" order="1">
+      <talent column="0" icon="spell_nature_earthbindtotem" key="610" name="Totems renforcés" tier="0">
+        <rank description="Augmente de 5% l'effet de vos Totems de Force de la Terre et Langue de feu." lvl="1"/>
+        <rank description="Augmente de 10% l'effet de vos Totems de Force de la Terre et Langue de feu." lvl="2"/>
+        <rank description="Augmente de 15% l'effet de vos Totems de Force de la Terre et Langue de feu." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_stoneclawtotem" key="2101" name="Emprise de la terre" tier="0">
+        <rank description="Augmente les points de vie de votre Totem de griffes de pierre de 25% et le rayon de votre Totem de lien terrestre de 10%, en plus de réduire le temps de recharge des deux totems de 15%." lvl="1"/>
+        <rank description="Augmente les points de vie de votre Totem de griffes de pierre de 50% et le rayon de votre Totem de lien terrestre de 20%, en plus de réduire le temps de recharge des deux totems de 30%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_grimward" key="614" name="Connaissance ancestrale" tier="0">
+        <rank description="Augmente votre Intelligence de 2%." lvl="1"/>
+        <rank description="Augmente votre Intelligence de 4%." lvl="2"/>
+        <rank description="Augmente votre Intelligence de 6%." lvl="3"/>
+        <rank description="Augmente votre Intelligence de 8%." lvl="4"/>
+        <rank description="Augmente votre Intelligence de 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stoneskintotem" key="609" name="Totems gardiens" tier="1">
+        <rank description="Augmente de 10% le montant de points d'armure augmentés par votre Totem Peau de pierre et réduit le temps de recharge de votre Totem de glèbe de 1 sec." lvl="1"/>
+        <rank description="Augmente de 20% le montant de points d'armure augmentés par votre Totem Peau de pierre et réduit le temps de recharge de votre Totem de glèbe de 2 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_thunderbolt" key="613" name="Frappe foudroyante" tier="1">
+        <rank description="Augmente de 1% vos chances d'infliger un coup critique avec tous les sorts et attaques." lvl="1"/>
+        <rank description="Augmente de 2% vos chances d'infliger un coup critique avec tous les sorts et attaques." lvl="2"/>
+        <rank description="Augmente de 3% vos chances d'infliger un coup critique avec tous les sorts et attaques." lvl="3"/>
+        <rank description="Augmente de 4% vos chances d'infliger un coup critique avec tous les sorts et attaques." lvl="4"/>
+        <rank description="Augmente de 5% vos chances d'infliger un coup critique avec tous les sorts et attaques." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_spiritwolf" key="605" name="Loup fantôme amélioré" tier="1">
+        <rank description="Réduit le temps d'incantation de votre sort Loup fantôme de 1 secondes." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de votre sort Loup fantôme de 2 secondes." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_lightningshield" key="607" name="Boucliers améliorés" tier="1">
+        <rank description="Augmente de 5% les dégâts infligés par les orbes de votre Bouclier de foudre, de 5% la quantité de mana obtenue grâce aux orbes de votre Bouclier d'eau et de 5% la quantité de soins obtenus avec vos orbes de Bouclier de terre." lvl="1"/>
+        <rank description="Augmente de 10% les dégâts infligés par les orbes de votre Bouclier de foudre, de 10% la quantité de mana obtenue grâce aux orbes de votre Bouclier d'eau et de 10% la quantité de soins obtenus avec vos orbes de Bouclier de terre." lvl="2"/>
+        <rank description="Augmente de 15% les dégâts infligés par les orbes de votre Bouclier de foudre, de 15% la quantité de mana obtenue grâce aux orbes de votre Bouclier d'eau et de 15% la quantité de soins obtenus avec vos orbes de Bouclier de terre." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_flametounge" key="611" name="Armes élémentaires" tier="2">
+        <rank description="Augmente de 13% les dégâts infligés par l'effet de votre Arme Furie-des-vents, de 10% les dégâts des sorts de votre Arme Langue de feu et de 10% le bonus aux soins de votre Arme Viveterre." lvl="1"/>
+        <rank description="Augmente de 27% les dégâts infligés par l'effet de votre Arme Furie-des-vents, de 20% les dégâts des sorts de votre Arme Langue de feu et de 20% le bonus aux soins de votre Arme Viveterre." lvl="2"/>
+        <rank description="Augmente de 40% les dégâts infligés par l'effet de votre Arme Furie-des-vents, de 30% les dégâts des sorts de votre Arme Langue de feu et de 30% le bonus aux soins de votre Arme Viveterre." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_elementalabsorption" key="617" name="Focalisation chamanique" tier="2">
+        <rank description="Réduit le coût en mana de vos Horions de 45%." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_mirrorimage" key="601" name="Anticipation" tier="2">
+        <rank description="Augmente de 1% vos chances d'esquiver et réduit de 16% la durée de tous les effets de désarmement utilisés contre vous. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="1"/>
+        <rank description="Augmente de 2% vos chances d'esquiver et réduit de 25% la durée de tous les effets de désarmement utilisés contre vous. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="2"/>
+        <rank description="Augmente de 3% vos chances d'esquiver et réduit de 50% la durée de tous les effets de désarmement utilisés contre vous. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Rafale" requires="613" tier="3">
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 5% pour les 3 prochaines attaques." lvl="1"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 10% pour les 3 prochaines attaques." lvl="2"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 15% pour les 3 prochaines attaques." lvl="3"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 20% pour les 3 prochaines attaques." lvl="4"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 25% pour les 3 prochaines attaques." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_devotion" key="615" name="Résistance" tier="3">
+        <rank description="Augmente votre Endurance de 2% et réduit sur vous la durée des effets ralentissant le mouvement de 6%." lvl="1"/>
+        <rank description="Augmente votre Endurance de 4% et réduit sur vous la durée des effets ralentissant le mouvement de 12%." lvl="2"/>
+        <rank description="Augmente votre Endurance de 6% et réduit sur vous la durée des effets ralentissant le mouvement de 18%." lvl="3"/>
+        <rank description="Augmente votre Endurance de 8% et réduit sur vous la durée des effets ralentissant le mouvement de 24%." lvl="4"/>
+        <rank description="Augmente votre Endurance de 10% et réduit sur vous la durée des effets ralentissant le mouvement de 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_windfury" key="1647" name="Totems Furie-des-vents améliorés" tier="4">
+        <rank description="Augmente la hâte en mêlée de votre totem Furie-des-vents de 2%." lvl="1"/>
+        <rank description="Augmente la hâte en mêlée de votre totem Furie-des-vents de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_parry" key="616" name="Armes spirituelles" tier="4">
+        <rank description="Donne une chance de parer les attaques de mêlée des ennemis et réduit toute la menace générée de 30%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_nature_bloodlust" key="2083" name="Dextérité mentale" tier="4">
+        <rank description="Augmente votre puissance d'attaque de 33% de votre Intelligence." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque de 66% de votre Intelligence." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque de 100% de votre Intelligence." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Rage libérée" tier="5">
+        <rank description="Augmente votre expertise de 3, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 4% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="1"/>
+        <rank description="Augmente votre expertise de 6, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 7% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="2"/>
+        <rank description="Augmente votre expertise de 9, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 10% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Maîtrise des armes" tier="5">
+        <rank description="Augmente de 4% les dégâts que vous infligez avec toutes les armes." lvl="1"/>
+        <rank description="Augmente de 7% les dégâts que vous infligez avec toutes les armes." lvl="2"/>
+        <rank description="Augmente de 10% les dégâts que vous infligez avec toutes les armes." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_fire_bluecano" key="2263" name="Puissance gelée" tier="5">
+        <rank description="Augmente de 5% les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Fouet de lave et Horion sur les cibles affectées par l'effet de votre Attaque Arme de givre, et votre Horion de givre a 50% de chances d'immobiliser la cible dans la glace pendant 5 sec. lorsqu'il est utilisé sur des cibles se trouvant à 15 mètres ou plus de vous." lvl="1"/>
+        <rank description="Augmente de 10% les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Fouet de lave et Horion sur les cibles affectées par l'effet de votre Attaque Arme de givre, et votre Horion de givre a 100% de chances d'immobiliser la cible dans la glace pendant 5 sec. lorsqu'il est utilisé sur des cibles se trouvant à 15 mètres ou plus de vous." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_dualwieldspecialization" key="1692" name="Spécialisation Ambidextrie" requires="1690" tier="6">
+        <rank description="Augmente de 2% supplémentaires vos chances de toucher lorsque vous portez deux armes." lvl="1"/>
+        <rank description="Augmente de 4% supplémentaires vos chances de toucher lorsque vous portez deux armes." lvl="2"/>
+        <rank description="Augmente de 6% supplémentaires vos chances de toucher lorsque vous portez deux armes." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_dualwield" key="1690" name="Ambidextrie" requires="616" tier="6">
+        <rank description="Permet d'équiper les armes à une main dans la main gauche." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_shaman_stormstrike" key="901" name="Frappe-tempête" tier="6">
+        <rank description="Attaque instantanément avec les deux armes. De plus, les 4 prochaines sources de dégâts de Nature infligés à la cible par le chaman sont augmentées de 20%. Dure 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="8000" maxRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shaman_staticshock" key="2055" name="Horion statique" tier="7">
+        <rank description="Vous avez 2% de chances de toucher votre cible avec une charge d'orbe de Bouclier de foudre quand vous infligez des dégâts avec des attaques et techniques de mêlée, et votre Bouclier de foudre gagne 2 charges supplémentaires." lvl="1"/>
+        <rank description="Vous avez 4% de chances de toucher votre cible avec une charge d'orbe de Bouclier de foudre quand vous infligez des dégâts avec des attaques et techniques de mêlée, et votre Bouclier de foudre gagne 4 charges supplémentaires." lvl="2"/>
+        <rank description="Vous avez 6% de chances de toucher votre cible avec une charge d'orbe de Bouclier de foudre quand vous infligez des dégâts avec des attaques et techniques de mêlée, et votre Bouclier de foudre gagne 6 charges supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_shaman_lavalash" key="2249" name="Fouet de lave" requires="1690" tier="7">
+        <rank description="Vous chargez votre arme en main gauche de lave, infligeant instantanément 100% des dégâts de l'arme en main gauche. Les dégâts sont augmentés de 25% si votre arme en main gauche est enchantée avec Langue de feu." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="4" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shaman_improvedstormstrike" key="2054" name="Frappe-tempête amélioré" requires="901" tier="7">
+        <rank description="Quand vous utilisez Frappe-tempête, vous avez 50% de chances de recevoir immédiatement 20% de votre mana de base." lvl="1"/>
+        <rank description="Quand vous utilisez Frappe-tempête, vous avez 100% de chances de recevoir immédiatement 20% de votre mana de base." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_mentalquickness" key="1691" name="Rapidité mentale" tier="8">
+        <rank description="Réduit le coût en mana de vos sorts instantanés de chaman de 2% et augmente la puissance de vos sorts d'un montant égal à 10% de votre puissance d'attaque." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts instantanés de chaman de 4% et augmente la puissance de vos sorts d'un montant égal à 20% de votre puissance d'attaque." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts instantanés de chaman de 6% et augmente la puissance de vos sorts d'un montant égal à 30% de votre puissance d'attaque." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_shamanrage" key="1693" name="Rage du chaman" tier="8">
+        <rank description="Réduit tous les dégâts subis de 30% et donne à vos attaques en mêlée réussies une chance de régénérer un montant de mana égal à 15% de votre puissance d'attaque. Ce sort peut être utilisé alors que vous êtes étourdi. Dure 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000"/>
+      </talent>
+      <talent column="2" icon="spell_nature_earthelemental_totem" key="2056" name="Puissance terrestre" tier="8">
+        <rank description="Votre Totem de lien terrestre a 50% de chances à chacune de ses pulsations d'enlever tous les effets de ralentissement sur vous ainsi que sur les cibles alliées proches, et votre Horion de terre réduit la vitesse d'attaque des ennemis de 5% supplémentaires." lvl="1"/>
+        <rank description="Votre Totem de lien terrestre a 100% de chances à chacune de ses pulsations d'enlever tous les effets de ralentissement sur vous ainsi que sur les cibles alliées proches, et votre Horion de terre réduit la vitesse d'attaque des ennemis de 10% supplémentaires." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_maelstromweapon" key="2057" name="Arme du Maelström" tier="9">
+        <rank description="Quand vous infligez des dégâts avec une arme de mêlée, vous avez une chance de réduire le temps d'incantation de votre prochain sort Eclair, Chaîne d'éclairs, Vague de soins inférieurs, Salve de guérison, Vague de soins ou Maléfice de 20%. Cumulable jusqu'à 5 fois. Dure 30 sec." lvl="1"/>
+        <rank description="Quand vous infligez des dégâts avec une arme de mêlée, vous avez une chance (plus élevée qu'au rang 1) de réduire le temps d'incantation de votre prochain sort Eclair, Chaîne d'éclairs, Vague de soins inférieurs, Salve de guérison, Vague de soins ou Maléfice de 20%. Cumulable jusqu'à 5 fois. Dure 30 sec." lvl="2"/>
+        <rank description="Quand vous infligez des dégâts avec une arme de mêlée, vous avez une chance (plus élevée qu'au rang 2) de réduire le temps d'incantation de votre prochain sort Eclair, Chaîne d'éclairs, Vague de soins inférieurs, Salve de guérison, Vague de soins ou Maléfice de 20%. Cumulable jusqu'à 5 fois. Dure 30 sec." lvl="3"/>
+        <rank description="Quand vous infligez des dégâts avec une arme de mêlée, vous avez une chance (plus élevée qu'au rang 3) de réduire le temps d'incantation de votre prochain sort Eclair, Chaîne d'éclairs, Vague de soins inférieurs, Salve de guérison, Vague de soins ou Maléfice de 20%. Cumulable jusqu'à 5 fois. Dure 30 sec." lvl="4"/>
+        <rank description="Quand vous infligez des dégâts avec une arme de mêlée, vous avez une chance (plus élevée qu'au rang 4) de réduire le temps d'incantation de votre prochain sort Eclair, Chaîne d'éclairs, Vague de soins inférieurs, Salve de guérison, Vague de soins ou Maléfice de 20%. Cumulable jusqu'à 5 fois. Dure 30 sec." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_feralspirit" key="2058" name="Esprit farouche" tier="10">
+        <rank description="Invoque deux Esprits du loup qui obéissent au chaman. Dure 45 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="ShamanElementalCombat" icon="spell_nature_lightning" key="Elemental" name="Elémentaire" order="0">
+      <talent column="1" icon="spell_nature_wispsplode" key="564" name="Convection" tier="0">
+        <rank description="Réduit le coût en mana de vos Horions ainsi que de vos sorts Eclair, Chaîne d'éclairs, Explosion de lave et Cisaille de vent de 2%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos Horions ainsi que de vos sorts Eclair, Chaîne d'éclairs, Explosion de lave et Cisaille de vent de 4%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos Horions ainsi que de vos sorts Eclair, Chaîne d'éclairs, Explosion de lave et Cisaille de vent de 6%." lvl="3"/>
+        <rank description="Réduit le coût en mana de vos Horions ainsi que de vos sorts Eclair, Chaîne d'éclairs, Explosion de lave et Cisaille de vent de 8%." lvl="4"/>
+        <rank description="Réduit le coût en mana de vos Horions ainsi que de vos sorts Eclair, Chaîne d'éclairs, Explosion de lave et Cisaille de vent de 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball" key="563" name="Commotion" tier="0">
+        <rank description="Augmente les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Orage et Explosion de lave ainsi que vos Horions de 1%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Orage et Explosion de lave ainsi que vos Horions de 2%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Orage et Explosion de lave ainsi que vos Horions de 3%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Orage et Explosion de lave ainsi que vos Horions de 4%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Eclair, Chaîne d'éclairs, Orage et Explosion de lave ainsi que vos Horions de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_immolation" key="561" name="Appel des flammes" tier="1">
+        <rank description="Augmente de 5% les dégâts infligés par vos Totems de feu et votre Nova de feu, et de 2% les dégâts infligés par votre sort Explosion de lave." lvl="1"/>
+        <rank description="Augmente de 10% les dégâts infligés par vos Totems de feu et votre Nova de feu, et de 4% les dégâts infligés par votre sort Explosion de lave." lvl="2"/>
+        <rank description="Augmente de 15% les dégâts infligés par vos Totems de feu et votre Nova de feu, et de 6% les dégâts infligés par votre sort Explosion de lave." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_spiritarmor" key="1640" name="Protection contre les éléments" tier="1">
+        <rank description="Réduit tous les dégâts subis de 2%." lvl="1"/>
+        <rank description="Réduit tous les dégâts subis de 4%." lvl="2"/>
+        <rank description="Réduit tous les dégâts subis de 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_elementaldevastation" key="1645" name="Dévastation élémentaire" tier="1">
+        <rank description="Vos coups critiques non périodiques obtenus avec des sorts offensifs augmentent de 3% vos chances d'obtenir un coup critique avec les attaques de mêlée pendant 10 sec." lvl="1"/>
+        <rank description="Vos coups critiques non périodiques obtenus avec des sorts offensifs augmentent de 6% vos chances d'obtenir un coup critique avec les attaques de mêlée pendant 10 sec." lvl="2"/>
+        <rank description="Vos coups critiques non périodiques obtenus avec des sorts offensifs augmentent de 9% vos chances d'obtenir un coup critique avec les attaques de mêlée pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_frostward" key="575" name="Réverbération" tier="2">
+        <rank description="Réduit le temps de recharge de vos Horions et de Cisaille de vent de 0.2 secondes." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos Horions et de Cisaille de vent de 0.4 secondes." lvl="2"/>
+        <rank description="Réduit le temps de recharge de vos Horions et de Cisaille de vent de 0.6 secondes." lvl="3"/>
+        <rank description="Réduit le temps de recharge de vos Horions et de Cisaille de vent de 0.8 secondes." lvl="4"/>
+        <rank description="Réduit le temps de recharge de vos Horions et de Cisaille de vent de 1 secondes." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_manaburn" key="574" name="Focalisation élémentaire" tier="2">
+        <rank description="Après avoir réussi un coup critique non périodique avec un sort de dégâts de Feu, de Givre ou de Nature, vous entrez dans un état d'Idées claires. Idées claires réduit le coût en mana de vos 2 prochains sorts de dégâts ou de soins de 40%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_fire_volcano" key="565" name="Fureur élémentaire" tier="2">
+        <rank description="Augmente de 20% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="1"/>
+        <rank description="Augmente de 40% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="2"/>
+        <rank description="Augmente de 60% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="3"/>
+        <rank description="Augmente de 80% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="4"/>
+        <rank description="Augmente de 100% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_sealoffire" key="567" name="Nova de feu améliorée" tier="3">
+        <rank description="Augmente les dégâts infligés par votre Nova de feu de 10% et réduit le temps de recharge de 2 sec." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre Nova de feu de 20% et réduit le temps de recharge de 4 sec." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_soulleech_2" key="1642" name="Oeil du cyclone" tier="3">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez les sorts Eclair, Chaîne d'éclairs, Explosion de lave ou Maléfice." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez les sorts Eclair, Chaîne d'éclairs, Explosion de lave ou Maléfice." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez les sorts Eclair, Chaîne d'éclairs, Explosion de lave ou Maléfice." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stormreach" key="1641" name="Allonge élémentaire" tier="4">
+        <rank description="Augmente la portée de vos sorts Eclair, Chaîne d'éclairs, Nova de feu et Explosion de lave de 3 mètres, augmente le rayon de votre sort Orage de 10% et augmente la portée de votre Horion de flammes de 7 mètres." lvl="1"/>
+        <rank description="Augmente la portée de vos sorts Eclair, Chaîne d'éclairs, Nova de feu et Explosion de lave de 6 mètres, augmente le rayon de votre sort Orage de 20% et augmente la portée de votre Horion de flammes de 15 mètres." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_callstorm" key="562" name="Appel de la foudre" requires="574" tier="4">
+        <rank description="Augmente vos chances de réaliser un coup critique avec vos sorts Eclair, Chaîne d'éclairs et Orage de 5% supplémentaires." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_unrelentingstorm" key="1682" name="Tempête continuelle" tier="4">
+        <rank description="Régénère une quantité de mana égale à 4% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="1"/>
+        <rank description="Régénère une quantité de mana égale à 8% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="2"/>
+        <rank description="Régénère une quantité de mana égale à 12% de votre Intelligence toutes les 5 sec., même pendant l'incantation." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_elementalprecision_1" key="1685" name="Précision élémentaire" tier="5">
+        <rank description="Augmente de 1% vos chances de toucher avec les sorts de Feu, de Givre et de Nature, et réduit de 10% la menace générée par les sorts de Feu, Givre et Nature." lvl="1"/>
+        <rank description="Augmente de 2% vos chances de toucher avec les sorts de Feu, de Givre et de Nature, et réduit de 20% la menace générée par les sorts de Feu, Givre et Nature." lvl="2"/>
+        <rank description="Augmente de 3% vos chances de toucher avec les sorts de Feu, de Givre et de Nature, et réduit de 30% la menace générée par les sorts de Feu, Givre et Nature." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_lightning_lightningbolt01" key="721" name="Maîtrise de la foudre" requires="565" tier="5">
+        <rank description="Réduit le temps d'incantation de vos sorts Eclair, Chaîne d'éclairs et Explosion de lave de 0.1 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Eclair, Chaîne d'éclairs et Explosion de lave de 0.2 sec." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Eclair, Chaîne d'éclairs et Explosion de lave de 0.3 sec." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Eclair, Chaîne d'éclairs et Explosion de lave de 0.4 sec." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Eclair, Chaîne d'éclairs et Explosion de lave de 0.5 sec." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_wispheal" key="573" name="Maîtrise élémentaire" requires="562" tier="6">
+        <rank description="Lorsqu'elle est activée, votre prochain sort Eclair, Chaîne d'éclairs ou Explosion de lave bénéficie d'une incantation instantanée. De plus, vous bénéficiez d'un bonus à la hâte des sorts de 15% pendant 15 sec. Maîtrise élémentaire partage le temps de recharge de Rapidité de la nature." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shaman_stormearthfire" key="2052" name="Tempête, terre et feu" tier="6">
+        <rank description="Réduit le temps de recharge de votre sort Chaîne d'éclairs de 0,75 sec., votre Totem de lien terrestre a 33% de chances d'enraciner les cibles pendant 5 sec et les dégâts périodiques infligés par votre Horion de flammes sont augmentés de 20%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre sort Chaîne d'éclairs de 1,5 sec., votre Totem de lien terrestre a 66% de chances d'enraciner les cibles pendant 5 sec à son lancement et les dégâts périodiques infligés par votre Horion de flammes sont augmentés de 40%." lvl="2"/>
+        <rank description="Réduit le temps de recharge de votre sort Chaîne d'éclairs de 2,5 sec., votre Totem de lien terrestre a 100% de chances d'enraciner les cibles pendant 5 sec à son lancement et les dégâts périodiques infligés par votre Horion de flammes sont augmentés de 60%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_blueflamering" key="2262" name="Echos tonitruants" tier="7">
+        <rank description="Réduit le temps de recharge de vos sorts Horion de flammes et Horion de givre de 1 sec. supplémentaires, en plus d'augmenter les dégâts directs qu'ils infligent de 10% supplémentaires." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos sorts Horion de flammes et Horion de givre de 2 sec. supplémentaires, en plus d'augmenter les dégâts directs qu'ils infligent de 20% supplémentaires." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Serment des éléments" requires="573" tier="7">
+        <rank description="Vos coups critiques non périodiques avec les sorts font bénéficier les membres de votre groupe ou raid se trouvant à moins de 100 mètres du Serment des éléments, qui augmente les chances de coup critique avec les sorts de 3%. De plus, quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 5% de dégâts supplémentaires avec les sorts. Dure 15 sec." lvl="1"/>
+        <rank description="Vos coups critiques non périodiques avec les sorts font bénéficier les membres de votre groupe ou raid se trouvant à moins de 100 mètres du Serment des éléments, qui augmente les chances de coup critique avec les sorts de 5%. De plus, quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 10% de dégâts supplémentaires avec les sorts. Dure 15 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Surcharge de foudre" tier="7">
+        <rank description="Donne à vos sorts Eclair et Chaîne d'éclairs 11% de chances de lancer un second sort semblable sur la même cible sans coût supplémentaire. Ce sort inflige la moitié des dégâts et ne génère pas de menace." lvl="1"/>
+        <rank description="Donne à vos sorts Eclair et Chaîne d'éclairs 22% de chances de lancer un second sort semblable sur la même cible sans coût supplémentaire. Ce sort inflige la moitié des dégâts et ne génère pas de menace." lvl="2"/>
+        <rank description="Donne à vos sorts Eclair et Chaîne d'éclairs 33% de chances de lancer un second sort semblable sur la même cible sans coût supplémentaire. Ce sort inflige la moitié des dégâts et ne génère pas de menace." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shaman_astralshift" key="2050" name="Transfert astral" tier="8">
+        <rank description="Quand vous êtes étourdi, apeuré ou réduit au silence, vous entrez dans le Plan astral afin de réduire tous les dégâts subis de 10% pendant la durée de l'effet d'étourdissement, de peur ou de silence." lvl="1"/>
+        <rank description="Quand vous êtes étourdi, apeuré ou réduit au silence, vous entrez dans le Plan astral afin de réduire tous les dégâts subis de 20% pendant la durée de l'effet d'étourdissement, de peur ou de silence." lvl="2"/>
+        <rank description="Quand vous êtes étourdi, apeuré ou réduit au silence, vous entrez dans le Plan astral afin de réduire tous les dégâts subis de 30% pendant la durée de l'effet d'étourdissement, de peur ou de silence." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_totemofwrath" key="1687" name="Totem de courroux" tier="8">
+        <rank description="Invoque un Totem de courroux qui dispose de 5 points de vie aux pieds du lanceur de sorts. Il augmente de 100 la puissance des sorts de tous les membres du groupe et du raid, et augmente de 3% les chances de coup critique de toutes les attaques contre les ennemis se trouvant à moins de 40 mètres. Dure 5 min." lvl="1"/>
+        <spell castTime="0">
+          <power cost="5" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shaman_lavaflow" key="2051" name="Flots de lave" tier="8">
+        <rank description="Augmente le bonus aux dégâts des coups critiques de votre sort Explosion de lave de 6% supplémentaires, et lorsque votre Horion de flammes est dissipé, votre vitesse d'incantation des sorts est augmentée de 10% pendant 6 sec." lvl="1"/>
+        <rank description="Augmente le bonus aux dégâts des coups critiques de votre sort Explosion de lave de 12% supplémentaires, et lorsque votre Horion de flammes est dissipé, votre vitesse d'incantation des sorts est augmentée de 20% pendant 6 sec." lvl="2"/>
+        <rank description="Augmente le bonus aux dégâts des coups critiques de votre sort Explosion de lave de 24% supplémentaires, et lorsque votre Horion de flammes est dissipé, votre vitesse d'incantation des sorts est augmentée de 30% pendant 6 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_unused2" key="2252" name="Chamanisme" tier="9">
+        <rank description="Vos sorts Éclair et Chaîne d'éclairs bénéficient de 4% supplémentaires et votre Explosion de lave de 5% supplémentaires des effets de vos bonus aux dégâts." lvl="1"/>
+        <rank description="Vos sorts Éclair et Chaîne d'éclairs bénéficient de 8% supplémentaires et votre Explosion de lave de 10% supplémentaires des effets de vos bonus aux dégâts." lvl="2"/>
+        <rank description="Vos sorts Éclair et Chaîne d'éclairs bénéficient de 12% supplémentaires et votre Explosion de lave de 15% supplémentaires des effets de vos bonus aux dégâts." lvl="3"/>
+        <rank description="Vos sorts Éclair et Chaîne d'éclairs bénéficient de 16% supplémentaires et votre Explosion de lave de 20% supplémentaires des effets de vos bonus aux dégâts." lvl="4"/>
+        <rank description="Vos sorts Éclair et Chaîne d'éclairs bénéficient de 20% supplémentaires et votre Explosion de lave de 25% supplémentaires des effets de vos bonus aux dégâts." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_thunderstorm" key="2053" name="Orage" tier="10">
+        <rank description="Vous appelez la foudre, qui vous charge d'énergie et inflige des dégâts aux ennemis se trouvant à moins de 10 mètres. Vous rend 8% de mana et inflige 551 à 629 points de dégâts de Nature à tous les ennemis proches, les faisant tomber à la renverse 20 mètres plus loin. Ce sort est utilisable quand vous êtes étourdi." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="ShamanRestoration" icon="spell_nature_magicimmunity" key="Restoration" name="Restauration" order="2">
+      <talent column="1" icon="spell_nature_magicimmunity" key="586" name="Vague de soins améliorée" tier="0">
+        <rank description="Réduit le temps d'incantation de votre sort Vague de soins de 0.1 secondes." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de votre sort Vague de soins de 0.2 secondes." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de votre sort Vague de soins de 0.3 secondes." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de votre sort Vague de soins de 0.4 secondes." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de votre sort Vague de soins de 0.5 secondes." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_moonglow" key="595" name="Focalisation totémique" tier="0">
+        <rank description="Réduit le coût en mana de vos totems de 5%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos totems de 10%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos totems de 15%." lvl="3"/>
+        <rank description="Réduit le coût en mana de vos totems de 20%." lvl="4"/>
+        <rank description="Réduit le coût en mana de vos totems de 25%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_reincarnation" key="589" name="Réincarnation améliorée" tier="1">
+        <rank description="Réduit le temps de recharge de votre sort Réincarnation de 7 min. et augmente les montants de points de vie et de mana avec lesquels vous vous réincarnez de 10% supplémentaires." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre sort Réincarnation de 15 min. et augmente les montants de points de vie et de mana avec lesquels vous vous réincarnez de 20% supplémentaires." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingtouch" key="1646" name="Grâce guérisseuse" tier="1">
+        <rank description="Diminue le niveau de menace généré par vos sorts de soins de 5% et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 10%." lvl="1"/>
+        <rank description="Diminue le niveau de menace généré par vos sorts de soins de 10% et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 20%." lvl="2"/>
+        <rank description="Diminue le niveau de menace généré par vos sorts de soins de 15% et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_manarecharge" key="593" name="Focalisation des flots" tier="1">
+        <rank description="Réduit de 1% le coût en mana de vos sorts de soins." lvl="1"/>
+        <rank description="Réduit de 2% le coût en mana de vos sorts de soins." lvl="2"/>
+        <rank description="Réduit de 3% le coût en mana de vos sorts de soins." lvl="3"/>
+        <rank description="Réduit de 4% le coût en mana de vos sorts de soins." lvl="4"/>
+        <rank description="Réduit de 5% le coût en mana de vos sorts de soins." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_shaman_watershield" key="583" name="Bouclier d'eau amélioré" tier="2">
+        <rank description="Vous avez 33% de chances de recevoir instantanément du mana comme si vous consommiez un orbe de Bouclier d'eau quand vous obtenez un effet critique avec vos sorts Vague de soins ou Remous, 20% de chances quand vous obtenez un effet critique avec votre sort Vague de soins inférieurs, et 10% de chances quand vous obtenez un effet critique avec votre sort Salve de guérison." lvl="1"/>
+        <rank description="Vous avez 66% de chances de recevoir instantanément du mana comme si vous consommiez un orbe de Bouclier d'eau quand vous obtenez un effet critique avec vos sorts Vague de soins ou Remous, 40% de chances quand vous obtenez un effet critique avec votre sort Vague de soins inférieurs, et 20% de chances quand vous obtenez un effet critique avec votre sort Salve de guérison." lvl="2"/>
+        <rank description="Vous avez 100% de chances de recevoir instantanément du mana comme si vous consommiez un orbe de Bouclier d'eau quand vous obtenez un effet critique avec vos sorts Vague de soins ou Remous, 60% de chances quand vous obtenez un effet critique avec votre sort Vague de soins inférieurs, et 30% de chances quand vous obtenez un effet critique avec votre sort Salve de guérison." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavelesser" key="587" name="Focalisation des soins" tier="2">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez tout sort de soins de chaman." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez tout sort de soins de chaman." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez tout sort de soins de chaman." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_frostbolt" key="582" name="Force des flots" tier="2">
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts Vague de soins, Vague de soins inférieurs et Salve de guérison de 60%. Chaque soin critique réduit les chances de 20%. Dure 20 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="spell_nature_undyingstrength" key="581" name="Guérison des anciens" tier="2">
+        <rank description="Réduit de 3% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un de vos sorts de soins." lvl="1"/>
+        <rank description="Réduit de 7% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un de vos sorts de soins." lvl="2"/>
+        <rank description="Réduit de 10% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un de vos sorts de soins." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_manaregentotem" key="588" name="Totems de restauration" tier="3">
+        <rank description="Augmente de 7% les effets de votre Totem Fontaine de mana et augmente de 15% le montant de points de vie rendus par votre Totem guérisseur." lvl="1"/>
+        <rank description="Augmente de 12% les effets de votre Totem Fontaine de mana et augmente de 30% le montant de points de vie rendus par votre Totem guérisseur." lvl="2"/>
+        <rank description="Augmente de 20% les effets de votre Totem Fontaine de mana et augmente de 45% le montant de points de vie rendus par votre Totem guérisseur." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_tranquility" key="594" name="Maîtrise des flots" tier="3">
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts de soins et d'éclair de 1%." lvl="1"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts de soins et d'éclair de 2%." lvl="2"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts de soins et d'éclair de 3%." lvl="3"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts de soins et d'éclair de 4%." lvl="4"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts de soins et d'éclair de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_healingway" key="1648" name="Flots de soins" tier="4">
+        <rank description="Augmente le montant de points de vie rendus par votre sort Vague de soins de 8%." lvl="1"/>
+        <rank description="Augmente le montant de points de vie rendus par votre sort Vague de soins de 16%." lvl="2"/>
+        <rank description="Augmente le montant de points de vie rendus par votre sort Vague de soins de 25%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_ravenform" key="591" name="Rapidité de la nature" tier="4">
+        <rank description="Lorsque cette technique est activée, votre prochain sort de Nature dont le temps d'incantation de base est inférieur à 10 sec. devient un sort instantané. Rapidité de la nature partage le temps de recharge de Maîtrise élémentaire." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="1695" name="Esprit focalisé" tier="4">
+        <rank description="Réduit de 10% la durée de tous les effets de silence ou d'interruption utilisés contre le chaman. Cet effet ne se cumule pas avec d'autres effets similaires." lvl="1"/>
+        <rank description="Réduit de 20% la durée de tous les effets de silence ou d'interruption utilisés contre le chaman. Cet effet ne se cumule pas avec d'autres effets similaires." lvl="2"/>
+        <rank description="Réduit de 30% la durée de tous les effets de silence ou d'interruption utilisés contre le chaman. Cet effet ne se cumule pas avec d'autres effets similaires." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_wizardmark" key="592" name="Purification" tier="5">
+        <rank description="Augmente de 2% l'efficacité de vos sorts de soins." lvl="1"/>
+        <rank description="Augmente de 4% l'efficacité de vos sorts de soins." lvl="2"/>
+        <rank description="Augmente de 6% l'efficacité de vos sorts de soins." lvl="3"/>
+        <rank description="Augmente de 8% l'efficacité de vos sorts de soins." lvl="4"/>
+        <rank description="Augmente de 10% l'efficacité de vos sorts de soins." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_natureguardian" key="1699" name="Gardien de la nature" tier="6">
+        <rank description="Chaque fois qu'une attaque vous inflige des dégâts qui vous font passer sous les 30% de points de vie, votre maximum de points de vie augmente de 3% pendant 10 sec. et votre niveau de menace envers cette cible est réduit. Temps de recharge de 30 secondes." lvl="1"/>
+        <rank description="Chaque fois qu'une attaque vous inflige des dégâts qui vous font passer sous les 30% de points de vie, votre maximum de points de vie augmente de 6% pendant 10 sec. et votre niveau de menace envers cette cible est réduit. Temps de recharge de 30 secondes." lvl="2"/>
+        <rank description="Chaque fois qu'une attaque vous inflige des dégâts qui vous font passer sous les 30% de points de vie, votre maximum de points de vie augmente de 9% pendant 10 sec. et votre niveau de menace envers cette cible est réduit. Temps de recharge de 30 secondes." lvl="3"/>
+        <rank description="Chaque fois qu'une attaque vous inflige des dégâts qui vous font passer sous les 30% de points de vie, votre maximum de points de vie augmente de 12% pendant 10 sec. et votre niveau de menace envers cette cible est réduit. Temps de recharge de 30 secondes." lvl="4"/>
+        <rank description="Chaque fois qu'une attaque vous inflige des dégâts qui vous font passer sous les 30% de points de vie, votre maximum de points de vie augmente de 15% pendant 10 sec. et votre niveau de menace envers cette cible est réduit. Temps de recharge de 30 secondes." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_frost_summonwaterelemental" key="590" name="Totem de vague de mana" requires="588" tier="6">
+        <rank description="Invoque aux pieds du lanceur de sorts un Totem de vague de mana pendant 12 sec. Il dispose d'un montant de points de vie égal à 10% de ceux du lanceur et rend 6% du total de mana toutes les 3 secondes aux membres du groupe qui se trouvent à moins de 30 mètres." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_shaman_cleansespirit" key="2084" name="Purifier l'esprit" requires="592" tier="6">
+        <rank description="Purifie l'esprit d'une cible alliée en annulant 1 effet de poison, 1 effet de maladie et 1 effet de malédiction." lvl="1"/>
+        <spell castTime="0" maxRange="40">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shaman_blessingofeternals" key="2060" name="Bénédiction des Eternels" tier="7">
+        <rank description="Augmente les chances d'effet critique de vos sorts de 2% et augmente les chances d'appliquer sur la cible l'effet de soins sur la durée de Viveterre de 40% quand elle dispose de 35% ou moins de ses points de vie." lvl="1"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts de 4% et augmente les chances d'appliquer l'effet de soins sur la durée de Viveterre de 80% quand la cible dispose de 35% ou moins de ses points de vie." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavegreater" key="1697" name="Salve de guérison améliorée" tier="7">
+        <rank description="Augmente de 10% le montant de points de vie rendus par votre sort Salve de guérison." lvl="1"/>
+        <rank description="Augmente de 20% le montant de points de vie rendus par votre sort Salve de guérison." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_natureblessing" key="1696" name="Bénédiction de la nature" tier="7">
+        <rank description="Augmente vos soins d'un montant égal à 5% de votre Intelligence." lvl="1"/>
+        <rank description="Augmente vos soins d'un montant égal à 10% de votre Intelligence." lvl="2"/>
+        <rank description="Augmente vos soins d'un montant égal à 15% de votre Intelligence." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shaman_ancestralawakening" key="2061" name="Eveil ancestral" tier="8">
+        <rank description="Quand vous réussissez des soins critiques avec Vague de soins, Vague de soins inférieurs ou Remous, vous invoquez un Esprit ancestral à votre aide. Il rend instantanément à la cible alliée membre du groupe ou raid dans un rayon de 40 mètres dont le pourcentage de points de vie est le plus bas 10% du montant soigné." lvl="1"/>
+        <rank description="Quand vous réussissez des soins critiques avec Vague de soins, Vague de soins inférieurs ou Remous, vous invoquez un Esprit ancestral à votre aide. Il rend instantanément à la cible alliée membre du groupe ou raid dans un rayon de 40 mètres dont le pourcentage de points de vie est le plus bas 20% du montant soigné." lvl="2"/>
+        <rank description="Quand vous réussissez des soins critiques avec Vague de soins, Vague de soins inférieurs ou Remous, vous invoquez un Esprit ancestral à votre aide. Il rend instantanément à la cible alliée membre du groupe ou raid dans un rayon de 40 mètres dont le pourcentage de points de vie est le plus bas 30% du montant soigné." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_skinofearth" key="1698" name="Bouclier de terre" tier="8">
+        <rank description="Protège la cible avec un bouclier de terre, qui réduit de 30% le temps d'incantation ou de canalisation de sort perdu quand elle subit des dégâts. Les attaques rendent 150 points de vie à la cible protégée. Cet effet ne peut se produire qu’une fois toutes les quelques secondes. 6 charges. Dure 10 min. Bouclier de terre ne peut être placé que sur une cible à la fois et un seul Bouclier élémentaire peut être actif sur une cible à la fois." lvl="1"/>
+        <spell castTime="0" maxRange="40">
+          <power cost="15" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_skinofearth" key="2059" name="Bouclier de terre amélioré" requires="1698" tier="8">
+        <rank description="Augmente le nombre de charges de votre Bouclier de terre de 1, et augmente les soins prodigués par votre Bouclier de terre de 5%." lvl="1"/>
+        <rank description="Augmente le nombre de charges de votre Bouclier de terre de 2, et augmente les soins prodigués par votre Bouclier de terre de 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_tidalwaves" key="2063" name="Raz-de-marée" tier="9">
+        <rank description="Vous avez 20% de chances après avoir lancé Salve de guérison ou Remous de réduire le temps d'incantation de votre sort Vague de soins de 30% et d'augmenter les chances d'effet critique de votre sort Vague de soins inférieurs de 25% jusqu'à ce que deux de ces sorts aient été lancés. De plus, votre Vague de soins bénéficie de 4% supplémentaires des effets du bonus relatif aux soins et votre Vague de soins inférieurs de 2% supplémentaires des effets du bonus relatif aux soins." lvl="1"/>
+        <rank description="Vous avez 40% de chances après avoir lancé Salve de guérison ou Remous de réduire le temps d'incantation de votre sort Vague de soins de 30% et d'augmenter les chances d'effet critique de votre sort Vague de soins inférieurs de 25% jusqu'à ce que deux de ces sorts aient été lancés. De plus, votre Vague de soins bénéficie de 8% supplémentaires des effets du bonus relatif aux soins et votre Vague de soins inférieurs de 4% supplémentaires des effets du bonus relatif aux soins." lvl="2"/>
+        <rank description="Vous avez 60% de chances après avoir lancé Salve de guérison ou Remous de réduire le temps d'incantation de votre sort Vague de soins de 30% et d'augmenter les chances d'effet critique de votre sort Vague de soins inférieurs de 25% jusqu'à ce que deux de ces sorts aient été lancés. De plus, votre Vague de soins bénéficie de 12% supplémentaires des effets du bonus relatif aux soins et votre Vague de soins inférieurs de 6% supplémentaires des effets du bonus relatif aux soins." lvl="3"/>
+        <rank description="Vous avez 80% de chances après avoir lancé Salve de guérison ou Remous de réduire le temps d'incantation de votre sort Vague de soins de 30% et d'augmenter les chances d'effet critique de votre sort Vague de soins inférieurs de 25% jusqu'à ce que deux de ces sorts aient été lancés. De plus, votre Vague de soins bénéficie de 16% supplémentaires des effets du bonus relatif aux soins et votre Vague de soins inférieurs de 8% supplémentaires des effets du bonus relatif aux soins." lvl="4"/>
+        <rank description="Vous avez 100% de chances après avoir lancé Salve de guérison ou Remous de réduire le temps d'incantation de votre sort Vague de soins de 30% et d'augmenter les chances d'effet critique de votre sort Vague de soins inférieurs de 25% jusqu'à ce que deux de ces sorts aient été lancés. De plus, votre Vague de soins bénéficie de 20% supplémentaires des effets du bonus relatif aux soins et votre Vague de soins inférieurs de 10% supplémentaires des effets du bonus relatif aux soins." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_riptide" key="2064" name="Remous" tier="10">
+        <rank description="Rend à une cible alliée 639 à 691 points de vie plus 665 points de vie en 15 sec. Votre prochaine Salve de guérison lancée sur cette cible primaire dans les 15 sec consommera l'effet de soins sur la durée et augmentera le montant de soins de votre Salve de guérison de 25%." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="18" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

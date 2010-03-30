@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arena-Rangliste">
+	<faqlist>
+		<faq question="Was ist die Arena-Rangliste?">
+			Die Arena-Rangliste ist eine Rangliste für den Wettbewerb von Spielern, die am teambasierten Spieler-gegen-Spieler-Kampf (PvP) teilnehmen. Dieses System wird alle Teams untereinander in 3 Kategorien vergleichen: 2-gegen-2 (2v2), 3-gegen-3 (3v3) und 5-gegen-5 (5v5). Teams werden abhängig von ihrer derzeitigen Teamwertung Arenapunkte erhalten, diese wiederum können für den Kauf von Gegenständen und anderen Belohnungen verwendet werden.
+		</faq>
+		<faq question="Wodurch werden die Rangfolgen festgelegt?">
+			Die Rangfolge wird durch die Siege und Niederlagen eurer Teams gegen andere, ähnlich starke Teams, festgelegt. Siege gegen höher gewertete Teams werden eure Wertung stärker erhöhen als Siege gegen schwächere Teams. Gegen ein niedriger gewertetes Team zu verlieren, wird eure Wertung verschlechtern. Das System ähnelt prinzipiell dem im professionellen Schachsport genutzten Elo-Wertungssystem.
+		</faq>
+		<faq question="Wie lange dauert eine Saison?">
+			Jede Saison dauert mehrere Monate.
+		</faq>
+		<faq question="Welchen Rang muss mein Arena-Team innehaben, damit ich einen bestimmten Titel erhalte?">
+			Am Ende jeder Arena-Saison erhalten Spieler, die mindestens an 20% der Kämpfe ihres Arena-Teams teilgenommen haben und deren Team einen bestimmten Rang innehat, einen Titel als Anerkennung für ihre Leistung. Diese Titel bleiben während der folgenden Arena-Saison erhalten. Hier die besonderen Titel zusammen mit den benötigten Rangstufen:
+			<ul>
+				<li>Gladiator: Top 0.5%</li>
+				<li>Duellant:  0.5% - 3%</li>
+				<li>Rivale: 3% - 10%</li>
+				<li>Herausforderer: 10% - 35%</li>
+			</ul>
+			Des Weiteren erhält das erstplatzierte Team jeder Bracket einen besonderen Titel, dessen Name dem der Arenaausrüstung der jeweiligen Saison entspricht, wie zum Beispiel "Brutaler Gladiator".
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena-Rechner" url="/arena-calculator.xml"/>	
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena-Informationen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink name="Arena-Belohnungen: Waffen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-weapons.html"/>
+		<relatedlink name="Arena-Belohnungen: Klassenrüstungssets" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-class-armor.html"/>					
+		<relatedlink type="hr"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Ruf">
+	<faqlist>
+		<faq question="Welche Funktionen bietet die Seite &quot;Ruf&quot;?">
+			Auf dieser Seite seht ihr den Status eures Charakters bei jeder Fraktion, mit der er oder sie schon Kontakt hatte. Wie im Spiel, wird jeder Status mit einer entsprechenden Fraktion durch einen farbigen Rufbalken dargestellt. Die derzeitige Rufstufe erscheint auf der rechten Seite des Balken. Klickt auf die jeweilige Kategorie, um sie zu öffnen oder zu schließen.
+		</faq>
+		<faq question="Was ist die sortierte Anzeige?">
+			Der Knopf "sortierte Anzeige" zeigt eine komplette Liste mit dem Ruf des Charakters bei allen Fraktionen. Ihr könnt auf die Spaltennamen klicken, um die Anzeige nach Name oder Rufstufe zu sortieren.
+		</faq>
+		<faq question="Wo kann ich mehr über den Ruf bei verschiedenen Fraktionen erfahren?">
+			Verschiedene Fraktionen besitzen ihre eigenen Seiten in unserem Game Guide. Diese sind direkt im Text dieser Seite verlinkt und sind blau eingefärbt.
+		</faq>
+		<faq question="Was bedeuten die verschiedenen Rufstufen und wielange dauert es, eine Stufe aufzusteigen?">
+			Ihr benötigt zum Aufstieg die folgende Anzahl an Rufpunkten:
+			  <ul>
+			0/36000 – Verhasst zu Feindlich
+			  <br/>
+			0/3000 – Feindlich zu Unfreundlich
+			  <br/>			  
+			0/3000 – Unfreundlich zu Neutral
+			  <br/>
+			0/3000 – Neutral zu Freundlich
+			  <br/>
+			0/6000 – Freundlich zu Wohlwollend
+			  <br/>
+			0/12000 – Wohlwollend zu Respektvoll
+			  <br/>
+			0/21000 – Respektvoll zu Ehrfürchtig
+			  </ul>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Game Guide -&gt; Ruf" type="external" url="http://www.wow-europe.com/de/info/basics/reputation.html"/>
+		<relatedlink name="Game Guide -&gt; Fraktionen" type="external" url="http://www.wow-europe.com/de/info/basics/factions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>	
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

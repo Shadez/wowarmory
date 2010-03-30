@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,26 +23,59 @@
  **/
 
 define('__ARMORY__', true);
-
+define('load_characters_class', true);
+define('load_achievements_class', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-if(!isset($_SESSION['accountId'])) {
-    header('Location: login.xml?character-select');
-    exit;
+if(!isset($_SESSION['username'])) {
+    header('Location: index.xml?logout=1');
+}
+header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('character-select.xsl');
+if(isset($_GET['n'])) {
+    $characters->name = $_GET['n'];
+}
+elseif(isset($_GET['cn'])) {
+    $characters->name = $_GET['cn'];
+}
+else {
+    $characters->name = false;
+}
+$characters->GetCharacterGuid();
+$isCharacter = $characters->IsCharacter();
+$characters->_structCharacter();
+$achievements->guid = $characters->guid;
+
+/** Header **/
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'character-select.xml');
+$xml->XMLWriter()->startElement('accounts');
+$xml->XMLWriter()->startElement('account');
+$xml->XMLWriter()->writeAttribute('active', 1);
+$xml->XMLWriter()->writeAttribute('characters', $utils->CountAllCharacters());
+$xml->XMLWriter()->writeAttribute('selected', $utils->CountSelectedCharacters());
+$xml->XMLWriter()->writeAttribute('username', strtoupper($_SESSION['username']));
+$xml->XMLWriter()->endElement();  //account
+$xml->XMLWriter()->endElement(); //accounts
+$xml->XMLWriter()->startElement('characters');
+$my_characters = $utils->GetAllCharacters();
+if($my_characters) {
+    foreach($my_characters as $vault_character) {
+        $xml->XMLWriter()->startElement('character');
+        foreach($vault_character as $vault_key => $vault_value) {
+            $xml->XMLWriter()->writeAttribute($vault_key, $vault_value);
+        }
+        $xml->XMLWriter()->endElement(); //character
+    }
 }
 
-// Additional CSS
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-
-$armory->tpl->assign('selected_char', $utils->getCharacter());
-$armory->tpl->assign('allCharacters', $utils->getAllCharacters());
-if($armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']) == 3) {
-    $armory->tpl->assign('disallowAddNewChar', true);
-}
-$armory->tpl->assign('selectedCharacters', $utils->getCharsArray(true));
-$armory->tpl->assign('tpl2include', 'vault_select_character');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_sheet_start.tpl');
-exit();
+$xml->XMLWriter()->endElement();  //characters
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>

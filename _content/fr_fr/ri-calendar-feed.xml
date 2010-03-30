@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Flux du calendrier">
+	<faqlist>
+		<faq question="À quoi sert l'outil de personnalisation du calendrier ?">
+			L'outil de personnalisation du calendrier vous permet d'exporter les données de votre calendrier en jeu vers des applications de calendrier telles qu'Outlook, ou vers des calendriers en ligne tels que Google Agenda ou des applications comme Microsoft Outlook. Cet outil peut regrouper jusqu'à cinq personnages de votre compte pour un seul flux, et est automatiquement mis à jour avec le calendrier en jeu de chacun de ces personnages.
+		</faq>	
+		<faq question="Comment puis-je créer un flux de calendrier personnalisé ?">
+			Utilisez le menu principal de l'Armurerie ou cliquez sur le lien supérieur droit sur la page du calendrier en jeu d'un personnage afin d'accéder à l'outil de personnalisation du calendrier. Les options qui vous seront alors proposées vous permettront de créer un flux de calendrier personnalisé, que vous pourrez exporter vers une application ou un site Internet compatibles.
+			<p/>
+			Vous pouvez ajouter les calendriers de cinq personnage de votre compte au plus dans le même flux. Pour cela, il vous suffit de sélectionner le nom des personnages en question à l'aide des menus déroulants. Les types d'évènements peuvent être individuellement désactivés ou activés, afin d'apparaître ou non dans le flux.
+		</faq>
+		<faq question="Que dois-je faire de ce flux personnalisé une fois créé ?">
+			L'URL de votre flux personnalisé se met à jour en temps réel quand vous modifiez les options et les personnages. Il suffit de copier l'URL et de la coller dans un calendrier en ligne tel que Google Agenda quand vous aurez terminé les modifications souhaitées. Référez-vous à chaque site Internet ou application pour les détails (des instructions for Google Agenda et Microsoft Outlook 2007 sont couvertes dans les deux prochaines questions).
+		</faq>
+		<faq question="Comment importer le flux du calendrier dans Google Agenda ?">
+			Suivez ces instructions pour importer les données de votre calendrier dans <a href="http://www.google.com/intl/fr/googlecalendar/about.html">Google Agenda</a> :
+			<ul>
+				<li>Dans Google Agenda, sélectionnez 'Autres agendas' en bas à gauche pour accéder à un menu déroulant, puis choisissez 'Ajouter' au bas de ce menu.</li>
+				<li>dans le menu déroulant qui apparaît, sélectionnez that appears, select 'Ajouter par URL'. Copiez l'URL du calendrier de votre Armurerie dans le champ et sélectionnez 'Ajouter un agenda'.</li>
+				<li>Un message surligné en jaune devrait apparaître au dessus de votre calendrier. Ceci indique que le flux du calendrier n'est pas encore synchronisé avec Google Agenda. Attendez simplement quelques minutes et les évènements de votre calendrier devraient apparaître dans le calendrier principal.</li>
+			</ul>
+		</faq>	
+		<faq question="Puis-je utiliser le flux de calendrier dans Microsoft Outlook ?">
+			Suivez ces instructions pour importer les données de votre calendrier dans Microsoft Outlook 2007 :
+			<ul>
+				<li>Dans Outlook, select Outils -&gt; Préférences de comptes dans le menu de navigation principal.</li>
+				<li>Dans le menu déroulant qui apparaît, sélectionnez l'onglet Calendriers Internet.</li>
+				<li>Sélectionnez 'Nouveau' dans le coin en haut à gauche de cet onglet. Copiez l'URL du calendrier de votre Armurerie dans le champ et sélectionnez 'Ajouter'. S'il se produit une erreur à cette étape, redémarrez Outlook et essayez à nouveau.</li>
+				<li>Dans la fenêtre suivante, vous pouvez cinfigurer plusieurs options, dont le nom du calendrier. Quand vous êtes satisfait, sélectionnez 'OK'. Vous devriez voir votre calendrier de personnage dans la section 'Autres' de l'onglet principal d'Outlook. Les données du calendrier peuvent mettre un certain temps à apparaître.</li>
+			</ul>
+		</faq>	
+		<faq question="Puis-je utiliser le flux de calendrier avec l'application calendrier de mon iPhone ?">
+			Suivez ces instructions pour importer les données de votre calendrier dans le calendrier intégré de votre iPhone :
+			<ul>
+				<li>En utilisant le navigateur Internet de votre iPhone, allez sur l'outil de flux de calendrier de l'Armurerie et créez une URL de calendrier.</li>
+				<li>Utilisez la fonction de copie de l'iPhone pour copier l'URL (le bouton 'Copier vers le presse-papier' de l'Armurerie utilise la technologie Flash et ne marchera pas sur l'iPhone).</li>
+				<li>Retournez sur la page d'accueil de votre iPhone. Sélectionnez 'Réglages', puis 'Mail, Contacts, Calendriers'.</li>
+				<li>Sélectionnez ces options : 'Ajouter un compte...' -&gt; 'Autre' -&gt; 'S'abonner à un calendrier'.</li>
+				<li>Copier l'URL dans le champ et tapez sur 'Suivant'. Après que le flux a été récupéré, configurez les réglages désirés et tapez sur 'Sauver'. Votre calendrier devrait maintenant être visible sur le calendrier de votre iPhone.</li>
+			</ul>
+		</faq>
+		<faq question="Comment utiliser le flux de calendrier dans l'aplication de calendrier iCal ?">
+		Suivez ces instructions pour importer les données de votre calendrier dans iCal :
+			<ul>
+				<li>Dans iCal, sélectionnez 'Calendrier', then 'S’abonner'.</li>
+				<li>PCopier l'URL dans le champ et passez à l'étape suivante.</li>
+				<li>Après que le flux a été récupéré, configurez les réglages désirés et cliquez sur 'OK'. Votre calendrier devrait maintenant être visible sur iCal.</li>
+			</ul>
+		</faq>			
+		<faq question="Le flux du calendrier est-il automatiquement mis à jour avec le calendrier en jeu ?">
+			Oui. Les flux de calendrier créés à l'aide de cet outil seront toujours automatiquement mis à jour par les calendriers en jeu.
+		</faq>
+		<faq question="À quoi sert l'option de réinitialisation de la clé de sécurité ?">
+			Chaque URL de flux de calendrier contient une clé de sécurité unique à la fin de l'adresse. Cette clé vous permet de garder confidentielles les données de votre calendrier, afin que personne d'autre ne puisse y accéder. Si vous le souhaitez, vous pouvez réinitialiser cette clé de sécurité à tout moment en cliquant sur « Réinitialiser la clé de sécurité » au bas de la page. Une fois réinitialisée, vous devrez mettre à jour vos applications de calendrier à jour ou télécharger le fichier de synchronisation de nouveau pour l'importer dans un logiciel de calendrier.
+		</faq>
+		<faq question="Pourquoi mes personnages n'apparaissent-ils pas dans le menu de sélection de flux ?">
+			Seuls les personnages américains sont répertoriés ici, puisqu'il s'agit de la version américaine de l'Armurerie. Pour changer de région (Europe, etc...) utilisez le menu déroulant de changement de région au bas de la page. De plus, un personnage doit avoir été connecté récemment sur un compte pour que sa fiche apparaisse dans l'Armurerie. Enfin, le personnage doit être au moins de niveau 10 pour que sa fiche de personnage soit disponible.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Recherche de personnage" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Caractéristiques des personnages" type="external" url="http://www.wow-europe.com/fr/info/basics/index.html#character"/>
+		<relatedlink name="Races" type="external" url="http://www.wow-europe.com/fr/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.wow-europe.com/fr/info/classes/index.html"/>
+		<relatedlink name="Métiers" type="external" url="http://www.wow-europe.com/fr/info/professions/intro.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

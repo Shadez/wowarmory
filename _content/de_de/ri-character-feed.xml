@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Character Feed">
+	<faqlist>
+
+		<faq question="Was ist der Charakter-Aktivitäts-Feed?">
+			Jeder Aktivitäts-Feed eines Charakters zeigt die letzten Aktionen eines Charakters im Spiel an, die vom Arsenal gespeichert werden können. Dies beinhaltet Erfolge, Boss-Kills, Erhalt von Gegenständen und mehr. Charakter-Feeds können über das Anpassungsmenü individualisiert werden und dann mittels RSS-Feed an das gewünschte Ziel weitergeleitet werden. 
+		</faq>	
+		<faq question="Wie erstelle ich einen individuellen Charakter-Feed?">
+			Klickt auf das RSS-Symbol in der Charakterprofil-Seite (das orangefarbene Symbol in der rechten oberen Ecke der Auflistung der letzten Aktivitäten), um in das Anpassungsmenü für den Charakter-Feed zu gelangen. Die Optionen auf dieser Seite erlauben es euch, einen individuellen RSS-Feed zu erstellen, der an den gewünschten RSS-Empfänger weitergeleitet werden kann. 
+			<ul>
+				<li>Ihr könnt insgesamt bis zu fünf Charaktere in einen einzigen RSS-Feed aufnehmen. Gebt dazu jeden Charakter im Format <b>name@realm</b> an. Wenn ihr eingeloggt seid ist es nicht nötig, den Realm anzugeben - es wird in diesem Fall automatisch der Realm des Hauptcharakters gewählt.</li>
+				<li>Erfolgskategorien können individuell umgeschalten werden, um sie in den RSS-Feed aufzunehmen oder aus dem RSS-Feed herauszufiltern.</li>
+				<li>Erfolgskriterien beinhalten jegliche Zwischenschritte für einen bestimmten Erfolg, beispielsweise das Töten eines bestimmten Bosses innerhalb eines Erfolges, der das Töten aller Bosse einer bestimmten Schlachtzugs-Instanz erfordert. Das Deaktivieren dieser Kategorie schaltet alle Erfolgskriterien ab, während das Aktivieren noch immer den Regeln folgt, die ihr in dieser Erfolgskategorie ausgewählt habt (Beispielsweise das Deaktivieren der Kategorie Quests bei den Erfolgen, schaltet auch alle Unterkriterien dieser Kategorie mit ab).</li>
+				<li>Die Kategorie Boss-Kills beinhaltet alle Bosse, die im Register "Statistik" eines Charakterprofils aufgeführt werden. Dies beinhaltet die Endgegner aller Instanzen aus World of Warcraft, Burning Crusade sowie alle Bosse der Schlachtzugsinstanzen aus Wrath of the Lich King.</li>
+				<li>Der Erhalt von Beute kann ebenfalls in verschiedenen Wertstufen, die im Feed auftauchen sollen, reguliert werden. Es ist außerdem möglich, eine Mindeststufe der Gegenstände anzugeben.</li>
+			</ul>
+		</faq>
+		<faq question="Wie nutze ich den individuellen Feed, wenn ich ihn erstellt habe?">
+			Die URL für euren individuellen RSS-Feed wird in Echtzeit aktualisiert, wenn ihr Optionen ändert oder Charakternamen eingebt. Wenn ihr mit den getroffenen Einstellungen und ausgewählten Charakteren zufrieden seid, kopiert einfach die resultierende URL und fügt sie im RSS-Empfänger ein. Online-RSS-Empfänger sind beispielsweise iGoogle, Netvibes und Pageflakes. Ihr könnt die RSS-Feeds auch in Outlook und anderen E-Mail-Programmen importieren.
+		</faq>	
+		<faq question="Kann ich die Feeds anpassen, die im Charakterprofil unter dem Register Aktivitäts-Feed aufgeführt werden?">
+			Im Gegensatz zu den RSS-Feeds die auf der Charakter-Feed-Anpassungsseite erstellt werden, können die Feeds die in den Charakterprofilen erscheinen (auf der Hauptseite und im Register 'Aktivitäts Feed') nicht angepasst werden, da sie einen ungefilterten Überblick über die letzten Aktionen eines Charakters geben sollen.
+		</faq>
+		<faq question="Warum findet die Anpassungsseite für Feeds im Arsenal einen bestimmten Charakter nicht, den ich im Namensfeld angebe?">
+			Nur Charaktere auf europäischen Realms können in die hier erstellten Feeds aufgenommen werden, da dies die EU-Version des Arsenals ist. Im unteren Teil der Seite kann die Region über ein Auswahlmenü gewechselt werden, zum Beispiel zu Amerika. Zusätzlich muss ein Charakter kürzlich aktiv gewesen sein, sich auf einem gültigen Account befinden und die Mindeststufe 10 erreicht haben, um im Kalenderfeed zu erscheinen.
+			<p/>
+			Bei der Eingabe der Charakternamen behaltet die Leerzeichen in den Realmnamen bei (zum Beispiel 'Die Todeskrallen') und stellt sicher, dass der Charakter und Realm richtig geschrieben sind.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Charaktersuche" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Anleitung: Charakterattribute" type="external" url="http://www.wow-europe.com/de/info/basics/characters.html"/>
+		<relatedlink name="Völker" type="external" url="http://www.wow-europe.com/de/info/races/index.html"/>
+		<relatedlink name="Klassen" type="external" url="http://www.wow-europe.com/de/info/classes/index.html"/>
+		<relatedlink name="Berufe" type="external" url="http://www.wow-europe.com/de/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=9164118936&amp;sid=3"/>		
+		<relatedlink name="Meldet einen Fehler" type="external" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 95
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,23 +33,28 @@ Class Utils extends Connector {
     public $password;
     public $shaHash;
     
+    public function timeMeasure() {
+        list($msec, $sec) = explode(chr(32), microtime());
+        return ($sec+$msec);
+    }
+    
     public function authUser() {
         if(!$this->username || !$this->password) {
-            return 0x01;
+            return false;
         }
         $info = $this->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`=? LIMIT 1", $this->username);
         if(!$info) {
-            return 0x02;
+            return false;
         }
         elseif($info['sha_pass_hash'] != $this->createShaHash()) {
-            return 0x03;
+            return false;
         }
         else {
             $this->accountId = $info['id'];
             $_SESSION['wow_login'] = true;
             $_SESSION['accountId'] = $this->accountId;
             $_SESSION['username']  = $this->username;
-            return 0x00;
+            return true;
         }
     }
     
@@ -89,7 +94,21 @@ Class Utils extends Connector {
         return true;
     }
     
-    public function getAllCharacters() {
+    public function CountSelectedCharacters() {
+        if(!$_SESSION['accountId']) {
+            return false;
+        }
+        return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']);
+    }
+    
+    public function CountAllCharacters() {
+        if(!$_SESSION['accountId']) {
+            return false;
+        }
+        return $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
+    }
+    
+    public function GetAllCharacters() {
         if(!$_SESSION['accountId']) {
             return false;
         }
@@ -97,14 +116,23 @@ Class Utils extends Connector {
         $chars = $this->cDB->select("
         SELECT
         `characters`.`name`, 
-        `characters`.`class`, 
-        `characters`.`race`, 
-        `characters`.`gender`, 
+        `characters`.`class` AS `classId`, 
+        `characters`.`race` AS `raceId`, 
+        `characters`.`gender` AS `genderId`, 
         `characters`.`level`,
-        `guild`.`name` AS `guildname`
+        `guild`.`name` AS `guild`,
+        `guild`.`guildid` AS `guildId`
         FROM `characters` AS `characters`
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`characters`.`data`, ' ', ".$gField."), ' ', '-1') AS UNSIGNED)
         WHERE `account`=?", $_SESSION['accountId']);
+        $count = count($chars);
+        for($i=0;$i<$count;$i++) {
+            $chars[$i]['account'] = strtoupper($_SESSION['username']);
+            $chars[$i]['factionId'] = Characters::GetCharacterFaction($chars[$i]['raceId']);
+            $chars[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
+            $chars[$i]['relevance'] = '100';
+            $chars[$i]['url'] = 'r='.urlencode($chars[$i]['realm']).'&cn='.urlencode($chars[$i]['name']);
+        }
         return $chars;
     }
     
@@ -238,39 +266,19 @@ Class Utils extends Connector {
         $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school;
         $damage_done_pos = $this->cDB->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_pos."), ' ', '-1') AS UNSIGNED)
-            FROM `characters` 
+            FROM `armory_character_stats` 
                 WHERE `guid`=?", $guid);
         $damage_done_neg = $this->cDB->selectCell("
 		SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_neg."), ' ', '-1') AS UNSIGNED)
-			FROM `characters` 
+			FROM `armory_character_stats` 
 				WHERE `guid`=?", $guid);
         $damage_done_pct = $this->cDB->selectCell("
 		SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_pct."), ' ', '-1') AS UNSIGNED)
-			FROM `characters` 
+			FROM `armory_character_stats` 
 				WHERE `guid`=?", $guid);
         $bonus = $damage_done_pos + $damage_done_neg;
         $bonus = $bonus*Utils::getFloatValue($damage_done_pct, 5);
         return $bonus;
-    }
-    
-    public function getReputation($rep) {
-        $gBaseRep = -42000;
-        $gRepStep = array(36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000);
-        $current  = $gBaseRep;
-        for ($i=0;$i<8;$current+=$gRepStep[$i],$i++) {
-            if ($current + $gRepStep[$i] > $rep) {
-                $value = $rep - $current;
-                $repData = array (
-                    'rank'=>$i, 
-                    'rank_name' => $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_reputation_ranks` WHERE `id`=?", $i+1),
-                    'rep'=>$value,
-                    'max'=>$gRepStep[$i],
-                    'percent'=>Utils::getPercent($gRepStep[$i], $value),
-                );
-                return $repData;
-            }
-        }
-        return array('rank'=>7, 'rank_name'=>$this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_reputation_ranks` WHERE `id`=7"), 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
     }
     
     /**
@@ -309,10 +317,10 @@ Class Utils extends Connector {
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $achievements_data[$i]['name'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['description'] = $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['icon'] = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['timestamp'] = date('Y-m-d\TH:i:s:+00:00', $achievements_data[$i]['date']);
+            $achievements_data[$i]['title'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['desc']  = $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['icon']  = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['dateCompleted'] = date('Y-m-d\TH:i:s\Z', $achievements_data[$i]['date']);            
         }
         /*
         $start_id = $countAch+1;
@@ -427,53 +435,63 @@ Class Utils extends Connector {
         return $skillInfo;
     }
     
-    public function getCache($itemID, $guid) {
+    public function GenerateCacheId($page, $att1=0, $att2=0, $att3=0) {
+        return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.$this->_locale);
+    }
+    
+    public function GetCache($file_id, $file_dir = 'characters') {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
-        return $this->aDB->selectCell("
-        SELECT `tooltip_html`
-            FROM `armory_cache`
-                WHERE `id`=? AND `guid`=? AND `locale`=? AND TO_DAYS(NOW()) - TO_DAYS(`date`) <= ?", $itemID, $guid, $this->_locale, $this->armoryconfig['cache_lifetime']);
+        if(file_exists('cache/'.$file_dir.'/'.$file_id.'.data')) {
+            $data_contents = file_get_contents('cache/'.$file_dir.'/'.$file_id.'.data');
+            $data_explode = explode(':', $data_contents);
+            $cache_timestamp = $data_explode[0];
+            $cache_revision  = $data_explode[1];
+            $name_or_itemid  = $data_explode[2];
+            $character_guid  = $data_explode[3];
+            $cache_locale    = $data_explode[4];
+            $file_expire = $cache_timestamp + $this->armoryconfig['cache_lifetime'];
+            if($file_expire < time() || $cache_revision != ARMORY_REVISION) {
+                return false;
+            }
+            else {
+                if(file_exists('cache/'.$file_dir.'/'.$file_id.'.cache')) {
+                    $cache_contents = @file_get_contents('cache/'.$file_dir.'/'.$file_id.'.cache');
+                    if(sizeof($cache_contents) > 0x00) {
+                        return $cache_contents;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
-    public function writeCache($itemID, $guid, $tooltip, $locale) {
+    public function WriteCache($file_id, $filedata, $filecontents, $filedir='characters') {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
-        $this->aDB->query("
-        INSERT IGNORE INTO `armory_cache` (`id`, `guid`, `tooltip_html`, `date`, `locale`)
-            VALUES (?, ?, ?, NOW(), ?)", $itemID, $guid, $tooltip, $locale);
-        return true;
+        $error_message = null;
+        $cacheData = @fopen('cache/'.$filedir.'/'.$file_id.'.data', 'w+');
+        if(!@fwrite($cacheData, $filedata)) {
+            $error_message .= sprintf('Unable to write %s.data\n', $file_id);
+        }
+        @fclose($cacheData);
+        $cacheCache = @fopen('cache/'.$filedir.'/'.$file_id.'.cache', 'w+');
+        if(!@fwrite($cacheCache, $filecontents)) {
+            $error_message .= sprintf('Unable to write %s.cache', $file_id);
+        }
+        @fclose($cacheCache);
+        if($error_message == null) {
+            return 0x01;
+        }
+        else {
+            return $error_message;
+        }
     }
     
-    public function dropCache($itemID, $guid, $full=false) {
-        if($this->armoryconfig['useCache'] != true) {
-            return false;
-        }
-        if($full == true) {
-            $this->aDB->query("TRUNCATE TABLE `armory_cache`");
-			return true;
-        }
-        $this->aDB->query("DELETE FROM `armory_cache` WHERE `id`=? AND `guid`=?", $itemID, $guid);
-        return true;
-    }
-    
-    public function clearCache() {
-        if($this->armoryconfig['useCache'] != true) {
-            return false;
-        }
-        $this->aDB->query("DELETE FROM `armory_cache` WHERE TO_DAYS(NOW()) - TO_DAYS(`date`) >= ?", $this->armoryconfig['cache_lifetime']);
-        return true;
-    }
-    
-    public function showNews() {
-        $news = $this->aDB->select("SELECT * FROM `armory_news` ORDER BY `id` DESC");
-        $count = count($news);
-        for($i=0;$i<$count;$i++) {
-            $news[$i]['date'] = date('Y-m-d\TH:i:s', $news[$i]['date']);
-        }
-        return $news;
+    public function GenerateCacheData($nameOrItemID, $charGuid, $page=null) {
+        return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->_locale);
     }
     
     public function validateText($text) {
@@ -546,24 +564,6 @@ Class Utils extends Connector {
         return $radius[0]." - ".$radius[2];
     }
     
-    public function GetDeclinedString(&$string) {
-        if(!is_array($string)) {
-            return false;
-        }
-        $num = abs($string['num']) % 100;
-	  	$n1 = $num % 10;	
-	  	if($num > 10 && $num < 20) {
-	  	    return $string['string3'];
-	  	}
-	  	if($n1 > 1 && $n1 < 5) {
-	  	    return $string['string2'];
-	  	}
-	  	if($n1 == 1) {
-	  	    return $string['string1'];
-	  	}
-  		return $string['string3'];
-    }
-
     public function GetDungeonList($expansion) {
         $data = array();
         switch($expansion) {
@@ -621,6 +621,44 @@ Class Utils extends Connector {
     public function GetArmoryString($id) {
         $str = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
         return $str;
+    }
+    
+    public function GetClassId($class_string) {
+        switch(strtolower($class_string)) {
+            case 'death knight':
+                return 6;
+                break;
+            case 'druid':
+                return 11;
+                break;
+            case 'hunter':
+                return 3;
+                break;
+            case 'mage':
+                return 8;
+                break;
+            case 'paladin':
+                return 2;
+                break;
+            case 'priest':
+                return 5;
+                break;
+            case 'rogue':
+                return 4;
+                break;
+            case 'shaman':
+                return 7;
+                break;
+            case 'warlock':
+                return 9;
+                break;
+            case 'warrior':
+                return 1;
+                break;
+            default:
+                return 6; // Death Knight is default class
+                break;
+        }
     }
 }
 ?>

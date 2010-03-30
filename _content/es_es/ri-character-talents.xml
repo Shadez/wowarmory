@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Talentos del personaje">
+	<faqlist>
+		<faq question="¿Qué funciones existen en la página de talentos?">
+			La novedad de la doble especialización de talentos en World of Warcraft también se verá reflejada en la Armería. Si un personaje posee esta facultad, podrás cambiar entre ambas especializaciones utilizando las pestañas ubicadas en la parte superior derecha de los árboles de talentos. Además, el conjunto de glifos que corresponde a cada especialización dependerá de la especialización que estés viendo. Los perfiles de los cazadores también reflejan el arbol de talentos de su mascota, mediante una lista desplegable con el nombre y clase de mascota.
+		</faq>
+		<faq question="¿Como se determina el nombre de las especializaciones?">
+			La especialización de talentos recibe una etiqueta según el árbol de talentos dominante, es decir, aquel en el que hayas invertido la mayoría de tus puntos. Cuando los puntos están distribuidos de manera uniforme entre varios árboles, la especialización será designada como "híbrida", mientras que los árboles sin puntos serán designados como "sin talentos".
+		</faq>
+		<faq question="¿Puedo interactuar con los talentos de esa página?">
+			Puesto que se trata de los talentos actuales de un personaje, no se puede interactuar con ellos en esta página. Sin embargo, el botón "Exportar talentos" te llevará a una plantilla equivalente. Ahí podrás modificar los talentos como prefieras.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Talentos" type="external" url="http://www.wow-europe.com/es/info/basics/talents/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

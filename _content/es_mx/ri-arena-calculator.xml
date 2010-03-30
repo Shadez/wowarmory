@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calculadora de Arena">
+	<faqlist>
+		<faq question="¿Qué es la calculadora de arena?">
+			La calculadora de arena es una herramienta con tres funciones:
+			<ul>
+				<li>
+          <b>Calculadora de puntos</b>, convierte una calificación en la cantidad de puntos que recibirás esa semana.</li>
+				<li>
+          <b>Calculadora de calificación</b>, establece como objetivo cierta cantidad de puntos, tomando en cuenta los que tengas acumulados, para generar una tabla. Ésta mostrará la calificación promedio que necesitarás obtener en un periodo de tiempo determinado para alcanzar dicho objetivo.</li>
+				<li>
+          <b>Calculadora de tiempo</b>, también establece como objetivo cierta cantidad de puntos, tomando en cuenta los que tengas acumulados, pero basa la cantidad de tiempo que necesitarás para alcanzarlo en la calificación promedio que ingreses.</li>
+			</ul>
+		</faq>
+		<faq question="¿Cómo se calcula mi calificación de equipo?">
+			La calificación de un equipo nuevo es ahora 0 y las victorias subsecuentes modificarán dicha cantidad. Ésta subirá cada vez que tu equipo gane una partida, cambio que depende de la calificación del equipo contrario en comparación con el tuyo. 
+		</faq>
+		<faq key="getArenaPoints" question="¿Cómo se traduce la calificación de mi equipo a puntos de arena?">
+			Al final de cada semana, tu calificación de equipo se utiliza para calcular cuantos puntos de arena obtendrás. Para recibir puntos de arena, tu equipo deberá haber jugado al menos diez partidas en la semana, y cada miembro que quiera ser elegible para recibirlos tendrá que haber participado en al menos 30% de esas partidas. Ten en cuenta que la cantidad de puntos que recibas se determinará por un sólo equipo, y no por la combinación de los puntos de todos los equipos a los que pertenezcas. Tu fuente de puntos para la semana sera el equipo que, después de tomar en cuenta calificación y categoría, te proporcione la mayor cantidad de puntos. Los equipos de 2c2 y 3c3 sufren una penalización a través de la cual reciben menos puntos que un equipo de 5c5 con la misma calificación. 
+		</faq>
+		<faq question="¿Qué puedo comprar con puntos de arena y cuántos puedo tener como máximo?">
+			Los puntos de arena sirven para comprar recompensas de arena. Puedes almacenar hasta 5,000 puntos y no se degradan con el tiempo.
+		</faq>
+		<faq question="¿Es .999... igual a 1?">
+			<a href="http://us.blizzard.com/es-mx/company/press/pressreleases.html?040401">Sí.</a>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Información sobre el Torneo Arena" url="/arena-tournament.xml"/>			
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
+		<relatedlink name="Las arenas a detalle" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/arena.xml"/>
+		<relatedlink name="Recompensas de la arena: armas" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
+		<relatedlink name="Recompensas de la arena: armaduras" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

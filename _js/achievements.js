@@ -4,8 +4,7 @@ if(!this['Armory'])
 Armory.Achievements = {
 	init: function(type, mode, characters) {
 		Armory.Achievements.isAchievements = type == "achievements";
-		//Armory.Achievements.dataURI = Armory.Achievements.isAchievements ? "/character-achievements.php" : "/character-statistics.php";
-        Armory.Achievements.dataURI = Armory.Achievements.isAchievements ? "/character-achievements.php" : "/achievements-loader.php";
+		Armory.Achievements.dataURI = Armory.Achievements.isAchievements ? "character-achievements.xml" : "character-statistics.xml";
 
 		var modeFunctions = Armory.Achievements.functions[mode];
 		for(var funcName in modeFunctions)
@@ -94,8 +93,7 @@ Armory.Achievements = {
 
 			loadingMsg.style.display = '';
 			container.append(loadingMsg);
-			//Sarissa.updateContentFromURIMultiRoot(Armory.Achievements.dataURI + "?" + query, container[0],
-			Sarissa.updateContentFromURIMultiRoot(query, container[0],
+			Sarissa.updateContentFromURIMultiRoot(Armory.Achievements.dataURI + "?" + query, container[0],
 					function(url, nodes) {
 						if(append)
 							loadingMsg.parentNode.removeChild(loadingMsg);
@@ -107,7 +105,7 @@ Armory.Achievements = {
 		}
 	},
 	_getParams: function() {
-		return "cn=" + Armory.Achievements.charactersEncoded.names.join();
+		return "r=" + Armory.Achievements.charactersEncoded.realms.join() + "&n=" + Armory.Achievements.charactersEncoded.names.join();
 	}
 }
 
@@ -263,3 +261,4 @@ Sarissa.updateContentFromURIMultiRoot = function(sFromUrl, oTargetElement, callb
 			callback(sFromUrl, children);
 	});
 }
+

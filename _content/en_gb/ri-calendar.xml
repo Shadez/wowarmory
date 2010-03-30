@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Player Calendar">
+	<faqlist>
+		<faq question="What is the functionality of the Armory's Player Calendar?">
+			The functionality is <a href="/updates.xml#anchorcalendarinterface">detailed on our Updates page</a>. It includes the ability to view your characters’ recurring and player-created events in an interface replicated from the one in-game. In addition, you can respond to invitations to player-created events – which will then take effect in-game.
+		</faq>
+		<faq question="How do I access the Player Calendar on the Armory?">
+			Simply click the Calendar tab on your character profile. This will take you to a login screen where you will need to enter your account name and password. Alternately, you can log in directly from any Armory page using the login fields on the top right of the screen, and then access the Calendar tab.
+		</faq>
+		<faq question="What is the Calendar Feed tool?">
+			The Calendar Feed tool allows you to export in-game player calendar data to online calendars such as Google Calendar. The tool can aggregate up to five characters on your account in a single feed, and is automatically synched with the characters' in-game player calendars. Refer to the <a href="/faq-calendar-feed.xml">Calendar Feed FAQ</a> for more details.
+		</faq>
+		<faq question="Why do I have to log in to view my character's calendar?">
+			As with Guild Banks, the calendar is a login-protected feature of the Armory since it is comprised of information that is not ordinarily in “public” view.
+		</faq>
+		<faq question="Can I respond to events on the Armory?">
+			Yes, you can respond to invitations to player-created events. If your character responds to an event on the Armory, the changes will take effect in-game.
+		</faq>
+		<faq question="Can I view calendars of other characters?">
+			Once you are logged in to the Armory, you can view the calendars of the other characters on the same account. Click on the profile menu on the top right of the Armory, and select the character you wish to view from the drop-down menu. You cannot view calendars of characters that are not on your account. Refer to the <a href="/faq-login.xml">Armory Login FAQ</a> for more details on the character profile menu.
+		</faq>
+		<faq question="Can I create events with the Armory?">
+			No, you cannot create new events using the Armory’s Player Calendar. That functionality is reserved for the in-game player calendar.
+		</faq>
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Events Calendar" url="http://www.wow-europe.com/en/info/basics/events/calendar.html"/>
+		<relatedlink name="Raid Calendar" url="http://www.wow-europe.com/en/info/basics/raidcalendar/index.html"/>
+	</relatedlinks>
+</relatedinfo>

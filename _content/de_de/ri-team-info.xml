@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Team-Informationen">
+	<faqlist>
+		<faq question="Was kann ich auf der Teamprofil-Seite sehen?">
+			Alle Arenateams haben eine Teamprofil sowie deren Arenastatistiken. Auf der gewählten Teamprofil-Seite könnt ihr eine Übersicht der Teamaufstellung mit auswählbaren Charakterbildern sehen, den aktuellen sowie höchsten Punktestand des Teams und die Arenapunkte der einzelnen Mitglieder. Die Register Absolvierte Spiele sowie Gegnerstatistik enthalten detaillierte Informationen über die Arenastatistiken jedes Teams.
+		</faq>
+		<faq question="Was sind die Arenastatistiken?">
+			Jedes Areanateamprofil beinhaltet jetzt auch Register mit Arenastatistiken. Diese sind: Absolvierte Spiele, Spielstatistik sowie Gegnerstatistik.
+			<ul>
+			<li>Das Register Absolvierte Spiele zeigt euch alle Arenaspiele in einem interaktiven Graphen an. Wenn man mit dem Mauszeiger darüber fährt, wird angezeigt, werden Datum, Bewertungsänderung sowie Name des gegnerischen Teams angezeigt. Unterhalb des Graphen befindet sich ein sortierbare Anzeige mit Suchfunktion für alle Spiele, an der das Team in der aktuellen Saison teilgenommen hat.</li>
+			<li>Spielstatistik erlaubt euch, durch einen Klick auf der rechten Seite jedes Spiels, eine detaillierte Übersicht des entsprechenden Spiels aufzurufen.  Diese Seite zeigt euch die gleichen Ergebnisse und Statistiken an, die innerhalb des Spiels erhalten habt - Teammitglieder, Todesstöße, Schaden, Heilung sowie die Veränderung der Bewertung.</li>
+			<li>Gegnerstatistik listet alle Arenaspiele des Teams in einem anderen Format auf, indem jedes Spiel anhand anhand des Gegnerteams angezeigt wird. The Opponent History tab displays all the team’s Arena matches in a slightly different format; by listing each match by the opponent team name. Die einzelnen Bereiche, die hier angezeigt werden, hängen vom gegnerischen Team ab - Statistiken wie zum Beispiel durchschnittliche Bewertungsänderung pro Spiel, gewonnene Spiele gegen jedes Team in Prozent sowie gesamte Gewinne und Niederlagen gegen alle Teams.</li>
+			</ul>
+		</faq>
+		<faq question="Bekommen ehemals gelöschte Teams ihr Teamprofil sowie Arenawertungen zurück?">
+			Nein, gelöschte Teams verschwinden aus dem Arsenal und haben daher keine Teamprofile oder Arenastatistiken mehr. Falls ein Team gelöscht und mit dem selben Namen neu erstellt wurde, zeigt das Profil lediglich die Daten und Arenastatistiken des neuen Teams. Das Profil und die Daten des alten Teams werden nicht gespeichert. Wenn ein Team gelöscht wurde, ist der Teamname in der Arenastatistik auch nicht mehr anklickbar.
+		</faq>
+		<faq question="Wieso kann ich auf einen Teamnamen nicht klicken, um zu deren Profil zu gelangen?">
+			Entweder existiert das Team nicht länger und besitzt daher kein Profil mehr in den Arenastatistiken oder es ist gelöscht oder weitreichend abgeändert worden, was dazu führt, dass die neuen Teamstatistiken nicht mehr an die alten Grunddaten gebunden sind.
+		</faq>
+		<faq question="Warum hat ein bestehendes Arenateam jetzt eine andere Übersicht?">
+		Das Teamprofil im Arsenal zeigt lediglich die aktuellen Informationen des Teams an.
+		</faq>
+		<faq question="Wieso zeigt die Option &quot;Diese Woche&quot; Spiele an, obwohl mein Arenateam diese Woche nicht gespielt hat?">
+		Dieses Feld zeigt die aktuellsten Spiele des Arenateams an, diese können in der aktuellen Woche oder in der Vergangenheit stattgefunden haben.
+		</faq>
+		<faq question="Wie oft werden die Teamprofile aktualisiert?">
+			Die Teamprofile sollten alle 24 Stunden mit allen Änderungen innerhalb des Spiels aktualisiert werden.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena-Rangliste" url="/battlegroups.xml"/>
+		<relatedlink name="Arenaturnier" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena-Informationen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink name="Arena-Belohnungen: Waffen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-weapons.html"/>
+		<relatedlink name="Arena-Belohnungen: Klassenrüstungssets" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-class-armor.html"/>					
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Achievements">
+	<faqlist>
+		<faq question="What is the functionality of the Achievements and Statistics tabs?">
+			The Achievements and Statistics pages appearing in character profiles are designed to appear and function much like their corresponding interface in-game, with some additional features unique to the Armory. The ability to compare achievements and statistics between multiple characters is expanded to allow you to compare up to four characters, even across realms.
+		</faq>
+		<faq question="How do I navigate between categories on the Achievements and Statistics tabs?">
+			Similar to how they function in-game, simply click on the category or subcategory of achievements or statistics on the left-side menu.
+		</faq>
+		<faq question="How do I compare achievements or statistics between multiple characters?">
+			To compare multiple characters, simply click the tab labeled “Add Character to Compare” at the top right of the Achievements or Statistics interface. Enter the name and realm of the character you wish to compare to the one you are currently viewing. The second character’s portrait and achievements will appear next to the original one. You can add multiple characters in this manner, and can compare up to four characters at one time.
+		</faq>
+		<faq question="Do I have to be logged in to see a player’s achievements or statistics?">
+			No, a character’s achievements and statistics are considered “public” information and thus are not protected by the Armory Login.
+		</faq>
+		
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Achievements System" url="http://www.worldofwarcraft.com/wrath/features/gameplay/achievements.xml"/>
+	
+	</relatedlinks>
+</relatedinfo>

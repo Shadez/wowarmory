@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Mobile Armory">
+	<faqlist>
+		<faq question="Что такое Мобильная Оружейная?">
+			Мобильная Оружейная World of Warcraft - это версия Оружейной для iPhone™ и iPod touch®. Это приложение, предоставляющее почти те же возомжности пользователям, что и обычная Оружейная, можно загрузить бесплатно с помощью iTunes® App Store.
+		</faq>
+		<faq question="Сколько стоит Мобильная Оружейная?">
+			Мобильная Оружейная для iPhone и iPod совершенно бесплатна.
+		</faq>
+		<faq question="Какие устройства поддерживают работу Мобильной Оружейной?">
+			Сейчас Мобильная Оружейная оптимизирована для работы на Apple iPhone и iPod touch, а само приложение можно загрузить через iTunes App Store. Для использования Мобильной Оружейной на iPod touch необходимо беспроводное подключение к сети Интернет. В дальнейшем, возможно, будут поддерживаться другие мобильные устройства. Способ распространения и стоимость приложения могут меняться в зависимости от платформы.
+		</faq>			
+		<faq question="Какие версии ОС iPhone совместимы с Мобильной Оружейной?">
+			Мобильная Оружейная совместима со следующими версиями iPhone: 2.2.1 и выше, включая 3.0.
+		</faq>
+		<faq question="На какие языки переведена Мобильная Оружейная?">
+			Мобильная Оружейная доступна на английском, испанском, корейском, французском, немецком и русском языках.
+		</faq>
+		<faq question="Нужно ли входить в Мобильную Оружейную?">
+			Чтобы воспользоваться возможностями Мобильной Оружейной, вам необходимо войти в нее с помощью имени и пароля вашей учетной записи World of Warcraft или Battle.net.  
+		</faq>
+		<faq question="Игроки каких регионов World of Warcraft и Battle.net могут пользоваться Мобильной Оружейной?">
+			Мобильной Оружейной могут пользоваться владельца американских, латиноамериканских, европейских и корейских учетных записей.
+		</faq>
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Загрузить через iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Новости Оружейной" url="updates.xml"/>
+		<relatedlink name="Часто задаваемые вопросы" url="faq-armory.xml"/>		
+		<relatedlink name="Возможные проблемы" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Сообщить о технической ошибке" type="report" url="http://forums.wow-europe.com/board.html?&amp;sid=5&amp;forumId=50005"/>
+		<relatedlink name="Сообщить об ошибке в переводе" type="report" url="http://forums.wow-europe.com/board.html?forumId=50002&amp;sid=5"/>	
+	</relatedlinks>
+</relatedinfo>

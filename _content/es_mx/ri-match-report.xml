@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Reporte de encuentros">
+	<faqlist>
+		
+		<faq question="¿Qué funciones tiene esta página?">
+Toda partida en la arena, en todas las categorías y grupos de batalla, tiene un Reporte de encuentro al que puedes acceder, e incluye el resumen que aparece al momento que termina la partida en el juego. Cada reporte te permitirá:
+<ul>
+<li>Ver a los combatientes y su desempeño según las cinco estadísticas de la arena tal como aparecen en el juego.</li>
+<li>Puedes hacer clic en los nombres de los jugadores y de sus equipos para ver sus perfiles actuales; a menos, claro, que el jugador o equipo en cuestión ya no exista.</li>
+<li>En el encabezado aparecen las calificaciones del equipo y los cambios de calificación para cada uno. La calificación de equipo toma en consideración el cambio que significó la partida en cuestión.</li>
+<li>La hora de inicio del encuentro y su duración aparecen debajo de las estadísticas de la partida.</li>
+</ul>
+		</faq>
+		
+		<faq question="¿Por qué no coinciden los golpes de gracia con el número de oponentes en el reporte del encuentro que estoy viendo?">
+		En algunas partidas los miembros del equipo perdedor pueden elegir la opción /AUS para acelerar lo inevitable y salir del encuentro. En estos casos, los golpes de gracia del equipo ganador no corresponderán con el número total de jugadores del equipo contrario.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculadora de arena" url="/arena-calculator.xml"/>		
+		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
+		<relatedlink name="Las arenas: información detallada" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Ver información de los reinos europeos" type="external" url="http://eu.wowarmory.com/"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>		
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL%0A%0ASi tienes problemas con el juego o con tu cuenta, utiliza este enlace: http://www.blizzard.com/support/wow/?id=aww01730p"/>
+	</relatedlinks>
+</relatedinfo>

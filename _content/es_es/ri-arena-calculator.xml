@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calculadora para las Arenas">
+	<faqlist>
+		<faq question="¿Qué es la calculadora para las Arenas?">
+			La calculadora para las Arenas tiene tres funciones. La calculadora de puntos convierte una puntuación dada en la cantidad de puntos que producirá esa semana. La calculadora de puntuación toma un objetivo de puntos, además del total de puntos acumulados, para generar una tabla que muestra la puntuación media necesaria por semana para conseguir el objetivo. La calculadora de tiempo también utiliza un objetivo de puntos y los puntos acumulados hasta el momento, pero ofrece la cantidad de tiempo necesaria basándose en la puntuación media que indiques.
+		</faq>
+		<faq question="¿Cómo se calcula la puntuación de mi equipo?">
+			La puntuación de un equipo nuevo es 0, pero ganar partidas cambiará esta puntuación. Cada vez que tu equipo gana un combate, tu calificación sube. La cantidad en la que esa puntuación se incremente o reduzca dependerá de la puntuación de tu equipo frente a la del equipo contrario.
+		</faq>
+		<faq key="getArenaPoints" question="¿Cómo puede darme puntos de Arena la puntuación de mi equipo?">
+			Al final de cada semana, la calificación de tu equipo se utilizará para calcular la cantidad de puntos de Arena que recibirá. Tu equipo habrá tenido que jugar un mínimo de 10 partidas a la semana para recibir puntos de Arena, y un jugador debe estar en al menos un 30% de las partidas para poder recibir puntos esa semana. Conviene advertir que los puntos que recibas en una semana en concreto vienen determinados por un solo equipo, y no de una combinación de todos tus equipos. El equipo al que pertenezcas que obtenga el mayor número de puntos según la calificación de equipos y el tipo de equipo se convierte en la única fuente de puntos para esa semana. Recuerda que los equipos 2c2 y 3c3 suelen recibir menos puntos de Arena que los equipos de 5c5 que tengan una puntuación similar.
+		</faq>
+		<faq question="¿Qué puedo conseguir a cambio de puntos de Arena, y cuántos puedo acumular?">
+			Los puntos de Arena se utilizan como moneda para adquirir recompensas de las Arenas. Puedes acumular un máximo de 5000 puntos de Arena, y los que tengas acumulados no desaparecerán en caso de no usarlos.
+		</faq>
+		<faq question="¿Es O,999... = 1?">
+			<a href="http://www.blizzard.com/press/040401.shtml">Sí</a>. 
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Torneos en la Arena" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de Arena" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

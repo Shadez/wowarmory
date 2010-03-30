@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Character Feed">
+	<faqlist>
+
+		<faq question="What is the character activity feed?">
+			Each character's activity feed shows the most recent in-game actions of the character that can be recorded by the Armory. These include achievements, boss kills, item acquisitions, and more. Character feeds can be customized using our customization tool, then exported as RSS feeds to your RSS reader of choice.
+		</faq>	
+		<faq question="How do I create a customized character feed?">
+			Click the RSS icon on the character's profile page (the orange icon on the upper right of the recent activity summary) to go to the Character Feed Customization page. The options on this page allow you to create a custom RSS feed that you can export to an RSS reader. 
+			<ul>
+				<li>You can enter up to five characters to aggregate into a single RSS feed. Enter each character in a <b>name@realm</b> format. If you are logged in, you do not need to specify the realm - it will default to your primary character's realm.</li>
+				<li>Achievement categories can be individually toggled to filter them in or out of the RSS feed. </li>
+				<li>Achievement criteria include any intermediate steps within an achievement, such as defeating a particular boss in an achievement to defeat every boss in a particular raid dungeon. Toggling this category off will turn off all achievement criteria globally, while turning it on will still follow the rules that you select in the Achievement category (for example, turning off Quests in the Achievement category will turn off the criteria in this category as well). </li>
+				<li>The Boss Kills category includes any boss that is tracked in the Statistics tab of a character profile. These include the end bosses of classic and Burning Crusade dungeons, and every boss in Wrath of the Lich King raids.</li>
+				<li>Loot acquisitions can be assigned different rarity thresholds to appear in the feed. You can specify a minimum item level as well.</li>
+			</ul>
+		</faq>
+		<faq question="How do I use the custom feed once I create it?">
+			The URL for your custom RSS feed updates in real time as you change options and enter character names. When you are satisfied with the options and characters you selected, simply copy and paste the resulting URL into an RSS reader. Online RSS readers include iGoogle, Netvibes, and Pageflakes, to name a few. You can also import RSS feeds into Outlook and other e-mail clients.
+		</faq>	
+		<faq question="Can I customize the feed that appears in the Character Feed tab of a character profile?">
+			In contrast to the RSS feeds created on the Character Feed Customization page, the feeds that appear on character profiles (on the main page and the 'Activity Feed' tab) are intended to be an unfiltered feed of a character's recent activity and as such can not be customized.
+		</faq>
+		<faq question="Why isn't the Armory's custom feed page finding a particular character that I enter in the character name field?">
+			Only characters on US realms can be represented on feeds you create here, as this is the US version of the Armory. You can switch to a different region, such as Europe, from the region selection menu at the bottom of the page. In addition, a character must be recently active, on an account in good standing, and be at least level 10 to appear on a character feed.
+			<p/>
+			When entering character names, keep spaces in realm names ('Black Dragonflight') and make sure the character and name realm is spelled correctly.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Character Search" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Character Attributes Guide" type="external" url="http://www.worldofwarcraft.com/info/basics/characters.html"/>
+		<relatedlink name="Races" type="external" url="http://www.worldofwarcraft.com/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.worldofwarcraft.com/info/classes/index.html"/>
+		<relatedlink name="Professions" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

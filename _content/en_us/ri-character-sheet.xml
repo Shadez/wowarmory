@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Character Sheet">
+	<faqlist>
+		<faq question="Why does my character profile look different?">
+			With the arrival of Patch 3.3, the Armory's character profiles have been redesigned and improved with several new features including a 3D model viewer, character activity feeds, and more. Learn more about these new features on the <a href="/updates.xml">Updates page</a>.
+		</faq>	
+		<faq question="How do I use the Armory's 3D model viewer?">
+			The 3D model viewer displays a character in his or her currently equipped gear, and accurately displays the character's physical features, hairstyle, and helm/cloak display as they appear in-game. Mousing over the character model window brings up a control panel with the following controls:
+			<ul>
+				<li>Camera controls: To rotate the camera around a character, click and hold the left mouse button while moving the mouse left and right, or click the arrow buttons in the top left of the window. To zoom in and out, use the mouse wheel while hovering over the character window, or click the zoom buttons in the top left of the window. To move the character within the frame, right-click and drag the character in the window (or on the small square in the bottom left corner of the window).</li>
+				<li>Animations: Each character has a selection of animations that they can perform. Use the arrows next to the animation's name to cycle through them. The available animations are determined by the character's class and currently equipped weapons.</li>
+				<li>Capture pose: If you are logged in, you can set the default pose of any character on your account. Use the camera and animation controls to create a pose, then click the save icon to set it as the default. <strong>All visitors to the character's profile will then see the character in that pose</strong>.</li>
+				<li>Play controls: The rewind, pause, and fast forward buttons allow you to fine-tune a pose for a character.</li>
+				<li>Fullscreen mode: You can view the character in a fullscreen display against a selection of backgrounds. All controls will continue to function in fullscreen mode. </li> 
+				<li>Embed: You can embed a standalone, interactive version of the character's model viewer in a compatible website, such as a social networking site, guild website, or forum.</li>
+				<li>Options: Extra options include selecting a background in fullscreen mode and toggling the display of a character's helm, cloak, or tabard.</li>
+			</ul>
+		</faq>
+		<faq question="What is the character activity feed?">
+			Each character's activity feed shows the most recent in-game actions of the character that can be recorded by the Armory. Each feed includes achievements, boss kills, item acquisitions, and more. These character feeds can be exported as RSS feeds to sites such as iGoogle or Netvibes. For more information, refer to the <a href="faq-character-feed.xml;">Character Feeds FAQ</a>.
+		</faq>
+		<faq question="What is the Gear List view?">
+			You can view the character's equipped items in a listed format which displays item level, gems, and enchants in separate columns. Click the icons to the upper right of the 3D character window to switch between the two modes.
+		</faq>
+		<faq question="Why do some character models display with graphical anomalies when viewing them with the model viewer?">
+			Under certain conditions, visual glitches or anomalies (such as extra geometry embedded in the character model) may appear when viewing characters in the model viewer. These types of anomalies are only temporary artifacts of the model viewer's 3D engine. Gnomes seem particularly prone to this effect.
+		</faq>
+		<faq question="What is the &quot;Find an Upgrade&quot; option for items in a character profile?">
+			Mousing over any item in a character profile displays a small arrow that turns into a button. Clicking this "Find an Upgrade" button will take you to an item search results page. On this page will be a list of items that may be considered upgrades for that item and for that particular character.
+			<p/>
+			These recommended upgrades take into account the character’s class, statistics, and overall gear quality. In this manner, you can look for upgrades for your character’s items as well as for any other character in World of Warcraft. This feature is also intended to be helpful for characters with multiple gear sets, as they can find upgrades for all their sets.
+			<p/>
+			Read more at our <a href="faq-item-info-recommended.xml;">Find an Upgrade FAQ</a>.
+		</faq>
+		<faq question="Why isn't my character sheet appearing?">
+			Only characters on US realms are stored here, as this is the US version of the Armory. You can switch to a different region, such as Europe, from the region selection menu at the bottom of the page. In addition, a character must be recently active to have its profile appear on the Armory. Finally, your character must be at least level 10 to have their character sheet appear.
+		</faq>
+		<faq question="What is the Facebook icon that appears on my logged-in character profile?">
+			If you are currently logged into the Armory and viewing a character profile under your account, a Facebook icon will be visible near the character's activity feed. Click the icon to go to the homepage of the World of Warcraft Armory application on Facebook. The application lets you create a custom feed of your characters' activity straight from the Armory, share it with the Facebook community, and view your friends' characters -- all on Facebook. Learn more on the <a href="/updates.xml">Updates page</a>.
+		</faq>
+		<faq question="Why aren't my lifetime honorable kills displayed?">
+			The '1337 minimum' Honorable Kills statistic had a good run, but it can now only be found in the Statistics tab of a character profile.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Character Attributes Guide" type="external" url="http://www.worldofwarcraft.com/info/basics/characters.html"/>
+		<relatedlink name="Races" type="external" url="http://www.worldofwarcraft.com/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.worldofwarcraft.com/info/classes/index.html"/>
+		<relatedlink name="Professions" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

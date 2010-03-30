@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Historial de partidas">
+
+	<faqlist>
+		<faq question="¿Qué funciones tiene la página del Historial de partidas?">
+En esta página aparecen las partidas en la Arenas de la temporada actual en una gráfica interactiva. Además de servir como registro, esta información es una herramienta útil para trazar el desempeño de un equipo a lo largo de la temporada; incluyendo días particulares de la semana y horarios. Haz clic en las preguntas que aparecen a continuación para que veas un resumen de los datos y las funciones de la gráfica y sus filtros.
+		</faq>
+		<faq question="¿Qué es la gráfica del Historial de partidas?">
+Toda partida que haya jugado el equipo durante la temporada aparecerá en esta página por medio de una gráfica interactiva.
+<ul>
+<li>Si colocas el cursor del ratón sobre los puntos de información de la gráfica aparecerá la fecha en la que tuvo lugar la partida, el cambio de índice según el resultado y el nombre del equipo contrario. </li>
+<li>Toda la temporada aparece representada por separado debajo de la gráfica grande. Puedes utilizar el control deslizante para navegar eficientemente hacia una sección particular de la misma.</li>
+<li>Los enlaces ubicados en la parte inferior de la gráfica te permiten deseleccionar la partida seleccionada (en caso de que haya una), ver una muestra de los encuentros más recientes y también la temporada completa.</li>
+<li>En las ventanas ubicadas en la parte superior de la gráfica siempre aparecerán primero las siguientes estadísticas: calificación del equipo, cambio de calificación neto en la selección de partidas mostradas y la calificación del equipo al final de la selección.</li>
+</ul>
+		</faq>
+		<faq question="¿Qué son los filtros del Historial de partidas?">
+Debajo de la gráfica hay una lista de las partidas de la temporada, que incluye opciones de búsqueda, organización y filtros. 
+<ul>
+<li>Cada encuentro que aparece en la lista tiene un punto de información en la gráfica ubicada en la parte superior. El botón ubicado en la columna del lado derecho de cada encuentro sirve para marcarlo en la gráfica.</li>
+<li>El botón con apariencia de flecha que se encuentra del lado derecho de los resultados de cada encuentro muestra el informe detallado, que contiene los mismos resultados y estadísticas que aparecen en el juego: listas de miembros de los equipos, golpes de gracia, daño causado, sanación total y cambios en la calificación.</li>
+</ul>
+		</faq>				
+		<faq question="¿Cómo cambio la selección de juegos que aparecen en la gráfica?">
+		Puedes arrastrar la pequeña barra de selección que se encuentra debajo de la gráfica a cualquier parte de los juegos que quieras ver, o bien, utilizar los enlaces ubicados en la parte inferior para ver una selección de las partidas más recientes así como la temporada entera en la gráfica. Si utilizas los filtros sólo cambiarán los resultados que aparecen en la lista, pero no la gráfica en sí misma.
+		</faq>				
+		<faq question="¿Por qué el cambio de índice para una partida determinada es igual a cero?">
+		Esto puede suceder cuando la diferencia de índice entre equipos es muy grande.
+		</faq>				
+		<faq question="¿Se incluye el valor de la columna “calificación nueva”, ubicada en la pestaña del historial de partidas en la columna contigua “cambio en la calificación”?">
+		Yes.
+		</faq>
+		<faq question="¿Puedo ver información de las temporadas de arena pasadas a través del Historial de oponentes?">
+Los registros de las Arenas obtienen información de las partidas que se han llevado a cabo desde el inicio de Wrath of the Lich King. Los datos de las partidas de Arenas que tuvieron lugar antes de la expansión no están disponibles.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Torneos en la Arena" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de Arena" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		
+	</relatedlinks>
+</relatedinfo>

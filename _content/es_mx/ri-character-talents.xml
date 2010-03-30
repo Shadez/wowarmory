@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Talentos del personaje">
+	<faqlist>
+		<faq question="¿Qué funciones tiene la página de talentos?">
+			La adición de la especialización doble de talentos a World of Warcraft también aparece en la Armería. Si un personaje posee esta facultad, podrás cambiar entre ambas especializaciones utilizando las pestañas correspondientes ubicadas en la parte superior derecha de los árboles de talentos. También podrás ver los glifos que corresponden a la especialización que estés viendo. Los cazadores, además, tendrán acceso a los talentos de sus mascotas desde esta página y podrán seleccionar la mascota que deseen ver a través de un menú desplegable (el cual incluye el nombre en el juego y el tipo de criatura que es).
+		</faq>
+		<faq question="¿Como se determina el nombre de las especializaciones?">
+			Las especializaciones de talento son etiquetadas de manera automática según el árbol de talentos dominante (aquél en el que se hayan invertido más puntos) de la especialización. Aquellas que tengan puntos distribuidos de manera equitativa entre múltiples árboles serán etiquetadas como "Híbridas", mientras que aquellas en las cuales no se haya asignado ningún punto aparecerán como "Sin talentos".
+		</faq>
+		<faq question="¿Puedo interactuar con los talentos que aparecen en esa página?">
+			Como ésta es la especialización de talentos actual de un personaje, no es posible interactuar con ellos en esta página. Sin embargo, puedes hacer clic en el enlace que te ofrecemos para visitar una plantilla de dicha especialización de talentos en nuestro sitio web. Ahí podrás modificar los talentos a tu gusto.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Talentos" type="external" url="http://www.worldofwarcraft.com/info/classes/talent-index/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

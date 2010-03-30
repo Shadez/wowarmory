@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Hoja de personaje">
+	<faqlist>
+			<faq question="¿Por qué es distinta la apariencia de mi perfil de personaje?">
+			Con la llegada del Parche 3.3 se rediseñaron los perfiles de personaje de la Armería y se implementaron diversas características como un visor de modelos en 3D, listas de noticias de los personajes, entre otras. Si deseas más información acerca de estas características, visita la <a href="/updates.xml">página de novedades</a>.
+		</faq>	
+		<faq question="¿Cómo utilizo el visor de modelos en 3D de la Armería?">
+			El visor en 3D muestra al personaje tal como aparece en el juego, con en el armamento que tiene equipado, sus características físicas, peinado y con (o sin) casco o capa. Si colocas el puntero del ratón sobre la ventana del visor de modelos, aparecerá un panel de control con las siguientes opciones:
+			<ul>
+				<li>Control de cámara: para rotar la cámara alrededor de un personaje, haz clic y mantén presionado el botón izquierdo mientras mueves el ratón hacia la izquierda o la derecha; o haz clic en las flechas ubicadas en la parte superior izquierda de la ventana. Para acercarte o alejarte, utiliza la rueda del ratón mientras el puntero se encuentre sobre la ventana del personaje, o utiliza los botones correspondientes en la parte superior izquierda de la ventana. Para mover al personaje dentro del marco, haz clic con el botón derecho y arrástralo (o utiliza el cuadrado pequeño que está ubicado en la esquina inferior izquierda de la ventana).</li>
+				<li>Animaciones: cada personaje tiene una selección de animaciones. Utiliza las flechas ubicadas junto al nombre para ver la lista. La clase del personaje y las armas que tenga equipadas determinarán las animaciones disponibles.</li>
+				<li>Capturar pose: si iniciaste sesión podrás establecer la pose de cualquier personaje que haya en tu cuenta. Utiliza la cámara y los controles de animación para crear una pose. Luego, haz clic en el ícono "guardar" para designarla como predeterminada. <strong>Todos los que visiten el perfil de personaje verán la pose guardada</strong>.</li>
+				<li>Controles de reproducción: los botones de regresar, pausa y avance te permitirán afinar la pose del personaje.</li>
+				<li>Modo de pantalla completa: podrás ver el personaje en pantalla completa con diferentes fondos. Los controles seguirán funcionando aunque estés en este modo. </li> 
+				<li>Insertar: puedes incorporar una versión interactiva e independiente del visor de modelos de personaje en un sitio web compatible, como un sitio de redes sociales, una página de hermandad o un foro.</li>
+				<li>Opciones: algunos extras que incluyen la selección de un fondo en el modo de pantalla completa, así como activar o desactivar el yelmo, la capa o el tabardo de un personaje.</li>
+			</ul>
+		</faq>
+		<faq question="¿Qué es la lista de noticias del personaje?">
+			Las noticias de cada personaje muestran lo más reciente que ha hecho en el juego (siempre y cuando se trate de información que pueda capturar la Armería). Cada lista incluye logros, jefes derrotados, objetos obtenidos y más. Es posible exportar estas listas a RSS en sitios web como iGoogle o Netvibes. Para más información consulta las <a href="faq-character-feed.xml;">preguntas frecuentes</a>.
+		</faq>
+		<faq question="¿Para qué sirve la opción lista de armamento?">
+			Podrás también ver los objetos equipados del personaje en una lista que muestra nivel de objeto, gemas y encantamientos en columnas separadas. Haz clic en los íconos ubicados del lado derecho de la ventana de personaje en 3D para cambiar entre modalidades.
+		</faq>
+			<faq question="¿Por qué algunos modelos de personaje presentan anomalías gráficas en el visor?">
+			En ciertas circunstancias puede haber anomalías (como geometría sobrante en el modelo) mientras ves algún personaje en el visor de modelos. Dichas anomalías son sólo artefactos temporales del motor gráfico en 3D del visor. Los gnomos parecen ser bastante susceptibles a este efecto.
+		</faq>
+		<faq question="¿Para qué sirve la opción &quot;Buscar mejora&quot; que aparece en los objetos de un perfil de personaje?">
+			Si colocas el puntero de tu ratón sobre cualquier objeto en un perfil de personaje, aparecerá una pequeña flecha que se convertirá en un botón llamado "Buscar mejora". Hacer clic en éste te conducirá a la página de resultados de búsqueda de objetos, donde aparecerá una lista de mejoras posibles para el objeto y el personaje específicos.
+			<p/>
+			La lista de mejoras recomendadas tomará en cuenta la clase del personaje, sus estadísticas y la calidad de su armamento. Podrás llevar a cabo búsquedas personalizadas con el fin de encontrar mejoras para cualquier personaje, y objeto, en World of Warcraft; lo que también será útil para aquellos personajes que posean múltiples conjuntos de armamento.
+			<p/>
+			Consulta nuestra <a href="/faq-item-info-recommended.xml">sección de preguntas frecuentes sobre la búsqueda de mejoras</a> para más información.
+		</faq>		
+		<faq question="¿Por qué no aparece mi hoja de personaje?">
+			Aquí sólo aparecerán los personajes de los reinos de Estados Unidos, ya que esta es la versión estadounidense de la Armería. Para acceder a una región distinta, tal como Europa, dirígete a su sitio web y entra desde ahí. Ten en cuenta que un personaje debe haber estado activo recientemente, y ser de nivel 10 o superior, para que su perfil aparezca en la Armería.
+		</faq>		
+				<faq question="¿Qué es el ícono de Facebook que aparece en mi perfil de personaje cuando inicio sesión?">
+			Si te encuentras conectado a la Armería y estás viendo el perfil de un personaje que se encuentre en tu cuenta, notarás que hay un ícono de Facebook cerca de la lista de noticias del personaje. Haz clic en dicho ícono para visitar la página principal de la Aplicación de la Armería en Facebook. Ésta te permitirá crear una lista de noticias personalizada con información obtenida directamente de la Armería. Comparte sucesos y ve los personajes de tus amigos; todo a través de Facebook. Más información en la <a href="/updates.xml">página de novedades</a>.
+		</faq>
+		<faq question="¿Por qué no aparece el total de muertes honorables que ha causado mi personaje?">
+			Tu personaje deberá haber causado al menos 1337 muertes honorables para que aparezca el total en la Armería.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Guía de atributos del personaje" type="external" url="http://www.worldofwarcraft.com/na/info/basics/characters.xml"/>
+		<relatedlink name="Razas" type="external" url="http://www.worldofwarcraft.com/na/info/races/bloodelves.xml"/>
+		<relatedlink name="Clases" type="external" url="http://www.worldofwarcraft.com/na/info/classes/index.xml"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

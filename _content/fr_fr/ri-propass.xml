@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Tournoi d'arène">
+	<faqlist>
+		<faq question="Quelles sont les informations relatives au tournoi d'arène qui apparaissent dans l'Armurerie ?">
+			Sur l'Armurerie, vous pouvez rechercher les équipes et les fiches de personnages pour chacun participant et équipe d'arène inscrits au tournoi. De plus, le classement du corps de bataille spécial « Coliseum » est mis à jour quotidiennement. 
+		</faq>
+		<faq question="En quoi les fiches sont-elles différentes de celles de l'Armurerie ?">
+			Chaque personnage et équipe participant au tournoi d'arène possède sa propre fiche, légèrement différente de celles qui apparaissent habituellement dans l'Armurerie. Les informations JcJ sont mises en valeur de façon plus appuyée, alors que tout ce qui ne se réfère pas aux royaumes du tournoi (comme les guildes) est supprimé. Par exemple, sur les fiches de personnages, la liste de guilde de droite est remplacée par la liste des membres de l'équipe et la cote, les informations personnelles de cote se substituent à la liste des professions et le nom de l'équipe du joueur apparait à la place du nom de la guilde.
+		</faq>
+		<faq question="Comment puis consulter le classement des autres régions ?">
+			Cliquez sur le menu supérieur gauche « Chercher dans l'Armurerie » afin d'accéder aux pages de classement du tournoi d'arène. La page qui s'affichera alors sera par défaut celle concernant votre propre région : Amérique du nord, Europe ou Corée. Il vous suffit alors de cliquer sur les liens en bas du classement pour vous rendre sur les pages des autres régions. Nous encourageons tous les participants à se tenir informés du déroulement du tournoi dans les autres régions pour se préparer au mieux. 
+		</faq>
+		<faq question="Où puis-je me renseigner davantage à propos du tournoi d'arène ?">
+			Rendez-vous sur notre page d'informations sur le tournoi d'arène pour tout savoir de compétition bien particulière de World of Warcraft. Tous les liens vous permettant de vous inscrire au tournoi y sont également répertoriés.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Classement du tournoi d'arène" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Infos sur le tournoi d'arène" url="http://www.wow-europe.com/fr/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Inscription" url="http://www.wow-europe.com/account/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

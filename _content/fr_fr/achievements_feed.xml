@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+
+<!--<str id="serverFirst.realm.first."></str>
+<str id="regionFirst.realm.first."></str>-->
+
+<str id="serverFirst.realm.first.level.80">
+    <param-html1/> est le premier personnage à atteindre le niveau 80 sur le royaume « <param-html2/> » !</str>
+<str id="regionFirst.realm.first.level.80">Félicitations à <param-html1/> du royaume « <param-html2/> » pour être le premier personnage de l'ensemble des royaumes à avoir atteint le niveau 80 ! </str>
+
+<str id="serverFirst.realm.first.level.80.classrace">
+    <param-html1/> est le premier personnage <param-html3/> à avoir atteint le niveau 80 sur le royaume « <param-html2/> » ! </str>
+<str id="regionFirst.realm.first.level.80.classrace">Félicitations à <param-html1/> du royaume « <param-html2/> » pour être le premier personnage <param-html3/> de l'ensemble des royaumes à avoir atteint le niveau 80 ! </str>
+
+<str id="serverFirst.realm.first.northrend.vanguard">
+    <param-html1/> est le premier personnage à atteindre la réputation exaltée avec la Croisade d'argent, l'Accord du Repos du ver, le Kirin Tor et les Chevaliers de la Lame d'ébène sur le royaume « <param-html2/> » !</str>
+
+<str id="regionFirst.realm.first.northrend.vanguard">Félicitations à <param-html1/>, le premier personnage de l'ensemble des royaumes à atteindre la réputation exaltée avec la Croisade d'argent, l'Accord du Repos du ver, le Kirin Tor et les Chevaliers de la Lame d'ébène !</str>
+
+<str id="serverFirst.realm.first.grand.master.profession">
+    <param-html1/> est le premier personnage à atteindre un niveau de compétence de 450 en <param-html3/> sur le royaume « <param-html2/> » !</str>
+
+<str id="regionFirst.realm.first.grand.master.profession">Félicitations à <param-html1/> du royaume « <param-html2/> » pour être le premier personnage de l'ensemble des royaumes à avoir atteint un niveau de compétence de 450 en <param-html3/> !</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas">
+    <param-html1/> sont les premières guildes à vaincre Kel’Thuzad en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « Conquérant(e) de Naxxramas ».</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas">Félicitations à <param-html1/> du royaume « <param-html2/> », les premières guildes de l'ensemble des royaumes à vaincre Kel’Thuzad en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « Conquérant(e) de Naxxramas ».</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas.single">
+    <param-html1/> est la première guilde à vaincre Kel’Thuzad en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « Conquérant(e) de Naxxramas ».</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas.single">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Kel’Thuzad en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « Conquérant(e) de Naxxramas ».</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer">
+    <param-html1/> sont les premières guildes à vaincre Sartharion le Gardien d'Onyx en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « Tueur(se) l'obsidien ».</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer">Félicitations à <param-html1/> du royaume « <param-html2/> », les premières guildes de l'ensemble des royaumes à vaincre Sartharion le Gardien d'Onyx en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « Tueur(se) l'obsidien ».</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer.single">
+    <param-html1/> est la première guilde à vaincre Sartharion le Gardien d'Onyx en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « Tueur(se) l'obsidien ».</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer.single">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Sartharion le Gardien d'Onyx en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « Tueur(se) l'obsidien ».</str>
+
+<str id="serverFirst.realm.first.magic.seeker">
+    <param-html1/> sont les premières guildes à vaincre Malygos en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « le(la) cherche-magie ».</str>
+
+<str id="regionFirst.realm.first.magic.seeker">Félicitations à <param-html1/> du royaume « <param-html2/> », les premières guildes de l'ensemble des royaumes à vaincre Malygos d'Onyx en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « le(la) cherche-magie ».</str>
+
+<str id="serverFirst.realm.first.magic.seeker.single">
+    <param-html1/> est la première guilde à vaincre Malygos en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « le(la) cherche-magie ».</str>
+
+<str id="regionFirst.realm.first.magic.seeker.single">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Malygos en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « le(la) cherche-magie ».</str>
+<str id="serverFirst.realm.first.celestial.defender">
+    <param-html1/> sont les premières guildes à vaincre Algalon l'Observateur en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « le/la défenseur céleste"</str>
+<str id="regionFirst.realm.first.celestial.defender">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Algalon l'Observateur en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « le/la défenseur céleste ».</str>
+<str id="serverFirst.realm.first.celestial.defender.single">
+    <param-html1/> est la première guilde à vaincre Algalon l'Observateur en mode héroïque sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « le/la défenseur céleste ».</str>
+<str id="regionFirst.realm.first.celestial.defender.single">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Algalon l'Observateur en mode héroïque ! Les personnages qui y ont pris part ont chacun gagné le titre « le/la défenseur céleste ».</str>
+<str id="serverFirst.realm.first.deaths.demise">
+    <param-html1/> sont les premières guildes à vaincre Yogg-Saron en mode héroïque sans l'aide d'aucun Gardien sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « faucheur/faucheuse de la Mort ».</str>
+<str id="regionFirst.realm.first.deaths.demise">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Yogg-Saron en mode héroïque sans l'aide d'aucun Gardien ! Les personnages qui y ont pris part ont chacun gagné le titre « faucheur/faucheuse de la Mort ».</str>
+<str id="serverFirst.realm.first.deaths.demise.single">
+    <param-html1/> est la première guilde à vaincre Yogg-Saron en mode héroïque sans l'aide d'aucun Gardien sur le royaume « <param-html2/> » ! Les personnages qui y ont pris part ont chacun gagné le titre « faucheur/faucheuse de la Mort ».</str>
+<str id="regionFirst.realm.first.deaths.demise.single">Félicitations à <param-html1/> du royaume « <param-html2/> », la première guilde de l'ensemble des royaumes à vaincre Yogg-Saron en mode héroïque sans l'aide d'aucun Gardien ! Les personnages qui y ont pris part ont chacun gagné le titre « faucheur/faucheuse de la Mort ».</str>
+<str id="serverFirst.realm.first.grand.crusader">
+    <param-html1/> sont les premières guildes à remporter L'épreuve du grand croisé avec 50 essais restants sur le royaume <param-html2/> ! Les personnages qui ont pris part au combat ont chacun gagné le titre « Grand croisé ».</str>
+<str id="regionFirst.realm.first.grand.crusader">Félicitations à <param-html1/> de <param-html2/>, la première guilde à remporter L'épreuve du grand croisé avec 50 essais restants ! Les personnages qui ont pris part au combat ont chacun gagné le titre « Grand croisé ».</str>
+<str id="serverFirst.realm.first.grand.crusader.single">
+    <param-html1/> est la première guilde à remporter L'épreuve du grand croisé avec 50 essais restants sur le royaume <param-html2/> ! Les personnages qui ont pris part au combat ont chacun gagné le titre « Grand croisé ».</str>
+<str id="regionFirst.realm.first.grand.crusader.single">Félicitations à <param-html1/> de <param-html2/>, la première guilde de tous les royaumes à remporter L'épreuve du grand croisé avec 50 essais restants ! Les personnages qui ont pris part au combat ont chacun gagné le titre « Grand croisé ».</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king">
+    <param-html1/> sont les premières guildes à avoir vaincu le roi-liche en mode héroïque à 25 joueurs sur le royaume <param-html2/> !</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king">Félicitations à <param-html1/> de <param-html2/>, la première guilde de tous les royaumes à avoir vaincu le roi-liche en mode héroïque à 25-joueurs !</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king.single">
+    <param-html1/> est la première guilde à avoir vaincu le roi-liche en mode héroïque à 25 joueurs sur le royaume <param-html2/> !</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king.single">Félicitations à  <param-html1/> de <param-html2/>, la première guilde de tous les royaumes à avoir vaincu le roi-liche en mode héroïque à 25 joueurs !</str>
+<str id="level80pos">23</str>
+
+<str id="blood.elf.name">elfe de sang</str>
+<str id="death.knight.name">chevalier de la mort</str>
+<str id="draenei.name">draeneï</str>
+<str id="druid.name">druide</str>
+<str id="dwarf.name">nain</str>
+<str id="forsaken.name">réprouvé</str>
+<str id="gnome.name">gnome</str>
+<str id="human.name">humain</str>
+<str id="hunter.name">chasseur</str>
+<str id="mage.name">mage</str>
+<str id="night.elf.name">elfe de la nuit</str>
+<str id="orc.name">orc</str>
+<str id="paladin.name">paladin</str>
+<str id="priest.name">prêtre</str>
+<str id="rogue.name">voleur</str>
+<str id="shaman.name">chaman</str>
+<str id="tauren.name">tauren</str>
+<str id="troll.name">troll</str>
+<str id="warlock.name">démoniste</str>
+<str id="warrior.name">guerrier</str>
+
+<str id="cooking.grand.master.type">cuisine</str>
+<str id="first.aid.grand.master.type">premiers soins</str>
+<str id="grand.master.alchemist.type">alchimie</str>
+<str id="grand.master.angler.type">pêche</str>
+<str id="grand.master.blacksmith.type">forge</str>
+<str id="grand.master.enchanter.type">enchantement</str>
+<str id="grand.master.engineer.type">ingénierie</str>
+<str id="grand.master.herbalist.type">herboristerie</str>
+<str id="grand.master.jewelcrafter.type">joaillerie</str>
+<str id="grand.master.leatherworker.type">travail du cuir</str>
+<str id="grand.master.miner.type">minage</str>
+<str id="grand.master.scribe.type">calligraphie</str>
+<str id="grand.master.skinner.type">dépeçage</str>
+<str id="grand.master.tailor.type">couture</str>
+
+</strs>

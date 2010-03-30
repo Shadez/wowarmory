@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Objetos">
+	<faqlist>
+		<faq question="¿Para qué es el filtro de búsqueda &quot;Buscado por&quot;?">
+			El propósito de estos filtros es el de ofrecerte los objetos más buscados por cada clase de la forma más rápida y clara posible. Utilizan las características más importantes de cada clase para ofrecer resultados rápidos y útiles. Los filtros "Buscado por" aparecen tras la selección del objeto adecuado en el menú desplegable correspondiente. Cada clase tiene su propio filtro, y algunas disponen de unos filtros adicionales en los que se detalla su especialización. La mejor forma de usar estos filtros es por hueco y objeto.
+			<p/>
+			Las búsquedas que <strong>sólo incluyan el tipo de objeto, y la clase del personaje</strong>  te ofrecerán una lista de resultados en la que predominará los objetos que dicha clase tiende a usar. De esta forma puedes generar una "lista maestra" de los objetos del inventario más buscados por cada clase. 
+		</faq>
+		<faq question="¿Qué significa el término &quot;nivel de objeto&quot;?">
+			El nivel de un objeto es un indicador general de la calidad de dicho objeto. El nivel de objeto, junto con su rareza, determinan el valor de ese objeto. Este valor se usa en las estadísticas de dicho objeto. Un objeto raro y un objeto épico del mismo nivel tienen diferentes valores (el del épico es mayor), que afecta a la diferencia de poder entre ambos. No se debe confundir el nivel de un objeto con el nivel requerido, que sería el nivel mínimo requerido en un personaje para poder usarlo.
+		</faq>
+		<faq question="¿Cómo funciona el filtro &quot;todos/algunos&quot;?">
+			Este filtro se encuentra dentro de los filtros avanzados de armas, y gestiona los filtros que se van a aplicar a tu búsqueda. Al seleccionar "al menos uno", se mostrarán los objetos que cumplan al menos con uno de los requisitos. Estas opciones se mostrarán cuando se seleccione dos o más filtros avanzados.
+		</faq>
+		<faq question="Al usar el filtro sobre la rareza del objeto, ¿por qué se muestran objetos de una rareza diferente a la que he especificado?">
+			Este filtro sobre la rareza de los objetos utiliza la misma mecánica que la casa de subastas del juego, es decir, tiende a mostrar los objetos de mayor rareza. Por eso, en una búsqueda de objetos poco comunes puede dar como resultado objetos que son raros e incluso épicos. Son embargo, y al igual que en la casa de subastas, si buscas sólo objetos épicos, no se mostrarán los que sean raros o poco comunes.
+		</faq>
+		<faq question="¿Para qué es la opción &quot;Buscar una mejora&quot; en los objetos del perfil de personaje?">
+			Al pasar el puntero del ratón sobre un objeto, este se transformará en un botón. Al hacer clic en este botón irás a la página con las posibles mejoras para ese objeto, y para ese personaje en particular.
+			<p/>
+			Estas mejoras recomendadas tienen en cuenta la clase del personaje, sus estadísticas, y la calidad general de su equipo. De esta forma, puedes buscar mejoras para los objetos de tu personaje. Así puedes ver las actualizaciones que puedes hacer en tu equipo y en de otros personajes de World of Warcraft.
+			<p/>
+			Lee más en nuestra sección <a href="faq-item-info-recommended.xml;">preguntas frecuentes</a> sobre encontrar mejoras.
+		</faq>
+		<faq question="¿Puedo buscar objetos asociados a una profesión en particular?">
+			No en este momento, pero si puedes buscar recetas y objetos artesanales de manera individual.
+		</faq>
+		<faq question="¿Puedo buscar las recompensas de misión?">
+			Las recompensas de misión son una categoría parte de la Armería, y se pueden seleccionar a partir del filtro "Fuente". En este momento no se pueden filtrar los objetos a partir del nivel o nombre de la misión.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Recompensas: Emblemas de Escarcha" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Recompensas: Emblemas de Triunfo" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Reliquias" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Objetos de mazmorras y bandas" url="/dungeons.xml"/>
+		<relatedlink name="Recompensas de facción" url="/factions.xml"/>
+		<relatedlink name="Recompensas JcJ" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Atributos relacionados con el combate" type="external" url="http://www.wow-europe.com/es/info/basics/characters.html"/>				
+		<relatedlink name="Información básica sobre objetos" type="external" url="http://www.wow-europe.com/en/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

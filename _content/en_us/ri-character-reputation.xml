@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Character Reputation">
+	<faqlist>
+		<faq question="What are the features of the Reputation page?">
+			On this page you can view a character's standing with each faction he or she has come in contact with. Like the in-game reputation panel, each reputation is depicted by a colored bar. The character's current reputation levels appear on the right of each bar. Click on any category or subcategory name to collapse and expand it.
+		</faq>
+		<faq question="What is the Listed View?">
+			The Listed View button displays all of a character's reputations in a single list. You can then click the column names to sort the reputations by name or reputation level.
+		</faq>
+		<faq question="Where can I go to find out more about these different factions?">
+			Some factions have corresponding pages in our online Game Guide. These factions' names will be direct links to their pages and will appear as blue text.
+		</faq>
+		<faq question="What are all the different reputation levels and how much reputation does it take to progress from one level to the next?">
+			Here is a list with the required reputation points:
+			  <ul>
+			0/36000 – Hated to Hostile
+			  <br/>
+			0/3000 – Hostile to Unfriendly
+			  <br/>			  
+			0/3000 – Unfriendly to Neutral
+			  <br/>
+			0/3000 – Neutral to Friendly
+			  <br/>
+			0/6000 – Friendly to Honored
+			  <br/>
+			0/12000 – Honored to Revered
+			  <br/>
+			0/21000 – Revered to Exalted
+			  </ul>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Reputation Basics" type="external" url="http://www.worldofwarcraft.com/info/basics/reputation.html"/>
+		<relatedlink name="Classic Reputations" type="external" url="http://www.worldofwarcraft.com/info/basics/factions/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

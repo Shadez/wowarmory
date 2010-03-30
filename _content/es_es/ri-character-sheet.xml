@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Hoja de personaje">
+	<faqlist>
+		<faq question="¿Por qué el perfil de mi personaje aparece diferente?">
+			Con el nuevo parche 3.3, se ha rediseñado y mejorado el perfil de personaje en la Armería con nuevas opciones, incluido un 3D Model Viewer, canales de información sobre la actividad y el calendario del personaje, etc. Puedes encontrar más información sobre estas novedades en la <a href="/updates.xml">página de actualizaciones</a>.
+		</faq>	
+		<faq question="¿Cómo utilizo la aplicación 3D Model Viewer de la Armería?">
+			La aplicación 3D Model Viewer muestra un personaje con su equipo actual, así como la apariencia del personaje o su corte de pelo, tal y como aparece en el juego. Si colocas el cursor del ratón sobre el personaje aparecerá un panel con los siguientes controles:
+			<ul>
+				<li>Controles de cámara: para girar la cámara alrededor de un personaje, mantén el botón izquierdo pulsado y mueve el ratón hacia la izquierda o derecha, o haz clic en las flechas de la parte superior izquierda de la ventana. Para utilizar el zoom, utiliza la rueda del ratón mientras mantienes el cursor sobre el personaje, o haz clic en los botones de zoom de la parte superior izquierda de la ventana. Para mover al personaje dentro de la ventana, haz clic en el botón derecho y arrastra al personaje hacia la ventana (o hacia el pequeño recuadro de la parte inferior izquierda de la ventana).</li>
+				<li>Animaciones: cada personaje puede realizar una serie de animaciones, dependiendo de su clase y de las armas que lleve equipadas. Utiliza las flechas que se encuentran cerca del nombre de la animación para ver cada una de ellas.</li>
+				<li>Pose: si has iniciado sesión, puedes establecer una pose por defecto para cada personaje de tu cuenta. Utiliza los controles de cámara y de animación para crear una pose y luego haz clic en el icono de guardar para establecerla por defecto. <strong>Todos los que visiten el perfil de tu personaje lo verán con esta pose</strong>.</li>
+				<li>Controles de reproducción: los botones de retroceso, pause y avance te permiten precisar la pose de un personaje.</li>
+				<li>Modo pantalla completa: puedes ver a tu personaje a pantalla completa con diferentes fondos. Puedes utilizar todos los controles en este modo. </li> 
+				<li>Integrar: puedes integrar una versión autónoma e interactiva del Model Viewer del personaje en una página web compatible, por ejemplo una web de redes sociales, o de hermandad, o en unos foros.</li>
+				<li>Opciones: entre las opciones extras se incluye la posibilidad de seleccionar un fondo en modo pantalla completa, y mostrar u ocultar el yelmo, la capa o el tabardo del personaje.</li>
+			</ul>
+		</faq>
+		<faq question="¿Qué es el canal de actividades de un personaje?">
+			Cada canal de información de actividades de un personaje muestra las últimas acciones de un personaje dentro del juego que se registran en la Armería, tales como los logros, los jefes derrotados, la adquisición de objetos, etc. Estos canales se pueden exportar como fuentes RSS a lectores RSS onlinne como iGoogle o Netvibes. Si deseas más información, consulta las preguntas frecuentes sobre el <a href="faq-character-feed.xml;">canal personajes</a>.
+		</faq>
+		<faq question="¿Qué es la lista de equipo?">
+			Puedes ver los objetos equipados del personaje en forma de lista ordenada en tres columnas: nivel de objeto, gemas y encantamientos. Haz clic en los iconos de la parte superior derecha de la ventana de personaje en 3D para cambiar entre los dos modos.
+		</faq>
+		<faq question="¿Por qué algunos modelos de personajes aparecen con errores gráficos con los ves con el modelado 3D?">
+			Bajo ciertas condiciones, puede aparecer ciertos errores gráficos (tales como efectos extra en el modelo) al ver los personajes en el modelado 3D. Este tipo de anomalías sólo son errores temporales del motor 3D del modelado. Los gnomos parecen ser especialmente propensos a sufrir este tipo de efectos.
+		</faq>
+		<faq question="¿Para qué es la opción &quot;Buscar una mejora&quot; en los objetos del perfil de personaje?">
+			Al pasar el puntero del ratón sobre un objeto, este se transformará en un botón. Al hacer clic en este botón irás a la página con las posibles mejoras para ese objeto, y para ese personaje en particular. Estas mejoras recomendadas tienen en cuenta la clase del personaje, sus estadísticas, y la calidad general de su equipo. De esta forma, puedes buscar mejoras para los objetos de tu personaje.
+			<p/>
+			Así puedes ver las actualizaciones que puedes hacer en tu equipo y en otros personajes de World of Warcraft. Esta función también puede ser útil para aquellos personahes con varios equipos diferentes ya que puedes encontrar mejoras para todos ellos.
+			<p/>
+			Lee más en nuestra sección de <a href="faq-item-info-recommended.xml;">preguntas frecuentes</a>.
+		</faq>
+		<faq question="¿Por qué no aparece mi hoja de personaje?">
+			Sólo disponemos de los datos de los personajes de reinos europeos ya que ésta es la versión europea de la Armería. Puedes cambiar la región, por ejemplo a América, desde el menú de selección de regiones en la parte inferior de la página. Por otra parte, los personajes tienen que haber estado activos recientemente para que su perfil aparezca en la Armería. Además, tu personaje tiene que haber llegado al menos al nivel 10 para aparecer en los perfiles.
+		</faq>
+		<faq question="¿Para qué sirve el icono de Facebook que aparece en el perfil de mi personaje?">
+			Si has iniciado sesión en la Armería y ves el perfil de un personaje en tu cuenta, entonces podrás ver un icono de Facebook cerca del canal de actividad del personaje. Haz clic en el icono para ir a la página principal de la aplicación World of Warcraft en Facebook. Esta aplicación te permite crear un canal personalizado con la actividad de tus personajes registrada en la Armería, compartirla con la comunidad de Facebook y ver los personajes de tus amigos... ¡y todo desde Facebook! Si deseas más información, consulta la sección de <a href="/updates.xml">novedades</a>.
+		</faq>
+		<faq question="¿Por qué no se muestra mi total de muertes con honor?">
+			Ahora sólo se podrá consultar la información JcJ sobre el total de muertes con honor en la pestaña 'Estadísticas' del perfil de un personaje.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Guía de atributos del personaje" type="external" url="http://www.wow-europe.com/es/info/basics/characters.html"/>
+		<relatedlink name="Razas" type="external" url="http://www.wow-europe.com/es/info/races/index.html"/>
+		<relatedlink name="Clases" type="external" url="http://www.wow-europe.com/es/info/classes/index.html"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.wow-europe.com/es/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

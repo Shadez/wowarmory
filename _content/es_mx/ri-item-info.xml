@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Objetos">
+	<faqlist>
+		<faq question="¿Para qué es el filtro de búsqueda &quot;Deseable para&quot;?">
+			Este filtro, que en esencia es una combinación de múltiples filtros, intenta utilizar las estadísticas más deseables para cada clase como punto de referencia, con la finalidad de generar eficientemente una lista de resultados de búsqueda. Tendrás acceso a él cuando selecciones un tipo de objeto en el menú desplegable correspondiente. Cada clase tiene su filtro individual, y algunas tendrán acceso a un segundo filtro que te permitirá elegir su área de especialidad en concordancia con sus talentos.
+			<p/>
+			Ya que elegiste el tipo de objeto, selecciona la casilla de inventario a la que pertenece. Este filtro funciona mejor después de escoger un tipo de objeto y casilla específicos. Una búsqueda que sólo incluya las opciones <strong>tipo de objeto, casilla y el filtro deseable para</strong> mostrará una lista de resultados que considere las estadísticas que dichas clases busquen en los objetos. De este modo, podrás encontrar una "lista maestra" de los objetos, y sus casillas correspondientes, más buscados por cada clase.
+		</faq>								
+			
+		<faq question="¿Qué es el &quot;nivel de un objeto&quot;?">
+			El nivel de un objeto es un indicador general de su calidad y sirve, junto con su rareza, para determinar el presupuesto que tendrá. Éste se utiliza para distribuír puntos a las estadísticas de dicho objeto. Uno superior y uno épico que posean el mismo nivel de objeto tendrán presupuestos diferentes (el épico tendrá un presupuesto mucho mayor), lo que establece la diferencia de poder que existe entre ambos. No confundas el nivel de un objeto con su requerimiento de nivel, es decir, el nivel mínimo que necesitas para equiparlo.
+		</faq>				
+		<faq question="¿Cómo funcionan las opciones &quot;Igualar a todos/Igualar al menos uno&quot;?">
+			Éstas se encuentran debajo de los filtros avanzados y controlan la cantidad de filtros que se aplicarán cuando lleves a cabo una búsqueda. Si seleccionas "Igualar a todos", sólo aparecerán los objetos que cumplan con todos los filtros avanzados que estableciste, en cambio, si seleccionas "Igualar al menos uno", aparecerán los objetos que, de un modo u otro, cumplan al menos con uno de dichos filtros. Estas opciones sólo estarán disponibles cuando selecciones dos o más filtros avanzados.
+		</faq>						
+		<faq question="¿Por qué aparecen objetos de rareza distinta a la que seleccioné usando el filtro de rareza?">
+			Este filtro utiliza la misma mecánica que la casa de subastas en el juego, es decir, los objetos de mayor rareza aparecerán en cualquier búsqueda. Por ejemplo, si buscas objetos poco comunes, es posible que también aparezcan aquellos de rareza superior o épica. No obstante, como en la casa de subastas, esta característica es de una vía, ya que en una búsqueda de objetos épicos no aparecerán los de calidad no común o superior.
+		</faq>		
+		<faq question="¿Para qué sirve la opción &quot;Buscar mejora&quot; que aparece en los objetos de un perfil de personaje?">
+			Si colocas el puntero de tu ratón sobre cualquier objeto en un perfil de personaje, aparecerá una pequeña flecha que se convertirá en un botón llamado "Buscar mejora". Hacer clic en éste te conducirá a la página de resultados de búsqueda de objetos, donde aparecerá una lista de mejoras posibles para el objeto y el personaje específicos.
+			<p/>
+			La lista de mejoras recomendadas tomará en cuenta la clase del personaje, sus estadísticas y la calidad de su armamento. Podrás llevar a cabo búsquedas personalizadas con el fin de encontrar mejoras para cualquier personaje, y objeto, en World of Warcraft; lo que también será útil para aquellos personajes que posean múltiples conjuntos de armamento.
+			<p/>
+			Consulta nuestra <a href="/faq-item-info-recommended.xml">sección de preguntas frecuentes sobre la búsqueda de mejoras</a> para más información.
+		</faq>										
+		
+		<faq question="¿Puedo buscar los objetos relacionados con una profesión específica?">
+			Actualmente, las profesiones no están disponibles en los filtros de búsqueda. Sin embargo, podrás buscar objetos creados y recetas de modo individual.
+		</faq>
+		<faq question="¿Puedo buscar recompensas de misión?">
+			Las recompensas de misión son una categoría aparte de los objetos en la Armería, y puedes seleccionarlas bajo el filtro "Fuente". Actualmente no es posible filtrar una búsqueda de objetos de misión con base en su nivel o el nombre de la misión.
+		</faq>														
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Emblemas de Escarcha: recompensas" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>	
+		<relatedlink name="Emblemas de Triunfo: recompensas" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>	
+		<relatedlink name="Reliquias" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Objetos de mazmorras y bandas" url="/dungeons.xml"/>
+		<relatedlink name="Recompensas de facción" url="/factions.xml"/>
+		<relatedlink name="Recompensas JcJ" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Índices de combate" type="external" url="http://www.worldofwarcraft.com/na/info/basics/characters.xml"/>				
+		<relatedlink name="Objetos: información general" type="external" url="http://www.worldofwarcraft.com/na/info/items/basics.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+
+	</relatedlinks>
+</relatedinfo>

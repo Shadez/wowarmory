@@ -1,0 +1,2951 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+	<str id="armory.item-tooltip.armor">Armor</str>
+	<str id="armory.item-tooltip.dps">damage per second</str>
+	<str id="armory.item-tooltip.block">Block</str>
+	<str id="armory.arena-ladder-data.page">Page</str>
+	<str id="armory.arena-ladder-data.results2"> of </str>
+
+	<str id="armory.search.oneResult">1 result for </str>
+	<str id="armory.search.Found"/>
+	<str id="armory.search.resultsFor">results for</str>
+
+	<str id="armory.general.dateseparate">/</str>
+
+	<str id="armory.title.customrss">Custom RSS/Atom Feed Options</str>
+
+	<cfg id="date.format">
+    <param3/>/<param2/>/<param1/>
+  </cfg> <!-- 1:year, 2:month, 3:day -->
+	<cfg id="date.time.format">
+    <param3/>-<param1/>-<param1/> <param4/>
+  </cfg> <!-- 1:year, 2:month, 3:day, 4:time -->
+	<cfg id="date.format.leadingZero">1</cfg> <!-- 1:true, other:false -->
+	<cfg id="date.time.format.24hrs">1</cfg> <!-- use 24 hr time display, 1:true, other:false -->
+	<cfg id="date.time.format.am">AM</cfg>
+	<cfg id="date.time.format.pm">PM</cfg>
+
+<!--string ordering-->
+
+<!--kr ordering-->
+
+	<!--string ordering character sheet level/race/class/ -->
+
+	<order id="armory.order.date">
+		<str select="datainsert2"/>
+		<str id="armory.general.dateseparate"/>
+		<str select="datainsert1"/>
+		<str id="armory.general.dateseparate"/>
+		<str select="datainsert3"/>
+	</order>
+
+	<order id="armory.order.character-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2" space="yes"/>
+		<str select="datainsert3" space="yes"/>
+		<str select="datainsert4" space="yes"/>
+	</order>
+
+	<!--string ordering search results -->
+	<order id="armory.order.search-results-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.search.resultsFor" space="yes"/>
+		<str id="armory.search.openQuote"/>
+		<str format="italic" select="datainsert2"/>
+		<str id="armory.search.closeQuote"/>
+	</order>
+
+	<!--string ordering one search result -->
+	<order id="armory.order.one-search-result-string">
+		<str id="armory.search.oneResult" space="yes"/>
+		<str id="armory.search.openQuote"/>
+		<str format="bold" select="datainsert1"/>
+		<str id="armory.search.closeQuote"/>
+	</order>
+
+	<!-- string ordering results inputtype paging -->
+	<order id="armory.order.results-Inputpaging-string">
+		<str id="armory.arena-ladder-data.page" space="yes"/>
+		<str select="ResultsInputPaging"/>
+		<str id="armory.arena-ladder-data.results2"/>
+		<str format="bold" select="datainsert1"/>
+	</order>
+
+	<order id="armory.order.guild.members">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2"/>
+	</order>
+
+	<order id="armory.order.item-tooltip-random-suffix">
+		<str select="datainsert1"/>
+		<str select="datainsert2"/>
+	</order>
+
+	<!-- Loc - item-tooltip-dps-string -->
+	<order id="armory.order.item-tooltip-dps-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.dps"/>
+	</order>
+
+	<!-- Loc - item-tooltip-damage-string -->
+	<order id="armory.order.item-tooltip-damage-string">
+		<str select="itemTooltipMin-Max" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-armor-string -->
+	<order id="armory.order.item-tooltip-armor-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.armor"/>
+	</order>
+
+	<!-- Loc - item-tooltip-blockvalue-string -->
+	<order id="armory.order.item-tooltip-blockvalue-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.block"/>
+	</order>
+
+  	<!-- Loc - item-tooltip-StatModifiers-string -->
+	<order id="armory.order.item-tooltip-statmodifiers-string">
+		<str select="itemTooltipStatModifiers" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-resistances-string -->
+	<order id="armory.order.item-tooltip-resistances-string">
+		<str select="itemTooltipResistancesValue" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-miniSkillRequired-string -->
+	<order id="armory.order.item-tooltip-miniSkillRequired-string">
+		<str id="armory.item-tooltip.requires" space="yes"/>
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.parenthesisOpen"/>
+		<str select="datainsert2"/>
+		<str id="armory.item-tooltip.parenthesisClose"/>
+	</order>
+
+	<!-- Loc - item-tooltip-requiredAbility-string -->
+	<order id="armory.order.item-tooltip-requiredAbility-string">
+		<str id="armory.item-tooltip.requires" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-requiredPersonalArenaRating -->
+	<order id="armory.order.item-tooltip-requiredPersonalArenaRating">
+		<str id="armory.item-tooltip.requires.personalarena" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-ratingStats-string -->
+	<order id="armory.order.item-tooltip-ratingStats-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2"/>
+		<str id="armory.labels.period"/>
+	</order>
+
+		<!--  Loc - Mana Regen -->
+	<order id="armory.order.item-tooltip-manaRegen-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2" space="yes"/>
+		<str select="datainsert3" space="yes"/>
+		<str id="armory.labels.period"/>
+	</order>
+
+<!--done-->
+
+	<!-- Loc - armory.select-team-type.label-string -->
+	<order id="armory.select-team-type.label-string">
+		<str select="selectTeamType"/>
+	</order>
+
+<!--/end kr ordering-->
+
+    <!-- strings used in every page -->
+
+	<str id="armory.labels.zh_cn">简体中文</str>
+	<str id="armory.labels.region.zh_cn">中国大陆</str>
+
+	<str id="armory.labels.zh_tw">繁體中文</str>
+	<str id="armory.labels.region.zh_tw">台灣、香港與澳門</str>
+
+	<str id="armory.maintenance.text">The Armory is currently undergoing maintenance. Please check back later.</str>
+
+	<str id="armory.item-tooltip.requires">Requires</str>
+	<str id="armory.item-tooltip.requires.personalarena">Requires personal arena rating of</str>
+	<region>
+		<str id="US" name="Americas" url="http://www.wowarmory.com"/>
+		<str id="EU" name="Europe" url="http://eu.wowarmory.com"/>
+		<str id="KR" name="Korea" url="http://kr.wowarmory.com"/>
+		<str id="CN" name="China" url="http://cn.wowarmory.com"/>
+		<str id="TW" name="Taiwan" url="http://tw.wowarmory.com"/>
+	</region>
+	<common>
+		<str id="the-wow-armory">The World of Warcraft Armory</str>
+		<str id="meta-description">The World of Warcraft Armory is a vast searchable database of information for World of Warcraft - taken straight from the real servers. It is the most comprehensive and up-to-date database on the characters, arena teams, guilds, items, and faction rewards of World of Warcraft in existence.</str>
+		<str id="the-armory">The Armory</str>
+		<str id="search-armory">Search the Armory</str>
+		<str id="error.selectCategory">Please select a category</str>
+		<str id="error.twoChars">Search must be at least 2 characters long</str>
+		<str id="related-info.header.related-links">Related Links</str>
+		<str id="related-info.header.armorynew">Featured News</str>
+		<str id="related-info.header.updates">News</str>
+		<str id="related-info.header.faq">Frequently Asked Questions</str>
+		<str id="related-info.header.noflash">Alert: Adobe Flash Player 9+ Required</str>
+		<str id="related-info.noflash">We've detected that you either do not have Adobe Flash Player or are using a version prior to version 9. The Armory requires Flash Player 9 (or later) in order to take full advantage of all the site's features. Click the button above to install the latest version of Adobe Flash Player.</str>
+
+		<str id="labels.regioncolon">Region:</str>
+		<str id="labels.selectregioncolon">Select a Region:</str>
+
+		<str id="region.US">Americas</str>
+		<str id="region.EU">Europe</str>
+		<str id="region.KR">한국</str>
+		<str id="region.CN">中国大陆</str>
+		<str id="region.TW">台灣、香港與澳門</str>
+
+		<str id="labels.usoceanic">Americas</str>
+		<str id="labels.europe">Europe</str>
+		<str id="labels.korea">한국</str>
+		<str id="en_us">English (USA)</str>
+		<str id="en_gb">English (EU)</str>
+		<str id="de_de">Deutsch</str>
+		<str id="fr_fr">Français</str>
+		<str id="es_es">Español (EU)</str>
+		<str id="es_mx">Español (AL)</str>
+		<str id="ko_kr">한국어</str>
+		<str id="ru_ru">Русский</str>
+		<str id="zh_cn">简体中文</str>
+		<str id="zh_tw">繁體中文</str>
+
+		<str id="search.relevance">Relevance</str>
+		<str id="items.relevance.percent">% Relevance</str>
+
+		<str id="labels.languagecolon">Language:</str>
+		<str id="labels.selectlanguagecolon">Select a Language:</str>
+
+		<str id="menu.armory">Armory</str>
+		<str id="menu.arenateams">Arena Teams</str>
+		<str id="menu.characters">Characters</str>
+		<str id="menu.guilds">Guilds</str>
+		<str id="menu.items">Items</str>
+		<str id="menu.arena">Arena</str>
+		<str id="menu.profiles">Profiles</str>
+		<str id="menu.searches">Searches</str>
+
+		<str id="url.wow">http://www.wow-europe.com</str>
+		<str id="url.blizzard">http://eu.blizzard.com/en/</str>
+		<str id="url.armory">http://eu.wowarmory.com</str>
+
+		<str id="url.signup">http://signup.wow-europe.com</str>
+		<str id="url.loginsupport">http://www.wow-europe.com/login-support/</str>
+
+		<str id="url.privacy">http://eu.blizzard.com/en/privacy.html</str>
+		<str id="url.legalfaq">http://eu.blizzard.com/en/legalfaq.html</str>
+
+		<str id="report-translation">This link will take you outside the Armory.</str>
+		<str id="external-link">This link will take you outside the Armory</str>
+
+		<str id="report-error">Post about Armory-related bugs and issues on the EN Website Error Reports Forum</str>
+
+		<str id="labels.site">World of Warcraft</str>
+
+		<str id="pin.searchforandpin">To pin a profile, search for and find a character</str>
+		<str id="pin.enabledual">Dual Item Tooltips</str>
+		<str id="pin.dualdesc">With dual item tooltips enabled, mousing over an item will display a second tooltip of the item in your primary character\'s corresponding inventory slot.</str>
+		<str id="pin.unpin">unpin this character</str>
+
+		<str id="labels.privacy">Online Privacy Policy</str>
+		<str id="labels.copyright">©2010 Blizzard Entertainment, Inc. All rights reserved.</str>
+		<str id="labels.proprietary">The data contained herein is proprietary to Blizzard Entertainment, Inc.  You are granted a limited license to make personal use of the information contained herein for non-commercial purposes only.</str>
+
+		<str id="searchBox.search-the-armory">Search the Armory</str>
+
+		<str id="guild-search.label.enter-guild-name">Enter Guild Name</str>
+		<str id="character-search.label.enter-character-name">Enter Character Name</str>
+		<str id="character-search.label.enter-team-name">Enter Team Name</str>
+
+		<str id="armory.none">None</str>
+		<str id="user.select.character">Select a Character</str>
+		<str id="user.bookmark.character">Bookmark this character</str>
+		<str id="user.bookmark.logintobookmark">Log in to bookmark this character</str>
+		<str id="user.bookmark.tooltip">You can bookmark up to 30 character profiles.</str>
+		<str id="user.bookmark.maxedtooltip">You can bookmark up to 30 character profiles. To access your bookmarks, use the options menu located on the upper right of the Armory window.</str>
+		<str id="user.bookmark.previous">Previous</str>
+		<str id="user.bookmark.forward">Forward</str>
+		<str id="user.change.character">My Characters</str>
+		<str id="user.change.bookmarks">My Bookmarks</str>
+		<str id="user.no.character">No Character Selected</str>
+		<str id="user.manage.chars">Character Settings</str>
+		<str id="user.manage.settings">Change</str>
+		<str id="loading">Loading...</str>
+		<str id="saving">Saving...</str>
+		<str id="pose_saved">Pose Saved!</str>
+		
+	</common>
+
+	<character>
+		<str id="charLevelStr">Level <param1/> <param2/> <param3/>
+    </str>
+    <!-- i.e. Level 80(param1) Dranei(param2) Paladin(param3)-->
+		<str id="character-name">Character Name</str>
+		<str id="character.health">Health:</str>
+		<str id="character.rage">Rage:</str>
+		<str id="character.energy">Energy:</str>
+		<str id="character.mana">Mana:</str>
+		<str id="character.runicpower">Runic:</str>
+		<str id="character-profile">Character Profile</str>
+		<str id="character-profiles">Character Profiles</str>
+		<str id="character-level">Level</str>
+		<str id="character-level-sheet">Level</str>
+		<str id="noteten">Note: Characters below level 10 are not displayed</str>
+		<str id="character.tip.primary">This character is designated as your primary character. A link to this character's profile will appear in the top right corner of the Armory.</str>
+		<str id="character.tip.secondary">This character's profile will be bookmarked under your main character's profile. Click to make this your primary character instead.</str>
+	</character>
+	<character-select>
+		<str id="makePrimary">Designate as primary character</str>
+		<str id="removeFromEasyAccess">Remove from My Characters menu</str>
+		<str id="selectedCharacters">My Characters</str>
+		<str id="inactiveLicense">Note: This license is inactive.</str>
+		<str id="availableSlot">Available character slot</str>
+		<str id="easyAccessLimit">The quick access character limit has been reached. Remove a character to add new ones.</str>
+		<str id="addToEasyAccess">Add to My Characters menu</str>
+		<str id="noCharsAvailable">This account has no characters available for selection. This may be because all the characters on this account are already selected.</str>
+		<str id="charSelection">Character Selection</str>
+		<str>
+      <h1>Character Selection</h1>
+		<p>This interface allows you to select up to <strong>three</strong> characters on this account to bookmark for easy access. If you have more than three eligible characters, you must first unselect a character before selecting a different one.</p>
+		<p>
+        <strong>Note: </strong>The characters you select will also receive alerts when any of them are invited to new calendar events.</p>
+    </str>
+	</character-select>
+	<custom-rss>
+		<str id="activity">Character Activity</str>
+		<str id="facebook_link">Go to the Armory application on Facebook</str>
+		<str id="activity_desc">Displaying the 50 most recent events for this character.</str>
+		<str id="feedcustom">Character Feed Customization</str>
+		<str id="backtoprofile">« Back to default_chr's Profile</str>
+		<str id="feedoptions">Character Feed Options</str>	
+		<str id="whatisthis">What's this page for?</str>	
+		<str id="whatisthis.help">This customization tool allows you to tailor up to five characters' activity feeds to create a custom RSS/Atom feed, and export it to your RSS reader of choice.<p/>For more information on creating and exporting custom feeds, refer to the FAQ displayed below.</str>	
+		<filters>
+			<str id="achievements">Achievements</str>
+			<str id="criteria">Achievement Criteria</str>
+			<str id="bosskills">Boss Kills</str>
+			<str id="loot">Loot</str>
+			<str id="respec">Talent Respecs</str>
+		</filters>
+		<str id="more">more</str>
+		<str id="less">less</str>
+		<str id="min.rarity">Minimum Rarity</str>
+		<str id="min.ilvl">Minimum item level</str>
+		<str id="add_chars">Characters (up to 5):</str>
+		<str id="add_example">Example: </str>
+		<str id="add_example.char_realm">Character@Realm</str>
+		<str id="rss_url">Custom RSS URL:</str>
+		<str id="copy_to">Copy to Clipboard</str>
+		<str id="cantfind">Can't find XXX</str> <!-- XXX is replaced with the character and realm -->
+		<str id="no_char">No Character!</str>
+		<str id="no_realm">No Realm!</str>
+		<str id="char_remove">Removed</str>
+		<str id="copied">Copied!</str>
+		<str id="recent_act">Recent Activity</str>
+		<str id="viewfull_feed">View Earlier Activity</str>
+		<str id="currently_equipped">(Equipped)</str>
+		<str id="today">Today</str>
+		<str id="yesterday">Yesterday</str>
+		<str id="previous">Previous Entries</str>
+	</custom-rss>
+	<dungeons>
+		<str id="dungeonsandraids">Dungeons &amp; Raids</str>
+		<str id="bosses">Bosses</str>
+
+		<str id="difficulty.title">Difficulty:</str>
+		<str id="difficulty.all">Normal &amp; Heroic</str>
+		<str id="difficulty.normal">Normal</str>
+		<str id="difficulty.normalonly">Normal Only</str>
+		<str id="difficulty.heroic">Heroic</str>
+		<str id="difficulty.heroiconly">Heroic Only</str>
+	</dungeons>
+
+    <guild>
+		<str id="guild">Guild</str>
+		<str id="guild-rank-strOrder">Rank <param1/>
+    </str>
+    <!-- string order, ex: Rank 1 -->
+		<str id="guild-leader">Guild Leader</str>
+		<str id="guild-profile">Guild Profile</str>
+		<str id="guild-profiles">Guild Profiles</str>
+		<str id="members">Members</str>
+		<str id="totalmembers">Total Members</str>
+		<str id="member">Member</str>
+		<str id="guildrank">Guild Rank</str>
+		<str id="guild-rank">Rank </str>
+		<str id="guild-leader">Guild Master</str>
+		<str id="noteten">Note: Members below level 10 are not displayed</str>
+		<str id="toomany">Note: Too many guild members. Only high level members are listed.</str>
+		<str id="searchroster">Search Guild Roster</str>
+	</guild>
+
+<!--general strings-->
+    <general>
+		<str id="noresultsfound">No Results Found</str>
+		<str id="race">Race</str>
+		<str id="class">Class</str>
+		<str id="sort">Sort</str>
+		<str id="colon">:</str>
+		<str id="exclamation">!</str>
+		<str id="rank">Rank</str>
+
+		<str id="armory.character.lastModified">Last Updated:</str>
+		<str id="armory.labels.na">N/A</str>
+		<str id="armory.labels.na">N/A</str>
+		<str id="playervsenvironment">Normal (PvE)</str>
+		<str id="playervsplayer">Player vs Player (PvP)</str>
+
+		<str id="race-class">Race/Class</str>
+
+		<str id="percentagecolon">Percentage: </str>
+		<str id="totalgamescolon">Total Games Played This Season: </str>
+		<str id="totalopponentscolon">Total Unique Opponents: </str>
+
+	</general>
+
+	<str id="armory.url.battlegroups">http://www.wow-europe.com/en/info/basics/battlegroups.html</str>
+	<str id="armory.url.blizzard">http://eu.blizzard.com/en/</str>
+	<str id="armory.url.wow">http://www.wow-europe.com</str>
+	<str id="armory.url.armory">http://eu.wowarmory.com</str>
+	<str id="armory.url.talents">http://www.wow-europe.com/en/info/basics/talents</str>
+	<str id="armory.path.talents">/shared/global/talents</str>
+	<str id="armory.path.talents.seasonone">/shared/global/talents/season1</str>
+	<str id="armory.talents.langDir">/en</str>
+	<str id="armory.url.forums.wow">http://forums.wow-europe.com/board.html</str>
+	<str id="armory.mark.colon">:</str>
+
+    <!-- strings used in a lot of pages -->
+	<semicommon>
+		<str id="realm">Realm</str>
+		<str id="faction">Faction</str>
+		<str id="horde">Horde</str>
+		<str id="alliance">Alliance</str>
+		<str id="factionrewards">Faction Rewards</str>
+		<str id="alliancerewards">Alliance Rewards</str>
+		<str id="horderewards">Horde Rewards</str>
+	</semicommon>
+
+	<arena>
+		<str id="arena-teams">Arena Teams</str>
+		<str id="select-battlegroup">Select Battlegroup</str>
+		<str id="select-team-type">Select Team Type</str>
+		<str id="battlegroup">Battlegroup</str>
+		<str id="arena">Arena</str>
+		<str id="arena-ladders">Arena Ladders</str>
+		<str id="team-profiles">Team Profiles</str>
+		<str id="arena-reports">Arena Reports</str>
+		<str id="team-profile">Team Profile</str>
+		<str id="match-history">Match History</str>
+		<str id="match-report">Match Report</str>
+		<str id="opponent">Opponent Team Name</str>
+		<str id="ratingchange">Rating Change</str>
+		<str id="newrating">New Rating</str>
+		<str id="date">Date</str>
+		<str id="through"> through </str>
+		<str id="current">current</str>
+		<str id="resultsPerPage">Results Per Page</str>
+		<str id="to"> to </str>
+		<str id="time">Time</str>
+		<str id="findMatch">Locate match on graph</str>
+		<str id="goToMatchReport">Go to match report page</str>
+		<str id="deletedTeam">This team has been deleted</str>
+		<str id="opponent-history">Opponent History</str>
+		<str id="totalgames">Matches Played</str>
+		<str id="totalgames.short">MP</str>
+		<str id="wins">Wins</str>
+		<str id="wins.short">W</str>
+		<str id="losses">Losses</str>
+		<str id="losses.short">L</str>
+
+		<str id="winp">Win %</str>
+		<str id="avgchange">Avg Change per Match</str>
+		<str id="overallchange">Net Δ</str> <!-- Net Δ  -->
+		<str id="overallchange.tooltip">Net Rating Change</str>
+
+		<str id="seasonbefore">Season </str>
+		<str id="seasonafter"/>
+
+		<str id="realmcolon">Realm:</str>
+		<str id="battlegroupcolon">Battlegroup:</str>
+		<str id="killingblows">Killing Blows</str>
+		<str id="killingblows.short">KB</str>
+
+		<str id="dmgin">Damage received during match</str>
+		<str id="dmgin.short">Dmg In</str>
+		<str id="dmgout">Damage done during match</str>
+		<str id="dmgout.short">Dmg Out</str>
+		<str id="healout">Healing done during match</str>
+		<str id="healout.short">Healing Out</str>
+		<str id="healin">Healing received during match</str>
+		<str id="healin.short">Healing In</str>
+		<str id="lastweek">Last Week's</str>
+		<str id="team-name">Team Name</str>
+		<str id="error.nodata">This page contains no data.</str>
+		<str id="team-type">Team Type</str>
+		<str id="team-members">Team Members: </str>
+		<str id="teammembers">Team Members</str>
+		<str id="viewmatchhistory">View match history against this team</str>
+
+		<legend>
+			<str id="arenaladder.title">Arena Icon Legend</str>
+			<str id="arena.title">Arena Icon Legend</str>
+			<str id="arena">These special arena icons are a visible symbol of your team's prowess in the Arena. As your team's standing on the arena ladder increases, your icon will become correspondingly more impressive.</str>
+			<str id="arena.uranked">Unranked</str>
+			<str id="arena.top1000">Top 1000</str>
+			<str id="arena.top500">Top 500</str>
+			<str id="arena.top100">Top 100</str>
+			<str id="arena.top10">Top 10</str>
+			<str id="arena.rank1">Rank 1</str>
+		</legend>
+
+		<arenaLadderData>
+			<str id="armory.arena-ladder-data.header.arena.tournament">Arena Tournament</str>
+			<str id="armory.arena-ladder-data.header.2v2">2v2 Arena Ladder Results</str>
+			<str id="armory.arena-ladder-data.header.3v3">3v3 Arena Ladder Results</str>
+			<str id="armory.arena-ladder-data.header.5v5">5v5 Arena Ladder Results</str>
+			<str id="armory.arena-ladder-data.tab.2v2">2v2 Arena Teams</str>
+			<str id="armory.arena-ladder-data.tab.3v3">3v3 Arena Teams</str>
+			<str id="armory.arena-ladder-data.tab.5v5">5v5 Arena Teams</str>
+			<str id="armory.arena-ladder-data.results1">Displaying results </str>
+			<str id="armory.arena-ladder-data.all-realms">All Realms</str>
+			<str id="armory.arena-ladder-data.1st">st</str>
+			<str id="armory.arena-ladder-data.st">st</str>
+			<str id="armory.arena-ladder-data.nd">nd</str>
+			<str id="armory.arena-ladder-data.rd">rd</str>
+			<str id="armory.arena-ladder-data.th">th</str>
+		</arenaLadderData>
+	</arena>
+
+	<arenaReport>
+		<str id="reportHeader">
+      <param1/>v<param1/> Arena Match Report</str>
+    <!-- string order, aka 5v5 Arena Match Report -->
+		<str id="viewTeamHistory">View match history for this team</str>
+		<str id="viewTeamProfile">View team profile</str>
+		<str id="gameInfo.map">Map:</str>
+		<str id="gameInfo.matchLength">Length:</str>
+		<str id="gameInfo.startTime">Match Start Time:</str>
+		<str id="filter.all">All</str>
+		<str id="filter.ratingBetween">Rating Between</str>
+		<str id="filter.ratingChange">Rating Change</str>
+		<str id="filter.dateRange">Date Range</str>
+		<str id="graph.season">Season </str>
+		<str id="graph.graph"> Graph</str>
+		<str id="changeseason">Change Season:</str>
+		<str id="seasonfirst">Season </str>
+		<str id="seasonsecond"/>
+		<str id="ratingcolon">Rating:</str>
+		<str id="datecolon">Date:</str>
+		<str id="opponentcolon">Opponent:</str>
+		<str id="gamesdisplayed">Games currently displayed:</str>
+		<str id="netchange.selection.short">Net Δ in selection:</str>
+		<str id="netchange.selection">Net rating change in selection:</str>
+		<str id="of">of</str>
+		<str id="averagechange">
+      <param-html1/>/match avg.</str>
+		<str id="nogames">No games have been found for this team in the selected season</str>
+		<str id="versus">v</str>
+		<str id="versuspt1"/>
+		<str id="versuspt2"> Arena </str>
+		<str id="defeats">defeats</str>
+		<str id="match-report">Match Report</str>
+		<str id="matchhistorygraphfor">Match History Graph</str>
+		<str id="matchhistoryfilters">Match History Filters</str>
+		<str id="opponenthistoryfiltersfor">Opponent History Filters</str>
+		<str id="matchstatistics">Match Statistics</str>
+
+		<str id="clearmatchhighlight">Clear Match Highlight</str>
+		<str id="viewrecentgames">View Recent Games</str>
+		<str id="viewcompleteseason">View Complete Season</str>
+
+		<str id="matchlength">Match Length: </str>
+		<str id="minutes"> min </str>
+		<str id="seconds"> sec</str>
+		<str id="matchstart">Match Start Time: </str>
+	</arenaReport>
+
+    <unsorted>
+		<str id="armory.labels.character-name">Character Name</str>
+		<str id="armory.labels.team-profiles">Team Profiles</str>
+		<str id="armory.labels.guild">Guild</str>
+		<str id="armory.labels.guilds">Guilds</str>
+		<str id="armory.labels.characters">Characters</str>
+		<str id="armory.labels.guild-profile">Guild Profile</str>
+		<str id="armory.labels.guild-profiles">Guild Profiles</str>
+		<str id="armory.labels.realm">Realm</str>
+		<str id="armory.labels.realmcolon">Realm:</str>
+		<str id="armory.labels.battlegroupcolon">Battlegroup:</str>
+		<str id="armory.labels.noresultsfound">No Results Found</str>
+		<str id="armory.labels.faction">Faction</str>
+		<str id="armory.labels.horde">Horde</str>
+		<str id="armory.labels.alliance">Alliance</str>
+		<str id="armory.labels.race">Race</str>
+		<str id="armory.labels.class">Class</str>
+		<str id="armory.labels.race-class">Race/Class</str>
+		<str id="armory.labels.sort">Sort</str>
+		<str id="armory.labels.lastweek">Last Week's</str>
+		<str id="armory.labels.rank">Rank</str>
+		<str id="armory.labels.ranks">Ranks</str>
+		<str id="armory.labels.team-rank">Team Rank</str>
+		<str id="armory.labels.team-name">Team Name</str>
+		<str id="armory.labels.team-type">Team Type</str>
+		<str id="armory.labels.team-members">Team Members: </str>
+		<str id="armory.labels.members">Members</str>
+		<str id="armory.labels.guildrank">Guild Rank</str>
+		<str id="armory.labels.guild-rank">Rank </str>
+		<str id="armory.labels.guild-leader">Guild Master</str>
+		<str id="armory.labels.unique-members">Unique Members</str>
+		<str id="armory.labels.customrss">Custom Character Feed</str>
+		<str id="armory.labels.calendarfeed">Custom Calendar Feed</str>
+
+		<str id="armory.labels.item-results">Item Search Results</str>
+		<str id="armory.labels.search">Search</str>
+		<str id="armory.labels.browse">Browse</str>
+		<str id="armory.labels.arena-stats">Arena Team Statistics</str>
+		<str id="armory.labels.search-results">Search Results</str>
+		<str id="armory.labels.advanced-filter">Advanced Filtering Options</str>
+		<str id="armory.labels.wow">World of Warcraft</str>
+		<str id="armory.labels.copyright">©2010 Blizzard Entertainment, Inc. All rights reserved.</str>
+		<str id="armory.labels.external-link">This link will take you outside the Armory</str>
+		<str id="armory.labels.report-error">Post about Armory-related bugs and issues on the EN Website Error Reports Forum</str>
+		<str id="armory.labels.report-translation">This link will take you outside the Armory to EU translation forums.</str>
+		<str id="armory.labels.the-armory">The Armory</str>
+		<str id="armory.labels.wow-the-armory">World of Warcraft: The Armory</str>
+		<str id="armory.labels.armory">Armory</str>
+		<str id="armory.labels.arena">Arena</str>
+		<str id="armory.labels.search-armory">Search The Armory</str>
+		<str id="armory.labels.home">Home</str>
+		<str id="armory.labels.item">Item</str>
+		<str id="armory.labels.items">Items</str>
+		<str id="armory.labels.item-lookup">Item Lookup</str>
+		<str id="armory.labels.type">Type</str>
+		<str id="armory.labels.item-level">Item Lvl</str>
+		<str id="armory.labels.req-level">Req. Lvl</str>
+		<str id="armory.labels.sell-price">Sell Price</str>
+		<str id="armory.labels.slot">Slot</str>
+		<str id="armory.labels.rarity">Rarity</str>
+		<str id="armory.labels.na">N/A</str>
+		<str id="armory.labels.notapplicable">Not Applicable</str>
+		<str id="armory.labels.arenaTournament">Arena Tournament</str>
+		<str id="armory.labels.comingsoon">Coming Soon</str>
+		<str id="armory.labels.period">.</str>
+
+		<str id="armory.arenatab.2v2-arena-ladder">2v2 Ladder</str>
+		<str id="armory.arenatab.3v3-arena-ladder">3v3 Ladder</str>
+		<str id="armory.arenatab.5v5-arena-ladder">5v5 Ladder</str>
+		<str id="armory.arenatab.hof">Hall of Fame</str>
+		<str id="armory.arenatab.arenaTournament">Arena Tournament</str>
+		<str id="armory.arenatab.calc">Arena Calculator</str>
+
+		<str id="armory.arenatab.teamprofile">Team Profile</str>
+		<str id="armory.arenatab.matchhistory">Match History</str>
+		<str id="armory.arenatab.opponenthistory">Opponent History</str>
+
+		<str id="armory.dungeontab.wrath">Wrath of the Lich King</str>
+		<str id="armory.dungeontab.tbc">Burning Crusade</str>
+		<str id="armory.dungeontab.classic">Classic</str>
+
+		<str id="wotlk">Wrath of the Lich King</str>
+		<str id="bc">The Burning Crusade</str>
+		<str id="classic">World of Warcraft Classic</str>
+
+		<str id="armory.labels.wins">Wins</str>
+		<str id="armory.labels.winpercentage">Win %</str>
+		<str id="armory.labels.losses">Losses</str>
+		<str id="armory.labels.played">Played</str>
+		<str id="armory.labels.twoteamstats">2v2 Team Stats</str>
+		<str id="armory.labels.threeteamstats">3v3 Team Stats</str>
+		<str id="armory.labels.fiveteamstats">5v5 Team Stats</str>
+		<str id="armory.labels.teamrating">Team Rating</str>
+		<str id="armory.labels.personalrating">Personal Rating</str>
+		<str id="armory.labels.personalrating.short">PR</str>
+		<str id="armory.labels.personalratingcolon">Personal Rating: </str>
+		<str id="armory.labels.rating">Rating</str>
+		<str id="armory.labels.ratingcolon">Rating: </str>
+		<str id="armory.labels.realm-name">Realm Name</str>
+		<str id="armory.labels.date-joined">Date Joined</str>
+		<str id="armory.labels.level">Level</str>
+		<str id="armory.labels.games">Games</str>
+		<str id="armory.labels.win-loss">Win - Loss</str>
+		<str id="armory.labels.games-won">Games Won</str>
+		<str id="armory.labels.thisweek">This Week</str>
+		<str id="armory.labels.season">Season</str>
+		<str id="armory.labels.qualifier">Qualifier</str>
+		<str id="armory.labels.games-woncolon">Games Won:</str>
+		<str id="armory.labels.noteam">No Arena Team</str>
+		<str id="armory.labels.games-played">Games Played</str>
+		<str id="armory.labels.last-played">Last Played</str>
+		<str id="armory.labels.team-results">Team Search Results for</str>
+		<str id="armory.labels.char-results">Character Search Results for</str>
+		<str id="armory.labels.guild-results">Guild Search Results for</str>
+		<str id="armory.labels.item-results-for">Item Search Results for</str>
+		<str id="armory.labels.back-to-results">Return to the Search Page</str>
+		<str id="armory.search.over-one-thousand">The first 1000 matches of your search are displayed here. To narrow down your search, try searching for a specific string by using single quotation marks (example: 'shadow').</str>
+		<str id="armory.labels.stats">Stats</str>
+
+		<str id="armory.labels.copyUrl">To link directly to this page, click on and copy the url below:</str>
+		<str id="armory.labels.copyThisUrl">Copy this URL</str>
+		<str id="armory.labels.pinThisProfile">Pin this Profile</str>
+
+		<str id="armory.labels.2v2">2v2</str>
+		<str id="armory.labels.3v3">3v3</str>
+		<str id="armory.labels.5v5">5v5</str>
+		<str id="armory.labels.all">All</str>
+
+		<str id="armory.labels.whatsthis">What is this?</str>
+
+		<str id="armory.labels.gender">Gender</str>
+		<str id="armory.labels.both">Both</str>
+		<str id="armory.labels.gender.0">Male</str>
+		<str id="armory.labels.gender.1">Female</str>
+		<str id="armory.labels.faction.0">Alliance</str>
+		<str id="armory.labels.faction.1">Horde</str>
+
+		<str id="armory.labels.header.profile">Profile</str>
+		<str id="armory.labels.header.reputation">Reputation</str>
+		<str id="armory.labels.header.pvp">PvP</str>
+		<str id="armory.labels.header.skills">Skills</str>
+		<str id="armory.labels.header.talents">Talents</str>
+		<str id="armory.labels.header.arenateams">Arena Teams</str>
+		<str id="armory.labels.header.arena">Arena</str>
+		<str id="armory.labels.header.guild">Guild</str>
+		<str id="armory.labels.header.banklog">Bank Log</str>
+		<str id="armory.labels.header.bankcontents">Bank Contents</str>
+		<str id="armory.labels.header.guild-stats">Guild Statistics</str>
+		<str id="armory.labels.header.guild-stats-filters">Guild Statistics Filters</str>
+		<str id="armory.labels.header.guild-roster">Guild Roster</str>
+		<str id="armory.labels.header.guild-roster-for">Guild Roster for</str>
+		<str id="armory.labels.header.calendar">Calendar</str>
+
+		<str id="armory.var.level">@level</str>
+
+		<str id="armory.labels.morereputation">More Reputation</str>
+		<str id="armory.labels.morepvp">More PvP</str>
+		<str id="armory.labels.morearenateams">More Arena Teams</str>
+		<str id="armory.labels.exaltedwith">Exalted With:</str>
+		<str id="armory.labels.notranked">Not Ranked</str>
+		<str id="armory.labels.rankcolon">Rank:</str>
+		<str id="armory.labels.standing">Standing</str>
+		<str id="armory.labels.standingcolon">Standing:</str>
+		<str id="armory.labels.teamnamecolon">Team Name:</str>
+
+		<str id="armory.labels.hks">Lifetime Honorable Kills: </str>
+
+		<str id="armory.labels.2v2arena">2v2 Arena</str>
+		<str id="armory.labels.3v3arena">3v3 Arena</str>
+		<str id="armory.labels.5v5arena">5v5 Arena</str>
+
+<!--tabs-->
+		<str id="armory.tabs.characterSheet">Character</str>
+		<str id="armory.tabs.profile">Profile</str>
+		<str id="armory.tabs.talents_and_glyphs">Talents &amp; Glyphs</str>
+		<str id="armory.tabs.feed">Activity Feed</str>
+		<str id="armory.tabs.reputation">Reputation</str>
+		<str id="armory.tabs.calendar">Calendar</str>
+		<str id="armory.tabs.skills">Skills</str>
+		<str id="armory.tabs.talents">Talents</str>
+		<str id="armory.tabs.arenateams">Arena Teams</str>
+		<str id="armory.tabs.achievements">Achievements</str>
+		<str id="armory.tabs.statistics">Statistics</str>
+		<str id="armory.tabs.characters">Characters</str>
+		<str id="armory.tabs.guild">Guild</str>
+		<str id="armory.tabs.guilds">Guilds</str>
+		<str id="armory.tabs.guildRoster">Guild Roster</str>
+		<str id="armory.tabs.guildStats">Guild Stats</str>
+		<str id="armory.tabs.guildBankContents">Bank Contents</str>
+		<str id="armory.tabs.guildBankLog">Bank Log</str>
+		<str id="armory.tabs.items">Items</str>
+		<str id="armory.tabs.creatures">Creatures</str>
+		<str id="armory.tabs.spells">Spells</str>
+		<str id="armory.tabs.dungeons">Dungeons &amp; Raids</str>
+		<str id="armory.tabs.bosses">Bosses</str>
+		<str id="armory.tabs.factions">Factions</str>
+		<str id="armory.tabs.talentcalc">Talent Calculator</str>
+		<str id="armory.tabs.pettalentcalc">Pet Talent Calculator</str>
+		<str id="armory.tabs.disableTab">Sections in the Armory belonging to inactive characters are disabled.</str>
+
+		<str id="armory.tabs.class.1">Warrior</str>
+		<str id="armory.tabs.class.2">Paladin</str>
+		<str id="armory.tabs.class.3">Hunter</str>
+		<str id="armory.tabs.class.4">Rogue</str>
+		<str id="armory.tabs.class.5">Priest</str>
+		<str id="armory.tabs.class.6">Death Knight</str>
+		<str id="armory.tabs.class.7">Shaman</str>
+		<str id="armory.tabs.class.8">Mage</str>
+		<str id="armory.tabs.class.9">Warlock</str>
+		<str id="armory.tabs.class.11">Druid</str>
+
+		<str id="armory.tabs.pet.cunning">Cunning</str>
+		<str id="armory.tabs.pet.tenacity">Tenacity</str>
+		<str id="armory.tabs.pet.ferocity">Ferocity</str>
+
+		<str id="armory.tabs.wotlk">Wrath of the Lich King</str>
+		<str id="armory.tabs.bc">Burning Crusade</str>
+		<str id="armory.tabs.classic">Classic</str>
+
+		<str id="armory.tabs.character.guild.mouseover">Clicking on this tab will take you to the Guilds section</str>
+		<str id="armory.tabs.character.arenateams.mouseover">Clicking on this tab will take you to the Arena Teams section</str>
+		<str id="armory.tabs.arenatournament.mouseover">Clicking on this tab will take you to the Arena Tournament section</str>
+		<str id="armory.tabs.hof.mouseover">Clicking on this tab will take you to the Hall of Fame section</str>
+		<str id="armory.arenatournament.tabs.ladder.mouseover">View the Qualification Round Ladder</str>
+
+		<!-- menu navigation strings not found in other places -->
+		<str id="armory.menu.itemCollections">Item Collections</str>
+		<str id="armory.menu.heirloomItems">Heirlooms</str>
+		<str id="armory.menu.tokens">Tokens</str>
+		<str id="armory.menu.badgeofjustice">Badge of Justice</str>
+		<str id="armory.menu.emblemofheroism">Emblem of Heroism</str>
+		<str id="armory.menu.emblemofvalor">Emblem of Valor</str>
+		<str id="armory.menu.emblemofconquest">Emblem of Conquest</str>
+		<str id="armory.menu.emblemoftriumph">Emblem of Triumph</str>
+		<str id="armory.menu.emblemoffrost">Emblem of Frost</str>
+		<str id="armory.menu.pvpRewards">PvP Rewards</str>
+		<str id="armory.menu.arenaRewards">Arena Rewards</str>
+		<str id="armory.menu.season8">Season 8</str>
+		<str id="armory.menu.season7">Season 7</str>
+		<str id="armory.menu.season6">Season 6</str>
+		<str id="armory.menu.season5">Season 5</str>
+		<str id="armory.menu.season4">Season 4</str>
+		<str id="armory.menu.minor">Minor</str>
+		<str id="armory.menu.major">Major</str>
+		<str id="armory.menu.companions">Companions</str>
+		<str id="armory.menu.adv-item-search">Advanced Item Search</str>
+		<str id="armory.menu.battlegroups">Battlegroups</str>
+		<str id="armory.menu.info">Info</str>
+		<str id="armory.menu.achievementFirsts">Achievement Firsts</str>
+		<str id="armory.menu.updates">Armory Updates</str>
+		<str id="armory.menu.faqs">Armory FAQs</str>
+		<str id="armory.menu.tools">Tools</str>
+		<str id="armory.menu.searchPlugin">Browser Search Plug</str>
+
+<!--character profile header-->
+		<str id="armory.icon.realm">Realm</str>
+		<str id="armory.icon.battleGroup">Battlegroup</str>
+		<str id="armory.forum.link.realm">Clicking this link will take you to the Realm Forums</str>
+		<str id="armory.forum.link.battleGroup">Clicking this link will take you to the Battlegroup Forums</str>
+		<str id="armory.forum.link.arena">Clicking this link will take you to the Arena Forums</str>
+
+<!--arena-tournament.xsl tabs-->
+		<str id="armory.arenatournament.tabs.news">News</str>
+		<str id="armory.arenatournament.tabs.info">Info</str>
+		<str id="armory.arenatournament.tabs.faq">FAQ</str>
+		<str id="armory.arenatournament.tabs.rules">Rules</str>
+		<str id="armory.arenatournament.tabs.venues">Venues</str>
+		<str id="armory.arenatournament.tabs.prizes">Prizes</str>
+		<str id="armory.arenatournament.tabs.partners">Partners</str>
+		<str id="armory.arenatournament.tabs.brackets">Brackets</str>
+		<str id="armory.arenatournament.tabs.ladder">Ladder</str>
+		<str id="armory.arenatournament.header.news">News</str>
+
+<!--battlegroups.xsl-->
+		<str id="armory.select-battlegroup.label.select-realm">Or Select Your Realm:</str>
+		<str id="armory.select-battlegroup.label.coliseum">Coliseum</str>
+		<str id="armory.select-battlegroup.label.battlegroup-search">Don't know which <i>Battlegroup</i> your realm is in?</str>
+		<str id="armory.select-battlegroup.label.enter-realm-name">Enter Realm Name</str>
+		<str id="armory.select-battlegroup.link.view-realms">View all realms within your Battlegroup</str>
+		<str id="armory.select-battlegroup.link.battlegroupPage">http://www.wow-europe.com/en/info/basics/battlegroups.html</str>
+
+<!--select-team-type.xsl-->
+		<str id="armory.select-team-type.label.2v2team">2v2 Team</str>
+		<str id="armory.select-team-type.label.3v3team">3v3 Team</str>
+		<str id="armory.select-team-type.label.5v5team">5v5 Team</str>
+
+<!--character-info.xsl-->
+		<str id="armory.character-info.header.character-profile">Character Profile</str>
+		<str id="armory.character-info.label.member-of">Member of</str>
+		<str id="armory.character-info.label.total-guild-members">Total Guild Members:</str>
+		<str id="armory.character-info.label.2v2team">2v2 Arena Team</str>
+		<str id="armory.character-info.label.3v3team">3v3 Arena Team</str>
+		<str id="armory.character-info.label.5v5team">5v5 Arena Team</str>
+		<str id="armory.character-info.teamPossessive">'s </str>
+		<str id="armory.character-info.characterPossessive">'s </str>
+		<str id="armory.character-info.statsBefore"/>
+		<str id="armory.character-info.statsAfter"> Stats:</str>
+
+<!--team-info.xsl-->
+		<str id="armory.team-info.2v2">2v2</str>
+		<str id="armory.team-info.3v3">3v3</str>
+		<str id="armory.team-info.5v5">5v5</str>
+		<str id="armory.team-info.titleBefore"/>
+		<str id="armory.team-info.titleAfter"> Arena Team Statistics</str>
+		<str id="armory.team-info.team-rating">Team Rating</str>
+
+<!--character-search.xsl-->
+		<str id="armory.character-search.header.character-search">Character Search</str>
+		<str id="armory.character-search.label.search-for-character">Search for Character Profiles</str>
+
+		<str id="armory.character-search.label.team-profile">Team Profile</str>
+		<str id="armory.team-search.team-search">Team Search</str>
+
+<!--guild-search.xsl-->
+		<str id="armory.guild-search.header.guild-search">Guild Search</str>
+		<str id="armory.guild-search.label.search-for-guild">Search for Guild Profiles</str>
+
+<!--guild-search.xsl-->
+		<str id="armory.item-search.header.item-search">Item Search</str>
+		<str id="armory.item-search.label.search-for-item">Search for Items</str>
+		<str id="armory.item-search.label.enter-item-name">Enter Item Name</str>
+
+<!--team-search.xsl-->
+		<str id="armory.team-search.title">Search for Team Profiles</str>
+
+<!--mini-search-templates.xsl-->
+		<str id="armory.mini-search.label.arena-ladder.2v2">2v2 Arena Ladder Standings</str>
+		<str id="armory.mini-search.label.arena-ladder.3v3">3v3 Arena Ladder Standings</str>
+		<str id="armory.mini-search.label.arena-ladder.5v5">5v5 Arena Ladder Standings</str>
+		<str id="armory.mini-search.label.arena-ladder.expand">Expand the Arena Ladder Listing</str>
+		<str id="armory.mini-search.label.arena-ladder.collapse">Collapse the Arena Ladder Listing</str>
+		<str id="armory.mini-search.label.search.expand">Expand the Search Results</str>
+		<str id="armory.mini-search.label.search.collapse">Collapse the Search Results</str>
+		<str id="armory.mini-search.label.character.expand">Expand the Character Listing</str>
+		<str id="armory.mini-search.label.character.collapse">Collapse the Character Listing</str>
+		<str id="armory.mini-search.label.character.default">Revert to Default Listing</str>
+		<str id="armory.mini-search.label.guild.expand">Expand the Guild Listing</str>
+		<str id="armory.mini-search.label.guild.collapse">Collapse the Guild Listing</str>
+		<str id="armory.mini-search.label.items.expand">Expand the Item Listing</str>
+		<str id="armory.mini-search.label.items.collapse">Collapse the Item Listing</str>
+		<str id="armory.mini-search.label.maxlength">16</str>
+		<str id="armory.mini-search.label.maxlength.arena">12</str>
+
+<!--character-sheet-Base Stats-->
+		<str id="armory.character.refreshheader">Character Data Unavailable</str>
+
+		<str id="armory.character-sheet.ttip.loading">loading...</str>
+
+<!--talents-->
+		<str id="talents.meleeRange">Melee range</str>
+		<str id="talents.rangedSpell">
+      <param1/> yd range</str>
+    <!-- string order, ie 20 yd range -->
+		<str id="talents.cooldown.min">
+      <param1/> min cooldown</str>
+    <!-- string order, ie - 3 min cooldown -->
+		<str id="talents.cooldown.sec">
+      <param1/> sec cooldown</str>
+    <!-- string order, ie - 12 sec cooldown -->
+		<str id="talents.casttime.instant-cast">Instant cast</str>
+		<str id="talents.casttime.instant">Instant</str>
+		<str id="talents.casttime.channeled">Channeled</str>
+		<str id="talents.casttime.non-instant">
+      <param1/> sec cast</str>
+    <!-- string order, ie - 1.5 sec cast -->
+		<str id="talents.spelltype.mana-percent">
+      <param1/>% of base mana</str>
+    <!-- string order, ie - 17% of base mana -->
+		<str id="talents.spelltype.mana">
+      <param1/> Mana</str>
+		<str id="talents.spelltype.energy">
+      <param1/> Energy</str>
+		<str id="talents.spelltype.rage">
+      <param1/> Rage</str>
+		<str id="talents.spelltype.runic">
+      <param1/> Runic Power</str>
+		<str id="talents.spelltype.blood">
+      <param1/> Blood</str>
+		<str id="talents.spelltype.unholy">
+      <param1/> Unholy</str>
+		<str id="talents.spelltype.frost">
+      <param1/> Frost</str>
+		<str id="notApplicable">n/a</str>
+		<str id="notApplicable.tooltip">This character does not have the dual talent specialization ability.</str>
+		<str id="emptyGlyph">Empty</str>
+		<str id="activeSpecTxt">Active</str>
+		<str id="unused">Unused</str>
+		<str id="talents.reqTalents.single">Requires {0} point in {1}.</str> <!-- ie: Requires 1 point in Amplify Curse. -->
+		<str id="talents.reqTalents.plural">Requires {0} points in {1}.</str> <!-- ie: Requires 5 points in Contagion. -->
+		<str id="talents.reqTalentTree">Requires {0} points in {1} Talents.</str> <!-- ie: Requires 25 points in Holy Talents. -->
+		<str id="talents.rankStrOrder">Rank {0}/{1}</str>
+    <!-- ie: Rank 1/5 -->
+		<str id="talents.reset">Reset</str>
+		<str id="talents.resetAll">Reset All</str>
+		<str id="talents.linkToBuild">Link to this build</str>
+		<str id="talents.linkToBuild.tooltip">Click on this link and then copy the URL from the address bar</str>
+		<str id="talents.pointsSpent">Points Spent</str>
+		<str id="talents.pointsLeft">Points Left</str>
+		<str id="talents.reqLevel">Required Level</str>
+		<str id="talents.nextRank">Next Rank</str>
+		<str id="armory.talents.export.click">Click to export a copy of this build into the talent calculator</str>
+		<str id="armory.talents.export.exportbuild">Export Build</str>
+		<str id="talents.print">Print</str>
+		<str id="talents.printable.classTalents">{0} Talents</str>
+		<str id="talents.printable.minReqLevel">Minimum Required Level: {0}</str>
+		<str id="talents.printable.reqTalentPts">Required Talent Points: {0}</str>
+		<str id="talents.printable.treeTalents">{0} Talents</str>
+		<str id="talents.printable.ptsPerTree">{0} point(s)</str>
+		<str id="talents.printable.dontWastePaper">Don't waste paper!</str>
+
+		<str id="armory.dungeons.badgeofjustice">Badges of Justice (Heroic mode tokens)</str>
+
+<!--item-info.xsl-->
+		<str id="armory.creature.classification.1">Elite</str>
+		<str id="armory.creature.classification.2">Rare Elite</str>
+		<str id="armory.creature.classification.3">Boss</str>
+		<str id="armory.creature.classification.4">Rare</str>
+
+<!--search-data-items.xsl-->
+		<str id="armory.search-data-items.relatedfactions">Related Factions: </str>
+		<str id="armory.search-data-items.relateddungeons">Related Dungeons: </str>
+		<str id="armory.search-data-items.toomany">Too many search results. Try filtering.</str>
+
+<!--error2.xsl-->
+		<str id="armory.labels.errormessage">You have encountered an error.</str>
+		<str id="armory.labels.returntoprevious">Return to the Armory</str>
+		<str id="armory.labels.returntomain">Return to wow-europe.com</str>
+		<str id="armory.labels.error.nosearchresult">No Search Results Found</str>
+		<str id="armory.labels.error.filenotfound">File Not Found</str>
+		<str id="armory.labels.error.unavailable">Service Unavailable</str>
+		<str id="armory.labels.error.serverbusy">Server is busy. Please try again later.</str>
+
+<!--error-facebook.xsl-->
+		<str id="armory.labels.facebook.goback">Go back</str>
+		<str id="armory.labels.facebook.returntomyfeed">Return to "My Feed"</str>
+		<str id="armory.labels.facebook.returntofacebook">Return to Facebook</str>
+		<str id="armory.labels.facebook.selectotherregions">You may also try switching the Armory's character feed to a different region: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">Americas</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europe</a> or <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Korea</a>.</str>		
+		<str id="armory.labels.facebook.error">Due to high server load, this information is currently unavailable. </str>
+		<str id="armory.labels.facebook.error2">Please try again shortly, as this is usually a temporary issue. You may also try logging out of and back into Facebook, as this may help resolve any errors.</str>
+		
+<!--error/Section.xsl-->
+		<str id="armory.labels.errorencountered">Error Encountered</str>
+		<str id="armory.labels.erroroccured">An error has occurred.</str>
+		<str id="armory.labels.accessdenied">Access Denied</str>
+		<str id="armory.labels.nocharacter">This character profile could not be displayed, possibly for one of the following reasons:<ul>
+        <li>The character has been inactive for an extended period of time.</li>
+        <li>The character name was spelled incorrectly.</li>
+        <li>The profile is temporarily unavailable while the character is in the midst of a process such as a realm transfer or faction change.</li>
+        <li>Characters that have been deleted are no longer available on the Armory.</li>
+      </ul>
+    </str>
+		<str id="armory.labels.noguild">This guild does not exist. Please ensure that the guild name was entered correctly. Guilds that have been disbanded are no longer available on the Armory.</str>
+		<str id="armory.labels.protectedcontent">This page contains login-protected content you do not have access to, since it is not associated with the World of Warcraft account currently logged in to the Armory. For more details about Armory Login access and login-protected content, refer to the <a href="/faq-login.xml">Armory Login FAQ</a>.</str>
+
+<!--dungeons.xsl-->
+		<str id="armory.dungeons.bc">Burning Crusade Dungeons &amp; Raids</str>
+		<str id="armory.dungeons.classic">Classic Dungeons &amp; Raids</str>
+		<str id="armory.dungeons.dungeon">Dungeon</str>
+		<str id="armory.dungeons">Dungeons &amp; Raids</str>
+		<str id="armory.dungeons.partysize.before"/>
+		<str id="armory.dungeons.partysize.after">-man Raid</str>
+		<str id="armory.dungeons.seealsocolon">See Also: </str>
+		<str id="armory.dungeons.viewbosses">View Bosses</str>
+		<str id="armory.dungeons.notecolon">Note:</str>
+		<str id="armory.dungeons.notesparse">Only items that have been discovered in-game (at least one of that item has been acquired) are searchable in the Armory. As a result, some loot tables (particularly those of newer raid bosses) may be incomplete, and may appear conspicuously sparse. New loot tables should gradually populate over time as more of their items are discovered.</str>
+
+<!--factions.xsl-->
+		<str id="armory.factions.bc">Burning Crusade Factions</str>
+		<str id="armory.factions.classic">Classic Factions</str>
+		<str id="armory.factions">Factions</str>
+
+<!-- faq -->
+		<str id="armory.faq.label">Frequently Asked Questions</str>
+		<str id="armory.faq.index">Frequently Asked Questions Index</str>
+		<str id="armory.faq.general">General</str>
+		<str id="armory.faq.achievements">Achievements</str>
+		<str id="armory.faq.arenacalculator">Arena Calculator</str>
+		<str id="armory.faq.arenaladder">Arena Ladder</str>
+		<str id="armory.faq.login">Armory Login</str>
+		<str id="armory.faq.characterfeeds">Character Feeds</str>
+		<str id="armory.faq.characterprofiles">Character Profiles</str>
+		<str id="armory.faq.recommended">Find an Upgrade</str>
+		<str id="armory.faq.guildprofiles">Guild Profiles</str>
+		<str id="armory.faq.items">Items</str>
+		<str id="armory.faq.matchhistory">Match History</str>
+  		<str id="armory.faq.matchreports">Match Reports</str>
+		<str id="armory.faq.opponenthistory">Opponent History</str>
+		<str id="armory.faq.calendar">Player Calendar</str>
+		<str id="armory.faq.calendarfeeds">Player Calendar Feeds</str>
+		<str id="armory.faq.team">Team Profiles</str>
+
+
+		<str id="armory.labels.honorpoints">Honor Points</str>
+		<str id="armory.labels.arenapoints">Arena Points</str>
+
+		<str id="armory.items.relevance.percent">% Relevance</str>
+
+		<str id="armory.labels.factionrewards">Faction Rewards</str>
+		<str id="armory.labels.pvprewards">PvP Rewards</str>
+		<str id="armory.labels.alliancerewards">Alliance Rewards</str>
+		<str id="armory.labels.horderewards">Horde Rewards</str>
+
+<!-- updates -->
+		<str id="armory.labels.updates">Updates</str>
+		<str id="armory.updates.learnmore">Learn More</str>
+
+		<str id="armory.updates.armoryupdates">Armory Updates</str>
+		<str id="armory.updates.cache">** In order to see the latest additions to this page, you may need to clear your browser's cache. **</str>
+		<str id="armory.labels.close">close</str>
+		<str id="armory.labels.open">open</str>
+		<str id="armory.labels.top">top</str>
+
+		<str id="armory.search.relevance">Relevance</str>
+		<str id="armory.search.label.keywords">Keywords: </str>
+		<str id="armory.search.label.category">Category: </str>
+		<str id="armory.search.openQuote">"</str>
+		<str id="armory.search.closeQuote">"</str>
+		<str id="armory.search.normalSpace"> </str>
+		<str id="armory.search.label.noSearchResults">No Search Results</str>
+		<str id="armory.search.label.noSearchResultsText">Your search did not produce any results. To ensure that you're searching by parameters allowed by the Armory, make sure to:</str>
+		<str id="armory.search.label.search.categories">Only search for the categories currently in the Armory: items, characters, arena teams, guilds, and factions.</str>
+		<str id="armory.search.label.search.name">Search by name only.</str>
+		<str id="armory.search.label.search.return">Return to the Armory</str>
+	</unsorted>
+
+	<deleted>
+		<str id="armory.search.noresultsTitle">Search Results</str>
+		<str id="armory.search.keywords">Keywords</str>
+		<str id="armory.search.category">Category</str>
+		<str id="armory.search.noresultsBefore">Your search - </str>
+		<str id="armory.search.noresultsAfter"> - did not return any results.</str>
+		<str id="armory.search.type">Type</str>
+		<str id="armory.search.requiredLevel">Req Lvl</str>
+		<str id="armory.search.relevance">Relevance</str>
+		<str id="armory.search.label.keywords">Keywords: </str>
+		<str id="armory.search.label.category">Category: </str>
+		<str id="armory.search.oneResult">1 result for </str>
+		<str id="armory.search.resultsFor">results for</str>
+		<str id="armory.search.label.noSearchResults">No Search Results</str>
+		<str id="armory.search.label.noSearchResultsText">Your search did not produce any results. To ensure that you're searching by parameters allowed by the Armory, make sure to:</str>
+	</deleted>
+
+	<itemsSearch>
+		<str id="armory.search.weaponStats">Weapon Stats</str>
+		<str id="armory.search.dps">DPS</str>
+		<str id="armory.search.minDamage">Min Damage</str>
+		<str id="armory.search.maxDamage">Max Damage</str>
+		<str id="armory.search.speed">Speed</str>
+
+		<str id="armory.search.baseStats">Base Stat Bonuses</str>
+		<str id="armory.search.strength">Strength</str>
+		<str id="armory.search.agility">Agility</str>
+		<str id="armory.search.stamina">Stamina</str>
+		<str id="armory.search.intellect">Intellect</str>
+		<str id="armory.search.spirit">Spirit</str>
+
+		<str id="armory.search.physical">Physical Combat Bonuses</str>
+		<str id="armory.search.attackPower">Attack Power</str>
+		<str id="armory.search.feralAttackPower">Feral Attack Power</str>
+		<str id="armory.search.critRating">Crit Rating</str>
+		<str id="armory.search.hitRating">Hit Rating</str>
+		<str id="armory.search.hasteRating">Haste Rating</str>
+		<str id="armory.search.ignoreArmor">Armor Penetration</str>
+		<str id="armory.search.expertiseRating">Expertise Rating</str>
+
+		<str id="armory.search.spell">Spell Bonuses</str>
+		<str id="armory.search.spellHealing">Healing</str>
+		<str id="armory.search.spellDamage">Spell Damage</str>
+		<str id="armory.search.spellPower">Spell Power</str>
+		<str id="armory.search.spellCritRating">Spell Crit Rating</str>
+		<str id="armory.search.spellHitRating">Spell Hit Rating</str>
+		<str id="armory.search.spellPenetration">Spell Penetration</str>
+		<str id="armory.search.spellManaRegen">Mana Regen</str>
+		<str id="armory.search.spellHasteRating">Spell Haste Rating</str>
+		<str id="armory.search.spellDamageArcane">Arcane Damage</str>
+		<str id="armory.search.spellDamageHoly">Holy Damage</str>
+		<str id="armory.search.spellDamageShadow">Shadow Damage</str>
+		<str id="armory.search.spellDamageNature">Nature Damage</str>
+		<str id="armory.search.spellDamageFrost">Frost Damage</str>
+		<str id="armory.search.spellDamageFire">Fire Damage</str>
+
+		<str id="armory.search.defense">Defense Bonuses</str>
+		<str id="armory.search.armor">Armor</str>
+		<str id="armory.search.blockRating">Block Rating</str>
+		<str id="armory.search.blockValue">Block Value</str>
+		<str id="armory.search.defenseRating">Defense Rating</str>
+		<str id="armory.search.dodgeRating">Dodge Rating</str>
+		<str id="armory.search.parryRating">Parry Rating</str>
+		<str id="armory.search.resilience">Resilience</str>
+		<str id="armory.search.healthRegen">Health Regen</str>
+
+		<str id="armory.search.resistances">Resistance Bonuses</str>
+		<str id="armory.search.resistArcane">Arcane Resist</str>
+		<str id="armory.search.resistShadow">Shadow Resist</str>
+		<str id="armory.search.resistNature">Nature Resist</str>
+		<str id="armory.search.resistFrost">Frost Resist</str>
+		<str id="armory.search.resistFire">Fire Resist</str>
+
+		<str id="armory.search.general">General Bonuses</str>
+		<str id="armory.search.itemLevel">Item Level</str>
+		<str id="armory.search.bindsPickedUp">Bind on pickup</str>
+		<str id="armory.search.bindsEquip">Bind on equip</str>
+		<str id="armory.search.bindsWhenUsed">Bind on use</str>
+		<str id="armory.search.requiresProfession">Requires Profession</str>
+		<str id="armory.search.unique">Unique</str>
+		<str id="armory.search.uniqueEquipped">Unique-Equipped</str>
+		<str id="armory.search.hasSpellEffect">Has Spell Effect...</str>
+	</itemsSearch>
+
+	<itemsSpellEffect>
+		<str id="armory.item-search.spelleffect.resist">Chance to Resist</str>
+		<str id="armory.item-search.spelleffect.interrupt">Avoid Interruption</str>
+		<str id="armory.item-search.spelleffect.proc">Chance on Hit/Cast</str>
+		<str id="armory.item-search.spelleffect.dispel">Dispel Effects</str>
+		<str id="armory.item-search.spelleffect.cooldown">Reduce Cooldown</str>
+		<str id="armory.item-search.spelleffect.casttime">Reduce Cast Time</str>
+		<str id="armory.item-search.spelleffect.spellcost">Reduce Spell Cost</str>
+		<str id="armory.item-search.spelleffect.duration">Increase Duration</str>
+		<str id="armory.item-search.spelleffect.range">Increase Range</str>
+		<str id="armory.item-search.spelleffect.threat">Reduce Threat</str>
+		<str id="armory.item-search.spelleffect.group">Group Buff</str>
+		<str id="armory.item-search.spelleffect.summon">Summon Creature</str>
+		<str id="armory.item-search.spelleffect.pvprewards">PvP Rewards:</str>
+	</itemsSpellEffect>
+
+	<releases>
+		<str id="armory.releases.wotlk">Wrath of the Lich King</str>
+		<str id="armory.releases.bc">Burning Crusade</str>
+		<str id="armory.releases.classic">Classic</str>
+	</releases>
+
+	<professions>
+		<str id="armory.item-search.leatherworking">Leatherworking</str>
+		<str id="armory.item-search.tailoring">Tailoring</str>
+		<str id="armory.item-search.engineering">Engineering</str>
+		<str id="armory.item-search.blacksmithing">Blacksmithing</str>
+		<str id="armory.item-search.cooking">Cooking</str>
+		<str id="armory.item-search.alchemy">Alchemy</str>
+		<str id="armory.item-search.firstaid">First Aid</str>
+		<str id="armory.item-search.enchanting">Enchanting</str>
+		<str id="armory.item-search.fishing">Fishing</str>
+		<str id="armory.item-search.jewelcrafting">Jewelcrafting</str>
+	</professions>
+
+	<itemsOptions>
+		<str id="armory.item-search.usableby">Desired By:</str>
+		<str id="armory.item-search.allclasses">Any Class</str>
+		<str id="armory.item-search.faction">Faction:</str>
+		<str id="armory.item-search.allpvprewardsdash">All PvP Rewards - </str>
+		<str id="armory.item-search.allfactions">All Factions</str>
+		<str id="armory.item-search.levelrangeone"> (lvl </str>
+		<str id="armory.item-search.levelrangetwo"> raid</str>
+		<str id="armory.item-search.levelrangethree">)</str>
+		<str id="armory.item-search.dropsfrom">Drops From:</str>
+		<str id="armory.item-search.alldungeons">All Dungeons</str>
+		<str id="armory.item-search.allbosses">All Bosses</str>
+		<str id="armory.item-search.recommanded">Recommended Upgrades - </str>
+
+		<str id="armory.item-search.newsearch">Search</str>
+		<str id="armory.item-search.resetform">Reset Form</str>
+
+		<str id="armory.item-search.itemname">Item Name:</str>
+
+		<str id="armory.item-search.seealso">See Also</str>
+
+		<str id="armory.item-search.enchP">Permanent Enchantments</str>
+		<str id="armory.item-search.enchT">Temporary Enchantments</str>
+
+		<str id="armory.item-search.allitemsadvanced">All Items - Advanced Search</str>
+
+		<str id="armory.item-search.allpvpsources">All PvP Sources</str>
+		<str id="armory.item-search.pvpsource">PvP Source: </str>
+		<str id="armory.item-search.select.pvpsource">--Select a PvP Source--</str>
+		<str id="armory.item-search.select.allfactions">All Factions</str>
+		<str id="armory.item-search.select.dungeon">--Select a Dungeon--</str>
+		<str id="armory.item-search.select.bojr">Badge of Justice Rewards</str>
+		<str id="armory.item-search.select.eovr">Emblem of Valor Rewards</str>
+		<str id="armory.item-search.select.eohr">Emblem of Heroism Rewards</str>
+		<str id="armory.item-search.select.eocr">Emblem of Conquest Rewards</str>
+		<str id="armory.item-search.select.eotr">Emblem of Triumph Rewards</str>
+		<str id="armory.item-search.select.eofr">Emblem of Frost Rewards</str>
+
+		<str id="armory.item-search.recipes">Recipes:</str>
+		<str id="armory.item-search.allrecipes">All Recipes</str>
+		<str id="armory.item-search.books">Books</str>
+
+		<str id="armory.item-search.itemlevel">Item Level:</str>
+		<str id="armory.item-search.requiredlevel">Required Level:</str>
+
+		<str id="armory.item-search.showadvanced">Show Advanced Options</str>
+		<str id="armory.item-search.advancedfilters">Advanced Filters</str>
+		<str id="armory.item-search.addfilter">Add Filter</str>
+		<str id="armory.item-search.showitemfilters">Show Item Filters</str>
+
+		<str id="armory.item-search.matchall">Match all filters</str>
+		<str id="armory.item-search.matchone">Match at least one</str>
+		<str id="armory.item-search.predefinedfilters">Predefined Filters</str>
+		<str id="armory.item-search.matchalltip">Select this option for search results that match every advanced filter.&lt;br /&gt;Example: Show items that have both strength and stamina</str>
+		<str id="armory.item-search.matchonetip">Select this option for search results that match at least one of the advanced filters.&lt;br /&gt;Example: Show items that have strength or have stamina</str>
+
+		<str id="armory.item-search.selectclass">Select a class for better predefined filters</str>
+
+		<str id="armory.item-search.slot">Slot:</str>
+
+		<str id="armory.item-search.requiredskilllevel">Skill Level:</str>
+		<str id="armory.item-search.complex.weapons">Weapons</str>
+		<str id="armory.item-search.complex.armor">Armor</str>
+
+		<str id="armory.search.paging">Page <param-html1/> of <param-html2/>
+    </str>
+    <!-- for paging, param1-html is the page # box -->
+		<str id="armory.search.showing">Showing <param-html1/> of <param-html2/> results</str>
+    <!-- example: showing 0 of 0 results -->
+	</itemsOptions>
+
+	<items>
+		<str id="armory.item-search.selectfilter">--Select a Filter--</str>
+		<str id="armory.item-search.boss">Boss: </str>
+		<str id="armory.item-search.bossesone">All </str>
+		<str id="armory.item-search.bossestwo"> Bosses</str>
+		<str id="armory.item-search.showitemfilters">Show Item Filters</str>
+
+		<str id="armory.items.hover.desiredby">Use this filter along with the item type and slot filters to give you a master list of the most sought-after items for every class in each inventory slot.</str>
+
+		<sources>
+			<general>
+				<str id="armory.item-search.source">Source:</str>
+				<str id="armory.item-search.allsources">All Sources</str>
+				<str id="armory.item-search.dungeondrops">Dungeon Drops</str>
+				<str id="armory.item-search.dungeonraiddrops">Dungeons &amp; Raid Drops</str>
+				<str id="armory.item-search.reputationrewards">Reputation Rewards</str>
+				<str id="armory.item-search.questrewards">Quest Rewards</str>
+				<str id="armory.item-search.pvprewardsa">PvP Rewards - Alliance</str>
+				<str id="armory.item-search.pvprewardsh">PvP Rewards - Horde</str>
+			</general>
+			<dungeons>
+				<str id="armory.item-search.alldungeonraid">All Dungeons &amp; Raid</str>
+				<str id="armory.item-search.dungeononly">Dungeons Only</str>
+				<str id="armory.item-search.raidonly">Raids Only</str>
+			</dungeons>
+		</sources>
+		<types>
+			<str id="armory.item-search.itemtype">Item Type:</str>
+			<str id="armory.item-search.allitems">All Items</str>
+			<str id="armory.item-search.weapons">Weapons</str>
+			<str id="armory.item-search.armor">Armor</str>
+			<str id="armory.item-search.gems">Gems</str>
+			<str id="armory.item-search.containers">Containers</str>
+			<str id="armory.item-search.consumables">Consumables</str>
+			<str id="armory.item-search.tradegoods">Trade Goods</str>
+			<str id="armory.item-search.projectiles">Projectiles</str>
+			<str id="armory.item-search.quivers">Quivers</str>
+			<str id="armory.item-search.recipes">Recipes</str>
+			<str id="armory.item-search.reagents">Reagents</str>
+			<str id="armory.item-search.miscellaneous">Miscellaneous</str>
+			<str id="armory.item-search.enchp">Enchantments - Permanent</str>
+			<str id="armory.item-search.encht">Enchantments - Temporary</str>
+			<str id="armory.item-search.enchantments">Enchantments</str>
+			<str id="armory.item-search.mounts">Mounts</str>
+			<str id="armory.item-search.smallpets">Small Pets</str>
+			<str id="armory.item-search.glyphs">Glyphs</str>
+			<str id="armory.item-search.keys">Keys</str>
+		</types>
+    	<gems>
+			<str id="armory.item-search.gemtype">Gem Type:</str>
+			<str id="armory.item-search.allgemtypes">All Gem Types</str>
+			<str id="armory.item-search.blue">Blue</str>
+			<str id="armory.item-search.red">Red</str>
+			<str id="armory.item-search.yellow">Yellow</str>
+			<str id="armory.item-search.meta">Meta</str>
+			<str id="armory.item-search.green">Green</str>
+			<str id="armory.item-search.orange">Orange</str>
+			<str id="armory.item-search.purple">Purple</str>
+			<str id="armory.item-search.prismatic">Prismatic</str>
+		</gems>
+		<tradeGoods>
+			<str id="reagents">Reagents</str>
+			<str id="recipes">Recipes</str>
+			<str id="enchantments">Enchantments</str>
+		</tradeGoods>
+		<quiverTypes>
+			<str id="armory.item-search.quiver.type">Type:</str>
+			<str id="armory.item-search.quiver.all">All Quivers</str>
+			<str id="armory.item-search.quiver.quiver">Quiver</str>
+			<str id="armory.item-search.quiver.ammo">Ammo Pouch</str>
+		</quiverTypes>
+		<projectileTypes>
+			<str id="armory.item-search.projectiles.type">Type:</str>
+			<str id="armory.item-search.projectiles.all">All Projectiles</str>
+			<str id="armory.item-search.projectiles.arrow">Arrow</str>
+			<str id="armory.item-search.projectiles.bullet">Bullet</str>
+		</projectileTypes>
+		<weaponSlots>
+			<str id="armory.item-search.weapons.allslots">All Slots</str>
+			<str id="armory.item-search.weapons.main">Usable in Main Hand</str>
+			<str id="armory.item-search.weapons.off">Usable in Off-hand</str>
+			<str id="armory.item-search.weapons.both">Usable in Main or Off-hand</str>
+			<str id="armory.item-search.weapons.two">Two-Handed</str>
+			<str id="armory.item-search.weapons.ranged">Ranged</str>
+		</weaponSlots>
+		<weaponTypes>
+			<str id="armory.item-search.weapontype">Weapon Type:</str>
+			<str id="armory.item-search.allweapontypes">All Weapon Types</str>
+			<str id="armory.item-search.oneaxes">One-Handed Axes</str>
+			<str id="armory.item-search.twoaxes">Two-Handed Axes</str>
+			<str id="armory.item-search.bows">Bows</str>
+			<str id="armory.item-search.guns">Guns</str>
+			<str id="armory.item-search.onemaces">One-Handed Maces</str>
+			<str id="armory.item-search.twomaces">Two-Handed Maces</str>
+			<str id="armory.item-search.polearms">Polearms</str>
+			<str id="armory.item-search.oneswords">One-Handed Swords</str>
+			<str id="armory.item-search.twoswords">Two-Handed Swords</str>
+			<str id="armory.item-search.staves">Staves</str>
+			<str id="armory.item-search.fist">Fist Weapons</str>
+			<str id="armory.item-search.misc">Miscellaneous</str>
+			<str id="armory.item-search.daggers">Daggers</str>
+			<str id="armory.item-search.thrown">Thrown</str>
+			<str id="armory.item-search.crossbows">Crossbows</str>
+			<str id="armory.item-search.wands">Wands</str>
+			<str id="armory.item-search.fishingpole">Fishing Pole</str>
+		</weaponTypes>
+		<bags>
+			<str id="armory.item-search.bags.bagtype">Bag Type:</str>
+			<str id="armory.item-search.bags.allbags">All Bags</str>
+			<str id="armory.item-search.bags.bag">Bag</str>
+			<str id="armory.item-search.bags.soul">Soul Bag</str>
+			<str id="armory.item-search.bags.herb">Herb Bag</str>
+			<str id="armory.item-search.bags.enchanting">Enchanting Bag</str>
+			<str id="armory.item-search.bags.engineering">Engineering Bag</str>
+			<str id="armory.item-search.bags.gem">Gem Bag</str>
+			<str id="armory.item-search.bags.mining">Mining Bag</str>
+			<str id="armory.item-search.bags.leatherworking">Leatherworking Bag</str>
+			<str id="armory.item-search.bags.inscription">Inscription Bag</str>
+		</bags>
+		<armorType>
+			<str id="armory.item-search.armor.armortype">Armor Type:</str>
+			<str id="armory.item-search.armor.allarmortypes">All Armor Types</str>
+			<str id="armory.item-search.armor.cloth">Cloth</str>
+			<str id="armory.item-search.armor.leather">Leather</str>
+			<str id="armory.item-search.armor.mail">Mail</str>
+			<str id="armory.item-search.armor.plate">Plate</str>
+			<str id="armory.item-search.armor.shield">Shield</str>
+			<str id="armory.item-search.armor.idol">Idol</str>
+			<str id="armory.item-search.armor.libram">Libram</str>
+			<str id="armory.item-search.armor.totem">Totem</str>
+			<str id="armory.item-search.armor.sigil">Sigil</str>
+			<str id="armory.item-search.armor.misc">Miscellaneous</str>
+		</armorType>
+    	<rarity>
+			<str id="armory.item-search.rarity">Rarity:</str>
+			<str id="armory.item-search.all">All</str>
+			<str id="armory.item-search.poor">Poor</str>
+			<str id="armory.item-search.common">Common</str>
+			<str id="armory.item-search.uncommon">Uncommon</str>
+			<str id="armory.item-search.rare">Rare</str>
+			<str id="armory.item-search.epic">Epic</str>
+			<str id="armory.item-search.legendary">Legendary</str>
+			<str id="armory.item-search.heirloom">Heirloom</str>
+		</rarity>
+		<slots>
+			<str id="allslots">All Slots</str>
+			<str id="head">Head</str>
+			<str id="neck">Neck</str>
+			<str id="shoulders">Shoulders</str>
+			<str id="back">Back</str>
+			<str id="chest">Chest</str>
+			<str id="shirt">Shirt</str>
+			<str id="wrists">Wrists</str>
+			<str id="hands">Hands</str>
+			<str id="waist">Waist</str>
+			<str id="legs">Legs</str>
+			<str id="feet">Feet</str>
+			<str id="finger">Finger</str>
+			<str id="trinket">Trinket</str>
+			<str id="shield">Shield</str>
+			<str id="offhandfrill">Off-hand Frill</str>
+			<str id="main">Usable in Main Hand</str>
+			<str id="off">Usable in Off-hand</str>
+			<str id="both">Usable in Main or Off-hand</str>
+			<str id="two">Two-Handed</str>
+			<str id="ranged">Ranged</str>
+			<str id="tabard">Tabard</str>
+			<str id="weapon">Weapon</str>
+		</slots>
+	</items>
+
+	<itemsPredefined>
+		<str id="armory.predefined.druid.tank">Druid Tank</str>
+		<str id="armory.predefined.druid.melee">Druid Melee DPS</str>
+		<str id="armory.predefined.druid.caster">Druid Caster DPS</str>
+		<str id="armory.predefined.druid.healer">Druid Healer</str>
+
+		<str id="armory.predefined.hunter.ranged">Hunter Ranged DPS</str>
+
+		<str id="armory.predefined.mage.caster">Mage Caster DPS</str>
+
+		<str id="armory.predefined.paladin.tank">Paladin Tank</str>
+		<str id="armory.predefined.paladin.melee">Paladin Melee DPS</str>
+		<str id="armory.predefined.paladin.caster">Paladin Caster DPS</str>
+		<str id="armory.predefined.paladin.healer">Paladin Healer</str>
+
+		<str id="armory.predefined.priest.caster">Priest Caster DPS</str>
+		<str id="armory.predefined.priest.healer">Priest Healer</str>
+
+		<str id="armory.predefined.rogue.melee">Rogue Melee DPS</str>
+
+		<str id="armory.predefined.shaman.melee">Shaman Melee DPS</str>
+		<str id="armory.predefined.shaman.caster">Shaman Caster DPS</str>
+		<str id="armory.predefined.shaman.healer">Shaman Healer</str>
+
+		<str id="armory.predefined.warlock.caster">Warlock Caster DPS</str>
+
+		<str id="armory.predefined.warrior.tank">Warrior Tank</str>
+		<str id="armory.predefined.warrior.melee">Warrior Melee DPS</str>
+  </itemsPredefined>
+
+<!-- Please do not localize the faction names and icons -->
+	<factions>
+		<str id="factions">Factions</str>
+		<str id="faction">Faction</str>
+		<str id="side">Side</str>
+		<str id="factions.other">Other</str>
+
+		<str id="factions.learnmore">Click to display associated items or to learn more about this faction</str>
+
+		<str id="armory.character-reputation.name.darnassus">Darnassus</str>
+		<str id="armory.character-reputation.icon.darnassus">web-Spell_Arcane_TeleportDarnassus</str>
+		<str id="armory.character-reputation.url.darnassus">http://www.wow-europe.com/en/info/races/nightelves.html</str>
+
+		<str id="armory.character-reputation.name.gnomereganexiles">Gnomeregan Exiles</str>
+		<str id="armory.character-reputation.icon.gnomereganexiles">Spell_Arcane_PortalIronForge</str>
+		<str id="armory.character-reputation.url.gnomereganexiles">http://www.wow-europe.com/en/info/races/gnomes.html</str>
+
+		<str id="armory.character-reputation.name.ironforge">Ironforge</str>
+		<str id="armory.character-reputation.icon.ironforge">web-Spell_Arcane_TeleportIronForge</str>
+		<str id="armory.character-reputation.url.ironforge">http://www.wow-europe.com/en/info/races/dwarves.html</str>
+
+		<str id="armory.character-reputation.name.stormwind">Stormwind</str>
+		<str id="armory.character-reputation.icon.stormwind">web-Spell_Arcane_TeleportStormWind</str>
+		<str id="armory.character-reputation.url.stormwind">http://www.wow-europe.com/en/info/races/humans.html</str>
+
+		<str id="armory.character-reputation.name.exodar">Exodar</str>
+		<str id="armory.character-reputation.icon.exodar">Spell_Arcane_TeleportExodar</str>
+		<str id="armory.character-reputation.url.exodar">http://www.wow-europe.com/en/info/races/draenei.html</str>
+
+		<str id="armory.character-reputation.name.darkspeartrolls">Darkspear Trolls</str>
+		<str id="armory.character-reputation.icon.darkspeartrolls">Spell_Arcane_PortalOrgrimmar</str>
+		<str id="armory.character-reputation.url.darkspeartrolls">http://www.wow-europe.com/en/info/races/trolls.html</str>
+
+		<str id="armory.character-reputation.name.orgrimmar">Orgrimmar</str>
+		<str id="armory.character-reputation.icon.orgrimmar">web-Spell_Arcane_TeleportOrgrimmar</str>
+		<str id="armory.character-reputation.url.orgrimmar">http://www.wow-europe.com/en/info/races/orcs.html</str>
+
+		<str id="armory.character-reputation.name.thunderbluff">Thunder Bluff</str>
+		<str id="armory.character-reputation.icon.thunderbluff">web-Spell_Arcane_TeleportThunderBluff</str>
+		<str id="armory.character-reputation.url.thunderbluff">http://www.wow-europe.com/en/info/races/tauren.html</str>
+
+		<str id="armory.character-reputation.name.undercity">Undercity</str>
+		<str id="armory.character-reputation.icon.undercity">web-Spell_Arcane_TeleportUnderCity</str>
+		<str id="armory.character-reputation.url.undercity">http://www.wow-europe.com/en/info/races/undead.html</str>
+
+		<str id="armory.character-reputation.name.silvermooncity">Silvermoon City</str>
+		<str id="armory.character-reputation.icon.silvermooncity">Spell_Arcane_TeleportSilvermoon</str>
+		<str id="armory.character-reputation.url.silvermooncity">http://www.wow-europe.com/en/info/races/bloodelves.html</str>
+
+		<str id="armory.character-reputation.name.theleagueofarathor">The League of Arathor</str>
+		<str id="armory.character-reputation.icon.theleagueofarathor">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.theleagueofarathor">http://www.wow-europe.com/en/info/basics/battlegrounds/arathi/info.html</str>
+
+		<str id="armory.character-reputation.name.silverwingsentinels">Silverwing Sentinels</str>
+		<str id="armory.character-reputation.icon.silverwingsentinels">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.silverwingsentinels">http://www.wow-europe.com/en/info/basics/battlegrounds/warsong/info.html</str>
+
+		<str id="armory.character-reputation.name.stormpikeguard">Stormpike Guard</str>
+		<str id="armory.character-reputation.icon.stormpikeguard">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.stormpikeguard">http://www.wow-europe.com/en/info/basics/battlegrounds/alterac/info.html</str>
+
+		<str id="armory.character-reputation.name.frostwolfclan">Frostwolf Clan</str>
+		<str id="armory.character-reputation.icon.frostwolfclan">INV_Jewelry_FrostwolfTrinket_01</str>
+		<str id="armory.character-reputation.url.frostwolfclan">http://www.wow-europe.com/en/info/basics/battlegrounds/alterac/info.html</str>
+
+		<str id="armory.item-info.world">World</str>
+
+		<str id="armory.character-reputation.name.thedefilers">The Defilers</str>
+		<str id="armory.character-reputation.icon.thedefilers">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.thedefilers">http://www.wow-europe.com/en/info/basics/battlegrounds/arathi/info.html</str>
+
+		<str id="armory.character-reputation.name.warsongoutriders">Warsong Outriders</str>
+		<str id="armory.character-reputation.icon.warsongoutriders">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.warsongoutriders">http://www.wow-europe.com/en/info/basics/battlegrounds/warsong/info.html</str>
+
+		<str id="armory.character-reputation.name.ashtonguedeathsworn">Ashtongue Deathsworn</str>
+		<str id="armory.character-reputation.icon.ashtonguedeathsworn"/>
+
+		<str id="armory.character-reputation.name.kurenai">Kurenai</str>
+		<str id="armory.character-reputation.icon.kurenai">Spell_Holy_PersuitofJustice</str>
+		<str id="armory.character-reputation.url.kurenai">http://www.wow-europe.com/en/info/basics/factions/nagrand/index.html</str>
+
+		<str id="armory.character-reputation.name.themag'har">The Mag'har</str>
+		<str id="armory.character-reputation.icon.themag'har">Racial_Orc_BerserkerStrength</str>
+		<str id="armory.character-reputation.url.themag'har">http://www.wow-europe.com/en/info/basics/factions/nagrand/index.html</str>
+		<str id="armory.character-reputation.url.maghar">http://www.wow-europe.com/en/info/basics/factions/nagrand/index.html</str>
+
+		<str id="armory.character-reputation.name.netherwing">Netherwing</str>
+		<str id="armory.character-reputation.icon.netherwing">Spell_Arcane_Arcane03</str>
+		<str id="armory.character-reputation.url.netherwing">http://www.wow-europe.com/en/info/basics/mounts/netherwing-tips.html</str>
+
+		<str id="armory.character-reputation.name.ogri'la">Ogri'la</str>
+		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1038&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.name.sha'tariskyguard">Sha'tari Skyguard</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1031&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
+		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>
+		<str id="armory.character-reputation.url.cenarionexpedition">http://www.wow-europe.com/en/info/basics/factions/cenarionexpedition/index.html</str>
+
+		<str id="armory.character-reputation.name.honorhold">Honor Hold</str>
+		<str id="armory.character-reputation.icon.honorhold">INV_Misc_Token_HonorHold</str>
+		<str id="armory.character-reputation.url.honorhold">http://www.wow-europe.com/en/info/basics/factions/hellfire/index.html</str>
+
+		<str id="armory.character-reputation.name.sporeggar">Sporeggar</str>
+		<str id="armory.character-reputation.icon.sporeggar">INV_Mushroom_11</str>
+		<str id="armory.character-reputation.url.sporeggar">http://www.wow-europe.com/en/info/basics/factions/zangarmarsh/index.html</str>
+
+		<str id="armory.character-reputation.name.theconsortium">The Consortium</str>
+		<str id="armory.character-reputation.icon.theconsortium">INV_Misc_Bandage_Netherweave</str>
+		<str id="armory.character-reputation.url.theconsortium">http://www.wow-europe.com/en/info/basics/factions/consortium/index.html</str>
+
+		<str id="armory.character-reputation.name.thrallmar">Thrallmar</str>
+		<str id="armory.character-reputation.icon.thrallmar">INV_Misc_Token_Thrallmar</str>
+		<str id="armory.character-reputation.url.thrallmar">http://www.wow-europe.com/en/info/basics/factions/hellfire/index.html</str>
+
+		<str id="armory.character-reputation.name.lowercity">Lower City</str>
+		<str id="armory.character-reputation.icon.lowercity"/>
+		<str id="armory.character-reputation.url.lowercity">http://www.wow-europe.com/en/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thealdor">The Aldor</str>
+		<str id="armory.character-reputation.icon.thealdor">INV_Shield_30</str>
+		<str id="armory.character-reputation.url.thealdor">http://www.wow-europe.com/en/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thescryers">The Scryers</str>
+		<str id="armory.character-reputation.icon.thescryers">INV_Shield_31</str>
+		<str id="armory.character-reputation.url.thescryers">http://www.wow-europe.com/en/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thesha'tar">The Sha'tar</str>
+		<str id="armory.character-reputation.icon.thesha'tar">INV_Shield_33</str>
+		<str id="armory.character-reputation.url.thesha'tar">http://www.wow-europe.com/en/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.bootybay">Booty Bay</str>
+		<str id="armory.character-reputation.icon.bootybay">Ability_Spy</str>
+		<str id="armory.character-reputation.url.bootybay">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.everlook">Everlook</str>
+		<str id="armory.character-reputation.icon.everlook">Spell_Frost_ArcticWinds</str>
+		<str id="armory.character-reputation.url.everlook">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.gadgetzan">Gadgetzan</str>
+		<str id="armory.character-reputation.icon.gadgetzan">INV_Misc_Gear_07</str>
+		<str id="armory.character-reputation.url.gadgetzan">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.ratchet">Ratchet</str>
+		<str id="armory.character-reputation.icon.ratchet">INV_Weapon_Rifle_16</str>
+		<str id="armory.character-reputation.url.ratchet">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.argentdawn">Argent Dawn</str>
+		<str id="armory.character-reputation.icon.argentdawn">INV_Misc_Token_ArgentDawn</str>
+		<str id="armory.character-reputation.url.argentdawn">http://www.wow-europe.com/en/info/basics/factions/argent/index.html</str>
+
+		<str id="armory.character-reputation.name.bloodsailbuccaneers">Bloodsail Buccaneers</str>
+		<str id="armory.character-reputation.icon.bloodsailbuccaneers">INV_Helmet_66</str>
+		<str id="armory.character-reputation.url.bloodsailbuccaneers">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.broodofnozdormu">Brood of Nozdormu</str>
+		<str id="armory.character-reputation.icon.broodofnozdormu">INV_Misc_Head_Dragon_Bronze</str>
+		<str id="armory.character-reputation.url.broodofnozdormu">http://www.wow-europe.com/en/info/basics/factions/nozdormu/index.html</str>
+
+		<str id="armory.character-reputation.name.cenarioncircle">Cenarion Circle</str>
+		<str id="armory.character-reputation.icon.cenarioncircle"/>
+		<str id="armory.character-reputation.url.cenarioncircle">http://www.wow-europe.com/en/info/basics/factions/cenarion/index.html</str>
+
+		<str id="armory.character-reputation.name.darkmoonfaire">Darkmoon Faire</str>
+		<str id="armory.character-reputation.icon.darkmoonfaire">INV_Misc_Ticket_Tarot_Stack_01</str>
+		<str id="armory.character-reputation.url.darkmoonfaire">http://www.wow-europe.com/en/info/basics/factions/darkmoon/index.html</str>
+
+		<str id="armory.character-reputation.name.gelkisclancentaur">Gelkis Clan Centaur</str>
+		<str id="armory.character-reputation.icon.gelkisclancentaur">INV_Misc_Head_Centaur_01</str>
+
+		<str id="armory.character-reputation.name.hydraxianwaterlords">Hydraxian Waterlords</str>
+		<str id="armory.character-reputation.icon.hydraxianwaterlords">Spell_Frost_SummonWaterElemental</str>
+		<str id="armory.character-reputation.url.hydraxianwaterlords">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.keepersoftime">Keepers of Time</str>
+		<str id="armory.character-reputation.icon.keepersoftime">INV_Misc_PocketWatch_01</str>
+		<str id="armory.character-reputation.url.keepersoftime">http://www.wow-europe.com/en/info/basics/factions/keepersoftime/index.html</str>
+
+		<str id="armory.character-reputation.name.magramclancentaur">Magram Clan Centaur</str>
+		<str id="armory.character-reputation.icon.magramclancentaur">INV_Misc_Head_Centaur_01</str>
+
+		<str id="armory.character-reputation.name.ravenholdt">Ravenholdt</str>
+		<str id="armory.character-reputation.icon.ravenholdt">Ability_Rogue_MasterOfSubtlety</str>
+
+		<str id="armory.character-reputation.name.thescaleofthesands">The Scale of the Sands</str>
+		<str id="armory.character-reputation.icon.thescaleofthesands">INV_Qiraj_JewelBlessed</str>
+		<str id="armory.character-reputation.url.thescaleofthesands">http://www.wow-europe.com/en/info/basics/factions/scaleofsands/index.html</str>
+		<str id="armory.character-reputation.url.scaleofthesands">http://www.wow-europe.com/en/info/basics/factions/scaleofsands/index.html</str>
+
+		<str id="armory.character-reputation.name.shendralar">Shendralar</str>
+		<str id="armory.character-reputation.icon.shendralar">INV_Offhand_Draenei_A_01</str>
+
+		<str id="armory.character-reputation.name.thoriumbrotherhood">Thorium Brotherhood</str>
+		<str id="armory.character-reputation.icon.thoriumbrotherhood">INV_Ore_Thorium_02</str>
+		<str id="armory.character-reputation.url.thoriumbrotherhood">http://www.wow-europe.com/en/info/basics/factions/thorium/index.html</str>
+
+		<str id="armory.character-reputation.name.timbermawhold">Timbermaw Hold</str>
+		<str id="armory.character-reputation.icon.timbermawhold">INV_Misc_MonsterClaw_04</str>
+		<str id="armory.character-reputation.url.timbermawhold">http://www.wow-europe.com/en/info/basics/factions/timbermaw/index.html</str>
+
+		<str id="armory.character-reputation.name.tranquillien">Tranquillien</str>
+		<str id="armory.character-reputation.icon.tranquillien">Spell_Shadow_DarkSummoning</str>
+
+		<str id="armory.character-reputation.name.wintersabertrainers">Wintersaber Trainers</str>
+		<str id="armory.character-reputation.icon.wintersabertrainers">Ability_Mount_WhiteTiger</str>
+		<str id="armory.character-reputation.url.wintersabertrainers">http://www.wow-europe.com/en/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.thevioleteye">The Violet Eye</str>
+		<str id="armory.character-reputation.icon.thevioleteye">INV_Jewelcrafting_Nightseye_01</str>
+		<str id="armory.character-reputation.url.thevioleteye">http://www.wow-europe.com/en/info/basics/factions/violeteye/index.html</str>
+
+		<str id="armory.character-reputation.name.zandalartribe">Zandalar Tribe</str>
+		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
+		<str id="armory.character-reputation.url.zandalartribe">http://www.wow-europe.com/en/info/basics/factions/zandalar/index.html</str>
+
+		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+
+		<!-- WOTLK REPS -->
+		<!-- horde -->
+		<!--
+		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		-->
+
+		<!-- alliance -->
+		<!--
+		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		-->
+
+		<!-- both factions -->
+		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.group.grouped">Default View</str>
+		<str id="armory.character-reputation.group.ungrouped">Listed View</str>
+		<str id="armory.character-reputation.sort.faction">Sort by Name</str>
+		<str id="armory.character-reputation.sort.reputation">Sort by Standing</str>
+		<str id="armory.character-reputation.noreputation">This character has not earned reputation with any faction.</str>
+	</factions>
+
+<!--item-tooltip.xsl-->
+	<itemTooltip>
+		<str id="armory.item-tooltip.conjured">Conjured</str>
+		<str id="armory.item-tooltip.binds-pickup">Binds when picked up</str>
+		<str id="armory.item-tooltip.binds-equipped">Binds when equipped</str>
+		<str id="armory.item-tooltip.binds-used">Binds when used</str>
+		<str id="armory.item-tooltip.quest-item">Quest Item</str>
+		<str id="armory.item-tooltip.unique">Unique</str>
+		<str id="armory.item-tooltip.unique-equipped">Unique-Equipped</str>
+		<str id="armory.item-tooltip.begins-quest">This Item Begins a Quest</str>
+		<str id="armory.item-tooltip.slot">Slot</str>
+		<str id="armory.item-tooltip.projectile">Projectile</str>
+
+		<str id="armory.item-tooltip.non-equip">INDEX_NON_EQUIP_TYPE</str>
+		<str id="armory.item-tooltip.one-hand">One-Hand</str>
+		<str id="armory.item-tooltip.two-hand">Two Hand</str>
+		<str id="armory.item-tooltip.held-off-hand">Held In Off Hand</str>
+		<str id="armory.item-tooltip.thrown">Thrown</str>
+		<str id="armory.item-tooltip.bag-type">INDEX_BAG_TYPE</str>
+		<str id="armory.item-tooltip.quiver-type">INDEX_QUIVER_TYPE</str>
+
+		<str id="armory.item-tooltip.adds">Adds</str>
+		<str id="armory.item-tooltip.dps">damage per second</str>
+		<str id="armory.item-tooltip.speed">Speed</str>
+		<str id="armory.item-tooltip.damage">Dmg</str>
+		<str id="armory.item-tooltip.holy-damage">Holy Damage</str>
+		<str id="armory.item-tooltip.fire-damage">Fire Damage</str>
+		<str id="armory.item-tooltip.nature-damage">Nature Damage</str>
+		<str id="armory.item-tooltip.frost-damage">Frost Damage</str>
+		<str id="armory.item-tooltip.shadow-damage">Shadow Damage</str>
+		<str id="armory.item-tooltip.arcane-damage">Arcane Damage</str>
+
+		<str id="armory.item-tooltip.armor">Armor</str>
+		<str id="armory.item-tooltip.block">Block</str>
+		<str id="armory.item-tooltip.strength">Strength</str>
+		<str id="armory.item-tooltip.agility">Agility</str>
+		<str id="armory.item-tooltip.stamina">Stamina</str>
+		<str id="armory.item-tooltip.intellect">Intellect</str>
+		<str id="armory.item-tooltip.spirit">Spirit</str>
+		<str id="armory.item-tooltip.fire-resistance">Fire Resistance</str>
+		<str id="armory.item-tooltip.nature-resistance">Nature Resistance</str>
+		<str id="armory.item-tooltip.frost-resistance">Frost Resistance</str>
+		<str id="armory.item-tooltip.shadow-resistance">Shadow Resistance</str>
+		<str id="armory.item-tooltip.arcane-resistance">Arcane Resistance</str>
+		<str id="armory.item-tooltip.socket-bonus">Socket Bonus:</str>
+
+		<str id="armory.item-tooltip.meta-socket">Meta Socket</str>
+		<str id="armory.item-tooltip.red-socket">Red Socket</str>
+		<str id="armory.item-tooltip.yellow-socket">Yellow Socket</str>
+		<str id="armory.item-tooltip.blue-socket">Blue Socket</str>
+
+		<str id="armory.item-tooltip.random-enchant">Random enchantment</str>
+		<str id="armory.item-tooltip.durability">Durability</str>
+
+		<str id="armory.item-tooltip.races">Races</str>
+		<str id="armory.item-tooltip.classes">Classes</str>
+		<str id="armory.item-tooltip.requires-level">Requires Level</str>
+		<str id="armory.item-tooltip.requires">Requires</str>
+
+		<str id="armory.item-tooltip.requires.personalarena">Requires personal arena rating of</str>
+
+<!--reputation status 0= male 1= female no number= neutral-->
+		<str id="armory.item-tooltip.hated">Hated</str>
+		<str id="armory.item-tooltip.hostile">Hostile</str>
+		<str id="armory.item-tooltip.unfriendly">Unfriendly</str>
+		<str id="armory.item-tooltip.neutral">Neutral</str>
+		<str id="armory.item-tooltip.friendly">Friendly</str>
+		<str id="armory.item-tooltip.honored">Honored</str>
+		<str id="armory.item-tooltip.revered">Revered</str>
+		<str id="armory.item-tooltip.exalted">Exalted</str>
+
+		<str id="armory.item-tooltip.hated.0">Hated</str>
+		<str id="armory.item-tooltip.hostile.0">Hostile</str>
+		<str id="armory.item-tooltip.unfriendly.0">Unfriendly</str>
+		<str id="armory.item-tooltip.neutral.0">Neutral</str>
+		<str id="armory.item-tooltip.friendly.0">Friendly</str>
+		<str id="armory.item-tooltip.honored.0">Honored</str>
+		<str id="armory.item-tooltip.revered.0">Revered</str>
+		<str id="armory.item-tooltip.exalted.0">Exalted</str>
+
+		<str id="armory.item-tooltip.hated.1">Hated</str>
+		<str id="armory.item-tooltip.hostile.1">Hostile</str>
+		<str id="armory.item-tooltip.unfriendly.1">Unfriendly</str>
+		<str id="armory.item-tooltip.neutral.1">Neutral</str>
+		<str id="armory.item-tooltip.friendly.1">Friendly</str>
+		<str id="armory.item-tooltip.honored.1">Honored</str>
+		<str id="armory.item-tooltip.revered.1">Revered</str>
+		<str id="armory.item-tooltip.exalted.1">Exalted</str>
+
+		<str id="armory.item-tooltip.increase-defense">Equip: Increases defense rating by</str>
+		<str id="armory.item-tooltip.increase-dodge">Equip: Increases your dodge rating by</str>
+		<str id="armory.item-tooltip.bonusParryRating">Equip: Increases your parry rating by</str>
+		<str id="armory.item-tooltip.bonusBlockRating">Equip: Increases your shield block rating by</str>
+		<str id="armory.item-tooltip.bonusHitMeleeRating">bonusHitMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHitRangedRating">bonusHitRangedRating</str>
+		<str id="armory.item-tooltip.improve-spell">Equip: Improves spell hit rating by</str>
+		<str id="armory.item-tooltip.bonusCritMeleeRating">bonusCritMeleeRating</str>
+		<str id="armory.item-tooltip.bonusCritRangedRating">bonusCritRangedRating</str>
+		<str id="armory.item-tooltip.improve-spell-crit">Equip: Improves spell critical strike rating by</str>
+		<str id="armory.item-tooltip.bonusHitTakenMeleeRating">bonusHitTakenMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHitTakenRangedRating">bonusHitTakenRangedRating</str>
+		<str id="armory.item-tooltip.bonusHitTakenSpellRating">bonusHitTakenSpellRating</str>
+		<str id="armory.item-tooltip.bonusCritTakenMeleeRating">bonusCritTakenMeleeRating</str>
+		<str id="armory.item-tooltip.bonusCritTakenRangedRating">bonusCritTakenRangedRating</str>
+		<str id="armory.item-tooltip.bonusCritTakenSpellRating">bonusCritTakenSpellRating</str>
+		<str id="armory.item-tooltip.bonusHasteMeleeRating">bonusHasteMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHasteRangedRating">bonusHasteRangedRating</str>
+		<str id="armory.item-tooltip.bonusHasteSpellRating">Equip: Improves spell haste rating by</str>
+		<str id="armory.item-tooltip.improve-hit-rating">Equip: Improves hit rating by</str>
+		<str id="armory.item-tooltip.improve-crit-strike">Equip: Improves critical strike rating by</str>
+		<str id="armory.item-tooltip.bonusHitTakenRating">Equip: Improves hit avoidance rating by</str>
+		<str id="armory.item-tooltip.bonusCritTakenRating">bonusCritTakenRating</str>
+		<str id="armory.item-tooltip.improve-resilience">Equip: Improves your resilience rating by</str>
+		<str id="armory.item-tooltip.bonusHasteRating">Equip: Improves haste rating by</str>
+		<str id="armory.item-tooltip.bonusSpellPower">Equip: Increases spell power by</str>
+
+		<!-- new in 3.02 -->
+		<str id="armory.item-tooltip.bonusAttackPower">Equip: Increases your attack power by</str>
+		<str id="armory.item-tooltip.bonusExpertiseRating">Equip: Increases your expertise rating by</str>
+		<str id="armory.item-tooltip.bonusRangedAttackPower">Equip: Increases your ranged attack power by</str>
+		<str id="armory.item-tooltip.bonusFeralAttackPower">Equip: Increases your feral attack power by</str>
+		<str id="armory.item-tooltip.bonusManaRegen">Equip: Restores</str>
+		<str id="armory.item-tooltip.bonusManaRegenPer5">mana per 5 secs</str>
+		<str id="armory.item-tooltip.bonusArmorPenetration">Equip: Increases your armor penetration rating by</str>
+		<str id="armory.item-tooltip.bonusBlockValue">Equip: Increases the block value of your shield by</str>
+		<str id="armory.item-tooltip.bonusHealthRegen">Equip: Increases your health regeneration by</str>
+		<str id="armory.item-tooltip.bonusSpellPenetration">Equip: Increases spell penetration by</str>
+
+		<str id="armory.item-tooltip.requiredLevelMin">Requires level</str>
+		<str id="armory.item-tooltip.requiredLevelMax">to</str>
+
+		<str id="armory.item-tooltip.charges">Charges</str>
+		<str id="armory.item-tooltip.use">Use</str>
+		<str id="armory.item-tooltip.equip">Equip</str>
+		<str id="armory.item-tooltip.chance-on-hit">Chance on hit</str>
+		<str id="armory.item-tooltip.set">Set</str>
+
+		<str id="armory.item-tooltip.majorglyph">Major Glyph</str>
+		<str id="armory.item-tooltip.minorglyph">Minor Glyph</str>
+	</itemTooltip>
+
+	<itemSlot>
+		<str id="armory.itemslot.slot.head">Head</str>
+		<str id="armory.itemslot.slot.neck">Neck</str>
+		<str id="armory.itemslot.slot.shoulders">Shoulders</str>
+		<str id="armory.itemslot.slot.back">Back</str>
+		<str id="armory.itemslot.slot.chest">Chest</str>
+		<str id="armory.itemslot.slot.shirt">Shirt</str>
+		<str id="armory.itemslot.slot.tabard">Tabard</str>
+		<str id="armory.itemslot.slot.wrist">Wrist</str>
+		<str id="armory.itemslot.slot.hands">Hands</str>
+		<str id="armory.itemslot.slot.hand">Hand</str>
+		<str id="armory.itemslot.slot.waist">Waist</str>
+		<str id="armory.itemslot.slot.legs">Legs</str>
+		<str id="armory.itemslot.slot.feet">Feet</str>
+		<str id="armory.itemslot.slot.finger">Finger</str>
+		<str id="armory.itemslot.slot.trinket">Trinket</str>
+		<str id="armory.itemslot.slot.mainHand">Main Hand</str>
+		<str id="armory.itemslot.slot.offHand">Off Hand</str>
+		<str id="armory.itemslot.slot.ranged">Ranged</str>
+		<str id="armory.itemslot.slot.relic">Relic</str>
+		<str id="armory.itemslot.slot.ammo">Ammo</str>
+	</itemSlot>
+
+	<spellType>
+		<str id="armory.spell-type.fire">Fire</str>
+		<str id="armory.spell-type.arcane">Arcane</str>
+		<str id="armory.spell-type.holy">Holy</str>
+		<str id="armory.spell-type.shadow">Shadow</str>
+		<str id="armory.spell-type.nature">Nature</str>
+		<str id="armory.spell-type.frost">Frost</str>
+	</spellType>
+
+<!--item types - DO NOT CHANGE THE IDS-->
+	<itemType>
+		<str id="armory.item-type.Two-Handed Axes">Two-Handed Axe</str>
+		<str id="armory.item-type.One-Handed Axes">One-Handed Axe</str>
+		<str id="armory.item-type.Bows">Bow</str>
+		<str id="armory.item-type.Bucklers">Buckler</str>
+		<str id="armory.item-type.Crossbows">Crossbow</str>
+		<str id="armory.item-type.Daggers">Dagger</str>
+		<str id="armory.item-type.One-Handed Exotics">One-Handed Exotic</str>
+		<str id="armory.item-type.Two-Handed Exotics">Two-Handed Exotic</str>
+		<str id="armory.item-type.Fist Weapons">Fist Weapon</str>
+		<str id="armory.item-type.Guns">Gun</str>
+		<str id="armory.item-type.Idols">Idol</str>
+		<str id="armory.item-type.Librams">Libram</str>
+		<str id="armory.item-type.One-Handed Maces">One-Handed Mace</str>
+		<str id="armory.item-type.Two-Handed Maces">Two-Handed Mace</str>
+		<str id="armory.item-type.Polearms">Polearm</str>
+		<str id="armory.item-type.Shields">Shield</str>
+		<str id="armory.item-type.Spears">Spear</str>
+		<str id="armory.item-type.Staves">Staff</str>
+		<str id="armory.item-type.Two-Handed Swords">Two-Handed Sword</str>
+		<str id="armory.item-type.One-Handed Swords">One-Handed Sword</str>
+		<str id="armory.item-type.Totems">Totem</str>
+		<str id="armory.item-type.Sigils">Sigils</str>
+		<str id="armory.item-type.Wands">Wand</str>
+	</itemType>
+
+	<talents>
+		<str id="url.talents">http://www.wow-europe.com/en/info/basics/talents</str>
+		<str id="path.talents">/shared/global/talents</str>
+		<str id="talents.langDir">/en</str>
+
+		<str id="armory.class6.talents.tree.one">Blood</str>
+		<str id="armory.class6.talents.tree.two">Frost</str>
+		<str id="armory.class6.talents.tree.three">Unholy</str>
+
+		<str id="armory.class11.talents.tree.one">Balance</str>
+		<str id="armory.class11.talents.tree.two">Feral Combat</str>
+		<str id="armory.class11.talents.tree.three">Restoration</str>
+
+		<str id="armory.class3.talents.tree.one">Beast Mastery</str>
+		<str id="armory.class3.talents.tree.two">Marksmanship</str>
+		<str id="armory.class3.talents.tree.three">Survival</str>
+
+		<str id="armory.class8.talents.tree.one">Arcane</str>
+		<str id="armory.class8.talents.tree.two">Fire</str>
+		<str id="armory.class8.talents.tree.three">Frost</str>
+
+		<str id="armory.class2.talents.tree.one">Holy</str>
+		<str id="armory.class2.talents.tree.two">Protection</str>
+		<str id="armory.class2.talents.tree.three">Retribution</str>
+
+		<str id="armory.class5.talents.tree.one">Discipline</str>
+		<str id="armory.class5.talents.tree.two">Holy</str>
+		<str id="armory.class5.talents.tree.three">Shadow</str>
+
+		<str id="armory.class4.talents.tree.one">Assassination</str>
+		<str id="armory.class4.talents.tree.two">Combat</str>
+		<str id="armory.class4.talents.tree.three">Subtlety</str>
+
+		<str id="armory.class7.talents.tree.one">Elemental</str>
+		<str id="armory.class7.talents.tree.two">Enhancement</str>
+		<str id="armory.class7.talents.tree.three">Restoration</str>
+
+		<str id="armory.class9.talents.tree.one">Affliction</str>
+		<str id="armory.class9.talents.tree.two">Demonology</str>
+		<str id="armory.class9.talents.tree.three">Destruction</str>
+
+		<str id="armory.class1.talents.tree.one">Arms</str>
+		<str id="armory.class1.talents.tree.two">Fury</str>
+		<str id="armory.class1.talents.tree.three">Protection</str>
+	</talents>
+
+<!--item-info -->
+	<itemInfo>
+		<str id="currentlyEquipped">Currently Equipped</str>
+		<str id="armory.item-info.drop-rate.0">None</str>
+		<str id="armory.item-info.drop-rate.1">Extremely Low (1% - 2%)</str>
+		<str id="armory.item-info.drop-rate.2">Very Low (3% - 14%)</str>
+		<str id="armory.item-info.drop-rate.3">Low (15% - 24%)</str>
+		<str id="armory.item-info.drop-rate.4">Medium (25% - 50%)</str>
+		<str id="armory.item-info.drop-rate.5">High (51% - 99%)</str>
+		<str id="armory.item-info.drop-rate.6">Guaranteed (100%)</str>
+
+		<str id="armory.item-info.label.name">Name</str>
+		<str id="armory.item-info.label.location">Location</str>
+		<str id="armory.item-info.label.drop">Drop Chance</str>
+		<str id="armory.item-info.label.level">Level</str>
+		<str id="armory.item-info.label.reagents">Reagents</str>
+		<str id="armory.item-info.label.cost">Cost</str>
+		<str id="armory.item-info.label.count">Count</str>
+		<str id="armory.item-info.label.title">Title</str>
+		<str id="armory.item-info.label.reqlevel">Req Level</str>
+		<str id="armory.item-info.label.type">Type</str>
+		<str id="armory.item-info.label.enchantment">Enchantment</str>
+		<str id="armory.item-info.label.effects">Effects</str>
+		<str id="armory.item-info.label.items_detailed">Model View</str>
+		<str id="armory.item-info.label.items_list">Gear List</str>
+
+		<str id="armory.item-info.title.dropped">Dropped by</str>
+		<str id="armory.item-info.title.pickpocketed">Pickpocketed from</str>
+		<str id="armory.item-info.title.skinned">Skinned from</str>
+		<str id="armory.item-info.title.gathered">Herb Gathered from</str>
+		<str id="armory.item-info.title.mined">Mined from</str>
+		<str id="armory.item-info.title.starts">Starts</str>
+		<str id="armory.item-info.title.provided">Provided for</str>
+		<str id="armory.item-info.title.objective">Objective of</str>
+		<str id="armory.item-info.title.reward">Reward from</str>
+
+		<str id="armory.item-info.randomenchants">Random Enchantment:</str>
+		<str id="armory.item-info.itemlevel">Item Level:</str>
+		<str id="armory.item-info.dropsfrom">Drops from:</str>
+		<str id="armory.item-info.contained">Contained in:</str>
+		<str id="armory.item-info.bought">Cost:</str>
+		<str id="armory.item-info.sells">Sells for:</str>
+		<str id="armory.item-info.disenchantable">Disenchantable:</str>
+		<str id="armory.item-info.heroic"> (Heroic)</str>
+		<str id="armory.item-info.soldby">Sold by</str>
+		<str id="armory.item-info.reqregeants">Created by</str>
+		<str id="armory.item-info.plans">Plans for</str>
+		<str id="armory.item-info.regeantsfor">Reagent for</str>
+		<str id="armory.item-info.currency">Currency for</str>
+		<str id="armory.item-info.disinto">Disenchants into</str>
+		<str id="armory.item-info.transinto">Opposite-faction equivalent:</str>
+		<str id="armory.item-info.transinto.alliance">Alliance Equivalent:</str>
+		<str id="armory.item-info.transinto.horde">Horde Equivalent:</str>
+		<str id="armory.item-info.randomwdrop">Random world drop from &lt;strong&gt;humanoids&lt;/strong&gt; and &lt;strong&gt;beasts&lt;/strong&gt;, levels 49-66.</str>
+
+		<str id="armory.item-info.disenchant.tooltip.before">Requires &lt;strong&gt;</str>
+		<str id="armory.item-info.disenchant.tooltip.after">&lt;/strong&gt; Enchanting to disenchant</str>
+		<str id="item.fact">Item Facts</str>
+	</itemInfo>
+
+<!-- Character races & classes 0= male 1= female no number= neutral-->
+	<races>
+		<str id="armory.races.race.3">Dwarf</str>
+		<str id="armory.races.race.3.0">Dwarf</str>
+		<str id="armory.races.race.3.1">Dwarf</str>
+		<str id="armory.races.race.1">Human</str>
+		<str id="armory.races.race.1.0">Human</str>
+		<str id="armory.races.race.1.1">Human</str>
+		<str id="armory.races.race.4">Night Elf</str>
+		<str id="armory.races.race.4.0">Night Elf</str>
+		<str id="armory.races.race.4.1">Night Elf</str>
+		<str id="armory.races.race.7">Gnome</str>
+		<str id="armory.races.race.7.0">Gnome</str>
+		<str id="armory.races.race.7.1">Gnome</str>
+		<str id="armory.races.race.11">Draenei</str>
+		<str id="armory.races.race.11.0">Draenei</str>
+		<str id="armory.races.race.11.1">Draenei</str>
+		<str id="armory.races.race.2">Orc</str>
+		<str id="armory.races.race.2.0">Orc</str>
+		<str id="armory.races.race.2.1">Orc</str>
+		<str id="armory.races.race.5">Undead</str>
+		<str id="armory.races.race.5.0">Undead</str>
+		<str id="armory.races.race.5.1">Undead</str>
+		<str id="armory.races.race.10">Blood Elf</str>
+		<str id="armory.races.race.10.0">Blood Elf</str>
+		<str id="armory.races.race.10.1">Blood Elf</str>
+		<str id="armory.races.race.6">Tauren</str>
+		<str id="armory.races.race.6.0">Tauren</str>
+		<str id="armory.races.race.6.1">Tauren</str>
+		<str id="armory.races.race.8">Troll</str>
+		<str id="armory.races.race.8.0">Troll</str>
+		<str id="armory.races.race.8.1">Troll</str>
+	</races>
+
+	<classes>
+		<str id="armory.classes.class.1">Warrior</str>
+		<str id="armory.classes.class.1.0">Warrior</str>
+		<str id="armory.classes.class.1.1">Warrior</str>
+		<str id="armory.classes.class.11">Druid</str>
+		<str id="armory.classes.class.11.0">Druid</str>
+		<str id="armory.classes.class.11.1">Druid</str>
+		<str id="armory.classes.class.2">Paladin</str>
+		<str id="armory.classes.class.2.0">Paladin</str>
+		<str id="armory.classes.class.2.1">Paladin</str>
+		<str id="armory.classes.class.5">Priest</str>
+		<str id="armory.classes.class.5.0">Priest</str>
+		<str id="armory.classes.class.5.1">Priest</str>
+		<str id="armory.classes.class.4">Rogue</str>
+		<str id="armory.classes.class.4.0">Rogue</str>
+		<str id="armory.classes.class.4.1">Rogue</str>
+		<str id="armory.classes.class.9">Warlock</str>
+		<str id="armory.classes.class.9.0">Warlock</str>
+		<str id="armory.classes.class.9.1">Warlock</str>
+		<str id="armory.classes.class.7">Shaman</str>
+		<str id="armory.classes.class.7.0">Shaman</str>
+		<str id="armory.classes.class.7.1">Shaman</str>
+		<str id="armory.classes.class.3">Hunter</str>
+		<str id="armory.classes.class.3.0">Hunter</str>
+		<str id="armory.classes.class.3.1">Hunter</str>
+		<str id="armory.classes.class.8">Mage</str>
+		<str id="armory.classes.class.8.0">Mage</str>
+		<str id="armory.classes.class.8.1">Mage</str>
+		<str id="armory.classes.class.6">Death Knight</str>
+		<str id="armory.classes.class.6.0">Death Knight</str>
+		<str id="armory.classes.class.6.1">Death Knight</str>
+
+		<str id="item-filter.anytype">Any Type</str>
+		<str id="item-filter.tank">Tank</str>
+		<str id="item-filter.meleedps">Melee DPS</str>
+		<str id="item-filter.casterdps">Caster DPS</str>
+		<str id="item-filter.healer">Healer</str>
+
+		<str id="items.warlocks.damage">+ Damage Only</str>
+		<str id="items.warlocks.damagecrit">+ Damage &amp; Crit</str>
+
+		<role>
+			<str id="armory.item-search.tank">Tank</str>
+			<str id="armory.item-search.physicaldps">Physical DPS</str>
+			<str id="armory.item-search.casterdps">Caster DPS</str>
+			<str id="armory.item-search.healer">Healer</str>
+		</role>
+	</classes>
+
+	<guildStats>
+		<str id="armory.guild-stats.minlvl">Min Lvl</str>
+		<str id="armory.guild-stats.maxlvl">Max Lvl</str>
+		<str id="armory.guild-stats.matching">Characters Matching Criteria</str>
+		<str id="armory.guild-stats.totalChars">Total Characters in Guild</str>
+		<str id="armory.guild-stats.number"># of Level </str>
+		<str id="armory.guild-stats.numberAfter">s</str>
+		<str id="armory.guild-stats.percentage">% of Level </str>
+		<str id="armory.guild-stats.percentageAfter">s</str>
+		<str id="armory.guild-stats.race.breakdown">Race Breakdown</str>
+		<str id="armory.guild-stats.class.breakdown">Class Breakdown</str>
+		<str id="armory.guild-stats.level.breakdown">Level Breakdown</str>
+	</guildStats>
+
+	<itemsSearchColumns>
+		<str id="armory.hover.questReward">Quest Reward</str>
+		<str id="armory.hover.requiredLevel">Required Level:</str>
+		<str id="armory.hover.dungeon">Dungeon:</str>
+		<str id="armory.hover.heroic">(Heroic)</str>
+		<str id="armory.hover.droprate">Drop Rate:</str>
+		<str id="armory.hover.boss">Boss:</str>
+		<str id="armory.hover.bossdrop">Boss Drop</str>
+
+		<str id="armory.searchColumn.speed">Speed</str>
+		<str id="armory.searchColumn.dps">Dps</str>
+
+		<str id="armory.searchColumn.type">Type</str>
+		<str id="armory.searchColumn.requiredLevel">Req Lvl</str>
+		<str id="armory.searchColumn.itemLevel">Item Lvl</str>
+
+		<str id="armory.searchColumn.source">Source</str>
+
+		<str id="armory.searchColumn.sourceType.questReward">Quest Reward</str>
+		<str id="armory.searchColumn.sourceType.none"> - </str>
+		<str id="armory.searchColumn.sourceType.creatureDrop">Drop</str>
+		<str id="armory.searchColumn.sourceType.gameObjectDrop">Chest Drop</str>
+		<str id="armory.searchColumn.sourceType.factionReward">Rep. Reward</str>
+		<str id="armory.searchColumn.sourceType.pvpReward">PvP Reward</str>
+		<str id="armory.searchColumn.sourceType.vendorPvP">PvP Reward</str>
+		<str id="armory.searchColumn.sourceType.vendor">Vendor</str>
+		<str id="armory.searchColumn.sourceType.pickPocket">Pickpocket</str>
+		<str id="armory.searchColumn.sourceType.creatureSkin">Skinning</str>
+		<str id="armory.searchColumn.sourceType.creatureMine">Mining</str>
+		<str id="armory.searchColumn.sourceType.creatureHerb">Herbalism</str>
+		<str id="armory.searchColumn.sourceType.startsQuest">Quest Item</str>
+		<str id="armory.searchColumn.sourceType.providedQuest">Quest Item</str>
+		<str id="armory.searchColumn.sourceType.objQuest">Quest Item</str>
+
+		<str id="armory.searchColumn.sourceType.createdBySpell">Created</str>
+		<str id="armory.searchColumn.sourceType.reagentSpell">Reagent</str>
+		<str id="armory.searchColumn.sourceType.createdByPlans">Created</str>
+		<str id="armory.searchColumn.sourceType.currency">Currency</str>
+
+		<str id="armory.searchColumn.sourceType.planForItem">Plans</str>
+		<str id="armory.searchColumn.sourceType.worldDrop">Drop</str>
+
+		<str id="armory.searchColumn.inventoryType">Slot</str>
+
+		<str id="armory.searchColumn.requiredSkill">Required Skill</str>
+
+		<str id="armory.searchColumn.containerSlots">Slots</str>
+
+		<str id="armory.searchColumn.slot.1">Head</str>
+		<str id="armory.searchColumn.slot.2">Neck</str>
+		<str id="armory.searchColumn.slot.3">Shoulders</str>
+		<str id="armory.searchColumn.slot.16">Back</str>
+		<str id="armory.searchColumn.slot.5">Chest</str>
+		<str id="armory.searchColumn.slot.20">Chest</str>
+		<str id="armory.searchColumn.slot.4">Shirt</str>
+		<str id="armory.searchColumn.slot.18">Tabard</str>
+		<str id="armory.searchColumn.slot.9">Wrist</str>
+		<str id="armory.searchColumn.slot.10">Hands</str>
+		<str id="armory.searchColumn.slot.6">Waist</str>
+		<str id="armory.searchColumn.slot.7">Legs</str>
+		<str id="armory.searchColumn.slot.8">Feet</str>
+		<str id="armory.searchColumn.slot.11">Finger</str>
+		<str id="armory.searchColumn.slot.12">Trinket</str>
+		<str id="armory.searchColumn.slot.14">Shield</str>
+		<str id="armory.searchColumn.slot.15">Main Hand</str>
+		<str id="armory.searchColumn.slot.23">Off Hand</str>
+		<str id="armory.searchColumn.slot.17">Ranged</str>
+		<str id="armory.searchColumn.slot.28">Relic</str>
+
+		<str id="armory.searchColumn.weaponStats">Weapon Stats</str>
+		<str id="armory.searchColumn.dps">DPS</str>
+		<str id="armory.searchColumn.minDamage">Min Dmg</str>
+		<str id="armory.searchColumn.maxDamage">Max Dmg</str>
+		<str id="armory.searchColumn.speed">Speed</str>
+
+		<str id="armory.searchColumn.baseStats">Base Stat Bonuses</str>
+		<str id="armory.searchColumn.strength">Strength</str>
+		<str id="armory.searchColumn.agility">Agility</str>
+		<str id="armory.searchColumn.stamina">Stamina</str>
+		<str id="armory.searchColumn.intellect">Intellect</str>
+		<str id="armory.searchColumn.spirit">Spirit</str>
+
+		<str id="armory.searchColumn.physical">Physical Combat Bonuses</str>
+		<str id="armory.searchColumn.attackPower">Attack Power</str>
+		<str id="armory.searchColumn.feralAttackPower">Feral Attack Power</str>
+		<str id="armory.searchColumn.critRating">Crit Rating</str>
+		<str id="armory.searchColumn.hitRating">Hit Rating</str>
+		<str id="armory.searchColumn.hasteRating">Haste Rating</str>
+		<str id="armory.searchColumn.expertiseRating">Expertise Rating</str>
+
+		<str id="armory.searchColumn.spell">Spell Bonuses</str>
+		<str id="armory.searchColumn.spellHealing">Healing</str>
+		<str id="armory.searchColumn.spellPower">Spell Power</str>
+		<str id="armory.searchColumn.spellCritRating">Spell Crit Rating</str>
+		<str id="armory.searchColumn.spellHitRating">Spell Hit Rating</str>
+		<str id="armory.searchColumn.spellPenetration">Spell Penetration</str>
+		<str id="armory.searchColumn.spellManaRegen">Mana Regen</str>
+		<str id="armory.searchColumn.spellHasteRating">Spell Haste Rating</str>
+		<str id="armory.searchColumn.spellDamageArcane">Arcane Damage</str>
+		<str id="armory.searchColumn.spellDamageHoly">Holy Damage</str>
+		<str id="armory.searchColumn.spellDamageShadow">Shadow Damage</str>
+		<str id="armory.searchColumn.spellDamageNature">Nature Damage</str>
+		<str id="armory.searchColumn.spellDamageFrost">Frost Damage</str>
+		<str id="armory.searchColumn.spellDamageFire">Fire Damage</str>
+
+		<str id="armory.searchColumn.defense">Defense Bonuses</str>
+		<str id="armory.searchColumn.armor">Armor</str>
+		<str id="armory.searchColumn.blockRating">Block Rating</str>
+		<str id="armory.searchColumn.blockValue">Block Value</str>
+		<str id="armory.searchColumn.defenseRating">Defense Rating</str>
+		<str id="armory.searchColumn.dodgeRating">Dodge Rating</str>
+		<str id="armory.searchColumn.parryRating">Parry Rating</str>
+		<str id="armory.searchColumn.resilience">Resilience</str>
+		<str id="armory.searchColumn.healthRegen">Health Regen</str>
+
+		<str id="armory.searchColumn.resistances">Resistance Bonuses</str>
+		<str id="armory.searchColumn.resistArcane">Arcane Resist</str>
+		<str id="armory.searchColumn.resistShadow">Shadow Resist</str>
+		<str id="armory.searchColumn.resistNature">Nature Resist</str>
+		<str id="armory.searchColumn.resistFrost">Frost Resist</str>
+		<str id="armory.searchColumn.resistFire">Fire Resist</str>
+
+		<str id="armory.searchColumn.general">General</str>
+		<str id="armory.searchColumn.bindsPickedUp">Bind on pickup</str>
+		<str id="armory.searchColumn.bindsEquip">Bind on equip</str>
+		<str id="armory.searchColumn.bindsWhenUsed">Bind on use</str>
+		<str id="armory.searchColumn.requiresProfession">Requires Profession</str>
+		<str id="armory.searchColumn.unique">Unique</str>
+		<str id="armory.searchColumn.uniqueEquipped">Unique-Equipped</str>
+		<str id="armory.searchColumn.hasSpellEffect">Has Spell Effect...</str>
+
+		<str id="armory.searchColumn.relevance">Relevance</str>
+	</itemsSearchColumns>
+
+	<guildBank>
+		<str id="emptyLogs">Bank log has no recent activity.</str>
+		<str id="col.origin">O</str>
+		<str id="col.origin.tooltip">Origin</str>
+		<str id="col.action">A</str>
+		<str id="col.action.tooltip">Action</str>
+		<str id="col.destination">D</str>
+		<str id="col.destination.tooltip">Destination</str>
+		<str id="col.item">Item</str>
+		<str id="subtype">Subtype</str>
+		<str id="type">Type</str>
+		<str id="resetfilters">Reset Filters</str>
+		<str id="runfilters">Run Filters</str>
+		<str id="charnamec">Character Name: </str>
+		<str id="guildrankc">Guild Rank: </str>
+		<str id="origin">Origin: </str>
+		<str id="ttype">Transaction type: </str>
+		<str id="allbags">All Tabs</str>
+		<str id="destination">Destination: </str>
+		<str id="itemname">Item Name: </str>
+		<str id="itemquality">Item Quality: </str>
+		<str id="itemtype">Item Type: </str>
+		<str id="itemcost">Item Cost: </str>
+		<str id="itemsubtype">Item Subtype: </str>
+		<str id="date">Date: </str>
+		<str id="bag">Tab: </str>
+		<str id="bagnoc">Tab </str>
+		<str id="bagnospaceone">Tab</str>
+		<str id="bagnospacetwo"/>
+		<str id="resultsover">Too many search results. Only the 2000 most recent transactions are being displayed. Please enter a smaller time interval.</str>
+		<str id="bagnocafter"/>
+		<str id="resultsfound">Results Found</str>
+		<str id="transactionsfound">Transactions Found</str>
+		<str id="notetime">Note: Date and times are displayed in local time</str>
+		<str id="nopermission">You don't have view permissions.</str>
+		<str id="none">--None--</str>
+		<str id="alltypes">All Item Types</str>
+		<str id="bankcontents">Bank Contents</str>
+		<str id="banklog">Bank Log</str>
+		<str id="banklogresults">Bank Log Filters</str>
+		<str id="characterfilters">Character filters</str>
+		<str id="itemfilters">Item filters</str>
+		<str id="datefilters">Date filters</str>
+		<str id="transactionfilters">Transaction filters</str>
+		<str id="all">All</str>
+		<str id="transaction.1">Deposit Item</str>
+		<str id="transaction.2">Withdraw Item</str>
+		<str id="transaction.3">Move Item</str>
+		<str id="transaction.4">Deposit Money</str>
+		<str id="transaction.5">Withdraw Money</str>
+		<str id="transaction.6">Repair</str>
+		<str id="transaction.7">Move Item</str>
+		<str id="transaction.8">Withdraw Money</str>
+		<str id="transaction.9">Guild Bank Tab Purchase</str>
+		<str id="deposititem">Deposit Item</str>
+		<str id="withdrawitem">Withdraw Item</str>
+		<str id="depositmoney">Deposit Money</str>
+		<str id="withdrawmoney">Withdraw Money</str>
+		<str id="buytab">Guild Bank Tab Purchase</str>
+		<str id="repair">Repair</str>
+		<str id="moveitem">Move Item</str>
+		<str id="banktabselect">bank tabs</str>
+		<str id="goldinbank">gold in bank</str>
+		<str id="contentsof">Contents of</str>
+		<str id="bankcontentsfilters">Bank Contents Filters</str>
+		<str id="refreshtab">Refresh this view</str>
+		<str id="noaccess">This guild bank is inaccessible. Please ensure that your World of Warcraft account includes a character who is a member of this guild, and that your character's guild rank confers guild bank access. Some guild banks may be suspended due to inactivity.</str>
+		<str id="guildmsgotd">Guild Message of the Day:</str>
+		<str id="guildmsginfo">Guild Information:</str>
+		<str id="showguildinfo">Show Guild Info</str>
+		<str id="hideguildinfo">Hide Guild Info</str>
+		<str id="name">Name:</str>
+		<str id="level">Level:</str>
+		<str id="race">Race:</str>
+		<str id="gender">Gender:</str>
+		<str id="class">Class:</str>
+		<str id="rank">Rank:</str>
+		<str id="both">Both</str>
+		<str id="male">Male</str>
+		<str id="female">Female</str>
+		<str id="allranks">All Ranks</str>
+		<str id="daytitle">Day</str>
+		<str id="monthtitle">Month</str>
+		<str id="yeartitle">Year</str>
+		<str id="timetitle">Time</str>
+		<str id="from">From:</str>
+		<str id="to">To:</str>
+		<str id="search">Search</str>
+		<str id="datesearch">Date Search</str>
+		<str id="guildrosterfilters">Guild Roster Filters</str>
+		<str id="guildlogincharacter">You must log in and have a character in this guild in order to see this page.</str>
+		<str id="guildloginpermission">You don't have permission to view this page.</str>
+		<str id="error.notabaccess">You do not have access to any Guild Bank tabs.</str>
+		<str id="error.loginrequired">Login Required</str>
+		<str id="error.accessdenied">Access Denied</str>
+		<str id="error.notmember">In order to view this Guild Bank, you must have a character that is a member of this guild on your account and the account itself must not be inactive, banned, or otherwise inaccessible.</str>
+		<str id="error.gologin">The Guild Banks are a login-protected area of the Armory. You must log in with a World of Warcraft account that includes a character in this guild in order to view its Guild Bank.</str>
+		<str id="error.loginarmory">Log in to the Armory</str>
+		<str id="set">Group</str>
+		<str id="nextset">Next Group</str>
+		<str id="previousset">Previous Group</str>
+		<str id="currentset">Transaction Group</str>
+		<str id="totalresults">Total Results:</str>
+		<str id="information">Information:</str>
+		<str id="firstgroup">1</str>
+		<str id="note">Note:</str>
+		<str id="in">in</str>
+		<str id="abouttransactions">About Transaction Groups:</str>
+		<str id="notetransactions1">A single transaction group consists of over one thousand transactions</str>
+		<str id="notetransactions2">The most recent group of transactions is displayed first</str>
+		<str id="notetransactions3">Searching and sorting results only affects the currently displayed group</str>
+		<str id="notetransactions4">Navigate to different groups with the arrow buttons above</str>
+		<str id="notetransactions5">Depending on your guild bank permissions, you may not see all transactions recorded in a group.</str>
+		<str id="noaccess">You do not have access to this tab</str>
+		<str id="errortitle">Information Temporarily Unavailable</str>
+		<str id="errorcontent">The information you are trying to view is currently unavailable. Please try again at a later time.</str>
+		<str id="empty.title">Guild Bank Empty</str>
+		<str id="empty.content">This Guild Bank is currently empty, or no bank tabs have been purchased by the guild master.</str>
+	</guildBank>
+
+	<login>
+		<str id="armory.login.loginrequired">Login Required</str>
+		<str id="armory.login.access">Please log in to access this feature</str>
+		<str id="armory.login.accountname">Account Name</str>
+		<str id="armory.login.password">Password</str>
+		<str id="armory.login.noaccount">Forgot your Account Name?</str>
+		<str id="armory.login.forgotpassword">Forgot your Password?</str>
+		<str id="armory.login.forgotpassword.tooltip">Forgot your Password?&lt;br/&gt;Click here to retrieve your password.</str>
+		<str id="armory.login.welcome">Welcome</str>
+		<str id="armory.login.logged">You are logged in as</str>
+		<str id="armory.login.mustlogin">Log in to the Armory to display your primary character's arena information in the calculator.</str>
+		<str id="armory.login.nochars">This account has no characters.</str>
+		<str id="armory.login.loginbtn">Login</str>
+		<str id="armory.login.login">Log In</str>
+		<str id="armory.login.cancel">Cancel</str>
+		<str id="armory.login.logout">Log Out</str>
+		<str id="armory.login.close">Close</str>
+		<str id="armory.login.help">Help</str>
+		<str id="armory.login.mustlog">You must log in to access protected areas of the Armory.</str>
+		<str id="armory.login.error">You entered an invalid account name or password. Please try again.</str>
+		<str id="armory.login.invites">Invitations for: </str>
+		<str id="armory.login.invitations">Invitations</str>
+		<str id="armory.login.invites.youhave">You have: </str>
+		<str id="armory.login.invites.pending">You have pending invites</str>
+		<str id="armory.login.calendar.pending">Pending Calendar Invites</str>
+		<str id="armory.login.achievements">Achievement Points</str>
+		<str id="armory.login.bookmark.remove">Remove this bookmark</str>
+		<str id="armory.login.bookmark.nobookmark">You have no bookmarks</str>
+		<str id="armory.login.bookmark.nobookmark.desc">To add a bookmark, search for any character profile and click the 'add to bookmarks' link.</str>
+	</login>
+
+	<pvpSource>
+		<str id="armory.pvprewards.wintergrasp">Wintergrasp</str>
+		<str id="armory.pvprewards.arena8">Arena Rewards: Season 8</str>
+		<str id="armory.pvprewards.arena7">Arena Rewards: Season 7</str>
+		<str id="armory.pvprewards.arena6">Arena Rewards: Season 6</str>
+		<str id="armory.pvprewards.arena5">Arena Rewards: Season 5</str>
+		<str id="armory.pvprewards.arena4">Arena Rewards: Season 4</str>
+		<str id="armory.pvprewards.arena3">Arena Rewards: Season 3</str>
+		<str id="armory.pvprewards.arena2">Arena Rewards: Season 2</str>
+		<str id="armory.pvprewards.arena1">Arena Rewards: Season 1</str>
+		<str id="armory.pvprewards.honor4">Honor Rewards: Season 4</str>
+		<str id="armory.pvprewards.honor3">Honor Rewards: Season 3</str>
+		<str id="armory.pvprewards.honor2">Honor Rewards: Season 2</str>
+		<str id="armory.pvprewards.honor1">Honor Rewards: Season 1</str>
+		<str id="armory.pvprewards.honor">Honor Rewards</str>
+		<str id="armory.pvprewards.av">Alterac Valley</str>
+		<str id="armory.pvprewards.ab">Arathi Basin</str>
+		<str id="armory.pvprewards.wsg">Warsong Gulch</str>
+		<str id="armory.pvprewards.halaa">Halaa</str>
+		<str id="armory.pvprewards.honorhold">Honor Hold</str>
+		<str id="armory.pvprewards.thrallmar">Thrallmar</str>
+		<str id="armory.pvprewards.terrokar">Terokkar</str>
+		<str id="armory.pvprewards.zangarmarsh">Zangarmarsh</str>
+	</pvpSource>
+
+    <characterSheet>
+		<str id="armory.character.refresh">This character profile is currently unavailable, due to a long period of inactivity or as a result of high server load.</str>
+		<str id="armory.character.talent-specialization">Talent Specialization</str>
+		<str id="armory.character.resistances">Resistances:</str>
+		<str id="armory.character.professions-primary">Primary Professions</str>
+
+		<str id="armory.character.list.name">Item Name</str>
+		<str id="armory.character.list.lvl">Level</str>
+		<str id="armory.character.list.gems">Gems</str>
+		<str id="armory.character.list.ench">Enchant</str>
+		
+		<str id="armory.character-sheet.base-stats.display">Base Stats</str>
+		<str id="armory.character-sheet.melee.display">Melee</str>
+		<str id="armory.character-sheet.ranged.display">Ranged</str>
+		<str id="armory.character-sheet.spell.display">Spell</str>
+		<str id="armory.character-sheet.defenses.display">Defense</str>
+
+		<str id="armory.character-sheet.prompt.levelTen">Must be at least level 10 for Character Profiles</str>
+		<str id="armory.character-sheet.currentLevel">Current Level</str>
+
+		<str id="armory.character-sheet.findupgrade">Find an Upgrade</str>
+	</characterSheet>
+
+	<embed>
+		<str id="armory.embed.trial">Try World of Warcraft for free</str>
+		<str id="armory.embed.armorylink">View on the Armory</str>
+	</embed>
+	
+	<arenaCalc>
+		<str id="twohand">Two-Handed</str>
+		<str id="crossbow">Crossbow</str>
+		<str id="mainhand">Main-Hand</str>
+		<str id="onehand">One-Hand</str>
+		<str id="offhand">Off-Hand</str>
+		<str id="shield">Shield</str>
+		<str id="head">Head</str>
+		<str id="chest">Chest</str>
+		<str id="legs">Legs</str>
+		<str id="shoulder">Shoulders</str>
+		<str id="hands">Hands</str>
+		<str id="offhandfrill">Off-Hand Frill</str>
+		<str id="thrown">Thrown</str>
+		<str id="wand">Wand</str>
+		<str id="idol">Idol</str>
+		<str id="totem">Totem</str>
+		<str id="sigil">Sigil</str>
+		<str id="libram">Libram</str>
+		<str id="title">Arena Calculator</str>
+		<str id="selectCalc">Select a calculator:</str>
+		<str id="calc.arenaPoints">Arena Points Calculator</str>
+		<str id="calc.arenaPoints.question">How many arena points will I earn this week?</str>
+		<str id="calc.rating">Rating Calculator</str>
+		<str id="calc.rating.question">What's the average rating I'll need to get my desired arena reward?</str>
+		<str id="calc.time">Time Calculator</str>
+		<str id="calc.time.question">When can I expect to get my desired arena reward?</str>
+		<str id="intro">
+      <p>Each team has a Team Rating. This rating reflects how well your team is doing in the Arena System; the higher your rating, the better. Every time your team wins a match, your rating goes up, and every time you lose a match, your rating goes down. The amount by which your rating changes depends on your team's rating compared to the other team's rating. As a frame of reference, playing a team with a rating within a close range of your own team's rating will result in a net change of 16 rating.</p>
+      <p>At the end of each week, your Team Rating is used to calculate how many Arena Points your team will receive for this week. Your team must have played a minimum of ten matches per week to be rewarded with Arena Points, and a team member must have been in at least 30% of the week’s matches to be eligible for that week's points. It is important to note that the points you receive in a given week is determined by only one team, and not by combining all your teams' points. Whichever team you are a member of that would receive the most points after accounting for Team Rating and team type becomes the sole source for your points for that week. Note that 2v2 and 3v3 teams are subject to a handicap where they receive fewer points than a 5v5 team with the same Team Rating.</p>
+      <p>Arena Points are used as currency to purchase Arena Rewards. You can stockpile a maximum of 5,000 Arena Points and they do not decay over time. The Arena Calculator will help you determine how many points you will gain from a given rating and how many weeks it will take you to earn your next arena reward with a given rating.</p>
+    </str>
+		<str id="title.about">How Arena Ratings and Points are Calculated</str>
+		<str id="penalty.title">Penalties:</str>
+		<str id="penalty.two">2v2 teams earn <strong>76%</strong> of the points of a 5v5 team with the same rating</str>
+		<str id="penalty.three">3v3 teams earn <strong>88%</strong> of the points of a 5v5 team with the same rating</str>
+		<str id="title.formulae">Arena Point Formulae</str>
+		<str id="formula.ifrating">If <span class="ratingcolor">Rating</span>
+    </str>
+		<str id="decimal">.</str>
+		<str id="formula.one">If Rating&lt;=1500 then Points=0.22*Rating+14</str>
+		<str id="formula.two">If Rating&gt;1500 then Points=1511.26/(1+1639.28*2.71828<sup>-0.00412*Rating</sup>)</str>
+		<str id="title.itemCosts">Item Costs</str>
+		<str id="title.arenaRewardCosts">Arena Reward Costs</str>
+		<str id="ninerepeating1">
+      <a href="http://www.blizzard.com/press/040401.shtml">0.999... =</a>
+    </str>
+		<str id="ninerepeating2">
+      <a href="http://www.blizzard.com/press/040401.shtml">1</a>
+    </str>
+
+		<str id="items.7">Season 7 Items</str>
+		<str id="items.6">Season 6 Items</str>
+		<str id="items.5">Season 5 Items</str>
+		<str id="items.4">Season 4 Items</str>
+		<str id="items.3">Season 3 Items</str>
+		<str id="items.2">Season 2 Items</str>
+		<str id="items.1">Season 1 Items</str>
+
+		<str id="arenapoints">arena points</str>
+		<str id="points">Points</str>
+
+		<str id="rating">Rating</str>
+		<str id="ratingColon">Rating:</str>
+		<str id="averageRatingColon">Average Rating:</str>
+		<str id="pointsNeededColon">Points Needed:</str>
+		<str id="itemCostColon">Item Cost:</str>
+		<str id="itemCost">Item Cost</str>
+		<str id="haveArenaPointsColon">Have Arena Points:</str>
+
+		<str id="avgtwo">Avg 2v2 Rating</str>
+		<str id="avgthree">Avg 3v3 Rating</str>
+		<str id="avgfive">Avg 5v5 Rating</str>
+		<str id="referenceSheet">Reference Sheet:</str>
+
+		<str id="pinnedProfile">Main Profile</str>
+		<str id="noPinnedProfile">No Profile Bookmarked</str>
+		<str id="noPinnedProfile.explanation">
+      <i>Bookmark a profile</i> to auto-populate some of the fields in the calculator. Click <a href="character-search.xml">here</a> to search for a profile.</str>
+
+		<str id="disclaimer.stats">Arena stats are not updated in real time.<br/>Points are only awarded from one team. [<a href="/faq-arena-calculator.xml#anchorgetArenaPoints" target="_blank">more</a>]</str>
+
+		<str id="twoVcolon">2v2:</str>
+		<str id="threeVcolon">3v3:</str>
+		<str id="fiveVcolon">5v5:</str>
+
+		<str id="numWeeks"># of Weeks</str>
+
+		<str id="week0">0 weeks</str>
+
+		<str id="week1">1 week:</str>
+		<str id="week2">2 weeks:</str>
+		<str id="week3">3 weeks:</str>
+		<str id="week4">4 weeks:</str>
+		<str id="week5">5 weeks:</str>
+		<str id="week6">6 weeks:</str>
+		<str id="week7">7 weeks:</str>
+		<str id="week8">8 weeks:</str>
+		<str id="week9">9 weeks:</str>
+		<str id="week10">10 weeks:</str>
+		<str id="week11">11 weeks:</str>
+		<str id="week12">12 weeks:</str>
+
+		<str id="weapons">Weapons</str>
+		<str id="armor">Armor</str>
+
+		<str id="or">or</str>
+		<str id="impossible">impossible</str>
+		<str id="colon">:</str>
+		<str id="honorone">Arena rewards from Season <param1/> are now purchased with Honor Points and Battleground Marks of Honor.</str>
+		<str id="honortwo">View the full set of Season <param1/> rewards at the link below.</str>
+		<str id="seasononelink">Season <param1/> Arena Rewards</str>
+	</arenaCalc>
+
+	<searchPlugin>
+		<str id="searchengine">Search Engine</str>
+		<str id="title">Browser Search Plugin</str>
+		<str id="maintitle">More convenient searching.</str>
+		<str id="subtitle">Add the World of Warcraft Armory search field to your browser for instant Armory access from anywhere on the web!</str>
+		<str id="installnow">Install Now</str>
+		<str id="operaplugintitle">WoW Armory</str>
+		<str id="instructionsforopera">Instructions for Opera:</str>
+		<str id="instructionsforopera1">Click the <strong>Install Now</strong> button.</str>
+		<str id="instructionsforopera2">Click <strong>Yes</strong> in the popup dialogue.</str>
+		<str id="instructionsforopera3">Drag the "WoW Armory" box from <strong>Appearance → Buttons → My buttons</strong> to your browser bar.</str>
+		<str id="instructionsforopera4">Or</str>
+		<str id="instructionsforopera5">To add the Armory to Opera's default search engine list:</str>
+		<str id="instructionsforopera6">Go to <strong>Tools → Preferences → Search</strong>.</str>
+		<str id="instructionsforopera7">Click on <strong>Add</strong>.</str>
+		<str id="instructionsforopera8">Enter the following information into the popup dialogue and click <strong>OK</strong>:</str>
+		<str id="instructionsforopera9">
+      <b>Name:</b> WoW Armory<br/>
+      <b>Keyword:</b> wow<br/>
+      <b>Address:</b> http://www.wowarmory.com/search.xml?searchQuery=%s&amp;searchType=all</str>
+		<str id="instructionsforopera10">You should now be able to select "WoW Armory" from the dropdown list of search engines.</str>
+	</searchPlugin>
+
+	<archives>
+		<str id="archives.title">Armory Archives</str>
+		<str id="archives.arena.seasonone">Arena Hall of Fame: Season One</str>
+	</archives>
+
+	<months>
+		<str id="month1">January</str>
+		<str id="month2">February</str>
+		<str id="month3">March</str>
+		<str id="month4">April</str>
+		<str id="month5">May</str>
+		<str id="month6">June</str>
+		<str id="month7">July</str>
+		<str id="month8">August</str>
+		<str id="month9">September</str>
+		<str id="month10">October</str>
+		<str id="month11">November</str>
+		<str id="month12">December</str>
+	</months>
+
+	<monthsAbb>
+		<str id="month1">Jan</str>
+		<str id="month2">Feb</str>
+		<str id="month3">Mar</str>
+		<str id="month4">Apr</str>
+		<str id="month5">May</str>
+		<str id="month6">June</str>
+		<str id="month7">July</str>
+		<str id="month8">Aug</str>
+		<str id="month9">Sept</str>
+		<str id="month10">Oct</str>
+		<str id="month11">Nov</str>
+		<str id="month12">Dec</str>
+	</monthsAbb>
+
+	<weekdays>
+		<str id="day1">Sunday</str>
+		<str id="day2">Monday</str>
+		<str id="day3">Tuesday</str>
+		<str id="day4">Wednesday</str>
+		<str id="day5">Thursday</str>
+		<str id="day6">Friday</str>
+		<str id="day7">Saturday</str>
+	</weekdays>
+
+	<time>
+		<str id="time0">0:01</str>
+		<str id="time1">1:00</str>
+		<str id="time2">2:00</str>
+		<str id="time3">3:00</str>
+		<str id="time4">4:00</str>
+		<str id="time5">5:00</str>
+		<str id="time6">6:00</str>
+		<str id="time7">7:00</str>
+		<str id="time8">8:00</str>
+		<str id="time9">9:00</str>
+		<str id="time10">10:00</str>
+		<str id="time11">11:00</str>
+		<str id="time12">12:00</str>
+		<str id="time13">13:00</str>
+		<str id="time14">14:00</str>
+		<str id="time15">15:00</str>
+		<str id="time16">16:00</str>
+		<str id="time17">17:00</str>
+		<str id="time18">18:00</str>
+		<str id="time19">19:00</str>
+		<str id="time20">20:00</str>
+		<str id="time21">21:00</str>
+		<str id="time22">22:00</str>
+		<str id="time23">23:00</str>
+		<str id="time24">23:59</str>
+	</time>
+
+	<redirect>
+		<str id="redirecting">Redirecting...</str>
+		<str id="notredirectone">If you aren't redirected within 10 seconds, please click </str>
+		<str id="notredirecttwo">here</str>
+		<str id="notredirectthree">.</str>
+	</redirect>
+
+	<serverBusy>
+		<str id="refreshpage">Refresh page</str>
+		<str id="content">The Armory is currently experiencing an extremely high level of traffic which may affect its response time. Please try refreshing the Armory in a few minutes.</str>
+		<str id="title">Armory Servers Busy</str>
+	</serverBusy>
+
+	<propass>
+		<str id="forum.link.mouseover">Clicking this link will take you to the Arena Tournament Forum</str>
+		<str id="forum.link">http://forums.wow-europe.com/board.html?forumId=3901822&amp;sid=1</str>
+		<str id="teamstats">Arena Tournament Team Statistics</str>
+		<str id="pvpinfo">Personal PvP Information:</str>
+		<str id="personalrating">PERSONAL RATING: </str>
+		<str id="winrecord">WIN RECORD: </str>
+		<str id="winpercentage">WIN PERCENTAGE: </str>
+		<str id="coliseums">Coliseums: </str>
+		<str id="usoceanic">USA &amp; Oceanic</str>
+		<str id="europe">Europe</str>
+		<str id="korea">Korea</str>
+		<str id="taiwan">Taiwan, Hong Kong, &amp; Macau</str>
+
+		<str id="winloseone"/>
+		<str id="winlosetwo"> wins - </str>
+		<str id="winlosethree"> losses</str>
+		<str id="winpercentageone"/>
+		<str id="winpercentagetwo">% Win Percentage</str>
+
+		<str id="teaminfo">Team Information</str>
+		<str id="arena">Arena</str>
+		<str id="tournament">Tournament</str>
+		<str id="rating">RATING: </str>
+	</propass>
+
+	<esrb>
+		<str id="ratingsurl">http://www.esrb.org/esrbratings_guide.asp</str>
+		<str id="privacyurl">http://eu.blizzard.com/en-gb/company/about/privacy.html</str>
+	</esrb>
+
+	<calendar>
+		<str id="noscript">The calendar requires JavaScript to be enabled in your browser.</str>
+		<str id="eventList">Event list</str>
+		<str id="viewEvent">View Event</str>
+		<str id="viewAnnouncement">View Announcement</str>
+		<str id="filters">Filters</str>
+		<str id="timesettings">Time Settings</str>
+		<str id="locked">(Locked)</str>
+		<str id="accept">Accept</str>
+		<str id="tentative">Tentative</str>
+		<str id="decline">Decline</str>
+		<str id="remove">Remove</str>
+		<str id="signup">Sign Up</str>
+		<str id="spam">Report Spam</str>
+		<str id="player">Player</str>
+		<str id="class">Class</str>
+		<str id="status">Status</str>
+		<str id="complaint">Complaint Registered.</str>
+		<str id="complaintlong">Your complaint has been registered.</str>
+		<str id="ok">Okay</str>
+		<str id="desc">Description</str>
+		<str id="close">Close</str>
+		<str id="closelong">Close Window</str>
+		<str id="att">Attendees</str>
+		<str id="attt">Total Attendees</str>
+		<str id="details">Details</str>
+		<str id="loading">Loading...</str>
+		<str id="eventoverflow">There are more events scheduled on this date. To display all the events, click the arrow on the top right of this date's entry.</str>
+		<str id="moreinfo">
+      <a>Learn more about this event</a>
+    </str>
+		<str id="creator">You are the creator or a moderator of this event.</str>
+		<error id="accessdenied">
+      <div class="guilderrortitle">Access Denied</div>This page contains login-protected content you do not have access to, since it is not associated with the World of Warcraft account currently logged in to the Armory. For more details about Armory Login access and login-protected content, refer to the <a href="/faq-login.xml">Armory Login FAQ</a>
+    </error>
+		<time>
+			<str id="info">Time Info</str>
+			<str id="realm">Realm time:</str>
+			<str id="local">Local time:</str>
+			<str id="hour24">24 Hour Mode</str>
+			<str id="useLocal">Use Local Time</str>
+		</time>
+		<dungeon>
+			<str id="heroic">(Heroic)</str>
+			<str id="10-player">(10 Player)</str>
+			<str id="25-player">(25 Player)</str>
+			<str id="20-player">(20 Player)</str>
+			<str id="40-player">(40 Player)</str>
+		</dungeon>
+		<dynamic>
+			<str id="eventOwner">This is your event</str>
+			<str id="invitedBy">Invited by {0}</str>
+			<str id="announcementOwner">This is your announcement</str>
+			<str id="createdBy">Created by {0}</str>
+			<str id="attendees">{0} Accepted/Confirmed Attendees</str>
+			<str id="eventStarts">{0} Begins</str>
+			<str id="eventEnds">{0} Ends</str>
+			<str id="eventResets">{0} Resets</str>
+			<str id="eventResetsDescription">{0} resets at {1}.</str>
+			<str id="eventUnlocks">{0} Unlocks</str>
+			<str id="eventUnlocksDescription">Your {0} instance unlocks at {1}.</str>
+			<str id="error">Error</str>
+			<str id="errorDescription">Some of your calendar data could not be loaded.\n\nPlease try again in a few minutes.</str>
+			<str id="characterErrorDescription">A character must be recently active, on an account in good standing, on a European realm, and be at least level 10 to appear on a calendar.</str>
+		</dynamic>
+		<event-type>
+			<str>Battleground Holidays</str>
+			<str>Darkmoon Faire</str>
+			<str>Active Raid Lockouts</str>
+			<str>Raid Resets</str>
+			<str>Weekly Holidays</str>
+		</event-type>
+		<player-event-type>
+			<str>Raid</str>
+			<str>Dungeon</str>
+			<str>PvP</str>
+			<str>Meeting</str>
+			<str>Other</str>
+		</player-event-type>
+		<event-status>
+			<str>Invited</str>
+			<str>Tentative</str>
+			<str>Accepted</str>
+			<str>Declined</str>
+			<str>Confirmed</str>
+			<str>Out</str>
+			<str>Standby</str>
+			<str>Signed Up</str>
+		</event-status>
+		<format> <!-- JavaScript -->
+			<str id="firstDayOfWeek">1</str> <!-- 0-6, 0 = Sunday, 1 = Monday, … -->
+			<str id="use24HourFormat">false</str>
+			<str id="dateFormat">return CALENDAR_STRINGS.days[date.getDay()] + ' ' + date.getDate() + ' ' + CALENDAR_STRINGS.months[date.getMonth()] + ' ' + date.getFullYear();</str> <!-- order of number/day/month/year -->
+			<str id="time12HourFormat">return displayHour + ':' + padLeft(date.getMinutes().toString(), 2, '0') + (hours &gt;= 12 ? ' PM' : ' AM');</str>
+		</format>
+		<links base="/en/info/basics/"> <!-- prefixed by url.wow -->
+			<event id="Fireworks">events/newyear/index.html</event>
+			<event id="LoveInTheAir">events/loveisintheair/index.html</event>
+			<event id="HarvestFestival">events/harvestfestival/index.html</event>
+			<event id="LunarFestival">events/lunarfestival/index.html</event>
+			<event id="WinterVeil">events/winterveil/index.html</event>
+			<event id="HallowsEnd">events/hallowsend/index.html</event>
+			<event id="Olymics">events/spiritofcompetition/index.html</event>
+			<event id="PiratesDay">events/piratesday/index.html</event>
+			<event id="Brewfest">events/brewfest/index.html</event>
+			<event id="Midsummer">events/midsummer/index.html</event>
+			<event id="FishingExtravaganza">events/stranglethorn/fishing.html</event>
+			<event id="StranglethornFishingExtravaganza">events/stranglethorn/fishing.html</event>
+			<event id="FeastofWinterVeil">events/winterveil/index.html</event>
+			<event id="DarkmooonFaire">factions/darkmoon/index.html</event>
+			<event id="DayoftheDead">events/dayofthedead/index.html</event>
+			<event id="PilgrimsBounty">events/pilgrimsbounty/index.html</event>
+			<event id="MidsummerFireFestival">events/midsummer/index.html</event>
+			<event id="ChildrensWeek">events/childrensweek/index.html</event>
+
+
+		</links>
+		<feed>
+			<str id="faqLinkButtonText">Calendar Feed FAQ</str>
+			<str id="faqLinkButtonURL">/faq-calendar-feed.xml</str>
+			<str id="subscribe">Calendar Feed</str>
+			<str id="subscribeMessage">Import this Calendar into your favorite online scheduling application.</str>
+			<str id="pageTitle">Calendar Feed Customization</str>
+			<str id="pageSubTitle">Calendar Feed Options</str>
+			<str id="errorPageSubTitle">No Eligible Characters</str>
+			<str id="errorMessage">A character must be recently active, on an account in good standing, on a European realm, and be at least level 10 to appear on a calendar feed you create here.<p/>To select characters from a different region, such as Europe, use the region selection menu at the bottom of the page.</str>
+			<str id="filters">Filters</str>
+			<str id="playerCalendars">Player Calendars (up to 5):</str>
+			<str id="noCharacter">&lt;click to select&gt;</str>
+			<str id="feedUrl">Calendar Feed URL:</str>
+			<str id="resetButton">Reset Security Key</str>
+			<str id="copyButton">Copy to Clipboard</str>
+			<str id="noButton">Cancel</str>
+			<str id="yesButton">Yes, Reset Key</str>
+			<str id="resetMessage">Your Calendar Feed URL contains a unique security key. Are you sure you want to reset this key and create a new URL?</str>
+			<str id="resetConfirmedMessage">Your calendar feed now has a new URL. Update this new URL in your online calendars to resynch them to your calendar feed.</str>
+			<str id="aboutTitle">What's this page for?</str>
+			<str id="aboutMessage1">This customization tool allows you to create a custom calendar feed for up to five of your characters' player calendars. The feed can be used to synchronize your characters' Player Calendars with any compatible online calendar application, such as Google Calendar, Apple's iCal, and Facebook Calendar, to name a few.</str>
+			<str id="aboutMessage2">For more information on creating and exporting custom feeds, refer to the FAQ displayed below.</str>
+			<event-type>
+				<str id="bgholidays">Battleground Holidays</str>
+				<str id="darkmoon">Darkmoon Faire</str>
+				<str id="raidlockouts">Active Raid Lockouts</str>
+				<str id="raidresets">Raid Resets</str>
+				<str id="holidays">Weekly Holidays</str>
+			</event-type>
+		</feed>
+		<tooltips>
+			<str id="previousMonth">Previous Month</str>
+			<str id="nextMonth">Next Month</str>
+			<str id="filters">Select the event categories you wish to appear.</str>
+			<str id="timeSettings">Choose a time format and time zone.</str>
+		</tooltips>
+	</calendar>
+	<achievements>
+		<str id="points">Points</str>
+		<str id="progress">Overall Progress</str>
+		<str id="recent">Recent Achievements</str>
+		<str id="achievements.summary">Summary</str>
+		<str id="realmfirst">Realm First!</str>
+		<str id="achievementfirst">Achievement First:</str>
+		<str id="achievementfirsts">Achievement Firsts</str>
+		<str id="serverfirsts.realmnav.myrealms">My Realms</str>
+		<str id="serverfirsts.realmnav.viewing">Viewing</str>
+		<str id="serverfirsts.realmnav.otherrealms">Other Realms</str>
+		<str id="serverfirsts.realmnav.otherregions">Other Regions</str>
+		<str id="error">An Error has Occured.</str>
+		<str id="error.noData">The Realm '<param1/>' could not be found.</str>
+		<str id="error.unknown">Please try a new query.</str>
+		<str id="achv.by">By </str>
+		<str id="achv.and">and</str>
+		<str id="achv.solo">Solo</str>
+		<str id="achv.earned">earned</str>
+		<str id="achv.on">on</str>
+		<str id="compare.achievements">Add Character to Compare</str>
+		<str id="compare.achievements.button">Compare</str>
+		<str id="compare.max">You can compare up to <param1/> characters at one time. You must remove a character below before adding another.</str>
+		<str id="stats.latest">Latest Updated Statistics</str>
+		<str id="stats.latest.compare">
+      <param1/>'s Latest Updated Statistics</str>
+		<err id="notfound">The character "<param1/>" could not be found on the realm "<param2/>."</err>
+		<str id="totalcompleted">Total Completed:</str>
+		<str id="solo">Solo</str>
+		<str id="date.format">{
+			withinHour: "{0} minutes ago",
+			withinHourSingular: "{0} minute ago",
+			withinDay: "{0} hours ago",
+			withinDaySingular: "{0} hour ago",
+			today: "Today, {0}",
+			yesterday: "Yesterday",
+			date: "d-M-yyyy"
+		}</str>
+	</achievements>
+
+	<mobileArmoryPage>
+		<str id="download.btn">Download Now</str>
+		<str id="intro">Ever wanted to check your raid schedule, look up a piece of PvP gear, or concoct a new talent spec while on the go? The World of Warcraft Mobile Armory app for iPhone™ and iPod touch® lets you access the official Armory database from anywhere you have a mobile connection, and features much of the same functionality as the Armory website, including:</str>
+		<str id="outro">The World of Warcraft Mobile Armory is available now as a free download from the Apple App Store.</str>
+		<str id="feature.search">Search for and view any character, item, guild, or Arena team in World of Warcraft.</str>
+		<str id="feature.import">Seamlessly import your own character, guild, and Arena team profiles.</str>
+		<str id="feature.calendar">Access your in-game calendar of events.</str>
+		<str id="feature.achievments">View achievement-point leaderboards.</str>
+		<str id="feature.talents">Plan out talent specs using the fully functional talent calculator.</str>
+		<str id="feature.more">And much more!</str>
+		<str id="movie.name">iphone_armory_en</str>
+	</mobileArmoryPage>
+
+	<mobileArmoryInterstitial>
+		<str id="continue">Continue to the Armory</str>
+		<str id="download">Download from iTunes</str>
+		<str id="intro">There's a new way to browse the Armory from your iPhone™ or iPod touch®. Check out the World of Warcraft Mobile Armory, available now as a free download from the Apple App Store.</str>
+	</mobileArmoryInterstitial>
+</strs>

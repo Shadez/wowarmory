@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Items">
+	<faqlist>
+		<faq question="What is the &quot;Desired By&quot; search filter?">
+			These filters attempt to use the most sought after stats of individual character classes to provide quick, useful results. The “Desired By” filters appear after selecting an item type from the appropriate drop-down menu. Each class has their own filter, and some classes have an extra filter that further sorts by character specialization. 
+			<p/>
+			After selecting an item type, select the inventory slot you wish you search for. The filter is best used after selecting a particular item type and slot. A search with <strong>only item type, slot, and a desired by filter</strong> specified will result in a list of results that are weighted by what these character classes would tend to search for in items. In this manner, you can find a “master list” of the most sought-after items for every class in each inventory slot.
+		</faq>
+		<faq question="What is an item’s &quot;item level?&quot;">
+			An item’s item level is a general indicator of its quality. Item level, along with item rarity, determines an item’s budget. The item budget is used on the stat points for that item. A rare and an epic of the same item level have different item budgets (the epic has a higher budget), which accounts for the expected difference in power between the two items. Item level is not to be confused with required level, which is simply the minimum level needed to equip an item.
+		</faq>
+		<faq question="How do the &quot;Match all / some filters&quot; options work?">
+			Found under Advanced Weapon Filters, these options will control which of your advanced filters are applied to your search. Selecting "Match all filters" will display only items that match all the advanced filters you have selected. Selecting "Match at least one" will display items that match at least one of the advanced filters. These options will only display when two or more advanced filters are selected.
+		</faq>
+		<faq question="When using the item rarity filter, why am I seeing items of different rarity than I selected?">
+			The item rarity filter uses the same mechanic for filtering by rarity as the in-game Auction House; that is, items of higher rarity will display in a given search by rarity. Thus, a search for uncommon items may yield items that are of rare and epic rarity as well. However, like the Auction House, this inclusion is only one-way – searching for epic rarity items will not display rare or uncommon items.
+		</faq>
+		<faq question="What is the &quot;Find an Upgrade&quot; option for items in a character profile?">
+			Mousing over any item in a character profile will display a small arrow that turns into a button. Clicking this "Find an Upgrade" button will take you to an item search results page. On this page will be a list of items that may be considered upgrades for that item and for that particular character.
+			<p/>
+			These recommended upgrades take into account the character’s class, statistics, and overall gear quality. In this manner, you can look for upgrades for your character’s items as well as for any other character in World of Warcraft. This feature is also intended to be helpful for characters with multiple gear sets, as they can find upgrades for all their sets.
+			<p/>
+			Read more at our <a href="faq-item-info-recommended.xml;">Find an Upgrade FAQ</a>.
+		</faq>
+		<faq question="Can I search for items associated with a particular profession?">
+			At this time, professions are not an available search filter. However, you can search for individual crafted items and recipes.
+		</faq>
+		<faq question="Can I search for quest rewards?">
+			Quest rewards are a separate category of items in the Armory, and can be selected under the "Source" filter. At this time it is unable to filter a search for quest rewards based on the level or name of the quest.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Emblem of Frost Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Emblem of Triumph Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Heirloom Items" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeon &amp; Raid Drops" url="/dungeons.xml"/>
+		<relatedlink name="Faction Rewards" url="/factions.xml"/>
+		<relatedlink name="PvP Rewards" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Combat Ratings" type="external" url="http://www.wow-europe.com/en/info/basics/characters.html"/>				
+		<relatedlink name="Item Basics" type="external" url="http://www.wow-europe.com/en/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Absolvierte Spiele">
+
+	<faqlist>
+		<faq question="Was für eine Funktion hat die Seite Absolvierte Spiele?">
+Das Register Absolvierte Spiele zeigt euch alle Arenaspiele der ausgewählten Saison in einem interaktiven Graphen an. Zusätzlich zu der Archivfunktion wird hier die Leistung eines Teams während einer ganzen Saison dargestellt sowie an bestimmten Tagen, sei es tagsüber oder nachts. Klickt auf die nachfolgenden Fragen, um eine Zusammenfassung der Informationen und Funktionen, speziell die des Graphen und der Filter, zu erhalten.
+		</faq>
+		<faq question="Wozu dient der Graph der absolvierten Spiele?">
+Jede Runde, die von diesem Team seit Beginn dieser Saison gespielt wurde, wird hier in Form eines interaktiven Graphen optisch angezeigt.
+<ul>
+<li>Wenn man mit dem Mauszeiger darüber fährt, wird Datum, Bewertungsänderung sowie Name des gegnerischen Teams angezeigt.</li>
+<li>Die gesamte Saison wird unterhalb des großen Graphen als separater Graph dargestellt. Der Regler erlaubt einem, schnell zu einem bestimmten Punkt der Saison zu springen.</li>
+<li>Mit den Links unterhalb des Graphen kann man den entweder das markierte Spiel abwählen (sofern eines markiert wurde), ein Beispiel aus einem kürzlich stattgefundenen Spiel abrufen oder entsprechend die gesamte Saison aufrufen.</li>
+<li>Die Fenster oberhalb des Graphen zeigen die Teamwertung am Anfang des Graphen an, die Änderung der Bewertung der markierten Spiele sowie die Änderung der Teamwertung am Ende der ausgewählten Spiele.</li>
+</ul>
+		</faq>
+		<faq question="Was für eine Funktion erfüllen die Filter?">
+Unterhalb des Graphen befindet sich eine Liste der Saisonspiele, die durchsucht, sortiert oder gefiltert werden kann.
+<ul>
+<li>Jedes Spiel besitzt einen entsprechenden Datenpunkt in dem obigen Graphen. Die Graph-Option auf der rechten Seite jedes angezeigten Spieles platziert den Datenpunkt  des Spiels am äußeren rechten Ende des Graphen.</li>
+<li>Der Pfeil rechts von jedem Spiel ruft eine detaillierte Statistik auf. Diese Spielstatistiken enthalten die selben Ergebnisse und Übersichten, die innerhalb des Spiels verfügbar waren - Teammitglieder, Todesstöße, Schaden, Heilung sowie die Veränderung der Wertung.</li>
+</ul>
+		</faq>				
+		<faq question="Wie ändere ich die Auswahl der Spiele, die in dem Graph angezeigt werden?">
+		Durch das Bewegen der kleinen Auswahlleiste unter dem Graphen kann man den gewünschten Bereich an Spielen anzeigen lassen. Alternativ kann man den Link benutzen, der sich am Ende des Graphen befindet, um sich eine Auswahl an kürzlich stattgefundenen Spielen oder die komplette Saison anzeigen zu lassen. Die Nutzung der Filter beinflusst lediglich die angezeigten Inhalte der Liste und nicht den Graphen selbst.
+		</faq>				
+		<faq question="Wieso wird die Änderung der Wertung bei manchen Spielen mit 0 angezeigt?">
+		Dies kann auftreten, sofern der Unterschied der beiden Teamwertungen zu groß ist.
+		</faq>				
+		<faq question="Beinhaltet das Register “Neue Wertung” die Werte im danebenliegenden Register “Wertungsänderung”?">
+		Ja.
+		</faq>
+		<faq question="Kann ich mir Spielstatistiken der vergangenen Saisons einsehen?">
+Die Arenastatistiken enthalten Daten von Arenakämpfen, die seit der Einführung von Wrath of the Lich King stattgefunden haben. Arenakämpfe aus den Zeiträumen davor sind nicht verfügbar.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena-Turnier" url="/arena-tournament.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena-Informationen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		
+	</relatedlinks>
+</relatedinfo>

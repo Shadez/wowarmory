@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Historique des matchs">
+
+	<faqlist>
+		<faq question="À quoi sert la page d'historique des matchs ?">
+La page d'historique des matchs vous permet de consulter tous les matchs de la saison d'arène en cours sous la forme d'un graphique interactif. Outre sa fonction d'archive, ces informations peuvent vous aider à déterminer les forces et les faiblesses de l'équipe en question tout au long de la saison, ainsi qu'a certains jours de la semaine et heures diurnes ou nocturnes. Cliquez sur les questions ci-dessous afin d'obtenir une réponse quant aux renseignements offerts par ce graphique et les filtres associés.
+		</faq>
+
+		<faq question="Qu'est-ce que le graphique de l'historique des matchs ?">
+Ce graphique interactif représente visuellement chaque match joué par l'équipe en question pendant une saison d'arène.
+	<ul>
+		<li>Survolez les points du graphique pour afficher la date du match, le changement de cote à son issue et le nom de l'équipe adverse. </li>
+		<li>La saison entière est représentée sous le grand graphique dans un graphique dédié. La barre de défilement sous le graphique peut être utilisée pour naviguer rapidement d'une portion à l'autre de la saison.</li>
+		<li>Les liens sous le graphique permettent de désélectionner un match (le cas échéant), d'afficher un aperçu des matchs les plus récents mais aussi la totalité de la saison.</li>
+		<li>Les fenêtres au-dessus du graphique affichent toujours la cote d'équipe en premier, puis le changement de cote après les matchs sélectionnés et affichés, et enfin la cote d'équipe une fois les changements appliqués.</li>
+	</ul>
+		</faq>
+
+		<faq question="À quoi servent les filtres de l'historique des matchs ?">
+Vous pouvez effectuer des recherches sur les matchs de la saison, en trier et filtrer les résultats à l'aide de la liste située sous le graphique. 
+	<ul>
+		<li>À chaque match de la liste correspond un point sur le graphique du dessus. Le bouton du graphique situé à droite de chaque rangée de matchs sert à aligner le point de ce match à l'extrémité droite du graphique.</li>
+		<li>Le bouton en forme de flèche à droite de chaque résultat de match sert à afficher le rapport de match détaillé correspondant. Les résultats et statistiques seront les mêmes que ceux affichés par le jeu : la composition de l'équipe, les coups fatals, les dégâts infligés et soins prodigués, et les changements de cote.</li>
+	</ul>
+		</faq>
+
+		<faq question="Comment modifier la sélection de jeux affichés par le graphique ?">
+		Vous pouvez faire glisser la petite barre de sélection sous le graphique jusqu'à la section des jeux qui vous intéresse afin de les afficher. Vous pouvez également utiliser les liens sous le graphique pour consulter une sélection des matchs les plus récents ou la totalité de la saison. En utilisant les filtres sous le graphique, vous ne changerez que les données de liste de résultats, pas le graphique en lui-même.
+		</faq>
+
+		<faq question="Pourquoi le changement de cote après un match donné est-il égal à zéro ?">
+		Cela peut arriver dans les cas où la différence de cote entre les deux équipes est trop importante.
+		</faq>
+
+		<faq question="La colonne « Nouvelle cote » dans l'onglet de l'historique des matchs inclue-t-elle la valeur de la conne « Changement de cote » adjacente ?">
+		Oui.
+		</faq>
+
+		<faq question="Puis-je consulter l'historique des matchs des saisons passées ?">
+Les archives d'arène accèdent aux données de matchs d'arène enregistrées depuis le lancement de Wrath of the Lich King. Tout match précédent n'est pas accessible.
+		</faq>
+	</faqlist>
+
+
+	<relatedlinks>
+		<relatedlink name="Tournoi d'arène" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Le système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur des arènes" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Historial del oponente">
+	<faqlist>
+		
+		<faq question="¿Cuál es la utilidad de la página del Historial de oponentes?">
+La página del Historial de oponentes compila a los adversarios que ha enfrentado el equipo de Arenas en cuestión durante la temporada actual. Además de servir como registro, la información también es una herramienta útil para determinar el desarrollo de un equipo contra composiciones de clase específicas. Los datos y las funciones que incluye esta página son:
+<ul>
+<li>Información de todos los equipos opositores desde el comienzo de la temporada actual, siempre y cuando el equipo que estés viendo haya jugado al menos dos partidas contra ellos.</li>
+<li>Puedes organizar las columnas por nombre de equipo, reino, partidas jugadas (opción predeterminada), victorias o derrotas, porcentaje de victorias y cambio neto de calificación.</li>
+<li>Utiliza los filtros de búsqueda para que ésta sea más precisa.</li>
+<li>Para consultar la alineación del equipo oponente, haz clic en el nombre del equipo si está disponible o haz una búsqueda por el nombre en la pestaña del historial de la partida.</li>
+</ul>
+		</faq>
+		
+		<faq question="¿Cuál es la mejor manera de descubrir la composición exacta de clase de un equipo oponente concreto?">
+La forma más fiable de consultar la alineación exacta del equipo oponente es usar el filtro de búsqueda por el nombre del equipo en la pestaña del historial de la partida y luego hacer clic en el atajo para ver los informes individuales de la partida. Si se puede hacer clic en el nombre, el perfil de equipo que aparece mostrará la alineación del equipo actual y no necesariamente la alineación, o la composición particular, que jugó contra el equipo fuente.
+		</faq>				
+		
+		<faq question="¿Por qué hay un mínimo de dos partidas para que aparezcan equipos oponentes?">
+		El mínimo de dos partidas descarta a los equipos que sólo se han enfrentado una vez, que equivale a la mayoría de los historiales del oponente, eliminando muchos de los valores estadísticos atípicos para reducir al máximo los datos y obtener mejores resultados.
+		</faq>
+
+		<faq question="¿Puedo ver información de las temporadas de Arenas pasadas a través del Historial de oponentes?">
+		Los registros de las Arenas obtienen información de las partidas que se han llevado a cabo desde el inicio de Wrath of the Lich King. Los datos de las partidas de Arenas que tuvieron lugar antes de la expansión no están disponibles.
+		</faq>
+		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Información sobre los torneos en la Arena" url="http://www.wow-europe.com/es/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Salón de la Fama de las Arenas" url="/hof/one/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de Arenas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+
+	</relatedlinks>
+</relatedinfo>

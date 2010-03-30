@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Team Info">
+	<faqlist>
+		<faq question="What can I see on the Team Profile page?">
+			All Arena teams have a Team Profile and Arena Records. On the default Team Profile page, you can see the team roster with clickable character profiles, the most recent week’s and cumulative season record, the team’s rating and current rank, and the team members’ personal ratings. The Match History and Opponent History tabs take you to the team’s detailed Arena Records.
+		</faq>
+		<faq question="What are the Arena Records?">
+			Every Arena Team profile on the Armory now includes tabs for Arena Records. The Arena Records are comprised of Match History, Match Reports, and Opponent History.
+			<ul>
+			<li>The Match History tab displays every Arena match in an interactive graph. Mousing over the graph displays when the match took place, the rating change from the outcome, and the name of the opposing team. Below this graph is a searchable, sortable display of every arena match the team has participated in during the current season.</li>
+			<li>From Match History, click the button to the right of any match result to view its detailed Match Report. This page shows the same results and statistics that appeared in-game – the team rosters, killing blows, damage and healing done, and rating change.</li>
+			<li>The Opponent History tab displays all the team’s Arena matches in a slightly different format; by listing each match by the opponent team name. The columns on this page are dependent on the opponent team – statistics such as average change per match, win percentage versus each team, and total wins and losses versus each team.</li>
+			</ul>
+		</faq>
+		<faq question="Do deleted teams retain their Team Profiles and Arena Records?">
+			No, deleted teams do not appear in the Armory and thus do not have a Team Profile or any Arena Records. If a team was deleted and subsequently reformed with the same name, Team Profile and Arena Records for that team only apply to the current incarnation of the team. The profile and records of the previous team with the same name are not saved. In addition, if a team has been deleted, their team name will not be clickable in Arena Records.
+		</faq>
+		<faq question="Why can’t I click on a team name to get to their profile?">
+			Either the team no longer exists, and thus has no team profile or Arena Records, or it was deleted and subsequently reformed, in which case the new team’s records are no longer linked to the team’s previous incarnation.
+		</faq>
+		<faq question="Why does a given Arena team have a different roster than before?">
+			The Armory’s Team Profiles only displays current team rosters. The Match Reports will accurately show you the team roster from a certain point in time.
+		</faq>
+		<faq question="Why does the &quot;This Week&quot; row display games played when I know that my arena team didn't play this week?">
+			The row labeled "This Week" displays the arena team's most recent active week of games, whether it was actually in the current calendar week or occurred in the past.
+		</faq>
+		<faq question="How often are Team Profiles and Arena Records updated?">
+			Team Profiles and Arena Records should update within 24 hours of any changes in-game.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Ladder" url="/battlegroups.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
+		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
+		<relatedlink name="Arena Weapon Rewards" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
+		<relatedlink name="Arena Class Armor Rewards" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

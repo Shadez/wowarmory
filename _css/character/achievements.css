@@ -2,10 +2,11 @@
 
 /* achievements */
 /*...........................................................*/
+.header_break { height:34px !important; }
 
 .achieve-firsts a:visted, .achievements a:visted { text-decoration:none; }
-.achievements { background:url(../../images/achievements/achv_bg.jpg) 9px 0 repeat-y; padding-left:10px; font-family:Calibri, Trebuchet MS, Arial; clear:both;}
-.achievements .selected { }
+.achievements { background:url(../../images/achievements/achv_bg.jpg) 18px 0 repeat-y; padding-left:19px; font-family:Calibri, Trebuchet MS, Arial; clear:both;}
+.achievements .selected {  }
 .achievements .criteria { display:none; text-align:left; padding:0; }
 .achievements .category-root .selected ul, .achievements .selected .criteria { display:block }
 .achievements .category-root ul { display:none }
@@ -30,7 +31,8 @@
 .achv_lnav .nav-subcat { display:none }
 .achv_lnav .selected .nav-subcat { display:block }
 
-.achieve_rcol{ width:678px; float:left; }
+.achieve_rcol{ width:678px; float:left;}
+.achieve_rcol .topcurve { line-height:0; }
 .achievements-container { background:url(../../images/achievements/achv_rcol_bg.jpg) repeat-y; width:673px; }
 #achievements-content { padding:0px 0px 15px; }
 .achv_r_btm { position:absolute; }
@@ -45,7 +47,7 @@
 .pointshield { position: absolute; right:12px; top:5px; background:url(../../images/achievements/point_shield.png);
 			   width:68px; height:61px; font:22px Georgia; color:white;}
 .locked .pointshield { color:#9e977a; }
-.pointshield div { padding-top:15px; }
+.pointshield div { padding-top:15px; text-shadow:1px 0 2px black, 1px 1px 2px black, -1px -1px 2px black, -1px -1px 2px black; }
 .achv_title { font-size:15px; font-weight:bold; padding:17px 0 3px 0;  }
 .locked .achv_title { color:#d8d6bb }
 .locked.selected .achv_title { color:black; }
@@ -61,7 +63,7 @@
 ul.criteria { margin:0; margin-top:20px; }
 .c_list li.criteriamet { font-weight:bold; color:#669200; }
 .locked .c_list li.criteriamet { color:#8aff00 }
-.criteria.c_list { padding:10px 0 20px 11%; margin:20px 0 0 0; }
+.criteria.c_list { padding:10px 0 10px 11%; margin:20px 0 0 0; overflow:hidden; }
 
 
 
@@ -76,15 +78,16 @@ ul.criteria { margin:0; margin-top:20px; }
 .locked .progress_cap { background-image:url(../../images/achievements/progress_cap_lck.jpg);  }
 .locked .progress_cap_r { background-image:url(../../images/achievements/progress_cap_lck_r.jpg);  }
 .progress_int, .null_progress { color:white; position:relative;   }
-.prog_int_text { position:relative; font:bold 11px Arial; text-align:center; }
+.prog_int_text { position:relative; font:bold 11px Arial; text-align:center; cursor:default; text-shadow:0 0 1px #281901, 0 0 1px #281901, 0 0 1px #281901, 0 0 1px #281901; }
 .prog_int_text img { vertical-align:text-top; }
-.progress_fill { position:absolute; top:-1px; left:0; background:url('../../images/achievements/progress_green.jpg') repeat-x; height:16px; }
+.progress_fill { position:absolute; top:-1px; left:0; background:url(../../images/achievements/progress_green.jpg) repeat-x; height:16px; }
 .blue .progress_fill { background-image:url(../../images/achievements/progress_blue.jpg); top:auto;  }
 .blue .progress_cap, .blue .progress_cap_r { display:none; }
 .prog_bar.blue, .null_progress { background:#1d3a45; padding:0; margin:0 auto; border:1px solid #ca8e16; }
 .null_progress { text-align:center; }
 .locked .progress_int { color:#dcd9d9;  }
-
+.prog_bar.blue:hover { border-color:#FDEAAF; }
+.blue .prog_int_text { text-shadow:0 0 1px #000, 0 0 1px #000, 0 0 1px #000; }
 
 
 
@@ -156,7 +159,7 @@ td.desc_td { padding-left:10px;   }
 .comp_row .completed { background:url(../../images/achievements/comp_comp.jpg) 50% bottom repeat-y; }
 .p_box { background-position:top right; }
 
-.compare_box { position:absolute; z-index:26; right:50px; margin-top:-25px; background:url(../../images/achievements/compare_top_bg.png) bottom repeat-x; font:bold 12px Trebuchet MS; }
+.compare_box { position:absolute; z-index:26; right:46px; margin-top:-25px; background:url(../../images/achievements/compare_top_bg.png) bottom repeat-x; font:bold 12px Trebuchet MS; }
 .comp_out { display:none; }
 .comp_int { background:#e9ce73; width:90%; padding:10px 10px 20px; position:absolute; z-index:500; margin-top:30px; border:1px solid #daa543; border-width:0 1px;	}
 .comp_int input { border:1px solid #b08c10; background:#faf0ce; }
@@ -198,7 +201,7 @@ td.desc_td { padding-left:10px;   }
 .achieve-firsts { margin:0; padding-left:25px; }
 .achieve-firsts a { text-decoration:none; }
 .firsts_achievement { background:url(../../images/achievements/fst_bg.jpg) bottom; clear:both; padding-bottom:26px; cursor:pointer; position:relative; }
-.firsts_icon { background:50% no-repeat; width:72px; height:72px; position:absolute; margin:-2px 0 0 8px; left:auto; }
+.firsts_icon { background:50% no-repeat; width:72px; height:72px; position:absolute; margin:2px 0 0 8px; left:auto; }
 .firsts_icon_block { width:1px; height:70px; float:left; }
 
 .firsts_closed .firsts_timedate, .firsts_closed .allchars { display:none }

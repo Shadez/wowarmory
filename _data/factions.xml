@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file is parsed dynamically on the backend - please do not change structure --><root>
+	<releases>
+	  <release id="2" key="wotlk"/>
+	  <release id="1" key="bc"/>
+	  <release id="0" key="classic"/>
+	</releases>
+	<factions>
+	  <faction friendlyTo="both" hasRewards="1" id="932" key="aldor" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1012" key="ashtonguedeathsworn" release="1"/>  
+	  <faction friendlyTo="both" hasRewards="1" hasTabard="1" id="942" key="cenarionexpedition" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="933" key="consortium" release="1"/>
+	  <faction friendlyTo="a" hasRewards="1" id="946" key="honorhold" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="989" key="keepersoftime" release="1"/>
+	  <faction friendlyTo="a" hasRewards="1" id="978" key="kurenai" release="1"/>  
+	  <faction friendlyTo="both" hasRewards="1" id="1011" key="lowercity" release="1"/>
+	  <faction friendlyTo="h" hasRewards="1" id="941" key="maghar" release="1"/>    
+	  <faction friendlyTo="both" hasRewards="1" id="1015" key="netherwing" release="1"/>    
+	  <faction friendlyTo="both" hasRewards="1" id="1038" key="ogrila" release="1"/>  
+	  <faction friendlyTo="both" hasRewards="1" id="990" key="scaleofthesands" release="1"/>  
+	  <faction friendlyTo="both" hasRewards="1" id="934" key="scryers" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="935" key="shatar" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1031" key="shatariskyguard" release="1"/>    
+	  <faction friendlyTo="both" hasRewards="1" id="1077" key="shatteredsunoffensive" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="970" key="sporeggar" release="1"/>      
+	  <faction friendlyTo="h" hasRewards="1" id="947" key="thrallmar" release="1"/>
+	  <faction friendlyTo="both" hasRewards="1" id="967" key="violeteye" release="1"/>
+	  
+	  <faction friendlyTo="both" hasRewards="1" id="529" key="argentdawn" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="910" key="broodofnozdormu" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="609" key="cenarioncircle" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="909" key="darkmoonfaire" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="59" key="thoriumbrotherhood" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="576" key="timbermawhold" release="0"/>
+	  <faction friendlyTo="both" hasRewards="1" id="270" key="zandalartribe" release="0"/>
+	  
+	  <faction friendlyTo="both" hasRewards="1" id="1106" key="argentcrusade" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1104" key="frenzyhearttribe" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1073" key="thekalu'ak" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1090" key="kirintor" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1098" key="knightsoftheebonblade" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1105" key="theoracles" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1119" key="thesonsofhodir" release="2"/>
+	  <faction friendlyTo="both" hasRewards="1" id="1091" key="thewyrmrestaccord" release="2"/>
+	  <faction friendlyTo="a" hasRewards="1" id="1094" key="silvercovenant" release="2"/>
+	  <faction friendlyTo="h" hasRewards="1" id="1124" key="sunreavers" release="2"/>
+	  <faction friendlyTo="h" hasRewards="1" id="1156" key="theashenverdict" release="2"/>
+	
+	  <faction friendlyTo="a" hasRewards="1" id="1037" key="alliancevanguard" release="2"/>	
+	  <faction friendlyTo="h" hasRewards="1" id="1052" key="hordeexpedition" release="2"/>	
+	
+	</factions>
+</root>

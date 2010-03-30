@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><strings>
+		<string key="stand" string="De pie"/>
+		<string key="dance" string="Bailar"/>
+		<string key="laugh" string="Reír"/>
+		<string key="flex" string="Flexión"/>
+		<string key="chicken" string="Provocar"/>
+        <string key="crouch" string="Agachado"/>
+		<string key="talk" string="Hablar"/>
+		<string key="bow" string="Reverencia"/>
+		<string key="wave" string="Hola"/>	
+		<string key="rude" string="Grosero"/>
+		<string key="kiss" string="Beso"/>
+		<string key="cry" string="Llorar"/>
+		<string key="point" string="Apuntar"/>
+		<string key="salute" string="Saludo"/>		
+		<string key="yes" string="Sí"/>			
+        <string key="no" string="No"/>	
+        <string key="train" string="Tren"/>	
+			
+		<string key="readyspelldirected" string="Lanzando (indiv.)"/>
+		<string key="castdirected" string="Lanzar (indiv.)"/>
+		<string key="readyspellomni" string="Lanzando (gral.)"/>
+		<string key="castomni" string="Lanzar (gral.)"/>
+		<string key="readythrown" string="Dist. listo"/>
+		<string key="attackthrown" string="Dist. fuego"/>
+		
+		<!-- Melee (ClassIds 1,2,3,4,6) -->
+		<string key="ready1h" string="C. a C. listo"/>
+		<string key="attack1h" string="Ataque C. a C."/>
+		<string key="ready2h" string="C. a C. listo"/>
+		<string key="ready2hl" string="C. a C. listo"/>
+		<string key="attack2h" string="Ataque C. a C."/>
+		<string key="attack2hl" string="Ataque C. a C."/>
+		<string key="attack1hpierce" string="Ataque C. a C."/>
+		<string key="attack1hpierce" string="Ataque C. a C."/>
+		<string key="attackunarmed" string="Ataque C. a C."/>
+		<string key="readyunarmed" string="C. a C. listo"/>
+				
+		<!-- Hunter (ClassId 3) -->
+		<string key="attackbow" string="Fuego"/>
+		<string key="readybow" string="Dist. listo"/>
+		<string key="readygun" string="Dist. listo"/>
+		<string key="attackgun" string="Fuego"/>
+		<string key="loadbow" string="Recargar"/>
+		<string key="loadgun" string="Recargar"/>
+		<string key="holdbow" string="Apuntar"/>
+				
+		<string key="human" string="Humano"/>
+		<string key="orc-troll" string="Orco/Trol"/>
+		<string key="gnome-dwarf" string="Gnomo/Enano"/>
+		<string key="nightelf" string="Elfo de la noche"/>
+		<string key="undead" string="No-muerto"/>
+		<string key="tauren" string="Tauren"/>
+		<string key="gnome-dwarf" string="Gnomo/Enano"/>
+		<string key="orc-troll" string="Orco/Trol"/>
+		<string key="bloodelf" string="Elfo de sangre"/>
+		<string key="draenei" string="Draenei"/>
+		
+		<!-- Special Attacks -->
+		<string key="whirlwind" string="Torbellino"/>
+		<string key="special1h" string="Ataque especial"/>
+		<string key="special2h" string="Ataque especial"/>
+		<string key="mutilate" string="Mutilar"/>
+		
+		<!-- Options Menu -->
+		<string key="equipmentHeader" string="Opciones"/>
+		<string key="showHelmet" string="Yelmo"/>
+		<string key="showCloak" string="Capa"/>
+		<string key="showTabard" string="Tabardo"/>
+		<string key="highQuality" string="Alta"/>
+		<string key="mediumQuality" string="Media"/>
+		<string key="lowQuality" string="Baja"/>
+		<string key="loginToPose" string="Inicia sesión para asignar poses predeterminadas para los personajes de tu cuenta"/>
+		<string key="qualityHeader" string="Calidad del modelo"/>
+		<string key="backgroundHeader" string="Fondo"/>
+		<string key="embedDescription" string="Incluir este URL en un sitio web para mostrar una versión independiente del visor de modelos de la Armería para este personaje."/>
+		<string key="copy" string="Copiar"/>
+		<string key="embedCopied" string="El URL ha sido copiado a tu portapapeles."/>
+		<string key="close" string="Cerrar"/>
+		<string key="embedTooltip" string="Enlazar al visor de modelos de este personaje"/>
+		<string key="saveTooltip" string="Guardar esta pose como predeterminada para todos los que visiten este perfil"/>
+		
+		<!-- Backgrounds -->
+		<string key="argenttournament" string="Torneo"/>
+		<string key="dalaran" string="Dalaran"/>
+		<string key="shattrath" string="C. de Shattrath"/>
+		<string key="shattrath2" string="C. de Shatt. 2"/>
+		<string key="wintergrasp" string="Conq. del Inv."/>
+		<string key="alteracvalley_horde" string="VA (Lob. gélidos)"/>
+		<string key="alteracvalley_alliance" string="VA (Picotorm.)"/>
+		<string key="deathknight" string="C. de la muerte"/>
+		
+		<string key="loading" string="Cargando..."/>
+		
+</strings>

@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="PriestDiscipline" icon="spell_holy_wordfortitude" key="Discipline" name="Disziplin" order="0">
+      <talent column="1" icon="spell_magic_magearmor" key="342" name="Unbezwingbarer Wille" tier="0">
+        <rank description="Verringert die Dauer auf Euch wirkender Betäubungs-, Furcht- und Stilleeffekte um weitere 6%." lvl="1"/>
+        <rank description="Verringert die Dauer auf Euch wirkender Betäubungs-, Furcht- und Stilleeffekte um weitere 12%." lvl="2"/>
+        <rank description="Verringert die Dauer auf Euch wirkender Betäubungs-, Furcht- und Stilleeffekte um weitere 18%." lvl="3"/>
+        <rank description="Verringert die Dauer auf Euch wirkender Betäubungs-, Furcht- und Stilleeffekte um weitere 24%." lvl="4"/>
+        <rank description="Verringert die Dauer auf Euch wirkender Betäubungs-, Furcht- und Stilleeffekte um weitere 30%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofvengeance" key="1898" name="Zwillingsdisziplinen" tier="0">
+        <rank description="Erhöht den Schaden und die Heilung Eurer Spontanzauber um 1%." lvl="1"/>
+        <rank description="Erhöht den Schaden und die Heilung Eurer Spontanzauber um 2%." lvl="2"/>
+        <rank description="Erhöht den Schaden und die Heilung Eurer Spontanzauber um 3%." lvl="3"/>
+        <rank description="Erhöht den Schaden und die Heilung Eurer Spontanzauber um 4%." lvl="4"/>
+        <rank description="Erhöht den Schaden und die Heilung Eurer Spontanzauber um 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_manaregentotem" key="352" name="Schweigsame Entschlossenheit" tier="1">
+        <rank description="Verringert die von Euren Heilig- und Disziplinzaubern verursachte Bedrohung um 7% und die Chance, dass sowohl Eure hilfreichen Zauber als auch Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um 10%." lvl="1"/>
+        <rank description="Verringert die von Euren Heilig- und Disziplinzaubern verursachte Bedrohung um 14% und die Chance, dass sowohl Eure hilfreichen Zauber als auch Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um 20%." lvl="2"/>
+        <rank description="Verringert die von Euren Heilig- und Disziplinzaubern verursachte Bedrohung um 20% und die Chance, dass sowohl Eure hilfreichen Zauber als auch Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_innerfire" key="346" name="Verbessertes inneres Feuer" tier="1">
+        <rank description="Erhöht den Effekt Eures Zaubers 'Inneres Feuer' um 15% und erhöht die Anzahl an Aufladungen um 4." lvl="1"/>
+        <rank description="Erhöht den Effekt Eures Zaubers 'Inneres Feuer' um 30% und erhöht die Anzahl an Aufladungen um 8." lvl="2"/>
+        <rank description="Erhöht den Effekt Eures Zaubers 'Inneres Feuer' um 45% und erhöht die Anzahl an Aufladungen um 12." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_wordfortitude" key="344" name="Verbessertes Machtwort: Seelenstärke" tier="1">
+        <rank description="Erhöht den Effekt Eurer Zauber 'Machtwort: Seelenstärke' und 'Gebet der Seelenstärke' um 15% und erhöht Eure gesamte Ausdauer um 2%." lvl="1"/>
+        <rank description="Erhöht den Effekt Eurer Zauber 'Machtwort: Seelenstärke' und 'Gebet der Seelenstärke' um 30% und erhöht Eure gesamte Ausdauer um 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_tranquility" key="321" name="Märtyrertum" tier="1">
+        <rank description="Gewährt Euch eine Chance von 50%, den Effekt 'Fokussiertes Zauberwirken' zu erhalten, der 6 Sek. lang anhält, nachdem Ihr Opfer eines kritischen Nahkampf- oder Distanzangriffs wart. Der Effekt 'Fokussiertes Zauberwirken' verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Priesterzaubern und die Dauer von Unterbrechungseffekten um 10%." lvl="1"/>
+        <rank description="Gewährt Euch eine Chance von 100%, den Effekt 'Fokussiertes Zauberwirken' zu erhalten, der 6 Sek. lang anhält, nachdem Ihr Opfer eines kritischen Nahkampf- oder Distanzangriffs wart. Der Effekt 'Fokussiertes Zauberwirken' verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Priesterzaubern und die Dauer von Unterbrechungseffekten um 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_sleep" key="347" name="Meditation" tier="2">
+        <rank description="Ermöglicht, dass 17% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="1"/>
+        <rank description="Ermöglicht, dass 33% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="2"/>
+        <rank description="Ermöglicht, dass 50% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_windwalkon" key="348" name="Innerer Fokus" tier="2">
+        <rank description="Bei Aktivierung werden die Manakosten Eures nächsten Zaubers um 100% verringert und seine Chance auf einen kritischen Effekt um 25% erhöht, sofern er in der Lage ist, einen kritischen Effekt zu verursachen." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="spell_holy_powerwordshield" key="343" name="Verbessertes Machtwort: Schild" tier="2">
+        <rank description="Erhöht den von Eurem Zauber 'Machtwort: Schild' absorbierten Schaden um 5%." lvl="1"/>
+        <rank description="Erhöht den von Eurem Zauber 'Machtwort: Schild' absorbierten Schaden um 10%." lvl="2"/>
+        <rank description="Erhöht den von Eurem Zauber 'Machtwort: Schild' absorbierten Schaden um 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_absolution" key="1769" name="Absolution" tier="3">
+        <rank description="Verringert die Manakosten Eurer Zauber 'Magiebannung', 'Krankheit heilen', 'Krankheit aufheben' und 'Massenbannung' um 5%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Magiebannung', 'Krankheit heilen', 'Krankheit aufheben' und 'Massenbannung' um 10%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Magiebannung', 'Krankheit heilen', 'Krankheit aufheben' und 'Massenbannung' um 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hibernation" key="341" name="Mentale Beweglichkeit" tier="3">
+        <rank description="Verringert die Manakosten Eurer Sofortzauber um 4%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Sofortzauber um 7%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Sofortzauber um 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_manaburn" key="350" name="Verbesserter Manabrand" tier="3">
+        <rank description="Die Zauberzeit Eures Zaubers 'Manabrand' wird um 0.5 Sek. verringert." lvl="1"/>
+        <rank description="Die Zauberzeit Eures Zaubers 'Manabrand' wird um 1 Sek. verringert." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_powerwordshield" key="2268" name="Reflektierender Schild" tier="4">
+        <rank description="22% des Schadens, den Ihr durch 'Machtwort: Schild' absorbiert, werden auf den Angreifer zurückgeworfen. Dieser Schaden verursacht keine Bedrohung." lvl="1"/>
+        <rank description="45% des Schadens, den Ihr durch 'Machtwort: Schild' absorbiert, werden auf den Angreifer zurückgeworfen. Dieser Schaden verursacht keine Bedrohung." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_enchantarmor" key="1201" name="Mentale Stärke" tier="4">
+        <rank description="Erhöht Eure gesamte Intelligenz um 3%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 6%." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 9%." lvl="3"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 12%." lvl="4"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 15%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_pureofheart" key="351" name="Seelenwehr" requires="343" tier="4">
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Machtwort: Schild' um 4 Sek. und verringert seine Manakosten um 15%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_focusedpower" key="1771" name="Fokussierte Macht" tier="5">
+        <rank description="Erhöht Euren Zauberschaden und Eure Heilung um 2%. Zusätzlich wird die Zauberzeit von 'Massenbannung' um 0.5 Sek. verringert." lvl="1"/>
+        <rank description="Erhöht Euren Zauberschaden und Eure Heilung um 4%. Zusätzlich wird die Zauberzeit von 'Massenbannung' um 1 Sek. verringert." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_mindmastery" key="1772" name="Erleuchtung" tier="5">
+        <rank description="Erhöht Eure gesamte Willenskraft um 2% und Euer Zaubertempo um 2%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Willenskraft um 4% und Euer Zaubertempo um 4%." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Willenskraft um 6% und Euer Zaubertempo um 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_focusedpower" key="1858" name="Fokussierter Wille" tier="6">
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber um 1%. Nach einem erlittenen kritischen Treffer wird Euch der Effekt 'Fokussierter Wille' gewährt, wodurch jeglicher erlittene Schaden um 2% verringert und erhaltene Heileffekte um 3% erhöht werden. Bis zu 3-mal stapelbar. Hält 8 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber um 2%. Nach einem erlittenen kritischen Treffer wird Euch der Effekt 'Fokussierter Wille' gewährt, wodurch jeglicher erlittene Schaden um 3% verringert und erhaltene Heileffekte um 4% erhöht werden. Bis zu 3-mal stapelbar. Hält 8 Sek. lang an." lvl="2"/>
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber um 3%. Nach einem erlittenen kritischen Treffer wird Euch der Effekt 'Fokussierter Wille' gewährt, wodurch jeglicher erlittene Schaden um 4% verringert und erhaltene Heileffekte um 5% erhöht werden. Bis zu 3-mal stapelbar. Hält 8 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_powerinfusion" key="322" name="Seele der Macht" requires="1201" tier="6">
+        <rank description="Erfüllt das Ziel mit Macht, erhöht das Zaubertempo um 20% und senkt die Manakosten jeglicher Zauber um 20%. Hält 15 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_chastise" key="1773" name="Verbesserte Blitzheilung" tier="6">
+        <rank description="Verringert die Manakosten Eures Zaubers 'Blitzheilung' um 5% und erhöht seine Chance auf einen kritischen Effekt bei befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 4%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eures Zaubers 'Blitzheilung' um 10% und erhöht seine Chance auf einen kritischen Effekt bei befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 7%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eures Zaubers 'Blitzheilung' um 15% und erhöht seine Chance auf einen kritischen Effekt bei befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Erneuerte Hoffnung" tier="7">
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne (Heilung)' um 2%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem habt Ihr beim Wirken von 'Machtwort: Schild' eine Chance von 50%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 20 Sek. lang um 3% zu verringern." lvl="1"/>
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne (Heilung)' um 4%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem habt Ihr beim Wirken von 'Machtwort: Schild' eine Chance von 100%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 20 Sek. lang um 3% zu verringern." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_rapture" key="1896" name="Euphorie" tier="7">
+        <rank description="Wenn der Effekt Eures Zaubers 'Machtwort: Schild' gebannt oder durch absorbierten Schaden beendet wird, gewinnt Ihr sofort 1,5% Eures maximalen Manas. Es besteht eine Chance von 33%, dass ein schildgeschütztes Ziel 2% seines gesamten Manas, 8 Wut, 16 Energie oder 32 Runenmacht gewinnt. Dieser Effekt kann nur ein Mal alle 12 Sek. auftreten." lvl="1"/>
+        <rank description="Wenn der Effekt Eures Zaubers 'Machtwort: Schild' gebannt oder durch absorbierten Schaden beendet wird, gewinnt Ihr sofort 2% Eures maximalen Manas. Es besteht eine Chance von 66%, dass ein schildgeschütztes Ziel 2% seines gesamten Manas, 8 Wut, 16 Energie oder 32 Runenmacht gewinnt. Dieser Effekt kann nur ein Mal alle 12 Sek. auftreten." lvl="2"/>
+        <rank description="Wenn der Effekt Eures Zaubers 'Machtwort: Schild' gebannt oder durch absorbierten Schaden beendet wird, gewinnt Ihr sofort 2,5% Eures maximalen Manas. Es besteht eine Chance von 100%, dass ein schildgeschütztes Ziel 2% seines gesamten Manas, 8 Wut, 16 Energie oder 32 Runenmacht gewinnt. Dieser Effekt kann nur ein Mal alle 12 Sek. auftreten." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_aspiration" key="1894" name="Aspiration" tier="7">
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Innerer Fokus', 'Seele der Macht', 'Schmerzunterdrückung' und 'Sühne' um 10%." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Innerer Fokus', 'Seele der Macht', 'Schmerzunterdrückung' und 'Sühne' um 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_devineaegis" key="1895" name="Göttliche Aegis" tier="8">
+        <rank description="Kritische Heilungen hüllen das Ziel in einen schützenden Schild, der Schaden in Höhe von 10% des geheilten Wertes absorbiert. Hält 12 Sek. lang an." lvl="1"/>
+        <rank description="Kritische Heilungen hüllen das Ziel in einen schützenden Schild, der Schaden in Höhe von 20% des geheilten Wertes absorbiert. Hält 12 Sek. lang an." lvl="2"/>
+        <rank description="Kritische Heilungen hüllen das Ziel in einen schützenden Schild, der Schaden in Höhe von 30% des geheilten Wertes absorbiert. Hält 12 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_painsupression" key="1774" name="Schmerzunterdrückung" tier="8">
+        <rank description="Verringert die Bedrohung eines befreundeten Ziels sofort um 5%, 8 Sek. lang wird jeglicher erlittene Schaden um 40% verringert und die Chance, Bannzaubern zu widerstehen, um 65% erhöht." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_hopeandgrace" key="1901" name="Barmherzigkeit" tier="8">
+        <rank description="Eure Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne' haben eine Chance von 50%, das Ziel mit Barmherzigkeit zu segnen, die seine durch den Priester erhaltene Heilung um 3% erhöht. Dieser Effekt ist bis zu 3-mal stapelbar und hält 15 Sek. lang an. 'Barmherzigkeit' kann jeweils nur auf ein Ziel wirken." lvl="1"/>
+        <rank description="Eure Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne' haben eine Chance von 100%, das Ziel mit Barmherzigkeit zu segnen, die seine durch den Priester erhaltene Heilung um 3% erhöht. Dieser Effekt ist bis zu 3-mal stapelbar und hält 15 Sek. lang an. 'Barmherzigkeit' kann jeweils nur auf ein Ziel wirken." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_borrowedtime" key="1202" name="Zeit schinden" tier="9">
+        <rank description="Gewährt Euch nach dem Wirken von 'Machtwort: Schild' 5% Zaubertempo und erhöht den von Eurem 'Machtwort: Schild' absorbierten Schaden um 8% Eurer Zaubermacht." lvl="1"/>
+        <rank description="Gewährt Euch nach dem Wirken von 'Machtwort: Schild' 10% Zaubertempo und erhöht den von Eurem 'Machtwort: Schild' absorbierten Schaden um 16% Eurer Zaubermacht." lvl="2"/>
+        <rank description="Gewährt Euch nach dem Wirken von 'Machtwort: Schild' 15% Zaubertempo und erhöht den von Eurem 'Machtwort: Schild' absorbierten Schaden um 24% Eurer Zaubermacht." lvl="3"/>
+        <rank description="Gewährt Euch nach dem Wirken von 'Machtwort: Schild' 20% Zaubertempo und erhöht den von Eurem 'Machtwort: Schild' absorbierten Schaden um 32% Eurer Zaubermacht." lvl="4"/>
+        <rank description="Gewährt Euch nach dem Wirken von 'Machtwort: Schild' 25% Zaubertempo und erhöht den von Eurem 'Machtwort: Schild' absorbierten Schaden um 40% Eurer Zaubermacht." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_penance" key="1897" name="Sühne" tier="10">
+        <rank description="Schleudert eine Salve heiligen Lichts auf das Ziel, die an einem Feind 240 Heiligschaden verursacht oder ein freundliches Ziel sofort um 670 bis 756 heilt sowie 2 Sek. lang alle 1 Sek." lvl="1"/>
+        <spell castTime="0" channeled="1" cooldown="12000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestHoly" icon="spell_holy_guardianspirit" key="Holy" name="Heilig" order="1">
+      <talent column="0" icon="spell_holy_healingfocus" key="410" name="Heilfokus" tier="0">
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Heilzaubern um 35%." lvl="1"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Heilzaubern um 70%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_renew" key="406" name="Verbesserte Erneuerung" tier="0">
+        <rank description="Erhöht den durch Euren Zauber 'Erneuerung' geheilten Wert um 5%." lvl="1"/>
+        <rank description="Erhöht den durch Euren Zauber 'Erneuerung' geheilten Wert um 10%." lvl="2"/>
+        <rank description="Erhöht den durch Euren Zauber 'Erneuerung' geheilten Wert um 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofsalvation" key="401" name="Macht des Glaubens" tier="0">
+        <rank description="Erhöht die Chance auf einen kritischen Effekt mit Heiligzaubern um 1%." lvl="1"/>
+        <rank description="Erhöht die Chance auf einen kritischen Effekt mit Heiligzaubern um 2%." lvl="2"/>
+        <rank description="Erhöht die Chance auf einen kritischen Effekt mit Heiligzaubern um 3%." lvl="3"/>
+        <rank description="Erhöht die Chance auf einen kritischen Effekt mit Heiligzaubern um 4%." lvl="4"/>
+        <rank description="Erhöht die Chance auf einen kritischen Effekt mit Heiligzaubern um 5%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_spellwarding" key="411" name="Zauberschutz" tier="1">
+        <rank description="Verringert jeglichen erlittenen Zauberschaden um 2%." lvl="1"/>
+        <rank description="Verringert jeglichen erlittenen Zauberschaden um 4%." lvl="2"/>
+        <rank description="Verringert jeglichen erlittenen Zauberschaden um 6%." lvl="3"/>
+        <rank description="Verringert jeglichen erlittenen Zauberschaden um 8%." lvl="4"/>
+        <rank description="Verringert jeglichen erlittenen Zauberschaden um 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofwrath" key="1181" name="Göttlicher Furor" tier="1">
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilen' und 'Große Heilung' um 0.1 Sek." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilen' und 'Große Heilung' um 0.2 Sek." lvl="2"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilen' und 'Große Heilung' um 0.3 Sek." lvl="3"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilen' und 'Große Heilung' um 0.4 Sek." lvl="4"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilen' und 'Große Heilung' um 0.5 Sek." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_restoration" key="442" name="Verzweifeltes Gebet" tier="2">
+        <rank description="Heilt den Zaubernden sofort um 263 bis 325." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_blessedrecovery" key="1636" name="Gesegnete Erholung" tier="2">
+        <rank description="Heilt Euch nach dem Erleiden eines kritischen Nahkampf- oder Distanzangrifftreffers im Verlauf von 6 Sek. um 5% des zugefügten Schadens. Zusätzlich während dieser Dauer erlittene kritische Treffer erhöhen die erhaltene Heilung." lvl="1"/>
+        <rank description="Heilt Euch nach dem Erleiden eines kritischen Nahkampf- oder Distanzangrifftreffers im Verlauf von 6 Sek. um 10% des zugefügten Schadens. Zusätzlich während dieser Dauer erlittene kritische Treffer erhöhen die erhaltene Heilung." lvl="2"/>
+        <rank description="Heilt Euch nach dem Erleiden eines kritischen Nahkampf- oder Distanzangrifftreffers im Verlauf von 6 Sek. um 15% des zugefügten Schadens. Zusätzlich während dieser Dauer erlittene kritische Treffer erhöhen die erhaltene Heilung." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_holy_layonhands" key="361" name="Inspiration" tier="2">
+        <rank description="Verringert den erlittenen körperlichen Schaden Eures Ziels 15 Sek. lang um 3%, nachdem dieses einen kritischen Effekt von Eurem Zauber 'Blitzheilung', 'Heilen', 'Große Heilung', 'Verbindende Heilung', 'Sühne', 'Gebet der Besserung', 'Gebet der Heilung' oder 'Kreis der Heilung' erhalten hat." lvl="1"/>
+        <rank description="Verringert den erlittenen körperlichen Schaden Eures Ziels 15 Sek. lang um 7%, nachdem dieses einen kritischen Effekt von Eurem Zauber 'Blitzheilung', 'Heilen', 'Große Heilung', 'Verbindende Heilung', 'Sühne', 'Gebet der Besserung', 'Gebet der Heilung' oder 'Kreis der Heilung' erhalten hat." lvl="2"/>
+        <rank description="Verringert den erlittenen körperlichen Schaden Eures Ziels 15 Sek. lang um 10%, nachdem dieses einen kritischen Effekt von Eurem Zauber 'Blitzheilung', 'Heilen', 'Große Heilung', 'Verbindende Heilung', 'Sühne', 'Gebet der Besserung', 'Gebet der Heilung' oder 'Kreis der Heilung' erhalten hat." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_purify" key="1635" name="Heilige Reichweite" tier="3">
+        <rank description="Erhöht die Reichweite Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer' sowie den Radius der Zauber 'Gebet der Heilung', 'Heilige Nova', 'Gotteshymne' und 'Kreis der Heilung' um 10%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer' sowie den Radius der Zauber 'Gebet der Heilung', 'Heilige Nova', 'Gotteshymne' und 'Kreis der Heilung' um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_heal02" key="408" name="Verbesserte Heilung" tier="3">
+        <rank description="Verringert die Manakosten Eurer Zauber 'Geringes Heilen', 'Heilen', 'Große Heilung', 'Gotteshymne' und 'Sühne' um 5%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Geringes Heilen', 'Heilen', 'Große Heilung', 'Gotteshymne' und 'Sühne' um 10%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Geringes Heilen', 'Heilen', 'Große Heilung', 'Gotteshymne' und 'Sühne' um 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_searinglightpriest" key="403" name="Sengendes Licht" requires="1181" tier="3">
+        <rank description="Erhöht den Schaden Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilige Nova' und 'Sühne' um 5%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Göttliche Pein', 'Heiliges Feuer', 'Heilige Nova' und 'Sühne' um 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_prayerofhealing02" key="413" name="Heilende Gebete" tier="4">
+        <rank description="Verringert die Manakosten Eurer Zauber 'Gebet der Heilung' und 'Gebet der Besserung' um 10%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Gebet der Heilung' und 'Gebet der Besserung' um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_enchant_essenceeternallarge" key="1561" name="Geist der Erlösung" tier="4">
+        <rank description="Erhöht die gesamte Willenskraft um 5% und beim Tod verwandelt sich der Priester 15 Sek. lang in einen Geist der Erlösung. Der Geist kann sich weder bewegen oder angreifen, noch kann er das Ziel von Zaubern oder Effekten sein. In dieser Gestalt kann der Priester jeglichen Heilzauber ohne irgendwelche Kosten wirken. Nach Ablauf der Verwandlung stirbt der Priester." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_holy_spiritualguidence" key="402" name="Geistige Führung" tier="4">
+        <rank description="Erhöht die Zaubermacht um einen Betrag, der 5% Eurer gesamten Willenskraft entspricht." lvl="1"/>
+        <rank description="Erhöht die Zaubermacht um einen Betrag, der 10% Eurer gesamten Willenskraft entspricht." lvl="2"/>
+        <rank description="Erhöht die Zaubermacht um einen Betrag, der 15% Eurer gesamten Willenskraft entspricht." lvl="3"/>
+        <rank description="Erhöht die Zaubermacht um einen Betrag, der 20% Eurer gesamten Willenskraft entspricht." lvl="4"/>
+        <rank description="Erhöht die Zaubermacht um einen Betrag, der 25% Eurer gesamten Willenskraft entspricht." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_surgeoflight" key="1766" name="Woge des Lichts" tier="5">
+        <rank description="Eure kritischen Zaubertreffer haben eine Chance von 25%, dass das nächste Wirken von 'Göttliche Pein' oder 'Blitzheilung' ein Spontanzauber ist und kein Mana kostet, aber keinen kritischen Treffer erzielen kann. Der Effekt hält 10 Sek. lang an." lvl="1"/>
+        <rank description="Eure kritischen Zaubertreffer haben eine Chance von 50%, dass das nächste Wirken von 'Göttliche Pein' oder 'Blitzheilung' ein Spontanzauber ist und kein Mana kostet, aber keinen kritischen Treffer erzielen kann. Der Effekt hält 10 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_moonglow" key="404" name="Spirituelle Heilung" tier="5">
+        <rank description="Erhöht den durch Eure Heilzauber geheilten Wert um 2%." lvl="1"/>
+        <rank description="Erhöht den durch Eure Heilzauber geheilten Wert um 4%." lvl="2"/>
+        <rank description="Erhöht den durch Eure Heilzauber geheilten Wert um 6%." lvl="3"/>
+        <rank description="Erhöht den durch Eure Heilzauber geheilten Wert um 8%." lvl="4"/>
+        <rank description="Erhöht den durch Eure Heilzauber geheilten Wert um 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_fanaticism" key="1768" name="Heilige Konzentration" tier="6">
+        <rank description="Erzielt Ihr mit 'Blitzheilung', 'Große Heilung', 'Verbindende Heilung' oder 'Machterfüllte Erneuerung' einen kritischen Effekt, wird die Manaregeneration durch Eure Willenskraft 8 Sek. lang um 16% erhöht." lvl="1"/>
+        <rank description="Erzielt Ihr mit 'Blitzheilung', 'Große Heilung', 'Verbindende Heilung' oder 'Machterfüllte Erneuerung' einen kritischen Effekt, wird die Manaregeneration durch Eure Willenskraft 8 Sek. lang um 32% erhöht." lvl="2"/>
+        <rank description="Erzielt Ihr mit 'Blitzheilung', 'Große Heilung', 'Verbindende Heilung' oder 'Machterfüllte Erneuerung' einen kritischen Effekt, wird die Manaregeneration durch Eure Willenskraft 8 Sek. lang um 50% erhöht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Brunnen des Lichts" requires="1561" tier="6">
+        <rank description="Erschafft einen heiligen Brunnen des Lichts. Gruppen- oder Schlachtzugsmitglieder können den Brunnen des Lichts anklicken, um im Verlauf von 6 Sek. insgesamt 801 Gesundheit wiederherzustellen. Erlittener Schaden, der 30% Eurer gesamten Gesundheit entspricht, bricht den Effekt ab. Der Brunnen des Lichts bleibt 3 Min. lang bestehen oder bis 10 Aufladungen verbraucht sind." lvl="1"/>
+        <spell castTime="500" cooldown="180000" maxRange="40">
+          <power cost="17" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessedresillience" key="1765" name="Gesegnete Abhärtung" tier="6">
+        <rank description="Erhöht die Effektivität Eurer Heilzauber um 1%. Erleidet Ihr einen kritischen Treffer, besteht eine Chance von 20%, dass 6 Sek. lang weitere kritische Treffer gegen Euch verhindert werden." lvl="1"/>
+        <rank description="Erhöht die Effektivität Eurer Heilzauber um 2%. Erleidet Ihr einen kritischen Treffer, besteht eine Chance von 40%, dass 6 Sek. lang weitere kritische Treffer gegen Euch verhindert werden." lvl="2"/>
+        <rank description="Erhöht die Effektivität Eurer Heilzauber um 3%. Erleidet Ihr einen kritischen Treffer, besteht eine Chance von 60%, dass 6 Sek. lang weitere kritische Treffer gegen Euch verhindert werden." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_symbolofhope" key="2279" name="Körper und Geist" tier="7">
+        <rank description="Wenn Ihr 'Machtwort: Schild' wirkt, wird das Bewegungstempo des Ziels 4 Sek. lang um 30% erhöht. Zudem besteht eine Chance von 50%, dass Ihr beim Wirken von 'Krankheit aufheben' auf Euch selbst, zusätzlich zu den Krankheiten einen Gifteffekt entfernt." lvl="1"/>
+        <rank description="Wenn Ihr 'Machtwort: Schild' wirkt, wird das Bewegungstempo des Ziels 4 Sek. lang um 60% erhöht. Zudem besteht eine Chance von 100%, dass Ihr beim Wirken von 'Krankheit aufheben' auf Euch selbst, zusätzlich zu den Krankheiten einen Gifteffekt entfernt." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_greaterheal" key="1767" name="Machtvolle Heilung" tier="7">
+        <rank description="Eure 'Große Heilung' erhält zusätzliche 8% und Eure 'Blitzheilung' und 'Verbindende Heilung' zusätzliche 4% Bonus durch Heilung erhöhende Effekte." lvl="1"/>
+        <rank description="Eure 'Große Heilung' erhält zusätzliche 16% und Eure 'Blitzheilung' und 'Verbindende Heilung' zusätzliche 8% Bonus durch Heilung erhöhende Effekte." lvl="2"/>
+        <rank description="Eure 'Große Heilung' erhält zusätzliche 24% und Eure 'Blitzheilung' und 'Verbindende Heilung' zusätzliche 12% Bonus durch Heilung erhöhende Effekte." lvl="3"/>
+        <rank description="Eure 'Große Heilung' erhält zusätzliche 32% und Eure 'Blitzheilung' und 'Verbindende Heilung' zusätzliche 16% Bonus durch Heilung erhöhende Effekte." lvl="4"/>
+        <rank description="Eure 'Große Heilung' erhält zusätzliche 40% und Eure 'Blitzheilung' und 'Verbindende Heilung' zusätzliche 20% Bonus durch Heilung erhöhende Effekte." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_serendipity" key="1904" name="Glücksfall" tier="7">
+        <rank description="Wenn Ihr 'Verbindende Heilung' oder 'Blitzheilung' wirkt, wird die Zauberzeit Eures nächsten Wirkens von 'Große Heilung' oder 'Gebet der Heilung' um 4% verringert. Bis zu 3-mal stapelbar. Hält 20 Sek. lang an." lvl="1"/>
+        <rank description="Wenn Ihr 'Verbindende Heilung' oder 'Blitzheilung' wirkt, wird die Zauberzeit Eures nächsten Wirkens von 'Große Heilung' oder 'Gebet der Heilung' um 8% verringert. Bis zu 3-mal stapelbar. Hält 20 Sek. lang an." lvl="2"/>
+        <rank description="Wenn Ihr 'Verbindende Heilung' oder 'Blitzheilung' wirkt, wird die Zauberzeit Eures nächsten Wirkens von 'Große Heilung' oder 'Gebet der Heilung' um 12% verringert. Bis zu 3-mal stapelbar. Hält 20 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_infusionoflight" key="1902" name="Machterfüllte Erneuerung" tier="8">
+        <rank description="Euer Zauber 'Erneuerung' erhält zusätzliche 5% Eurer Bonusheilungseffekte und heilt das Ziel sofort um 5% des gesamten regelmäßigen Effektes." lvl="1"/>
+        <rank description="Euer Zauber 'Erneuerung' erhält zusätzliche 10% Eurer Bonusheilungseffekte und heilt das Ziel sofort um 10% des gesamten regelmäßigen Effektes." lvl="2"/>
+        <rank description="Euer Zauber 'Erneuerung' erhält zusätzliche 15% Eurer Bonusheilungseffekte und heilt das Ziel sofort um 15% des gesamten regelmäßigen Effektes." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_circleofrenewal" key="1815" name="Kreis der Heilung" tier="8">
+        <rank description="Heilt bis zu 5 befreundete Gruppen- oder Schlachtzugsmitglieder innerhalb von 15 Metern um das Ziel um 343 bis 379." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_testoffaith" key="1903" name="Prüfung des Glaubens" tier="8">
+        <rank description="Erhöht die erhaltene Heilung von befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 4%." lvl="1"/>
+        <rank description="Erhöht die erhaltene Heilung von befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 8%." lvl="2"/>
+        <rank description="Erhöht die erhaltene Heilung von befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 12%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_divineprovidence" key="1905" name="Göttliche Vorsehung" tier="9">
+        <rank description="Erhöht den von Euren Zaubern 'Kreis der Heilung', 'Verbindende Heilung', 'Heilige Nova', 'Gebet der Heilung', 'Gotteshymne' und 'Gebet der Besserung' geheilten Wert um 2% und verringert die Abklingzeit von 'Gebet der Besserung' um 6%." lvl="1"/>
+        <rank description="Erhöht den von Euren Zaubern 'Kreis der Heilung', 'Verbindende Heilung', 'Heilige Nova', 'Gebet der Heilung', 'Gotteshymne' und 'Gebet der Besserung' geheilten Wert um 4% und verringert die Abklingzeit von 'Gebet der Besserung' um 12%." lvl="2"/>
+        <rank description="Erhöht den von Euren Zaubern 'Kreis der Heilung', 'Verbindende Heilung', 'Heilige Nova', 'Gebet der Heilung', 'Gotteshymne' und 'Gebet der Besserung' geheilten Wert um 6% und verringert die Abklingzeit von 'Gebet der Besserung' um 18%." lvl="3"/>
+        <rank description="Erhöht den von Euren Zaubern 'Kreis der Heilung', 'Verbindende Heilung', 'Heilige Nova', 'Gebet der Heilung', 'Gotteshymne' und 'Gebet der Besserung' geheilten Wert um 8% und verringert die Abklingzeit von 'Gebet der Besserung' um 24%." lvl="4"/>
+        <rank description="Erhöht den von Euren Zaubern 'Kreis der Heilung', 'Verbindende Heilung', 'Heilige Nova', 'Gebet der Heilung', 'Gotteshymne' und 'Gebet der Besserung' geheilten Wert um 10% und verringert die Abklingzeit von 'Gebet der Besserung' um 30%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_guardianspirit" key="1911" name="Schutzgeist" tier="10">
+        <rank description="Ruft einen Schutzgeist herbei, der ein freundliches Ziel bewacht. Der Geist erhöht die erhaltene Heilung des Ziels um 40% und verhindert, dass das Ziel stirbt, indem er sich selbst opfert. Dieses Opfer beendet den Effekt, heilt das Ziel jedoch um 50% seiner maximalen Gesundheit. Hält 10 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestShadow" icon="spell_shadow_shadowwordpain" key="Shadow" name="Schatten" order="2">
+      <talent column="0" icon="spell_shadow_requiem" key="465" name="Willensentzug" tier="0">
+        <rank description="Gewährt Euch eine Chance von 33%, einen Bonus von 100% für Eure Willenskraft zu gewinnen, nachdem Ihr ein Ziel getötet habt, das Erfahrung oder Ehre gewährt. In dieser Zeit regeneriert sich Euer Mana während des Zauberwirkens mit 83% der normalen Geschwindigkeit. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Gewährt Euch eine Chance von 66%, einen Bonus von 100% für Eure Willenskraft zu gewinnen, nachdem Ihr ein Ziel getötet habt, das Erfahrung oder Ehre gewährt. In dieser Zeit regeneriert sich Euer Mana während des Zauberwirkens mit 83% der normalen Geschwindigkeit. Hält 15 Sek. lang an." lvl="2"/>
+        <rank description="Gewährt Euch eine Chance von 100%, einen Bonus von 100% für Eure Willenskraft zu gewinnen, nachdem Ihr ein Ziel getötet habt, das Erfahrung oder Ehre gewährt. In dieser Zeit regeneriert sich Euer Mana während des Zauberwirkens mit 83% der normalen Geschwindigkeit. Hält 15 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="2027" name="Verbesserter Willensentzug" requires="465" tier="0">
+        <rank description="Die kritischen Treffer Eurer Zauber 'Gedankenschlag' und 'Schattenwort: Tod' haben eine Chance von 100% und die kritischen Treffer Eures Zaubers 'Gedankenschinden' eine Chance von 50%, Eure gesamte Willenskraft um 5% zu erhöhen. Während der Effekt andauert, wird Eure Manaregeneration während des Zauberwirkens auf 17% erhöht. Hält 8 Sek. lang an." lvl="1"/>
+        <rank description="Die kritischen Treffer Eurer Zauber 'Gedankenschlag' und 'Schattenwort: Tod' haben eine Chance von 100% und die kritischen Treffer Eures Zaubers 'Gedankenschinden' eine Chance von 50%, Eure gesamte Willenskraft um 10% zu erhöhen. Während der Effekt andauert, wird Eure Manaregeneration während des Zauberwirkens auf 33% erhöht. Hält 8 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_twilight" key="462" name="Dunkelheit" tier="0">
+        <rank description="Erhöht Euren Schattenzauber-Schaden um 2%." lvl="1"/>
+        <rank description="Erhöht Euren Schattenzauber-Schaden um 4%." lvl="2"/>
+        <rank description="Erhöht Euren Schattenzauber-Schaden um 6%." lvl="3"/>
+        <rank description="Erhöht Euren Schattenzauber-Schaden um 8%." lvl="4"/>
+        <rank description="Erhöht Euren Schattenzauber-Schaden um 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowward" key="466" name="Schattenaffinität" tier="1">
+        <rank description="Verringert die von Euren Schattenzaubern verursachte Bedrohung um 8% und Ihr gewinnt 5% Eures Grundmanas, wenn Eure Zauber 'Schattenwort: Schmerz' oder 'Vampirberührung' gebannt werden." lvl="1"/>
+        <rank description="Verringert die von Euren Schattenzaubern verursachte Bedrohung um 16% und Ihr gewinnt 10% Eures Grundmanas, wenn Eure Zauber 'Schattenwort: Schmerz' oder 'Vampirberührung' gebannt werden." lvl="2"/>
+        <rank description="Verringert die von Euren Schattenzaubern verursachte Bedrohung um 25% und Ihr gewinnt 15% Eures Grundmanas, wenn Eure Zauber 'Schattenwort: Schmerz' oder 'Vampirberührung' gebannt werden." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowwordpain" key="482" name="Verbessertes Schattenwort: Schmerz" tier="1">
+        <rank description="Erhöht den Schaden Eures Zaubers 'Schattenwort: Schmerz' um 3%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Schattenwort: Schmerz' um 6%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="463" name="Schattenfokus" tier="1">
+        <rank description="Erhöht Eure Chance, mit Schattenzaubern zu treffen um 1% und verringert die Manakosten Eurer Schattenzauber um 2%." lvl="1"/>
+        <rank description="Erhöht Eure Chance, mit Schattenzaubern zu treffen um 2% und verringert die Manakosten Eurer Schattenzauber um 4%." lvl="2"/>
+        <rank description="Erhöht Eure Chance, mit Schattenzaubern zu treffen um 3% und verringert die Manakosten Eurer Schattenzauber um 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychicscream" key="542" name="Verbesserter psychischer Schrei" tier="2">
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Psychischer Schrei' um 2 Sek." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Psychischer Schrei' um 4 Sek." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unholyfrenzy" key="481" name="Verbesserter Gedankenschlag" tier="2">
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Gedankenschlag' um 0.5 Sek. Zudem hat in Schattengestalt Euer Zauber 'Gedankenschlag' eine Chance von 20%, die erhaltene Heilung des Ziels 10 Sek. lang um 20% zu verringern." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Gedankenschlag' um 1 Sek. Zudem hat in Schattengestalt Euer Zauber 'Gedankenschlag' eine Chance von 40%, die erhaltene Heilung des Ziels 10 Sek. lang um 20% zu verringern." lvl="2"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Gedankenschlag' um 1.5 Sek. Zudem hat in Schattengestalt Euer Zauber 'Gedankenschlag' eine Chance von 60%, die erhaltene Heilung des Ziels 10 Sek. lang um 20% zu verringern." lvl="3"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Gedankenschlag' um 2 Sek. Zudem hat in Schattengestalt Euer Zauber 'Gedankenschlag' eine Chance von 80%, die erhaltene Heilung des Ziels 10 Sek. lang um 20% zu verringern." lvl="4"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Gedankenschlag' um 2.5 Sek. Zudem hat in Schattengestalt Euer Zauber 'Gedankenschlag' eine Chance von 100%, die erhaltene Heilung des Ziels 10 Sek. lang um 20% zu verringern." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_siphonmana" key="501" name="Gedankenschinden" tier="2">
+        <rank description="Greift die Gedanken des Ziels mit Schattenenergie an, verursacht im Verlauf von 3 Sek. 45 Schattenschaden und verringert das Bewegungstempo des Ziels um 50%." lvl="1"/>
+        <spell castTime="0" channeled="1" maxRange="30">
+          <power cost="9" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_magic_lesserinvisibilty" key="483" name="Schattenschleier" tier="3">
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Verblassen' um 3 Sek. und verringert die Abklingzeit Eures Schattengeistes um 1 Min." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Verblassen' um 6 Sek. und verringert die Abklingzeit Eures Schattengeistes um 2 Min." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_chilltouch" key="881" name="Schattenreichweite" tier="3">
+        <rank description="Erhöht die Reichweite Eurer offensiven Schattenzauber um 10%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer offensiven Schattenzauber um 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_blackplague" key="461" name="Schattenwirken" tier="3">
+        <rank description="Eure Schattenschadenszauber haben eine Chance von 33%, Euren verursachten Schattenschaden 15 Sek. lang um 2% zu erhöhen. Bis zu 5-mal stapelbar." lvl="1"/>
+        <rank description="Eure Schattenschadenszauber haben eine Chance von 66%, Euren verursachten Schattenschaden 15 Sek. lang um 2% zu erhöhen. Bis zu 5-mal stapelbar." lvl="2"/>
+        <rank description="Eure Schattenschadenszauber haben eine Chance von 100%, Euren verursachten Schattenschaden 15 Sek. lang um 2% zu erhöhen. Bis zu 5-mal stapelbar." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_impphaseshift" key="541" name="Stille" requires="542" tier="4">
+        <rank description="Bringt das Ziel zum Schweigen, sodass es 5 Sek. lang keine Zauber wirken kann. Das Zauberwirken von Nichtspieler-Zielen ist ebenfalls 3 Sek. lang unterbrochen." lvl="1"/>
+        <spell castTime="0" cooldown="45000" maxRange="30">
+          <power cost="225" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="484" name="Vampirumarmung" tier="4">
+        <rank description="Die Umarmung der Schattenenergie umschlingt Euch, wodurch Ihr Euch um 15% und andere Gruppenmitglieder um 3% des von Euch auf ein einzelnes Ziel verursachten Schattenschadens heilt. Hält 30 Min. lang an." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1638" name="Verbesserte Vampirumarmung" requires="484" tier="4">
+        <rank description="Erhöht die durch 'Vampirumarmung' erhaltene Heilung um 33%." lvl="1"/>
+        <rank description="Erhöht die durch 'Vampirumarmung' erhaltene Heilung um 67%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="1777" name="Fokussierte Gedanken" tier="4">
+        <rank description="Verringert die Manakosten Eurer Zauber 'Gedankenschlag', 'Gedankenkontrolle', 'Gedankenschinden' und 'Gedankenexplosion' um 5%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Gedankenschlag', 'Gedankenkontrolle', 'Gedankenschinden' und 'Gedankenexplosion' um 10%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Zauber 'Gedankenschlag', 'Gedankenkontrolle', 'Gedankenschinden' und 'Gedankenexplosion' um 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_skull" key="1781" name="Gedankenschmelze" tier="5">
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 2%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 3%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 4%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 6%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Verbesserte verschlingende Seuche" tier="5">
+        <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 5%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 10% des gesamten regelmäßigen Effekts." lvl="1"/>
+        <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 10%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 20% des gesamten regelmäßigen Effekts." lvl="2"/>
+        <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 15%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 30% des gesamten regelmäßigen Effekts." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowform" key="521" name="Schattengestalt" requires="484" tier="6">
+        <rank description="Ihr nehmt eine Schattengestalt an, erhöht Euren Schattenschaden um 15% und verringert den von Euch erlittenen Schaden um 15% sowie Eure erzeugte Bedrohung um 30%. Ihr könnt in dieser Gestalt außer 'Krankheit heilen' und 'Krankheit aufheben' jedoch keine Heiligzauber wirken. Gewährt dem regelmäßigen Schaden Eurer Zauber 'Schattenwort: Schmerz', 'Verschlingende Seuche' und 'Vampirberührung' für um 100% erhöhten Schaden kritisch zu treffen sowie 'Verschlingende Seuche' und 'Vampirberührung' die Fähigkeit, von Tempo zu profitieren." lvl="1"/>
+        <spell castTime="0" cooldown="1500">
+          <power cost="13" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowpower" key="1778" name="Schattenmacht" tier="6">
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Schattenwort: Tod' um 20%." lvl="1"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Schattenwort: Tod' um 40%." lvl="2"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Schattenwort: Tod' um 60%." lvl="3"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Schattenwort: Tod' um 80%." lvl="4"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Schattenwort: Tod' um 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonvoidwalker" key="1906" name="Verbesserte Schattengestalt" requires="521" tier="7">
+        <rank description="Eure Fähigkeit 'Verblassen' hat in Schattengestalt nun eine Chance von 50%, jegliche bewegungseinschränkende Effekte zu entfernen und die erhöhte Zauberdauer und verringerte Kanalisierungsdauer durch erlittenen Schaden wird um 35% verringert, wenn Ihr in Schattengestalt Schattenzauber wirkt." lvl="1"/>
+        <rank description="Eure Fähigkeit 'Verblassen' hat in Schattengestalt nun eine Chance von 100%, jegliche bewegungseinschränkende Effekte zu entfernen und die erhöhte Zauberdauer und verringerte Kanalisierungsdauer durch erlittenen Schaden wird um 70% verringert, wenn Ihr in Schattengestalt Schattenzauber wirkt." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_misery" key="1816" name="Elend" tier="7">
+        <rank description="Eure Zauber 'Schattenwort: Schmerz', 'Gedankenschinden' und 'Vampirberührung' erhöhen 24 Sek. lang zusätzlich die Trefferchance von Schadenszaubern um 1%. Erhöht zudem den Bonus, den Eure Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' durch Zaubermacht erhalten, um 5%." lvl="1"/>
+        <rank description="Eure Zauber 'Schattenwort: Schmerz', 'Gedankenschinden' und 'Vampirberührung' erhöhen 24 Sek. lang zusätzlich die Trefferchance von Schadenszaubern um 2%. Erhöht zudem den Bonus, den Eure Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' durch Zaubermacht erhalten, um 10%." lvl="2"/>
+        <rank description="Eure Zauber 'Schattenwort: Schmerz', 'Gedankenschinden' und 'Vampirberührung' erhöhen 24 Sek. lang zusätzlich die Trefferchance von Schadenszaubern um 3%. Erhöht zudem den Bonus, den Eure Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' durch Zaubermacht erhalten, um 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychichorrors" key="1908" name="Psychisches Entsetzen" tier="8">
+        <rank description="Ihr versetzt das Ziel 3 Sek. lang in Angst und Schrecken, sodass es vor Furcht erzittert und für 10 Sek. seine Waffenhand- und Distanzwaffe fallen lässt." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_stoicism" key="1779" name="Vampirberührung" requires="521" tier="8">
+        <rank description="Fügt dem Ziel im Verlauf von 15 Sek. insgesamt 450 Schattenschaden zu und gewährt bis zu 10 Gruppen- oder Schlachtzugsmitgliedern alle 5 Sek. 1% ihres maximalen Manas, wenn Ihr durch 'Gedankenschlag' Schaden verursacht. Zusätzlich erleidet das von 'Vampirberührung' betroffene Ziel 720 Schaden, wenn der Effekt gebannt wird." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_painandsuffering" key="1909" name="Schmerz und Leid" tier="8">
+        <rank description="Euer Zauber 'Gedankenschinden' hat eine Chance von 33%, die Dauer von 'Schattenwort: Schmerz' auf dem Ziel zu erneuern, zudem wird der von Euch durch Euer 'Schattenwort: Tod' erlittene Schaden um 10% verringert." lvl="1"/>
+        <rank description="Euer Zauber 'Gedankenschinden' hat eine Chance von 66%, die Dauer von 'Schattenwort: Schmerz' auf dem Ziel zu erneuern, zudem wird der von Euch durch Euer 'Schattenwort: Tod' erlittene Schaden um 20% verringert." lvl="2"/>
+        <rank description="Euer Zauber 'Gedankenschinden' hat eine Chance von 100%, die Dauer von 'Schattenwort: Schmerz' auf dem Ziel zu erneuern, zudem wird der von Euch durch Euer 'Schattenwort: Tod' erlittene Schaden um 30% verringert." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_mindtwisting" key="1907" name="Okkultismus" tier="9">
+        <rank description="Erhöht Eure Zaubermacht um 4% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 2% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="1"/>
+        <rank description="Erhöht Eure Zaubermacht um 8% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 4% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="2"/>
+        <rank description="Erhöht Eure Zaubermacht um 12% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 6% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="3"/>
+        <rank description="Erhöht Eure Zaubermacht um 16% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 8% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="4"/>
+        <rank description="Erhöht Eure Zaubermacht um 20% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 10% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersion" requires="1779" tier="10">
+        <rank description="Löst Euch zu reiner Schattenenergie auf und verringert jeglichen erlittenen Schaden um 90%. Ihr könnt weder angreifen noch Zauber wirken, regeneriert jedoch 6 Sek. lang pro Sekunde 6% Mana. 'Dispersion' kann gewirkt werden, während Betäubungs-, Furcht- oder Stilleeffekte auf Euch wirken. Bei Anwendung werden alle wirkenden Verlangsamungs- und bewegungseinschränkenden Effekte entfernt und Ihr werdet für die Dauer des Effektes von 'Dispersion' gegen sie immun." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

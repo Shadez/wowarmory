@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 106
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -41,45 +41,80 @@ Class Arenateams extends Connector {
         if(!$this->teamname) {
             return false;
         }
-        $arenaInfo = $this->cDB->selectRow("SELECT * FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname);
-        $this->arenateamid = $arenaInfo['arenateamid'];
-        $this->captainguid = $arenaInfo['captainguid'];
-        $pattern = 'totalIcons=1&totalIcons=1&startPointX=4&initScale=100&overScale=100&largeIcon=1&iconColor1=%s&iconName1=images/icons/team/pvp-banner-emblem-%d.png&bgColor1=%s&borderColor1=%s&teamUrl1=';
-        $this->teamlogostyle = sprintf($pattern, $arenaInfo['EmblemColor'], $arenaInfo['EmblemStyle'], $arenaInfo['BackgroundColor'], $arenaInfo['BorderColor']);
-        $this->teamfaction = Characters::GetCharacterFaction($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
-        $this->teamtype = $arenaInfo['type'];
-        $this->getTeamStats();
-        $this->getTeamList();
-        return true;
+        $arenaInfo           = $this->cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type` FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname);
+        $this->arenateamid   = $arenaInfo['arenateamid'];
+        $this->captainguid   = $arenaInfo['captainguid'];
+        $this->teamlogostyle = self::GetArenaTeamEmblem($this->arenateamid);
+        $this->teamfaction   = Characters::GetCharacterFaction($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
+        $this->teamfaction = 1;
+        $this->teamtype      = $arenaInfo['type'];
+        self::GetTeamList();
     }
     
-    public function IsTeam($name) {
-        if(!$this->cDB->selectCell("SELECT `arenateamid` FROM `arena_team` WHERE `name`=? LIMIT 1", $name)) {
+    public function GetArenaTeamInfo() {
+        if(!$this->arenateamid) {
+            return false;
+        }
+        $arenateaminfo = array();
+        $arenateaminfo['data'] = $this->cDB->selectRow("
+        SELECT
+        `rating`,
+        `games`  AS `gamesPlayed`,
+        `wins`   AS `gamesWon`,
+        `rank`   AS `ranking`,
+        `played` AS `seasonGamesPlayed`,
+        `wins2`  AS `seasonGamesWon`
+            FROM `arena_team_stats` WHERE `arenateamid`=?", $this->arenateamid);
+        if(!$arenateaminfo) {
+            return false;
+        }
+        $arenateaminfo['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
+        $arenateaminfo['data']['lastSeasonRanking'] = 0;
+        $arenateaminfo['data']['name'] = $this->teamname;
+        $arenateaminfo['data']['realm'] = $this->armoryconfig['defaultRealmName'];
+        $arenateaminfo['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $this->teamtype);
+        $arenateaminfo['data']['relevance'] = 0;
+        $arenateaminfo['data']['season'] = 0;
+        $arenateaminfo['data']['size'] = $this->teamtype;
+        $arenateaminfo['data']['teamSize'] = $this->teamtype;
+        $arenateaminfo['data']['teamUrl'] = sprintf('r=%s&t=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->teamname));
+        $arenateaminfo['data']['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultRealmName']), $this->teamtype, urlencode($this->teamname));
+        $arenateaminfo['emblem'] = self::GetArenaTeamEmblem();
+        if(is_array($this->players)) {
+            $arenateaminfo['members'] = $this->players;
+        }
+        else {
+            $arenateaminfo['members'] = self::GetTeamList();
+        }
+        return $arenateaminfo;
+    }
+    
+    public function IsTeam() {
+        if(!$this->teamname) {
+            return false;
+        }
+        if(!$this->cDB->selectCell("SELECT `arenateamid` FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname)) {
             return false;
         }
         return true;
     }
     
-    public function GetCharacterArenaTeamInfo($type=2) {
+    public function GetCharacterArenaTeamInfo() {
         if(!$this->guid) {
             return false;
         }
-        $team_id = $this->cDB->selectCell("SELECT `arenateamid` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=?) AND `type`=?", $this->guid, $type);
-        if(!$team_id) {
+        $team_names = $this->cDB->select("SELECT `name` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=?)", $this->guid);
+        if(!$team_names) {
             return false;
         }
-        $team_info = $this->cDB->selectRow("SELECT `name`, `BackgroundColor`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor` FROM `arena_team` WHERE `arenateamid`=?", $team_id);
-        $team_info['members'] = $this->cDB->select("SELECT * FROM `arena_team_member` WHERE `arenateamid`=?", $team_id);
-        $team_info['stats'] = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=?", $team_id);
-        $count_members = count($team_info['members']);
-        for($i=0;$i<$count_members;$i++) {
-            $team_info['members'][$i]['name'] = $this->cDB->selectCell("SELECT `name` FROM `characters` WHERE `guid`=?", $team_info['members'][$i]['guid']);
-            $team_info['members'][$i]['percent'] = Utils::getPercent($team_info['members'][$i]['played_week'], $team_info['members'][$i]['wons_week']);
+        $count_teams = count($team_names);
+        $teams_result = array();
+        for($i=0;$i<$count_teams;$i++) {
+            $this->teamname = $team_names[$i]['name'];
+            self::_initTeam();
+            $teams_result[$i] = self::GetArenaTeamInfo();
         }
-        if(isset($team_info['stats']['played'])) {
-            $team_info['stats']['percent'] = Utils::getPercent($team_info['stats']['played'], $team_info['stats']['wins']);
-        }
-        return $team_info;
+        return $teams_result;
     }
     
     public function getTeamStats() {
@@ -90,87 +125,93 @@ Class Arenateams extends Connector {
         return true;
     }
     
-    public function getTeamList() {
+    public function GetTeamList() {
         $this->players = $this->cDB->select("
         SELECT
-        `arena_team_member`.`played_season`,
-        `arena_team_member`.`wons_season`,
-        `arena_team_member`.`personal_rating`,
+        `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
+        `arena_team_member`.`wons_season` AS `seasonGamesWon`,
+        `arena_team_member`.`personal_rating` AS `contribution`,
         `characters`.`guid`,
         `characters`.`name`,
-        `characters`.`race`,
-        `characters`.`class`,
-        `characters`.`gender`
+        `characters`.`race` AS `raceId`,
+        `characters`.`class` AS `classId`,
+        `characters`.`gender` AS `genderId`
         FROM `arena_team_member` AS `arena_team_member`
         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
         WHERE `arena_team_member`.`arenateamid`=?
         ", $this->arenateamid);
-        return true;
-    }
-    
-    public function exportMainData() {
-        $data = array(
-            'name' => $this->teamname,
-            'type' => $this->teamtype,
-            'faction' => $this->teamfaction,
-            'logo' => $this->teamlogostyle
-        );
-        return $data;
-    }
-    
-    public function exportStats() {
-        $this->teamstats['percent_week'] = floor(Utils::GetPercent($this->teamstats['games'], $this->teamstats['wins']));
-        $this->teamstats['percent_season'] = floor(Utils::GetPercent($this->teamstats['played'], $this->teamstats['wins2']));
-        return $this->teamstats;
-    }
-    
-    public function exportPlayersList() {
-        $count = count($this->players);
-        for($i=0;$i<$count;$i++) {
-            if($this->players[$i]['guid'] == $this->captainguid) {
-                $this->players[$i]['captain'] = true;
-            }
-            $this->players[$i]['guildid'] = Characters::GetDataField(PLAYER_GUILDID, $this->players[$i]['guid']);
-            if($this->players[$i]['guildid'] > 0) {
-                $this->players[$i]['guildname'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $this->players[$i]['guildid']);
-            }
-            unset($this->players[$i]['guildid']);
-            if($this->players[$i]['played_season'] > 0) {
-                $this->players[$i]['percent_season'] = floor(Utils::GetPercent($this->players[$i]['played_season'], $this->players[$i]['wons_season']));
-            }
-            else {
-                $this->players[$i]['percent_season'] = 0;
-            }
+        if(!$this->players) {
+            return;
         }
-        return $this->players;
+        $count_players = count($this->players);
+        for($i=0;$i<$count_players;$i++) {
+            if($this->players[$i]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $this->players[$i]['guid'])) {
+                $this->players[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $this->players[$i]['guildId']);
+                $this->players[$i]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->players[$i]['guild']));
+            }
+            $this->players[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
+            $this->players[$i]['charUrl'] = sprintf('r=%s&cn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->players[$i]['name']));
+            unset($this->players[$i]['guid']);
+        }
     }
     
-    public function buildArenaLadderList($type, $num = false) {
+    public function BuildArenaLadderList($type, $page, $num = false) {
         if($num == true) {
-            $x = $this->cDB->selectPage($teamsnum, "SELECT `arenateamid` FROM `arena_team` WHERE `type`=?", $type);
-            return $teamsnum;
+            return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
         }
         $arenaTeamInfo = $this->cDB->select("
         SELECT
+        `arena_team`.`arenateamid`,
         `arena_team`.`name`,
         `arena_team_stats`.`rating`,
-        `arena_team_stats`.`games`,
-        `arena_team_stats`.`wins`,
-        `arena_team_stats`.`rank`,
+        `arena_team_stats`.`games`  AS `gamesPlayed`,
+        `arena_team_stats`.`wins`   AS `gamesWon`,
+        `arena_team_stats`.`rank`   AS `ranking`,
+        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
+        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
         `characters`.`race`
             FROM `arena_team` AS `arena_team`
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
                     WHERE `type`=?
-                        ORDER BY `arena_team_stats`.`rank`
+                        ORDER BY `arena_team_stats`.`rank` LIMIT ".$page.", 20
         ", $type);
-        $j=1;
-        $count = count($arenaTeamInfo);
-        for($i=0;$i<$count;$i++) {
-            $arenaTeamInfo[$i]['num'] = $j;
-            $j++;
+        if(!$arenaTeamInfo) {
+            return false;
         }
-        return $arenaTeamInfo;
+        $result_areanteams = array();
+        $i = 0;
+        foreach($arenaTeamInfo as $team) {
+            $result_areanteams[$i]['data'] = $team;
+            $result_areanteams[$i]['data']['num'] = $i+1;
+            $result_areanteams[$i]['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
+            $result_areanteams[$i]['data']['faction'] = '';
+            $result_areanteams[$i]['data']['factionId'] = Characters::GetCharacterFaction($result_areanteams[$i]['data']['race']);
+            //$result_areanteams[$i]['data']['factionId'] = 1;
+            $result_areanteams[$i]['data']['lastSeasonRanking'] = '';
+            $result_areanteams[$i]['data']['realm'] = $this->armoryconfig['defaultRealmName'];
+            $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $type, urlencode($team['name']));
+            $result_areanteams[$i]['data']['relevance'] = 0;
+            $result_areanteams[$i]['data']['season'] = 0;
+            $result_areanteams[$i]['data']['size'] = $type;
+            $result_areanteams[$i]['data']['teamSize'] = $type;
+            $result_areanteams[$i]['data']['teamUrl'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $type, urlencode($team['name']));
+            $result_areanteams[$i]['emblem'] = self::GetArenaTeamEmblem($team['arenateamid']);
+            unset($result_areanteams[$i]['data']['arenateamid']);
+            unset($result_areanteams[$i]['data']['captainguid']);
+            $i++;
+        }
+        return $result_areanteams;
+    }
+    
+    public function GetArenaTeamEmblem($teamId=null) {
+        if($teamId == null) {
+            $teamId = $this->arenateamid;
+        }
+        return $this->cDB->selectRow("
+        SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
+            FROM `arena_team`
+                WHERE `arenateamid`=?", $teamId);
     }
     
     public function buildArenaIconsList($type) {
@@ -196,6 +237,15 @@ Class Arenateams extends Connector {
             $j++;
         }
         return $arenaTeamInfo;
+    }
+    
+    public function CountArenaTeams($type) {
+        return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
+    }
+    
+    public function CountPageNum($type) {
+        $all_teams = self::CountArenaTeams($type);
+        return round($all_teams/20);        
     }
 }
 ?>

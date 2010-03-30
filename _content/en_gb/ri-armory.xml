@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Armory Info">
+	<faqlist>
+		<faq key="whatisarmory" question="What is the Armory?">
+			The Armory is a vast searchable database of information for World of Warcraft - taken straight from the real servers and presented in a user-friendly interface. Since the Armory pulls its data from the actual game servers, it is the most comprehensive and up-to-date database on the characters, arena teams, guilds, and items of World of Warcraft in existence. 
+		</faq>
+		<faq question="What can I search for in the Armory?">
+			You can search for characters, items, guilds, arena teams, and faction rewards. You can select one of these master search filters from the top drop-down menu before entering a search term.
+		</faq>
+		<faq question="What extra features are accessible after logging in to the Armory?">
+			Click the "Log In" link at the top right of the screen to go to the Armory's login screen. Log in with the same account information that you use to play World of Warcraft. Once logged in, you can access login-protected content for the characters on that account including guild banks and the player calendar.
+			<p/>
+			Read more about the character selection interface and the login process at our <a href="/faq-login.xml">Armory Login FAQ</a>.
+		</faq>
+		<faq question="Why does my character profile look different?">
+			With the arrival of Patch 3.3, the Armory's character profiles have been redesigned and improved with several new features including a 3D model viewer, character activity and calendar feeds, and more. Learn more about these new features on the <a href="/updates.xml">Updates page</a>.
+		</faq>	
+		<faq exclude="CN,TW" question="What is the Mobile Armory?">
+			The World of Warcraft Mobile Armory is a mobile version of World of Warcraft’s official searchable database for the iPhone™ and iPod touch®. This free application, available for download from the iTunes® App Store, replicates much of the functionality and information found on the Armory website. Find complete details on the <a href="/iphone.xml">Mobile Armory page</a>.
+		</faq>
+		<faq question="What are the recommended and supported browsers for the Armory?">
+			The Armory supports Internet Explorer (version 6.0 and up), Firefox, Opera 9, Safari, and Chrome, and has been optimized for the most recent versions of each. In addition, certain features require <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&amp;promoid=BIOW">Flash Player</a>.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="Emblem of Frost Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Emblem of Triumph Rewards" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Heirloom Items" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Calculator" url="/arena-calculator.xml"/>
+		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
+		<relatedlink name="Browser Search Plugin" url="/search-plugin.xml"/>
+
+		<relatedlink type="hr"/>
+		<relatedlink name="Armory Updates" url="/updates.xml"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

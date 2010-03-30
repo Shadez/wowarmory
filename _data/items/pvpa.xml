@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><pvpVendors type="a">
+
+<pvpVendor key="wintergrasp">
+	<npc id="30488"/>
+	<npc id="30489"/>
+	<npc id="32294"/>
+</pvpVendor>
+
+<pvpVendor key="arena8">
+	<npc id="33936"/>
+</pvpVendor>
+
+<pvpVendor key="arena7">
+	<npc id="33927"/>
+</pvpVendor>
+
+<pvpVendor key="arena6">
+	<npc id="33921"/>
+</pvpVendor>
+
+<pvpVendor key="arena5">
+	<npc id="32354"/>
+	<npc id="32355"/>
+	<npc id="32356"/>
+	<npc id="31863"/>
+	<npc id="31864"/>
+	<npc id="31865"/>
+	<npc id="32359"/>
+	<npc id="32360"/>
+	<npc id="32362"/>
+</pvpVendor>
+
+<pvpVendor key="arena4">
+  <npc id="26352"/>
+</pvpVendor>
+
+<pvpVendor key="arena3">
+  <npc id="24392"/>
+</pvpVendor>
+
+<pvpVendor key="arena2">
+  <npc id="23396"/>
+</pvpVendor>
+
+<pvpVendor key="arena1">
+  <npc id="24671"/>	
+</pvpVendor>
+
+<pvpVendor key="honor">
+	<npc id="34078"/> <!--  Lt. Tristia -->
+	<npc id="34075"/> <!--  Captain Dirgehammer -->
+	<npc id="34084"/> <!-- Knight-Lt Moonstrike -->
+	<npc id="34081"/> <!-- Captain O'Neal -->
+	<npc id="12781"/> <!-- Biggins -->
+	<npc id="12783"/> <!-- Karter -->
+	<npc id="12784"/> <!-- Jackspring -->
+	<npc id="12785"/> <!-- Clate -->
+
+</pvpVendor>
+
+<pvpVendor key="ab">
+	<npc id="15127"/>
+</pvpVendor>
+
+<pvpVendor key="av">
+	<npc id="13217"/>
+</pvpVendor>
+
+<pvpVendor key="wsg">
+	<npc id="14753"/>
+</pvpVendor>
+
+<pvpVendor key="halaa">
+	<npc id="18822"/>
+</pvpVendor>
+
+<pvpVendor key="honorhold">
+	<npc id="18266"/>
+</pvpVendor>
+
+<pvpVendor key="terrokar">
+	<npc id="19773"/>
+</pvpVendor>
+
+<pvpVendor key="zangarmarsh">
+	<npc id="18581"/>
+</pvpVendor>
+
+</pvpVendors>

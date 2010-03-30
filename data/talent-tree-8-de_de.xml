@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="MageFrost" icon="spell_frost_frostbolt02" key="Frost" name="Frost" order="2">
+      <talent column="0" icon="spell_frost_frostarmor" key="38" name="Erfrierung" tier="0">
+        <rank description="Gewährt Euren Kälteeffekten eine Chance von 5%, das Ziel 5 Sek. lang einzufrieren." lvl="1"/>
+        <rank description="Gewährt Euren Kälteeffekten eine Chance von 10%, das Ziel 5 Sek. lang einzufrieren." lvl="2"/>
+        <rank description="Gewährt Euren Kälteeffekten eine Chance von 15%, das Ziel 5 Sek. lang einzufrieren." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_frostbolt02" key="37" name="Verbesserter Frostblitz" tier="0">
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Frostblitz' um 0.1 Sek." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Frostblitz' um 0.2 Sek." lvl="2"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Frostblitz' um 0.3 Sek." lvl="3"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Frostblitz' um 0.4 Sek." lvl="4"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Frostblitz' um 0.5 Sek." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_frost_icefloes" key="62" name="Eisschollen" tier="0">
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Frostnova', 'Kältekegel', 'Eisige Adern' und 'Eisblock' um 7%." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Frostnova', 'Kältekegel', 'Eisige Adern' und 'Eisblock' um 14%." lvl="2"/>
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Frostnova', 'Kältekegel', 'Eisige Adern' und 'Eisblock' um 20%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_iceshard" key="73" name="Eissplitter" tier="1">
+        <rank description="Erhöht den Schadensbonus Eurer kritischen Treffer mit Frostzaubern um 33%." lvl="1"/>
+        <rank description="Erhöht den Schadensbonus Eurer kritischen Treffer mit Frostzaubern um 66%." lvl="2"/>
+        <rank description="Erhöht den Schadensbonus Eurer kritischen Treffer mit Frostzaubern um 100%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_frostward" key="70" name="Schutz des Frostes" tier="1">
+        <rank description="Erhöht die von Euren Zaubern 'Frostrüstung' und 'Eisrüstung' verliehene Rüstung und Widerstände um 25%. Verleiht Euren Zaubern 'Frostzauberschutz' und 'Feuerzauberschutz' eine Chance von 15%, die jeweils geschützte Zauberart zu negieren und Mana in Höhe des absorbierten Schadens zu regenerieren." lvl="1"/>
+        <rank description="Erhöht die von Euren Zaubern 'Frostrüstung' und 'Eisrüstung' verliehene Rüstung und Widerstände um 50%. Verleiht Euren Zaubern 'Frostzauberschutz' und 'Feuerzauberschutz' eine Chance von 30%, die jeweils geschützte Zauberart zu negieren und Mana in Höhe des absorbierten Schadens zu regenerieren." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_ice_magicdamage" key="1649" name="Präzision" tier="1">
+        <rank description="Verringert die Manakosten und erhöht Eure Zaubertrefferchance um 1%." lvl="1"/>
+        <rank description="Verringert die Manakosten und erhöht Eure Zaubertrefferchance um 2%." lvl="2"/>
+        <rank description="Verringert die Manakosten und erhöht Eure Zaubertrefferchance um 3%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_frost_wisp" key="65" name="Dauerfrost" tier="1">
+        <rank description="Erhöht die Dauer Eurer Kälteeffekte um 1 Sekunde, verlangsamt das Tempo des Ziels zusätzlich um 4% und verringert die erhaltene Heilung des Ziels um 7%." lvl="1"/>
+        <rank description="Erhöht die Dauer Eurer Kälteeffekte um 2 Sekunden, verlangsamt das Tempo des Ziels zusätzlich um 7% und verringert die erhaltene Heilung des Ziels um 13%." lvl="2"/>
+        <rank description="Erhöht die Dauer Eurer Kälteeffekte um 3 Sekunden, verlangsamt das Tempo des Ziels zusätzlich um 10% und verringert die erhaltene Heilung des Ziels um 20%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_frostbolt" key="61" name="Stechendes Eis" tier="2">
+        <rank description="Erhöht den Schaden Eurer Frostzauber um 2%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Frostzauber um 4%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Frostzauber um 6%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_coldhearted" key="69" name="Eisige Adern" tier="2">
+        <rank description="Beschleunigt Euer Wirken von Zaubern, erhöht das Zaubertempo um 20% und verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Zaubern um 100%. Hält 20 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="180000">
+          <power cost="3" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_frost_icestorm" key="63" name="Verbesserter Blizzard" tier="2">
+        <rank description="Fügt Eurem Zauber 'Blizzard' einen Kälteeffekt hinzu. Dieser Effekt verringert das Bewegungstempo des Ziels um 25%. Hält 1.50 Sek. lang an." lvl="1"/>
+        <rank description="Fügt Eurem Zauber 'Blizzard' einen Kälteeffekt hinzu. Dieser Effekt verringert das Bewegungstempo des Ziels um 40%. Hält 1.50 Sek. lang an." lvl="2"/>
+        <rank description="Fügt Eurem Zauber 'Blizzard' einen Kälteeffekt hinzu. Dieser Effekt verringert das Bewegungstempo des Ziels um 50%. Hält 1.50 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_darkritual" key="741" name="Arktische Reichweite" tier="3">
+        <rank description="Erhöht die Reichweite Eurer Zauber 'Frostblitz', 'Eislanze', 'Tieffrieren' und 'Blizzard' und den Radius Eurer Zauber 'Frostnova' und 'Kältekegel' um 10%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Zauber 'Frostblitz', 'Eislanze', 'Tieffrieren' und 'Blizzard' und den Radius Eurer Zauber 'Frostnova' und 'Kältekegel' um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_frost_stun" key="66" name="Frostkanalisierung" tier="3">
+        <rank description="Verringert die Manakosten aller Zauber um 4% und verringert die von Euren Frostzaubern verursachte Bedrohung um 4%." lvl="1"/>
+        <rank description="Verringert die Manakosten aller Zauber um 7% und verringert die von Euren Frostzaubern verursachte Bedrohung um 7%." lvl="2"/>
+        <rank description="Verringert die Manakosten aller Zauber um 10% und verringert die von Euren Frostzaubern verursachte Bedrohung um 10%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_frostshock" key="67" name="Zertrümmern" tier="3">
+        <rank description="Erhöht die kritische Trefferchance aller Eurer Zauber gegen gefrorene Ziele um 17%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance aller Eurer Zauber gegen gefrorene Ziele um 34%." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance aller Eurer Zauber gegen gefrorene Ziele um 50%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_wizardmark" key="72" name="Kälteeinbruch" tier="4">
+        <rank description="Bei Aktivierung schließt dieser Zauber die Abklingzeit all Eurer gerade gewirkten Frostzauber ab." lvl="1"/>
+        <spell castTime="0" cooldown="480000"/>
+      </talent>
+      <talent column="2" icon="spell_frost_glacier" key="64" name="Verbesserter Kältekegel" tier="4">
+        <rank description="Erhöht den Schaden, den Euer Zauber 'Kältekegel' zufügt, um 15%." lvl="1"/>
+        <rank description="Erhöht den Schaden, den Euer Zauber 'Kältekegel' zufügt, um 25%." lvl="2"/>
+        <rank description="Erhöht den Schaden, den Euer Zauber 'Kältekegel' zufügt, um 35%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_frost_frozencore" key="1736" name="Gefrorener Kern" tier="4">
+        <rank description="Verringert jeglichen durch Zauber erlittenen Schaden um 2%." lvl="1"/>
+        <rank description="Verringert jeglichen durch Zauber erlittenen Schaden um 4%." lvl="2"/>
+        <rank description="Verringert jeglichen durch Zauber erlittenen Schaden um 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_mage_coldasice" key="1737" name="Eiseskälte" requires="72" tier="5">
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Kälteeinbruch', 'Eisbarriere' und 'Wasserelementar beschwören' um 10%." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Kälteeinbruch', 'Eisbarriere' und 'Wasserelementar beschwören' um 20%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_frost_chillingblast" key="68" name="Winterkälte" tier="5">
+        <rank description="Erhöht die kritische Trefferchance Eures Zaubers 'Frostblitz' zusätzlich um 1% und verleiht Euren Frostschadenszaubern eine Chance von 33%, den Effekt 'Winterkälte' hervorzurufen, der die kritische Zaubertrefferchance gegen das Ziel 15 Sek. lang um 1% erhöht. Bis zu 5-mal stapelbar." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eures Zaubers 'Frostblitz' zusätzlich um 2% und verleiht Euren Frostschadenszaubern eine Chance von 66%, den Effekt 'Winterkälte' hervorzurufen, der die kritische Zaubertrefferchance gegen das Ziel 15 Sek. lang um 1% erhöht. Bis zu 5-mal stapelbar." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eures Zaubers 'Frostblitz' zusätzlich um 3% und verleiht Euren Frostschadenszaubern eine Chance von 100%, den Effekt 'Winterkälte' hervorzurufen, der die kritische Zaubertrefferchance gegen das Ziel 15 Sek. lang um 1% erhöht. Bis zu 5-mal stapelbar." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_mage_shattershield" key="2214" name="Splitternde Barriere" requires="71" tier="6">
+        <rank description="Verleiht Eurer 'Eisbarriere' eine Chance von 50%, 8 Sek. lang alle Feinde im Umkreis von 10 Metern festzufrieren, wenn sie zerstört wird." lvl="1"/>
+        <rank description="Verleiht Eurer 'Eisbarriere' eine Chance von 100%, 8 Sek. lang alle Feinde im Umkreis von 10 Metern festzufrieren, wenn sie zerstört wird." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_ice_lament" key="71" name="Eisbarriere" requires="72" tier="6">
+        <rank description="Schirmt Euch sofort ab und absorbiert 438 Schaden. Hält 1 Min. lang an. Solange der Schild hält, werden Zauber durch erlittenen Schaden nicht verzögert." lvl="1"/>
+        <spell castTime="0" cooldown="30000">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_frost_arcticwinds" key="1738" name="Arktische Winde" tier="6">
+        <rank description="Erhöht sämtlichen von Euch verursachten Frostschaden um 1% und verringert die Chance, dass Euch Nahkampf- und Distanzangriffe treffen, um 1%." lvl="1"/>
+        <rank description="Erhöht sämtlichen von Euch verursachten Frostschaden um 2% und verringert die Chance, dass Euch Nahkampf- und Distanzangriffe treffen, um 2%." lvl="2"/>
+        <rank description="Erhöht sämtlichen von Euch verursachten Frostschaden um 3% und verringert die Chance, dass Euch Nahkampf- und Distanzangriffe treffen, um 3%." lvl="3"/>
+        <rank description="Erhöht sämtlichen von Euch verursachten Frostschaden um 4% und verringert die Chance, dass Euch Nahkampf- und Distanzangriffe treffen, um 4%." lvl="4"/>
+        <rank description="Erhöht sämtlichen von Euch verursachten Frostschaden um 5% und verringert die Chance, dass Euch Nahkampf- und Distanzangriffe treffen, um 5%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_frost_frostbolt02" key="1740" name="Machtvoller Frostblitz" tier="7">
+        <rank description="Erhöht den Schaden Eures Zaubers 'Frostblitz' um einen Wert, der 5% Eurer Zaubermacht entspricht und verringert seine Zauberzeit um 0.1 Sek." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Frostblitz' um einen Wert, der 10% Eurer Zaubermacht entspricht und verringert seine Zauberzeit um 0.2 Sek." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_mage_wintersgrasp" key="1853" name="Eisige Finger" tier="7">
+        <rank description="Verleiht Euren Kälteeffekten eine Chance von 7%, den Effekt 'Eisige Finger' hervorzurufen. Die eisigen Finger bewirken, dass Eure nächsten 2 gewirkten Zauber einen Effekt haben, den sie auf ein gefrorenes Ziel hätten. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Verleiht Euren Kälteeffekten eine Chance von 15%, den Effekt 'Eisige Finger' hervorzurufen. Die eisigen Finger bewirken, dass Eure nächsten 2 gewirkten Zauber einen Effekt haben, den sie auf ein gefrorenes Ziel hätten. Hält 15 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_mage_brainfreeze" key="1854" name="Hirnfrost" tier="8">
+        <rank description="Eure Frostzauber mit Kälteeffekten haben eine Chance von 5%, Euren nächsten 'Feuerball' zu einem Spontanzauber werden zu lassen, der kein Mana kostet." lvl="1"/>
+        <rank description="Eure Frostzauber mit Kälteeffekten haben eine Chance von 10%, Euren nächsten 'Feuerball' zu einem Spontanzauber werden zu lassen, der kein Mana kostet." lvl="2"/>
+        <rank description="Eure Frostzauber mit Kälteeffekten haben eine Chance von 15%, Euren nächsten 'Feuerball' zu einem Spontanzauber werden zu lassen, der kein Mana kostet." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_summonwaterelemental_2" key="1741" name="Wasserelementar beschwören" tier="8">
+        <rank description="Beschwört einen Wasserelementar, der 45 Sek. lang für den Zaubernden kämpft." lvl="1"/>
+        <spell castTime="0" cooldown="180000">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_frost_summonwaterelemental_2" key="1855" name="Anhaltender Winter" requires="1741" tier="8">
+        <rank description="Erhöht die Dauer Eures Zaubers 'Wasserelementar beschwören' um 5 Sek. Euer Zauber 'Frostblitz' hat eine Chance von 33%, 10 Gruppen- oder Schlachtzugsmitgliedern einen Erfrischungseffekt zu gewähren, der 15 Sek. lang pro Sekunde 0,25% ihres gesamten Manas wiederherstellt. Dieser Effekt kann nicht häufiger als ein Mal alle 6 Sek. auftreten." lvl="1"/>
+        <rank description="Erhöht die Dauer Eures Zaubers 'Wasserelementar beschwören' um 10 Sek. Euer Zauber 'Frostblitz' hat eine Chance von 66%, 10 Gruppen- oder Schlachtzugsmitgliedern einen Erfrischungseffekt zu gewähren, der 15 Sek. lang pro Sekunde 0,25% ihres gesamten Manas wiederherstellt. Dieser Effekt kann nicht häufiger als ein Mal alle 6 Sek. auftreten." lvl="2"/>
+        <rank description="Erhöht die Dauer Eures Zaubers 'Wasserelementar beschwören' um 15 Sek. Euer Zauber 'Frostblitz' hat eine Chance von 100%, 10 Gruppen- oder Schlachtzugsmitgliedern einen Erfrischungseffekt zu gewähren, der 15 Sek. lang pro Sekunde 0,25% ihres gesamten Manas wiederherstellt. Dieser Effekt kann nicht häufiger als ein Mal alle 6 Sek. auftreten." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_mage_chilledtothebone" key="1856" name="Durchgefroren" tier="9">
+        <rank description="Erhöht den von Euren Zaubern 'Frostblitz', 'Frostfeuerblitz' und 'Eislanze' verursachten Schaden um 1% und verringert das Bewegungstempo aller Ziele, welche von Kälteeffekten betroffen sind, um zusätzliche 2%." lvl="1"/>
+        <rank description="Erhöht den von Euren Zaubern 'Frostblitz', 'Frostfeuerblitz' und 'Eislanze' verursachten Schaden um 2% und verringert das Bewegungstempo aller Ziele, welche von Kälteeffekten betroffen sind, um zusätzliche 4%." lvl="2"/>
+        <rank description="Erhöht den von Euren Zaubern 'Frostblitz', 'Frostfeuerblitz' und 'Eislanze' verursachten Schaden um 3% und verringert das Bewegungstempo aller Ziele, welche von Kälteeffekten betroffen sind, um zusätzliche 6%." lvl="3"/>
+        <rank description="Erhöht den von Euren Zaubern 'Frostblitz', 'Frostfeuerblitz' und 'Eislanze' verursachten Schaden um 4% und verringert das Bewegungstempo aller Ziele, welche von Kälteeffekten betroffen sind, um zusätzliche 8%." lvl="4"/>
+        <rank description="Erhöht den von Euren Zaubern 'Frostblitz', 'Frostfeuerblitz' und 'Eislanze' verursachten Schaden um 5% und verringert das Bewegungstempo aller Ziele, welche von Kälteeffekten betroffen sind, um zusätzliche 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_mage_deepfreeze" key="1857" name="Tieffrieren" tier="10">
+        <rank description="Betäubt das Ziel 5 Sek. lang. Funktioniert nur bei eingefrorenen Zielen. Fügt Zielen, die dauerhaft gegen Betäubungseffekte immun sind, 1469 bis 1741 Schaden zu." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="30">
+          <power cost="9" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="MageFire" icon="spell_fire_firebolt02" key="Fire" name="Feuer" order="1">
+      <talent column="0" icon="spell_fire_fireball" key="27" name="Verbesserter Feuerschlag" tier="0">
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Feuerschlag' um 1 Sek." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eures Zaubers 'Feuerschlag' um 2 Sek." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_fire_flameshock" key="1141" name="Verbrennung" tier="0">
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Feuerschlag', 'Versengen', 'Arkanschlag' und 'Kältekegel' um 2%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Feuerschlag', 'Versengen', 'Arkanschlag' und 'Kältekegel' um 4%." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Feuerschlag', 'Versengen', 'Arkanschlag' und 'Kältekegel' um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_flamebolt" key="26" name="Verbesserter Feuerball" tier="0">
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Feuerball' um 0.1 Sek." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Feuerball' um 0.2 Sek." lvl="2"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Feuerball' um 0.3 Sek." lvl="3"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Feuerball' um 0.4 Sek." lvl="4"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Feuerball' um 0.5 Sek." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_incinerate" key="34" name="Entzünden" tier="1">
+        <rank description="Eure kritischen Treffer mit Feuerzaubern lassen das Ziel 4 Sek. lang brennen, es erleidet währenddessen zusätzlich 8% des Schadens des Zaubers." lvl="1"/>
+        <rank description="Eure kritischen Treffer mit Feuerzaubern lassen das Ziel 4 Sek. lang brennen, es erleidet währenddessen zusätzlich 16% des Schadens des Zaubers." lvl="2"/>
+        <rank description="Eure kritischen Treffer mit Feuerzaubern lassen das Ziel 4 Sek. lang brennen, es erleidet währenddessen zusätzlich 24% des Schadens des Zaubers." lvl="3"/>
+        <rank description="Eure kritischen Treffer mit Feuerzaubern lassen das Ziel 4 Sek. lang brennen, es erleidet währenddessen zusätzlich 32% des Schadens des Zaubers." lvl="4"/>
+        <rank description="Eure kritischen Treffer mit Feuerzaubern lassen das Ziel 4 Sek. lang brennen, es erleidet währenddessen zusätzlich 40% des Schadens des Zaubers." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_fire_totemofwrath" key="2212" name="Brennende Entschlossenheit" tier="1">
+        <rank description="Werdet Ihr beim Zauberwirken unterbrochen oder zum Schweigen gebracht, habt Ihr eine Chance von 50%, 20 Sek. lang gegen Stille- oder Unterbrechungseffekte immun zu werden." lvl="1"/>
+        <rank description="Werdet Ihr beim Zauberwirken unterbrochen oder zum Schweigen gebracht, habt Ihr eine Chance von 100%, 20 Sek. lang gegen Stille- oder Unterbrechungseffekte immun zu werden." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_mage_worldinflames" key="31" name="Welt in Flammen" tier="1">
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Flammenstoß', 'Pyroschlag', 'Druckwelle', 'Drachenodem', 'Lebende Bombe', 'Blizzard' und 'Arkane Explosion' um 2%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Flammenstoß', 'Pyroschlag', 'Druckwelle', 'Drachenodem', 'Lebende Bombe', 'Blizzard' und 'Arkane Explosion' um 4%." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Flammenstoß', 'Pyroschlag', 'Druckwelle', 'Drachenodem', 'Lebende Bombe', 'Blizzard' und 'Arkane Explosion' um 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_flare" key="28" name="Flammenwerfen" tier="2">
+        <rank description="Erhöht die Reichweite Eurer Feuerzauber, mit Ausnahme von 'Frostfeuerblitz', um 3 Meter." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Feuerzauber, mit Ausnahme von 'Frostfeuerblitz', um 6 Meter." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_fire_meteorstorm" key="30" name="Einschlag" tier="2">
+        <rank description="Gewährt Euren Schaden verursachenden Zaubern eine Chance von 4%, dass das nächste Wirken von 'Feuerschlag' das Ziel 2 Sek. lang betäubt." lvl="1"/>
+        <rank description="Gewährt Euren Schaden verursachenden Zaubern eine Chance von 7%, dass das nächste Wirken von 'Feuerschlag' das Ziel 2 Sek. lang betäubt." lvl="2"/>
+        <rank description="Gewährt Euren Schaden verursachenden Zaubern eine Chance von 10%, dass das nächste Wirken von 'Feuerschlag' das Ziel 2 Sek. lang betäubt." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball02" key="29" name="Pyroschlag" tier="2">
+        <rank description="Schleudert einen immensen feurigen Felsen, der 141 bis 187 Feuerschaden sowie zusätzlich 12 Sek. lang insgesamt 56 Feuerschaden verursacht." lvl="1"/>
+        <spell castTime="5000" maxRange="35">
+          <power cost="22" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="spell_fire_fire" key="23" name="Brennende Seele" tier="2">
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Feuerzaubern um 35% und die von Euren Feuerzaubern verursachte Bedrohung um 5%." lvl="1"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von Feuerzaubern um 70% und die von Euren Feuerzaubern verursachte Bedrohung um 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_fire_soulburn" key="25" name="Verbessertes Versengen" tier="3">
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Versengen', 'Feuerball' und 'Frostfeuerblitz' um 1%. Zudem hat Euer Zauber 'Versengen' eine Chance von 33%, dass sein Ziel für Zauberschaden verwundbar wird, wodurch die kritische Zaubertrefferchance gegen dieses Ziel 30 Sek. lang um 5% erhöht wird." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Versengen', 'Feuerball' und 'Frostfeuerblitz' um 2%. Zudem hat Euer Zauber 'Versengen' eine Chance von 66%, dass sein Ziel für Zauberschaden verwundbar wird, wodurch die kritische Zaubertrefferchance gegen dieses Ziel 30 Sek. lang um 5% erhöht wird." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Versengen', 'Feuerball' und 'Frostfeuerblitz' um 3%. Zudem hat Euer Zauber 'Versengen' eine Chance von 100%, dass sein Ziel für Zauberschaden verwundbar wird, wodurch die kritische Zaubertrefferchance gegen dieses Ziel 30 Sek. lang um 5% erhöht wird." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_firearmor" key="24" name="Glühende Schilde" tier="3">
+        <rank description="Verleiht Euren Zaubern 'Feuerzauberschutz' und 'Frostzauberschutz' eine Chance von 15%, die jeweils betroffene Zauberart zu reflektieren. Zusätzlich hat Eure 'Glühende Rüstung' eine Chance von 50%, auch Distanzangriffe und Schadenszauber zu betreffen." lvl="1"/>
+        <rank description="Verleiht Euren Zaubern 'Feuerzauberschutz' und 'Frostzauberschutz' eine Chance von 30%, die jeweils betroffene Zauberart zu reflektieren. Zusätzlich hat 'Glühende Rüstung' eine Chance von 100%, auch Distanzangriffe und Offensivzauber zu betreffen." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_fire_masterofelements" key="1639" name="Meister der Elemente" tier="3">
+        <rank description="Durch kritische Zaubertreffer erhaltet Ihr 10% der Grundmanakosten des Zaubers zurück." lvl="1"/>
+        <rank description="Durch kritische Zaubertreffer erhaltet Ihr 20% der Grundmanakosten des Zaubers zurück." lvl="2"/>
+        <rank description="Durch kritische Zaubertreffer erhaltet Ihr 30% der Grundmanakosten des Zaubers zurück." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_playingwithfire" key="1730" name="Spiel mit dem Feuer" tier="4">
+        <rank description="Erhöht jeglichen verursachten Zauberschaden um 1% und jeglichen erlittenen Zauberschaden um 1%." lvl="1"/>
+        <rank description="Erhöht jeglichen verursachten Zauberschaden um 2% und jeglichen erlittenen Zauberschaden um 2%." lvl="2"/>
+        <rank description="Erhöht jeglichen verursachten Zauberschaden um 3% und jeglichen erlittenen Zauberschaden um 3%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_wispheal" key="33" name="Kritische Masse" tier="4">
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Feuerzauber um 2%." lvl="1"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Feuerzauber um 4%." lvl="2"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Feuerzauber um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_excorcism_02" key="32" name="Druckwelle" requires="29" tier="4">
+        <rank description="Eine Flammenwelle geht vom Zaubernden aus. Alle Feinde, die sich im Radius der Flammen befinden, erleiden 154 bis 186 Feuerschaden, werden zurückgestoßen und sind 6 Sek. lang benommen." lvl="1"/>
+        <spell castTime="0" cooldown="30000">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_fire_burningspeed" key="1731" name="Heiße Sohlen" tier="5">
+        <rank description="Verleiht Euch eine Chance von 5%, dass nach einem erlittenen Nahkampf- oder Distanztreffer Euer Bewegungstempo um 50% erhöht wird und alle bewegungseinschränkenden Effekte entfernt werden. Hält 8 Sek. lang an." lvl="1"/>
+        <rank description="Verleiht Euch eine Chance von 10%, dass nach einem erlittenen Nahkampf- oder Distanztreffer Euer Bewegungstempo um 50% erhöht wird und alle bewegungseinschränkenden Effekte entfernt werden. Hält 8 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_fire_immolation" key="35" name="Feuermacht" tier="5">
+        <rank description="Erhöht den Schaden Eurer Feuerzauber um 2%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Feuerzauber um 4%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Feuerzauber um 6%." lvl="3"/>
+        <rank description="Erhöht den Schaden Eurer Feuerzauber um 8%." lvl="4"/>
+        <rank description="Erhöht den Schaden Eurer Feuerzauber um 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_burnout" key="1733" name="Brandstifter" tier="6">
+        <rank description="Erhöht die kritische Trefferchance um 1% und gestattet, dass 17% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance um 2% und gestattet, dass 33% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance um 3% und gestattet, dass 50% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_sealoffire" key="36" name="Einäschern" requires="33" tier="6">
+        <rank description="Wenn aktiviert, wird der kritische Schadensbonus Eurer Feuerzauber um 50% erhöht und jeder Feuerschadenszauber, den Ihr wirkt, erhöht die kritische Trefferchance Eurer Feuerschadenszauber um 10%. Dieser Effekt hält an, bis Ihr 3 unregelmäßige kritische Treffer mit Feuerzaubern erzielt habt." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="spell_fire_moltenblood" key="1732" name="Glühender Zorn" tier="6">
+        <rank description="Erhöht den Schaden aller Zauber gegen Ziele, die über weniger als 35% Gesundheit verfügen um 6%." lvl="1"/>
+        <rank description="Erhöht den Schaden aller Zauber gegen Ziele, die über weniger als 35% Gesundheit verfügen um 12%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_mage_fierypayback" key="1848" name="Feurige Rache" tier="7">
+        <rank description="Besitzt Ihr weniger als 35% Gesundheit, wird jeglicher erlittene Schaden um 10% verringert. Zusätzlich wird die Zauberzeit von 'Pyroschlag' um 1.75 Sek. verringert, während die Abklingzeit um 2.5 Sek. erhöht wird. Zudem besteht eine Chance von 5%, dass bei gegen Euch geführten Nahkampf- oder Distanzangriffen die Waffenhand- und Distanzwaffe des Angreifers entwaffnet wird." lvl="1"/>
+        <rank description="Besitzt Ihr weniger als 35% Gesundheit, wird jeglicher erlittene Schaden um 20% verringert. Zusätzlich wird die Zauberzeit von 'Pyroschlag' um 3.5 Sek. verringert, während die Abklingzeit um 5 Sek. erhöht wird. Zudem besteht eine Chance von 10%, dass bei gegen Euch geführten Nahkampf- oder Distanzangriffen die Waffenhand- und Distanzwaffe des Angreifers entwaffnet wird." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_fire_flamebolt" key="1734" name="Machtvolles Feuer" tier="7">
+        <rank description="Erhöht den Schaden Eurer Zauber 'Feuerball' und 'Frostfeuerblitz' um einen Wert, der 5% Eurer Zaubermacht entspricht. Zudem besteht jedes Mal, wenn Euer Talent 'Entzünden' Schaden verursacht, eine Chance von 33%, dass Ihr 2% Eures Grundmanas gewinnt." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Feuerball' und 'Frostfeuerblitz' um einen Wert, der 10% Eurer Zaubermacht entspricht. Zudem besteht jedes Mal, wenn Euer Talent 'Entzünden' Schaden verursacht, eine Chance von 67%, dass Ihr 2% Eures Grundmanas gewinnt." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Feuerball' und 'Frostfeuerblitz' um einen Wert, der 15% Eurer Zaubermacht entspricht. Zudem besteht jedes Mal, wenn Euer Talent 'Entzünden' Schaden verursacht, eine Chance von 100%, dass Ihr 2% Eures Grundmanas gewinnt." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_mage_firestarter" key="1849" name="Feuerteufel" requires="1735" tier="8">
+        <rank description="Wenn Eure Zauber 'Druckwelle' und 'Drachenodem' Schaden verursachen, besteht eine Chance von 50%, dass Euer nächstes Wirken von 'Flammenstoß' zu einem Spontanzauber wird und kein Mana kostet. Hält 10 Sek. lang an." lvl="1"/>
+        <rank description="Wenn Eure Zauber 'Druckwelle' und 'Drachenodem' Schaden verursachen, besteht eine Chance von 100%, dass Euer nächstes Wirken von 'Flammenstoß' zu einem Spontanzauber wird und kein Mana kostet. Hält 10 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_misc_head_dragon_01" key="1735" name="Drachenodem" requires="36" tier="8">
+        <rank description="Zielen in einem kegelförmigen Bereich vor dem Zaubernden wird 370 bis 430 Feuerschaden zugefügt und sie werden 5 Sek. lang desorientiert. Jeder Angriff, der direkten Schaden zufügt, lässt das Ziel wieder zu sich kommen. Stoppt Euren Angriff bei Benutzung." lvl="1"/>
+        <spell castTime="0" cooldown="20000">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_mage_hotstreak" key="1850" name="Kampfeshitze" tier="8">
+        <rank description="Jedes Mal, wenn Ihr mit 'Feuerball', 'Feuerschlag', 'Versengen', 'Lebende Bombe' oder 'Frostfeuerblitz' 2 unregelmäßige kritische Zaubertreffer in Folge erzielt, besteht eine Chance von 33%, dass Euer nächstes Wirken von 'Pyroschlag' innerhalb von 10 Sek. zu einem Spontanzauber wird." lvl="1"/>
+        <rank description="Jedes Mal, wenn Ihr mit 'Feuerball', 'Feuerschlag', 'Versengen', 'Lebende Bombe' oder 'Frostfeuerblitz' 2 unregelmäßige kritische Zaubertreffer in Folge erzielt, besteht eine Chance von 66%, dass Euer nächstes Wirken von 'Pyroschlag' innerhalb von 10 Sek. zu einem Spontanzauber wird." lvl="2"/>
+        <rank description="Jedes Mal, wenn Ihr mit 'Feuerball', 'Feuerschlag', 'Versengen', 'Lebende Bombe' oder 'Frostfeuerblitz' 2 unregelmäßige kritische Zaubertreffer in Folge erzielt, besteht eine Chance von 100%, dass Euer nächstes Wirken von 'Pyroschlag' innerhalb von 10 Sek. zu einem Spontanzauber wird." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_mage_burnout" key="1851" name="Ausgebrannt" tier="9">
+        <rank description="Erhöht den kritischen Schadensbonus aller Eurer Zauber um 10%, Eure unregelmäßigen kritischen Zaubertreffer kosten jedoch zusätzliche 1% der Manakosten des jeweiligen Zaubers." lvl="1"/>
+        <rank description="Erhöht den kritischen Schadensbonus aller Eurer Zauber um 20%, Eure unregelmäßigen kritischen Zaubertreffer kosten jedoch zusätzliche 2% der Manakosten des jeweiligen Zaubers." lvl="2"/>
+        <rank description="Erhöht den kritischen Schadensbonus aller Eurer Zauber um 30%, Eure unregelmäßigen kritischen Zaubertreffer kosten jedoch zusätzliche 3% der Manakosten des jeweiligen Zaubers." lvl="3"/>
+        <rank description="Erhöht den kritischen Schadensbonus aller Eurer Zauber um 40%, Eure unregelmäßigen kritischen Zaubertreffer kosten jedoch zusätzliche 4% der Manakosten des jeweiligen Zaubers." lvl="4"/>
+        <rank description="Erhöht den kritischen Schadensbonus aller Eurer Zauber um 50%, Eure unregelmäßigen kritischen Zaubertreffer kosten jedoch zusätzliche 5% der Manakosten des jeweiligen Zaubers." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_mage_livingbomb" key="1852" name="Lebende Bombe" tier="10">
+        <rank description="Das Ziel wird zu einer lebenden Bombe und erleidet im Verlauf von 12 Sek. 612 Feuerschaden. Nach Ablauf von 12 Sek., oder wenn der Zauber gebannt wird, explodiert das Ziel, verursacht bei allen Feinden im Umkreis von 10 Metern 306 Feuerschaden." lvl="1"/>
+        <spell castTime="0" maxRange="35">
+          <power cost="22" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="MageArcane" icon="spell_holy_magicalsentry" key="Arcane" name="Arkan" order="0">
+      <talent column="0" icon="spell_holy_dispelmagic" key="74" name="Arkanes Feingefühl" tier="0">
+        <rank description="Verringert die Chance, dass sowohl Eure hilfreichen Zauber als auch Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um 15% und Eure Arkanzauber verursachen 20% weniger Bedrohung." lvl="1"/>
+        <rank description="Verringert die Chance, dass sowohl Eure hilfreichen Zauber als auch Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um 30% und Eure Arkanzauber verursachen 40% weniger Bedrohung." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_devotion" key="76" name="Arkaner Fokus" tier="0">
+        <rank description="Erhöht Eure Trefferchance und verringert die Manakosten Eurer Arkanzauber um 1%." lvl="1"/>
+        <rank description="Erhöht Eure Trefferchance und verringert die Manakosten Eurer Arkanzauber um 2%." lvl="2"/>
+        <rank description="Erhöht Eure Trefferchance und verringert die Manakosten Eurer Arkanzauber um 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_starfall" key="80" name="Arkane Stabilität" tier="0">
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Arkanschlag' oder die Zauberzeitverringerung beim Kanalisieren von 'Arkane Geschosse' um 20%." lvl="1"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Arkanschlag' oder die Zauberzeitverringerung beim Kanalisieren von 'Arkane Geschosse' um 40%." lvl="2"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Arkanschlag' oder die Zauberzeitverringerung beim Kanalisieren von 'Arkane Geschosse' um 60%." lvl="3"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Arkanschlag' oder die Zauberzeitverringerung beim Kanalisieren von 'Arkane Geschosse' um 80%." lvl="4"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Arkanschlag' oder die Zauberzeitverringerung beim Kanalisieren von 'Arkane Geschosse' um 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_arcaneresilience" key="85" name="Arkane Seelenstärke" tier="1">
+        <rank description="Erhöht Eure Rüstung um einen Betrag, der 50% Eurer Intelligenz entspricht." lvl="1"/>
+        <rank description="Erhöht Eure Rüstung um einen Betrag, der 100% Eurer Intelligenz entspricht." lvl="2"/>
+        <rank description="Erhöht Eure Rüstung um einen Betrag, der 150% Eurer Intelligenz entspricht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_astralrecalgroup" key="1650" name="Magische Vereinnahmung" tier="1">
+        <rank description="Erhöht alle Widerstandsarten um 0,5 pro Stufe. Durch jeden Zauber, dem Ihr vollständig widersteht, werden 1% Eures gesamten Manas wiederhergestellt. 1 Sek. Abklingzeit." lvl="1"/>
+        <rank description="Erhöht alle Widerstandsarten um 1 pro Stufe. Durch jeden Zauber, dem Ihr vollständig widersteht, werden 2% Eures gesamten Manas wiederhergestellt. 1 Sek. Abklingzeit." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_manaburn" key="75" name="Arkane Konzentration" tier="1">
+        <rank description="Gewährt Euch eine Chance von 2%, in einen Freizauberzustand zu gelangen, nachdem ein beliebiger Schaden zufügender Zauber ein Ziel getroffen hat. Der Freizauberzustand verringert die Manakosten Eures nächsten Schadenszaubers um 100%." lvl="1"/>
+        <rank description="Gewährt Euch eine Chance von 4%, in einen Freizauberzustand zu gelangen, nachdem ein beliebiger Schaden zufügender Zauber ein Ziel getroffen hat. Der Freizauberzustand verringert die Manakosten Eures nächsten Schadenszaubers um 100%." lvl="2"/>
+        <rank description="Gewährt Euch eine Chance von 6%, in einen Freizauberzustand zu gelangen, nachdem ein beliebiger Schaden zufügender Zauber ein Ziel getroffen hat. Der Freizauberzustand verringert die Manakosten Eures nächsten Schadenszaubers um 100%." lvl="3"/>
+        <rank description="Gewährt Euch eine Chance von 8%, in einen Freizauberzustand zu gelangen, nachdem ein beliebiger Schaden zufügender Zauber ein Ziel getroffen hat. Der Freizauberzustand verringert die Manakosten Eures nächsten Schadenszaubers um 100%." lvl="4"/>
+        <rank description="Gewährt Euch eine Chance von 10%, in einen Freizauberzustand zu gelangen, nachdem ein beliebiger Schaden zufügender Zauber ein Ziel getroffen hat. Der Freizauberzustand verringert die Manakosten Eures nächsten Schadenszaubers um 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_abolishmagic" key="82" name="Einklang der Magie" tier="2">
+        <rank description="Erhöht die Reichweite Eurer Arkanzauber um 3 Meter und die Effekte Eurer Zauber 'Magie verstärken' und 'Magie dämpfen' um 25%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Arkanzauber um 6 Meter und die Effekte Eurer Zauber 'Magie verstärken' und 'Magie dämpfen' um 50%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_wispsplode" key="81" name="Zaubereinschlag" tier="2">
+        <rank description="Erhöht den Schaden Eurer Zauber 'Arkane Explosion', 'Arkanschlag', 'Druckwelle', 'Feuerschlag', 'Versengen', 'Feuerball', 'Eislanze' und 'Kältekegel' um zusätzliche 2%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Arkane Explosion', 'Arkanschlag', 'Druckwelle', 'Feuerschlag', 'Versengen', 'Feuerball', 'Eislanze' und 'Kältekegel' um zusätzliche 4%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Arkane Explosion', 'Arkanschlag', 'Druckwelle', 'Feuerschlag', 'Versengen', 'Feuerball', 'Eislanze' und 'Kältekegel' um zusätzliche 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_mage_studentofthemind" key="1845" name="Geisteswissenschaften" tier="2">
+        <rank description="Erhöht Eure gesamte Willenskraft um 4%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Willenskraft um 7%." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Willenskraft um 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_arcane_studentofmagic" key="2211" name="Magie fokussieren" tier="2">
+        <rank description="Erhöht die kritische Zaubertrefferchance des Ziels um 3%. Erzielt das Ziel einen kritischen Zaubertreffer, wird die kritische Zaubertrefferchance des Zaubernden 10 Sek. lang um 3% erhöht. Kann nur auf Andere gewirkt werden." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shadow_detectlesserinvisibility" key="83" name="Arkane Schilde" tier="3">
+        <rank description="Verringert bei aktiviertem Manaschild den Manaverlust für jeden absorbierten Schadenspunkt um 17% und erhöht die von der magischen Rüstung gewährten Widerstände um 25%." lvl="1"/>
+        <rank description="Verringert bei aktiviertem Manaschild den Manaverlust für jeden absorbierten Schadenspunkt um 33% und erhöht die von der magischen Rüstung gewährten Widerstände um 50%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_frost_iceshock" key="88" name="Verbesserter Gegenzauber" tier="3">
+        <rank description="Euer 'Gegenzauber' bringt das Ziel auch 2 Sek. lang zum Schweigen." lvl="1"/>
+        <rank description="Euer 'Gegenzauber' bringt das Ziel auch 4 Sek. lang zum Schweigen." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_siphonmana" key="1142" name="Arkane Meditation" tier="3">
+        <rank description="Ermöglicht, dass 17% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="1"/>
+        <rank description="Ermöglicht, dass 33% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="2"/>
+        <rank description="Ermöglicht, dass 50% Eurer Manaregeneration während des Zauberwirkens weiterläuft." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_mage_tormentoftheweak" key="2222" name="Die Schwachen quälen" tier="3">
+        <rank description="Eure Zauber 'Frostblitz', 'Feuerball', 'Frostfeuerblitz', 'Arkane Geschosse', 'Arkanschlag' und 'Arkanbeschuss' verursachen an verlangsamten oder bewegungseingeschränkten Zielen 4% mehr Schaden." lvl="1"/>
+        <rank description="Eure Zauber 'Frostblitz', 'Feuerball', 'Frostfeuerblitz', 'Arkane Geschosse', 'Arkanschlag' und 'Arkanbeschuss' verursachen an verlangsamten oder bewegungseingeschränkten Zielen 8% mehr Schaden." lvl="2"/>
+        <rank description="Eure Zauber 'Frostblitz', 'Feuerball', 'Frostfeuerblitz', 'Arkane Geschosse', 'Arkanschlag' und 'Arkanbeschuss' verursachen an verlangsamten oder bewegungseingeschränkten Zielen 12% mehr Schaden." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_blink" key="1724" name="Verbessertes Blinzeln" tier="4">
+        <rank description="Verringert die Manakosten von 'Blinzeln' um 25% und verringert nach dem Blinzeln 4 Sek. lang die Chance, dass Ihr von Zaubern und Angriffen getroffen werdet, um 15%." lvl="1"/>
+        <rank description="Verringert die Manakosten von 'Blinzeln' um 50% und verringert nach dem Blinzeln 4 Sek. lang die Chance, dass Ihr von Zaubern und Angriffen getroffen werdet, um 30%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_enchantarmor" key="86" name="Geistesgegenwart" tier="4">
+        <rank description="Bei Aktivierung wird Euer nächster Magierzauber mit einer Zauberzeit von weniger als 10 Sekunden ein Sofortzauber." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_charm" key="77" name="Arkaner Geist" tier="4">
+        <rank description="Erhöht Eure gesamte Intelligenz um 3%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 6%." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 9%." lvl="3"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 12%." lvl="4"/>
+        <rank description="Erhöht Eure gesamte Intelligenz um 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_prismaticcloak" key="1726" name="Prismatischer Mantel" tier="5">
+        <rank description="Verringert jeglichen erlittenen Schaden um 2% und die Verblassungszeit Eures Zaubers 'Unsichtbarkeit' um 1 Sek." lvl="1"/>
+        <rank description="Verringert jeglichen erlittenen Schaden um 4% und die Verblassungszeit Eures Zaubers 'Unsichtbarkeit' um 2 Sek." lvl="2"/>
+        <rank description="Verringert jeglichen erlittenen Schaden um 6% und verringert die Dauer des Verblassens Eures Zaubers 'Unsichtbarkeit' um 3 Sek." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_teleport" key="421" name="Arkane Instabilität" requires="86" tier="5">
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber und Eure kritische Trefferchance um 1%." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber und Eure kritische Trefferchance um 2%." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber und Eure kritische Trefferchance um 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_arcanepotency" key="1725" name="Arkane Kraft" requires="86" tier="5">
+        <rank description="Erhöht die kritische Zaubertrefferchance Eures nächsten Zaubers, nachdem der Freizauberzustand oder 'Geistesgegenwart' aktiv wurde, um 15%." lvl="1"/>
+        <rank description="Erhöht die kritische Zaubertrefferchance Eures nächsten Zaubers, nachdem der Freizauberzustand oder 'Geistesgegenwart' aktiv wurde, um 30%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_starfall" key="1727" name="Arkane Ermächtigung" tier="6">
+        <rank description="Erhöht den Schaden Eures Zaubers 'Arkane Geschosse' um einen Wert, der 15% Eurer Zaubermacht entspricht und den Schaden Eures Zaubers 'Arkanschlag' um 3% Eurer Zaubermacht. Zudem wird, wenn Ihr mit Euren Zaubern 'Arkane Geschosse', 'Arkane Explosion', 'Arkanschlag' oder 'Arkanbeschuss' einen kritischen Treffer erzielt, der verursachte Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 1% erhöht." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Arkane Geschosse' um einen Wert, der 30% Eurer Zaubermacht entspricht und den Schaden Eures Zaubers 'Arkanschlag' um 6% Eurer Zaubermacht. Zudem wird, wenn Ihr mit Euren Zaubern 'Arkane Geschosse', 'Arkane Explosion', 'Arkanschlag' oder 'Arkanbeschuss' einen kritischen Treffer erzielt, der verursachte Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 2% erhöht." lvl="2"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Arkane Geschosse' um einen Wert, der 45% Eurer Zaubermacht entspricht und den Schaden Eures Zaubers 'Arkanschlag' um 9% Eurer Zaubermacht. Zudem wird, wenn Ihr mit Euren Zaubern 'Arkane Geschosse', 'Arkane Explosion', 'Arkanschlag' oder 'Arkanbeschuss' einen kritischen Treffer erzielt, der verursachte Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 3% erhöht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_lightning" key="87" name="Arkane Macht" requires="421" tier="6">
+        <rank description="Bei Aktivierung fügen Eure Zauber 20% mehr Schaden zu, jedoch kostet das Wirken 20% mehr Mana. Dieser Effekt hält 15 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+      <talent column="2" icon="ability_mage_incantersabsorbtion" key="1844" name="Absorption des Beschwörers" tier="6">
+        <rank description="Wenn Ihr Schaden absorbiert, wird Euer Zauberschaden 10 Sek. lang um 5% des absorbierten Betrags erhöht. Die gesamte Zauberschadenerhöhung kann 5% Eurer Gesundheit nicht überschreiten." lvl="1"/>
+        <rank description="Wenn Ihr Schaden absorbiert, wird Euer Zauberschaden 10 Sek. lang um 10% des absorbierten Betrags erhöht. Die gesamte Zauberschadenerhöhung kann 5% Eurer Gesundheit nicht überschreiten." lvl="2"/>
+        <rank description="Wenn Ihr Schaden absorbiert, wird Euer Zauberschaden 10 Sek. lang um 15% des absorbierten Betrags erhöht. Die gesamte Zauberschadenerhöhung kann 5% Eurer Gesundheit nicht überschreiten." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_mage_potentspirit" key="1843" name="Arkaner Fluss" requires="87" tier="7">
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Geistesgegenwart', 'Arkane Macht' und 'Unsichtbarkeit' um 15% und die Abklingzeit des Zaubers 'Hervorrufung' um 1 Min." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Zauber 'Geistesgegenwart', 'Arkane Macht' und 'Unsichtbarkeit' um 30% und die Abklingzeit des Zaubers 'Hervorrufung' um 2 Min." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_mindmastery" key="1728" name="Geistesbeherrschung" tier="7">
+        <rank description="Eure Zaubermacht wird um 3% Eurer gesamten Intelligenz erhöht." lvl="1"/>
+        <rank description="Eure Zaubermacht wird um 6% Eurer gesamten Intelligenz erhöht." lvl="2"/>
+        <rank description="Eure Zaubermacht wird um 9% Eurer gesamten Intelligenz erhöht." lvl="3"/>
+        <rank description="Eure Zaubermacht wird um 12% Eurer gesamten Intelligenz erhöht." lvl="4"/>
+        <rank description="Eure Zaubermacht wird um 15% Eurer gesamten Intelligenz erhöht." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_slow" key="1729" name="Verlangsamen" tier="8">
+        <rank description="Verlangsamt das Bewegungstempo des Ziels um 60%, erhöht die Zeit zwischen Distanzangriffen um 60% und erhöht die Zauberzeit um 30%. Hält 15 Sek. lang an. 'Verlangsamen' kann immer nur auf ein Ziel wirken." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_mage_missilebarrage" key="2209" name="Geschosssalve" tier="8">
+        <rank description="Verleiht Eurem Zauber 'Arkanschlag' eine Chance von 8% sowie Euren Zaubern 'Arkanbeschuss', 'Feuerball', 'Frostblitz' und 'Frostfeuerblitz' eine Chance von 4%, die Kanalisierungsdauer Eures nächsten Wirkens von 'Arkane Geschosse' um 2.5 Sek. zu verringern, die Manakosten um 100% zu verringern und alle 0,5 Sek. Geschosse zu feuern." lvl="1"/>
+        <rank description="Verleiht Eurem Zauber 'Arkanschlag' eine Chance von 16% sowie Euren Zaubern 'Arkanbeschuss', 'Feuerball', 'Frostblitz' und 'Frostfeuerblitz' eine Chance von 8%, die Kanalisierungsdauer Eures nächsten Wirkens von 'Arkane Geschosse' um 2.5 Sek. zu verringern, die Manakosten um 100% zu verringern und alle 0,5 Sek. Geschosse zu feuern." lvl="2"/>
+        <rank description="Verleiht Eurem Zauber 'Arkanschlag' eine Chance von 24% sowie Euren Zaubern 'Arkanbeschuss', 'Feuerball', 'Frostblitz' und 'Frostfeuerblitz' eine Chance von 12%, die Kanalisierungsdauer Eures nächsten Wirkens von 'Arkane Geschosse' um 2.5 Sek. zu verringern, die Manakosten um 100% zu verringern und alle 0,5 Sek. Geschosse zu feuern." lvl="3"/>
+        <rank description="Verleiht Eurem Zauber 'Arkanschlag' eine Chance von 32% sowie Euren Zaubern 'Arkanbeschuss', 'Feuerball', 'Frostblitz' und 'Frostfeuerblitz' eine Chance von 16%, die Kanalisierungsdauer Eures nächsten Wirkens von 'Arkane Geschosse' um 2.5 Sek. zu verringern, die Manakosten um 100% zu verringern und alle 0,5 Sek. Geschosse zu feuern." lvl="4"/>
+        <rank description="Verleiht Eurem Zauber 'Arkanschlag' eine Chance von 40% sowie Euren Zaubern 'Arkanbeschuss', 'Feuerball', 'Frostblitz' und 'Frostfeuerblitz' eine Chance von 20%, die Kanalisierungsdauer Eures nächsten Wirkens von 'Arkane Geschosse' um 2.5 Sek. zu verringern, die Manakosten um 100% zu verringern und alle 0,5 Sek. Geschosse zu feuern." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_mage_netherwindpresence" key="1846" name="Präsenz des Netherwinds" tier="9">
+        <rank description="Erhöht Euer Zaubertempo um 2%." lvl="1"/>
+        <rank description="Erhöht Euer Zaubertempo um 4%." lvl="2"/>
+        <rank description="Erhöht Euer Zaubertempo um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_arcanetorrent" key="1826" name="Zauberkraft" tier="9">
+        <rank description="Erhöht den Schadensbonus bei kritischen Treffern aller Zauber um 25%." lvl="1"/>
+        <rank description="Erhöht den Schadensbonus bei kritischen Treffern aller Zauber um 50%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_mage_arcanebarrage" key="1847" name="Arkanbeschuss" tier="10">
+        <rank description="Schleudert mehrere Geschosse auf das feindliche Ziel und verursacht 386 bis 470 Arkanschaden." lvl="1"/>
+        <spell castTime="0" cooldown="3000" maxRange="30">
+          <power cost="18" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

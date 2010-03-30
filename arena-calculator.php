@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 54
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -24,12 +24,22 @@
 
 define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
+header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('tools/arena-calculator.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'arena-calculator.xml');
 
-$armory->tpl->assign('tpl2include', 'arena_calc_'.$_locale);
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('overall_start.tpl');
-exit();
+$xml->XMLWriter()->startElement('selectTeamType');
+$xml->XMLWriter()->startElement('related-info');
+$xml->XMLWriter()->endElement();   //related-info
+$xml->XMLWriter()->endElement();  //selectTeamType
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>

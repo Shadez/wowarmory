@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Classement d'arène">
+	<faqlist>
+		<faq question="Qu'est-ce que le classement d'arène ?">
+			Le système de classement d'arène est un système pour les joueurs participant aux combats Joueur contre Joueur (JcJ) en équipe. Il permet aux joueurs de voir leur place dans la compétition. Le système va classer les équipes entre elles, dans l'une des trois catégories suivantes : 2 contre 2, 3 contre 3 et 5 contre 5. Les équipes gagneront des points d'arène en fonction de leur classement d'équipe du moment. Les points d'arène accumulés permettront d'acheter des objets ou d'autres récompenses.
+		</faq>
+		<faq question="Comment le classement est-il effectué ?">
+			Le classement dépend des victoires et des défaites de votre équipe contre des équipes de cote similaire. Gagner contre des équipes avec une plus forte cote vous fera progresser dans le classement tandis que gagner contre des équipes avec une faible cote vous donnera de plus petits bénéfices. Perdre contre une équipe avec une cote plus faible que la vôtre vous fera descendre dans le classement. Le principe de base est très similaire au système de classement Elo des joueurs d'échec.
+		</faq>
+		<faq question="Combien de temps dure une saison ?">
+			Chaque saison dure plusieurs mois.
+		</faq>
+		<faq question="Quels sont les grades requis pour obtenir les titres de fin de saison d'arène ?">
+			Au terme de chaque saison d'arène, les membres de l'équipe qui ont participé à 20% au moins des matchs d'une équipe d'arène fortement cotée reçoivent un titre spécial en récompense de leur performance. Voici les titres spéciaux avec leur seuil d'attribution :
+			<ul>
+				<li>Gladiateur : dans les 0.5% les mieux classés</li>
+				<li>Duelliste :  0.5% - 3%</li>
+				<li>Rival : 3% - 10%</li>
+				<li>Compétiteur : 10% - 35%</li>
+			</ul>
+			De plus, l’équipe en première position de chaque classement est récompensée par un titre spécial dont le nom correspond à l’équipement de la saison d’arène en cours, comme celui de « Gladiateur brutal ».
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculateur d'arène" url="/arena-calculator.xml"/>	
+		<relatedlink type="hr"/>
+		<relatedlink name="Le système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur des arènes" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

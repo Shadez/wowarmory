@@ -1,4 +1,4 @@
-﻿/*****************************************************
+/*****************************************************
  * Master Armory Javascript File
  * Copyright (c) 2008 Blizzard Entertainment
  * !!! Requires jQuery  !!!
@@ -6,6 +6,7 @@
  *****************************************************/
 //GLOBAL VARS
 var searchTimerId		= null; //timer id for search menu hiding
+var IS_ENABLED_XSLT		= $.browser.opera; //is xslt enabled
 var region				= ""; //for determining region
 var region				= ""; //region
 
@@ -29,67 +30,29 @@ function initializeArmory(){
 }
 
 function initializeAds()
-{
-	var randomNum = Math.round(Math.random() * 100000000);
-	if (!pageNum) var pageNum = Math.round(Math.random() * 100000000);
+{	//loadScript("http://ads1.msn.com/library/dap.js") 
+	//Does not callback when loaded, following commands error when loaded too soon
 
-	//ad source vars
-	var longAdiFrameSrc = "";
-	var longAdjsSrc		= "";
-	var boxAdiFrameSrc  = "";
-	var boxAdjsSrc 		= "";
+	$(document).ready(function() {	
 
-	if(!isHomepage){
-		longAdiFrameSrc	 = 'http://cgm.adbureau.net/hserver/acc_random='+randomNum+
-							'/SITE=WOW.ARMORY.COM/AREA=NETWORK/AAMSZ=728X90/pageid='+pageNum;
-		longAdjsSrc		 = 'http://cgm.adbureau.net/jnserver/acc_random='+randomNum+
-						   '/SITE=WOW.ARMORY.COM/AREA=NETWORK/AAMSZ=728X90/pageid='+pageNum;
-						   
-		boxAdiFrameSrc	 = 'http://cgm.adbureau.net/hserver/acc_random='+randomNum+
-						   '/SITE=WOW.ARMORY.COM/AREA=NETWORK/AAMSZ=300X250/pageid='+pageNum;
-		boxAdjsSrc		 = 'http://cgm.adbureau.net/jnserver/acc_random='+randomNum+
-						   '/SITE=WOW.ARMORY.COM/AREA=NETWORK/AAMSZ=300X250/pageid='+pageNum;
-
-		//top, long ad
-		$("#ad_728x90").html('<iframe width="728" height="90" marginwidth="0" marginheight="0" ' + 
-			'src="'+longAdiFrameSrc+'" frameborder="0" scrolling="no">'+
-			'<script type="text/javacript" '+
-			'src="'+longAdjsSrc+'"></script>'+				
-			'</iframe>');	
-		
-	}else{
-		boxAdiFrameSrc	 = 'http://cgm.adbureau.net/hserver/acc_random='+randomNum+
-						   '/SITE=WOW.ARMORY.COM.HOME/AREA=NETWORK/AAMSZ=300X250/pageid='+pageNum;
-		boxAdjsSrc		 = 'http://cgm.adbureau.net/jnserver/acc_random='+randomNum+
-						   '/SITE=WOW.ARMORY.COM.HOME/AREA=NETWORK/AAMSZ=300X250/pageid='+pageNum;
-	}
-		
-	//region specific ads
-	if(region == "KR"){
 		if(!isHomepage){
-			longAdiFrameSrc = "http://gamead.smartad.co.kr/NMR?VNHTML&MN3&SN3&PN6&TN10&DNgamead.smartad.co.kr"; //iframe source
-			longAdjsSrc		= "http://gamead.smartad.co.kr/NMR?VNJS&MN3&SN3&PN6&TN10&DNgamead.smartad.co.kr"; //script source 
-			boxAdiFrameSrc  = "http://gamead.smartad.co.kr/NMR?VNHTML&MN3&SN3&PN6&TN9&DNgamead.smartad.co.kr"; //iframe source
-			boxAdjsSrc		= "http://gamead.smartad.co.kr/NMR?VNJS&MN3&SN3&PN6&TN9&DNgamead.smartad.co.kr"; //script source
-
 			//top, long ad
-			$("#ad_728x90").html('<iframe width="728" height="90" marginwidth="0" marginheight="0" ' + 
-				'src="'+longAdiFrameSrc+'" frameborder="0" scrolling="no">'+
-				'<script type="text/javacript" '+
-				'src="'+longAdjsSrc+'"></script>'+
-				'</iframe>');			
-		}else{
-			boxAdiFrameSrc  = "http://gamead.smartad.co.kr/NMR?VNHTML&MN3&SN3&PN5&TN8&DNgamead.smartad.co.kr"; //iframe source
-			boxAdjsSrc		= "http://gamead.smartad.co.kr/NMR?VNJS&MN3&SN3&PN5&TN8&DNgamead.smartad.co.kr"; //script source
-		}		
-	}
+			dapMgr.enableACB("ad_728x90",false);         
+			dapMgr.renderAd("ad_728x90","&amp;PG=BLARS7&amp;AP=1390",728,90);
 
-	//middle box ad
-	$("#ad_300x250").html('<iframe width="300" height="250" marginwidth="0" marginheight="0" ' + 
-		'src="'+boxAdiFrameSrc+'" frameborder="0" scrolling="no">'+
-		'<script type="text/javascript" '+
-		'src="'+boxAdjsSrc+'"></script>'+
-		'</iframe>');
+			//middle box ad
+			dapMgr.enableACB("ad_300x250",false);         
+			dapMgr.renderAd("ad_300x250","&amp;PG=BLARS3&amp;AP=1089",300,250);
+
+		}
+		else{
+		//middle box ad
+		dapMgr.enableACB("ad_300x250",false);         
+		dapMgr.renderAd("ad_300x250","&amp;PG=BLARH3&amp;AP=1089",300,250);
+		}
+
+	});
+
 }
 
 
@@ -150,8 +113,8 @@ function demo3dCharacter(file,charName,attr)
 						if(init3dvars.bgColor){ params.bgcolor = "#"+init3dvars.bgColor.slice(2) }
 					}
 	if(attr){ for (var i in attr){ flashvars[i] = attr[i]; } }
-	swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "9.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
-	$(document).ready(function () { if(!bindMouseActions) loadScript("_js/character/charactermodel.js"); bindMouseActions() });	
+	swfobject.embedSWF(modelserver+"/models/flash/ModelViewer3.swf", "ModelViewer3", "100%", "100%", "10.0.0", modelserver+"/models/flash/expressInstall.swf", flashvars, params, attributes);
+	$(document).ready(function () { if(!bindMouseActions) loadScript("/_js/character/charactermodel.js"); bindMouseActions() });	
 }
 	
 
@@ -281,9 +244,9 @@ function menuCheckLength(formReference){
 
 function goToPropass() {
 	if (getcookie2("armory.cookiePropassBG"))
-		document.location.href = "arena-ladder.xml?b="+encodeURI(getcookie2("armory.cookiePropassBG")) + "&ts=3";
+		document.location.href = "/arena-ladder.xml?b="+encodeURI(getcookie2("armory.cookiePropassBG")) + "&ts=3";
 	else
-		document.location.href = "battlegroups.xml#tournament";
+		document.location.href = "/battlegroups.xml#tournament";
 }
 
 function fixReportLink(linkId, siteUrl){
@@ -293,7 +256,10 @@ function fixReportLink(linkId, siteUrl){
 		ele = ele.get(0);
 		
 		var replaceUrl="";
-	   replaceUrl = document.location.href;
+	    if(IS_ENABLED_XSLT && window.historyStorage)
+	        replaceUrl = siteUrl + "/" + window.historyStorage.getCurrentPage();
+	    else
+	        replaceUrl = document.location.href;
 	
 		var browserVer = "";
 		jQuery.each(jQuery.browser, function(i, val) {
@@ -523,7 +489,9 @@ L10n.formatTimestamps = function(domQuery, formatConfig) {
  *****************************************************/
 
 //GLOBAL VARS
+var itemToolTipXSLLoaded = false;
 var theGlobalToolTip	 = null; //global tooltip
+var xsltProcessor		 = null;
 var dualTipsEnabled		 = false;
 var isOnCharSheet		 = false;
 var toolVault 			 = [];
@@ -635,6 +603,9 @@ function setTipText(tipStr)
 	$(tooltipTxt).html("");
 	$(tooltipTxt).append(tipStr);	
 		
+	//adds "Click to view this item on the WoW Armory" at the very end of the tooltip used on Facebook app
+	if(tipsEnabledFacebook) $(tooltipTxt).append(tooltipItemNotice); 
+
 	//if dual tooltips are enabled, add some borders and some text
 	if(dualTipsEnabled){
 		$(tooltipTxt).find("td:eq(0)").attr("style","padding-right: 10px; width: 275px;");		
@@ -673,16 +644,43 @@ function setTipText(tipStr)
 //get the html for an item via ajax
 function getItemHtml(itemUrl)
 {
+	//load XSL stylesheet if we haven't yet	
+	if(!($.browser.safari) && !($.browser.safari)){
+		if(itemToolTipXSLLoaded == false)
+		{
+			//get the stylesheet			
+			var xslDoc = Sarissa.getDomDocument();
+			xslDoc.async = false;
+			xslDoc.load("_layout/items/tooltip.xsl");
+			
+			xsltProcessor = new XSLTProcessor();
+			xsltProcessor.importStylesheet(xslDoc);		
+			
+			itemToolTipXSLLoaded = true;
+		}
+	}	
+	
 	$.ajax({
 		type: "GET",
 		url: itemUrl,
 		success: function(msg){		
 			
 			//cache the tooltip text based on browser
-			toolVault[itemUrl] = msg;
-            
-			if(toolVault[itemUrl].length <= 4)
-				toolVault[itemUrl] = errorLoadingToolTip;
+			if(($.browser.safari) || ($.browser.safari)){
+				toolVault[itemUrl] = msg;
+				
+				if(toolVault[itemUrl].length <= 4)
+					toolVault[itemUrl] = errorLoadingToolTip;
+			}else{
+				var bufferedDiv = document.createElement("div");
+				bufferedDiv.innerHTML = "";
+				bufferedDiv.appendChild(xsltProcessor.transformToFragment(msg,window.document));					
+				toolVault[itemUrl] = bufferedDiv.innerHTML;
+				
+				//set error message
+				if(toolVault[itemUrl].length <= 4)
+					toolVault[itemUrl] = errorLoadingToolTip;					
+			}
 		},
 		error: function(msg){				
 			toolVault[itemUrl] = errorLoadingToolTip;
@@ -698,9 +696,25 @@ function getItemHtml(itemUrl)
 //gets the "pretty" html for an item tooltip via ajax
 function getTipHTML(itemID, itemWithTip, mouseEvent)
 {
+	//load XSL stylesheet if we haven't yet	
+	if(!($.browser.safari) && !($.browser.safari)){
+		if(itemToolTipXSLLoaded == false)
+		{
+			//get the stylesheet			
+			var xslDoc = Sarissa.getDomDocument();
+			xslDoc.async = false;
+			xslDoc.load("_layout/items/tooltip.xsl");
+			
+			xsltProcessor = new XSLTProcessor();
+			xsltProcessor.importStylesheet(xslDoc);		
+			
+			itemToolTipXSLLoaded = true;
+		}
+	}
+	
 	//get the "pretty-html" for the tooltip
 	if(toolVault[itemID] == null)
-	{
+	{		
 		//set loading text  
 		setTipText(tLoading+"...");
 		setToolTipPosition(itemWithTip,mouseEvent);
@@ -712,10 +726,21 @@ function getTipHTML(itemID, itemWithTip, mouseEvent)
 			url: urlstr,
 			success: function(msg){				
 				//cache the tooltip text based on browser
-				toolVault[itemID] = msg;
-				
-				if(toolVault[itemID].length <= 4)
-					toolVault[itemID] = errorLoadingToolTip;
+				if(($.browser.safari) || ($.browser.safari)){
+					toolVault[itemID] = msg;
+					
+					if(toolVault[itemID].length <= 4)
+						toolVault[itemID] = errorLoadingToolTip;
+				}else{
+					var bufferedDiv = document.createElement("div");
+					bufferedDiv.innerHTML = "";
+					bufferedDiv.appendChild(xsltProcessor.transformToFragment(msg,window.document));					
+					toolVault[itemID] = bufferedDiv.innerHTML;
+					
+					//set error message
+					if(toolVault[itemID].length <= 4)
+						toolVault[itemID] = errorLoadingToolTip;					
+				}
 				
 				//prevent showing the wrong item or an empty tooltip
 				if(currItemID == itemID){					
@@ -815,27 +840,27 @@ function getEmptySlotToolTip(slotid, classId)
 		case "0": slottext = textHead; 			break;
 		case "1": slottext = textNeck; 			break;
 		case "2": slottext = textShoulders; 	break;
-		case "3": slottext = textBack;          break;
+		case "3": slottext = textShirt; 		break;
 		case "4": slottext = textChest; 		break;
-		case "5": slottext = textShirt;         break;
-		case "6": slottext = textTabard; 		break;
-		case "7": slottext = textWrists;		break;
-		case "8": slottext = textHands; 		break;
-		case "9": slottext = textWaist; 		break;
-		case "10": slottext = textLegs;         break;
-		case "11": slottext = textFeet; 		break;
+		case "5": slottext = textWaist; 		break;
+		case "6": slottext = textLegs; 			break;
+		case "7": slottext = textFeet;			break;
+		case "8": slottext = textWrists; 		break;
+		case "9": slottext = textHands; 		break;
+		case "10":
+		case "11": slottext = textFinger; 		break;
 		case "12":
-		case "13": slottext = textFinger; 		break;
-		case "14":
-		case "15": slottext = textTrinket;  	break;
-		case "16": slottext = textMainHand; 	break;
-		case "17": slottext = textOffHand; 		break;
-		case "18":
+		case "13": slottext = textTrinket; 		break;
+		case "14": slottext = textBack; 		break;
+		case "15": slottext = textMainHand; 	break;
+		case "16": slottext = textOffHand; 		break;
+		case "17":
 			if((classId == 6) || (classId == 11) || (classId == 2) || (classId == 7))
 				slottext = textRelic;
 			else
 				slottext = textRanged;
 			break;
+		case "18": slottext = textTabard; 		break;
 	}
 	
 	return slottext;	
@@ -861,13 +886,13 @@ function ajaxBookmarkChar(){
 	if(asyncType == true){
 		$("#profileRight")[0].innerHTML = "<div class=\"bmcEnabled\"></div>";
 	}		
-	buildBookmarkMenu("bookmarks.xml?" + charUrl + "&action=1");
+	buildBookmarkMenu("/vault/bookmarks.xml?" + charUrl + "&action=1");
 }
 
 //removes a bookmarked character from the drop down list
-function ajaxRemoveChar(removedLink, clickedItem){
+function ajaxRemoveChar(removedLink, clickedItem){	
 	$(theGlobalToolTip).hide();	//hide tooltip	
-	buildBookmarkMenu("bookmarks.xml?" + removedLink + "&action=2");	
+	buildBookmarkMenu("/vault/bookmarks.xml?" + removedLink + "&action=2");	
 }
 
 

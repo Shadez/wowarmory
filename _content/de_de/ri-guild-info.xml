@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Gildeninformationen">
+	<faqlist>
+		<faq question="Welche Funktionen bieten die Gildenseiten?">
+			Ihr könnt sowohl das Gildenprofil einsehen und durchsuchen, als auch alles nach der Gildenstatistik sortiert betrachten. Eine neue Funktion gestattet Gildenmitgliedern, die diese Zugangsrechte vom Gildenleiter erhalten haben, sich den Inhalt der Gildenbank anzeigen zu lassen, diesen zu durchsuchen und sich die Transaktionen der Gildenbank anzusehen.
+		</faq>
+		<faq question="Welche Informationen kann ich im Gildenprofil abrufen?">
+			Mit dem Anklicken des Gildenprofils wird eine Liste aller Mitglieder der Gilde dargestellt, die Symbole für Stufe, Rasse und Klasse beinhaltet und auch den Gildenrang zeigt. Im oberen Bereich der Seite wird der Gildenname, der Wappenrock, das Realm, den Realmpool und die Anzahl der Mitglieder angezeigt. Diese Seite wird als Standardseite aufgerufen, wenn man einen Gildennamen im Arsenal anklickt. Ihr könnt die Spalten durch Anklicken des Spaltennamens neu sortieren und mithilfe der Pfeile am Ende der Liste zur nächsten Seite wechseln. Neue Namens- und Stufenbereichsfelder und auch Aufklappmenüs bieten ein effizienteres Sortierverfahren.
+		</faq>
+		<faq question="Welche Informationen bieten die Gildenstatistiken?">
+			Diese Seite führt die Statistiken der Gilde auf. Ihr könnt nachsehen, wie die Gilde in bezug auf Klasse, Rasse, Stzufenbereich und Geschlecht zusammengesetzt ist. Diese Werte können mithilfe der Aufklappmenüs und der Eingabefelder im oberen Bereich der Seite abgerufen werden. Ihr könnt auch die zugehörigen Symbole als Abkürzung anklicken, um nach Klasse oder Rasse zu sortieren. Das Anklicken von "Alles" am rechten oberen Bildschirmrand lässt euch wieder zur ungefilterten Ansicht zurückkehren.
+		</faq>
+		<faq question="Warum soll ich mich im Arsenal anmelden?">
+			Bestimmte Bereiche des Arsenals erfordern aufgrund der enthaltenen Funktionen und Daten eine Anmeldung mit euren World of Warcraft-Accountdaten.
+		</faq>
+		<faq question="Für wie lange kann ich die Seiten des Gildenbanksystems nach der Anmeldung betrachten?">
+			Ihr solltet etwa zwei Wochen lang auf die Gildenbank zugreifen können.
+		</faq>
+		<faq question="Wie bediene ich die Inhaltsdarstellung der Gildenbank?">
+			<p>
+        <span style="color: #FF0000;">Auf der Gildenansichtsseite des Arsenals gibt es zwei neue Seiten in Verbindung mit der Gildenbank. Hierbei handelt es sich um den ersten passwortgeschützten Bereich des Arsenals, der vor der Ansicht eine Anmeldung erfordert. Ihr müsst euch einloggen, um Zugriff auf die Gildenbank zu erhalten. Stellt sicher, dass euer Account einen Charakter ein Mitglied dieser Gilde ist und sein Gildenrang ihm den Zugriff auf die Gildenbank erlaubt. Euer Charakter muss Zugriffsrechte für jedes einzlne Bankfach erhalten haben, um auf dieses Bankfach zuzugreifen.</span>
+      </p>
+			<p>Auf den Seiten der Gildenbank werden die Inhalte der Bank in einem Gitternetz dargestellt, zusammen mit einem Suchbereich. Diese Seite verfügt über folgende Funktionen:</p>
+			<ul>
+				<li>Das Gitternetz verfügt über ein einfaches Koordinatensystem, das auch von der Suchfunktion genutzt wird.</li>
+				<li>Jede Gildenbank verfügt über ein Maximum von sechs Bankfächern. Die Standardansicht enthält das erste Bankfach. Durch einen Klick auf die Schaltflächen unter dem Gitternetz könnt ihr zwischen den einzelnen Fächern wechseln.</li>
+				<li>Der Gildenleiter muss zusätzliche Bankfächer kaufen, damit diese dargestellt werden. </li>
+				<li>Der Suchbereich erlaubt es euch, die Inhalte der Gildenbank in einer sortierbaren Liste anzusehen. Ihr könnt die Gegenstände nach Name, Kategorie, Unterkategorie, Seite und Feld sortieren, indem ihr auf die Spaltenüberschriften klickt und mithilfe der Pfeil-Schaltflächen zwischen den einzelnen Ergebnisseiten wechselt.</li>
+				<li>Die Spalte "Feld" bezieht sich auf den Platz im Gitternetz der Gildenbank.</li>
+				<li>Die Auswahlmenüs sind ein anderer Weg, in der Gildenbank nach Gegenständen mit einer bestimmten Qualität oder nach Kategorie, Unterkategorie und Feld zu suchen. Das Suchfeld "Name" findet alle Gegenstände, deren Name den eingegebenen Text enthält.</li>
+				<li>Klickt auf "Filter zurücksetzen", um die ursprüngliche Ansicht wiederherzustellen.</li>
+			</ul>
+		</faq>
+		<faq question="Wie funktioniert die Gildenbank?">
+			<p>
+        <span style="color: #FF0000;">Die Auswahl dieser Funktion ruft ein Anmeldefenster auf. Ihr müsst euch anmelden, um mit den Charakteren dieses Accounts Zugriff auf die Gildenbank zu haben. Bitte beachtet, dass der Charakter ein Mitglied der fraglichen Gilde sein muss und dass der Gildenrang des Charakters den Zugriff auf die Gildenbank erlauben muss.</span>
+      </p>
+			<p>Die Zugriffe werden protokolliert, so dass jede vorliegende Transaktion in der Gildenbank abgerufen werden kann. Die Features der Seite sind im Einzelnen:</p>
+			<ul>
+		<li>In der Standardansicht zeigt der Suchbereich alle Transaktionen in der aktuellsten "Transaktionsgruppe" an, nach Datum und Zeit sortiert.</li>
+		<li>Jede Gruppe enthält mehr als 1000 Transaktionen. Klickt auf die Pfeile oberhalb der Ergebnisse, um euch zwischen verschiedenen Gruppen zu bewegen.</li>
+		<li>Klickt auf die Pfeile unten rechts, um euch in der aktuellen Gruppe zu bewegen.</li>
+		<li>Die tatsächliche Anzahl der einsehbaren Transaktionen hängt von eurer Zugangsberechtigung in der Gildenbank ab. Daher seht ihr möglicherweise weniger Transaktionen, als im gewählten Zeitraum tatsächlich stattgefunden haben.</li>
+		<li>Die Ergebnisse der aktuellen Gruppe können nach Name, Rang, Herkunft, Aktion, Ziel, Gegenstand und Datum sortiert werden.</li>
+		<li>Ihr könnt in der aktuellen gruppe nach Namen, Daten, Transaktionstypen oder einer beliebigen Kombination daraus suchen - definiert eure Suche genau, um schnelle und relevante Ergebnisse zu erhalten.</li>
+		<li>Die Auswahl von Suchfiltern ändert eure Suchergebnisse in Echtzeit - ihr solltet sofort sehen, wie die Ergebnisliste eure Auswahl wiederspiegelt.</li>
+		<li>Die beiden Suchfelder für Charakter- und Gegenstandsname finden alle Charaktere bzw. Gegenstände, deren Name den gesuchten Text enthält.</li>
+		<li>Die Tooltips von Gegenständen im Banklog zeigen keine dauerhaften Verzauberungen oder Edelsteine an, die sich auf ihnen befinden.</li>				
+		<li>Klickt auf "Filter zurücksetzen", um die ursprüngliche Ansicht wiederherzustellen.</li>
+			</ul>
+		</faq>
+		<faq question="Warum kann ich die Gildenbank nicht einsehen?">
+			Bitte stellt sicher, dass euer Charakter ein Mitglied der Gilde ist, deren Bank man einsehen möchte und dass der Gildenrang des Charakters den Zugriff auf die Gildenbank erlaubt. Wenn ihr ein Mitglied der Gilde seid und dennoch die Gildenbank oder die zugehörigen Transaktionsprotokolle nicht einsehen könnt, dann kann es daran liegen, dass der Gildenleiter diese Funktion für euren Charakter nicht freigeschaltet hat. Gildenbanken können auch auf Grund von Inaktivität stillgelegt werden.
+		</faq>
+		<faq question="Ich habe einen Gegenstand von einem Fach in ein anderes verschoben, aber für manche Gildenmitglieder scheint es, als sei ein Gegenstand von einem einzelnen Fach abgehoben oder dort abgelegt worden. Was bedeutet das?">
+			Wenn euer Gildenbankzugriff sich nur auf eines der beiden involvierten Fächer erstreckt, wird der Vorgang in der Transaktionsübersicht - basierend auf euren Zugriffsrechten - entweder als Entnahme (Zugriff auf das Originalfach) oder als Ablage (Zugriff auf das Zielfach) angezeigt.
+		</faq>
+		<faq question="Warum werden niedrigstufige Charaktere nicht im Gildenprofil angezeigt?">
+			Charaktere müssen mindestens Stufe 10 erreicht haben, um im Arsenal, und damit auch im Gildenprofil, angezeigt zu werden.
+		</faq>
+		<faq question="Wie weit zurück reicht die Transaktionsübersicht der Gildenbank?">
+			Jede Transaktion, die in einer Gildenbank stattfindet, wird aufgezeichnet und kann im Arsenal eingesehen werden. Allerdings sind die Transaktionen in Gruppen aufgeteilt, von denen jede eine gewisse Anzahl an Transaktionen enthält. Ihr müsst möglicherweise eine bestimmte Gruppe öffnen, um eine bestimmte Transaktion zu finden. Die neueste Gruppe ist Gruppe 1, die älteren sind ansteigend numeriert. Klickt auf die Schaltflächen unter dem Banklog, um zwischen verschiedenen Gruppen zu navigieren.
+		</faq>
+		<faq question="Wie lang dauert es, bis Änderungen im Spiel auf den Gildenseiten im Arsenal sichtbar werden?">
+			Die meisten Änderungen in der Gildenbank und der Mitgliederliste sollten innerhalb desselben Tages erscheinen.
+		</faq>
+		<faq question="Wie werden die Gildenränge festgelegt?">
+			Die Gildenränge spiegeln das aktuelle Rangsystem jeder Gilde wider. Die Anzahl aller Ränge entsprechen den jeweiligen Rangstufen in der Gildenstruktur, beispielsweise sind Gildenleiter als solche erkennbar. Bis auf den Gildenleiterrang sind die Namen der anderen Ränge nicht sichtbar. Allerdings werden die einzelnen Ränge nach einer Anmeldung auf den Gildenbankseiten des Arsenals angezeigt. Auch im Transaktions- und im Gildenlog werden sie angezeigt.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Informationen über Gilden" type="external" url="http://www.wow-europe.com/de/info/basics/guilds.html"/>
+		<relatedlink name="Wie man einer Gilde beitritt" type="external" url="http://www.wow-europe.com/de/info/basics/joiningguilds.html"/>
+		<relatedlink name="Gilden verwalten" type="external" url="http://www.wow-europe.com/de/info/basics/guildtab.html"/>
+		<relatedlink name="Gildenführung" type="external" url="http://www.wow-europe.com/de/info/basics/guildleadership.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

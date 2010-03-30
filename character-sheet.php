@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 113
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,156 +28,330 @@ define('load_guilds_class', true);
 define('load_achievements_class', true);
 define('load_items_class', true);
 define('load_mangos_class', true);
-
+define('load_arenateams_class', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-// Additional CSS
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";
-        @import "_css/character/sheet.css";');
+header('Content-type: text/xml');
 if(isset($_GET['n'])) {
-    $charname = $_GET['n'];
+    $characters->name = $_GET['n'];
 }
 elseif(isset($_GET['cn'])) {
-    $charname = $_GET['cn'];
+    $characters->name = $_GET['cn'];
 }
 else {
-    $charname = false;
+    $characters->name = false;
 }
-$characters->name = Utils::escape($charname);
-// Check
-if(!$characters->IsCharacter()) {
-    $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
+$characters->GetCharacterGuid();
+$isCharacter = $characters->IsCharacter();
+// Get page cache
+if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('character-sheet', $characters->name, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id)) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
+        exit;
+    }
 }
-// All ok, generate basic character info
+// Load XSLT template
+$xml->LoadXSLT('character/sheet.xsl');
+/** Header **/
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'character-sheet.xml');
+$xml->XMLWriter()->startElement('tabInfo');
+$xml->XMLWriter()->writeAttribute('subTab', 'profile');
+$xml->XMLWriter()->writeAttribute('tab', 'character');
+$xml->XMLWriter()->writeAttribute('tabGroup', 'character');
+$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->endElement(); //tabInfo
+if(!$isCharacter) {
+    $xml->XMLWriter()->startElement('characterInfo');
+    $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
+    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement(); //page
+    $xml_cache_data = $xml->StopXML();
+    echo $xml_cache_data;
+    exit;
+}
+/** Basic info **/
 $characters->_structCharacter();
 $achievements->guid = $characters->guid;
-$guilds->guid = $characters->guid;
-
-// Tooltips info
-$_SESSION['char_guid'] = $characters->guid;
-$items->charGuid = $characters->guid;
-
-// Send data to Smarty
-$armory->tpl->assign('class', $characters->class);
-$armory->tpl->assign('race', $characters->race);
-$armory->tpl->assign('name', $characters->name);
-$armory->tpl->assign('level', $characters->level);
-$armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-$armory->tpl->assign('portrait_path', $characters->characterAvatar());
-$armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
-$armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
-$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'Horde' : 'Alliance');
+$guilds->guid       = $characters->guid;
+$arenateams->guid   = $characters->guid;
 if($guilds->extractPlayerGuildId()) {
-    $armory->tpl->assign('guildName', $guilds->getGuildName());
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
 }
-$tp = '';
-/*
-if($armory->armoryconfig['useDualSpec'] == true) {
-    $armory->tpl->assign('dualSpec', true);
-    $ds = 0;
-    while($ds<2) {
-        for($i=0;$i<3;$i++) {
-            if($i) {
-                $tp .= " / ";
+else {
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+}
+$characters->GetCharacterTitle();
+$character_element = array(
+    'battleGroup'  => $armory->armoryconfig['defaultBGName'],
+    'charUrl'      => $charTabUrl,
+    'class'        => $characters->returnClassText(),
+    'classId'      => $characters->class,
+    'classUrl'     => sprintf('c='),
+    'faction'      => '',
+    'factionId'    => $characters->GetCharacterFaction(),
+    'gender'       => '',
+    'genderId'     => $characters->gender,
+    'guildName'    => ($guilds->guildName) ? $guilds->guildName : '',
+    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : '',
+    'lastModified' => date('d M Y'),
+    'level'        => $characters->level,
+    'name'         => $characters->name,
+    'points'       => $achievements->CalculateAchievementPoints(),
+    'prefix'       => (isset($characters->character_title['prefix'])) ? $characters->character_title['prefix'] : null,
+    'race'         => $characters->returnRaceText(),
+    'raceId'       => $characters->race,
+    'realm'        => $armory->armoryconfig['defaultRealmName'],
+    'suffix'       => (isset($characters->character_title['suffix'])) ? $characters->character_title['suffix'] : null,
+    'titeId'       => (isset($characters->character_title['titleId'])) ? $characters->character_title['titleId'] : null,
+);
+$xml->XMLWriter()->startElement('characterInfo');
+$xml->XMLWriter()->startElement('character');
+foreach($character_element as $c_elem_name => $c_elem_value) {
+    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+}
+$character_arenateams = $arenateams->GetCharacterArenaTeamInfo();
+if($character_arenateams && is_array($character_arenateams)) {
+    $xml->XMLWriter()->startElement('arenaTeams');
+    foreach($character_arenateams as $arenateam) {
+        $xml->XMLWriter()->startElement('arenaTeam');
+        foreach($arenateam['data'] as $team_key => $team_value) {
+            $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+        }
+        $xml->XMLWriter()->startElement('emblem');
+        foreach($arenateam['emblem'] as $emblem_key => $emblem_value) {
+            $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+        }
+        $xml->XMLWriter()->endElement();  //emblem
+        $xml->XMLWriter()->startElement('members');
+        foreach($arenateam['members'] as $member) {
+            $xml->XMLWriter()->startElement('character');
+            foreach($member as $member_key => $member_value) {
+                $xml->XMLWriter()->writeAttribute($member_key, $member_value);
             }
-            $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i), true, $ds);
+            $xml->XMLWriter()->endElement(); //character
         }
-        // If character has no dual talent specialization
-        if($tp == ' /  / ') {
-            $armory->tpl->assign('dualSpecError', true);
-        }
-        else {
-            $talent_trees = explode(' / ', $tp);
-            $currentTree = Utils::GetMaxArray($talent_trees);
-            $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
-            $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
-            $armory->tpl->assign('talents_builds_'.$ds, $tp);
-            $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
-            $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
-            $armory->tpl->assign('ds_'.$ds, $talent_trees);
-            $tp = ''; // Clear previous tree
-            $ds++;
-        }
+        $xml->XMLWriter()->endElement();  //members
+        $xml->XMLWriter()->endElement(); //arenaTeam
     }
-    $activespec = $armory->cDB->selectCell("SELECT `activespec` FROM `characters` WHERE `guid`=? LIMIT 1", $characters->guid);
-    $disabledspec = ($activespec == 1) ? 0 : 1;
-    $armory->tpl->assign('disabledDS_'.$disabledspec, ' disabledSpec');
+    $xml->XMLWriter()->endElement(); //arenaTeams
 }
-else {*/
-    for($i=0;$i<3;$i++) {
-        if($i) {
-            $tp .= " / ";
+$xml->XMLWriter()->endElement();   //character
+/** Character tab **/
+$xml->XMLWriter()->startElement('characterTab');
+$xml->XMLWriter()->startElement('talentSpecs');
+$talent_points = array();
+$talent_tree   = array();
+for($i=0;$i<3;$i++) {
+    $talent_points[$i] = $characters->talentCounting($characters->getTabOrBuild('tab', $i));
+}
+$current_tree = Utils::GetMaxArray($talent_points);
+$talent_spec = array(
+    'active'    => 1,
+    'group'     => 1,
+    'icon'      => $characters->ReturnTalentTreeIcon($current_tree),
+    'prim'      => $characters->ReturnTalentTreesNames($current_tree),
+    'treeOne'   => $talent_points[0],
+    'treeThree' => $talent_points[2],
+    'treeTwo'   => $talent_points[1]
+);
+$xml->XMLWriter()->startElement('talentSpec');
+foreach($talent_spec as $ts_elem_name => $ts_elem_value) {
+    $xml->XMLWriter()->writeAttribute($ts_elem_name, $ts_elem_value);
+}
+$xml->XMLWriter()->endElement(); //talentSpec
+$xml->XMLWriter()->endElement();  //talentSpecs
+/* Character professions */
+$xml->XMLWriter()->startElement('professions');
+$character_professions = $characters->extractCharacterProfessions();
+if($character_professions) {
+    foreach($character_professions as $char_professions) {
+        $xml->XMLWriter()->startElement('skill');
+        foreach($char_professions as $profs_elem_name => $profs_elem_value) {
+            $xml->XMLWriter()->writeAttribute($profs_elem_name, $profs_elem_value);
         }
-        $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i));
+        $xml->XMLWriter()->endElement(); //skill
     }
-    if($tp == ' /  / ' || $tp == '0 / 0 / 0') {
-        // No talents
-        $armory->tpl->assign('talents_builds', '');
-        $armory->tpl->assign('treeName', $armory->tpl->get_config_vars('armory_character_sheet_na_dualspec'));
-        $armory->tpl->assign('currentTreeIcon', 'ability_seal');
-        $armory->tpl->assign('disabledDS_1', ' disabledSpec');
-    }
-    else {
-        $talent_trees = explode(' / ', $tp);
-        $currentTree = Utils::GetMaxArray($talent_trees);
-        $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
-        $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
-        $armory->tpl->assign('talents_builds', $tp);
-        $armory->tpl->assign('treeName', $currentTreeName);
-        $armory->tpl->assign('tree_js', $talent_trees);
-        $armory->tpl->assign('disabledDS_1', ' disabledSpec');
-        $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
-    }
-//}
-// Professions
-$trade_skills = $characters->extractCharacterProfessions();
-// Show only 2 professions
-if(isset($trade_skills[0])) {
-    $armory->tpl->assign('primary_trade_skill_1', $trade_skills[0]);
 }
-if(isset($trade_skills[1])) {
-    $armory->tpl->assign('primary_trade_skill_2', $trade_skills[1]);
+$xml->XMLWriter()->endElement(); //professions
+/* Character bars */
+$xml->XMLWriter()->startElement('characterBars');
+$xml->XMLWriter()->startElement('health');
+$xml->XMLWriter()->writeAttribute('effective', $characters->GetMaxHealth());
+$xml->XMLWriter()->endElement(); //health
+$xml->XMLWriter()->startElement('secondBar');
+$second_bar = $characters->GetSecondBar();
+foreach($second_bar as $sb_elem_name => $sb_elem_value) {
+    $xml->XMLWriter()->writeAttribute($sb_elem_name, $sb_elem_value);
 }
+$xml->XMLWriter()->endElement();  //secondbar
+$xml->XMLWriter()->endElement(); //characterBars
+/** Character stats **/
+/* Base stats */
+$xml->XMLWriter()->startElement('baseStats');
+$base_stats = array('strength', 'agility', 'stamina', 'intellect', 'spirit', 'armor');
+foreach($base_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $player_stat = $characters->GetCharacterStat($stat);
+    if($player_stat) {
+        foreach($player_stat as $stat_name => $stat_value) {
+            $xml->XMLWriter()->writeAttribute($stat_name, $stat_value);
+        }
+    }
+    $xml->XMLWriter()->endElement(); //<$stat>
+}
+$xml->XMLWriter()->endElement(); //baseStats
+/* Resistance stats */
+$xml->XMLWriter()->startElement('resistances');
+$resistance_stats = array('arcane', 'fire', 'frost', 'holy', 'nature', 'shadow');
+foreach($resistance_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $xml->XMLWriter()->writeAttribute('petBonus', '-1');
+    $xml->XMLWriter()->writeAttribute('value', '0');
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //resistances
+/* Melee stats */
+$xml->XMLWriter()->startElement('melee');
+$melee_stats = array('mainHandDamage', 'offHandDamage', 'mainHandSpeed', 'offHandSpeed', 'power', 'hitRating', 'critChance', 'expertise');
+foreach($melee_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $player_stat = $characters->GetCharacterStat($stat);
+    if($player_stat) {
+        foreach($player_stat as $stat_name => $stat_value) {
+            $xml->XMLWriter()->writeAttribute($stat_name, $stat_value);
+        }
+    }
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //melee
+/* Ranged stats */
+$xml->XMLWriter()->startElement('ranged');
+$ranged_stats = array('weaponSkill', 'damage', 'speed', 'power', 'hitRating', 'critChance');
+foreach($ranged_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $player_stat = $characters->GetCharacterStat($stat, 1);
+    if($player_stat) {
+        foreach($player_stat as $stat_name => $stat_value) {
+            $xml->XMLWriter()->writeAttribute($stat_name, $stat_value);
+        }
+    }
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //ranged
+/* Spell stats */
+$xml->XMLWriter()->startElement('spell');
+$spells_stats_tw = array('bonusDamage', 'critChance');
+$bonus_damage = array('arcane', 'fire', 'frost', 'holy', 'nature', 'shadow', 'petBonus');
+$pet_defined = false;
+$pet_closed  = 0;
+foreach($spells_stats_tw as $stat_tw) {
+    $xml->XMLWriter()->startElement($stat_tw);
+    $player_stat_tw = $characters->GetCharacterStat($stat_tw, 2);
+    if($player_stat_tw) {
+        foreach($player_stat_tw as $stat_name_tw => $stat_value_tw) {
+            if($stat_tw == 'critChance') {
+                $xml->XMLWriter()->writeAttribute('rating', $stat_value_tw);
+            }
+            if($stat_tw == 'bonusDamage' && ($stat_name_tw == 'attack' || $stat_name_tw == 'damage' || $stat_name_tw == 'fromType')) {
+                if(!$pet_defined) {
+                    $xml->XMLWriter()->startElement('petBonus');
+                    $pet_defined = true;
+                }
+                $xml->XMLWriter()->writeAttribute($stat_name_tw, $stat_value_tw);
+                $pet_closed++;
+                if($pet_closed == 3) {
+                    $xml->XMLWriter()->endElement();
+                    $pet_closed = 0;
+                }
+            }
+            else {
+                $xml->XMLWriter()->startElement($stat_name_tw);
+                $xml->XMLWriter()->writeAttribute(($stat_tw == 'bonusDamage') ? 'value' : 'percent', $stat_value_tw);
+                $xml->XMLWriter()->endElement();
+            }
+        }
+    }
+    $xml->XMLWriter()->endElement();
+}
+$spells_stats = array('bonusHealing', 'hitRating', 'penetration', 'manaRegen', 'hasteRating');
+foreach($spells_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $player_stat = $characters->GetCharacterStat($stat, 2);
+    if($player_stat) {
+        foreach($player_stat as $stat_name => $stat_value) {
+            $xml->XMLWriter()->writeAttribute($stat_name, $stat_value);
+        }
+    }
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //spell
+/* Defence stats */
+$xml->XMLWriter()->startElement('defenses');
+$defense_stats = array('armor', 'defense', 'dodge', 'parry', 'block', 'resilience');
+foreach($defense_stats as $stat) {
+    $xml->XMLWriter()->startElement($stat);
+    $player_stat = $characters->GetCharacterStat($stat, 1);
+    if($player_stat) {
+        foreach($player_stat as $stat_name => $stat_value) {
+            $xml->XMLWriter()->writeAttribute($stat_name, $stat_value);
+        }
+    }
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //defense
 
-// Health & power bars
-$armory->tpl->assign('healthValue', $characters->getHealthValue());
-$armory->tpl->assign('additionalBarInfo', $characters->assignAdditionalEnergyBar());
+/** Character items **/
+$xml->XMLWriter()->startElement('items');
+$gear_array = array(
+    array('slot' => 'head', 'slotid'     => INV_HEAD),
+    array('slot' => 'neck', 'slotid'     => INV_NECK),
+    array('slot' => 'shoulder', 'slotid' => INV_SHOULDER),
+    array('slot' => 'shirt', 'slotid'    => INV_SHIRT),
+    array('slot' => 'chest', 'slotid'    => INV_CHEST),
+    array('slot' => 'wrist', 'slotid'    => INV_BRACERS),
+    array('slot' => 'legs', 'slotid'     => INV_LEGS),
+    array('slot' => 'boots', 'slotid'    => INV_BOOTS),
+    array('slot' => 'gloves', 'slotid'   => INV_GLOVES),
+    array('slot' => 'belt', 'slotid'     => INV_BELT),
+    array('slot' => 'ring1', 'slotid'    => INV_RING_1),
+    array('slot' => 'ring2', 'slotid'    => INV_RING_2),
+    array('slot' => 'trinket1', 'slotid' => INV_TRINKET_1),
+    array('slot' => 'trinket2', 'slotid' => INV_TRINKET_2),
+    array('slot' => 'back', 'slotid'     => INV_BACK),
+    array('slot' => 'mainhand', 'slotid' => INV_MAIN_HAND),
+    array('slot' => 'offhand', 'slotid'  => INV_OFF_HAND),
+    array('slot' => 'relic', 'slotid'    => INV_RANGED_RELIC),
+    array('slot' => 'tabard', 'slotid'   => INV_TABARD),
+);
 
-/*** Character gear ***/
-$gear_array = array('head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'belt', 'gloves', 'wrist', 'legs', 'boots', 
-'ring1', 'ring2', 'trinket1', 'trinket2', 'mainhand', 'offhand', 'relic');
-$i = 0;
-$characterItems = array();
 foreach($gear_array as $gear) {
-    $gear_tmp = $characters->GetCharacterEquip($gear);
-    $characterItems[$i] = array(
-        'entry' => $gear_tmp,
-        'icon' => $items->getItemIcon($gear_tmp),
-        'rarity' => $items->GetItemInfo($gear_tmp, 'quality'),
-        'ilevel' => $armory->wDB->selectCell("SELECT `ItemLevel` FROM `item_template` WHERE `entry`=? LIMIT 1", $gear_tmp),
-        'i' => $i,
-        'name' => $items->GetItemName($gear_tmp)
-    );
-    $i++;
+    $item_info = $characters->GetCharacterItemInfo($gear);
+    if($item_info && is_array($item_info)) {
+        $xml->XMLWriter()->startElement('item');
+        foreach($item_info as $iteminfo_key => $iteminfo_value) {
+            $xml->XMLWriter()->writeAttribute($iteminfo_key, $iteminfo_value);
+        }
+        $xml->XMLWriter()->endElement(); //item
+    }
 }
-$armory->tpl->assign('characterItems', $characterItems);
-$armory->tpl->assign('characterStat', $characters->ConstructCharacterData());
-
-/*** Character Title ***/
-// TODO: show commas
-$charTitle = $characters->GetCharacterTitle();
-$armory->tpl->assign('titleName', $characters->name);
-$armory->tpl->assign('urlName', 'r='.urlencode($armory->armoryconfig['defaultRealmName']).'&cn='.urlencode($characters->name));
-$armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTeamInfo());
-$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
-$armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
-$armory->tpl->assign('playerHonorKills', $characters->getCharacterHonorKills());
-
-$armory->tpl->assign('characterFeed', $characters->GetCharacterFeed());
-
-$armory->tpl->assign('tpl2include', 'character_sheet_info');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_sheet_start.tpl');
-exit();
+$xml->XMLWriter()->endElement();  //items
+$xml->XMLWriter()->endElement(); //characterTab
+$xml->XMLWriter()->startElement('summary');
+$xml->XMLWriter()->endElement();   //summary
+$xml->XMLWriter()->endElement();  //characterInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-sheet');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
+}
+exit;
 ?>

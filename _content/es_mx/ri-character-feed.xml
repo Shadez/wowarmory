@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Lista de noticias del personaje">
+	<faqlist>
+
+		<faq question="¿Qué es la lista de actividades del personaje?">
+			La lista de noticias muestra la actividad más reciente del personaje en el juego (que puede registrar la Armería). Esto incluye logros, jefes eliminados, obtención de objetos y más. Podrás personalizar estas listas a través de la herramienta homónima y exportarlas como listas a tu lector RSS predilecto.
+		</faq>	
+		<faq question="¿Cómo creo una lista de noticias personalizada?">
+			Haz clic en el ícono del RSS en la página de perfil del personaje (ícono anaranjado ubicado en la parte superior derecha de las actividades recientes) para visitar la página de personalización de noticias del personaje. Las opciones que hallarás aquí te permitirán crear una lista que podrás exportar a un lector RSS.
+			<ul>
+				<li>Podrás incluir hasta cinco personajes en una sola lista RSS. Ingresa el nombre de cada uno siguiendo el siguiente formato <b>nombre@reino</b>. No necesitarás especificar un reino si iniciaste sesión, sino que se tomará el reino de tu personaje primario como opción predeterminada.</li>
+				<li>Podrás activar o desactivar las categorías de logros individualmente para que aparezcan, o no, en la lista RSS.</li>
+				<li>Los requisitos de los logros incluyen los pasos intermedios para completarlos, como derrotar a un jefe particular (en caso de que dicho logro requiera que elimines a todos los jefes de un calabozo de raid específico). Si desactivas esta categoría, también se desactivarán todos los requisitos de los logros, sin embargo, al activarla, se tomarán en cuenta las reglas que selecciones en la categoría de logros (por ejemplo, si desactivas las misiones en la categoría de logros, también se desactivarán los requisitos). </li>
+				<li>La categoría de jefes eliminados incluye a cualquier jefe al que se le pueda dar seguimiento por medio de la pestaña "Estadísticas" en la página de perfil del personaje. Ésto incluye a los jefes finales de los calabozos finales de World of Warcraft Clásico y Burning Crusade, así como todos los de las raids de Wrath of the Lich King.</li>
+				<li>Será posible designar la calidad del botín que aparecerá en la lista, asimismo, también tendrás la capacidad de especificar un nivel de objeto mínimo.</li>
+			</ul>
+		</faq>
+		<faq question="¿Cómo utilizo una lista personalizada después de crearla?">
+			El URL de tu lista personalizada se actualiza en tiempo real mientras seleccionas opciones y personajes. Cuando termines de configurarla, sólo copia y pega dicho URL en un lector RSS. Netvibes, iGoogle y Pageflakes son algunos ejemplos de lectores RSS en línea, también podrás importar listas RSS a Outlook y a otros clientes de e-mail.
+		</faq>	
+		<faq question="¿Puedo personalizar la lista que aparece en la pestaña 'Lista de noticias' en el perfil de personaje?">
+			A diferencia de las listas en RSS creadas desde la página de personalización de noticias, las listas que aparecen en los perfiles de personaje (tanto en la página principal como en la pestaña "Actividad (noticias)" muestran la actividad reciente sin utilizar ningún tipo de filtro y no será posible personalizarlas.
+		</faq>
+		<faq question="¿Por qué la página de listas de noticias personalizadas de la Armería no encuentra al personaje cuyo nombre ingresé en el campo de búsqueda?">
+			Aquí sólo se guardan los personajes de los reinos de Estados Unidos, ya que esta es la versión estadounidense de la Armería. Si deseas cambiar a una región distinta (como Europa), visita el sitio regional correspondiente de World of Warcraft y accede a la Armería desde ahí. Además, el personaje en cuestión deberá tener actividad reciente y ser, al menos, de nivel 10 para que pueda tener una lista de noticias.
+			<p/>
+			Al ingresar nombres de personajes, no olvides incluir los espacios en los nombres de los reinos (Black Dragonflight en lugar de BlackDragonflight) y asegúrate de que el nombre esté escrito correctamente.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Búsqueda de personajes" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Personaje: información general" type="external" url="http://www.worldofwarcraft.com/na/info/basics/characters.xml"/>
+		<relatedlink name="Razas" type="external" url="http://www.worldofwarcraft.com/na/info/races/humans.xml"/>
+		<relatedlink name="Clases" type="external" url="http://www.worldofwarcraft.com/na/info/classes/index.xml"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

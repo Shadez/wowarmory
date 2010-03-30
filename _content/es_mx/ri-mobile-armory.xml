@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Mobile Armory">
+	<faqlist>
+		<faq question="¿Qué es la Armería Móvil?">
+			La Armería Móvil, disponible para iPhone™ y iPod touch®, es la versión portátil de la base de datos oficial de World of Warcraft. Esta aplicación gratuita, la cual puedes descargar desde la iTunes® App Store, es casi una réplica exacta del sitio web de la Armería en cuanto a funciones e información. 
+		</faq>
+		<faq question="¿Cuánto cuesta la Armería Móvil?">
+			La Armería Móvil de World of Warcraft para iPhone y iPod touch es completamente gratuita.
+		</faq>
+		<faq question="¿Qué dispositivos soporta la Armería Móvil?">
+			La Armería Móvil de World of Warcraft está disponible actualmente para el iPhone y el iPod touch de Apple y puedes descargarla desde la iTunes App Store. Para utilizar la Armería Móvil desde un iPod touch, es necesario que tengas una conexión Wi-Fi. En el futuro habrá soporte para más dispositivos, los detalles de distribución y su costo pueden variar según la plataforma.   
+		</faq>			
+		<faq question="¿Con qué versiones del sistema operativo de iPhone es compatible la Armería Móvil?">
+			La Armería Móvil es compatible con la versión 2.2.1 o superior, incluyendo compatibilidad total con la versión 3.0.
+		</faq>
+		<faq question="¿Qué idiomas soporta la Armería Móvil?">
+			La Armería Móvil actualmente soporta inglés, español (europeo), español (latinoamericano), coreano, francés, alemán y ruso.
+		</faq>
+		<faq question="¿Utiliza la Armería Móvil la característica de inicio de sesión?">
+			Para utilizar la Armería Móvil deberás iniciar sesión con una cuenta de World of Warcraft o de Battle.net.
+		</faq>
+		<faq question="¿Qué regiones de cuentas de World of Warcraft o Battle.net soporta la Armería Móvil?">
+			Por el momento, la Armería Móvil soporta cuentas creadas en las regiones de América, Europa y Corea.
+		</faq>
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Descargar desde iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Actualizaciones de la Armería" url="/updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

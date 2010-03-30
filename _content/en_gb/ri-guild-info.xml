@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Guild Info">
+	<faqlist>
+		<faq question="What kind of functionality exists on the Guild pages?">
+			You can view and search a guild's roster, as well as statistics breaking down the roster. New functionality allows guild members who have been granted access by their guild leader to view and search their guild bank's contents as well as see all the transactions for their guild bank.
+		</faq>
+		<faq question="What can I see on the Guild Roster tab?">
+			Clicking on the Guild Roster tab displays a list of the members of the guild, with their level, race and class icons, and guild rank displayed. The top of the page displays the guild's name, tabard, realm, battlegroup, and number of members. This is the default page you access by clicking on a guild name within the Armory. You can sort any of the displayed columns by clicking on the column name, and switch pages by clicking on the arrows at the bottom of the list. New name and level range text fields as well as drop-down menus allow for more streamlined, focused sorting.
+		</faq>
+		<faq question="What is the Guild Statistics page?">
+			This page is a statistical breakdown of the guild's roster. You can see how the guild is represented by class, race, level range, and gender. These values are controlled by the drop down menus and text fields near the top of the page. You can also click the matching icons as a shortcut to sort by class or race. If you wish to reset to the default unsorted view, click the "reset" button on the top right of the page.
+		</faq>
+		<faq question="Why is the Armory asking me to log in?">
+			Certain areas of the Armory, such as Guild Banks, require you to log in to access them because of the nature of the information in these areas.
+		</faq>
+		<faq question="How long can I view the Guild Bank pages after I log in?">
+			You should have access to the Guild Bank pages for approximately two weeks after you log in.
+		</faq>
+		<faq question="How do I use the Bank Contents page?">
+			<p>
+        <span style="color: #FF0000;">There are two tabs devoted to the new Guild Bank system. Attempting to access these tabs will bring up a login window. You need to log in to access the Guild Banks of the characters on that account. Make sure that your account includes a character who is a member of the guild in question, and that your character’s guild rank confers guild bank access. Your character must have been granted permission to view each guild bank tab to view the contents of that tab.</span>
+      </p>
+			<p>The Bank Contents page displays a grid depicting the contents of the character’s guild bank, along with a search results section. Here are the features of the page:</p>
+			<ul>
+				<li>The slots of the grid are labeled with a basic coordinate system which is referenced by the search results below.</li>
+				<li>Each guild bank has a maximum of six tabs of storage slots. The default view of the contents page is the first tab of the guild bank that is viewable. To switch between tabs, click the icons below the grid. </li>
+				<li>Not all tabs may be displayed, as the guild leader must purchase them in succession for them to become available. </li>
+				<li>The search results section below allows you to see the contents of the bank in a sortable list. You can sort the items by name, type, subtype, page, and slot by clicking the column headers, and navigate between results pages with the arrow buttons. </li>
+				<li>The “Slot” column in the results section refers to the coordinates of the bank slot on the grid. </li>
+				<li>The drop-down menus are a different method to search for items in the guild bank of a particular quality, type, subtype, and slot. The name search field finds all items in the bank containing the text string you enter. </li>
+				<li>Click “Reset Filters” to restore the default view. 		</li>
+			</ul>
+		</faq>
+		<faq question="How do I use the Bank Log?">
+			<p>
+        <span style="color: #FF0000;">Attempting to access this tab will bring up a login window. You need to log in to access the Guild Banks of the characters on that account. Make sure that your account includes a character who is a member of the guild in question, and that your character's guild rank confers the ability to view the guild bank logs.</span>
+      </p>
+			<p>In the Bank Log, you can view and search the record of every transaction that has occurred within your Guild Bank. Here are the features of the page:</p>
+			<ul>
+				<li>In the default view, the results section displays all transactions in the most recent “group” of transactions, sorted by date and time. </li>
+				<li>Each group is comprised of over one thousand transactions. Click the arrows above the results to navigate between groups. </li>
+				<li>Click the arrows at the bottom right of the results to navigate between pages of results in the group you are viewing. </li>
+				<li>The actual transactions you can see in a given group are limited by your guild bank permissions. Thus, it is possible to see far fewer transactions in a given group than actually were recorded during that period of time. </li>
+				<li>The results of the group you are viewing can be sorted by name, rank, origin, action, destination, item, and date. </li>
+				<li>You can search by character, date, type of transaction, or any combination of the above in your current group of transactions – narrow your search for fast and efficient results. </li>
+				<li>Selecting any of the filters narrows your search in real time – you should see the list of results instantaneously reflect your selections.</li>
+				<li>The two name search fields (for character and item names) find all matches containing the text string you enter.</li>
+				<li>The tooltips for items in the Bank Log do not display any permanent enchants or socketed gems that may be on those items.</li>				
+				<li>Click "Reset Filters" to restore the default view. </li>
+			</ul>
+		</faq>
+		<faq question="Why can't I view a given guild bank?">
+			Please ensure that your World of Warcraft account includes a character who is a member of the guild's bank you are attempting to view, and that your character's guild rank confers guild bank access. If you are a member of the guild and still can't view a guild bank tab or the bank logs, you may not have been granted permission by your guild master to do so. Some guild banks may be suspended due to inactivity.
+		</faq>
+		<faq question="I moved an item from one tab to another, but to some of my guildies it appears as though an item was deposited or withdrawn from a single tab. What gives?">
+			If you are a guild member with access to only one of the two tabs involved in a given item move, you will see the evidence of the move in the item log as either a withdrawal or a deposit depending on whether you have access to the origin tab (withdrawal) or the destination tab (deposit).
+		</faq>
+		<faq question="How far back in time do the entries in the Bank Log extend?">
+			Every transaction that occurs in your Guild Bank is recorded and searchable in the Armory. However, the transactions are divided into groups, each of which includes a certain number of transactions. You may need to navigate to a different group to find the particular transaction you’re searching for. The most recent group is group 1, and older groups are consecutively numbered. Click the buttons below the Bank Log results to navigate between different transaction groups. 
+		</faq>
+		<faq question="How long does it take for in-game changes to be reflected on the Armory's Guild pages?">
+			Most in-game changes to the Guild Bank and Guild Roster should appear on the Armory in the same day.
+		</faq>
+		<faq question="How are the guild ranks determined?">
+			The guild ranks are simply taken from each guild's actual ranking system. The number of each rank corresponds to the equivalent rank tier in the guild's structure; for example, guild leaders are identified as such. Save the guild leader rank, other rank titles are not visible. However, on the Guild Bank pages your guild’s actual rank titles will be displayed after logging in to view these pages. They can be seen on the Guild Log page, in both the transaction log itself as well as in the drop-down menu to filter by guild rank.
+		</faq>
+		<faq question="Why aren’t low-level characters displayed in the guild roster?">
+			Only characters level 10 and above appear in the Armory, including on guild roster pages.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Guild Basics" type="external" url="http://www.wow-europe.com/en/info/basics/guilds.html"/>
+		<relatedlink name="Joining Guilds" type="external" url="http://www.wow-europe.com/en/info/basics/joiningguilds.html"/>
+		<relatedlink name="Guild Management" type="external" url="http://www.wow-europe.com/en/info/basics/guildtab.html"/>
+		<relatedlink name="Guild Leadership" type="external" url="http://www.wow-europe.com/en/info/basics/guildleadership.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

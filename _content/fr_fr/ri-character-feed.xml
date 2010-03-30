@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Fil d'info de personnage">
+	<faqlist>
+		<faq question="Qu'est-ce que le fil d'info d'un personnage ?">
+			Chaque fil d'info de personnage montre les actions en jeu les plus récentes du personnage enregistrées par l'Armurerie. Cela inclus par exemple les haut faits, les boss tués, l'acquisition d'objets... Le fil d'info de personnage peut être personnalisé avec notre outil idoine, puis exporté comme flux RSS vers le lecteur RSS de votre choix.
+		</faq>	
+		<faq question="Comment créer un flux de personnage personnalisé ?">
+			Cliquez sur l'icône RSS de la fiche de personnage (l'icône orange en haut à droite du résumé de l'activité récente). Ceci vous amènera sur la page de personnalisation du fil d'info de personnage. Les options sur cette page vous permettront de créer un flux RSS personnalisé que vous pourrez exporter vers un lecteur RSS.
+			<ul>
+				<li>Vous pouvez rassembler jusqu'à cinq personnages dans un même flux RSS. Saisissez le nom de chaque personnage sous le format <b>nom@royaume</b>. Si vous êtes connecté, vous n'aurez pas à préciser le royaume : il sera définit par défaut comme le royaume de votre personnage principal.</li>
+				<li>Les catégories de hauts faits peuvent être validées individuellement pour les ajouter ou les retirer du flux RSS.</li>
+				<li>Les conditions des hauts faits incluent toutes les étapes intermédiaires au sein d'un haut fait, comme tuer tel ou tel boss en particulier, ou tracer la défaite de tous les boss de tel raid. Désélectionner cette catégorie désactive l'affichage des conditions d'obtention de tous les hauts faits, tandis que le sélectionner à nouveau les rendra visibles pour toutes les catégories de hauts faits sélectionnées auparavant (par exemple, désélectionner la catégorie des quêtes supprimera également l'affichage des conditions d'obtention de leurs hauts faits). </li>
+				<li>La catégorie des boss tués comprend tout boss qui est suivi dans l'onglet Statistiques de la feuille de personnage. Cela inclus tous les boss de fin des raids classiques et de Burning Crusade, ainsi que tous les boss de raids de Wrath of the Lich King.</li>
+				<li>L'acquisition du butin peut se voir assigner des seuils pour apparaître dans le flux. Vous pouvez également assigner un niveau minimal à l'objet.</li>
+			</ul>
+		</faq>
+		<faq question="Comment utiliser le flux personnalisé une fois que je l'ai créé ?">
+			L'URL de votre flux personnalisé se met à jour en temps réel quand vous changez les options ou entrez les noms de personnage. Quand vous êtes satisfait avec les options et les personnages que vous avez choisis, faites un simple copier/coller de l'URL résultant vers un lecteur RSS. Les flux RSS peuvent être inclus dans Outlook ou s'autres programmes d'e-mail, iGoogle, Netvibes ou autres similaires.
+		</faq>	
+		<faq question="Puis-je personnaliser le flux qui apparaît dans l'onglet Flux de personnage d'une fiche de personnage ?">
+		Au contraire des flux RSS créés sur la page de personnalisation de flux des personnages, le flux qui apparaît sur les feuilles de personnage (page principale et onglet Activité) est prévu pour être totalement non filtré et donc inaltérable.
+		</faq>
+		<faq question="Pourquoi le flux personnalisé de l'Armurerie ne trouve pas un personnage en particulier que j'entre dans le champ Nom de personnage ?">
+			Seuls les personnages des royaumes européens peuvent apparaître dans les flux que vous créez ici, car il s'agit de la version européenne de l'Armurerie. Vous pouvez changer de région (Amérique, etc.) depuis le menu déroulant au bas de la page. De plus, un personnage doit avoir été connecté récemment sur un compte actif pour que sa fiche apparaisse dans l'Armurerie. Enfin, le personnage doit être au moins de niveau 10 pour que sa fiche de personnage soit disponible.
+			<p/>
+			Quand vous entrez le nom des personnages, gardez les espaces dans le nom des royaumes (Conseil des ombres) et assurez-vous d'avoir bien orthographié le nom du personnage et du royaume.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Recherche de personnage" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Caractéristiques des personnages" type="external" url="http://www.wow-europe.com/fr/info/basics/characters.html"/>
+		<relatedlink name="Races" type="external" url="http://www.wow-europe.com/fr/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.wow-europe.com/fr/info/classes/index.html"/>
+		<relatedlink name="Métiers" type="external" url="http://www.wow-europe.com/fr/info/professions/intro.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

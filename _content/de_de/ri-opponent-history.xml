@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Gegnerstatistik">
+	<faqlist>
+		
+		<faq question="Wozu dient die Seite mit der Übersicht der Gegenerstatistiken?">
+Die Seite mit den Gegnerstatistiken zeigt die gegnerischen Teams an, gegen die ein Arenateam während der Saison angetreten ist. Abgesehen von der Archivfunktion zeigen einem diesen Daten die Leistungen eines Teams gegen bestimmte Klassenkombinationen an. Hier eine Zusammenfassung aller Inhalte auf dieser Seite:
+<ul>
+<li>Informationen über jedes gegnerische Team seit Beginn der aktuellen Saison werden hier angezeigt, sofern das eigenen Team mindestens zwei Mal gegen das gegnerische Team gespielt hat.</li>
+<li>Die Spalten können nach Teamname, Realm, gespielte Runden (vorgegeben), Siege/Niederlagen, Gewinnanteil sowie der Änderung der Bewertung sortiert werden.</li>
+<li>Benutzt die Filterfunktion, um euren Suchbereich einzuengen</li>
+<li>Um die Aufstellung des Teams anzeigen zu lassen, klickt auf den Teamnamen (falls vorhanden) oder sucht nach dem Teamnamen im Register der Match-Übersicht.</li>
+</ul>
+		</faq>
+		
+		<faq question="Wie kann ich die genaue Klassenaufstellung eines bestimmten gegnerischen Teams ausfindig machen?">
+Die genaue Klassenaufstellung des gegnerischen Teams findet ihr am besten, indem ihr im Reiter der Match-Übesicht nach dem Namen des Teams sortiert und anschließend auf den Link klickt, der euch zu den individuellen Match-Berichten bringt. Wenn ihr den Namen anklicken könnt, wird das entsprechende Teamprofil die derzeitige (nicht unbedingt die generelle) Aufstellung des Teams oder eine bestimmte Aufstellung, die gegen das Ausgangsteam angetreten ist, anzeigen.
+		</faq>				
+		
+		<faq question="Warum werden mindestens zwei Matches für die Erfassung der gegnerischen Teams vorausgesetzt?">
+		Die Voraussetzung von mindestens zwei Matches filtert Teams heraus, gegen die nur einmal angetreten wurde, was die Mehrzahl der Gegenspielerübersicht ausmacht. Auf diese Weise werden viele statistische Ausreißer entfernt und die Daten garantieren somit präzisere und ausschlaggebendere Ergebnisse.
+		</faq>
+
+		<faq question="Kann ich mir Gegnerstatistiken der vergangenen Saisons einsehen?">
+		Die Arenastatistiken enthalten Daten von Arenakämpfen, die seit der Einführung von Wrath of the Lich King stattgefunden haben. Arenakämpfe aus den Zeiträumen davor sind nicht verfügbar.
+		</faq>
+		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Infos zum Arenaturnier" url="http://www.wow-europe.com/en/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Ruhmeshalle der Arena" url="/hof/one/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena-System" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><advFilters>
+  <advFilter key="Weapon">
+    <category key="baseStats">
+      <option key="strength" oper="compare"/>
+	  <option key="agility" oper="compare"/>
+	  <option key="stamina" oper="compare"/>
+	  <option key="intellect" oper="compare"/>
+	  <option key="spirit" oper="compare"/>
+    </category>
+
+    <category key="general">
+	  <option key="critRating" oper="compare"/>
+	  <option key="hitRating" oper="compare"/>
+	  <option key="hasteRating" oper="compare"/>
+    </category>	
+	
+    <category key="physical">
+      <option key="attackPower" oper="compare"/>
+	  <option key="ignoreArmor" oper="compare"/>	  
+	  <option key="expertiseRating" oper="compare"/>	  
+    </category>
+    <category key="spell">
+	  <option key="spellPower" oper="compare"/>
+	  <option key="spellPenetration" oper="compare"/>
+	  <option key="spellManaRegen" oper="compare"/>
+    </category>	
+    <category key="defense">
+      <option key="armor" oper="compare"/>
+	  <option key="blockRating" oper="compare"/>
+	  <option key="blockValue" oper="compare"/>
+	  <option key="defenseRating" oper="compare"/>
+	  <option key="dodgeRating" oper="compare"/>
+	  <option key="parryRating" oper="compare"/>
+	  <option key="healthRegen" oper="compare"/>
+	  <option key="resilience" oper="compare"/>	  
+    </category>		
+    <category key="resistances">
+	  <option key="resistArcane" oper="compare"/>
+	  <option key="resistShadow" oper="compare"/>
+	  <option key="resistNature" oper="compare"/>
+	  <option key="resistFrost" oper="compare"/>
+	  <option key="resistFire" oper="compare"/>
+    </category>	
+    <category key="weaponStats">
+      <option key="dps" oper="compare"/>
+	  <option key="minDamage" oper="compare"/>
+	  <option key="maxDamage" oper="compare"/>
+	  <option key="speed" oper="compare"/>
+    </category>		
+    <category key="general">
+	  <option key="bindsPickedUp" oper="key"/>
+	  <option key="bindsEquip" oper="key"/>
+	  <option key="bindsWhenUsed" oper="key"/>
+	  <option key="unique" oper="key"/>
+	  <option key="uniqueEquipped" oper="key"/>	  	
+	  <option key="hasSpellEffect" oper="spelleffect"/>	    
+    </category>	
+  </advFilter>  
+
+</advFilters>

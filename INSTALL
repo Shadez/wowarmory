@@ -4,8 +4,8 @@ How to install WoW Armory
 
 SYSTEM REQUIREMENTS:
 1. Apache HTTP Server with Mod Rewrite
-2. PHP 5 or higher
-3. MySQL 5 Server or higher
+2. PHP5 (PHP6 not supported)
+3. MySQL5 Server
 
 INSTALLATION STEPS:
 1. Create new MySQL database (`armory`, for expample) with utf8_general_ci encoding;
@@ -18,20 +18,18 @@ INSTALLATION STEPS:
 5. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
 6. Unzip htaccess.zip archive and place unpacked .htaccess file to root site dir for correct scripts work.
 7. If there are some sql updates in 'sql/updates' dir (rev. 82 or higher), you need to upload it to DB too.
-8. Run tools/build_loot_tables.php to generate bosses lootIds for search engine. Read tools/build_loot_tables_README.txt for more info.
-	If you using YTDB database, you can miss this step - there are already stored data in armory DB for this database.
-9. Update your armory database with sql/armory_instance_data.sql - this is data for loot that stored in chests (gameobjects).
-10. For 3D Viewer installation info read 3DViewer_info.txt
-11. If you want to add new language (currently only Spanish language is available), just unpack sql/langpacks/<lang>/armory_<lang>.7z 
-   archive and upload SQL file to `armory` DB.
+8. For 3D Viewer installation info read 3DViewer_info.txt
+9. For full work you need to patch MaNGOS core with tools/armory_character_stats/wowarmory_character_stats_*.patch
+   and your characters DB with provided SQL update (characters.sql - in the same folder).
+10. If you use UNIX system, you need to manage access rights to allow script write data to 'cache' folder.
 ========================
 Как установить Оружейную
 ========================
 
 СИСТЕМНЫЕ ТРЕБОВАНИЯ:
 1. Web-сервер Apache с подключенным Mod Rewrite
-2. PHP 5 или выше
-3. MySQL-сервер 5 или выше
+2. PHP5 (PHP6 не поддерживается)
+3. MySQL-сервер 5
 
 ПОРЯДОК УСТАНОВКИ:
 1. Создайте новую базу сервера MySQL (`armory`, к примеру) с кодировкой utf8_general_ci;
@@ -44,9 +42,7 @@ INSTALLATION STEPS:
 5. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"
 6. Распакуйте архив htaccess.zip и поместите распакованный файл .htaccess в корень сайта для правильной работы скриптов.
 7. Если в папке 'sql/updates' присутствуют обновления для базы (ревизии 82 и выше), вам будет необходимо так же залить их базу. 
-8. Запустите tools/build_loot_tables.php для генерации lootid боссов (необходимо для работы поискового движка). Подробнее - в файле tools/build_loot_tables_README.txt
-   Если ваша база - YTDB, то этот скрипт можно не выполнять, в базе уже имеются данные для этой базы.
-9. Обновите базу файлом sql/armory_instance_data.sql - данные для добычи, которая находится в сундуках (игровые объекты).
-10. Как установить и настроить 3D просмотрщик читайте в файле 3DViewer_info.txt
-11. Для установки отдельного языка (на данный момент доступен только испанский) распакуйте архив sql/langpacks/<язык>/armory_<язык>.7z
-    и залейте SQL файл в базу `armory`.
+8. Как установить и настроить 3D просмотрщик читайте в файле 3DViewer_info.txt
+9. Для работы страниц персонажа вам необходимо пропатчить ядро MaNGOS файлом tools/armory_character_stats/wowarmory_character_stats_*.patch,
+	 а так же, базу персонажей файлом characters.sql (в папке патча).
+10. Если вы используете UNIX-систему, вам необходимо изменить права доступа к папке cache чтобы скрипт мог записывать кэшированные файлы.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arena Calculator">
+	<faqlist>
+		<faq question="What is the Arena Calculator?">
+			The Arena Calculator has three functions. The Points calculator translates a given rating into the number of points it would yield for the week. The Rating calculator takes a given point goal as well as current stockpiled point total into account to generate a table showing average rating needed over time to obtain that goal. The Time calculator also uses a given point goal and current points, but calculates the length of time needed to reach the goal based on the average rating you input.
+		</faq>
+		<faq question="How is my Team Rating calculated?">
+			A new team’s rating is 0, and subsequent wins change this rating. Every time your team wins a match, your rating goes up. The amount by which your rating changes depends on your team's rating compared to the other team's rating.
+		</faq>
+		<faq key="getArenaPoints" question="How does my Team Rating give me Arena Points?">
+			At the end of each week, your Team Rating is used to calculate how many Arena Points your team will receive for this week. Your team must have played a minimum of ten matches per week to be rewarded with Arena Points, and a team member must have been in at least 30% of the week’s matches to be eligible for that week's points. It is important to note that the points you receive in a given week is determined by only one team, and not by combining all your teams' points. Whichever team you are a member of that would receive the most points after accounting for Team Rating and team type becomes the sole source for your points for that week. Note that 2v2 and 3v3 teams are subject to a handicap where they receive fewer points than a 5v5 team with the same Team Rating.
+		</faq>
+		<faq question="What can I purchase with Arena Points, and how many can I have at one time?">
+			Arena Points are used as currency to purchase Arena Rewards. You can stockpile a maximum of 5,000 Arena Points and they do not decay over time. 
+		</faq>
+		<faq question="Does .999... = 1?">
+			<a href="http://www.blizzard.com/press/040401.shtml">Yes</a>. 
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Tournament Info" url="/arena-tournament.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
+		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
+		<relatedlink name="PvP Rewards" url="/pvprewards.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below.  Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Итоги боев Арены">
+	<faqlist>
+		
+		<faq question="Зачем нужна эта страница?">
+Результаты каждого поединка во всех группах, боевых группах и в каждом сезоне Арены отображаются в сводке «Итоги боя».
+<ul>
+<li>Кто участвовал в поединке и их показатели (по тем же пяти параметрам Арены, что в игре).</li>
+<li>Вы можете щедкнуть по названию команды или имени персонажи, чтобы просмотреть их профиль (при условии, что команда в настоящее время не распущена).</li>
+<li>В верхней части окна показывается рейтинг команды и как он эволюционирует. При подсчете рейтинга учитывается, как влияет на него текущий поединок.</li>
+<li>Время начала боя и его общая продолжительность выводится под результатами.</li>
+</ul>
+		</faq>
+		
+		<faq question="Почему при просмотре итогов боя не показываются смертельные удары?">
+		Некоторые поединки завершаются тем, что последний участник или участники проигрывающей команды ставят статус «отсутствует», чтобы приблизить неотвратимую развязку. В этом случае количество показываемых смертельных ударов, нанесенных командой-победителем, будет меньше, чем количество игроков проигравшей команды.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Калькулятор Арены" url="arena-calculator.xml"/>		
+		<relatedlink name="Система поединков на Арене" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
+		<relatedlink name="Арена: взгляд изнутри" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Информация об игровых мирах США" type="external" url="http://www.wowarmory.com/"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Вопросы и ответы" url="faq-armory.xml"/>
+		<relatedlink name="Возможные проблемы" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Сообщить о технической ошибке" type="report" url="http://forums.wow-europe.com/board.html?&amp;sid=5&amp;forumId=50005"/>
+		<relatedlink name="Сообщить об ошибке в переводе" type="translation" url="http://forums.wow-europe.com/board.html?&amp;forumId=50002&amp;sid=5"/>
+	</relatedlinks>
+</relatedinfo>

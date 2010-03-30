@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Informations sur les équipes">
+	<faqlist>
+		<faq question="Que puis-je trouver sur la page de fiche d’équipe ?">
+			Toutes les équipes d’arène ont une fiche d’équipe et des archives d'arène. Par défaut, vous pouvez consulter sur cette fiche : la liste des membres de l’équipe (et cliquer sur chacun pour voir son profil), l’historique des résultats tant de la semaine la plus récente que des saisons cumulées, la cote de l’équipe, son rang actuel et les cotes de chaque membre. Les onglets d'historique des matchs et des adversaires vous donnent accès aux archives d'arène détaillées de l'équipe.
+		</faq>
+
+		<faq question="Que sont les archives d'arène ?">
+			Chaque fiche d'équipe de l'Armurerie comporte désormais des onglets d'archives d'arène. Ces dernières vous renseignent sur l'historique des matchs, les rapports de matchs et l'historique des adversaires.
+			<ul>
+			<li>L'onglet d'historique des matchs affiche chaque match d'arène dans un graphique interactif. En le survolant avec votre curseur, vous verrez la date du match, le changement de cote selon son issue et le nom de l'équipe adverse. Sous le graphique, un affichage vous permet de rechercher et de trier les équipes d'arène que l'équipe a affrontées lors de la saison actuelle.</li>
+			<li>Depuis l'historique des matchs, cliquez sur le bouton à droite de chaque résultat pour consulter un rapport détaillé. Les résultats et statistiques seront les mêmes que ceux affichés par le jeu : la composition de l'équipe, les coups fatals, les dégâts infligés et soins prodigués, et les changements de cote.</li>
+			<li>L'onglet d'historique des adversaires liste tous les matchs d'arène de l'équipe dans un format légèrement différent, en les triant par le nom de l'adversaire. Les colonnes de cette page répertorient les statistiques telles que le changement moyen par match, le pourcentage de victoires contre chaque équipe, le nombre de victoires et de défaites, et dépendent de l'équipe affrontée.</li>
+			</ul>
+		</faq>
+		<faq question="Peut-on voir la fiche des équipes dissoutes et l’historique d’arène ?">
+			Non, les équipes effacées n’apparaissent pas dans l’Armurerie et, de fait, n’ont pas de fiche d’équipe ni d’historique d’arène. Si une équipe a été effacée puis reformée avec le même nom, sa fiche d’équipe et son historique d’arène ne contiendront que les données de sa dernière incarnation. La fiche et les archives de l’équipe précédente portant le même nom ne seront pas sauvegardées. De plus, si une équipe a été effacée, son nom ne sera pas cliquable dans l’historique  d’arène.
+		</faq>
+
+		<faq question="Pourquoi ne puis-je pas cliquer sur le nom d'une équipe pour accéder à sa fiche ?">
+			Soit l'équipe n'existe plus, et ne possède donc plus aucune fiche dans les archives d'arène, soit elle a été effacée et ensuite reformée, auquel cas les nouvelles archives de cette équipe ne sont plus reliées à l'équipe précédente.
+		</faq>
+
+		<faq question="Pourquoi telle équipe n'a-t-elle plus la même liste de membre qu'avant ?">
+			Les fiches d'équipe n'affichent que la liste actuelle de leurs membres.
+		</faq>
+
+		<faq question="Pourquoi la ligne « Cette semaine » affiche-t-elle des matchs disputés alors que je sais que mon équipe n'a pas joué cette semaine ?">
+		La ligne « Cette semaine » affiche la semaine active de jeu la plus récente, qu'il s'agisse de la semaine calendaire actuelle ou d'une semaine précédente.
+		</faq>
+		<faq question="Quelle est la fréquence de mise à jour des fiches d'équipe ?">
+			Les fiches d'équipe devraient se mettre à jour sous 24 heures après tout changement en jeu.
+		</faq>
+	</faqlist>
+
+
+	<relatedlinks>
+		<relatedlink name="Classement d'arène" url="/battlegroups.xml"/>
+		<relatedlink name="Informations sur le tournoi d'arène" url="/arena-tournament.xml"/>	
+		<relatedlink type="hr"/>
+		<relatedlink name="Le système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur des arènes" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink name="Récompenses d’arène : armes" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/rewards-weapons.html"/>
+		<relatedlink name="Récompenses d’arène : armures" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/rewards-class-armor.html"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

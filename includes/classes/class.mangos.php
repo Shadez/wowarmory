@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 115
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -106,64 +106,27 @@ Class Mangos extends Connector {
      * @return string
      **/
     public function DropPercent($percent) {
-        $string = '';
-        switch($this->_locale) {
-            case 'en_gb':
-                if($percent > 51) {
-                    $string = 'High (100%)';	
-        		}
-        		elseif($percent > 25) {
-        		  $string = 'Medium (51-100%)';
-                }
-                elseif($percent > 15) {
-                    $string = 'Low (15-24%)'; 
-                }
-                elseif($percent > 1) {
-                    $string = 'Very Low(1-2%)';
-                }
-                elseif($percent < 1) {
-                    $string = 'Very Low (0%)'; 
-                }
-                elseif($percent == 0) {
-                    $string = 'Unknown (0%)';
-                }
-                break;
-            case 'ru_ru':
-                if($percent > 51) {
-                    $string = 'высокая (100%)';	
-        		}
-        		elseif($percent > 25) {
-        		  $string = 'большая (51-100%)';
-                }
-                elseif($percent > 15) {
-                    $string = 'низкая (15-24%)'; 
-                }
-                elseif($percent > 1) {
-                    $string = 'крайне низкая (1-2%)';
-                }
-                elseif($percent == 0) {
-                    $string = 'неизвестно (0%)';
-                }
-                break;
-            case 'es_es':
-                if($percent > 51) {
-                    $string = 'Alta (100%)';	
-        		}
-        		elseif($percent > 25) {
-        		  $string = 'Media (51-100%)';
-                }
-                elseif($percent > 15) {
-                    $string = 'Baja (15-24%)'; 
-                }
-                elseif($percent > 1) {
-                    $string = 'Muy baja (1-2%)';
-                }
-                elseif($percent == 0) {
-                    $string = 'Nula (0%)';
-                }
-                break;
+        if($percent == 100) {
+            return 6;
         }
-        return $string;
+        elseif($percent > 51) {
+            return 5;
+        }
+        elseif($percent > 25) {
+            return 4;
+        }
+        elseif($percent > 15) {
+            return 3;
+        }
+        elseif($percent > 3) {
+            return 2;
+        }
+        elseif($percent > 1) {
+            return 1;
+        }
+        elseif($percent <= 0) {
+            return 0;
+        }
     }
     
     /**
@@ -213,6 +176,17 @@ Class Mangos extends Connector {
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=?", $entry);
 				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
 				break;
+            case 'areaUrl':
+                $mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=? LIMIT 1", $entry);
+                if(!$mapID) {
+                    return false;
+                }
+                if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
+                    //$areaUrl = sprintf('fl[source]=dungeon&amp;fl[dungeon]=%s&amp;fl[boss]=all&amp;fl[difficulty]=all', $info);
+                    $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
+                    return $areaUrl;
+                }
+                break;
 		}
 		return $info;
     }
@@ -285,10 +259,13 @@ Class Mangos extends Connector {
      * @return mixed
      **/
     public function GetNpcInfo($npc, $infoType) {
-        $info = '';
+        $info = null;
         switch($infoType) {
-            case 'level':
+            case 'maxlevel':
 				$info = $this->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=?", $npc);
+				break;	
+            case 'minlevel':
+				$info = $this->wDB->selectCell("SELECT `minlevel` FROM `creature_template` WHERE `entry`=?", $npc);
 				break;				
 			case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
@@ -308,31 +285,43 @@ Class Mangos extends Connector {
                         return false;
                     }
                 }
-                if($dungeon_data = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
-                    $boss_data = $this->aDB->selectRow("
-                    SELECT `instance_id`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`
-                        FROM `armory_instance_data`
-                            WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?",
-                            $npc, $npc, $npc, $npc, $npc);
-                    $dungeon_data['is_heroic'] = false;
-                    $dungeon_data['diff_2'] = false;
-                    if($boss_data) {
-                        for($i=1;$i<5;$i++) {
-                            if($boss_data['lootid_'.$i] == $npc) {
-                                if($i == 3 || $i == 4) {
-                                    $dungeon_data['is_heroic'] = true;
-                                }
-                            }
-                        }
-                    }
-                    $dungeon_data['boss_id'] = $npc;
-                    return $dungeon_data;
+                if($info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
+                    return $info;
                 }
-				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
-				break;            
+				else {
+				    $info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
+				}
+				break;
+            case 'areaUrl':
+                $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
+                if(!$mapID) {
+                    $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                    if($killCredit['KillCredit1'] > 0) {
+                        $kc_entry = $killCredit['KillCredit1'];
+                    }
+                    elseif($killCredit['KillCredit2'] > 0) {
+                        $kc_entry = $killCredit['KillCredit2'];
+                    }
+                    else {
+                        $kc_entry = false;
+                    }
+                    $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $kc_entry);
+                    if(!$mapID) {
+                        return false;
+                    }
+                }
+                if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
+                    //$areaUrl = sprintf('fl[source]=dungeon&amp;fl[dungeon]=%s&amp;fl[boss]=all&amp;fl[difficulty]=all', $info);
+                    $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
+                    return $areaUrl;
+                }
+                break;
             case 'mapID':
                 $info = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? LIMIT 1", $npc);
-                break;            
+                break;
+            case 'rank':
+                return $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=?", $npc);
+                break;
             case 'subname':
                 switch($this->_locale) {
                     case 'en_gb':
@@ -392,6 +381,9 @@ Class Mangos extends Connector {
                 break;				
 			case 'isBoss': 
                 $npc_data = $this->wDB->selectRow("SELECT `rank`, `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                if($npc_data['rank'] == 3) {
+                    return true;
+				}
                 if($npc_data['KillCredit1'] > 0) {
                     $kc_entry = $npc_data['KillCredit1'];
                 }
@@ -399,15 +391,12 @@ Class Mangos extends Connector {
                     $kc_entry = $npc_data['KillCredit2'];
                 }
                 else {
-                    $kc_entry = false;
+                    $kc_entry = 0;
                 }
-                $map = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=? OR `id`=? LIMIT 1", $npc, $kc_entry);
-                $isDungeon = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `map`=? LIMIT 1", $map);
-                if($npc_data['rank'] == 3) {
-                    return 'boss';
-				}
-                elseif($isDungeon > 0) {
-                    return 'elite';
+                $npc_id = $npc.', '.$kc_entry;
+                $instance = $this->aDB->selectCell("SELECT `dungeon_id` FROM `armory_instance_data` WHERE `id` IN (?) OR `name_id` IN (?) OR `lootid_1` IN (?) OR `lootid_2` IN (?) OR `lootid_3` IN (?) OR `lootid_4` IN (?)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
+                if($instance > 0) {
+                    return true;
                 }
                 else {
                     return false;
@@ -462,11 +451,21 @@ Class Mangos extends Connector {
         if(!$costInfo) {
             return false;
         }
+        $extended_cost = array();
         for($i=1;$i<6;$i++) {
             if($costInfo['item'.$i] > 0) {
-                $costInfo['item'.$i.'icon'] = Items::getItemIcon($costInfo['item'.$i]);
-                $costInfo['item'.$i.'name'] = Items::getItemName($costInfo['item'.$i]);
+                $extended_cost[$i]['count'] = $costInfo['item'.$i.'count'];
+                $extended_cost[$i]['icon']  = Items::getItemIcon($costInfo['item'.$i]);
+                $extended_cost[$i]['id'] = $costInfo['item'.$i];
             }
+        }
+        return $extended_cost;
+    }
+    
+    public function GetPvPExtendedCost($costId) {
+        $costInfo = $this->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `armory_extended_cost` WHERE `id`=?", $costId);
+        if(!$costInfo || ($costInfo['arena'] == 0 && $costInfo['honor'] == 0)) {
+            return false;
         }
         return $costInfo;
     }

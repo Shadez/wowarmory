@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Mobile Armory">
+	<faqlist>
+		<faq question="Was ist die Mobile Armory?">
+			Die World of Warcraft Mobile Armory ist eine mobile Version der offiziellen durchsuchbaren Datenbank von World of Warcraft für das iPhone™ und den iPod touch®. Diese kostenlose Anwendung ist als Download im Apple-Shop erhältlich und bietet größtenteils die gleiche Funktionalität, wie die Webseite des Arsenals.
+		</faq>
+		<faq question="Was kostet die Mobile Armory?">
+			Die World of Warcraft Mobile Armory für iPhone und iPod touch kann komplett kostenlos heruntergeladen und genutzt werden.
+		</faq>
+		<faq question="Welche mobilen Geräte können die Mobile Armory nutzen?">
+			Die World of Warcraft Mobile Armory ist derzeit für das Apple iPhone und den iPod touch verfügbar und kann im Apple-Shop heruntergeladen werden. Um die Mobile Armory auf einem iPod touch nutzen zu können, müsst ihr über eine gültige WiFi-Verbindung verfügen. Weitere Mobilfunkgeräte könnten zukünftig unterstützt werden. Die Verfügbarkeit und der Preis können jedoch je nach Plattform variieren.
+		</faq>			
+		<faq question="Mit welchen Betriebssystemen des iPhones ist die Mobile Armory kompatibel?">
+			Die Mobile Armory ist voll kompatibel mit den iPhone-Betriebssystemen 2.2.1 bis inklusive der Version 3.0.
+		</faq>
+		<faq question="Welche Sprachen unterstützt die Mobile Armory?">
+			Momentan ist die Mobile Armory erhältlich in Englisch, Spanisch (Europa), Spanisch (Lateinamerika), Koreanisch, Französisch, Deutsch und Russisch.
+		</faq>
+		<faq question="Besitzt die Mobile Armory einen Login?">
+			Um die Mobile Armory zu nutzen, müsst ihr euch mit einem World of Warcraft- oder Battle.net-Account einloggen.
+		</faq>
+		<faq question="Welche Regionen von World of Warcraft- und Battle.net-Accounts unterstützt die Mobile Armory?">
+			Derzeit durch die Mobile Armory unterstützt werden Accounts der Regionen Amerika, Europa und Korea.
+		</faq>
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Herunterladen über iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Neu im Arsenal" url="/updates.xml"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

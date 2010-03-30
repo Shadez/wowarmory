@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Rapports de matchs">
+	<faqlist>
+
+		<faq question="À quoi sert cette page ?">
+Tous les matchs d'arène disposent d'un rapport de match consultable, dans tous les corps de batailles et manches manches. Ce rapport est un instantané du compte-rendu du match qui apparaît au terme du match en jeu. Voici une liste des informations et des fonctionnalités de chacun de ces rapports :
+	<ul>
+		<li>Voir les combattants et leurs performances dans les mêmes statistiques des cinq arènes telles qu'affichées en jeu.</li>
+		<li>Les noms des équipes et des membres sont cliquables et mènent à la fiche de chacun, sauf si l'équipe a été dissoute.</li>
+		<li>La banière supérieure affiche la cote de l'équipe et le changement de cote pour chaque équipe. La cote d'équipe prend en compte le changement du match en cours.</li>
+		<li>L'heure de début de match et sa durée totale sont affichées sous les statistiques du match.</li>
+	</ul>
+		</faq>
+		
+		<faq question="Pourquoi les coups fatals du match que je regarde semblent ne pas s'afficher ?">
+		Certains matchs peuvent se terminer par un /abs du ou des derniers membres de l'équipe perdante afin de hâter l'inévitable. Dans ce cas de figure, les coups de l'équipe gagnante apparaîtront moins nombreux que ceux des joueurs de l'autre équipe.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculateur d’arène" url="/arena-calculator.xml"/>		
+		<relatedlink name="Système d’arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur de l’arène" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Voir les données des royaumes USA" type="external" url="http://www.wowarmory.com/"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

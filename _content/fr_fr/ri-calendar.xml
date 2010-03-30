@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calendrier des joueurs">
+	<faqlist>
+		<faq question="À quoi sert le calendrier des joueurs de l'Armurerie ?">
+			Toutes les fonctionnalités de ce calendrier sont détaillées sur notre <a href="/updates.xml#anchorcalendarinterface">page des mises à jour</a>. Il vous permet de consulter les dates des évènements récurrents ainsi que ceux créés par votre personnage dans une interface semblable à celle en jeu. De plus, vous pouvez accepter les invitations des évènements créés par les joueurs, ces modifications étant reflétées en jeu.
+		</faq>
+		<faq question="Comment puis accéder au calendrier des joueurs dans l'Armurerie ?">
+			Il suffit de cliquer sur l'onglet « Calendrier » sur votre fiche de personnage, il vous sera alors demandé de vous connecter à l'aide de vos identifiants. Vous pouvez également vous connecter à partir de n'importe quelle page de l'Armurerie en remplissant les champs de connexion dans le coin supérieur droit de l'écran, puis cliquer sur l'onglet « Calendrier ».
+		</faq>
+		<faq question="Qu'est-ce que le flux du calendrier ?">
+			Le flux du calendrier vous permet d'exporter les données du calendrier en jeu vers des applications de calendrier telles qu'Outlook, ou vers des applications en ligne telles que Google Agenda. Vous pouvez ainsi rassembler jusqu'à cinq personnages du même compte sur un seul flux, qui sera automatiquement mis à jour selon leur calendrier en jeu. Consultez notre <a href="/faq-calendar-feed.xml">F.A.Q. du flux de calendrier</a> pour en savoir plus.
+		</faq>
+		<faq question="Pourquoi dois-je m'identifier pour voir le calendrier de mon personnage ?">
+			Comme pour les banques de guilde, le calendrier est une fonctionnalité protégée par une identification car il contient des informations qui ne sont pas censées être visibles par tous.
+		</faq>
+		<faq question="Puis-je répondre à des invitations sur le calendrier ?">
+			Oui, vous pouvez répondre à des invitations envoyées par des joueurs. Si votre personnage accepte une invitation sur l'Armurerie, les changements adéquats seront reflétés en jeu.
+		</faq>
+		<faq question="Puis-je consulter le calendrier d'autres personnages ?">
+			Une fois connecté à l'Armurerie avec vos identifiants, vous avez accès au calendrier des autres personnages sur le même compte. Cliquez sur le menu de la fiche dans le coin supérieur droit de l'Armurerie et sélectionnez le personnage souhaité dans la liste déroulante. Vous ne pouvez pas consulter les calendriers des personnages qui ne sont pas sur le compte connecté. Lisez notre <a href="/faq-login.xml">F.A.Q.</a> de connexion à l'Armurerie pour tout savoir du nouveau menu de la fiche de personnage.
+		</faq>
+		<faq question="Puis-je créer un évènement dans l'Armurerie ?">
+			Non, vous ne pouvez pas de nouvel évènement dans le calendrier de l'Armurerie : cette fonctionnalité est réservée au calendrier en jeu.
+		</faq>
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calendrier des évènements" url="http://www.wow-europe.com/fr/info/basics/events/calendar.html"/>
+		<relatedlink name="Calendrier des raids" url="http://www.wow-europe.com/fr/info/basics/raidcalendar/index.html"/>
+	</relatedlinks>
+</relatedinfo>

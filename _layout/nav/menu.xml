@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><menuNav>
+	<urls>
+		<urlstr id="all">all</urlstr>
+		<url id="items">search.xml?source=all&amp;type=<param2/>&amp;subTp=<param3/>&amp;searchType=<param1/>
+      <param4/>
+    </url>
+	</urls>
+	<links>
+		<link key="armory.tabs.items" param1="items">
+			<link key="armory.menu.itemCollections" span="true">
+				<link key="armory.tabs.dungeons" url="dungeons.xml">
+					<link key="armory.tabs.wotlk" url="dungeons1.xml"/>
+					<link key="armory.tabs.bc" url="dungeons0.xml"/>
+					<link key="armory.tabs.classic" url="dungeons.xml"/>
+				</link>
+				<link key="armory.tabs.factions" url="factions.xml">
+					<link key="armory.tabs.wotlk" url="factions1.xml"/>
+					<link key="armory.tabs.bc" url="factions0.xml"/>
+					<link key="armory.tabs.classic" url="factions.xml"/>
+				</link>				
+				<link key="armory.menu.tokens" span="true">
+					<link key="armory.menu.badgeofjustice" url="search.xml?source=dungeon&amp;dungeon=badgeofjustice&amp;searchType=items"/>
+					<link key="armory.menu.emblemofheroism" url="search.xml?source=dungeon&amp;dungeon=emblemofheroism&amp;searchType=items"/>
+					<link key="armory.menu.emblemofvalor" url="search.xml?source=dungeon&amp;dungeon=emblemofvalor&amp;searchType=items"/>
+					<link key="armory.menu.emblemofconquest" url="search.xml?source=dungeon&amp;dungeon=emblemofconquest&amp;searchType=items"/> 
+					<link key="armory.menu.emblemoftriumph" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;searchType=items"/> 
+					<link key="armory.menu.emblemoffrost" url="search.xml?source=dungeon&amp;dungeon=emblemoffrost&amp;searchType=items"/> 
+				</link>
+				<link key="armory.menu.pvpRewards" url="pvprewards.xml"/>
+				<link key="armory.menu.arenaRewards" span="true">
+					<link key="armory.menu.season8" url="search.xml?source=pvpAlliance&amp;pvp=arena8&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season7" url="search.xml?source=pvpAlliance&amp;pvp=arena7&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season6" url="search.xml?source=pvpAlliance&amp;pvp=arena6&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season5" url="search.xml?source=pvpAlliance&amp;pvp=arena5&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season4" url="search.xml?source=pvpAlliance&amp;pvp=arena4&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season3" url="search.xml?source=pvpAlliance&amp;pvp=arena3&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season2" url="search.xml?source=pvpAlliance&amp;pvp=arena2&amp;type=all&amp;searchType=items"/>
+					<link key="armory.menu.season1" url="search.xml?source=pvpAlliance&amp;pvp=arena1&amp;type=all&amp;searchType=items"/>
+				</link>
+			</link>
+			<link key="armory.item-search.weapons" node="items" node2="types" param2="weapons">
+				<link key="armory.item-search.oneaxes" node="items" node2="weaponTypes" param3="1haxe"/>
+				<link key="armory.item-search.twoaxes" node="items" node2="weaponTypes" param3="2haxe"/>
+				<link key="armory.item-search.bows" node="items" node2="weaponTypes" param3="bow"/>
+				<link key="armory.item-search.guns" node="items" node2="weaponTypes" param3="gun"/>
+				<link key="armory.item-search.onemaces" node="items" node2="weaponTypes" param3="1hmce"/>
+				<link key="armory.item-search.twomaces" node="items" node2="weaponTypes" param3="2hmce"/>
+				<link key="armory.item-search.polearms" node="items" node2="weaponTypes" param3="plarm"/>
+				<link key="armory.item-search.oneswords" node="items" node2="weaponTypes" param3="1hswd"/>
+				<link key="armory.item-search.twoswords" node="items" node2="weaponTypes" param3="2hswd"/>
+				<link key="armory.item-search.staves" node="items" node2="weaponTypes" param3="stv"/>
+				<link key="armory.item-search.fist" node="items" node2="weaponTypes" param3="fwpn"/>
+				<link key="armory.item-search.misc" node="items" node2="weaponTypes" param3="misc"/>
+				<link key="armory.item-search.daggers" node="items" node2="weaponTypes" param3="dggr"/>
+				<link key="armory.item-search.thrown" node="items" node2="weaponTypes" param3="thrwn"/>
+				<link key="armory.item-search.crossbows" node="items" node2="weaponTypes" param3="xbow"/>
+				<link key="armory.item-search.wands" node="items" node2="weaponTypes" param3="wnd"/>
+				<link key="armory.item-search.fishingpole" node="items" node2="weaponTypes" param3="fshpl"/>
+			</link>
+			<link key="armory.item-search.armor" node="items" node2="types" param2="armor">
+				<link key="armory.item-search.armor.cloth" node="items" node2="armorType" param3="cloth"/>
+				<link key="armory.item-search.armor.leather" node="items" node2="armorType" param3="leather"/>
+				<link key="armory.item-search.armor.mail" node="items" node2="armorType" param3="mail"/>
+				<link key="armory.item-search.armor.plate" node="items" node2="armorType" param3="plate"/>
+				<link key="armory.item-search.armor.shield" node="items" node2="armorType" param3="shield"/>
+				<link key="armory.item-search.armor.idol" node="items" node2="armorType" param3="idol"/>
+				<link key="armory.item-search.armor.libram" node="items" node2="armorType" param3="libram"/>
+				<link key="armory.item-search.armor.totem" node="items" node2="armorType" param3="totem"/>
+				<link key="armory.item-search.armor.sigil" node="items" node2="armorType" param3="sigil"/>
+				<link key="armory.item-search.armor.misc" node="items" node2="armorType" param3="miscellaneous"/>
+			</link>
+			<link key="armory.item-search.gems" node="items" node2="types" param2="gems">
+				<link key="armory.item-search.blue" node="items" node2="gems" param3="blue"/>
+				<link key="armory.item-search.red" node="items" node2="gems" param3="red"/>
+				<link key="armory.item-search.yellow" node="items" node2="gems" param3="yellow"/>
+				<link key="armory.item-search.meta" node="items" node2="gems" param3="meta"/>
+				<link key="armory.item-search.green" node="items" node2="gems" param3="green"/>
+				<link key="armory.item-search.orange" node="items" node2="gems" param3="orange"/>
+				<link key="armory.item-search.purple" node="items" node2="gems" param3="purple"/>
+				<link key="armory.item-search.prismatic" node="items" node2="gems" param3="prismatic"/>
+			</link>
+			<link key="armory.item-search.glyphs" node="items" node2="types" param2="glyphs">
+				<link key="armory.tabs.class.6" param3="deathknight">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.11" param3="druid">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.3" param3="hunter">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.8" param3="mage">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.2" param3="paladin">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.5" param3="priest">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.4" param3="rogue">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.7" param3="shaman">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.9" param3="warlock">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+				<link key="armory.tabs.class.1" param3="warrior">
+					<link key="armory.menu.minor" param4="&amp;glyphTp=MINOR"/>
+					<link key="armory.menu.major" param4="&amp;glyphTp=MAJOR"/>
+				</link>
+			</link>
+			<link key="armory.item-search.containers" node="items" node2="types" param2="containers">
+				<link key="armory.item-search.bags.bag" node="items" node2="bags" param3="bag"/>
+				<link key="armory.item-search.bags.soul" node="items" node2="bags" param3="soul"/>
+				<link key="armory.item-search.bags.herb" node="items" node2="bags" param3="herb"/>
+				<link key="armory.item-search.bags.enchanting" node="items" node2="bags" param3="enchanting"/>
+				<link key="armory.item-search.bags.engineering" node="items" node2="bags" param3="engineering"/>
+				<link key="armory.item-search.bags.gem" node="items" node2="bags" param3="gem"/>
+				<link key="armory.item-search.bags.mining" node="items" node2="bags" param3="mining"/>
+				<link key="armory.item-search.bags.leatherworking" node="items" node2="bags" param3="leatherworking"/>
+				<link key="armory.item-search.bags.inscription" node="items" node2="bags" param3="inscription"/>
+			</link>
+			<link key="armory.item-search.consumables" node="items" node2="types" param2="consumables"/>
+			<link key="armory.item-search.tradegoods" node="items" node2="types" param2="tradegoods">
+				<link key="armory.item-search.recipes" node="items" node2="types" url="search.xml?source=all&amp;type=recipes&amp;subTp=all&amp;searchType=items"/>
+				<link key="armory.item-search.reagents" node="items" node2="types" url="search.xml?source=all&amp;type=reagents&amp;subTp=all&amp;searchType=items"/>
+				<link key="armory.item-search.enchantments" node="items" node2="types" url="search.xml?source=all&amp;type=enchP&amp;subTp=all&amp;searchType=items"/>
+			</link>
+			<link key="armory.item-search.projectiles" node="items" node2="types" param2="projectiles">
+				<link key="armory.item-search.projectiles.arrow" node="items" node2="projectileTypes" param3="arrow"/>
+				<link key="armory.item-search.projectiles.bullet" node="items" node2="projectileTypes" param3="bullet"/>
+			</link>
+			<link key="armory.item-search.miscellaneous" node="items" node2="types" span="true">
+				<link key="armory.item-search.keys" node="items" node2="types" url="search.xml?source=all&amp;type=keys&amp;subTp=all&amp;searchType=items"/>
+			</link>
+			<link key="armory.menu.companions" span="true">
+				<link key="armory.item-search.mounts" node="items" node2="types" url="search.xml?source=all&amp;type=mounts&amp;subTp=all&amp;searchType=items"/>
+				<link key="armory.item-search.smallpets" node="items" node2="types" url="search.xml?source=all&amp;type=smallpets&amp;subTp=all&amp;searchType=items"/>
+			</link>
+			<link key="armory.menu.heirloomItems" url="search.xml?rrt=hm&amp;searchType=items"/>
+			<link key="armory.menu.adv-item-search" url="item-search.xml"/>
+		</link>
+		<link key="armory.labels.arena" url="battlegroups.xml">
+			<link key="armory.arenatab.2v2-arena-ladder" subMenu="battlegroups" teamSize="2" url="battlegroups.xml?ts=2"/>
+			<link key="armory.arenatab.3v3-arena-ladder" subMenu="battlegroups" teamSize="3" url="battlegroups.xml?ts=3"/>
+			<link key="armory.arenatab.5v5-arena-ladder" subMenu="battlegroups" teamSize="5" url="battlegroups.xml?ts=5"/>
+			<link key="armory.menu.battlegroups" url="battlegroups.xml"/>
+		</link>
+		<link key="armory.menu.info">
+			<link key="armory.menu.achievementFirsts" url="achievement-firsts.xml"/>
+		</link>
+		<link key="armory.menu.tools">
+			<link key="armory.tabs.talentcalc" url="talent-calc.xml">
+				<link key="armory.tabs.class.6" url="talent-calc.xml?c=Death+Knight"/>
+				<link key="armory.tabs.class.11" url="talent-calc.xml?c=Druid"/>
+				<link key="armory.tabs.class.3" url="talent-calc.xml?c=Hunter"/>
+				<link key="armory.tabs.class.8" url="talent-calc.xml?c=Mage"/>
+				<link key="armory.tabs.class.2" url="talent-calc.xml?c=Paladin"/>
+				<link key="armory.tabs.class.5" url="talent-calc.xml?c=Priest"/>
+				<link key="armory.tabs.class.4" url="talent-calc.xml?c=Rogue"/>
+				<link key="armory.tabs.class.7" url="talent-calc.xml?c=Shaman"/>
+				<link key="armory.tabs.class.9" url="talent-calc.xml?c=Warlock"/>
+				<link key="armory.tabs.class.1" url="talent-calc.xml?c=Warrior"/>
+			</link>
+			<link key="armory.tabs.pettalentcalc" url="talent-calc.xml?pid=-1">
+				<link key="armory.tabs.pet.ferocity" url="talent-calc.xml?pid=-1"/>
+				<link key="armory.tabs.pet.tenacity" url="talent-calc.xml?pid=-2"/>
+				<link key="armory.tabs.pet.cunning" url="talent-calc.xml?pid=-3"/>
+			</link>
+			<link key="armory.arenatab.calc" url="arena-calculator.xml"/>
+		</link>
+	</links>
+</menuNav>

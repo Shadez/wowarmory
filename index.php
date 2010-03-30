@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -24,14 +24,22 @@
 
 define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-if($armory->armoryconfig['useNews'] == true) {
-    // Show news from `armory_news` db table
-    // To add news, fill rows in `armory_news` table of `armory` DB. Row `date` must be in unix timestamp format.
-    $armory->tpl->assign('armoryNews', $utils->showNews());
-}
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('index.tpl');
-$armory->tpl->display('overall_footer.tpl');
+header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('pageIndex.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'index.xml');
+$xml->XMLWriter()->writeAttribute('type', 'front');
+$xml->XMLWriter()->startElement('pageIndex');
+$xml->XMLWriter()->startElement('related-info');
+$xml->XMLWriter()->endElement();   //related-info
+$xml->XMLWriter()->endElement();  //pageIndex
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>

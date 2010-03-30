@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="HunterSurvival" icon="ability_hunter_swiftstrike" key="Survival" name="Survie" order="2">
+      <talent column="0" icon="ability_hunter_improvedtracking" key="1623" name="Pistage amélioré" tier="0">
+        <rank description="Lorsque le chasseur piste les bêtes, les démons, les draconiens, les élémentaires, les géants, les humanoïdes ou les morts-vivants, tous les dégâts infligés à ce type de créatures sont augmentés de 1%." lvl="1"/>
+        <rank description="Lorsque le chasseur piste les bêtes, les démons, les draconiens, les élémentaires, les géants, les humanoïdes ou les morts-vivants, tous les dégâts infligés à ce type de créatures sont augmentés de 2%." lvl="2"/>
+        <rank description="Lorsque le chasseur piste les bêtes, les démons, les draconiens, les élémentaires, les géants, les humanoïdes ou les morts-vivants, tous les dégâts infligés à ce type de créatures sont augmentés de 3%." lvl="3"/>
+        <rank description="Lorsque le chasseur piste les bêtes, les démons, les draconiens, les élémentaires, les géants, les humanoïdes ou les morts-vivants, tous les dégâts infligés à ce type de créatures sont augmentés de 4%." lvl="4"/>
+        <rank description="Lorsque le chasseur piste les bêtes, les démons, les draconiens, les élémentaires, les géants, les humanoïdes ou les morts-vivants, tous les dégâts infligés à ce type de créatures sont augmentés de 5%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_townwatch" key="1820" name="Oeil de faucon" tier="0">
+        <rank description="Augmente la portée de vos armes à distance de 2 mètres." lvl="1"/>
+        <rank description="Augmente la portée de vos armes à distance de 4 mètres." lvl="2"/>
+        <rank description="Augmente la portée de vos armes à distance de 6 mètres." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_racial_bloodrage" key="1621" name="Frappes sauvages" tier="0">
+        <rank description="Augmente de 10% les chances d'infliger un coup critique avec Attaque du raptor, Morsure de la mangouste et Contre-attaque." lvl="1"/>
+        <rank description="Augmente de 20% les chances d'infliger un coup critique avec Attaque du raptor, Morsure de la mangouste et Contre-attaque." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_kick" key="1310" name="Pied sûr" tier="1">
+        <rank description="Diminue la durée des effets affectant le mouvement de 10%." lvl="1"/>
+        <rank description="Diminue la durée des effets affectant le mouvement de 20%." lvl="2"/>
+        <rank description="Diminue la durée des effets affectant le mouvement de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_stranglevines" key="1304" name="Piège" tier="1">
+        <rank description="Lorsque votre Piège de givre ou Piège à serpent est déclenché, vous emprisonnez toutes les cibles affectées, les empêchant de se déplacer pendant 2 sec." lvl="1"/>
+        <rank description="Lorsque votre Piège de givre ou Piège à serpent est déclenché, vous emprisonnez toutes les cibles affectées, les empêchant de se déplacer pendant 3 sec." lvl="2"/>
+        <rank description="Lorsque votre Piège de givre ou Piège à serpent est déclenché, vous emprisonnez toutes les cibles affectées, les empêchant de se déplacer pendant 4 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_ensnare" key="1305" name="Maîtrise des pièges" tier="1">
+        <rank description="Piège de givre et Piège givrant - Augmente la durée de 10%.&lt;br/&gt;&lt;br/&gt;Piège d'immolation, Piège explosif et Flèche noire - Augmente les dégâts périodiques infligés de 10%.&lt;br/&gt;&lt;br/&gt;Piège à serpent - Augmente le nombre de serpents invoqués de 2." lvl="1"/>
+        <rank description="Piège de givre et Piège givrant - Augmente la durée de 20%.&lt;br/&gt;&lt;br/&gt;Piège d'immolation, Piège explosif et Flèche noire - Augmente les dégâts périodiques infligés de 20%.&lt;br/&gt;&lt;br/&gt;Piège à serpent - Augmente le nombre de serpents invoqués de 4." lvl="2"/>
+        <rank description="Piège de givre et Piège givrant - Augmente la durée de 30%.&lt;br/&gt;&lt;br/&gt;Piège d'immolation, Piège explosif et Flèche noire - Augmente les dégâts périodiques infligés de 30%.&lt;br/&gt;&lt;br/&gt;Piège à serpent - Augmente le nombre de serpents invoqués de 6." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_survivalinstincts" key="1810" name="Instincts de survie" tier="1">
+        <rank description="Réduit tous les dégâts subis de 2% et augmente les chances de coup critique de vos Tirs des arcanes, Tirs assurés et Tirs explosifs de 2%." lvl="1"/>
+        <rank description="Réduit tous les dégâts subis de 4% et augmente les chances de coup critique de vos Tirs des arcanes, Tirs assurés et Tirs explosifs de 4%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_twilight" key="1622" name="Survivant" tier="2">
+        <rank description="Augmente votre Endurance de 2%." lvl="1"/>
+        <rank description="Augmente votre Endurance de 4%." lvl="2"/>
+        <rank description="Augmente votre Endurance de 6%." lvl="3"/>
+        <rank description="Augmente votre Endurance de 8%." lvl="4"/>
+        <rank description="Augmente votre Endurance de 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_golemstormbolt" key="1814" name="Flèche de dispersion" tier="2">
+        <rank description="Un tir à courte distance qui inflige 50% des dégâts de l'arme et désoriente la cible pendant 4 sec. Si la cible subit des dégâts, l'effet est annulé. Interrompt l'attaque lors de son utilisation." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="15">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_parry" key="1311" name="Déviation" tier="2">
+        <rank description="Augmente vos chances de Parer de 1% et réduit la durée de tous les effets de désarmement sur vous de 16%. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="1"/>
+        <rank description="Augmente vos chances de Parer de 2% et réduit la durée de tous les effets de désarmement sur vous de 25%. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="2"/>
+        <rank description="Augmente vos chances de Parer de 3% et réduit la durée de tous les effets de désarmement sur vous de 50%. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_rogue_feigndeath" key="1309" name="Tactique de survie" tier="2">
+        <rank description="Réduit la probabilité que l'on résiste à votre technique Feindre la mort et à tous vos sorts de pièges de 2% et réduit le temps de recharge de votre technique Désengagement de 2 sec." lvl="1"/>
+        <rank description="Réduit la probabilité que l'on résiste à votre technique Feindre la mort et à tous vos sorts de pièges de 4% et réduit le temps de recharge de votre technique Désengagement de 4 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_misc_bomb_05" key="2229" name="T.N.T." tier="3">
+        <rank description="Augmente les dégâts infligés par votre Tir explosif, votre Piège explosif, votre Flèche noire et votre Piège d'immolation de 2%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre Tir explosif, votre Piège explosif, votre Flèche noire et votre Piège d'immolation de 4%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre Tir explosif, votre Piège explosif, votre Flèche noire et votre Piège d'immolation de 6%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_lockandload" key="1306" name="Prêt à tirer" tier="3">
+        <rank description="Vous avez 33% de chances lorsque vous piégez une cible avec Piège givrant, Flèche givrante ou Piège de givre et 2% de chances lorsque vous infligez des dégâts périodiques avec Piège d'immolation, Piège explosif ou Flèche noire que vos 2 prochains sorts Tir des arcanes ou Tir explosif ne déclenchent pas de temps de recharge, ne coûtent pas de mana et ne consomment pas de munitions. Cet effet a un temps de recharge de 22 sec." lvl="1"/>
+        <rank description="Vous avez 66% de chances lorsque vous piégez une cible avec Piège givrant, Flèche givrante ou Piège de givre et 4% de chances lorsque vous infligez des dégâts périodiques avec Piège d'immolation, Piège explosif ou Flèche noire que vos 2 prochains sorts Tir des arcanes ou Tir explosif ne déclenchent pas de temps de recharge, ne coûtent pas de mana et ne consomment pas de munitions. Cet effet a un temps de recharge de 22 sec." lvl="2"/>
+        <rank description="Vous avez 100% de chances lorsque vous piégez une cible avec Piège givrant, Flèche givrante ou Piège de givre et 6% de chances lorsque vous infligez des dégâts périodiques avec Piège d'immolation, Piège explosif ou Flèche noire que vos 2 prochains sorts Tir des arcanes ou Tir explosif ne déclenchent pas de temps de recharge, ne coûtent pas de mana et ne consomment pas de munitions. Cet effet a un temps de recharge de 22 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_huntervswild" key="2228" name="Face à la nature" requires="1622" tier="4">
+        <rank description="Augmente votre puissance d'attaque et votre puissance d'attaque à distance, ainsi que celles de votre familier, d'un montant égal à 10% de votre total d'Endurance." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque et votre puissance d'attaque à distance, ainsi que celles de votre familier, d'un montant égal à 20% de votre total d'Endurance." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque et votre puissance d'attaque à distance, ainsi que celles de votre familier, d'un montant égal à 30% de votre total d'Endurance." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofstamina" key="1321" name="Instinct du tueur" tier="4">
+        <rank description="Augmente vos chances d'infliger un coup critique avec toutes vos attaques de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec toutes vos attaques de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec toutes vos attaques de 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_challange" key="1312" name="Contre-attaque" requires="1311" tier="4">
+        <rank description="Une attaque disponible après avoir paré une attaque de l'adversaire. Elle inflige 53 points de dégâts et immobilise la cible pendant 5 sec. Contre-attaque ne peut pas être bloquée, esquivée ou parée." lvl="1"/>
+        <spell castTime="0" cooldown="5000" maxRange="5">
+          <power cost="3" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_nature_invisibilty" key="1303" name="Réflexes éclairs" tier="5">
+        <rank description="Augmente votre Agilité de 3%." lvl="1"/>
+        <rank description="Augmente votre Agilité de 6%." lvl="2"/>
+        <rank description="Augmente votre Agilité de 9%." lvl="3"/>
+        <rank description="Augmente votre Agilité de 12%." lvl="4"/>
+        <rank description="Augmente votre Agilité de 15%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_resourcefulness" key="1809" name="Ressource" tier="5">
+        <rank description="Réduit le coût en mana de tous les pièges et techniques de mêlée ainsi que de Flèche noire de 20% et réduit le temps de recharge de tous les pièges et de Flèche noire de 2 sec." lvl="1"/>
+        <rank description="Réduit le coût en mana de tous les pièges et techniques de mêlée ainsi que de Flèche noire de 40% et réduit le temps de recharge de tous les pièges et de Flèche noire de 4 sec." lvl="2"/>
+        <rank description="Réduit le coût en mana de tous les pièges et techniques de mêlée ainsi que de Flèche noire de 60% et réduit le temps de recharge de tous les pièges et de Flèche noire de 6 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_findweakness" key="1812" name="Perce-faille" requires="1303" tier="6">
+        <rank description="Vos coups critiques à distance ont 33% de chances de vous faire bénéficier de Perce-faille. Perce-faille augmente votre puissance d'attaque de 25% de votre Agilité pendant 7 sec." lvl="1"/>
+        <rank description="Vos coups critiques à distance ont 66% de chances de vous faire bénéficier de Perce-faille. Perce-faille augmente votre puissance d'attaque de 25% de votre Agilité pendant 7 sec." lvl="2"/>
+        <rank description="Vos coups critiques à distance ont 100% de chances de vous faire bénéficier de Perce-faille. Perce-faille augmente votre puissance d'attaque de 25% de votre Agilité pendant 7 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_spear_02" key="1325" name="Piqûre de wyverne" requires="1321" tier="6">
+        <rank description="Une piqûre qui endort la cible pendant 30 sec. Tout point de dégâts subi par la cible annule l'effet. Quand la cible se réveille, la Piqûre inflige 300 points de dégâts de Nature en 6 sec. Une seule technique de Morsure ou de Piqûre par chasseur peut être active sur la cible en même temps." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="35" minRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_thrillofthehunt" key="1811" name="Frisson de la chasse" tier="6">
+        <rank description="Vous confère 33% de chances de récupérer 40% du coût en mana de n'importe quel tir lorsqu'il inflige un coup critique." lvl="1"/>
+        <rank description="Vous confère 66% de chances de récupérer 40% du coût en mana de n'importe quel tir lorsqu'il inflige un coup critique." lvl="2"/>
+        <rank description="Vous confère 100% de chances de récupérer 40% du coût en mana de n'importe quel tir lorsqu'il inflige un coup critique." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_mastertactitian" key="1813" name="Maître tacticien" tier="7">
+        <rank description="Vos attaques à distance réussies ont 10% de chances d'augmenter vos chances de coup critique avec toutes les attaques de 2% pendant 8 sec." lvl="1"/>
+        <rank description="Vos attaques à distance réussies ont 10% de chances d'augmenter vos chances de coup critique avec toutes les attaques de 4% pendant 8 sec." lvl="2"/>
+        <rank description="Vos attaques à distance réussies ont 10% de chances d'augmenter vos chances de coup critique avec toutes les attaques de 6% pendant 8 sec." lvl="3"/>
+        <rank description="Vos attaques à distance réussies ont 10% de chances d'augmenter vos chances de coup critique avec toutes les attaques de 8% pendant 8 sec." lvl="4"/>
+        <rank description="Vos attaques à distance réussies ont 10% de chances d'augmenter vos chances de coup critique avec toutes les attaques de 10% pendant 8 sec." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_potentvenom" key="2141" name="Piqûres nocives" requires="1325" tier="7">
+        <rank description="Si Piqûre de wyverne est dissipée, celui qui la dissipe est également affecté par Piqûre de wyverne pour une durée de 16% du temps restant. Augmente également tous les dégâts que vous infligez aux cibles affectées par votre Morsure de serpent de 1%." lvl="1"/>
+        <rank description="Si Piqûre de wyverne est dissipée, celui qui la dissipe est également affecté par Piqûre de wyverne pour une durée de 25% du temps restant. Augmente également tous les dégâts que vous infligez aux cibles affectées par votre Morsure de serpent de 2%." lvl="2"/>
+        <rank description="Si Piqûre de wyverne est dissipée, celui qui la dissipe est également affecté par Piqûre de wyverne pour une durée de 50% du temps restant. Augmente également tous les dégâts que vous infligez aux cibles affectées par votre Morsure de serpent de 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_pointofnoescape" key="2142" name="Plus d'échappatoire" tier="8">
+        <rank description="Augmente de 3% les chances de réussir un coup critique avec toutes vos attaques sur les cibles affectées par vos Pièges de givre, Pièges givrants et Flèches givrantes." lvl="1"/>
+        <rank description="Augmente de 6% les chances de réussir un coup critique avec toutes vos attaques sur les cibles affectées par vos Pièges de givre, Pièges givrants et Flèches givrantes." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_painspike" key="1322" name="Flèche noire" tier="8">
+        <rank description="Tire une Flèche noire sur la cible, ce qui augmente tous les dégâts que vous infligez à la cible de 6% et inflige 786 points de dégâts d'Ombre en 15 sec. Flèche noire partage le temps de recharge de vos sorts de piège." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="35" minRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_hunter_longshots" key="2143" name="Entraînement de sniper" tier="8">
+        <rank description="Augmente les chances de coup critique de votre technique Tir mortel de 5%, et si vous restez immobile pendant 6 sec., vous bénéficiez d'Entraînement de sniper qui augmente les dégâts infligés avec Tir assuré, Visée, Flèche noire et Tir explosif de 2% pendant 15 sec." lvl="1"/>
+        <rank description="Augmente les chances de coup critique de votre technique Tir mortel de 10%, et si vous restez immobile pendant 6 sec., vous bénéficiez d'Entraînement de sniper qui augmente les dégâts infligés avec Tir assuré, Visée, Flèche noire et Tir explosif de 4% pendant 15 sec." lvl="2"/>
+        <rank description="Augmente les chances de coup critique de votre technique Tir mortel de 15%, et si vous restez immobile pendant 6 sec., vous bénéficiez d'Entraînement de sniper qui augmente les dégâts infligés avec Tir assuré, Visée, Flèche noire et Tir explosif de 6% pendant 15 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_huntingparty" key="2144" name="Partie de chasse" requires="1811" tier="9">
+        <rank description="Augmente votre total d'Agilité de 1% supplémentaires, et vos coups critiques réussis avec Tir des arcanes, Tir explosif et Tir assuré ont 33% de chances de faire bénéficier jusqu'à 10 membres du groupe ou raid d'une régénération de mana égale à 1% du maximum de mana toutes les 5 sec. Dure 15 sec." lvl="1"/>
+        <rank description="Augmente votre total d'Agilité de 2% supplémentaires, et vos coups critiques réussis avec Tir des arcanes, Tir explosif et Tir assuré ont 66% de chances de faire bénéficier jusqu'à 10 membres du groupe ou raid d'une régénération de mana égale à 1% du maximum de mana toutes les 5 sec. Dure 15 sec." lvl="2"/>
+        <rank description="Augmente votre total d'Agilité de 3% supplémentaires, et vos coups critiques réussis avec Tir des arcanes, Tir explosif et Tir assuré ont 100% de chances de faire bénéficier jusqu'à 10 membres du groupe ou raid d'une régénération de mana égale à 1% du maximum de mana toutes les 5 sec. Dure 15 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_explosiveshot" key="2145" name="Tir explosif" requires="1322" tier="10">
+        <rank description="Vous lancez une charge explosive sur la cible, infligeant 146-174 points de dégâts de Feu. La charge explose ensuite sur la cible toutes les secondes pendant 2 sec. supplémentaires." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="35" minRange="5">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="HunterBeastMastery" icon="ability_hunter_beasttaming" key="BeastMastery" name="Maîtrise des bêtes" order="0">
+      <talent column="1" icon="spell_nature_ravenform" key="1382" name="Aspect du faucon amélioré" tier="0">
+        <rank description="Pendant qu'Aspect du faucon ou Aspect du faucon-dragon est activé, toutes les attaques à distance normales ont 10% de chances d'augmenter la vitesse d'attaque à distance de 3% pendant 12 sec." lvl="1"/>
+        <rank description="Pendant qu'Aspect du faucon ou Aspect du faucon-dragon est activé, toutes les attaques à distance normales ont 10% de chances d'augmenter la vitesse d'attaque à distance de 6% pendant 12 sec." lvl="2"/>
+        <rank description="Pendant qu'Aspect du faucon ou Aspect du faucon-dragon est activé, toutes les attaques à distance normales ont 10% de chances d'augmenter la vitesse d'attaque à distance de 9% pendant 12 sec." lvl="3"/>
+        <rank description="Pendant qu'Aspect du faucon ou Aspect du faucon-dragon est activé, toutes les attaques à distance normales ont 10% de chances d'augmenter la vitesse d'attaque à distance de 12% pendant 12 sec." lvl="4"/>
+        <rank description="Pendant qu'Aspect du faucon ou Aspect du faucon-dragon est activé, toutes les attaques à distance normales ont 10% de chances d'augmenter la vitesse d'attaque à distance de 15% pendant 12 sec." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_reincarnation" key="1389" name="Entraînement à l'Endurance" tier="0">
+        <rank description="Augmente les points de vie de votre familier de 2% et votre total de points de vie de 1%." lvl="1"/>
+        <rank description="Augmente les points de vie de votre familier de 4% et votre total de points de vie de 2%." lvl="2"/>
+        <rank description="Augmente les points de vie de votre familier de 6% et votre total de points de vie de 3%." lvl="3"/>
+        <rank description="Augmente les points de vie de votre familier de 8% et votre total de points de vie de 4%." lvl="4"/>
+        <rank description="Augmente les points de vie de votre familier de 10% et votre total de points de vie de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_silenthunter" key="1624" name="Feu focalisé" tier="1">
+        <rank description="Tous les dégâts que vous infligez sont augmentés de 1% tant que votre familier est actif et les chances de coup critique des techniques spéciales de votre familier sont augmentées de 10% tant qu'Ordre de tuer est actif." lvl="1"/>
+        <rank description="Tous les dégâts que vous infligez sont augmentés de 2% tant que votre familier est actif et les chances de coup critique des techniques spéciales de votre familier sont augmentées de 20% tant qu'Ordre de tuer est actif." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_aspectofthemonkey" key="1381" name="Aspect du singe amélioré" tier="1">
+        <rank description="Augmente le bonus d'Esquive conféré par Aspect du singe ou votre Aspect du faucon-dragon de 2%." lvl="1"/>
+        <rank description="Augmente le bonus d'Esquive conféré par Aspect du singe ou votre Aspect du faucon-dragon de 4%." lvl="2"/>
+        <rank description="Augmente le bonus d'Esquive conféré par Aspect du singe ou votre Aspect du faucon-dragon de 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_misc_pelt_bear_03" key="1395" name="Peau épaisse" tier="1">
+        <rank description="Augmente le score d'armure de vos familiers de 7% et la valeur d'armure que vous apportent les objets de 4%." lvl="1"/>
+        <rank description="Augmente le score d'armure de vos familiers de 14% et la valeur d'armure que vous apportent les objets de 7%." lvl="2"/>
+        <rank description="Augmente le score d'armure de vos familiers de 20% et la valeur d'armure que vous apportent les objets de 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_beastsoothe" key="1625" name="Ressusciter le familier amélioré" tier="1">
+        <rank description="Le temps d'incantation du sort Ressusciter le familier est réduit de 3 sec., son coût en mana est diminué de 20% et le familier revient avec 15% de points de vie supplémentaires." lvl="1"/>
+        <rank description="Le temps d'incantation du sort Ressusciter le familier est réduit de 6 sec., son coût en mana est diminué de 40% et le familier revient avec 30% de points de vie supplémentaires." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_mount_jungletiger" key="1384" name="Science des chemins" tier="2">
+        <rank description="Augmente le bonus de vitesse de vos Aspects de la meute et du guépard de 4% et augmente la vitesse de votre monture de 5%. Ne se cumule pas avec les autres effets d'augmentation de vitesse de la monture." lvl="1"/>
+        <rank description="Augmente le bonus de vitesse de vos Aspects de la meute et du guépard de 8% et augmente la vitesse de votre monture de 10%. Ne se cumule pas avec les autres effets d'augmentation de vitesse de la monture." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_aspectmastery" key="2138" name="Maîtrise des aspects" tier="2">
+        <rank description="Aspect de la vipère - Réduit la pénalité aux dégâts de 10%.&lt;br/&gt;&lt;br/&gt;Aspect du singe - Réduit les dégâts que vous subissez pendant qu'il est actif de 5%.&lt;br/&gt;&lt;br/&gt;Aspect du faucon - Augmente le bonus à la puissance d'attaque de 30%.&lt;br/&gt;&lt;br/&gt;Aspect du faucon-dragon - Combine les bonus des aspects du singe et du faucon." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_bullrush" key="1396" name="Fureur libérée" tier="2">
+        <rank description="Augmente les dégâts infligés par vos familiers de 3%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos familiers de 6%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos familiers de 9%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos familiers de 12%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos familiers de 15%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mendpet" key="1385" name="Guérison du familier améliorée" tier="3">
+        <rank description="Réduit le coût en mana de votre sort Guérison du familier de 10% et lui donne 25% de chances de faire disparaître 1 effet de malédiction, maladie, magie ou poison du familier à chaque itération." lvl="1"/>
+        <rank description="Réduit le coût en mana de votre sort Guérison du familier de 20% et lui donne 50% de chances de faire disparaître 1 effet de malédiction, maladie, magie ou poison du familier à chaque itération." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_04" key="1393" name="Ferocité" tier="3">
+        <rank description="Augmente de 2% les chances de votre familier d'infliger un coup critique." lvl="1"/>
+        <rank description="Augmente de 4% les chances de votre familier d'infliger un coup critique." lvl="2"/>
+        <rank description="Augmente de 6% les chances de votre familier d'infliger un coup critique." lvl="3"/>
+        <rank description="Augmente de 8% les chances de votre familier d'infliger un coup critique." lvl="4"/>
+        <rank description="Augmente de 10% les chances de votre familier d'infliger un coup critique." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_druid_demoralizingroar" key="1388" name="Engagement spirituel" tier="4">
+        <rank description="Tant que votre familier est actif, vous et votre familier retrouvez 1% du total de vos points de vie toutes les 10 sec., et les soins prodigués à vous-même et à votre familier sont augmentés de 5%." lvl="1"/>
+        <rank description="Tant que votre familier est actif, vous et votre familier retrouvez 2% du total de vos points de vie toutes les 10 sec., et les soins prodigués à vous-même et à votre familier sont augmentés de 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_devour" key="1387" name="Intimidation" tier="4">
+        <rank description="Ordonne à votre familier d'intimider la cible, générant un niveau élevé de menace et étourdissant la cible pendant 3 sec. Dure 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="100">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="spell_nature_abolishmagic" key="1390" name="Discipline bestiale" tier="4">
+        <rank description="Augmente de 50% la régénération de focalisation de vos familiers." lvl="1"/>
+        <rank description="Augmente de 100% la régénération de focalisation de vos Familiers." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_animalhandler" key="1799" name="Dresseur" tier="5">
+        <rank description="Augmente de 5% la puissance d'attaque de votre familier et augmente la durée de l'effet d'Appel du maître de 3 sec." lvl="1"/>
+        <rank description="Augmente de 10% la puissance d'attaque de votre familier et augmente la durée de l'effet d'Appel du maître de 6 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_03" key="1397" name="Frénésie" requires="1393" tier="5">
+        <rank description="Confère à votre familier 20% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="1"/>
+        <rank description="Confère à votre familier 40% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="2"/>
+        <rank description="Confère à votre familier 60% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="3"/>
+        <rank description="Confère à votre familier 80% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="4"/>
+        <rank description="Confère à votre familier 100% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Inspiration féroce" tier="6">
+        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 1% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 3%." lvl="1"/>
+        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 2% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 6%." lvl="2"/>
+        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 3% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 9%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Courroux bestial" requires="1387" tier="6">
+        <rank description="Votre familier, fou de rage, inflige 50% de points de dégâts supplémentaires pendant 10 sec. Lorsqu’il est dans cet état, il n'éprouve ni pitié, ni remords, ni peur et ne peut plus être arrêté à moins d'être tué." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="100">
+          <power cost="10" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_catlikereflexes" key="1801" name="Réflexes félins" tier="6">
+        <rank description="Augmente vos chances d'esquiver de 1% et celles de votre familier de 3% supplémentaires. De plus, réduit le temps de recharge de votre technique Ordre de tuer de 10 sec." lvl="1"/>
+        <rank description="Augmente vos chances d'esquiver de 2% et celles de votre familier de 6% supplémentaires. De plus, réduit le temps de recharge de votre technique Ordre de tuer de 20 sec." lvl="2"/>
+        <rank description="Augmente vos chances d'esquiver de 3% et celles de votre familier de 9% supplémentaires. De plus, réduit le temps de recharge de votre technique Ordre de tuer de 30 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_invigeration" key="2136" name="Revigoration" requires="1800" tier="7">
+        <rank description="Quand votre familier réussit un coup critique avec une technique spéciale, vous avez 50% de chances de récupérer instantanément 1% de votre mana." lvl="1"/>
+        <rank description="Quand votre familier réussit un coup critique avec une technique spéciale, vous avez 100% de chances de récupérer instantanément 1% de votre mana." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_serpentswiftness" key="1802" name="Rapidité du serpent" tier="7">
+        <rank description="Augmente votre vitesse d'attaque en combat à distance de 4% et la vitesse d'attaque en mêlée de votre familier de 4%." lvl="1"/>
+        <rank description="Augmente votre vitesse d'attaque en combat à distance de 8% et la vitesse d'attaque en mêlée de votre familier de 8%." lvl="2"/>
+        <rank description="Augmente votre vitesse d'attaque en combat à distance de 12% et la vitesse d'attaque en mêlée de votre familier de 12%." lvl="3"/>
+        <rank description="Augmente votre vitesse d'attaque en combat à distance de 16% et la vitesse d'attaque en mêlée de votre familier de 16%." lvl="4"/>
+        <rank description="Augmente votre vitesse d'attaque en combat à distance de 20% et la vitesse d'attaque en mêlée de votre familier de 20%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_longevity" key="2140" name="Longévité" tier="8">
+        <rank description="Réduit le temps de recharge de Courroux bestial, Intimidation et des techniques spéciales de familier de 10%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de Courroux bestial, Intimidation et des techniques spéciales de familier de 20%." lvl="2"/>
+        <rank description="Réduit le temps de recharge de Courroux bestial, Intimidation et des techniques spéciales de familier de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_beastwithin" key="1803" name="La bête intérieure" requires="1386" tier="8">
+        <rank description="Augmente tous les dégâts que vous infligez de 10% et lorsque votre familier est sous l'effet de Courroux bestial, vous aussi devenez fou de rage. Vous infligez 10% de points de dégâts supplémentaires et le coût en mana de tous vos sorts est réduit de 50% pendant 10 sec. Tant que vous êtes dans cet état, vous n'éprouvez ni pitié, ni remords, ni peur, et vous ne pouvez plus être arrêté à moins d'être tué." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_cobrastrikes" key="2137" name="Frappes de cobra" requires="1802" tier="8">
+        <rank description="Lorsque vous réussissez un coup critique avec Tir des arcanes, Tir assuré ou Tir mortel, vous avez 20% de chances de permettre aux 2 prochaines attaques spéciales de votre familier d'être des coups critiques." lvl="1"/>
+        <rank description="Lorsque vous réussissez un coup critique avec Tir des arcanes, Tir assuré ou Tir mortel, vous avez 40% de chances de permettre aux 2 prochaines attaques spéciales de votre familier d'être des coups critiques." lvl="2"/>
+        <rank description="Lorsque vous réussissez un coup critique avec Tir des arcanes, Tir assuré ou Tir mortel, vous avez 60% de chances de permettre aux 2 prochaines attaques spéciales de votre familier d'être des coups critiques." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_separationanxiety" key="2227" name="Ames soeurs" tier="9">
+        <rank description="Augmente les dégâts infligés par votre familier de 4% et la vitesse de déplacement de votre familier ainsi que la vôtre de 2% tant que votre familier est actif. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre familier de 8% et la vitesse de déplacement de votre familier ainsi que la vôtre de 4% tant que votre familier est actif. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre familier de 12% et la vitesse de déplacement de votre familier ainsi que la vôtre de 6% tant que votre familier est actif. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par votre familier de 16% et la vitesse de déplacement de votre familier ainsi que la vôtre de 8% tant que votre familier est actif. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par votre familier de 20% et la vitesse de déplacement de votre familier ainsi que la vôtre de 10% tant que votre familier est actif. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_beastmastery" key="2139" name="Maîtrise des bêtes" tier="10">
+        <rank description="Vous maîtrisez l'art de la maîtrise des bêtes, ce qui vous permet de dompter les familiers exotiques et augmente votre montant total de points en compétence de familiers de 4." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterMarksmanship" icon="ability_marksmanship" key="Marksmanship" name="Précision" order="1">
+      <talent column="0" icon="spell_frost_stun" key="1341" name="Trait de choc amélioré" tier="0">
+        <rank description="Augmente la durée de l'effet d'hébétement de votre Trait de choc de 1 sec." lvl="1"/>
+        <rank description="Augmente la durée de l'effet d'hébétement de votre Trait de choc de 2 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_focusedaim" key="2197" name="Visée focalisée" tier="0">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous lancez Tir assuré et augmente de 1% les chances de toucher." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous lancez Tir assuré et augmente de 2% les chances de toucher." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous lancez Tir assuré et augmente de 3% les chances de toucher." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_searingarrow" key="1344" name="Coups fatals" tier="0">
+        <rank description="Augmente vos chances d'infliger un coup critique avec vos armes à distance de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec vos armes à distance de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec vos armes à distance de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec vos armes à distance de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec vos armes à distance de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_zenarchery" key="1806" name="Visée minutieuse" tier="1">
+        <rank description="Augmente votre puissance d'attaque à distance d'un montant égal à 33% de votre total d'Intelligence." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque à distance d'un montant égal à 66% de votre total d'Intelligence." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque à distance d'un montant égal à 100% de votre total d'Intelligence." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_snipershot" key="1343" name="Marque du chasseur améliorée" tier="1">
+        <rank description="Augmente le bonus à la puissance d'attaque conféré par votre technique Marque du chasseur de 10% et réduit le coût en mana de votre technique Marque du chasseur de 33%." lvl="1"/>
+        <rank description="Augmente le bonus à la puissance d'attaque conféré par votre technique Marque du chasseur de 20% et réduit le coût en mana de votre technique Marque du chasseur de 66%." lvl="2"/>
+        <rank description="Augmente le bonus à la puissance d'attaque conféré par votre technique Marque du chasseur de 30% et réduit le coût en mana de votre technique Marque du chasseur de 100%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_piercedamage" key="1349" name="Coups mortels" tier="1">
+        <rank description="Augmente le bonus de dégâts de vos coups critiques avec vos techniques à distance de 6%." lvl="1"/>
+        <rank description="Augmente le bonus de dégâts de vos coups critiques avec vos techniques à distance de 12%." lvl="2"/>
+        <rank description="Augmente le bonus de dégâts de vos coups critiques avec vos techniques à distance de 18%." lvl="3"/>
+        <rank description="Augmente le bonus de dégâts de vos coups critiques avec vos techniques à distance de 24%." lvl="4"/>
+        <rank description="Augmente le bonus de dégâts de vos coups critiques avec vos techniques à distance de 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_goforthethroat" key="1818" name="A la gorge" tier="2">
+        <rank description="Vos coups critiques à distance font générer à votre familier 25 points de focalisation." lvl="1"/>
+        <rank description="Vos coups critiques à distance font générer à votre familier 50 points de focalisation." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_impalingbolt" key="1346" name="Tir des arcanes amélioré" tier="2">
+        <rank description="Augmente les dégâts infligés par votre Tir des arcanes de 5%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre Tir des arcanes de 10%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre Tir des arcanes de 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_spear_07" key="1345" name="Visée" requires="1349" tier="2">
+        <rank description="Un tir précis qui augmente les points de dégâts infligés par votre attaque à distance de 5 et réduit les soins prodigués à cette cible de 50%. Dure 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="35" minRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_hunter_rapidkilling" key="1819" name="Tueur rapide" tier="2">
+        <rank description="Réduit le temps de recharge de votre technique Tir rapide de 1 min. De plus, lorsque vous tuez un adversaire qui vous rapporte de l'expérience ou de l'honneur, votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère inflige 10% de dégâts supplémentaires. Dure 20 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre technique Tir rapide de 2 min. De plus, lorsque vous tuez un adversaire qui vous rapporte de l'expérience ou de l'honneur, votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère inflige 20% de dégâts supplémentaires. Dure 20 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_quickshot" key="1348" name="Morsures et piqûres améliorées" tier="3">
+        <rank description="Augmente les points de dégâts infligés par Morsure de serpent et Piqûre de wyverne de 10% et les points de mana drainés par votre Morsure de vipère de 10%. De plus, réduit la probabilité que les effets de dégâts sur la durée de vos morsures et piqûres soient dissipés de 10%." lvl="1"/>
+        <rank description="Augmente les points de dégâts infligés par Morsure de serpent et Piqûre de wyverne de 20% et les points de mana drainés par votre Morsure de vipère de 20%. De plus, réduit la probabilité que les effets de dégâts sur la durée de vos morsures et piqûres soient dissipés de 20%." lvl="2"/>
+        <rank description="Augmente les points de dégâts infligés par Morsure de serpent et Piqûre de wyverne de 30% et les points de mana drainés par votre Morsure de vipère de 30%. De plus, réduit la probabilité que les effets de dégâts sur la durée de vos morsures et piqûres soient dissipés de 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_wizardmark" key="1342" name="Efficacité" tier="3">
+        <rank description="Réduit le coût en mana de vos Tirs, Morsures et Piqûres de 3%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos Tirs, Morsures et Piqûres de 6%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos Tirs, Morsures et Piqûres de 9%." lvl="3"/>
+        <rank description="Réduit le coût en mana de vos Tirs, Morsures et Piqûres de 12%." lvl="4"/>
+        <rank description="Réduit le coût en mana de vos Tirs, Morsures et Piqûres de 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_starfire" key="1351" name="Barrage commotionnant" tier="4">
+        <rank description="Vos attaques réussies avec Tir de la chimère et Flèches multiples vous confèrent 50% de chances d'hébéter la cible pendant 4 sec." lvl="1"/>
+        <rank description="Vos attaques réussies avec Tir de la chimère et Flèches multiples vous confèrent 100% de chances d'hébéter la cible pendant 4 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_readiness" key="1353" name="Promptitude" tier="4">
+        <rank description="Quand elle est activée, cette technique met immédiatement fin au temps de recharge de vos autres techniques de chasseur, sauf Courroux bestial." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_upgrademoonglaive" key="1347" name="Barrage" tier="4">
+        <rank description="Augmente les dégâts infligés par vos sorts Flèches multiples, Visée et Salve de 4%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Flèches multiples, Visée et Salve de 8%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Flèches multiples, Visée et Salve de 12%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_combatexperience" key="1804" name="Expérience du combat" tier="5">
+        <rank description="Augmente votre total d'Agilité et votre total d'Intelligence de 2%." lvl="1"/>
+        <rank description="Augmente votre total d'Agilité et votre total d'Intelligence de 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_weapon_rifle_06" key="1362" name="Spécialisation Armes à distance" tier="5">
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes à distance de 1%." lvl="1"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes à distance de 3%." lvl="2"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes à distance de 5%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_piercingshots" key="2130" name="Tirs perforants" tier="6">
+        <rank description="Vos critiques réussis avec Visée, Tir assuré et Tir de la chimère font saigner la cible, qui perd un montant de points de vie égal à 10% des dégâts infligés en 8 sec." lvl="1"/>
+        <rank description="Vos critiques réussis avec Visée, Tir assuré et Tir de la chimère font saigner la cible, qui perd un montant de points de vie égal à 20% des dégâts infligés en 8 sec." lvl="2"/>
+        <rank description="Vos critiques réussis avec Visée, Tir assuré et Tir de la chimère font saigner la cible, qui perd un montant de points de vie égal à 30% des dégâts infligés en 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_trueshot" key="1361" name="Aura de précision" requires="1353" tier="6">
+        <rank description="Augmente de 10% la puissance d'attaque des membres du groupe ou du raid qui se trouvent dans un rayon de 45 mètres. Dure jusqu’à annulation." lvl="1"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Barrage amélioré" requires="1347" tier="6">
+        <rank description="Augmente vos chances de réaliser un coup critique avec vos techniques Flèches multiples et Visée de 4% et réduit de 33% les interruptions causées par les attaques infligeant des dégâts pendant que vous canalisez Salve." lvl="1"/>
+        <rank description="Augmente vos chances de réaliser un coup critique avec vos techniques Flèches multiples et Visée de 8% et réduit de 66% les interruptions causées par les attaques infligeant des dégâts pendant que vous canalisez Salve." lvl="2"/>
+        <rank description="Augmente vos chances de réaliser un coup critique avec vos techniques Flèches multiples et Visée de 12% et réduit de 100% les interruptions causées par les attaques infligeant des dégâts pendant que vous canalisez Salve." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mastermarksman" key="1807" name="Maître tireur" tier="7">
+        <rank description="Augmente vos chances de coup critique de 1% et réduit le coût en mana de votre Tir assuré, Visée et Tir de la chimère de 5%." lvl="1"/>
+        <rank description="Augmente vos chances de coup critique de 2% et réduit le coût en mana de votre Tir assuré, Visée et Tir de la chimère de 10%." lvl="2"/>
+        <rank description="Augmente vos chances de coup critique de 3% et réduit le coût en mana de votre Tir assuré, Visée et Tir de la chimère de 15%." lvl="3"/>
+        <rank description="Augmente vos chances de coup critique de 4% et réduit le coût en mana de votre Tir assuré, Visée et Tir de la chimère de 20%." lvl="4"/>
+        <rank description="Augmente vos chances de coup critique de 5% et réduit le coût en mana de votre Tir assuré, Visée et Tir de la chimère de 25%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_rapidregeneration" key="2131" name="Recouvrement rapide" tier="7">
+        <rank description="Vous recevez 2% de votre mana toutes les 3 sec. quand vous êtes sous l'effet de Tir rapide, et vous recevez 1% de votre mana toutes les 2 sec. pendant 6 sec quand vous bénéficiez de Tueur rapide." lvl="1"/>
+        <rank description="Vous recevez 4% de votre mana toutes les 3 sec. quand vous êtes sous l'effet de Tir rapide, et vous recevez 2% de votre mana toutes les 2 sec. pendant 6 sec quand vous bénéficiez de Tueur rapide." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_wildquiver" key="2132" name="Carquois sauvage" tier="8">
+        <rank description="Vous avez 4% de chances de réaliser un tir supplémentaire lorsque vous infligez des dégâts avec votre tir automatique, infligeant 80% des dégâts de l'arme sous forme de dégâts de Nature. Carquois sauvage ne consomme pas de munitions." lvl="1"/>
+        <rank description="Vous avez 8% de chances de réaliser un tir supplémentaire lorsque vous infligez des dégâts avec votre tir automatique, infligeant 80% des dégâts de l'arme sous forme de dégâts de Nature. Carquois sauvage ne consomme pas de munitions." lvl="2"/>
+        <rank description="Vous avez 12% de chances de réaliser un tir supplémentaire lorsque vous infligez des dégâts avec votre tir automatique, infligeant 80% des dégâts de l'arme sous forme de dégâts de Nature. Carquois sauvage ne consomme pas de munitions." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_theblackarrow" key="1808" name="Flèche-bâillon" requires="1807" tier="8">
+        <rank description="Un tir qui inflige 50% des dégâts de l'arme et réduit la cible au silence pendant 3 sec. Les incantations de sorts des victimes personnages non joueurs sont également interrompues pendant 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="35" minRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_improvedsteadyshot" key="2133" name="Tir assuré amélioré" tier="8">
+        <rank description="Vos Tirs assurés réussis ont 5% de chances d'augmenter les dégâts infligés par votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 15%, ainsi que de réduire le coût en mana de votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 20%." lvl="1"/>
+        <rank description="Vos Tirs assurés réussis ont 10% de chances d'augmenter les dégâts infligés par votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 15%, ainsi que de réduire le coût en mana de votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 20%." lvl="2"/>
+        <rank description="Vos Tirs assurés réussis ont 15% de chances d'augmenter les dégâts infligés par votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 15%, ainsi que de réduire le coût en mana de votre prochaine utilisation de Visée, Tir des arcanes ou Tir de la chimère de 20%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_assassinate" key="2134" name="Désigné pour mourir" tier="9">
+        <rank description="Augmente de 1% les dégâts infligés par vos tirs et par les techniques spéciales de votre familier sur les cibles marquées et augmente de 2% le bonus aux dégâts des coups critiques de Visée, Tir des arcanes, Tir assuré, Tir mortel et Tir de la chimère." lvl="1"/>
+        <rank description="Augmente de 2% les dégâts infligés par vos tirs et par les techniques spéciales de votre familier sur les cibles marquées et augmente de 4% le bonus aux dégâts des coups critiques de Visée, Tir des arcanes, Tir assuré, Tir mortel et Tir de la chimère." lvl="2"/>
+        <rank description="Augmente de 3% les dégâts infligés par vos tirs et par les techniques spéciales de votre familier sur les cibles marquées et augmente de 6% le bonus aux dégâts des coups critiques de Visée, Tir des arcanes, Tir assuré, Tir mortel et Tir de la chimère." lvl="3"/>
+        <rank description="Augmente de 4% les dégâts infligés par vos tirs et par les techniques spéciales de votre familier sur les cibles marquées et augmente de 8% le bonus aux dégâts des coups critiques de Visée, Tir des arcanes, Tir assuré, Tir mortel et Tir de la chimère." lvl="4"/>
+        <rank description="Augmente de 5% les dégâts infligés par vos tirs et par les techniques spéciales de votre familier sur les cibles marquées et augmente de 10% le bonus aux dégâts des coups critiques de Visée, Tir des arcanes, Tir assuré, Tir mortel et Tir de la chimère." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_chimerashot2" key="2135" name="Tir de la chimère" tier="10">
+        <rank description="Vous infligez 125% des dégâts de l'arme, réinitialisez la piqûre ou morsure actuelle sur votre cible et déclenchez un effet :&lt;br/&gt;&lt;br/&gt;Morsure de serpent - Inflige instantanément 40% des dégâts de votre Morsure de serpent.&lt;br/&gt;&lt;br/&gt;Morsure de vipère - Vous rend instantanément un montant de mana égal à 60% du total drainé par votre Morsure de vipère.&lt;br/&gt;&lt;br/&gt;Piqûre de scorpide - Tente de désarmer la cible pendant 10 sec. Cet effet ne peut se produire plus d'une fois par minute." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="35" minRange="5">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Objets">
+	<faqlist>
+		<faq question="Que signifie le filtre de recherche « Désiré par » ?">
+			Le but de ces filtres est de vous donner une liste des objets les plus désirables pour des classes de personnages individuelles, de la façon la plus rapide et la plus facile possible. Ce filtre utilise les caractéristiques normalement les plus utiles pour chaque classe de personnage afin de vous donner des résultats rapides et pertinents. Les critères de « Désiré par » apparaissent une fois que vous avez choisi un type d'objet du menu déroulant correspondant. Chaque classe a ses propres critères et certaines classes ont même des filtres supplémentaires qui permettent de choisir une spécialisation.
+			<p/>
+			Pour obtenir les meilleurs résultats, utilisez le filtre de classe après avoir choisi un type d'objet et d'emplacement. Une recherche qui est circonscrite à un seul type d'objet, d'emplacement et de « Désiré par »  vous donnera une liste de résultats indiquant ce que cette classe de personnage devrait rechercher. De cette façon, vous vous construirez une liste de références des objets les plus désirables pour chaque classe et chaque emplacement.
+		</faq>
+		<faq question="Que signifie le « niveau d'objet » ?">
+			Le niveau d'objet d'un objet est un indicateur général de sa qualité. Le niveau d'objet, associé à sa rareté, détermine le budget de l'objet. Le budget de l'objet est utilisé pour définir les points de caractéristiques de cet objet. Un objet rare et un objet épique ayant le même niveau d'objet auront deux budgets différents (l'épique a un budget plus grand) qui prendront en compte la différence attendue de puissance entre les deux objets. Il ne faut pas confondre le niveau d'objet avec le niveau requis qui est tout simplement le niveau minimum que doit avoir un personnage pour s'en équiper.
+		</faq>
+		<faq question="Comment fonctionnent les options « Tous les critères/Au moins un critère » ?">
+			Ces options se trouvent sous les Critères avancés et contrôlent comment les critères sont appliqués à votre recherche. Sélectionner « Respecter tous » ne montrera que les objets qui respectent l’ensemble des critères que vous avez choisis. Sélectionner « Respecter un au moins » affichera les objets qui respectent au moins un des critères que vous avez choisis. Ces options ne sont visibles que quand vous avez choisi au moins deux critères avancés.
+		</faq>	
+		<faq question="Lorsque j'utilise un filtre de rareté, pourquoi vois-je apparaître des objets d'une rareté différente de celle sélectionnée ?">
+			Le filtre de rareté des objets utilise les mêmes mécanismes que les filtres de rareté en jeu, à l'hôtel des ventes. Ainsi, les objets les plus rares apparaîtront suite à une recherche donnée selon leur rareté. Une recherche pour des objets inhabituels fera apparaître les objets épiques et rares par la même occasion. Cependant, comme dans les hôtels de ventes, cette inclusion est à sens unique : rechercher des objets épiques ne permettra pas d'afficher les objets rares ou inhabituels.
+		</faq>	
+		<faq question="Que fait la fonction « Trouver mieux » sur les objets d’une fiche de personnage ?">
+			Si vous passez votre souris sur un objet d’une feuille de personnage, vous verrez apparaître une petite flèche qui se transforme en bouton. Si vous cliquez sur ce bouton « Trouver mieux », vous serez dirigé vers une page de résultats de recherche d’objets. Sur cette page, les objets affichés sont ceux qui sont considérés comme « meilleurs » pour ce personnage en particulier.
+			<p/>
+			Ces améliorations recommandées prennent en compte la classe de personnage, les caractéristiques et la qualité générale de l’équipement. De cette façon, vous pourrez rechercher quelle amélioration votre personnage ou n’importe quel autre personnage de World of Warcraft peut désirer. Cette fonctionnalité est aussi là pour faciliter les choix des personnages qui ont plusieurs ensembles différents d’équipement suivant les circonstances, leur permettant de trouver les améliorations pour chaque ensemble.
+			<p/>
+			Plus de détails sont disponibles sur notre F.A.Q. <a href="faq-item-info-recommended.xml;">Trouver mieux</a>.
+		</faq>
+		<faq question="Puis-je rechercher des objets associés à un métier en particulier ?">
+			Pour l’instant, les métiers ne sont pas un critère de recherche disponible. Toutefois, vous pouvez rechercher les objets fabriqués et les recettes de façon individuelle.
+		</faq>
+		<faq question="Puis-je rechercher des récompenses de quêtes ?">
+			Les récompenses de quête ont leur catégorie parmi les objets de l’Armurerie, vous pouvez la choisir avec le filtre « Source ». Pour le moment, vous ne pouvez pas chercher de récompense de quête en fonction du niveau ou du nom de la quête.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Récompenses des emblèmes de givre" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Récompenses d’Emblèmes de triomphe" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Objets « Héritage »" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Butin de donjons et de raids" url="/dungeons.xml"/>
+		<relatedlink name="Récompenses de faction" url="/factions.xml"/>
+		<relatedlink name="Récompenses JcJ" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Scores de combat" type="external" url="http://www.wow-europe.com/fr/info/basics/characters.html"/>				
+		<relatedlink name="Les objets (bases)" type="external" url="http://www.wow-europe.com/fr/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

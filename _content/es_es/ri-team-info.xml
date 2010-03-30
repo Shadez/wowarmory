@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Información de equipo">
+	<faqlist>
+		<faq question="¿Qué puedo ver en la página del perfil de equipos?">
+			Todos los equipos de Arenas tienen un perfil de equipo y unos registros de Arenas. En el página por defecto, puedes ver la alineación del equipo y hacer clic en los perfiles de los personajes, además de poder ver el registro de todas las temporadas y de la última semana, el índice y rango actual del equipo, y los índices personales de los miembros del equipo. Las pestañas de Historial de partidas e Historial de oponentes te llevarán a los registros detallados del equipo de Arenas correspondientes.
+		</faq>
+		<faq question="¿Qué son los registros de las Arenas?">
+			Todos los perfiles de equipos de Arenas en la Armería incluyen ahora pestañas para los registros de Arenas, compuestos por el Historial de partidas, el Informe de partidas y el Historial de oponentes.
+			<ul>
+			<li>La pestaña del Historial de partidas tiene una gráfica interactiva. Si colocas el cursor del ratón sobre la gráfica, aparecerá la fecha del encuentro, el cambio de índice según el resultado del encuentro y el nombre del equipo contrario. Debajo de esta gráfica hay una ventana que te permitirá buscar y organizar todas las partidas en las que ha participado el equipo durante la temporada actual.</li>
+			<li>Desde el Historial de partidas, haz clic en el botón que se encuentra a la derecha de cualquier encuentro para ver un informe detallado. Esta página muestra los mismos resultados y estadísticas que aparecieron en el juego, la lista de participantes, golpes de gracia, daño y sanación totales, así como el cambio en la calificación.</li>
+			<li>La pestaña del Historial de oponentes muestra todos los encuentros en los que ha participado el equipo en un formato distinto, es decir, por medio de una lista ordenada según el nombre del equipo oponente. Las columnas en esta página dependen del equipo contrario e incluyen: cambio de promedio por encuentro, porcentaje de victorias contra cada equipo, y total de victorias y derrotas contra cada equipo.</li>
+			</ul>
+		</faq>
+		<faq question="¿Los equipos borrados conservan sus perfiles de equipo y registros de las Arenas?">
+			No, los equipos borrados no aparecen en la Armería, por lo que no tienen ni perfil de equipos ni registros de las Arenas. Si un equipo borrado es posteriormente reactivado con un el mismo nombre, en su perfil de equipo y sus registros de las Arenas sólo aparecerán la información del equipo actual. El perfil y los registros de las Arenas del equipo anterior con el mismo nombre no se guarda. Además, si se ha borrado un equipo, ya no se podrá hacer clic sobre su nombre en los registros de las Arenas.
+		</faq>
+		<faq question="¿Por qué no puedo hacer clic en el nombre de un equipo de Arenas para acceder a su perfil">
+			El equipo ya no existe y, por lo tanto, no tiene perfil ni registros de las Arenas, o fue borrado y vuelto a crear, en cuyo caso, los nuevos registros del equipo ya no están vinculados con su encarnación previa.
+		</faq>
+		<faq question="¿Por qué un equipo de arena dado tiene una alineación diferente que antes?">
+			Los perfiles de equipo en la Armería sólo muestran las alineaciones actuales del equipo.
+		</faq>
+		<faq question="¿Por qué en la fila &quot;Esta semana&quot; aparecen partidas jugadas que sé que mi equipo de arena no ha jugado esta semana?">
+		La fila con el nombre de "Esta semana" muestra la semana activa de juegos más reciente del equipo de Arenas, que se puede corresponder con la semana actual del calendario o con una en el pasado.
+		</faq>
+		<faq question="¿Cada cuánto tiempo se actualizan los perfiles de equipos?">
+			Normalmente se actualizan en un periodo de 24 horas una vez que se ha producido el cambio dentro del juego.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Ladder de Arena" url="/battlegroups.xml"/>
+		<relatedlink name="Torneos en la Arena" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de Arenas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink name="Recompensas Arena: Armas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/rewards-weapons.html"/>
+		<relatedlink name="Recompensas Arena: Armaduras" type="external" url="http://www.wow-europe.com/es/info/basics/arena/rewards-class-armor.html"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

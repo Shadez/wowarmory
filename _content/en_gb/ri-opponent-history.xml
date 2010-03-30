@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Opponent History">
+	<faqlist>
+		
+		<faq question="What is the functionality of the Opponent History page?">
+The Opponent History page compiles the opponent teams faced by an arena team during the season. In addition to archival purposes, this data serves as a helpful tool to determine the performance of a given team against particular class compositions. Here is a rundown of the information and functionality contained in this page:
+<ul>
+<li>Data from every opponent team since the beginning of the current season is represented as long as that team has played the source team at least twice.</li>
+<li>The columns can be sorted by team name, realm, matches played (default), wins/losses, win percentage, and net rating change.</li>
+<li>Use the search filters to narrow the scope of your search.</li>
+<li>To display the opponent team roster, click on the team name if available or search for that team name on the Match History tab.</li>
+</ul>
+		</faq>
+		
+		<faq question="What's the best way for me to discover the exact class composition of a given opponent team?">
+The most reliable way to display the accurate opponent team roster is to filter for that team's name in the Match History tab, then click the shortcut to take you to the individual Match Reports. If the name is clickable, the resulting Team Profile will display the current team roster and not necessarily the roster, or particular composition, that played against the source team.
+		</faq>				
+		
+		<faq question="Why is there a two-match minimum for opponent teams to be represented?">
+		The two-match minimum filters out teams that were only faced once, which is the majority of opponent histories, removing many of the statistical outliers in order to streamline the data for more accurate and relevant results.
+		</faq>
+
+		<faq question="Can I view opponent history data from past Arena seasons?">
+		The Arena Records access data from arena matches that occurred since the beginning of Wrath of the Lich King. Arena matches before that time are not accessible.
+		</faq>
+		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Tournament Info" url="http://www.wow-europe.com/en/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Arena Hall of Fame" url="/hof/one/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena System" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
+		<relatedlink name="Inside Arenas" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Reputación del personaje">
+	<faqlist>
+		<faq question="Qué características tiene la página de reputaciones?">
+			En esta página podrás ver la prestigio que tiene un personaje con cada facción con la cual haya entrado en contacto. Al igual que en el panel de reputaciones en el juego, cada una de éstas se encuentra representada por una barra a color. Los niveles de reputación actuales del personaje aparecen del lado derecho de cada barra. Haz clic en el nombre de cualquier categoría o subcategoría para colapsarla o expandirla.
+		</faq>
+		<faq question="¿Para qué sirve la opción de ver en forma de lista?">
+			El botón para ver en forma de lista servirá para mostrar todas las reputaciones en una lista única. Posteriormente podrás hacer clic en los nombres de las columnas para ordenar las reputaciones por nombre o nivel.
+		</faq>		
+		<faq question="¿Dónde puedo obtener más información sobre las diferentes facciones?">
+			Algunas facciones tienen su propia página en nuestra guía de juego en línea. Los nombres de dichas facciones tendrán un enlace directo a dichas páginas y aparecerán en texto azul. 
+		</faq>
+		<faq question="¿Cuáles son los niveles de reputación, y cuánta necesito para avanzar de un nivel a otro? ">
+			En esta lista aparecen los niveles de reputación necesarios:
+			  <ul>
+			0/36000 – Odiado a Hostil
+			  <br/>
+			0/3000 – Hostil a Enemigo
+			  <br/>			  
+			0/3000 – Enemigo a Neutral
+			  <br/>
+			0/3000 – Neutral a Amistoso
+			  <br/>
+			0/6000 – Amistoso a Honorable
+			  <br/>
+			0/12000 – Honorable a Reverenciado
+			  <br/>
+			0/21000 – Reverenciado a Exaltado
+			  </ul>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Reputación" type="external" url="http://www.worldofwarcraft.com/info/basics/reputation.html"/>
+		<relatedlink name="Facciones de WoW Clásico" type="external" url="http://www.worldofwarcraft.com/info/basics/factions/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,3304 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+	<str id="armory.item-tooltip.armor">Броня</str>
+	<str id="armory.item-tooltip.dps">Единиц урона в секунду</str>
+	<str id="armory.item-tooltip.block">Способность отражать удары</str>
+	<str id="armory.arena-ladder-data.page">Страница</str>
+	<str id="armory.arena-ladder-data.results2"> из </str>
+
+	<str id="armory.search.oneResult">Найден 1 результат для слова </str>
+	<str id="armory.search.Found">Найдено: </str>
+	<str id="armory.search.resultsFor">для слова </str>
+
+	<str id="armory.general.dateseparate">.</str>
+	<str id="armory.title.customrss">Настройка RSS-ленты</str>
+	<cfg id="date.format">
+
+    <param3/>/<param2/>/<param1/>
+  </cfg> <!-- 1:year, 2:month, 3:day -->
+	<cfg id="date.format.leadingZero">1</cfg> <!-- 1:true, other:false -->
+	<!--string ordering character sheet level/race/class/ -->
+	<order id="armory.order.date">
+		<str select="datainsert1"/>
+
+		<str id="armory.general.dateseparate"/>
+		<str select="datainsert2"/>
+		<str id="armory.general.dateseparate"/>
+		<str select="datainsert3"/>
+	</order>
+
+	<order id="armory.order.character-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2" space="yes"/>
+
+		<str select="datainsert3" space="yes"/>
+		<str select="datainsert4" space="yes"/>
+	</order>
+
+	<!--string ordering search results -->
+	<order id="armory.order.search-results-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.search.resultsFor" space="yes"/>
+		<str id="armory.search.openQuote"/>
+
+		<str format="italic" select="datainsert2"/>
+		<str id="armory.search.closeQuote"/>
+	</order>
+
+	<!--string ordering one search result -->
+	<order id="armory.order.one-search-result-string">
+		<str id="armory.search.oneResult" space="yes"/>
+		<str id="armory.search.openQuote"/>
+		<str format="bold" select="datainsert1"/>
+
+		<str id="armory.search.closeQuote"/>
+	</order>
+
+	<!-- string ordering results inputtype paging -->
+	<order id="armory.order.results-Inputpaging-string">
+		<str id="armory.arena-ladder-data.page" space="yes"/>
+		<str select="ResultsInputPaging"/>
+		<str id="armory.arena-ladder-data.results2"/>
+		<str format="bold" select="datainsert1"/>
+
+	</order>
+
+	<order id="armory.order.guild.members">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2"/>
+	</order>
+
+	<order id="armory.order.item-tooltip-random-suffix">
+		<str select="datainsert1"/>
+		<str select="datainsert2"/>
+
+	</order>
+
+	<!-- Loc - item-tooltip-dps-string -->
+	<order id="armory.order.item-tooltip-dps-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.dps"/>
+	</order>
+
+	<!-- Loc - item-tooltip-damage-string -->
+	<order id="armory.order.item-tooltip-damage-string">
+
+		<str select="itemTooltipMin-Max" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-armor-string -->
+	<order id="armory.order.item-tooltip-armor-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.armor"/>
+	</order>
+
+	<!-- Loc - item-tooltip-blockvalue-string -->
+	<order id="armory.order.item-tooltip-blockvalue-string">
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.block"/>
+	</order>
+
+  	<!-- Loc - item-tooltip-StatModifiers-string -->
+	<order id="armory.order.item-tooltip-statmodifiers-string">
+		<str select="itemTooltipStatModifiers" space="yes"/>
+
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-resistances-string -->
+	<order id="armory.order.item-tooltip-resistances-string">
+		<str select="itemTooltipResistancesValue" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-miniSkillRequired-string -->
+
+	<order id="armory.order.item-tooltip-miniSkillRequired-string">
+		<str id="armory.item-tooltip.requires" space="yes"/>
+		<str select="datainsert1" space="yes"/>
+		<str id="armory.item-tooltip.parenthesisOpen"/>
+		<str select="datainsert2"/>
+		<str id="armory.item-tooltip.parenthesisClose"/>
+	</order>
+
+	<!-- Loc - item-tooltip-requiredAbility-string -->
+
+	<order id="armory.order.item-tooltip-requiredAbility-string">
+		<str id="armory.item-tooltip.requires" space="yes"/>
+		<str select="datainsert1"/>
+	</order>
+
+	<!-- Loc - item-tooltip-requiredPersonalArenaRating -->
+	<order id="armory.order.item-tooltip-requiredPersonalArenaRating">
+		<str id="armory.item-tooltip.requires.personalarena" space="yes"/>
+		<str select="datainsert1"/>
+
+	</order>
+
+	<!-- Loc - item-tooltip-ratingStats-string -->
+	<order id="armory.order.item-tooltip-ratingStats-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2"/>
+		<str id="armory.labels.period"/>
+	</order>
+
+		<!--  Loc - Mana Regen -->
+
+	<order id="armory.order.item-tooltip-manaRegen-string">
+		<str select="datainsert1" space="yes"/>
+		<str select="datainsert2" space="yes"/>
+		<str select="datainsert3" space="yes"/>
+		<str id="armory.labels.period"/>
+	</order>
+
+<!--done-->
+
+	<!-- Loc - armory.select-team-type.label-string -->
+
+	<order id="armory.select-team-type.label-string">
+		<str select="selectTeamType"/>
+	</order>
+
+<!--/end kr ordering-->
+
+    <!-- strings used in every page -->
+
+	<str id="armory.labels.zh_cn">简体中文</str>
+	<str id="armory.labels.region.zh_cn">中国大陆</str>
+
+	<str id="armory.labels.zh_tw">繁體中文</str>
+	<str id="armory.labels.region.zh_tw">台灣、香港與澳門</str>
+
+	<str id="armory.maintenance.text">В Оружейной проводятся технические работы. Зайдите, пожалуйста, попозже.</str>
+
+	<str id="armory.item-tooltip.requires">Требуется указать</str>
+	<str id="armory.item-tooltip.requires.personalarena">Требуется указать индивидуальный рейтинг арены персонажа</str>
+
+	<region>
+		<str id="US" name="Сев. и Южн. Америка" url="http://www.wowarmory.com"/>
+		<str id="EU" name="Европа" url="http://eu.wowarmory.com"/>
+		<str id="KR" name="Корея" url="http://kr.wowarmory.com"/>
+		<str id="CN" name="Китай" url="http://cn.wowarmory.com"/>
+		<str id="TW" name="Тайвань" url="http://tw.wowarmory.com"/>
+	</region>
+	<common>
+
+		<str id="the-wow-armory">Оружейная World of Warcraft</str>
+		<str id="meta-description">Оружейная — это обширная база данных с прозрачным и удобным интерфейсом, по которой можно производить поиск. Все данные поступают напрямую из игровых миров, поэтому в Оружейной вы найдете самую полную и свежую информацию о персонажах, командах Арены, гильдиях, предметах и наградах для фракций World of Warcraft.</str>
+		<str id="the-armory">Оружейная</str>
+		<str id="search-armory">Поиск по Оружейной</str>
+		<str id="error.selectCategory">Выберите рубрику</str>
+		<str id="error.twoChars">Искомое слово должно содержать как минимум 2 символа</str>
+
+		<str id="related-info.header.related-links">Тематические ссылки</str>
+		<str id="related-info.header.armorynew">Горячие новости</str>
+		<str id="related-info.header.updates">Новости</str>
+		<str id="related-info.header.faq">Вопросы и ответы</str>
+		<str id="related-info.header.noflash">Внимание! Требуется Adobe Flash Player версии 9 или выше.</str>
+		<str id="related-info.noflash">По всей видимости, на вашем компьютере не установлен Adobe Flash Player или вы пользуетесь более ранней версией, чем 9. Для корректного использования всех функций Оружейной необходим Flash Player 9 (или более поздняя версия). Нажмите кнопку (см. выше), чтобы загрузить новейшую версию Adobe Flash Player.</str>
+
+		<str id="labels.regioncolon">Регион:</str>
+		<str id="labels.selectregioncolon">Выберите регион:</str>
+
+		<str id="region.US">США</str>
+		<str id="region.EU">Европа</str>
+		<str id="region.KR">한국</str>
+
+		<str id="region.CN">中国大陆</str>
+		<str id="region.TW">台灣、香港與澳門</str>
+
+		<str id="labels.usoceanic">США</str>
+		<str id="labels.europe">Европа</str>
+		<str id="labels.korea">한국</str>
+		<str id="en_us">English (USA)</str>
+
+		<str id="en_gb">English (EU)</str>
+		<str id="de_de">Deutsch</str>
+		<str id="fr_fr">Français</str>
+		<str id="es_es">Español (EU)</str>
+		<str id="es_mx">Español (AL)</str>
+		<str id="ko_kr">한국어</str>
+
+		<str id="ru_ru">Русский</str>
+		<str id="zh_cn">简体中文</str>
+		<str id="zh_tw">繁體中文</str>
+
+		<str id="search.relevance">Соответствие</str>
+		<str id="items.relevance.percent">% соответствия</str>
+
+		<str id="labels.languagecolon">Язык:</str>
+		<str id="labels.selectlanguagecolon">Выберите язык:</str>
+
+		<str id="menu.armory">Оружейная</str>
+		<str id="menu.arenateams">Команды Арены</str>
+		<str id="menu.characters">Персонажи</str>
+		<str id="menu.guilds">Гильдии</str>
+
+		<str id="menu.items">Предметы</str>
+		<str id="menu.arena">Арена</str>
+		<str id="menu.profiles">Профили</str>
+		<str id="menu.searches">Поиск</str>
+
+		<str id="url.wow">http://www.wow-europe.com</str>
+		<str id="url.blizzard">http://www.blizzard.co.uk</str>
+
+		<str id="url.armory">http://eu.wowarmory.com</str>
+
+		<str id="url.signup">http://signup.wow-europe.com</str>
+		<str id="url.loginsupport">http://www.wow-europe.com/login-support/</str>
+
+		<str id="url.privacy">http://eu.blizzard.com/ru/privacy.html</str>
+		<str id="url.legalfaq">http://eu.blizzard.com/ru/legalfaq.html</str>
+
+		<str id="report-translation">Сообщите об ошибке в переводе на форуме, посвященном вопросам перевода и локализации.</str>
+		<str id="external-link">Эта ссылка ведет за пределы Оружейной.</str>
+
+		<str id="report-error">Сообщите об ошибке перевода или технической проблеме в Оружейной на русскоязычном форуме технической поддержки.</str>
+
+		<str id="labels.site">World of Warcraft</str>
+
+		<str id="pin.searchforandpin">Чтобы сохранить профиль персонажа, вы должны сначала найти его через поиск.</str>
+
+		<str id="pin.enabledual">Включить подсказки второго уровня</str>
+		<str id="pin.dualdesc">При включении двойных подсказок к предметам вы сможете просматривать вторую подсказку с харакетристиками для данного типа экипировки в профиле вашего основного персонажа.</str>
+		<str id="pin.unpin">Не сохранять профиль</str>
+
+		<str id="labels.privacy">Политика конфиденциальности</str>
+		<str id="labels.copyright">©Blizzard Entertainment, Inc., 2010 г. Все права защищены.</str>
+		<str id="labels.proprietary">Все содержащиеся здесь данные являются собственностью Blizzard Entertainment, Inc. Вы обладаете ограниченной лицензией на частное использование этих данный в некоммерческих целях.</str>
+
+		<str id="searchBox.search-the-armory">Поиск по Оружейной</str>
+
+		<str id="guild-search.label.enter-guild-name">Введите название гильдии</str>
+		<str id="character-search.label.enter-character-name">Введите имя персонажа</str>
+		<str id="character-search.label.enter-team-name">Введите название команды</str>
+
+		<str id="armory.none">Нет</str>
+
+		<str id="user.select.character">Выбор персонажа</str>
+		<str id="user.bookmark.character">Запомнить этого персонажа</str>
+		<str id="user.bookmark.logintobookmark">Войдите, чтобы запомнить профиль.</str>
+		<str id="user.bookmark.tooltip">Вы можете запомнить до 30 профилей персонажа.</str>
+		<str id="user.bookmark.maxedtooltip">Вы можете запомнить до 30 профилей персонажа. Для просмотра воспользууйтесь меню в верхнем правом углу экрана.</str>
+		<str id="user.bookmark.previous">Пред.</str>
+
+		<str id="user.bookmark.forward">След.</str>
+		<str id="user.change.character">Мои персонажи</str>
+		<str id="user.change.bookmarks">Выбранные персонажи</str>
+		<str id="user.no.character">Нет выбранных персонажей</str>
+		<str id="user.manage.chars">Управл. персонажами</str>
+		<str id="user.manage.settings">Изменить</str>
+
+		<str id="loading">Идет загрузка.</str>
+		<str id="saving">Сохранение...</str>
+		<str id="pose_saved">Поза сохранена!</str>
+		
+	</common>
+
+	<character>
+		<str id="charLevelStr">Уровень <param1/> <param2/> <param3/>
+
+    </str>
+    <!-- i.e. Level 80(param1) Dranei(param2) Paladin(param3)-->
+		<str id="character-name">Имя персонажа</str>
+		<str id="character.health">Здоровье:</str>
+		<str id="character.rage">Ярость:</str>
+		<str id="character.energy">Энергия:</str>
+		<str id="character.mana">Мана:</str>
+
+		<str id="character.runicpower">Сила рун:</str>
+		<str id="character-profile">Профиль персонажа</str>
+		<str id="character-profiles">Профили персонажей</str>
+		<str id="character-level">Уровень</str>
+		<str id="character-level-sheet">Уровень</str>
+		<str id="noteten">Внимание! Персонажи ниже 10-го уровня не показываются.</str>
+
+		<str id="character.tip.primary">Данный персонаж выбран в качестве вашего основного персонажа. Ссылка на его профиль будет показываться в правом верхнем углу Оружейной.</str>
+		<str id="character.tip.secondary">Профиль этого персонажа отмечен закладкой внутри профиля вашего основного персонажа. Щелкните по нему, чтобы выбрать этого персонажа в качестве основного.</str>
+	</character>
+	<character-select>
+		<str id="makePrimary">Выбрать в качестве основного персонажа</str>
+		<str id="removeFromEasyAccess">Удалить персонажа из меню «Мои персонажи»</str>
+		<str id="selectedCharacters">Мои персонажи</str>
+
+		<str id="inactiveLicense">Примечание: эта учетная запись неактивна.</str>
+		<str id="availableSlot">Свободная ячейка для персонажа</str>
+		<str id="easyAccessLimit">Вы уже ввели в меню «быстрого перехода» максимально допустимое количество персонажей. Чтобы добавить нового персонажа, необходимо удалить одного из нынешних.</str>
+		<str id="addToEasyAccess">Добавить персонажа в меню «Мои персонажи»</str>
+		<str id="noCharsAvailable">На этой учетной записи нет персонажей, которых можно было бы добавить в меню «быстрого перехода». Возможно, все персонажи этой записи уже присутствуют в меню.</str>
+		<str id="charSelection">Выбор персонажа</str>
+
+		<str>
+      <h1>Выбор персонажа</h1>
+		<p>Этот интерфейс позволяет вам выбрать для быстрого доступа до <strong>трех</strong> персонажей на этой учетной записи. Если у вас более трех персонажей, вам нужно будет заменить одного из них на нового.</p>
+		<p>
+        <strong>Примечание. </strong>Выбранные пресонажи также будут получать уведомления или приглашения на события.</p>
+
+    </str>
+	</character-select>
+	<custom-rss>
+		<str id="activity">Новости персонажа</str>
+		<str id="facebook_link">К приложению «Оружейная» на Facebook</str>
+		<str id="activity_desc">Отображаются последние 50 событий, связанных с персонажем.</str>
+		<str id="feedcustom">Настройка ленты новостей</str>
+
+		<str id="backtoprofile">По умолчанию</str>
+		<str id="feedoptions">Параметры ленты</str>
+		<str id="whatisthis">Для чего эта страница?</str>	
+		<str id="whatisthis.help">Этот инструмент позволяет вам настраивать новостную ленту RSS/Atom, включив в нее до 5 персонажей, и добавлять ленту новостей в вашу любимую RSS-ленту.<p/>Более подробная информация содержится в разделе вопросов и ответов (см. ниже).</str>	
+		<filters>
+			<str id="achievements">Достижения</str>
+			<str id="criteria">Критерии достижения</str>
+
+			<str id="bosskills">Убийства боссов</str>
+			<str id="loot">Добыча</str>
+			<str id="respec">Перераспределение талантов</str>
+		</filters>
+		<str id="more">подробнее</str>
+		<str id="less">менее подробно</str>
+
+		<str id="min.rarity">Минимальная степень редкости</str>
+		<str id="min.ilvl">Минимальный уровень предмета</str>
+		<str id="add_chars">Персонажи (не более 5):</str>
+		<str id="add_example">Пример: </str>
+		<str id="add_example.char_realm">Персонаж@Игровой мир</str>
+		<str id="rss_url">Адрес RSS-ленты:</str>
+
+		<str id="copy_to">Копировать в буфер</str>
+		<str id="cantfind">Невозможно найти XXX</str> <!-- XXX is replaced with the character and realm -->
+		<str id="no_char">Не указан персонаж!</str>
+		<str id="no_realm">Не указан игровой мир!</str>
+		<str id="char_remove">Удален</str>
+		<str id="copied">Скопировано!</str>
+
+		<str id="recent_act">Последние новости</str>
+		<str id="viewfull_feed">Более ранние новости</str>
+		<str id="currently_equipped">(Экипировано)</str>
+		<str id="today">Сегодня</str>
+		<str id="yesterday">Вчера</str>
+		<str id="previous">Предыдущие новости</str>
+
+	</custom-rss>
+	<dungeons>
+		<str id="dungeonsandraids">Подземелья и рейды</str>
+		<str id="bosses">Боссы</str>
+
+		<str id="difficulty.title">Сложность:</str>
+		<str id="difficulty.all">Героическая и обычная</str>
+
+		<str id="difficulty.normal">Обычная</str>
+		<str id="difficulty.normalonly">Только обычная</str>
+		<str id="difficulty.heroic">Героическая</str>
+		<str id="difficulty.heroiconly">Только героическая</str>
+	</dungeons>
+
+    <guild>
+
+		<str id="guild">Гильдия</str>
+		<str id="guild-rank-strOrder">Ранг <param1/>
+    </str>
+    <!-- string order, ex: Rank 1 -->
+		<str id="guild-leader">Глава гильдии</str>
+		<str id="guild-profile">Профиль гильдии</str>
+		<str id="guild-profiles">Профили гильдии</str>
+
+		<str id="members">Участники</str>
+		<str id="totalmembers">Всего участников</str>
+		<str id="member">Участник</str>
+		<str id="guildrank">Ранг гильдии</str>
+		<str id="guild-rank">Ранг </str>
+		<str id="guild-leader">Глава гильдии</str>
+
+		<str id="noteten">Внимание! Участники ниже 10-го уровня не показываются.</str>
+		<str id="toomany">Примечание. В гильдии слишком много участников. В список вошли только персонажи высоких уровней.</str>
+		<str id="searchroster">Поиск по списку гильдии</str>
+	</guild>
+
+<!--general strings-->
+    <general>
+		<str id="noresultsfound">Ничего найти не удалось</str>
+
+		<str id="race">Раса</str>
+		<str id="class">Класс</str>
+		<str id="sort">Сортировать по</str>
+		<str id="colon">:</str>
+		<str id="exclamation">!</str>
+		<str id="rank">Ранг</str>
+
+		<str id="armory.character.lastModified">Последнее обновление:</str>
+		<str id="armory.labels.na">Не подходит</str>
+		<str id="armory.labels.na">Не подходит</str>
+		<str id="playervsenvironment">PvE</str>
+		<str id="playervsplayer">PvP</str>
+
+		<str id="race-class">Раса/класс</str>
+
+		<str id="percentagecolon">Процент: </str>
+		<str id="totalgamescolon">Всего игр сыграно в этом сезоне: </str>
+		<str id="totalopponentscolon">Всего уникальных противников: </str>
+
+	</general>
+
+	<str id="armory.url.battlegroups">http://www.wow-europe.com/ru/info/basics/battlegroups.html</str>
+	<str id="armory.url.blizzard">http://www.blizzard.co.uk</str>
+	<str id="armory.url.wow">http://www.wow-europe.com</str>
+	<str id="armory.url.armory">http://eu.wowarmory.com</str>
+	<str id="armory.url.talents">http://www.wow-europe.com/ru/info/basics/talents</str>
+	<str id="armory.path.talents">/shared/global/talents</str>
+
+	<str id="armory.path.talents.seasonone">/shared/global/talents/season1</str>
+	<str id="armory.talents.langDir">/ru</str>
+	<str id="armory.url.forums.wow">http://forums.wow-europe.com/board.html</str>
+	<str id="armory.mark.colon">:</str>
+
+    <!-- strings used in a lot of pages -->
+	<semicommon>
+
+		<str id="realm">Игровой мир</str>
+		<str id="faction">Фракция</str>
+		<str id="horde">Орда</str>
+		<str id="alliance">Альянс</str>
+		<str id="factionrewards">Награды фракции</str>
+		<str id="alliancerewards">Награды Альянса</str>
+
+		<str id="horderewards">Награды Орды</str>
+	</semicommon>
+
+	<arena>
+		<str id="arena-teams">Команды Арены</str>
+		<str id="select-battlegroup">Выберите боевую группу</str>
+		<str id="select-team-type">Выберите категорию команды</str>
+
+		<str id="battlegroup">Боевая группа</str>
+		<str id="arena">Арена</str>
+		<str id="arena-ladders">Рейтинг Арены</str>
+		<str id="team-profiles">Профили команд</str>
+		<str id="arena-reports">Отчеты Арены</str>
+		<str id="team-profile">Профиль команды</str>
+
+		<str id="match-history">История матчей</str>
+		<str id="match-report">Итоги матчей</str>
+		<str id="opponent">Название команды противника</str>
+		<str id="ratingchange">Изменения рейтинга</str>
+		<str id="newrating">Новый рейтинг</str>
+		<str id="date">Дата</str>
+
+		<str id="through"> период </str>
+		<str id="current">сейчас</str>
+		<str id="resultsPerPage">Результатов на странице:</str>
+		<str id="to"> - </str>
+		<str id="time">Время</str>
+
+		<str id="findMatch">Найти матч в сетке</str>
+		<str id="goToMatchReport">На страницу итогов матча</str>
+		<str id="deletedTeam">Команда была распущена</str>
+		<str id="opponent-history">История матчей противника</str>
+		<str id="totalgames">Сыграно матчей</str>
+		<str id="totalgames.short">СМ</str>
+
+		<str id="wins">Победы</str>
+		<str id="wins.short">ПБД</str>
+		<str id="losses">Поражения</str>
+		<str id="losses.short">ПРЖ</str>
+
+		<str id="winp">% побед</str>
+		<str id="avgchange">Средн. смена за матч</str>
+
+		<str id="overallchange">Смены рейтинга Δ</str> <!-- Net Δ  -->
+		<str id="overallchange.tooltip">Кол-во смен рейтинга</str>
+
+		<str id="seasonbefore">Сезон </str>
+		<str id="seasonafter"/>
+
+		<str id="realmcolon">Игровой мир:</str>
+
+		<str id="battlegroupcolon">Боевая группа:</str>
+		<str id="killingblows">Смертельных ударов</str>
+		<str id="killingblows.short">СУ</str>
+
+		<str id="dmgin">Получено урона во время матча</str>
+		<str id="dmgin.short">Получено урона</str>
+		<str id="dmgout">Нанесено урона во время матча</str>
+
+		<str id="dmgout.short">Урон</str>
+		<str id="healout">Нанесено исцеления во время матча</str>
+		<str id="healout.short">Исцеление</str>
+		<str id="healin">Получено исцеления во время матча</str>
+		<str id="healin.short">Получено исцеления</str>
+		<str id="lastweek">На прошлой неделе</str>
+
+		<str id="team-name">Название команды</str>
+		<str id="error.nodata">На этой странице нет данных.</str>
+		<str id="team-type">Категория команды</str>
+		<str id="team-members">Участники команды: </str>
+		<str id="teammembers">Участники команды</str>
+		<str id="viewmatchhistory">Посмотреть историю матчей против этой команды</str>
+
+		<legend>
+			<str id="arenaladder.title">Что обозначают значки Арены?</str>
+			<str id="arena.title">Что обозначают значки Арены?</str>
+			<str id="arena">Эти символы служат для визуального обозначения доблести, проявленной вашей командой на Арене. Чем выше команда поднимается в рейтинге Арены, тем внушительнее выглядит ее значок.</str>
+			<str id="arena.uranked">Без ранга</str>
+			<str id="arena.top1000">В первой тысяче</str>
+
+			<str id="arena.top500">В первых 500</str>
+			<str id="arena.top100">В первой сотне </str>
+			<str id="arena.top10">В первой десятке</str>
+			<str id="arena.rank1">1-е место</str>
+		</legend>
+
+		<arenaLadderData>
+
+			<str id="armory.arena-ladder-data.header.arena.tournament">Турнир Арены</str>
+			<str id="armory.arena-ladder-data.header.2v2">Рейтинг Арены среди команд 2х2</str>
+			<str id="armory.arena-ladder-data.header.3v3">Рейтинг Арены среди команд 3х3</str>
+			<str id="armory.arena-ladder-data.header.5v5">Рейтинг Арены среди команд 5х5</str>
+			<str id="armory.arena-ladder-data.tab.2v2">Команды Арены 2х2</str>
+			<str id="armory.arena-ladder-data.tab.3v3">Команды Арены 3х3</str>
+
+			<str id="armory.arena-ladder-data.tab.5v5">Команды Арены 5х5</str>
+			<str id="armory.arena-ladder-data.results1">Выведение результатов </str>
+			<str id="armory.arena-ladder-data.all-realms">Все игровые миры</str>
+			<str id="armory.arena-ladder-data.1st">-й</str>
+			<str id="armory.arena-ladder-data.st">-й</str>
+			<str id="armory.arena-ladder-data.nd">-й</str>
+
+			<str id="armory.arena-ladder-data.rd">-й</str>
+			<str id="armory.arena-ladder-data.th">-й</str>
+		</arenaLadderData>
+	</arena>
+
+	<arenaReport>
+		<str id="reportHeader">
+      <param1/>v<param1/> Итоги матчей Арены</str>
+
+    <!-- string order, aka 5v5 Arena Match Report -->
+		<str id="viewTeamHistory">Просмотреть историю матчей этой команды</str>
+		<str id="viewTeamProfile">Просмотреть профиль команды</str>
+		<str id="gameInfo.map">Карта:</str>
+		<str id="gameInfo.matchLength">Продолжительность:</str>
+		<str id="gameInfo.startTime">Время начала матча:</str>
+
+		<str id="filter.all">Все</str>
+		<str id="filter.ratingBetween">По рейтингу</str>
+		<str id="filter.ratingChange">ПО смене рейтинга</str>
+		<str id="filter.dateRange">По дате</str>
+		<str id="graph.season">Сезон </str>
+		<str id="graph.graph"> График</str>
+
+		<str id="changeseason">Изменить сезон:</str>
+		<str id="seasonfirst">Сезон </str>
+		<str id="seasonsecond"/>
+		<str id="ratingcolon">Рейтинг:</str>
+		<str id="datecolon">Дата:</str>
+		<str id="opponentcolon">Противник:</str>
+
+		<str id="gamesdisplayed">Текущие игры:</str>
+		<str id="netchange.selection.short">Смен рейтинга Δ в выборке:</str>
+		<str id="netchange.selection">Выборка рейтингов:</str>
+		<str id="of">из</str>
+		<str id="averagechange">
+      <param-html1/>/ср.матчей</str>
+
+		<str id="nogames">Команда не сыграла ни одного матча в этом сезоне</str>
+		<str id="versus">против</str>
+		<str id="versuspt1"/>
+		<str id="versuspt2"> Арена </str>
+		<str id="defeats">побеждает</str>
+		<str id="match-report">Итоги матча</str>
+
+		<str id="matchhistorygraphfor">Сетка истории матчей</str>
+		<str id="matchhistoryfilters">Фильтры истории матчей</str>
+		<str id="opponenthistoryfiltersfor">Фильтры истории противника</str>
+		<str id="matchstatistics">Статистика матчей</str>
+
+		<str id="clearmatchhighlight">СНять выделение матчей</str>
+		<str id="viewrecentgames">Посмотреть недавние игры</str>
+
+		<str id="viewcompleteseason">Посмотреть весь сезон</str>
+
+		<str id="matchlength">Длина матча: </str>
+		<str id="minutes"> мин. </str>
+		<str id="seconds">сек.</str>
+		<str id="matchstart">Время начала матча: </str>
+
+	</arenaReport>
+
+    <unsorted>
+		<str id="armory.labels.character-name">Имя персонажа</str>
+		<str id="armory.labels.team-profiles">Профили команд</str>
+		<str id="armory.labels.guild">Гильдия</str>
+		<str id="armory.labels.guilds">Гильдии</str>
+
+		<str id="armory.labels.characters">Персонажи</str>
+		<str id="armory.labels.guild-profile">Профиль гильдии</str>
+		<str id="armory.labels.guild-profiles">Профили гильдии</str>
+		<str id="armory.labels.realm">Игровой мир</str>
+		<str id="armory.labels.realmcolon">Игровой мир:</str>
+		<str id="armory.labels.battlegroupcolon">Боевая группа:</str>
+
+		<str id="armory.labels.noresultsfound">Ничего не удалось найти.</str>
+		<str id="armory.labels.faction">Фракция</str>
+		<str id="armory.labels.horde">Орда</str>
+		<str id="armory.labels.alliance">Альянс</str>
+		<str id="armory.labels.race">Раса</str>
+		<str id="armory.labels.class">Класс</str>
+
+		<str id="armory.labels.race-class">Раса/класс</str>
+		<str id="armory.labels.sort">Сортировать по</str>
+		<str id="armory.labels.lastweek">На прошлой неделе</str>
+		<str id="armory.labels.rank">Ранг</str>
+		<str id="armory.labels.ranks">Ранги</str>
+		<str id="armory.labels.team-rank">Ранг команды</str>
+
+		<str id="armory.labels.team-name">Название команды</str>
+		<str id="armory.labels.team-type">Категория команды</str>
+		<str id="armory.labels.team-members">Участники команды: </str>
+		<str id="armory.labels.members">Участники</str>
+		<str id="armory.labels.guildrank">Ранг гильдии</str>
+		<str id="armory.labels.guild-rank">Ранг </str>
+
+		<str id="armory.labels.guild-leader">Глава гильдии</str>
+		<str id="armory.labels.unique-members">Уникальные члены</str>
+		<str id="armory.labels.customrss">Новости персонажа</str>
+		<str id="armory.labels.calendarfeed">Новости календаря</str>
+
+		<str id="armory.labels.item-results">Результаты поиска среди предметов</str>
+		<str id="armory.labels.search">Поиск</str>
+
+		<str id="armory.labels.browse">Обзор</str>
+		<str id="armory.labels.arena-stats">Статистика команды Арены</str>
+		<str id="armory.labels.search-results">Поиск среди результатов</str>
+		<str id="armory.labels.advanced-filter">Расширенные критерии поиска</str>
+		<str id="armory.labels.wow">World of Warcraft</str>
+		<str id="armory.labels.copyright">©Blizzard Entertainment, Inc., 2008 г. Все права защищены.</str>
+
+		<str id="armory.labels.external-link">Эта ссылка ведет за пределы Оружейной.</str>
+		<str id="armory.labels.report-error">Сообщите о технической проблеме в Оружейной на русскоязычном форуме технической поддержки.</str>
+		<str id="armory.labels.report-translation">Эта ссылка ведет на форум, посвященный вопросам перевода и локализации.</str>
+		<str id="armory.labels.the-armory">Оружейная</str>
+		<str id="armory.labels.wow-the-armory">World of Warcraft: Оружейная</str>
+		<str id="armory.labels.armory">Оружейная</str>
+
+		<str id="armory.labels.arena">Арена</str>
+		<str id="armory.labels.search-armory">Поиск по Оружейной</str>
+		<str id="armory.labels.home">На главную</str>
+		<str id="armory.labels.item">Предмет</str>
+		<str id="armory.labels.items">Предметы</str>
+		<str id="armory.labels.item-lookup">Общие сведения о предмете</str>
+
+		<str id="armory.labels.type">Категория</str>
+		<str id="armory.labels.item-level">Уров. предм.</str>
+		<str id="armory.labels.req-level">Необх. уров.</str>
+		<str id="armory.labels.sell-price">Стоимость</str>
+		<str id="armory.labels.slot">Позиция</str>
+		<str id="armory.labels.rarity">Редкость</str>
+
+		<str id="armory.labels.na">Не подх.</str>
+		<str id="armory.labels.notapplicable">Не подходит</str>
+		<str id="armory.labels.arenaTournament">Большой Турнир</str>
+		<str id="armory.labels.comingsoon">Ожидается</str>
+		<str id="armory.labels.period">.</str>
+
+		<str id="armory.arenatab.2v2-arena-ladder">Рейтинг 2х2</str>
+
+		<str id="armory.arenatab.3v3-arena-ladder">Рейтинг 3х3</str>
+		<str id="armory.arenatab.5v5-arena-ladder">Рейтинг 5х5</str>
+		<str id="armory.arenatab.hof">Зал славы</str>
+		<str id="armory.arenatab.arenaTournament">Большой Турнир</str>
+		<str id="armory.arenatab.calc">Калькулятор Арены</str>
+
+		<str id="armory.arenatab.teamprofile">Профиль команды</str>
+
+		<str id="armory.arenatab.matchhistory">История матчей</str>
+		<str id="armory.arenatab.opponenthistory">История противника</str>
+
+		<str id="armory.dungeontab.wrath">Wrath of the Lich King</str>
+		<str id="armory.dungeontab.tbc">Burning Crusade</str>
+		<str id="armory.dungeontab.classic">Классическая игра</str>
+
+		<str id="wotlk">Wrath of the Lich King</str>
+		<str id="bc">Burning Crusade</str>
+		<str id="classic">World of Warcraft Classic</str>
+
+		<str id="armory.labels.wins">Победы</str>
+		<str id="armory.labels.winpercentage">% побед</str>
+		<str id="armory.labels.losses">Поражения</str>
+
+		<str id="armory.labels.played">Проведено</str>
+		<str id="armory.labels.twoteamstats">Статистика команд 2х2</str>
+		<str id="armory.labels.threeteamstats">Статистика команд 3х3</str>
+		<str id="armory.labels.fiveteamstats">Статистика команд 5х5</str>
+		<str id="armory.labels.teamrating">Рейтинг команды</str>
+		<str id="armory.labels.personalrating">Рейтинг персонажа</str>
+
+		<str id="armory.labels.personalrating.short">РП</str>
+		<str id="armory.labels.personalratingcolon">Рейтинг персонажа: </str>
+		<str id="armory.labels.rating">Рейтинг</str>
+		<str id="armory.labels.ratingcolon">Рейтинг: </str>
+		<str id="armory.labels.realm-name">Название игрового мира</str>
+		<str id="armory.labels.date-joined">Дата вступления</str>
+
+		<str id="armory.labels.level">Уровень</str>
+		<str id="armory.labels.games">Поединки</str>
+		<str id="armory.labels.win-loss">Победы/пораж-я</str>
+		<str id="armory.labels.games-won">Выиграно поединков</str>
+		<str id="armory.labels.thisweek">На этой неделе</str>
+		<str id="armory.labels.season">За сезон</str>
+
+		<str id="armory.labels.qualifier">Квалификатор</str>
+		<str id="armory.labels.games-woncolon">Выиграно поединков:</str>
+		<str id="armory.labels.noteam">Не входит в команду</str>
+		<str id="armory.labels.games-played">Проведено поединков</str>
+		<str id="armory.labels.last-played">Последний поединок</str>
+		<str id="armory.labels.team-results">Результаты поиска среди команд для названия</str>
+
+		<str id="armory.labels.char-results">Результаты поиска среди персонажей для имени</str>
+		<str id="armory.labels.guild-results">Результаты поиска среди гильдий для названия</str>
+		<str id="armory.labels.item-results-for">Результаты поиска среди предметов для слова</str>
+		<str id="armory.labels.back-to-results">Вернуться на страницу поиска</str>
+		<str id="armory.search.over-one-thousand">Здесь выводятся только первые 1000 результатов. Чтобы сузить критерии поиска, попробуйте задать точную форму слова или словосочетание, используя одиночные кавычки. Например, 'тень'.</str>
+		<str id="armory.labels.stats">Статистика</str>
+
+		<str id="armory.labels.copyUrl">Чтобы создать прямую ссылку на эту страницу, скопируйте адрес, щелкнув ниже:</str>
+		<str id="armory.labels.copyThisUrl">Скопировать адрес</str>
+		<str id="armory.labels.pinThisProfile">Запомнить профиль</str>
+
+		<str id="armory.labels.2v2">2х2</str>
+		<str id="armory.labels.3v3">3х3</str>
+
+		<str id="armory.labels.5v5">5х5</str>
+		<str id="armory.labels.all">Все</str>
+
+		<str id="armory.labels.whatsthis">Что это?</str>
+
+		<str id="armory.labels.gender">Пол</str>
+		<str id="armory.labels.both">Оба</str>
+
+		<str id="armory.labels.gender.0">Муж.</str>
+		<str id="armory.labels.gender.1">Жен.</str>
+		<str id="armory.labels.faction.0">Альянс</str>
+		<str id="armory.labels.faction.1">Орда</str>
+
+		<str id="armory.labels.header.profile">Профиль</str>
+		<str id="armory.labels.header.reputation">Репутация</str>
+
+		<str id="armory.labels.header.pvp">PvP</str>
+		<str id="armory.labels.header.skills">Навыки</str>
+		<str id="armory.labels.header.talents">Таланты</str>
+		<str id="armory.labels.header.arenateams">Команды Арены</str>
+		<str id="armory.labels.header.arena">Арена</str>
+		<str id="armory.labels.header.guild">Гильдия</str>
+
+		<str id="armory.labels.header.banklog">Журнал операций</str>
+		<str id="armory.labels.header.bankcontents">Содержимое банка</str>
+		<str id="armory.labels.header.guild-stats">Статистика</str>
+		<str id="armory.labels.header.guild-stats-filters">Фильтр по статистике гильдии</str>
+		<str id="armory.labels.header.guild-roster">Состав гильдии</str>
+		<str id="armory.labels.header.guild-roster-for">Состав гильдии для названия</str>
+
+		<str id="armory.labels.header.calendar">Календарь</str>
+
+		<str id="armory.var.level">@уровень</str>
+
+		<str id="armory.labels.morereputation">Репутация — искать дальше</str>
+		<str id="armory.labels.morepvp">PvP — искать дальше</str>
+		<str id="armory.labels.morearenateams">Команды Арены — искать дальше</str>
+
+		<str id="armory.labels.exaltedwith">Превознесение:</str>
+		<str id="armory.labels.notranked">Без ранга</str>
+		<str id="armory.labels.rankcolon">Ранг:</str>
+		<str id="armory.labels.standing">Статус</str>
+		<str id="armory.labels.standingcolon">Статус:</str>
+		<str id="armory.labels.teamnamecolon">Название команды:</str>
+
+		<str id="armory.labels.hks">Всего почетных убийств: </str>
+
+		<str id="armory.labels.2v2arena">Арена 2х2</str>
+		<str id="armory.labels.3v3arena">Арена 3х3</str>
+		<str id="armory.labels.5v5arena">Арена 5х5</str>
+
+<!--tabs-->
+		<str id="armory.tabs.characterSheet">Персонаж</str>
+
+		<str id="armory.tabs.profile">Профиль</str>
+		<str id="armory.tabs.talents_and_glyphs">Таланты</str>
+		<str id="armory.tabs.feed">Лента новостей</str>
+		<str id="armory.tabs.reputation">Репутация</str>
+		<str id="armory.tabs.calendar">Календарь</str>
+		<str id="armory.tabs.skills">Навыки</str>
+
+		<str id="armory.tabs.talents">Таланты</str>
+		<str id="armory.tabs.arenateams">Команды Арены</str>
+		<str id="armory.tabs.achievements">Достижения</str>
+		<str id="armory.tabs.statistics">Статистика</str>
+		<str id="armory.tabs.characters">Персонажи</str>
+		<str id="armory.tabs.guild">Гильдия</str>
+
+		<str id="armory.tabs.guilds">Гильдии</str>
+		<str id="armory.tabs.guildRoster">Состав гильдии</str>
+		<str id="armory.tabs.guildStats">Статистика</str>
+		<str id="armory.tabs.guildBankContents">Содержимое банка</str>
+		<str id="armory.tabs.guildBankLog">Журнал операций</str>
+		<str id="armory.tabs.items">Предметы</str>
+
+		<str id="armory.tabs.creatures">Существа</str>
+		<str id="armory.tabs.spells">Заклинания</str>
+		<str id="armory.tabs.dungeons">Подземелья и походы</str>
+		<str id="armory.tabs.bosses">Боссы</str>
+		<str id="armory.tabs.factions">Фракции</str>
+		<str id="armory.tabs.talentcalc">Расчет талантов</str>
+
+		<str id="armory.tabs.pettalentcalc">Расчет талантов питомца</str>
+		<str id="armory.tabs.disableTab">Разделы Оружейной, относящиеся к неактивным персонажам, отключены.</str>
+
+		<str id="armory.tabs.class.1">Воин</str>
+		<str id="armory.tabs.class.2">Паладин</str>
+		<str id="armory.tabs.class.3">Охотник</str>
+		<str id="armory.tabs.class.4">Разбойник</str>
+
+		<str id="armory.tabs.class.5">Жрец</str>
+		<str id="armory.tabs.class.6">Рыцарь смерти</str>
+		<str id="armory.tabs.class.7">Шаман</str>
+		<str id="armory.tabs.class.8">Маг</str>
+		<str id="armory.tabs.class.9">Чернокнижник</str>
+		<str id="armory.tabs.class.11">Друид</str>
+
+		<str id="armory.tabs.pet.cunning">Хитрость</str>
+		<str id="armory.tabs.pet.tenacity">Упорство</str>
+		<str id="armory.tabs.pet.ferocity">Свирепость</str>
+
+		<str id="armory.tabs.wotlk">Wrath of the Lich King</str>
+		<str id="armory.tabs.bc">Burning Crusade</str>
+
+		<str id="armory.tabs.classic">WoW Classic</str>
+
+		<str id="armory.tabs.character.guild.mouseover">Щелкнув по этой закладке, вы попадете в раздел, посвященный  гильдиям.</str>
+		<str id="armory.tabs.character.arenateams.mouseover">Щелкнув по этой закладке, вы попадете в раздел, посвященный командам Арены.</str>
+		<str id="armory.tabs.arenatournament.mouseover">Щелкнув по этой закладке, вы попадете в раздел, посвященный Турниру Арены.</str>
+		<str id="armory.tabs.hof.mouseover">Щелкнув по этой закладке, вы попадете в Зал славы.</str>
+		<str id="armory.arenatournament.tabs.ladder.mouseover">Рейтинг по итогам отборочных матчей</str>
+
+		<!-- menu navigation strings not found in other places -->
+		<str id="armory.menu.itemCollections">Коллекции предметов</str>
+		<str id="armory.menu.heirloomItems">Наследные предметы</str>
+		<str id="armory.menu.tokens">Знаки</str>
+		<str id="armory.menu.badgeofjustice">Знак правосудия</str>
+		<str id="armory.menu.emblemofheroism">Эмблема героизма</str>
+
+		<str id="armory.menu.emblemofvalor">Эмблема доблести</str>
+		<str id="armory.menu.emblemofconquest">Эмблема завоевания</str>
+		<str id="armory.menu.emblemoftriumph">эмблемы триумфа</str>
+		<str id="armory.menu.emblemoffrost">Эмблема льда</str>
+		<str id="armory.menu.pvpRewards">Награды за PvP</str>
+		<str id="armory.menu.arenaRewards">Награды Арены</str>
+
+		<str id="armory.menu.season8">8-й сезон</str>
+		<str id="armory.menu.season7">7-й сезон</str>
+		<str id="armory.menu.season6">6-й сезон</str>
+		<str id="armory.menu.season5">5-й сезон</str>
+		<str id="armory.menu.season4">4-й сезон</str>
+		<str id="armory.menu.minor">Малые</str>
+
+		<str id="armory.menu.major">Большие</str>
+		<str id="armory.menu.companions">Спутники</str>
+		<str id="armory.menu.adv-item-search">Расширенный поиск предметов</str>
+		<str id="armory.menu.battlegroups">Боевые группы</str>
+		<str id="armory.menu.info">Информация</str>
+		<str id="armory.menu.achievementFirsts">Достижения "Первый на сервере"</str>
+
+		<str id="armory.menu.updates">Новости Оружейной</str>
+		<str id="armory.menu.faqs">Вопросы и ответы по Оружейной</str>
+		<str id="armory.menu.tools">Инструменты</str>
+		<str id="armory.menu.searchPlugin">Инструмент для поиска в браузере</str>
+
+<!--character profile header-->
+		<str id="armory.icon.realm">Игровой мир</str>
+
+		<str id="armory.icon.battleGroup">Боевая группа</str>
+		<str id="armory.forum.link.realm">Щелкнув по этой закладке, вы попадете на форум игровых миров.</str>
+		<str id="armory.forum.link.battleGroup">Щелкнув по этой закладке, вы попадете на форум боевых групп.</str>
+		<str id="armory.forum.link.arena">Эта ссылка ведет на форум Арены</str>
+
+<!--arena-tournament.xsl tabs-->
+		<str id="armory.arenatournament.tabs.news">Новости</str>
+
+		<str id="armory.arenatournament.tabs.info">Информация</str>
+		<str id="armory.arenatournament.tabs.faq">Часто задаваемые вопросы</str>
+		<str id="armory.arenatournament.tabs.rules">Правила</str>
+		<str id="armory.arenatournament.tabs.venues">Места встречи</str>
+		<str id="armory.arenatournament.tabs.prizes">Призы</str>
+		<str id="armory.arenatournament.tabs.partners">Союзники</str>
+
+		<str id="armory.arenatournament.tabs.brackets">Категории</str>
+		<str id="armory.arenatournament.tabs.ladder">Рейтинг</str>
+		<str id="armory.arenatournament.header.news">Новости</str>
+
+<!--battlegroups.xsl-->
+		<str id="armory.select-battlegroup.label.select-realm">или выберите игровой мир:</str>
+		<str id="armory.select-battlegroup.label.coliseum">Колизей</str>
+
+		<str id="armory.select-battlegroup.label.battlegroup-search">Не знаете, в какую боевую группу входит ваш игровой мир?</str>
+		<str id="armory.select-battlegroup.label.enter-realm-name">Введите название игрового мира</str>
+		<str id="armory.select-battlegroup.link.view-realms">Список игровых миров, входящих в вашу боевую группу</str>
+		<str id="armory.select-battlegroup.link.battlegroupPage">http://www.wow-europe.com/ru/info/basics/battlegroups.html</str>
+
+<!--select-team-type.xsl-->
+		<str id="armory.select-team-type.label.2х2team">Команда 2х2</str>
+
+		<str id="armory.select-team-type.label.3х3team">Команда 3х3</str>
+		<str id="armory.select-team-type.label.5х5team">Команда 5х5</str>
+
+<!--character-info.xsl-->
+		<str id="armory.character-info.header.character-profile">профиль персонажа</str>
+		<str id="armory.character-info.label.member-of">Входит в</str>
+		<str id="armory.character-info.label.total-guild-members">Число участников гильдии:</str>
+
+		<str id="armory.character-info.label.2х2team">Команда Арены 2х2</str>
+		<str id="armory.character-info.label.3х3team">Команда Арены 3х3</str>
+		<str id="armory.character-info.label.5х5team">Команда Арены 5х5</str>
+		<str id="armory.character-info.teamPossessive"/>
+		<str id="armory.character-info.characterPossessive"/>
+		<str id="armory.character-info.statsBefore">Статистика для </str>
+		<str id="armory.character-info.statsAfter"/>
+
+<!--team-info.xsl-->
+		<str id="armory.team-info.2v2">2х2</str>
+		<str id="armory.team-info.3v3">3х3</str>
+		<str id="armory.team-info.5v5">5х5</str>
+		<str id="armory.team-info.titleBefore"/>
+		<str id="armory.team-info.titleAfter"> Статистика команды Арены</str>
+
+		<str id="armory.team-info.team-rating">Рейтинг команды</str>
+
+<!--character-search.xsl-->
+		<str id="armory.character-search.header.character-search">Поиск среди персонажей</str>
+		<str id="armory.character-search.label.search-for-character">Поиск по профилям персонажей</str>
+
+		<str id="armory.character-search.label.team-profile">Профиль команды</str>
+		<str id="armory.team-search.team-search">Поиск среди команд</str>
+
+<!--guild-search.xsl-->
+		<str id="armory.guild-search.header.guild-search">Поиск среди гильдий</str>
+		<str id="armory.guild-search.label.search-for-guild">Поиск по профилям гильдий</str>
+
+<!--guild-search.xsl-->
+		<str id="armory.item-search.header.item-search">Поиск среди предметов</str>
+		<str id="armory.item-search.label.search-for-item">Поиск по предметам</str>
+		<str id="armory.item-search.label.enter-item-name">Введите название предмета</str>
+
+<!--team-search.xsl-->
+		<str id="armory.team-search.title">Поиск по профилям команд</str>
+
+<!--mini-search-templates.xsl-->
+		<str id="armory.mini-search.label.arena-ladder.2х2">Рейтинг команд Арены 2х2</str>
+		<str id="armory.mini-search.label.arena-ladder.3х3">Рейтинг команд Арены 3х3</str>
+		<str id="armory.mini-search.label.arena-ladder.5х5">Рейтинг команд Арены 5х5</str>
+		<str id="armory.mini-search.label.arena-ladder.expand">Развернуть таблицу рейтинга Арены</str>
+
+		<str id="armory.mini-search.label.arena-ladder.collapse">Свернуть таблицу рейтинга Арены</str>
+		<str id="armory.mini-search.label.search.expand">Развернуть список результатов поиска</str>
+		<str id="armory.mini-search.label.search.collapse">Свернуть список результатов поиска</str>
+		<str id="armory.mini-search.label.character.expand">Развернуть список персонажей</str>
+		<str id="armory.mini-search.label.character.collapse">Свернуть список персонажей</str>
+		<str id="armory.mini-search.label.character.default">Вернуться к исходному списку</str>
+
+		<str id="armory.mini-search.label.guild.expand">Развернуть список гильдий</str>
+		<str id="armory.mini-search.label.guild.collapse">Свернуть список гильдий</str>
+		<str id="armory.mini-search.label.items.expand">Развернуть список предметов</str>
+		<str id="armory.mini-search.label.items.collapse">Развернуть список предметов</str>
+		<str id="armory.mini-search.label.maxlength">16</str>
+		<str id="armory.mini-search.label.maxlength.arena">12</str>
+
+<!--character-sheet-Base Stats-->
+		<str id="armory.character.refreshheader">Невозможно вывести информацию о персонаже</str>
+
+		<str id="armory.character-sheet.ttip.loading">Подождите, пожалуйста.</str>
+
+<!--talents-->
+		<str id="talents.meleeRange">Дистанция ближнего боя</str>
+		<str id="talents.rangedSpell"> Радиус действия<param1/> </str>
+
+    <!-- string order, ie 20 yd range -->
+		<str id="talents.cooldown.min"> Восстановление: <param1/>  мин</str>
+    <!-- string order, ie - 3 min cooldown -->
+		<str id="talents.cooldown.sec">Восстановление: <param1/>  сек</str>
+    <!-- string order, ie - 12 sec cooldown -->
+
+		<str id="talents.casttime.instant-cast">Мгновенное действие</str>
+		<str id="talents.casttime.instant"> Мгновенное действие </str>
+		<str id="talents.casttime.channeled">Потоковое</str>
+		<str id="talents.casttime.non-instant"> Применение: <param1/>  сек</str>
+    <!-- string order, ie - 1.5 sec cast -->
+
+		<str id="talents.spelltype.mana-percent">
+      <param1/>% запаса маны</str>
+    <!-- string order, ie - 17% of base mana -->
+		<str id="talents.spelltype.mana">
+      <param1/> Мана</str>
+		<str id="talents.spelltype.energy">
+      <param1/> Энергия</str>
+
+		<str id="talents.spelltype.rage">
+      <param1/> Ярость</str>
+		<str id="talents.spelltype.runic">
+      <param1/> Сила рун</str>
+		<str id="talents.spelltype.blood">
+      <param1/> Кровь</str>
+
+		<str id="talents.spelltype.unholy">
+      <param1/> Нечестивость</str>
+		<str id="talents.spelltype.frost">
+      <param1/> Лед</str>
+		<str id="notApplicable">НЕТ</str>
+		<str id="notApplicable.tooltip">У этого персонажа нет двойной специализации</str>
+
+		<str id="emptyGlyph">Нет символа</str>
+		<str id="activeSpecTxt">Активный</str>
+		<str id="unused">Не используется</str>
+		<str id="talents.reqTalents.single">Требуется {0} очко, вложенное в {1}.</str> <!-- ie: Requires 1 point in Amplify Curse. -->
+		<str id="talents.reqTalents.plural">Требуется {0} очк., вложенных {1}.</str> <!-- ie: Requires 5 points in Contagion. -->
+
+		<str id="talents.reqTalentTree">Требуется {0} очк., вложенных в {1}.</str> <!-- ie: Requires 25 points in Holy Talents. -->
+		<str id="talents.rankStrOrder">Уровень {0}/{1}</str>
+    <!-- ie: Rank 1/5 -->
+		<str id="talents.reset">Сброс</str>
+		<str id="talents.resetAll">Сбросить все</str>
+		<str id="talents.linkToBuild">Ссылка</str>
+
+		<str id="talents.linkToBuild.tooltip">Щелкните по этой ссылке и скопируйте адрес страницы в адресной строке.</str>
+		<str id="talents.pointsSpent">Потрачено очков</str>
+		<str id="talents.pointsLeft">Осталось очков</str>
+		<str id="talents.reqLevel">Требуется уровень</str>
+		<str id="talents.nextRank">Следующий уровень</str>
+		<str id="armory.talents.export.click">Создание копии данной раскладки и ее перенос в расчет талантов.</str>
+
+		<str id="armory.talents.export.exportbuild">Копия</str>
+		<str id="talents.print">Печать</str>
+		<str id="talents.printable.classTalents">Таланты класса \"{0}\"</str>
+		<str id="talents.printable.minReqLevel">Требуется уровнь: {0}</str>
+		<str id="talents.printable.reqTalentPts">Требуется очков: {0}</str>
+		<str id="talents.printable.treeTalents">Таланты ветки \"{0}\"</str>
+
+		<str id="talents.printable.ptsPerTree">{0} очк.</str>
+		<str id="talents.printable.dontWastePaper">Берегите бумагу!</str>
+
+		<str id="armory.dungeons.badgeofjustice">Знаки справедливости (для героического уровня сложности)</str>
+
+<!--item-info.xsl-->
+		<str id="armory.creature.classification.1">Элита</str>
+		<str id="armory.creature.classification.2">Элита (редкий)</str>
+
+		<str id="armory.creature.classification.3">Босс</str>
+		<str id="armory.creature.classification.4">Редкий</str>
+
+<!--search-data-items.xsl-->
+		<str id="armory.search-data-items.relatedfactions">Связанные фракции: </str>
+		<str id="armory.search-data-items.relateddungeons">Связанные подземелья: </str>
+		<str id="armory.search-data-items.toomany">Вашему запросу отвечает слишком много элементов. Попробуйте сузить критерии поиска.</str>
+
+<!--error2.xsl-->
+		<str id="armory.labels.errormessage">Произошла ошибка.</str>
+		<str id="armory.labels.returntoprevious">Вернуться в Оружейную</str>
+		<str id="armory.labels.returntomain">Вернуться на wow-europe.com</str>
+		<str id="armory.labels.error.nosearchresult">По вашему запросу ничего не найдено.</str>
+		<str id="armory.labels.error.filenotfound">Файл не найден</str>
+
+		<str id="armory.labels.error.unavailable">Услуга недоступна</str>
+		<str id="armory.labels.error.serverbusy">Сервер занят. Повторите запрос позже.</str>
+
+<!--error-facebook.xsl-->
+		<str id="armory.labels.facebook.goback">Назад</str>
+		<str id="armory.labels.facebook.returntomyfeed">Вернуться к «Моей ленте»</str>
+		<str id="armory.labels.facebook.returntofacebook">Вернуться на Facebook</str>
+
+		<str id="armory.labels.facebook.selectotherregions">Вы также можете переключить регион ленты новостей, выбрав <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">С. И Ю. Америку</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Европу</a> или <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Корею</a>.</str>
+		<str id="armory.labels.facebook.error">В связи с высокой загрузкой сервера эта информация в данный момент недоступна.</str>
+		<str id="armory.labels.facebook.error2">Это временная проблема. Пожалуйста, повторите свой запрос позже. Вы также можете попытаться выйти из Facebook и снова войти в систему для разрешения этой проблемы.</str>
+		
+
+<!--error/Section.xsl-->
+		<str id="armory.labels.errorencountered">Ошибка</str>
+		<str id="armory.labels.erroroccured">Произошла ошибка.</str>
+		<str id="armory.labels.accessdenied">Нет доступа</str>
+		<str id="armory.labels.nocharacter">Профиль этого персонажа недоступен по одной из следующих причин:<ul>
+        <li>персонаж долгое время был неактивным;</li>
+        <li>имя персонажа написано неправильно.</li>
+
+        <li>профиль этого персонажа временно недоступен, пока персонаж переносится из одного игрового мира в другой или находится в процессе смены фракции.</li>
+        <li>Удаленные персонажи в Оружейной не отображаются.</li>
+      </ul>
+    </str>
+		<str id="armory.labels.noguild">Эта гильдия не существует. Убедитесь, что название гильдии написано верно. Распущенные гильдии в Оружейной не отображаются..</str>
+		<str id="armory.labels.protectedcontent">Эта страница содержит защищенную информацию, для просмотра которой вам необходимо войти в Оружейную. Более подробную информацию о входе в Оружейную и защищенной информации можно найти в <a href="/faq-login.xml"> разделе вопросов и ответов</a>.</str>
+
+<!--dungeons.xsl-->
+		<str id="armory.dungeons.bc">Подземелья и рейды Burning Crusade</str>
+		<str id="armory.dungeons.classic">Классические подземелья и рейды</str>
+		<str id="armory.dungeons.dungeon">Подземелье</str>
+		<str id="armory.dungeons">Подземелья и рейды</str>
+		<str id="armory.dungeons.partysize.before">Рейд для </str>
+
+		<str id="armory.dungeons.partysize.after"> чел.</str>
+		<str id="armory.dungeons.seealsocolon">См. также: </str>
+		<str id="armory.dungeons.viewbosses">Просмотреть боссов</str>
+		<str id="armory.dungeons.notecolon">Внимание!</str>
+		<str id="armory.dungeons.notesparse">Искать можно только те предметы, которые вы «нашли» в игре (хотя бы один из них вы должны были приобрести). Поэтому некоторые таблицы добычи с тела босса (особенно те, что касаются последних рейдовых боссов) могут быть неполными. По мере того как вы будете находить новые предметы, таблицы добычи для этих и иных боссов будут постепенно заполняться.</str>
+
+<!--factions.xsl-->
+		<str id="armory.factions.bc">Фракции Burning Crusade</str>
+		<str id="armory.factions.classic">Классические фракции</str>
+		<str id="armory.factions">Фракции</str>
+
+<!-- faq -->
+		<str id="armory.faq.label">Часто задаваемые вопросы</str>
+		<str id="armory.faq.index">Указатель часто задаваемых вопросов</str>
+
+		<str id="armory.faq.general">Общие вопросы</str>
+		<str id="armory.faq.achievements">Достижения</str>
+		<str id="armory.faq.arenacalculator">Калькулятор Арены</str>
+		<str id="armory.faq.arenaladder">Рейтинг Арены</str>
+		<str id="armory.faq.login">Вход в Оружейную</str>
+		<str id="armory.faq.characterfeeds">Новости персонажа</str>
+
+		<str id="armory.faq.characterprofiles">Профили персонажей</str>
+		<str id="armory.faq.recommended">Улучшения</str>
+		<str id="armory.faq.guildprofiles">Профили гильдий</str>
+		<str id="armory.faq.items">Предметы</str>
+		<str id="armory.faq.matchhistory">История матчей</str>
+  		<str id="armory.faq.matchreports">Итоги матчей</str>
+
+		<str id="armory.faq.opponenthistory">История матчей противника</str>
+		<str id="armory.faq.calendar">Календарь игрока</str>
+		<str id="armory.faq.calendarfeeds">Ленты календарей игроков</str>
+		<str id="armory.faq.team">Профили команд</str>
+
+
+		<str id="armory.labels.honorpoints">Очки чести</str>
+
+		<str id="armory.labels.arenapoints">Очки Арены</str>
+
+		<str id="armory.items.relevance.percent">% релевантности</str>
+
+		<str id="armory.labels.factionrewards">Награды фракций</str>
+		<str id="armory.labels.pvprewards">Награды за PvP-бои</str>
+		<str id="armory.labels.alliancerewards">Награды Альянса</str>
+
+		<str id="armory.labels.horderewards">Награды Орды</str>
+
+<!-- updates -->
+		<str id="armory.labels.updates">Обновления</str>
+		<str id="armory.updates.learnmore">Подробнее</str>
+
+		<str id="armory.updates.armoryupdates">Обновления в Оружейной</str>
+		<str id="armory.updates.cache">** Чтобы увидеть последние обновления на этой странице, попробуйте очистить кэш браузера. **</str>
+
+		<str id="armory.labels.close">закрыть</str>
+		<str id="armory.labels.open">открыть</str>
+		<str id="armory.labels.top">наверх</str>
+
+		<str id="armory.search.relevance">Соответствие</str>
+		<str id="armory.search.label.keywords">Ключевые слова: </str>
+		<str id="armory.search.label.category">Рубрика: </str>
+
+		<str id="armory.search.openQuote">"</str>
+		<str id="armory.search.closeQuote">"</str>
+		<str id="armory.search.normalSpace"> </str>
+		<str id="armory.search.label.noSearchResults">По вашему запросу ничего не найдено</str>
+		<str id="armory.search.label.noSearchResultsText">Ваш поиск не дал результатов. Соответствуют ли ваши критерии требованиям Оружейной? Убедитесь, что:</str>
+		<str id="armory.search.label.search.categories">Поиск проводится только в следующих рубриках: среди предметов, персонажей, команд Арены, гильдий, подземелий, боссов и фракций.</str>
+
+		<str id="armory.search.label.search.name">Искать только по имени</str>
+		<str id="armory.search.label.search.return">Вернуться в Оружейную</str>
+	</unsorted>
+
+	<deleted>
+		<str id="armory.search.noresultsTitle">Результаты поиска</str>
+		<str id="armory.search.keywords">Ключевые слова</str>
+
+		<str id="armory.search.category">Рубрика</str>
+		<str id="armory.search.noresultsBefore">По вашему запросу — </str>
+		<str id="armory.search.noresultsAfter"> — ничего не удалось найти.</str>
+		<str id="armory.search.type">Категория</str>
+		<str id="armory.search.requiredLevel">Необх. уров.</str>
+		<str id="armory.search.relevance">Соответствие</str>
+
+		<str id="armory.search.label.keywords">Ключевые слова: </str>
+		<str id="armory.search.label.category">Рубрика: </str>
+		<str id="armory.search.oneResult">1 результат по запросу: </str>
+		<str id="armory.search.resultsFor">результатов по запросу: </str>
+		<str id="armory.search.label.noSearchResults">Поиск не дал результатов.</str>
+		<str id="armory.search.label.noSearchResultsText">Поиск по вашему запросу не дал результатов. Соответствуют ли ваши критерии требованиям Оружейной? Убедитесь, что:</str>
+
+	</deleted>
+
+	<itemsSearch>
+		<str id="armory.search.weaponStats">Статистика оружия</str>
+		<str id="armory.search.dps">УВС</str>
+		<str id="armory.search.minDamage">Мин. урон</str>
+		<str id="armory.search.maxDamage">Макс. урон</str>
+
+		<str id="armory.search.speed">Скорость</str>
+
+		<str id="armory.search.baseStats">Характеристики</str>
+		<str id="armory.search.strength">Сила</str>
+		<str id="armory.search.agility">Ловкость</str>
+		<str id="armory.search.stamina">Выносливость</str>
+		<str id="armory.search.intellect">Интеллект</str>
+
+		<str id="armory.search.spirit">Дух</str>
+
+		<str id="armory.search.physical">Физ. урон</str>
+		<str id="armory.search.attackPower">Сила нападения</str>
+		<str id="armory.search.feralAttackPower">Сила атаки (зверь)</str>
+		<str id="armory.search.critRating">Рейтинг крит. удара</str>
+		<str id="armory.search.hitRating">Рейтинг меткости</str>
+
+		<str id="armory.search.hasteRating">Рейтинг ударов</str>
+		<str id="armory.search.ignoreArmor">Уязвимость доспехов</str>
+		<str id="armory.search.expertiseRating">Рейтинг мастерства</str>
+
+		<str id="armory.search.spell">Заклинания</str>
+		<str id="armory.search.spellHealing">Исцеление</str>
+		<str id="armory.search.spellDamage">Урон </str>
+
+		<str id="armory.search.spellPower">Сила заклинаний</str>
+		<str id="armory.search.spellCritRating">Рейтинг крит. урона</str>
+		<str id="armory.search.spellHitRating">Рейтинг меткости </str>
+		<str id="armory.search.spellPenetration">Уязвимость</str>
+		<str id="armory.search.spellManaRegen">Восстановление маны</str>
+		<str id="armory.search.spellHasteRating">Частота ударов </str>
+
+		<str id="armory.search.spellDamageArcane">Урон от тайной магии</str>
+		<str id="armory.search.spellDamageHoly">Урон от светлой магии</str>
+		<str id="armory.search.spellDamageShadow">Урон от темной магии</str>
+		<str id="armory.search.spellDamageNature">Урон от природной магии</str>
+		<str id="armory.search.spellDamageFrost">Урон от магии льда</str>
+		<str id="armory.search.spellDamageFire">Урон от магии огня</str>
+
+		<str id="armory.search.defense">Защита</str>
+		<str id="armory.search.armor">Броня</str>
+		<str id="armory.search.blockRating">Рейтинг блока</str>
+		<str id="armory.search.blockValue">Значение блока</str>
+		<str id="armory.search.defenseRating">Рейтинг защиты</str>
+		<str id="armory.search.dodgeRating">Рейтинг уклонения</str>
+
+		<str id="armory.search.parryRating">Рейтинг парирования</str>
+		<str id="armory.search.resilience">Стойкость</str>
+		<str id="armory.search.healthRegen">Восстановление здоровья</str>
+
+		<str id="armory.search.resistances">Сопротивляемость</str>
+		<str id="armory.search.resistArcane">Тайная магия</str>
+		<str id="armory.search.resistShadow">Темная магия</str>
+
+		<str id="armory.search.resistNature">Силы природы</str>
+		<str id="armory.search.resistFrost">Магия льда</str>
+		<str id="armory.search.resistFire">Магия огня</str>
+
+		<str id="armory.search.general">Обычные бонусы</str>
+		<str id="armory.search.itemLevel">Уров. предмета</str>
+		<str id="armory.search.bindsPickedUp">Персон. при поднятии</str>
+
+		<str id="armory.search.bindsEquip">Персон. при надевании</str>
+		<str id="armory.search.bindsWhenUsed">Персон. при использовании</str>
+		<str id="armory.search.requiresProfession">Необх. профессия</str>
+		<str id="armory.search.unique">Не более 1</str>
+		<str id="armory.search.uniqueEquipped">Не более 1 в вооружении</str>
+		<str id="armory.search.hasSpellEffect">Магич. воздействие</str>
+
+	</itemsSearch>
+
+	<itemsSpellEffect>
+		<str id="armory.item-search.spelleffect.resist">Шансы сопротивляемости</str>
+		<str id="armory.item-search.spelleffect.interrupt">Не дает прервать</str>
+		<str id="armory.item-search.spelleffect.proc">Шансы меткости при ударе/броске</str>
+		<str id="armory.item-search.spelleffect.dispel">Эффект рассеивания</str>
+
+		<str id="armory.item-search.spelleffect.cooldown">Сокращает время восстановления заклинания</str>
+		<str id="armory.item-search.spelleffect.casttime">Сокращает время действия заклинания</str>
+		<str id="armory.item-search.spelleffect.spellcost">Уменьшает стоимость заклинания</str>
+		<str id="armory.item-search.spelleffect.duration">Увеличивает длительность</str>
+		<str id="armory.item-search.spelleffect.range">Увеличивает радиус действия</str>
+		<str id="armory.item-search.spelleffect.threat">Уменьшает угрозу</str>
+
+		<str id="armory.item-search.spelleffect.group">Групповой благотворный эффект</str>
+		<str id="armory.item-search.spelleffect.summon">Вызывает существо</str>
+		<str id="armory.item-search.spelleffect.pvprewards">Награды за PvP-поединок:</str>
+	</itemsSpellEffect>
+
+	<releases>
+		<str id="armory.releases.wotlk">Wrath of the Lich King</str>
+
+		<str id="armory.releases.bc">Burning Crusade</str>
+		<str id="armory.releases.classic">WoW Classic</str>
+	</releases>
+
+	<professions>
+		<str id="armory.item-search.leatherworking">Кожевенное дело</str>
+		<str id="armory.item-search.tailoring">Портняжное дело</str>
+
+		<str id="armory.item-search.engineering">Инженерное дело</str>
+		<str id="armory.item-search.blacksmithing">Кузнечное дело</str>
+		<str id="armory.item-search.cooking">Кулинарное искусство</str>
+		<str id="armory.item-search.alchemy">Алхимия</str>
+		<str id="armory.item-search.firstaid">Первая помощь</str>
+		<str id="armory.item-search.enchanting">Зачаровывание</str>
+
+		<str id="armory.item-search.fishing">Рыбная ловля</str>
+		<str id="armory.item-search.jewelcrafting">Ювелирное дело</str>
+	</professions>
+
+	<itemsOptions>
+		<str id="armory.item-search.usableby">Класс:</str>
+		<str id="armory.item-search.allclasses">Все классы</str>
+
+		<str id="armory.item-search.faction">Фракция:</str>
+		<str id="armory.item-search.allpvprewardsdash">Все награды за PvP-бои - </str>
+		<str id="armory.item-search.allfactions">Все фракции</str>
+		<str id="armory.item-search.levelrangeone"> (уровень </str>
+		<str id="armory.item-search.levelrangetwo"> рейд</str>
+
+		<str id="armory.item-search.levelrangethree">)</str>
+		<str id="armory.item-search.dropsfrom">Добыча из:</str>
+		<str id="armory.item-search.alldungeons">Все подземелья</str>
+		<str id="armory.item-search.allbosses">Все боссы</str>
+		<str id="armory.item-search.recommanded">Предлагаемые улучшения - </str>
+
+		<str id="armory.item-search.newsearch">Поиск</str>
+
+		<str id="armory.item-search.resetform">Очистить форму</str>
+
+		<str id="armory.item-search.itemname">Название:</str>
+
+		<str id="armory.item-search.seealso">См. также</str>
+
+		<str id="armory.item-search.enchP">Постоянное действие заклинания</str>
+		<str id="armory.item-search.enchT">Временное действие заклинания</str>
+
+		<str id="armory.item-search.allitemsadvanced">Все предметы — расширенный поиск</str>
+
+		<str id="armory.item-search.allpvpsources">Все источники PvP</str>
+		<str id="armory.item-search.pvpsource">Источник PvP: </str>
+		<str id="armory.item-search.select.pvpsource">--Выберите источник PvP--</str>
+		<str id="armory.item-search.select.allfactions">Все фракции</str>
+
+		<str id="armory.item-search.select.dungeon">-Выберите подземелье--</str>
+		<str id="armory.item-search.select.bojr">Награды за знаки справедливости</str>
+		<str id="armory.item-search.select.eovr">Награды "Знак доблести"</str>
+		<str id="armory.item-search.select.eohr">Награды "Знак героизма"</str>
+		<str id="armory.item-search.select.eocr">Получено эмблем завоевания</str>
+		<str id="armory.item-search.select.eotr">Награды за эмблемы триумфа</str>
+
+		<str id="armory.item-search.select.eofr">Награды за эмблемы льда</str>
+
+		<str id="armory.item-search.recipes">Рецепты:</str>
+		<str id="armory.item-search.allrecipes">Все рецепты</str>
+		<str id="armory.item-search.books">Книги</str>
+
+		<str id="armory.item-search.itemlevel">Уровень предмета:</str>
+
+		<str id="armory.item-search.requiredlevel">Требуемый уровень:</str>
+
+		<str id="armory.item-search.showadvanced">Дополнительно</str>
+		<str id="armory.item-search.advancedfilters">Расширенные критерии поиска</str>
+		<str id="armory.item-search.addfilter">+ критерий</str>
+		<str id="armory.item-search.showitemfilters">Показать критерии</str>
+
+		<str id="armory.item-search.matchall">Все критерии</str>
+		<str id="armory.item-search.matchone">Один критерий</str>
+		<str id="armory.item-search.predefinedfilters">По умолчанию</str>
+		<str id="armory.item-search.matchalltip">Эта опция позволяет искать с учетом всех критериев.&lt;br /&gt;Например: показывать предметы, дающие И силу, И выносливость.</str>
+		<str id="armory.item-search.matchonetip">Эта опция позволяет искать с учетом хотя бы одного критерия.&lt;br /&gt;Например: показывать предметы, дающие силу ИЛИ выносливость.</str>
+
+		<str id="armory.item-search.selectclass">Выберите класс, чтобы критерии по умолчанию были более точными.</str>
+
+		<str id="armory.item-search.slot">Ячейка:</str>
+
+		<str id="armory.item-search.requiredskilllevel">Уровень навыка:</str>
+		<str id="armory.item-search.complex.weapons">Оружие</str>
+		<str id="armory.item-search.complex.armor">Броня</str>
+
+		<str id="armory.search.paging">Страница <param-html1/> из <param-html2/>
+    </str>
+    <!-- for paging, param1-html is the page # box -->
+		<str id="armory.search.showing">Показать <param-html1/> из <param-html2/> результатов</str>
+
+    <!-- example: showing 0 of 0 results -->
+	</itemsOptions>
+
+	<items>
+		<str id="armory.item-search.selectfilter">--Выберите критерий--</str>
+		<str id="armory.item-search.boss">Босс: </str>
+		<str id="armory.item-search.bossesone">Все </str>
+		<str id="armory.item-search.bossestwo"> Боссы</str>
+
+		<str id="armory.item-search.showitemfilters">Показать фильтры</str>
+
+		<str id="armory.items.hover.desiredby">Используйте этот фильтр, когда определитесь с категорией предмета и ячейкой, которую он должен занимать. Таким образом вы можете составить полный перечень самых нужных предметов для каждого класса и каждой ячейки.</str>
+
+		<sources>
+			<general>
+				<str id="armory.item-search.source">Источник:</str>
+				<str id="armory.item-search.allsources">Все источники</str>
+
+				<str id="armory.item-search.dungeondrops">Добыча из подземелий</str>
+				<str id="armory.item-search.dungeonraiddrops">Добыча из подземелий и рейдов</str>
+				<str id="armory.item-search.reputationrewards">Награды </str>
+				<str id="armory.item-search.questrewards">Награды за выполнение заданий</str>
+				<str id="armory.item-search.pvprewardsa">Награды за PvP-бои - Альянс</str>
+				<str id="armory.item-search.pvprewardsh">Награды за PvP-бои - Орда</str>
+
+			</general>
+			<dungeons>
+				<str id="armory.item-search.alldungeonraid">Все подземелья и рейды</str>
+				<str id="armory.item-search.dungeononly">Только подземелья</str>
+				<str id="armory.item-search.raidonly">Только рейды</str>
+			</dungeons>
+		</sources>
+
+		<types>
+			<str id="armory.item-search.itemtype">Категория:</str>
+			<str id="armory.item-search.allitems">Все предметы</str>
+			<str id="armory.item-search.weapons">Оружие</str>
+			<str id="armory.item-search.armor">Броня</str>
+			<str id="armory.item-search.gems">Драгоценности</str>
+
+			<str id="armory.item-search.containers">Контейнеры</str>
+			<str id="armory.item-search.consumables">Расходуемые материалы</str>
+			<str id="armory.item-search.tradegoods">Ремесленные товары</str>
+			<str id="armory.item-search.projectiles">Снаряды</str>
+			<str id="armory.item-search.quivers">Колчан</str>
+			<str id="armory.item-search.recipes">Рецепты</str>
+
+			<str id="armory.item-search.reagents">Реагенты</str>
+			<str id="armory.item-search.miscellaneous">Разное</str>
+			<str id="armory.item-search.enchp">Заклинания постоянного действия</str>
+			<str id="armory.item-search.encht">Заклинания временного действия</str>
+			<str id="armory.item-search.enchantments">Заклинания</str>
+			<str id="armory.item-search.mounts">Верховые животные</str>
+
+			<str id="armory.item-search.smallpets">Ручные животные</str>
+			<str id="armory.item-search.glyphs">Символы</str>
+			<str id="armory.item-search.keys">Ключи</str>
+		</types>
+    	<gems>
+			<str id="armory.item-search.gemtype">Категория драгоценности:</str>
+			<str id="armory.item-search.allgemtypes">Все категории драгоценностей</str>
+
+			<str id="armory.item-search.blue">Синяя</str>
+			<str id="armory.item-search.red">Красная</str>
+			<str id="armory.item-search.yellow">Желтая</str>
+			<str id="armory.item-search.meta">Мета-</str>
+			<str id="armory.item-search.green">Зеленая</str>
+			<str id="armory.item-search.orange">Оранжевая</str>
+
+			<str id="armory.item-search.purple">Фиолетовая</str>
+			<str id="armory.item-search.prismatic">Призматическая</str>
+		</gems>
+		<tradeGoods>
+			<str id="reagents">Реагенты</str>
+			<str id="recipes">Рецепты</str>
+			<str id="enchantments">Чары</str>
+
+		</tradeGoods>
+		<quiverTypes>
+			<str id="armory.item-search.quiver.type">Категория:</str>
+			<str id="armory.item-search.quiver.all">Все колчаны</str>
+			<str id="armory.item-search.quiver.quiver">Колчан</str>
+			<str id="armory.item-search.quiver.ammo">Подсумок</str>
+		</quiverTypes>
+
+		<projectileTypes>
+			<str id="armory.item-search.projectiles.type">Категория:</str>
+			<str id="armory.item-search.projectiles.all">Все снаряды</str>
+			<str id="armory.item-search.projectiles.arrow">Стрела</str>
+			<str id="armory.item-search.projectiles.bullet">Патрон</str>
+		</projectileTypes>
+		<weaponSlots>
+
+			<str id="armory.item-search.weapons.allslots">Все ячейки</str>
+			<str id="armory.item-search.weapons.main">Правая рука</str>
+			<str id="armory.item-search.weapons.off">Левая рука</str>
+			<str id="armory.item-search.weapons.both">Правая или левая рука</str>
+			<str id="armory.item-search.weapons.two">Обе руки</str>
+			<str id="armory.item-search.weapons.ranged">Для дальнего боя</str>
+
+		</weaponSlots>
+		<weaponTypes>
+			<str id="armory.item-search.weapontype">Категория оружия:</str>
+			<str id="armory.item-search.allweapontypes">Все категории оружия</str>
+			<str id="armory.item-search.oneaxes">Одноручные топоры</str>
+			<str id="armory.item-search.twoaxes">Секиры</str>
+			<str id="armory.item-search.bows">Луки</str>
+
+			<str id="armory.item-search.guns">Огнестрельное оружие</str>
+			<str id="armory.item-search.onemaces">Одноручные булавы</str>
+			<str id="armory.item-search.twomaces">Двуручные булавы</str>
+			<str id="armory.item-search.polearms">Дротики</str>
+			<str id="armory.item-search.oneswords">Одноручные мечи</str>
+			<str id="armory.item-search.twoswords">Двуручные мечи</str>
+
+			<str id="armory.item-search.staves">Посохи</str>
+			<str id="armory.item-search.fist">Оружие для кулачного боя</str>
+			<str id="armory.item-search.misc">Разное</str>
+			<str id="armory.item-search.daggers">Кинжалы</str>
+			<str id="armory.item-search.thrown">Метательное оружие</str>
+			<str id="armory.item-search.crossbows">Арбалеты</str>
+
+			<str id="armory.item-search.wands">Жезлы</str>
+			<str id="armory.item-search.fishingpole">Удочки</str>
+		</weaponTypes>
+		<bags>
+			<str id="armory.item-search.bags.bagtype">Тип сумки:</str>
+			<str id="armory.item-search.bags.allbags">Все сумки</str>
+			<str id="armory.item-search.bags.bag">Сумка</str>
+
+			<str id="armory.item-search.bags.soul">Мешок душ</str>
+			<str id="armory.item-search.bags.herb">Сумка для трав</str>
+			<str id="armory.item-search.bags.enchanting">Сумка зачаровывателя</str>
+			<str id="armory.item-search.bags.engineering">Сумка инженера</str>
+			<str id="armory.item-search.bags.gem">Сумка ювелира</str>
+			<str id="armory.item-search.bags.mining">Шахтерская сумка</str>
+
+			<str id="armory.item-search.bags.leatherworking">Сумка кожевника</str>
+			<str id="armory.item-search.bags.inscription">Сумка начертателя</str>
+		</bags>
+		<armorType>
+			<str id="armory.item-search.armor.armortype">Категория доспехов:</str>
+			<str id="armory.item-search.armor.allarmortypes">Все типы доспехов</str>
+			<str id="armory.item-search.armor.cloth">Ткань</str>
+
+			<str id="armory.item-search.armor.leather">Кожа</str>
+			<str id="armory.item-search.armor.mail">Кольчуга</str>
+			<str id="armory.item-search.armor.plate">Латы</str>
+			<str id="armory.item-search.armor.shield">Щит</str>
+			<str id="armory.item-search.armor.idol">Идол</str>
+			<str id="armory.item-search.armor.libram">Книга</str>
+
+			<str id="armory.item-search.armor.totem">Тотем</str>
+			<str id="armory.item-search.armor.sigil">Печать</str>
+			<str id="armory.item-search.armor.misc">Разное</str>
+		</armorType>
+    	<rarity>
+			<str id="armory.item-search.rarity">Редкость:</str>
+			<str id="armory.item-search.all">Все типы</str>
+
+			<str id="armory.item-search.poor">Часто встреч.</str>
+			<str id="armory.item-search.common">Обыкновенный</str>
+			<str id="armory.item-search.uncommon">Необыкновенный</str>
+			<str id="armory.item-search.rare">Редкий</str>
+			<str id="armory.item-search.epic">Эпический</str>
+			<str id="armory.item-search.legendary">Легендарный</str>
+
+			<str id="armory.item-search.heirloom">Фамильный</str>
+		</rarity>
+		<slots>
+			<str id="allslots">Все ячейки</str>
+			<str id="head">Голова</str>
+			<str id="neck">Шея</str>
+			<str id="shoulders">Плечи</str>
+
+			<str id="back">Спина</str>
+			<str id="chest">Грудь</str>
+			<str id="shirt">Рубашка</str>
+			<str id="wrists">Запястья</str>
+			<str id="hands">Кисти рук</str>
+			<str id="waist">Пояс</str>
+
+			<str id="legs">Ноги</str>
+			<str id="feet">Ступни</str>
+			<str id="finger">Палец</str>
+			<str id="trinket">Аксессуар</str>
+			<str id="shield">Щит</str>
+			<str id="offhandfrill">Левая рука</str>
+
+			<str id="main">Правая рука</str>
+			<str id="off">Левая рука</str>
+			<str id="both">Правая или левая рука</str>
+			<str id="two">Обе руки</str>
+			<str id="ranged">Дальний бой</str>
+			<str id="tabard">Накидка</str>
+
+			<str id="weapon">Оружие</str>
+		</slots>
+	</items>
+
+	<itemsPredefined>
+		<str id="armory.predefined.druid.tank">Друид-«танк»</str>
+		<str id="armory.predefined.druid.melee">Друид — ближний бой, урон в сек.</str>
+		<str id="armory.predefined.druid.caster">Друид-заклинатель, урон в сек.</str>
+
+		<str id="armory.predefined.druid.healer">Друид-заклинатель</str>
+
+		<str id="armory.predefined.hunter.ranged">Охотник — дальний бой, урон в сек.</str>
+
+		<str id="armory.predefined.mage.caster">Маг-заклинатель, урон в сек.</str>
+
+		<str id="armory.predefined.paladin.tank">Паладин-«танк»</str>
+		<str id="armory.predefined.paladin.melee">Паладин — ближний бой, урон в сек.</str>
+
+		<str id="armory.predefined.paladin.caster">Паладин-заклинатель, урон в сек.</str>
+		<str id="armory.predefined.paladin.healer">Паладин — Исцеление</str>
+
+		<str id="armory.predefined.priest.caster">Жрец-заклинатель, урон в сек.</str>
+		<str id="armory.predefined.priest.healer">Жрец — исцеление</str>
+
+		<str id="armory.predefined.rogue.melee">Разбойник — ближний бой, урон в сек.</str>
+
+		<str id="armory.predefined.shaman.melee">Шаман — ближний бой, урон в сек.</str>
+		<str id="armory.predefined.shaman.caster">Шаман-заклинатель, урон в сек.</str>
+		<str id="armory.predefined.shaman.healer">Шаман — исцеление</str>
+
+		<str id="armory.predefined.warlock.caster">Чернокнижник-заклинатель, урон в сек.</str>
+
+		<str id="armory.predefined.warrior.tank">Воин-«танк»</str>
+
+		<str id="armory.predefined.warrior.melee">Воин —  ближний бой, урон в сек.</str>
+  </itemsPredefined>
+
+<!-- Please do not localize the faction names and icons -->
+	<factions>
+		<str id="factions">Фракции</str>
+		<str id="faction">Фракция</str>
+		<str id="side">Сторона</str>
+
+		<str id="factions.other">Другое</str>
+
+		<str id="factions.learnmore">Щелкните, чтобы отобразиться предметы фракции или прочитать о фракции подробней.</str>
+
+		<str id="armory.character-reputation.name.darnassus">Darnassus</str>
+		<str id="armory.character-reputation.icon.darnassus">web-Spell_Arcane_TeleportDarnassus</str>
+		<str id="armory.character-reputation.url.darnassus">http://www.wow-europe.com/ru/info/races/nightelves.html</str>
+
+		<str id="armory.character-reputation.name.gnomereganexiles">Gnomeregan Exiles</str>
+		<str id="armory.character-reputation.icon.gnomereganexiles">Spell_Arcane_PortalIronForge</str>
+		<str id="armory.character-reputation.url.gnomereganexiles">http://www.wow-europe.com/ru/info/races/gnomes.html</str>
+
+		<str id="armory.character-reputation.name.ironforge">Ironforge</str>
+		<str id="armory.character-reputation.icon.ironforge">web-Spell_Arcane_TeleportIronForge</str>
+
+		<str id="armory.character-reputation.url.ironforge">http://www.wow-europe.com/ru/info/races/dwarves.html</str>
+
+		<str id="armory.character-reputation.name.stormwind">Stormwind</str>
+		<str id="armory.character-reputation.icon.stormwind">web-Spell_Arcane_TeleportStormWind</str>
+		<str id="armory.character-reputation.url.stormwind">http://www.wow-europe.com/ru/info/races/humans.html</str>
+
+		<str id="armory.character-reputation.name.exodar">Exodar</str>
+
+		<str id="armory.character-reputation.icon.exodar">Spell_Arcane_TeleportExodar</str>
+		<str id="armory.character-reputation.url.exodar">http://www.wow-europe.com/ru/info/races/draenei.html</str>
+
+		<str id="armory.character-reputation.name.darkspeartrolls">Darkspear Trolls</str>
+		<str id="armory.character-reputation.icon.darkspeartrolls">Spell_Arcane_PortalOrgrimmar</str>
+		<str id="armory.character-reputation.url.darkspeartrolls">http://www.wow-europe.com/ru/info/races/trolls.html</str>
+
+		<str id="armory.character-reputation.name.orgrimmar">Orgrimmar</str>
+		<str id="armory.character-reputation.icon.orgrimmar">web-Spell_Arcane_TeleportOrgrimmar</str>
+		<str id="armory.character-reputation.url.orgrimmar">http://www.wow-europe.com/ru/info/races/orcs.html</str>
+
+		<str id="armory.character-reputation.name.thunderbluff">Thunderbluff</str>
+		<str id="armory.character-reputation.icon.thunderbluff">web-Spell_Arcane_TeleportThunderBluff</str>
+		<str id="armory.character-reputation.url.thunderbluff">http://www.wow-europe.com/ru/info/races/tauren.html</str>
+
+		<str id="armory.character-reputation.name.undercity">Undercity</str>
+		<str id="armory.character-reputation.icon.undercity">web-Spell_Arcane_TeleportUnderCity</str>
+		<str id="armory.character-reputation.url.undercity">http://www.wow-europe.com/ru/info/races/undead.html</str>
+
+		<str id="armory.character-reputation.name.silvermooncity">Silvermoon City</str>
+		<str id="armory.character-reputation.icon.silvermooncity">Spell_Arcane_TeleportSilvermoon</str>
+
+		<str id="armory.character-reputation.url.silvermooncity">http://www.wow-europe.com/ru/info/races/bloodelves.html</str>
+
+		<str id="armory.character-reputation.name.theleagueofarathor">The League of Arathor</str>
+		<str id="armory.character-reputation.icon.theleagueofarathor">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.theleagueofarathor">http://www.wow-europe.com/ru/info/basics/battlegrounds/arathi/info.html</str>
+
+		<str id="armory.character-reputation.name.silverwingsentinels">Silverwing Sentinels</str>
+
+		<str id="armory.character-reputation.icon.silverwingsentinels">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.silverwingsentinels">http://www.wow-europe.com/ru/info/basics/battlegrounds/warsong/info.html</str>
+
+		<str id="armory.character-reputation.name.stormpikeguard">Stormpike Guard</str>
+		<str id="armory.character-reputation.icon.stormpikeguard">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.stormpikeguard">http://www.wow-europe.com/ru/info/basics/battlegrounds/alterac/info.html</str>
+
+		<str id="armory.character-reputation.name.frostwolfclan">Frostwolf Clan</str>
+		<str id="armory.character-reputation.icon.frostwolfclan">INV_Jewelry_FrostwolfTrinket_01</str>
+		<str id="armory.character-reputation.url.frostwolfclan">http://www.wow-europe.com/ru/info/basics/battlegrounds/alterac/info.html</str>
+
+		<str id="armory.item-info.world">Мир</str>
+
+		<str id="armory.character-reputation.name.thedefilers">The Defilers</str>
+
+		<str id="armory.character-reputation.icon.thedefilers">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.thedefilers">http://www.wow-europe.com/ru/info/basics/battlegrounds/arathi/info.html</str>
+
+		<str id="armory.character-reputation.name.warsongoutriders">Warsong Outriders</str>
+		<str id="armory.character-reputation.icon.warsongoutriders">INV_Shirt_GuildTabard_01</str>
+		<str id="armory.character-reputation.url.warsongoutriders">http://www.wow-europe.com/ru/info/basics/battlegrounds/warsong/info.html</str>
+
+		<str id="armory.character-reputation.name.ashtonguedeathsworn">Ashtongue Deathsworn</str>
+		<str id="armory.character-reputation.icon.ashtonguedeathsworn"/>
+
+		<str id="armory.character-reputation.name.kurenai">Kurenai</str>
+		<str id="armory.character-reputation.icon.kurenai">Spell_Holy_PersuitofJustice</str>
+		<str id="armory.character-reputation.url.kurenai">http://www.wow-europe.com/ru/info/basics/factions/nagrand/index.html</str>
+
+		<str id="armory.character-reputation.name.themag'har">The Mag'har</str>
+
+		<str id="armory.character-reputation.icon.themag'har">Racial_Orc_BerserkerStrength</str>
+		<str id="armory.character-reputation.url.themag'har">http://www.wow-europe.com/ru/info/basics/factions/nagrand/index.html</str>
+		<str id="armory.character-reputation.url.maghar">http://www.wow-europe.com/ru/info/basics/factions/nagrand/index.html</str>
+
+		<str id="armory.character-reputation.name.netherwing">Netherwing</str>
+		<str id="armory.character-reputation.icon.netherwing">Spell_Arcane_Arcane03</str>
+		<str id="armory.character-reputation.url.netherwing">http://www.wow-europe.com/ru/info/basics/mounts/netherwing-tips.html</str>
+
+		<str id="armory.character-reputation.name.ogri'la">Ogri'la</str>
+		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1038&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.name.sha'tariskyguard">Sha'tari Skyguard</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1031&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
+		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>
+		<str id="armory.character-reputation.url.cenarionexpedition">http://www.wow-europe.com/ru/info/basics/factions/cenarionexpedition/index.html</str>
+
+		<str id="armory.character-reputation.name.honorhold">Honor Hold</str>
+		<str id="armory.character-reputation.icon.honorhold">INV_Misc_Token_HonorHold</str>
+
+		<str id="armory.character-reputation.url.honorhold">http://www.wow-europe.com/ru/info/basics/factions/hellfire/index.html</str>
+
+		<str id="armory.character-reputation.name.sporeggar">Sporeggar</str>
+		<str id="armory.character-reputation.icon.sporeggar">INV_Mushroom_11</str>
+		<str id="armory.character-reputation.url.sporeggar">http://www.wow-europe.com/ru/info/basics/factions/zangarmarsh/index.html</str>
+
+		<str id="armory.character-reputation.name.theconsortium">The Consortium</str>
+
+		<str id="armory.character-reputation.icon.theconsortium">INV_Misc_Bandage_Netherweave</str>
+		<str id="armory.character-reputation.url.theconsortium">http://www.wow-europe.com/ru/info/basics/factions/consortium/index.html</str>
+
+		<str id="armory.character-reputation.name.thrallmar">Thrallmar</str>
+		<str id="armory.character-reputation.icon.thrallmar">INV_Misc_Token_Thrallmar</str>
+		<str id="armory.character-reputation.url.thrallmar">http://www.wow-europe.com/ru/info/basics/factions/hellfire/index.html</str>
+
+		<str id="armory.character-reputation.name.lowercity">Lower City</str>
+		<str id="armory.character-reputation.icon.lowercity"/>
+		<str id="armory.character-reputation.url.lowercity">http://www.wow-europe.com/ru/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thealdor">The Aldor</str>
+		<str id="armory.character-reputation.icon.thealdor">INV_Shield_30</str>
+		<str id="armory.character-reputation.url.thealdor">http://www.wow-europe.com/ru/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thescryers">The Scryers</str>
+		<str id="armory.character-reputation.icon.thescryers">INV_Shield_31</str>
+		<str id="armory.character-reputation.url.thescryers">http://www.wow-europe.com/ru/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.thesha'tar">The Sha'tar</str>
+		<str id="armory.character-reputation.icon.thesha'tar">INV_Shield_33</str>
+
+		<str id="armory.character-reputation.url.thesha'tar">http://www.wow-europe.com/ru/info/basics/factions/shattrath/index.html</str>
+
+		<str id="armory.character-reputation.name.bootybay">Booty Bay</str>
+		<str id="armory.character-reputation.icon.bootybay">Ability_Spy</str>
+		<str id="armory.character-reputation.url.bootybay">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.everlook">Everlook</str>
+
+		<str id="armory.character-reputation.icon.everlook">Spell_Frost_ArcticWinds</str>
+		<str id="armory.character-reputation.url.everlook">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.gadgetzan">Gadgetzan</str>
+		<str id="armory.character-reputation.icon.gadgetzan">INV_Misc_Gear_07</str>
+		<str id="armory.character-reputation.url.gadgetzan">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.ratchet">Ratchet</str>
+		<str id="armory.character-reputation.icon.ratchet">INV_Weapon_Rifle_16</str>
+		<str id="armory.character-reputation.url.ratchet">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.argentdawn">Argent Dawn</str>
+		<str id="armory.character-reputation.icon.argentdawn">INV_Misc_Token_ArgentDawn</str>
+		<str id="armory.character-reputation.url.argentdawn">http://www.wow-europe.com/ru/info/basics/factions/argent/index.html</str>
+
+		<str id="armory.character-reputation.name.bloodsailbuccaneers">Bloodsail Buccaneers</str>
+		<str id="armory.character-reputation.icon.bloodsailbuccaneers">INV_Helmet_66</str>
+		<str id="armory.character-reputation.url.bloodsailbuccaneers">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.broodofnozdormu">Brood of Nozdormu</str>
+		<str id="armory.character-reputation.icon.broodofnozdormu">INV_Misc_Head_Dragon_Bronze</str>
+
+		<str id="armory.character-reputation.url.broodofnozdormu">http://www.wow-europe.com/ru/info/basics/factions/nozdormu/index.html</str>
+
+		<str id="armory.character-reputation.name.cenarioncircle">Cenarion Circle</str>
+		<str id="armory.character-reputation.icon.cenarioncircle"/>
+		<str id="armory.character-reputation.url.cenarioncircle">http://www.wow-europe.com/ru/info/basics/factions/cenarion/index.html</str>
+
+		<str id="armory.character-reputation.name.darkmoonfaire">Darkmoon Faire</str>
+		<str id="armory.character-reputation.icon.darkmoonfaire">INV_Misc_Ticket_Tarot_Stack_01</str>
+
+		<str id="armory.character-reputation.url.darkmoonfaire">http://www.wow-europe.com/ru/info/basics/factions/darkmoon/index.html</str>
+
+		<str id="armory.character-reputation.name.gelkisclancentaur">Gelkis Clan Centaur</str>
+		<str id="armory.character-reputation.icon.gelkisclancentaur">INV_Misc_Head_Centaur_01</str>
+
+		<str id="armory.character-reputation.name.hydraxianwaterlords">Hydraxian Waterlords</str>
+		<str id="armory.character-reputation.icon.hydraxianwaterlords">Spell_Frost_SummonWaterElemental</str>
+
+		<str id="armory.character-reputation.url.hydraxianwaterlords">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.keepersoftime">Keepers of Time</str>
+		<str id="armory.character-reputation.icon.keepersoftime">INV_Misc_PocketWatch_01</str>
+		<str id="armory.character-reputation.url.keepersoftime">http://www.wow-europe.com/ru/info/basics/factions/keepersoftime/index.html</str>
+
+		<str id="armory.character-reputation.name.magramclancentaur">Magram Clan Centaur</str>
+
+		<str id="armory.character-reputation.icon.magramclancentaur">INV_Misc_Head_Centaur_01</str>
+
+		<str id="armory.character-reputation.name.ravenholdt">Ravenholdt</str>
+		<str id="armory.character-reputation.icon.ravenholdt">Ability_Rogue_MasterOfSubtlety</str>
+
+		<str id="armory.character-reputation.name.thescaleofthesands">The Scale of the Sands</str>
+		<str id="armory.character-reputation.icon.thescaleofthesands">INV_Qiraj_JewelBlessed</str>
+
+		<str id="armory.character-reputation.url.thescaleofthesands">http://www.wow-europe.com/ru/info/basics/factions/scaleofsands/index.html</str>
+		<str id="armory.character-reputation.url.scaleofthesands">http://www.wow-europe.com/ru/info/basics/factions/scaleofsands/index.html</str>
+
+		<str id="armory.character-reputation.name.shendralar">Shendralar</str>
+		<str id="armory.character-reputation.icon.shendralar">INV_Offhand_Draenei_A_01</str>
+
+		<str id="armory.character-reputation.name.thoriumbrotherhood">Братство Тория</str>
+
+		<str id="armory.character-reputation.icon.thoriumbrotherhood">INV_Ore_Thorium_02</str>
+		<str id="armory.character-reputation.url.thoriumbrotherhood">http://www.wow-europe.com/ru/info/basics/factions/thorium/index.html</str>
+
+		<str id="armory.character-reputation.name.timbermawhold">Timbermaw Hold</str>
+		<str id="armory.character-reputation.icon.timbermawhold">INV_Misc_MonsterClaw_04</str>
+		<str id="armory.character-reputation.url.timbermawhold">http://www.wow-europe.com/ru/info/basics/factions/timbermaw/index.html</str>
+
+		<str id="armory.character-reputation.name.tranquillien">Tranquillien</str>
+		<str id="armory.character-reputation.icon.tranquillien">Spell_Shadow_DarkSummoning</str>
+
+		<str id="armory.character-reputation.name.wintersabertrainers">Wintersaber Trainers</str>
+		<str id="armory.character-reputation.icon.wintersabertrainers">Ability_Mount_WhiteTiger</str>
+		<str id="armory.character-reputation.url.wintersabertrainers">http://www.wow-europe.com/ru/info/basics/factions/index.html#other</str>
+
+		<str id="armory.character-reputation.name.thevioleteye">The Violet Eye</str>
+		<str id="armory.character-reputation.icon.thevioleteye">INV_Jewelcrafting_Nightseye_01</str>
+		<str id="armory.character-reputation.url.thevioleteye">http://www.wow-europe.com/ru/info/basics/factions/violeteye/index.html</str>
+
+		<str id="armory.character-reputation.name.zandalartribe">Zandalar Tribe</str>
+		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
+		<str id="armory.character-reputation.url.zandalartribe">http://www.wow-europe.com/ru/info/basics/factions/zandalar/index.html</str>
+
+		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+
+		<!-- WOTLK REPS -->
+		<!-- horde -->
+		<!--
+		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		-->
+
+		<!-- alliance -->
+		<!--
+		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		-->
+
+		<!-- both factions -->
+		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+
+		<str id="armory.character-reputation.group.grouped">По умолчанию</str>
+		<str id="armory.character-reputation.group.ungrouped">Список</str>
+
+		<str id="armory.character-reputation.sort.faction">По имени</str>
+		<str id="armory.character-reputation.sort.reputation">По репутации</str>
+		<str id="armory.character-reputation.noreputation">У этого персонажа еще нет репутации ни с одной фракцией.</str>
+	</factions>
+
+<!--item-tooltip.xsl-->
+	<itemTooltip>
+		<str id="armory.item-tooltip.conjured">Создан с помощью заклинания</str>
+
+		<str id="armory.item-tooltip.binds-pickup">Становится персональным при получении</str>
+		<str id="armory.item-tooltip.binds-equipped">Становится персональным при надевании</str>
+		<str id="armory.item-tooltip.binds-used">Становится персональным при использовании</str>
+		<str id="armory.item-tooltip.quest-item">Предмет задания</str>
+		<str id="armory.item-tooltip.unique">Уникальный</str>
+		<str id="armory.item-tooltip.unique-equipped">Не более 1 в вооружении</str>
+
+		<str id="armory.item-tooltip.begins-quest">Позволяет получить новое задание</str>
+		<str id="armory.item-tooltip.slot">Ячейка</str>
+		<str id="armory.item-tooltip.projectile">Снаряд</str>
+
+		<str id="armory.item-tooltip.non-equip">INDEX_NON_EQUIP_TYPE</str>
+		<str id="armory.item-tooltip.one-hand">Одноручный</str>
+		<str id="armory.item-tooltip.two-hand">Двуручный</str>
+
+		<str id="armory.item-tooltip.held-off-hand">Держится в левой руке</str>
+		<str id="armory.item-tooltip.thrown">Метательное оружие</str>
+		<str id="armory.item-tooltip.bag-type">INDEX_BAG_TYPE</str>
+		<str id="armory.item-tooltip.quiver-type">INDEX_QUIVER_TYPE</str>
+
+		<str id="armory.item-tooltip.adds">Увеличивает</str>
+		<str id="armory.item-tooltip.dps">урон в секунду</str>
+
+		<str id="armory.item-tooltip.speed">Скорость</str>
+		<str id="armory.item-tooltip.damage">Урон</str>
+		<str id="armory.item-tooltip.holy-damage">Урон от светлой магии</str>
+		<str id="armory.item-tooltip.fire-damage">Урон от магии огня</str>
+		<str id="armory.item-tooltip.nature-damage">Урон от природной магии</str>
+		<str id="armory.item-tooltip.frost-damage">Урон от магии льда</str>
+
+		<str id="armory.item-tooltip.shadow-damage">Урон от темной магии</str>
+		<str id="armory.item-tooltip.arcane-damage">Урон от тайной магии</str>
+
+		<str id="armory.item-tooltip.armor">к броне</str>
+		<str id="armory.item-tooltip.block">к спос. отраж. удары</str>
+		<str id="armory.item-tooltip.strength">к силе</str>
+		<str id="armory.item-tooltip.agility">к ловкости</str>
+
+		<str id="armory.item-tooltip.stamina">к выносливости</str>
+		<str id="armory.item-tooltip.intellect">к интеллекту</str>
+		<str id="armory.item-tooltip.spirit">к духу</str>
+		<str id="armory.item-tooltip.fire-resistance">Сопротивляемость магии огня</str>
+		<str id="armory.item-tooltip.nature-resistance">Сопротивляемость природной магии</str>
+		<str id="armory.item-tooltip.frost-resistance">Сопротивляемость магии льда</str>
+
+		<str id="armory.item-tooltip.shadow-resistance">Сопротивляемость темной магии</str>
+		<str id="armory.item-tooltip.arcane-resistance">Сопротивляемость тайной магии</str>
+		<str id="armory.item-tooltip.socket-bonus">Бонус за вставку в оправу:</str>
+
+		<str id="armory.item-tooltip.meta-socket">Мета-оправа</str>
+		<str id="armory.item-tooltip.red-socket">Красная оправа</str>
+		<str id="armory.item-tooltip.yellow-socket">Желтая оправа</str>
+
+		<str id="armory.item-tooltip.blue-socket">Синяя оправа</str>
+
+		<str id="armory.item-tooltip.random-enchant">Произвольное заклинание</str>
+		<str id="armory.item-tooltip.durability">Прочность</str>
+
+		<str id="armory.item-tooltip.races">Расы</str>
+		<str id="armory.item-tooltip.classes">Классы</str>
+
+		<str id="armory.item-tooltip.requires-level">Требуемый уровень</str>
+		<str id="armory.item-tooltip.requires">Требуется</str>
+
+		<str id="armory.item-tooltip.requires.personalarena">Требуется личный рейтинг Арены персонажа</str>
+
+<!--reputation status 0= male 1= female no number= neutral-->
+		<str id="armory.item-tooltip.hated">Ненависть</str>
+		<str id="armory.item-tooltip.hostile">Враждебность</str>
+
+		<str id="armory.item-tooltip.unfriendly">Неприязнь</str>
+		<str id="armory.item-tooltip.neutral">Равнодушие</str>
+		<str id="armory.item-tooltip.friendly">Дружелюбие</str>
+		<str id="armory.item-tooltip.honored">Уважение</str>
+		<str id="armory.item-tooltip.revered">Почтение</str>
+		<str id="armory.item-tooltip.exalted">Превознесение</str>
+
+		<str id="armory.item-tooltip.hated.0">Ненависть</str>
+		<str id="armory.item-tooltip.hostile.0">Враждебность</str>
+		<str id="armory.item-tooltip.unfriendly.0">Неприязнь</str>
+		<str id="armory.item-tooltip.neutral.0">Равнодушие</str>
+		<str id="armory.item-tooltip.friendly.0">Дружелюбие</str>
+		<str id="armory.item-tooltip.honored.0">Уважение</str>
+
+		<str id="armory.item-tooltip.revered.0">Почтение</str>
+		<str id="armory.item-tooltip.exalted.0">Превознесение</str>
+
+		<str id="armory.item-tooltip.hated.1">Ненависть</str>
+		<str id="armory.item-tooltip.hostile.1">Враждебность</str>
+		<str id="armory.item-tooltip.unfriendly.1">Неприязнь</str>
+		<str id="armory.item-tooltip.neutral.1">Равнодушие</str>
+
+		<str id="armory.item-tooltip.friendly.1">Дружелюбие</str>
+		<str id="armory.item-tooltip.honored.1">Уважение</str>
+		<str id="armory.item-tooltip.revered.1">Почтение</str>
+		<str id="armory.item-tooltip.exalted.1">Превознесение</str>
+
+		<str id="armory.item-tooltip.increase-defense">При надевании: повышает уровень защиты на</str>
+		<str id="armory.item-tooltip.increase-dodge">При надевании: повышает уровень уворачивания на</str>
+
+		<str id="armory.item-tooltip.bonusParryRating">При надевании: повышает уровень парирования ударов на</str>
+		<str id="armory.item-tooltip.bonusBlockRating">При надевании: повышает уровень отражения ударов на</str>
+		<str id="armory.item-tooltip.bonusHitMeleeRating">bonusHitMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHitRangedRating">bonusHitRangedRating</str>
+		<str id="armory.item-tooltip.improve-spell">При надевании: повышает уровень меткости при использовании заклинания на</str>
+		<str id="armory.item-tooltip.bonusCritMeleeRating">bonusCritMeleeRating</str>
+
+		<str id="armory.item-tooltip.bonusCritRangedRating">bonusCritRangedRating</str>
+		<str id="armory.item-tooltip.improve-spell-crit">При надевании: повышает уровень вероятности критического удара при использовании заклинания на</str>
+		<str id="armory.item-tooltip.bonusHitTakenMeleeRating">bonusHitTakenMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHitTakenRangedRating">bonusHitTakenRangedRating</str>
+		<str id="armory.item-tooltip.bonusHitTakenSpellRating">bonusHitTakenSpellRating</str>
+		<str id="armory.item-tooltip.bonusCritTakenMeleeRating">bonusCritTakenMeleeRating</str>
+
+		<str id="armory.item-tooltip.bonusCritTakenRangedRating">bonusCritTakenRangedRating</str>
+		<str id="armory.item-tooltip.bonusCritTakenSpellRating">bonusCritTakenSpellRating</str>
+		<str id="armory.item-tooltip.bonusHasteMeleeRating">bonusHasteMeleeRating</str>
+		<str id="armory.item-tooltip.bonusHasteRangedRating">bonusHasteRangedRating</str>
+		<str id="armory.item-tooltip.bonusHasteSpellRating">При надевании: повышает частоту ударов при использования заклинания на</str>
+		<str id="armory.item-tooltip.improve-hit-rating">При надевании: повышает уровень меткости на</str>
+
+		<str id="armory.item-tooltip.improve-crit-strike">При надевании: повышает уровень вероятности критического удара на</str>
+		<str id="armory.item-tooltip.bonusHitTakenRating">При надевании: повышает уровень уклонения от ударов на</str>
+		<str id="armory.item-tooltip.bonusCritTakenRating">bonusCritTakenRating</str>
+		<str id="armory.item-tooltip.improve-resilience">При надевании: повышает уровень стойкости на</str>
+		<str id="armory.item-tooltip.bonusHasteRating">При надевании: повышает частоту ударов на</str>
+		<str id="armory.item-tooltip.bonusSpellPower">При надевании: увеличивает силу заклинаний на</str>
+
+		<!-- new in 3.02 -->
+		<str id="armory.item-tooltip.bonusAttackPower">При надевании: увеличивает силу атаки на</str>
+		<str id="armory.item-tooltip.bonusExpertiseRating">При надевании: увеличивает рейтинг мастерства на</str>
+		<str id="armory.item-tooltip.bonusRangedAttackPower">При надевании: увеличивает силу атаки дальнего боя на</str>
+		<str id="armory.item-tooltip.bonusFeralAttackPower">При надевании: увеличивает силу атаки в образе зверя на</str>
+		<str id="armory.item-tooltip.bonusManaRegen">При надевании: восстанавливает</str>
+
+        <str id="armory.item-tooltip.bonusManaRegenPer5">ед. маны за 5 сек.</str>
+		<str id="armory.item-tooltip.bonusArmorPenetration">При надевании: увеличивает рейтинг пробивания брони на</str>
+		<str id="armory.item-tooltip.bonusBlockValue">При надевании: увеличивает показатель блокирования щита на</str>
+		<str id="armory.item-tooltip.bonusHealthRegen">При надевании: увеличивает скорость восполнения здоровья на</str>
+		<str id="armory.item-tooltip.bonusSpellPenetration">При надевании: увеличивает проникающую способность заклинаний на</str>
+
+		<str id="armory.item-tooltip.requiredLevelMin">Необх. уровень</str>
+
+		<str id="armory.item-tooltip.requiredLevelMax">до</str>
+
+		<str id="armory.item-tooltip.charges">В запасе</str>
+		<str id="armory.item-tooltip.use">Использовать</str>
+		<str id="armory.item-tooltip.equip">При надевании</str>
+		<str id="armory.item-tooltip.chance-on-hit">Вероятность попадания при ударе</str>
+		<str id="armory.item-tooltip.set">Комплект</str>
+
+		<str id="armory.item-tooltip.majorglyph">Великий символ</str>
+		<str id="armory.item-tooltip.minorglyph">Малый символ</str>
+	</itemTooltip>
+
+	<itemSlot>
+		<str id="armory.itemslot.slot.head">Голова</str>
+		<str id="armory.itemslot.slot.neck">Шея</str>
+
+		<str id="armory.itemslot.slot.shoulders">Плечи</str>
+		<str id="armory.itemslot.slot.back">Спина</str>
+		<str id="armory.itemslot.slot.chest">Грудь</str>
+		<str id="armory.itemslot.slot.shirt">Рубашка</str>
+		<str id="armory.itemslot.slot.tabard">Гербовая накидка</str>
+		<str id="armory.itemslot.slot.wrist">Запястья</str>
+
+		<str id="armory.itemslot.slot.hands">Кисти рук</str>
+		<str id="armory.itemslot.slot.hand">Кисть руки</str>
+		<str id="armory.itemslot.slot.waist">Пояс</str>
+		<str id="armory.itemslot.slot.legs">Ноги</str>
+		<str id="armory.itemslot.slot.feet">Ступни</str>
+		<str id="armory.itemslot.slot.finger">Палец</str>
+
+		<str id="armory.itemslot.slot.trinket">Аксессуар</str>
+		<str id="armory.itemslot.slot.mainHand">Правая рука</str>
+		<str id="armory.itemslot.slot.offHand">Левая рука</str>
+		<str id="armory.itemslot.slot.ranged">Для дальнего боя</str>
+		<str id="armory.itemslot.slot.relic">Реликвия</str>
+		<str id="armory.itemslot.slot.ammo">Боеприпасы</str>
+
+	</itemSlot>
+
+	<spellType>
+		<str id="armory.spell-type.fire">Огонь</str>
+		<str id="armory.spell-type.arcane">Тайная</str>
+		<str id="armory.spell-type.holy">Свет</str>
+		<str id="armory.spell-type.shadow">Темная</str>
+
+		<str id="armory.spell-type.nature">Природа</str>
+		<str id="armory.spell-type.frost">Лед</str>
+	</spellType>
+
+<!--item types - DO NOT CHANGE THE IDS-->
+	<itemType>
+		<str id="armory.item-type.Two-Handed Axes">Секира</str>
+		<str id="armory.item-type.One-Handed Axes">Одноручный топро</str>
+
+		<str id="armory.item-type.Bows">Лук</str>
+		<str id="armory.item-type.Bucklers">Круглый щит</str>
+		<str id="armory.item-type.Crossbows">Арбалет</str>
+		<str id="armory.item-type.Daggers">Кинжал</str>
+		<str id="armory.item-type.One-Handed Exotics">Особое одноручное оружие</str>
+		<str id="armory.item-type.Two-Handed Exotics">Особое двуручное оружие</str>
+
+		<str id="armory.item-type.Fist Weapons">Оружие для кулачного боя</str>
+		<str id="armory.item-type.Guns">Огнестрельное оружие</str>
+		<str id="armory.item-type.Idols">Идол</str>
+		<str id="armory.item-type.Librams">Книга</str>
+		<str id="armory.item-type.One-Handed Maces">Одноручная булава</str>
+		<str id="armory.item-type.Two-Handed Maces">Двуручная булава</str>
+
+		<str id="armory.item-type.Polearms">Дротик</str>
+		<str id="armory.item-type.Shields">Щит</str>
+		<str id="armory.item-type.Spears">Копье</str>
+		<str id="armory.item-type.Staves">Дубинка</str>
+		<str id="armory.item-type.Two-Handed Swords">Двуручный меч</str>
+		<str id="armory.item-type.One-Handed Swords">Одноручный меч</str>
+
+		<str id="armory.item-type.Totems">Тотем</str>
+		<str id="armory.item-type.Sigils">Печать</str>
+		<str id="armory.item-type.Wands">Жезл</str>
+	</itemType>
+
+	<talents>
+		<str id="url.talents">http://www.wow-europe.com/ru/info/basics/talents</str>
+
+		<str id="path.talents">/shared/global/talents</str>
+		<str id="talents.langDir">/ru</str>
+
+		<str id="armory.class6.talents.tree.one">Кровь</str>
+		<str id="armory.class6.talents.tree.two">Холод</str>
+		<str id="armory.class6.talents.tree.three">Нечестивость</str>
+
+		<str id="armory.class11.talents.tree.one">Баланс</str>
+		<str id="armory.class11.talents.tree.two">Сила зверя</str>
+		<str id="armory.class11.talents.tree.three">Исцеление</str>
+
+		<str id="armory.class3.talents.tree.one">Чувство зверя</str>
+		<str id="armory.class3.talents.tree.two">Стрельба</str>
+		<str id="armory.class3.talents.tree.three">Выживание</str>
+
+		<str id="armory.class8.talents.tree.one">Тайная магия</str>
+		<str id="armory.class8.talents.tree.two">Огонь</str>
+		<str id="armory.class8.talents.tree.three">Лед</str>
+
+		<str id="armory.class2.talents.tree.one">Свет</str>
+		<str id="armory.class2.talents.tree.two">Защита</str>
+
+		<str id="armory.class2.talents.tree.three">Возмездие</str>
+
+		<str id="armory.class5.talents.tree.one">Послушание</str>
+		<str id="armory.class5.talents.tree.two">Свет</str>
+		<str id="armory.class5.talents.tree.three">Темная магия</str>
+
+		<str id="armory.class4.talents.tree.one">Убийство</str>
+
+		<str id="armory.class4.talents.tree.two">Бой</str>
+		<str id="armory.class4.talents.tree.three">Скрытность</str>
+
+		<str id="armory.class7.talents.tree.one">Укрощение стихии</str>
+		<str id="armory.class7.talents.tree.two">Совершенствование</str>
+		<str id="armory.class7.talents.tree.three">Исцеление</str>
+
+		<str id="armory.class9.talents.tree.one">Колдовство</str>
+		<str id="armory.class9.talents.tree.two">Демонология</str>
+		<str id="armory.class9.talents.tree.three">Разрушение</str>
+
+		<str id="armory.class1.talents.tree.one">Оружие</str>
+		<str id="armory.class1.talents.tree.two">Неистовство</str>
+		<str id="armory.class1.talents.tree.three">Защита</str>
+
+	</talents>
+
+<!--item-info -->
+	<itemInfo>
+		<str id="currentlyEquipped">Сейчас на персонаже</str>
+		<str id="armory.item-info.drop-rate.0">Нет</str>
+		<str id="armory.item-info.drop-rate.1">крайне низкая (1-2%)</str>
+		<str id="armory.item-info.drop-rate.2">очень низкая (3-14%)</str>
+
+		<str id="armory.item-info.drop-rate.3">низкая (15-24%)</str>
+		<str id="armory.item-info.drop-rate.4">средняя (25-50%)</str>
+		<str id="armory.item-info.drop-rate.5">большая (51-99%)</str>
+		<str id="armory.item-info.drop-rate.6">высокая (100%)</str>
+
+		<str id="armory.item-info.label.name">Название</str>
+		<str id="armory.item-info.label.location">Место</str>
+
+		<str id="armory.item-info.label.drop">Вероятность найти</str>
+		<str id="armory.item-info.label.level">Уровень</str>
+		<str id="armory.item-info.label.reagents">Реагенты</str>
+		<str id="armory.item-info.label.cost">Стоимость</str>
+		<str id="armory.item-info.label.count">Количество</str>
+		<str id="armory.item-info.label.title">Титул</str>
+
+		<str id="armory.item-info.label.reqlevel">Требуемый уровень</str>
+		<str id="armory.item-info.label.type">Категория</str>
+		<str id="armory.item-info.label.enchantment">Воздействие заклинания</str>
+		<str id="armory.item-info.label.effects">Эффекты</str>
+		<str id="armory.item-info.label.items_detailed">Просмотр модели</str>
+		<str id="armory.item-info.label.items_list">Список экипировки</str>
+
+		<str id="armory.item-info.title.dropped">Получено с</str>
+		<str id="armory.item-info.title.pickpocketed">Украдено у</str>
+		<str id="armory.item-info.title.skinned">Снята с</str>
+		<str id="armory.item-info.title.gathered">Растение сорвано с</str>
+		<str id="armory.item-info.title.mined">Добыто у</str>
+		<str id="armory.item-info.title.starts">Начинается</str>
+
+		<str id="armory.item-info.title.provided">Предусмотрено для</str>
+		<str id="armory.item-info.title.objective">Является целью для</str>
+		<str id="armory.item-info.title.reward">Награда за</str>
+
+		<str id="armory.item-info.randomenchants">Произвольное заклинание:</str>
+		<str id="armory.item-info.itemlevel">Уровень предмета:</str>
+		<str id="armory.item-info.dropsfrom">Получено с:</str>
+
+		<str id="armory.item-info.contained">Содержится в:</str>
+		<str id="armory.item-info.bought">Стоимость:</str>
+		<str id="armory.item-info.sells">Продано за:</str>
+		<str id="armory.item-info.disenchantable">Можно разрушить чары:</str>
+		<str id="armory.item-info.heroic"> (Героический)</str>
+		<str id="armory.item-info.soldby">Продавец</str>
+
+		<str id="armory.item-info.reqregeants">Требуются реагенты</str>
+		<str id="armory.item-info.plans">Планы на</str>
+		<str id="armory.item-info.regeantsfor">Реагент для</str>
+		<str id="armory.item-info.currency">Деньги для</str>
+		<str id="armory.item-info.disinto">При распылении превращается в</str>
+		<str id="armory.item-info.transinto">Преобразуется в:</str>
+
+		<str id="armory.item-info.transinto.alliance">Эквивалент для Альянса:</str>
+		<str id="armory.item-info.transinto.horde">Эквивалент для Орды:</str>
+		<str id="armory.item-info.randomwdrop">Произвольная добыча с тела &lt;strong&gt;гуманоидов&lt;/strong&gt; и &lt;strong&gt;животных&lt;/strong&gt;, уровни с 49 по 66.</str>
+
+		<str id="armory.item-info.disenchant.tooltip.before">Требуется навык &lt;strong&gt;</str>
+		<str id="armory.item-info.disenchant.tooltip.after">&lt;/strong&gt; зачаровывания, чтобы разрушить чары</str>
+		<str id="item.fact">Инфорация о предмете</str>
+	</itemInfo>
+
+<!-- Character races & classes 0= male 1= female no number= neutral-->
+
+	<races>
+		<str id="armory.races.race.3">Дворф</str>
+		<str id="armory.races.race.3.0">Дворф</str>
+		<str id="armory.races.race.3.1">Дворф</str>
+		<str id="armory.races.race.1">Человек</str>
+		<str id="armory.races.race.1.0">Человек</str>
+
+		<str id="armory.races.race.1.1">Человек</str>
+		<str id="armory.races.race.4">Ночной эльф</str>
+		<str id="armory.races.race.4.0">Ночной эльф</str>
+		<str id="armory.races.race.4.1">Ночной эльф</str>
+		<str id="armory.races.race.7">Гном</str>
+		<str id="armory.races.race.7.0">Гном</str>
+
+		<str id="armory.races.race.7.1">Гном</str>
+		<str id="armory.races.race.11">Дреней</str>
+		<str id="armory.races.race.11.0">Дреней</str>
+		<str id="armory.races.race.11.1">Дреней</str>
+		<str id="armory.races.race.2">Орк</str>
+		<str id="armory.races.race.2.0">Орк</str>
+
+		<str id="armory.races.race.2.1">Орк</str>
+		<str id="armory.races.race.5">Нежить</str>
+		<str id="armory.races.race.5.0">Нежить</str>
+		<str id="armory.races.race.5.1">Нежить</str>
+		<str id="armory.races.race.10">Эльф крови</str>
+		<str id="armory.races.race.10.0">Эльф крови</str>
+
+		<str id="armory.races.race.10.1">Эльф крови</str>
+		<str id="armory.races.race.6">Таурен</str>
+		<str id="armory.races.race.6.0">Таурен</str>
+		<str id="armory.races.race.6.1">Таурен</str>
+		<str id="armory.races.race.8">Тролль</str>
+		<str id="armory.races.race.8.0">Тролль</str>
+
+		<str id="armory.races.race.8.1">Тролль</str>
+	</races>
+
+	<classes>
+		<str id="armory.classes.class.1">Воин</str>
+		<str id="armory.classes.class.1.0">Воин</str>
+		<str id="armory.classes.class.1.1">Воин</str>
+
+		<str id="armory.classes.class.11">Друид</str>
+		<str id="armory.classes.class.11.0">Друид</str>
+		<str id="armory.classes.class.11.1">Друид</str>
+		<str id="armory.classes.class.2">Паладин</str>
+		<str id="armory.classes.class.2.0">Паладин</str>
+		<str id="armory.classes.class.2.1">Паладин</str>
+
+		<str id="armory.classes.class.5">Жрец</str>
+		<str id="armory.classes.class.5.0">Жрец</str>
+		<str id="armory.classes.class.5.1">Жрец</str>
+		<str id="armory.classes.class.4">Разбойник</str>
+		<str id="armory.classes.class.4.0">Разбойник</str>
+		<str id="armory.classes.class.4.1">Разбойник</str>
+
+		<str id="armory.classes.class.9">Чернокнижник</str>
+		<str id="armory.classes.class.9.0">Чернокнижник</str>
+		<str id="armory.classes.class.9.1">Чернокнижник</str>
+		<str id="armory.classes.class.7">Шаман</str>
+		<str id="armory.classes.class.7.0">Шаман</str>
+		<str id="armory.classes.class.7.1">Шаман</str>
+
+		<str id="armory.classes.class.3">Охотник</str>
+		<str id="armory.classes.class.3.0">Охотник</str>
+		<str id="armory.classes.class.3.1">Охотник</str>
+		<str id="armory.classes.class.8">Маг</str>
+		<str id="armory.classes.class.8.0">Маг</str>
+		<str id="armory.classes.class.8.1">Маг</str>
+
+		<str id="armory.classes.class.6">Рыцарь смерти</str>
+		<str id="armory.classes.class.6.0">Рыцарь смерти</str>
+		<str id="armory.classes.class.6.1">Рыцарь смерти</str>
+
+		<str id="item-filter.anytype">Все категории</str>
+		<str id="item-filter.tank">«Танк»</str>
+		<str id="item-filter.meleedps">Ближний бой - урон в сек.</str>
+
+		<str id="item-filter.casterdps">Заклинатель - урон в сек.</str>
+		<str id="item-filter.healer">Исцеление</str>
+
+		<str id="items.warlocks.damage">+ Только урон</str>
+		<str id="items.warlocks.damagecrit">+ Урон &amp; крит. удар</str>
+
+		<role>
+
+			<str id="armory.item-search.Tank">«Танк»</str>
+			<str id="armory.item-search.physicaldps">Физ. УВС</str>
+			<str id="armory.item-search.casterdps">Магич. УВС</str>
+			<str id="armory.item-search.healer">Исцеление</str>
+		</role>
+	</classes>
+
+	<guildStats>
+		<str id="armory.guild-stats.minlvl">Мин. ур.</str>
+		<str id="armory.guild-stats.maxlvl">Макс. ур.</str>
+		<str id="armory.guild-stats.matching">Персонажей, отвечающим критериям</str>
+		<str id="armory.guild-stats.totalChars">Всего персонажей в гильдии</str>
+		<str id="armory.guild-stats.number">Число персонажей уровня </str>
+
+		<str id="armory.guild-stats.numberAfter"> </str>
+		<str id="armory.guild-stats.percentage">% уровня </str>
+		<str id="armory.guild-stats.percentageAfter"> </str>
+		<str id="armory.guild-stats.race.breakdown">Статистика по расам</str>
+		<str id="armory.guild-stats.class.breakdown">Статистика по классам</str>
+		<str id="armory.guild-stats.level.breakdown">Статистика по уровню</str>
+
+	</guildStats>
+
+	<itemsSearchColumns>
+		<str id="armory.hover.questReward">Награда за выполнение задания</str>
+		<str id="armory.hover.requiredLevel">Требуемый уровень:</str>
+		<str id="armory.hover.dungeon">Подземелье:</str>
+		<str id="armory.hover.heroic">(Героическое)</str>
+
+		<str id="armory.hover.droprate">Вероятность добычи:</str>
+		<str id="armory.hover.boss">Босс:</str>
+		<str id="armory.hover.bossdrop">Добыча с тела босса</str>
+
+		<str id="armory.searchColumn.speed">Скорость</str>
+		<str id="armory.searchColumn.dps">Урон в секунду</str>
+
+		<str id="armory.searchColumn.type">Категория</str>
+		<str id="armory.searchColumn.requiredLevel">Необх. уров.</str>
+		<str id="armory.searchColumn.itemLevel">Уров. предм.</str>
+
+		<str id="armory.searchColumn.source">Источник</str>
+
+		<str id="armory.searchColumn.sourceType.questReward">Награда за задание</str>
+
+		<str id="armory.searchColumn.sourceType.none"> - </str>
+		<str id="armory.searchColumn.sourceType.creatureDrop">Добыча</str>
+		<str id="armory.searchColumn.sourceType.gameObjectDrop">Сундук</str>
+		<str id="armory.searchColumn.sourceType.factionReward">Нагр. за репут.</str>
+		<str id="armory.searchColumn.sourceType.pvpReward">Нагр. за PvP</str>
+		<str id="armory.searchColumn.sourceType.vendorPvP">Нагр. за PvP</str>
+
+		<str id="armory.searchColumn.sourceType.vendor">Торговец</str>
+		<str id="armory.searchColumn.sourceType.pickPocket">Карманник</str>
+		<str id="armory.searchColumn.sourceType.creatureSkin">Свежевание</str>
+		<str id="armory.searchColumn.sourceType.creatureMine">Горное дело</str>
+		<str id="armory.searchColumn.sourceType.creatureHerb">Травничество</str>
+		<str id="armory.searchColumn.sourceType.startsQuest">Предм. задания</str>
+
+		<str id="armory.searchColumn.sourceType.providedQuest">Предм. задания</str>
+		<str id="armory.searchColumn.sourceType.objQuest">Предм. задания</str>
+
+		<str id="armory.searchColumn.sourceType.createdBySpell">Ремесло</str>
+		<str id="armory.searchColumn.sourceType.reagentSpell">Реагент</str>
+		<str id="armory.searchColumn.sourceType.createdByPlans">Ремесло</str>
+		<str id="armory.searchColumn.sourceType.currency">Деньги</str>
+
+		<str id="armory.searchColumn.sourceType.planForItem">Планы</str>
+		<str id="armory.searchColumn.sourceType.worldDrop">Добыча</str>
+
+		<str id="armory.searchColumn.inventoryType">Ячейка</str>
+
+		<str id="armory.searchColumn.requiredSkill">Необх. навык</str>
+
+		<str id="armory.searchColumn.containerSlots">Ячейки</str>
+
+		<str id="armory.searchColumn.slot.1">Голова</str>
+		<str id="armory.searchColumn.slot.2">Шея</str>
+		<str id="armory.searchColumn.slot.3">Плечи</str>
+		<str id="armory.searchColumn.slot.16">Спина</str>
+		<str id="armory.searchColumn.slot.5">Грудь</str>
+		<str id="armory.searchColumn.slot.20">Грудь</str>
+
+		<str id="armory.searchColumn.slot.4">Рубаха</str>
+		<str id="armory.searchColumn.slot.18">Гербовая накидка</str>
+		<str id="armory.searchColumn.slot.9">Запястья</str>
+		<str id="armory.searchColumn.slot.10">Руки</str>
+		<str id="armory.searchColumn.slot.6">Пояс</str>
+		<str id="armory.searchColumn.slot.7">Ноги</str>
+
+		<str id="armory.searchColumn.slot.8">Ступни</str>
+		<str id="armory.searchColumn.slot.11">Палец</str>
+		<str id="armory.searchColumn.slot.12">Украшение</str>
+		<str id="armory.searchColumn.slot.14">Щит</str>
+		<str id="armory.searchColumn.slot.15">Под прав. руку</str>
+		<str id="armory.searchColumn.slot.23">Под лев. руку</str>
+
+		<str id="armory.searchColumn.slot.17">Для дальнего боя</str>
+		<str id="armory.searchColumn.slot.28">Реликвия</str>
+
+		<str id="armory.searchColumn.weaponStats">Статистика оружия</str>
+		<str id="armory.searchColumn.dps">УВС</str>
+		<str id="armory.searchColumn.minDamage">Мин. урон в сек.</str>
+		<str id="armory.searchColumn.maxDamage">Макс. урон в сек.</str>
+
+		<str id="armory.searchColumn.speed">Скорость</str>
+
+		<str id="armory.searchColumn.baseStats">Базовые бонусы в статистике</str>
+		<str id="armory.searchColumn.strength">Сила</str>
+		<str id="armory.searchColumn.agility">Ловкость</str>
+		<str id="armory.searchColumn.stamina">Выносливость</str>
+		<str id="armory.searchColumn.intellect">Интеллект</str>
+
+		<str id="armory.searchColumn.spirit">Дух</str>
+
+		<str id="armory.searchColumn.physical">Бонусы за физ. поединок</str>
+		<str id="armory.searchColumn.attackPower">Сила атаки</str>
+		<str id="armory.searchColumn.feralAttackPower">Сила атаки (зверь)</str>
+		<str id="armory.searchColumn.critRating">Рейтинг крит. удара</str>
+		<str id="armory.searchColumn.hitRating">Рейтинг меткости</str>
+
+		<str id="armory.searchColumn.hasteRating">Рейтинг ударов</str>
+		<str id="armory.searchColumn.expertiseRating">Рейтинг мастерства</str>
+
+		<str id="armory.searchColumn.spell">Магические бонусы</str>
+		<str id="armory.searchColumn.spellHealing">Исцеление</str>
+		<str id="armory.searchColumn.spellPower">Сила заклинаний</str>
+		<str id="armory.searchColumn.spellCritRating">Рейтинг крит. удара при использовании заклинания</str>
+
+		<str id="armory.searchColumn.spellHitRating">Рейтинг меткости при использовании заклинания</str>
+		<str id="armory.searchColumn.spellPenetration">Уязвимость</str>
+		<str id="armory.searchColumn.spellManaRegen">Восстановление маны</str>
+		<str id="armory.searchColumn.spellHasteRating">Частота ударов при использовании заклинания</str>
+		<str id="armory.searchColumn.spellDamageArcane">Урон от тайной магии</str>
+		<str id="armory.searchColumn.spellDamageHoly">Урон от светлой магии</str>
+
+		<str id="armory.searchColumn.spellDamageShadow">Урон от тайной магии</str>
+		<str id="armory.searchColumn.spellDamageNature">Урон от природной магии</str>
+		<str id="armory.searchColumn.spellDamageFrost">Урон от магии льда</str>
+		<str id="armory.searchColumn.spellDamageFire">Урон от магии огня</str>
+
+		<str id="armory.searchColumn.defense">Бонусы защиты</str>
+		<str id="armory.searchColumn.armor">Броня</str>
+
+		<str id="armory.searchColumn.blockRating">Рейтинг способности отражать удары</str>
+		<str id="armory.searchColumn.blockValue">Способность отражать удары</str>
+		<str id="armory.searchColumn.defenseRating">Рейтинг защиты</str>
+		<str id="armory.searchColumn.dodgeRating">Рейтинг уклонения</str>
+		<str id="armory.searchColumn.parryRating">Рейтинг способности парировать удары</str>
+		<str id="armory.searchColumn.resilience">Стойкость</str>
+
+		<str id="armory.searchColumn.healthRegen">Восстановление здоровья</str>
+
+		<str id="armory.searchColumn.resistances">Бонусы сопротивляемости</str>
+		<str id="armory.searchColumn.resistArcane">Сопротивляемость тайной магии </str>
+		<str id="armory.searchColumn.resistShadow">Сопротивляемость темной магии</str>
+		<str id="armory.searchColumn.resistNature">Сопротивляемость природной магии</str>
+		<str id="armory.searchColumn.resistFrost">Сопротивляемость магии льда</str>
+
+		<str id="armory.searchColumn.resistFire">Сопротивляемость магии огня</str>
+
+		<str id="armory.searchColumn.general">Общее</str>
+		<str id="armory.searchColumn.bindsPickedUp">Становится персональным при получении</str>
+		<str id="armory.searchColumn.bindsEquip">Становится персональным при надевании</str>
+		<str id="armory.searchColumn.bindsWhenUsed">Становится персональным при использовании</str>
+		<str id="armory.searchColumn.requiresProfession">Необх. профессия</str>
+
+		<str id="armory.searchColumn.unique">Уникальный</str>
+		<str id="armory.searchColumn.uniqueEquipped">Не более 1 в вооруж.</str>
+		<str id="armory.searchColumn.hasSpellEffect">Имеет магический эффект...</str>
+
+		<str id="armory.searchColumn.relevance">Соответствие</str>
+	</itemsSearchColumns>
+
+	<guildBank>
+
+		<str id="emptyLogs">В журнале вкладов нет записей.</str>
+		<str id="col.origin">И</str>
+		<str id="col.origin.tooltip">Источник</str>
+		<str id="col.action">Д</str>
+		<str id="col.action.tooltip">Действие</str>
+		<str id="col.destination">Ц</str>
+
+		<str id="col.destination.tooltip">Цель</str>
+		<str id="col.item">Предмет</str>
+		<str id="subtype">Подтип</str>
+		<str id="type">Тип</str>
+		<str id="resetfilters">Очистить критерии</str>
+		<str id="runfilters">Фильтровать</str>
+
+		<str id="charnamec">Имя персонажа: </str>
+		<str id="guildrankc">Ранг гильдии: </str>
+		<str id="origin">Происхождение: </str>
+		<str id="ttype">Тип операции: </str>
+		<str id="allbags">Все закладки</str>
+		<str id="destination">Назначение: </str>
+
+		<str id="itemname">Название: </str>
+		<str id="itemquality">Качество: </str>
+		<str id="itemtype">Категория: </str>
+		<str id="itemcost">Стоимость предмета: </str>
+		<str id="itemsubtype">Подкатегория: </str>
+		<str id="date">Дата: </str>
+
+		<str id="bag">Закладка: </str>
+		<str id="bagnoc">Закладка </str>
+		<str id="bagnospaceone">Закладка</str>
+		<str id="bagnospacetwo"/>
+		<str id="resultsover">По вашему запросу было найдено слишком много элементов. Поэтому выводятся только последние 2000 операций. Укажите, пожалуйста, более короткий промежуток времени.</str>
+		<str id="bagnocafter"/>
+		<str id="resultsfound">Найдено элементов:</str>
+
+		<str id="transactionsfound">Найдено операций:</str>
+		<str id="notetime">Внимание! Дата и время указаны по местному времени.</str>
+		<str id="nopermission">У вас нет разрешения на просмотр.</str>
+		<str id="none">--Нет--</str>
+		<str id="alltypes">Все категории предметов</str>
+		<str id="bankcontents">Содержимое банка</str>
+
+		<str id="banklog">Журнал операций</str>
+		<str id="banklogresults">Критерии поиска по журналу операций</str>
+		<str id="characterfilters">Критерии поиска персонажей</str>
+		<str id="itemfilters">Критерии поиска предметов</str>
+		<str id="datefilters">Критерии поиска по дате</str>
+		<str id="transactionfilters">Критерии поиска по операциям</str>
+
+		<str id="all">Все</str>
+		<str id="transaction.1">Положить предмет</str>
+		<str id="transaction.2">Взять предмет</str>
+		<str id="transaction.3">Переместить предмет</str>
+		<str id="transaction.4">Внести деньги</str>
+		<str id="transaction.5">Снять деньги</str>
+
+		<str id="transaction.6">Ремонт</str>
+		<str id="transaction.7">Переместить предмет</str>
+		<str id="transaction.8">Снять деньги</str>
+		<str id="transaction.9">Покупка сейфа</str>
+		<str id="deposititem">Внес предмет</str>
+		<str id="withdrawitem">Забрал предмет</str>
+
+		<str id="depositmoney">Внес деньги</str>
+		<str id="withdrawmoney">Снял деньги</str>
+		<str id="buytab">Покупка сейфа гилдейского банка</str>
+		<str id="repair">Восстановил</str>
+		<str id="moveitem">Перенес предмет</str>
+		<str id="banktabselect">сейфы банка</str>
+
+		<str id="goldinbank">золотых в банке</str>
+		<str id="contentsof">Содержимое</str>
+		<str id="bankcontentsfilters">Критерии поиска по содержимому банка</str>
+		<str id="refreshtab">Обновить страницу</str>
+		<str id="noaccess">Доступ к банку этой гильдии закрыт. Убедитесь, что персонаж, зарегистрированный на данное имя пользователя World of Warcraft, входит в гильдию и что его ранг в гильдии дает вам доступ к информации о банке. Некоторые банки гильдий могут быть временно закрыты, если ими давно никто не пользовался.</str>
+		<str id="guildmsgotd">Гильдейское сообщение дня:</str>
+
+		<str id="guildmsginfo">Информация о гильдии:</str>
+		<str id="showguildinfo">Показать информацию о гильдии</str>
+		<str id="hideguildinfo">Скрыть информацию о гильдии</str>
+		<str id="name">Имя:</str>
+		<str id="level">Уровень:</str>
+		<str id="race">Раса:</str>
+
+		<str id="gender">Пол:</str>
+		<str id="class">Класс:</str>
+		<str id="rank">Ранг:</str>
+		<str id="both">Оба</str>
+		<str id="male">Муж.</str>
+		<str id="female">Жен.</str>
+
+		<str id="allranks">Все ранги</str>
+		<str id="daytitle">День</str>
+		<str id="monthtitle">Месяц</str>
+		<str id="yeartitle">Год</str>
+		<str id="timetitle">Время</str>
+		<str id="from">С:</str>
+
+		<str id="to">По:</str>
+		<str id="search">Поиск</str>
+		<str id="datesearch">Поиск по дате</str>
+		<str id="guildrosterfilters">Критерии поиска по составу гильдии</str>
+		<str id="guildlogincharacter">Чтобы просматривать эту страницу, вы должны войти под своим паролем. Ваш персонаж должен входить в состав данной гильдии.</str>
+		<str id="guildloginpermission">У вас нет разрешения на просмотр этой страницы.</str>
+
+		<str id="error.notabaccess">У вас нет доступа ни к одному из сейфов банка данной гильдии.</str>
+		<str id="error.loginrequired">Введите имя пользователя.</str>
+		<str id="error.accessdenied">В доступе отказано.</str>
+		<str id="error.notmember">Чтобы просматривать банк гильдии, на ваше имя пользователя должен быть зарегистрирован персонаж - участник этой гильдии. Учетная запись должна быть активна, незаблокирована и доступна.</str>
+		<str id="error.gologin">Информация о банках гильдий относится к разряду конфиденциальной. Эти страницы защищены паролем. Чтобы просматривать их, введите свое имя пользователя World of Warcraft, на которое зарегистрирован ваш персонаж - участник данной гильдии.</str>
+		<str id="error.loginarmory">Вход в Оружейную</str>
+
+		<str id="set">Группа</str>
+		<str id="nextset">Следующая группа</str>
+		<str id="previousset">Предыдущая группа</str>
+		<str id="currentset">Группа операций</str>
+		<str id="totalresults">Всего результатов:</str>
+		<str id="information">Информация:</str>
+
+		<str id="firstgroup">1</str>
+		<str id="note">Примечание:</str>
+		<str id="in">в</str>
+		<str id="abouttransactions">О группах операций:</str>
+		<str id="notetransactions1">Каждая группа состоит более чем из тысячи операций. </str>
+		<str id="notetransactions2">По умолчанию показывается последняя по времени группа операций.</str>
+
+		<str id="notetransactions3">Поиск и сортировка результатов осуществляются только в пределах показываемой группы.</str>
+		<str id="notetransactions4">Для перехода от одной группы к другой воспользуйтесь кнопками с изображением стрелок под таблицей результатов.</str>
+		<str id="notetransactions5">Вы можете видеть не все операции той или иной группы. Это зависит от того, есть ли у вас разрешение на просмотр информации полностью.</str>
+		<str id="noaccess">У вас нет доступа к этому сейфу.</str>
+		<str id="errortitle">Информация временно недоступна</str>
+		<str id="errorcontent">Требуемая информация в данный момент недоступна. Повторите попытку позже.</str>
+
+		<str id="empty.title">Банк пуст</str>
+		<str id="empty.content">Банк гильдии в настоящее время пуст. Возможно также, что глава гильдии не приобрел свободных банковских ячеек.</str>
+	</guildBank>
+
+	<login>
+		<str id="armory.login.loginrequired">Введите имя пользователя.</str>
+		<str id="armory.login.access">Чтобы воспользоваться этой функцией, введите, пожалуйста, имя пользователя и пароль.</str>
+
+		<str id="armory.login.accountname">Имя пользователя</str>
+		<str id="armory.login.password">Пароль</str>
+		<str id="armory.login.noaccount">Я забыл(-а) свое имя пользователя.</str>
+		<str id="armory.login.forgotpassword">Забыли пароль?</str>
+		<str id="armory.login.forgotpassword.tooltip">Я забыл(-а) пароль.&lt;br/&gt;Чтобы восстановить пароль, щелкните здесь.</str>
+
+		<str id="armory.login.welcome">Добро пожаловать</str>
+		<str id="armory.login.logged">Вы вошли как</str>
+		<str id="armory.login.mustlogin">Войдите в Оружейную, чтобы информация об участии вашего основного персонажа в турнирах Арены отобразилась в калькуляторе.</str>
+		<str id="armory.login.nochars">На этой учетной записи нет персонажей.</str>
+		<str id="armory.login.loginbtn">Вход</str>
+		<str id="armory.login.login">Войти</str>
+
+		<str id="armory.login.cancel">Отменить</str>
+		<str id="armory.login.logout">Выйти</str>
+		<str id="armory.login.close">Close</str>
+		<str id="armory.login.help">Помощь</str>
+		<str id="armory.login.mustlog">Чтобы просматривать конфиденциальные разделы Оружейной, вы должны войти как зарегистрированный пользователь World of Warcraft.</str>
+		<str id="armory.login.error">Неверно указано имя пользователя или пароль. Попробуйте, пожалуйста, снова.</str>
+
+		<str id="armory.login.invites">Приглашения для: </str>
+		<str id="armory.login.invitations">Приглашения</str>
+		<str id="armory.login.invites.youhave">У вас: </str>
+		<str id="armory.login.invites.pending">У вас есть неотвеченные приглашения</str>
+		<str id="armory.login.calendar.pending">Неотвеченные приглашения</str>
+		<str id="armory.login.achievements">Очки достижений</str>
+
+		<str id="armory.login.bookmark.remove">Удалить закладку</str>
+		<str id="armory.login.bookmark.nobookmark">У вас нет закладок</str>
+		<str id="armory.login.bookmark.nobookmark.desc">Чтобы добавить закладку, найдите профиль персонажа и щелкните по соответствующей ссылке.</str>
+	</login>
+
+	<pvpSource>
+		<str id="armory.pvprewards.wintergrasp">Ледяные Оковы</str>
+
+		<str id="armory.pvprewards.arena8">Награды Арены: 8-й сезон</str>
+		<str id="armory.pvprewards.arena7">Награды Арены: 7-й сезон</str>
+		<str id="armory.pvprewards.arena6">Награды Арены: 6-й сезон</str>
+		<str id="armory.pvprewards.arena5">Награды Арены: 5-й сезон</str>
+		<str id="armory.pvprewards.arena4">Награды Арены: 4-й сезон</str>
+		<str id="armory.pvprewards.arena3">Награды Арены: 3-й сезон</str>
+
+		<str id="armory.pvprewards.arena2">Награды Арены: 2-й сезон</str>
+		<str id="armory.pvprewards.arena1">Награды Арены: 1-й сезон</str>
+		<str id="armory.pvprewards.honor4">Почетные награды: 4-й сезон</str>
+		<str id="armory.pvprewards.honor3">Почетные награды: 3-й сезон</str>
+		<str id="armory.pvprewards.honor2">Почетные награды: 2-й сезон</str>
+		<str id="armory.pvprewards.honor1">Почетные награды: 1-й сезон</str>
+
+		<str id="armory.pvprewards.honor">Почетные награды</str>
+		<str id="armory.pvprewards.av">Альтеракская долина</str>
+		<str id="armory.pvprewards.ab">Низина Арати</str>
+		<str id="armory.pvprewards.wsg">Ущелье Песни Войны</str>
+		<str id="armory.pvprewards.halaa">Халаа</str>
+		<str id="armory.pvprewards.honorhold">Оплот Чести</str>
+
+		<str id="armory.pvprewards.thrallmar">Траллмар</str>
+		<str id="armory.pvprewards.terrokar">Тероккар</str>
+		<str id="armory.pvprewards.zangarmarsh">Зангартопь</str>
+	</pvpSource>
+
+    <characterSheet>
+		<str id="armory.character.refresh">Профиль данного персонажа недоступен, поскольку давно не обновлялся, или из-за высокой загрузки сервера.</str>
+
+		<str id="armory.character.talent-specialization">Таланты</str>
+		<str id="armory.character.resistances">Сопротивляемость магии:</str>
+		<str id="armory.character.professions-primary">Основные профессии</str>
+
+		<str id="armory.character.list.name">Название предмета</str>
+		<str id="armory.character.list.lvl">Уровень</str>
+		<str id="armory.character.list.gems">Самоцветы</str>
+
+		<str id="armory.character.list.ench">Чары</str>
+		
+		<str id="armory.character-sheet.base-stats.display">Баз. характеристики</str>
+		<str id="armory.character-sheet.melee.display">Ближний бой</str>
+		<str id="armory.character-sheet.ranged.display">Дальний бой</str>
+		<str id="armory.character-sheet.spell.display">Заклинания</str>
+		<str id="armory.character-sheet.defenses.display">Защита</str>
+
+		<str id="armory.character-sheet.prompt.levelTen">Чтобы профиль персонажа отображался в Оружейной, персонаж должен достичь хотя бы 10-го уровня.</str>
+		<str id="armory.character-sheet.currentLevel">Уровень в настоящее время:</str>
+
+		<str id="armory.character-sheet.findupgrade">Улучшения</str>
+	</characterSheet>
+
+	<embed>
+		<str id="armory.embed.trial">Бесплатная пробная версия World of Warcraft</str>
+
+	</embed>
+	
+	<arenaCalc>
+		<str id="twohand">Двуручный</str>
+		<str id="crossbow">Арбалет</str>
+		<str id="mainhand">Правая рука</str>
+		<str id="onehand">Одноручный</str>
+		<str id="offhand">Левая рука</str>
+
+		<str id="shield">Щит</str>
+		<str id="head">Голова</str>
+		<str id="chest">Грудь</str>
+		<str id="legs">Ноги</str>
+		<str id="shoulder">Плечи</str>
+		<str id="hands">Руки</str>
+
+		<str id="offhandfrill">Держится в левой руке</str>
+		<str id="thrown">Метательное оружие</str>
+		<str id="wand">Жезл</str>
+		<str id="idol">Идол</str>
+		<str id="totem">Тотем</str>
+		<str id="sigil">Печать</str>
+
+		<str id="libram">Книга</str>
+		<str id="title">Калькулятор арены</str>
+		<str id="selectCalc">Выбрать калькулятор:</str>
+		<str id="calc.arenaPoints">Калькулятор очков Арены</str>
+		<str id="calc.arenaPoints.question">Сколько очков Арены я получу на этой неделе?</str>
+		<str id="calc.rating">Калькулятор рейтинга</str>
+
+		<str id="calc.rating.question">Каким должен быть мой средний рейтинг, чтобы получить интересующую меня награду Арены?</str>
+		<str id="calc.time">Калькулятор времени</str>
+		<str id="calc.time.question">Когда я смогу получить интересующую меня награду Арены?</str>
+		<str id="intro">
+      <p>У каждой команды есть определенный рейтинг. Это показатель того, насколько удачно команда участвует в поединках на Арене: чем выше рейтинг, тем лучше. С каждым выигранным поединком рейтинг команды поднимается, с каждый проигранным — опускается. На сколько пунктов, зависит от статуса вашей команды по сравнению с остальными. Так, по итогам поединка с командой примерно равного уровня вы выиграете — или проиграете — 16 пунктов.</p>
+      <p>На исходе каждой недели вычисляется, сколько очков принес вашей команде в целом ее рейтинг. Чтобы получать очки, команда должна принять участие, как минимум, в десяти поединках за неделю. А чтобы часть этих очков была начислена лично вам, вы должны участовать минимум в 30% этих поединков. Важно отметить, что в конце недели вы получите очки только с одной команды, а не со всех, в которые вы входите, по совокупности. Единственным источником очков среди команд, за которые вы играете, будет для вас та, что наберет за неделю больше всего очков по рейтингу (и в зависимости от размера команды). Учтите, что выгоднее играть за команду 5х5, чем 2х2 или 3х3, так как последние, имея тот же рейтинг, получают меньше очков.</p>
+
+      <p>Очками, полученными на Арене, можно расплачиваться за награды. Вы можете накопить до 5000 очков, и они не пропадут. Определить, сколько очков вы можете получить в зависимости от рейтинга и сколько недель вам потребуется, чтобы, при том или ином рейтинге, заработать интересующую вас награду, можно с помощью калькулятора Арены.</p>
+    </str>
+		<str id="title.about">Как вычисляются рейтинги и очки Арены?</str>
+		<str id="penalty.title">Денежный ущерб:</str>
+		<str id="penalty.two">При одинаковом рейтинге команда 2х2 получает на <strong>24%</strong> меньше очков, чем команда 5х5.</str>
+
+		<str id="penalty.three">При одинаковом рейтинге команда 3х3 получает на <strong>12%</strong> меньше очков, чем команда 5х5.</str>
+		<str id="title.formulae">Формула вычисления очков Арены</str>
+		<str id="formula.ifrating">Если <span class="ratingcolor">рейтинг</span>
+    </str>
+		<str id="decimal">.</str>
+
+		<str id="formula.one">Если рейтинг&lt;=1500, то количество очков=0.22*рейтинг+14</str>
+		<str id="formula.two">Если рейтинг&gt;1500, то количество очков=1511.26/(1+1639.28*2.71828<sup>-0.00412*рейтинг</sup>)</str>
+		<str id="title.itemCosts">Стоимость предметов</str>
+		<str id="title.arenaRewardCosts">Стоимость наград Арены</str>
+		<str id="ninerepeating1">
+
+      <a href="http://www.blizzard.com/press/040401.shtml">0.999... =</a>
+    </str>
+		<str id="ninerepeating2">
+      <a href="http://www.blizzard.com/press/040401.shtml">1</a>
+    </str>
+
+		<str id="items.7">Предметы 7-го сезона</str>
+		<str id="items.6">Предметы 6-го сезона</str>
+
+		<str id="items.5">Предметы 5-го сезона</str>
+		<str id="items.4">Предметы 4-го сезона</str>
+		<str id="items.3">Предметы 3-го сезона</str>
+		<str id="items.2">Предметы 2-го сезона</str>
+		<str id="items.1">Предметы 1-го сезона</str>
+
+		<str id="arenapoints">очки Арены</str>
+
+		<str id="points">очки</str>
+
+		<str id="rating">рейтинг</str>
+		<str id="ratingColon">рейтинг:</str>
+		<str id="averageRatingColon">Средний рейтинг:</str>
+		<str id="pointsNeededColon">Необходимое количество очков:</str>
+		<str id="itemCostColon">Стоимость предмета:</str>
+
+		<str id="itemCost">Стоимость предмета</str>
+		<str id="haveArenaPointsColon">Набрано очков Арены:</str>
+
+		<str id="avgtwo">Ср. рейтинг 2х2</str>
+		<str id="avgthree">Ср. рейтинг 3х3</str>
+		<str id="avgfive">Ср. рейтинг 5х5</str>
+		<str id="referenceSheet">Памятка:</str>
+
+		<str id="pinnedProfile">Основной профиль</str>
+		<str id="noPinnedProfile">Нет сохраненных профилей</str>
+		<str id="noPinnedProfile.explanation">
+      <i>Сохраните выбранный профиль</i>, чтобы не заполнять каждый раз некоторые поля калькулятора. Для поиска среди персонажей щелкните <a href="character-search.xml">здесь</a>.</str>
+
+		<str id="disclaimer.stats">Статистика Арены не обновляется в реальном времени.<br/>Очки можно получить играя лишь за одну команду. [<a href="/faq-arena-calculator.xml#anchorgetArenaPoints" target="_blank">подробнее</a>]</str>
+
+		<str id="twoVcolon">2х2:</str>
+		<str id="threeVcolon">3х3:</str>
+		<str id="fiveVcolon">5х5:</str>
+
+		<str id="numWeeks">Количество недель</str>
+
+		<str id="week0">0 недель</str>
+
+		<str id="week1">1 неделя:</str>
+		<str id="week2">2 недели:</str>
+		<str id="week3">3 недели:</str>
+		<str id="week4">4 недели:</str>
+		<str id="week5">5 недели:</str>
+		<str id="week6">6 недели:</str>
+
+		<str id="week7">7 недели:</str>
+		<str id="week8">8 недели:</str>
+		<str id="week9">9 недели:</str>
+		<str id="week10">10 недель:</str>
+		<str id="week11">11 недель:</str>
+		<str id="week12">12 недель:</str>
+
+		<str id="weapons">Оружие</str>
+		<str id="armor">Броня</str>
+
+		<str id="or">или</str>
+		<str id="impossible">невозможно</str>
+		<str id="colon">:</str>
+
+		<str id="honorone">Награды Арены <param1/>-го сезона теперь можно приобрести за очки чести и знаки отличия боевой группы.</str>
+		<str id="honortwo">Полный список наград <param1/>-го сезона находится здесь:</str>
+		<str id="seasononelink">Награды Арены <param1/>-го сезона</str>
+	</arenaCalc>
+
+	<searchPlugin>
+
+		<str id="searchengine">Поисковая система</str>
+		<str id="title">Модуль поиска для браузера</str>
+		<str id="maintitle">Упрощенный поиск.</str>
+		<str id="subtitle">Создайте поле для поиска по Оружейной World of Warcraft в своем браузере, и вы сможете осуществлять поиск по Оружейной с любой веб-страницы.</str>
+		<str id="installnow">Установить</str>
+		<str id="operaplugintitle">Оружейная WoW</str>
+
+		<str id="instructionsforopera">Пошаговое руководство для браузера Opera:</str>
+		<str id="instructionsforopera1">Нажмите кнопку <strong>Установить</strong>.</str>
+		<str id="instructionsforopera2">В открывшемся pop-up окне нажмите <strong>"Да"</strong>.</str>
+		<str id="instructionsforopera3">Перетащите блок «Оружейная WoW» из вкладки <strong>Представление → Кнопки → Мои кнопки</strong> на панель поиска браузера.</str>
+
+		<str id="instructionsforopera4">Или</str>
+		<str id="instructionsforopera5">Чтобы включить Оружейную в список используемых Opera поисковых систем:</str>
+		<str id="instructionsforopera6">Откройте вкладку <strong>Инструменты → Настройки → Найти</strong>.</str>
+		<str id="instructionsforopera7">Нажмите <strong>Добавить</strong>.</str>
+		<str id="instructionsforopera8">В открывшееся диалоговое окно введите следующую информацию и нажмите <strong>OK</strong>:</str>
+
+		<str id="instructionsforopera9">
+      <b>Название:</b> «Оружейная WoW»<br/>
+      <b>Ключевое слово:</b> wow<br/>
+      <b>Адрес:</b> http://www.wowarmory.com/search.xml?searchQuery=%s&amp;searchType=all</str>
+
+		<str id="instructionsforopera10">Теперь вы можете выбрать «Оружейную WoW» в выпадающем списке поисковых систем.</str>
+	</searchPlugin>
+
+	<archives>
+		<str id="archives.title">Архив Оружейной</str>
+		<str id="archives.arena.seasonone">Зал славы Оружейной: 1-й сезон</str>
+	</archives>
+
+	<months>
+		<str id="month1">Январь</str>
+		<str id="month2">Февраль</str>
+		<str id="month3">Март</str>
+		<str id="month4">Апрель</str>
+		<str id="month5">Май</str>
+
+		<str id="month6">Июнь</str>
+		<str id="month7">Июль</str>
+		<str id="month8">Август</str>
+		<str id="month9">Сентябрь</str>
+		<str id="month10">Октябрь</str>
+		<str id="month11">Ноябрь</str>
+
+		<str id="month12">Декабрь</str>
+	</months>
+
+	<monthsAbb>
+		<str id="month1">Янв</str>
+		<str id="month2">Фев</str>
+		<str id="month3">Мар</str>
+
+		<str id="month4">Апр</str>
+		<str id="month5">Май</str>
+		<str id="month6">Июнь</str>
+		<str id="month7">Июль</str>
+		<str id="month8">Авг</str>
+		<str id="month9">Сен</str>
+
+		<str id="month10">Окт</str>
+		<str id="month11">Ноя</str>
+		<str id="month12">Дек</str>
+	</monthsAbb>
+
+	<weekdays>
+		<str id="day1">Воскресенье</str>
+
+		<str id="day2">Понедельник</str>
+		<str id="day3">Вторник</str>
+		<str id="day4">Среда</str>
+		<str id="day5">Четверг</str>
+		<str id="day6">Пятница</str>
+		<str id="day7">Суббота</str>
+
+	</weekdays>
+
+	<time>
+		<str id="time0">00.01</str>
+		<str id="time1">1.00</str>
+		<str id="time2">2.00</str>
+		<str id="time3">3.00</str>
+
+		<str id="time4">4.00</str>
+		<str id="time5">5.00</str>
+		<str id="time6">6.00</str>
+		<str id="time7">7.00</str>
+		<str id="time8">8.00</str>
+		<str id="time9">9.00</str>
+
+		<str id="time10">10.00</str>
+		<str id="time11">11.00</str>
+		<str id="time12">12.00</str>
+		<str id="time13">13.00</str>
+		<str id="time14">14.00</str>
+		<str id="time15">15.00</str>
+
+		<str id="time16">16.00</str>
+		<str id="time17">17.00</str>
+		<str id="time18">18.00</str>
+		<str id="time19">19.00</str>
+		<str id="time20">20.00</str>
+		<str id="time21">21.00</str>
+
+		<str id="time22">22.00</str>
+		<str id="time23">23.00</str>
+		<str id="time24">23.59</str>
+	</time>
+
+	<redirect>
+		<str id="redirecting">Переадресация...</str>
+
+		<str id="notredirectone">Если в течение 10 секунд автоматической переадресации не произошло, щелкните </str>
+		<str id="notredirecttwo">здесь</str>
+		<str id="notredirectthree">.</str>
+	</redirect>
+
+	<serverBusy>
+		<str id="refreshpage">Обновить страницу</str>
+
+		<str id="content">Из-за большого количества посетителей Оружейная в настоящий момент работает медленнее, чем обычно. Попробуйте обновить страницу через несколько минут.</str>
+		<str id="title">Сервер Оружейной перегружен</str>
+	</serverBusy>
+
+	<propass>
+		<str id="forum.link.mouseover">Эта ссылка ведет на форум Турнира Арены</str>
+		<str id="forum.link">http://forums.wow-europe.com/board.html</str>
+
+		<str id="teamstats">Статистика команд Турнира Арены</str>
+		<str id="pvpinfo">Личная информация об участии в PvP-боях:</str>
+		<str id="personalrating">ЛИЧНЫЙ РЕЙТИНГ: </str>
+		<str id="winrecord">РЕКОРДЫ ПОБЕД: </str>
+		<str id="winpercentage">ПРОЦЕНТ ПОБЕД: </str>
+		<str id="coliseums">Регионы: </str>
+
+		<str id="usoceanic">США &amp; Океания</str>
+		<str id="europe">Европа</str>
+		<str id="korea">Корея</str>
+		<str id="taiwan">Тайвань, Гонконг &amp; Макао</str>
+
+		<str id="winloseone"/>
+		<str id="winlosetwo"> победы - </str>
+		<str id="winlosethree"> проигрыши</str>
+		<str id="winpercentageone"/>
+		<str id="winpercentagetwo"> Процент побед</str>
+
+		<str id="teaminfo">Информация о команде</str>
+		<str id="arena">Арена</str>
+		<str id="tournament">Турнир</str>
+		<str id="rating">РЕЙТИНГ: </str>
+	</propass>
+
+	<esrb>
+
+		<str id="ratingsurl">http://www.esrb.org/esrbratings_guide.asp</str>
+		<str id="privacyurl">http://eu.blizzard.com/ru/privacy.html</str>
+	</esrb>
+
+	<calendar>
+		<str id="noscript">Для работы с календарем необходимо включить в вашем браузере поддержку JavaScript.</str>
+		<str id="eventList">Список событий</str>
+
+		<str id="viewEvent">Детали события</str>
+		<str id="viewAnnouncement">Просмотр объявления</str>
+		<str id="filters">Фильтры</str>
+		<str id="timesettings">Время</str>
+		<str id="locked">(Заблокирован)</str>
+		<str id="accept">Принять</str>
+
+		<str id="tentative">Под вопросом</str>
+		<str id="decline">Отклонить</str>
+		<str id="remove">Удалить</str>
+		<str id="signup">Принять</str>
+		<str id="spam">Это спам!</str>
+		<str id="player">Игрок</str>
+
+		<str id="class">Класс</str>
+		<str id="status">Статус</str>
+		<str id="complaint">Принято к сведению.</str>
+		<str id="complaintlong">Ваша жалоба зарегистрирована.</str>
+		<str id="ok">Готово</str>
+		<str id="desc">Описание</str>
+
+		<str id="close">Закрыть</str>
+		<str id="closelong">Закрыть окно</str>
+		<str id="att">Участники</str>
+		<str id="attt">Всего участников</str>
+		<str id="details">Подробнее</str>
+		<str id="loading">Идет загрузка.</str>
+
+		<str id="eventoverflow">На эту дату запланированы и другие мероприятия. Чтобы отобразить их, щелкните по стрелк в правом верхнем углу этого окна.</str>
+		<str id="moreinfo">
+      <a>Подробнее об этом мероприятии</a>
+    </str>
+		<str id="creator">Вы создали это событие или руководите им.</str>
+		<error id="accessdenied">
+      <div class="guilderrortitle">Нет доступа</div>Эта страница защищена паролем. Чтобы просмотреть ее, вы должны зайти в Оружейную под именем своей учетной записи World of Warcraft. Более подробную информацию можно прочитать <a href="/faq-login.xml">здесь</a>.</error>
+
+		<time>
+			<str id="info">Время проведения</str>
+			<str id="realm">Время игрового мира:</str>
+			<str id="local">Местное время:</str>
+			<str id="hour24">24-часовой формат:</str>
+			<str id="useLocal">Использовать местное время</str>
+
+		</time>
+		<dungeon>
+			<str id="heroic">(героический режим)</str>
+			<str id="10-player">(10 игроков)</str>
+			<str id="25-player">(25 игроков)</str>
+			<str id="20-player">(20 игроков)</str>
+			<str id="40-player">(40 игроков)</str>
+
+		</dungeon>
+		<dynamic>
+			<str id="eventOwner">Это ваше мероприятие</str>
+			<str id="invitedBy">Приглашен игроком {0}</str>
+			<str id="announcementOwner">Это ваше объявление</str>
+			<str id="createdBy">Опубликовано игроком {0}</str>
+			<str id="attendees">{0} Принятые/утвержденные участники</str>
+
+			<str id="eventStarts">{0} начинается</str>
+			<str id="eventEnds">{0} заканчивается</str>
+			<str id="eventResets">{0} Обновления</str>
+			<str id="eventResetsDescription">{0} обновляется в {1}.</str>
+			<str id="eventUnlocks">{0} Открытые инстансы</str>
+			<str id="eventUnlocksDescription">Ваш инстанс "{0}" открывается в {1}.</str>
+
+			<str id="error">Ошибка</str>
+			<str id="errorDescription">Некоторые данные вашего календаря не могут быть загружены.\n\nПовторите попытку через несколько минут.</str>
+			<str id="characterErrorDescription">Для отображения в вашей ленте персонаж должен быть активным и принадлежать к активной учетной записи, находиться в европейском игровом мире, быть как минимум 10 уровня.</str>
+		</dynamic>
+		<event-type>
+			<str>Выходные (для поля боя)</str>
+			<str>Ярмарка Новолуния</str>
+
+			<str>Действующие блокировки рейдов</str>
+			<str>Обновления рейдов</str>
+			<str>Обычные выходные</str>
+		</event-type>
+		<player-event-type>
+			<str>Рейд</str>
+			<str>Подземелье</str>
+
+			<str>PvP</str>
+			<str>Встреча</str>
+			<str>Другое</str>
+		</player-event-type>
+		<event-status>
+			<str>Приглашен</str>
+			<str>Под вопросом</str>
+
+			<str>Принял</str>
+			<str>Отверг</str>
+			<str>Утвержден</str>
+			<str>Не участвует</str>
+			<str>В ожидании</str>
+			<str>Принято</str>
+
+		</event-status>
+		<format> <!-- JavaScript -->
+			<str id="firstDayOfWeek">1</str> <!-- 0-6, 0 = Sunday, 1 = Monday, … -->
+			<str id="use24HourFormat">true</str>
+			<str id="dateFormat">return CALENDAR_STRINGS.days[date.getDay()] + ' ' + date.getDate() + '.' + (1+date.getMonth()) + '.' + date.getFullYear();</str> <!-- order of number/day/month/year -->
+			<str id="time12HourFormat">return displayHour + '.' + padLeft(date.getMinutes().toString(), 2, '0') + (hours &gt;= 12 ? ' PM' : ' AM');</str>
+
+		</format>
+		<links base="/ru/info/basics/"> <!-- prefixed by url.wow -->
+			<event id="Fireworks">events/newyear/index.html</event>
+			<event id="LoveInTheAir">events/loveisintheair/index.html</event>
+			<event id="HarvestFestival">events/harvestfestival/index.html</event>
+			<event id="LunarFestival">events/lunarfestival/index.html</event>
+
+			<event id="WinterVeil">events/winterveil/index.html</event>
+			<event id="HallowsEnd">events/hallowsend/index.html</event>
+			<event id="Olymics">events/spiritofcompetition/index.html</event>
+			<event id="PiratesDay">events/piratesday/index.html</event>
+			<event id="Brewfest">events/brewfest/index.html</event>
+			<event id="Midsummer">events/midsummer/index.html</event>
+
+			<event id="FishingExtravaganza">events/stranglethorn/fishing.html</event>
+			<event id="StranglethornFishingExtravaganza">events/stranglethorn/fishing.html</event>
+			<event id="FeastofWinterVeil">events/winterveil/index.html</event>
+			<event id="DarkmooonFaire">factions/darkmoon/index.html</event>
+			<event id="DayoftheDead">events/dayofthedead/index.html</event>
+			<event id="PilgrimsBounty">events/pilgrimsbounty/index.html</event>
+
+			<event id="MidsummerFireFestival">events/midsummer/index.html</event>
+			<event id="ChildrensWeek">events/childrensweek/index.html</event>
+
+
+		</links>
+		<feed>
+			<str id="faqLinkButtonText">Вопросы и ответы</str>
+			<str id="faqLinkButtonURL">/faq-calendar-feed.xml</str>
+
+			<str id="subscribe">Лента календаря</str>
+			<str id="subscribeMessage">Интегрируйте этот календарь в любимую пограмму для планирования.</str>
+			<str id="pageTitle">настройка ленты календаря</str>
+			<str id="pageSubTitle">Настройка ленты календаря</str>
+			<str id="errorPageSubTitle">Нет подходящих персонажей</str>
+			<str id="errorMessage">Для отображения в вашей ленте персонаж должен быть активным и принадлежать к активной учетной записи, находиться в европейском игровом мире, быть как минимум 10 уровня.<p/>Воспользуйтесь меню выбора региона в нижней части экрана, чтобы выбрать персонажей из других регионов.</str>
+
+			<str id="filters">Фильтры</str>
+			<str id="playerCalendars">Календари перснажей (не более 5)</str>
+			<str id="noCharacter">&lt;щелкните, чтобы выбрать&gt;</str>
+			<str id="feedUrl">Адрес ленты календаря:</str>
+			<str id="resetButton">Сбросить код безопасности</str>
+			<str id="copyButton">Копировать в буфер</str>
+
+			<str id="noButton">Отмена</str>
+			<str id="yesButton">Да, сбросить код</str>
+			<str id="resetMessage">Адрес ленты вашего календаря содержит уникальный код вашей учетной записи. Вы действительно хотите  сбросить код и создать новый адрес?</str>
+			<str id="resetConfirmedMessage">Адрес ленты обновился. Обновите адрес ленты во всех ваших внешних приложениях для синхронизации</str>
+			<str id="aboutTitle">Для чего это страница?</str>
+			<str id="aboutMessage1">С помощью этого инструмента настройки вы сможете создать адрес ленты календаря не более чем для пяти персонажей. С помощью этой ленты можно синхронизировать ваш внутриигровой календарь с вашей любимой программой планирования, например Google Calendar, Apple's iCal, Facebook Calendar и т.д.</str>
+
+			<str id="aboutMessage2">Более подробно о создании и экспортировании новостной ленты можно прочитать в разделе вопросов и ответов ниже.</str>
+			<event-type>
+				<str id="bgholidays">Дни полей боя</str>
+				<str id="darkmoon">Ярмарка Темной луны</str>
+				<str id="raidlockouts">Сохраненные копии рейдовых подземелий</str>
+				<str id="raidresets">Обновление рейдовых подземелий</str>
+
+				<str id="holidays">Еженедельные парздники</str>
+			</event-type>
+		</feed>
+		<tooltips>
+			<str id="previousMonth">Предыдущий месяц</str>
+			<str id="nextMonth">Следующий месяц</str>
+			<str id="filters">Выберите категории события для отображения.</str>
+
+			<str id="timeSettings">Выберите часовой пояс и формат отображения времени.</str>
+		</tooltips>
+	</calendar>
+	<achievements>
+		<str id="points">Очки</str>
+		<str id="progress">Общий прогресс</str>
+		<str id="recent">Недавние достижения</str>
+
+		<str id="achievements.summary">Обзор</str>
+		<str id="realmfirst">Первый в мире!</str>
+		<str id="achievementfirst">Достижение "Первый в мире":</str>
+		<str id="achievementfirsts">Достижения "Первый в мире"</str>
+		<str id="serverfirsts.realmnav.myrealms">Мои игровые миры</str>
+		<str id="serverfirsts.realmnav.viewing">Просмотр</str>
+
+		<str id="serverfirsts.realmnav.otherrealms">Другие игровые миры</str>
+		<str id="serverfirsts.realmnav.otherregions">Другие регионы</str>
+		<str id="error">Произошла ошибка.</str>
+		<str id="error.noData">Игровой мир '<param1/>' не найден.</str>
+		<str id="error.unknown">Попробуйте новый запрос.</str>
+		<str id="achv.by">От </str>
+
+		<str id="achv.and">и</str>
+		<str id="achv.solo">Соло</str>
+		<str id="achv.earned">изучено</str>
+		<str id="achv.on">на</str>
+		<str id="compare.achievements">Добавить персонажа для сравнения</str>
+		<str id="compare.achievements.button">Сравнить</str>
+
+		<str id="compare.max">Вы можете сравнивать до <param1/> персонажей сразу. Вам необходимо удалить одного из персонажей, прежде чем добавить еще одного.</str>
+		<str id="stats.latest">Последнее обновление статистики</str>
+		<str id="stats.latest.compare">
+      <param1/>: последнее обновление статистики</str>
+		<err id="notfound">Персонаж "<param1/>" не найден в игровом мире "<param2/>."</err>
+
+		<str id="totalcompleted">Всего выполнено:</str>
+		<str id="solo">Соло</str>
+		<str id="date.format">{
+			withinHour: "{0} мин. назад",
+			withinHourSingular: "{0} мин. назад",
+			withinDay: "{0} ч назад",
+			withinDaySingular: "{0} ч назад",
+			today: "Сегодня, {0}",
+			yesterday: "Вчера",
+			date: "d-M-yyyy"
+		}</str>
+	</achievements>
+
+	<mobileArmoryPage>
+		<str id="download.btn">Загрузить сейчас</str>
+
+		<str id="intro">Как удобно было бы заглянуть в расписание рейдов, подыскать оружие для PvP, подобрать новую раскладку талантов прямо на улице или, скажем, в транспорте! Ведь правда, вам это уже приходило в голову? Теперь, благодаря приложению для iPhone™ и iPod touch® «Мобильная Оружейная», вы можете пользоваться всеми основными функциями Оружейной World of Warcraft, где бы вы ни находились:</str>
+		<str id="outro">Загрузить «Мобильную Оружейную» можно бесплатно в магазине Apple App Store.</str>
+		<str id="feature.search">Поиск и просмотр информации о любом персонаже, предмете, гильдии или команде Арены World of Warcraft.</str>
+		<str id="feature.import"/>
+		<str id="feature.calendar">С помощью нового интерфейса выбора персонажа вы легко можете импортировать профиль персонажа, гильдии или команды с учетной записи Battle.net или World of Warcraft.</str>
+		<str id="feature.achievments">Вы можете просматривать рейтинг достижений ваших персонажей и членов гильдии вашего основного персонажа.</str>
+
+		<str id="feature.talents">Подбор талантов для персонажа с помощью полнофункционального калькулятора талантов.</str>
+		<str id="feature.more">И многое другое!</str>
+		<str id="movie.name">iphone_armory_ru-ru</str>
+	</mobileArmoryPage>
+
+	<mobileArmoryInterstitial>
+		<str id="continue">Перейти к Оружейной</str>
+
+		<str id="download">Загрузить через iTunes</str>
+		<str id="intro">Теперь есть новый способ просматривать Оружейную - через iPhone™ или iPod touch®. Загрузите "Мобильную Оружейную" World of Warcraft через магазин Apple App Store!</str>
+	</mobileArmoryInterstitial>
+</strs>

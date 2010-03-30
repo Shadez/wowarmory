@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Torneos en la Arena">
+	<faqlist>
+		<faq question="¿Qué información de los Torneos en las Arenas aparece en la Armería?">
+			En la Armería se pueden buscar todos los perfiles de equipo y personajes de cada Torneo. Además de esto, la liga "ladder" del grupo de batalla especial del coliseo se actualiza a diario. 
+		</faq>
+		<faq question="¿En que se diferencian estos perfiles de los de la Armería?">
+			Todos los personajes y equipos que participan en el Torneo en las Arenas tienen sus propios perfiles, que se diferencian ligeramente de los perfiles que se muestran para los reinos activos. La información JcJ aparece mucho más destacada, y se omite toda la información que no está relacionada con los reinos de los torneos (como la de hermandad). En los perfiles de personaje, por ejemplo, el panel de la derecha es sustituido por otro que muestra los miembros del equipo y la clasificación, el panel de profesiones es reemplazado por la información sobre la clasificación, y el nombre de la hermandad del jugador es sustituido por el del nombre del equipo. 
+		</faq>
+		<faq question="¿Cómo puedo ver los torneos 'ladder' de las demás regiones?">
+			Navega desde el menú "Búsqueda en la Armería" en la parte superior izquierda hasta la página del toneo "ladder". Esto te llevará a la liga "ladder" actualizada de tu región: Norteamérica, Europa o Corea. Usa los enlaces en la parte inferior de la página para ir a otras regiones. Aconsejamos a los participantes que sigan con detenimiento los resultaods de las demás regiones para tener una mejor visión de lo que va ocurriendo.
+		</faq>
+		<faq question="¿Dónde puedo aprender más sobre los Torneos en las Arenas?">
+			Visita la página de información sobre los Torneos en las Arenas para que tengas una mejor información sobre esta competición de World of Warcraft. En esta página también podrás encontrar enlaces para inscribirse en el Torneo. 
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Liga del Torneo en las Arenas" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Información sobre el Torneo en las Arenas" url="http://www.wow-europe.com/es/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Inscripción" url="http://www.wow-europe.com/account/"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

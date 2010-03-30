@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 95
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,14 +23,193 @@
  **/
 
 Class SearchMgr extends Connector {
-    public $searchQuery;
+    public $searchQuery = false;
     public $get_array;
     public $bossSearchKey;
     public $instanceSearchKey;
     
+    public function DoSearchItems($count=false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
+        if($count == true) {
+            $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            if($count_items > 200) {
+                return 200;
+            }
+            return $count_items;
+        }
+        $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+        if(!$items) {
+            return false;
+        }
+        $result_data = array();
+        $i = 0;
+        foreach($items as $item) {
+            $result_data[$i]['data'] = $item;
+            $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id']);
+            if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                $result_data[$i]['data']['name'] = Items::getItemName($item['id']);
+            }
+            $result_data[$i]['filters'] = array(
+                array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
+                array('name' => 'relevance', 'value' => 100)
+            );
+            $i++;
+            unset($result_data[$i]['data']['ItemLevel']);
+        }
+        return $result_data;
+    }
+    
+    /** ADVANCED ITEMS SEARCH IS TEMPORARY DISABLED **/
+    
+    /*
+    public function DoSearchItems($count = null) {
+        if(!$this->get_array || !is_array($this->get_array)) {
+            return false;
+        }
+        if(!isset($this->get_array['source'])) {
+            return false;
+        }
+        $result_data = array();
+        $isVaild = false;
+        switch($this->get_array['source']) {
+            case 'dungeon':
+                if(!isset($this->get_array['dungeon'])) {
+                    $this->get_array['dungeon'] = 'all';
+                }
+                if(!isset($this->get_array['boss'])) {
+                    $this->get_array['boss'] = 'all';
+                }
+                if(!isset($this->get_array['difficulty'])) {
+                    $this->get_array['difficulty'] = 'all';
+                }
+                if($this->get_array['dungeon'] == 'all') {
+                    switch($this->get_array['difficulty']) {
+                        case 'normal':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_1`, `lootid_2` FROM `armory_instance_data`");
+                            break;
+                        case 'heroic':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_3` AS `lootid_1`, `lootid_4` AS `lootid_2` FROM `armory_instance_data`");
+                            break;
+                        case 'all':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` LIMIT 50");
+                            break;
+                    }
+                }
+                else {
+                    if(is_numeric($this->get_array['boss'])) {
+                        $boss_key = $this->aDB->selectCell("
+                        SELECT `key`
+                            FROM `armory_instance_data`
+                                WHERE `id`=? OR `name_id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? LIMIT 1",
+                        $this->get_array['boss'], $this->get_array['boss'], $this->get_array['boss'],
+                        $this->get_array['boss'], $this->get_array['boss'], $this->get_array['boss']
+                        );
+                        if($boss_key) {
+                            $isVaild = true;
+                        }
+                    }
+                    else {
+                        $boss_key = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `key`=?", $this->get_array['boss']);
+                        if($boss_key == $this->get_array['boss']) {
+                            $isVaild = true;
+                        }
+                    }
+                    if(!$isVaild) {
+                        return false;
+                    }
+                    switch($this->get_array['difficulty']) {
+                        case 'normal':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_1`, `lootid_2` FROM `armory_instance_data` WHERE `key`=?", $boss_key);
+                            break;
+                        case 'heroic':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_3` AS `lootid_1`, `lootid_4` AS `lootid_2` FROM `armory_instance_data` WHERE `key`=?", $boss_key);
+                            break;
+                        case 'all':
+                            $loot_ids = $this->aDB->select("SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `key`=?", $boss_key);
+                            break;
+                    }
+                }
+                if(!$loot_ids) {
+                    // We haven't any loot table.
+                    return false;
+                }
+                $loot_table = '';   // IDs string
+                $count_ids = count($loot_ids);
+                for($i=0;$i<$count_ids;$i++) {
+                    if($i) {
+                        $loot_table .= ', ';
+                    }
+                    $loot_table .= $loot_ids[$i]['lootid_1'].', '.$loot_ids[$i]['lootid_2'];
+                    if(isset($loot_ids[$i]['lootid_3'])) {
+                        $loot_table .= ', '.$loot_ids[$i]['lootid_3'];
+                    }
+                    if(isset($loot_ids[$i]['lootid_4'])) {
+                        $loot_table .= ', '.$loot_ids[$i]['lootid_4'];
+                    }
+                }
+                //GENERATE ITEM DATA
+                $item_id = $this->wDB->select("SELECT `item` FROM `creature_loot_template` WHERE `entry` IN (?)", $loot_table);
+                if(!$item_id) {
+                    return false;
+                }
+                $count_items = count($item_id);
+                if($count == true) {
+                    return $count_items;
+                }
+                $item_loot = '';
+                for($i=0;$i<$count_items;$i++) {
+                    if($i) {
+                        $item_loot .= ', ';
+                    }
+                    $item_loot .= $item_id[$i]['item'];
+                }
+                $items_result = $this->wDB->select("SELECT `entry` AS `id`, `name`, `Quality` AS `rarity`, `ItemLevel` FROM `item_template` WHERE `entry` IN (?)", $item_loot);
+                if(!$items_result) {
+                    return false;
+                }
+                $i = 0;
+                foreach($items_result as $item) {
+                    $result_data[$i]['data'] = $item;
+                    $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id']);
+                    if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        $result_data[$i]['data']['name'] = Items::getItemName($item['id']);
+                    }
+                    $result_data[$i]['data']['url'] = 'i='.$item['id'];
+                    $result_data[$i]['filters'] = array(
+                        array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
+                        array('name' => 'relevance', 'value' => 100)
+                    );
+                    $item_source = Items::GetItemSource($item['id']);
+                    if($item_source == 'sourceType.creatureDrop' || $item_source == 'sourceType.gameObjectDrop') {
+                        $result_data[$i]['filters'][2] = $this->aDB->selectRow("
+                        SELECT `id` AS `areaId`, `key` AS `areaKey`, `name_".$this->_locale."` AS `areaName`
+                            FROM `armory_instance_data` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?)", $boss_key);
+                        if(!$result_data[$i]['filters'][2]) {
+                            unset($result_data[$i]['filters'][2]); // who knows...
+                        }
+                        else {
+                            $tmp = $this->wDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `creatureName` FROM `armory_instance_data` WHERE `key`=?", $boss_key);
+                            $drop_percent = $this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=?", $item['id']);
+                            $result_data[$i]['filters'][2]['creatureId'] = $tmp['id'];
+                            $result_data[$i]['filters'][2]['creatureName'] = $tmp['creatureName'];
+                            $result_data[$i]['filters'][2]['difficulty'] = ($this->get_array['difficulty'] == 'heroic') ? 'h' : 'n';
+                            $result_data[$i]['filters'][2]['dropRate'] = Mangos::DropPercent($drop_percent);
+                            $result_data[$i]['filters'][2]['name'] = 'source';
+                            $result_data[$i]['filters'][2]['value'] = 'sourceType.creatureDrop';
+                        }
+                    }
+                    unset($result_data[$i]['data']['ItemLevel']);
+                    $i++;
+                }
+                return $result_data;
+                break;
+        }
+    }
+    
     public function AdvancedItemSearch($count=false) {
         if(!$this->get_array || !is_array($this->get_array)) {
-            echo 'get_array fail';
             return false;
         }
         $bosses_array = array();
@@ -73,7 +252,7 @@ Class SearchMgr extends Connector {
                             break;
                     }
                 }
-                elseif($this->IsExtendedCost($this->get_array['dungeon'])) {
+                elseif($this->IsExtendedCost()) {
                     $item_id = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`=?", $this->get_array['dungeon']);
                     if(!$item_id) {
                         return false;
@@ -248,6 +427,10 @@ Class SearchMgr extends Connector {
                 break;
                 
             case 'pvpAlliance':
+                if(!isset($this->get_array['pvp'])) {
+                    return false;
+                }
+                
                 break;
                 
             case 'pvpHorde':
@@ -281,6 +464,7 @@ Class SearchMgr extends Connector {
         }
         return false;
     }
+    */
     
     public function SearchArenaTeams($num=false) {
         if($num == true) {
@@ -290,16 +474,26 @@ Class SearchMgr extends Connector {
                     WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
             return $teamsNum;
         }
-        $xQuery = $this->cDB->select("
-        SELECT `arena_team`.`name`, `arena_team`.`type`, `arena_team_stats`.`rating`, `characters`.`race`
+        $arenateams = $this->cDB->select("
+        SELECT `arena_team`.`name`, `arena_team`.`type` AS `size`, `arena_team_stats`.`rating`, `characters`.`race`
             FROM `arena_team` AS `arena_team`
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team`.`arenateamid`=`arena_team_stats`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `arena_team`.`captainguid`=`characters`.`guid`
                     WHERE `arena_team`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-        if($xQuery) {
-            return $xQuery;
+        if(!$arenateams) {
+            return false;
         }
-        return false;
+        $arena_count = count($arenateams);
+        for($i=0;$i<$arena_count;$i++) {
+            $arenateams[$i]['teamSize'] = $arenateams[$i]['size'];
+            $arenateams[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
+            $arenateams[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
+            $arenateams[$i]['factionId'] = Characters::GetCharacterFaction($arenateams[$i]['race']);
+            $arenateams[$i]['relevance'] = 100;
+            $arenateams[$i]['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultRealmName']), $arenateams[$i]['size'], urlencode($arenateams[$i]['name']));
+            unset($arenateams[$i]['race']);
+        }
+        return $arenateams;
     }
     
     public function SearchGuilds($num=false) {
@@ -310,15 +504,71 @@ Class SearchMgr extends Connector {
                     WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
             return $guildsNum;
         }
-        $xQuery = $this->cDB->select("
+        $guilds = $this->cDB->select("
         SELECT `guild`.`name`, `characters`.`race`
             FROM `guild` AS `guild`
                 LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid`
                     WHERE `guild`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-        if($xQuery) {
-            return $xQuery;
+        if(!$guilds) {
+            return false;
         }
-        return false;
+        $guilds_count = count($guilds);
+        for($i=0;$i<$guilds_count;$i++) {
+            $guilds[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
+            $guilds[$i]['factionId'] = Characters::GetCharacterFaction($guilds[$i]['race']);
+            $guilds[$i]['relevance'] = 100;
+            $guilds[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
+            $guilds[$i]['url'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($guilds[$i]['name']));
+            unset($guilds[$i]['race']);
+        }
+        return $guilds;
+    }
+    
+    public function SearchCharacters($num=false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
+        $results_data   = array();
+        $cur_realm_data = array();
+        $results_count  = 0;
+        if($num == true) {
+            $count_chars = $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            $results_count = $results_count+$count_chars;
+            $count_chars = 0;
+        }
+        else {
+            $cur_realm_data = $this->cDB->select("
+            SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`
+                FROM `characters`
+                    WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            $count_data = count($cur_realm_data);
+            for($j=0;$j<$count_data;$j++) {
+                if($cur_realm_data[$j]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $cur_realm_data[$j]['guid'])) {
+                    $cur_realm_data[$j]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $cur_realm_data[$j]['guildId']);
+                    $cur_realm_data[$j]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($cur_realm_data[$j]['guild']));
+                }
+                $cur_realm_data[$j]['url'] = 'r='.urlencode($this->armoryconfig['defaultRealmName']).'&cn='.urlencode($cur_realm_data[$j]['name']);
+                $cur_realm_data[$j]['relevance'] = 100; // TODO
+                $cur_realm_data[$j]['battleGroup'] = $this->armoryconfig['defaultBGName'];
+                $cur_realm_data[$j]['battleGroupId'] = 1;
+                $cur_realm_data[$j]['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $cur_realm_data[$j]['classId']);
+                $cur_realm_data[$j]['race'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_races` WHERE `id`=?", $cur_realm_data[$j]['raceId']);
+                $cur_realm_data[$j]['realm'] = $this->armoryconfig['defaultRealmName'];
+                $cur_realm_data[$j]['factionId'] = Characters::GetCharacterFaction($cur_realm_data[$j]['raceId']);
+                $cur_realm_data[$j]['faction'] = ($cur_realm_data[$j]['factionId'] == 0) ? Utils::GetArmoryString(11) : Utils::GetArmoryString(12);
+                $cur_realm_data[$j]['searchRank'] = $j+1;
+                unset($cur_realm_data[$j]['guid']); // Do not show guid in XML result
+            }
+        }
+        if($num == true) {
+            return $results_count;
+        }
+        elseif(!$cur_realm_data) {
+            return false;
+        }
+        else {
+            return $cur_realm_data;
+        }
     }
 
     public function SearchItems($num=false) {
@@ -350,29 +600,6 @@ Class SearchMgr extends Connector {
             $searchResults[$i]['icon'] = Items::GetItemIcon($searchResults[$i]['entry']);
         }
         return $searchResults;
-    }
-    
-    public function SearchCharacters($num=false) {
-        if($num == true) {
-            $charsNum = $this->cDB->selectCell("
-            SELECT COUNT(`guid`)
-                FROM `characters`
-                    WHERE `name` LIKE ? AND `level`>=?", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
-            return $charsNum;
-        }
-        $xQuery = $this->cDB->select("
-        SELECT `guid`, `name`, `race`, `class`, `gender`, `level`
-            FROM `characters`
-                WHERE `name` LIKE ? AND `level`>=?", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
-        if($xQuery) {
-            $countChars = count($xQuery);
-            for($i=0;$i<$countChars;$i++) {
-                $xQuery[$i]['faction'] = Characters::GetCharacterFaction($xQuery[$i]['race']);
-                $xQuery[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", Characters::GetDataField(PLAYER_GUILDID, $xQuery[$i]['guid']));
-            }
-            return $xQuery;
-        }
-        return false;
     }
     
     public function IsExtendedCost() {
@@ -415,7 +642,7 @@ Class SearchMgr extends Connector {
         $arrayHashes = array();  
         foreach($array as $key => $item) {
             // Serialize the current element and create a md5 hash  
-            $hash = md5(serialize($item));  
+            $hash = md5(serialize($item));
             // If the md5 didn't come up yet, add the element to  
             // to arrayRewrite, otherwise drop it  
             if (!isset($arrayHashes[$hash])) {
@@ -432,5 +659,4 @@ Class SearchMgr extends Connector {
         return $arrayRewrite;  
     }
 }
-
 ?>

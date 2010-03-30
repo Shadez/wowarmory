@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Canal de calendario">
+	<faqlist>
+		<faq question="¿Cuál es la función de la herramienta de personalización de calendario?">
+			Esta herramienta te permite exportar la información de tu calendario en el juego a un calendario online como Google Calendar u otras aplicaciones como Microsoft Outlook. Con esta herramienta podrás agregar hasta cinco personajes de tu cuenta en un mismo canal y se sincroniza automáticamente con los calendarios de los personajes dentro del juego.
+		</faq>	
+		<faq question="¿Cómo puedo crear un canal personalizado de calendario?">
+			Utiliza el menú principal de la Armería o haz clic en el enlace de la parte superior derecha de la página de calendario de un personaje para acceder a la herramienta de Personalización del canal de calendario. Las opciones que encontrarás en esta página te permitirán crear un canal de calendario personalizado que luego podrás exportar a cualquier aplicación de calendario online compatible.
+			<p/>
+			Puedes agregar hasta cinco personajes de tu cuenta en un mismo canal. Sólo tienes que seleccionar el nombre del personaje que desees en el menú desplegable. Se pueden activar o desactivar los tipos de acontecimientos para que aparezcan o no en el canal.
+		</faq>
+		<faq question="¿Cómo puedo usar el canal personalizado una vez que lo he creado?">
+			La URL de tu canal personalizado se actualizará en tiempo real cuando hagas cambios en las opciones e introduzcas nombres de personajes. Sólo tienes que copiar y pegar la URL en un calendario online, como Google Calendar, por ejemplo, una vez que hayas configurado tu canal. Entra en la página web o en la aplicación para tener más información (encontrarás algunas instruccioness para Google Calendar y Microsoft Outlook 2007 en esta misma página).
+		</faq>
+		<faq question="¿Cómo puedo importar el canal de calendario en Google Calendar?">
+			Sigue los pasos descritos a continuación para importar los datos de tu calendario en <a href="http://www.google.com/calendar">Google Calendar</a>:
+			<ul>
+				<li>En Google Calendar, selecciona 'Otros calendarios' en la parte inferior izquierda para abrir un menú desplegable y haz clic en el enlace 'Añadir', debajo de dicho menú.</li>
+				<li>Selecciona la opción 'Añadir por URL' que aparece en el menú emergente. A continuación, pega en el campo correspondiente la URL de tu calendario de la Armería y selecciona 'Añadir calendario'.</li>
+				<li>Encima de tu calendario debería aparecer un mensaje resaltado en color amarillo, que indica que el canal de calendario aún no está sincronizado con Google Calendar. Sólo tienes que esperar unos minutos y los eventos de tu calendario aparecerán en el calendario principal.</li>
+			</ul>
+		</faq>	
+		<faq question="¿Puedo utilizar el canal de calendario con Microsoft Outlook?">
+			Sigue los pasos descritos a continuación para importar los datos de tu calendario en Microsoft Outlook 2007:
+			<ul>
+				<li>En Outlook, selecciona Herramientas -&gt; Configuración de la cuenta, en el menú de la parte superior.</li>
+				<li>Selecciona la pestaña de calendario de Internet que aparece en el menú emergente.</li>
+				<li>Selecciona la opción 'Nuevo' en la esquina superior izquierda de la pestaña. A continuación, pega en el campo correspondiente la URL de tu calendario de la Armería y selecciona 'Añadir'. Si encuentras algún error en este paso, reinicia tu outlook y vuelve a intentarlo.</li>
+				<li>En la próxima ventana, puedes configurar varias opciones como el nombre del calendario. Una vez que hayas acabado, haz clic en 'OK'. En la sección 'Otros' de la pestaña del Calendario de Outlook debería aparecer tu calendario de jugador. De todas formas, es necesario que pase algún tiempo antes de se muestren los datos de tu calendario.</li>
+			</ul>
+		</faq>	
+		<faq question="¿Puedo utilizar el canal de calendario con la aplicación de calendario de mi iPhone?">
+			Sigue los pasos descritos a continuación para importar los datos de tu calendario en el calendario de tu iPhone:
+			<ul>
+				<li>Desde el navegador de tu iPhone entra en el canal de calendario de la Armería y crea una URL.</li>
+				<li>Con la función de copiar del iPhone, copia la URL (el botón 'Copiar al portapapeles' de la Armería está basado en Flash y no funcionará en el iPhone).</li>
+				<li>Vuelve al menú principal del iPhone. Selecciona 'Configuración' y luego 'Correo, Contactos, Calendarios'.</li>
+				<li>Selecciona estas opciones: 'Añadir cuenta' -&gt; 'Otra' -&gt; 'Añadir calendario'.</li>
+				<li>Pega la URL del calendario en el campo correspondiente y selecciona 'Siguiente'. Una vez descargada la información, establece la configuración que desees y selecciona 'Guardar'. Tu calendario debería aparecer ahora en la aplicación de calendario del iPhone.</li>
+			</ul>
+		</faq>
+		<faq question="¿Cómo utilizo el canal de calendario con la aplicación de calendario iCal?">
+			Sigue los pasos descritos a continuación para importar los datos de tu calendario en iCal:
+			<ul>
+				<li>En iCal, selecciona 'Calendario' y luego 'Registrarse'.</li>
+				<li>Pega la URL de tu calendario de la Armería en el campo correspondiente y continúa con el siguiente paso.</li>
+				<li>Una vez descargada la información, estable la configuración que desees y selecciona 'Aceptar'.</li>
+			</ul>
+		</faq>		
+		<faq question="¿El canal de calendario se sincroniza automáticamente con los calendarios del juego?">
+			Sí. Los canales de calendario creados con esta herramienta se actualizarán constantemente con los calendarios del juego.
+		</faq>
+		<faq question="¿Para qué se utiliza la opción 'reiniciar clave de seguridad'?">
+			Cada URL de un canal de calendario posee una clave de seguridad única al final de la dicha URL. Esta clave permite que la información de calendario sea inaccesible para los demás. Siempre que lo desees puedes reiniciar esta clave haciendo clic en el botón "reiniciar clave de seguridad", que podrás ver al final de la página. Si reinicias la clave, no olvides actualizar la URL en tus aplicaciones de calendario online.
+		</faq>
+		<faq question="¿Por qué no aparecen mis personajes en el menú de selección de personajes del canal?">
+			En los canales que hayas creado sólo aparecen los personajes de los reinos europeos ya que ésta es la versión europea de la Armería. Puedes cambiar la región, por ejemplo a América, desde el menú de selección de regiones en la parte inferior de la página. Por otro lado, para que un personaje aparezca en un canal de calendario, tiene que haber estado activo recientemente y en una cuenta no comprometida, además de haber alcanzado al menos el nivel 10.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Buscar personaje" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Guía de atributos de personajes" type="external" url="http://www.wow-europe.com/es/info/basics/index.html#character"/>
+		<relatedlink name="Razas" type="external" url="http://www.wow-europe.com/es/info/races/index.html"/>
+		<relatedlink name="Clases" type="external" url="http://www.wow-europe.com/es/info/classes/index.html"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.wow-europe.com/es/info/professions/intro.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>		
+		<relatedlink name="Informa de un error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

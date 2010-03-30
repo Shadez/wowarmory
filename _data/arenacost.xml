@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><arenaItems>
+
+  <season defaultPoints="0" key="7" usesArenaPoints="1">
+  
+  <weapon/>
+    <item cost="4250" key="twohand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=two&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  
+    <item cost="4250" key="crossbow" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=ranged&amp;fl%5BsubTp%5D=xbow&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  	
+    <item cost="3000" key="mainhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="3000" key="onehand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1245" key="offhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offOnly&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1000" key="thrown" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=thrwn&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1150" key="wand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=wnd&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+		
+    <armor/>	
+    <item cost="300" key="shield" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=shield&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+	
+    <item cost="2150" key="head" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=head&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="2150" key="chest" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=chest&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="2150" key="legs" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=legs&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1750" key="shoulder" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=shoulders&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1300" key="hands" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=hands&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>		
+
+    <item cost="1125" key="offhandfrill" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offhand&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;f&amp;fl%5BadvOpt%5D=none"/>
+
+    <item cost="1150" key="idol" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=idol&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1150" key="totem" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=totem&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1150" key="libram" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena8&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=libram&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+	<end/>
+  </season>  
+
+  <season key="6" usesArenaPoints="1">
+  
+  <weapon/>
+    <item cost="3750" key="twohand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=two&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  
+    <item cost="3750" key="crossbow" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=ranged&amp;fl%5BsubTp%5D=xbow&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  	
+    <item cost="2625 or 3150" key="mainhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="2625 or 3150" key="onehand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1125" key="offhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offOnly&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1000" key="thrown" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=thrwn&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1000" key="wand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=wnd&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+		
+    <armor/>	
+    <item cost="1875" key="shield" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=shield&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+	
+    <item cost="1875" key="head" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=head&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1875" key="chest" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=chest&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1875" key="legs" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=legs&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1500" key="shoulder" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=shoulders&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1125" key="hands" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=hands&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>		
+
+    <item cost="1125" key="offhandfrill" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offhand&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;f&amp;fl%5BadvOpt%5D=none"/>
+
+    <item cost="1000" key="idol" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=idol&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1000" key="totem" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=totem&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1000" key="libram" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena6&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=libram&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+	<end/>
+  </season>  
+
+
+  <season key="5" usesArenaPoints="1">
+  
+  <weapon/>
+    <item cost="3750" key="twohand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=two&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  
+    <item cost="3750" key="crossbow" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=ranged&amp;fl%5BsubTp%5D=xbow&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>  	
+    <item cost="2625 or 3150" key="mainhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="2625 or 3150" key="onehand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=main&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1125" key="offhand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offOnly&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1000" key="thrown" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=thrwn&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1000" key="wand" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=weapons&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=wnd&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+		
+    <armor/>	
+    <item cost="1875" key="shield" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=shield&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+	
+    <item cost="1875" key="head" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=head&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1875" key="chest" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=chest&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1875" key="legs" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=legs&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1500" key="shoulder" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=shoulders&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1125" key="hands" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=hands&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>		
+
+    <item cost="1125" key="offhandfrill" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=offhand&amp;fl%5BsubTp%5D=all&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;f&amp;fl%5BadvOpt%5D=none"/>
+
+    <item cost="1000" key="idol" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=idol&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>
+    <item cost="1000" key="totem" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=totem&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+    <item cost="1000" key="libram" url="search.xml?fl%5Bsource%5D=pvpAlliance&amp;fl%5Bpvp%5D=arena5&amp;fl%5Btype%5D=armor&amp;fl%5BusbleBy%5D=all&amp;fl%5Bslot%5D=all&amp;fl%5BsubTp%5D=libram&amp;fl%5BrqrMin%5D=&amp;fl%5BrqrMax%5D=&amp;fl%5Brrt%5D=all&amp;advOptName=none&amp;fl%5Bandor%5D=and&amp;searchType=items&amp;fl%5BadvOpt%5D=none"/>	
+	<end/>
+  </season>  
+
+
+
+  <season key="4" usesArenaPoints="1">
+    <honor/>
+  </season>  
+  
+  <season key="3">
+    <honor/>
+  </season>  
+
+
+  <season key="2">
+    <honor/>
+  </season>
+  
+</arenaItems>

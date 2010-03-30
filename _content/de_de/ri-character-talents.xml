@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Talente">
+	<faqlist>
+		<faq question="Welche Informationen bietet die Seite &quot;Talente&quot;?">
+			Die Implementierung der dualen Talentspezialisierung wird im Arsenal wiedergegeben. Wenn ein Charakter über eine duale Talenspezialisierung verfügt, könnt ihr über die beiden angezeigten Register oben rechts im Talentbaum zwischen beiden Spezialisierungen hin- und herschalten. Zusätzlich wird euch jeweils das zur Spezialisierung gehörende Set an Glyphen angezeigt. Die Charakterprofile von Jägern zeigen außerdem auch die Talentspezialisierungen ihrer Begleiter auf dieser Seite. Der derzeit betrachtete Begleiter kann aus einer Auswahlliste gewählt werden, die den Namen und die Gattung des Begleiters beinhaltet. 
+		</faq>
+			<faq question="Wie werden die Talentverteilungen benannt?">
+			Die Talentspezialisierungen werden automatisch nach dem dominierenden Talentbaum benannt (Der Baum mit den meisten vergebenen Punkten). Spezialisierungen, die zu gleichen Teilen auf 2 Bäume verteilt sind, erhalten die Bezeichnung "Hybrid" und die Spezialisierungen, die noch keine vergebenen Punkte beinhalten, werden als "Untalentiert" gekennzeichnet.
+		</faq>
+		<faq question="Kann ich die Talente auf dieser Seite verändern?">
+			Da es sich hier um den aktuellen Talentbaum eines Charakters handelt, ist ein Verändern der Daten nicht möglich. Durch einen Klick auf die Schaltfläche "Talentverteilung exportieren" gelangt ihr jedoch zu einer gleichartigen Seite, auf der ihr den Talentbaum euren Wünschen entsprechend verändern könnt.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Game Guide &gt; Talente" type="external" url="http://www.wow-europe.com/de/info/basics/talents/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Kalender-Feed">
+	<faqlist>
+		<faq question="Was ist der individuelle Kalender?">
+			Der individuelle Kalender erlaubt es euch, die Daten eures im Spiel vorhandenen Kalenders in andere Online-Kalender, zum Beispiel den Google-Kalender oder Anwendungen wie Microsoft Outlook, zu exportieren. Dabei können bis zu fünf Charaktere eures Accounts in einen einzigen Feed aufgenommen werden, der automatisch mit den Kalendern der Charaktere im Spiel synchronisiert wird.
+		</faq>	
+		<faq question="Wie erstelle ich meinen individuellen Kalender-Feed?">
+			Nutzt das Hauptmenü des Arsenals oder klickt auf den Link im oberen rechten Bereich der Kalenderseite eines Charakters, um die Anwendung zur Verwaltung des individuellen Kalender-Feeds zu erreichen. Die Optionen auf dieser Seite erlauben es euch, einen individuellen Kalender-Feed zu erstellen, den ihr in jeden anderen kompatible Online-Kalender exportieren könnt.
+			<p/>
+			Ihr könnt bis zu fünf Charaktere eures Accounts in einem einzigen Kalender-Feed zusammenfügen. Wählt dazu einfach die Charaktere die in den Feed aufgenommen werden sollen aus den Drop-Down-Menüs. Eventkategorien können dabei individuell ein- oder ausgeblendet werden.
+		</faq>
+		<faq question="Wie nutze ich den individuellen Feed, nachdem ich ihn erstellt habe?">
+			Die URL für euren individuellen Feed wird in Echtzeit aktualisiert, wenn ihr Optionen oder Charaktere auswählt. Kopiert einfach die resultierende URL und fügt sie in einen Online-Kalender, wie den Google-Kalender ein, sobald ihr die Konfiguration abgeschlossen habt. Haltet euch für die vollen Details bitte an die entsprechenden Informationen auf den Webseiten (Instruktionen für den Google-Kalender und Microsoft Outlook 2007 werden in den nachfolgenden zwei Fragen abgehandelt).
+		</faq>
+		<faq question="Wie importiere ich den Kalender-Feed in den Google-Kalender?">
+			Folgt diesen Schritten, um eure Kalenderdaten in den <a href="http://www.google.com/calendar">Google-Kalender</a> zu importieren:
+			<ul>
+				<li>Im Google-Kalender, wählt 'Andere Kalender' unten links, um das Drop-Down-Menü zu öffnen. Wählt dann 'Hinzufügen' im unteren Teil des Menüs.</li>
+				<li>Im daraufhin erscheinenden Pop-Up-Menü, wählt 'URL hinzufügen'. Kopiert die URL eures Arsenal-Kalenders in dieses Feld und klickt auf 'Kalender hinzufügen'.</li>
+				<li>Eine gelb markierte Nachricht sollte daraufhin über eurem Kalender erscheinen. Diese informiert euch darüber, dass der Kalender-Feed noch nicht mit dem Google-Kalender synchronisiert wurde. Wartet in dem Fall einfach einige Minuten und eure Kalendereinträge sollten in der Hauptanzeige des Kalenders erscheinen.</li>
+			</ul>
+		</faq>	
+		<faq question="Kann ich den Kalender-Feed in Microsoft Outlook benutzen?">
+			Folgt diesen Schritten, um eure Kalenderdaten in Microsoft Outlook 2007 zu importieren:
+			<ul>
+				<li>Wählt in Outlook, den Menüpunkt 'Werkzeuge' und dort 'Accounteinstellungen...'.</li>
+				<li>Im daraufhin erscheinenden Pop-Up-Menü selektiert den Registerreiter 'Internet Kalender'.</li>
+				<li>Klickt auf 'Neu' oben links in diesem Feld. Kopiert die URL eures Arsenal-Kalenders in dieses Feld und geht dann auf 'Hinzufügen'. Sollte in diesem Schritt ein Fehler auftreten, beendet Outlook bitte einmal und versucht es erneut.</li>
+				<li>Im nächsten Fenster könnt ihr verschiedene Dinge konfigurieren, inklusive des Kalendernamens. Wenn ihr alle gewünschten Einstellungen getätigt habt, klickt auf 'OK'. Ihr solltet eure Spieler-Kalender dann in der Sektion 'Andere' im Outlook-Kalenderfeld aufgelistet sehen. Es kann einige Zeit dauern, bis eure Kalenderdaten angezeigt werden.</li>
+			</ul>
+		</faq>	
+		<faq question="Kann ich den Kalender-Feed mit der Kalenderanwendung auf meinem iPhone benutzen?">
+			Folgt diesen Schritten, um die Daten eures Kalenders in euren iPhone-Kalender zu importieren:
+			<ul>
+				<li>Nutzt euren iPhone-Webbrowser, um den Kalender-Feed im Arsenal aufzurufen und erstellt dort eine URL für den Kalender-Feed.</li>
+				<li>Benutzt die Kopieren-Funktion eures iPhones und kopiert die erstellte URL (Der Kopieren-Button im Arsenal ist flashbasiert und funktioniert auf dem iPhone nicht).</li>
+				<li>Ruft das Hauptmenü eures iPhones auf, wählt "Einstellungen", dann "Mail, Kontakte, Kalender".</li>
+				<li>Wählt die folgenden Optionen an: Account hinzufügen" -&gt; "Andere" -&gt; "Abonnierten Kalender hinzufügen".</li>
+				<li>Fügt die kopierte URL in das vorgesehene Feld ein und geht auf "Weiter". Nachdem der Feed abgerufen wurde könnt ihr die gewünschten Einstellungen vornehmen und danach auf "Sichern" gehen. Euer Kalender sollte jetzt in eurem iPhone-Kalender erscheinen.</li>
+			</ul>
+		</faq>
+		<faq question="Wie nutze ich den Kalender-Feed mit der iCal-Kalenderanwendung?">
+			Folgt diesen Schritten, um die Daten eures Kalenders in euren iCal-Kalender zu importieren:
+			<ul>
+				<li>Wählt in iCal "Kalender" und dann "Abonnieren".</li>
+				<li>Kopiert die URL des Arsenal-Kalenders in das vorgesehene Feld und geht zum nächsten Schritt über.</li>
+				<li>Nachdem der Feed abgerufen wurde, tätigt die gewünschten Einstellungen und wählt "Okay". Euer Kalender sollte jetzt in iCal erscheinen.</li>
+			</ul>
+		</faq>			
+		<faq question="Wird der Kalender-Feed automatisch mit den Kalendern der Charaktere im Spiel synchronisiert?">
+			Ja. Kalender-Feeds, die auf diese Weise erstellt wurden, sollten stets auf dem gleichen Stand, wie die zugehörigen Kalender im Spiel sein.
+		</faq>
+		<faq question="Wozu dient die Option'Sicherheitsschlüssel zurücksetzen'?">
+			Jeder URL eines Kalender-Feeds enthält einen einzigartigen Sicherheitsschlüssel als Anhang am Ende der URL. Dieser Schlüssel verhindert, dass andere Personen Einsicht in eure Kalenderdaten erhalten können. Sofern gewünscht, könnt ihr diesen Sicherheitsschlüssel jederzeit durch einen Klick auf die Schaltfläche 'Sicherheitsschlüssel zurücksetzen' neu erstellen. Wenn ihr euren Schlüssel zurücksetzt, müsst ihr ebenfalls die URL in euren Online-Kalenderanwendungen aktualisieren. 
+		</faq>
+		<faq question="Warum erscheinen meine Charakters nicht in der Auswahlliste des Feeds?">
+			Nur Charaktere auf europäischen Realms können in die hier erstellten Feeds aufgenommen werden, da dies die EU-Version des Arsenals ist. Im unteren Teil der Seite kann die Region über ein Auswahlmenü gewechselt werden, zum Beispiel zu Amerika. Zusätzlich muss ein Charakter kürzlich aktiv gewesen sein, sich auf einem gültigen Account befinden und die Mindeststufe 10 erreicht haben, um im Kalender-Feed zu erscheinen.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Charaktersuche" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Anleitung: Charakterattribute" type="external" url="http://www.wow-europe.com/de/info/basics/index.html#character"/>
+		<relatedlink name="Völker" type="external" url="http://www.wow-europe.com/de/info/races/index.html"/>
+		<relatedlink name="Klassen" type="external" url="http://www.wow-europe.com/de/info/classes/index.html"/>
+		<relatedlink name="Berufe" type="external" url="http://www.wow-europe.com/de/info/professions/intro.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=9164118936&amp;sid=3"/>		
+		<relatedlink name="Meldet einen Fehler" type="external" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

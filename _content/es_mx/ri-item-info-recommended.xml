@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Buscar mejoras para tu equipo">
+	<faqlist>
+		<faq question="¿Cómo se determinan estas mejoras recomendadas?">
+			Cuando realizas una búsqueda utilizando la opción "Buscar mejora", la Armería revisa el armamento equipado del personaje y establece su calidad, a través del nivel de los objetos, la rareza y otros factores, como punto de referencia al momento de hacer recomendaciones. Dicho proceso no considera la clase o la especialización de talentos del personaje, pero sí toma nota de las estadísticas (como daño de hechizo, poder de ataque y aguante) que han sido incrementadas en el pasado, y favorecerá los objetos que contengan dichas "estadísticas preferidas".
+		</faq>
+		<faq question="¿Qué me recomiendan para obtener el máximo provecho de la característica &quot;Buscar mejora&quot;?">
+Aquí hay algunos consejos para que obtengas el máximo provecho de esta característica. Ten en cuenta que cualquier cambio que hagas al armamento de tu personaje se reflejará en tu perfil hasta que te hayas desconectado del juego.
+		<ul>
+			<li>
+          <strong>Si buscas mejoras para un estilo de juego en particular, equipa el armamento relacionado con éste.</strong> Por ejemplo, si te interesa ver actualizaciones con énfasis en bandas, desconéctate teniendo equipado ese tipo de armamento. Si deseas mejorar tus objetos de JcJ, ténlos equipados antes de desconectarte, y así sucesivamente.</li>
+			<li>
+          <strong>Prueba diferentes combinaciones de armamento.</strong> Muchas clases utilizarán diferentes tipos de armamento para propósitos distintos como andar solo, ir a bandas, y participar en JcJ. Encontrar mejoras para las diferentes combinaciones de armamento que uses es tan sencillo como equiparlas antes de desconectarte. Si el armamento que tienes equipado es una mezcla de varios tipos, los resultados no serán tan precisos.</li>
+			<li>
+          <strong>Ten en cuenta los factores que considera, e ignora, la Armería al llevar a cabo los cálculos sobre mejoras.</strong> Las mejoras recomendadas tomarán en cuenta, principalmente, las estadísticas del personaje y la calidad promedio de su armamento; incluyendo la clase como filtro para las armas y armaduras que no pueda equipar. La especialización de talentos no se considerará.</li>
+			<li>
+          <strong>El nivel de los objetos y su rareza cuentan.</strong> La Armería revisa el armamento equipado del personaje para establecer su calidad promedio, la cual servirá como punto de referencia al momento de recomendar mejoras. Equipar un objeto que tenga una rareza y nivel de objeto altos, como una pieza de la serie de armadura de Gladiador, afectará de manera importante el tipo de recomendaciones que recibirás.</li>
+		</ul>
+		</faq>
+		<faq question="¿Cómo se ordena la lista de mejoras recomendadas? ">
+			Se ordena por relevancia, como en cualquier otra búsqueda. En el caso de las mejoras recomendadas, este parámetro determina el parecido del objeto con los puntos de referencia de la Armería, en concordancia con la calidad promedio y las estadísticas preferidas. Un objeto con mayor relevancia no siempre será "mejor", o más apropiado, para tu personaje que otro cuya relevancia sea menor. La lista de recomendaciones es tan sólo un conjunto de objetos relacionados que han sido ordenados según su similitud con lo que llevas puesto actualmente.
+		</faq>
+		<faq question="¿Afectan los factores externos, como beneficios y efectos negativos, las recomendaciones que recibo?">
+			No, los beneficios o efectos negativos que afectan a tu personaje ya no aparecerán en la Armería.
+		</faq>
+		<faq question="¿Puedo buscar mejoras para diferentes conjuntos de armamento si cambio los objetos equipados de mi personaje y me desconecto?">
+			Sí, y te lo recomendamos.
+		</faq>	
+		<faq question="¿Por qué aparecen en mi lista de mejoras recomendadas las recompensas de misión que sólo están disponibles para la facción contraria?">
+			Actualmente, y al momento de recomendar mejoras, la Armería no puede filtrar dichas recompensas por facción. Es posible que cambiemos esto más adelante.
+		</faq>											
+		<faq question="¿Por qué aparece en la lista de mejoras recomendadas el objeto que deseo actualizar?">
+			Se pretende que la posición que ocupa un objeto en dicha lista sirva para indicar su categoría, en comparación con los otros que aparecen en ella. Puedes considerar su aparición en la lista como indicador de que es adecuado para el personaje que lo posee. Sin embargo, no debes dar importancia excesiva a la relevancia con la que se etiqueta a un objeto. 
+		</faq>
+		<faq question="Esperaba que el objeto X estuviera incluido en la lista de mejoras recomendadas, pero no está ahí. ¿Por qué? ">
+			La ausencia de un objeto determinado de una lista de mejoras recomendadas puede deberse a varias razones como: requerimiento de nivel muy elevado, o nivel de objeto muy alto/bajo en comparación con los objetos que tengas equipados. También es posible que el objeto X tenga estadísticas similares a tu armamento, pero que no incremente ninguna de las "estadísticas preferidas" del objeto que deseas actualizar.
+		</faq>
+		<faq question="¿Pueden aparecer los objetos con encantamientos aleatorios (por ejemplo, &quot;del Águila&quot;) en la lista de mejoras recomendadas?">
+			Sí, pero aparecerán en su forma neutral, sin el sufijo que corresponda al encantamiento. Haz clic en cualquiera de éstos para que aparezcan todos los encantamientos posibles en la página de propiedades del objeto. Ten en cuenta que estos objetos tienden a aparecer en posiciones inferiores de la lista a lo que sería considerado razonable.
+		</faq>
+																
+	</faqlist>
+	<relatedlinks>
+				<relatedlink name="Emblemas de Escarcha: recompensas" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>	
+		<relatedlink name="Emblemas de Triunfo: recompensas" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Reliquias" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Objetos de mazmorras y bandas" url="/dungeons.xml"/>
+		<relatedlink name="Recompensas de facción" url="/factions.xml"/>
+		<relatedlink name="Recompensas JcJ" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Índices de combate" type="external" url="http://www.worldofwarcraft.com/na/info/basics/characters.xml"/>				
+		<relatedlink name="Objetos, información general" type="external" url="http://www.worldofwarcraft.com/na/info/items/basics.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

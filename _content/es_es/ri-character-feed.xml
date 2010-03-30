@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Canal de personaje">
+	<faqlist>
+
+		<faq question="¿Qué es el canal de actividades de un personaje?">
+			Cada canal de información de actividades de un personaje muestra las últimas acciones de un personaje dentro del juego que se registran en la Armería, tales como los logros, los jefes derrotados, la adquisición de objetos, etc. Los canales de personajes se pueden configurar con la herramienta de personalización y luego exportalos como fuentes RSS al lector RSS que elijas.
+		</faq>	
+		<faq question="¿Cómo puedo configurar un canal de personaje?">
+			Para ir a la página de configuración del canal de personaje, haz clic en el icono RSS en la página de perfil del personaje (el icono naranja de la parte superior derecha del resumen reciente de actividades). Las opciones en esta página te permitirán crear un canal RSS personalizado, que luego podrás exportar a un lector RSS. 
+			<ul>
+				<li>Puedes agregar hasta cinco personajes en un mismo canal RSS. Añade cada personaje bajo el formato <b>name@realm</b>. Si ya has iniciado sesión, entonces no necesitarás especificar el reino ya que será incluido por defecto en el de tu personaje principal.</li>
+				<li>Las categorías de logros pueden validarse individualmente para añadirlos o suprimirlos del canal RSS. </li>
+				<li>Los criterios de logros incluyen todas las etapas intermedias dentro de un logro, como derrotar a un jefe particular en un logro o derrotar todos los jefes en una raid en particular. Desactivar esta categoría desactivará todos los criterios de logros de forma global, mientras que activarlo hará que continúen todos los criterios seleccionados anteriormente (por ejemplo, desactivar "Misiones" en la categoría de Logros también lo desactivará en esta categoría). </li>
+				<li>La categoría de jefes derrrotados incluye cualquier jefe que sea seguido en la pestaña "Estadísticas" en el perfil de un personaje. Esto incluye a todos los jefes finales de las mazmorras clásicas y de The Burning Crusade, así como todos los jefes de las raids de Wrath of the Lich King raids.</li>
+				<li>A las adquisiciones de un botín se les puede asignar diferentes grados de rareza para que aparezcan en el canal de información.</li>
+			</ul>
+		</faq>
+		<faq question="¿Cómo puedo usar el canal de información una vez que lo he creado?">
+			La URL de tu canal RSS se actualizará en tiempo real  cuando hagas cambios en las opciones e introduzcas nombres de personajes. Una vez que estés de acuerdo con las opciones y los personajes seleccionados, sólo tienes que copiar y pegar la URL en un lector RSS. Los lectores RSS online pueden ser iGoogle, Netvibes o Pageflakes, entre otros. También puedes importar un canal RSS en Outlook o en otra aplicación de gestión de e-mails.
+		</faq>	
+		<faq question="¿Puedo configurar el canal de información que aparece en la pestaña Canal de personajes del perfil de un personaje?">
+			Contrariamente a los canales RSS creados en la página de configuración del canal de personajes, los canales que aparacen en los perfiles de personajes (en la página principal y en la pestaña "Canal de actividades") están previstos para que no sean clasificados y por tanto, no se pueden configurar.
+		</faq>
+		<faq question="¿Por qué el canal de la Armería no encuentra el personaje que busco en el campo de nombre de personaje?">
+			En los canales que hayas creado sólo aparecen los personajes de los reinos europeos ya que ésta es la versión europea de la Armería. Puedes cambiar la región, por ejemplo a América, desde el menú de selección de regiones en la parte inferior de la página. Por otro lado, para que un personaje aparezca en un canal de calendario, tiene que haber estado activo recientemente y en una cuenta no comprometida, además de haber alcanzado al menos el nivel 10.
+			<p/>
+			Cuando escribas el nombre de un personaje, conserva los espacios en el nombre del reino ('Los Errantes') y asegúrate de que el nombre del personaje y del reino está escrito correctamente.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Buscar personaje" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Guía de atributos de personajes" type="external" url="http://www.wow-europe.com/es/info/basics/characters.html"/>
+		<relatedlink name="Razas" type="external" url="http://www.wow-europe.com/es/info/races/index.html"/>
+		<relatedlink name="Clases" type="external" url="http://www.wow-europe.com/es/info/classes/index.html"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.wow-europe.com/es/info/professions/intro.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>		
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

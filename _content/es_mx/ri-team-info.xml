@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Información de equipo">
+	<faqlist>
+		<faq question="¿Qué puedo ver en la página de perfil de equipo?">
+			Todos los equipos de arena tienen un perfil de equipo. En la página predeterminada del perfil de un equipo verás la lista de miembros con enlaces a sus perfiles, el récord acumulativo de la semana más reciente y de la temporada, la calificación del equipo, su clasificación y las calificaciones personales de cada uno de sus miembros. Las pestañas de Historial de encuentros e Historial de partidas te conducirán a los récords detallados del equipo de arena en cuestión.
+		</faq>
+		<faq question="¿Qué son los récords de la arena?">
+			Todos los perfiles de equipos de arena en la Armería incluyen ahora pestañas para los récords de arena, los cuales están conformados por el Historial de encuentros, el Reporte de encuentros y el Historial de oponentes.
+			<ul>
+			<li>La pestaña del Historial de encuentros tiene una gráfica interactiva. Si colocas el puntero del ratón sobre la gráfica, aparecerá la fecha del encuentro, el cambio de calificación según el resultado de la contienda y el nombre del equipo contrario. Debajo de esta gráfica hay un visualizador que te permitirá buscar y organizar todas las partidas en las que ha participado el equipo durante la temporada actual.</li>
+			<li>Desde el Historial de encuentros, haz clic en el botón que se encuentra del lado derecho de cualquier encuentro para ver un reporte detallado. Esta página muestra los mismos resultados y estadísticas que aparecieron en el juego: la lista de participantes, golpes de gracia, daño y sanación totales, así como el cambio en la calificación.</li>
+			<li>La pestaña del historial de oponentes muestra todos los encuentros en los que ha participado el equipo en un formato distinto, es decir, por medio de una lista ordenada según el nombre del equipo opositor. Las columnas en esta página dependen del equipo contrario e incluyen: cambio de calificación promedio por encuentro, porcentaje de victorias contra cada equipo y total de victorias y derrotas contra cada equipo.</li>
+			</ul>
+		</faq>
+		<faq question="¿Retendrá un equipo su perfil y récord de la arena si lo borro?">
+			No, al momento que borres un equipo, éste dejará de aparecer en la Armería y ya no tendrá un perfil ni récords de la arena. Si un equipo fue borrado y posteriormente creado de nuevo con el mismo nombre, el perfil estará vinculado sólo con su encarnación más reciente. No se guardarán ni el perfil, ni los récords de arena de la encarnación previa. Además, si un equipo ha sido borrado, no podrás hacer clic sobre su nombre desde la sección de récords de arena.
+		</faq>
+		<faq question="¿Por qué no puedo hacer clic en el nombre de un equipo de arena para acceder a su perfil?">
+			El equipo ya no existe, y por ende no tiene perfil ni récords de la arena, o fue borrado y vuelto a crear, en cuyo caso, los nuevos récords del equipo ya no están vinculados con su encarnación previa.
+			</faq>
+		<faq question="¿Por qué la lista de miembros de un equipo es distinta?">
+			El perfil de equipo de la Armería sólo muestra las listas de miembros actuales. Sin embargo, el reporte de encuentros mostrará con precisión la lista de miembros que el equipo tenía en una fecha determinada.
+		</faq>
+		<faq question="¿Por qué en la columna de &quot;Esta semana&quot; aparecen juegos a pesar de que mi equipo no participó en la arena durante ese periodo?">
+		Esta columna muestra la semana activa más reciente del equipo, sin importar si tuvieron lugar la semana actual o en el pasado.
+		</faq>
+		<faq question="¿Cada cuando se actualizan los perfiles de los equipos?">
+			Los perfiles usualmente se actualizan 24 horas después de que haya un cambio en el juego.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Escala de posiciones de la arena" url="/battlegroups.xml"/>
+		<relatedlink name="Información del Torneo Arena" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de la arena" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
+		<relatedlink name="Las arenas a detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink name="Recompensas de la arena: armas" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
+		<relatedlink name="Recompensas de la arena: armaduras" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

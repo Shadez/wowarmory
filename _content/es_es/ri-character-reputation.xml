@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Reputación del personaje">
+	<faqlist>
+		<faq question="¿Qué características tiene la página de reputación del personaje?">
+			En esta página puedes ver la situación de la relación de un personaje con cada facción que ha conocido. Al igual que en el panel dentro del juego, cada barra mantiene el color del estado de la reputación. El nivel de reputación con cada facción está reflejado a la derecha de cada barra. Puedes expandir o cerrar cada categoría y subcategoría haciendo clic sobre ella.
+		</faq>
+		<faq question="¿Para qué es el botón 'Ver en forma de lista'?">
+			El botón 'Ver en forma de lista' muestra todas las reputaciones de un personaje en una sola lista. Puedes hacer clic en el nombre de la columna para ordenar las reputaciones por nombre o por clasificación.
+		</faq>
+		<faq question="¿A dónde puedo ir para averiguar más sobre los diferentes tipos de reputación?">
+			Cada una de los tipos de reputación tiene su correspondiente página en nuestra guía de juego online. Las denominaciones de cada reputación tendrán enlaces directos a sus páginas. 
+		</faq>
+		<faq question="¿Cuáles son los niveles de reputación y cuánta reputación hace falta para pasar de un nivel a otro?">
+			Aquí te ofrecemos una lista con los niveles de reputación necesarios:
+			  <ul>
+			0/36000 – Odiado a Hostil
+			  <br/>
+			0/3000 – Hostil a Enemigo
+			  <br/>			  
+			0/3000 – Enemigo a Neutral
+			  <br/>
+			0/3000 – Neutral a Amistoso
+			  <br/>
+			0/6000 – Amistoso a Honorable
+			  <br/>
+			0/12000 – Honorable a Reverenciado
+			  <br/>
+			0/21000 – Reverenciado a Exaltado
+			  </ul>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Reputación" type="external" url="http://www.wow-europe.com/es/info/basics/reputation.html"/>
+		<relatedlink name="Facciones" type="external" url="http://www.wow-europe.com/es/info/basics/factions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

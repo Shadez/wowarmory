@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Informations sur les guildes">
+	<faqlist>
+		<faq question="Quelles sont les fonctionnalités des pages de guilde ?">
+			Vous pouvez obtenir la liste des membres de la guilde comme leurs statistiques. Une nouvelle fonctionnalité permet aussi aux membres de regarder et de rechercher le contenu de leur banque de guilde ainsi que les transactions effectuées dernièrement, pour peu que leur maître de guilde leur en ait accordé les accès.
+		</faq>
+		<faq question="Que puis voir dans les onglets des membres de la guilde ?">
+			Si vous cliquez sur l'onglet des membres de la guilde, vous afficherez une liste desdits membres indiquant leur niveau, leur race, leur classe et leur rang de guilde. En haut de page, vous trouverez le nom de la guilde, son tabard, son royaume, son corps de bataille et ses effectifs. Il s'agit de la page affichée par défaut quand vous cliquez sur le nom d'une guilde dans l'Armurerie. Vous pouvez trier les informations différemment en cliquant sur le nom des colonnes et faire défiler les pages à l'aide des flèches au bas de la liste. Un nouveau champ destiné au nom et aux niveaux, ainsi que des menus déroulants, vous permettront aussi d'afficher les informations différemment et plus précisément.
+		</faq>
+		<faq question="Qu'est-ce que la page de statistiques de guilde ?">
+			Cette page permet de voir la composition de la guilde : vous pouvez trier les membres par classe, race, éventail de niveaux et genre. L'affichage est contrôlé par les menus déroulants et les champs de texte en haut de la page. Vous pouvez également cliquer sur les icônes correspondantes comme raccourci pour trier par race ou classe. Si vous souhaitez réinitialiser l'affichage, il suffit de cliquer sur « réinitialiser » dans le coin supérieur droit de la page.
+		</faq>
+		<faq question="Pourquoi l'Armurerie me demande-t-elle de me connecter avec mes identifiants ?">
+		Certaines zones de l'Armurerie, comme les banques de guildes, requièrent que vous vous connectiez du fait de la nature des informations qu'elles affichent.
+		</faq>
+		<faq question="Combien de temps puis-je consulter la banque de guilde une fois connecté ?">
+			Vous devriez avoir accès à la banque de guilde pendant environ deux semaines à partir du début de votre connexion.
+		</faq>
+		<faq question="Comment puis-je utiliser le système de banques de guildes ?">
+			<p>
+        <span style="color: #FF0000;">Deux onglets sont dédiés au nouveau système de banques de guildes. Si vous cliquez dessus, une fenêtre de connexion apparaîtra : il vous faudra alors vous identifier avec vos informations de votre compte. Assurez-vous que votre compte dispose bien d'un personnage membre de la guilde en question et que ce dernier dispose des accès nécessaires pour accéder à la banque de sa guilde. Votre personnage doit avoir les autorisations adéquates pour explorer chaque onglet de la banque.</span>
+      </p>
+			<p>Vous trouverez sur la page de contenu de la banque une grille reproduisant le contenu de la banque du personnage, ainsi que la section de résultats de recherche. En voici les caractéristiques :</p>
+			<ul>
+		<li>Les emplacements sur la grille sont labelisés par un système de coordonnées classique, référencé dans les résultats de la recherche situés en dessous.</li>
+		<li>Chaque banque de guilde propose un maximum de six onglets pour les emplacements de stockage. La vue par défaut de la page de contenu affiche le premier onglet de la banque de guilde. Pour changer d'onglet, cliquez sur les icônes situées au bas de la grille.</li>
+		<li>Il est possible que la totalité des onglets ne soit pas affichée, le chef de guilde devant tout d'abord les acheter pour que ceux-ci deviennent disponibles.</li>
+		<li>La section affichant le resultats des recherches située sous la grille vous permet de voir le contenu de la banque sous la forme d'une liste d'objets triables. Vous pouvez ainsi trier la liste par nom, type, catégorie, page et emplacements en cliquant sur le titre de la colonne et naviguer à travers les pages de résultats à l'aide des bontons en forme de flèches.</li>
+		<li>La colonne « emplacement » dans la partie réservée au résultats des recherches indique les coordonnées de l'emplacement de banque sur la grille.</li>
+		<li>Les menus déroulants sont une autre méthode pour chercher des objets dans la banque de guilde selon leur qualité,type, catégorie et emplacement. Le champ de recherche par nom permet de trouver tous les objets dans la banque dont le nom comporte le texte que vous aurez entré.</li>
+				<li>Cliquez sur « réinitialiser les filtres » pour revenir à l'affichage par défaut. </li>
+			</ul>
+		</faq>
+		<faq question="Comment puis-je utiliser le journal des transactions de la banque ?">
+			<p>
+        <span style="color: #FF0000;">Si vous cliquez dessus, une fenêtre de connexion apparaîtra : il vous faudra alors vous identifier avec vos informations de votre compte. Assurez-vous que votre compte dispose bien d'un personnage membre de la guilde en question et que ce dernier dispose des accès nécessaires pour accéder à la banque de sa guilde. Votre personnage doit avoir les autorisations adéquates pour consulter le journal des transactions de la banque.</span>
+      </p>
+			<p>Dans ce journal, vous pouvez lire et y chercher la trace de toutes les transactions de votre banque de guilde. En voici les caractéristiques :</p>
+			<ul>
+				<li>Dans l'affichage par défaut, la section des résultats vous montre toutes les transactions dans le «groupe» de transactions le plus récent, triées par date et heure.</li>
+				<li>Chaque groupe comprend plus d'un milliers d'actions. Les flèches sous les résultats vous permettront de  faire défiler les groupes.</li>
+				<li>Cliquez sur les flèches en bas à droite du résultat pour faire défiler les pages de résultats dans le groupe sélectionné.</li>
+				<li>Les transactions affichées dans un groupe donné sont limitées à vos autorisations de banque de guilde. Ainsi, il est possible de n'en voir qu'une petite partie sur le volume global réel de transactions concernant la période en question. </li>
+				<li>Les résultats du groupe affiché peuvent être triés par nom, rang, déposant, action, destination, objet et date.</li>
+				<li>Vous pouvez lancer une recherche par personnage, date, type de transaction ou une combinaison de ces requêtes : précisez vos critères pour une réponse plus rapide et mieux ciblée.</li>
+				<li>La sélection de n'importe lequel de ces critères étréci les résultats de la recherche en temps réel : la liste obtenue reflètera donc instantanément vos changements de critères.</li>
+				<li>Les deux champs de recherche de nom (pour le personnage et pour les objets) trouvent toutes les occurences qui correspondent aux données tapées.</li>
+				<li>Les astuces des objets dans la banque de guilde n'affichent ni les enchantements permanents de ceux-ci, ni les gemmes qui sont susceptibles d'y être enchâssées.</li>				
+				<li>Cliquez sur « réinitialiser les filtres » pour revenir à l'affichage par défaut. </li>
+			</ul>
+		</faq>
+		<faq question="Pourquoi ne puis-pas accéder à une banque de guilde donnée ?">
+			Veuillez vous assurer que que votre compte dispose bien d'un personnage membre de la guilde en question et que ce dernier dispose des accès nécessaires pour afficher la banque de sa guilde. Si vous êtes membre de cette guilde mais que vous ne parvenez pas à accéder au journal de la banque, c'est que votre maître de guilde ne vous a probablement pas accordé la permission de le faire. Certaines guildes ont été suspendues suite à leur inactivité.
+		</faq>
+		<faq question="J'ai déplacé un objet d'un onglet à l'autre, mais certains membres de ma guilde voient qu'un objet a été déposé ou retiré d'un seul onglet. Comment ça se fait ?">
+			Si votre personnage n'a accès qu'à un seul des deux onglets impliqués dans un déplacement d'objet, vous verrez le rapport de ce changement en tant qu'un retrait ou qu'un dépôt selon que vous aurez accès à l'onglet d'origine (retrait) ou destinataire (dépôt).
+		</faq>
+		<faq question="Jusqu'à quelle date peut remonter le journal des transactions de la banque ?">
+			Toute transaction dans votre banque de guilde est enregistrée et accessible à partir de l'Armurerie. Toutefois, les transactions sont divisées en groupes, qui eux-mêmes n'incluent qu'un certain nombre d'entre elles. Il est possible que vous ayez à faire défiler plusieurs groupes avant de trouver la transaction précise que vous recherchez. Le groupe le plus récent est le groupe 1, les suivants sont numérotés en conséquence. Cliquez sur les boutons sous le journal des transactions afin d'accéder aux différents groupes. 
+		</faq>
+		<faq question="Combien de temps prennent les changement en jeu pour se refléter dans les pages de l'Armurerie ?">
+			La plupart des changements en jeu apportés aux banques de guilde et pour les membres des guildes devraient apparaître sur l’armurerie le jour même.
+		</faq>
+		<faq question="Comment les rangs de guilde sont-ils déterminés ?">
+			Les rangs de guilde sont tout simplement repris de chaque système hiérarchique de guilde. Le numéro de chaque rang correspond à celui de la structure de la guilde. Par exemple, les maîtres de guilde sont identifiés en tant que tels : mis à part ce rang-là, les rangs suivants ne sont pas visibles. Toutefois, votre rang au sein de la guilde sera affiché dans les pages de banque de guilde quand vous vous serez identifié pour vous y connecter. Vous pourrez le voir sur la page du journal de la guilde, tant sur le journal des transaction en lui-même que dans le menu déroulant filtrant les rangs de guilde.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Informations sur les guildes" type="external" url="http://www.wow-europe.com/fr/info/basics/guilds.html"/>
+		<relatedlink name="Intégrer une guilde" type="external" url="http://www.wow-europe.com/fr/info/basics/joiningguilds.html"/>
+		<relatedlink name="La gestion d'une guilde" type="external" url="http://www.wow-europe.com/fr/info/basics/guildtab.html"/>
+		<relatedlink name="Diriger une guilde" type="external" url="http://www.wow-europe.com/fr/info/basics/guildleadership.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>	
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

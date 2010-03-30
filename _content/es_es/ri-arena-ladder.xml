@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Ladder de Arena">
+	<faqlist>
+		<faq question="¿Qué es una ladder de Arena?">
+			Se trata de un sistema de competición "en escalera" para los jugadores que participan en competiciones jugador contra jugador (JcJ). Este sistema clasificará a los equipos en cada uno de los tres tipos de juego: 2c2, 3c3 y 5c5. Los equipos ganarán puntos de Arena dependiendo de la clasificación actual de su equipo. Los puntos de Arena que se acumulen se pueden usar para adquirir objetos y otras recompensas. 
+		</faq>
+		<faq question="¿Cómo se determinan las clasificaciones?">
+			La clasificación se determina según las victorias y derrotas de tu equipo frente a equipos de una clasificación similar. Las victorias contra equipos clasificados por encima del tuyo mejorarán tu clasificación, mientras que vencer a equipos por debajo del tuyo hará que tu clasificación mejore menos. Caer derrotado frente a un equipo peor clasificado hará que descienda de clasificación. La idea básica es similar a la del sistema Elo que se utiliza en el ajedrez profesional. 
+		</faq>
+		<faq question="¿Cuánto dura una temporada?">
+			Cada temporada dura varios meses.
+		</faq>
+		<faq question="¿Cuáles son los requisitos para conseguir los títulos de final de temporada?">
+			Al final de cada temporada de las Arenas, los jugadores que hayan participado en al menos el 20% de las partidas para esa temporada de uno de los equipos mejor clasificados pueden optar a títulos especiales que conmemorarán su logro. Esos títulos se conservan a lo largo de la temporada siguiente. A continuación podrás ver los títulos especiales de la presente temporada junto a sus tablas de clasificaciones:
+			<ul>
+				<li>Gladiador: clasificados entre los primeros puestos que supongan el 0,5% del total de jugadores</li>
+				<li>Duelista:  0.5% - 3%</li>
+				<li>Rival: 3% - 10%</li>
+				<li>Contendiente: 10% - 35%</li>
+			</ul>
+			Además, el equipo que obtenga el primer lugar de su categoría recibirá un título especial, idéntico al nombre del armamento de la temporada, por ejemplo: "Gladiador Brutal".
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>	
+		<relatedlink name="Salón de la Fama de las Arenas" url="/hof/one/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Sistema de Arena" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

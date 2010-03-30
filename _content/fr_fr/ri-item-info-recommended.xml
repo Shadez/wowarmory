@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Trouver mieux">
+	<faqlist>
+		<faq question="Comment sont déterminés les objets de la fonction « Trouver mieux » ?">
+			Ces améliorations recommandées prennent en compte la classe de personnage, les caractéristiques et la qualité générale de l’équipement. De cette façon, vous pourrez rechercher quelle amélioration votre personnage ou n’importe quel autre personnage de World of Warcraft peut désirer. Cette fonctionnalité est aussi là pour faciliter les choix des personnages qui ont plusieurs ensembles différents d’équipement suivant les circonstances, leur permettant de trouver les améliorations pour chaque ensemble. Cette fonctionnalité donne des résultats plus précis lorsqu’elle est utilisée sur un personnage qui n’a pas d’amélioration magique temporaire (buff) qui affecte ses caractéristiques.
+		</faq>
+		<faq question="Existe-t-il quelques astuces pour mieux utiliser la fonction « Trouver mieux » ?">
+Voici quelques astuces pour utiliser au mieux la fonction « Trouver mieux ». Remarquez que toute modification de l'équipement de votre personnage ne sera prise en compte dans votre fiche de personnage qu'après que vous avez quitté le jeu.
+		<ul>
+			<li>
+          <strong>Équipez-vous de l'équipement qui reflète le mieux le style de jeu pour lequel vous recherchez des améliorations.</strong> Par exemple, si vous êtes intéressé par des améliorations pour des raids, quittez le jeu équipé de votre ensemble de raid. si vous souhaitez des objets JcJ, vous devrez alors avoir votre ensemble JcJ équipé, etc.</li>
+			<li>
+          <strong>Essayez différents ensembles d'armure.</strong> Certaines classes tendent à multiplier les ensembles d'armure selon les styles de jeu : solo, raid, JcJ, etc. Pour trouver des améliorations pour chaque ensemble, il vous suffit de changer votre équipement avant de quitter le jeu. Par contre, si vous avez des objets provenant de différents ensembles, les résultats ne seront pas aussi précis.</li>
+			<li>
+          <strong>Gardez à l'esprit les différents facteurs qui sont ou ne sont pas pris en compte par l'Armurerie dans le calcul de ces améliorations.</strong> Ces améliorations prennent principalement en compte les caractéristiques de votre personnage et la qualité générale de l'équipement. L'Armurerie ne prend en compte que la classe de personnage, et non les talents ou spécialisations.</li>
+			<li>
+          <strong>Niveau et rareté des objets.</strong> En faisant ses recommandations, l'Armurerie analyse tout d'abord l'équipement du personnage et en détermine la qualité globale : elle servira de référence pour toutes les recommandations pour ce personnage. Cette référence est déterminée principalement en fonction de la rareté et du niveau des objets. En s'équipant ne serait-ce que d'un seul objet très rare et de haut niveau, les suggestions peuvent être sensiblement affectées.</li>
+		</ul>
+		</faq>
+		<faq question="Comment est classée la liste des recommandations ?">
+			Cette liste est classée par pertinence comme toutes les recherches d'objets. Dans le cas de la fonction « Trouver mieux », la pertinence d'un objet signifie combien un objet correspond à la référence de l'armurerie concernant la qualité des objets et aux caractéristiques principales de la classe de personnage. Un objet avec une meilleure pertinence n'est pas forcément mieux qu'un autre ou même plus approprié pour votre personnage. Les améliorations doivent être considérées comme des objets correspondants, classées en fonction des similitudes avec ce que vous portez actuellement. 
+		</faq>
+		<faq question="Les recommandations sont-elles affectées par des effets extérieurs comme les améliorations magiques ou autre ?">
+			Non, tous les sorts et effets affectant votre personnage au moment de votre déconnexion ne sont pas pris en compte par l'Armurerie.
+		</faq>
+		<faq question="Puis-je trouver des améliorations pour différents ensembles d'armure, en changeant d'équipement avant de me déconnecter ?">
+			Oui, c'est même encouragé.
+		</faq>												
+		<faq question="Pourquoi vois-je parmi mes améliorations recommandées d'objets des récompenses de quête qui ne sont accessibles que par la faction opposée ?">
+			Pour le moment, l'Armurerie n'est pas capable de filtrer les récompenses de quêtes en fonction des factions dans les améliorations recommandées. Nous pourrons changer ce comportement dans l'avenir.
+		</faq>
+		<faq question="Pourquoi l'objet pour lequel je recherche une amélioration apparaît-il dans la liste des améliorations possibles ?">
+			La place d'un objet dans sa liste de recommandations est prévue pour donner une idée du statut de cet objet dans le spectre des recommandations possibles. En d'autres mots, vous pouvez considérer l'apparition de cet objet dans la liste des recommandations comme le fait que cet objet correspond bien au personnage. L'emplacement de cet objet dans cette liste est là pour déterminer à quel point cet objet concurrence les autres objets disponibles.
+		</faq>
+		<faq question="J'espérais trouver l'objet X dans ma liste de recommandations, mais ce n'est pas le cas. Pourquoi ?">
+			L'absence d'un objet spécifique dans une liste de recommandations peut être due à différentes raisons. L’objet peut avoir des prérequis ou un niveau minimum trop important par rapport à votre équipement actuel. Une autre possibilité est que l'objet en question a des caractéristiques similaires à celui actuellement équipé et ne correspond pas à une amélioration réelle des caractéristiques préférées pour votre classe de personnage.
+		</faq>
+		<faq question="Les objets avec des enchantements aléatoires (e.g. « de l'aigle ») apparaissent-ils dans la liste ?">
+			Oui, les objets avec des enchantements aléatoires peuvent apparaître dans la liste des recommandations. Cependant, ils apparaissent dans leur forme neutre, sans suffixe d'enchantement associé. Cliquez sur n'importe lequel de ces objets pour voir une liste de tous les enchantements possibles. Attention, ces objets peuvent être moins bien classés qu'ils ne devraient l'être.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Récompenses des emblèmes de givre" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Récompenses d’Emblèmes de triomphe" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Objets « Héritage »" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Butin de donjons et de raids" url="/dungeons.xml"/>
+		<relatedlink name="Récompenses de faction" url="/factions.xml"/>
+		<relatedlink name="Récompenses JcJ" url="/pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Scores de combat" type="external" url="http://www.wow-europe.com/fr/info/basics/characters.html"/>				
+		<relatedlink name="Les objets (bases)" type="external" url="http://www.wow-europe.com/fr/info/items/basics.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

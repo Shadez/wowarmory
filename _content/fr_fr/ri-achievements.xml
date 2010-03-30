@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Hauts faits">
+	<faqlist>
+		<faq question="A quoi servent les onglets des hauts faits et des statistiques ?">
+			Les pages des hauts faits et des statistiques apparaissant sur les feuilles de personnages sont conçues pour refléter et fonctionner de la même manière que leurs contreparties en jeu, à l’exception de quelques ajouts exclusif à l’Armurerie. La possibilité de comparer les hauts-faits et les statistiques entre différents personnages est multipliée, permettant d’afficher les données de quatre personnages, entre différents royaumes.
+		</faq>
+		<faq question="Comment passer d’une catégorie à une autre sur les onglets des hauts faits et des statistiques ?">
+			De la même manière que vous le feriez en jeu, cliquez simplement sur la catégorie ou sous-catégorie des hauts faits et statistiques sur le menu de gauche.
+		</faq>
+		<faq question="Comment puis-je comparer les hauts faits et statistiques  de différents personnages ?">
+			Pour comparer plusieurs personnages, cliquez simplement sur l’onglet « Ajouter un personnage à comparer » en haut à droite de l’interface. Entrer le nom et le royaume du personnage que vous souhaitez comparer à celui que vous avez actuellement affiché. Le portrait de l’autre personnage et ses hauts faits apparaitront à côté du premier. Vous pouvez ajouter d’autres personnages de la même manière, et comparer jusqu’à quatre personnages à la fois.
+		</faq>
+		<faq question="Dois-je être connecté pour voir les hauts faits et statistiques d’un joueur ?">
+			Non, les hauts faits et statistiques sont considérés comme des informations « publiques » et ne sont donc pas protégé par une connexion à l’Armurerie.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Système des hauts faits" url="http://www.wow-europe.com/wrath/features/gameplay/achievements.xml&amp;locale=fr_fr"/>
+	</relatedlinks>
+</relatedinfo>

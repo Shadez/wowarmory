@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Match-Bericht">
+	<faqlist>
+		
+		<faq question="Wozu dient diese Seite?">
+Jedes Arena-Match, über alle Brackets und Realmpools hinweg, verfügt über einen einsehbaren Match-Bericht. Bei diesem Bericht handelt es sich um einen Auszug aus der Match-Zusammenfassung, welche nach Abschluss des Matches im Spiel angezeigt wird. Hier seht ihr eine Übersicht der Informationen und Funktionsweise, die in jedem Match-Bericht enthalte sind:
+<ul>
+<li>Seht die Mitstreiter und ihre Leistungen in den gleichen, wie im Spiel angezeigten, fünf Arenastatistiken.</li>
+<li>Team- und Spielernamen können angeklickt werden und leiten euch zu ihren derzeitigen Profilen weiter - es sei denn, das Team existiert nicht mehr.</li>
+<li>Der Top-Banner zeigt die Team-Bewertungen und Bewertungsänderung für jedes Team an. Die Team-Bewertungen berücksichtigen die Bewertungsänderung des derzeitigen Matches.</li>
+<li>Die Startzeit und Gesamtlänge des Matches werden unterhalb der Match-Statistiken angezeigt.</li>
+</ul>
+		</faq>
+		
+		<faq question="Warum scheinen die Todesstöße in dem Match, das ich mir ansehe, nicht angerechnet zu werden?">
+		Manche Matches enden damit, dass das letzte oder die letzten wenigen Mitglieder des verlierenden Teams sich entscheiden, dem Unverleidlichen mittels /AFK zu entgehen. In diesen Fällen beläuft sich die Anzahl der Todesstöße des gewinnenden Teams auf weniger als die Gesamtzahl der Spieler im anderen Team.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena-Rechner" url="/arena-calculator.xml"/>		
+		<relatedlink name="Arena-System" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Daten der US-Realms anzeigen" type="external" url="http://www.wowarmory.com/"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

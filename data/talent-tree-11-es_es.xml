@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_es" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="DruidBalance" icon="spell_nature_starfall" key="Balance" name="Equilibrio" order="0">
+      <talent column="1" icon="spell_nature_abolishmagic" key="762" name="Cólera de luz estelar" tier="0">
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Cólera y Fuego estelar 0.1 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Cólera y Fuego estelar 0.2 s." lvl="2"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Cólera y Fuego estelar 0.3 s." lvl="3"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Cólera y Fuego estelar 0.4 s." lvl="4"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Cólera y Fuego estelar 0.5 s." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_arcane03" key="2238" name="Génesis" tier="0">
+        <rank description="Aumenta el daño y la sanación de tus efectos periódicos de sanación y daño con hechizos un 1%." lvl="1"/>
+        <rank description="Aumenta el daño y la sanación de tus efectos periódicos de sanación y daño con hechizos un 2%." lvl="2"/>
+        <rank description="Aumenta el daño y la sanación de tus efectos periódicos de sanación y daño con hechizos un 3%." lvl="3"/>
+        <rank description="Aumenta el daño y la sanación de tus efectos periódicos de sanación y daño con hechizos un 4%." lvl="4"/>
+        <rank description="Aumenta el daño y la sanación de tus efectos periódicos de sanación y daño con hechizos un 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_sentinal" key="783" name="Resplandor lunar" tier="1">
+        <rank description="Reduce el coste de maná de tus hechizos Fuego lunar, Fuego estelar, Cólera, Lluvia de estrellas, Toque de sanación, Nutrir, Recrecimiento y Rejuvenecimiento un 3%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Fuego lunar, Fuego estelar, Cólera, Lluvia de estrellas, Toque de sanación, Nutrir, Recrecimiento y Rejuvenecimiento un 6%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos Fuego lunar, Fuego estelar, Cólera, Lluvia de estrellas, Toque de sanación, Nutrir, Recrecimiento y Rejuvenecimiento un 9%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_staff_01" key="1822" name="Majestuosidad de la Naturaleza" tier="1">
+        <rank description="Aumenta un 2% la probabilidad de golpe crítico de tu Cólera, Fuego estelar, Lluvia de estrellas, Nutrir y Toque de sanación." lvl="1"/>
+        <rank description="Aumenta un 4% la probabilidad de golpe crítico de tu Cólera, Fuego estelar, Lluvia de estrellas, Nutrir y Toque de sanación." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_starfall" key="763" name="Fuego lunar mejorado" tier="1">
+        <rank description="Aumenta un 5% la probabilidad de golpe crítico y el daño de tus hechizos de Fuego lunar." lvl="1"/>
+        <rank description="Aumenta un 10% la probabilidad de golpe crítico y el daño de tus hechizos de Fuego lunar." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_thorns" key="782" name="Zarzas" tier="2">
+        <rank description="Aumenta el daño infligido por tus hechizos Espinas y Raíces enredadoras un 25% y el daño de tus antárboles aumenta un 5%. Además, el daño de tus antárboles y los ataques que hagan contra ti mientras tienes Piel de corteza activa tienen un 5% de probabilidad de atontar al objetivo durante 3 s." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tus hechizos Espinas y Raíces enredadoras un 50% y el daño de tus antárboles aumenta un 10%. Además, el daño de tus antárboles y los ataques que hagan contra ti mientras tienes Piel de corteza activa tienen un 10% de probabilidad de atontar al objetivo durante 3 s." lvl="2"/>
+        <rank description="Aumenta el daño infligido por tus hechizos Espinas y Raíces enredadoras un 75% y el daño de tus antárboles aumenta un 15%. Además, el daño de tus antárboles y los ataques que hagan contra ti mientras tienes Piel de corteza activa tienen un 15% de probabilidad de atontar al objetivo durante 3 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_naturesblessing" key="789" name="Gracia de la Naturaleza" requires="1822" tier="2">
+        <rank description="Todos los golpes críticos no periódicos con hechizos tienen un 33% de probabilidad de concederte una bendición de la Naturaleza, aumentando tu velocidad de lanzamiento de hechizos un 20% durante 3 s." lvl="1"/>
+        <rank description="Todos los golpes críticos no periódicos con hechizos tienen un 66% de probabilidad de concederte una bendición de la Naturaleza, aumentando tu velocidad de lanzamiento de hechizos un 20% durante 3 s." lvl="2"/>
+        <rank description="Todos los golpes críticos no periódicos con hechizos tienen un 100% de probabilidad de concederte una bendición de la Naturaleza, aumentando tu velocidad de lanzamiento de hechizos un 20% durante 3 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_natureguardian" key="2240" name="Esplendor de la Naturaleza" requires="1822" tier="2">
+        <rank description="Aumenta la duración de tu Fuego lunar y Rejuvenecimiento 3 s, tu Recrecimiento 6 s, y tu Flor de vida y Enjambre de insectos 2 s." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_naturetouchgrow" key="764" name="Alcance de la Naturaleza" tier="2">
+        <rank description="Aumenta el alcance de tus hechizos de Equilibrio y de tu facultad Fuego feérico (Feral) un 10% y reduce la amenaza generada por tus hechizos de Equilibrio un 15%." lvl="1"/>
+        <rank description="Aumenta el alcance de tus hechizos de Equilibrio y de tu facultad Fuego feérico (Feral) un 20% y reduce la amenaza generada por tus hechizos de Equilibrio un 30%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_purge" key="792" name="Venganza" tier="3">
+        <rank description="Aumenta un 20% el bonus de daño de golpe crítico con tus hechizos de Fuego estelar, Fuego lunar, Cólera y Lluvia de estrellas." lvl="1"/>
+        <rank description="Aumenta un 40% el bonus de daño de golpe crítico con tus hechizos de Fuego estelar, Fuego lunar, Cólera y Lluvia de estrellas." lvl="2"/>
+        <rank description="Aumenta un 60% el bonus de daño de golpe crítico con tus hechizos de Fuego estelar, Fuego lunar, Cólera y Lluvia de estrellas." lvl="3"/>
+        <rank description="Aumenta un 80% el bonus de daño de golpe crítico con tus hechizos de Fuego estelar, Fuego lunar, Cólera y Lluvia de estrellas." lvl="4"/>
+        <rank description="Aumenta un 100% el bonus de daño de golpe crítico con tus hechizos de Fuego estelar, Fuego lunar, Cólera y Lluvia de estrellas." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_starfire" key="784" name="Enfoque celestial" tier="3">
+        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas Fuego estelar, Hibernar y Huracán un 23% y aumenta tu celeridad con hechizos total un 1%." lvl="1"/>
+        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas Fuego estelar, Hibernar y Huracán un 46% y aumenta tu celeridad con hechizos total un 2%." lvl="2"/>
+        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas Fuego estelar, Hibernar y Huracán un 70% y aumenta tu celeridad con hechizos total un 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_lunarguidance" key="1782" name="Guía de la Luna" tier="4">
+        <rank description="Aumenta tu poder con hechizos un 4% de tu intelecto total." lvl="1"/>
+        <rank description="Aumenta tu poder con hechizos un 8% de tu intelecto total." lvl="2"/>
+        <rank description="Aumenta tu poder con hechizos un 12% de tu intelecto total." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_insectswarm" key="788" name="Enjambre de insectos" tier="4">
+        <rank description="El objetivo enemigo es rodeado de insectos, lo que reduce su probabilidad de golpear un 3% e inflige 144 p. de daño de Naturaleza durante 12 s." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_insectswarm" key="2239" name="Enjambre de insectos mejorado" requires="788" tier="4">
+        <rank description="Aumenta el daño que infliges con tu hechizo Cólera a los objetivos afectados con Enjambre de insectos un 1% y aumenta la probabilidad de golpe crítico de tu hechizo Fuego estelar un 1% sobre los objetivos afectados por tu hechizo Fuego lunar." lvl="1"/>
+        <rank description="Aumenta el daño que infliges con tu hechizo Cólera a los objetivos afectados con Enjambre de insectos un 2% y aumenta la probabilidad de golpe crítico de tu hechizo Fuego estelar un 2% sobre los objetivos afectados por tu hechizo Fuego lunar." lvl="2"/>
+        <rank description="Aumenta el daño que infliges con tu hechizo Cólera a los objetivos afectados con Enjambre de insectos un 3% y aumenta la probabilidad de golpe crítico de tu hechizo Fuego estelar un 3% sobre los objetivos afectados por tu hechizo Fuego lunar." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_dreamstate" key="1784" name="Estado onírico" tier="5">
+        <rank description="Regenera maná en una cantidad equivalente al 4% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="1"/>
+        <rank description="Regenera maná en una cantidad equivalente al 7% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="2"/>
+        <rank description="Regenera maná en una cantidad equivalente al 10% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_moonglow" key="790" name="Furia de luna" tier="5">
+        <rank description="Aumenta un 3% el daño infligido con tus hechizos de Fuego estelar, Fuego lunar y Cólera." lvl="1"/>
+        <rank description="Aumenta un 6% el daño infligido con tus hechizos de Fuego estelar, Fuego lunar y Cólera." lvl="2"/>
+        <rank description="Aumenta un 10% el daño infligido con tus hechizos de Fuego estelar, Fuego lunar y Cólera." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_balanceofpower" key="1783" name="Equilibrio de poder" tier="5">
+        <rank description="Aumenta tu probabilidad de golpear con todos los hechizos un 2% y reduce el daño recibido por todos los hechizos un 3%." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de golpear con todos los hechizos un 4% y reduce el daño recibido por todos los hechizos un 6%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_forceofnature" key="793" name="Forma de lechúcico lunar" tier="6">
+        <rank description="Cambio a forma de lechúcico lunar. El valor de armadura por objetos aumenta un 370%, el daño recibido mientras estás aturdido se reduce un 15%, y todos los miembros del grupo y banda que se encuentren a 45 m aumentan un 5% su probabilidad de asestar un golpe crítico con hechizos. Los golpes críticos con hechizos asestados a un único objetivo bajo esta forma tienen la posibilidad de regenerar instantáneamente un 2% de tu maná total. El lechúcico lunar no puede lanzar hechizos de sanación o resurrección.&lt;br/&gt;&lt;br/&gt;El cambio de forma libera al taumaturgo de los efectos de polimorfia y de reducción del movimiento." lvl="1"/>
+        <spell castTime="0">
+          <power cost="13" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_improvedmoonkinform" key="1912" name="Forma de lechúcico lunar mejorada" requires="793" tier="6">
+        <rank description="Tu Aura lechúcico lunar también provoca que los objetivos afectados ganen un 1% de celeridad y que ganes un 10% de tu espíritu como daño con hechizos extra." lvl="1"/>
+        <rank description="Tu Aura lechúcico lunar también provoca que los objetivos afectados ganen un 2% de celeridad y que ganes un 20% de tu espíritu como daño con hechizos extra." lvl="2"/>
+        <rank description="Tu Aura lechúcico lunar también provoca que los objetivos afectados ganen un 3% de celeridad y que ganes un 30% de tu espíritu como daño con hechizos extra." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_faeriefire" key="1785" name="Fuego feérico mejorado" tier="6">
+        <rank description="Tu hechizo Fuego feérico también aumenta un 1% la probabilidad de que el objetivo sea alcanzado por ataques con hechizos y aumenta tu probabilidad de golpe crítico de tus hechizos dañinos un 1% sobre objetivos afectados por Fuego feérico." lvl="1"/>
+        <rank description="Tu hechizo Fuego feérico también aumenta un 2% la probabilidad de que el objetivo sea alcanzado por ataques con hechizos y aumenta tu probabilidad de golpe crítico de tus hechizos dañinos un 2% sobre objetivos afectados por Fuego feérico." lvl="2"/>
+        <rank description="Tu hechizo Fuego feérico también aumenta un 3% la probabilidad de que el objetivo sea alcanzado por ataques con hechizos y aumenta tu probabilidad de golpe crítico de tus hechizos dañinos un 3% sobre objetivos afectados por Fuego feérico." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_owlkinfrenzy" key="1913" name="Frenesí de buhíco" requires="793" tier="7">
+        <rank description="Los ataques que hagan contra ti mientras estés bajo Forma de lechúcico lunar tienen un 5% de probabilidad de provocar que entres en Frenesí, aumentando tu daño un 10%, provocan que seas inmune al retroceso mientras lanzas hechizos de Equilibrio y restaura un 2% del maná base cada 2 s. Dura 10 s." lvl="1"/>
+        <rank description="Los ataques que hagan contra ti mientras estés bajo Forma de lechúcico lunar tienen un 10% de probabilidad de provocar que entres en Frenesí, aumentando tu daño un 10%, provocan que seas inmune al retroceso mientras lanzas hechizos de Equilibrio y restaura un 2% del maná base cada 2 s. Dura 10 s." lvl="2"/>
+        <rank description="Los ataques que hagan contra ti mientras estés bajo Forma de lechúcico lunar tienen un 15% de probabilidad de provocar que entres en Frenesí, aumentando tu daño un 10%, provocan que seas inmune al retroceso mientras lanzas hechizos de Equilibrio y restaura un 2% del maná base cada 2 s. Dura 10 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_twilightswrath" key="1786" name="Cólera de Cenarius" tier="7">
+        <rank description="Tu hechizo Fuego estelar gana un 4% extra y tu Cólera un 2% extra de tu bonus de efectos de daño." lvl="1"/>
+        <rank description="Tu hechizo Fuego estelar gana un 8% extra y tu Cólera un 4% extra de tu bonus de efectos de daño." lvl="2"/>
+        <rank description="Tu hechizo Fuego estelar gana un 12% extra y tu Cólera un 6% extra de tu bonus de efectos de daño." lvl="3"/>
+        <rank description="Tu hechizo Fuego estelar gana un 16% extra y tu Cólera un 8% extra de tu bonus de efectos de daño." lvl="4"/>
+        <rank description="Tu hechizo Fuego estelar gana un 20% extra y tu Cólera un 10% extra de tu bonus de efectos de daño." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_druid_eclipse" key="1924" name="Eclipse" tier="8">
+        <rank description="Cuando infliges daño crítico con Fuego estelar, tienes un 33% de probabilidad de aumentar el daño infligido con Cólera un 40%. Cuando infliges daño crítico con Cólera, tienes un 20% de probabilidad de aumentar tu probabilidad de golpe crítico con Fuego estelar un 40%. Cada efecto dura 15 s y tiene un tiempo de reutilización separado de 30 s. Ambos efectos no pueden ocurrir a la vez." lvl="1"/>
+        <rank description="Cuando infliges daño crítico con Fuego estelar, tienes un 66% de probabilidad de aumentar el daño infligido con Cólera un 40%. Cuando infliges daño crítico con Cólera, tienes un 40% de probabilidad de aumentar tu probabilidad de golpe crítico con Fuego estelar un 40%. Cada efecto dura 15 s y tiene un tiempo de reutilización separado de 30 s. Ambos efectos no pueden ocurrir a la vez." lvl="2"/>
+        <rank description="Cuando infliges daño crítico con Fuego estelar, tienes un 100% de probabilidad de aumentar el daño infligido con Cólera un 40%. Cuando infliges daño crítico con Cólera, tienes un 60% de probabilidad de aumentar tu probabilidad de golpe crítico con Fuego estelar un 40%. Cada efecto dura 15 s y tiene un tiempo de reutilización separado de 30 s. Ambos efectos no pueden ocurrir a la vez." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_typhoon" key="1923" name="Tifón" requires="793" tier="8">
+        <rank description="Invocas un violento Tifón que inflige 400 p. de daño de Naturaleza al entrar en contacto con objetivos hostiles, los derriba y los atonta durante 6 s." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30">
+          <power cost="32" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_forceofnature" key="1787" name="Fuerza de la Naturaleza" tier="8">
+        <rank description="Invoca a 3 antárboles que atacan objetivos enemigos durante 30 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_druid_galewinds" key="1925" name="Viento huracanado" tier="8">
+        <rank description="Aumenta un 15% el daño infligido por tus hechizos Huracán y Tifón, y aumenta 2 m. el alcance de tu hechizo Ciclón." lvl="1"/>
+        <rank description="Aumenta un 30% el daño infligido por tus hechizos Huracán y Tifón, y aumenta 4 m. el alcance de tu hechizo Ciclón." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_earthandsky" key="1928" name="Tierra y Luna" tier="9">
+        <rank description="Tus hechizos Cólera y Fuego estelar tienen un 100% de probabilidad de aplicar el efecto de Tierra y Luna que aumenta el daño con hechizos recibido un 4% durante 12 s. También aumenta tu daño con hechizos un 2%." lvl="1"/>
+        <rank description="Tus hechizos Cólera y Fuego estelar tienen un 100% de probabilidad de aplicar el efecto de Tierra y Luna que aumenta el daño con hechizos recibido un 9% durante 12 s. También aumenta tu daño con hechizos un 4%." lvl="2"/>
+        <rank description="Tus hechizos Cólera y Fuego estelar tienen un 100% de probabilidad de aplicar el efecto de Tierra y Luna que aumenta el daño con hechizos recibido un 13% durante 12 s. También aumenta tu daño con hechizos un 6%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_starfall" key="1926" name="Lluvia de estrellas" tier="10">
+        <rank description="Invocas un aluvión de estrellas del cielo sobre todos los objetivos en un radio de 30 m del taumaturgo, cada una inflige 111-129 p. de daño Arcano. También inflige 20 p. de daño Arcano extra a todos los demás objetivos a 5 m del objetivo enemigo. Máximo 20 estrellas. Dura 10 s. Cambiar de forma o montar cancelan el efecto. Cualquier efecto que provoque que pierdas el control de tu personaje suprimirá el efecto de Lluvia de estrellas." lvl="1"/>
+        <spell castTime="0" cooldown="90000">
+          <power cost="35" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="DruidFeralCombat" icon="ability_racial_bearform" key="FeralCombat" name="Combate feral" order="1">
+      <talent column="1" icon="ability_hunter_pet_hyena" key="796" name="Ferocidad" tier="0">
+        <rank description="Reduce el coste de tus facultades Magullar, Flagelo, Zarpa, Arañazo y Destrozar 1 p. de ira o energía." lvl="1"/>
+        <rank description="Reduce el coste de tus facultades Magullar, Flagelo, Zarpa, Arañazo y Destrozar 2 p. de ira o energía." lvl="2"/>
+        <rank description="Reduce el coste de tus facultades Magullar, Flagelo, Zarpa, Arañazo y Destrozar 3 p. de ira o energía." lvl="3"/>
+        <rank description="Reduce el coste de tus facultades Magullar, Flagelo, Zarpa, Arañazo y Destrozar 4 p. de ira o energía." lvl="4"/>
+        <rank description="Reduce el coste de tus facultades Magullar, Flagelo, Zarpa, Arañazo y Destrozar 5 p. de ira o energía." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_demoralizingroar" key="795" name="Agresión feral" tier="0">
+        <rank description="Aumenta la reducción del poder de ataque de tu Rugido desmoralizador un 8% y el daño de tu Mordedura feroz un 3%." lvl="1"/>
+        <rank description="Aumenta la reducción del poder de ataque de tu Rugido desmoralizador un 16% y el daño de tu Mordedura feroz un 6%." lvl="2"/>
+        <rank description="Aumenta la reducción del poder de ataque de tu Rugido desmoralizador un 24% y el daño de tu Mordedura feroz un 9%." lvl="3"/>
+        <rank description="Aumenta la reducción del poder de ataque de tu Rugido desmoralizador un 32% y el daño de tu Mordedura feroz un 12%." lvl="4"/>
+        <rank description="Aumenta la reducción del poder de ataque de tu Rugido desmoralizador un 40% y el daño de tu Mordedura feroz un 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_ambush" key="799" name="Instinto feral" tier="1">
+        <rank description="Aumenta un 10% el daño infligido por tu facultad Flagelo y reduce la probabilidad que tienen tus enemigos de detectarte mientras acechas." lvl="1"/>
+        <rank description="Aumenta un 20% el daño infligido por tu facultad Flagelo y reduce la probabilidad que tienen tus enemigos de detectarte mientras acechas." lvl="2"/>
+        <rank description="Aumenta un 30% el daño infligido por tu facultad Flagelo y reduce la probabilidad que tienen tus enemigos de detectarte mientras acechas." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_ravage" key="805" name="Furia cruel" tier="1">
+        <rank description="Aumenta un 10% el daño infligido por tus facultades Zarpa, Arañazo, Destrozar (felino), Destrozar (oso) y Magullar." lvl="1"/>
+        <rank description="Aumenta un 20% el daño infligido por tus facultades Zarpa, Arañazo, Destrozar (felino), Destrozar (oso) y Magullar." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_pelt_bear_03" key="794" name="Pellejo grueso" tier="1">
+        <rank description="Aumenta tu valor de armadura por objetos de tela y cuero un 4%." lvl="1"/>
+        <rank description="Aumenta tu valor de armadura por objetos de tela y cuero un 7%." lvl="2"/>
+        <rank description="Aumenta tu valor de armadura por objetos de tela y cuero un 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_spiritwolf" key="807" name="Presteza feral" tier="2">
+        <rank description="Aumenta tu velocidad de movimiento un 15% mientras estés en forma felina y aumenta tu probabilidad de esquivar mientras estés en forma felina, forma de oso y forma de oso temible un 2%." lvl="1"/>
+        <rank description="Aumenta tu velocidad de movimiento un 30% mientras estés en forma felina y aumenta tu probabilidad de esquivar mientras estés en forma felina, forma de oso y forma de oso temible un 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_tigersroar" key="1162" name="Instintos de supervivencia" tier="2">
+        <rank description="Cuando se activa, esta facultad otorga temporalmente el 30% de tu salud máxima durante 20 s mientras estás bajo Forma de oso, Forma felina o Forma de oso temible. Perderás la salud cuando se acabe el efecto." lvl="1"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_04" key="798" name="Garras afiladas" tier="2">
+        <rank description="Aumenta la probabilidad de conseguir un golpe crítico mientras estés en forma de oso, oso temible o felina un 2%." lvl="1"/>
+        <rank description="Aumenta la probabilidad de conseguir un golpe crítico mientras estés en forma de oso, oso temible o felina un 4%." lvl="2"/>
+        <rank description="Aumenta la probabilidad de conseguir un golpe crítico mientras estés en forma de oso, oso temible o felina un 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_vampiricaura" key="802" name="Ataques trituradores" tier="3">
+        <rank description="Reduce el coste de energía de tu facultad Triturar 9 p. y el coste de ira de facultad Lacerar 1 p." lvl="1"/>
+        <rank description="Reduce el coste de energía de tu facultad Triturar 18 p. y el coste de ira de facultad Lacerar 2 p." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_cat" key="803" name="Golpes depredadores" tier="3">
+        <rank description="Aumenta tu poder de ataque cuerpo a cuerpo en las formas felina, de oso y de oso temible un 50% de tu nivel y un 7% de cualquier poder de ataque de tu arma equipada. Además, tus remates tienen un 7% de probabilidad por punto de combo de que tu siguiente hechizo de Naturaleza con tiempo de lanzamiento de base inferior a 10 s sea instantáneo." lvl="1"/>
+        <rank description="Aumenta tu poder de ataque cuerpo a cuerpo en las formas felina, de oso y de oso temible un 100% de tu nivel y un 14% de cualquier poder de ataque de tu arma equipada. Además, tus remates tienen un 13% de probabilidad por punto de combo de que tu siguiente hechizo de Naturaleza con tiempo de lanzamiento de base inferior a 10 s sea instantáneo." lvl="2"/>
+        <rank description="Aumenta tu poder de ataque cuerpo a cuerpo en las formas felina, de oso y de oso temible un 150% de tu nivel y un 20% de cualquier poder de ataque de tu arma equipada. Además, tus remates tienen un 20% de probabilidad por punto de combo de que tu siguiente hechizo de Naturaleza con tiempo de lanzamiento de base inferior a 10 s sea instantáneo." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_racial_cannibalize" key="801" name="Furia primigenia" requires="798" tier="3">
+        <rank description="Te da un 50% de probabilidad de ganar 5 p. de ira extra siempre que consigas un golpe crítico cuando tengas forma de oso o de oso temible. Y tus golpes críticos cuando tienes forma felina que añaden p. de combo tienen un 50% de probabilidad de añadir un punto de combo extra." lvl="1"/>
+        <rank description="Te da un 100% de probabilidad de ganar 5 p. de ira extra siempre que consigas un golpe crítico cuando tengas forma de oso o de oso temible. Y tus golpes críticos cuando tienes forma felina que añaden p. de combo tienen un 100% de probabilidad de añadir un punto de combo extra." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_primalprecision" key="1914" name="Precisión primigenia" requires="798" tier="3">
+        <rank description="Aumenta tu pericia 5 p. y se te devuelve el 40% de coste de energía de un remate si no impacta en el objetivo." lvl="1"/>
+        <rank description="Aumenta tu pericia 10 p. y se te devuelve el 80% de coste de energía de un remate si no impacta en el objetivo." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_bash" key="797" name="Impacto brutal" tier="4">
+        <rank description="Aumenta 0.5 s la duración de aturdimiento de tus facultades Azote y Abalanzarse y reduce el tiempo de reutilización de Azote 15 s." lvl="1"/>
+        <rank description="Aumenta 1 s la duración de aturdimiento de tus facultades Azote y Abalanzarse y reduce el tiempo de reutilización de Azote 30 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_bear" key="804" name="Carga feral" tier="4">
+        <rank description="Enseña Carga feral (oso) y Carga feral (felino).&lt;br/&gt;&lt;br/&gt;Carga feral (oso): Provoca que cargues contra un enemigo, inmovilizándolo e interrumpiendo el lanzamiento de cualquier hechizo durante 4 s. Esta facultad se puede usar bajo Forma de oso y Forma de oso temible. 15 s de tiempo de reutilización.&lt;br/&gt;&lt;br/&gt;Carga feral (felino): Provoca que saltes detrás de un enemigo y lo atontes durante 3 s. 30 s de tiempo de reutilización." lvl="1"/>
+      </talent>
+      <talent column="3" icon="ability_druid_healinginstincts" key="1792" name="Instinto de nutrición" tier="4">
+        <rank description="Aumenta tus hechizos de sanación hasta el 35% de tu agilidad y aumenta la sanación que te hacen un 10% mientras estás bajo Forma felina." lvl="1"/>
+        <rank description="Aumenta tus hechizos de sanación hasta el 70% de tu agilidad y aumenta la sanación que te hacen un 20% mientras estás bajo Forma felina." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_bullrush" key="2242" name="Reacción natural" tier="5">
+        <rank description="Aumenta tu probabilidad de esquivar mientras estás en Forma de oso o Forma de oso temible un 2% y regeneras 1 p. de ira cada vez que esquivas bajo Forma de oso o Forma de oso temible." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de esquivar mientras estás en Forma de oso o Forma de oso temible un 4% y regeneras 2 p. de ira cada vez que esquivas bajo Forma de oso o Forma de oso temible." lvl="2"/>
+        <rank description="Aumenta tu probabilidad de esquivar mientras estás en Forma de oso o Forma de oso temible un 6% y regeneras 3 p. de ira cada vez que esquivas bajo Forma de oso o Forma de oso temible." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofagility" key="808" name="Corazón de lo Salvaje" requires="803" tier="5">
+        <rank description="Aumenta tu intelecto un 4%. Además, mientras estés en forma de oso o de oso temible, tu aguante aumentará un 2% y mientras estés en forma felina, tu poder de ataque aumentará un 2%." lvl="1"/>
+        <rank description="Aumenta tu intelecto un 8%. Además, mientras estés en forma de oso o de oso temible, tu aguante aumentará un 4% y mientras estés en forma felina, tu poder de ataque aumentará un 4%." lvl="2"/>
+        <rank description="Aumenta tu intelecto un 12%. Además, mientras estés en forma de oso o de oso temible, tu aguante aumentará un 6% y mientras estés en forma felina, tu poder de ataque aumentará un 6%." lvl="3"/>
+        <rank description="Aumenta tu intelecto un 16%. Además, mientras estés en forma de oso o de oso temible, tu aguante aumentará un 8% y mientras estés en forma felina, tu poder de ataque aumentará un 8%." lvl="4"/>
+        <rank description="Aumenta tu intelecto un 20%. Además, mientras estés en forma de oso o de oso temible, tu aguante aumentará un 10% y mientras estés en forma felina, tu poder de ataque aumentará un 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_enrage" key="1794" name="Supervivencia del más fuerte" tier="5">
+        <rank description="Aumenta todos tus atributos un 2%, reduce la probabilidad de que recibas un golpe crítico con los ataques cuerpo a cuerpo un 2% y aumenta la contribución a tu armadura de objetos de cuero y tela mientras estás en Forma de oso y Forma de oso temible un 11%." lvl="1"/>
+        <rank description="Aumenta todos tus atributos un 4%, reduce la probabilidad de que recibas un golpe crítico con los ataques cuerpo a cuerpo un 4% y aumenta la contribución a tu armadura de objetos de cuero y tela mientras estás en Forma de oso y Forma de oso temible un 22%." lvl="2"/>
+        <rank description="Aumenta todos tus atributos un 6%, reduce la probabilidad de que recibas un golpe crítico con los ataques cuerpo a cuerpo un 6% y aumenta la contribución a tu armadura de objetos de cuero y tela mientras estás en Forma de oso y Forma de oso temible un 33%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_unyeildingstamina" key="809" name="Líder de la manada" tier="6">
+        <rank description="Cuando estás en forma felina, de oso o de oso temible, Líder de la manada aumenta un 5% la probabilidad de golpe crítico cuerpo a cuerpo y a distancia de los miembros del grupo en un radio de 45 m." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="1798" name="Líder de la manada mejorado" requires="809" tier="6">
+        <rank description="Tu facultad Líder de la manada también provoca que los objetivos afectados se sanen un 2% de su salud total cuando asestan un golpe crítico cuerpo a cuerpo o a distancia. El efecto de sanación no se puede repetir más de una vez en 6 s. Además, ganas un 4% de tu maná máximo cuando te beneficias de esta sanación." lvl="1"/>
+        <rank description="Tu facultad Líder de la manada también provoca que los objetivos afectados se sanen un 4% de su salud total cuando asestan un golpe crítico cuerpo a cuerpo o a distancia. El efecto de sanación no se puede repetir más de una vez en 6 s. Además, ganas un 8% de tu maná máximo cuando te beneficias de esta sanación." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_primaltenacity" key="1793" name="Tenacidad primigenia" tier="6">
+        <rank description="Reduce la duración de los efectos de miedo un 10%, reduce todo el daño recibido mientras estás aturdido en Forma felina un 10%." lvl="1"/>
+        <rank description="Reduce la duración de los efectos de miedo un 20%, reduce todo el daño recibido mientras estás aturdido en Forma felina un 20%." lvl="2"/>
+        <rank description="Reduce la duración de los efectos de miedo un 30%, reduce todo el daño recibido mientras estás aturdido en Forma felina un 30%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_challangingroar" key="2241" name="Protector de la manada" requires="809" tier="7">
+        <rank description="Aumenta tu poder de ataque un 2% y reduce el daño que recibes un 4% mientras estás bajo Forma de oso o Forma de oso temible." lvl="1"/>
+        <rank description="Aumenta tu poder de ataque un 4% y reduce el daño que recibes un 8% mientras estás bajo Forma de oso o Forma de oso temible." lvl="2"/>
+        <rank description="Aumenta tu poder de ataque un 6% y reduce el daño que recibes un 12% mientras estás bajo Forma de oso o Forma de oso temible." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_druid_predatoryinstincts" key="1795" name="Instintos depredadores" tier="7">
+        <rank description="Mientras estás en forma felina, aumenta el daño de tus golpes críticos en combate cuerpo a cuerpo un 3% y reduce el daño recibido de los ataques de efecto de área un 10%." lvl="1"/>
+        <rank description="Mientras estás en forma felina, aumenta el daño de tus golpes críticos en combate cuerpo a cuerpo un 7% y reduce el daño recibido de los ataques de efecto de área un 20%." lvl="2"/>
+        <rank description="Mientras estás en forma felina, aumenta el daño de tus golpes críticos en combate cuerpo a cuerpo un 10% y reduce el daño recibido de los ataques de efecto de área un 30%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_druid_infectedwound" key="1919" name="Heridas infectadas" tier="7">
+        <rank description="Tus ataques Triturar, Magullar y Destrozar infligen Herida infectada al objetivo. Herida infectada reduce un 16% la velocidad de movimiento del objetivo y un 6% la velocidad de ataque. Dura 12 s." lvl="1"/>
+        <rank description="Tus ataques Triturar, Magullar y Destrozar infligen Herida infectada al objetivo. Herida infectada reduce un 34% la velocidad de movimiento del objetivo y un 14% la velocidad de ataque. Dura 12 s." lvl="2"/>
+        <rank description="Tus ataques Triturar, Magullar y Destrozar infligen Herida infectada al objetivo. Herida infectada reduce un 50% la velocidad de movimiento del objetivo y un 20% la velocidad de ataque. Dura 12 s." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_kingofthejungle" key="1921" name="Rey de la selva" tier="8">
+        <rank description="Mientras usas tu facultad Enfurecer en forma de oso o forma de oso temible, tu daño aumenta un 5% y tu facultad Furia del tigre también restaura instantáneamente 20 p. de energía. Además, el coste de maná de la forma de oso, forma felina y forma de oso temible se reduce un 20%." lvl="1"/>
+        <rank description="Mientras usas tu facultad Enfurecer en forma de oso o forma de oso temible, tu daño aumenta un 10% y tu facultad Furia del tigre también restaura instantáneamente 40 p. de energía. Además, el coste de maná de la forma de oso, forma felina y forma de oso temible se reduce un 40%." lvl="2"/>
+        <rank description="Mientras usas tu facultad Enfurecer en forma de oso o forma de oso temible, tu daño aumenta un 15% y tu facultad Furia del tigre también restaura instantáneamente 60 p. de energía. Además, el coste de maná de la forma de oso, forma felina y forma de oso temible se reduce un 60%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_mangle2" key="1796" name="Destrozar" requires="809" tier="8">
+        <rank description="Destroza al enemigo y le inflige daño provocando que el objetivo reciba daño extra de los efectos de sangrado durante 12 s. Esta facultad se puede usar en forma felina y de oso temible." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_mangle2" key="1920" name="Destrozar mejorado" requires="1796" tier="8">
+        <rank description="Reduce el tiempo de reutilización de tu facultad Destrozar (oso) 0.5 s y reduce el coste de energía de tu facultad Destrozar (felino) 2 p." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu facultad Destrozar (oso) 1.0 s y reduce el coste de energía de tu facultad Destrozar (felino) 4 p." lvl="2"/>
+        <rank description="Reduce el tiempo de reutilización de tu facultad Destrozar (oso) 1.5 s y reduce el coste de energía de tu facultad Destrozar (felino) 6 p." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_primalagression" key="1918" name="Desgarrar y romper" tier="9">
+        <rank description="Aumenta el daño infligido por tus ataques con Magullar y Triturar sobre objetivos sangrantes un 4%, y aumenta la probabilidad de golpe crítico de tu Mordedura feroz sobre los objetivos sangrantes un 5%." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tus ataques con Magullar y Triturar sobre objetivos sangrantes un 8%, y aumenta la probabilidad de golpe crítico de tu Mordedura feroz sobre los objetivos sangrantes un 10%." lvl="2"/>
+        <rank description="Aumenta el daño infligido por tus ataques con Magullar y Triturar sobre objetivos sangrantes un 12%, y aumenta la probabilidad de golpe crítico de tu Mordedura feroz sobre los objetivos sangrantes un 15%." lvl="3"/>
+        <rank description="Aumenta el daño infligido por tus ataques con Magullar y Triturar sobre objetivos sangrantes un 16%, y aumenta la probabilidad de golpe crítico de tu Mordedura feroz sobre los objetivos sangrantes un 20%." lvl="4"/>
+        <rank description="Aumenta el daño infligido por tus ataques con Magullar y Triturar sobre objetivos sangrantes un 20%, y aumenta la probabilidad de golpe crítico de tu Mordedura feroz sobre los objetivos sangrantes un 25%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_rake" key="2266" name="Sangre primigenia" requires="1918" tier="9">
+        <rank description="Otorga al daño periódico de tus hechizos Lacerar y Destripar la facultad de golpe crítico." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_druid_berserk" key="1927" name="Rabia" tier="10">
+        <rank description="Cuando se activa, esta facultad provoca que tu facultad Destrozar (oso) golpee hasta a 3 objetivos, no tiene tiempo de reutilización y reduce el coste de energía de tus facultades de forma felina un 50%. Dura 15 s. No puedes usar Furia del tigre mientras Rabia está activa. &lt;br/&gt;&lt;br/&gt;Elimina el efecto de miedo y te hace inmune a miedo mientras dura." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+    </tree>
+    <tree bgImage="DruidRestoration" icon="spell_nature_healingtouch" key="Restoration" name="Restauración" order="2">
+      <talent column="0" icon="spell_nature_regeneration" key="821" name="Marca de lo Salvaje mejorada" tier="0">
+        <rank description="Aumenta un 20% el efecto de tus hechizos Don de lo Salvaje y Marca de lo Salvaje y aumenta todos tus atributos totales un 1%." lvl="1"/>
+        <rank description="Aumenta un 40% el efecto de tus hechizos Don de lo Salvaje y Marca de lo Salvaje y aumenta todos tus atributos totales un 2%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavegreater" key="823" name="Enfoque de la Naturaleza" tier="0">
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas los hechizos Toque de sanación, Cólera, Raíces enredadoras, Ciclón, Nutrir, Recrecimiento o Tranquilidad un 23%." lvl="1"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas los hechizos Toque de sanación, Cólera, Raíces enredadoras, Ciclón, Nutrir, Recrecimiento o Tranquilidad un 46%." lvl="2"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas los hechizos Toque de sanación, Cólera, Raíces enredadoras, Ciclón, Nutrir, Recrecimiento o Tranquilidad un 70%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_blessingofstamina" key="822" name="Furor" tier="0">
+        <rank description="Te da un 20% de probabilidad de ganar 10 p. de ira cuando cambias a Forma de oso y de oso temible y guardas hasta 20 p. de energía cuando cambias a forma felina, y aumenta tu intelecto total cuando estás bajo Forma de lechúcico lunar un 2%." lvl="1"/>
+        <rank description="Te da un 40% de probabilidad de ganar 10 p. de ira cuando cambias a Forma de oso y de oso temible y guardas hasta 40 p. de energía cuando cambias a forma felina, y aumenta tu intelecto total cuando estás bajo Forma de lechúcico lunar un 4%." lvl="2"/>
+        <rank description="Te da un 60% de probabilidad de ganar 10 p. de ira cuando cambias a Forma de oso y de oso temible y guardas hasta 60 p. de energía cuando cambias a forma felina, y aumenta tu intelecto total cuando estás bajo Forma de lechúcico lunar un 6%." lvl="3"/>
+        <rank description="Te da un 80% de probabilidad de ganar 10 p. de ira cuando cambias a Forma de oso y de oso temible y guardas hasta 80 p. de energía cuando cambias a forma felina, y aumenta tu intelecto total cuando estás bajo Forma de lechúcico lunar un 8%." lvl="4"/>
+        <rank description="Te da un 100% de probabilidad de ganar 10 p. de ira cuando cambias a Forma de oso y de oso temible y guardas hasta 100 p. de energía cuando cambias a forma felina, y aumenta tu intelecto total cuando estás bajo Forma de lechúcico lunar un 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_healingtouch" key="824" name="Naturalista" tier="1">
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Toque de sanación 0.1 s y aumenta el daño que causas con ataques físicos bajo todas las formas un 2%." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Toque de sanación 0.2 s y aumenta el daño que causas con ataques físicos bajo todas las formas un 4%." lvl="2"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Toque de sanación 0.3 s y aumenta el daño que causas con ataques físicos bajo todas las formas un 6%." lvl="3"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Toque de sanación 0.4 s y aumenta el daño que causas con ataques físicos bajo todas las formas un 8%." lvl="4"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Toque de sanación 0.5 s y aumenta el daño que causas con ataques físicos bajo todas las formas un 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_eyeoftheowl" key="841" name="Sutileza" tier="1">
+        <rank description="Reduce la amenaza generada por tus hechizos de restauración un 10% y reduce la probabilidad de que tus hechizos de ayuda, Fuego lunar y Enjambre de insectos sean disipados un 10%." lvl="1"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de restauración un 20% y reduce la probabilidad de que tus hechizos de ayuda, Fuego lunar y Enjambre de insectos sean disipados un 20%." lvl="2"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de restauración un 30% y reduce la probabilidad de que tus hechizos de ayuda, Fuego lunar y Enjambre de insectos sean disipados un 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_wispsplode" key="826" name="Cambio de forma natural" tier="1">
+        <rank description="Reduce el coste de maná de todos los hechizos de cambio de forma un 10%." lvl="1"/>
+        <rank description="Reduce el coste de maná de todos los hechizos de cambio de forma un 20%." lvl="2"/>
+        <rank description="Reduce el coste de maná de todos los hechizos de cambio de forma un 30%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_windwalkon" key="829" name="Intensidad" tier="2">
+        <rank description="Permite que un 17% de la regeneración de maná continúe mientras lanzas hechizos y provoca que tu facultad Enfurecer genere instantáneamente 4 p. de ira." lvl="1"/>
+        <rank description="Permite que un 33% de la regeneración de maná continúe mientras lanzas hechizos y provoca que tu facultad Enfurecer genere instantáneamente 7 p. de ira." lvl="2"/>
+        <rank description="Permite que un 50% de la regeneración de maná continúe mientras lanzas hechizos y provoca que tu facultad Enfurecer genere instantáneamente 10 p. de ira." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_crystalball" key="827" name="Augurio de claridad" tier="2">
+        <rank description="Cada hechizo de sanación y daño y ataque automático del druida tiene la posibilidad de hacer que el taumaturgo entre en estado de Lanzamiento libre. El estado de Lanzamiento libre reduce el coste de maná, el de ira o el de energía de tu próximo hechizo de daño, hechizo de sanación o facultad ofensiva un 100%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_mastershapeshifter" key="1915" name="Maestro en cambio de forma" requires="826" tier="2">
+        <rank description="Otorga un efecto que dura mientras el druida esté bajo la forma respectiva.&lt;br/&gt;&lt;br/&gt;Forma de oso: Aumenta el daño físico un 2%.&lt;br/&gt;&lt;br/&gt;Forma felina: Aumenta la probabilidad de asestar un golpe crítico un 2%.&lt;br/&gt;&lt;br/&gt;Forma de lechúcico lunar: Aumenta el daño con hechizos un 2%.&lt;br/&gt;&lt;br/&gt;Forma de árbol de vida: Aumenta la sanación un 2%." lvl="1"/>
+        <rank description="Otorga un efecto que dura mientras el druida esté bajo la forma respectiva.&lt;br/&gt;&lt;br/&gt;Forma de oso: Aumenta el daño físico un 4%.&lt;br/&gt;&lt;br/&gt;Forma felina: Aumenta la probabilidad de asestar un golpe crítico un 4%.&lt;br/&gt;&lt;br/&gt;Forma de lechúcico lunar: Aumenta el daño con hechizos un 4%.&lt;br/&gt;&lt;br/&gt;Forma de árbol de vida: Aumenta la sanación un 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_elunesgrace" key="843" name="Espíritu sosegado" tier="3">
+        <rank description="Reduce el coste de maná de tus hechizos Toque de sanación, Nutrir y Tranquilidad un 2%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Toque de sanación, Nutrir y Tranquilidad un 4%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos Toque de sanación, Nutrir y Tranquilidad un 6%." lvl="3"/>
+        <rank description="Reduce el coste de maná de tus hechizos Toque de sanación, Nutrir y Tranquilidad un 8%." lvl="4"/>
+        <rank description="Reduce el coste de maná de tus hechizos Toque de sanación, Nutrir y Tranquilidad un 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_rejuvenation" key="830" name="Rejuvenecimiento mejorado" tier="3">
+        <rank description="Aumenta un 5% el efecto de tu hechizo de Rejuvenecimiento." lvl="1"/>
+        <rank description="Aumenta un 10% el efecto de tu hechizo de Rejuvenecimiento." lvl="2"/>
+        <rank description="Aumenta un 15% el efecto de tu hechizo de Rejuvenecimiento." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_ravenform" key="831" name="Presteza de la Naturaleza" requires="829" tier="4">
+        <rank description="Cuando se activa, tu próximo hechizo de Naturaleza con un tiempo de lanzamiento de base inferior a 10 s se convertirá en un hechizo de lanzamiento instantáneo." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="1" icon="spell_nature_protectionformnature" key="828" name="Don de la Naturaleza" tier="4">
+        <rank description="Aumenta los efectos de tus hechizos de sanación un 2%." lvl="1"/>
+        <rank description="Aumenta los efectos de tus hechizos de sanación un 4%." lvl="2"/>
+        <rank description="Aumenta los efectos de tus hechizos de sanación un 6%." lvl="3"/>
+        <rank description="Aumenta los efectos de tus hechizos de sanación un 8%." lvl="4"/>
+        <rank description="Aumenta los efectos de tus hechizos de sanación un 10%." lvl="5"/>
+      </talent>
+      <talent column="3" icon="spell_nature_tranquility" key="842" name="Tranquilidad mejorada" tier="4">
+        <rank description="Reduce la amenaza causada por Tranquilidad un 50% y reduce el tiempo de reutilización un 30%." lvl="1"/>
+        <rank description="Reduce la amenaza causada por Tranquilidad un 100% y reduce el tiempo de reutilización un 60%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_empoweredtouch" key="1788" name="Toque potenciado" tier="5">
+        <rank description="Tu hechizo Toque de sanación gana un 20% extra y tu hechizo Nutrir gana un 10% extra del bonus de tus efectos de sanación." lvl="1"/>
+        <rank description="Tu hechizo Toque de sanación gana un 40% extra y tu hechizo Nutrir gana un 20% extra del bonus de tus efectos de sanación." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_resistnature" key="825" name="Obsequio de la Naturaleza" requires="830" tier="5">
+        <rank description="Aumenta un 5% la probabilidad de efecto crítico de tus hechizos de Recrecimiento y Nutrición." lvl="1"/>
+        <rank description="Aumenta un 10% la probabilidad de efecto crítico de tus hechizos de Recrecimiento y Nutrición." lvl="2"/>
+        <rank description="Aumenta un 15% la probabilidad de efecto crítico de tus hechizos de Recrecimiento y Nutrición." lvl="3"/>
+        <rank description="Aumenta un 20% la probabilidad de efecto crítico de tus hechizos de Recrecimiento y Nutrición." lvl="4"/>
+        <rank description="Aumenta un 25% la probabilidad de efecto crítico de tus hechizos de Recrecimiento y Nutrición." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_giftofthewaterspirit" key="1797" name="Espíritu vivo" tier="6">
+        <rank description="Aumenta tu espíritu total un 5%." lvl="1"/>
+        <rank description="Aumenta tu espíritu total un 10%." lvl="2"/>
+        <rank description="Aumenta tu espíritu total un 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_relics_idolofrejuvenation" key="844" name="Alivio presto" requires="828" tier="6">
+        <rank description="Consume el efecto de los hechizos Rejuvenecimiento o Recrecimiento de un objetivo amistoso y lo sana al instante en una cantidad equivalente a 12 s de Rejuvenecimiento o 18 s de Recrecimiento." lvl="1"/>
+        <spell castTime="0" cooldown="15000" maxRange="40">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_druid_naturalperfection" key="1790" name="Perfección natural" tier="6">
+        <rank description="Tu probabilidad de golpe crítico con todos los hechizos aumenta un 1% y los golpes críticos frente a ti te dan el efecto de Perfección natural que reduce todo el daño recibido un 2%. Se acumula hasta 3. Dura 8 s." lvl="1"/>
+        <rank description="Tu probabilidad de golpe crítico con todos los hechizos aumenta un 2% y los golpes críticos frente a ti te dan el efecto de Perfección natural que reduce todo el daño recibido un 3%. Se acumula hasta 3. Dura 8 s." lvl="2"/>
+        <rank description="Tu probabilidad de golpe crítico con todos los hechizos aumenta un 3% y los golpes críticos frente a ti te dan el efecto de Perfección natural que reduce todo el daño recibido un 4%. Se acumula hasta 3. Dura 8 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_empoweredrejuvination" key="1789" name="Rejuvenecimiento potenciado" tier="7">
+        <rank description="El efecto de bonus de sanación de tus hechizos de sanación en el tiempo aumenta un 4%." lvl="1"/>
+        <rank description="El efecto de bonus de sanación de tus hechizos de sanación en el tiempo aumenta un 8%." lvl="2"/>
+        <rank description="El efecto de bonus de sanación de tus hechizos de sanación en el tiempo aumenta un 12%." lvl="3"/>
+        <rank description="El efecto de bonus de sanación de tus hechizos de sanación en el tiempo aumenta un 16%." lvl="4"/>
+        <rank description="El efecto de bonus de sanación de tus hechizos de sanación en el tiempo aumenta un 20%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_giftoftheearthmother" key="1922" name="Semilla viviente" tier="7">
+        <rank description="Cuando haces una sanación crítica a tu objetivo con Alivio presto, Recrecimiento, Nutrir o Toque de sanación, tienes un 33% de probabilidad de plantar una semilla viviente en el objetivo por un 30% de la cantidad sanada. La semilla viviente florecerá cuando ataquen al objetivo. Dura 15 s." lvl="1"/>
+        <rank description="Cuando haces una sanación crítica a tu objetivo con Alivio presto, Recrecimiento, Nutrir o Toque de sanación, tienes un 66% de probabilidad de plantar una semilla viviente en el objetivo por un 30% de la cantidad sanada. La semilla viviente florecerá cuando ataquen al objetivo. Dura 15 s." lvl="2"/>
+        <rank description="Cuando haces una sanación crítica a tu objetivo con Alivio presto, Recrecimiento, Nutrir o Toque de sanación, tienes un 100% de probabilidad de plantar una semilla viviente en el objetivo por un 30% de la cantidad sanada. La semilla viviente florecerá cuando ataquen al objetivo. Dura 15 s." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_druid_replenish" key="1929" name="Revitalizar" tier="8">
+        <rank description="Tus hechizos Rejuvenecimiento y Crecimiento salvaje tienen un 5% de probabilidad de restaurar 8 p. de energía, 4 p. de ira, un 1% de maná o 16 p. de poder rúnico por pulso." lvl="1"/>
+        <rank description="Tus hechizos Rejuvenecimiento y Crecimiento salvaje tienen un 10% de probabilidad de restaurar 8 p. de energía, 4 p. de ira, un 1% de maná o 16 p. de poder rúnico por pulso." lvl="2"/>
+        <rank description="Tus hechizos Rejuvenecimiento y Crecimiento salvaje tienen un 15% de probabilidad de restaurar 8 p. de energía, 4 p. de ira, un 1% de maná o 16 p. de poder rúnico por pulso." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_treeoflife" key="1791" name="Árbol de vida" requires="1789" tier="8">
+        <rank description="Reduce el coste de maná de tus hechizos de sanación en el tiempo un 20% y otorga la facultad de cambiar de forma a Árbol de vida. Mientras estás bajo esta forma, la sanación recibida aumenta un 6% de todos los miembros del grupo o banda en un radio de 45 m. Solo puedes lanzar hechizos de restauración además de los hechizos Estimular, Piel de corteza, Trabazón con la Naturaleza y Espinas.&lt;br/&gt;&lt;br/&gt;El acto de cambiar de forma libera al taumaturgo de los efectos de reducción de movimiento y polimorfia." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_druid_improvedtreeform" key="1930" name="Árbol de vida mejorado" requires="1791" tier="8">
+        <rank description="Aumenta la contribución a tu armadura de objetos mientras estás bajo Forma de árbol de vida un 67% y aumenta el poder con hechizos de sanación un 5% de tu espíritu mientras estás bajo Forma de árbol de vida." lvl="1"/>
+        <rank description="Aumenta la contribución a tu armadura de objetos mientras estás bajo Forma de árbol de vida un 133% y aumenta el poder con hechizos de sanación un 10% de tu espíritu mientras estás bajo Forma de árbol de vida." lvl="2"/>
+        <rank description="Aumenta la contribución a tu armadura de objetos mientras estás bajo Forma de árbol de vida un 200% y aumenta el poder con hechizos de sanación un 15% de tu espíritu mientras estás bajo Forma de árbol de vida." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stoneclawtotem" key="2264" name="Piel de corteza mejorada" tier="9">
+        <rank description="Otorga un 80% de armadura extra por objetos de tela y cuero mientras estés bajo Forma de viaje o no estés bajo cambio de forma, aumenta la reducción de daño otorgada por tu hechizo Piel de corteza un 5% y reduce la probabilidad de que se disipe tu Piel de corteza un 35%." lvl="1"/>
+        <rank description="Otorga un 160% de armadura extra por objetos de tela y cuero mientras estés bajo Forma de viaje o no estés bajo cambio de forma, aumenta la reducción de daño otorgada por tu hechizo Piel de corteza un 10% y reduce la probabilidad de que se disipe tu Piel de corteza un 70%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_druid_manatree" key="1916" name="Don de la Madre Tierra" tier="9">
+        <rank description="Aumenta un 2% tu celeridad con hechizos total y reduce un 2% el tiempo de reutilización base de tu hechizo Flor de vida." lvl="1"/>
+        <rank description="Aumenta un 4% tu celeridad con hechizos total y reduce un 4% el tiempo de reutilización base de tu hechizo Flor de vida." lvl="2"/>
+        <rank description="Aumenta un 6% tu celeridad con hechizos total y reduce un 6% el tiempo de reutilización base de tu hechizo Flor de vida." lvl="3"/>
+        <rank description="Aumenta un 8% tu celeridad con hechizos total y reduce un 8% el tiempo de reutilización base de tu hechizo Flor de vida." lvl="4"/>
+        <rank description="Aumenta un 10% tu celeridad con hechizos total y reduce un 10% el tiempo de reutilización base de tu hechizo Flor de vida." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_druid_flourish" key="1917" name="Crecimiento salvaje" requires="1791" tier="10">
+        <rank description="Sana 686 p. durante 7 s hasta a 5 miembros del grupo o banda que se encuentren en un radio de 15 m del objetivo. La cantidad sanada se aplica muy rápido al principio y va disminuyendo a medida que Crecimiento salvaje se agota." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="23" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

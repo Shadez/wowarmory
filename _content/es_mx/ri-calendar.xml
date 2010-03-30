@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calendario para el jugador">
+	<faqlist>
+		<faq question="¿Qué funciones tiene el Calendario para el jugador de la Armería?">
+			Las funciones están descritas en la <a href="/updates.xml#anchorcalendarinterface">página de novedades</a>. En el Calendario aparecen los eventos recurrentes del juego, así como los creados por usuarios, y es una réplica de la interfaz que aparece en World of Warcraft. Desde aquí podrás responder a las invitaciones que recibas, y tus decisiones también tendrán efecto en el juego.
+		</faq>
+		<faq question="¿Cómo entro al Calendario para el jugador desde la Armería?">
+			Sólo haz clic en la nueva pestaña llamada "Calendario" ubicada en el perfil de tu personaje. Esto te conducirá a una pantalla de inicio donde tendrás que ingresar tu nombre de cuenta y contraseña. También podrás iniciar sesión de manera directa desde cualquier página de la Armería. Sólo utiliza los campos correspondientes que se encuentran en la parte superior derecha de la pantalla y haz clic en la pestaña del Calendario.
+		</faq>
+		<faq question="¿Qué es la herramienta de noticias del calendario?">
+			Esta herramienta te permite exportar los datos en el juego a calendarios en línea como Google Calendar. Podrás agregar hasta cinco personajes de tu cuenta a una lista individual (la cual estará sincronizada con el calendario del personaje en World of Warcraft). Consulta las <a href="/faq-calendar-feed.xml">preguntas frecuentes</a> si deseas más información.
+			</faq>
+		<faq question="¿Por qué tengo que iniciar sesión para ver el Calendario de mi personaje?">
+			Al igual que con los Bancos de Hermandad, el Calendario es una característica protegida ya que contiene información que normalmente no es "pública".
+		</faq>
+		<faq question="¿Puedo responder a eventos desde la Armería?">
+			Sí, podrás responder a invitaciones para eventos creados por otros jugadores. Si respondes a un evento desde la Armería, los cambios también tendrán efecto en el juego.
+		</faq>
+		<faq question="¿Puedo ver los calendarios de otros personajes?">
+			Una vez que hayas iniciado sesión en la Armería, podrás ver los calendarios de todos los personajes que haya en tu cuenta. Haz clic en el renovado menú de perfil de personaje ubicado en la parte superior derecha de la Armería y selecciona al personaje que desees. No tendrás acceso a los calendarios de personajes que no estén en tu cuenta. Para más información, consulta las <a href="/faq-login.xml">preguntas frecuentes</a>.
+		</faq>
+		<faq question="¿Puedo crear eventos a través de la Armería?">
+			No, no podrás crear nuevos eventos a través del Calendario para el Jugador de la Armería, esa función es exclusiva del calendario homónimo que se encuentra dentro del juego.
+		</faq>
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calendario de eventos" url="http://www.worldofwarcraft.com/info/events/calendar/"/>
+		<relatedlink name="Calendario de raids" url="http://www.worldofwarcraft.com/calendar/"/>
+	</relatedlinks>
+</relatedinfo>

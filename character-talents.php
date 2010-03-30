@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 97
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,150 +26,151 @@ define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
 define('load_achievements_class', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-// Additional CSS
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-
+header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('character/talents.xsl');
 if(isset($_GET['n'])) {
-    $charname = $_GET['n'];
+    $characters->name = $_GET['n'];
 }
 elseif(isset($_GET['cn'])) {
-    $charname = $_GET['cn'];
+    $characters->name = $_GET['cn'];
 }
 else {
-    $charname = false;
+    $characters->name = false;
 }
-$characters->name = Utils::escape($charname);
-// Check
-if(!$characters->IsCharacter()) {
-    $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
+$characters->GetCharacterGuid();
+$isCharacter = $characters->IsCharacter();
+// Get page cache
+if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('character-talents', $characters->name, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id)) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
+        exit;
+    }
 }
-// All ok, generate basic character info
+/** Header **/
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'character-talents.xml');
+$xml->XMLWriter()->startElement('tabInfo');
+$xml->XMLWriter()->writeAttribute('subTab', 'talents');
+$xml->XMLWriter()->writeAttribute('tab', 'character');
+$xml->XMLWriter()->writeAttribute('tabGroup', 'character');
+$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->endElement(); //tabInfo
+if(!$isCharacter) {
+    $xml->XMLWriter()->startElement('characterInfo');
+    $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
+    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement(); //page
+    $xml_cache_data = $xml->StopXML();
+    echo $xml_cache_data;
+    exit;
+}
+/** Basic info **/
 $characters->_structCharacter();
 $achievements->guid = $characters->guid;
 $guilds->guid = $characters->guid;
-
-// Send data to Smarty
-$armory->tpl->assign('class', $characters->class);
-$armory->tpl->assign('race', $characters->race);
-$armory->tpl->assign('name', $characters->name);
-$armory->tpl->assign('level', $characters->level);
-$armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-$armory->tpl->assign('portrait_path', $characters->characterAvatar());
-$armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
-$armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
-$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'Horde' : 'Alliance');
 if($guilds->extractPlayerGuildId()) {
-    $armory->tpl->assign('guildName', $guilds->getGuildName());
-}
-//TODO: Dualspec
-// Talents
-// Displaying second talents tree will work only with core patch!
-// !Supports KiriX's port only!
-$tp = '';/*
-if($armory->armoryconfig['useDualSpec'] == true) {
-    $ds = 0;
-    while($ds<2) {
-        for($i=0;$i<3;$i++) {
-            if($i) {
-                $tp .= " / ";
-            }
-            $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i), true, $ds);
-        }
-        // If character has no dual talent specialization
-        if($tp == ' /  / ') {
-            $armory->tpl->assign('dualSpecError', true);
-        }
-        else {
-            $armory->tpl->assign('dualSpec', true);
-            $talent_trees = explode(' / ', $tp);
-            $currentTree = Utils::GetMaxArray($talent_trees);
-            $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
-            $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
-            $armory->tpl->assign('talents_builds_'.$ds, $tp);
-            $armory->tpl->assign('treeName_'.$ds, $currentTreeName);
-            $armory->tpl->assign('treeIcon_'.$ds, $currentTreeIcon);
-            $armory->tpl->assign('ds_'.$ds, $talent_trees);
-            $tp = ''; // Clear previous tree
-            $ds++;
-        }
-    }
-    $armory->tpl->assign('disabledDS_0', false);
-    $armory->tpl->assign('disabledDS_1', false);
-    $activespec = $armory->cDB->selectCell("SELECT `activespec` FROM `characters` WHERE `guid`=? LIMIT 1", $characters->guid);
-    $disabledspec = ($activespec == 1) ? 0 : 1;
-    $armory->tpl->assign('disabledDS_'.$disabledspec, true);
-    for($i=0;$i<2;$i++) {
-        $armory->tpl->assign('talents_'.$i, $characters->extractCharacterTalents(true, $i));
-    }
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
 }
 else {
-    */
-    for($i=0;$i<3;$i++) {
-        if($i) {
-            $tp .= " / ";
-        }
-        $tp .= $characters->talentCounting($characters->getTabOrBuild($characters->class, 'tab', $i));
-    }
-    $talent_trees = explode(' / ', $tp);
-    $currentTree = Utils::GetMaxArray($talent_trees);
-    $currentTreeName = $characters->ReturnTalentTreesNames($characters->class, $currentTree);
-    $currentTreeIcon = $characters->ReturnTalentTreeIcon($characters->class, $currentTree);
-    $armory->tpl->assign('talents_builds', $tp);
-    $armory->tpl->assign('treeName', $currentTreeName);
-    $armory->tpl->assign('tree_js', $talent_trees);
-    $armory->tpl->assign('disabledDS_1', ' disabledSpec');
-    $armory->tpl->assign('currentTreeIcon', $currentTreeIcon);
-    $talents = $characters->extractCharacterTalents();
-    $armory->tpl->assign('talents', $talents);
-    $glyphs = $characters->extractCharacterGlyphs();
-    $armory->tpl->assign('bigGlyphs', $glyphs['big']);
-    $armory->tpl->assign('smallGlyphs', $glyphs['small']);
-//}
-
-switch($characters->class) {
-    case 1:
-        $tplName = 'warrior_'.$_locale;
-        break;
-    case 2:
-        $tplName = 'paladin_'.$_locale;
-        break;
-    case 3:
-        $tplName = 'hunter_'.$_locale;
-        break;
-    case 4:
-        $tplName = 'rogue_'.$_locale;
-        break;
-    case 5:
-        $tplName = 'priest_'.$_locale;
-        break;
-    case 6:
-        $tplName = 'dk_'.$_locale;
-        break;
-    case 7:
-        $tplName = 'shaman_'.$_locale;
-        break;
-    case 8:
-        $tplName = 'mage_'.$_locale;
-        break;
-    case 9:
-        $tplName = 'warlock_'.$_locale;
-        break;
-    case 11:
-        $tplName = 'druid_'.$_locale;
-        break;
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
 }
-$armory->tpl->assign('talentsFileName', $tplName);
-$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
+$characters->GetCharacterTitle();
+$character_element = array(
+    // TODO: add GetLocaleString() method
+    'battleGroup' => $armory->armoryconfig['defaultBGName'],
+    'charUrl'      => $charTabUrl,
+    'class'        => $characters->returnClassText(),
+    'classId'      => $characters->class,
+    'classUrl'     => sprintf('c='),
+    'faction'      => '',
+    'factionId'    => $characters->GetCharacterFaction(),
+    'gender'       => '',
+    'genderId'     => $characters->gender,
+    'guildName'    => ($guilds->guid) ? $guilds->guildName : '',
+    'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : '',
+    'lastModified' => '',
+    'level'        => $characters->level,
+    'name'         => $characters->name,
+    'points'       => $achievements->CalculateAchievementPoints(),
+    'prefix'       => $characters->character_title['prefix'],
+    'race'         => $characters->returnRaceText(),
+    'raceId'       => $characters->race,
+    'realm'        => $armory->armoryconfig['defaultRealmName'],
+    'suffix'       => $characters->character_title['suffix'],
+    'titeId'       => $characters->character_title['titleId'],
+);
+// <characterInfo> start
+$xml->XMLWriter()->startElement('characterInfo');
+// <character> start
+$xml->XMLWriter()->startElement('character');
+foreach($character_element as $c_elem_name => $c_elem_value) {
+    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+}
+$xml->XMLWriter()->endElement();   //character
 
-$charTitle = $characters->GetCharacterTitle();
-$armory->tpl->assign('titleName', $characters->name);
-$armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
+$talents = $characters->extractCharacterTalents();
+$talent_points = array();
+$talent_tree   = array();
+for($i=0;$i<3;$i++) {
+    $talent_points[$i] = $characters->talentCounting($characters->getTabOrBuild('tab', $i));
+}
+$current_tree = Utils::GetMaxArray($talent_points);
 
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_talents_start.tpl');
-exit();
+$talent_spec = array(
+    'treeOne'   => $talent_points[0],
+    'treeThree' => $talent_points[2],
+    'treeTwo'   => $talent_points[1],
+    'value'     => $talents
+);
+$xml->XMLWriter()->startElement('talents');
+$xml->XMLWriter()->startElement('talentGroup');
+$xml->XMLWriter()->writeAttribute('active', 1);
+$xml->XMLWriter()->writeAttribute('group', 1);
+$xml->XMLWriter()->writeAttribute('icon', $characters->ReturnTalentTreeIcon($current_tree));
+$xml->XMLWriter()->writeAttribute('prim', $characters->ReturnTalentTreesNames($current_tree));
+$xml->XMLWriter()->startElement('talentSpec');
+foreach($talent_spec as $spec_key => $spec_value) {
+    $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
+}
+$xml->XMLWriter()->endElement();     //talentSpec
+$glyphs = $characters->extractCharacterGlyphs();
+if($glyphs) {
+    $xml->XMLWriter()->startElement('glyphs');
+    foreach($glyphs['big'] as $majorGlyphs) {
+        $xml->XMLWriter()->startElement('glyph');
+        foreach($majorGlyphs as $mg_key => $mg_value) {
+            $xml->XMLWriter()->writeAttribute($mg_key, $mg_value);
+        }
+        $xml->XMLWriter()->endElement(); //glyph
+    }
+    foreach($glyphs['small'] as $majorGlyphs) {
+        $xml->XMLWriter()->startElement('glyph');
+        foreach($majorGlyphs as $mg_key => $mg_value) {
+            $xml->XMLWriter()->writeAttribute($mg_key, $mg_value);
+        }
+        $xml->XMLWriter()->endElement(); //glyph
+    }
+    $xml->XMLWriter()->endElement();  //talentGroup
+}
+
+$xml->XMLWriter()->endElement();    //talentGroup
+$xml->XMLWriter()->endElement();   //talents
+$xml->XMLWriter()->endElement();  //characterInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-talents');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
+}
+exit;
 ?>

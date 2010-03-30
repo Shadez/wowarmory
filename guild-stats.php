@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 65
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,31 +26,105 @@ define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
 define('load_achievements_class', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$guilds->guildName = Utils::escape($_GET['gn']);
-if(!$guilds->initGuild()) {
-    $armory->tpl->display('error_sheet.tpl');
-    die();
+header('Content-type: text/xml');
+if(isset($_GET['gn'])) {
+    $guilds->guildName = Utils::escape($_GET['gn']);
 }
+else {
+    $guilds->guildName = false;
+}
+$isGuild = $guilds->initGuild();
+if(!$isGuild) {
+    // Load XSLT template
+    $xml->LoadXSLT('error/error.xsl');
+    $xml->XMLWriter()->startElement('page');
+    $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->startElement('errorhtml');
+    $xml->XMLWriter()->endElement();  //errorhtml
+    $xml->XMLWriter()->endElement(); //page
+    echo $xml->StopXML();
+    exit;
+}
+// Get page cache
+if($guilds->guildId > 0 && $isGuild && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('guild-stats', $guilds->guildName, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id, 'guilds')) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
+        exit;
+    }
+}
+// Load XSLT template
+$xml->LoadXSLT('guild/stats.xsl');
+/** Header **/
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'guild-stats.xml');
+$xml->XMLWriter()->startElement('tabInfo');
+$xml->XMLWriter()->writeAttribute('subTab', 'guildStats');
+$xml->XMLWriter()->writeAttribute('tab', 'guild');
+$xml->XMLWriter()->writeAttribute('tabGroup', 'guild');
+$xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : '' );
+$xml->XMLWriter()->endElement(); //tabInfo
+/** Basic info **/
 $guilds->_structGuildInfo();
-// Additional CSS
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-
-$armory->tpl->assign('guildName', $guilds->guildName);
-if(isset($_GET['cn'])) {
-    $armory->tpl->assign('name', $_GET['cn']);
+$guild_emblem = array(
+    'emblemBackground'  => $guilds->bgcolor,
+    'emblemBorderColor' => $guilds->bordercolor,
+    'emblemBorderStyle' => $guilds->borderstyle,
+    'emblemIconColor'   => $guilds->emblemcolor,
+    'emblemIconStyle'   => $guilds->emblemstyle
+);
+$guild_header = array(
+    'battleGroup'  => $armory->armoryconfig['defaultBGName'],
+    'count'        => $guilds->CountGuildMembers(),
+    'faction'      => $guilds->guildFaction,
+    'name'         => $guilds->guildName,
+    'nameUrl'      => sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)),
+    'realm'        => $armory->armoryconfig['defaultRealmName'],
+    'realmUrl'     => urlencode($armory->armoryconfig['defaultRealmName']),
+    'url'          => sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName))
+);
+// <guildInfo> start
+$xml->XMLWriter()->startElement('guildInfo');
+// <guildHeader> start
+$xml->XMLWriter()->startElement('guildHeader');
+foreach($guild_header as $header_key => $header_value) {
+    $xml->XMLWriter()->writeAttribute($header_key, $header_value);
 }
-$armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-$armory->tpl->assign('guildMembersCount', $guilds->countGuildMembers());
-$armory->tpl->assign('guildEmblemStyle', $guilds->guildtabard);
-$armory->tpl->assign('statList', $guilds->BuildStatsList());
-
-$armory->tpl->assign('titleName', $guilds->guildName);
-$armory->tpl->assign('tpl2include', 'guild_stats');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('overall_start.tpl');
-exit();
+$xml->XMLWriter()->startElement('emblem');
+foreach($guild_emblem as $emblem_key => $emblem_value) {
+    $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+}
+$xml->XMLWriter()->endElement();  //emblem
+$xml->XMLWriter()->endElement(); //guildHeader
+// <guild> start
+$xml->XMLWriter()->startElement('guild');
+$xml->XMLWriter()->startElement('members');
+$xml->XMLWriter()->writeAttribute('memberCount', $guilds->CountGuildMembers());
+$guild_members = $guilds->BuildGuildList();
+foreach($guild_members as $member) {
+    $xml->XMLWriter()->startElement('character');
+    foreach($member as $member_key => $member_value) {
+        $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+    }
+    $xml->XMLWriter()->endElement(); //character
+}
+$xml->XMLWriter()->endElement();    //members
+$xml->XMLWriter()->endElement();   //guild
+$xml->XMLWriter()->endElement();  //guildInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($guilds->guildName, $guilds->guildId, 'guild-stats');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'guilds');
+}
+exit;
 ?>

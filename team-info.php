@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 30
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,26 +23,82 @@
  **/
 
 define('__ARMORY__', true);
-define('load_characters_class', true);
 define('load_arenateams_class', true);
-
+define('load_characters_class', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$teamName = $_GET['t'];
-if(!$arenateams->IsTeam($teamName)) {
-    $armory->ArmoryError(false, false, true);
+header('Content-type: text/xml');
+if(!isset($_GET['ts'])) {
+    $current_type = 2;
 }
-$arenateams->teamname = $teamName;
+else {
+    $current_type = (int) $_GET['ts'];
+}
+$page_fail = false;
+if(isset($_GET['t'])) {
+    $arenateams->teamname = $utils->escape($_GET['t']);
+}
+elseif(isset($_GET['select'])) {
+    $arenateams->teamname = $utils->escape($_GET['select']);
+}
+$isTeam = $arenateams->IsTeam();
+if(!$isTeam || !$arenateams->teamname) {
+    // Load XSLT template
+    $xml->LoadXSLT('error/error.xsl');
+    $xml->XMLWriter()->startElement('page');
+    $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->startElement('errorhtml');
+    $xml->XMLWriter()->endElement();  //errorhtml
+    $xml->XMLWriter()->endElement(); //page
+    echo $xml->StopXML();
+    exit;
+}
+if($arenateams->teamname && $isTeam && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('team-info', $arenateams->teamname, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id, 'arena')) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
+        exit;
+    }
+}
+// Load XSLT template
+$xml->LoadXSLT('arena/team-info.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'team-info.xml');
 $arenateams->_initTeam();
-$armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-$armory->tpl->assign('team', $arenateams->exportMainData());
-$armory->tpl->assign('teamstats', $arenateams->exportStats());
-$armory->tpl->assign('teamplayers', $arenateams->exportPlayersList());
-// Доп. лист стилей
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-$armory->tpl->assign('tpl2include', 'team_info');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_sheet_start.tpl');
-exit();
+$team_info = $arenateams->GetArenaTeamInfo();
+$xml->XMLWriter()->startElement('teamInfo');
+$xml->XMLWriter()->startElement('arenaTeam');
+foreach($team_info['data'] as $team_key => $team_value) {
+    $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+}
+$xml->XMLWriter()->startElement('emblem');
+foreach($team_info['emblem'] as $emblem_key => $emblem_value) {
+    $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+}
+$xml->XMLWriter()->endElement(); //emblem
+$xml->XMLWriter()->startElement('members');
+foreach($team_info['members'] as $members) {
+    $xml->XMLWriter()->startElement('character');
+    foreach($members as $member_key => $member_value) {
+        $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+    }
+    $xml->XMLWriter()->endElement(); //character
+}
+$xml->XMLWriter()->endElement();    //members
+$xml->XMLWriter()->endElement();   //arenaTeam
+$xml->XMLWriter()->endElement();  //teamInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($arenateams->teamname, $arenateams->arenateamid, 'team-info');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'arena');
+}
+exit;
 ?>

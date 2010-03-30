@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><tabGroups>
+	<tabGroup id="character">
+		<tab href="character-sheet.xml" id="character" key="armory.tabs.characterSheet">
+			<subTab href="character-sheet.xml" id="profile" key="armory.tabs.profile"/>
+			<subTab href="character-talents.xml" id="talents" key="armory.tabs.talents_and_glyphs"/>
+			<subTab href="character-reputation.xml" id="reputation" key="armory.tabs.reputation"/>
+            <subTab href="character-calendar.xml" id="calendar" key="armory.tabs.calendar"/>
+			<subTab href="character-achievements.xml" id="achievements" key="armory.tabs.achievements"/>
+			<subTab href="character-statistics.xml" id="statistics" key="armory.tabs.statistics"/>
+			<subTab href="character-arenateams.xml" id="arena" key="armory.labels.arena"/>
+			<subTab href="character-feed.xml" id="feed" key="armory.tabs.feed"/>
+		</tab>
+		<tab href="guild-info.xml" id="guild" key="armory.tabs.guild">
+			<subTab href="guild-info.xml" id="guildRoster" key="armory.tabs.guildRoster"/>
+			<subTab href="guild-stats.xml" id="guildStats" key="armory.tabs.guildStats"/>
+			<subTab href="guild-bank-contents.xml" id="guildBankContents" key="armory.tabs.guildBankContents" login="true"/>
+			<subTab href="guild-bank-log.xml" id="guildBankLog" key="armory.tabs.guildBankLog" login="true"/>
+		</tab>
+	</tabGroup>
+	<tabGroup id="guild">
+		<tab href="guild-info.xml" id="guild" key="armory.tabs.guild">
+			<subTab href="guild-info.xml" id="guildRoster" key="armory.labels.header.guild-roster"/>
+			<subTab href="guild-stats.xml" id="guildStats" key="armory.labels.header.guild-stats"/>
+			<subTab href="guild-bank-contents.xml" id="guildBankContents" key="armory.labels.header.bankcontents" login="true"/>
+			<subTab href="guild-bank-log.xml" id="guildBankLog" key="armory.labels.header.banklog" login="true"/>
+		</tab>
+	</tabGroup>
+	<tabGroup id="arenaTeam">
+		<tab href="team-info.xml" id="teamInfo" key="armory.arenatab.teamprofile"/>
+	</tabGroup>
+	<tabGroup id="dungeons_and_factions">
+		<tab href="factions.xml" id="factions" key="armory.tabs.factions">
+			<subTab href="factions.xml" id="classic" key="armory.tabs.classic"/>
+			<subTab href="factions0.xml" id="bc" key="armory.tabs.bc"/>
+			<subTab href="factions1.xml" id="wotlk" key="armory.tabs.wotlk"/>
+		</tab>
+		<tab href="dungeons.xml" id="dungeons" key="armory.tabs.dungeons">
+			<subTab href="dungeons.xml" id="classic" key="armory.tabs.classic"/>
+			<subTab href="dungeons0.xml" id="bc" key="armory.tabs.bc"/>
+			<subTab href="dungeons1.xml" id="wotlk" key="armory.tabs.wotlk"/>		
+		</tab>	
+	</tabGroup>	
+	<tabGroup id="arenaLadder">
+		<tab href="battlegroups.xml" id="2v2" key="armory.arenatab.2v2-arena-ladder"/>
+		<tab href="battlegroups.xml" id="3v3" key="armory.arenatab.3v3-arena-ladder"/>
+		<tab href="battlegroups.xml" id="5v5" key="armory.arenatab.5v5-arena-ladder"/>
+	</tabGroup>
+	<tabGroup id="tools">
+		<tab href="talent-calc.xml" id="talentCalculator" key="armory.tabs.talentcalc">
+			<subTab href="talent-calc.xml?c=Death+Knight" id="6" key="armory.tabs.class.6"/>
+			<subTab href="talent-calc.xml?c=Druid" id="11" key="armory.tabs.class.11"/>
+			<subTab href="talent-calc.xml?c=Hunter" id="3" key="armory.tabs.class.3"/>
+			<subTab href="talent-calc.xml?c=Mage" id="8" key="armory.tabs.class.8"/>
+			<subTab href="talent-calc.xml?c=Paladin" id="2" key="armory.tabs.class.2"/>
+			<subTab href="talent-calc.xml?c=Priest" id="5" key="armory.tabs.class.5"/>
+			<subTab href="talent-calc.xml?c=Rogue" id="4" key="armory.tabs.class.4"/>
+			<subTab href="talent-calc.xml?c=Shaman" id="7" key="armory.tabs.class.7"/>
+			<subTab href="talent-calc.xml?c=Warlock" id="9" key="armory.tabs.class.9"/>
+			<subTab href="talent-calc.xml?c=Warrior" id="1" key="armory.tabs.class.1"/>
+		</tab>
+		<tab href="talent-calc.xml?pid=-1" id="petTalentCalculator" key="armory.tabs.pettalentcalc">
+			<subTab href="talent-calc.xml?pid=-1" id="Ferocity" key="armory.tabs.pet.ferocity" onclick="petTalentCalc.changePetTree(0); return false"/>
+			<subTab href="talent-calc.xml?pid=-2" id="Tenacity" key="armory.tabs.pet.tenacity" onclick="petTalentCalc.changePetTree(1); return false"/>
+			<subTab href="talent-calc.xml?pid=-3" id="Cunning" key="armory.tabs.pet.cunning" onclick="petTalentCalc.changePetTree(2); return false"/>
+		</tab>
+		<tab href="arena-calculator.xml" id="arenaCalculator" key="armory.arenatab.calc"/>	
+	</tabGroup>
+</tabGroups>

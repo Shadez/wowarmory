@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+
+<!--<str id="serverFirst.realm.first."></str>
+<str id="regionFirst.realm.first."></str>-->
+
+<str id="serverFirst.realm.first.level.80">
+    <param-html1/> - первый персонаж, достигший 80-го уровня в игровом мире "<param-html2/>"!</str>
+<str id="regionFirst.realm.first.level.80">Поздравляем персонажа <param-html1/> из мира "<param-html2/>", который стал первым персонажем 80-го уровня во всех игровых мирах! </str>
+
+<str id="serverFirst.realm.first.level.80.classrace">
+    <param-html1/> - первый <param-html3/>, достигший 80-го уровня в игровом мире <param-html2/>! </str>
+<str id="regionFirst.realm.first.level.80.classrace">Поздравляем персонажа <param-html1/> из мира "<param-html2/>", который стал первым персонажем <param-html3/> 80-го уровня во всех игровых мирах! </str>
+
+<str id="serverFirst.realm.first.northrend.vanguard">
+    <param-html1/> - первый в игровом мире "<param-html2/>" персонаж, которого превозносят Серебряный Авангард, Драконий союз, Кирин-Тор и Рыцари Черного Клинка!</str>
+
+<str id="regionFirst.realm.first.northrend.vanguard">Поздравляем персонажа <param-html1/>, первого во всех игровых мирах персонажа, которого превозносят Серебряный Авангард, Драконий союз, Кирин-Тор и Рыцари Черного Клинка!</str>
+
+<str id="serverFirst.realm.first.grand.master.profession">
+    <param-html1/> - первый в игровом мире "<param-html2/>" персонаж, развивший профессию "<param-html3/>" до максимального уровня!</str>
+
+<str id="regionFirst.realm.first.grand.master.profession">Поздравляем персонажа <param-html1/> из игрового мира "<param-html2/>", который первым во всех игровых мирах развил профессию "<param-html3/>" до максимального уровня!</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas">"<param-html1/>" - первая гильдия, победившая Кел’Тузада в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Завоеватель Наксрамаса".</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas">Поздравляем гильдию "<param-html1/>" из игрового мира <param-html2/>, первой во всех игровых мирах победившую Кел’Тузада в героическом режиме! Принявшие участие в сражении персонажи получили звание "Завоеватель Наксрамаса".</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas.single">"<param-html1/>" - первая гильдия, победившая Кел’Тузада в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Завоеватель Наксрамаса".</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas.single">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Кел’Тузада в героическом режиме! Принявшие участие в сражении персонажи получили звание "Завоеватель Наксрамаса".</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer">"<param-html1/>" - первая гильдия, победившая Сартариона в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Обсидиановый душегуб".</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Сартариона в героическом режиме! Принявшие участие в сражении персонажи получили звание "Обсидиановый душегуб".</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer.single">"<param-html1/>" - первая гильдия, победившая Сартариона в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Обсидиановый душегуб".</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer.single">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Сартариона в героическом режиме! Принявшие участие в сражении персонажи получили звание "Обсидиановый душегуб".</str>
+
+<str id="serverFirst.realm.first.magic.seeker">"<param-html1/>" - первая гильдия, победившая Малигоса в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Искатель магии".</str>
+
+<str id="regionFirst.realm.first.magic.seeker">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Малигоса в героическом режиме! Принявшие участие в сражении персонажи получили звание "Искатель магии".</str>
+
+<str id="serverFirst.realm.first.magic.seeker.single">"<param-html1/>" - первая гильдия, победившая Малигоса в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Искатель магии".</str>
+
+<str id="regionFirst.realm.first.magic.seeker.single">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Малигоса в героическом режиме! Принявшие участие в сражении персонажи получили звание "Искатель магии".</str>
+<str id="serverFirst.realm.first.celestial.defender">"<param-html1/>" - первые гильдии, победившие Алгалона Наблюдателя в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Небесный заступник".</str>
+<str id="regionFirst.realm.first.celestial.defender">Поздравляем гильдии "<param-html1/>" из игрового мира "<param-html2/>", первыми во всех игровых мирах победившие Алгалона Наблюдателя в героическом режиме! Принявшие участие в сражении персонажи получили звание "Небесный заступник".</str>
+<str id="serverFirst.realm.first.celestial.defender.single">"<param-html1/>" - первая гильдия, победившая Алгалона Наблюдателя в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Небесный заступник".</str>
+<str id="regionFirst.realm.first.celestial.defender.single">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Алгалона Наблюдателя в героическом режиме! Принявшие участие в сражении персонажи получили звание "Небесный заступник".</str>
+<str id="serverFirst.realm.first.deaths.demise">"<param-html1/>" - первые гильдии, победившие Йогг-Сарона без помощи хранителей в героическом режимев игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Победивший смерть".</str>
+<str id="regionFirst.realm.first.deaths.demise">Поздравляем гильдии "<param-html1/>" из игрового мира "<param-html2/>", первыми во всех игровых мирах победившие Йогг-Сарона в героическом режиме! Принявшие участие в сражении персонажи получили звание "Победивший смерть".</str>
+<str id="serverFirst.realm.first.deaths.demise.single">
+    <param-html1/>"<param-html1/>" - первая гильдия, победившая Йогг-Сарона в героическом режиме в игровом мире "<param-html2/>"! Принявшие участие в сражении персонажи получили звание "Победивший смерть".</str>
+<str id="regionFirst.realm.first.deaths.demise.single">Поздравляем гильдию "<param-html1/>" из игрового мира "<param-html2/>", первой во всех игровых мирах победившую Йогг-Сарона в героическом режиме! Принявшие участие в сражении персонажи получили звание "Победивший смерть".</str>
+<str id="serverFirst.realm.first.grand.crusader">Гильдии <param-html1/> первыми прошли испытание великого крестоносца на сервере <param-html2/>  (в запасе еще 50 попыток). Все персонажи, участвовавшие в сражении, получили звание «Великого крестоносца».</str>
+<str id="regionFirst.realm.first.grand.crusader">Поздравляем гильдии <param-html1/> из игрового мира <param-html2/>, первыми из гильдий всех игровых миров прошедшие испытание великого крестоносца (в запасе еще 50 попыток). Все персонажи, участвовавшие в сражении, получили звание «Великого крестоносца».</str>
+<str id="serverFirst.realm.first.grand.crusader.single">Гильдия <param-html1/> первой прошла испытание великого крестоносца на сервере <param-html2/>  (в запасе еще 50 попыток). Все персонажи, участвовавшие в сражении, получили звание «Великого крестоносца».</str>
+<str id="regionFirst.realm.first.grand.crusader.single">Поздравляем гильдию <param-html1/> из игрового мира <param-html2/>, первой из гильдий всех игровых миров прошедшую испытание великого крестоносца (в запасе еще 50 попыток). Все персонажи, участвовавшие в сражении, получили звание «Великого крестоносца».</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king">Гильдии <param-html1/> первые победили Короля-лича на героическом уровне сложности в рейде на 25 человек в игровом мире "<param-html2/>"!</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king">Поздравляем гильдии <param-html1/> из игрового мира "<param-html2/>", которые первыми победили Короля-лича на героическом уровне сложности в рейде на 25 человек!</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king.single">Гильдия <param-html1/> первой победила  Короля-лича на героическом уровне сложности в рейде на 25 человек в игровом мире "<param-html2/>"</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king.single">Поздравляем гильдию <param-html1/> из игрового мира" <param-html2/>", победила  Короля-лича на героическом уровне сложности в рейде на 25 человек!</str>
+<str id="level80pos">23</str>
+
+<str id="blood.elf.name">эльф крови</str>
+<str id="death.knight.name">рыцарь смерти</str>
+<str id="draenei.name">дреней</str>
+<str id="druid.name">друид</str>
+<str id="dwarf.name">дворф</str>
+<str id="forsaken.name">нежить</str>
+<str id="gnome.name">гном</str>
+<str id="human.name">человек</str>
+<str id="hunter.name">охотник</str>
+<str id="mage.name">маг</str>
+<str id="night.elf.name">ночной эльф</str>
+<str id="orc.name">орк</str>
+<str id="paladin.name">паладин</str>
+<str id="priest.name">жрец</str>
+<str id="rogue.name">разбойник</str>
+<str id="shaman.name">шаман</str>
+<str id="tauren.name">таурен</str>
+<str id="troll.name">тролль</str>
+<str id="warlock.name">чернокнижник</str>
+<str id="warrior.name">воин</str>
+
+<str id="cooking.grand.master.type">Кулинария</str>
+<str id="first.aid.grand.master.type">Первая помощь</str>
+<str id="grand.master.alchemist.type">Алхимия</str>
+<str id="grand.master.angler.type">Рыбная ловля</str>
+<str id="grand.master.blacksmith.type">Кузнечное дело</str>
+<str id="grand.master.enchanter.type">Наложение чар</str>
+<str id="grand.master.engineer.type">Инженерное дело</str>
+<str id="grand.master.herbalist.type">Травничество</str>
+<str id="grand.master.jewelcrafter.type">Ювелирное дело</str>
+<str id="grand.master.leatherworker.type">Кожевничество</str>
+<str id="grand.master.miner.type">Горное дело</str>
+<str id="grand.master.scribe.type">Начертание</str>
+<str id="grand.master.skinner.type">Снятие шкур</str>
+<str id="grand.master.tailor.type">Портняжное дело</str>
+
+</strs>

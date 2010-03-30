@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Charakteransicht">
+	<faqlist>
+		<faq question="Warum sieht meine Charakteransicht auf einmal anders aus?">
+			Mit Patch 3.3 wurde die Charakteransicht im Arsenal neu überarbeitet und mit einigen neuen Funktionen wie einer 3D-Modell-Ansicht, Charakter-Aktivitäts-Feeds und mehr erweitert. Erfahrt mehr über die neuen Funktionen auf der Seite zu den <a href="/updates.xml">Aktualisierungen</a>.
+		</faq>	
+		<faq question="Wie benutze ich die 3D-Modell-Ansicht?">
+			Die 3D-Modell-Ansicht zeigt einen Charakter in seiner/ihrer derzeit angelegten Ausrüstung zusammen mit dem akkuraten Erscheinungsbild, der Frisur, dem Helm und dem Umhang, so wie sie im Spiel angezeigt werden. Fährt man mit der Maus über das Charaktermodell, erscheint eine Steuerung mit den folgenden Kontrollen:
+			<ul>
+				<li>Kamerakontrolle: Um die Kamera um den Charakter zu rotieren klickt und haltet den linken Mausknopf gedrückt, während ihr die Maus nach links und rechts bewegt oder nutzt die Pfeiltasten oben links im Fenster. Um herein- oder herauszuzoomen benutzt das Mausrad während der Mauszeiger im Charakterfenster ist oder die Schaltfläche zum Zoomen in der oberen linken Ecke des Fensters. Um den Charakter innerhalb des Fensters zu verschieben, klickt mit der rechten Maustaste auf den Charakter und zieht ihn durch das Fenster (oder über das kleine Quadrat in der unteren linken Ecke des Fensters).</li>
+				<li>Animationen: Jeder Charakter kann eine Reihe von Animationen ausführen. Nutzt die Pfeile neben den Namen der Animationen, um diese durchzuschalten. Die verfügbaren Animationen richten sich nach der Klasse des Charakters und den derzeit angelegten Waffen.</li>
+				<li>Pose festlegen: Wenn ihr eingeloggt seid, könnt ihr eine Standardpose für jeden Charakter auf eurem Account auswählen. Nutzt die Kamera- und Animationssteuerung um eine Pose zu erstellen, speichert diese mittels des Speichern-Symbols und legt sie als Standardpose fest. <strong>Alle Besucher eurer Charakteransicht werden den Charakter dann in dieser Pose sehen</strong>.</li>
+				<li>Wiedergabesteuerung: Die Schaltflächen für Zurückspulen, Pause und Vorspulen erlauben es euch, die Pose für euren Charakter zu verfeinern.</li>
+				<li>Vollbildmodus: Ihr könnt den Charakter im Vollbildmodus vor einer differenzierten Auswahl an Hintergrundbildern betrachten. Alle Steuerkontrollen funktionieren auch im Vollbildmodus.</li> 
+				<li>Einbetten: Ihr könnt eine eigenständig lauffähige, interaktive Version des Model Viewers in eine kompatible Webseite, wie soziale Netzwerke, Gildenseiten oder ein Forum integrieren.</li>
+				<li>Optionen: Weitere Optionen beinhalten die Auswahl eines Hintergrundes im Vollbildmodus sowie die Anzeige von Helm, Umhang oder Wappenrock.</li>
+			</ul>
+		</faq>
+		<faq question="Was ist der Aktivitäts-Feed eines Charakters?">
+			Jeder Aktivitäts-Feed eines Charakters zeigt die letzten Aktionen eines Charakters im Spiel an, die vom Arsenal gespeichert werden können. Dies beinhaltet Erfolge, Boss-Kills, Erhalt von Gegenständen und mehr. Charakter-Feeds können über das Anpassungsmenü individualisiert und dann mittels RSS-Feed an Seiten wie iGoogle oder Netvibes weitergeleitet werden. Für weitere Informationen schaut bitte in die <a href="faq-character-feed.xml;">FAQ zu den Charakter-Feeds</a>.
+		</faq>
+		<faq question="Was ist die Ansicht der Ausrüstungsliste?">
+			Ihr könnt die angelegte Ausrüstung eines Charakters in einer formatierten Liste einsehen, die euch Informationen über Gegenstandsstufe, Edelsteine und Verzauberungen in separaten Spalten anzeigt. Klickt auf die Symbole in der rechten oberen Ecke der 3D-Charakteransicht um zwischen den beiden Modi umzuschalten.
+		</faq>
+		<faq question="Warum werden einige Charaktermodelle mit grafischen Fehlern angezeigt, wenn man sie sich im Modelviewer ansieht?">
+			Unter bestimmten Umständen können leichte Fehler oder Anomalien auftreten (wie zum Beispiel Extraflächen innerhalb des Charakters), wenn man sich Charaktere im Modelviewer ansieht. Diese Fehler sind nur eine vorübergehende Erscheinung der 3D-Engine des Modelviewers. Gnome sind besonders anfällig für diese Störungen.
+		</faq>
+		<faq question="Was bewirkt die Option &quot;Besseren Gegenstand finden&quot; bei Gegenständen im Charakterprofil?">
+			Beim Überfahren eines Gegenstands in einem Charakterprofil mit der Maus wird ein kleiner Pfeil angezeigt, der zu einer Schaltfläche wird. Beim Klick auf diese führt ihr eine Suche nach einem möglichen besseren Ersatz für diesen Gegenstand und Charakter durch. Die angezeigten Ergebnisse berücksichtigen die Klasse, Werte und generelle Ausrüstungsqualität des ausgewählten Charakters.
+			<p/>
+			Auf diese Weise könnt ihr nach Verbesserungen sowohl für euren eigenen als auch für alle anderen Charaktere in World of Warcraft suchen. Dieses Feature ist besonders nützlich für Charaktere mit verschiedenen Ausrüstungssets, da diese so Verbesserungen für all ihre Ausrüstung finden können.		
+			<p/>
+			Mehr hierzu findet ihr in unserer <a href="faq-item-info-recommended.xml;">FAQ zu "Besseren Gegenstand finden"</a>.
+		</faq>
+		<faq question="Warum erscheint meine Charakteransicht nicht?">
+			Hier werden nur Charaktere von europäischen Realms angezeigt, da dies die europäische Version des Arsenals ist. Um zu einer anderen Region zu wechseln, wählt diese über das Auswahlmenü im der unteren Teil der Seite. Außerdem muss ein Charakter kürzlich aktiv gewesen sein, damit sein Profil im Arsenal erscheint. Letztendlich muss euer Charakter mindestens Stufe 10 erreicht haben, damit sein Charakterprofil im Arsenal dargestellt wird.
+		</faq>
+		<faq question="Was ist das Facebook-Symbol, das nach dem Login in meiner Charakteransicht erscheint?">
+			Wenn ihr im Arsenal eingeloggt seid und eure Charakteransicht aufruft, erscheint neben dem Aktivitäts-Feed ein Facebook-Symbol. Klickt auf das Symbol, um auf die Startseite der World of Warcraft-Applikation auf Facebook zu gelangen. Die Applikation lässt euch individuelle Feeds für die Aktivitäten eurer Charaktere direkt aus dem Arsenal erstellen, die ihr auf Facebook anzeigen lassen könnt. Ihr könnt außerdem die Charaktere eurer Freunde begutachten -- und das alles auf Facebook. Erfahrt mehr auf unserer <a href="/updates.xml">Updates-Seite</a>.
+		</faq>
+		<faq question="Welche Titel kann ein Spieler erhalten?">
+			Die Statistik “1337 minimale” ehrenhafte Siege findet ihr ab sofort im Statistikreiter eures Charakterprofils.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Guide zu Charakterattributen" type="external" url="http://www.wow-europe.com/de/info/basics/characters.html"/>
+		<relatedlink name="Völker" type="external" url="http://www.wow-europe.com/de/info/races/index.html"/>
+		<relatedlink name="Klassen" type="external" url="http://www.wow-europe.com/de/info/classes/index.html"/>
+		<relatedlink name="Berufe" type="external" url="http://www.wow-europe.com/de/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Réputation des personnages">
+	<faqlist>
+		<faq question="Quelles sont les données de la page des réputations et des factions ?">
+			Cette page vous permet de voir où en est votre personnage avec les différentes factions qu'il a rencontrées en jeu. À l'image de la fenêtre des réputations en jeu, chaque faction est représentée par une barre colorée. Le niveau de réputation apparaît en chiffre à la droite de chaque barre. Cliquez sur une catégorie ou sur une sous-catégorie pour l'afficher ou la masquer.
+		</faq>
+		<faq question="Qu'est-ce que le bouton « Liste » ?">
+			Le bouton « Liste » affiche les réputations d'un personnage en une seule liste. Cliquez sur les colonnes pour les trier par nivea ude réputation ou par ordre alphabétique.
+		</faq>
+		<faq question="Où puis-je avoir plus de renseignements sur les diverses factions ?">
+			La plupart des factions ont des pages d'explication sur le manuel de jeu de notre site. Les noms de ces factions sont des liens directs vers ces pages quand elles existent.
+		</faq>
+		<faq question="Quels sont les différents niveaux de réputation et combien faut-il de points de réputation pour passer d'un niveau à l'autre ?">
+			Voici une liste des points de réputation requis :
+			  <ul>
+			0/36000 – Détesté à Hostile
+			  <br/>
+			0/3000 – Hostile à Inamical
+			  <br/>			  
+			0/3000 – Inamical à Neutre
+			  <br/>
+			0/3000 – Neutre à Amical
+			  <br/>
+			0/6000 – Amical à Honoré
+			  <br/>
+			0/12000 – Honoré à Révéré
+			  <br/>
+			0/21000 – Révéré à Exalté
+			  </ul>
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Réputation : les bases" type="external" url="http://www.wow-europe.com/fr/info/basics/reputation.html"/>
+		<relatedlink name="Factions" type="external" url="http://www.wow-europe.com/fr/info/basics/factions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>	
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

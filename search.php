@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 90
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,84 +28,151 @@ define('load_characters_class', true);
 define('load_mangos_class', true);
 define('load_items_class', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$armory->tpl->assign('locale', $_locale); // hack
-$search->searchQuery = isset($_GET['searchQuery']) ? $_GET['searchQuery'] : false;
-$queryLen = strlen($search->searchQuery);
-if( (!$search->searchQuery && !isset($_GET['source'])) || ($queryLen < 2 && !isset($_GET['source']))) {
-    $armory->ArmoryError(false, false, true);
+header('Content-type: text/xml');
+if(isset($_GET['searchQuery'])) {
+    $search->searchQuery = Utils::escape($_GET['searchQuery']);
 }
-$armory->tpl->assign('searchQuery', $search->searchQuery);
-$armory->tpl->assign('realmName', $armory->armoryconfig['defaultRealmName']);
-if(isset($_GET['selectedTab'])) {
-    switch($_GET['selectedTab']) {
-        case 'characters':
-        case 'items':
-        case 'arenateams':
-        case 'guilds':
-            $forced_tab = 'search_'.$_GET['selectedTab'];
-            $forced_cur_tab = $_GET['selectedTab'].'_tab';
-            break;
-        default:
-            break;
-    }
-}
-$itemsResNum = 0;
-$charsResNum = 0;
-$guildsResNum = 0;
-$arenateamsResNum = 0;
-$currentTab = false;
-if(isset($_GET['source'])) {
+/*
+elseif(isset($_GET['source'])) {
     $search->get_array = $_GET;
-    $itemResults = $search->AdvancedItemSearch();
-    $itemsResNum = count($itemResults);
-    if($itemsResNum > 0) {
-        $armory->tpl->assign('itemsResultNum', $itemsResNum);
-        $armory->tpl->assign('itemResults', $itemResults);
-        $currentTab = 'items_tab';
-        $armory->tpl->assign('search_filters', $_GET);
-        $tpl2include = 'search_items';
-    }
+}*/
+else {
+    $xml->LoadXSLT('error/error.xsl');
+    $xml->XMLWriter()->startElement('page');
+    $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->startElement('errorhtml');
+    $xml->XMLWriter()->endElement();  //errorhtml
+    $xml->XMLWriter()->endElement(); //page
+    echo $xml->StopXML();
+    exit;
 }
-elseif(!isset($_GET['source'])) {
-    $itemsResNum = $search->SearchItems(true);
-    if($itemsResNum > 0) {
-        $armory->tpl->assign('itemsResultNum', $itemsResNum);
-        $armory->tpl->assign('itemResults', $search->SearchItems());
-        $currentTab = 'items_tab';
-        $tpl2include = 'search_items';
-    }
-    $arenateamsResNum = $search->SearchArenaTeams(true);
-    if($arenateamsResNum > 0) {
-        $armory->tpl->assign('arenateamsResultNum', $arenateamsResNum);
-        $armory->tpl->assign('arenateamsResult', $search->SearchArenaTeams());
-        $currentTab = 'arenateams_tab';
-        $tpl2include = 'search_arenateams';
-    }
-    $guildsResNum = $search->SearchGuilds(true);
-    if($guildsResNum > 0) {
-        $armory->tpl->assign('guildsResultNum', $guildsResNum);
-        $armory->tpl->assign('guildsResult', $search->SearchGuilds());
-        $currentTab = 'guilds_tab';
-        $tpl2include = 'search_guilds';
-    }
-    $charsResNum = $search->SearchCharacters(true);
-    if($charsResNum > 0) {
-        $armory->tpl->assign('charactersResultNum', $charsResNum);
-        $armory->tpl->assign('charactersResult', $search->SearchCharacters());
-        $currentTab = 'characters_tab';
-        $tpl2include = 'search_characters';
-    }
+// Load XSLT template
+$xml->LoadXSLT('search/search.xsl');
+$totalCount = 0;
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'search.xml');
+$xml->XMLWriter()->writeAttribute('requestQuery', ($search->searchQuery) ? $search->searchQuery.'&amp;searchType='.$_GET['searchType'] : '');
+$xml->XMLWriter()->startElement('armorySearch');
+$selected = 'characters';
+if($count_characters = $search->SearchCharacters(true)) {
+    $totalCount = $totalCount+$count_characters;
+    $characters_search = $search->SearchCharacters();
+    $selected = 'characters';
 }
+if($count_guilds = $search->SearchGuilds(true)) {
+    $totalCount = $totalCount+$count_guilds;
+    $guilds_search = $search->SearchGuilds();
+    $selected = 'guilds';
+}
+if($count_teams = $search->SearchArenaTeams(true)) {
+    $totalCount = $totalCount+$count_teams;
+    $teams_search = $search->SearchArenaTeams();
+    $selected = 'arenateams';
+}
+if($count_items = $search->DoSearchItems(true)) {
+    $totalCount = $totalCount+$count_items;
+    $items_search = $search->DoSearchItems();
+    $selected = 'items';
+}
+if(isset($_GET['selectedTab'])) {
+    $selected = $_GET['selectedTab'];
+}
+$xml->XMLWriter()->startElement('tabs');
+$xml->XMLWriter()->writeAttribute('count', $totalCount);
+$xml->XMLWriter()->writeAttribute('selected', $selected);
 
-if($itemsResNum == 0 && $arenateamsResNum == 0 && $charsResNum == 0 && $guildsResNum == 0) {
-    $tpl2include = 'search_error';
+$xml->XMLWriter()->startElement('tab');
+$xml->XMLWriter()->writeAttribute('count', $count_characters);
+$xml->XMLWriter()->writeAttribute('label', 'armory.tabs.characters');
+$xml->XMLWriter()->writeAttribute('type', 'characters');
+$xml->XMLWriter()->endElement(); //tab
+$xml->XMLWriter()->startElement('tab');
+$xml->XMLWriter()->writeAttribute('count', $count_teams);
+$xml->XMLWriter()->writeAttribute('label', 'armory.tabs.arenateams');
+$xml->XMLWriter()->writeAttribute('type', 'arenateams');
+$xml->XMLWriter()->endElement(); //tab
+$xml->XMLWriter()->startElement('tab');
+$xml->XMLWriter()->writeAttribute('count', $count_items);
+$xml->XMLWriter()->writeAttribute('label', 'armory.tabs.items');
+$xml->XMLWriter()->writeAttribute('type', 'items');
+$xml->XMLWriter()->endElement(); //tab
+$xml->XMLWriter()->startElement('tab');
+$xml->XMLWriter()->writeAttribute('count', $count_guilds);
+$xml->XMLWriter()->writeAttribute('label', 'armory.tabs.guilds');
+$xml->XMLWriter()->writeAttribute('type', 'guilds');
+$xml->XMLWriter()->endElement();  //tab
+$xml->XMLWriter()->endElement(); //tabs
+
+$xml->XMLWriter()->startElement('searchResults');
+$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => '', 'searchMsg' => '', 'searchFilter' => '', 'searchText' => $search->searchQuery, 'searchType' => $_GET['searchType'], 'url' => 'searchType='.$_GET['searchType'].'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
+foreach($results_info as $result_key => $result_value) {
+    $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-$armory->tpl->assign('tpl2include', (isset($forced_tab)) ? $forced_tab : $tpl2include);
-$armory->tpl->assign((isset($forced_cur_tab)) ? $forced_cur_tab : $currentTab, 'selected-');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_sheet_start.tpl');
-exit();
+$xml->XMLWriter()->startElement('filters');
+$xml->XMLWriter()->endElement();
+
+if(isset($characters_search) && is_array($characters_search) && $selected == 'characters') {
+    $xml->XMLWriter()->startElement('characters');
+    foreach($characters_search as $_results_characters) {
+        $xml->XMLWriter()->startElement('character');
+        foreach($_results_characters as $character_key => $character_value) {
+            $xml->XMLWriter()->writeAttribute($character_key, $character_value);
+        }
+        $xml->XMLWriter()->endElement(); //character
+    }
+    $xml->XMLWriter()->endElement(); //characters
+}
+if(isset($guilds_search) && is_array($guilds_search) && $selected == 'guilds') {
+    $xml->XMLWriter()->startElement('guilds');
+    foreach($guilds_search as $_results_guilds) {
+        $xml->XMLWriter()->startElement('guild');
+        foreach($_results_guilds as $guild_key => $guild_value) {
+            $xml->XMLWriter()->writeAttribute($guild_key, $guild_value);
+        }
+        $xml->XMLWriter()->endElement(); //guild
+    }
+    $xml->XMLWriter()->endElement(); //guilds
+}
+if(isset($teams_search) && is_array($teams_search) && $selected == 'arenateams') {
+    $xml->XMLWriter()->startElement('arenaTeams');
+    foreach($teams_search as $_results_teams) {
+        $xml->XMLWriter()->startElement('arenaTeam');
+        foreach($_results_teams as $team_key => $team_value) {
+            $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+        }
+        $xml->XMLWriter()->startElement('emblem');
+        $xml->XMLWriter()->endElement();  //emblem
+        $xml->XMLWriter()->endElement(); //arenaTeam
+    }
+    $xml->XMLWriter()->endElement(); //arenaTeams
+}
+if(isset($items_search) && is_array($items_search) && $selected == 'items') {
+    $xml->XMLWriter()->startElement('items');
+    foreach($items_search as $item) {
+        $xml->XMLWriter()->startElement('item');
+        foreach($item['data'] as $itemdata_key => $itemdata_value) {
+            $xml->XMLWriter()->writeAttribute($itemdata_key, $itemdata_value);
+        }
+        foreach($item['filters'] as $filter) {
+            $xml->XMLWriter()->startElement('filter');
+            foreach($filter as $filter_key => $filter_value) {
+                $xml->XMLWriter()->writeAttribute($filter_key, $filter_value);
+            }
+            $xml->XMLWriter()->endElement(); //filter
+        }
+        $xml->XMLWriter()->endElement(); //item
+    }
+    $xml->XMLWriter()->endElement(); //items
+}
+$xml->XMLWriter()->endElement(); //searchResult
+$xml->XMLWriter()->endElement();  //armorySearch
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>

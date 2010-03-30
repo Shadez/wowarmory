@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="RogueCombat" icon="ability_backstab" key="Combat" name="Combat" order="1">
+      <talent column="0" icon="ability_gouge" key="203" name="Suriner amélioré" tier="0">
+        <rank description="Augmente la durée de l'effet de votre technique Suriner de 0.5 sec." lvl="1"/>
+        <rank description="Augmente la durée de l'effet de votre technique Suriner de 1 sec." lvl="2"/>
+        <rank description="Augmente la durée de l'effet de votre technique Suriner de 1.5 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_ritualofsacrifice" key="201" name="Attaque pernicieuse améliorée" tier="0">
+        <rank description="Réduit de 3 le coût en énergie de votre technique Attaque pernicieuse." lvl="1"/>
+        <rank description="Réduit de 5 le coût en énergie de votre technique Attaque pernicieuse." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_dualwield" key="221" name="Spécialisation Ambidextrie" tier="0">
+        <rank description="Augmente les points de dégâts infligés par l'arme que vous utilisez en main gauche de 10%." lvl="1"/>
+        <rank description="Augmente les points de dégâts infligés par l'arme que vous utilisez en main gauche de 20%." lvl="2"/>
+        <rank description="Augmente les points de dégâts infligés par l'arme que vous utilisez en main gauche de 30%." lvl="3"/>
+        <rank description="Augmente les points de dégâts infligés par l'arme que vous utilisez en main gauche de 40%." lvl="4"/>
+        <rank description="Augmente les points de dégâts infligés par l'arme que vous utilisez en main gauche de 50%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_slicedice" key="1827" name="Débiter amélioré" tier="1">
+        <rank description="Augmente la durée de votre technique Débiter de 25%." lvl="1"/>
+        <rank description="Augmente la durée de votre technique Débiter de 50%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_parry" key="187" name="Déviation" tier="1">
+        <rank description="Augmente vos chances de Parer de 2%." lvl="1"/>
+        <rank description="Augmente vos chances de Parer de 4%." lvl="2"/>
+        <rank description="Augmente vos chances de Parer de 6%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_marksmanship" key="181" name="Précision" tier="1">
+        <rank description="Augmente vos chances de toucher avec les armes et les attaques empoisonnées de 1%." lvl="1"/>
+        <rank description="Augmente vos chances de toucher avec les armes et les attaques empoisonnées de 2%." lvl="2"/>
+        <rank description="Augmente vos chances de toucher avec les armes et les attaques empoisonnées de 3%." lvl="3"/>
+        <rank description="Augmente vos chances de toucher avec les armes et les attaques empoisonnées de 4%." lvl="4"/>
+        <rank description="Augmente vos chances de toucher avec les armes et les attaques empoisonnées de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowward" key="204" name="Endurcissement" tier="2">
+        <rank description="Réduit le temps de recharge de vos techniques Sprint et Evasion de 30 sec. et augmente votre total d'Endurance de 2%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Sprint et Evasion de 60 sec. et augmente votre total d'Endurance de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_challange" key="301" name="Riposte" requires="187" tier="2">
+        <rank description="Une attaque disponible après avoir paré une attaque de l'adversaire. Elle inflige 150% des dégâts de l'arme et réduit la vitesse d'attaque en mêlée de la cible de 20% pendant 30 sec. Vous gagnez 1 points de combo." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="10" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_weapon_shortblade_05" key="182" name="Combat rapproché" requires="221" tier="2">
+        <rank description="Augmente vos chances d'infliger un coup critique avec les Dagues et les Armes de pugilat de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les Dagues et les Armes de pugilat de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les Dagues et les Armes de pugilat de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les Dagues et les Armes de pugilat de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les Dagues et les Armes de pugilat de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_kick" key="206" name="Coup de pied amélioré" tier="3">
+        <rank description="Confère à votre technique Coup de pied 50% de chances de rendre la cible muette pendant 2 sec." lvl="1"/>
+        <rank description="Confère à votre technique Coup de pied 100% de chances de rendre la cible muette pendant 2 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_sprint" key="222" name="Sprint amélioré" tier="3">
+        <rank description="Confère 50% de chances d'annuler tous les effets affectant le mouvement lorsque vous activez votre technique Sprint." lvl="1"/>
+        <rank description="Confère 100% de chances d'annuler tous les effets affectant le mouvement lorsque vous activez votre technique Sprint." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_invisibilty" key="186" name="Réflexes éclairs" tier="3">
+        <rank description="Augmente vos chances d'esquiver de 2% et vous octroie un bonus de 4 à la hâte en mêlée." lvl="1"/>
+        <rank description="Augmente vos chances d'esquiver de 4% et vous octroie un bonus de 7 à la hâte en mêlée." lvl="2"/>
+        <rank description="Augmente vos chances d'esquiver de 6% et vous octroie un bonus de 10 à la hâte en mêlée." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_racial_avatar" key="1122" name="Agressivité" tier="3">
+        <rank description="Augmente de 3% les points de dégâts infligés par vos techniques Attaque pernicieuse, Attaque sournoise et Eviscération." lvl="1"/>
+        <rank description="Augmente de 6% les points de dégâts infligés par vos techniques Attaque pernicieuse, Attaque sournoise et Eviscération." lvl="2"/>
+        <rank description="Augmente de 9% les points de dégâts infligés par vos techniques Attaque pernicieuse, Attaque sournoise et Eviscération." lvl="3"/>
+        <rank description="Augmente de 12% les points de dégâts infligés par vos techniques Attaque pernicieuse, Attaque sournoise et Eviscération." lvl="4"/>
+        <rank description="Augmente de 15% les points de dégâts infligés par vos techniques Attaque pernicieuse, Attaque sournoise et Eviscération." lvl="5"/>
+      </talent>
+      <talent column="0" icon="inv_mace_01" key="184" name="Spécialisation Masse" tier="4">
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 3% de l'armure de votre adversaire." lvl="1"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 6% de l'armure de votre adversaire." lvl="2"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 9% de l'armure de votre adversaire." lvl="3"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 12% de l'armure de votre adversaire." lvl="4"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 15% de l'armure de votre adversaire." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_punishingblow" key="223" name="Déluge de lames" tier="4">
+        <rank description="Augmente votre vitesse d'attaque de 20%. De plus, vos attaques frappent un adversaire proche supplémentaire. Dure 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="25" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_sword_27" key="242" name="Taillader et trancher" tier="4">
+        <rank description="Vous confère 1% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir frappé votre cible avec votre épée ou votre hache." lvl="1"/>
+        <rank description="Vous confère 2% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir frappé votre cible avec votre épée ou votre hache." lvl="2"/>
+        <rank description="Vous confère 3% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir frappé votre cible avec votre épée ou votre hache." lvl="3"/>
+        <rank description="Vous confère 4% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir frappé votre cible avec votre épée ou votre hache." lvl="4"/>
+        <rank description="Vous confère 5% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir frappé votre cible avec votre épée ou votre hache." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofstrength" key="1703" name="Expertise en armes" requires="223" tier="5">
+        <rank description="Augmente votre expertise de 5." lvl="1"/>
+        <rank description="Augmente votre expertise de 10." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_bladetwisting" key="1706" name="Tournoiement de lames" tier="5">
+        <rank description="Augmente de 5% les dégâts infligés par Attaque pernicieuse et Attaque sournoise. De plus, vos attaques en mêlée qui infligent des dégâts ont 10% de chances d'hébéter la cible pendant 4 sec." lvl="1"/>
+        <rank description="Augmente de 10% les dégâts infligés par Attaque pernicieuse et Attaque sournoise. De plus, vos attaques en mêlée qui infligent des dégâts ont 10% de chances d'hébéter la cible pendant 8 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_revenge" key="1705" name="Vitalité" tier="6">
+        <rank description="Augmente votre taux de régénération d'énergie de 8%." lvl="1"/>
+        <rank description="Augmente votre taux de régénération d'énergie de 16%." lvl="2"/>
+        <rank description="Augmente votre taux de régénération d'énergie de 25%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowworddominate" key="205" name="Poussée d'adrénaline" tier="6">
+        <rank description="Augmente la vitesse de régénération de votre Energie de 100% pendant 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_nervesofsteel" key="1707" name="Nerfs d'acier" tier="6">
+        <rank description="Réduit de 15% les dégâts subis lorsque vous êtes affecté par des effets d'étourdissement et de peur." lvl="1"/>
+        <rank description="Réduit de 30% les dégâts subis lorsque vous êtes affecté par des effets d'étourdissement et de peur." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_throwingspecialization" key="2072" name="Spécialisation Armes de jet" tier="7">
+        <rank description="Augmente la portée de Lancer et Lancer mortel de 2 mètres et confère à votre Lancer mortel 50% de chances d'interrompre la cible pendant 3 sec." lvl="1"/>
+        <rank description="Augmente la portée de Lancer et Lancer mortel de 4 mètres et confère à votre Lancer mortel 100% de chances d'interrompre la cible pendant 3 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_weapon_shortblade_38" key="1825" name="Toute-puissance de combat" tier="7">
+        <rank description="Confère à vos attaques de mêlée avec la main gauche réussies 20% de chances de générer 3 points d'énergie." lvl="1"/>
+        <rank description="Confère à vos attaques de mêlée avec la main gauche réussies 20% de chances de générer 6 points d'énergie." lvl="2"/>
+        <rank description="Confère à vos attaques de mêlée avec la main gauche réussies 20% de chances de générer 9 points d'énergie." lvl="3"/>
+        <rank description="Confère à vos attaques de mêlée avec la main gauche réussies 20% de chances de générer 12 points d'énergie." lvl="4"/>
+        <rank description="Confère à vos attaques de mêlée avec la main gauche réussies 20% de chances de générer 15 points d'énergie." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_unfairadvantage" key="2073" name="Avantage déloyal" tier="8">
+        <rank description="Chaque fois que vous esquivez une attaque, vous bénéficiez d'un Avantage déloyal, qui vous permet de contre-attaquer en infligeant 50% des dégâts de votre arme en main droite. Cela ne peut se produire plus d'une fois par seconde." lvl="1"/>
+        <rank description="Chaque fois que vous esquivez une attaque, vous bénéficiez d'un Avantage déloyal, qui vous permet de contre-attaquer en infligeant 100% des dégâts de votre arme en main droite. Cela ne peut se produire plus d'une fois par seconde." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_surpriseattack" key="1709" name="Attaques surprises" requires="205" tier="8">
+        <rank description="Vos coups de grâce ne peuvent plus être esquivés et les dégâts de vos techniques Attaque pernicieuse, Attaque sournoise, Kriss, Hémorragie et Suriner sont augmentés de 10%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_creature_disease_03" key="2074" name="Combat sauvage" tier="8">
+        <rank description="Augmente votre total de puissance d'attaque de 2% et tous les dégâts physiques infligés aux ennemis que vous avez empoisonnés sont augmentés de 2%." lvl="1"/>
+        <rank description="Augmente votre total de puissance d'attaque de 4% et tous les dégâts physiques infligés aux ennemis que vous avez empoisonnés sont augmentés de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_preyontheweak" key="2075" name="Attaquer les faibles" tier="9">
+        <rank description="Les dégâts de vos coups critiques sont augmentés de 4% quand la cible a moins de points de vie que vous (en pourcentage du total de points de vie)." lvl="1"/>
+        <rank description="Les dégâts de vos coups critiques sont augmentés de 8% quand la cible a moins de points de vie que vous (en pourcentage du total de points de vie)." lvl="2"/>
+        <rank description="Les dégâts de vos coups critiques sont augmentés de 12% quand la cible a moins de points de vie que vous (en pourcentage du total de points de vie)." lvl="3"/>
+        <rank description="Les dégâts de vos coups critiques sont augmentés de 16% quand la cible a moins de points de vie que vous (en pourcentage du total de points de vie)." lvl="4"/>
+        <rank description="Les dégâts de vos coups critiques sont augmentés de 20% quand la cible a moins de points de vie que vous (en pourcentage du total de points de vie)." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_murderspree" key="2076" name="Série meurtrière" tier="10">
+        <rank description="Marche à travers les ombres d'ennemi en ennemi se trouvant à moins de 10 mètres et attaque un ennemi toutes les 0,5 sec. avec les deux armes jusqu'à ce que 5 assauts aient été effectués. Augmente tous les dégâts de 20% pendant ce temps. Peut toucher la même cible plusieurs fois. Ne peut pas toucher les cibles invisibles ou camouflées." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="10"/>
+      </talent>
+    </tree>
+    <tree bgImage="RogueSubtlety" icon="ability_stealth" key="Subtlety" name="Finesse" order="2">
+      <talent column="0" icon="ability_warrior_decisivestrike" key="2244" name="Frappes implacables" tier="0">
+        <rank description="Vos coups de grâce ont 4% de chances par point de combo de vous rendre 25 points d'énergie." lvl="1"/>
+        <rank description="Vos coups de grâce ont 8% de chances par point de combo de vous rendre 25 points d'énergie." lvl="2"/>
+        <rank description="Vos coups de grâce ont 12% de chances par point de combo de vous rendre 25 points d'énergie." lvl="3"/>
+        <rank description="Vos coups de grâce ont 16% de chances par point de combo de vous rendre 25 points d'énergie." lvl="4"/>
+        <rank description="Vos coups de grâce ont 20% de chances par point de combo de vous rendre 25 points d'énergie." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_charm" key="241" name="Maître des illusions" tier="0">
+        <rank description="Réduit les chances de vos ennemis de vous détecter lorsque vous êtes en camouflage." lvl="1"/>
+        <rank description="Réduit les chances de vos ennemis de vous détecter lorsque vous êtes en camouflage. Plus efficace que Maître des illusions (Rang 1)." lvl="2"/>
+        <rank description="Réduit les chances de vos ennemis de vous détecter lorsque vous êtes en camouflage. Plus efficace que Maître des illusions (Rang 2)." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_warcry" key="261" name="Opportunité" tier="0">
+        <rank description="Augmente de 10% les dégâts infligés avec vos techniques Attaque sournoise, Estropier, Garrot et Embuscade." lvl="1"/>
+        <rank description="Augmente de 20% les dégâts infligés avec vos techniques Attaque sournoise, Estropier, Garrot et Embuscade." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_feint" key="1700" name="Passe-passe" tier="1">
+        <rank description="Réduit de 1% la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée ou à distance, et augmente la réduction du niveau de menace de votre technique Feinte de 10%." lvl="1"/>
+        <rank description="Réduit de 2% la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée ou à distance, et augmente la réduction du niveau de menace de votre technique Feinte de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_sap" key="262" name="Coup tordu" tier="1">
+        <rank description="Augmente la portée de vos techniques Cécité et Assommer de 2 mètres et réduit leur coût en énergie de 25%." lvl="1"/>
+        <rank description="Augmente la portée de vos techniques Cécité et Assommer de 5 mètres et réduit leur coût en énergie de 50%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_stealth" key="244" name="Dissimulation" tier="1">
+        <rank description="Augmente de 5% votre vitesse de déplacement lorsque vous êtes camouflé et réduit de 2 sec. le temps de recharge de votre technique Camouflage." lvl="1"/>
+        <rank description="Augmente de 10% votre vitesse de déplacement lorsque vous êtes camouflé et réduit de 4 sec. le temps de recharge de votre technique Camouflage." lvl="2"/>
+        <rank description="Augmente de 15% votre vitesse de déplacement lorsque vous êtes camouflé et réduit de 6 sec. le temps de recharge de votre technique Camouflage." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_magic_lesserinvisibilty" key="247" name="Insaisissable" tier="2">
+        <rank description="Réduit le temps de recharge de vos techniques Disparition et Cécité de 30 sec. et de votre technique Cape d'ombre de 15 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Disparition et Cécité de 60 sec. et de votre technique Cape d'ombre de 30 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_curse" key="303" name="Frappe fantomatique" tier="2">
+        <rank description="Une attaque qui inflige 125% des dégâts de l'arme et qui augmente vos chances d'esquiver de 15% pendant 7 sec. Vous gagnez 1 point de combo." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="5">
+          <power cost="40" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_sword_17" key="1123" name="Lames dentelées" tier="2">
+        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 10%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="1"/>
+        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 20%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="2"/>
+        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 30%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_mirrorimage" key="246" name="Préparatifs" tier="3">
+        <rank description="Vous confère 33% de chances d'ajouter un point de combo à votre cible après avoir esquivé son attaque ou entièrement résisté à un de ses sorts. Ne peut pas se produire plus d'une fois par seconde." lvl="1"/>
+        <rank description="Vous confère 66% de chances d'ajouter un point de combo à votre cible après avoir esquivé son attaque ou entièrement résisté à un de ses sorts. Ne peut pas se produire plus d'une fois par seconde." lvl="2"/>
+        <rank description="Vous confère 100% de chances d'ajouter un point de combo à votre cible après avoir esquivé son attaque ou entièrement résisté à un de ses sorts. Ne peut pas se produire plus d'une fois par seconde." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_fumble" key="245" name="Initiative" tier="3">
+        <rank description="Vous confère 33% de chances de gagner un point de combo supplémentaire lorsque vous utilisez les techniques Embuscade, Garrot et Coup bas." lvl="1"/>
+        <rank description="Vous confère 66% de chances de gagner un point de combo supplémentaire lorsque vous utilisez les techniques Embuscade, Garrot et Coup bas." lvl="2"/>
+        <rank description="Vous confère 100% de chances de gagner un point de combo supplémentaire lorsque vous utilisez les techniques Embuscade, Garrot et Coup bas." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_ambush" key="263" name="Embuscade améliorée" tier="3">
+        <rank description="Augmente les chances d'infliger un coup critique avec votre technique Embuscade de 25%." lvl="1"/>
+        <rank description="Augmente les chances d'infliger un coup critique avec votre technique Embuscade de 50%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_ambush" key="1701" name="Sens amplifiés" tier="4">
+        <rank description="Augmente votre détection du camouflage et réduit de 2% la probabilité que vous soyez touché par les sorts et les attaques à distance." lvl="1"/>
+        <rank description="Augmente votre détection du camouflage et réduit de 4% la probabilité que vous soyez touché par les sorts et les attaques à distance. Plus efficace que Sens amplifiés (Rang 1)." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_antishadow" key="284" name="Préparation" tier="4">
+        <rank description="Lorsque vous la déclenchez, cette technique met immédiatement fin au temps de recharge de vos techniques Evasion, Sprint, Disparition, Sang froid et Pas de l'ombre." lvl="1"/>
+        <spell castTime="0" cooldown="480000"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_summonsuccubus" key="265" name="Coups fourrés" tier="4">
+        <rank description="Réduit de 10 le coût en énergie de vos techniques Coup bas et Garrot. De plus, vos techniques spéciales infligent 10% de dégâts supplémentaires aux cibles qui possèdent moins de 35% de leurs points de vie." lvl="1"/>
+        <rank description="Réduit de 20 le coût en énergie de vos techniques Coup bas et Garrot. De plus, vos techniques spéciales infligent 20% de dégâts supplémentaires aux cibles qui possèdent moins de 35% de leurs points de vie." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_lifedrain" key="681" name="Hémorragie" requires="1123" tier="4">
+        <rank description="Une frappe instantanée qui inflige 110% des dégâts de l'arme à l'adversaire et provoque une hémorragie. Augmente tous les dégâts physiques infligés à la cible de 110 au maximum. Utilisable 10 fois ou pendant 15 sec. Vous gagnez 1 point de combo." lvl="1"/>
+        <spell castTime="0" maxRange="5">
+          <power cost="35" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="ability_rogue_masterofsubtlety" key="1713" name="Maître de la discrétion" tier="5">
+        <rank description="Les attaques effectuées alors que vous êtes camouflé et pendant les 6 secondes suivant l'annulation du camouflage infligent 4% de dégâts supplémentaires." lvl="1"/>
+        <rank description="Les attaques effectuées alors que vous êtes camouflé et pendant les 6 secondes suivant l'annulation du camouflage infligent 7% de dégâts supplémentaires." lvl="2"/>
+        <rank description="Les attaques effectuées alors que vous êtes camouflé et pendant les 6 secondes suivant l'annulation du camouflage infligent 10% de dégâts supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_weapon_crossbow_11" key="1702" name="Meurtrier" tier="5">
+        <rank description="Augmente votre puissance d'attaque de 2%." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque de 4%." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque de 6%." lvl="3"/>
+        <rank description="Augmente votre puissance d'attaque de 8%." lvl="4"/>
+        <rank description="Augmente votre puissance d'attaque de 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_envelopingshadows" key="1711" name="Linceul d'ombres" tier="6">
+        <rank description="Réduit les dégâts que vous infligent les attaques à zone d'effet de 10%." lvl="1"/>
+        <rank description="Réduit les dégâts que vous infligent les attaques à zone d'effet de 20%." lvl="2"/>
+        <rank description="Réduit les dégâts que vous infligent les attaques à zone d'effet de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_possession" key="381" name="Préméditation" requires="284" tier="6">
+        <rank description="Lorsqu'elle est utilisée, cette technique ajoute 2 points de combo à la cible. Vous devez ajouter à ces points de combo ou les utiliser avant 20 sec sinon les points de combo sont perdus." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_cheatdeath" key="1722" name="Trompe-la-mort" tier="6">
+        <rank description="Vous avez 33% de chances qu'une attaque infligeant des dégâts qui devrait normalement vous tuer réduise à 10% votre vie maximale. De plus, réduit tous les dégâts subis jusqu'à 90% pendant 3 sec (modifié par résilience). Cet effet ne peut se produire plus d'une fois par minute." lvl="1"/>
+        <rank description="Vous avez 66% de chances qu'une attaque infligeant des dégâts qui devrait normalement vous tuer réduise à 10% votre vie maximale. De plus, réduit tous les dégâts subis jusqu'à 90% pendant 3 sec (modifié par résilience). Cet effet ne peut se produire plus d'une fois par minute." lvl="2"/>
+        <rank description="Vous avez 100% de chances qu'une attaque infligeant des dégâts qui devrait normalement vous tuer réduise à 10% votre vie maximale. De plus, réduit tous les dégâts subis jusqu'à 90% pendant 3 sec (modifié par résilience). Cet effet ne peut se produire plus d'une fois par minute." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_sinistercalling" key="1712" name="Vocation pernicieuse" requires="381" tier="7">
+        <rank description="Augmente votre total d'Agilité de 3% et augmente de 2% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="1"/>
+        <rank description="Augmente votre total d'Agilité de 6% et augmente de 4% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="2"/>
+        <rank description="Augmente votre total d'Agilité de 9% et augmente de 6% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="3"/>
+        <rank description="Augmente votre total d'Agilité de 12% et augmente de 8% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="4"/>
+        <rank description="Augmente votre total d'Agilité de 15% et augmente de 10% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_waylay" key="2077" name="Assaillir" tier="7">
+        <rank description="Vos coups critiques avec Embuscade ont 50% de chances de réduire de 20% la vitesse d'attaque en mêlée et à distance et de 70% sa vitesse de déplacement pendant 8 sec." lvl="1"/>
+        <rank description="Vos coups critiques avec Embuscade ont 100% de chances de réduire de 20% la vitesse d'attaque en mêlée et à distance et de 70% sa vitesse de déplacement pendant 8 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_honoramongstthieves" key="2078" name="Honneur des voleurs" tier="8">
+        <rank description="Chaque fois qu'un membre de votre groupe réussit un coup critique avec un sort de dégâts ou de soins ou une technique, vous avez 33% de chances de gagner un point de combo sur votre cible actuelle. Cet effet ne peut se produire plus d'une fois toutes les secondes." lvl="1"/>
+        <rank description="Chaque fois qu'un membre de votre groupe réussit un coup critique avec un sort de dégâts ou de soins ou une technique, vous avez 66% de chances de gagner un point de combo sur votre cible actuelle. Cet effet ne peut se produire plus d'une fois toutes les secondes." lvl="2"/>
+        <rank description="Chaque fois qu'un membre de votre groupe réussit un coup critique avec un sort de dégâts ou de soins ou une technique, vous avez 100% de chances de gagner un point de combo sur votre cible actuelle. Cet effet ne peut se produire plus d'une fois toutes les secondes." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_shadowstep" key="1714" name="Pas de l'ombre" tier="8">
+        <rank description="Vous tentez de marcher à travers les ombres et de réapparaître derrière votre ennemi. Votre vitesse de déplacement est augmentée de 70% pendant 3 sec. Les dégâts de votre prochaine technique sont augmentés de 20% et la menace générée est réduite de 50%. Dure 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="25">
+          <power cost="10" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_rogue_wrongfullyaccused" key="2079" name="Tours pendables" tier="8">
+        <rank description="Réduit le temps de recharge de vos techniques Ficelles du métier et Distraction de 5 sec. et celui de votre Préparation de 1.5 min." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Ficelles du métier et Distraction de 10 sec. et celui de votre Préparation de 3 min." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_slaughterfromtheshadows" key="2080" name="Ombres meurtrières" tier="9">
+        <rank description="Réduit de 3 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 1 le coût en énergie d'Hémorragie." lvl="1"/>
+        <rank description="Réduit de 6 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 2 le coût en énergie d'Hémorragie." lvl="2"/>
+        <rank description="Réduit de 9 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 3 le coût en énergie d'Hémorragie." lvl="3"/>
+        <rank description="Réduit de 12 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 4 le coût en énergie d'Hémorragie." lvl="4"/>
+        <rank description="Réduit de 15 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 5 le coût en énergie d'Hémorragie." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_shadowdance" key="2081" name="Danse de l'ombre" tier="10">
+        <rank description="Entame la Danse de l'ombre, qui dure 6 sec. et permet l'utilisation d'Assommer, Garrot, Embuscade, Coup bas, Préméditation, Vol à la tire et Désarmement de piège même sans être camouflé." lvl="1"/>
+        <spell castTime="0" cooldown="60000"/>
+      </talent>
+    </tree>
+    <tree bgImage="RogueAssassination" icon="ability_rogue_eviscerate" key="Assassination" name="Assassinat" order="0">
+      <talent column="0" icon="ability_rogue_eviscerate" key="276" name="Eviscération améliorée" tier="0">
+        <rank description="Augmente les dégâts infligés par votre technique Eviscération de 7%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre technique Eviscération de 14%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre technique Eviscération de 20%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_fiegndead" key="272" name="Attaques impitoyables" tier="0">
+        <rank description="Lorsque vous tuez un adversaire qui vous fait gagner de l'expérience ou de l'honneur, vous avez 20% de chances d'infliger un coup critique lors de votre prochaine attaque avec Attaque pernicieuse, Hémorragie, Attaque sournoise, Estropier, Embuscade ou Frappe fantomatique. Dure 20 sec." lvl="1"/>
+        <rank description="Lorsque vous tuez un adversaire qui vous fait gagner de l'expérience ou de l'honneur, vous avez 40% de chances d'infliger un coup critique lors de votre prochaine attaque avec Attaque pernicieuse, Hémorragie, Attaque sournoise, Estropier, Embuscade ou Frappe fantomatique. Dure 20 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_racial_bloodrage" key="270" name="Malice" tier="0">
+        <rank description="Augmente vos chances d'infliger un coup critique de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'infliger un coup critique de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'infliger un coup critique de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_druid_disembowel" key="273" name="Némésis" tier="1">
+        <rank description="Confère à vos coups de grâce en mêlée 20% de chances d'ajouter un point de combo à votre cible." lvl="1"/>
+        <rank description="Confère à vos coups de grâce en mêlée 40% de chances d'ajouter un point de combo à votre cible." lvl="2"/>
+        <rank description="Confère à vos coups de grâce en mêlée 60% de chances d'ajouter un point de combo à votre cible." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_bloodsplatter" key="2068" name="Eclaboussure de sang" tier="1">
+        <rank description="Augmente les points de dégâts infligés par vos techniques Garrot et Rupture de 15%." lvl="1"/>
+        <rank description="Augmente les points de dégâts infligés par vos techniques Garrot et Rupture de 30%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_backstab" key="277" name="Blessures transperçantes" tier="1">
+        <rank description="Augmente vos chances d'infliger un coup critique avec la technique Attaque sournoise de 10% et vos chances d'infliger un coup critique avec la technique Estropier de 5%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec la technique Attaque sournoise de 20% et vos chances d'infliger un coup critique avec la technique Estropier de 10%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec la technique Attaque sournoise de 30% et vos chances d'infliger un coup critique avec la technique Estropier de 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_earthbindtotem" key="382" name="Vigueur" tier="2">
+        <rank description="Augmente votre maximum d'Energie de 10." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_riposte" key="278" name="Exposer l'armure amélioré" tier="2">
+        <rank description="Réduit le coût en énergie de votre technique Exposer l'armure de 5." lvl="1"/>
+        <rank description="Réduit le coût en énergie de votre technique Exposer l'armure de 10." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_criticalstrike" key="269" name="Mortalité" requires="270" tier="2">
+        <rank description="Augmente de 6% le bonus aux dégâts des coups critiques de toutes vos techniques de combo générant des points et ne nécessitant pas d'être camouflé." lvl="1"/>
+        <rank description="Augmente de 12% le bonus aux dégâts des coups critiques de toutes vos techniques de combo générant des points et ne nécessitant pas d'être camouflé." lvl="2"/>
+        <rank description="Augmente de 18% le bonus aux dégâts des coups critiques de toutes vos techniques de combo générant des points et ne nécessitant pas d'être camouflé." lvl="3"/>
+        <rank description="Augmente de 24% le bonus aux dégâts des coups critiques de toutes vos techniques de combo générant des points et ne nécessitant pas d'être camouflé." lvl="4"/>
+        <rank description="Augmente de 30% le bonus aux dégâts des coups critiques de toutes vos techniques de combo générant des points et ne nécessitant pas d'être camouflé." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_feigndeath" key="682" name="Poisons abominables" tier="3">
+        <rank description="Augmente de 7% les points de dégâts infligés par vos poisons et votre technique Envenimer et donne à vos poisons de dégâts sur la durée 10% de chances supplémentaires de résister aux effets de dissipation." lvl="1"/>
+        <rank description="Augmente de 14% les points de dégâts infligés par vos poisons et votre technique Envenimer et donne à vos poisons de dégâts sur la durée 20% de chances supplémentaires de résister aux effets de dissipation." lvl="2"/>
+        <rank description="Augmente de 20% les points de dégâts infligés par vos poisons et votre technique Envenimer et donne à vos poisons de dégâts sur la durée 30% de chances supplémentaires de résister aux effets de dissipation." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_poisons" key="268" name="Poisons améliorés" tier="3">
+        <rank description="Augmente vos chances d'appliquer Poison mortel sur votre cible de 4% et la fréquence à laquelle vous appliquez Poison instantané sur votre cible de 10%." lvl="1"/>
+        <rank description="Augmente vos chances d'appliquer Poison mortel sur votre cible de 8% et la fréquence à laquelle vous appliquez Poison instantané sur votre cible de 20%." lvl="2"/>
+        <rank description="Augmente vos chances d'appliquer Poison mortel sur votre cible de 12% et la fréquence à laquelle vous appliquez Poison instantané sur votre cible de 30%." lvl="3"/>
+        <rank description="Augmente vos chances d'appliquer Poison mortel sur votre cible de 16% et la fréquence à laquelle vous appliquez Poison instantané sur votre cible de 40%." lvl="4"/>
+        <rank description="Augmente vos chances d'appliquer Poison mortel sur votre cible de 20% et la fréquence à laquelle vous appliquez Poison instantané sur votre cible de 50%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_fleetfooted" key="1721" name="Pied léger" tier="4">
+        <rank description="Réduit de 15% la durée de tous les effets affectant le mouvement et augmente de 8% votre vitesse de déplacement. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="1"/>
+        <rank description="Réduit de 30% la durée de tous les effets affectant le mouvement et augmente de 15% votre vitesse de déplacement. Ne se cumule pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_ice_lament" key="280" name="Sang froid" tier="4">
+        <rank description="Lorsque vous déclenchez ce talent, vos chances d'infliger un coup critique avec votre prochaine technique offensive augmentent de 100%." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_kidneyshot" key="279" name="Aiguillon perfide amélioré" tier="4">
+        <rank description="Lorsqu'elle est affectée par votre technique Aiguillon perfide, la cible subit 3% de points de dégâts supplémentaires de toutes les sources." lvl="1"/>
+        <rank description="Lorsqu'elle est affectée par votre technique Aiguillon perfide, la cible subit 6% de points de dégâts supplémentaires de toutes les sources." lvl="2"/>
+        <rank description="Lorsqu'elle est affectée par votre technique Aiguillon perfide, la cible subit 9% de points de dégâts supplémentaires de toutes les sources." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_rogue_quickrecovery" key="1762" name="Rétablissement rapide" tier="4">
+        <rank description="Augmente tous les effets de soins utilisés sur vous de 10%. De plus, vous êtes remboursé de 40% du coût en énergie de vos coups de grâce s’ils ne touchent pas la cible." lvl="1"/>
+        <rank description="Augmente tous les effets de soins utilisés sur vous de 20%. De plus, vous êtes remboursé de 80% du coût en énergie de vos coups de grâce s’ils ne touchent pas la cible." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_chilltouch" key="283" name="Scelle le destin" requires="280" tier="5">
+        <rank description="Les coups critiques infligés par les techniques qui ajoutent un point de combo ont 20% de chances de vous faire gagner un point de combo supplémentaire." lvl="1"/>
+        <rank description="Les coups critiques infligés par les techniques qui ajoutent un point de combo ont 40% de chances de vous faire gagner un point de combo supplémentaire." lvl="2"/>
+        <rank description="Les coups critiques infligés par les techniques qui ajoutent un point de combo ont 60% de chances de vous faire gagner un point de combo supplémentaire." lvl="3"/>
+        <rank description="Les coups critiques infligés par les techniques qui ajoutent un point de combo ont 80% de chances de vous faire gagner un point de combo supplémentaire." lvl="4"/>
+        <rank description="Les coups critiques infligés par les techniques qui ajoutent un point de combo ont 100% de chances de vous faire gagner un point de combo supplémentaire." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_deathscream" key="274" name="Meurtre" tier="5">
+        <rank description="Augmente tous les dégâts infligés de 2%." lvl="1"/>
+        <rank description="Augmente tous les dégâts infligés de 4%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_deadlybrew" key="2065" name="Breuvage mortel" tier="6">
+        <rank description="Quand vous appliquez Poison instantané, douloureux ou de distraction mentale à une cible, vous avez 50% de chances d'appliquer Poison affaiblissant." lvl="1"/>
+        <rank description="Quand vous appliquez Poison instantané, douloureux ou de distraction mentale à une cible, vous avez 100% de chances d'appliquer Poison affaiblissant." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_rapidkilling" key="281" name="Outrance meurtrière" tier="6">
+        <rank description="Lorsque vous êtes camouflé et pendant 20 secondes après la fin du camouflage, vous régénérez 30% d'énergie supplémentaire." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_deadenednerves" key="1723" name="Anesthésie nerveuse" tier="6">
+        <rank description="Réduit tous les dégâts subis de 2%." lvl="1"/>
+        <rank description="Réduit tous les dégâts subis de 4%." lvl="2"/>
+        <rank description="Réduit tous les dégâts subis de 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_focusedattacks" key="2069" name="Attaques focalisées" tier="7">
+        <rank description="Vos frappes critiques en mêlée ont 33% de chances de vous donner 2 points d'énergie." lvl="1"/>
+        <rank description="Vos frappes critiques en mêlée ont 66% de chances de vous donner 2 points d'énergie." lvl="2"/>
+        <rank description="Vos frappes critiques en mêlée ont 100% de chances de vous donner 2 points d'énergie." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_findweakness" key="1718" name="Découverte des faiblesses" tier="7">
+        <rank description="Dégâts des techniques offensives augmentés de 2%." lvl="1"/>
+        <rank description="Dégâts des techniques offensives augmentés de 4%." lvl="2"/>
+        <rank description="Dégâts des techniques offensives augmentés de 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_creature_poison_06" key="1715" name="Maître empoisonneur" tier="8">
+        <rank description="Augmente de 1% les chances de coup critique de toutes les attaques contre une cible que vous avez empoisonnée, réduit de 17% la durée de tous les effets de poison appliqués sur vous et confère à Envenimer 33% de chances de ne pas consommer Poison mortel." lvl="1"/>
+        <rank description="Augmente de 2% les chances de coup critique de toutes les attaques contre une cible que vous avez empoisonnée, réduit de 34% la durée de tous les effets de poison appliqués sur vous et confère à Envenimer 66% de chances de ne pas consommer Poison mortel." lvl="2"/>
+        <rank description="Augmente de 3% les chances de coup critique de toutes les attaques contre une cible que vous avez empoisonnée, réduit de 50% la durée de tous les effets de poison appliqués sur vous et confère à Envenimer 100% de chances de ne pas consommer Poison mortel." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_shadowstrikes" key="1719" name="Estropier" requires="281" tier="8">
+        <rank description="Attaque instantanément avec les deux armes et inflige 100% des dégâts des armes plus 44 points de dégâts avec chacune d'elles. Les dégâts sont augmentés de 20% contre les cibles empoisonnées. Vous gagnez 2 points de combo." lvl="1"/>
+        <spell castTime="0" maxRange="5">
+          <power cost="60" type="energy"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_rogue_turnthetables" key="2066" name="Retour à l'envoyeur" tier="8">
+        <rank description="Chaque fois qu'un membre de votre groupe ou raid bloque, esquive ou pare une attaque, vos chances de critique avec les actions de combo sont augmentées de 2% pendant 8 sec." lvl="1"/>
+        <rank description="Chaque fois qu'un membre de votre groupe ou raid bloque, esquive ou pare une attaque, vos chances de critique avec les actions de combo sont augmentées de 4% pendant 8 sec." lvl="2"/>
+        <rank description="Chaque fois qu'un membre de votre groupe ou raid bloque, esquive ou pare une attaque, vos chances de critique avec les actions de combo sont augmentées de 6% pendant 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_cuttothechase" key="2070" name="Tailler dans le vif" tier="9">
+        <rank description="Vos techniques Eviscération et Envenimer ont 20% de chances de réinitialiser la durée de Débiter à son maximum de 5 points de combo." lvl="1"/>
+        <rank description="Vos techniques Eviscération et Envenimer ont 40% de chances de réinitialiser la durée de Débiter à son maximum de 5 points de combo." lvl="2"/>
+        <rank description="Vos techniques Eviscération et Envenimer ont 60% de chances de réinitialiser la durée de Débiter à son maximum de 5 points de combo." lvl="3"/>
+        <rank description="Vos techniques Eviscération et Envenimer ont 80% de chances de réinitialiser la durée de Débiter à son maximum de 5 points de combo." lvl="4"/>
+        <rank description="Vos techniques Eviscération et Envenimer ont 100% de chances de réinitialiser la durée de Débiter à son maximum de 5 points de combo." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_hungerforblood" key="2071" name="Soif de sang" tier="10">
+        <rank description="Vous fait enrager, ce qui augmente tous les dégâts causés de 5%. Nécessite qu'un effet de saignement soit actif sur la cible. Dure 1 min." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="15" type="energy"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

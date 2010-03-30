@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 115
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,18 +30,13 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-
-define('DB_VERSION', 'armory_r101');
+define('DB_VERSION', 'armory_r121');
+define('ARMORY_REVISION', 121);
 $armory = new Connector;
-$armory->tpl->template_dir    = 'includes/template/';
-$armory->tpl->compile_dir     = 'includes/cache/';
-$armory->tpl->config_dir      = 'includes/locales/';
-$armory->tpl->left_delimiter  = '{';
-$armory->tpl->right_delimiter = '}';
-
-if($armory->armoryconfig['server_version']) {
-    if(!@include('UpdateFields'.$armory->armoryconfig['server_version'].'.php')) {
-        die('<b>Error:</b> can not load UpdateFields'.$armory->armoryconfig['server_version'].'.php.!');
+if($armory->armoryconfig['server_version'] > 0) {
+    $file_ver = (int) $armory->armoryconfig['server_version'];
+    if(!@include('UpdateFields'.$file_ver.'.php')) {
+        die('<b>Error:</b> can not load UpdateFields'.$file_ver.'.php.!');
     }
 }
 else {
@@ -57,7 +52,6 @@ if(!@include('classes/class.utils.php')) {
 }
 
 $utils = new Utils;
-
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
@@ -65,24 +59,6 @@ if(isset($_GET['login']) && $_GET['login'] == 1) {
 elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
     $utils->logoffUser();
     header('Location: index.xml');
-}
-if(isset($_SESSION['wow_login'])) {
-    $armory->tpl->assign('_wow_login', $_SESSION['username']);
-    $armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-    $armory->tpl->assign('myVaultCharacters', $utils->getCharsArray());
-    $selectedVaultCharacter = $utils->getCharacter();
-    if(!$selectedVaultCharacter) {
-        $armory->tpl->assign('noCharacters', true);
-    }
-    else {
-        $armory->tpl->assign('selectedVaultCharacter', $selectedVaultCharacter);
-    }
-    $character_bookmarks = $utils->getCharacterBookmarks();
-    if($character_bookmarks) {
-        $armory->tpl->assign('myVaultBookmarkCharacters', $character_bookmarks);
-    }
-    unset($selectedVaultCharacter);
-    unset($character_bookmarks);
 }
 /** End login **/
 
@@ -104,6 +80,20 @@ if(isset($_GET['locale'])) {
         case 'es':
             $_SESSION['armoryLocale'] = 'es_es';
             break;
+        case 'de_de':
+        case 'dede':
+        case 'de':
+            $_SESSION['armoryLocale'] = 'de_de';
+            break;
+        case 'fr_fr':
+        case 'frfr':
+        case 'fr':
+            $_SESSION['armoryLocale'] = 'fr_fr';
+            break;
+        case 'en_us':
+        case 'enus':
+            $_SESSION['armoryLocale'] = 'en_us';
+            break;
     }
     $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
     $armory->_locale = $_locale;
@@ -116,15 +106,6 @@ if(isset($_GET['locale'])) {
     header('Location: '.$returnUrl);
 }
 $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
-$armory->tpl->assign('menu_file', 'overall_menu_'.$_locale);
-$armory->tpl->config_load($_locale . '.conf');
-
-$tpl_config_vars = array (
-    'siteCharset' => $armory->armoryconfig['siteCharset'],
-    'locale'      => $_locale
-);
-$armory->tpl->assign('ArmoryConfig', $tpl_config_vars);
-unset($tpl_config_vars);
 
 if(defined('load_characters_class')) {
     if(!@include('classes/class.characters.php')) {
@@ -171,6 +152,15 @@ if(defined('load_search_class')) {
 
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
 if($dbVersion != DB_VERSION) {
-    $armory->ArmoryError('DbVersion Error', sprintf($armory->tpl->get_config_vars('armory_dbversion_error'), $dbVersion, DB_VERSION));
+    if(empty($dbVerision)) {
+	     echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
+	 }
+    die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
 }
+// start XML parser
+if(!@include('classes/class.xmlhandler.php')) {
+    die('<b>Error:</b> can not load XML handler class!');
+}
+$xml = new XMLHandler($armory->_locale);
+$xml->StartXML();
 ?>

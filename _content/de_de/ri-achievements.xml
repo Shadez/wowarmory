@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Erfolge">
+	<faqlist>
+		<faq question="Welche Funktion erfüllt die Erfolgs- und Statistikübersicht?">
+			Diese Seite funktioniert auf fast die selbe Art und Weise wie die entsprechende Funktion innerhalb des Spiels, enthält jedoch einige zusätzliche Optionen, die nur dem Arsenal vorbehalten sind. Die Option, Erfolge und Statistiken mehrerer Charaktere auszuwählen, erlaubt euch bis zu vier Charaktere zu vergleichen, selbst wenn diese auf unterschiedlichen Realms sind. 
+		</faq>
+		<faq question="Wie navigiere ich zwischen den verschiedenen Kategorien in der Erfolgs- und Statistikübersicht hin und her?">
+			Ähnlich wie innerhalb des Spiels klickt man einfach auf die Kategorie oder Unterkategorie der Erfolge oder Statistiken im Menü auf der linken Seite.
+		</faq>
+		<faq question="Wie vergleiche ich die Erfolge oder Statistiken mehrerer Charaktere?">
+			Dies geschieht, indem man auf die Funktion "Charakter zum Vergleich hinzufügen" in der oberen, rechten Ecke der Erfolgs- oder Statistikübersicht klickt. Tragt hier den Namen und Realm des Charakters ein, den ihr mit der aktuellen Auswahl vergleichen wollt. Das Porträt sowie Erfolge tauchen dann neben dem bereits ausgewählten Original auf. Auf diese Art und Weise können mehrere Charaktere verglichen werden, vier gleichzeitig ist die maximale Anzahl.
+		</faq>
+		<faq question="Muss ich angemeldet sein, um die Erfolge und Statistiken eines anderen Spielers zu sehen?">
+			Nein, die Erfolge sowie Statistiken eines Charakters sind als "öffentliche" Daten angesehen und sind daher nicht durch eine Anmeldung in dem Arsenal geschützt.
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Erfolgssystem" url="http://www.wow-europe.com/wrath/features/gameplay/achievements.xml&amp;locale=de_de"/>
+	</relatedlinks>
+</relatedinfo>

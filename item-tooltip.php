@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 119
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,215 +26,245 @@ define('__ARMORY__', true);
 define('load_items_class', true);
 define('load_characters_class', true);
 define('load_mangos_class', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$itemID = (int) $_GET['i'];
-if(isset($_GET['cn'])) {
-    $characters->name = $_GET['cn'];
+header('Content-type: text/xml');
+$itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : null;
+$characters->name = (isset($_GET['cn'])) ? $_GET['cn'] : null;
+if($characters->name) {
     $characters->GetCharacterGuid();
 }
-// Check
-if($itemID==0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
-    die($armory->tpl->get_config_vars('armory_item_tooltip_undefined_item'));
+if(!$characters->guid) {
+    $characters->guid = false;
 }
-
-// Before we start to generate new tooltip, check cache for old one
-if($characters->guid) {
-    $utils->clearCache();
-    $CacheItem = $utils->getCache($itemID, $characters->guid);
-    if($CacheItem) {
-        echo $CacheItem;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, $characters->name, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id, 'tooltips')) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
         exit;
     }
 }
-elseif(!$characters->guid) {
-    $characters->guid = false;
+// Load XSLT template
+$xml->LoadXSLT('items/tooltip.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'item-tooltip.xml');
+$itemID = (int) $_GET['i'];
+if($itemID == 0 || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
+    $xml->XMLWriter()->startElement('itemTooltips');
+    $xml->XMLWriter()->startElement('itemTooltip');        
+    $xml->XMLWriter()->endElement();   //itemTooltip
+    $xml->XMLWriter()->endElement();  //itemTooltips
+    $xml->XMLWriter()->endElement(); //page
+    $xml->StopXML();
+    exit;
 }
-$quality_colors = array (
-	0 => 'myGray',
- 	1 => 'myWhite',
- 	2 => 'myGreen',
- 	3 => 'myBlue',
-	4 => 'myPurple',
- 	5 => 'myOrange',
- 	6 => 'myGold',
-    7 => 'myGold'
-);
-// TODO: remove * from query
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-$data['name'] = $items->getItemName($itemID);
-
-// `Quality`, `bonding`, `subclass`, `InventoryType` 
-$armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
-$armory->tpl->assign('item_name', $data['name']);
-$armory->tpl->assign('bonding', $armory->tpl->get_config_vars('bonding_' . $data['bonding']));
-
-// Items stats & green bonuses
-$o = '';
-$j = '';
-for($i=1; $i<11; $i++) {
-    if($data['stat_type'.$i]>0 && $data['stat_value'.$i]>0) {
-        switch($data['stat_type' . $i]) {
+$xml->XMLWriter()->startElement('itemTooltips');
+$xml->XMLWriter()->startElement('itemTooltip');
+$xml->XMLWriter()->startElement('id');
+$xml->XMLWriter()->text($itemID);
+$xml->XMLWriter()->endElement(); //id
+$xml->XMLWriter()->startElement('name');
+if($armory->_locale == 'en_gb') {
+    $xml->XMLWriter()->text($data['name']);
+}
+else {
+    $xml->XMLWriter()->text($items->getItemName($itemID));
+}
+$xml->XMLWriter()->endElement(); //name
+$xml->XMLWriter()->startElement('icon');
+$xml->XMLWriter()->text($items->getItemIcon($itemID));
+$xml->XMLWriter()->endElement(); //icon
+// 3.2.x heroic item flag
+if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
+    $xml->XMLWriter()->startElement('heroic');
+    $xml->XMLWriter()->text('1');
+    $xml->XMLWriter()->endElement();//heroic
+}
+$xml->XMLWriter()->startElement('overallQualityId');
+$xml->XMLWriter()->text($data['Quality']);
+$xml->XMLWriter()->endElement();//overallQualityId
+$xml->XMLWriter()->startElement('bonding');
+$xml->XMLWriter()->text($data['bonding']);
+$xml->XMLWriter()->endElement();//bonding
+if($data['startquest'] > 0) {
+    $xml->XMLWriter()->startElement('startQuestId');
+    $xml->XMLWriter()->text($data['startquest']);
+    $xml->XMLWriter()->endElement(); //startQuestId
+}
+$xml->XMLWriter()->startElement('classId');
+$xml->XMLWriter()->text($data['class']);
+$xml->XMLWriter()->endElement();//classId
+$xml->XMLWriter()->startElement('equipData');
+$xml->XMLWriter()->startElement('inventoryType');
+$xml->XMLWriter()->text($data['InventoryType']);
+$xml->XMLWriter()->endElement();  //inventoryType
+$xml->XMLWriter()->startElement('subclassName');
+if($data['class'] == 2 || $data['class'] == 4) {
+    $xml->XMLWriter()->text($items->GetItemSubTypeInfo($itemID, true));
+}
+$xml->XMLWriter()->endElement();  //subclassName
+$xml->XMLWriter()->endElement(); //equipData
+if($data['fire_res'] > 0) {
+    $xml->XMLWriter()->startElement('fireResist');
+    $xml->XMLWriter()->text($data['fire_res']);
+    $xml->XMLWriter()->endElement(); //fireResist
+}
+if($data['nature_res'] > 0) {
+    $xml->XMLWriter()->startElement('natureResist');
+    $xml->XMLWriter()->text($data['nature_res']);
+    $xml->XMLWriter()->endElement(); //natureResist
+}
+if($data['frost_res'] > 0) {
+    $xml->XMLWriter()->startElement('frostResist');
+    $xml->XMLWriter()->text($data['frost_res']);
+    $xml->XMLWriter()->endElement(); //frostResist
+}
+if($data['shadow_res'] > 0) {
+    $xml->XMLWriter()->startElement('shadowResist');
+    $xml->XMLWriter()->text($data['shadow_res']);
+    $xml->XMLWriter()->endElement(); //shadowResist
+}
+if($data['arcane_res'] > 0) {
+    $xml->XMLWriter()->startElement('arcaneResist');
+    $xml->XMLWriter()->text($data['arcane_res']);
+    $xml->XMLWriter()->endElement(); //arcaneResist
+}
+for($i=1;$i<11;$i++) {
+    if($data['stat_type'.$i] > 0 && $data['stat_value'.$i] > 0) {
+        switch($data['stat_type'.$i]) {
             case 3:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_3') . '</span><br>';
+                $bonus_template = 'bonusAgility';
                 break;
             case 4:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_4') . '</span><br>';
+                $bonus_template = 'bonusStrength';
                 break;
             case 5:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_5') . '</span><br>';
+                $bonus_template = 'bonusIntellect';
                 break;
             case 6:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_6') . '</span><br>';
+                $bonus_template = 'bonusSpirit';
                 break;
             case 7:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_7') . '</span><br>';
+                $bonus_template = 'bonusStamina';
                 break;
-            case 43: // 
-                if($_locale == 'en_gb') {
-                    $j .= '<br /><span class="bonusGreen"><span class="">' . sprintf($armory->tpl->get_config_vars('bonus_name_43'), $data['stat_value'.$i]) . '&nbsp;</span><span class=""></span></span>';
-                }
-                else {
-                    $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_43') . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
-                }
+            case 12:
+                $bonus_template = 'bonusDefenseSkillRating';
+                break;
+            case 13:
+                $bonus_template = 'bonusDodgeRating';
+                break;
+            case 14:
+                $bonus_template = 'bonusParryRating';
+                break;
+            case 15:
+            case 48:
+                $bonus_template = 'bonusBlockRating';
+                break;
+            case 16:
+                $bonus_template = 'bonusHitMeleeRating';
+                break;
+            case 17:
+                $bonus_template = 'bonusHitRangedRating';
+                break;
+            case 18:
+                $bonus_template = 'bonusHitSpellRating';
+                break;
+            case 19:
+                $bonus_template = 'bonusCritMeleeRating';
                 break;
             case 20:
-                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '%</span></span>';
+                $bonus_template = 'bonusCritRangedRating';
                 break;
-            default:
-                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
+            case 21:
+                $bonus_template = 'bonusCritSpellRating';
                 break;
-	   }
-	}
-}
-
-switch($data['class']) {
-    case 1:
-        if($data['InventoryType'] == 18) {
-            $armory->tpl->assign('item_equip', $data['ContainerSlots'].$armory->tpl->get_config_vars('string_slot_bag').' '. $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
+            case 22:
+                $bonus_template = 'bonusHitTakenMeleeRating';
+                break;
+            case 23:
+                $bonus_template = 'bonusHitTakenRangedRating';
+                break;
+            case 24:
+                $bonus_template = 'bonusHitTakenSpellRating';
+                break;
+            case 25:
+                $bonus_template = 'bonusCritTakenMeleeRating';
+                break;                
+            case 26:
+                $bonus_template = 'bonusCritTakenRangedRating';
+                break;
+            case 27:
+                $bonus_template = 'bonusCritTakenSpellRating';
+                break;
+            case 28:
+                $bonus_template = 'bonusHasteMeleeRating';
+                break;
+            case 29:
+                $bonus_template = 'bonusHasteRangedRating';
+                break;
+            case 30:
+                $bonus_template = 'bonusHasteSpellRating';
+                break;
+            case 31:
+                $bonus_template = 'bonusHitRating';
+                break;
+            case 32:
+                $bonus_template = 'bonusCritRating';
+                break;
+            case 33:
+                $bonus_template = 'bonusHitTakenRating';
+                break;
+            case 34:
+                $bonus_template = 'bonusCritTakenRating';
+                break;
+            case 35:
+                $bonus_template = 'bonusResilienceRating';
+                break;
+            case 36:
+                $bonus_template = 'bonusHasteRating';
+                break;
+            case 37:
+                $bonus_template = 'bonusExpertiseRating';
+                break;
+            case 38:
+            case 39:
+                $bonus_template = 'bonusAttackPower';
+                break;
+            case 40:
+                $bonus_template = 'bonusFeralAttackPower';
+                break;
+            case 41:
+            case 42:
+            case 45:
+                $bonus_template = 'bonusSpellPower';
+                break;
+            case 43:
+                $bonus_template = 'bonusManaRegen';
+                break;
+            case 44:
+                $bonus_template = 'bonusArmorPenetration';
+                break;
+            case 46:
+                $bonus_template = 'bonusHealthRegen';
+                break;
+            case 47:
+                $bonus_template = 'bonusSpellPenetration';
+                break;
         }
-        else {
-            $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
-        }
-        break;
-    case 2:
-        $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('weapon_inventory_' . $data['subclass']));
-        $armory->tpl->assign('armor_type', $armory->tpl->get_config_vars('weapon_name_' . $data['subclass']));
-        $armory->tpl->assign('weapon_damage', true);
-        $armory->tpl->assign('minDmg', $data['dmg_min1']);
-        $armory->tpl->assign('maxDmg', $data['dmg_max1']);
-        $armory->tpl->assign('dmg_speed', round($data['delay']/1000, 2));
-        // AoWoW code
-        $dps = '';
-        for($jj=1;$jj<=2;$jj++) {
-        	$d_type = $data['dmg_type'.$jj];
-        	$d_min = $data['dmg_min'.$jj];
-        	$d_max = $data['dmg_max'.$jj];
-        	if(($d_max>0) && ($data['class']!=6)) {
-                $delay = $data['delay'] / 1000;
-                if($delay>0) {
-                    $dps = $dps + round(($d_max+$d_min) / (2*$delay), 1);
-                }
-                if($jj>1) {
-                    $delay=0;
-                }
-        	}
-        }
-        $armory->tpl->assign('dmg_per_sec', $dps);
-        break;
-    case 4:
-        $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
-        $armory->tpl->assign('armor_type', $armory->tpl->get_config_vars('armor_name_'.$data['subclass']));
-        if($data['armor'] > 0) {
-        	$armory->tpl->assign('item_armor', $data['armor']);
-        }
-        break;
-}
-// Sockets
-$s = '';
-for($ii=1; $ii<4; $ii++) {
-    switch($data['socketColor_'.$ii]) {
-        case 1:
-            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
-            if($gem) {
-                $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
-            }
-            else {
-                $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Meta.png">'.$armory->tpl->get_config_vars('socket_meta').'</span><br>';
-            }
-            break;
-        case 2:
-            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
-            if($gem) {
-                $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
-            }
-            else {
-                $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Red.png">'.$armory->tpl->get_config_vars('socket_red').'</span><br>';
-            }
-            break;
-        case 4:
-            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
-            if($gem) {
-                $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
-            }
-            else {
-                $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Yellow.png">'.$armory->tpl->get_config_vars('socket_yellow').'</span><br>';
-            }
-            break;
-        case 8:
-            $gem = $items->extractSocketInfo($characters->guid, $itemID, $ii);
-            if($gem) {
-                $s .= '<img class="socketImg p" src="wow-icons/_images/21x21/'.$gem['icon'].'.png">'.$gem['enchant'].'<br>';
-                $socketBonusCheck[$ii] = array('color'=> $data['socketColor_'.$ii], 'current' => $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']));
-            }
-            else {
-                $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Blue.png">'.$armory->tpl->get_config_vars('socket_blue').'</span><br>';
-            }
-            break;
+        $xml->XMLWriter()->startElement($bonus_template);
+        $xml->XMLWriter()->text($data['stat_value'.$i]);
+        $xml->XMLWriter()->endElement();
     }
 }
-if(isset($socketBonusCheck)) {
-    $socketBonusCheckCount = count($socketBonusCheck);
-    $socketMatches = 0;
-    foreach($socketBonusCheck as $socket) {
-        if($socket['color'] == $socket['current']) {
-            $socketMatches++;
-        }
-        elseif($socket['color'] == 2 && ($socket['current'] == 6 || $socket['current'] == 10 || $socket['current'] == 14)) {
-            $socketMatches++;
-        }
-        elseif($socket['color'] == 4 && ($socket['current'] == 6 || $socket['current'] == 12 || $socket['current'] == 14)) {
-            $socketMatches++;
-        }
-        elseif($socket['color'] == 8 && ($socket['current'] == 10 || $socket['current'] == 12 || $socket['current'] == 14)) {
-            $socketMatches++;
-        }
-    }
-    if($socketBonusCheckCount == $socketMatches) {
-        $armory->tpl->assign('socketBonusEnable', true);
-    }
-}
-
-$sBonus = $armory->aDB->selectCell("SELECT `text_".$_locale."` FROM `armory_enchantment` WHERE `id`=?", $data['socketBonus']);
-for($i=1;$i<4;$i++) {
-    if($data['spellid_'.$i] > 0) {
-        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
-        if(!isset($spell_tmp['Description_'.$_locale])) {
-            continue;
-        }
-        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$_locale]));
-        if($spellInfo) {
-            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
-        }
-    }
-}
-
-// Enchant
+$xml->XMLWriter()->startElement('armor');
+$xml->XMLWriter()->writeAttribute('armorBonus', 0); // TODO
+$xml->XMLWriter()->text($data['armor']);
+$xml->XMLWriter()->endElement(); //armor
 $ench_array = array (
 	1 => 'head',
     2 => 'neck',
@@ -266,78 +296,224 @@ $ench_array = array (
 if($characters->guid) {
     $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->guid);
     if($enchantment) {
-        $armory->tpl->assign('ench', $armory->aDB->selectCell("
-        SELECT `text_" . $_locale ."`
-            FROM `armory_enchantment`
-                WHERE `id`=? LIMIT 1", $enchantment));
+        $xml->XMLWriter()->startElement('enchant');
+        $xml->XMLWriter()->text($armory->aDB->selectCell("SELECT `text_" . $_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
+        $xml->XMLWriter()->endElement(); //enchant
     }
-}
-$armory->tpl->assign('first_bonuses', $o);
-$armory->tpl->assign('sockets', $s);
-$armory->tpl->assign('socket_bonus', $sBonus);
-if($characters->guid) {
-    $armory->tpl->assign('durability', $items->getItemDurability($characters->guid, $itemID));
-}
-else {
-    $m_durability['current'] = $data['MaxDurability'];
-    $m_durability['max'] = $data['MaxDurability'];
-    $armory->tpl->assign('durability', $m_durability);
-    unset($m_durability);
 }
 
-if($data['AllowableRace'] > 0) {
-    $armory->tpl->assign('races', $items->AllowableRaces($data['AllowableRace']));
+$xml->XMLWriter()->startElement('socketData');
+$socket_data = false;
+$socketBonusCheck = array();
+for($i=1;$i<4;$i++) {
+    if($data['socketColor_'.$i] > 0) {
+        switch($data['socketColor_'.$i]) {
+            case 1:
+                $color = 'Meta';
+                $socket_data = array('color' => 'Meta');
+                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                if($gem) {
+                    $socket_data['enchant'] = $gem['enchant'];
+                    $socket_data['icon'] = $gem['icon'];
+                    $currentColor = $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
+                    if($currentColor == 1) {
+                        $socket_data['match'] = '1';
+                    }
+                }
+                break;
+            case 2:
+                $socket_data = array('color' => 'Red');
+                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                if($gem) {
+                    $socket_data['enchant'] = $gem['enchant'];
+                    $socket_data['icon'] = $gem['icon'];
+                    $currentColor = $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
+                    if($currentColor == 6 || $currentColor == 10 || $currentColor == 14) {
+                        $socket_data['match'] = '1';
+                    }
+                }
+                break;
+            case 4:
+                $socket_data = array('color' => 'Yellow');
+                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                if($gem) {
+                    $socket_data['enchant'] = $gem['enchant'];
+                    $socket_data['icon'] = $gem['icon'];
+                    $currentColor = $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
+                    if($currentColor == 6 || $currentColor == 12 || $currentColor == 14) {
+                        $socket_data['match'] = '1';
+                    }
+                }
+                break;
+            case 8:
+                $socket_data = array('color' => 'Blue');
+                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                if($gem) {
+                    $socket_data['enchant'] = $gem['enchant'];
+                    $socket_data['icon'] = $gem['icon'];
+                    $currentColor = $armory->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
+                    if($currentColor == 10 || $currentColor == 12 || $currentColor == 14) {
+                        $socket_data['match'] = '1';
+                    }
+                }
+                break;
+        }
+        if(is_array($socket_data)) {
+            $xml->XMLWriter()->startElement('socket');
+            foreach($socket_data as $socket_key => $socket_value) {
+                $xml->XMLWriter()->writeAttribute($socket_key, $socket_value);
+            }
+            $xml->XMLWriter()->endElement(); //socket
+            $color = false;
+        }
+    }
 }
-if($data['AllowableClass'] > 0) {
-    $armory->tpl->assign('classes', $items->AllowableClasses($data['AllowableClass']));
+if(isset($socketBonusCheck)) {
+    $socketBonusCheckCount = count($socketBonusCheck);
+    $socketMatches = 0;
+    foreach($socketBonusCheck as $socket) {
+        if($socket['color'] == $socket['current']) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 2 && ($socket['current'] == 6 || $socket['current'] == 10 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 4 && ($socket['current'] == 6 || $socket['current'] == 12 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+        elseif($socket['color'] == 8 && ($socket['current'] == 10 || $socket['current'] == 12 || $socket['current'] == 14)) {
+            $socketMatches++;
+        }
+    }
+    if($socketBonusCheckCount == $socketMatches) {
+        $socket_data['match'] = '1';
+    }
 }
-if($data['RequiredLevel'] > 0) {
-    $armory->tpl->assign('need_level', $data['RequiredLevel']);
+if($data['socketBonus'] > 0) {
+    $bonus_text = $armory->aDB->selectCell("SELECT `text_".$armory->_locale."` FROM `armory_enchantment` WHERE `id`=?", $data['socketBonus']);
+    $xml->XMLWriter()->startElement('socketMatchEnchant');
+    $xml->XMLWriter()->text($bonus_text);
+    $xml->XMLWriter()->endElement();  //socketMatchEnchant
 }
+$xml->XMLWriter()->endElement(); //socketData
+
+$allowable_classes = $items->AllowableClasses($data['AllowableClass']);
+if($allowable_classes) {
+    $xml->XMLWriter()->startElement('allowableClasses');
+    foreach($allowable_classes as $al_class) {
+        $xml->XMLWriter()->startElement('class');
+        $xml->XMLWriter()->text($al_class);
+        $xml->XMLWriter()->endElement(); //class
+    }
+    $xml->XMLWriter()->endElement(); //allowableClasses
+}
+$allowable_races = $items->AllowableRaces($data['AllowableRace']);
+if($allowable_races) {
+    $xml->XMLWriter()->startElement('allowableRaces');
+    foreach($allowable_races as $al_race) {
+        $xml->XMLWriter()->startElement('race');
+        $xml->XMLWriter()->text($al_race);
+        $xml->XMLWriter()->endElement(); //race
+    }
+    $xml->XMLWriter()->endElement(); //allowableRaces
+}
+
 if($data['RequiredSkill'] > 0) {
-    $req_skill = $armory->aDB->selectCell("
-    SELECT `name_".$_locale."`
-        FROM `armory_skills`
-            WHERE `id`=? LIMIT 1", $data['RequiredSkill']);
-    $armory->tpl->assign('need_skill', $req_skill);
-    $armory->tpl->assign('need_skill_rank', $data['RequiredSkillRank']);
+    $xml->XMLWriter()->startElement('requiredSkill');
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_skills` WHERE `id`=?", $data['RequiredSkill']));
+    $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
+    $xml->XMLWriter()->endElement(); //requiredSkill
 }
-if($data['RequiredReputationFaction'] > 0) {
-    $armory->tpl->assign('need_reputation_rank', $armory->tpl->get_config_vars('reputation_required_'.$data['RequiredReputationRank']));
-    $armory->tpl->assign('need_reputation_faction', $armory->tpl->get_config_vars('faction_name_'.$data['RequiredReputationFaction']));
+
+if($data['RequiredReputationFaction'] > 0) {    
+    $xml->XMLWriter()->startElement('requiredFaction');
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_faction` WHERE `id`=?", $data['RequiredReputationFaction']));
+    $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
+    $xml->XMLWriter()->endElement(); //requiredFaction
 }
+
+$xml->XMLWriter()->startElement('requiredLevel');
+$xml->XMLWriter()->text($data['RequiredLevel']);
+$xml->XMLWriter()->endElement(); //requiredLevel
+
+$xml->XMLWriter()->startElement('itemLevel');
+$xml->XMLWriter()->text($data['ItemLevel']);
+$xml->XMLWriter()->endElement(); //itemLevel
+
 if($data['itemset'] > 0) {
-    $armory->tpl->assign('itemsetInfo', $items->BuildItemSetInfo($data['itemset']));
+    $xml->XMLWriter()->startElement('setData');
+    $setdata = $armory->aDB->selectRow("SELECT * FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
+    $xml->XMLWriter()->startElement('name');
+    $xml->XMLWriter()->text($setdata['name_'.$armory->_locale]);
+    $xml->XMLWriter()->endElement();
+    
+    for($i=1;$i<11;$i++) {
+        if($setdata['item'.$i] > 0 && $items->IsItemExists($setdata['item'.$i])) {
+            $xml->XMLWriter()->startElement('item');
+            $xml->XMLWriter()->writeAttribute('name', $items->getItemName($setdata['item'.$i]));
+            $xml->XMLWriter()->endElement(); //item
+        }
+    }
+    
+    $itemsetbonus = $items->GetItemSetBonusInfo($setdata);
+    if(is_array($itemsetbonus)) {
+        foreach($itemsetbonus as $item_bonus) {
+            $xml->XMLWriter()->startElement('setBonus');
+            $xml->XMLWriter()->writeAttribute('desc', $item_bonus['desc']);
+            $xml->XMLWriter()->writeAttribute('threshold', $item_bonus['threshold']);
+            $xml->XMLWriter()->endElement(); //setBonus
+        }
+    }    
+    $xml->XMLWriter()->endElement(); //setData
 }
 if(!empty($data['description'])) {
-    $armory->tpl->assign('description', $items->getItemDescription($itemID));
+    $xml->XMLWriter()->startElement('desc');
+    $xml->XMLWriter()->text($items->GetItemDescription($itemID));
+    $xml->XMLWriter()->endElement(); //desc
 }
-// Heroic item (3.2.x)
-if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
-    $armory->tpl->assign('is_heroic', true);
-}
-if($data['startquest'] > 0) {
-    $armory->tpl->assign('startquest', true);
-}
-if($data['ItemLevel'] > 1) {
-    $item_source = $items->GetItemSource($itemID);
-    if(is_array($item_source)) {
-        // improved
-        $armory->tpl->assign('fullLootInfo', $item_source);
+$xml->XMLWriter()->startElement('spellData');
+for($i=1;$i<4;$i++) {
+    if($data['spellid_'.$i] > 0) {
+        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
+        if(!isset($spell_tmp['Description_'.$armory->_locale])) {
+            continue;
+        }
+        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$_locale]));
+        if($spellInfo) {
+            $spellInfo = str_replace('&quot;', '"', $spellInfo);
+            $xml->XMLWriter()->startElement('spell');
+            
+            $xml->XMLWriter()->startElement('trigger');
+            $xml->XMLWriter()->text($data['spelltrigger_'.$i]);
+            $xml->XMLWriter()->endElement();  //trigger
+            
+            $xml->XMLWriter()->startElement('desc');
+            $xml->XMLWriter()->text($spellInfo);
+            $xml->XMLWriter()->endElement();  //desc
+            
+            $xml->XMLWriter()->endElement(); //spell
+        }
     }
-    else {
-        $armory->tpl->assign('source', $item_source);
-    }    
 }
-$armory->tpl->assign('green_bonuses', $j);
-$armory->tpl->assign('itemLevel', $data['ItemLevel']);
-if(isset($_GET['css'])) {
-    $armory->tpl->display('overall_header.tpl');
+$xml->XMLWriter()->endElement(); //spellData
+$itemSource = $items->GetItemSource($itemID);
+if(is_array($itemSource)) {
+    $xml->XMLWriter()->startElement('itemSource');
+    foreach($itemSource as $source_key => $source_value) {
+        $xml->XMLWriter()->writeAttribute($source_key, $source_value);
+    }
+    $xml->XMLWriter()->endElement(); //itemSource
 }
-// Write tooltip to cache
-if($characters->guid) {
-    $utils->writeCache($itemID, $characters->guid, $armory->tpl->fetch('item-tooltip.tpl'), $_locale);
+
+$xml->XMLWriter()->endElement();   //itemTooltip
+$xml->XMLWriter()->endElement();  //itemTooltips
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($itemID, ($characters->guid) ? $characters->guid : 0, 'item-toolip');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'tooltips');
 }
-$armory->tpl->display('item-tooltip.tpl');
-exit();
+exit;
 ?>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Character Talents">
+	<faqlist>
+		<faq question="What sort of functionality exists on the talents page?">
+			The addition of dual talent specializations to World of Warcraft is reflected in the Armory. If a character has dual specializations, you can switch between the two specializations using the labeled tabs on the upper right of the talent trees. In addition, the set of glyphs corresponding to each specialization changes depending on which specialization is being viewed. Hunter character profiles also display their pets' talent specializations on this page. The currently viewed pet can be selected from a drop-down menu that includes the pet's in-game name and creature type.
+		</faq>
+		<faq question="How are the specializations named?">
+			The talent specializations are automatically labeled based on the dominant talent tree (the one with the most points invested) of that specialization. Specializations that are evenly split between multiple trees are labeled "Hybrid," and those with their points unassiged are labeled "Untalented."
+		</faq>
+		<faq question="Can I interact with the talents on this page?">
+			Since this is the character’s actual talent build, you can’t interact with them on this page. However, the "Export Build" button will take you to an equivalent template of that talent build on our website. There, you can modify the build any way you wish.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Talent Basics" type="external" url="http://www.wow-europe.com/en/info/basics/talents/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+	</relatedlinks>
+</relatedinfo>

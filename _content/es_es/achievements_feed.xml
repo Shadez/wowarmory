@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><strs>
+
+<!--<str id="serverFirst.realm.first."></str>
+<str id="regionFirst.realm.first."></str>-->
+
+<str id="serverFirst.realm.first.level.80">
+    <param-html1/> es el primer personaje en llegar al nivel 80 en el reino de <param-html2/>.</str>
+<str id="regionFirst.realm.first.level.80">Enhorabuena a <param-html1/> de <param-html2/> por ser el primer personaje de entre todos los reinos en alcanzar el nivel 80 </str>
+
+<str id="serverFirst.realm.first.level.80.classrace">
+    <param-html1/> es el primer <param-html3/> en llegar al nivel 80 en el reino de <param-html2/>. </str>
+<str id="regionFirst.realm.first.level.80.classrace">Enhorabuena a <param-html1/> de <param-html2/> por ser el primer <param-html3/> de entre todos los reinos en llegar al nivel 80. </str>
+
+<str id="serverFirst.realm.first.northrend.vanguard">
+    <param-html1/> es el primer personaje en alcanzar reputación Exaltado con la Cruzada Argenta, el Acuerdo del Reposo del Dragón, el Kirin Tor y los Caballeros de la Espada de Ébano en el reino de <param-html2/>.</str>
+
+<str id="regionFirst.realm.first.northrend.vanguard">Enhorabuena a <param-html1/>, el primer personaje de entre todos los reinos en alcanzar reputación Exaltado con la Cruzada Argenta, el Acuerdo del Reposo del Dragón, el Kirin Tor y los Caballeros de la Espada de Ébano.</str>
+
+<str id="serverFirst.realm.first.grand.master.profession">
+    <param-html1/> es el primer personaje en alcanzar habilidad de 450 p. <param-html3/> en el reino de <param-html2/>.</str>
+
+<str id="regionFirst.realm.first.grand.master.profession">Enhorabuena a <param-html1/> de <param-html2/> por ser el primer personaje de entre todos los reinos en alcanzar habilidad de 450 p. en <param-html3/>.</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas">
+    <param-html1/> son las primeras hermandades en el reino de <param-html2/> que derrotan a Kel'Thuzad en dificultad heroica. Los personajes que participaron han obtenido el título de "Conquistador de Naxxrammas".</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas">Enhorabuena a <param-html1/> of <param-html2/>, las primeras hermandades de entre todos los reinos que derrotan a Kel'Thuzad en dificultad heroica. Los personajes que participaron han obtenido el título de "Conquistador de Naxxrammas".</str>
+
+<str id="serverFirst.realm.first.conqueror.of.naxxramas.single">
+    <param-html1/> es la primera hermandad en el reino <param-html2/> que derrota a Kel'Thuzad en dificultad heroica. Los personajes que participaron han obtenido el título "Conquistador de Naxxrammas".</str>
+
+<str id="regionFirst.realm.first.conqueror.of.naxxramas.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrota a Kel'Thuzad en dificultad heroica. Los personajes que participaron han obtenido el título "Conquistador de Naxxrammas".</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer">
+    <param-html1/> son las primeras hermandades del reino <param-html2/> que derrotan a Sartharion el Guardián ónice en dificultad heroica. Los personajes que participaron han obtenido el título de "Destripador obsidiana".</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que derrotan a Sartharion el Guardián ónice en dificultad heroica. Los personajes que participaron han obtenido el título de "Destripador obsidiana".</str>
+
+<str id="serverFirst.realm.first.obsidian.slayer.single">
+    <param-html1/> es la primera hermandad del reino <param-html2/> que derrota a Sartharion el Guardián ónice en dificultad heroica. Los personajes que participaron han obtenido el título de "Destripador obsidiana".</str>
+
+<str id="regionFirst.realm.first.obsidian.slayer.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrota a Sartharion el Guardián ónice en dificultad heroica. Los personajes que participaron han obtenido el título de "Destripador obsidiana".</str>
+
+<str id="serverFirst.realm.first.magic.seeker">
+    <param-html1/> son las primeras hermandades en el reino <param-html2/> que derrotan a Malygos en dificultad heroica. Los personajes que participaron han obtenido el título de "Buscador de Magia".</str>
+
+<str id="regionFirst.realm.first.magic.seeker">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que derrotan a Malygos en dificultad heroica. Los personajes que participaron han obtenido el título de "Buscador de Magia".</str>
+
+<str id="serverFirst.realm.first.magic.seeker.single">
+    <param-html1/> es la primera hermandad del reino <param-html2/> que derrota a Malygos en dificultad heroica. Los personajes que participaron han obtenido el título de "Buscador de Magia".</str>
+
+<str id="regionFirst.realm.first.magic.seeker.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrota a Malygos en dificultad heroica. Los personajes que participaron han obtenido el título de "Buscador de Magia".</str>
+<str id="serverFirst.realm.first.celestial.defender">
+    <param-html1/> son las primeras hermandades del reino <param-html2/> en derrotar a Algalon el Observador en dificultad heroica. Los personajes que participaron han obtenido el título de "Defensor celestial".</str>
+<str id="regionFirst.realm.first.celestial.defender">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que derrota a Algalon el Observador en dificultad heroica. Los personajes que participaron han obtenido el título de "Defensor celestial".</str>
+<str id="serverFirst.realm.first.celestial.defender.single">
+    <param-html1/> es la primera hermandad del reino <param-html2/> que derrota a Algalon el Observador en dificultad heroica. Los personajes que participaron han obtenido el título de "Defensor celestial".</str>
+<str id="regionFirst.realm.first.celestial.defender.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrota a Algalon el Observador en dificultad heroica. Los personajes que participaron han obtenido el título de "Defensor celestial".</str>
+<str id="serverFirst.realm.first.deaths.demise">
+    <param-html1/> son las primeras hermandades del reino <param-html2/> en derrotar a Yogg-Saron sin la ayuda de ningún vigilante en dificultad heroica. Los personajes que participaron han obtenido el título de "Ejecutor de la muerte".</str>
+<str id="regionFirst.realm.first.deaths.demise">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que derrotan a Yogg-Saron sin la ayuda de ningún vigilante en dificultad heroica. Los personajes que participaron han obtenido el título de "Ejecutor de la muerte".</str>
+<str id="serverFirst.realm.first.deaths.demise.single">
+    <param-html1/> es la primera hermandad del reino <param-html2/> que derrota a Yogg-Saron sin la ayuda de ningún vigilante en dificultad heroica. Los personajes que participaron han obtenido el título de "Ejecutor de la muerte".</str>
+<str id="regionFirst.realm.first.deaths.demise.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrotan a Yogg-Saron sin la ayuda de ningún vigilante en dificultad heroica. Los personajes que participaron han obtenido el título de "Ejecutor de la muerte".</str>
+<str id="serverFirst.realm.first.grand.crusader">
+    <param-html1/> son las primeras hermandades que completan la Prueba del Gran Cruzado con 50 intentos restantes en el reino de <param-html2/>. Los personajes que participaron han obtenido el título "Gran Cruzado".</str>
+<str id="regionFirst.realm.first.grand.crusader">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que completan la Prueba del Gran Cruzado con 50 intentos restantes. Los personajes que participaron han obtenido el título "Gran Cruzado".</str>
+<str id="serverFirst.realm.first.grand.crusader.single">
+    <param-html1/> es la primera hermandad que completa la Prueba del Gran Cruzado con 50 intentos restantes en el reino de <param-html2/>. Los personajes que participaron han obtenido el título "Gran Cruzado".</str>
+<str id="regionFirst.realm.first.grand.crusader.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que completa la Prueba del Gran Cruzado con 50 intentos restantes. Los personajes que participaron han obtenido el título "Gran Cruzado".</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king">
+    <param-html1/> son las primeras hermandades en derrotar al Rey Exánime en dificultad heroica de 25 jugadores en el reino de <param-html2/>.</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king">Enhorabuena a <param-html1/> de <param-html2/>, las primeras hermandades de entre todos los reinos que derrotan al Rey Exánime en dificultad heroica de 25 jugadores.</str>
+<str id="serverFirst.realm.first.fall.of.the.lich.king.single">
+    <param-html1/> es la primera hermandad en derrotar al Rey Exánime en dificultad heroica de 25 jugadores en el reino de <param-html2/>.</str>
+<str id="regionFirst.realm.first.fall.of.the.lich.king.single">Enhorabuena a <param-html1/> de <param-html2/>, la primera hermandad de entre todos los reinos que derrota al Rey Exánime en dificultad heroica de 25 jugadores.</str>
+<str id="level80pos">23</str>
+
+<str id="blood.elf.name">elfo de sangre</str>
+<str id="death.knight.name">caballero de la muerte</str>
+<str id="draenei.name">draenei</str>
+<str id="druid.name">druida</str>
+<str id="dwarf.name">enano</str>
+<str id="forsaken.name">no-muerto</str>
+<str id="gnome.name">gnomo</str>
+<str id="human.name">humano</str>
+<str id="hunter.name">cazador</str>
+<str id="mage.name">mago</str>
+<str id="night.elf.name">elfo de la noche</str>
+<str id="orc.name">orco</str>
+<str id="paladin.name">paladín</str>
+<str id="priest.name">sacerdote</str>
+<str id="rogue.name">pícaro</str>
+<str id="shaman.name">chamán</str>
+<str id="tauren.name">tauren</str>
+<str id="troll.name">trol</str>
+<str id="warlock.name">brujo</str>
+<str id="warrior.name">guerrero</str>
+
+<str id="cooking.grand.master.type">cocina</str>
+<str id="first.aid.grand.master.type">primeros auxilios</str>
+<str id="grand.master.alchemist.type">alquimia</str>
+<str id="grand.master.angler.type">pesca</str>
+<str id="grand.master.blacksmith.type">herrería</str>
+<str id="grand.master.enchanter.type">encantamiento</str>
+<str id="grand.master.engineer.type">ingeniería</str>
+<str id="grand.master.herbalist.type">herboristería</str>
+<str id="grand.master.jewelcrafter.type">joyería</str>
+<str id="grand.master.leatherworker.type">peletería</str>
+<str id="grand.master.miner.type">minería</str>
+<str id="grand.master.scribe.type">inscripción</str>
+<str id="grand.master.skinner.type">desuello</str>
+<str id="grand.master.tailor.type">sastrería</str>
+
+</strs>

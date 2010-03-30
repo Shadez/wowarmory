@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Información sobre la Armería">
+	<faqlist>
+		<faq question="¿Qué es la Armería?">
+			La Armería es una gran base de datos con información sobre World of Warcraft, recopilada directamente de los reinos, actualizada en tiempo real y presentada en una simple interfaz de usuario. El hecho de que se tomen los datos directamente de los reinos de juego hace que esta sea la mayor base de datos y la más actualizada que existe sobre personajes, equipos de Arenas, hermandades y objetos World of Warcraft.
+		</faq>
+		<faq question="¿Qué puedo buscar en la Armería?">
+			En la Armería puedes buscar personajes, objetos, hermandades, equipos de Arenas y recompensas de facción. En el momento de hacer una búsqueda puedes elegir cualquiera de los anteriores filtros.
+		</faq>
+		<faq question="¿Cuáles son las nuevas funciones disponibles al iniciar sesión en la Armería?">
+			Haz clic en el enlace "Iniciar sesión" que se encuentra en la parte superior derecha para ir a la página de inicio de la Armería. Inicia sesión con los mismos datos de la cuenta que utilizas para jugar a World of Warcraft. Una vez que hayas iniciado sesión, podrás acceder al contenido protegido por contraseña de todos los personajes de la cuenta, además de la información de los bancos de hermandad y del calendario de jugadores.
+			<p/>
+			Más información sobre la interfaz de selección de personaje y del proceso de inicio de sesión en nuestras <a href="/faq-login.xml">preguntas frecuentes sobre el acceso a la Armería</a>.
+		</faq>
+		<faq question="¿Por qué el perfil de mi personaje aparece diferente?">
+			Con el nuevo parche 3.3, se ha rediseñado y mejorado el perfil de personaje en la Armería con nuevas opciones, incluido un 3D Model Viewer, canales de información sobre la actividad y el calendario del personaje, etc. Puedes encontrar más información sobre estas novedades en la <a href="/updates.xml">página de actualizaciones</a>.
+		</faq>	
+		<faq exclude="CN,TW" question="¿Qué es la Armería Móvil?">
+			La Armería Móvil de World of Warcraft es una versión móvil de la base de datos oficial de World of Warcraft para el iPhone™ y el iPod touch®. Esta aplicación es gratuita y se puede descargar desde la App Store de iTunes®, con gran parte de las mismas funciones e información que puedes encontrar en la página web de la Armería. Más información en la página de la <a href="/iphone.xml">Armería Móvil</a>.
+		</faq>
+		<faq question="¿Cuáles son los navegadores recomendados para la Armería?">
+			La Armería es perfectamente compatible con Internet Explorer (versión 6 o superior), Firefox, Opera 9, Safari y Chrome, y ha sido optimizada para que funcione sin problemas en sus versiones más recientes. Por otra parte, ciertas funciones necesitan <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&amp;promoid=BIOW">Flash Player</a> para su correcto funcionamiento.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Novedades - 19 de noviembre de 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="Recompensas: Emblemas de Escarcha" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Recompensas: Emblemas de Triunfo" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Reliquias" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>
+		<relatedlink name="Armería Móvil de World of Warcraft" url="/iphone.xml"/>
+		<relatedlink name="Motor de búsqueda para tu navegador" url="/search-plugin.xml"/>
+
+		<relatedlink type="hr"/>
+		<relatedlink name="Novedades en la Armería" url="/updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

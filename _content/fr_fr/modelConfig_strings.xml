@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><strings>
+		<string key="stand" string="Attendre"/>
+		<string key="dance" string="Danser"/>
+		<string key="laugh" string="Rire"/>
+		<string key="flex" string="Bander ses muscles"/>
+		<string key="chicken" string="Faire la poule"/>
+        <string key="crouch" string="S'accroupir"/>
+        <string key="talk" string="Parler"/>
+        <string key="bow" string="S'incliner"/>
+        <string key="wave" string="Faire signe"/>				
+        <string key="rude" string="Impoli"/>
+        <string key="kiss" string="Embrasser"/>
+        <string key="cry" string="Pleurer"/>
+        <string key="point" string="Montrer"/>				
+        <string key="salute" string="Saluer"/>			
+        <string key="yes" string="Oui"/>			
+        <string key="no" string="Non"/>	
+        <string key="train" string="Train"/>	
+
+		<string key="readyspelldirected" string="Incanter (ciblé)"/>
+		<string key="castdirected" string="Incanter (ciblé)"/>
+		<string key="readyspellomni" string="Incanter (général)"/>
+		<string key="castomni" string="Incanter (général)"/>
+		<string key="readythrown" string="Attendre à distance"/>
+		<string key="attackthrown" string="Attaquer à distance"/>
+		
+		<!-- Melee (ClassIds 1,2,3,4,6) -->
+		<string key="ready1h" string="Attendre corps à corps"/>
+		<string key="attack1h" string="Attaque de mêlée"/>
+		<string key="ready2h" string="Attendre corps à corps"/>
+		<string key="ready2hl" string="Attendre corps à corps"/>
+		<string key="attack2h" string="Attaque de mêlée"/>
+		<string key="attack2hl" string="Attaque de mêlée"/>
+		<string key="attack1hpierce" string="Attaque de mêlée"/>
+		<string key="attackunarmed" string="Attaque de mêlée"/>
+		<string key="readyunarmed" string="Attendre corps à corps"/>
+				
+		<!-- Hunter (ClassId 3) -->
+		<string key="attackbow" string="Faire feu"/>
+		<string key="readybow" string="Attendre à distance"/>
+		<string key="readygun" string="Attendre à distance"/>
+		<string key="attackgun" string="Faire feu"/>
+		<string key="loadbow" string="Recharger"/>
+		<string key="loadgun" string="Recharger"/>
+		<string key="holdbow" string="Cibler"/>
+				
+		<string key="human" string="Humain"/>
+		<string key="orc-troll" string="Orc/Troll"/>
+		<string key="gnome-dwarf" string="Gnome/Nain"/>
+		<string key="nightelf" string="Elfe de la nuit"/>
+		<string key="undead" string="Mort-vivant"/>
+		<string key="tauren" string="Tauren"/>
+		<string key="gnome-dwarf" string="Gnome/Nain"/>
+		<string key="orc-troll" string="Orc/Troll"/>
+		<string key="bloodelf" string="Elfe de sang"/>
+		<string key="draenei" string="Draeneï"/>
+
+		<!-- Special Attacks -->
+		<string key="whirlwind" string="Tourbillon"/>
+		<string key="special1h" string="Attaque spéciale"/>
+		<string key="special2h" string="Attaque spéciale"/>
+		<string key="mutilate" string="Mutiler"/>
+
+		<!-- Options Menu -->
+		<string key="equipmentHeader" string="Options d'affichage"/>
+		<string key="showHelmet" string="Casque"/>
+		<string key="showCloak" string="Cape"/>
+		<string key="showTabard" string="Tabard"/>
+		<string key="highQuality" string="Haute"/>
+		<string key="mediumQuality" string="Moyenne"/>
+		<string key="lowQuality" string="Basse"/>
+		<string key="loginToPose" string="Connectez-vous pour assigner la pose par défaut aux personnages de votre compte"/>
+		<string key="qualityHeader" string="Qualité de modélisation"/>
+		<string key="backgroundHeader" string="Arrière-plan"/>
+		<string key="embedDescription" string="Encapsuler cet HTML dans un site internet pour afficher une version autonome du visualisateur 3D de l'Armurerie pour ce personnage."/>
+		<string key="copy" string="Copier"/>
+		<string key="embedCopied" string="L'HTML a été copié dans votre presse-papier."/>
+  <!--l'adresse web a été copiée dans votre presse-papier.-->
+		<string key="close" string="Fermer"/>
+		<string key="embedTooltip" string="Lien vers le visualisateur de ce personnage"/>
+		<string key="saveTooltip" string="Sauvegarder cette pose par défaut pour tous les visiteurs de cette fiche."/>
+
+		<!-- Backgrounds -->
+		<string key="argenttournament" string="Tournoi"/>
+		<string key="dalaran" string="Dalaran"/>
+		<string key="shattrath" string="Shattrath"/>
+		<string key="shattrath2" string="Shattrath 2"/>
+		<string key="wintergrasp" string="Joug d'Hiver"/>
+		<string key="alteracvalley_horde" string="VA (Loup-de-givre)"/>
+		<string key="alteracvalley_alliance" string="VA (Foudrepique)"/>
+		<string key="deathknight" string="Chevalier de la mort"/>
+		
+		<string key="loading" string="Chargement..."/>
+		
+</strings>

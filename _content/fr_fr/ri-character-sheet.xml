@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Feuille de personnage">
+	<faqlist>
+		<faq question="Pourquoi ma feuille de personnage semble-t-elle différente ?">
+			Avec l'arrivée de la mise à jour 3.3 (la Chute du roi-liche), les feuilles de personnage de l'Armurerie ont été reconçues et améliorées avec de nouvelles fonctions dont un visualisateur 3D, des flux personnalisés de personnage et plus encore... Pour en savoir plus, consultez notre <a href="/updates.xml">page des mises à jour</a>.
+		</faq>	
+		<faq question="Comment utiliser le visualisateur 3D de l'armurerie ?">
+		Le visualisateur 3D montre le personnage avec son matériel actuellement équipé, et montre fidélement ses attributs physiques, coupe de cheveux, casque/cape de la même manière qu'il apparaît en jeu. Si vous passez la souris sur l'image du personnage, vous ferez apparaître une fenêtre de contrôle avec les fonctions suivantes :
+			<ul>
+				<li>Contrôles caméra : pour faire tourner la caméra autour du personnage, cliquez et maintenez le bouton gauche de la souris en la faisant bouger à droite et à gauche ou cliquez sur les boutons en forme de flèches en bas et à gauche de la fenêtre. Pour zoomer ou dézoomer, utilisez la molette de la souris ou cliquez sur les boutons de zoom en bas à gauche de la fenêtre. Pour déplacer le personnage dans la fenêtre, appuyez sur le bouton droit de la souris en le maintenant enfoncé, et bougez le personnage où vous le souhaitez (ou sur le petit carré du coin inférieur gauche de la fenêtre).</li>
+				<li>Animations : chaque personnage possède une sélection d'animations qu'ils peuvent effectuer. la sélection disponible dépend de la classe et des armes équipées. Utilisez les flèches à côté des noms des animations pour les utiliser.</li>
+				<li>Figer la pose : si vous êtes connectés, vous pouvez sélectionner la pose par défaut des personnages de votre compte. <strong>Tous les visiteurs de vos fiches verront par la suite les poses que vous avez définies</strong>.</li>
+				<li>Contrôle d'ajustement : les boutons avance, rembobinage et pause vous permettront de régler au plus près la position de votre personnage.</li>
+				<li>Mode plein écran : vous pourrez voir votre personnage sur une sélection de fonds en 3D. Tous les contrôles sont encore accessibles en mode plein écran.</li> 
+				<li>Incrustation : vous pouvez incruster une version autonome et interactive du visualisateur de personnage dans des sites Internet compatibles, comme des sites de réseaux sociaux, des sites de guilde ou de forums.</li>
+				<li>Options : d'autres options permettent de sélectionner un fond en mode plein écran et d'afficher ou non le casque, la cape et/ou le tabard.</li>
+			</ul>
+		</faq>
+		<faq question="Qu'est-ce que le flux d'actvité du personnage ?">
+			Chaque flux d'activité d'un personnage personnage montre ses actions en jeu les plus récentes qui peuvent être enregistrées par l'Armurerie. Chaque flux contient les hauts-faits, les défaites de boss, l'acquisition de butin et plus encore... Ces flux de personnages peuvent être exportés sous forme de flux RSS vers des sites comme iGoogle. Pour plus d'informations, référez-vous à la page des <a href="faq-character-feed.xml;">F.A.Q. de flux de personnage</a>.
+		</faq>
+		<faq question="Qu'est-ce que la vue Liste d'équipement ?">
+			Vous pouvez voir les objets équipés par le personnage dans un format qui liste le niveau, les gemmes et les enchantements dans des colonnes séparées. Cliquez sur l'icône en haut à droite de la fenêtre pour basculer entre les deux modes.
+		</faq>
+		<faq question="Pourquoi certains de mes personages sont-ils affichés avec des anomalies graphiques dans le visualisateur en 3D ?">
+Dans certains cas, des anomalies graphiques telles que des polygones superflus peuvent apparaître sur les personnages dans le visualisateur 3D. Il ne s’agit que d’erreurs temporaires dans le moteur 3D du visualisateur. Les gnomes semblent particulièrement atteints par cet effet.
+		</faq>
+		<faq question="Que fait la fonction « Trouver mieux » sur les objets d’une fiche de personnage ?">
+			Si vous passez votre souris sur un objet d’une feuille de personnage, vous verrez apparaître une petite flèche qui se transforme en bouton. Si vous cliquez sur ce bouton « Trouver mieux », vous serez dirigé vers une page de résultats de recherche d’objets. Sur cette page, les objets affichés sont ceux qui sont considérés comme « meilleurs » pour ce personnage en particulier.
+			<p/>
+			Ces améliorations recommandées prennent en compte la classe de personnage, les caractéristiques et la qualité générale de l’équipement. De cette façon, vous pourrez rechercher quelle amélioration votre personnage ou n’importe quel autre personnage de World of Warcraft peut désirer. Cette fonctionnalité est aussi là pour faciliter les choix des personnages qui ont plusieurs ensembles différents d’équipement suivant les circonstances, leur permettant de trouver les améliorations pour chaque ensemble.
+			<p/>
+			Plus de détails sont disponibles sur notre F.A.Q. <a href="faq-item-info-recommended.xml;">Trouver mieux</a>.
+		</faq>
+		<faq question="Pourquoi mon personnage n'apparaît-il pas ?">
+			Seuls les personnages américains sont répertoriés ici, puisqu'il s'agit de la version américaine de l'Armurerie. Pour changer de région (Europe, etc...) utilisez le menu déroulant de changement de région au bas de la page. De plus, un personnage doit avoir été connecté récemment sur un compte pour que sa fiche apparaisse dans l'Armurerie. Enfin, le personnage doit être au moins de niveau 10 pour que sa fiche de personnage soit disponible.
+		</faq>
+		<faq question="À quoi sert cette icône de Facebook qui apparaît sur ma fiche de personnage quand je suis connecté ?">
+			Si vous êtes connecté à l'Armurerie et sur la fiche d'un des personnages de votre compte, une icône Facebook apparaît à côté de celle du flux RSS. En cliquant dessus ,vous serez redirigé vers la page d'accueil de l'application Armurerie de World of Warcraft sur Facebook, qui vous permet de créer un fil d'info personnalisé issu directement de l'Armurerie, afin d'en partager les informations avec la communauté Facebook. Pour en savoir plus, rendez-vous sur la <a href="/updates.xml">page des mises à jour</a>.
+		</faq>
+		<faq question="Pourquoi est-ce que le total de mes victoires honorables à vie n'est pas affiché ?">
+			Les informations JcJ sur les victoires honorables ont fait leur temps, et se retrouvent désormais dans l’onglet Statistiques des fiches de personnage.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Caractéristiques des personnages" type="external" url="http://www.wow-europe.com/fr/info/basics/characters.html"/>
+		<relatedlink name="Races" type="external" url="http://www.wow-europe.com/fr/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.wow-europe.com/fr/info/classes/index.html"/>
+		<relatedlink name="Métiers" type="external" url="http://www.wow-europe.com/fr/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

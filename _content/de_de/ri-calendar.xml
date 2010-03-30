@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Spielerkalender">
+	<faqlist>
+		<faq question="Über welche Funktionen verfügt der Spielerkalender des Arsenals?">
+			Ausführliche Informationen zu den Funktionen sind auf unserer <a href="/updates.xml#anchorcalendarinterface">Seite mit neuen Inhalten</a> erläutert. Unter anderem könnt ihr in einem Interface, welches dem im Spiel entspricht, wiederkehrende und von Spielern erstellte Ereignisse für eure Charaktere einsehen. Ebenso könnt ihr auf Einladungen zu von Spielern erstellen Ereignissen antworten – diese Änderungen werden dann auch im Spiel übernommen.
+		</faq>
+		<faq question="Wie kann ich den Spielerkalender im Arsenal aufrufen?">
+			Klickt einfach auf den Reiter "Kalender" in eurem Charakterprofil. Ihr werdet dann auf einen Anmeldebildschirm weitergeleitet, wo ihr euren Accountnamen und das dazugehörige Passwort eingeben müsst. Alternativ könnt ihr euch auch von jeder Seite des Arsenals aus anmelden, indem ihr die Anmeldefelder im oberen rechten Bereich ausfüllt. Von dort aus könnt ihr dann auf den Reiter "Kalender" zugreifen.
+		</faq>
+		<faq question="Was ist die Kalender-Feed-Anwendung?">
+			Spieler-Kalender-Feeds: Ein weiteres neues Werkzeug des Arsenals, welches es euch erlaubt, Daten aus dem Kalender im Spiel in einen externen Online-Kalender, wie Google, zu übertragen. Über diese Anwendung lassen sich bis zu fünf Charaktere eures Accounts in einem einzigen Feed zusammenfassen, der automatisch mit dem Kalender der Charaktere im Spiel synchronisiert wird. Für weitere Informationen schaut bitte in die <a href="/faq-calendar-feed.xml">FAQ zum Kalender-Feed</a>.
+		</faq>
+		<faq question="Warum muss ich mich anmelden, um den Kalender meines Charakters sehen zu können?">
+			Wie schon die Gildenbanken, so ist auch der Kalender ein durch Anmeldung geschütztes Feature des Arsenals, da sich mit dessen Hilfe Informationen aufrufen lassen, die für gewöhnlich nicht von der Allgemeinheit einsehbar sind.
+		</faq>
+		<faq question="Kann ich mit Ereignissen im Arsenal interagieren?">
+			Ja, ihr könnt auf Einladungen zu von Spielern erstellen Ereignissen antworten. Antwortet einer eurer Charaktere auf ein Ereignis im Arsenal, werden diese Änderungen auch im Spiel übernommen.
+		</faq>
+		<faq question="Kann ich Kalender von anderen Charakteren einsehen?">
+			Sobald ihr im Arsenal angemeldet seid, könnt ihr die Kalender aller anderen Charaktere des gleichen Accounts einsehen. Klickt auf das Profilmenü im oberen rechten Bereich des Arsenals und wählt die Charaktere aus, die ihr im Auswahlmenü sehen möchtet. Ihr könnt keine Kalender von Charakteren einsehen, die nicht zu eurem Account gehören. Seht euch die <a href="/faq-login.xml">FAQ zur Anmeldung im Arsenal</a> für weitere Informationen zu dem neu gestalteten Charakterprofilmenü an.
+		</faq>
+		<faq question="Kann ich Ereignisse im Arsenal erstellen?">
+			Nein, ihr könnt keine neuen Ereignisse im Kalender des Arsenals erstellen. Diese Funktion ist dem Spielerkalender im Spiel vorbehalten.
+		</faq>
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Eventkalender" url="http://www.wow-europe.com/de/info/basics/events/calendar.html"/>
+		<relatedlink name="Schlachtzugskalender" url="http://www.wow-europe.com/de/info/basics/raidcalendar/index.html"/>
+	</relatedlinks>
+</relatedinfo>

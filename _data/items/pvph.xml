@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><pvpVendors type="h">
+
+<pvpVendor key="wintergrasp">
+	<npc id="30488"/>
+	<npc id="30489"/>
+	<npc id="32296"/>
+</pvpVendor>
+
+<pvpVendor key="arena8">
+	<npc id="33936"/>
+</pvpVendor>
+
+<pvpVendor key="arena7">
+	<npc id="33927"/>
+</pvpVendor>
+
+<pvpVendor key="arena6">
+	<npc id="33921"/>
+</pvpVendor>
+
+<pvpVendor key="arena5">
+	<npc id="32354"/>
+	<npc id="32355"/>
+	<npc id="32356"/>
+	<npc id="31863"/>
+	<npc id="31864"/>
+	<npc id="31865"/>
+	<npc id="32359"/>
+	<npc id="32360"/>
+	<npc id="32362"/>
+</pvpVendor>
+
+<pvpVendor key="arena4">
+	<npc id="26352"/>
+</pvpVendor>
+
+<pvpVendor key="arena3">
+  <npc id="24392"/>
+</pvpVendor>
+
+<pvpVendor key="arena2">
+  <npc id="23396"/>
+</pvpVendor>
+
+<pvpVendor key="arena1">
+  <npc id="24667" key="armor"/>
+  <npc id="24668" key="weapons"/>
+</pvpVendor>
+
+<pvpVendor key="honor">
+	<npc id="34038"/> <!--  Sgt. Thunderhorn -->
+	<npc id="34060"/> <!-- Doris Volanthius -->
+	<npc id="34063"/> <!-- Blood Guard Zar'shi -->
+	<npc id="34043"/> <!-- Lady Palanseer -->
+	<npc id="12793"/> <!-- Brave Stonehide -->
+	<npc id="12794"/> <!-- Stone Guard Zarg -->
+	<npc id="12795"/> <!-- First Sergeant Hola'mahi -->
+	<npc id="12796"/> <!-- Raider Bork -->
+</pvpVendor>
+
+<pvpVendor key="ab">
+	<npc id="15126"/>
+</pvpVendor>
+
+<pvpVendor key="av">
+	<npc id="13219"/>
+</pvpVendor>
+
+<pvpVendor key="wsg">
+	<npc id="14754"/>
+</pvpVendor>
+
+<pvpVendor key="halaa">
+	<npc id="18821"/>
+</pvpVendor>
+
+<pvpVendor key="thrallmar">
+	<npc id="18267"/>
+</pvpVendor>
+
+<pvpVendor key="terrokar">
+	<npc id="19772"/>
+</pvpVendor>
+
+<pvpVendor key="zangarmarsh">
+	<npc id="18564"/>
+</pvpVendor>
+
+</pvpVendors>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Match History">
+<!-- Do not translate until the functionality is added in the Armroy -->
+	<faqlist>
+		<faq question="What is the functionality of the Match History page?">
+The Match History page displays the current season’s Arena matches in an interactive graph. In addition to archival purposes, this data serves as a helpful tool to chart a team’s performance across the course of the season, and during particular days of the week and times of day or night. Click the questions below for a rundown of the information and functionality contained in the graph and filters respectively.
+		</faq>
+		<faq question="What is the Match History graph?">
+Every match played by this team during an arena season is visually represented on this interactive graph.
+<ul>
+<li>Mousing over the data points on the graph displays when the match took place, the rating change from the outcome, and the name of the opposing team. </li>
+<li>The entire season is represented below the large graph as a separate graph. The slider below the season’s graph can be used to quickly navigate to a particular portion of the season.</li>
+<li>Links at the bottom of the graph allow you to clear the currently highlighted match, view a sample of the most recent matches, and view the complete season respectively.</li>
+<li>The windows at the top of the graph always display the team rating at the beginning of the graph, the net rating change in the selection of matches displayed, and the team rating at the end of the selection.</li>
+</ul>
+		</faq>
+		<faq question="What are the Match History Filters?">
+Below the graph is a list of the season’s matches that can be searched, sorted, and filtered. 
+<ul>
+<li>Each match in the list has a corresponding data point in the graph above. The graph button on the right side of each match’s row highlight's that match’s data point in the graph.</li>
+<li>The arrow button to the right of any match result displays its detailed Match Report. The Match Report contains the same results and statistics that appeared in-game – the team rosters, killing blows, damage and healing done, and rating change.</li>
+</ul>
+		</faq>				
+		<faq question="How do I change the selection of games that are displayed in the graph?">
+		You can drag the small selection bar under the graph to the desired section of games you wish to view. Alternately, you can use the links at the bottom of the graph to view a selection of the most recent matches played, and to view the entire season in the graph. Using the filters below the graph only change what displays in the list results, and not the graph itself.
+		</faq>				
+		<faq question="Why does the rating change for a given match display as zero?">
+		This can occur when there is too large of a difference between the two teams’ ratings.
+		</faq>				
+		<faq question="Does the “new rating” column in the Match History tab include the value in the adjacent “Rating Change” column?">
+		Yes.
+		</faq>
+		<faq question="Can I view match history data from past Arena seasons?">
+		The Arena Records access data from arena matches that occurred since the beginning of Wrath of the Lich King. Arena matches before that time are not accessible.
+		</faq>	
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arena Tournament Info" url="/arena-tournament.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
+		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowguide@blizzard.com?subject=WoW Armory Error&amp;body=Error on page: REPLACEURL%0A%0AType your error report here:%0A%0A%0A%0A%0A%0A---------------%0ARead the error reporting guidelines before submitting your email%0Ahttp://www.worldofwarcraft.com/info/faq/guide.html%0APlease use this email to report guide errors only. Any problems with the game or your account should be reported here: http://www.blizzard.com/support/wow/?id=aww01730p"/>
+	</relatedlinks>
+</relatedinfo>

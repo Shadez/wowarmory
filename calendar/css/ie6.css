@@ -1,0 +1,114 @@
+.calendar-container { margin-top:83px; margin-left:3px; }
+.calendar-container {width: 876px; padding-left:0; }
+#blackout { margin-left:3px; }
+
+
+.calendar-box-gradient {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/gradient.png');
+}
+.calendar-box-hover {
+	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/hover.png'); */
+}
+.calendar-box-selected {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/selected.png');
+}
+
+.calendar-box-othermonth {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/othermonth.png');
+}
+
+.calendar-box-today {
+	margin: -7px 0 0 -7px;
+	width: 134px;
+	height: 134px;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/today.png');
+	z-index: 8;
+}
+
+.calendar-day-events-select {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/window2-contour.png');
+}
+
+/* ie6 fix */
+.calendar-detail {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/window1-contour.png');
+}
+
+.guild,
+.calendar-confirmation-dialog,
+.calendar-detail-simple {
+	height: 394px;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/windowsmall-contour.png');
+}
+
+.guild .calendar-detail-bg,
+.calendar-detail-simple-bg {
+	position: absolute;
+	width: 362px;
+	height: 316px;
+	margin: 23px 0 0 23px;
+	background:url('/_images/calendar/windowsmall-inside.jpg') top left no-repeat;
+}
+
+.calendar-confirmation-dialog {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/windowmini-contour.png');
+}
+
+.calendar-detail .actions .disabled { /* ie6 - no chained class selector support */
+	cursor: default !important;
+	color: inherit !important;
+	background: url('/_images/button-grey.gif') no-repeat 0 0 !important;
+	color: #888 !important
+}
+.calendar-detail .actions .disabled:hover { /* ie6 - no chained class selector support */
+	color: #888 !important
+}
+
+/*
+
+.calendar-detail .class-icon-container {
+	border: 1px #dcb560 solid;
+	background-color: #f5ebca;
+	margin-top: 10px;
+	color: #FFF;
+	font-weight: bold;
+	height: 100px;
+	width: 320px;
+}
+.calendar-detail .class-icons div {
+	width: 30px;
+	padding-left: 10px;
+	padding-right: 5px;
+	margin: 0.5em 0.7em;
+}
+.calendar-detail .class-icons div.total {
+	width: 300px;
+}
+.calendar-detail .class-icons div span {
+	position: relative;
+	left: 20px;
+	white-space: nowrap;
+}
+*/
+
+.calendar-filter-contents li,.calendar-timezone li {
+	zoom:1;
+	cursor:pointer;
+}
+
+.calendar .month td .dropicon {
+	width: 17px;
+	height: 17px;
+	background:url('/_images/calendar/dropdownarrow.gif') top left no-repeat;
+	float: right;
+	margin: 0 3px 16px 0;
+	cursor: pointer;
+	z-index: 9;
+}
+
+.calendar .month td.invited .day-hasinvite {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/hasinvite.png');
+}
+
+

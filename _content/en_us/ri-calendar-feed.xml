@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calendar Feed">
+	<faqlist>
+		<faq question="What is the custom calendar tool?">
+			The custom calendar tool allows you to export in-game player calendar data to online calendars such as Google Calendar or applications such as Microsoft Outlook. The tool can aggregate up to five characters on your account in a single feed, and is automatically synched with the characters' in-game player calendars.
+		</faq>	
+		<faq question="How do I create a customized calendar feed?">
+			Use the Armory's main menu or click the link on the top right of a character's calendar page to access the Calendar Feed Customization tool. The options on this page allow you to create a custom calendar feed that you can export to any compatible online calendar application.
+			<p/>
+			You can choose up to five characters on your account to aggregate into a single calendar feed. Simply select the characters you wish to appear in the feed from the drop-down menus. Event categories can be individually toggled to filter them in or out of the feed.
+		</faq>
+		<faq question="How do I use the custom feed once I create it?">
+			The URL for your custom feed updates in real time as you select options and characters. Simply copy and paste the URL into an online calendar application such as Google Calendar when you are finished configuring your custom feed. Refer to each website or application for full details (instructions for Google Calendar and Microsoft Outlook 2007 are covered in the next two questions).
+		</faq>
+		<faq question="How do I import the calendar feed into Google Calendar?">
+			Follow these steps to import your calendar data into <a href="http://www.google.com/calendar">Google Calendar</a>:
+			<ul>
+				<li>In Google Calendar, select 'Other Calendars' on the bottom left to access a drop-down menu, then select 'Add' found at the bottom of that menu.</li>
+				<li>In the pop-up menu that appears, select 'Add by URL'. Paste your Armory calendar URL into the field, and select 'Add Calendar'.</li>
+				<li>A message highlighted in yellow should appear above your calendar. This indicates that the calendar feed is not yet synched with Google Calendar. Simply wait several minutes and your calendar events should appear in the main calendar display.</li>
+			</ul>
+		</faq>	
+		<faq question="Can I use the calendar feed with Microsoft Outlook?">
+			Follow these steps to import your calendar data into Microsoft Outlook 2007:
+			<ul>
+				<li>In Outlook, select Tools -&gt; Account Settings in the top navigation menu.</li>
+				<li>In the pop-up menu that appears, select the Internet Calendars tab.</li>
+				<li>Select 'New' in the top left corner of this tab. Paste your Armory URL into the field, and select 'Add'. If you experience an error on this step, restart Outlook and try again.</li>
+				<li>In the next window, you can configure several options including the calendar name. When you are satisfied, select 'OK'. You should see your player calendar listed in the 'Other' section in Outlook's main Calendar tab. It may take some time for your calendar data to appear.</li>
+			</ul>
+		</faq>
+		<faq question="Can I use the calendar feed with my iPhone's calendar application?">
+			Follow these steps to import your calendar data into your iPhone's built-in calendar:
+			<ul>
+				<li>Using your iPhone's web browser, go to the Armory's calendar feed tool and create a calendar URL.</li>
+				<li>Use the iPhone's copy function to copy the URL (the Armory's 'Copy to Clipboard' button is Flash-based and will not work on the iPhone).</li>
+				<li>Return to the iPhone's Home menu. Tap 'Settings', then 'Mail, Contacts, Calendars'.</li>
+				<li>Tap these options: 'Add Account' -&gt; 'Other' -&gt; 'Add Subscribed Calendar'.</li>
+				<li>Paste the Calendar URL into the field and tap 'Next'. After the feed has been retrieved, configure the settings you wish and tap 'Save'. Your calendar should now be visible in the iPhone's Calendar application.</li>
+			</ul>
+		</faq>
+		<faq question="How do I use the calendar feed with the iCal calendar application?">
+			Follow these steps to import your calendar data into iCal:
+			<ul>
+				<li>In iCal, select 'Calendar', then 'Subscribe'.</li>
+				<li>Paste your Armory calendar URL into the field and continue to the next step.</li>
+				<li>After the feed has been retrieved, configure the settings you wish and select 'Okay'. Your calendar should now be visible in iCal.</li>
+			</ul>
+		</faq>			
+		<faq question="Is the calendar feed automatically synched with in-game player calendars?">
+			Yes. Calendar feeds created with this tool should always be automatically up-to-date with in-game player calendars.
+		</faq>
+		<faq question="What is the 'reset security key' option used for?">
+			Each calendar feed URL contains a unique security key appended to the end of the URL. This key is intended to keep your calendar data inaccessible to others. If you wish, you can reset your security key at any time by clicking the 'reset security key' button at the bottom of the page. If you reset your key, you must update the URL in your web-based calendars.
+		</faq>
+		<faq question="Why are my characters not appearing in the feed's character selection menu?">
+			Only characters on US realms can be represented on feeds you create here, as this is the US version of the Armory. You can switch to a different region, such as Europe, from the region selection menu at the bottom of the page. In addition, a character must be recently active, on an account in good standing, and be at least level 10 to appear on a calendar feed.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Character Search" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Character Attributes Guide" type="external" url="http://www.worldofwarcraft.com/info/basics/characters.html"/>
+		<relatedlink name="Races" type="external" url="http://www.worldofwarcraft.com/info/races/index.html"/>
+		<relatedlink name="Classes" type="external" url="http://www.worldofwarcraft.com/info/classes/index.html"/>
+		<relatedlink name="Professions" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

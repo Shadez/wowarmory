@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 107
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,247 +25,251 @@
 define('__ARMORY__', true);
 define('load_items_class', true);
 define('load_mangos_class', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$itemID = (int) $_GET['i'];
-// Check
-if($itemID == 0 || !isset($itemID) || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
-    $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_item_not_exists_title'), $armory->tpl->get_config_vars('armory_error_item_not_exists_text'));
+header('Content-type: text/xml');
+$itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : null;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('item-info', $itemID, 0, $armory->armoryconfig['defaultRealmName']);
+    if($cache_data = $utils->GetCache($cache_id, 'items')) {
+        echo $cache_data;
+        echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
+        exit;
+    }
 }
-
-$quality_colors = array (
-	0 => 'myGray',
- 	1 => 'myWhite',
- 	2 => 'myGreen',
- 	3 => 'myBlue',
-	4 => 'myPurple',
- 	5 => 'myOrange',
- 	6 => 'myGold',
-    7 => 'myGold'
-);
-// TODO: remove * from query
+// Load XSLT template
+$xml->LoadXSLT('items/info.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'item-info.xml');
+$xml->XMLWriter()->writeAttribute('requestQuery', 'i='.$itemID);
+if($itemID == 0 || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
+    $xml->XMLWriter()->startElement('itemInfo');
+    $xml->XMLWriter()->endElement(); //itemInfo
+    echo $xml->StopXML();
+    exit;
+}
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-$data['name'] = $items->getItemName($itemID);
-
-// `Quality`, `bonding`, `subclass`, `InventoryType` 
-$armory->tpl->assign('quality_color', $quality_colors[$data['Quality']]);
-$armory->tpl->assign('item_name', $data['name']);
-$armory->tpl->assign('bonding', $armory->tpl->get_config_vars('bonding_' . $data['bonding']));
-
-// Spell Locale
-if($_locale == 'en_gb') {
-    $_spell_locale = '_1';
+$item_data = array(
+    'icon'    => $items->getItemIcon($itemID),
+    'id'      => $itemID,
+    'level'   => $data['ItemLevel'],
+    'name'    => ($armory->_locale == 'en_gb' || $armory->_locale == 'en_us') ? $data['name'] : $items->getItemName($itemID),
+    'quality' => $data['Quality'],
+    'type'    => ''
+);
+$xml->XMLWriter()->startElement('itemInfo');
+$xml->XMLWriter()->startElement('item');
+foreach($item_data as $item_data_key => $item_data_value) {
+    $xml->XMLWriter()->writeAttribute($item_data_key, $item_data_value);
 }
-else {
-    $_spell_locale = false;
-}
-// Item stats & green bonuses
-$o = '';
-$j = '';
-for($i=1; $i<11; $i++) {
-    if($data['stat_type'.$i]>0 && $data['stat_value'.$i]>0) {
-        switch($data['stat_type' . $i]) {
-            case 3:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_3') . '</span><br>';
-                break;
-            case 4:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_4') . '</span><br>';
-                break;
-            case 5:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_5') . '</span><br>';
-                break;
-            case 6:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_6') . '</span><br>';
-                break;
-            case 7:
-                $o .= '<span class="">+' . $data['stat_value' . $i] . '&nbsp;</span><span class="">' . $armory->tpl->get_config_vars('bonus_name_7') . '</span><br>';
-                break;
-            case 43: // 
-                if($_locale == 'en_gb') {
-                    $j .= '<br /><span class="bonusGreen"><span class="">' . sprintf($armory->tpl->get_config_vars('bonus_name_43'), $data['stat_value'.$i]) . '&nbsp;</span><span class=""></span></span>';
-                }
-                else {
-                    $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_43') . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
-                }
-                break;
-            case 20:
-                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '%</span></span>';
-                break;
-            default:
-                $j .= '<br /><span class="bonusGreen"><span class="">' . $armory->tpl->get_config_vars('bonus_name_'.$data['stat_type'.$i]) . '&nbsp;</span><span class="">' . $data['stat_value'.$i] . '</span></span>';
-                break;
-	   }
-	}
-}
-
-switch($data['class']) {
-    case 1:
-        if($data['InventoryType'] == 18) {
-            $armory->tpl->assign('item_equip', $data['ContainerSlots'].$armory->tpl->get_config_vars('string_slot_bag').' '. $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
-        }
-        else {
-            $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
-        }
-    break;
-    case 2:
-        $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('weapon_inventory_' . $data['subclass']));
-        $armory->tpl->assign('armor_type', $armory->tpl->get_config_vars('weapon_name_' . $data['subclass']));
-        $armory->tpl->assign('weapon_damage', true);
-        $armory->tpl->assign('minDmg', $data['dmg_min1']);
-        $armory->tpl->assign('maxDmg', $data['dmg_max1']);
-        $armory->tpl->assign('dmg_speed', round($data['delay']/1000, 2));
-        // AoWoW code
-        $dps = '';
-        for($jj=1;$jj<=2;$jj++) {
-        	$d_type = $data['dmg_type'.$jj];
-        	$d_min = $data['dmg_min'.$jj];
-        	$d_max = $data['dmg_max'.$jj];
-        	if(($d_max>0) && ($data['class']!=6)) {
-                $delay = $data['delay'] / 1000;
-                if($delay>0) {
-                    $dps = $dps + round(($d_max+$d_min) / (2*$delay), 1);
-                }
-                if($jj>1) {
-                    $delay=0;
-                }
-        	}
-        }
-        $armory->tpl->assign('dmg_per_sec', $dps);
-        break;
-    case 4:
-        $armory->tpl->assign('item_equip', $armory->tpl->get_config_vars('equip_slot_'.$data['InventoryType']));
-        $armory->tpl->assign('armor_type', $armory->tpl->get_config_vars('armor_name_'.$data['subclass']));
-        if($data['armor'] > 0) {
-        	$armory->tpl->assign('item_armor', $data['armor']);
-        }
-        break;
-}
-// Sockets
-$s = '';
-for($ii=1; $ii<4; $ii++) {
-    switch($data['socketColor_'.$ii]) {
-        case 1:
-            $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Meta.png">'.$armory->tpl->get_config_vars('socket_meta').'</span><br>';
-            break;
-        case 2:
-            $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Red.png">'.$armory->tpl->get_config_vars('socket_red').'</span><br>';
-            break;
-        case 4:
-            $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Yellow.png">'.$armory->tpl->get_config_vars('socket_yellow').'</span><br>';
-            break;
-        case 8:
-            $s .= '<span class="setItemGray"><img class="socketImg" src="shared/global/tooltip/images/icons/Socket_Blue.png">'.$armory->tpl->get_config_vars('socket_blue').'</span><br>';
-            break;
-    }
-}
-for($i=1;$i<4;$i++) {
-    if($data['spellid_'.$i] > 0) {
-        $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
-        if(!isset($spell_tmp['Description_'.$_locale])) {
-            continue;
-        }
-        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$_locale]));
-        if($spellInfo) {
-            $j .= '<br /><span class="bonusGreen"><span class="">'.$armory->tpl->get_config_vars('string_on_use').' '.$spellInfo.'&nbsp;</span><span class="">&nbsp;</span></span>';
-        }
-    }
-}
-
-$armory->tpl->assign('first_bonuses', $o);
-$armory->tpl->assign('sockets', $s);
-$armory->tpl->assign('durability', $data['MaxDurability']);
-
-if($data['AllowableRace'] > 0) {
-    $armory->tpl->assign('races', $items->AllowableRaces($data['AllowableRace']));
-}
-if($data['AllowableClass'] > 0) {
-    $armory->tpl->assign('classes', $items->AllowableClasses($data['AllowableClass']));
-}
-if($data['RequiredLevel'] > 0) {
-    $armory->tpl->assign('need_level', $data['RequiredLevel']);
-}
-if($data['RequiredSkill'] > 0) {
-    $req_skill = $armory->aDB->selectCell("
-    SELECT `name_".$_locale."`
-        FROM `armory_skills`
-            WHERE `id`=? LIMIT 1", $data['RequiredSkill']);
-    $armory->tpl->assign('need_skill', $req_skill);
-    $armory->tpl->assign('need_skill_rank', $data['RequiredSkillRank']);
-}
-if($data['RequiredReputationFaction'] > 0) {
-    $armory->tpl->assign('need_reputation_rank', $armory->tpl->get_config_vars('reputation_required_'.$data['RequiredReputationRank']));
-    $armory->tpl->assign('need_reputation_faction', $armory->tpl->get_config_vars('faction_name_'.$data['RequiredReputationFaction']));
-}
-if($data['itemset'] > 0) {
-    $armory->tpl->assign('itemsetInfo', $items->BuildItemSetInfo($data['itemset']));
-}
-if(!empty($data['description'])) {
-    $armory->tpl->assign('description', $items->getItemDescription($itemID));
-}
-// Heroic item (3.2.x)
-if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
-    $armory->tpl->assign('is_heroic', true);
-}
-if($data['startquest'] > 0) {
-    $armory->tpl->assign('startquest', true);
-}
-if($data['ItemLevel'] > 1) {
-    $item_source = $items->GetItemSource($itemID);
-    if(is_array($item_source)) {
-        $armory->tpl->assign('fullLootInfo', $item_source);
-    }
-}
-if($data['Faction'] == 1) {
-    $armory->tpl->assign('itemFaction', 'horde');
-    $side_equivalent = array();
-    if($side_equivalent['entry'] = $armory->aDB->selectCell("SELECT `item_alliance` FROM `armory_item_equivalents` WHERE `item_horde`=?", $itemID)) {
-        $side_equivalent['Quality'] = $items->GetItemInfo($side_equivalent['entry'], 'quality');
-        $side_equivalent['icon'] = $items->getItemIcon($side_equivalent['entry']);
-        $side_equivalent['name'] = $items->getItemName($side_equivalent['entry']);
-        $armory->tpl->assign('side_equivalent', $side_equivalent);
-    }
-}
-elseif($data['Faction'] == 2) {
-    $armory->tpl->assign('itemFaction', 'alliance');
-    $side_equivalent = array();
-    if($side_equivalent['entry'] = $armory->aDB->selectCell("SELECT `item_horde` FROM `armory_item_equivalents` WHERE `item_alliance`=?", $itemID)) {
-        $side_equivalent['Quality'] = $items->GetItemInfo($side_equivalent['entry'], 'quality');
-        $side_equivalent['icon'] = $items->getItemIcon($side_equivalent['entry']);
-        $side_equivalent['name'] = $items->getItemName($side_equivalent['entry']);
-        $armory->tpl->assign('side_equivalent', $side_equivalent);
-    }
-}
-if($data['RequiredDisenchantSkill'] > 0) {
-    $armory->tpl->assign('disenchant_info', $data['RequiredDisenchantSkill']);
-}
-$armory->tpl->assign('green_bonuses', $j);
-$armory->tpl->assign('buyPrice',  $mangos->getMoney($data['BuyPrice']));
-$armory->tpl->assign('sellPrice', $mangos->getMoney($data['SellPrice']));
-$armory->tpl->assign('item_icon',  $items->getItemIcon($itemID));
-/** Loot tables **/
-$armory->tpl->assign('boss_loot',  $items->BuildLootTable($itemID, 'boss'));
-$armory->tpl->assign('vendor_loot',$items->BuildLootTable($itemID, 'vendor'));
-$armory->tpl->assign('chest_loot', $items->BuildLootTable($itemID, 'chest'));
-$armory->tpl->assign('quest_loot', $items->BuildLootTable($itemID, 'questreward'));
-$armory->tpl->assign('queststart', $items->BuildLootTable($itemID, 'queststart'));
-$armory->tpl->assign('providedfor', $items->BuildLootTable($itemID, 'providedfor'));
-$armory->tpl->assign('objectiveof', $items->BuildLootTable($itemID, 'objectiveof'));
-$armory->tpl->assign('item_loot',  $items->BuildLootTable($itemID, 'item'));
-$armory->tpl->assign('disenchant_loot', $items->BuildLootTable($itemID, 'disenchant'));
-$armory->tpl->assign('craft_loot', $items->BuildLootTable($itemID, 'craft'));
-$armory->tpl->assign('reagent_loot', $items->BuildLootTable($itemID, 'reagent'));
-/** Loot tables **/
 $extended_cost = $armory->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $itemID);
-if($extended_cost > 0) {
-    $armory->tpl->assign('price', $mangos->GetExtendedCost($extended_cost));
+if($data['SellPrice'] > 0 || $data['BuyPrice'] || $extended_cost > 0) {
+    $xml->XMLWriter()->startElement('cost');
+    if($data['SellPrice'] > 0) {
+        $xml->XMLWriter()->writeAttribute('sellPrice', $data['SellPrice']);
+    }
+    if($data['BuyPrice'] > 0) {
+        $xml->XMLWriter()->writeAttribute('buyPrice', $data['BuyPrice']);
+    }
+    $cost_info = $mangos->GetExtendedCost($extended_cost);
+    $pvp_cost = $mangos->GetPvPExtendedCost($extended_cost);
+    if($pvp_cost) {
+        foreach($pvp_cost as $pvp_cost_key => $pvp_cost_value) {
+            if($pvp_cost_value > 0) {
+                $xml->XMLWriter()->writeAttribute($pvp_cost_key, $pvp_cost_value);
+            }
+        }
+        $xml->XMLWriter()->writeAttribute('factionId', ($data['Faction'] == 1) ? 0 : 1);
+    }
+    if($cost_info) {
+        foreach($cost_info as $cost) {
+            $xml->XMLWriter()->startElement('token');
+            foreach($cost as $cost_key => $cost_value) {
+                $xml->XMLWriter()->writeAttribute($cost_key, $cost_value);
+            }
+            $xml->XMLWriter()->endElement(); //token
+        }
+    }
+    $xml->XMLWriter()->endElement(); //cost
 }
-$armory->tpl->assign('item_level', $data['ItemLevel']);
-$armory->tpl->assign('tpl2include', 'item_info');
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";
-    @import "_css/_region/eu/region.css";');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('overall_start.tpl');
-exit();
+if($disenchant_loot = $items->BuildLootTable($itemID, 'disenchant')) {
+    $xml->XMLWriter()->startElement('disenchantLoot');
+    if($data['RequiredDisenchantSkill'] > 0) {
+        $xml->XMLWriter()->writeAttribute('requiredSkillRank', $data['RequiredDisenchantSkill']);
+    }
+    foreach($disenchant_loot as $disenchant_item) {
+        $xml->XMLWriter()->startElement('item');
+        foreach($disenchant_item as $d_item_key => $d_item_value) {
+            $xml->XMLWriter()->writeAttribute($d_item_key, $d_item_value);
+        }
+        $xml->XMLWriter()->endElement(); //item
+    }
+    $xml->XMLWriter()->endElement(); //disenchantLoot
+}
+if($vendor_items = $items->BuildLootTable($itemID, 'vendor')) {
+    $xml->XMLWriter()->startElement('vendors');
+    foreach($vendor_items as $vendor) {
+        $xml->XMLWriter()->startElement('creature');
+        foreach($vendor as $v_item_key => $v_item_value) {
+            $xml->XMLWriter()->writeAttribute($v_item_key, $v_item_value);
+        }
+        $xml->XMLWriter()->endElement(); //creature
+    }
+    $xml->XMLWriter()->endElement(); //vendors
+}
+if($creature_loot = $items->BuildLootTable($itemID, 'boss')) {
+    $xml->XMLWriter()->startElement('dropCreatures');
+    foreach($creature_loot as $creature_item) {
+        $xml->XMLWriter()->startElement('creature');
+        foreach($creature_item as $c_item_key => $c_item_value) {
+            $xml->XMLWriter()->writeAttribute($c_item_key, $c_item_value);
+        }
+        $xml->XMLWriter()->endElement(); //creature
+    }
+    $xml->XMLWriter()->endElement(); //dropCreatures
+}
+if($gameobject_loot = $items->BuildLootTable($itemID, 'chest')) {
+    $xml->XMLWriter()->startElement('containerObjects');
+    foreach($gameobject_loot as $gameobject_item) {
+        $xml->XMLWriter()->startElement('object');
+        foreach($gameobject_item as $gobject_key => $gobject_value) {
+            $xml->XMLWriter()->writeAttribute($gobject_key, $gobject_value);
+        }
+        $xml->XMLWriter()->endElement(); //object
+    }
+    $xml->XMLWriter()->endElement(); //containerObjects
+}
+//TODO: find way to optimize Items::BuildLootTable(id, `reagent` and `craft`) work
+if($reagent_for = $items->BuildLootTable($itemID, 'reagent')) {
+    $xml->XMLWriter()->startElement('reagentFor');
+    foreach($reagent_for as $items_reagent) {
+        $xml->XMLWriter()->startElement('spell');
+        foreach($items_reagent['spell'] as $spell_key => $spell_value) {
+            $xml->XMLWriter()->writeAttribute($spell_key, $spell_value);
+        }
+        unset($spell_key, $spell_value);
+        foreach($items_reagent['item'] as $i_reagent) {
+            $xml->XMLWriter()->startElement('item');
+            foreach($i_reagent as $i_reagent_key => $i_reagent_value) {
+                $xml->XMLWriter()->writeAttribute($i_reagent_key, $i_reagent_value);
+            }
+            $xml->XMLWriter()->endElement(); //item
+        }
+        unset($i_reagent, $i_reagent_key, $i_reagent_value);
+        foreach($items_reagent['reagent'] as $reagent_item) {
+            $xml->XMLWriter()->startElement('reagent');
+            foreach($reagent_item as $r_item_key => $r_item_value) {
+                $xml->XMLWriter()->writeAttribute($r_item_key, $r_item_value);
+            }
+            $xml->XMLWriter()->endElement(); //reagent
+        }
+        unset($reagent_item, $r_item_key, $r_item_value);
+        $xml->XMLWriter()->endElement(); //spell
+    }
+    unset($items_reagent, $reagent_for);
+    $xml->XMLWriter()->endElement(); //reagentFor
+}
+if($craft_item = $items->BuildLootTable($itemID, 'craft')) {
+    $xml->XMLWriter()->startElement('createdBy');
+    foreach($craft_item as $crafted_item) {
+        $xml->XMLWriter()->startElement('spell');
+        foreach($crafted_item['spell'] as $spell_craft_key => $spell_craft_value) {
+            $xml->XMLWriter()->writeAttribute($spell_craft_key, $spell_craft_value);
+        }
+        unset($spell_craft_key, $spell_craft_value);
+        foreach($crafted_item['item'] as $crafted_reagent) {
+            $xml->XMLWriter()->startElement('item');
+            foreach($crafted_reagent as $craft_reagent_key => $craft_reagent_value) {
+                $xml->XMLWriter()->writeAttribute($craft_reagent_key, $craft_reagent_value);
+            }
+            $xml->XMLWriter()->endElement(); //item
+        }
+        unset($craft_reagent_key, $craft_reagent_value, $crafted_reagent);
+        foreach($crafted_item['reagent'] as $reagent_craft_item) {
+            $xml->XMLWriter()->startElement('reagent');
+            foreach($reagent_craft_item as $cr_item_key => $cr_item_value) {
+                $xml->XMLWriter()->writeAttribute($cr_item_key, $cr_item_value);
+            }
+            $xml->XMLWriter()->endElement(); //reagent
+        }
+        unset($reagent_craft_item, $cr_item_key, $cr_item_value);
+        $xml->XMLWriter()->endElement(); //spell
+    }
+    unset($craft_item, $crafted_item);
+    $xml->XMLWriter()->endElement(); //createdBy
+}
+if($data['Faction'] == 1 || $data['Faction'] == 2) {
+    $xml->XMLWriter()->startElement('translationFor');
+    $xml->XMLWriter()->writeAttribute('factionEquiv', ($data['Faction'] == 1) ? 0 : 1);
+    $equivalent_item = $items->GetFactionEquivalent($itemID, $data['Faction']);
+    if($equivalent_item) {
+        $xml->XMLWriter()->startElement('item');
+        foreach($equivalent_item as $eq_key => $eq_value) {
+            $xml->XMLWriter()->writeAttribute($eq_key, $eq_value);
+        }
+        $xml->XMLWriter()->endElement();  //item
+    }    
+    $xml->XMLWriter()->endElement(); //translationFor
+}
+
+/** Quest system **/
+if($start_quest = $items->BuildLootTable($itemID, 'queststart')) {
+    $xml->XMLWriter()->startElement('startsQuest');
+    $xml->XMLWriter()->startElement('quest');
+    foreach($start_quest as $start_q_key => $start_q_value) {
+        $xml->XMLWriter()->writeAttribute($start_q_key, $start_q_value);
+    }
+    $xml->XMLWriter()->endElement();  //quest
+    $xml->XMLWriter()->endElement(); //startsQuest
+}
+if($provided_for = $items->BuildLootTable($itemID, 'providedfor')) {
+    $xml->XMLWriter()->startElement('providedForQuests');
+    foreach($provided_for as $prov_quest) {
+        $xml->XMLWriter()->startElement('quest');
+        foreach($prov_quest as $prov_q_key => $prov_q_value) {
+            $xml->XMLWriter()->writeAttribute($prov_q_key, $prov_q_value);
+        }
+        $xml->XMLWriter()->endElement(); //quest
+    }
+    $xml->XMLWriter()->endElement(); //providedForQuests
+}
+if($objective_of = $items->BuildLootTable($itemID, 'objectiveof')) {
+    $xml->XMLWriter()->startElement('objectiveOfQuests');
+    foreach($objective_of as $objective_quest) {
+        $xml->XMLWriter()->startElement('quest');
+        foreach($objective_quest as $objective_q_key => $objective_q_value) {
+            $xml->XMLWriter()->writeAttribute($objective_q_key, $objective_q_value);
+        }
+        $xml->XMLWriter()->endElement(); //quest
+    }
+    $xml->XMLWriter()->endElement(); //objectiveOfQuests
+}
+if($quest_reward = $items->BuildLootTable($itemID, 'questreward')) {
+    $xml->XMLWriter()->startElement('rewardFromQuests');
+    foreach($quest_reward as $reward_quest) {
+        $xml->XMLWriter()->startElement('quest');
+        foreach($reward_quest as $reward_q_key => $reward_q_value) {
+            $xml->XMLWriter()->writeAttribute($reward_q_key, $reward_q_value);
+        }
+        $xml->XMLWriter()->endElement(); //quest
+    }
+    $xml->XMLWriter()->endElement(); //rewardFromQuests
+}
+
+
+
+$xml->XMLWriter()->endElement();   //item
+$xml->XMLWriter()->endElement();  //itemInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    // Write cache to file
+    $cache_data = $utils->GenerateCacheData($itemID, 0, 'item-info');
+    $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'items');
+}
+exit;
 ?>

@@ -1,0 +1,16 @@
+.calendar-container { margin-top:83px; }
+.calendar-detail .detail-content-container { /* loading class causes blank detail even after removed */
+	display: block !important;
+}
+
+.title-container .title {
+	line-height: 22px;
+}
+
+.summary {
+	line-height: 16px !important;
+}
+
+#calendar-title-month {	
+	line-height: 22px;
+}

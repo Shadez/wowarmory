@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Calculateur d'arène">
+	<faqlist>
+		<faq question="Qu'est-ce que le calculateur d'arène ?">
+			Le calculateur d’arène a trois fonctions. Le calculateur de points converti une cote donnée en un certain nombre de points donnés qui pourraient être reçus à la fin de la semaine. Le calculateur de cote prend comme objectif un certain but à atteindre, ainsi que le total des points en cours accumulé pour générer un tableau présentant la cote moyenne nécessaire à travers le temps pour atteindre ce but. Le calculateur de temps utilise également un objectif à atteindre et les points en cours, mais base le temps nécessaire pour atteindre l’objectif sur la cote moyenne que vous avez indiqué.
+		</faq>
+		<faq question="Comment la cote de mon équipe est-elle calculée ?">
+			La cote d’une équipe nouvellement créée est de 0, et les victoires en changeront le montant par la suite. Chaque fois que votre équipe gagne un match, votre cote augmente. La valeur de ce changement sera déterminée par la différence entre la cote de votre équipe et de celle contre laquelle vous avez joué.
+		</faq>
+		<faq key="getArenaPoints" question="Comment la cote de mon équipe influe-t-elle sur mes points d'arène ?">
+			À la fin de chaque semaine, la cote de votre équipe est utilisée pour calculer le nombre de points d’arène que l’équipe recevra pour la semaine écoulée. Votre équipe doit avoir joué un minimum de 10 rencontres afin être éligible pour le gain de point de la semaine, et un membre devra avoir joué 30% du total des matchs de cette équipe lors de la semaine écoulée afin d’être éligible pour recevoir des points. Il est important de noter que vous ne recevrez en fin de semaine que les points d’une seule équipe et non pas de l’ensemble des équipes auxquelles vous appartenez. L’équipe dont vous êtes membre et qui a le meilleur score après calcul basé sur sa cote et sa taille est votre seule source de points possible pour la semaine écoulée. Gardez en tête que les équipes en 2 contre 2 et en 3 contre 3 sont sujettes à un handicap, recevant moins de points qu’une équipe en 5 contre 5 de cote équivalente.
+		</faq>
+		<faq question="Que puis-je acheter avec les points d'arène, et quel est le maximum de points que je peux avoir ?">
+			Les points d’arène sont utilisés comme une monnaie d’échange pour acheter des récompenses d’arène. Vous pouvez accumuler un maximum de 5000 points d’arène, qui ne disparaîtrons pas à travers le temps. 
+		</faq>
+		<!--<faq question = "Does .999... = 1?">
+			<a href = "http://www.blizzard.com/press/040401.shtml">Yes</a>. 
+		</faq>-->
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Tournoi d'arène" url="/arena-tournament.xml"/>			
+		<relatedlink type="hr"/>
+		<relatedlink name="Le système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur des arènes" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Lista de noticias del calendario">
+	<faqlist>
+		<faq question="¿Qué es la herramienta personalizada del calendario?">
+			La herramienta personalizada del calendario te permitirá exportar los datos contenidos en éste a calendarios en línea como Google Calendar. Podrás ver las noticias de hasta cinco de tus personajes en una lista única, la cual se sincronizará de manera automática con los calendarios en el juego de los personajes.
+		</faq>	
+		<faq question="¿Cómo creo una lista de noticias personalizada?">
+			Utiliza el menú principal de la Armería, o haz clic en el enlace ubicado en la parte superior derecha de la página del calendario del personaje, para acceder a la herramienta de personalización de noticias del calendario. Las opciones en esta página te permitirán crear una lista personalizada que podrás exportar a cualquier calendario en línea compatible.
+			<p/>
+			Podrás escoger hasta cinco personajes de tu cuenta y agregarlos a una lista de noticias única. Selecciona a los personajes que desees que aparezcan en dicha lista a través de los menús desplegables. Podrás activar o desactivar las categorías de los distintos eventos para incluirlos en, o eliminarlos de, la lista.
+		</faq>
+		<faq question="¿Cómo utilizo una lista personalizada después de crearla?">
+			El URL de tu lista personalizada se actualiza en tiempo real mientras seleccionas opciones y personajes. Cuando termines de configurarla, sólo copia y pega dicho URL en un calendario en línea como Google Calendar. Consulta las instrucciones del sitio web o programa en cuestión si deseas más información (las instrucciones para Google Calendar y Microsoft Outlook 2007 vienen en las siguientes dos preguntas).
+		</faq>	
+				<faq question="¿Cómo importo las noticias del calendario a Google Calendar?">
+			Sigue estos pasos para importar la información de tu calendario a <a href="http://www.google.com/calendar">Google Calendar</a>:
+			<ul>
+				<li>En Google Calendar selecciona 'Otros calendarios' en la parte inferior izquierda para acceder a un menú desplegable, luego elige la opción 'Agregar', ubicada en la parte inferior de dicho menú.</li>
+				<li>En el menú desplegable que aparece, selección 'Agregar por URL'. Copia el URL de tu calendario de la Armería en el campo y elige 'Agregar calendario'.</li>
+				<li>Un mensaje resaltado en color amarillo aparecerá en la parte superior de tu calendario. Esto indica que la lista de noticias aún no está sincronizada con Google Calendar. Sólo espera unos cuantos minutos y tus eventos del calendario deberán aparecer en la ventana principal de la aplicación.</li>
+			</ul>
+		</faq>	
+		<faq question="¿Puedo usar la lista de noticias con Microsoft Outlook?">
+			Sigue estos pasos para importar la información de tu calendario a Microsoft Outlook 2007:
+			<ul>
+				<li>En Outlook, selecciona Herramientas -&gt; Configuración de cuenta en el menú de navegación ubicado en la parte superior.</li>
+				<li>En el menú desplegable, haz clic en la pestaña de Calendarios de internet.</li>
+				<li>Elige 'Nuevo' en la esquina superior derecha de esta pestaña. Copia el URL del calendario de la Armería en el campo y haz clic en 'Agregar'. Si ocurre un error en este paso, reinicia Outlook e inténtalo de nuevo.</li>
+				<li>En la siguiente ventana podrás configurar varias opciones, incluyendo el nombre del calendario. Cuando estés satisfecho, haz clic en 'Ok'. Tu calendario deberá aparecer en la sección 'Otros' en la pestaña principal del calendario de Outlook. Puede tomar algo de tiempo para que aparezca la información.</li>
+			</ul>
+		</faq>
+				<faq question="¿Puedo utilizar la lista de noticias con el calendario de mi iPhone?">
+			Sigue estos pasos para importar la información de tu calendario a tu iPhone:
+			<ul>
+				<li>Usa el navegador de tu iPhone para acceder a la herramienta del calendario de la Armería y crea un URL.</li>
+				<li>Utiliza la función "copia" de tu iPhone para copiar el URL (el botón 'Copiar al portapapeles' de la Armería está basado en flash y no funcionará en el iPhone).</li>
+				<li>Regresa al menú principal del iPhone. Toca 'Configuración', luego 'Correo, Contactos, Calendarios'.</li>
+				<li>Toca estas opciones: 'Agregar cuenta' -&gt; 'Otra' -&gt; 'Agregar calendario'.</li>
+				<li>Pega el URL del calendario en el campo y toca 'Siguiente'. Una vez que la información haya sido descargada, establece la configuración que desees y toca 'Guardar'. Tu calendario deberá aparecer en la aplicación homónima del iPhone.</li>
+			</ul>
+		</faq>
+		<faq question="¿Cómo utilizo las noticias del calendario con la aplicación iCal?">
+			Sigue estos pasos para importar la información de tu calendario a iCal:
+			<ul>
+				<li>En iCal, selecciona 'Calendario' y luego 'Suscribirte'.</li>
+				<li>Copia el URL de tu calendario de la Armería en el campo y procede al siguiente paso.</li>
+				<li>Una vez que la lista haya sido guardada, establece la configuración que desees y haz clic en 'Ok'. Ahora podrás ver tu calendario en iCal.</li>
+			</ul>
+		</faq>
+		<faq question="¿Se sincroniza la lista con los calendarios en el juego de manera automática?">
+			Sí, las listas creadas con esta herramienta siempre coincidirán con la información de tu calendario en el juego.
+		</faq>
+		<faq question="¿Para qué sirve la opción 'reiniciar la clave de seguridad'?">
+			Cada URL de la lista del calendario contiene una clave de seguridad única al final, la cual impedirá que otros tengan acceso a tu calendario. Si así lo deseas, podrás reiniciar tu clave de seguridad en cualquier momento haciendo clic en el botón 'reiniciar clave de seguridad' ubicado en la parte inferior de la página. Al hacer esto, deberás actualizar el URL en tus calendarios web.
+		</faq>
+			<faq question="¿Por qué no aparecen mis personajes en el menú de selección de las listas de noticias?">
+			Sólo los personajes que se encuentren en reinos de EE.UU. aparecerán en las listas que crees aquí, ya que ésta es la versión estadounidense de la Armería. Podrás cambiar a una región distinta, como Europa, a través del menú de selección de región ubicado en la parte inferior de la página. Además, los personajes deberán encontrarse activos, en una cuenta en buenos términos y ser, al menos, de nivel 10 para aparecer en una lista de noticias.
+		</faq>
+	</faqlist>
+	<relatedlinks>	
+		<relatedlink name="Búsqueda de personajes" url="/character-search.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Personaje: información general" type="external" url="http://www.worldofwarcraft.com/na/info/basics/characters.xml"/>
+		<relatedlink name="Razas" type="external" url="http://www.worldofwarcraft.com/na/info/races/humans.xml"/>
+		<relatedlink name="Clases" type="external" url="http://www.worldofwarcraft.com/na/info/classes/index.xml"/>
+		<relatedlink name="Profesiones" type="external" url="http://www.worldofwarcraft.com/info/professions/index.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

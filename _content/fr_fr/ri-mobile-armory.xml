@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Mobile Armory">
+	<faqlist>
+		<faq question="Qu'est-ce que l'Armurerie mobile ?">
+			L’Armurerie mobile de World of Warcraft est la version mobile de la base de données officielle et consultable du jeu, spécialement conçue pour l’iPhone™ et l’iPod touch®. Cette application est gratuite et téléchargeable depuis l'App Store d'iTunes®. Cette application met à votre disposition la plupart des fonctionnalités disponibles sur le site Internet de l’Armurerie.
+		</faq>
+		<faq question="Quel est le prix de l'Armurerie mobile ?">
+			L’Armurerie mobile de World of Warcraft pour iPhone et iPod touch est totalement gratuite, téléchargement et utilisation compris.
+		</faq>
+		<faq question="Sur quels appareils l'Armurerie mobile peut-elle être installée ?">
+			L’Armurerie mobile de World of Warcraft est actuellement disponible pour l'iPhone et l'iPod touch d'Apple, et peut être téléchargée depuis l'App Store d'iTunes. Pour l'utiliser sur un iPod touch, vous devez disposer d'une connexion Wi-Fi effective. Il est possible que ce programme soit disponible pour d'autres appareils à l'avenir ; tous les détails sur sa disponibilité et son prix vous seront alors donnés pour chaque nouvelle plateforme.
+		</faq>			
+		<faq question="Quelles sont les versions du logiciel de l'iPhone qui sont compatibles avec l'Armurerie mobile ?">
+			L’Armurerie mobile de World of Warcraft est compatible avec les versions 2.2.1 et supérieures de l'iPhone, incluant une compatibilité complète avec le système d'exploitation 3.0.
+		</faq>
+		<faq question="En quelles langues l'Armurerie mobile est-elle disponible ?">
+			L’Armurerie mobile de World of Warcraft est disponible en Français, en Anglais, en Espagnol (d'Europe mais également d'Amérique latine), en Allemand, en Russe et en Coréen.
+		</faq>
+		<faq question="L'Armurerie mobile est-elle protégée par mot de passe ?">
+			Oui. Pour utiliser l’Armurerie mobile de World of Warcraft, vous devrez vous connecter avec votre compte Battle.net ou World of Warcraft.  
+		</faq>
+		<faq question="Avec les comptes Battle.net et World of Warcraft de quels pays l'Armurerie mobile est-elle compatible ?">
+			Actuellement, seuls les comptes originaires d'Europe, de l'Amérique du Nord et de la Corée sont compatibles avec l'Armurerie mobile.
+		</faq>
+	
+	
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Télécharger depuis iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Mises à jour de l'Armurerie" url="/updates.xml"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Historial de oponentes">
+	<faqlist>
+		
+		<faq question="¿Qué funciones tiene la página del Historial de oponentes?">
+El Historial de oponentes compila a los adversarios que ha enfrentado el equipo de arena en cuestión durante la temporada actual. Además de servir como registro, la información también es una herramienta útil para determinar el desempeño de un equipo contra composiciones de clase específicas. Los datos y las funciones que incluye esta página son:
+<ul>
+<li>Información de todos los equipos opositores desde el comienzo de la temporada actual, siempre y cuando el equipo que estés viendo haya jugado al menos dos partidas contra ellos.</li>
+<li>Puedes organizar las columnas por nombre de equipo, reino, partidas jugadas (opción predeterminada), victorias o derrotas, porcentaje de victorias y cambio neto de calificación.</li>
+<li>Utiliza los Filtros para que tu búsqueda sea más precisa.</li>
+<li>Si quieres ver la lista de miembros de alguno de los equipos contrarios, haz clic en el nombre del equipo o búscalo en la pestaña del Historial de encuentros.</li>
+</ul>
+		</faq>
+		
+		<faq question="¿Cuál es la mejor manera de ver la composición de clases exacta de un equipo específico?">
+		La manera más fiable es filtrar el nombre del equipo desde la pestaña del Historial de encuentros y luego hacer clic en el enlace que te conducirá a los reportes de encuentro individuales. Si haces clic en el nombre el perfil de equipo te mostrará la lista de miembros actual, la cual puede no ser la lista, o la composición específica, a la que se enfrentó el equipo que estás viendo.
+		</faq>				
+		
+		<faq question="¿Por qué es necesario jugar dos partidas como mínimo antes de que los equipos aparezcan aquí?">
+		Esto sirve para filtrar los equipos contra los que sólo se ha jugado una vez, algo que es muy común en el Historial de oponentes, con el fin de eliminar muchas de las características atípicas y que los resultados sean más relevantes y precisos.
+		</faq>
+		
+		<faq question="Puedo ver información de las temporadas de arena pasadas a través del Historial de oponentes?">
+		Los récords de la arena obtienen información de las partidas que se han llevado a cabo desde el inicio de Wrath of the Lich King. Los datos de las partidas de arena que tuvieron lugar antes de la expansión no están disponibles.
+		</faq>	
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Información del Torneo Arena" url="/arena-tournament.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
+		<relatedlink name="Las arenas a detalle" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/arena.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>		
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL%0A%0ASi tienes problemas con el juego o con tu cuenta, utiliza este enlace: http://www.blizzard.com/support/wow/?id=aww01730p"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

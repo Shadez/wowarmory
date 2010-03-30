@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 115
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,6 +34,13 @@ Class Items extends Connector {
      * $charGuid used by item-tooltip.php (enchantments, sockets & item durability for current character)
      **/
     public $charGuid;
+    
+    public function IsItemExists($itemID) {
+        if($this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
+            return true;
+        }
+        return false;
+    }
     
     /**
      * Returns item name according with defined locale (ru_ru or en_gb)
@@ -85,7 +92,7 @@ Class Items extends Connector {
      * @example Items::getItemDescription(35000)
      * @return string
      **/
-    public function getItemDescription($itemID) {
+    public function GetItemDescription($itemID) {
         switch(strtolower($this->_locale)) {
             case 'en_gb':
                 $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
@@ -119,25 +126,20 @@ Class Items extends Connector {
      **/
     public function AllowableRaces($mask) {
         $mask&=0x7FF;
-        $text = '';
         // Return zero if for all class (or for none
 		if ($mask == 0x7FF OR $mask == 0) {
             return 0;
 		}
         $i=1;
+        $rMask = array();
 		while($mask) {
 			if($mask & 1) {
-                $name = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_races` WHERE `id`=?", $i);
-				$data = @$name; if ($data == "") $data = $i;
-				$text.=$data;
-				if($mask!=1) {
-					$text.=", ";
-				}
+                $rMask[$i] = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_races` WHERE `id`=?", $i);
 		   	}
 			$mask>>=1;
 			$i++;
 		}
-		return $text;
+		return $rMask;
     }
     
     /**
@@ -148,26 +150,21 @@ Class Items extends Connector {
      **/
     public function AllowableClasses($mask) {
 		$mask&=0x5DF;
-        $text = '';
 		// Return zero if for all class (or for none
 		if($mask==0x5DF || $mask==0) {
             return 0;
 		}
         $i=1;
+        $rMask = array();
 		while($mask)
 		{
 			if($mask & 1) {
-                $name = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $i);
-				$data = @$name; if($data == "") $data = $i;
-				$text.=$data;
-				if ($mask!=1) {
-					$text.=", ";
-				}
+                $rMask[$i] = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $i);
 	    	}
 			$mask>>=1;
 			$i++;
 		}
-		return $text;
+		return $rMask;
 	}
     
     /**
@@ -177,11 +174,6 @@ Class Items extends Connector {
      * @return string
      **/
     public function GetItemSource($item) {
-        $returnString = false;
-		$vendorLoot = $this->wDB->selectCell("
-		SELECT `entry`
-			FROM `npc_vendor`
-				WHERE `item`=? LIMIT 1", $item);			
 		$bossLoot = $this->wDB->selectCell("
 		SELECT `entry`
 			FROM `creature_loot_template`
@@ -190,61 +182,56 @@ Class Items extends Connector {
         SELECT `entry`
             FROM `gameobject_loot_template`
                 WHERE `item`=? LIMIT 1", $item);
-        $questLoot = $this->wDB->selectCell("
+        if($bossLoot) {
+            if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && self::IsUniqueLoot($item)) {
+                // We got boss loot, generate improved tooltip.
+                return self::GetImprovedItemSource($item, $bossLoot);
+            }
+            elseif(Mangos::GetNpcInfo($bossLoot, 'isBoss')) {
+                return array('value' => 'sourceType.creatureDrop');
+            }
+            else {
+                return array('value' => 'sourceType.worldDrop');
+            }
+        }
+        if($chestLoot) {
+            if($chest_data = self::GetImprovedItemSource($item, $chestLoot)) {
+                return $chest_data;
+            }
+            else {
+                return array('value' => 'sourceType.gameObjectDrop');
+            }
+        }
+        
+        $vendorLoot = $this->wDB->selectCell("
+		SELECT `entry`
+			FROM `npc_vendor`
+				WHERE `item`=? LIMIT 1", $item);		
+        $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
+        if($vendorLoot && $reputationReward > 0) {
+            return array('value' => 'sourceType.factionReward');
+		}
+        elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
+            return array('value' => 'sourceType.vendor');
+        }
+        	
+		$questLoot = $this->wDB->selectCell("
 		SELECT `entry`
 		  FROM `quest_template`
 		      WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
 		          `RewChoiceItemId4` = ? OR `RewChoiceItemId5` = ? OR `RewChoiceItemId6` = ? LIMIT 1", $item, $item, $item, 
 		$item, $item, $item);
+        if($questLoot) {
+            return array('value' => 'sourceType.questReward');
+        }
+        
         $craftLoot = $this->aDB->selectCell("
         SELECT `id`
             FROM `armory_spell`
                 WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
-        $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
-        if($bossLoot) {
-            if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && $this->IsUniqueLoot($item)) {
-                // We got boss loot, generate improved tooltip.
-                return $this->GetImprovedItemSource($item, $bossLoot);
-            }
-            $returnString .= Utils::GetArmoryString(1);
-        }
-		if($vendorLoot && $reputationReward > 0) {
-            if($returnString) {
-		      $returnString .= ', ';
-            }
-			$returnString .= Utils::GetArmoryString(6);
-		}
-        elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
-            if($returnString) {
-		      $returnString .= ', ';
-            }
-			$returnString .= Utils::GetArmoryString(2);
-        }
-        //
-        if($questLoot) {
-            if($returnString) {
-                $returnString .= ', ';
-            }
-            $returnString .= Utils::GetArmoryString(3);
-        }
-        if($chestLoot) {
-            if(!$returnString) {
-                if($chest_data = $this->GetImprovedItemSource($item, $chestLoot)) {
-                    return $chest_data;
-                }                
-            }
-            else {
-                $returnString .= ', ';
-            }
-            $returnString .= Utils::GetArmoryString(4);
-        }
         if($craftLoot) {
-            if($returnString) {
-                $returnString .= ', ';
-            }
-            $returnString .= Utils::GetArmoryString(5);
+            return array('value' => 'sourceType.createdByPlans');
         }
-		return $returnString;
     }
     
     /**
@@ -281,49 +268,21 @@ Class Items extends Connector {
         return $loot;
     }
     
-    /**
-     * Returns itemset info: item pieces & bonuses.
-     * @category Items class
-     * @example Items::BuildItemSetInfo(870)
-     * @todo Check & update itemset data in DB (some itemset pieces & bonuses are not displayed)
-     * @return string
-     **/
-    public function BuildItemSetInfo($itemset) {
-        $itemSetBonuses = '';
-        $itemsName='';
-        $query = $this->aDB->selectRow("
-        SELECT *
-            FROM `armory_itemsetinfo`
-                WHERE `id`=? LIMIT 1", $itemset);
-        if(!$query) {
-            return false;
-        }
-        $itemSetName = $query['name_'.$this->_locale];
-        $itemsCount = 0;
-        for($i=1; $i !=9; $i++) {
-            if($query['item'.$i] > 0) {
-                $itemsCount++;
-                $curName = $this->getItemName($query['item'.$i]);
-                if($curName) {
-                    $itemsName .= '<span class="setItemGray">'.$curName.'</span><br />';
-                }
-            }
-        }
-		
+    public function GetItemSetBonusInfo($itemsetdata) {
+        $itemSetBonuses = array();
         for($i=1; $i<9; $i++) {
-            if($query['bonus'.$i] > 0) {
+            if($itemsetdata['bonus'.$i] > 0) {
                 $spell_tmp = array();
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $query['bonus'.$i]);
-                $itemSetBonuses .= '<span class="setItemGray">('.$i.') ';
-                $itemSetBonuses .=  ($this->_locale == 'ru_ru') ? 'Комплект' : 'Set';
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $itemsetdata['bonus'.$i]);
                 if(!isset($spell_tmp['Description_'.$this->_locale])) {
                     $spell_tmp['Description_'.$this->_locale] = '';
                 }
-                $itemSetBonuses .=  ':&nbsp;'.$this->spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$this->_locale])).'</span><br />';
+                $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$this->_locale]));
+                $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
+                $itemSetBonuses[$i]['threshold'] = $i;
             }
 		}
-		$fullItemInfoString = sprintf('<span class="setNameYellow">%s (0/%s)</span><div class="setItemIndent"><br />%s<br />%s</div>', $itemSetName, $itemsCount, $itemsName, $itemSetBonuses);
-		return $fullItemInfoString;
+	   return $itemSetBonuses;
     }
     
     /**
@@ -344,16 +303,15 @@ Class Items extends Connector {
 				if(!empty($VendorLoot)) {
 				    $i = 0;
 					foreach($VendorLoot as $vItem) {
-						$lootTable[$i] = array (
-							'name' => Mangos::GetNpcName($vItem['entry']),
-							'level'=> Mangos::GetNpcInfo($vItem['entry'], 'level'),
-							'map' => Mangos::GetNpcInfo($vItem['entry'], 'map'),
-                            'extended_cost' => Mangos::GetExtendedCost($vItem['ExtendedCost'])
-						);
-                        $i++;
+                        $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, name FROM `creature_template` WHERE `entry`=?", $vItem['entry']);
+                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                            $lootTable[$i]['name'] = Mangos::GetNpcName($vItem['entry']);
+                        }
+                        $lootTable[$i]['area'] = Mangos::GetNpcInfo($vItem['entry'], 'map');
+						$i++;
 					}
 				}
-                break;			
+                break;
 			case 'boss':
 				$BossLoot = $this->wDB->select("
 				SELECT `entry`, `ChanceOrQuestChance`
@@ -362,16 +320,20 @@ Class Items extends Connector {
 				if($BossLoot) {
 				    $i = 0;
 					foreach($BossLoot as $bItem) {
-                               $lootTable[$i] = array (
-                                    'entry' => $bItem['entry'],
-        							'name' => Mangos::GetNpcName($bItem['entry']),
-        							'level'=> Mangos::GetNpcInfo($bItem['entry'], 'level'),
-        							'boss' => Mangos::GetNpcInfo($bItem['entry'], 'isBoss'),
-        							'map' => Mangos::GetNpcInfo($bItem['entry'], 'map'),
-       						 	    'drop_percent' => Mangos::DropPercent($bItem['ChanceOrQuestChance']),
-                                    'boss_data' => Mangos::GetNpcInfo($bItem['entry'], 'bossData')
-    						  );
-                              $i++;
+                        $lootTable[$i] = $this->wDB->selectRow("
+                        SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification`
+                            FROM `creature_template`
+                                WHERE `entry`=?", $bItem['entry']);
+                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                            $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
+                        }
+                        $lootTable[$i]['area'] = Mangos::GetNpcInfo($bItem['entry'], 'map');
+                        $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
+                        $lootTable[$i]['dropRate'] = Mangos::DropPercent($bItem['ChanceOrQuestChance']);
+                        if($lootTable[$i]['areaUrl'] && Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
+                            $lootTable[$i]['url'] = str_replace('boss=all', 'boss='.$bItem['entry'], $lootTable[$i]['areaUrl']);
+                        }
+                        $i++;
 					}
 				}
                 break;
@@ -380,181 +342,185 @@ Class Items extends Connector {
 				SELECT `entry`, `ChanceOrQuestChance`
 					FROM `gameobject_loot_template`
 						WHERE `item`=?", $item);
-				if(!empty($ChestLoot)) {
-				    $i = 0;
-					foreach($ChestLoot as $cItem) {
-                            $lootTable[$i] = array (
-                                'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
-    							'map' => Mangos::GameobjectInfo($cItem['entry'], 'map'),
-    							'difficult' => '&nbsp;',
-    							'drop_percent' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
-    						);
-                            $i++;
-					}
+                if(!$ChestLoot) {
+                    return false;
+                }
+                $i = 0;
+                foreach($ChestLoot as $cItem) {
+                    $lootTable[$i] = array (
+                        'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
+                        'area' => Mangos::GameobjectInfo($cItem['entry'], 'map'),
+                        'areaUrl' => Mangos::GameobjectInfo($cItem['entry'], 'areaUrl'),
+                        'id' => $cItem['entry'],
+                        'dropRate' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
+                    );
+                    $i++;
 				}
-                break;			
+                break;
 			case 'questreward':
 				$QuestLoot = $this->wDB->select("
-				SELECT `entry`, `MinLevel`
+				SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
 					FROM `quest_template`
 						WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
 						`RewChoiceItemId4` = ? OR `RewChoiceItemId5` = ? OR `RewChoiceItemId6` = ?", $item, $item, $item, 
 						$item, $item, $item);
-				if(!empty($QuestLoot)) {
-				    $i = 0;
-					foreach($QuestLoot as $qItem) {
-						$lootTable[$i] = array (
-							'title' => Mangos::QuestInfo($qItem['entry'], 'title'),
-							'reqlevel' => $qItem['MinLevel'],
-							'map' => Mangos::QuestInfo($qItem['entry'], 'map')
-						);
-                        $i++;
-					}
+                if(!$QuestLoot) {
+                    return false;
+                }
+                $i = 0;
+                foreach($QuestLoot as $qItem) {
+                    $lootTable[$i] = $qItem;
+                    if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        $lootTable[$i]['name'] = Mangos::QuestInfo($qItem['id'], 'title');
+                    }
+                    $lootTable[$i]['area'] = Mangos::QuestInfo($qItem['id'], 'map');
+                    $i++;
 				}
-                break;            
+                break;
             case 'queststart':
                 $QuestStart = $this->wDB->selectCell("SELECT `startquest` FROM `item_template` WHERE `entry`=?", $item);
                 if(!$QuestStart) {
                     return false;
                 }
-                $lootTable[0] = array(
-                    'title' => Mangos::QuestInfo($QuestStart, 'title'),
-                    'reqlevel' => Mangos::QuestInfo($QuestStart, 'reqlevel'),
-                    'map' => Mangos::QuestInfo($QuestStart, 'map')
-                );
-                break;            
+                $lootTable = $this->wDB->selectRow("SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `entry`=?", $QuestStart);
+                if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                    $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
+                }
+                $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
+                $lootTable['area'] =  Mangos::QuestInfo($QuestStart, 'map');
+                break;
             case 'providedfor':
-                $QuestInfo = $this->wDB->select("SELECT `entry`, `MinLevel` FROM `quest_template` WHERE `SrcItemId`=?", $item);
+                $QuestInfo = $this->wDB->select("SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `SrcItemId`=?", $item);
                 if(!$QuestInfo) {
                     return false;
                 }
                 $i = 0;
                 foreach($QuestInfo as $quest) {
-                    $lootTable[$i] = array(
-                        'title' => Mangos::QuestInfo($quest['entry'], 'title'),
-                        'reqlevel' => $quest['MinLevel'],
-                        'map' => Mangos::QuestInfo($quest['entry'], 'map')
-                    );
-                }                
+                    $lootTable[$i] = $quest;
+                    if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
+                    }
+                    $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
+                }
                 break;            
             case 'objectiveof':
                 $QuestInfo = $this->wDB->select("
-                SELECT `entry`, `MinLevel`
+                SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
                     FROM `quest_template`
-                        WHERE `ReqItemId1`=? OR `ReqItemId2`=? OR `ReqItemId3`=?
-                        OR `ReqItemId4`=? OR `ReqItemId5`=?", $item, $item, $item, $item, $item);
+                        WHERE `ReqItemId1`=? OR `ReqItemId2`=? OR `ReqItemId3`=? OR `ReqItemId4`=? OR `ReqItemId5`=?", $item, $item, $item, $item, $item);
                 if(!$QuestInfo) {
                     return false;
                 }
                 $i = 0;
                 foreach($QuestInfo as $quest) {
-                    $lootTable[$i] = array(
-                        'title' => Mangos::QuestInfo($quest['entry'], 'title'),
-                        'reqlevel' => $quest['MinLevel'],
-                        'map' => Mangos::QuestInfo($quest['entry'], 'map')
-                    );
-                }                
-                break;            
-            case 'item':
-                $ItemLoot = $this->wDB->select("
-                SELECT `entry`, `ChanceOrQuestChance`
-                    FROM `item_loot_template`
-                        WHERE `item`=?", $item);
-                if(!empty($ItemLoot)) {
-                    $i = 0;
-                    foreach($ItemLoot as $iItem) {
-                        $lootTable[$i] = array (
-                            'name' => Items::GetItemName($iItem['entry']),
-                            'drop_percent' => Mangos::DropPercent($iItem['ChanceOrQuestChance'])
-                        );
-                        $i++;
+                    $lootTable[$i] = $quest;
+                    if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
                     }
-                }
-                break;                
+                    $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
+                }                
+                break;
             case 'disenchant':
                 $DisenchantLoot = $this->wDB->select("
-                SELECT `item`, `ChanceOrQuestChance`, `maxcount`
+                SELECT `item`, `ChanceOrQuestChance`, `maxcount`, `mincountOrRef`
                     FROM `disenchant_loot_template`
                         WHERE `entry`=?", $item);
-                if(!empty($DisenchantLoot)) {
-                    $i = 0;
-                    foreach($DisenchantLoot as $dItem) {
-                        $lootTable[$i] = array (
-                            'entry' => $dItem['item'],
-                            'name' => $this->GetItemName($dItem['item']),
-                            'drop_percent' => Mangos::DropPercent($dItem['ChanceOrQuestChance']),
-                            'count' => $dItem['maxcount'],
-                            'icon' => $this->GetItemIcon($dItem['item'])
-                        );
-                        $i++;
-                    }
+                if(!$DisenchantLoot) {
+                    return false;
                 }
-                break;                
+                $i = 0;
+                foreach($DisenchantLoot as $dItem) {
+                    $lootTable[$i] = array (
+                        'id'       => $dItem['item'],
+                        'name'     => self::GetItemName($dItem['item']),
+                        'dropRate' => Mangos::DropPercent($dItem['ChanceOrQuestChance']),
+                        'maxCount' => $dItem['maxcount'],
+                        'maxCount' => $dItem['mincountOrRef'],
+                        'icon'     => self::GetItemIcon($dItem['item']),
+                        'quality'  => self::GetItemInfo($dItem['item'], 'quality')
+                    );
+                    $i++;
+                }
+                break;
             case 'craft':
                 $CraftLoot = $this->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_".$this->_locale."`
+                        `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
                         FROM `armory_spell`
                             WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
-                if(!empty($CraftLoot)) {
-                    $i=0;
-                    foreach($CraftLoot as $craftItem) {
-                        $lootTable[$i]['name'] = $craftItem['SpellName_'.$this->_locale];
-                        for($o=1;$o<9;$o++) {
-                            if($craftItem['Reagent_'.$o] > 0) {
-                                $lootTable[$i]['entry_reagent_'.$o] = $craftItem['Reagent_'.$o];
-                                $lootTable[$i]['name_reagent_'.$o] = $this->GetItemName($craftItem['Reagent_'.$o]);
-                                $lootTable[$i]['icon_reagent_'.$o] = $this->GetItemIcon($craftItem['Reagent_'.$o]);
-                                $lootTable[$i]['count_reagent_'.$o] = $craftItem['ReagentCount_'.$o];
-                            }
+                if(!$CraftLoot) {
+                    return false;
+                }
+                $i=0;
+                foreach($CraftLoot as $craftItem) {
+                    $lootTable[$i]['spell']   = array();
+                    $lootTable[$i]['item']    = array();
+                    $lootTable[$i]['reagent'] = array();                    
+                    $lootTable[$i]['spell']['name'] = $craftItem['SpellName'];
+                    $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_speillicon` WHERE `id`=?", $craftItem['spellicon']);
+                    for($o=1;$o<9;$o++) {
+                        if($craftItem['Reagent_'.$o] > 0) {
+                            $lootTable[$i]['reagent'][$o]['id'] = $craftItem['Reagent_'.$o];
+                            $lootTable[$i]['reagent'][$o]['name'] = self::getItemName($craftItem['Reagent_'.$o]);
+                            $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($craftItem['Reagent_'.$o]);
+                            $lootTable[$i]['reagent'][$o]['count'] = $craftItem['ReagentCount_'.$o];
+                            $lootTable[$i]['reagent'][$o]['quality'] = self::GetItemInfo($craftItem['Reagent_'.$o], 'quality');
                         }
-                        for($j=1;$j<4;$j++) {
-                            if($craftItem['EffectItemType_'.$j] > 0) {
-                                $lootTable[$i]['item_name_'.$j] = $this->GetItemName($craftItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item_entry_'.$j] = $craftItem['EffectItemType_'.$j];
-                                $lootTable[$i]['item_icon_'.$j] = $this->GetItemIcon($craftItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item_quality_'.$j] = $this->GetItemInfo($craftItem['EffectItemType_'.$j], 'quality');
-                            }
-                        }
-                        $i++;
                     }
+                    for($j=1;$j<4;$j++) {
+                        if($craftItem['EffectItemType_'.$j] > 0) {
+                            $lootTable[$i]['item'][$j]['name'] = self::GetItemName($craftItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['id'] = $craftItem['EffectItemType_'.$j];
+                            $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($craftItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['quality'] = self::GetItemInfo($craftItem['EffectItemType_'.$j], 'quality');
+                        }
+                    }
+                    $i++;
                 }
                 break;
-                
             case 'currency':
                 return false;
                 break;
             case 'reagent':
                 $ReagentLoot = $this->aDB->select("
                 SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
-                        `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
-                        `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_".$this->_locale."` AS `SpellName`
-                        FROM `armory_spell`
-                        WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR 
+                `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                FROM `armory_spell`
+                    WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR
                         `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
-                if($ReagentLoot) {
-                    $i = 0;
-                    foreach($ReagentLoot as $ReagentItem) {
-                        for($j=1;$j<4;$j++) {
-                            if($ReagentItem['EffectItemType_'.$j] > 0) {
-                                $lootTable[$i]['item_entry'] = $ReagentItem['EffectItemType_'.$j];
-                                $lootTable[$i]['item_name'] = $this->getItemName($ReagentItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item_icon'] = $this->getItemIcon($ReagentItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item_quality'] = $this->GetItemInfo($ReagentItem['EffectItemType_'.$j], 'quality');
-                            }
+                if(!$ReagentLoot) {
+                    return false;
+                }
+                $i = 0;
+                foreach($ReagentLoot as $ReagentItem) {
+                    $lootTable[$i]['spell']   = array();
+                    $lootTable[$i]['item']    = array();
+                    $lootTable[$i]['reagent'] = array();
+                    
+                    $lootTable[$i]['spell']['name'] = $ReagentItem['SpellName'];
+                    $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `armory_spellicon` WHERE `id`=?", $ReagentItem['spellicon']);
+                    
+                    for($j=1;$j<4;$j++) {
+                        if($ReagentItem['EffectItemType_'.$j] > 0) {
+                            $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_'.$j];
+                            $lootTable[$i]['item'][$j]['name'] = self::getItemName($ReagentItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['icon'] = self::getItemIcon($ReagentItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['quality'] = self::GetItemInfo($ReagentItem['EffectItemType_'.$j], 'quality');
                         }
-                        for($o=1;$o<9;$o++) {
-                            if($ReagentItem['Reagent_'.$o] > 0) {
-                                $lootTable[$i]['Reagent_'.$o] = $ReagentItem['Reagent_'.$o];
-                                $lootTable[$i]['ReagentIcon_'.$o] = $this->getItemIcon($ReagentItem['Reagent_'.$o]);
-                                $lootTable[$i]['ReagentCount_'.$o] = $ReagentItem['ReagentCount_'.$o];
-                            }
-                        }
-                        $i++;
                     }
+                    for($o=1;$o<9;$o++) {
+                        if($ReagentItem['Reagent_'.$o] > 0) {
+                            $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_'.$o];
+                            $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($ReagentItem['Reagent_'.$o]);
+                            $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_'.$o];
+                            $lootTable[$i]['reagent'][$o]['name'] = self::getItemName($ReagentItem['Reagent_'.$o]);
+                        }
+                    }
+                    $i++;
                 }
                 break;
         }
@@ -600,10 +566,10 @@ Class Items extends Connector {
             FROM `item_instance` 
                 WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
         if($socketInfo > 0) {
-            $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
-            $data['icon'] = $this->getItemIcon($data['item']);
-            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             $data['enchant_id'] = $socketInfo;
+            $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
+            $data['icon'] = self::getItemIcon($data['item']);
+            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             return $data;
         }
         return false;
@@ -616,8 +582,14 @@ Class Items extends Connector {
      * @return array
      **/
     public function getItemDurability($guid, $item) {
-        $durability['current'] = $this->GetItemDataField(ITEM_FIELD_DURABILITY, $item, $guid);
-        $durability['max'] = $this->GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, $guid);
+        $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, $item, $guid);
+        $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, $guid);
+        return $durability;
+    }
+    
+    public function GetItemDurabilityByItemGuid($item_guid) {
+        $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
+        $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
         return $durability;
     }
     
@@ -678,13 +650,11 @@ Class Items extends Connector {
     		$var = $result[6] ? $result[6]:$result[7];
     		if (!$var)
     			continue;
-            // l - размер последней величины == 1 ? 0 : 1
             if ($var[0]=='l')
             {
                 $select = explode(':', substr($var, 1));
                 $str.=@$select[$lastCount==1 ? 0:1];
             }
-            // g - пол персонжа
             else if ($var[0]=='g')
             {
                 $select = explode(':', substr($var, 1));
@@ -803,22 +773,21 @@ Class Items extends Connector {
     }
     
     public function GetImprovedItemSource($itemID, $bossID) {
-        $data = array();
-        $data['percent'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$this->_locale."` AS `name` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
             return false;
         }
-        $data['boss'] = $dungeonData['name'];
-        $data['dungeon'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
-        $data['dungeon_key'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
-        $data['boss_id'] = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
-        return $data;
+        $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+        $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $instance_data['creatureName'] = $dungeonData['name'];
+        $instance_data['dropRate'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
+        $instance_data['value'] = 'sourceType.creatureDrop';
+        return $instance_data;
     }
     
     public function IsUniqueLoot($itemID) {
         $item_count = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `creature_loot_template` WHERE `item`=?", $itemID);
-        if($item_count > 2) {
+        if($item_count > 1) {
             return false;
         }
         return true;
@@ -826,7 +795,7 @@ Class Items extends Connector {
     
     public function GetItemModelData($displayId, $row='', $itemid=0) {
         if($itemid > 0) {
-            $displayId = $this->GetItemInfo($itemid, 'displayid');
+            $displayId = self::GetItemInfo($itemid, 'displayid');
         }
         if($row == '') {
             $data = $this->aDB->selectRow("SELECT * FROM `armory_itemdisplayinfo` WHERE `displayid`=?", $displayId);
@@ -835,6 +804,60 @@ Class Items extends Connector {
             $data = $this->aDB->selectCell("SELECT `".$row."` FROM `armory_itemdisplayinfo` WHERE `displayid`=?", $displayId);
         }
         return $data;
+    }
+    
+    /**
+     * IN_DEV
+     **/
+    public function GetEnchantmentInfo($id) {
+        $spells = array();
+        $spell_id = $this->aDB->selectRow("
+        SELECT `spellid_1`, `spellid_2`, `spellid_3`, `type_1`, `type_2`, `type_3`
+            FROM `armory_enchantment`
+                WHERE `id`=?", $id);
+        for($i=1;$i<4;$i++) {
+            if($spell_id['type_'.$i] != 5) {
+                $spells[$i] = $spell_id['spellid_'.$i];
+            }
+        }
+        $item_id = $this->wDB->selectCell("
+        SELECT `entry`
+            FROM `item_template`
+                WHERE `spellid_1` IN(?a) OR `spellid_2` IN(?a) OR `spellid_3` IN(?a) OR `spellid_4` IN(?a) OR `spellid_5` IN(?a) LIMIT 1",
+                $spells, $spells, $spells, $spells, $spells);
+        if(!$item_id) {
+            return false;
+        }
+    }
+    
+    public function GetFactionEquivalent($itemID, $factionID) {
+        if($factionID == 1) {
+            // Got Horde
+            $equivalent_id = $this->aDB->selectCell("SELECT `item_alliance` FROM `armory_item_equivalents` WHERE `item_horde`=?", $itemID);
+        }
+        elseif($factionID == 2) {
+            // Got Horde
+            $equivalent_id = $this->aDB->selectCell("SELECT `item_horde` FROM `armory_item_equivalents` WHERE `item_alliance`=?", $itemID);
+        }
+        if($equivalent_id > 0 && $info = $this->wDB->selectRow("SELECT `name`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $equivalent_id)) {
+            $item_data = array(
+                'icon'    => self::getItemIcon($equivalent_id),
+                'id'      => $equivalent_id,
+                'level'   => $info['ItemLevel'],
+                'name'    => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $info['name'] : self::getItemName($equivalent_id),
+                'quality' => $info['Quality']
+            );
+            return $item_data;
+        }
+        return false;
+    }
+    
+    public function GetItemSubTypeInfo($itemID, $tooltip=false) {
+        $itemclassInfo = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=?", $itemID);
+        if($tooltip) {
+            return $this->aDB->selectCell("SELECT `subclass_name_".$this->_locale."` FROM `armory_itemsubclass` WHERE `class`=? AND `subclass`=?", $itemclassInfo['class'], $itemclassInfo['subclass']);
+        }
+        return $this->aDB->selectRow("SELECT `subclass_name_".$this->_locale."` AS `subclass_name`, `key` FROM `armory_itemsubclass` WHERE `class`=? AND `subclass`=?", $itemclassInfo['class'], $itemclassInfo['subclass']);
     }
 }
 ?>

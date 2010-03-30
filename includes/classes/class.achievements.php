@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 95
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,8 +49,8 @@ Class Achievements extends Connector {
      * @example Achievements::calculateAchievementPoints()
      * @return int
      **/
-    public function calculateAchievementPoints($guid='') {
-        if($guid == '') {
+    public function CalculateAchievementPoints($guid=null) {
+        if($guid == null) {
             $guid = $this->guid;
         }
         if(!$guid) {
@@ -78,7 +78,7 @@ Class Achievements extends Connector {
      * @return int
      **/
     public function getAchievementProgressBar($sum) {
-        $percent = ACH_MAX_COUNT_GAME / 100;
+        $percent = ACHIEVEMENTS_COUNT_SUMMARY / 100;
         $progressPercent = $sum / $percent;
         return $progressPercent;
     }
@@ -89,78 +89,105 @@ Class Achievements extends Connector {
      * @example Achievements::countCharacterAchievements()
      * @return int
      **/
-    public function countCharacterAchievements() {
+    public function CountCharacterAchievements() {
         if(!$this->guid) {
             return false;
         }
-        $row = $this->cDB->selectPage($total, "SELECT `achievement` FROM `character_achievement` WHERE `guid`=?", $this->guid);
-        return $total;
+        return $this->cDB->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=?", $this->guid);
     }
     
-    /**
-     * Returns number of achievements completed in $category. Requires $this->guid!
-     * @category Achievements class
-     * @example Achievemens::sortAchievements(5)
-     * @return int
-     **/
-    public function sortAchievements($category) {
+    public function GetSummaryAchievementData($category) {
         if(!$this->guid) {
             return false;
         }
+        $achievement_data = array('categoryId' => $category);
+        $categories = null;
+        // 3.3.2
         switch($category) {
-            case 1:
-                // General
-                $achs = ACH_CATEGORY_GENERAL;
+            case 92:
+                $categories = '92';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_GENERAL;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_GENERAL;
                 break;
-            case 2:
-                // Quests
-                $achs = ACH_CATEGORY_QUESTS.', '.ACH_CATEGORY_QUESTS_EA.', '.ACH_CATEGORY_QUESTS_TBC.', '.ACH_CATEGORY_QUESTS_WOTLK;
+            case 96:
+                $categories = '14861, 14862, 14863';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_QUESTS;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_QUESTS;
                 break;
-            case 3:
-                // Exploration
-                $achs = ACH_CATEGORY_EXPLORATION.', '.ACH_CATEGORY_EXPLORATION_EK.', '.ACH_CATEGORY_EXPLORATION_KALIMDOR.', '.ACH_CATEGORY_EXPLORATION_OUTLAND.', '.ACH_CATEGORY_EXPLORATION_NORTHREND;
+            case 97:
+                $categories = '14777, 14778, 14779, 14780';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_EXPLORATION;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_EXPLORATION;
                 break;
-            case 4:
-                // PvP
-                $achs = ACH_CATEGORY_PVP.', '.ACH_CATEGORY_PVP_ARENA.', '.ACH_CATEGORY_PVP_AV.', '.ACH_CATEGORY_PVP_AB.', '.ACH_CATEGORY_PVP_EOTS.', '.ACH_CATEGORY_PVP_WG.', '.ACH_CATEGORY_PVP_SA.', '.ACH_CATEGORY_PVP_WINTERGRASP.', '.ACH_CATEGORY_PVP_IC;
+            case 95:
+                $categories = '165, 14801, 14802, 14803, 14804, 14881, 14901, 15003';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_PVP;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_PVP;
                 break;
-            case 5:
-                // Dungeons & raids
-                $achs = ACH_CATEGORY_DUNGEONS.', '.ACH_CATEGORY_DUNGEONS_CLASSIC.', '.ACH_CATEGORY_DUNGEONS_TBC.', '.ACH_CATEGORY_DUNGEONS_WOTLK.', '.ACH_CATEGORY_DUNGEONS_WOTLK_H.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID.', '.ACH_CATEGORY_DUNGEONS_WOTLK_RAID_H.', '.ACH_CATEGORY_DUNGEONS_ULDUAR.', '.ACH_CATEGORY_DUNGEONS_ULDUAR_H.', '.ACH_CATEGORY_DUNGEONS_CRUSADE.', '.ACH_CATEGORY_DUNGEONS_CRUSADE_H.', '.ACH_CATEGORY_DUNGEONS_FALL_OF_THE_LICH_KING.', '.ACH_CATEGORY_DUNGEONS_FALL_OF_THE_LICH_KING_H;
+            case 168:
+                $categories = '14808, 14805, 14806, 14921, 14922, 14923, 14961, 14962, 15001, 15002, 15041, 15042';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_DUNGEONS;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_DUNGEONS;
                 break;
-            case 6:
-                // Professions
-                $achs = ACH_CATEGORY_PROFESSIONS.', '.ACH_CATEGORY_PROFESSIONS_COOKING.', '.ACH_CATEGORY_PROFESSIONS_FISHING.', '.ACH_CATEGORY_PROFESSIONS_FIRST_AID;
+            case 169:
+                $categories = '170, 171, 172';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_PROFESSIONS;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_PROFESSIONS;
                 break;
-            case 7:
-                // Reputation
-                $achs = ACH_CATEGORY_REPUTATION.', '.ACH_CATEGORY_REPUTATION_CLASSIC.', '.ACH_CATEGORY_REPUTATION_TBC.', '.ACH_CATEGORY_REPUTATION_WOTLK;
+            case 201:
+                $categories = '14864, 14865, 14866';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_REPUTATION;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_REPUTATION;
                 break;
-            case 8:
-                // Game events
-                $achs = ACH_CATEGORY_EVENTS.', '.ACH_CATEGORY_EVENTS_LUNAR_FESTIVAL.', '.ACH_CATEGORY_EVENTS_LOVE.', '.ACH_CATEGORY_EVENTS_NOBLEGARDEN.', '.ACH_CATEGORY_EVENTS_CHILDRENS.', '.ACH_CATEGORY_EVENTS_MIDSUMMER.', '.ACH_CATEGORY_EVENTS_BREWFEST.', '.ACH_CATEGORY_EVENTS_HALLOWEEN.', '.ACH_CATEGORY_EVENTS_PILIGRIM.', '.ACH_CATEGORY_EVENTS_WINTER_VEIL.', '.ACH_CATEGORY_EVENTS_ARGENT_TOURNAMENT;
+            case 155:
+                $categories = '160, 187, 159, 163, 161, 162, 158, 14981, 156, 14941';
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_EVENTS;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_EVENTS;
                 break;
-            case 9:
-                // Feats of strenght
-                $achs = ACH_CATEGORY_FEATS_OF_STRENGHT;
+            case 81:
+                $categories = '81';
                 break;
-            default:
-                $achs = 0;
+            default: // Summary
+                $categories = null;
+                $achievement_data['total'] = ACHIEVEMENTS_COUNT_SUMMARY;
+                $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_SUMMARY;
                 break;
         }
-        $achievementsCount = $this->aDB->selectCell("
-        SELECT COUNT(`achievement`)
-            FROM `".$this->mysqlconfig['name_characters']."`.`character_achievement`
-            WHERE `achievement` IN 
-            (
-                SELECT `id` 
-                FROM `".$this->mysqlconfig['name_armory']."`.`armory_achievement` 
-                WHERE `categoryId` IN (".$achs.")
-            )
-            AND `guid`=?", $this->guid);
-        return $achievementsCount;
+        if($categories != null) {
+            $achievement_ids = $this->aDB->select("
+            SELECT `achievement`
+                FROM `".$this->mysqlconfig['name_characters']."`.`character_achievement`
+                WHERE `achievement` IN 
+                (
+                    SELECT `id` 
+                    FROM `".$this->mysqlconfig['name_armory']."`.`armory_achievement` 
+                    WHERE `categoryId` IN (".$categories.")
+                )
+                AND `guid`=?", $this->guid);
+            $count_ids = count($achievement_ids);
+            $str_ids = '';
+            for($i=0;$i<$count_ids;$i++) {
+                if($i) {
+                    $str_ids .= ', ';
+                }
+                $str_ids .= $achievement_ids[$i]['achievement'];
+            }
+            $achievement_data['earned'] = $count_ids;
+            $achievement_data['points'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (".$str_ids.")");
+            if(!$achievement_data['earned']) {
+                $achievement_data['earned'] = 0;
+            }
+            if(!$achievement_data['points']) {
+                $achievement_data['points'] = 0;
+            }
+        }
+        else {
+            $achievement_data['earned'] = self::CountCharacterAchievements();
+            $achievement_data['points'] = self::CalculateAchievementPoints();
+        }
+        return $achievement_data;
     }
-    
+        
     /**
      * Returns array with 5 latest completed achievements. Requires $this->guid!
      * @category Achievements class
@@ -173,9 +200,12 @@ Class Achievements extends Connector {
             return false;
         }
         $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
+        if(!$achievements) {
+            return false;
+        }
         $aCount = count($achievements);
         for($i=0;$i<$aCount;$i++) {
-            $achievements[$i] = $this->GetAchievementInfo($achievements[$i]);
+            $achievements[$i] = self::GetAchievementInfo($achievements[$i]);
         }
         return $achievements;
     }
@@ -200,119 +230,7 @@ Class Achievements extends Connector {
         if(!$achievement_date) {
             return false;
         }
-        $stringDate = date('d/m/Y', $achievement_date);
-        return $stringDate;
-    }
-    
-    /**
-     * Returns achievement criteria & progress info. Requires $this->achId!
-     * @category Achievements class
-     * @example Achievements::AchievementProgress()
-     * @todo Sort with achievement criteria types
-     * @return string
-     **/
-    public function AchievementProgress() {
-        $string_return = '';
-        $tmp_str       = '';
-        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
-        
-        $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>{CURRENT_NUM} / {FULLCOUNT}</div></div></div></div></ul>";
-        $progress_list_string = "<ul class='criteria c_list'>{CRITERIA_LIST}</ul>";
-        // Check if data exists
-        
-        // Hack
-        error_reporting(0);
-        
-        $character_progress = $this->cDB->selectCell("
-        SELECT `counter`
-            FROM `character_achievement_progress`
-                WHERE `criteria`=? AND `guid`=? LIMIT 1", $data['0']['id'], $this->guid);
-        if(empty($character_progress) || !$character_progress) {
-            $character_progress = 0;
-        }
-        switch($data[0]['requiredType']) {
-            /** COUNTERS **/
-            case ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST_COUNT:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST_DAILY:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUESTS_IN_ZONE:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST:
-            case ACHIEVEMENT_CRITERIA_TYPE_CAST_SPELL:
-            case ACHIEVEMENT_CRITERIA_TYPE_DAMAGE_DONE:
-            case ACHIEVEMENT_CRITERIA_TYPE_WIN_RATED_ARENA:
-            case ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM:
-            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM:
-            case ACHIEVEMENT_CRITERIA_TYPE_BUY_BANK_SLOT:
-            case ACHIEVEMENT_CRITERIA_TYPE_GAIN_EXALTED_REPUTATION:
-            case ACHIEVEMENT_CRITERIA_TYPE_GET_KILLING_BLOWS:
-            case ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD:
-            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY:
-            case ACHIEVEMENT_CRITERIA_TYPE_LEARN_SKILLLINE_SPELLS:
-            case ACHIEVEMENT_CRITERIA_TYPE_LOOT_TYPE:
-            case ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL:
-            case ACHIEVEMENT_CRITERIA_TYPE_LFD_PASSED:
-            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
-                if($data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD || $data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY) {
-                    $money = Mangos::getMoney($character_progress);
-                    $money_need = Mangos::getMoney($data[0]['value']);
-                    $progress_bar_string = "<ul class='criteria'><div class='critbar'><div class='prog_bar '><div class='progress_cap'></div><div class='progress_cap_r'></div><div class='progress_int'><div class='progress_fill' style='width:{PERCENT}%'></div><div class='prog_int_text'>";
-                    if($money['gold'] > 0) {
-                        $progress_bar_string .= $money['gold']." <img alt='' class='p' src='images/icons/money-gold-small.png'/>";
-                    }
-                    if($money['silver'] > 0) {
-                        $progress_bar_string .= $money['silver']." <img alt='' class='p' src='images/icons/money-silver-small.png'/>";
-                    }
-                    if($money['copper'] > 0) {
-                        $progress_bar_string .= $money['copper']." <img alt='' class='p' src='images/icons/money-copper-small.png'/>";
-                    }
-                    $progress_bar_string .= " / ".$money_need['gold']."<img alt='' class='p' src='images/icons/money-gold-small.png'/></div></div></div></div></ul>";
-                }
-                if($data[0]['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2 && $data[0]['value'] == 1) {
-                    return;
-                }
-                $percent_value = floor(Utils::getPercent($data['0']['value'], $character_progress));
-                $progress_bar_string = str_replace("{PERCENT}", $percent_value, $progress_bar_string);
-                $progress_bar_string = str_replace("{CURRENT_NUM}", $character_progress, $progress_bar_string);
-                $progress_bar_string = str_replace("{FULLCOUNT}", $data[0]['value'], $progress_bar_string);
-                $string_return = $progress_bar_string;
-                break;
-            case ACHIEVEMENT_CRITERIA_TYPE_KILL_CREATURE:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_ACHIEVEMENT:
-            case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST:
-            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET:
-            case ACHIEVEMENT_CRITERIA_TYPE_OWN_ITEM:
-            case ACHIEVEMENT_CRITERIA_TYPE_EXPLORE_AREA:
-            case ACHIEVEMENT_CRITERIA_TYPE_GAIN_REPUTATION:
-            case ACHIEVEMENT_CRITERIA_TYPE_EQUIP_EPIC_ITEM:
-            case ACHIEVEMENT_CRITERIA_TYPE_HK_CLASS:
-            case ACHIEVEMENT_CRITERIA_TYPE_HK_RACE:
-            case ACHIEVEMENT_CRITERIA_TYPE_DO_EMOTE:
-            case ACHIEVEMENT_CRITERIA_TYPE_USE_GAMEOBJECT:
-            case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
-            case ACHIEVEMENT_CRITERIA_TYPE_SPECIAL_PVP_KILL:
-            case ACHIEVEMENT_CRITERIA_TYPE_FISH_IN_GAMEOBJECT:
-                $i=0;
-                foreach($data as $criteria) {
-                    $counter = $this->cDB->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `criteria`=? AND `guid`=?", $criteria['id'], $this->guid);
-                    $tmp_str .= "<li class='c_list_col";
-                    if(!empty($counter)) {
-                        $tmp_str .= " criteriamet'";
-                    }
-                    else {
-                        $tmp_str .= "'";
-                    }
-                    if($i%2) {
-                        $tmp_str .= " style='float:left;'";
-                    }
-                    $tmp_str .= '>'.$criteria['name_'.$this->_locale].'</li>';
-                    $i++;
-                }
-                $string_return = str_replace("{CRITERIA_LIST}", $tmp_str, $progress_list_string);
-                break;
-            }
-        // Hack
-        error_reporting(E_ALL);
-        return $string_return;
+        return date('Y-m-d\TH:i:s+02:00', $achievement_date);
     }
     
     /**
@@ -359,28 +277,46 @@ Class Achievements extends Connector {
     /**
      * Generates achievement categories menu (for character-achievements.php)
      * @category Achievements class
-     * @example Achievements::buildAchievementsTree()
+     * @example Achievements::BuildCategoriesTree()
      * @return string
      **/
-    public function buildAchievementsTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` FROM `armory_achievement_category` WHERE `parentCategory`=-1");
-        $achievementTree = '';
+    public function BuildCategoriesTree() {
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1");
+        $root_tree = array();
+        $i = 0;
         foreach($categoryIds as $cat) {
-            $i = 0;
-            $achievementTree .= '<div>
-            <a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$cat['id'].'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$cat['id'].')">'.$cat['name_'.$this->_locale].'</a>';
-            $child = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
-            if($child) {
-                $achievementTree .= '<div class="cat_list">';
-                foreach($child as $childcat) {
-                    $achievementTree .= '<div class="nav-subcat"><a href="javascript:void(0)" onclick="Armory.Achievements.toggleCategory(this.parentNode, \''.$i.'\'); loadAchievements(\''.Characters::GetCharacterName($this->guid).'\', '.$childcat['id'].')">'.$childcat['name_'.$this->_locale].'</a></div>';
-                    $i++;
+            $child_categories = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
+            if($child_categories) {
+                $root_tree[$i]['child'] = array();
+                $child_count = count($child_categories);
+                for($j=0;$j<$child_count;$j++) {
+                    $root_tree[$i]['child'][$j] = array('name' => $child_categories[$j]['name'], 'id' => $child_categories[$j]['id']);
                 }
-                $achievementTree .= '</div>';
             }
-            $achievementTree .= '</div>';
+            $root_tree[$i]['name'] = $cat['name'];
+            $root_tree[$i]['id'] = $cat['id'];
+            $i++;
         }
-        return $achievementTree;
+        return $root_tree;
+    }
+    public function BuildStatisticsCategoriesTree() {
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_statistics_category` WHERE `parentCategory`=1");
+        $root_tree = array();
+        $i = 0;
+        foreach($categoryIds as $cat) {
+            $child_categories = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_statistics_category` WHERE `parentCategory`=?", $cat['id']);
+            if($child_categories) {
+                $root_tree[$i]['child'] = array();
+                $child_count = count($child_categories);
+                for($j=0;$j<$child_count;$j++) {
+                    $root_tree[$i]['child'][$j] = array('name' => $child_categories[$j]['name'], 'id' => $child_categories[$j]['id']);
+                }
+            }
+            $root_tree[$i]['name'] = $cat['name'];
+            $root_tree[$i]['id'] = $cat['id'];
+            $i++;
+        }
+        return $root_tree;
     }
     
     /**
@@ -394,11 +330,14 @@ Class Achievements extends Connector {
         if(!is_array($achievementData)) {
             return false;
         }
-        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `description`, `points` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
         if(!$achievementinfo) {
             return false;
         }
-        $achievementinfo['date'] = $this->GetDateFormat($achievementData['date']);
+        if($achievementinfo['points'] == 0) {
+            unset($achievementinfo['points']);
+        }
+        $achievementinfo['dateCompleted'] = date('Y-m-d\TH:i:s:+01:00', $achievementData['date']);
         return $achievementinfo;
     }
     
@@ -427,11 +366,226 @@ Class Achievements extends Connector {
     }
     
     public function IsAchievementExists($achId) {
-        $data = $this->aDB->selectCell("SELECT `name_en_gb` FROM `armory_achievement` WHERE `id`=?", $achId);
+        $data = $this->aDB->selectCell("SELECT `id` FROM `armory_achievement` WHERE `id`=?", $achId);
         if($data) {
             return true;
         }
         return false;
+    }
+    
+    public function LoadAchievementPage($page_id, $faction) {
+        if(!$this->guid) {
+            return false;
+        }
+        $achievements_data = $this->aDB->select(
+        "SELECT `id`, `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`, `titleReward_".$this->_locale."` AS `titleReward`
+            FROM `armory_achievement`
+                WHERE `categoryId`=? AND `factionFlag` IN (?, -1)", $page_id, $faction);
+        if(!$achievements_data) {
+            return false;
+        }
+        $return_data = array();
+        $i=0;
+        $hide_id = array();
+        foreach($achievements_data as $achievement) {
+            $this->achId = $achievement['id'];
+            $completed = self::IsAchievementCompleted($this->achId);
+            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $this->achId);
+            if($completed) {
+                $return_data['completed'][$this->achId]['data'] = $achievement;
+                $return_data['completed'][$this->achId]['data']['categoryId'] = $page_id;
+                if($return_data['completed'][$this->achId]['data']['titleReward'] != '') {
+                    $return_data['completed'][$this->achId]['data']['reward'] = $return_data['completed'][$this->achId]['data']['titleReward'];
+                    unset($return_data['completed'][$this->achId]['data']['titleReward']);
+                }
+                if($page_id == 81) {
+                    unset($return_data['completed'][$this->achId]['data']['points']);
+                }
+                $return_data['completed'][$this->achId]['data']['dateCompleted'] = self::GetAchievementDate();
+                $return_data['completed'][$this->achId]['display'] = 1;
+                $parent_used = false;
+                if($parentId > 0 && self::IsAchievementCompleted($parentId)) {
+                    $j=0;
+                    $fullPoints = 0;
+                    $return_data['completed'][$this->achId]['achievement_tree'] = array();
+                    while($parentId != 0) {
+                        if(!self::IsAchievementCompleted($parentId)) {
+                            $hide_id[$i] = $parentId;
+                            $parentId = 0;
+                            if(count($return_data['completed'][$this->achId]['achievement_tree']) == 0) {
+                                $parent_used = false;
+                                unset($return_data['completed'][$this->achId]['achievement_tree']);
+                            }
+                        }
+                        else {
+                            $return_data['completed'][$parentId]['display'] = 0;
+                            $parent_used = true;
+                            $return_data['completed'][$this->achId]['achievement_tree'][$j] = $this->aDB->selectRow("
+                            SELECT `id`, `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`
+                                FROM `armory_achievement`
+                                    WHERE `id`=?", $parentId);
+                            $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($this->guid, $parentId);
+                            $cPoints = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'];
+                            $fullPoints = $fullPoints+$cPoints;
+                            $return_data['completed'][$this->achId]['data']['points'] = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points']+$fullPoints;
+                            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=?", $parentId);
+                            $j++;
+                        }
+                    }
+                }
+                if(!$parent_used) {
+                    $return_data['completed'][$this->achId]['criteria'] = self::BuildAchievementCriteriaTable();
+                }
+            }
+            elseif($page_id != 81) { // Do not display incompleted achievements in `Feats of Strenght` category.
+                $return_data['incompleted'][$this->achId]['data'] = $achievement;
+                $return_data['incompleted'][$this->achId]['data']['categoryId'] = $page_id;
+                $return_data['incompleted'][$this->achId]['display'] = 1;
+                if(isset($return_data['incompleted'][$this->achId]['data']['titleReward']) && $return_data['incompleted'][$this->achId]['data']['titleReward'] != '') {
+                    $return_data['incompleted'][$this->achId]['data']['reward'] = $return_data['incompleted'][$this->achId]['data']['titleReward'];
+                    unset($return_data['incompleted'][$this->achId]['data']['titleReward']);
+                }
+                $return_data['incompleted'][$this->achId]['criteria'] = self::BuildAchievementCriteriaTable();
+            }
+            /*            
+            if(isset($return_data['incompleted'][$parentId])) {
+                $return_data['incompleted'][$parentId]['display'] = 0;
+            }*/
+            $i++;
+        }
+        return $return_data;
+    }
+    
+    public function BuildAchievementCriteriaTable() {
+        if(!$this->guid || !$this->achId) {
+            return false;
+        }
+        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
+        if(!$data) {
+            return false;
+        }
+        $i = 0;
+        $achievement_criteria = array();
+        foreach($data as $criteria) {
+            $achievement_criteria[$i]['id']   = $criteria['id'];
+            $achievement_criteria[$i]['name'] = $criteria['name_'.$this->_locale];
+            $m_data = $this->GetCriteriaData($criteria['id']);
+            if(!$m_data['counter']) {
+                $m_data['counter'] = 0;
+            }
+            $achievement_criteria[$i]['counter'] = $m_data['counter'];
+            switch($criteria['requiredType']) {
+                case ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD:
+                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY:
+                    $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
+                    $money = Mangos::getMoney($m_data['counter']);
+                    $achievement_criteria[$i]['quantityGold'] = $money['gold'];
+                    $achievement_criteria[$i]['quantitySilver'] = $money['silver'];
+                    $achievement_criteria[$i]['quantityCopper'] = $money['copper'];
+                    break;
+                case ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL:
+                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST_COUNT:
+                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST_DAILY:
+                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUESTS_IN_ZONE:
+                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST:
+                case ACHIEVEMENT_CRITERIA_TYPE_CAST_SPELL:
+                case ACHIEVEMENT_CRITERIA_TYPE_DAMAGE_DONE:
+                case ACHIEVEMENT_CRITERIA_TYPE_WIN_RATED_ARENA:
+                case ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM:
+                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM:
+                case ACHIEVEMENT_CRITERIA_TYPE_BUY_BANK_SLOT:
+                case ACHIEVEMENT_CRITERIA_TYPE_GAIN_EXALTED_REPUTATION:
+                case ACHIEVEMENT_CRITERIA_TYPE_GET_KILLING_BLOWS:
+                case ACHIEVEMENT_CRITERIA_TYPE_LEARN_SKILLLINE_SPELLS:
+                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_TYPE:
+                case ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL:
+                case ACHIEVEMENT_CRITERIA_TYPE_LFD_PASSED:
+                case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
+                    if($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2 && $criteria['value'] == 1) {
+                        continue;
+                    }
+                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL && $criteria['completionFlag'] == 0) {
+                        continue;
+                    }
+                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM && $criteria['value'] == 1) {
+                        continue;
+                    }
+                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM && $criteria['value'] == 1) {
+                        return $achievement_criteria;
+                    }
+                    $achievement_criteria[$i]['maxQuantity'] = $criteria['value'];
+                    $achievement_criteria[$i]['quantity'] = $m_data['counter'];
+                    if($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM && $criteria['completionFlag'] == 3) {
+                        return $achievement_criteria;
+                    }
+                    $achievement_criteria[$i]['maxQuantity'] = $criteria['value'];
+                    $achievement_criteria[$i]['quantity'] = $m_data['counter'];
+                    break;
+            }
+            if(isset($m_data['date']) && $m_data['date'] > 0) {
+                $achievement_criteria[$i]['date'] = date('Y-m-d+01:00', $m_data['date']);
+            }
+            $i++;
+        }
+        return $achievement_criteria;
+    }
+    
+    public function GetCriteriaData($criteria_id) {
+        if(!$this->guid) {
+            return false;
+        }
+        $criteria_data = $this->cDB->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=? AND `criteria`=?", $this->guid, $criteria_id);
+        if($criteria_data) {
+            return $criteria_data;
+        }
+        return false;
+    }
+    
+    public function LoadStatisticsPage($page_id, $faction) {
+        if(!$this->guid) {
+            return false;
+        }
+        $achievements_data = $this->aDB->select(
+        "SELECT `id`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `desc`,  `categoryId`
+            FROM `armory_achievement`
+                WHERE `categoryId`=? AND `factionFlag` IN (?, -1)", $page_id, $faction);
+        if(!$achievements_data) {
+            return false;
+        }
+        $return_data = array();
+        $i=0;
+        $hide_id = array();
+        foreach($achievements_data as $achievement) {
+            $this->achId = $achievement['id'];
+            $return_data[$i] = $achievement;
+            $return_data[$i]['quantity'] = self::GetCriteriaValue();
+            $i++;
+        }
+        return $return_data;
+    }
+    
+    public function GetCriteriaValue() {
+        if(!$this->guid || !$this->achId) {
+            return false;
+        }
+        $criteria_ids = $this->aDB->select("SELECT `id` FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
+        if(!$criteria_ids) {
+            return false;
+        }
+        $tmp_criteria_value = 0;
+        foreach($criteria_ids as $criteria) {
+            $tmp_criteria_value = $this->cDB->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=? AND `criteria`=? LIMIT 1", $this->guid, $criteria['id']);
+            if(!$tmp_criteria_value) {
+                continue;
+            }
+            else {
+                return $tmp_criteria_value;
+            }
+        }
+        if(!$tmp_criteria_value) {
+            return 0;
+        }
+        return $tmp_criteria_value;
     }
 }
 ?>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Torneo Arena">
+	<faqlist>
+		<faq question="¿Qué tipo de información del Torneo Arena aparece en la Armería?">
+			En la Armería puedes buscar todos los perfiles de equipo y personajes que participan en el Torneo. Además, la escala de posiciones para el Coliseo, el grupo de batalla especial del Torneo, se actualiza diariamente.
+		</faq>
+		<faq question="¿En que difieren estos perfiles de los que aparecen en la Armería regular?">
+			Todos los personajes y equipos que participan en el Torneo Arena tienen sus propios perfiles, los cuales son ligeramente distintos de aquellos que se muestran en los reinos activos. Se da mayor importancia a la información JcJ, y se omite todo lo que no tenga relevancia para los reinos del Torneo (como la hermandad). En la sección de perfiles de personaje, por ejemplo, se sustituye la lista de miembros de la hermandad con la lista de miembros del equipo y su clasificación, la sección de profesiones con la información de clasificación personal y el nombre de la hermandad del jugador con el nombre de su equipo.
+		</faq>
+		<faq question="¿Cómo puedo ver la escala de posiciones de los Torneos que se llevan a cabo en otras regiones?">
+			Desde el menú de navegación de la Armería, ubicado en la parte superior izquierda, entra a la página de la escala de posiciones del Torneo Arena. Esto te mostrará la escala de posiciones actualizada para tu región predeterminada: Norteamérica, Europa o Corea. Utiliza los enlaces ubicados en la parte inferior de la escala de posiciones para visitar las demás regiones. Recomendamos a los participantes que estén pendientes del desarrollo de los Torneos en las demás regiones para que tengan una mejor perspectiva y contexto.
+		</faq>
+		<faq question="¿Dónde puedo encontrar más información acerca del Torneo Arena?">
+			Consulta la página de información del Torneo Arena para más datos acerca de esta experiencia de juego competitiva y especializada de World of Warcraft. En dicha página también encontrarás enlaces para inscribirte.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Esc. de posiciones del Torneo Arena" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Información del Torneo Arena" url="http://www.worldofwarcraft.com/na/pvp/tournament/index.xml"/>
+		<relatedlink name="Inscríbete" url="http://www.worldofwarcraft.com/na/pvp/tournament/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Сведения об Оружейной">
+	<faqlist>
+		<faq key="whatisarmory" question="Что такое Оружейная?">
+			Оружейная — это обширная база данных с прозрачным и удобным интерфейсом, по которой можно производить поиск. Все данные поступают напрямую из игровых миров, поэтому в Оружейной вы найдете самую полную и свежую информацию о персонажах, командах Арены, гильдиях и предметах World of Warcraft. 
+		</faq>
+		<faq question="Среди каких категорий можно проводить поиск?">
+			Вы можете искать среди персонажей, предметов, гильдий, команд Арены и наград для фракций. Выберите соответствующую категорию в выпадающем меню и введите искомое слово.
+		</faq>
+		<faq question="Какие дополнительные возможности Оружейной становятся доступны при входе в нее?">
+			В правом верхнем углу экрана находится ссылка на вход в систему. Войдите в систему, используя данные вашей учетной записи, чтобы получить доступ к защищенной информации о персонаже, банку гильдии и календарю персонажа.
+			<p/>
+			Более подробную информацию о новом интерфейсе выбора персонажа вы можете узнать в разделе <a href="faq-login.xml">вопросов и ответов о входе в Оружейную</a>.
+		</faq>
+		<faq question="Почему профиль моего персонажа выглядит иначе?">
+			С выходом обновления 3.3 профили персонажей в Оружейной изменились: был улучшен интерфейс, добавлены новые функции, среди которых - возможность просматривать модели персонажей в 3D, новости персонажей, отслеживать изменения в календаре и т.д. Более подробно об этом рассказывается на странице <a href="updates.xml">обновлений</a>.
+		</faq>	
+		<faq exclude="CN,TW" question="Что такое Мобильная Оружейная?">
+			Мобильная Оружейная World of Warcraft - это версия Оружейной для iPhone™ и iPod touch®. Это приложение, предоставляющее почти те же возомжности пользователям, что и обычная Оружейная, можно загрузить бесплатно с помощью iTunes® App Store. Все подробности вы найдете на странице <a href="iphone.xml">«Мобильной Оружейной»</a>.
+		</faq>
+		<faq question="Какими браузерами лучше пользоваться для просмотра Оружейной?">
+			Оружейная поддерживается браузерами Internet Explorer (версии от 6.0 и выше), Firefox, Opera 9, Safari и Chrome и оптимизирована для работы с новейшими версиями этих браузеров. Кроме того, отдельные функции требуют наличия <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&amp;promoid=BIOW">Flash Player</a>.
+		</faq>		
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="Награды за эмблемы льда" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Награды за эмблемы триумфа" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Фамильные вещи" url="search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Калькулятор Арены" url="arena-calculator.xml"/>
+		<relatedlink name="«Мобильная Оружейная»" url="iphone.xml"/>
+		<relatedlink name="Модуль поиска для браузера" url="search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Новости Оружейной" url="updates.xml"/>
+		<relatedlink name="Часто задаваемые вопросы" url="faq-armory.xml"/>		
+		<relatedlink name="Возможные проблемы" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Сообщить о технической ошибке" type="report" url="http://forums.wow-europe.com/board.html?&amp;sid=5&amp;forumId=50005"/>
+		<relatedlink name="Сообщить об ошибке в переводе" type="report" url="http://forums.wow-europe.com/board.html?forumId=50002&amp;sid=5"/>	
+	</relatedlinks>
+</relatedinfo>

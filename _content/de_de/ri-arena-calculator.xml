@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Arena-Rechner">
+	<faqlist>
+		<faq question="Was ist der Arena-Rechner?">
+			Der Arena-Rechner hat drei Funktionen. Der Arenapunkte-Rechner gibt eine bestimmte Wertung als Anzahl der Punkte aus, die man für die Woche erhalten würde. Der Wertungs-Rechner berücksichtigt ein gesetztes Punktziel und die gegenwärtigen gesammelten Punkte und generiert darauf basierend eine Tabelle, in der die durchschnittliche Wertung angezeigt wird, die für das Erreichen dieses Punktziels benötigt wird. Der Zeit-Rechner bezieht ebenfalls ein gesetztes Punktziel und die gegenwärtigen Punkte ein, passt jedoch die Dauer der benötigten Zeit bis zum Erreichen des Ziels an auf die eingegebene Wertung.
+		</faq>
+		<faq question="Wie wird meine Teamwertung berechnet?">
+			Die Basiswertung eines neuen Teams ist 0 und das beständige Gewinnen verändert diese Wertung. Bei einem Sieg des Teams geht die Wertung nach oben. Der Betrag, um den sich die Wertung ändert, hängt von eurer Wertung im Vergleich zu der Wertung des gegnerischen Teams ab.
+		</faq>
+		<faq key="getArenaPoints" question="Wie wirkt sich meine Teamwertung auf die Arenapunkte aus?">
+			Nach Ende jeder Woche wird eure Teamwertung genommen, um die Anzahl der Arenapunkte dieser Woche für euer Team zu berechnen. Euer Team muss mindestens zehn Kämpfe in dieser Woche ausgetragen haben, um Arenapunkte zu erhalten und ein Spieler muss wenigstens 30% aller Kämpfe bestritten haben, um die Punkte zu erhalten. Hierbei ist zu beachten, dass die Punkte, die man in dieser Woche erhält, abhängig sind von nur einem Team und keine Kombination aller Teams sind, in denen man Mitglied ist. Das Team, mit dem man die meisten Punkte hinsichtlich Teamwertung und Teamart erreichen würde, ist die alleinige Quelle der Punkte für die Woche. Hierbei ist zu beachten, dass 2v2- und 3v3-Teams Abzügen unterliegen, so dass sie weniger Punkte erhalten würden als ein 5v5-Team gleicher Wertung.
+		</faq>
+		<faq question="Was kann ich mit Arenapunkten erwerben und wieviele kann ich gleichzeitig haben?">
+			Arenapunkte sind die Währung, um Arenabelohnungen zu erwerben. Ihr könnt bis zu 5.000 Arenapunkte ansammeln, die nicht über die Zeit verfallen werden.
+		</faq>
+		<faq question="Ist ,999... = 1?">
+			<a href="http://www.blizzard.com/press/040401.shtml">Ja</a>. 
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Arenaturnier" url="/arena-tournament.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena-Informationen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
+		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

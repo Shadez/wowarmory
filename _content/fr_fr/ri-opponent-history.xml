@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Historique des adversaires">
+	<faqlist>
+		
+		<faq question="À quoi sert la page Historique des adversaires ?">
+		La page d'historique des adversaires rassemble toutes les équipes affrontées par une équipe donnée au cours de toutes les saisons. En plus de leur vocation d'archive, ces informations sont utiles pour déterminer les performances de cette équipe contre une composition de classes précise. Voici ce que vous pouvez trouver sur cette page :
+	<ul>
+		<li>Les données de chaque membre des équipes adverses depuis le début de la première saison sont affichées tant que les deux équipes se sont affrontées au moins deux fois.</li>
+		<li>Utilisez les filtres pour restreindre les résultats de votre recherche.</li>
+		<li>Les colonnes peuvent afficher leur contenu par nom d'équipe, royaume, match disputé (par défaut), victoires/défaites, pourcentage de victoires et changement de cote.</li>
+		<li>Pour afficher la composition de l'équipe adverse, cliquez sur le nom de l'équipe ou recherchez cette équipe dans l'onglet Historique des matchs.</li>
+	</ul>
+		</faq>
+		
+		<faq question="Quelle est la meilleure façon de découvrir la composition de classes exacte d'une équipe adverse donnée ?">
+		Le façon la plus sûre pour afficher la composition d'une équipe adverse est de filtrer le nom de cette équipe dans l'onglet Historique des matchs, puis de cliquer sur le raccourci qui vous mène au rapport de matchs individuel. Si le nom est cliquable, la fiche d'équipe s'affichera mais pas forcément la composition exacte lors de l'affrontement avec l'équipe source.
+		</faq>				
+		
+		<faq question="Pourquoi faut-il un minimum de deux matchs pour qu'une équipe adverse s'affiche ?">
+		Ce filtre permet de ne pas enregistrer les équipes rencontrées une fois seulement, ce qui est la majorité des cas, en mettant de côté les données qui pourraient fausser les statistiques pour affiner les résultats.
+		</faq>
+
+		<faq question="Puis-je consulter l'historique des adversaires des saisons d'arène passées ?">
+		Les archives d'arène accèdent aux données des matchs qui se sont tenus depuis le lancement de Wrath of the Lich King. Tout match antérieur à cette date n'est pas accessible.
+		</faq>
+		
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Informations sur le tournoi d'arène" url="http://www.wow-europe.com/fr/info/basics/arena/tournament/index.xml"/>
+		<relatedlink name="Le Panthéon de l'arène" url="/hof/one/index.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
+		<relatedlink name="Au cœur de l’arène" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+
+	</relatedlinks>
+</relatedinfo>

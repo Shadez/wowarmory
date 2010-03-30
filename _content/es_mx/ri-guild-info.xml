@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Información de la hermandad">
+	<faqlist>
+		<faq question="¿Qué características tienen las páginas de hermandad?">
+			Puedes ver la lista de miembros de la hermandad, las estadísticas que la componen y realizar búsquedas. Si tienes acceso al banco, podrás ver su contenido, las transacciones que se han llevado a cabo y buscar objetos.
+		</faq>
+		<faq question="¿Qué información puedo ver en la pestaña de la lista de miembros de la hermandad?">
+			Si haces clic en esta pestaña, aparecerá una lista de todos los miembros, su nivel, clase y rango en la hermandad; así como su ícono de raza. En la parte superior de la página se encuentra el nombre de la hermandad, la cantidad de miembros que tiene, el tabardo, el reino y el Grupo de Batalla. Ésta es la página predeterminada a la que llegarás si, dentro del sitio de la Armería, haces clic en el nombre de una hermandad. Puedes ordenar cualquiera de las columnas haciendo clic sobre su nombre, y cambiar de página haciendo clic en las flechas ubicadas al final de la lista. Los nuevos campos de texto y nivel, así como los menús desplegables, te permitirán ordenar los resultados de manera más eficiente. 
+		</faq>
+		<faq question="¿Qué es la página de estadísticas de la hermandad?">
+			Esta página es un desglose estadístico de la lista de miembros de la hermandad, donde podrás ver como está representada por clase, raza, nivel y género. Estos valores se controlan desde los menús desplegables y los campos de texto ubicados casi al principio de la página. También puedes hacer clic en los íconos correspondientes para ordenar la lista por raza o clase. Si deseas restaurar la vista predeterminada de la página, haz clic en el botón "reiniciar".
+		</faq>
+		<faq question="¿Por qué la Armería me pide que inicie sesión?">
+			Algunas páginas de la Armería, como los Bancos de Hermandad, requerirán que inicies sesión debido al tipo de información que contienen.
+		</faq>	
+		<faq question="¿Por cuánto tiempo podré ver las páginas del banco de la hermandad una vez que inicie sesión?">
+			Tendrás acceso a las páginas del Banco de Hermandad durante dos semanas aproximadamente.
+		</faq>				
+		<faq question="¿Cómo utilizo la página que muestra el contenido del banco?">
+			<p>
+        <span style="color: #FF0000;">Hay dos pestañas dedicadas al nuevo sistema bancario de la hermandad. Al intentar acceder a cualquiera de ellas aparecerá una ventana de inicio de sesión, lo que será necesario para entrar a los bancos de hermandad de los personajes de la cuenta. Asegúrate de que en dicha cuenta haya al menos un personaje que sea miembro de la hermandad a cuyo banco intentas ingresar y que su rango le otorgue acceso a éste. Además, deberá tener autorización para poder entrar a las diferentes pestañas y ver su contenido.</span>
+      </p>
+			<p>La página que muestra el contenido del banco tiene una retícula donde aparecen los objetos que hay en él, e incluye una sección de búsqueda. Éstas son sus características:</p>
+			<ul>
+		<li>Las casillas de la retícula están marcadas con un sistema básico de coordenadas, que se usa como referencia en la lista de resultados. </li>
+		<li>Cada banco de hermandad tiene un máximo de 6 pestañas con 98 casillas de almacenamiento, y la vista predeterminada de la página de contenido muestra la primera pestaña visible en él. Para cambiar de pestaña, haz clic sobre los íconos ubicados debajo de la retícula.  </li>
+		<li>El líder de la hermandad deberá comprar las pestañas del banco antes de que estén disponibles, por lo que es posible que no aparezcan todas.</li>
+		<li>La sección de resultados de búsqueda, ubicada en la parte inferior, te permite ver el contenido del banco en una lista. Puedes ordenar los objetos por nombre, tipo, subtipo, página y casilla haciendo clic sobre los encabezados de las columnas; y navegar entre páginas con los botones que tienen una flecha. </li>
+		<li>La columna "casilla", en la sección de resultados de búsqueda, se refiere a las coordenadas de una casilla específica en la retícula.  </li>
+		<li>Los menús desplegables te permiten buscar objetos según su calidad, tipo, subtipo y casilla. El campo de búsqueda por nombre mostrará todos los objetos en el banco que contengan el texto que ingresaste.</li>
+				<li>Haz clic en "Reiniciar filtros” para restaurar la vista predeterminada.</li>
+			</ul>
+		</faq>				
+		<faq question="¿Cómo uso el registro bancario?">
+			<p>
+        <span style="color: #FF0000;">Cuando intentes acceder a esta pestaña aparecerá una ventana de inicio de sesión, lo que será necesario para entrar a los bancos de hermandad de los personajes de la cuenta. Asegúrate de que en dicha cuenta haya al menos un personaje que sea miembro de la hermandad a cuyo banco intentas ingresar y que su rango le otorgue acceso a éste. Además, deberá tener autorización para poder entrar a las diferentes pestañas y ver su contenido.</span>
+      </p>
+			<p>Aquí podrás ver y buscar el registro de toda transacción que se ha llevado a cabo en el banco de tu hermandad. Éstas son sus características: </p>
+			<ul>
+				<li>En la vista predeterminada, la sección de resultados muestra todas las transacciones en el "grupo" más reciente de éstas, acomodadas por fecha y hora. </li>
+				<li>Cada grupo está compuesto por más de mil transacciones. Haz clic en las flechas encima de la lista de resultados para navegar entre grupos. </li>
+				<li>Haz clic sobre las flechas ubicadas en la parte inferior derecha de los resultados para navegar entre las páginas de resultados del grupo que estás viendo. </li>
+				<li>Las transacciones que podrás ver en un grupo determinado estarán limitadas por el acceso que tengas al banco de tu hermandad. Por lo tanto, es posible que veas menos transacciones que las registradas durante ese periodo de tiempo. </li>
+				<li>Puedes ordenar los resultados por nombre, rango, origen, acción, destino, objeto y fecha. </li>
+				<li>En el grupo de transacciones en el que te encuentres, puedes buscar por personaje, fecha, tipo de transacción, o cualquier combinacion de las anteriores. Limita tu búsqueda para que obtengas resultados más rápidos y eficientes. </li>
+				<li>Usar cualquiera de los filtros limita, en tiempo real, tus parámetros de búsqueda, así que la lista de resultados cambiará para reflejar tu selección.</li>
+				<li>Los dos campos de búsqueda por nombre (para personajes y nombres de objetos) mostrarán todos los casos que contengan el texto que ingresaste.</li>
+				<li>Las ventanas de información de objetos en el registro bancario no muestran los encantamientos permanentes o las gemas engarzadas que pueda haber en ellos.</li>				
+				<li>Haz clic en "Reiniciar filtros” para restaurar la vista predeterminada.</li>
+			</ul>
+		</faq>
+		<faq question="¿Por que no puedo ver el banco de una hermandad determinada?">
+			Por favor asegúrate de que tu cuenta de World of Warcraft tenga un personaje que sea miembro de la hermandad cuyo banco intentas ver, y que su rango le otorgue acceso a éste. Si no puedes ver una pestaña de banco o el registro, es posible que el líder no te haya dado la autorización para ello. Algunos bancos de hermandad podrán ser suspendidos por inactividad.
+		</faq>
+		<faq question="Moví un objeto de una pestaña a otra, pero algunos de los miembros de mi hermandad sólo ven que dicho objeto fue retirado, o depositado, de una sola pestaña. ¿Por qué?">
+			Si sólo tienes acceso a una de las dos pestañas relacionadas con el movimiento de un objeto determinado, verás la evidencia de dicho movimiento en el registro como un depósito o retiro solamente; dependiendo del acceso que tengas a la pestaña de origen (retiro) o a la de destino (depósito).
+		</faq>		
+		<faq question="¿Desde hace cuando existen entradas en el registro bancario?">
+			Toda transacción realizada en el banco de tu hermandad se guarda, y puedes buscarla a través de la Armería. Sin embargo, las transacciones se dividen en grupos, y cada uno de éstos contiene un número determinado de éstas. Puede ser necesario que navegues a un grupo distinto para encontrar la que estás buscando. El grupo más reciente es el 1, y los grupos más antiguos están numerados en secuencia. Haz clic en los botones ubicados debajo de los resultados del registro bancario para navegar entre los diferentes grupos de transacciones.
+		</faq>				
+		<faq question="¿Cuánto tardan en reflejarse los cambios en el juego en las páginas de hermandad de la Armería?">
+			La mayoría de los cambios que se hagan al banco de la hermandad, y a la lista de miembros, en el juego, deberán aparecer en la Armería el mismo día.
+		</faq>
+		<faq question="¿Cómo se determinan los rangos de la hermandad?">
+			Los rangos de la hermandad se obtienen a partir del sistema de clasificación existente. El número de cada rango corresponde al nivel de rango equivalente en la estructura de la hermandad. Por ejemplo, los líderes de hermandad aparecen como tales, pero los demás rangos no están visibles. Sin embargo, podrás ver los nombres de éstos en el área donde aparecen los resultados de búsqueda, o en el menú desplegable de filtros de personaje una vez que inicies sesión con tu cuenta de World of Warcraft.
+		</faq>		
+		<faq question="¿Por qué no aparecen personajes de nivel bajo en la lista de miembros de la hermandad?">
+			Sólo los personajes de nivel 10 o superior aparecerán en la Armería y en las páginas de la lista de miembros.
+		</faq>				
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Información sobre hermandades" type="external" url="http://www.worldofwarcraft.com/na/info/guilds.xml"/>
+		<relatedlink name="Unirse a una hermandad" type="external" url="http://www.worldofwarcraft.com/info/basics/joiningguilds.html"/>
+		<relatedlink name="Gestión de la hermandad" type="external" url="http://www.worldofwarcraft.com/info/basics/guildtab.html"/>
+		<relatedlink name="Liderazgo de la hermandad" type="external" url="http://www.worldofwarcraft.com/info/basics/guildleadership.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>
+	</relatedlinks>
+</relatedinfo>

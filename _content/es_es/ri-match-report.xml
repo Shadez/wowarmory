@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Informes de partidas">
+	<faqlist>
+		
+		<faq question="¿Cuál es la utilidad de esta página?">
+Cada encuentro en la arena dispone de un informe de la partida, en todas las ramas y los grupos de batallas. Este informe es un breve esquema visual del resumen de la partida que aparece en el juego una vez finalizada. A continuación se muestra un resumen de la información y función que aparece en cada informe de la partida:
+<ul>
+<li>Ver a los combatientes y sus actuaciones en las mismas cinco estadísticas de la arena tal y como aparece en el juego.</li>
+<li>Se puede hacer clic en los nombres del equipo y jugador para consultar sus perfiles, a menos que el equipo ya no exista.</li>
+<li>La imagen superior muestra los índices del equipo y el cambio de índice para cada equipo. Los índices de equipo incluyen el cambio de índice de la partida actual en la cuenta.</li>
+<li>La hora de inicio y la duración total de la partida aparecen bajo las estadísticas de la partida.</li>
+</ul>
+		</faq>
+		
+		<faq question="¿Por qué los golpes de gracia no parecen sumarse en la partida que estoy viendo?">
+		Algunas partidas pueden finalizar con el último miembro (o últimos miembros) del equipo perdedor escogiendo /AUS en la partida para acelerar lo inevitable. En estos casos, los golpes de gracia del equipo que va venciendo contabilizará un número inferior al número total de jugadores del otro equipo..
+		</faq>
+
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>		
+		<relatedlink name="Sistema de Arenas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
+		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Ver los datos del reino USA" type="external" url="http://www.wowarmory.com/"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>
+	</relatedlinks>
+</relatedinfo>

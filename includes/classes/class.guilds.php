@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 72
+ * @revision 122
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -47,6 +47,11 @@ Class Guilds extends Connector {
       * Guild tabard style
       **/
      public $guildtabard;
+     public $emblemstyle;
+     public $emblemcolor;
+     public $borderstyle;
+     public $bordercolor;
+     public $bgcolor;
      
      /**
       * Guild leader guid
@@ -57,7 +62,6 @@ Class Guilds extends Connector {
       * Guild faction
       **/
      public $guildFaction;
-     
      /**
       * Constructs guild info
       * @category Guilds class
@@ -104,7 +108,7 @@ Class Guilds extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $this->guildId = Characters::GetDataField(PLAYER_GUILDID, $this->guid);
+        $this->guildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $this->guid);
         if($this->guildId) {
             return true;
         }
@@ -130,12 +134,11 @@ Class Guilds extends Connector {
       * @example Guilds::countGuildMembers()
       * @return int
       **/
-     public function countGuildMembers() {
+     public function CountGuildMembers() {
         if(!$this->guildId) {
             return false;
         }
-        $tmp = $this->cDB->selectPage($gCount, "SELECT `guid` FROM `guild_member` WHERE `guildid`=?", $this->guildId);
-        return $gCount;
+        return $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `guild_member` WHERE `guildid`=?", $this->guildId);
      }
      
      /**
@@ -156,7 +159,7 @@ Class Guilds extends Connector {
       * @category Guilds class
       * @example Guilds::getGuildTabardStyle()
       * @return bool
-      **/   
+      **/
      public function getGuildTabardStyle() {
         if(!$this->guildId) {
             return false;
@@ -165,8 +168,11 @@ Class Guilds extends Connector {
         SELECT `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor`
             FROM `guild`
                 WHERE `guildid`=? LIMIT 1", $this->guildId);
-        $this->guildtabard = sprintf('emblemstyle=%d&emblemcolor=%d&embborderstyle=%d&embbordercolor=%d&bgcolor=%d&faction=%d',
-            $gTabard['EmblemStyle'], $gTabard['EmblemColor'], $gTabard['BorderStyle'], $gTabard['BorderColor'], $gTabard['BackgroundColor'], $this->guildFaction);
+        $this->bgcolor     = $gTabard['BackgroundColor'];
+        $this->emblemcolor = $gTabard['EmblemColor'];
+        $this->emblemstyle = $gTabard['EmblemStyle'];
+        $this->bordercolor = $gTabard['BorderColor'];
+        $this->borderstyle = $gTabard['BorderStyle'];
         return true;
      }
      
@@ -191,38 +197,27 @@ Class Guilds extends Connector {
       * @example Guilds::buildGuildList(false)
       * @return array
       **/
-     public function buildGuildList($gm=false) {
+     public function BuildGuildList() {
         if(!$this->guildId) {
             return false;
         }
-        if($gm == true) {
-            $memberListTmp = $this->cDB->select("
-            SELECT `guid`, `name`, `race`, `class`, `gender`, `level`
-                FROM `characters` WHERE `guid` IN 
-                (
-                    SELECT `guid`
-                    FROM `guild_member`
-                    WHERE `guildid`=? AND `rank`=0
-                ) LIMIT 1", $this->guildId);
-        }
-        else {
-            $memberListTmp = $this->cDB->select("
-            SELECT
-            `characters`.`guid`,
-            `characters`.`name`,
-            `characters`.`class`,
-            `characters`.`race`,
-            `characters`.`gender`,
-            `characters`.`level`,
-            `guild_member`.`rank`
-            FROM `characters` AS `characters`
-            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`guildid`=?
-            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=?
-            WHERE `guild`.`guildid`=? AND `characters`.`level`>=? AND `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`rank` <> 0", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
-        }
+        $memberListTmp = $this->cDB->select("
+        SELECT
+        `characters`.`guid`,
+        `characters`.`name`,
+        `characters`.`class` AS `classId`,
+        `characters`.`race` AS `raceId`,
+        `characters`.`gender` AS `genderId`,
+        `characters`.`level`,
+        `guild_member`.`rank`
+        FROM `characters` AS `characters`
+        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`guildid`=?
+        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=?
+        WHERE `guild`.`guildid`=? AND `characters`.`level`>=? AND `guild_member`.`guid`=`characters`.`guid`", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
         $countMembers = count($memberListTmp);
         for($i=0;$i<$countMembers;$i++) {
-            $memberListTmp[$i]['ach_points'] = Achievements::calculateAchievementPoints($memberListTmp[$i]['guid']);
+            $memberListTmp[$i]['achPoints'] = Achievements::calculateAchievementPoints($memberListTmp[$i]['guid']);
+            $memberListTmp[$i]['url'] = sprintf('r=%s&cn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($memberListTmp[$i]['name']));
         }
         return $memberListTmp;
      }
@@ -242,29 +237,16 @@ Class Guilds extends Connector {
      }
      
      /**
-      * Returns guild message of the day (if defined)
-      * @category Guilds class
-      * @example Guilds::getGuildMotd()
-      * @return string
-      **/
-     public function getGuildMotd() {
-        if(!$this->guildId) {
-            return false;
-        }
-        return $this->cDB->selectCell("SELECT `motd` FROM `guild` WHERE `guildid`=?", $this->guildId);
-     }
-     
-     /**
-      * Returns guild info (if defined)
+      * Returns guild info and MOTD
       * @category Guilds class
       * @example Guilds::getGuildInfo()
-      * @return string
+      * @return array
       **/
-     public function getGuildInfo() {
+     public function GetGuildInfo() {
         if(!$this->guildId) {
             return false;
         }
-        return $this->cDB->selectCell("SELECT `info` FROM `guild` WHERE `guildid`=?", $this->guildId);
+        return $this->cDB->selectRow("SELECT `info`, `motd` FROM `guild` WHERE `guildid`=?", $this->guildId);
      }
      
      /**
@@ -273,7 +255,7 @@ Class Guilds extends Connector {
       * @example Guilds::getGuildBankTabs()
       * @return array
       **/
-     public function getGuildBankTabs() {
+     public function GetGuildBankTabs() {
         if(!$this->guildId) {
             return false;
         }
@@ -281,6 +263,10 @@ Class Guilds extends Connector {
         SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon`
             FROM `guild_bank_tab`
                 WHERE `guildid`=?", $this->guildId);
+        $count_tabs = count($tabs);
+        for($i=0;$i<$count_tabs;$i++) {
+            $tabs[$i]['viewable'] = 'true';
+        }
         return $tabs;
      }
      
@@ -319,19 +305,13 @@ Class Guilds extends Connector {
       * Returns guild bank money
       * @category Guilds class
       * @example Guilds::GetGuildBankMoney()
-      * @return array
+      * @return int
       **/
      public function GetGuildBankMoney() {
         if(!$this->guildId) {
             return false;
         }
-        $money = $this->cDB->selectCell("SELECT `BankMoney` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->guildId);
-        $getMoney['gold'] = floor($money/(100*100));
-        $money = $money-$getMoney['gold']*100*100;
-        $getMoney['silver'] = floor($money/100);
-        $money = $money-$getMoney['silver']*100;
-        $getMoney['copper'] = floor($money);
-        return $getMoney;
+        return $this->cDB->selectCell("SELECT `BankMoney` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->guildId);
      }
      
      /**
@@ -344,17 +324,25 @@ Class Guilds extends Connector {
         if(!$this->guildId) {
             return false;
         }
-        $items = $this->cDB->select("SELECT `item_entry` AS `entry` FROM `guild_bank_item` WHERE `guildid`=?", $this->guildId);
-        if($items) {
-            $count = count($items);
-            for($i=0;$i<$count;$i++) {
-                $items[$i]['name'] = Items::getItemName($items[$i]['entry']);
-                $items[$i]['icon'] = Items::getItemIcon($items[$i]['entry']);
-                $items[$i]['Quality'] = Items::getItemInfo($items[$i]['entry'], 'quality');
-            }
-            return $items;
+        $items_list = $this->cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=?", $this->guildId);
+        $count_items = count($items_list);
+        for($i=0;$i<$count_items;$i++) {
+            $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed']);
+            $items_list[$i]['durability'] = $tmp_durability['current'];
+            $items_list[$i]['maxDurability'] = $tmp_durability['max'];
+            unset($tmp_durability);
+            $items_list[$i]['icon'] = Items::getItemIcon($items_list[$i]['id']);
+            $items_list[$i]['name'] = Items::getItemName($items_list[$i]['id']);            
+            $items_list[$i]['qi'] = Items::GetItemInfo($items_list[$i]['id'], 'quality');
+            $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);
+            $items_list[$i]['randomPropertiesId'] = 0;
+            $tmp_classinfo = Items::GetItemSubTypeInfo($items_list[$i]['id']);
+            $items_list[$i]['subtype'] = '';
+            $items_list[$i]['subtypeLoc'] = $tmp_classinfo['subclass_name'];
+            $items_list[$i]['type'] = $tmp_classinfo['key'];
+            $items_list[$i]['slot']++;
         }
-        return false;
+        return $items_list;
      }
      
      /**
@@ -363,15 +351,12 @@ Class Guilds extends Connector {
       * @example Guilds::GetGuildRanks()
       * @return array
       **/
+     
      public function GetGuildRanks() {
         if(!$this->guildId) {
             return false;
         }
-        $gRanks = $this->cDB->select("SELECT `rid` FROM `guild_rank` WHERE `guildid`=?", $this->guildId);
-        if($gRanks) {
-            return $gRanks;
-        }
-        return false;
+        return $this->cDB->select("SELECT `rid` AS `id`, `rname` AS `name` FROM `guild_rank` WHERE `guildid`=?", $this->guildId);
      }
 }
 ?>
