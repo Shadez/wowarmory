@@ -2610,6 +2610,7 @@
 		<str id="armory.races.race.8">Troll</str>
 		<str id="armory.races.race.8.0">Troll</str>
 		<str id="armory.races.race.8.1">Troll</str>
+		<str id="armory.races.race.tuskarr">Tuskarr</str>
 	</races>
 
 	<classes>

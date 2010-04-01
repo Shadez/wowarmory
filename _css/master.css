@@ -30,7 +30,7 @@ form{margin:0;padding:0}
 .right {float:right;}
 
 /* new code */
-.outer-container {min-width:990px;background-image:url('../images/theme/wrath/bg.jpg');background-repeat:no-repeat; background-position:50% 0;width:100%;min-height:800px;}
+.outer-container {min-width:990px;background-image:url('../images/theme/wrath/bg-t.jpg');background-repeat:no-repeat; background-position:50% 0;width:100%;min-height:800px;}
 .inner-container {width:990px;margin:0 auto;}
 .data-container {width:982px;margin:6px auto;}
 .data-shadow-top{background:url('../images/theme/wrath/box-top.png') no-repeat 50% 0;height:16px;}
