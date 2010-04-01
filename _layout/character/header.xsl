@@ -92,9 +92,11 @@
 		</div>
 		<div class="profile-achieve">			
 			<a href="character-sheet.xml?{/page/characterInfo/character/@charUrl}" class="staticTip">
-            <xsl:variable name="character_desc"><xsl:apply-templates mode="printf" select="$loc/strs/character/str[@id='charLevelStr']"> <xsl:with-param name="param1" select="/page/characterInfo/character/@level" /> <xsl:with-param name="param2" select="/page/characterInfo/character/@race" /> <xsl:with-param name="param3" select="/page/characterInfo/character/@class" /> </xsl:apply-templates></xsl:variable>
+            <xsl:variable name="character_desc"><xsl:apply-templates mode="printf" select="$loc/strs/character/str[@id='charLevelStr']"> <xsl:with-param name="param1" select="/page/characterInfo/character/@level" /> <xsl:with-param name="param2" select="$loc/strs/races/str[@id='armory.races.race.tuskarr']" /> <xsl:with-param name="param3" select="/page/characterInfo/character/@class" /> </xsl:apply-templates></xsl:variable>
             <xsl:attribute name="onmouseover">setTipText('<xsl:value-of select="normalize-space($character_desc)"/>')</xsl:attribute>
-            <xsl:choose>
+            <img src="images/portraits/wow-default/tuskarr.jpg" height="64" />
+				<!--
+				<xsl:choose>
 				<xsl:when test="$level &lt; 60">
 					<img src="images/portraits/wow-default/{$c/@genderId}-{$c/@raceId}-{$c/@classId}.gif" />
 				</xsl:when>
@@ -108,6 +110,7 @@
 					<img src="images/portraits/wow-80/{$c/@genderId}-{$c/@raceId}-{$c/@classId}.gif" />
 				</xsl:otherwise>
 			</xsl:choose>
+			-->
 			</a>
 			
             <!-- Auto-discovery of character feed -->	
