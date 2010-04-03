@@ -169,7 +169,7 @@
                 <xsl:variable name="clvlstring">
                 <xsl:apply-templates mode="printf" select="$loc/strs/character/str[@id='charLevelStr']">
 					<xsl:with-param name="param1" select="/page/characterInfo/character/@level" />
-					<xsl:with-param name="param2" select="$loc/strs/races/str[@id='armory.races.race.tuskarr']" />
+					<xsl:with-param name="param2" select="/page/characterInfo/character/@race" />
 					<xsl:with-param name="param3" select="/page/characterInfo/character/@class" />
 				</xsl:apply-templates>
                 </xsl:variable>
@@ -273,7 +273,7 @@
 					  <xsl:for-each select="characterTab/professions/skill">
 						  <div class="char_profession">
                             <div class="prof_icon"><img src="images/icons/professions/{@key}-sm.gif"/></div>
-                            <div class="prof_name"><div><xsl:value-of select="$loc/strs/professions/str[@id='armory.item-search.fishing']"/></div>
+                            <div class="prof_name"><div><xsl:value-of select="@name"/></div>
                             	<div class="prof_value"><xsl:value-of select="@value" /></div>
                             </div>
 						  </div>
@@ -329,12 +329,12 @@
                     		<xsl:attribute name="onmouseover">setTipText('<xsl:value-of select="tooltip"/>');</xsl:attribute>
                         </xsl:if>
 
-                        <img class="p" src="images/feed_icon_{@type}.png"/>
+                        <img class="p" src="../../images/feed_icon_{@type}.png"/>
                     </a></div>
                     </td><td>
                     <xsl:apply-templates select="desc/."/>
 
-                    <xsl:if test="@type = 'loot' and @slot != '-1'">&#160;<strong><xsl:value-of select="$loc/strs/custom-rss/str[@id='vendored']"/></strong></xsl:if>
+                    <xsl:if test="@type = 'loot' and @slot != '-1'">&#160;<strong><xsl:value-of select="$loc/strs/custom-rss/str[@id='currently_equipped']"/></strong></xsl:if>
                     
                     &#160;<span class="timestamp"> 
                     	<xsl:choose>
@@ -562,8 +562,8 @@
 				var logolink = "models/images/logo/armory-logo-"+lang+".png" 
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
-                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: "models/", 
-								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink, embedded:true,
+                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
+								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
 								  loadingtxt:"<xsl:value-of select="$loc/strs/common/str[@id='loading']"/>" //"
 								};
 				if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
@@ -696,7 +696,7 @@
 				<h4><xsl:value-of select="$teamSize" /><xsl:value-of select="$loc/strs/arenaReport/str[@id='versus']" /><xsl:value-of select="$teamSize" /></h4>
 				<em><span><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.ratingcolon']" /><xsl:value-of select="$teamNode/@rating" /></span></em>
 				
-				<div class="icon" onclick="window.location='team-info.xml?{$teamNode/@teamUrl}'">
+				<div class="icon" onclick="window.location='/team-info.xml?{$teamNode/@teamUrl}'">
 					<xsl:choose>
 						<xsl:when test="$teamRank &gt; '500'">								
 							<xsl:attribute name="style">background-image: url('images/icons/badges/arena/arena-5.jpg'); cursor: pointer;</xsl:attribute>
