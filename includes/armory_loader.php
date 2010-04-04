@@ -154,7 +154,7 @@ $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`
 if($dbVersion != DB_VERSION) {
     if(empty($dbVerision)) {
 	     echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
-	 }
+    }
     die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
 }
 // start XML parser

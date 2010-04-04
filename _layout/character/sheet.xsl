@@ -329,7 +329,7 @@
                     		<xsl:attribute name="onmouseover">setTipText('<xsl:value-of select="tooltip"/>');</xsl:attribute>
                         </xsl:if>
 
-                        <img class="p" src="../../images/feed_icon_{@type}.png"/>
+                        <img class="p" src="images/feed_icon_{@type}.png"/>
                     </a></div>
                     </td><td>
                     <xsl:apply-templates select="desc/."/>
@@ -431,7 +431,7 @@
 			<div class="achRight">
 				<em class="ptl"><xsl:comment/></em><em class="ptr"><xsl:comment/></em><em class="pbl"><xsl:comment/></em><em class="pbr"><xsl:comment/></em>
 				<h4><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.faq.achievements']"/></h4>
-				<a class="achPointsLink" href="/character-achievements.xml?{$cUrl}">
+				<a class="achPointsLink" href="character-achievements.xml?{$cUrl}">
 					<span style="color: #FFF; float: right; margin: 0 0px 0 0;"><xsl:value-of select="summary/c/@points" /></span>
 					<xsl:value-of select="$loc/strs/achievements/str[@id='points']"/>					
 				</a>
@@ -562,8 +562,8 @@
 				var logolink = "models/images/logo/armory-logo-"+lang+".png" 
 				var params = { menu: "false", scale: "noScale", allowFullscreen: "true", allowScriptAccess: "always", bgcolor:"#E3C96A", wmode:"opaque" };
                 var attributes = { id:"ModelViewer3" };
-                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: modelserver+"/models/", 
-								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink,
+                var flashvars = { character: theCharName, modelUrl: "character-model.xml?"+encodeURIComponent(charUrl), fileServer: "models/", 
+								  embedlink:encodeURIComponent(embedlink), strings:stringslink, logoImg:logolink, embedded:true,
 								  loadingtxt:"<xsl:value-of select="$loc/strs/common/str[@id='loading']"/>" //"
 								};
 				if(getcookie2){ var modelCookies = getArmoryCookies("3d"); 
@@ -696,7 +696,7 @@
 				<h4><xsl:value-of select="$teamSize" /><xsl:value-of select="$loc/strs/arenaReport/str[@id='versus']" /><xsl:value-of select="$teamSize" /></h4>
 				<em><span><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.ratingcolon']" /><xsl:value-of select="$teamNode/@rating" /></span></em>
 				
-				<div class="icon" onclick="window.location='/team-info.xml?{$teamNode/@teamUrl}'">
+				<div class="icon" onclick="window.location='team-info.xml?{$teamNode/@teamUrl}'">
 					<xsl:choose>
 						<xsl:when test="$teamRank &gt; '500'">								
 							<xsl:attribute name="style">background-image: url('images/icons/badges/arena/arena-5.jpg'); cursor: pointer;</xsl:attribute>

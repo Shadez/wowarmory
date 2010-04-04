@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 126
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -380,7 +380,7 @@ Class Achievements extends Connector {
         $achievements_data = $this->aDB->select(
         "SELECT `id`, `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`, `titleReward_".$this->_locale."` AS `titleReward`
             FROM `armory_achievement`
-                WHERE `categoryId`=? AND `factionFlag` IN (?, -1)", $page_id, $faction);
+                WHERE `categoryId`=? AND `factionFlag` IN (?, -1) ORDER BY `OrderInCategory`", $page_id, $faction);
         if(!$achievements_data) {
             return false;
         }
@@ -447,7 +447,7 @@ Class Achievements extends Connector {
                 }
                 $return_data['incompleted'][$this->achId]['criteria'] = self::BuildAchievementCriteriaTable();
             }
-            /*            
+            /*
             if(isset($return_data['incompleted'][$parentId])) {
                 $return_data['incompleted'][$parentId]['display'] = 0;
             }*/
@@ -460,13 +460,16 @@ Class Achievements extends Connector {
         if(!$this->guid || !$this->achId) {
             return false;
         }
-        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
+        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=? ORDER BY `order`", $this->achId);
         if(!$data) {
             return false;
         }
         $i = 0;
         $achievement_criteria = array();
         foreach($data as $criteria) {
+            if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_HIDE_CRITERIA) {
+                continue;
+            }
             $achievement_criteria[$i]['id']   = $criteria['id'];
             $achievement_criteria[$i]['name'] = $criteria['name_'.$this->_locale];
             $m_data = $this->GetCriteriaData($criteria['id']);
@@ -474,56 +477,18 @@ Class Achievements extends Connector {
                 $m_data['counter'] = 0;
             }
             $achievement_criteria[$i]['counter'] = $m_data['counter'];
-            switch($criteria['requiredType']) {
-                case ACHIEVEMENT_CRITERIA_TYPE_MONEY_FROM_QUEST_REWARD:
-                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_MONEY:
+            if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag']&ACHIEVEMENT_FLAG_COUNTER) {
+                if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_MONEY_COUNTER) {
                     $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
                     $money = Mangos::getMoney($m_data['counter']);
                     $achievement_criteria[$i]['quantityGold'] = $money['gold'];
                     $achievement_criteria[$i]['quantitySilver'] = $money['silver'];
                     $achievement_criteria[$i]['quantityCopper'] = $money['copper'];
-                    break;
-                case ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL:
-                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUEST_COUNT:
-                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST_DAILY:
-                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_QUESTS_IN_ZONE:
-                case ACHIEVEMENT_CRITERIA_TYPE_COMPLETE_DAILY_QUEST:
-                case ACHIEVEMENT_CRITERIA_TYPE_CAST_SPELL:
-                case ACHIEVEMENT_CRITERIA_TYPE_DAMAGE_DONE:
-                case ACHIEVEMENT_CRITERIA_TYPE_WIN_RATED_ARENA:
-                case ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM:
-                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM:
-                case ACHIEVEMENT_CRITERIA_TYPE_BUY_BANK_SLOT:
-                case ACHIEVEMENT_CRITERIA_TYPE_GAIN_EXALTED_REPUTATION:
-                case ACHIEVEMENT_CRITERIA_TYPE_GET_KILLING_BLOWS:
-                case ACHIEVEMENT_CRITERIA_TYPE_LEARN_SKILLLINE_SPELLS:
-                case ACHIEVEMENT_CRITERIA_TYPE_LOOT_TYPE:
-                case ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL:
-                case ACHIEVEMENT_CRITERIA_TYPE_LFD_PASSED:
-                case ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2:
-                    if($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_BE_SPELL_TARGET2 && $criteria['value'] == 1) {
-                        continue;
-                    }
-                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_REACH_SKILL_LEVEL && $criteria['completionFlag'] == 0) {
-                        continue;
-                    }
-                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_USE_ITEM && $criteria['value'] == 1) {
-                        continue;
-                    }
-                    elseif($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM && $criteria['value'] == 1) {
-                        return $achievement_criteria;
-                    }
+                }
+                else {
                     $achievement_criteria[$i]['maxQuantity'] = $criteria['value'];
                     $achievement_criteria[$i]['quantity'] = $m_data['counter'];
-                    if($criteria['requiredType'] == ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM && $criteria['completionFlag'] == 3) {
-                        return $achievement_criteria;
-                    }
-                    $achievement_criteria[$i]['maxQuantity'] = $criteria['value'];
-                    $achievement_criteria[$i]['quantity'] = $m_data['counter'];
-                    break;
-            }
-            if(isset($m_data['date']) && $m_data['date'] > 0) {
-                $achievement_criteria[$i]['date'] = date('Y-m-d+01:00', $m_data['date']);
+                }
             }
             $i++;
         }
