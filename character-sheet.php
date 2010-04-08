@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 127
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -145,26 +145,30 @@ $xml->XMLWriter()->endElement();   //character
 /** Character tab **/
 $xml->XMLWriter()->startElement('characterTab');
 $xml->XMLWriter()->startElement('talentSpecs');
-$talent_points = array();
-$talent_tree   = array();
-for($i=0;$i<3;$i++) {
-    $talent_points[$i] = $characters->talentCounting($characters->getTabOrBuild('tab', $i));
+$talent_data = $characters->CalculateCharacterTalents();
+$current_tree = array();
+$activeSpec = $armory->cDB->selectCell("SELECT `activeSpec` FROM `characters` WHERE `guid`=?", $characters->guid);
+for($i=0;$i<2;$i++) {
+    $current_tree[$i] = Utils::GetMaxArray($talent_data['points'][$i]);
+    $talent_spec[$i] = array(
+        'group' => $i+1,
+        'icon'  => $characters->ReturnTalentTreeIcon($current_tree[$i]),
+        'prim'  => $characters->ReturnTalentTreesNames($current_tree[$i]),
+        'treeOne' => $talent_data['points'][$i][$characters->GetTalentTab(0)],
+        'treeTwo' => $talent_data['points'][$i][$characters->GetTalentTab(1)],
+        'treeThree' => $talent_data['points'][$i][$characters->GetTalentTab(2)]
+    );    
+    if($activeSpec == $i) {
+        $talent_spec[$i]['active'] = 1;
+    }
 }
-$current_tree = Utils::GetMaxArray($talent_points);
-$talent_spec = array(
-    'active'    => 1,
-    'group'     => 1,
-    'icon'      => $characters->ReturnTalentTreeIcon($current_tree),
-    'prim'      => $characters->ReturnTalentTreesNames($current_tree),
-    'treeOne'   => $talent_points[0],
-    'treeThree' => $talent_points[2],
-    'treeTwo'   => $talent_points[1]
-);
-$xml->XMLWriter()->startElement('talentSpec');
-foreach($talent_spec as $ts_elem_name => $ts_elem_value) {
-    $xml->XMLWriter()->writeAttribute($ts_elem_name, $ts_elem_value);
+foreach($talent_spec as $m_spec) {
+    $xml->XMLWriter()->startElement('talentSpec');
+    foreach($m_spec as $spec_key => $spec_value) {
+        $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
+    }
+    $xml->XMLWriter()->endElement(); //talentSpec
 }
-$xml->XMLWriter()->endElement(); //talentSpec
 $xml->XMLWriter()->endElement();  //talentSpecs
 /* Character professions */
 $xml->XMLWriter()->startElement('professions');
@@ -317,8 +321,8 @@ $gear_array = array(
     array('slot' => 'wrist', 'slotid'    => INV_BRACERS),
     array('slot' => 'legs', 'slotid'     => INV_LEGS),
     array('slot' => 'boots', 'slotid'    => INV_BOOTS),
-    array('slot' => 'gloves', 'slotid'   => INV_GLOVES),
     array('slot' => 'belt', 'slotid'     => INV_BELT),
+    array('slot' => 'gloves', 'slotid'   => INV_GLOVES),
     array('slot' => 'ring1', 'slotid'    => INV_RING_1),
     array('slot' => 'ring2', 'slotid'    => INV_RING_2),
     array('slot' => 'trinket1', 'slotid' => INV_TRINKET_1),

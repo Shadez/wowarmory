@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 127
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -454,64 +454,64 @@ Class Characters extends Connector {
         }
         switch($slot) {
             case 'head':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_HEAD);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENTRYID);
                 break;
             case 'neck':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_NECK);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENTRYID);
 				break;
 			case 'shoulder':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_SHOULDER);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENTRYID);
 				break;
 			case 'shirt':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_SHIRT);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENTRYID);
 				break;
 			case 'chest':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_CHEST);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENTRYID);
 				break;
 			case 'wrist':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BRACERS);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENTRYID);
 				break;
 			case 'legs':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_LEGS);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENTRYID);
 				break;
 			case 'boots':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BOOTS);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENTRYID);
 				break;
 			case 'belt':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BELT);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENTRYID);
 				break;
 			case 'gloves':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_GLOVES);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENTRYID);
 				break;
 			case 'ring1':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RING_1);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENTRYID);
 				break;
 			case 'ring2':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RING_2);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENTRYID);
 				break;
 			case 'trinket1':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TRINKET_1);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENTRYID);
 				break;
             case 'trinket2':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TRINKET_2);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENTRYID);
 				break;
 			case 'back':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_BACK);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENTRYID);
 				break;
 			case 'mainhand':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_MAIN_HAND);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENTRYID);
 				break;
 			case 'offhand':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_OFF_HAND);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENTRYID);
 			    break;
 			case 'relic':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_RANGED_RELIC);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID);
 				break;
 			case 'tabard':
-				return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, INV_TABARD);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENTRYID);
 				break;
 			default:
-                return 0;
+				return 0;
 				break;
         }
     }
@@ -622,67 +622,78 @@ Class Characters extends Connector {
 		return $field;
 	}
     
-    /********************
-	Function from CSWOWD
-	********************/
-    
-    public function extractCharacterTalents() {
-        if(!$this->class || !$this->guid) {
+    public function GetTalentTab($tab_count = -1) {
+        if(!$this->class) {
             return false;
         }
         $talentTabId = array(
-            '1' => array(161,164,163), // Warior
-            '2' => array(382,383,381), // Paladin
-            '3' => array(361,363,362), // Hunter
-            '4' => array(182,181,183), // Rogue
-            '5' => array(201,202,203), // Priest
-            '6' => array(398,399,400), // Death knight
-            '7' => array(261,263,262), // Shaman
-            '8' => array( 81, 41, 61), // Mage
-            '9' => array(302,303,301), // Warlock
-            '11'=> array(283,281,282), // Druid
+            1 => array(161,164,163), // Warior
+            2 => array(382,383,381), // Paladin
+            3 => array(361,363,362), // Hunter
+            4 => array(182,181,183), // Rogue
+            5 => array(201,202,203), // Priest
+            6 => array(398,399,400), // Death Knight
+            7 => array(261,263,262), // Shaman
+            8 => array( 81, 41, 61), // Mage
+            9 => array(302,303,301), // Warlock
+            11=> array(283,281,282), // Druid
         );
-        $tab_set  = @$talentTabId[$this->class];
-        if (!$tab_set){
-            return;
+        $tab_class = $talentTabId[$this->class];
+        if($tab_count >= 0) {
+            $values = array_values($tab_class);
+            return $values[$tab_count];
         }
-        $spellList = $this->cDB->select("
-        SELECT `spell` AS ARRAY_KEY
-            FROM `character_spell`
-                WHERE `guid`=? AND `disabled`=0", $this->guid);
-        $bild = '';
-        $tinfo = $this->aDB->select(
-          "SELECT
-           `TalentTab` AS ARRAY_KEY_1,
-           `Row` AS ARRAY_KEY_2,
-           `Col` AS ARRAY_KEY_3,
-           `Rank_1`,
-           `Rank_2`,
-           `Rank_3`,
-           `Rank_4`,
-           `Rank_5`
-          FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_set);
-        $points = array(0, 0, 0);
-        $total  = 0;
-        $max    = 0;
-        foreach($tab_set as $i=>$tab) {
-            foreach($tinfo[$tab] as $row=>$rows)
-                foreach($rows as $col=>$data) {
-                    $rank = 0;
-                        if(isset($spellList[$data['Rank_5']]) && $spellList[$data['Rank_5']] > 0) $rank = 5;
-                    elseif(isset($spellList[$data['Rank_4']]) && $spellList[$data['Rank_4']] > 0) $rank = 4;
-                    elseif(isset($spellList[$data['Rank_3']]) && $spellList[$data['Rank_3']] > 0) $rank = 3;
-                    elseif(isset($spellList[$data['Rank_2']]) && $spellList[$data['Rank_2']] > 0) $rank = 2;
-                    elseif(isset($spellList[$data['Rank_1']]) && $spellList[$data['Rank_1']] > 0) $rank = 1;
-                    $bild .= $rank;
-                    $points[$i]+=$rank;
-                    $total+=$rank;
+        return $tab_class;
+    }
+    
+    public function CalculateCharacterTalents() {
+        if(!$this->class || !$this->guid) {
+            return false;
+        }
+        $talentTree = array();
+        
+        $tab_class = self::GetTalentTab();
+        $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        if(!$character_talents) {
+            return false;
+        }
+        $class_talents = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        $talent_build = array();
+        $talent_build[0] = null;
+        $talent_build[1] = null;
+        $talent_points = array();
+        foreach($tab_class as $tab_val) {
+            $talent_points[0][$tab_val] = 0;
+            $talent_points[1][$tab_val] = 0;
+        }
+        $num_tabs = array();
+        $i = 0;
+        foreach($tab_class as $tab_key => $tab_value) {
+            $num_tabs[$tab_key] = $i;
+            $i++;
+        }
+        foreach($class_talents as $class_talent) {
+            $current_found = false;
+            $last_spec = 0;
+            foreach($character_talents as $char_talent) {
+                if($char_talent['talent_id'] == $class_talent['TalentID']) {
+                    $talent_ranks = $char_talent['current_rank']+1;
+                    $talent_build[$char_talent['spec']] .= $talent_ranks; // not 0-4, is 1-5
+                    $current_found = true;
+                    $talent_points[$char_talent['spec']][$class_talent['TalentTab']] += $talent_ranks;
                 }
-            if($points[$i] > $max) {
-                $max = $points[$i];
+                $last_spec = $char_talent['spec'];
+            }
+            if(!$current_found) {
+                $talent_build[$last_spec] .= 0;
             }
         }
-        return $bild;
+        $talent_data = array('build' => $talent_build, 'points' => $talent_points);
+        return $talent_data;
+    }
+    
+    public function extractCharacterTalents() {
+        return false;
     }
     
     /**
