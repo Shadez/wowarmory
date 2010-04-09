@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 132
+ * @revision 133
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -76,8 +76,8 @@ Class Connector {
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
         $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
         $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-        if($user_locale && self::IsAllowedLocale($user_locale)) {
-            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $user_locale.$user_locale;
+        if($user_locale && $http_locale = self::IsAllowedLocale($user_locale)) {
+            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
         }
         else {
             $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
@@ -119,22 +119,22 @@ Class Connector {
         }
     }
     
-    private function IsAllowedLocale($locale = false) {
-        if(!$locale) {
-            $locale = $this->_locale;
-        }
-        if(!$locale) {
-            return false;
-        }
+    private function IsAllowedLocale($locale) {
         switch($locale) {
             case 'de':
+                return 'de_de';
+                break;
             case 'en':
-            case 'en':
+                return 'en_gb';
+                break;
             case 'es':
-            case 'es':
+                return 'es_es';
+                break;
             case 'fr':
+                return 'fr_fr';
+                break;
             case 'ru':
-                return true;
+                return 'ru_ru';
                 break;
             default:
                 return false;
