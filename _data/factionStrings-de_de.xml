@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/data/factionStrings.xml">
+  <factions>
+    <faction id="1106" name="Argentumkreuzzug" release="2"/>
+    <faction id="1156" name="Das Äscherne Verdikt" release="2"/>
+    <faction id="1094" name="Der Silberbund" release="2"/>
+    <faction id="1091" name="Der Wyrmruhpakt" release="2"/>
+    <faction id="1073" name="Die Kalu'ak" release="2"/>
+    <faction id="1105" name="Die Orakel" release="2"/>
+    <faction id="1124" name="Die Sonnenhäscher" release="2"/>
+    <faction id="1119" name="Die Söhne Hodirs" release="2"/>
+    <faction id="1052" name="Expedition der Horde" release="2"/>
+    <faction id="1090" name="Kirin Tor" release="2"/>
+    <faction id="1098" name="Ritter der Schwarzen Klinge" release="2"/>
+    <faction id="1104" name="Stamm der Wildherzen" release="2"/>
+    <faction id="1037" name="Vorposten der Allianz" release="2"/>
+    <faction id="933" name="Das Konsortium" release="1"/>
+    <faction id="967" name="Das Violette Auge" release="1"/>
+    <faction id="932" name="Die Aldor" release="1"/>
+    <faction id="941" name="Die Mag'har" release="1"/>
+    <faction id="934" name="Die Seher" release="1"/>
+    <faction id="935" name="Die Sha'tar" release="1"/>
+    <faction id="1012" name="Die Todeshörigen" release="1"/>
+    <faction id="990" name="Die Wächter der Sande" release="1"/>
+    <faction id="946" name="Ehrenfeste" release="1"/>
+    <faction id="942" name="Expedition des Cenarius" release="1"/>
+    <faction id="1031" name="Himmelswache der Sha'tari" release="1"/>
+    <faction id="989" name="Hüter der Zeit" release="1"/>
+    <faction id="978" name="Kurenai" release="1"/>
+    <faction id="1015" name="Netherschwingen" release="1"/>
+    <faction id="1077" name="Offensive der Zerschmetterten Sonne" release="1"/>
+    <faction id="1038" name="Ogri'la" release="1"/>
+    <faction id="970" name="Sporeggar" release="1"/>
+    <faction id="947" name="Thrallmar" release="1"/>
+    <faction id="1011" name="Unteres Viertel" release="1"/>
+    <faction id="529" name="Argentumdämmerung" release="0"/>
+    <faction id="910" name="Brut Nozdormus" release="0"/>
+    <faction id="909" name="Dunkelmond-Jahrmarkt" release="0"/>
+    <faction id="576" name="Holzschlundfeste" release="0"/>
+    <faction id="270" name="Stamm der Zandalari" release="0"/>
+    <faction id="59" name="Thoriumbruderschaft" release="0"/>
+    <faction id="609" name="Zirkel des Cenarius" release="0"/>
+  </factions>
+</page>

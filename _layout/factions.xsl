@@ -5,7 +5,7 @@
 <xsl:template match="factions">
 
 	<xsl:variable name="factionsXml" select="document('../_data/factions.xml')/root" />
-	<xsl:variable name="locFactions" select="document('../data/factionStrings.xml')" />
+	<xsl:variable name="locFactions" select="document(concat('../data/factionStrings-', $lang, '.xml'))" />
 
 	<div id="dataElement">
         <div class="parchment-top">

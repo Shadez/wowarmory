@@ -16,7 +16,7 @@
 <xsl:template match="dungeons">
 
 	<xsl:variable name="dungeonsXml" select="document('../_data/dungeons.xml')" />
-	<xsl:variable name="locDungeons" select="document('../data/dungeonStrings.xml')" />
+	<xsl:variable name="locDungeons" select="document(concat('../data/dungeonStrings-', $lang, '.xml'))" />
 	<xsl:variable name="releaseId" select="@releaseid" />
 
 	<script type="text/javascript">	

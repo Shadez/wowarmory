@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="WarlockDestruction" icon="spell_shadow_rainoffire" key="Destruction" name="Zerstörung" order="2">
+      <talent column="1" icon="spell_shadow_shadowbolt" key="944" name="Verbesserter Schattenblitz" tier="0">
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Schattenblitz' um 2%. Zudem hat Euer Zauber 'Schattenblitz' eine Chance von 20%, das Ziel verwundbar gegen Zauberschaden werden zu lassen, wodurch die kritische Zaubertrefferchance gegen dieses Ziel um 5% erhöht wird. Der Effekt hält bis zu 30 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Schattenblitz' um 4%. Zudem hat Euer Zauber 'Schattenblitz' eine Chance von 40%, das Ziel verwundbar gegen Zauberschaden werden zu lassen, wodurch die kritische Zaubertrefferchance gegen dieses Ziel um 5% erhöht wird. Der Effekt hält bis zu 30 Sek. lang an." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Schattenblitz' um 6%. Zudem hat Euer Zauber 'Schattenblitz' eine Chance von 60%, das Ziel verwundbar gegen Zauberschaden werden zu lassen, wodurch die kritische Zaubertrefferchance gegen dieses Ziel um 5% erhöht wird. Der Effekt hält bis zu 30 Sek. lang an." lvl="3"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Schattenblitz' um 8%. Zudem hat Euer Zauber 'Schattenblitz' eine Chance von 80%, das Ziel verwundbar gegen Zauberschaden werden zu lassen, wodurch die kritische Zaubertrefferchance gegen dieses Ziel um 5% erhöht wird. Der Effekt hält bis zu 30 Sek. lang an." lvl="4"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Schattenblitz' um 10%. Zudem hat Euer Zauber 'Schattenblitz' eine Chance von 100%, das Ziel verwundbar gegen Zauberschaden werden zu lassen, wodurch die kritische Zaubertrefferchance gegen dieses Ziel um 5% erhöht wird. Der Effekt hält bis zu 30 Sek. lang an." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_deathpact" key="943" name="Dunkle Macht" tier="0">
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Schattenblitz', 'Chaosblitz' und 'Feuerbrand' um 0.1 Sek. und die Zauberzeit Eures Zaubers 'Seelenfeuer' um 0.4 Sek." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Schattenblitz', 'Chaosblitz' und 'Feuerbrand' um 0.2 Sek. und die Zauberzeit Eures Zaubers 'Seelenfeuer' um 0.8 Sek." lvl="2"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Schattenblitz', 'Chaosblitz' und 'Feuerbrand' um 0.3 Sek. und die Zauberzeit Eures Zaubers 'Seelenfeuer' um 1.2 Sek." lvl="3"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Schattenblitz', 'Chaosblitz' und 'Feuerbrand' um 0.4 Sek. und die Zauberzeit Eures Zaubers 'Seelenfeuer' um 1.6 Sek." lvl="4"/>
+        <rank description="Verringert die Zauberzeit Eurer Zauber 'Schattenblitz', 'Chaosblitz' und 'Feuerbrand' um 0.5 Sek. und die Zauberzeit Eures Zaubers 'Seelenfeuer' um 2 Sek." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_fire" key="982" name="Nachwirkung" tier="1">
+        <rank description="Erhöht den regelmäßig verursachten Schaden Eures Zaubers 'Feuerbrand' um 3% und gewährt Eurem Zauber 'Feuersbrunst' eine Chance von 50%, das Ziel 5 Sek. lang benommen zu machen." lvl="1"/>
+        <rank description="Erhöht den regelmäßig verursachten Schaden Eures Zaubers 'Feuerbrand' um 6% und gewährt Eurem Zauber 'Feuersbrunst' eine Chance von 100%, das Ziel 5 Sek. lang benommen zu machen." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_mage_moltenarmor" key="1887" name="Geschmolzene Haut" tier="1">
+        <rank description="Verringert jeglichen erlittenen Schaden um 2%." lvl="1"/>
+        <rank description="Verringert jeglichen erlittenen Schaden um 4%." lvl="2"/>
+        <rank description="Verringert jeglichen erlittenen Schaden um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_windsofwoe" key="941" name="Katastrophe" tier="1">
+        <rank description="Verringert die Manakosten Eurer Zerstörungszauber um 4%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zerstörungszauber um 7%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Zerstörungszauber um 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_firebolt" key="983" name="Dämonische Macht" tier="2">
+        <rank description="Verringert die Abklingzeit des Zaubers 'Schmerzenspeitsche' Eures Sukkubus um 3 Sek. und verringert die Zauberzeit des Zaubers 'Feuerblitz' Eures Wichtels um 0.25 Sek." lvl="1"/>
+        <rank description="Verringert die Abklingzeit des Zaubers 'Schmerzenspeitsche' Eures Sukkubus um 6 Sek. und verringert die Zauberzeit des Zaubers 'Feuerblitz' Eures Wichtels um 0.50 Sek." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_scourgebuild" key="963" name="Schattenbrand" tier="2">
+        <rank description="Überzieht das Ziel sofort mit 87 bis 99 Schattenschaden. Wenn das Ziel innerhalb von 5 Sek. nach 'Schattenbrand' stirbt und Erfahrung oder Ehrenpunkte abgibt, erhält der Zaubernde einen Seelensplitter." lvl="1"/>
+        <spell castTime="0" cooldown="15000" maxRange="20">
+          <power cost="20" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowwordpain" key="967" name="Verderben" tier="2">
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zerstörungszauber und den des Zaubers 'Feuerblitz' Eures Wichtels um 20%." lvl="1"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zerstörungszauber und den des Zaubers 'Feuerblitz' Eures Wichtels um 40%." lvl="2"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zerstörungszauber und den des Zaubers 'Feuerblitz' Eures Wichtels um 60%." lvl="3"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zerstörungszauber und den des Zaubers 'Feuerblitz' Eures Wichtels um 80%." lvl="4"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Zerstörungszauber und den des Zaubers 'Feuerblitz' Eures Wichtels um 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_lavaspawn" key="985" name="Intensität" tier="3">
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken oder Zauberzeitverringerung beim Kanalisieren von Zerstörungszaubern um 35%." lvl="1"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken oder Zauberzeitverringerung beim Kanalisieren von Zerstörungszaubern um 70%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_corpseexplode" key="964" name="Zerstörerische Reichweite" tier="3">
+        <rank description="Erhöht die Reichweite Eurer Zerstörungszauber um 10% und verringert die durch diese Zauber verursachte Bedrohung um 10%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Zerstörungszauber um 20% und verringert die durch diese Zauber verursachte Bedrohung um 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_fire_soulburn" key="965" name="Verbesserter sengender Schmerz" tier="3">
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eures Zaubers 'Sengender Schmerz' um 4%." lvl="1"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eures Zaubers 'Sengender Schmerz' um 7%." lvl="2"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eures Zaubers 'Sengender Schmerz' um 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_playingwithfire" key="1817" name="Heimzahlen" requires="985" tier="4">
+        <rank description="Erhöht Eure kritische Zaubertrefferchance um zusätzliche 1% und gewährt Euch eine Chance von 8%, nach Erleiden eines körperlichen Treffers die Zauberzeit Eures nächsten Zaubers 'Schattenblitz' oder 'Verbrennen' um 100% zu verringern. Dieser Effekt hält 8 Sek. lang an und kann innerhalb von 8 Sek. nur einmal auftreten." lvl="1"/>
+        <rank description="Erhöht Eure kritische Zaubertrefferchance um zusätzliche 2% und gewährt Euch eine Chance von 16%, nach Erleiden eines körperlichen Treffers die Zauberzeit Eures nächsten Zaubers 'Schattenblitz' oder 'Verbrennen' um 100% zu verringern. Dieser Effekt hält 8 Sek. lang an und kann innerhalb von 8 Sek. nur einmal auftreten." lvl="2"/>
+        <rank description="Erhöht Eure kritische Zaubertrefferchance um zusätzliche 3% und gewährt Euch eine Chance von 25%, nach Erleiden eines körperlichen Treffers die Zauberzeit Eures nächsten Zaubers 'Schattenblitz' oder 'Verbrennen' um 100% zu verringern. Dieser Effekt hält 8 Sek. lang an und kann innerhalb von 8 Sek. nur einmal auftreten." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_immolation" key="961" name="Verbesserter Feuerbrand" tier="4">
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Feuerbrand' um 10%." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Feuerbrand' um 20%." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eures Zaubers 'Feuerbrand' um 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_flameshock" key="981" name="Verwüstung" requires="967" tier="4">
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Zerstörungszauber um 5%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_netherprotection" key="1679" name="Netherschutz" tier="5">
+        <rank description="Nach einem erlittenen Zaubertreffer, besteht eine Chance von 10%, dass Ihr daraufhin durch 'Netherschutz' geschützt werdet, der 8 Sek. lang jeglichen durch diese Zauberart erlittenen Schaden um 30% verringert." lvl="1"/>
+        <rank description="Nach einem erlittenen Zaubertreffer, besteht eine Chance von 20%, dass Ihr daraufhin durch 'Netherschutz' geschützt werdet, der 8 Sek. lang jeglichen durch diese Zauberart erlittenen Schaden um 30% verringert." lvl="2"/>
+        <rank description="Nach einem erlittenen Zaubertreffer, besteht eine Chance von 30%, dass Ihr daraufhin durch 'Netherschutz' geschützt werdet, der 8 Sek. lang jeglichen durch diese Zauberart erlittenen Schaden um 30% verringert." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_selfdestruct" key="966" name="Glutsturm" tier="5">
+        <rank description="Erhöht den verursachten Schaden Eurer Feuerzauber um 3% und verringert die Zauberzeit Eures Zaubers 'Verbrennen' um 0.05 Sek." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Feuerzauber um 6% und verringert die Zauberzeit Eures Zaubers 'Verbrennen' um 0.10 Sek." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Feuerzauber um 9% und verringert die Zauberzeit Eures Zaubers 'Verbrennen' um 0.15 Sek." lvl="3"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Feuerzauber um 12% und verringert die Zauberzeit Eures Zaubers 'Verbrennen' um 0.20 Sek." lvl="4"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Feuerzauber um 15% und verringert die Zauberzeit Eures Zaubers 'Verbrennen' um 0.25 Sek." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_fire_fireball" key="968" name="Feuersbrunst" requires="961" tier="6">
+        <rank description="Zehrt einen auf das Ziel wirkenden Effekt der Zauber 'Feuerbrand' oder 'Schattenflamme' auf, um sofort Schaden in Höhe von 60% Eurer Zauber 'Feuerbrand' oder 'Schattenflamme' zuzufügen. Zudem wird im Verlauf von 6 Sek. zusätzlich 40% Schaden verursacht." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_soulleech_3" key="1678" name="Seele entziehen" tier="6">
+        <rank description="Verleiht Euren Zaubern 'Schattenblitz', 'Schattenbrand', 'Chaosblitz', 'Seelenfeuer', 'Verbrennen', 'Sengender Schmerz' und 'Feuersbrunst' eine Chance von 10%, Eure Gesundheit in Höhe von 20% des verursachten Schadens wiederherzustellen." lvl="1"/>
+        <rank description="Verleiht Euren Zaubern 'Schattenblitz', 'Schattenbrand', 'Chaosblitz', 'Seelenfeuer', 'Verbrennen', 'Sengender Schmerz' und 'Feuersbrunst' eine Chance von 20%, Eure Gesundheit in Höhe von 20% des verursachten Schadens wiederherzustellen." lvl="2"/>
+        <rank description="Verleiht Euren Zaubern 'Schattenblitz', 'Schattenbrand', 'Chaosblitz', 'Seelenfeuer', 'Verbrennen', 'Sengender Schmerz' und 'Feuersbrunst' eine Chance von 30%, Eure Gesundheit in Höhe von 20% des verursachten Schadens wiederherzustellen." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_fire_volcano" key="986" name="Feuerschwall" tier="6">
+        <rank description="Erzielt Ihr mit Euren Zaubern 'Sengender Schmerz' oder 'Feuersbrunst' einen kritischen Treffer, wird Euer Feuer- und Schattenzauberschaden 10 Sek. lang um 2% erhöht." lvl="1"/>
+        <rank description="Erzielt Ihr mit Euren Zaubern 'Sengender Schmerz' oder 'Feuersbrunst' einen kritischen Treffer, wird Euer Feuer- und Schattenzauberschaden 10 Sek. lang um 4% erhöht." lvl="2"/>
+        <rank description="Erzielt Ihr mit Euren Zaubern 'Sengender Schmerz' oder 'Feuersbrunst' einen kritischen Treffer, wird Euer Feuer- und Schattenzauberschaden 10 Sek. lang um 6% erhöht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowandflame" key="1677" name="Schatten und Flamme" tier="7">
+        <rank description="Eure Zauber 'Schattenblitz', 'Schattenbrand', 'Chaosblitz' und 'Verbrennen' erhalten zusätzliche 4% Bonus durch Effekte, die Zauberschaden beeinflussen." lvl="1"/>
+        <rank description="Eure Zauber 'Schattenblitz', 'Schattenbrand', 'Chaosblitz' und 'Verbrennen' erhalten zusätzliche 8% Bonus durch Effekte, die Zauberschaden beeinflussen." lvl="2"/>
+        <rank description="Eure Zauber 'Schattenblitz', 'Schattenbrand', 'Chaosblitz' und 'Verbrennen' erhalten zusätzliche 12% Bonus durch Effekte, die Zauberschaden beeinflussen." lvl="3"/>
+        <rank description="Eure Zauber 'Schattenblitz', 'Schattenbrand', 'Chaosblitz' und 'Verbrennen' erhalten zusätzliche 16% Bonus durch Effekte, die Zauberschaden beeinflussen." lvl="4"/>
+        <rank description="Eure Zauber 'Schattenblitz', 'Schattenbrand', 'Chaosblitz' und 'Verbrennen' erhalten zusätzliche 20% Bonus durch Effekte, die Zauberschaden beeinflussen." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_improvedsoulleech" key="1889" name="Verbessertes Seele entziehen" requires="1678" tier="7">
+        <rank description="Euer Zauber 'Seele entziehen' stellt sowohl Euer Mana, als auch das Mana Eures Dämons in Höhe von 1% Eures maximalen Manas wieder her. Zudem besteht eine Chance von 50%, dass bis zu 10 Gruppen- oder Schlachtzugsmitglieder alle 5 Sek. 1% ihres maximalen Manas regenerieren. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Euer Zauber 'Seele entziehen' stellt sowohl Euer Mana, als auch das Mana Eures Dämons in Höhe von 2% Eures maximalen Manas wieder her. Zudem besteht eine Chance von 100%, dass bis zu 10 Gruppen- oder Schlachtzugsmitglieder alle 5 Sek. 1% ihres maximalen Manas regenerieren. Hält 15 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_backdraft" key="1888" name="Pyrolyse" requires="968" tier="8">
+        <rank description="Wirkt Ihr 'Feuersbrunst', werden die Zauberzeit und die globale Abklingzeit Eurer nächsten 3 Zerstörungszauber um 10% verringert. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Wirkt Ihr 'Feuersbrunst', werden die Zauberzeit und die globale Abklingzeit Eurer nächsten 3 Zerstörungszauber um 20% verringert. Hält 15 Sek. lang an." lvl="2"/>
+        <rank description="Wirkt Ihr 'Feuersbrunst', werden die Zauberzeit und die globale Abklingzeit Eurer nächsten 3 Zerstörungszauber um 30% verringert. Hält 15 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowfury" key="1676" name="Schattenfuror" tier="8">
+        <rank description="Der Schattenfuror wird entfesselt, verursacht 343 bis 407 Schattenschaden und betäubt 3 Sek. lang alle Gegner im Umkreis von 8 Metern." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30">
+          <power cost="27" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warlock_empoweredimp" key="2045" name="Machterfüllter Wichtel" tier="8">
+        <rank description="Erhöht den von Eurem Wichtel verursachten Schaden um 10%, und von Eurem Wichtel erzielte kritische Treffer haben eine Chance von 33%, die kritische Trefferchance Eures nächsten Zaubers um 100% zu erhöhen. Der Effekt hält 8 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht den von Eurem Wichtel verursachten Schaden um 20%, und von Eurem Wichtel erzielte kritische Treffer haben eine Chance von 66%, die kritische Trefferchance Eures nächsten Zaubers um 100% zu erhöhen. Der Effekt hält 8 Sek. lang an." lvl="2"/>
+        <rank description="Erhöht den von Eurem Wichtel verursachten Schaden um 30%, und von Eurem Wichtel erzielte kritische Treffer haben eine Chance von 100%, die kritische Trefferchance Eures nächsten Zaubers um 100% zu erhöhen. Der Effekt hält 8 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_fireandbrimstone" key="1890" name="Feuer und Schwefel" tier="9">
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber 'Verbrennen' und 'Chaosblitz' an Zielen, die vom Effekt Eures Zaubers 'Feuerbrand' betroffen sind, um 2%. Zudem wird die kritische Trefferchance Eures Zaubers 'Feuersbrunst' um 5% erhöht." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber 'Verbrennen' und 'Chaosblitz' an Zielen, die vom Effekt Eures Zaubers 'Feuerbrand' betroffen sind, um 4%. Zudem wird die kritische Trefferchance Eures Zaubers 'Feuersbrunst' um 10% erhöht." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber 'Verbrennen' und 'Chaosblitz' an Zielen, die vom Effekt Eures Zaubers 'Feuerbrand' betroffen sind, um 6%. Zudem wird die kritische Trefferchance Eures Zaubers 'Feuersbrunst' um 15% erhöht." lvl="3"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber 'Verbrennen' und 'Chaosblitz' an Zielen, die vom Effekt Eures Zaubers 'Feuerbrand' betroffen sind, um 8%. Zudem wird die kritische Trefferchance Eures Zaubers 'Feuersbrunst' um 20% erhöht." lvl="4"/>
+        <rank description="Erhöht den verursachten Schaden Eurer Zauber 'Verbrennen' und 'Chaosblitz' an Zielen, die vom Effekt Eures Zaubers 'Feuerbrand' betroffen sind, um 10%. Zudem wird die kritische Trefferchance Eures Zaubers 'Feuersbrunst' um 25% erhöht." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_chaosbolt" key="1891" name="Chaosblitz" tier="10">
+        <rank description="Schleudert einen Blitz chaotischen Feuers auf den Feind und verursacht 837 bis 1061 Feuerschaden. Dem Chaosblitz kann nicht widerstanden werden und er durchschlägt alle Absorptionseffekte." lvl="1"/>
+        <spell castTime="2500" cooldown="12000" maxRange="30">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockSummoning" icon="spell_shadow_metamorphosis" key="Demonology" name="Dämonologie" order="1">
+      <talent column="0" icon="inv_stone_04" key="1221" name="Verbesserter Gesundheitsstein" tier="0">
+        <rank description="Erhöht die von Eurem 'Gesundheitsstein' wiederhergestellte Gesundheit um 10%." lvl="1"/>
+        <rank description="Erhöht die von Eurem 'Gesundheitsstein' wiederhergestellte Gesundheit um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonimp" key="1222" name="Verbesserter Wichtel" tier="0">
+        <rank description="Erhöht den Effekt der Zauber 'Feuerblitz', 'Feuerschild' und 'Blutpakt' um 10%." lvl="1"/>
+        <rank description="Erhöht den Effekt der Zauber 'Feuerblitz', 'Feuerschild' und 'Blutpakt' um 20%." lvl="2"/>
+        <rank description="Erhöht den Effekt der Zauber 'Feuerblitz', 'Feuerschild' und 'Blutpakt' um 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_metamorphosis" key="1223" name="Dämonische Umarmung" tier="0">
+        <rank description="Erhöht Eure gesamte Ausdauer um 4%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Ausdauer um 7%." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Ausdauer um 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_felmending" key="1883" name="Teufelssynergie" tier="0">
+        <rank description="Ihr habt eine Chance von 50%, Euren Begleiter um 15% des von Euch verursachten Zauberschadens zu heilen." lvl="1"/>
+        <rank description="Ihr habt eine Chance von 100%, Euren Begleiter um 15% des von Euch verursachten Zauberschadens zu heilen." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_lifedrain" key="1224" name="Verbesserte Lebenslinie" tier="1">
+        <rank description="Erhöht die durch Euren Zauber 'Lebenslinie' übertragene Gesundheit um 10% und verringert die Gesundheitskosten um 10%. Zusätzlich wird der erlittene Schaden Eures Dämons, wenn er unter dem Effekt von 'Lebenslinie' steht, um 15% verringert." lvl="1"/>
+        <rank description="Erhöht die durch Euren Zauber 'Lebenslinie' übertragene Gesundheit um 20% und verringert die Gesundheitskosten um 20%. Zusätzlich wird der erlittene Schaden Eures Dämons, wenn er unter dem Effekt von 'Lebenslinie' steht, um 30% verringert." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonvoidwalker" key="1225" name="Dämonische Brutalität" tier="1">
+        <rank description="Erhöht die Wirksamkeit der Zauber 'Qual', 'Schatten verzehren', 'Opferung' und 'Leiden' Eures Leerwandlers um 10% und erhöht den Angriffskraftbonus des Effekts 'Dämonische Raserei' Eurer Teufelswache um 1%." lvl="1"/>
+        <rank description="Erhöht die Wirksamkeit der Zauber 'Qual', 'Schatten verzehren', 'Opferung' und 'Leiden' Eures Leerwandlers um 20% und erhöht den Angriffskraftbonus des Effekts 'Dämonische Raserei' Eurer Teufelswache um 2%." lvl="2"/>
+        <rank description="Erhöht die Wirksamkeit der Zauber 'Qual', 'Schatten verzehren', 'Opferung' und 'Leiden' Eures Leerwandlers um 30% und erhöht den Angriffskraftbonus des Effekts 'Dämonische Raserei' Eurer Teufelswache um 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_magicalsentry" key="1242" name="Teuflische Vitalität" tier="1">
+        <rank description="Erhöht die Ausdauer und Intelligenz Eures Wichtels, Leerwandlers, Sukkubus, Teufelsjägers und Eurer Teufelswache um 5% und erhöht sowohl Eure maximale Gesundheit als auch Euer maximales Mana um 1%." lvl="1"/>
+        <rank description="Erhöht die Ausdauer und Intelligenz Eures Wichtels, Leerwandlers, Sukkubus, Teufelsjägers und Eurer Teufelswache um 10% und erhöht sowohl Eure maximale Gesundheit als auch Euer maximales Mana um 2%." lvl="2"/>
+        <rank description="Erhöht die Ausdauer und Intelligenz Eures Wichtels, Leerwandlers, Sukkubus, Teufelsjägers und Eurer Teufelswache um 15% und erhöht sowohl Eure maximale Gesundheit als auch Euer maximales Mana um 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonsuccubus" key="1243" name="Verbesserter Sukkubus" tier="2">
+        <rank description="Verringert die Zauberzeit des Zaubers 'Verführung' Eures Sukkubus um 22% und erhöht die Dauer seiner Zauber 'Verführung' und 'Geringe Unsichtbarkeit' um 10%." lvl="1"/>
+        <rank description="Verringert die Zauberzeit des Zaubers 'Verführung' Eures Sukkubus um 44% und erhöht die Dauer seiner Zauber 'Verführung' und 'Geringe Unsichtbarkeit' um 20%." lvl="2"/>
+        <rank description="Verringert die Zauberzeit des Zaubers 'Verführung' Eures Sukkubus um 66% und erhöht die Dauer seiner Zauber 'Verführung' und 'Geringe Unsichtbarkeit' um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_gathershadows" key="1282" name="Seelenverbindung" tier="2">
+        <rank description="Bei Aktivierung werden 20% des von Euch erlittenen Schadens auf Euren Wichtel, Leerwandler, Sukkubus, Teufelsjäger, Teufelswache oder versklavten Dämon umgelenkt. Dieser Schaden kann nicht vermieden werden. Hält an, solange der Dämon aktiv ist und kontrolliert wird." lvl="1"/>
+        <spell castTime="0" maxRange="100">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_removecurse" key="1226" name="Teufelsbeherrschung" tier="2">
+        <rank description="Euer nächster Beschwörungszauber für Wichtel, Leerwandler, Sukkubus, Teufelsjäger oder Teufelswache hat eine um 5.5 Sek. verringerte Zauberzeit und um 50% verringerte Manakosten." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_ragingscream" key="1671" name="Dämonische Ägide" tier="2">
+        <rank description="Erhöht die Wirksamkeit Eurer Dämonenrüstung und Teufelsrüstung um 10%." lvl="1"/>
+        <rank description="Erhöht die Wirksamkeit Eurer Dämonenrüstung und Teufelsrüstung um 20%." lvl="2"/>
+        <rank description="Erhöht die Wirksamkeit Eurer Dämonenrüstung und Teufelsrüstung um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowworddominate" key="1262" name="Unheilige Macht" requires="1282" tier="3">
+        <rank description="Erhöht den verursachten Schaden Eures Leerwandlers, Sukkubus, Teufelsjägers sowie den Nahkampfschaden Eurer Teufelswache und den Feuerblitzschaden Eures Wichtels um 4%." lvl="1"/>
+        <rank description="Erhöht den verursachten Schaden Eures Leerwandlers, Sukkubus, Teufelsjägers sowie den Nahkampfschaden Eurer Teufelswache und den Feuerblitzschaden Eures Wichtels um 8%." lvl="2"/>
+        <rank description="Erhöht den verursachten Schaden Eures Leerwandlers, Sukkubus, Teufelsjägers sowie den Nahkampfschaden Eurer Teufelswache und den Feuerblitzschaden Eures Wichtels um 12%." lvl="3"/>
+        <rank description="Erhöht den verursachten Schaden Eures Leerwandlers, Sukkubus, Teufelsjägers sowie den Nahkampfschaden Eurer Teufelswache und den Feuerblitzschaden Eures Wichtels um 16%." lvl="4"/>
+        <rank description="Erhöht den verursachten Schaden Eures Leerwandlers, Sukkubus, Teufelsjägers sowie den Nahkampfschaden Eurer Teufelswache und den Feuerblitzschaden Eures Wichtels um 20%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_impphaseshift" key="1227" name="Meister der Beschwörung" requires="1226" tier="3">
+        <rank description="Verringert die Zauberzeit Eures Beschwörungszaubers für Wichtel, Leerwandler, Sukkubus, Teufelsjäger und Teufelswache um 2 Sek. und die Manakosten um 20%." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eures Beschwörungszaubers für Wichtel, Leerwandler, Sukkubus, Teufelsjäger und Teufelswache um 4 Sek. und die Manakosten um 40%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_manafeed" key="1281" name="Mananachschub" requires="1262" tier="4">
+        <rank description="Wenn Ihr durch 'Mana entziehen' oder 'Aderlass' Mana bekommt, erhält Euer beschworener Dämon 100% des von Euch gewonnenen Manas." lvl="1"/>
+      </talent>
+      <talent column="2" icon="inv_ammo_firetar" key="1261" name="Meister der Herbeizauberung" tier="4">
+        <rank description="Erhöht die durch Eure Feuersteine und Zaubersteine gewonnenen Kampfwerte um 150%." lvl="1"/>
+        <rank description="Erhöht die durch Eure Feuersteine und Zaubersteine gewonnenen Kampfwerte um 300%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowpact" key="1244" name="Meister der Dämonologie" requires="1262" tier="5">
+        <rank description="Gewährt Hexenmeister und beschworenem Dämon einen Effekt, solange dieser Dämon aktiv ist.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht Euren Feuerschaden um 1% und erhöht Eure kritische Trefferchance mit Feuerzaubern um 1%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Verringert erlittenen körperlichen Schaden um 2%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Erhöht Euren Schattenschaden um 1% und erhöht Eure kritische Trefferchance mit Schattenzaubern um 1%.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Verringert jeglichen erlittenen Zauberschaden um 2%.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht jeglichen verursachten Schaden um 1% und verringert jeglichen erlittenen Schaden um 1%." lvl="1"/>
+        <rank description="Gewährt Hexenmeister und beschworenem Dämon einen Effekt, solange dieser Dämon aktiv ist.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht Euren Feuerschaden um 2% und erhöht Eure kritische Trefferchance mit Feuerzaubern um 2%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Verringert erlittenen körperlichen Schaden um 4%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Erhöht Euren Schattenschaden um 2% und erhöht Eure kritische Trefferchance mit Schattenzaubern um 2%.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Verringert jeglichen erlittenen Zauberschaden um 4%.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht jeglichen verursachten Schaden um 2% und verringert jeglichen erlittenen Schaden um 2%." lvl="2"/>
+        <rank description="Gewährt Hexenmeister und beschworenem Dämon einen Effekt, solange dieser Dämon aktiv ist.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht Euren Feuerschaden um 3% und erhöht Eure kritische Trefferchance mit Feuerzaubern um 3%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Verringert erlittenen körperlichen Schaden um 6%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Erhöht Euren Schattenschaden um 3% und erhöht Eure kritische Trefferchance mit Schattenzaubern um 3%.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Verringert jeglichen erlittenen Zauberschaden um 6%.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht jeglichen verursachten Schaden um 3% und verringert jeglichen erlittenen Schaden um 3%." lvl="3"/>
+        <rank description="Gewährt Hexenmeister und beschworenem Dämon einen Effekt, solange dieser Dämon aktiv ist.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht Euren Feuerschaden um 4% und erhöht Eure kritische Trefferchance mit Feuerzaubern um 4%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Verringert erlittenen körperlichen Schaden um 8%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Erhöht Euren Schattenschaden um 4% und erhöht Eure kritische Trefferchance mit Schattenzaubern um 4%.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Verringert jeglichen erlittenen Zauberschaden um 8%.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht jeglichen verursachten Schaden um 4% und verringert jeglichen erlittenen Schaden um 4%." lvl="4"/>
+        <rank description="Gewährt Hexenmeister und beschworenem Dämon einen Effekt, solange dieser Dämon aktiv ist.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht Euren Feuerschaden um 5% und erhöht Eure kritische Trefferchance mit Feuerzaubern um 5%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Verringert erlittenen körperlichen Schaden um 10%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Erhöht Euren Schattenschaden um 5% und erhöht Eure kritische Trefferchance mit Schattenzaubern um 5%.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Verringert jeglichen erlittenen Zauberschaden um 10%.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht jeglichen verursachten Schaden um 5% und verringert jeglichen erlittenen Schaden um 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_moltencore" key="1283" name="Geschmolzener Kern" tier="5">
+        <rank description="Erhöht die Effektdauer Eures Zaubers 'Feuerbrand' um 3 Sek., zudem habt Ihr eine Chance von 4%, den Effekt 'Geschmolzener Kern' zu gewinnen, wenn Eurer Zauber 'Verderbnis' Schaden verursacht. Der Effekt 'Geschmolzener Kern' verstärkt die Wirkung der 3 innerhalb der nächsten 15 Sek. gewirkten Zauber 'Verbrennen' oder 'Seelenfeuer'.&lt;br/&gt;&lt;br/&gt;Verbrennen - Erhöht den verursachten Schaden um 6% und verringert die Zauberzeit um 10%.&lt;br/&gt;&lt;br/&gt;Seelenfeuer - Erhöht den verursachten Schaden um 6% und erhöht die kritische Trefferchance um 5%." lvl="1"/>
+        <rank description="Erhöht die Effektdauer Eures Zaubers 'Feuerbrand' um 6 Sek., zudem habt Ihr eine Chance von 8%, den Effekt 'Geschmolzener Kern' zu gewinnen, wenn Eurer Zauber 'Verderbnis' Schaden verursacht. Der Effekt 'Geschmolzener Kern' verstärkt die Wirkung der 3 innerhalb der nächsten 15 Sek. gewirkten Zauber 'Verbrennen' oder 'Seelenfeuer'.&lt;br/&gt;&lt;br/&gt;Verbrennen - Erhöht den verursachten Schaden um 12% und verringert die Zauberzeit um 20%.&lt;br/&gt;&lt;br/&gt;Seelenfeuer - Erhöht den verursachten Schaden um 12% und erhöht die kritische Trefferchance um 10%." lvl="2"/>
+        <rank description="Erhöht die Effektdauer Eures Zaubers 'Feuerbrand' um 9 Sek., zudem habt Ihr eine Chance von 12%, den Effekt 'Geschmolzener Kern' zu gewinnen, wenn Eurer Zauber 'Verderbnis' Schaden verursacht. Der Effekt 'Geschmolzener Kern' verstärkt die Wirkung der 3 innerhalb der nächsten 15 Sek. gewirkten Zauber 'Verbrennen' oder 'Seelenfeuer'.&lt;br/&gt;&lt;br/&gt;Verbrennen - Erhöht den verursachten Schaden um 18% und verringert die Zauberzeit um 30%.&lt;br/&gt;&lt;br/&gt;Seelenfeuer - Erhöht den verursachten Schaden um 18% und erhöht die kritische Trefferchance um 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_demonicfortitude" key="1680" name="Dämonische Abhärtung" tier="6">
+        <rank description="Verringert die Chance, dass Ihr einen kritischen Treffer durch Nahkampfangriffe oder Zauber erleidet, um 1%. Verringert jeglichen von Eurem beschworenen Dämon erlittenen Schaden um 5%." lvl="1"/>
+        <rank description="Verringert die Chance, dass Ihr einen kritischen Treffer durch Nahkampfangriffe oder Zauber erleidet, um 2%. Verringert jeglichen von Eurem beschworenen Dämon erlittenen Schaden um 10%." lvl="2"/>
+        <rank description="Verringert die Chance, dass Ihr einen kritischen Treffer durch Nahkampfangriffe oder Zauber erleidet, um 3%. Verringert jeglichen von Eurem beschworenen Dämon erlittenen Schaden um 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_demonicempowerment" key="1880" name="Dämonische Energie" requires="1244" tier="6">
+        <rank description="Erfüllt den beschworenen Dämon des Hexenmeisters mit Macht.&lt;br/&gt;&lt;br/&gt;Wichtel - Erhöht die kritische Zaubertrefferchance des Wichtels 30 Sek. lang um 20%.&lt;br/&gt;&lt;br/&gt;Leerwandler - Erhöht die Gesundheit des Leerwandlers um 20% und 20 Sek. lang die von seinen Zaubern und Angriffen verursachte Bedrohung um 20%.&lt;br/&gt;&lt;br/&gt;Sukkubus - Verschwindet sofort in eine verbesserte Unsichtbarkeit. Das Verschwinden entfernt alle Betäubungen, Verlangsamungen und bewegungseinschränkenden Effekte von dem Sukkubus.&lt;br/&gt;&lt;br/&gt;Teufelsjäger - Bannt alle auf den Teufelsjäger wirkenden magischen Effekte.&lt;br/&gt;&lt;br/&gt;Teufelswache - Erhöht das Angriffstempo Eurer Teufelswache um 20%, entfernt alle Betäubungen, Verlangsamungen und bewegungseinschränkenden Effekte und macht die Teufelswache gegen sie immun. Hält 15 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="100">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1263" name="Dämonisches Wissen" tier="6">
+        <rank description="Erhöht Euren Zauberschaden um einen Betrag, der 4% der Summe von Ausdauer und Intelligenz Eures aktiven Dämons entspricht." lvl="1"/>
+        <rank description="Erhöht Euren Zauberschaden um einen Betrag, der 8% der Summe von Ausdauer und Intelligenz Eures aktiven Dämons entspricht." lvl="2"/>
+        <rank description="Erhöht Euren Zauberschaden um einen Betrag, der 12% der Summe von Ausdauer und Intelligenz Eures aktiven Dämons entspricht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonictactics" key="1673" name="Dämonische Taktiken" tier="7">
+        <rank description="Erhöht die kritische Nahkampf- und Zaubertrefferchance von Euch und Eurem beschworenen Dämon um 2%." lvl="1"/>
+        <rank description="Erhöht die kritische Nahkampf- und Zaubertrefferchance von Euch und Eurem beschworenen Dämon um 4%." lvl="2"/>
+        <rank description="Erhöht die kritische Nahkampf- und Zaubertrefferchance von Euch und Eurem beschworenen Dämon um 6%." lvl="3"/>
+        <rank description="Erhöht die kritische Nahkampf- und Zaubertrefferchance von Euch und Eurem beschworenen Dämon um 8%." lvl="4"/>
+        <rank description="Erhöht die kritische Nahkampf- und Zaubertrefferchance von Euch und Eurem beschworenen Dämon um 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball02" key="2261" name="Dezimierung" tier="7">
+        <rank description="Wenn Ihr die Zauber 'Schattenblitz', 'Verbrennen' oder 'Seelenfeuer' auf ein Ziel wirkt, das weniger als 35% Gesundheit besitzt, wird die Zauberzeit Eurer nächsten Wirkens von 'Seelenfeuer' 10 Sek. lang um 20% verringert. Wird 'Seelenfeuer' gewirkt', während Ihr unter dem Effekt von 'Dezimierung' steht, kostet der Zauber keinen Seelensplitter." lvl="1"/>
+        <rank description="Wenn Ihr die Zauber 'Schattenblitz', 'Verbrennen' oder 'Seelenfeuer' auf ein Ziel wirkt, das weniger als 35% Gesundheit besitzt, wird die Zauberzeit Eurer nächsten Wirkens von 'Seelenfeuer' 10 Sek. lang um 40% verringert. Wird 'Seelenfeuer' gewirkt', während Ihr unter dem Effekt von 'Dezimierung' steht, kostet der Zauber keinen Seelensplitter." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_improveddemonictactics" key="1882" name="Verbesserte dämonische Taktiken" requires="1673" tier="8">
+        <rank description="Erhöht die kritische Trefferchance Eurer beschworenen Dämonen um einen Wert, der 10% Eurer kritischen Trefferchance entspricht." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer beschworenen Dämonen um einen Wert, der 20% Eurer kritischen Trefferchance entspricht." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer beschworenen Dämonen um einen Wert, der 30% Eurer kritischen Trefferchance entspricht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonfelguard" key="1672" name="Teufelswache beschwören" tier="8">
+        <rank description="Beschwört eine Teufelswache, die unter dem Befehl des Hexenmeisters steht." lvl="1"/>
+        <spell castTime="10000">
+          <power cost="80" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_demonicempathy" key="1884" name="Nemesis" tier="8">
+        <rank description="Verringert die Abklingzeit der Zauber 'Dämonische Energie', 'Metamorphose' und 'Teufelsbeherrschung' um 10%." lvl="1"/>
+        <rank description="Verringert die Abklingzeit der Zauber 'Dämonische Energie', 'Metamorphose' und 'Teufelsbeherrschung' um 20%." lvl="2"/>
+        <rank description="Verringert die Abklingzeit der Zauber 'Dämonische Energie', 'Metamorphose' und 'Teufelsbeherrschung' um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Dämonischer Pakt" tier="9">
+        <rank description="Erhöht Euren Zauberschaden um 2% und die kritischen Treffer Eures Begleiters belegen alle Gruppen- oder Schlachtzugsmitglieder mit dem Effekt 'Dämonischer Pakt'. Der dämonische Pakt erhöht 12 Sek. lang die Zaubermacht um 2% Eures Zauberschadens. Versklavte Dämonen können diesen Effekt nicht auslösen." lvl="1"/>
+        <rank description="Erhöht Euren Zauberschaden um 4% und die kritischen Treffer Eures Begleiters belegen alle Gruppen- oder Schlachtzugsmitglieder mit dem Effekt 'Dämonischer Pakt'. Der dämonische Pakt erhöht 12 Sek. lang die Zaubermacht um 4% Eures Zauberschadens. Versklavte Dämonen können diesen Effekt nicht auslösen." lvl="2"/>
+        <rank description="Erhöht Euren Zauberschaden um 6% und die kritischen Treffer Eures Begleiters belegen alle Gruppen- oder Schlachtzugsmitglieder mit dem Effekt 'Dämonischer Pakt'. Der dämonische Pakt erhöht 12 Sek. lang die Zaubermacht um 6% Eures Zauberschadens. Versklavte Dämonen können diesen Effekt nicht auslösen." lvl="3"/>
+        <rank description="Erhöht Euren Zauberschaden um 8% und die kritischen Treffer Eures Begleiters belegen alle Gruppen- oder Schlachtzugsmitglieder mit dem Effekt 'Dämonischer Pakt'. Der dämonische Pakt erhöht 12 Sek. lang die Zaubermacht um 8% Eures Zauberschadens. Versklavte Dämonen können diesen Effekt nicht auslösen." lvl="4"/>
+        <rank description="Erhöht Euren Zauberschaden um 10% und die kritischen Treffer Eures Begleiters belegen alle Gruppen- oder Schlachtzugsmitglieder mit dem Effekt 'Dämonischer Pakt'. Der dämonische Pakt erhöht 12 Sek. lang die Zaubermacht um 10% Eures Zauberschadens. Versklavte Dämonen können diesen Effekt nicht auslösen." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonform" key="1886" name="Metamorphose" tier="10">
+        <rank description="Ihr verwandelt Euch 30 Sek. lang in einen Dämon. Diese Gestalt erhöht Eure Rüstung um 600%, Euren Schaden um 20% und die Chance, einen kritischen Nahkampftreffer zu erleiden, wird um 6% verringert. Die Dauer auf Euch wirkender Betäubungs- und Verlangsamungseffekte wird um 50% verringert. Zusätzlich zu Euren Fähigkeiten gewinnt Ihr einige einzigartige Dämonenfähigkeiten. 3 Minuten Abklingzeit." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockCurses" icon="spell_shadow_deathcoil" key="Affliction" name="Gebrechen" order="0">
+      <talent column="0" icon="spell_shadow_curseofsargeras" key="1284" name="Verbesserter Fluch der Pein" tier="0">
+        <rank description="Erhöht den von Eurem 'Fluch der Pein' angerichteten Schaden um 5%." lvl="1"/>
+        <rank description="Erhöht den von Eurem 'Fluch der Pein' angerichteten Schaden um 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="1005" name="Unterdrückung" tier="0">
+        <rank description="Erhöht die Trefferchance Eurer Zauber um 1% und verringert die Manakosten Eurer Gebrechenszauber um 2%." lvl="1"/>
+        <rank description="Erhöht die Trefferchance Eurer Zauber um 2% und verringert die Manakosten Eurer Gebrechenszauber um 4%." lvl="2"/>
+        <rank description="Erhöht die Trefferchance Eurer Zauber um 3% und verringert die Manakosten Eurer Gebrechenszauber um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_abominationexplosion" key="1003" name="Verbesserte Verderbnis" tier="0">
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um 2% und erhöht die kritische Trefferchance von 'Saat der Verderbnis' um 1%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um 4% und erhöht die kritische Trefferchance von 'Saat der Verderbnis' um 2%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um 6% und erhöht die kritische Trefferchance von 'Saat der Verderbnis' um 3%." lvl="3"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um 8% und erhöht die kritische Trefferchance von 'Saat der Verderbnis' um 4%." lvl="4"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um 10% und erhöht die kritische Trefferchance von 'Saat der Verderbnis' um 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_curseofmannoroth" key="1006" name="Verbesserter Fluch der Schwäche" tier="1">
+        <rank description="Erhöht die Angriffskraftverringerung Eures Zaubers 'Fluch der Schwäche' um 10%." lvl="1"/>
+        <rank description="Erhöht die Angriffskraftverringerung Eures Zaubers 'Fluch der Schwäche' um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_haunting" key="1101" name="Verbesserter Seelendieb" tier="1">
+        <rank description="Stellt 7% Eures maximalen Manas wieder her, wenn Euer Ziel von Euch getötet wird, während es unter dem Einfluss von 'Seelendieb' steht. Zusätzlich verursachen Eure Gebrechen 10% weniger Bedrohung." lvl="1"/>
+        <rank description="Stellt 15% Eures maximalen Manas wieder her, wenn Euer Ziel von Euch getötet wird, während es unter dem Einfluss von 'Seelendieb' steht. Zusätzlich verursachen Eure Gebrechen 20% weniger Bedrohung." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="1007" name="Verbesserter Aderlass" tier="1">
+        <rank description="Erhöht die durch Euren Zauber 'Aderlass' gewährte Manamenge um 10%." lvl="1"/>
+        <rank description="Erhöht die durch Euren Zauber 'Aderlass' gewährte Manamenge um 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_lifedrain02" key="1004" name="Seelenentzug" tier="1">
+        <rank description="Erhöht die durch Eure Zauber 'Blutsauger' und 'Seelendieb' abgezogene Menge pro auf das Ziel wirkenden Gebrechenseffekt um zusätzliche 3%, bis zu einem Maximum von 9% zusätzlichem Effekt." lvl="1"/>
+        <rank description="Erhöht die durch Eure Zauber 'Blutsauger' und 'Seelendieb' abgezogene Menge pro auf das Ziel wirkenden Gebrechenseffekt um zusätzliche 6%, bis zu einem Maximum von 18% zusätzlichem Effekt." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_possession" key="2205" name="Verbesserte Furcht" tier="2">
+        <rank description="Euer Zauber 'Furcht' ruft beim Ende seiner Dauer den Effekt 'Alptraum' hervor. Dieser Effekt verringert 5 Sek. lang das Bewegungstempo des Ziels um 15%." lvl="1"/>
+        <rank description="Euer Zauber 'Furcht' ruft beim Ende seiner Dauer den Effekt 'Alptraum' hervor. Dieser Effekt verringert 5 Sek. lang das Bewegungstempo des Ziels um 30%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_fingerofdeath" key="1001" name="Teufelskonzentration" tier="2">
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Blutsauger', 'Mana entziehen', 'Seelendieb', 'Instabiles Gebrechen' und 'Heimsuchung' um 23%." lvl="1"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Blutsauger', 'Mana entziehen', 'Seelendieb', 'Instabiles Gebrechen' und 'Heimsuchung' um 46%." lvl="2"/>
+        <rank description="Verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeiterhöhung beim Wirken von 'Blutsauger', 'Mana entziehen', 'Seelendieb', 'Instabiles Gebrechen' und 'Heimsuchung' um 70%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_contagion" key="1061" name="Fluch verstärken" tier="2">
+        <rank description="Verringert die globale Abklingzeit Eurer Flüche um 0.5 Sek." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_callofbone" key="1021" name="Grimmige Reichweite" tier="3">
+        <rank description="Erhöht die Reichweite Eurer Gebrechenzauber um 10%." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Gebrechenzauber um 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_twilight" key="1002" name="Einbruch der Nacht" tier="3">
+        <rank description="Gewährt Euren Zaubern 'Verderbnis' und 'Blutsauger' eine Chance von 2%, Euch in einen Schattentrancezustand zu versetzen, nachdem Ihr dem Feind Schaden zugefügt habt. Der Schattentrancezustand verringert die Zauberzeit Eures nächsten Zaubers 'Schattenblitz' um 100%." lvl="1"/>
+        <rank description="Gewährt Euren Zaubern 'Verderbnis' und 'Blutsauger' eine Chance von 4%, Euch in einen Schattentrancezustand zu versetzen, nachdem Ihr dem Feind Schaden zugefügt habt. Der Schattentrancezustand verringert die Zauberzeit Eures nächsten Zaubers 'Schattenblitz' um 100%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_abominationexplosion" key="1764" name="Machtvolle Verderbnis" tier="3">
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um einen Wert, der 12% Eurer Zaubermacht entspricht." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um einen Wert, der 24% Eurer Zaubermacht entspricht." lvl="2"/>
+        <rank description="Erhöht den Schaden Eures Zaubers 'Verderbnis' um einen Wert, der 36% Eurer Zaubermacht entspricht." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowembrace" key="1763" name="Umschlingende Schatten" tier="4">
+        <rank description="Eure Zauber 'Schattenblitz' und 'Heimsuchung' verursachen den Effekt 'Umschlingende Schatten', der jeglichen von Euch verursachten regelmäßigen Schattenschaden gegen das Ziel um 1% erhöht und seine erhaltene regelmäßige Heilung um 2% verringert. Hält 12 Sek. lang an. Bis zu 3-mal stapelbar." lvl="1"/>
+        <rank description="Eure Zauber 'Schattenblitz' und 'Heimsuchung' verursachen den Effekt 'Umschlingende Schatten', der jeglichen von Euch verursachten regelmäßigen Schattenschaden gegen das Ziel um 2% erhöht und seine erhaltene regelmäßige Heilung um 4% verringert. Hält 12 Sek. lang an. Bis zu 3-mal stapelbar." lvl="2"/>
+        <rank description="Eure Zauber 'Schattenblitz' und 'Heimsuchung' verursachen den Effekt 'Umschlingende Schatten', der jeglichen von Euch verursachten regelmäßigen Schattenschaden gegen das Ziel um 3% erhöht und seine erhaltene regelmäßige Heilung um 6% verringert. Hält 12 Sek. lang an. Bis zu 3-mal stapelbar." lvl="3"/>
+        <rank description="Eure Zauber 'Schattenblitz' und 'Heimsuchung' verursachen den Effekt 'Umschlingende Schatten', der jeglichen von Euch verursachten regelmäßigen Schattenschaden gegen das Ziel um 4% erhöht und seine erhaltene regelmäßige Heilung um 8% verringert. Hält 12 Sek. lang an. Bis zu 3-mal stapelbar." lvl="4"/>
+        <rank description="Eure Zauber 'Schattenblitz' und 'Heimsuchung' verursachen den Effekt 'Umschlingende Schatten', der jeglichen von Euch verursachten regelmäßigen Schattenschaden gegen das Ziel um 5% erhöht und seine erhaltene regelmäßige Heilung um 10% verringert. Hält 12 Sek. lang an. Bis zu 3-mal stapelbar." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="1041" name="Lebensentzug" tier="4">
+        <rank description="Wenn Ihr durch Euren Zauber 'Verderbnis' Schaden verursacht, werdet Ihr sofort um 40% des zugefügten Schadens geheilt. Zusätzlich wird der über Zeit verursachte Schaden Eurer Zauber 'Verderbnis', 'Saat der Verderbnis' und 'Instabiles Gebrechen' um 5% erhöht." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_grimward" key="1081" name="Fluch der Erschöpfung" requires="1061" tier="4">
+        <rank description="Verringert das Bewegungstempo des Ziels 12 Sek. lang um 30%. Es kann immer nur jeweils ein Fluch pro Hexenmeister auf einem beliebigen Ziel aktiv sein." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Verbesserter Teufelsjäger" tier="5">
+        <rank description="Jedes Mal, wenn Euer Teufelsjäger mit seiner Fähigkeit 'Schattenbiss' trifft, erhält er 8% seines maximalen Manas zurück und die Abklingzeit dieser Fähigkeit wird um 2 Sek. verringert. Der Effekt des Zaubers  'Teufelsintelligenz' Eures Teufelsjägers wird um 5% erhöht." lvl="1"/>
+        <rank description="Jedes Mal, wenn Euer Teufelsjäger mit seiner Fähigkeit 'Schattenbiss' trifft, erhält er 8% seines maximalen Manas zurück und die Abklingzeit dieser Fähigkeit wird um 4 Sek. verringert. Der Effekt des Zaubers  'Teufelsintelligenz' Eures Teufelsjägers wird um 10% erhöht." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Schattenbeherrschung" requires="1041" tier="5">
+        <rank description="Erhöht den durch Eure Schattenzauber zugefügten Schaden oder das abgesaugte Leben sowie den durch den Zauber 'Schattenbiss' Eures Teufelsjägers zugefügten Schaden um 3%." lvl="1"/>
+        <rank description="Erhöht den durch Eure Schattenzauber zugefügten Schaden oder das abgesaugte Leben sowie den durch den Zauber 'Schattenbiss' Eures Teufelsjägers zugefügten Schaden um 6%." lvl="2"/>
+        <rank description="Erhöht den durch Eure Schattenzauber zugefügten Schaden oder das abgesaugte Leben sowie den durch den Zauber 'Schattenbiss' Eures Teufelsjägers zugefügten Schaden um 9%." lvl="3"/>
+        <rank description="Erhöht den durch Eure Schattenzauber zugefügten Schaden oder das abgesaugte Leben sowie den durch den Zauber 'Schattenbiss' Eures Teufelsjägers zugefügten Schaden um 12%." lvl="4"/>
+        <rank description="Erhöht den durch Eure Schattenzauber zugefügten Schaden oder das abgesaugte Leben sowie den durch den Zauber 'Schattenbiss' Eures Teufelsjägers zugefügten Schaden um 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_eradication" key="1878" name="Ausrottung" tier="6">
+        <rank description="Wenn Ihr durch den Zauber 'Verderbnis' Schaden verursacht, besteht eine Chance von 6%, dass Euer Zaubertempo 10 Sek. lang um 6% erhöht wird." lvl="1"/>
+        <rank description="Wenn Ihr durch den Zauber 'Verderbnis' Schaden verursacht, besteht eine Chance von 6%, dass Euer Zaubertempo 10 Sek. lang um 12% erhöht wird." lvl="2"/>
+        <rank description="Wenn Ihr durch den Zauber 'Verderbnis' Schaden verursacht, besteht eine Chance von 6%, dass Euer Zaubertempo 10 Sek. lang um 20% erhöht wird." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_painfulafflictions" key="1669" name="Ansteckung" tier="6">
+        <rank description="Erhöht den Schaden Eurer Zauber 'Fluch der Pein', 'Verderbnis' und 'Saat der Verderbnis' um 1% und verringert die Chance, dass sowohl Eure hilfreichen Zauber der Kategorie 'Gebrechen' als auch ihre Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um zusätzliche 6%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Fluch der Pein', 'Verderbnis' und 'Saat der Verderbnis' um 2% und verringert die Chance, dass sowohl Eure hilfreichen Zauber der Kategorie 'Gebrechen' als auch ihre Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um zusätzliche 12%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Fluch der Pein', 'Verderbnis' und 'Saat der Verderbnis' um 3% und verringert die Chance, dass sowohl Eure hilfreichen Zauber der Kategorie 'Gebrechen' als auch ihre Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um zusätzliche 18%." lvl="3"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Fluch der Pein', 'Verderbnis' und 'Saat der Verderbnis' um 4% und verringert die Chance, dass sowohl Eure hilfreichen Zauber der Kategorie 'Gebrechen' als auch ihre Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um zusätzliche 24%." lvl="4"/>
+        <rank description="Erhöht den Schaden Eurer Zauber 'Fluch der Pein', 'Verderbnis' und 'Saat der Verderbnis' um 5% und verringert die Chance, dass sowohl Eure hilfreichen Zauber der Kategorie 'Gebrechen' als auch ihre Effekte, die Schaden im Laufe der Zeit verursachen, gebannt werden, um zusätzliche 30%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_darkritual" key="1022" name="Dunkler Pakt" tier="6">
+        <rank description="Zieht 305 Mana Eures beschworenen Dämons ab und gibt 100% an Euch zurück." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathscream" key="1668" name="Verbessertes Schreckensgeheul" tier="7">
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Schreckensgeheul' um 0.8 Sek." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Schreckensgeheul' um 1.5 Sek." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_curseofachimonde" key="1667" name="Verhängnis" tier="7">
+        <rank description="Erhöht Euren Zauberschaden um 1% und erhöht die regelmäßige kritische Trefferchance Eurer Zauber 'Verderbnis' und 'Instabiles Gebrechen' um 3%." lvl="1"/>
+        <rank description="Erhöht Euren Zauberschaden um 2% und erhöht die regelmäßige kritische Trefferchance Eurer Zauber 'Verderbnis' und 'Instabiles Gebrechen' um 6%." lvl="2"/>
+        <rank description="Erhöht Euren Zauberschaden um 3% und erhöht die regelmäßige kritische Trefferchance Eurer Zauber 'Verderbnis' und 'Instabiles Gebrechen' um 9%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathsembrace" key="1875" name="Umarmung des Todes" tier="8">
+        <rank description="Erhöht, wenn Eure Gesundheit 20% oder weniger beträgt, die von Eurem Zauber 'Blutsauger' entzogene Menge um 10%. Erhöht den verursachten Schaden Eurer Schattenzauber um 4%, wenn die Gesundheit Eures Ziels 35% oder weniger beträgt." lvl="1"/>
+        <rank description="Erhöht, wenn Eure Gesundheit 20% oder weniger beträgt, die von Eurem Zauber 'Blutsauger' entzogene Menge um 20%. Erhöht den verursachten Schaden Eurer Schattenzauber um 8%, wenn die Gesundheit Eures Ziels 35% oder weniger beträgt." lvl="2"/>
+        <rank description="Erhöht, wenn Eure Gesundheit 20% oder weniger beträgt, die von Eurem Zauber 'Blutsauger' entzogene Menge um 30%. Erhöht den verursachten Schaden Eurer Schattenzauber um 12%, wenn die Gesundheit Eures Ziels 35% oder weniger beträgt." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Instabiles Gebrechen" requires="1669" tier="8">
+        <rank description="Schattenenergie zerstört langsam das Ziel, 15 Sek. lang werden insgesamt 550 Schaden verursacht. Sollte 'Instabiles Gebrechen' gebannt werden, erleidet der Bannende 990 Schaden und wird 5 Sek. lang zum Schweigen gebracht." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="15" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_unstableaffliction_2" key="2245" name="Pandemie" requires="1670" tier="8">
+        <rank description="Gewährt dem regelmäßigen Schaden Eurer Zauber 'Verderbnis' und 'Instabiles Gebrechen' die Fähigkeit, für um 100% erhöhten Schaden kritisch zu treffen. Zudem wird der kritische Schadensbonus Eures Zaubers 'Heimsuchung' um 100% erhöht." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_everlastingaffliction" key="1876" name="Immerwährende Gebrechen" tier="9">
+        <rank description="Eure Zauber 'Verderbnis' und 'Instabiles Gebrechen' erhalten zusätzlich 1% Eurer Boni auf Zauberschadenseffekte, und Eure Zauber 'Blutsauger', 'Seelendieb', 'Schattenblitz' und 'Heimsuchung' haben eine Chance von 20%, die Dauer Eures Zaubers 'Verderbnis' auf dem Ziel zurückzusetzen." lvl="1"/>
+        <rank description="Eure Zauber 'Verderbnis' und 'Instabiles Gebrechen' erhalten zusätzlich 2% Eurer Boni auf Zauberschadenseffekte, und Eure Zauber 'Blutsauger', 'Seelendieb', 'Schattenblitz' und 'Heimsuchung' haben eine Chance von 40%, die Dauer Eures Zaubers 'Verderbnis' auf dem Ziel zurückzusetzen." lvl="2"/>
+        <rank description="Eure Zauber 'Verderbnis' und 'Instabiles Gebrechen' erhalten zusätzlich 3% Eurer Boni auf Zauberschadenseffekte, und Eure Zauber 'Blutsauger', 'Seelendieb', 'Schattenblitz' und 'Heimsuchung' haben eine Chance von 60%, die Dauer Eures Zaubers 'Verderbnis' auf dem Ziel zurückzusetzen." lvl="3"/>
+        <rank description="Eure Zauber 'Verderbnis' und 'Instabiles Gebrechen' erhalten zusätzlich 4% Eurer Boni auf Zauberschadenseffekte, und Eure Zauber 'Blutsauger', 'Seelendieb', 'Schattenblitz' und 'Heimsuchung' haben eine Chance von 80%, die Dauer Eures Zaubers 'Verderbnis' auf dem Ziel zurückzusetzen." lvl="4"/>
+        <rank description="Eure Zauber 'Verderbnis' und 'Instabiles Gebrechen' erhalten zusätzlich 5% Eurer Boni auf Zauberschadenseffekte, und Eure Zauber 'Blutsauger', 'Seelendieb', 'Schattenblitz' und 'Heimsuchung' haben eine Chance von 100%, die Dauer Eures Zaubers 'Verderbnis' auf dem Ziel zurückzusetzen." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_haunt" key="2041" name="Heimsuchung" tier="10">
+        <rank description="Ihr entsendet eine verderbte Seele in das Ziel, die 405 bis 473 Schattenschaden verursacht und 12 Sek. lang den Schaden aller Eurer Schaden über Zeit verursachenden Effekte auf dem Ziel um 20% erhöht. Endet die Heimsuchung oder wird sie gebannt, kehrt die Seele zu Euch zurück, um Euch um 100% des von ihr verursachten Schadens zu heilen." lvl="1"/>
+        <spell castTime="1500" cooldown="8000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

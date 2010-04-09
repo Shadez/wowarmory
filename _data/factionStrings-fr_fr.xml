@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/data/factionStrings.xml">
+  <factions>
+    <faction id="1037" name="Avant-garde de l'Alliance" release="2"/>
+    <faction id="1098" name="Chevaliers de la Lame d'ébène" release="2"/>
+    <faction id="1052" name="Expédition de la Horde" release="2"/>
+    <faction id="1090" name="Kirin Tor" release="2"/>
+    <faction id="1091" name="L'Accord du Repos du ver" release="2"/>
+    <faction id="1106" name="La Croisade d'argent" release="2"/>
+    <faction id="1094" name="Le Concordat argenté" release="2"/>
+    <faction id="1156" name="Le Verdict des cendres" release="2"/>
+    <faction id="1119" name="Les Fils de Hodir" release="2"/>
+    <faction id="1073" name="Les Kalu'aks" release="2"/>
+    <faction id="1105" name="Les Oracles" release="2"/>
+    <faction id="1124" name="Les Saccage-soleil" release="2"/>
+    <faction id="1104" name="Tribu Frénécœur" release="2"/>
+    <faction id="1015" name="Aile-du-Néant" release="1"/>
+    <faction id="946" name="Bastion de l'Honneur" release="1"/>
+    <faction id="942" name="Expédition cénarienne" release="1"/>
+    <faction id="1031" name="Garde-ciel sha'tari" release="1"/>
+    <faction id="989" name="Gardiens du Temps" release="1"/>
+    <faction id="978" name="Kurenaï" release="1"/>
+    <faction id="932" name="L'Aldor" release="1"/>
+    <faction id="967" name="L'Œil pourpre" release="1"/>
+    <faction id="990" name="La Balance des sables" release="1"/>
+    <faction id="933" name="Le Consortium" release="1"/>
+    <faction id="934" name="Les Clairvoyants" release="1"/>
+    <faction id="935" name="Les Sha'tar" release="1"/>
+    <faction id="1012" name="Ligemort cendrelangue" release="1"/>
+    <faction id="941" name="Mag'har" release="1"/>
+    <faction id="1038" name="Ogri'la" release="1"/>
+    <faction id="1077" name="Opération Soleil brisé" release="1"/>
+    <faction id="970" name="Sporeggar" release="1"/>
+    <faction id="947" name="Thrallmar" release="1"/>
+    <faction id="1011" name="Ville basse" release="1"/>
+    <faction id="529" name="Aube d'argent" release="0"/>
+    <faction id="609" name="Cercle cénarien" release="0"/>
+    <faction id="59" name="Confrérie du thorium" release="0"/>
+    <faction id="909" name="Foire de Sombrelune" release="0"/>
+    <faction id="576" name="Les Grumegueules" release="0"/>
+    <faction id="910" name="Progéniture de Nozdormu" release="0"/>
+    <faction id="270" name="Tribu Zandalar" release="0"/>
+  </factions>
+</page>

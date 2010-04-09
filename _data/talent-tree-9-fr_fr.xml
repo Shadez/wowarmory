@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="WarlockDestruction" icon="spell_shadow_rainoffire" key="Destruction" name="Destruction" order="2">
+      <talent column="1" icon="spell_shadow_shadowbolt" key="944" name="Trait de l'ombre amélioré" tier="0">
+        <rank description="Augmente les dégâts infligés par votre sort Trait de l'ombre de 2%, et votre Trait de l'ombre a également 20% de chances de rendre votre cible vulnérable aux dégâts des sorts, ce qui augmente les chances de coup critique des sorts contre cette cible de 5%. L'effet dure 30 sec." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre sort Trait de l'ombre de 4%, et votre Trait de l'ombre a également 40% de chances de rendre votre cible vulnérable aux dégâts des sorts, ce qui augmente les chances de coup critique des sorts contre cette cible de 5%. L'effet dure 30 sec." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre sort Trait de l'ombre de 6%, et votre Trait de l'ombre a également 60% de chances de rendre votre cible vulnérable aux dégâts des sorts, ce qui augmente les chances de coup critique des sorts contre cette cible de 5%. L'effet dure 30 sec." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par votre sort Trait de l'ombre de 8%, et votre Trait de l'ombre a également 80% de chances de rendre votre cible vulnérable aux dégâts des sorts, ce qui augmente les chances de coup critique des sorts contre cette cible de 5%. L'effet dure 30 sec." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par votre sort Trait de l'ombre de 10%, et votre Trait de l'ombre a également 100% de chances de rendre votre cible vulnérable aux dégâts des sorts, ce qui augmente les chances de coup critique des sorts contre cette cible de 5%. L'effet dure 30 sec." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_deathpact" key="943" name="Fléau" tier="0">
+        <rank description="Réduit le temps d'incantation de vos sorts Trait de l'ombre, Trait du chaos et Immolation de 0.1 sec. et Feu de l'âme de 0.4 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Trait de l'ombre, Trait du chaos et Immolation de 0.2 sec. et Feu de l'âme de 0.8 sec." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Trait de l'ombre, Trait du chaos et Immolation de 0.3 sec. et Feu de l'âme de 1.2 sec." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Trait de l'ombre, Trait du chaos et Immolation de 0.4 sec. et Feu de l'âme de 1.6 sec." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Trait de l'ombre, Trait du chaos et Immolation de 0.5 sec. et Feu de l'âme de 2 sec." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_fire" key="982" name="Conséquences" tier="1">
+        <rank description="Augmente les dégâts périodiques infligés par votre Immolation de 3%, et votre Conflagration a 50% de chances d'hébéter la cible pendant 5 sec." lvl="1"/>
+        <rank description="Augmente les dégâts périodiques infligés par votre Immolation de 6%, et votre Conflagration a 100% de chances d'hébéter la cible pendant 5 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_mage_moltenarmor" key="1887" name="Peau de la fournaise" tier="1">
+        <rank description="Réduit tous les dégâts subis de 2%." lvl="1"/>
+        <rank description="Réduit tous les dégâts subis de 4%." lvl="2"/>
+        <rank description="Réduit tous les dégâts subis de 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_windsofwoe" key="941" name="Cataclysme" tier="1">
+        <rank description="Réduit le coût en mana de vos sorts de Destruction de 4%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts de Destruction de 7%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts de Destruction de 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_firebolt" key="983" name="Puissance démoniaque" tier="2">
+        <rank description="Réduit le temps de recharge du sort Fouet de la douleur de votre succube de 3 sec. et le temps d'incantation du sort Eclair de feu de votre Diablotin de 0.25 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge du sort Fouet de la douleur de votre succube de 6 sec. et le temps d'incantation du sort Eclair de feu de votre Diablotin de 0.50 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_scourgebuild" key="963" name="Brûlure de l'ombre" tier="2">
+        <rank description="Frappe instantanément la cible et lui inflige 87 à 99 points de dégâts d'Ombre. Si la cible meurt dans les 5 sec sous l'effet du sort Brûlure de l'ombre et rapporte de l'expérience ou de l'honneur, le lanceur gagne un Fragment d'âme." lvl="1"/>
+        <spell castTime="0" cooldown="15000" maxRange="20">
+          <power cost="20" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowwordpain" key="967" name="Ruine" tier="2">
+        <rank description="Augmente de 20% les points de dégâts supplémentaires infligés par les coups critiques de vos sorts de Destruction et le sort Eclair de feu de votre diablotin." lvl="1"/>
+        <rank description="Augmente de 40% les points de dégâts supplémentaires infligés par les coups critiques de vos sorts de Destruction et le sort Eclair de feu de votre diablotin." lvl="2"/>
+        <rank description="Augmente de 60% les points de dégâts supplémentaires infligés par les coups critiques de vos sorts de Destruction et le sort Eclair de feu de votre diablotin." lvl="3"/>
+        <rank description="Augmente de 80% les points de dégâts supplémentaires infligés par les coups critiques de vos sorts de Destruction et le sort Eclair de feu de votre diablotin." lvl="4"/>
+        <rank description="Augmente de 100% les points de dégâts supplémentaires infligés par les coups critiques de vos sorts de Destruction et le sort Eclair de feu de votre diablotin." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_lavaspawn" key="985" name="Intensité" tier="3">
+        <rank description="Réduit de 35% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez ou canalisez tout sort de Destruction." lvl="1"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez ou canalisez tout sort de Destruction." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_corpseexplode" key="964" name="Allonge de destruction" tier="3">
+        <rank description="Augmente de 10% la portée de vos sorts de Destruction et réduit de 10% la menace générée par les sorts de Destruction." lvl="1"/>
+        <rank description="Augmente de 20% la portée de vos sorts de Destruction et réduit de 20% la menace générée par les sorts de Destruction." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_fire_soulburn" key="965" name="Douleur brûlante améliorée" tier="3">
+        <rank description="Augmente de 4% les chances d'infliger un coup critique avec votre sort Douleur brûlante." lvl="1"/>
+        <rank description="Augmente de 7% les chances d'infliger un coup critique avec votre sort Douleur brûlante." lvl="2"/>
+        <rank description="Augmente de 10% les chances d'infliger un coup critique avec votre sort Douleur brûlante." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_playingwithfire" key="1817" name="Contrecoup" requires="985" tier="4">
+        <rank description="Augmente vos chances d'infliger un coup critique avec les sorts de 1% supplémentaires et vous confère 8% de chances lorsque vous êtes touché par une attaque physique de réduire le temps d'incantation de votre prochain sort Trait de l'ombre ou Incinérer de 100%. Cet effet dure 8 sec et ne peut se produire plus d'une fois toutes les 8 secondes." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les sorts de 2% supplémentaires et vous confère 16% de chances lorsque vous êtes touché par une attaque physique de réduire le temps d'incantation de votre prochain sort Trait de l'ombre ou Incinérer de 100%. Cet effet dure 8 sec et ne peut se produire plus d'une fois toutes les 8 secondes." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les sorts de 3% supplémentaires et vous confère 25% de chances lorsque vous êtes touché par une attaque physique de réduire le temps d'incantation de votre prochain sort Trait de l'ombre ou Incinérer de 100%. Cet effet dure 8 sec et ne peut se produire plus d'une fois toutes les 8 secondes." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_immolation" key="961" name="Immolation améliorée" tier="4">
+        <rank description="Augmente les dégâts infligés par votre sort Immolation de 10%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre sort Immolation de 20%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre sort Immolation de 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_flameshock" key="981" name="Dévastation" requires="967" tier="4">
+        <rank description="Augmente de 5% vos chances d'infliger un coup critique avec vos sorts de Destruction." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_netherprotection" key="1679" name="Protection du Néant" tier="5">
+        <rank description="Après avoir été touché par un sort, vous avez 10% de chances de recevoir la Protection du Néant, qui réduit tous les dégâts de la même école de 30% pendant 8 sec." lvl="1"/>
+        <rank description="Après avoir été touché par un sort, vous avez 20% de chances de recevoir la Protection du Néant, qui réduit tous les dégâts de la même école de 30% pendant 8 sec." lvl="2"/>
+        <rank description="Après avoir été touché par un sort, vous avez 30% de chances de recevoir la Protection du Néant, qui réduit tous les dégâts de la même école de 30% pendant 8 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_selfdestruct" key="966" name="Tempête ardente" tier="5">
+        <rank description="Augmente les dégâts infligés par vos sorts de Feu de 3% et réduit le temps d'incantation de votre sort Incinérer de 0.05 sec." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Feu de 6% et réduit le temps d'incantation de votre sort Incinérer de 0.10 sec." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Feu de 9% et réduit le temps d'incantation de votre sort Incinérer de 0.15 sec." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Feu de 12% et réduit le temps d'incantation de votre sort Incinérer de 0.20 sec." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Feu de 15% et réduit le temps d'incantation de votre sort Incinérer de 0.25 sec." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_fire_fireball" key="968" name="Conflagration" requires="961" tier="6">
+        <rank description="Consomme un effet d'Immolation ou d'Ombreflamme sur la cible ennemie pour lui infliger instantanément un montant de dégâts égal à 60% de votre Immolation ou votre Ombreflamme et inflige 40% de dégâts supplémentaires en 6 sec." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_soulleech_3" key="1678" name="Suceur d'âme" tier="6">
+        <rank description="Confère à vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos, Feu de l'âme, Incinérer, Douleur brûlante et Conflagration 10% de chances de vous rendre un montant de points de vie égal à 20% des dégâts infligés." lvl="1"/>
+        <rank description="Confère à vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos, Feu de l'âme, Incinérer, Douleur brûlante et Conflagration 20% de chances de vous rendre un montant de points de vie égal à 20% des dégâts infligés." lvl="2"/>
+        <rank description="Confère à vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos, Feu de l'âme, Incinérer, Douleur brûlante et Conflagration 30% de chances de vous rendre un montant de points de vie égal à 20% des dégâts infligés." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_fire_volcano" key="986" name="Pyroclasme" tier="6">
+        <rank description="Quand vous réussissez un coup critique avec Douleur brûlante ou Conflagration, les dégâts de vos sorts de Feu et d'Ombre sont augmentés de 2% pendant 10 sec." lvl="1"/>
+        <rank description="Quand vous réussissez un coup critique avec Douleur brûlante ou Conflagration, les dégâts de vos sorts de Feu et d'Ombre sont augmentés de 4% pendant 10 sec." lvl="2"/>
+        <rank description="Quand vous réussissez un coup critique avec Douleur brûlante ou Conflagration, les dégâts de vos sorts de Feu et d'Ombre sont augmentés de 6% pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowandflame" key="1677" name="Ombre et flammes" tier="7">
+        <rank description="Vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos et Incinérer bénéficient de 4% supplémentaires des effets du bonus relatif aux dégâts des sorts." lvl="1"/>
+        <rank description="Vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos et Incinérer bénéficient de 8% supplémentaires des effets du bonus relatif aux dégâts des sorts." lvl="2"/>
+        <rank description="Vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos et Incinérer bénéficient de 12% supplémentaires des effets du bonus relatif aux dégâts des sorts." lvl="3"/>
+        <rank description="Vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos et Incinérer bénéficient de 16% supplémentaires des effets du bonus relatif aux dégâts des sorts." lvl="4"/>
+        <rank description="Vos sorts Trait de l'ombre, Brûlure de l'ombre, Trait du chaos et Incinérer bénéficient de 20% supplémentaires des effets du bonus relatif aux dégâts des sorts." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_improvedsoulleech" key="1889" name="Suceur d'âme amélioré" requires="1678" tier="7">
+        <rank description="L'effet de votre Suceur d'âme rend également à vous-même et à votre démon invoqué un montant de mana égal à 1% du maximum de mana, et il a 50% de chances de faire bénéficier jusqu'à 10 membres du groupe ou raid d'une régénération de mana égale à 1% du maximum de mana toutes les 5 sec. Dure 15 sec." lvl="1"/>
+        <rank description="L'effet de votre Suceur d'âme rend également à vous-même et à votre démon invoqué un montant de mana égal à 2% du maximum de mana, et il a 100% de chances de faire bénéficier jusqu'à 10 membres du groupe ou raid d'une régénération de mana égale à 1% du maximum de mana toutes les 5 sec. Dure 15 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_backdraft" key="1888" name="Explosion de fumées" requires="968" tier="8">
+        <rank description="Quand vous lancez Conflagration, le temps d'incantation et le temps de recharge global de vos trois prochains sorts de Destruction est réduit de 10%. Dure 15 sec." lvl="1"/>
+        <rank description="Quand vous lancez Conflagration, le temps d'incantation et le temps de recharge global de vos trois prochains sorts de Destruction est réduit de 20%. Dure 15 sec." lvl="2"/>
+        <rank description="Quand vous lancez Conflagration, le temps d'incantation et le temps de recharge global de vos trois prochains sorts de Destruction est réduit de 30%. Dure 15 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowfury" key="1676" name="Furie de l'ombre" tier="8">
+        <rank description="La furie de l'ombre est libérée. Elle inflige 343 à 407 points de dégâts d'Ombre et étourdit tous les ennemis dans un rayon de 8 mètres pendant 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30">
+          <power cost="27" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warlock_empoweredimp" key="2045" name="Diablotin surpuissant" tier="8">
+        <rank description="Augmente les dégâts infligés par votre diablotin de 10%, et tous les coups critiques qu'il réussit ont 33% de chances d'augmenter les chances de coup critique de votre prochain sort de 100%. Cet effet dure 8 sec." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre diablotin de 20%, et tous les coups critiques qu'il réussit ont 66% de chances d'augmenter les chances de coup critique de votre prochain sort de 100%. Cet effet dure 8 sec." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre diablotin de 30%, et tous les coups critiques qu'il réussit ont 100% de chances d'augmenter les chances de coup critique de votre prochain sort de 100%. Cet effet dure 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_fireandbrimstone" key="1890" name="Feu et soufre" tier="9">
+        <rank description="Augmente les dégâts infligés par vos sorts Incinérer et Trait du chaos aux cibles affectées par votre Immolation de 2%, et les chances de coup critique de votre sort Conflagration sont augmentées de 5%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Incinérer et Trait du chaos aux cibles affectées par votre Immolation de 4%, et les chances de coup critique de votre sort Conflagration sont augmentées de 10%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Incinérer et Trait du chaos aux cibles affectées par votre Immolation de 6%, et les chances de coup critique de votre sort Conflagration sont augmentées de 15%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Incinérer et Trait du chaos aux cibles affectées par votre Immolation de 8%, et les chances de coup critique de votre sort Conflagration sont augmentées de 20%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos sorts Incinérer et Trait du chaos aux cibles affectées par votre Immolation de 10%, et les chances de coup critique de votre sort Conflagration sont augmentées de 25%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_chaosbolt" key="1891" name="Trait du chaos" tier="10">
+        <rank description="Lance un éclair de feu chaotique sur l'ennemi et lui inflige 837 à 1061 points de dégâts de Feu. On ne peut pas résister à Trait du chaos, et il traverse tous les effets d'absorption." lvl="1"/>
+        <spell castTime="2500" cooldown="12000" maxRange="30">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockSummoning" icon="spell_shadow_metamorphosis" key="Demonology" name="Démonologie" order="1">
+      <talent column="0" icon="inv_stone_04" key="1221" name="Pierre de soins améliorée" tier="0">
+        <rank description="Augmente le montant de points de vie restaurés par votre Pierre de soin de 10%." lvl="1"/>
+        <rank description="Augmente le montant de points de vie restaurés par votre Pierre de soin de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonimp" key="1222" name="Diablotin amélioré" tier="0">
+        <rank description="Augmente les effets des sorts Eclair de feu, Bouclier de feu et Pacte de sang de votre diablotin de 10%." lvl="1"/>
+        <rank description="Augmente les effets des sorts Eclair de feu, Bouclier de feu et Pacte de sang de votre diablotin de 20%." lvl="2"/>
+        <rank description="Augmente les effets des sorts Eclair de feu, Bouclier de feu et Pacte de sang de votre diablotin de 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_metamorphosis" key="1223" name="Baiser démoniaque" tier="0">
+        <rank description="Augmente votre total d'Endurance de 4%." lvl="1"/>
+        <rank description="Augmente votre total d'Endurance de 7%." lvl="2"/>
+        <rank description="Augmente votre total d'Endurance de 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_felmending" key="1883" name="Synergie gangrenée" tier="0">
+        <rank description="Vous avez 50% de chances de rendre à votre familier un montant de points de vie égal à 15% du montant de dégâts que vous infligez avec des sorts." lvl="1"/>
+        <rank description="Vous avez 100% de chances de rendre à votre familier un montant de points de vie égal à 15% du montant de dégâts que vous infligez avec des sorts." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_lifedrain" key="1224" name="Captation de vie améliorée" tier="1">
+        <rank description="Augmente le montant de points de vie transférés par votre sort Captation de vie de 10% et réduit le coût initial en points de vie de 10%. De plus, votre démon invoqué subit 15% de dégâts en moins pendant qu'il est sous l'effet de votre Captation de vie." lvl="1"/>
+        <rank description="Augmente le montant de points de vie transférés par votre sort Captation de vie de 20% et réduit le coût initial en points de vie de 20%. De plus, votre démon invoqué subit 30% de dégâts en moins pendant qu'il est sous l'effet de votre Captation de vie." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonvoidwalker" key="1225" name="Brutalité démoniaque" tier="1">
+        <rank description="Augmente de 10% l'efficacité des sorts Tourment, Consumer les ombres, Sacrifice et Souffrance de votre marcheur du Vide, et augmente de 1% le bonus à la puissance d'attaque de l'effet Frénésie démoniaque de votre gangregarde." lvl="1"/>
+        <rank description="Augmente de 20% l'efficacité des sorts Tourment, Consumer les ombres, Sacrifice et Souffrance de votre marcheur du Vide, et augmente de 2% le bonus à la puissance d'attaque de l'effet Frénésie démoniaque de votre gangregarde." lvl="2"/>
+        <rank description="Augmente de 30% l'efficacité des sorts Tourment, Consumer les ombres, Sacrifice et Souffrance de votre marcheur du Vide, et augmente de 3% le bonus à la puissance d'attaque de l'effet Frénésie démoniaque de votre gangregarde." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_magicalsentry" key="1242" name="Vitalité gangrenée" tier="1">
+        <rank description="Augmente de 5% l'Endurance et l'Intelligence de votre diablotin, marcheur du Vide, succube, chasseur corrompu et gangregarde et de 1% votre maximum de points de vie et de mana." lvl="1"/>
+        <rank description="Augmente de 10% l'Endurance et l'Intelligence de votre diablotin, marcheur du Vide, succube, chasseur corrompu et gangregarde et de 2% votre maximum de points de vie et de mana." lvl="2"/>
+        <rank description="Augmente de 15% l'Endurance et l'Intelligence de votre diablotin, marcheur du Vide, succube, chasseur corrompu et gangregarde et de 3% votre maximum de points de vie et de mana." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonsuccubus" key="1243" name="Succube améliorée" tier="2">
+        <rank description="Réduit le temps d'incantation de la Séduction de votre succube de 22% et augmente la durée de ses sorts Séduction et Invisibilité inférieure de 10%." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de la Séduction de votre succube de 44% et augmente la durée de ses sorts Séduction et Invisibilité inférieure de 20%." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de la Séduction de votre succube de 66% et augmente la durée de ses sorts Séduction et Invisibilité inférieure de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_gathershadows" key="1282" name="Lien spirituel" tier="2">
+        <rank description="Une fois activé, 20% de tous les points de dégâts infligés au lanceur de sorts sont subis à sa place par son diablotin, son marcheur du Vide, sa succube, son chasseur corrompu, son gangregarde ou son démon asservi. Ces dégâts ne peuvent être évités. Dure aussi longtemps que le démon est actif et sous contrôle." lvl="1"/>
+        <spell castTime="0" maxRange="100">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_removecurse" key="1226" name="Domination corrompue" tier="2">
+        <rank description="Le temps d'incantation de votre prochain sort d'invocation de diablotin, de marcheur du Vide, de succube, de chasseur corrompu ou de gangregarde est réduit de 5.5 sec. et son coût en mana est réduit de 50%." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_ragingscream" key="1671" name="Egide démoniaque" tier="2">
+        <rank description="Augmente de 10% l'efficacité de votre Armure démoniaque et de votre Gangrarmure." lvl="1"/>
+        <rank description="Augmente de 20% l'efficacité de votre Armure démoniaque et de votre Gangrarmure." lvl="2"/>
+        <rank description="Augmente de 30% l'efficacité de votre Armure démoniaque et de votre Gangrarmure." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowworddominate" key="1262" name="Puissance impie" requires="1282" tier="3">
+        <rank description="Augmente de 4% les dégâts infligés par les attaques de mêlée du marcheur du Vide, de la succube, du chasseur corrompu et du gangregarde et par l'Eclair de feu du diablotin." lvl="1"/>
+        <rank description="Augmente de 8% les dégâts infligés par les attaques de mêlée du marcheur du Vide, de la succube, du chasseur corrompu et du gangregarde et par l'Eclair de feu du diablotin." lvl="2"/>
+        <rank description="Augmente de 12% les dégâts infligés par les attaques de mêlée du marcheur du Vide, de la succube, du chasseur corrompu et du gangregarde et par l'Eclair de feu du diablotin." lvl="3"/>
+        <rank description="Augmente de 16% les dégâts infligés par les attaques de mêlée du marcheur du Vide, de la succube, du chasseur corrompu et du gangregarde et par l'Eclair de feu du diablotin." lvl="4"/>
+        <rank description="Augmente de 20% les dégâts infligés par les attaques de mêlée du marcheur du Vide, de la succube, du chasseur corrompu et du gangregarde et par l'Eclair de feu du diablotin." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_impphaseshift" key="1227" name="Maître invocateur" requires="1226" tier="3">
+        <rank description="Réduit le temps d'incantation de vos sorts d'invocations de diablotin, de succube, de marcheur du Vide, de chasseur corrompu et de gangregarde de 2 sec. et leur coût en mana de 20%." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de vos sorts d'invocations de diablotin, de succube, de marcheur du Vide, de chasseur corrompu et de gangregarde de 4 sec. et leur coût en mana de 40%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_manafeed" key="1281" name="Festin de mana" requires="1262" tier="4">
+        <rank description="Lorsque vous recevez du mana grâce aux sorts Drain de mana ou Connexion, votre démon invoqué reçoit lui aussi 100% de ce montant de mana." lvl="1"/>
+      </talent>
+      <talent column="2" icon="inv_ammo_firetar" key="1261" name="Maître conjurateur" tier="4">
+        <rank description="Augmente de 150% les scores de combat conférés par vos Pierres de feu et Pierres de sort invoquées." lvl="1"/>
+        <rank description="Augmente de 300% les scores de combat conférés par vos Pierres de feu et Pierres de sort invoquées." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowpact" key="1244" name="Maître démonologue" requires="1262" tier="5">
+        <rank description="Fait bénéficier le démoniste et le démon invoqué d'un effet aussi longtemps que le démon est actif.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente vos dégâts de Feu de 1%, et augmente les chances d'effet critique de vos sorts de Feu de 1%.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Réduit les dégâts physiques subis de 2%.&lt;br/&gt;&lt;br/&gt;Succube - Augmente vos dégâts d'Ombre de 1%, et augmente les chances d'effet critique de vos sorts d'Ombre de 1%.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Réduit tous les dégâts des sorts subis de 2%.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente tous les dégâts infligés de 1%, et réduit tous les dégâts subis de 1%." lvl="1"/>
+        <rank description="Fait bénéficier le démoniste et le démon invoqué d'un effet aussi longtemps que le démon est actif.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente vos dégâts de Feu de 2%, et augmente les chances d'effet critique de vos sorts de Feu de 2%.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Réduit les dégâts physiques subis de 4%.&lt;br/&gt;&lt;br/&gt;Succube - Augmente vos dégâts d'Ombre de 2%, et augmente les chances d'effet critique de vos sorts d'Ombre de 2%.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Réduit tous les dégâts des sorts subis de 4%.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente tous les dégâts infligés de 2%, et réduit tous les dégâts subis de 2%." lvl="2"/>
+        <rank description="Fait bénéficier le démoniste et le démon invoqué d'un effet aussi longtemps que le démon est actif.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente vos dégâts de Feu de 3%, et augmente les chances d'effet critique de vos sorts de Feu de 3%.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Réduit les dégâts physiques subis de 6%.&lt;br/&gt;&lt;br/&gt;Succube - Augmente vos dégâts d'Ombre de 3%, et augmente les chances d'effet critique de vos sorts d'Ombre de 3%.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Réduit tous les dégâts des sorts subis de 6%.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente tous les dégâts infligés de 3%, et réduit tous les dégâts subis de 3%." lvl="3"/>
+        <rank description="Fait bénéficier le démoniste et le démon invoqué d'un effet aussi longtemps que le démon est actif.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente vos dégâts de Feu de 4%, et augmente les chances d'effet critique de vos sorts de Feu de 4%.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Réduit les dégâts physiques subis de 8%.&lt;br/&gt;&lt;br/&gt;Succube - Augmente vos dégâts d'Ombre de 4%, et augmente les chances d'effet critique de vos sorts d'Ombre de 4%.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Réduit tous les dégâts des sorts subis de 8%.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente tous les dégâts infligés de 4%, et réduit tous les dégâts subis de 4%." lvl="4"/>
+        <rank description="Fait bénéficier le démoniste et le démon invoqué d'un effet aussi longtemps que le démon est actif.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente vos dégâts de Feu de 5%, et augmente les chances d'effet critique de vos sorts de Feu de 5%.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Réduit les dégâts physiques subis de 10%.&lt;br/&gt;&lt;br/&gt;Succube - Augmente vos dégâts d'Ombre de 5%, et augmente les chances d'effet critique de vos sorts d'Ombre de 5%.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Réduit tous les dégâts des sorts subis de 10%.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente tous les dégâts infligés de 5%, et réduit tous les dégâts subis de 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_moltencore" key="1283" name="Coeur de la fournaise" tier="5">
+        <rank description="Augmente la durée de votre Immolation de 3 sec., et vous avez 4% de chances de bénéficier de l'effet Coeur de la fournaise quand votre Corruption inflige des dégâts. L'effet Coeur de la fournaise rend plus puissants vos 3 prochains sorts Incinérer ou Feu de l'âme lancés dans les 15 sec.&lt;br/&gt;&lt;br/&gt;Incinérer - Augmente les dégâts infligés de 6% et réduit le temps d'incantation de 10%.&lt;br/&gt;&lt;br/&gt;Feu de l'âme - Augmente les dégâts infligés de 6% et augmente les chances de coup critique de 5%." lvl="1"/>
+        <rank description="Augmente la durée de votre Immolation de 6 sec., et vous avez 8% de chances de bénéficier de l'effet Coeur de la fournaise quand votre Corruption inflige des dégâts. L'effet Coeur de la fournaise rend plus puissants vos 3 prochains sorts Incinérer ou Feu de l'âme lancés dans les 15 sec.&lt;br/&gt;&lt;br/&gt;Incinérer - Augmente les dégâts infligés de 12% et réduit le temps d'incantation de 20%.&lt;br/&gt;&lt;br/&gt;Feu de l'âme - Augmente les dégâts infligés de 12% et augmente les chances de coup critique de 10%." lvl="2"/>
+        <rank description="Augmente la durée de votre Immolation de 9 sec., et vous avez 12% de chances de bénéficier de l'effet Coeur de la fournaise quand votre Corruption inflige des dégâts. L'effet Coeur de la fournaise rend plus puissants vos 3 prochains sorts Incinérer ou Feu de l'âme lancés dans les 15 sec.&lt;br/&gt;&lt;br/&gt;Incinérer - Augmente les dégâts infligés de 18% et réduit le temps d'incantation de 30%.&lt;br/&gt;&lt;br/&gt;Feu de l'âme - Augmente les dégâts infligés de 18% et augmente les chances de coup critique de 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_demonicfortitude" key="1680" name="Résilience démoniaque" tier="6">
+        <rank description="Réduit de 1% la probabilité que vous soyez touché par un coup critique infligé en mêlée ou par un sort et réduit de 5% tous les dégâts que subit votre démon invoqué." lvl="1"/>
+        <rank description="Réduit de 2% la probabilité que vous soyez touché par un coup critique infligé en mêlée ou par un sort et réduit de 10% tous les dégâts que subit votre démon invoqué." lvl="2"/>
+        <rank description="Réduit de 3% la probabilité que vous soyez touché par un coup critique infligé en mêlée ou par un sort et réduit de 15% tous les dégâts que subit votre démon invoqué." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_demonicempowerment" key="1880" name="Renforcement démoniaque" requires="1244" tier="6">
+        <rank description="Confère un renforcement au démon invoqué du démoniste.&lt;br/&gt;&lt;br/&gt;Diablotin - Augmente ses chances de critique avec les sorts de 20% pendant 30 sec.&lt;br/&gt;&lt;br/&gt;Marcheur du Vide - Augmente ses points de vie de 20% et augmente la menace générée par ses sorts et attaques de 20% pendant 20 sec.&lt;br/&gt;&lt;br/&gt;Succube - Disparition immédiate qui la fait entrer dans un état d'invisibilité améliorée. L'effet de disparition annule tous les étourdissements, ralentissements et effets affectant le déplacement sur la succube.&lt;br/&gt;&lt;br/&gt;Chasseur corrompu - Dissipe tous les effets magiques sur le chasseur corrompu.&lt;br/&gt;&lt;br/&gt;Gangregarde - Augmente sa vitesse d'attaque de 20%, annule tous les étourdissements, ralentissements et effets affectant le déplacement et rend le gangregarde insensible à ces effets pendant 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="100">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1263" name="Connaissance démoniaque" tier="6">
+        <rank description="Augmente les dégâts de vos sorts d'un montant égal à 4% du total de l'Endurance plus l'Intelligence de votre démon actif." lvl="1"/>
+        <rank description="Augmente les dégâts de vos sorts d'un montant égal à 8% du total de l'Endurance plus l'Intelligence de votre démon actif." lvl="2"/>
+        <rank description="Augmente les dégâts de vos sorts d'un montant égal à 12% du total de l'Endurance plus l'Intelligence de votre démon actif." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonictactics" key="1673" name="Tactique démoniaque" tier="7">
+        <rank description="Augmente vos chances de coup critique en mêlée et avec les sorts ainsi que celles de votre démon invoqué de 2%." lvl="1"/>
+        <rank description="Augmente vos chances de coup critique en mêlée et avec les sorts ainsi que celles de votre démon invoqué de 4%." lvl="2"/>
+        <rank description="Augmente vos chances de coup critique en mêlée et avec les sorts ainsi que celles de votre démon invoqué de 6%." lvl="3"/>
+        <rank description="Augmente vos chances de coup critique en mêlée et avec les sorts ainsi que celles de votre démon invoqué de 8%." lvl="4"/>
+        <rank description="Augmente vos chances de coup critique en mêlée et avec les sorts ainsi que celles de votre démon invoqué de 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball02" key="2261" name="Décimation" tier="7">
+        <rank description="Lorsque vous touchez avec Trait de l'ombre, Incinérer ou Feu de l'âme une cible qui dispose de 35% ou moins de ses points de vie, le temps d'incantation de Feu de l'âme est réduit de 20% pendant 10 sec. Les Feux de l'âme lancés sous l'effet de Décimation ne coûtent pas de fragment." lvl="1"/>
+        <rank description="Lorsque vous touchez avec Trait de l'ombre, Incinérer ou Feu de l'âme une cible qui dispose de 35% ou moins de ses points de vie, le temps d'incantation de votre sort Feu de l'âme est réduit de 40% pendant 10 sec. Les Feux de l'âme lancés sous l'effet de Décimation ne coûtent pas de fragment." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_improveddemonictactics" key="1882" name="Tactique démoniaque améliorée" requires="1673" tier="8">
+        <rank description="Augmente les chances de coup critique de votre démon invoqué, les rendant égales à 10% de vos propres chances." lvl="1"/>
+        <rank description="Augmente les chances de coup critique de votre démon invoqué, les rendant égales à 20% de vos propres chances." lvl="2"/>
+        <rank description="Augmente les chances de coup critique de votre démon invoqué, les rendant égales à 30% de vos propres chances." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonfelguard" key="1672" name="Invocation d'un gangregarde" tier="8">
+        <rank description="Invoque un gangregarde qui exécute les ordres du démoniste." lvl="1"/>
+        <spell castTime="10000">
+          <power cost="80" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_demonicempathy" key="1884" name="Instrument de vengeance" tier="8">
+        <rank description="Réduit le temps de recharge de vos sorts Renforcement démoniaque, Métamorphe et Domination corrompue de 10%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos sorts Renforcement démoniaque, Métamorphe et Domination corrompue de 20%." lvl="2"/>
+        <rank description="Réduit le temps de recharge de vos sorts Renforcement démoniaque, Métamorphe et Domination corrompue de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Pacte démoniaque" tier="9">
+        <rank description="Augmente vos dégâts des sorts de 2%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 2% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="1"/>
+        <rank description="Augmente vos dégâts des sorts de 4%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 4% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="2"/>
+        <rank description="Augmente vos dégâts des sorts de 6%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 6% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="3"/>
+        <rank description="Augmente vos dégâts des sorts de 8%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 8% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="4"/>
+        <rank description="Augmente vos dégâts des sorts de 10%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 10% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonform" key="1886" name="Métamorphe" tier="10">
+        <rank description="Vous vous transformez en démon pendant 30 sec. Cette forme augmente votre armure de 600% et vos dégâts de 20%, réduit la probabilité que vous soyez touché par des coups critiques en mêlée de 6% et réduit la durée des effets d'étourdissement et de ralentissement qui vous affectent de 50%. Vous bénéficiez de techniques démoniaques spécifiques en plus de vos techniques normales. Temps de recharge de 3 minutes." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockCurses" icon="spell_shadow_deathcoil" key="Affliction" name="Affliction" order="0">
+      <talent column="0" icon="spell_shadow_curseofsargeras" key="1284" name="Malédiction d'agonie améliorée" tier="0">
+        <rank description="Augmente les dégâts infligés par votre sort Malédiction d'agonie de 5%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre sort Malédiction d'agonie de 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="1005" name="Suppression" tier="0">
+        <rank description="Augmente de 1% vos chances de toucher avec les sorts, et réduit de 2% le coût en mana de vos sorts d'Affliction." lvl="1"/>
+        <rank description="Augmente de 2% vos chances de toucher avec les sorts, et réduit de 4% le coût en mana de vos sorts d'Affliction." lvl="2"/>
+        <rank description="Augmente de 3% vos chances de toucher avec les sorts, et réduit de 6% le coût en mana de vos sorts d'Affliction." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_abominationexplosion" key="1003" name="Corruption améliorée" tier="0">
+        <rank description="Augmente les dégâts infligés par votre Corruption de 2% et augmente les chances de coup critique de votre Graine de Corruption de 1%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre Corruption de 4% et augmente les chances de coup critique de votre Graine de Corruption de 2%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre Corruption de 6% et augmente les chances de coup critique de votre Graine de Corruption de 3%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par votre Corruption de 8% et augmente les chances de coup critique de votre Graine de Corruption de 4%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par votre Corruption de 10% et augmente les chances de coup critique de votre Graine de Corruption de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_curseofmannoroth" key="1006" name="Malédiction de faiblesse améliorée" tier="1">
+        <rank description="Augmente de 10% le montant de puissance d'attaque réduit par votre Malédiction de faiblesse." lvl="1"/>
+        <rank description="Augmente de 20% le montant de puissance d'attaque réduit par votre Malédiction de faiblesse." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_haunting" key="1101" name="Drain d'âme amélioré" tier="1">
+        <rank description="Vous rend 7% de votre maximum de points de mana si vous tuez la cible pendant que vous drainez son âme. De plus, vos sorts d'Affliction génèrent 10% de menace en moins." lvl="1"/>
+        <rank description="Vous rend 15% de votre maximum de points de mana si vous tuez la cible pendant que vous drainez son âme. De plus, vos sorts d'Affliction génèrent 20% de menace en moins." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="1007" name="Connexion améliorée" tier="1">
+        <rank description="Augmente de 10% le montant de mana octroyé par votre sort Connexion." lvl="1"/>
+        <rank description="Augmente de 20% le montant de mana octroyé par votre sort Connexion." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_lifedrain02" key="1004" name="Siphon d'âme" tier="1">
+        <rank description="Augmente le montant de points drainé par vos sorts Drain de vie et Drain d'âme de 3% supplémentaires pour chaque effet d'Affliction sur la cible, jusqu'à un maximum de 9% d'effet supplémentaire." lvl="1"/>
+        <rank description="Augmente le montant de points drainé par vos sorts Drain de vie et Drain d'âme de 6% supplémentaires pour chaque effet d'Affliction sur la cible, jusqu'à un maximum de 18% d'effet supplémentaire." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_possession" key="2205" name="Peur améliorée" tier="2">
+        <rank description="Votre sort Peur inflige un Cauchemar à la cible lorsque l'effet de peur prend fin. Cauchemar réduit la vitesse de déplacement de la cible de 15% pendant 5 sec." lvl="1"/>
+        <rank description="Votre sort Peur inflige un Cauchemar à la cible lorsque l'effet de peur prend fin. Cauchemar réduit la vitesse de déplacement de la cible de 30% pendant 5 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_fingerofdeath" key="1001" name="Concentration corrompue" tier="2">
+        <rank description="Réduit de 23% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Drain de vie, Drain de mana, Drain d'âme, Affliction instable et Hanter." lvl="1"/>
+        <rank description="Réduit de 46% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez les sorts Drain de vie, Drain de mana, Drain d'âme, Affliction instable et Hanter." lvl="2"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Drain de vie, Drain de mana, Drain d'âme, Affliction instable et Hanter." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_contagion" key="1061" name="Malédiction amplifiée" tier="2">
+        <rank description="Réduit le temps de recharge global de vos Malédictions de 0.5 sec." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_callofbone" key="1021" name="Allonge sinistre" tier="3">
+        <rank description="Augmente la portée de vos sorts d'Affliction de 10%." lvl="1"/>
+        <rank description="Augmente la portée de vos sorts d'Affliction de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_twilight" key="1002" name="Crépuscule" tier="3">
+        <rank description="Confère à vos sorts Corruption et Drain de vie, 2% de chances de vous plonger dans un état de Transe de l'ombre après avoir infligé des dégâts à un adversaire. Cet état réduit le temps d'incantation de votre prochain sort Trait de l'ombre de 100%." lvl="1"/>
+        <rank description="Confère à vos sorts Corruption et Drain de vie 4% de chances de vous plonger dans un état de Transe de l'ombre après avoir infligé des dégâts à un adversaire. Cet état réduit le temps d'incantation de votre prochain sort Trait de l'ombre de 100%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_abominationexplosion" key="1764" name="Corruption surpuissante" tier="3">
+        <rank description="Augmente les dégâts de votre sort Corruption d'un montant égal à 12% de votre puissance des sorts." lvl="1"/>
+        <rank description="Augmente les dégâts de votre sort Corruption d'un montant égal à 24% de votre puissance des sorts." lvl="2"/>
+        <rank description="Augmente les dégâts de votre sort Corruption d'un montant égal à 36% de votre puissance des sorts." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowembrace" key="1763" name="Etreinte de l'ombre" tier="4">
+        <rank description="Vos sorts Trait de l'ombre et Hanter provoquent aussi l'effet Etreinte de l'ombre, qui augmente tous les dégâts d'Ombre périodiques que vous infligez à la cible de 1%, et réduit tous les soins périodiques prodigués à la cible de 2%. Dure 12 sec. Cumulable jusqu'à 3 fois." lvl="1"/>
+        <rank description="Vos sorts Trait de l'ombre et Hanter provoquent aussi l'effet Etreinte de l'ombre, qui augmente tous les dégâts d'Ombre périodiques que vous infligez à la cible de 2%, et réduit tous les soins périodiques prodigués à la cible de 4%. Dure 12 sec. Cumulable jusqu'à 3 fois." lvl="2"/>
+        <rank description="Vos sorts Trait de l'ombre et Hanter provoquent aussi l'effet Etreinte de l'ombre, qui augmente tous les dégâts d'Ombre périodiques que vous infligez à la cible de 3%, et réduit tous les soins périodiques prodigués à la cible de 6%. Dure 12 sec. Cumulable jusqu'à 3 fois." lvl="3"/>
+        <rank description="Vos sorts Trait de l'ombre et Hanter provoquent aussi l'effet Etreinte de l'ombre, qui augmente tous les dégâts d'Ombre périodiques que vous infligez à la cible de 4%, et réduit tous les soins périodiques prodigués à la cible de 8%. Dure 12 sec. Cumulable jusqu'à 3 fois." lvl="4"/>
+        <rank description="Vos sorts Trait de l'ombre et Hanter provoquent aussi l'effet Etreinte de l'ombre, qui augmente tous les dégâts d'Ombre périodiques que vous infligez à la cible de 5%, et réduit tous les soins périodiques prodigués à la cible de 10%. Dure 12 sec. Cumulable jusqu'à 3 fois." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="1041" name="Siphon de vie" tier="4">
+        <rank description="Quand vous infligez des dégâts avec votre sort Corruption, vous recevez instantanément un montant de points de vie égal à 40% des dégâts infligés. De plus, les dégâts infligés par les effets sur la durée de votre Corruption, votre Graine de Corruption et votre Affliction instable sont augmentés de 5%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_grimward" key="1081" name="Malédiction d'épuisement" requires="1061" tier="4">
+        <rank description="Réduit la vitesse de la cible de 30% pendant 12 sec. La cible ne peut être victime que d'une malédiction par démoniste présent à la fois." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Chasseur corrompu amélioré" tier="5">
+        <rank description="Votre chasseur corrompu reçoit 8% de son maximum de mana chaque fois qu'il touche avec sa technique Morsure de l'ombre et le temps de recharge de cette technique est réduit de 2 sec. Augmente également l'effet de l'Intelligence gangrenée de votre chasseur corrompu de 5%." lvl="1"/>
+        <rank description="Votre chasseur corrompu reçoit 8% de son maximum de mana chaque fois qu'il touche avec sa technique Morsure de l'ombre et le temps de recharge de cette technique est réduit de 4 sec. Augmente également l'effet de l'Intelligence gangrenée de votre chasseur corrompu de 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Maîtrise de l'ombre" requires="1041" tier="5">
+        <rank description="Augmente de 3% les points de dégâts infligés ou les points de vie drainés par vos sorts d'Ombre et la technique Morsure de l'ombre de votre chasseur corrompu." lvl="1"/>
+        <rank description="Augmente de 6% les points de dégâts infligés ou les points de vie drainés par vos sorts d'Ombre et la technique Morsure de l'ombre de votre chasseur corrompu." lvl="2"/>
+        <rank description="Augmente de 9% les points de dégâts infligés ou les points de vie drainés par vos sorts d'Ombre et la technique Morsure de l'ombre de votre chasseur corrompu." lvl="3"/>
+        <rank description="Augmente de 12% les points de dégâts infligés ou les points de vie drainés par vos sorts d'Ombre et la technique Morsure de l'ombre de votre chasseur corrompu." lvl="4"/>
+        <rank description="Augmente de 15% les points de dégâts infligés ou les points de vie drainés par vos sorts d'Ombre et la technique Morsure de l'ombre de votre chasseur corrompu." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_eradication" key="1878" name="Eradication" tier="6">
+        <rank description="Quand vous infligez des dégâts avec Corruption, vous avez 6% de chances d'augmenter votre vitesse d'incantation des sorts de 6% pendant 10 sec." lvl="1"/>
+        <rank description="Quand vous infligez des dégâts avec Corruption, vous avez 6% de chances d'augmenter votre vitesse d'incantation des sorts de 12% pendant 10 sec." lvl="2"/>
+        <rank description="Quand vous infligez des dégâts avec Corruption, vous avez 6% de chances d'augmenter votre vitesse d'incantation des sorts de 20% pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_painfulafflictions" key="1669" name="Contagion" tier="6">
+        <rank description="Augmente les points de dégâts infligés par Malédiction d'agonie, Corruption et Graine de Corruption de 1% et réduit la probabilité que vos sorts d'Affliction et vos effets de dégâts sur la durée soient dissipés de 6% supplémentaires." lvl="1"/>
+        <rank description="Augmente les points de dégâts infligés par Malédiction d'agonie, Corruption et Graine de Corruption de 2% et réduit la probabilité que vos sorts d'Affliction et vos effets de dégâts sur la durée soient dissipés de 12% supplémentaires." lvl="2"/>
+        <rank description="Augmente les points de dégâts infligés par Malédiction d'agonie, Corruption et Graine de Corruption de 3% et réduit la probabilité que vos sorts d'Affliction et vos effets de dégâts sur la durée soient dissipés de 18% supplémentaires." lvl="3"/>
+        <rank description="Augmente les points de dégâts infligés par Malédiction d'agonie, Corruption et Graine de Corruption de 4% et réduit la probabilité que vos sorts d'Affliction et vos effets de dégâts sur la durée soient dissipés de 24% supplémentaires." lvl="4"/>
+        <rank description="Augmente les points de dégâts infligés par Malédiction d'agonie, Corruption et Graine de Corruption de 5% et réduit la probabilité que vos sorts d'Affliction et vos effets de dégâts sur la durée soient dissipés de 30% supplémentaires." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_darkritual" key="1022" name="Pacte noir" tier="6">
+        <rank description="Draine 305 points de mana à votre démon invoqué et vous rend 100% du montant." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathscream" key="1668" name="Hurlement de terreur amélioré" tier="7">
+        <rank description="Réduit le temps d'incantation de votre sort Hurlement de terreur de 0.8 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de votre sort Hurlement de terreur de 1.5 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_curseofachimonde" key="1667" name="Imprécation" tier="7">
+        <rank description="Augmente vos dégâts des sorts de 1% et augmente les chances de coup critique périodique de vos sorts Corruption et Affliction instable de 3%." lvl="1"/>
+        <rank description="Augmente vos dégâts des sorts de 2% et augmente les chances de coup critique périodique de vos sorts Corruption et Affliction instable de 6%." lvl="2"/>
+        <rank description="Augmente vos dégâts des sorts de 3% et augmente les chances de coup critique périodique de vos sorts Corruption et Affliction instable de 9%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathsembrace" key="1875" name="Caresse de la mort" tier="8">
+        <rank description="Augmente le montant de points de vie drainés par votre Drain de vie de 10% quand vous disposez de 20% ou moins de vos points de vie, et augmente les dégâts infligés par vos sorts d'Ombre de 4% quand votre cible dispose de 35% ou moins de ses points de vie." lvl="1"/>
+        <rank description="Augmente le montant de points de vie drainés par votre Drain de vie de 20% quand vous disposez de 20% ou moins de vos points de vie, et augmente les dégâts infligés par vos sorts d'Ombre de 8% quand votre cible dispose de 35% ou moins de ses points de vie." lvl="2"/>
+        <rank description="Augmente le montant de points de vie drainés par votre Drain de vie de 30% quand vous disposez de 20% ou moins de vos points de vie, et augmente les dégâts infligés par vos sorts d'Ombre de 12% quand votre cible dispose de 35% ou moins de ses points de vie." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Affliction instable" requires="1669" tier="8">
+        <rank description="L’énergie de l’Ombre détruit lentement la cible, infligeant 550 points de dégâts en 15 sec. De plus, si l'Affliction instable est dissipée, celui qui la dissipe subit 990 points de dégâts et est réduit au silence pendant 5 sec." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="15" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_unstableaffliction_2" key="2245" name="Pandémie" requires="1670" tier="8">
+        <rank description="Les dégâts périodiques de vos sorts Corruption et Affliction instable peuvent être critiques et infliger 100% de dégâts supplémentaires. Augmente également le bonus aux dégâts des coups critiques réussis avec votre sort Hanter de 100%." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_everlastingaffliction" key="1876" name="Affliction éternelle" tier="9">
+        <rank description="Vos sorts Corruption et Affliction instable bénéficient de 1% supplémentaires de votre bonus aux dégâts des sorts, et vos sorts Drain de vie, Drain d'âme, Trait de l'ombre et Hanter ont 20% de chances de réinitialiser la durée de votre sort Corruption sur la cible." lvl="1"/>
+        <rank description="Vos sorts Corruption et Affliction instable bénéficient de 2% supplémentaires de votre bonus aux dégâts des sorts, et vos sorts Drain de vie, Drain d'âme, Trait de l'ombre et Hanter ont 40% de chances de réinitialiser la durée de votre sort Corruption sur la cible." lvl="2"/>
+        <rank description="Vos sorts Corruption et Affliction instable bénéficient de 3% supplémentaires de votre bonus aux dégâts des sorts, et vos sorts Drain de vie, Drain d'âme, Trait de l'ombre et Hanter ont 60% de chances de réinitialiser la durée de votre sort Corruption sur la cible." lvl="3"/>
+        <rank description="Vos sorts Corruption et Affliction instable bénéficient de 4% supplémentaires de votre bonus aux dégâts des sorts, et vos sorts Drain de vie, Drain d'âme, Trait de l'ombre et Hanter ont 80% de chances de réinitialiser la durée de votre sort Corruption sur la cible." lvl="4"/>
+        <rank description="Vos sorts Corruption et Affliction instable bénéficient de 5% supplémentaires de votre bonus aux dégâts des sorts, et vos sorts Drain de vie, Drain d'âme, Trait de l'ombre et Hanter ont 100% de chances de réinitialiser la durée de votre sort Corruption sur la cible." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_haunt" key="2041" name="Hanter" tier="10">
+        <rank description="Vous envoyez une âme fantomatique à l'intérieur de la cible, ce qui lui inflige 405 à 473 points de dégâts d'Ombre et augmente tous les dégâts infligés par vos effets de dégâts d'Ombre sur la durée de 20% pendant 12 sec. Quand le sort Hanter prend fin ou est dissipé, l'âme vous revient et vous soigne pour un montant de points de vie égal à 100% des dégâts qu'elle a infligés à la cible." lvl="1"/>
+        <spell castTime="1500" cooldown="8000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

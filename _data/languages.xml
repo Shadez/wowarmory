@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><languages requestUrl="/data/languages.xml">
+  <language loc="de_de" n="Deutsch"/>
+  <language loc="en_gb" n="English (EU)"/>
+  <language loc="en_us" n="English (US)"/>
+  <language loc="es_mx" n="Español (AL)"/>
+  <language loc="es_es" n="Español (EU)"/>
+  <language loc="fr_fr" n="Français"/>
+  <language loc="ru_ru" n="Русский"/>
+  <language loc="ko_kr" n="한국어"/>
+
+</languages>

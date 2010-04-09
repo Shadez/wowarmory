@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="PaladinCombat" icon="spell_holy_auraoflight" key="Retribution" name="Vindicte" order="2">
+      <talent column="1" icon="ability_parry" key="1403" name="Déviation" tier="0">
+        <rank description="Augmente vos chances de Parer de 1%." lvl="1"/>
+        <rank description="Augmente vos chances de Parer de 2%." lvl="2"/>
+        <rank description="Augmente vos chances de Parer de 3%." lvl="3"/>
+        <rank description="Augmente vos chances de Parer de 4%." lvl="4"/>
+        <rank description="Augmente vos chances de Parer de 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_frost_windwalkon" key="1407" name="Bénédiction" tier="0">
+        <rank description="Réduit le coût en mana de tous les sorts à l'incantation instantanée de 2%." lvl="1"/>
+        <rank description="Réduit le coût en mana de tous les sorts à l'incantation instantanée de 4%." lvl="2"/>
+        <rank description="Réduit le coût en mana de tous les sorts à l'incantation instantanée de 6%." lvl="3"/>
+        <rank description="Réduit le coût en mana de tous les sorts à l'incantation instantanée de 8%." lvl="4"/>
+        <rank description="Réduit le coût en mana de tous les sorts à l'incantation instantanée de 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_righteousfury" key="1631" name="Jugements améliorés" tier="1">
+        <rank description="Réduit le temps de recharge de vos sorts de Jugement de 1 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos sorts de Jugement de 2 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_holysmite" key="1464" name="Coeur du Croisé" tier="1">
+        <rank description="En plus des effets normaux, vos sorts de Jugement augmentent de 1% supplémentaires les chances de coup critique de toutes les attaques effectuées contre cette cible." lvl="1"/>
+        <rank description="En plus des effets normaux, vos sorts de Jugement augmentent de 2% supplémentaires les chances de coup critique de toutes les attaques effectuées contre cette cible." lvl="2"/>
+        <rank description="En plus des effets normaux, vos sorts de Jugement augmentent de 3% supplémentaires les chances de coup critique de toutes les attaques effectuées contre cette cible." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_fistofjustice" key="1401" name="Bénédiction de puissance améliorée" tier="1">
+        <rank description="Augmente le bonus à la puissance d'attaque conféré par votre Bénédiction de puissance de 12%." lvl="1"/>
+        <rank description="Augmente le bonus à la puissance d'attaque conféré par votre Bénédiction de puissance de 25%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_vindication" key="1633" name="Justification" tier="2">
+        <rank description="Confère aux attaques du paladin qui infligent des dégâts une chance de réduire la puissance d'attaque de la cible de 23 pendant 10 sec." lvl="1"/>
+        <rank description="Confère aux attaques du paladin qui infligent des dégâts une chance de réduire la puissance d'attaque de la cible de 46 pendant 10 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_retributionaura" key="1411" name="Conviction" tier="2">
+        <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_innerrage" key="1481" name="Sceau d'autorité" tier="2">
+        <rank description="Toutes les attaques en mêlée infligent de 3 à 4 points de dégâts du Sacré supplémentaires. Quand il est utilisé avec des attaques ou techniques qui frappent une cible unique, ces dégâts du Sacré supplémentaires s'abattent sur un maximum de 2 cibles supplémentaires. Dure 30 min.&lt;br/&gt;&lt;br/&gt;Libérez l'énergie de ce Sceau pour juger un ennemi et lui infliger instantanément de 4 à 4 points de dégâts du Sacré." lvl="1"/>
+        <spell castTime="0">
+          <power cost="14" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="spell_holy_persuitofjustice" key="1634" name="Poursuite de la justice" tier="2">
+        <rank description="Réduit la durée de tous les effets de désarmement de 25% et augmente votre vitesse de déplacement et la vitesse de déplacement de votre monture de 8%. Ne s'additionne pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="1"/>
+        <rank description="Réduit la durée de tous les effets de désarmement de 50% et augmente votre vitesse de déplacement et la vitesse de déplacement de votre monture de 15%. Ne s'additionne pas avec les autres effets qui augmentent la vitesse de déplacement." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_eyeforaneye" key="1632" name="Oeil pour oeil" tier="3">
+        <rank description="Tous les coups critiques contre vous infligent également 5% des dégâts que vous subissez à l'attaquant. Les points de dégâts causés par Oeil pour oeil ne peuvent excéder 50% du total des points de vie du paladin." lvl="1"/>
+        <rank description="Tous les coups critiques contre vous infligent également 10% des dégâts que vous subissez à l'attaquant. Les points de dégâts causés par Oeil pour oeil ne peuvent excéder 50% du total des points de vie du paladin." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_holy_holysmite" key="1761" name="Bataille sainte" tier="3">
+        <rank description="Augmente vos chances de réussir des coups critiques avec tous les sorts et attaques de 1% et augmente les dégâts infligés par Exorcisme et Inquisition de 5%." lvl="1"/>
+        <rank description="Augmente vos chances de réussir des coups critiques avec tous les sorts et attaques de 2% et augmente les dégâts infligés par Exorcisme et Inquisition de 10%." lvl="2"/>
+        <rank description="Augmente vos chances de réussir des coups critiques avec tous les sorts et attaques de 3% et augmente les dégâts infligés par Exorcisme et Inquisition de 15%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_holy_crusade" key="1755" name="Croisade" tier="3">
+        <rank description="Augmente tous les dégâts infligés de 1% et tous les dégâts infligés aux humanoïdes, démons, morts-vivants et élémentaires de 1% supplémentaires." lvl="1"/>
+        <rank description="Augmente tous les dégâts infligés de 2% et tous les dégâts infligés aux humanoïdes, démons, morts-vivants et élémentaires de 2% supplémentaires." lvl="2"/>
+        <rank description="Augmente tous les dégâts infligés de 3% et tous les dégâts infligés aux humanoïdes, démons, morts-vivants et élémentaires de 3% supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="0" icon="inv_hammer_04" key="1410" name="Spécialisation Arme 2M" tier="4">
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 2%." lvl="1"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 4%." lvl="2"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_mindvision" key="1756" name="Vindicte sanctifiée" tier="4">
+        <rank description="Augmente les dégâts infligés par Aura de vindicte de 50%, et tous les dégâts infligés par les cibles alliées affectées par l'une de vos Auras sont augmentés de 3%." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_racial_avatar" key="1402" name="Vengeance" requires="1411" tier="5">
+        <rank description="Après un coup critique obtenu en frappant avec une arme, ou avec un sort ou une technique, vous infligez 1% de points de dégâts physiques et du Sacré supplémentaires pendant 30 sec. Cet effet est cumulable jusqu'à 3 fois." lvl="1"/>
+        <rank description="Après un coup critique obtenu en frappant avec une arme, ou avec un sort ou une technique, vous infligez 2% de points de dégâts physiques et du Sacré supplémentaires pendant 30 sec. Cet effet est cumulable jusqu'à 3 fois." lvl="2"/>
+        <rank description="Après un coup critique obtenu en frappant avec une arme, ou avec un sort ou une technique, vous infligez 3% de points de dégâts physiques et du Sacré supplémentaires pendant 30 sec. Cet effet est cumulable jusqu'à 3 fois." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_divinepurpose" key="1757" name="Dessein divin" tier="5">
+        <rank description="Réduit la probabilité que vous soyez touché par les sorts et les attaques à distance de 2% et confère à votre sort Main de liberté 50% de chances d'annuler tous les effets d'étourdissement sur la cible." lvl="1"/>
+        <rank description="Réduit la probabilité que vous soyez touché par les sorts et les attaques à distance de 4% et confère à votre sort Main de liberté 100% de chances d'annuler tous les effets d'étourdissement sur la cible." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_artofwar" key="2176" name="L'art de la guerre" tier="6">
+        <rank description="Augmente les dégâts de vos techniques de Jugement, Inquisition et Tempête divine de 5%, et quand vous réussissez un coup critique avec vos attaques de mêlée, le temps d'incantation de votre prochain Eclair lumineux ou Exorcisme est réduit de 0.75 sec." lvl="1"/>
+        <rank description="Augmente les dégâts de vos techniques de Jugement, Inquisition et Tempête divine de 10%, et quand vous réussissez un coup critique avec vos attaques de mêlée, votre prochain sort Eclair lumineux ou Exorcisme est instantané." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_prayerofhealing" key="1441" name="Repentir" tier="6">
+        <rank description="Plonge la cible ennemie dans une transe méditative qui la stupéfie pendant 1 min. au maximum. Si la cible subit des dégâts, elle se réveille. Ne fonctionne que sur les démons, les draconiens, les géants, les humanoïdes et les morts-vivants." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="20">
+          <power cost="9" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_paladin_judgementofthewise" key="1758" name="Jugements des sages" tier="6">
+        <rank description="Vos sorts de Jugement infligeant des dégâts ont 33% de chances de conférer à jusqu'à 10 membres du groupe ou raid l'effet Requinquage, qui les fait bénéficier d'une régénération de mana égale à 1% de leur maximum de mana toutes les 5 sec. pendant 15 sec., ainsi que de vous rendre instantanément 25% de votre mana de base." lvl="1"/>
+        <rank description="Vos sorts de Jugement infligeant des dégâts ont 66% de chances de conférer à jusqu'à 10 membres du groupe ou raid l'effet Requinquage, qui les fait bénéficier d'une régénération de mana égale à 1% de leur maximum de mana toutes les 5 sec. pendant 15 sec., ainsi que de vous rendre instantanément 25% de votre mana de base." lvl="2"/>
+        <rank description="Vos sorts de Jugement infligeant des dégâts ont 100% de chances de conférer à jusqu'à 10 membres du groupe ou raid l'effet Requinquage, qui les fait bénéficier d'une régénération de mana égale à 1% de leur maximum de mana toutes les 5 sec. pendant 15 sec., ainsi que de vous rendre instantanément 25% de votre mana de base." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_fanaticism" key="1759" name="Fanatisme" requires="1441" tier="7">
+        <rank description="Augmente de 6% les chances d'obtenir un coup critique avec tous les Jugements qui peuvent en infliger et réduit la menace de toutes les actions de 10%, sauf sous l'effet de Fureur vertueuse." lvl="1"/>
+        <rank description="Augmente de 12% les chances d'obtenir un coup critique avec tous les Jugements qui peuvent en infliger et réduit la menace de toutes les actions de 20%, sauf sous l'effet de Fureur vertueuse." lvl="2"/>
+        <rank description="Augmente de 18% les chances d'obtenir un coup critique avec tous les Jugements qui peuvent en infliger et réduit la menace de toutes les actions de 30%, sauf sous l'effet de Fureur vertueuse." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_sanctifiedwrath" key="2147" name="Courroux sanctifié" tier="7">
+        <rank description="Augmente les chances de coup critique de Marteau de courroux de 25%, réduit le temps de recharge de Courroux vengeur de 30 sec. et tant que vous êtes affecté par Courroux vengeur 25% de tous les dégâts infligés évitent les effets de réduction des dégâts." lvl="1"/>
+        <rank description="Augmente les chances de coup critique de Marteau de courroux de 50%, réduit le temps de recharge de Courroux vengeur de 60 sec. et tant que vous êtes affecté par Courroux vengeur 50% de tous les dégâts infligés évitent les effets de réduction des dégâts." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_swiftretribution" key="2148" name="Vindicte rapide" tier="8">
+        <rank description="Vos Auras augmentent également les vitesses d'incantation et d'attaque en mêlée et à distance de 1%." lvl="1"/>
+        <rank description="Vos Auras augmentent également les vitesses d'incantation et d'attaque en mêlée et à distance de 2%." lvl="2"/>
+        <rank description="Vos Auras augmentent également les vitesses d'incantation et d'attaque en mêlée et à distance de 3%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_crusaderstrike" key="1823" name="Inquisition" tier="8">
+        <rank description="Une attaque instantanée qui inflige 75% des dégâts de l'arme." lvl="1"/>
+        <spell castTime="0" cooldown="4000" maxRange="5">
+          <power cost="5" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_paladin_sheathoflight" key="2179" name="Fourreau de lumière" tier="8">
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 10% de votre puissance d'attaque et vos sorts de soins critiques rendent à la cible un montant de points de vie égal à 20% des points de vie rendus en 12 secondes." lvl="1"/>
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 20% de votre puissance d'attaque et vos sorts de soins critiques rendent à la cible un montant de points de vie égal à 40% des points de vie rendus en 12 secondes." lvl="2"/>
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 30% de votre puissance d'attaque et vos sorts de soins critiques rendent à la cible un montant de points de vie égal à 60% des points de vie rendus en 12 secondes." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_righteousvengeance" key="2149" name="Vengeance vertueuse" tier="9">
+        <rank description="Quand vos sorts de Jugement, Inquisition ou Tempête divine infligent un coup critique, votre cible subira 10% de dégâts supplémentaires en 8 sec." lvl="1"/>
+        <rank description="Quand vos sorts de Jugement, Inquisition ou Tempête divine infligent un coup critique, votre cible subira 20% de dégâts supplémentaires en 8 sec." lvl="2"/>
+        <rank description="Quand vos sorts de Jugement, Inquisition ou Tempête divine infligent un coup critique, votre cible subira 30% de dégâts supplémentaires en 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_divinestorm" key="2150" name="Tempête divine" tier="10">
+        <rank description="Une attaque instantanée avec une arme qui inflige 110% des dégâts de l'arme à un maximum de 4 ennemis se trouvant à moins de 8 mètres. La Tempête divine soigne jusqu'à 3 membres du groupe ou du raid pour un total de 25% des dégâts infligés." lvl="1"/>
+        <spell castTime="0" cooldown="10000">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PaladinProtection" icon="spell_holy_devotionaura" key="Protection" name="Protection" order="1">
+      <talent column="1" icon="spell_holy_blindingheal" key="1442" name="Divinité" tier="0">
+        <rank description="Augmente tous les soins que vous prodiguez et tous les effets de soins sur vous de 1%." lvl="1"/>
+        <rank description="Augmente tous les soins que vous prodiguez et tous les effets de soins sur vous de 2%." lvl="2"/>
+        <rank description="Augmente tous les soins que vous prodiguez et tous les effets de soins sur vous de 3%." lvl="3"/>
+        <rank description="Augmente tous les soins que vous prodiguez et tous les effets de soins sur vous de 4%." lvl="4"/>
+        <rank description="Augmente tous les soins que vous prodiguez et tous les effets de soins sur vous de 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_golemthunderclap" key="2185" name="Force divine" tier="0">
+        <rank description="Augmente votre total de Force de 3%." lvl="1"/>
+        <rank description="Augmente votre total de Force de 6%." lvl="2"/>
+        <rank description="Augmente votre total de Force de 9%." lvl="3"/>
+        <rank description="Augmente votre total de Force de 12%." lvl="4"/>
+        <rank description="Augmente votre total de Force de 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_stoicism" key="1748" name="Stoïcisme" tier="1">
+        <rank description="Réduit la durée de tous les effets d'étourdissement de 10% supplémentaires, et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 10% supplémentaires." lvl="1"/>
+        <rank description="Réduit la durée de tous les effets d'étourdissement de 20% supplémentaires, et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 20% supplémentaires." lvl="2"/>
+        <rank description="Réduit la durée de tous les effets d'étourdissement de 30% supplémentaires, et réduit la probabilité que vos sorts utiles et vos effets de dégâts sur la durée soient dissipés de 30% supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_sealofprotection" key="1425" name="Faveur du Gardien" tier="1">
+        <rank description="Réduit le temps de recharge de votre Main de protection de 60 sec. et augmente la durée de votre Main de liberté de 2 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre Main de protection de 2 min. et augmente la durée de votre Main de liberté de 4 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_magic_lesserinvisibilty" key="1629" name="Anticipation" tier="1">
+        <rank description="Augmente vos chances d'esquiver de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'esquiver de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'esquiver de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'esquiver de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'esquiver de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_powerwordbarrier" key="2280" name="Sacrifice divin" tier="2">
+        <rank description="30% de tous les dégâts subis par les membres du groupe se trouvant à moins de 30 mètres sont redirigés vers le paladin (jusqu'à un maximum de 40% des points de vie du paladin multiplié par le nombre de membres du groupe). Les dégâts qui font passer le paladin sous les 20% de points de vie interrompent l'effet. Dure 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+      <talent column="1" icon="spell_holy_sealoffury" key="1501" name="Fureur vertueuse améliorée" tier="2">
+        <rank description="Tant que la Fureur vertueuse est active, tous les dégâts subis sont réduits de 2%." lvl="1"/>
+        <rank description="Tant que la Fureur vertueuse est active, tous les dégâts subis sont réduits de 4%." lvl="2"/>
+        <rank description="Tant que la Fureur vertueuse est active, tous les dégâts subis sont réduits de 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_devotion" key="1423" name="Résistance" tier="2">
+        <rank description="Augmente la valeur d'armure des objets de 2% et réduit la durée de tous les effets affectant le déplacement de 6%." lvl="1"/>
+        <rank description="Augmente la valeur d'armure des objets de 4% et réduit la durée de tous les effets affectant le déplacement de 12%." lvl="2"/>
+        <rank description="Augmente la valeur d'armure des objets de 6% et réduit la durée de tous les effets affectant le déplacement de 18%." lvl="3"/>
+        <rank description="Augmente la valeur d'armure des objets de 8% et réduit la durée de tous les effets affectant le déplacement de 24%." lvl="4"/>
+        <rank description="Augmente la valeur d'armure des objets de 10% et réduit la durée de tous les effets affectant le déplacement de 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_powerwordbarrier" key="2281" name="Gardien divin" requires="2280" tier="3">
+        <rank description="Lorsque Sacrifice divin est actif, les membres de votre groupe ou raid dans un rayon de 30 mètres subissent 10% de dégâts en moins pendant 6 sec. De plus, augmente la durée de votre Bouclier saint de 50% et le montant absorbé de 10%." lvl="1"/>
+        <rank description="Lorsque Sacrifice divin est actif, les membres de votre groupe ou raid dans un rayon de 30 mètres subissent 20% de dégâts en moins pendant 6 sec. De plus, augmente la durée de votre Bouclier saint de 100% et le montant absorbé de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_sealofmight" key="1521" name="Marteau de la justice amélioré" tier="3">
+        <rank description="Réduit le temps de recharge de votre sort Marteau de la justice de 10 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre sort Marteau de la justice de 20 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_holy_devotionaura" key="1422" name="Aura de dévotion améliorée" tier="3">
+        <rank description="Augmente de 17% le bonus d'armure que confère votre Aura de dévotion et augmente de 2% le montant de points de vie rendus à toute cible affectée par une de vos Auras." lvl="1"/>
+        <rank description="Augmente de 34% le bonus d'armure que confère votre Aura de dévotion et augmente de 4% le montant de points de vie rendus à toute cible affectée par une de vos Auras." lvl="2"/>
+        <rank description="Augmente de 50% le bonus d'armure que confère votre Aura de dévotion et augmente de 6% le montant de points de vie rendus à toute cible affectée par une de vos Auras." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_lightningshield" key="1431" name="Bénédiction du sanctuaire" tier="4">
+        <rank description="Place une Bénédiction sur la cible alliée qui réduit les dégâts infligés par toutes les sources de 3% pendant 10 min et augmente la Force et l'Endurance de 10%. De plus, quand la cible bloque, pare ou esquive une attaque de mêlée, la cible reçoit 2% de son mana maximum affiché. Les personnages ne peuvent bénéficier que des effets d'une seule Bénédiction par paladin à la fois." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessingofstrength" key="1426" name="Rétribution" tier="4">
+        <rank description="Confère 2% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="1"/>
+        <rank description="Confère 4% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="2"/>
+        <rank description="Confère 6% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="3"/>
+        <rank description="Confère 8% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="4"/>
+        <rank description="Confère 10% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts ou que vous l'avez bloquée de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_divineintervention" key="1750" name="Devoir sacré" tier="5">
+        <rank description="Augmente votre total d'Endurance de 4% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 30 sec." lvl="1"/>
+        <rank description="Augmente votre total d'Endurance de 8% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 60 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_sword_20" key="1429" name="Spécialisation Arme 1M" tier="5">
+        <rank description="Augmente tous les dégâts que vous infligez de 4% quand une arme de mêlée à une main est équipée." lvl="1"/>
+        <rank description="Augmente tous les dégâts que vous infligez de 7% quand une arme de mêlée à une main est équipée." lvl="2"/>
+        <rank description="Augmente tous les dégâts que vous infligez de 10% quand une arme de mêlée à une main est équipée." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_revivechampion" key="2282" name="Harmonisation spirituelle" tier="6">
+        <rank description="Une technique passive qui donne des points de mana au paladin lorsqu'il est soigné par les sorts d'autres cibles alliées. La quantité de mana reçue est égale à 5% des points de vie rendus." lvl="1"/>
+        <rank description="Une technique passive qui donne des points de mana au paladin lorsqu'il est soigné par les sorts d'autres cibles alliées. La quantité de mana reçue est égale à 10% des points de vie rendus." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofprotection" key="1430" name="Bouclier sacré" requires="1431" tier="6">
+        <rank description="Augmente les chances de bloquer de 30% pendant 10 sec et inflige 79 points de dégâts du Sacré pour chaque attaque bloquée pendant qu'il est actif. Chaque blocage dépense une charge. 8 charges." lvl="1"/>
+        <spell castTime="0" cooldown="8000">
+          <power cost="10" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_ardentdefender" key="1751" name="Ardent défenseur" tier="6">
+        <rank description="Les dégâts qui vous font descendre sous les 35% de points de vie sont réduits de 7%. De plus, les attaques qui normalement vous tueraient vous rendent jusqu'à 10% de votre maximum de points de vie (en fonction de votre défense). Cet effet de soins ne peut se produire plus d'une fois toutes les 2 min." lvl="1"/>
+        <rank description="Les dégâts qui vous font descendre sous les 35% de points de vie sont réduits de 13%. De plus, les attaques qui normalement vous tueraient vous rendent jusqu'à 20% de votre maximum de points de vie (en fonction de votre défense). Cet effet de soins ne peut se produire plus d'une fois toutes les 2 min." lvl="2"/>
+        <rank description="Les dégâts qui vous font descendre sous les 35% de points de vie sont réduits de 20%. De plus, les attaques qui normalement vous tueraient vous rendent jusqu'à 30% de votre maximum de points de vie (en fonction de votre défense). Cet effet de soins ne peut se produire plus d'une fois toutes les 2 min." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_defend" key="1421" name="Redoute" tier="7">
+        <rank description="Augmente votre valeur de blocage de 10% et les attaques en mêlée et à distance contre vous qui infligent des dégâts ont 10% de chances d’augmenter vos chances de blocage de 10%. Dure 10 sec ou bloque 5 attaques." lvl="1"/>
+        <rank description="Augmente votre valeur de blocage de 20% et les attaques en mêlée et à distance contre vous qui infligent des dégâts ont 10% de chances d’augmenter vos chances de blocage de 20%. Dure 10 sec ou bloque 5 attaques." lvl="2"/>
+        <rank description="Augmente votre valeur de blocage de 30% et les attaques en mêlée et à distance contre vous qui infligent des dégâts ont 10% de chances d’augmenter vos chances de blocage de 30%. Dure 10 sec ou bloque 5 attaques." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_weaponmastery" key="1753" name="Expertise en combat" tier="7">
+        <rank description="Augmente votre expertise de 2, ainsi que votre total d'Endurance et vos chances de coup critique de 2%." lvl="1"/>
+        <rank description="Augmente votre expertise de 4, ainsi que votre total d'Endurance et vos chances de coup critique de 4%." lvl="2"/>
+        <rank description="Augmente votre expertise de 6, ainsi que votre total d'Endurance et vos chances de coup critique de 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_touchedbylight" key="2195" name="Touché par la Lumière" tier="8">
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 20% de votre Force et augmente les points de vie rendus par vos soins critiques de 10%." lvl="1"/>
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 40% de votre Force et augmente les points de vie rendus par vos soins critiques de 20%." lvl="2"/>
+        <rank description="Augmente votre puissance des sorts d'un montant égal à 60% de votre Force et augmente les points de vie rendus par vos soins critiques de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_avengersshield" key="1754" name="Bouclier du vengeur" requires="1430" tier="8">
+        <rank description="Lance sur un ennemi un bouclier sacré qui inflige de 442 à 538 points de dégâts du Sacré, l'hébète et rebondit ensuite sur des ennemis proches. Le sort frappe 3 cibles au total. Dure 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="30">
+          <power cost="26" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_paladin_gaurdedbythelight" key="2194" name="Gardé par la Lumière" tier="8">
+        <rank description="Réduit les dégâts des sorts subis de 3% et confère 50% de chances de réinitialiser la durée de votre Supplique divine lorsque vous touchez un ennemi. De plus, le risque que votre Supplique divine soit dissipée est réduit de 50%." lvl="1"/>
+        <rank description="Réduit les dégâts des sorts subis de 6% et confère 100% de chances de réinitialiser la durée de votre Supplique divine lorsque vous touchez un ennemi. De plus, le risque que votre Supplique divine soit dissipée est réduit de 100%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_shieldofthetemplar" key="2204" name="Bouclier du templier" requires="1754" tier="9">
+        <rank description="Réduit tous les dégâts subis de 1% et confère à votre Bouclier du vengeur 33% de chances de réduire vos cibles au silence pendant 3 sec." lvl="1"/>
+        <rank description="Réduit tous les dégâts subis de 2% et confère à votre Bouclier du vengeur 66% de chances de réduire vos cibles au silence pendant 3 sec." lvl="2"/>
+        <rank description="Réduit tous les dégâts subis de 3% et confère à votre Bouclier du vengeur 100% de chances de réduire vos cibles au silence pendant 3 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_judgementsofthejust" key="2200" name="Jugements des justes" tier="9">
+        <rank description="Réduit le temps de recharge de votre Marteau de la justice de 5 sec., augmente la durée de l'effet de votre Sceau de justice de 0.5 sec. et vos sorts de Jugement réduisent également la vitesse d'attaque en mêlée de la cible de 10%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre Marteau de la justice de 10 sec., augmente la durée de l'effet de votre Sceau de justice de 1 sec. et vos sorts de Jugement réduisent également la vitesse d'attaque en mêlée de la cible de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_hammeroftherighteous" key="2196" name="Marteau du vertueux" tier="10">
+        <rank description="Frappe avec un marteau la cible actuelle ainsi que 2 cibles proches supplémentaires au plus, infligeant 4 fois par seconde les dégâts de votre arme en main droite sous forme de dégâts du Sacré." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PaladinHoly" icon="spell_holy_holybolt" key="Holy" name="Sacré" order="0">
+      <talent column="1" icon="spell_arcane_blink" key="1432" name="Focalisation spirituelle" tier="0">
+        <rank description="Réduit de 14% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Lumière sacrée et Eclair lumineux." lvl="1"/>
+        <rank description="Réduit de 28% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Lumière sacrée et Eclair lumineux." lvl="2"/>
+        <rank description="Réduit de 42% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Lumière sacrée et Eclair lumineux." lvl="3"/>
+        <rank description="Réduit de 56% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Lumière sacrée et Eclair lumineux." lvl="4"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez Lumière sacrée et Eclair lumineux." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_thunderbolt" key="1463" name="Sceaux des purs" tier="0">
+        <rank description="Augmente de 3% les dégâts infligés par vos Sceaux de piété, de vengeance et de corruption ainsi que les effets de leurs Jugements." lvl="1"/>
+        <rank description="Augmente de 6% les dégâts infligés par vos Sceaux de piété, de vengeance et de corruption ainsi que les effets de leurs Jugements." lvl="2"/>
+        <rank description="Augmente de 9% les dégâts infligés par vos Sceaux de piété, de vengeance et de corruption ainsi que les effets de leurs Jugements." lvl="3"/>
+        <rank description="Augmente de 12% les dégâts infligés par vos Sceaux de piété, de vengeance et de corruption ainsi que les effets de leurs Jugements." lvl="4"/>
+        <rank description="Augmente de 15% les dégâts infligés par vos Sceaux de piété, de vengeance et de corruption ainsi que les effets de leurs Jugements." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_holybolt" key="1444" name="Lumière guérisseuse" tier="1">
+        <rank description="Augmente le montant de points de vie rendus par vos sorts Lumière sacrée et Eclair lumineux ainsi que l'efficacité des sorts Horion sacré de 4%." lvl="1"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts Lumière sacrée et Eclair lumineux ainsi que l'efficacité des sorts Horion sacré de 8%." lvl="2"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts Lumière sacrée et Eclair lumineux ainsi que l'efficacité des sorts Horion sacré de 12%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_sleep" key="1449" name="Intelligence divine" tier="1">
+        <rank description="Augmente votre total d'Intelligence de 2%." lvl="1"/>
+        <rank description="Augmente votre total d'Intelligence de 4%." lvl="2"/>
+        <rank description="Augmente votre total d'Intelligence de 6%." lvl="3"/>
+        <rank description="Augmente votre total d'Intelligence de 8%." lvl="4"/>
+        <rank description="Augmente votre total d'Intelligence de 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_unyieldingfaith" key="1628" name="Foi inflexible" tier="1">
+        <rank description="Réduit de 15% la durée de tous les effets de Peur et de Désorientation." lvl="1"/>
+        <rank description="Réduit de 30% la durée de tous les effets de Peur et de Désorientation." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_auramastery" key="1435" name="Maîtrise des auras" tier="2">
+        <rank description="Permet à votre Aura de concentration de rendre toutes les cibles affectées insensibles aux effets de silence et d'interruption ainsi que d'améliorer les effets de toutes les autres auras de 100%. Dure 6 sec." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+      <talent column="1" icon="spell_holy_greaterheal" key="1461" name="Illumination" tier="2">
+        <rank description="Lorsque vous obtenez un effet critique avec Eclair lumineux, Lumière sacrée, ou le sort de soins Horion sacré, vous avez 20% de chances de recevoir un montant de mana égal à 30% du coût de base du sort." lvl="1"/>
+        <rank description="Lorsque vous obtenez un effet critique avec Eclair lumineux, Lumière sacrée, ou le sort de soins Horion sacré, vous avez 40% de chances de recevoir un montant de mana égal à 30% du coût de base du sort." lvl="2"/>
+        <rank description="Lorsque vous obtenez un effet critique avec Eclair lumineux, Lumière sacrée, ou le sort de soins Horion sacré, vous avez 60% de chances de recevoir un montant de mana égal à 30% du coût de base du sort." lvl="3"/>
+        <rank description="Lorsque vous obtenez un effet critique avec Eclair lumineux, Lumière sacrée, ou le sort de soins Horion sacré, vous avez 80% de chances de recevoir un montant de mana égal à 30% du coût de base du sort." lvl="4"/>
+        <rank description="Lorsque vous obtenez un effet critique avec Eclair lumineux, Lumière sacrée, ou le sort de soins Horion sacré, vous avez 100% de chances de recevoir un montant de mana égal à 30% du coût de base du sort." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_layonhands" key="1443" name="Imposition des mains améliorée" tier="2">
+        <rank description="La cible de votre sort Imposition des mains bénéficie d'une réduction de 10% des dégâts physiques qu'elle subit pendant 15 sec. De plus, le temps de recharge de votre sort Imposition des mains est réduit de 2 min." lvl="1"/>
+        <rank description="La cible de votre sort Imposition des mains bénéficie d'une réduction de 20% des dégâts physiques qu'elle subit pendant 15 sec. De plus, le temps de recharge de votre sort Imposition des mains est réduit de 4 min." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_mindsooth" key="1450" name="Aura de concentration améliorée" tier="3">
+        <rank description="Augmente de 5% supplémentaires l'effet de votre Aura de concentration, et tant que n'importe quelle Aura est active, réduit de 10% la durée de tout effet de silence ou d'interruption utilisé contre un membre du groupe affecté. La réduction de durée ne se cumule avec aucun autre effet." lvl="1"/>
+        <rank description="Augmente de 10% supplémentaires l'effet de votre Aura de concentration, et tant que n'importe quelle Aura est active, réduit de 20% la durée de tout effet de silence ou d'interruption utilisé contre un membre du groupe affecté. La réduction de durée ne se cumule avec aucun autre effet." lvl="2"/>
+        <rank description="Augmente de 15% supplémentaires l'effet de votre Aura de concentration, et tant que n'importe quelle Aura est active, réduit de 30% la durée de tout effet de silence ou d'interruption utilisé contre un membre du groupe affecté. La réduction de durée ne se cumule avec aucun autre effet." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofwisdom" key="1446" name="Bénédiction de sagesse améliorée" tier="3">
+        <rank description="Augmente l'effet de votre sort de Bénédiction de sagesse de 10%." lvl="1"/>
+        <rank description="Augmente l'effet de votre sort Bénédiction de sagesse de 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_paladin_blessedhands" key="2198" name="Mains bénies" tier="3">
+        <rank description="Réduit le coût en mana de Main de liberté, Main de sacrifice et Main de salut de 15% en plus d'augmenter l'efficacité de Main de salut de 50% et celle de Main de sacrifice de 5% supplémentaires." lvl="1"/>
+        <rank description="Réduit le coût en mana de Main de liberté, Main de sacrifice et Main de salut de 30% en plus d'augmenter l'efficacité de Main de salut de 100% et celle de Main de sacrifice de 10% supplémentaires." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_pureofheart" key="1742" name="Pur de coeur" tier="4">
+        <rank description="Réduit de 15% la durée des effets de malédiction, de maladie et de poison." lvl="1"/>
+        <rank description="Réduit de 30% la durée des effets de malédiction, de maladie et de poison." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_heal" key="1433" name="Faveur divine" requires="1461" tier="4">
+        <rank description="Une fois activé, confère 100% de chances à votre prochain sort Eclair lumineux, Lumière sacrée ou Horion sacré d'avoir un effet critique." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="3" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_healingaura" key="1465" name="Lumière sanctifiée" tier="4">
+        <rank description="Augmente de 2% vos chances de réaliser un effet critique avec vos sorts Lumière sacrée et Horion sacré." lvl="1"/>
+        <rank description="Augmente de 4% vos chances de réaliser un effet critique avec vos sorts Lumière sacrée et Horion sacré." lvl="2"/>
+        <rank description="Augmente de 6% vos chances de réaliser un effet critique avec vos sorts Lumière sacrée et Horion sacré." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_purifyingpower" key="1743" name="Puissance purifiante" tier="5">
+        <rank description="Réduit de 5% le coût en mana de vos sorts Epuration, Purification et Consécration et réduit de 17% le temps de recharge de vos sorts Exorcisme et Colère divine." lvl="1"/>
+        <rank description="Réduit de 10% le coût en mana de vos sorts Epuration, Purification et Consécration et réduit de 33% le temps de recharge de vos sorts Exorcisme et Colère divine." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_holy_power" key="1627" name="Puissance sacrée" tier="5">
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 1%." lvl="1"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 2%." lvl="2"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 3%." lvl="3"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 4%." lvl="4"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_lightsgrace" key="1745" name="Grâce de la lumière" tier="6">
+        <rank description="Confère à votre sort Lumière sacrée 33% de chances de réduire le temps d'incantation de votre prochain sort Lumière sacrée de 0.5 sec. Cet effet dure 15 sec." lvl="1"/>
+        <rank description="Confère à votre sort Lumière sacrée 66% de chances de réduire le temps d'incantation de votre prochain sort Lumière sacrée de 0.5 sec. Cet effet dure 15 sec." lvl="2"/>
+        <rank description="Confère à votre sort Lumière sacrée 100% de chances de réduire le temps d'incantation de votre prochain sort Lumière sacrée de 0.5 sec. Cet effet dure 15 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_searinglight" key="1502" name="Horion sacré" requires="1433" tier="6">
+        <rank description="L'énergie sacrée frappe la cible et inflige 314 à 340 points de dégâts du Sacré à un ennemi, ou bien rend à un allié 481 à 519 points de vie." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="20">
+          <power cost="18" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessedlife" key="1744" name="Vie bénie" tier="6">
+        <rank description="Vous confère 4% de chances que les attaques contre vous n'infligent que la moitié des dégâts." lvl="1"/>
+        <rank description="Vous confère 7% de chances que les attaques contre vous n'infligent que la moitié des dégâts." lvl="2"/>
+        <rank description="Vous confère 10% de chances que les attaques contre vous n'infligent que la moitié des dégâts." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_sacredcleansing" key="2190" name="Purification sacrée" tier="7">
+        <rank description="Votre sort Epuration a 10% de chances d'augmenter la résistance de la cible aux maladies, à la magie et au poison de 30% pendant 10 sec." lvl="1"/>
+        <rank description="Votre sort Epuration a 20% de chances d'augmenter la résistance de la cible aux maladies, à la magie et au poison de 30% pendant 10 sec." lvl="2"/>
+        <rank description="Votre sort Epuration a 30% de chances d'augmenter la résistance de la cible aux maladies, à la magie et au poison de 30% pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_holyguidance" key="1746" name="Soutien sacré" tier="7">
+        <rank description="Augmente la puissance de vos sorts de 4% de votre total d'Intelligence." lvl="1"/>
+        <rank description="Augmente la puissance de vos sorts de 8% de votre total d'Intelligence." lvl="2"/>
+        <rank description="Augmente la puissance de vos sorts de 12% de votre total d'Intelligence." lvl="3"/>
+        <rank description="Augmente la puissance de vos sorts de 16% de votre total d'Intelligence." lvl="4"/>
+        <rank description="Augmente la puissance de vos sorts de 20% de votre total d'Intelligence." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_divineillumination" key="1747" name="Illumination divine" tier="8">
+        <rank description="Réduit le coût en mana de tous les sorts de 50% pendant 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_judgementofthepure" key="2199" name="Jugements des purs" tier="8">
+        <rank description="Augmente les dégâts infligés par vos sorts de Sceau et de Jugement de 5%, et vos sorts de Jugement augmentent votre vitesse d'incantation et votre hâte en mêlée de 3% pendant 1 min." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Sceau et de Jugement de 10%, et vos sorts de Jugement augmentent votre vitesse d'incantation et votre hâte en mêlée de 6% pendant 1 min." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Sceau et de Jugement de 15%, et vos sorts de Jugement augmentent votre vitesse d'incantation et votre hâte en mêlée de 9% pendant 1 min." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Sceau et de Jugement de 20%, et vos sorts de Jugement augmentent votre vitesse d'incantation et votre hâte en mêlée de 12% pendant 1 min." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos sorts de Sceau et de Jugement de 25%, et vos sorts de Jugement augmentent votre vitesse d'incantation et votre hâte en mêlée de 15% pendant 1 min." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_infusionoflight" key="2193" name="Imprégnation de lumière" requires="1502" tier="9">
+        <rank description="Vos coups critiques avec Horion sacré réduisent le temps d'incantation de votre prochain sort Eclair lumineux de 0.75 sec. ou augmentent les chances de critique de votre prochaine Lumière sacrée de 10%. De plus, votre Eclair lumineux rend aux cibles affectées par Bouclier saint 50% de points de vie supplémentaires en 12 sec." lvl="1"/>
+        <rank description="Vos coups critiques avec Horion sacré réduisent le temps d'incantation de votre prochain sort Eclair lumineux de 1.5 sec. ou augmentent les chances de critique de votre prochaine Lumière sacrée de 20%. De plus, votre Eclair lumineux rend aux cibles affectées par Bouclier saint 100% de points de vie supplémentaires en 12 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_enlightenedjudgements" key="2191" name="Jugements éclairés" tier="9">
+        <rank description="Augmente de 15 mètres la portée de votre Jugement de Lumière et de votre Jugement de sagesse en plus d'augmenter de 2% vos chances de toucher." lvl="1"/>
+        <rank description="Augmente de 30 mètres la portée de votre Jugement de Lumière et de votre Jugement de sagesse en plus d'augmenter de 4% vos chances de toucher." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_beaconoflight" key="2192" name="Guide de lumière" tier="10">
+        <rank description="La cible devient un guide de lumière pour tous les membres de votre groupe ou raid se trouvant dans un rayon de 60 mètres. Tous les soins que vous lancez sur ces cibles soignent également le Guide pour un montant de points de vie égal à 100% des soins prodigués. Une seule cible à la fois peut être le Guide de lumière. Dure 1 min." lvl="1"/>
+        <spell castTime="0" maxRange="60">
+          <power cost="35" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

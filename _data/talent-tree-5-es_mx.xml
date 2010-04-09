@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_mx" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="PriestDiscipline" icon="spell_holy_wordfortitude" key="Discipline" name="Disciplina" order="0">
+      <talent column="1" icon="spell_magic_magearmor" key="342" name="Voluntad inquebrantable" tier="0">
+        <rank description="Reduce la duración de los efectos de aturdimiento, miedo y silencio sobre ti un 6% extra." lvl="1"/>
+        <rank description="Reduce la duración de los efectos de aturdimiento, miedo y silencio sobre ti un 12% extra." lvl="2"/>
+        <rank description="Reduce la duración de los efectos de aturdimiento, miedo y silencio sobre ti un 18% extra." lvl="3"/>
+        <rank description="Reduce la duración de los efectos de aturdimiento, miedo y silencio sobre ti un 24% extra." lvl="4"/>
+        <rank description="Reduce la duración de los efectos de aturdimiento, miedo y silencio sobre ti un 30% extra." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofvengeance" key="1898" name="Disciplinas gemelas" tier="0">
+        <rank description="Aumenta el daño y la sanación infligidos por tus hechizos instantáneos un 1%." lvl="1"/>
+        <rank description="Aumenta el daño y la sanación infligidos por tus hechizos instantáneos un 2%." lvl="2"/>
+        <rank description="Aumenta el daño y la sanación infligidos por tus hechizos instantáneos un 3%." lvl="3"/>
+        <rank description="Aumenta el daño y la sanación infligidos por tus hechizos instantáneos un 4%." lvl="4"/>
+        <rank description="Aumenta el daño y la sanación infligidos por tus hechizos instantáneos un 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_manaregentotem" key="352" name="Resolución silenciosa" tier="1">
+        <rank description="Reduce la amenaza generada por tus hechizos Sagrados y de Disciplina un 7% y reduce la probabilidad de que tus hechizos de ayuda y tus efectos de daño en el tiempo sean disipados un 10%." lvl="1"/>
+        <rank description="Reduce la amenaza generada por tus hechizos Sagrados y de Disciplina un 14% y reduce la probabilidad de que tus hechizos de ayuda y tus efectos de daño en el tiempo sean disipados un 20%." lvl="2"/>
+        <rank description="Reduce la amenaza generada por tus hechizos Sagrados y de Disciplina un 20% y reduce la probabilidad de que tus hechizos de ayuda y tus efectos de daño en el tiempo sean disipados un 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_innerfire" key="346" name="Fuego interno mejorado" tier="1">
+        <rank description="Aumenta el efecto de tu hechizo Fuego interno un 15% y aumenta el número total de cargas hasta 4." lvl="1"/>
+        <rank description="Aumenta el efecto de tu hechizo Fuego interno un 30% y aumenta el número total de cargas hasta 8." lvl="2"/>
+        <rank description="Aumenta el efecto de tu hechizo Fuego interno un 45% y aumenta el número total de cargas hasta 12." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_wordfortitude" key="344" name="Palabra de poder mejorada: entereza" tier="1">
+        <rank description="Aumenta un 15% el efecto de tus hechizos Palabra de poder: Entereza y Rezo de entereza y aumenta tu aguante total un 2%." lvl="1"/>
+        <rank description="Aumenta un 30% el efecto de tus hechizos Palabra de poder: Entereza y Rezo de entereza y aumenta tu aguante total un 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_tranquility" key="321" name="Martirio" tier="1">
+        <rank description="Te da un 50% de probabilidad de ganar el efecto de Lanzamiento enfocado que dura 6 s después de ser víctima de un golpe crítico cuerpo a cuerpo o a distancia. El efecto de Lanzamiento enfocado reduce el retroceso sufrido por los ataques dañinos mientras lanzas hechizos de sacerdote y disminuye la duración de los efectos de interrupción un 10%." lvl="1"/>
+        <rank description="Te da un 100% de probabilidad de ganar el efecto de Lanzamiento enfocado que dura 6 s después de ser víctima de un golpe crítico cuerpo a cuerpo o a distancia. El efecto de Lanzamiento enfocado reduce el retroceso sufrido por los ataques dañinos mientras lanzas hechizos de sacerdote y disminuye la duración de los efectos de interrupción un 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_sleep" key="347" name="Meditación" tier="2">
+        <rank description="Permite que un 17% de la regeneración de maná continúe mientras lanzas hechizos." lvl="1"/>
+        <rank description="Permite que un 33% de la regeneración de maná continúe mientras lanzas hechizos." lvl="2"/>
+        <rank description="Permite que un 50% de la regeneración de maná continúe mientras lanzas hechizos." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_windwalkon" key="348" name="Enfoque interno" tier="2">
+        <rank description="Cuando se activa, reduce un 100% el coste de maná de tu próximo hechizo y aumenta la probabilidad de efecto crítico un 25% si el hechizo lo permite." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="spell_holy_powerwordshield" key="343" name="Palabra de poder mejorada: escudo" tier="2">
+        <rank description="Aumenta la absorción de daño de tu Palabra de poder: escudo un 5%." lvl="1"/>
+        <rank description="Aumenta la absorción de daño de tu Palabra de poder: escudo un 10%." lvl="2"/>
+        <rank description="Aumenta la absorción de daño de tu Palabra de poder: escudo un 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_absolution" key="1769" name="Absolución" tier="3">
+        <rank description="Reduce el coste de maná de tus hechizos Disipar magia, Curar enfermedad, Suprimir enfermedad y Disipación en masa un 5%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Disipar magia, Curar enfermedad, Suprimir enfermedad y Disipación en masa un 10%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos Disipar magia, Curar enfermedad, Suprimir enfermedad y Disipación en masa un 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hibernation" key="341" name="Agilidad mental" tier="3">
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos un 4%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos un 7%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos un 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_manaburn" key="350" name="Quemadura de maná mejorada" tier="3">
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Quemar maná 0.5 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Quemar maná 1 s." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_powerwordshield" key="2268" name="Escudo reflectante" tier="4">
+        <rank description="Reflecta el 22% del daño que amortiguas con tu Palabra de poder: escudo hacia el atacante. Este daño no causa amenaza." lvl="1"/>
+        <rank description="Reflecta el 45% del daño que amortiguas con tu Palabra de poder: escudo hacia el atacante. Este daño no causa amenaza." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_enchantarmor" key="1201" name="Fuerza mental" tier="4">
+        <rank description="Aumenta tu intelecto total un 3%." lvl="1"/>
+        <rank description="Aumenta tu intelecto total un 6%." lvl="2"/>
+        <rank description="Aumenta tu intelecto total un 9%." lvl="3"/>
+        <rank description="Aumenta tu intelecto total un 12%." lvl="4"/>
+        <rank description="Aumenta tu intelecto total un 15%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_pureofheart" key="351" name="Amparo de alma" requires="343" tier="4">
+        <rank description="Reduce el tiempo de reutilización de tu facultad Palabra de poder: escudo un 4 s, y reduce el coste de maná de tu Palabra de poder: escudo un 15%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_focusedpower" key="1771" name="Poder enfocado" tier="5">
+        <rank description="Aumenta el daño y sanación de tus hechizos un 2%. Además, el tiempo de lanzamiento de tu Disipación en masa se reduce 0.5 s." lvl="1"/>
+        <rank description="Aumenta el daño y sanación de tus hechizos un 4%. Además, el tiempo de lanzamiento de tu Disipación en masa se reduce 1 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_mindmastery" key="1772" name="Esclarecimiento" tier="5">
+        <rank description="Aumenta tu espíritu total un 2% y aumenta tu celeridad con hechizos un 2%." lvl="1"/>
+        <rank description="Aumenta tu espíritu total un 4% y aumenta tu celeridad con hechizos un 4%." lvl="2"/>
+        <rank description="Aumenta tu espíritu total un 6% y aumenta tu celeridad con hechizos un 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_focusedpower" key="1858" name="Voluntad centrada" tier="6">
+        <rank description="Aumenta la probabilidad del efecto crítico de tus hechizos un 1% y tras recibir un golpe crítico, ganas el efecto de Voluntad centrada, reduciendo todo el daño recibido un 2% y aumentando los efectos de sanación sobre ti un 3%. Se acumula hasta 3 veces. Dura 8 s." lvl="1"/>
+        <rank description="Aumenta la probabilidad del efecto crítico de tus hechizos un 2% y tras recibir un golpe crítico, ganas el efecto de Voluntad centrada, reduciendo todo el daño recibido un 3% y aumentando los efectos de sanación sobre ti un 4%. Se acumula hasta 3 veces. Dura 8 s." lvl="2"/>
+        <rank description="Aumenta la probabilidad del efecto crítico de tus hechizos un 3% y tras recibir un golpe crítico, ganas el efecto de Voluntad centrada, reduciendo todo el daño recibido un 4% y aumentando los efectos de sanación sobre ti un 5%. Se acumula hasta 3 veces. Dura 8 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_powerinfusion" key="322" name="Infusión de poder" requires="1201" tier="6">
+        <rank description="Imbuye de energía al objetivo, aumentando su velocidad de lanzamiento de hechizos un 20% y reduciendo el coste de maná de todos los hechizos un 20%. Dura 15 s." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_chastise" key="1773" name="Sanación relámpago mejorada" tier="6">
+        <rank description="Reduce el coste de maná de tu Sanación relámpago un 5% y aumenta la probabilidad de efecto crítico de tu Sanación relámpago un 4% sobre los objetivos amistosos con salud igual o menor del 50%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tu Sanación relámpago un 10% y aumenta la probabilidad de efecto crítico de tu Sanación relámpago un 7% sobre los objetivos amistosos con salud igual o menor del 50%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tu Sanación relámpago un 15% y aumenta la probabilidad de efecto crítico de tu Sanación relámpago un 10% sobre los objetivos amistosos con salud igual o menor del 50%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Esperanza renovada" tier="7">
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 2% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 50% de probabilidad de reducir todo el daño recibido un 3% durante 20 s de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo." lvl="1"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 4% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 100% de probabilidad de reducir todo el daño recibido un 3% durante 20 s de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_rapture" key="1896" name="Éxtasis" tier="7">
+        <rank description="Cuando se absorbe o disipa completamente tu Palabra de poder: escudo, te energizas al instante con un 1,5% de tu maná total y tienes un 33% de probabilidad de energizar al objetivo escudado con un 2% del maná total, 8 p. de ira, 16 p. de energía o 32 p. de poder rúnico. Este efecto solo puede ocurrir una vez cada 12 s." lvl="1"/>
+        <rank description="Cuando se absorbe o disipa completamente tu Palabra de poder: escudo, te energizas al instante con un 2% de tu maná total y tienes un 66% de probabilidad de energizar al objetivo escudado con un 2% del maná total, 8 p. de ira, 16 p. de energía o 32 p. de poder rúnico. Este efecto solo puede ocurrir una vez cada 12 s." lvl="2"/>
+        <rank description="Cuando se absorbe o disipa completamente tu Palabra de poder: escudo, te energizas al instante con un 2,5% de tu maná total y tienes un 100% de probabilidad de energizar al objetivo escudado con un 2% del maná total, 8 p. de ira, 16 p. de energía o 32 p. de poder rúnico. Este efecto solo puede ocurrir una vez cada 12 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_aspiration" key="1894" name="Aspiración" tier="7">
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Enfoque interno, Infusión de poder, Supresión de dolor y Penitencia un 10%." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Enfoque interno, Infusión de poder, Supresión de dolor y Penitencia un 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_devineaegis" key="1895" name="Égida divina" tier="8">
+        <rank description="Las sanaciones críticas crean un escudo protector sobre el objetivo, que absorbe el 10% de la cantidad sanada. Dura 12 s." lvl="1"/>
+        <rank description="Las sanaciones críticas crean un escudo protector sobre el objetivo, que absorbe el 20% de la cantidad sanada. Dura 12 s." lvl="2"/>
+        <rank description="Las sanaciones críticas crean un escudo protector sobre el objetivo, que absorbe el 30% de la cantidad sanada. Dura 12 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_painsupression" key="1774" name="Supresión de dolor" tier="8">
+        <rank description="Reduce instantáneamente la amenaza de un objetivo amigo un 5%, reduce todo el daño recibido un 40% y aumenta la resistencia a la disipación un 65% durante 8 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_hopeandgrace" key="1901" name="Gracia" tier="8">
+        <rank description="Tus hechizos Sanación relámpago, Sanación superior y Penitencia tienen un 50% de probabilidad de bendecir al objetivo con Gracia, que aumenta toda la sanación recibida del sacerdote un 3%. Este efecto se acumula hasta 3 veces. El efecto dura 15 s. Gracia solo puede activarse en un objetivo a la vez." lvl="1"/>
+        <rank description="Tus hechizos Sanación relámpago, Sanación superior y Penitencia tienen un 100% de probabilidad de bendecir al objetivo con Gracia, que aumenta toda la sanación recibida del sacerdote un 3%. Este efecto se acumula hasta 3 veces. El efecto dura 15 s. Gracia solo puede activarse en un objetivo a la vez." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_borrowedtime" key="1202" name="Tiempo prestado" tier="9">
+        <rank description="Otorga un 5% de celeridad con hechizos de tu siguiente hechizo tras lanzar tu Palabra de poder: escudo y aumenta la cantidad absorbida por tu Palabra de poder: escudo igual al 8% de tu poder con hechizos." lvl="1"/>
+        <rank description="Otorga un 10% de celeridad con hechizos de tu siguiente hechizo tras lanzar tu Palabra de poder: escudo y aumenta la cantidad absorbida por tu Palabra de poder: escudo igual al 16% de tu poder con hechizos." lvl="2"/>
+        <rank description="Otorga un 15% de celeridad con hechizos de tu siguiente hechizo tras lanzar tu Palabra de poder: escudo y aumenta la cantidad absorbida por tu Palabra de poder: escudo igual al 24% de tu poder con hechizos." lvl="3"/>
+        <rank description="Otorga un 20% de celeridad con hechizos de tu siguiente hechizo tras lanzar tu Palabra de poder: escudo y aumenta la cantidad absorbida por tu Palabra de poder: escudo igual al 32% de tu poder con hechizos." lvl="4"/>
+        <rank description="Otorga un 25% de celeridad con hechizos de tu siguiente hechizo tras lanzar tu Palabra de poder: escudo y aumenta la cantidad absorbida por tu Palabra de poder: escudo igual al 40% de tu poder con hechizos." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_penance" key="1897" name="Penitencia" tier="10">
+        <rank description="Lanza una salva de luz Sagrada al objetivo, inflige 240 p. de daño Sagrado a un enemigo, o 670-756 p. de sanación a un aliado de forma instantánea y cada 1 s durante 2 s." lvl="1"/>
+        <spell castTime="0" channeled="1" cooldown="12000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestHoly" icon="spell_holy_guardianspirit" key="Holy" name="Sagrado" order="1">
+      <talent column="0" icon="spell_holy_healingfocus" key="410" name="Enfoque de sanación" tier="0">
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas cualquier hechizo de sanación un 35%." lvl="1"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas cualquier hechizo de sanación un 70%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_renew" key="406" name="Renovar mejorado" tier="0">
+        <rank description="Aumenta la cantidad sanada por tu hechizo Renovar un 5%." lvl="1"/>
+        <rank description="Aumenta la cantidad sanada por tu hechizo Renovar un 10%." lvl="2"/>
+        <rank description="Aumenta la cantidad sanada por tu hechizo Renovar un 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofsalvation" key="401" name="Especialización Sagrada" tier="0">
+        <rank description="Aumenta un 1% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="1"/>
+        <rank description="Aumenta un 2% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="2"/>
+        <rank description="Aumenta un 3% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="3"/>
+        <rank description="Aumenta un 4% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="4"/>
+        <rank description="Aumenta un 5% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_spellwarding" key="411" name="Amparo de hechizos" tier="1">
+        <rank description="Reduce el daño con hechizos recibido un 2%." lvl="1"/>
+        <rank description="Reduce el daño con hechizos recibido un 4%." lvl="2"/>
+        <rank description="Reduce el daño con hechizos recibido un 6%." lvl="3"/>
+        <rank description="Reduce el daño con hechizos recibido un 8%." lvl="4"/>
+        <rank description="Reduce el daño con hechizos recibido un 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofwrath" key="1181" name="Furia divina" tier="1">
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Punición, Fuego Sagrado, Sanar y Sanación superior 0.1 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Punición, Fuego Sagrado, Sanar y Sanación superior 0.2 s." lvl="2"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Punición, Fuego Sagrado, Sanar y Sanación superior 0.3 s." lvl="3"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Punición, Fuego Sagrado, Sanar y Sanación superior 0.4 s." lvl="4"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Punición, Fuego Sagrado, Sanar y Sanación superior 0.5 s." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_restoration" key="442" name="Rezo desesperado" tier="2">
+        <rank description="Sana instantáneamente al taumaturgo 263-325 p." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_blessedrecovery" key="1636" name="Recuperación bendita" tier="2">
+        <rank description="Tras haber recibido un golpe crítico cuerpo a cuerpo o a distancia, Recuperación bendita te sana un 5% del daño recibido durante 6 s. Los golpes críticos extra recibidos durante el efecto aumentan la sanación recibida." lvl="1"/>
+        <rank description="Tras haber recibido un golpe crítico cuerpo a cuerpo o a distancia, Recuperación bendita te sana un 10% del daño recibido durante 6 s. Los golpes críticos extra recibidos durante el efecto aumentan la sanación recibida." lvl="2"/>
+        <rank description="Tras haber recibido un golpe crítico cuerpo a cuerpo o a distancia, Recuperación bendita te sana un 15% del daño recibido durante 6 s. Los golpes críticos extra recibidos durante el efecto aumentan la sanación recibida." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_holy_layonhands" key="361" name="Inspiración" tier="2">
+        <rank description="Reduce el daño físico recibido de tu objetivo un 3% durante 15 s después de recibir un efecto crítico de tus hechizos Sanación relámpago, Sanación, Sanación superior, Sanación conjunta, Penitencia, Rezo de alivio, Rezo de sanación o Círculo de sanación." lvl="1"/>
+        <rank description="Reduce el daño físico recibido de tu objetivo un 7% durante 15 s después de recibir un efecto crítico de tus hechizos Sanación relámpago, Sanación, Sanación superior, Sanación conjunta, Penitencia, Rezo de alivio, Rezo de sanación o Círculo de sanación." lvl="2"/>
+        <rank description="Reduce el daño físico recibido de tu objetivo un 10% durante 15 s después de recibir un efecto crítico de tus hechizos Sanación relámpago, Sanación, Sanación superior, Sanación conjunta, Penitencia, Rezo de alivio, Rezo de sanación o Círculo de sanación." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_purify" key="1635" name="Alcance Sagrado" tier="3">
+        <rank description="Aumenta un 10% el alcance de tu hechizo Punición y Fuego Sagrado, así como el radio de tu Rezo de sanación, Nova Sagrada, Himno divino y Círculo de sanación." lvl="1"/>
+        <rank description="Aumenta un 20% el alcance de tu hechizo Punición y Fuego Sagrado, así como el radio de tu Rezo de sanación, Nova Sagrada, Himno divino y Círculo de sanación." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_heal02" key="408" name="Sanación mejorada" tier="3">
+        <rank description="Reduce el coste de maná de tus hechizos Sanación inferior, Sanar, Sanación superior, Himno divino y Penitencia un 5%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Sanación inferior, Sanar, Sanación superior, Himno divino y Penitencia un 10%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos Sanación inferior, Sanar, Sanación superior, Himno divino y Penitencia un 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_searinglightpriest" key="403" name="Luz abrasadora" requires="1181" tier="3">
+        <rank description="Aumenta un 5% el daño infligido con tus hechizos Punición, Fuego Sagrado, Nova Sagrada y Penitencia." lvl="1"/>
+        <rank description="Aumenta un 10% el daño infligido con tus hechizos Punición, Fuego Sagrado, Nova Sagrada y Penitencia." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_prayerofhealing02" key="413" name="Rezos de sanación" tier="4">
+        <rank description="Reduce el coste de maná de tus hechizos Rezo de sanación y Rezo de alivio un 10%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Rezo de sanación y Rezo de alivio un 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_enchant_essenceeternallarge" key="1561" name="Espíritu redentor" tier="4">
+        <rank description="Aumenta el espíritu total un 5% y al morir, el sacerdote se convierte en el Espíritu redentor durante 15 s. No se puede mover ni atacar, ni recibir ataques de ningún hechizo o efecto. Puede lanzar hechizos de sanación sin coste. El sacerdote muere al terminar el efecto." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_holy_spiritualguidence" key="402" name="Guía espiritual" tier="4">
+        <rank description="Aumenta el poder con hechizos hasta un 5% de tu espíritu total." lvl="1"/>
+        <rank description="Aumenta el poder con hechizos hasta un 10% de tu espíritu total." lvl="2"/>
+        <rank description="Aumenta el poder con hechizos hasta un 15% de tu espíritu total." lvl="3"/>
+        <rank description="Aumenta el poder con hechizos hasta un 20% de tu espíritu total." lvl="4"/>
+        <rank description="Aumenta el poder con hechizos hasta un 25% de tu espíritu total." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_surgeoflight" key="1766" name="Oleada de luz" tier="5">
+        <rank description="Tus hechizos con resultado crítico tienen un 25% de probabilidad de que el siguiente hechizo Punición o Sanación relámpago sean instantáneos y no consuman maná, aunque no conseguirán un golpe crítico. El efecto dura 10 s." lvl="1"/>
+        <rank description="Tus hechizos con resultado crítico tienen un 50% de probabilidad de que el siguiente hechizo Punición o Sanación relámpago sean instantáneos y no consuman maná, aunque no conseguirán un golpe crítico. El efecto dura 10 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_moonglow" key="404" name="Sanación espiritual" tier="5">
+        <rank description="Aumenta la cantidad sanada por tus hechizos de sanación un 2%." lvl="1"/>
+        <rank description="Aumenta la cantidad sanada por tus hechizos de sanación un 4%." lvl="2"/>
+        <rank description="Aumenta la cantidad sanada por tus hechizos de sanación un 6%." lvl="3"/>
+        <rank description="Aumenta la cantidad sanada por tus hechizos de sanación un 8%." lvl="4"/>
+        <rank description="Aumenta la cantidad sanada por tus hechizos de sanación un 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_fanaticism" key="1768" name="Concentración Sagrada" tier="6">
+        <rank description="Tu regeneración de maná de espíritu aumenta un 16% durante 8 s tras una sanación crítica con Sanación relámpago, Sanación superior, Sanación conjunta o Renovar potenciado." lvl="1"/>
+        <rank description="Tu regeneración de maná de espíritu aumenta un 32% durante 8 s tras una sanación crítica con Sanación relámpago, Sanación superior, Sanación conjunta o Renovar potenciado." lvl="2"/>
+        <rank description="Tu regeneración de maná de espíritu aumenta un 50% durante 8 s tras una sanación crítica con Sanación relámpago, Sanación superior, Sanación conjunta o Renovar potenciado." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Pozo de Luz" requires="1561" tier="6">
+        <rank description="Crea un Pozo de Luz Sagrado. Los miembros de tu banda o grupo pueden hacer clic en el Pozo de Luz para recuperar 801 p. de salud durante 6 s. Los ataques que se hagan contra ti que sean iguales al 30% de tu salud total cancelarán el efecto. El Pozo de Luz dura 3 min o 10 cargas." lvl="1"/>
+        <spell castTime="500" cooldown="180000" maxRange="40">
+          <power cost="17" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessedresillience" key="1765" name="Temple bendito" tier="6">
+        <rank description="Aumenta un 1% la efectividad de tus hechizos de sanación y los golpes críticos que recibas tienen un 20% de probabilidad de evitar que recibas un golpe crítico durante 6 s." lvl="1"/>
+        <rank description="Aumenta un 2% la efectividad de tus hechizos de sanación y los golpes críticos que recibas tienen un 40% de probabilidad de evitar que recibas un golpe crítico durante 6 s." lvl="2"/>
+        <rank description="Aumenta un 3% la efectividad de tus hechizos de sanación y los golpes críticos que recibas tienen un 60% de probabilidad de evitar que recibas un golpe crítico durante 6 s." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_symbolofhope" key="2279" name="Cuerpo y mente" tier="7">
+        <rank description="Cuando lanzas Palabra de poder: escudo, aumentas la velocidad de movimiento del objetivo un 30% durante 4 s, y tienes un 50% de probabilidad cuando lanzas Suprimir enfermedad sobre ti de eliminar también un efecto de veneno además de las enfermedades." lvl="1"/>
+        <rank description="Cuando lanzas Palabra de poder: escudo, aumentas la velocidad de movimiento del objetivo un 60% durante 4 s, y tienes un 100% de probabilidad cuando lanzas Suprimir enfermedad sobre ti de eliminar también un efecto de veneno además de las enfermedades." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_greaterheal" key="1767" name="Sanación potenciada" tier="7">
+        <rank description="Tu Sanación superior gana un 8% extra y tu Sanación relámpago y Sanación conjunta ganan un 4% extra del bonus de tus efectos de sanación." lvl="1"/>
+        <rank description="Tu Sanación superior gana un 16% extra y tu Sanación relámpago y Sanación conjunta ganan un 8% extra del bonus de tus efectos de sanación." lvl="2"/>
+        <rank description="Tu Sanación superior gana un 24% extra y tu Sanación relámpago y Sanación conjunta ganan un 12% extra del bonus de tus efectos de sanación." lvl="3"/>
+        <rank description="Tu Sanación superior gana un 32% extra y tu Sanación relámpago y Sanación conjunta ganan un 16% extra del bonus de tus efectos de sanación." lvl="4"/>
+        <rank description="Tu Sanación superior gana un 40% extra y tu Sanación relámpago y Sanación conjunta ganan un 20% extra del bonus de tus efectos de sanación." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_serendipity" key="1904" name="Serendipia" tier="7">
+        <rank description="Cuando sanas con Sanación conjunta o Sanación relámpago, el tiempo de lanzamiento de tu siguiente Sanación superior o Rezo de sanación se reduce un 4%. Se acumula hasta 3 veces. Dura 20 s." lvl="1"/>
+        <rank description="Cuando sanas con Sanación conjunta o Sanación relámpago, el tiempo de lanzamiento de tu siguiente Sanación superior o Rezo de sanación se reduce un 8%. Se acumula hasta 3 veces. Dura 20 s." lvl="2"/>
+        <rank description="Cuando sanas con Sanación conjunta o Sanación relámpago, el tiempo de lanzamiento de tu siguiente Sanación superior o Rezo de sanación se reduce un 12%. Se acumula hasta 3 veces. Dura 20 s." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_infusionoflight" key="1902" name="Renovar potenciado" tier="8">
+        <rank description="Tu hechizo Renovar gana un 5% del bonus de tus efectos de sanación, y también sanará instantáneamente al objetivo un 5% del efecto periódico total." lvl="1"/>
+        <rank description="Tu hechizo Renovar gana un 10% del bonus de tus efectos de sanación, y también sanará instantáneamente al objetivo un 10% del efecto periódico total." lvl="2"/>
+        <rank description="Tu hechizo Renovar gana un 15% del bonus de tus efectos de sanación, y también sanará instantáneamente al objetivo un 15% del efecto periódico total." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_circleofrenewal" key="1815" name="Círculo de sanación" tier="8">
+        <rank description="Sana 343-379 p. hasta a 5 miembros del grupo o banda amistosos en un radio de 15 m del objetivo." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_testoffaith" key="1903" name="Prueba de fe" tier="8">
+        <rank description="Aumenta la sanación un 4% en los objetivos amistosos con un 50% de salud o menos." lvl="1"/>
+        <rank description="Aumenta la sanación un 8% en los objetivos amistosos con un 50% de salud o menos." lvl="2"/>
+        <rank description="Aumenta la sanación un 12% en los objetivos amistosos con un 50% de salud o menos." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_divineprovidence" key="1905" name="Divina providencia" tier="9">
+        <rank description="Aumenta la cantidad de sanación realizada por Círculo de sanación, Sanación conjunta, Nova Sagrada, Rezo de sanación, Himno divino y Rezo de alivio un 2% y reduce un 6% el tiempo de reutilización de tu Rezo de alivio." lvl="1"/>
+        <rank description="Aumenta la cantidad de sanación realizada por Círculo de sanación, Sanación conjunta, Nova Sagrada, Rezo de sanación, Himno divino y Rezo de alivio un 4% y reduce un 12% el tiempo de reutilización de tu Rezo de alivio." lvl="2"/>
+        <rank description="Aumenta la cantidad de sanación realizada por Círculo de sanación, Sanación conjunta, Nova Sagrada, Rezo de sanación, Himno divino y Rezo de alivio un 6% y reduce un 18% el tiempo de reutilización de tu Rezo de alivio." lvl="3"/>
+        <rank description="Aumenta la cantidad de sanación realizada por Círculo de sanación, Sanación conjunta, Nova Sagrada, Rezo de sanación, Himno divino y Rezo de alivio un 8% y reduce un 24% el tiempo de reutilización de tu Rezo de alivio." lvl="4"/>
+        <rank description="Aumenta la cantidad de sanación realizada por Círculo de sanación, Sanación conjunta, Nova Sagrada, Rezo de sanación, Himno divino y Rezo de alivio un 10% y reduce un 30% el tiempo de reutilización de tu Rezo de alivio." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_guardianspirit" key="1911" name="Espíritu guardián" tier="10">
+        <rank description="Invoca un espíritu guardián que vela por el objetivo amistoso. El espíritu aumenta la sanación que recibe el objetivo un 40% y evita que el objetivo muera sacrificándose. Este sacrificio acaba con el efecto pero sana al objetivo un 50% de su salud máxima. Dura 10 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestShadow" icon="spell_shadow_shadowwordpain" key="Shadow" name="Sombra" order="2">
+      <talent column="0" icon="spell_shadow_requiem" key="465" name="Transfusión de espíritu" tier="0">
+        <rank description="Proporciona un 33% de probabilidad de obtener un 100% de bonus de espíritu tras matar a un objetivo que te aporte experiencia u honor. Mientras dura, el índice de regeneración de tu maná será del 83% mientras lanzas hechizos. Dura 15 s." lvl="1"/>
+        <rank description="Proporciona un 66% de probabilidad de obtener un 100% de bonus de espíritu tras matar a un objetivo que te aporte experiencia u honor. Mientras dura, el índice de regeneración de tu maná será del 83% mientras lanzas hechizos. Dura 15 s." lvl="2"/>
+        <rank description="Proporciona un 100% de probabilidad de obtener un 100% de bonus de espíritu tras matar a un objetivo que te aporte experiencia u honor. Mientras dura, el índice de regeneración de tu maná será del 83% mientras lanzas hechizos. Dura 15 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="2027" name="Transfusión de espíritu mejorada" requires="465" tier="0">
+        <rank description="Los golpes críticos de tu Explosión mental y Palabra de las Sombras: muerte tienen un 100% de probabilidad y los golpes críticos de tu Tortura mental tienen un 50% de probabilidad de aumentar tu espíritu total un 5%. Mientras dure, tu maná se regenerará en un índice del 17% mientras lanzas hechizos. Dura 8 s." lvl="1"/>
+        <rank description="Los golpes críticos de tu Explosión mental y Palabra de las Sombras: muerte tienen un 100% de probabilidad y los golpes críticos de tu Tortura mental tienen un 50% de probabilidad de aumentar tu espíritu total un 10%. Mientras dure, tu maná se regenerará en un índice del 33% mientras lanzas hechizos. Dura 8 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_twilight" key="462" name="Oscuridad" tier="0">
+        <rank description="Aumenta el daño con tus hechizos de las Sombras un 2%." lvl="1"/>
+        <rank description="Aumenta el daño con tus hechizos de las Sombras un 4%." lvl="2"/>
+        <rank description="Aumenta el daño con tus hechizos de las Sombras un 6%." lvl="3"/>
+        <rank description="Aumenta el daño con tus hechizos de las Sombras un 8%." lvl="4"/>
+        <rank description="Aumenta el daño con tus hechizos de las Sombras un 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowward" key="466" name="Afinidad de las Sombras" tier="1">
+        <rank description="Reduce la amenaza generada por tus hechizos de las Sombras un 8% y recibes un 5% de tu maná de base cuando disipan tus hechizos Palabra de las Sombras: dolor o Toque vampírico." lvl="1"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de las Sombras un 16% y recibes un 10% de tu maná de base cuando disipan tus hechizos Palabra de las Sombras: dolor o Toque vampírico." lvl="2"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de las Sombras un 25% y recibes un 15% de tu maná de base cuando disipan tus hechizos Palabra de las Sombras: dolor o Toque vampírico." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowwordpain" key="482" name="Palabra de las Sombras: dolor mejorada" tier="1">
+        <rank description="Aumenta un 3% el daño de tu hechizo Palabra de las Sombras: dolor." lvl="1"/>
+        <rank description="Aumenta un 6% el daño de tu hechizo Palabra de las Sombras: dolor." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="463" name="Enfoque de las Sombras" tier="1">
+        <rank description="Aumenta la probabilidad de que golpees con tus hechizos de las Sombras un 1% y reduce el coste de maná de tus hechizos de las Sombras un 2%." lvl="1"/>
+        <rank description="Aumenta la probabilidad de que golpees con tus hechizos de las Sombras un 2% y reduce el coste de maná de tus hechizos de las Sombras un 4%." lvl="2"/>
+        <rank description="Aumenta la probabilidad de que golpees con tus hechizos de las Sombras un 3% y reduce el coste de maná de tus hechizos de las Sombras un 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychicscream" key="542" name="Alarido psíquico mejorado" tier="2">
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Alarido psíquico 2 s." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Alarido psíquico 4 s." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unholyfrenzy" key="481" name="Explosión mental mejorada" tier="2">
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 0.5 s y con Forma de las Sombras tu Explosión mental también tiene un 20% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 1 s y con Forma de las Sombras tu Explosión mental también tiene un 40% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="2"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 1.5 s y con Forma de las Sombras tu Explosión mental también tiene un 60% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="3"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 2 s y con Forma de las Sombras tu Explosión mental también tiene un 80% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="4"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 2.5 s y con Forma de las Sombras tu Explosión mental también tiene un 100% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_siphonmana" key="501" name="Tortura mental" tier="2">
+        <rank description="Ofusca la mente del objetivo con energía de las Sombras, inflige 45 p. de daño de las Sombras durante 3 s y ralentizando su movimiento un 50%." lvl="1"/>
+        <spell castTime="0" channeled="1" maxRange="30">
+          <power cost="9" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_magic_lesserinvisibilty" key="483" name="Sombras veladas" tier="3">
+        <rank description="Reduce el tiempo de reutilización de tu facultad Desvanecerse 3 s. y el de tu facultad Maligno de las Sombras 1 min." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu facultad Desvanecerse 6 s. y el de tu facultad Maligno de las Sombras 2 min." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_chilltouch" key="881" name="Alcance de las Sombras" tier="3">
+        <rank description="Aumenta un 10% el alcance de tus hechizos ofensivos de las Sombras." lvl="1"/>
+        <rank description="Aumenta un 20% el alcance de tus hechizos ofensivos de las Sombras." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_blackplague" key="461" name="Tejido de las Sombras" tier="3">
+        <rank description="Tus hechizos de daño de las Sombras tienen un 33% de probabilidad de aumentar el daño de las Sombras que infliges un 2% durante 15 s. Se acumula hasta 5 veces." lvl="1"/>
+        <rank description="Tus hechizos de daño de las Sombras tienen un 66% de probabilidad de aumentar el daño de las Sombras que infliges un 2% durante 15 s. Se acumula hasta 5 veces." lvl="2"/>
+        <rank description="Tus hechizos de daño de las Sombras tienen un 100% de probabilidad de aumentar el daño de las Sombras que infliges un 2% durante 15 s. Se acumula hasta 5 veces." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_impphaseshift" key="541" name="Silencio" requires="542" tier="4">
+        <rank description="Silencia al objetivo impidiendo que lance hechizos durante 5 s. El lanzamiento de hechizos de las víctimas no-jugadoras también se interrumpirá durante 3 s." lvl="1"/>
+        <spell castTime="0" cooldown="45000" maxRange="30">
+          <power cost="225" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="484" name="Abrazo vampírico" tier="4">
+        <rank description="Te llena con el abrazo de energía de las Sombras que provoca que te sanes un 15% y que otros miembros del grupo se sanen un 3% de cualquier daño con hechizos de las Sombras que inflijas a un objetivo durante 30 min." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1638" name="Abrazo vampírico mejorado" requires="484" tier="4">
+        <rank description="Aumenta un 33% la sanación recibida mediante Abrazo vampírico." lvl="1"/>
+        <rank description="Aumenta un 67% la sanación recibida mediante Abrazo vampírico." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="1777" name="Mente centrada" tier="4">
+        <rank description="Reduce el coste de maná de tu Explosión mental, Control mental, Tortura mental y Abrasamiento mental un 5%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tu Explosión mental, Control mental, Tortura mental y Abrasamiento mental un 10%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tu Explosión mental, Control mental, Tortura mental y Abrasamiento mental un 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_skull" key="1781" name="Fundir mente" tier="5">
+        <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 2% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 3%." lvl="1"/>
+        <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 4% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 6%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste devoradora mejorada" tier="5">
+        <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 5% y cuando lanzas Peste Devoradora infliges al instante daño igual al 10% de su efecto periódico total." lvl="1"/>
+        <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 10% y cuando lanzas Peste Devoradora infliges al instante daño igual al 20% de su efecto periódico total." lvl="2"/>
+        <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 15% y cuando lanzas Peste Devoradora infliges al instante daño igual al 30% de su efecto periódico total." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowform" key="521" name="Forma de las Sombras" requires="484" tier="6">
+        <rank description="Adoptas la forma de las Sombras, aumentando el daño de las Sombras que infliges un 15% y reduciendo todo el daño recibido un 15% y la amenaza generada un 30%. Sin embargo, no puedes lanzar hechizos Sagrados mientras estés en esta forma excepto Curar enfermedad y Suprimir enfermedad. Otorga al daño periódico de tus hechizos Palabra de las Sombras: dolor, Peste devoradora y Toque vampírico  la facultad de asestar un golpe crítico que inflija un 100% de daño aumentado y hace que Peste devoradora y Toque vampírico se beneficien de celeridad." lvl="1"/>
+        <spell castTime="0" cooldown="1500">
+          <power cost="13" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowpower" key="1778" name="Poder de las Sombras" tier="6">
+        <rank description="Aumenta el bonus de daño de golpe crítico de tus hechizos Explosión Mental, Tortura mental y Palabra de las Sombras: muerte un 20%." lvl="1"/>
+        <rank description="Aumenta el bonus de daño de golpe crítico de tus hechizos Explosión Mental, Tortura mental y Palabra de las Sombras: muerte un 40%." lvl="2"/>
+        <rank description="Aumenta el bonus de daño de golpe crítico de tus hechizos Explosión Mental, Tortura mental y Palabra de las Sombras: muerte un 60%." lvl="3"/>
+        <rank description="Aumenta el bonus de daño de golpe crítico de tus hechizos Explosión Mental, Tortura mental y Palabra de las Sombras: muerte un 80%." lvl="4"/>
+        <rank description="Aumenta el bonus de daño de golpe crítico de tus hechizos Explosión Mental, Tortura mental y Palabra de las Sombras: muerte un 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonvoidwalker" key="1906" name="Forma de las Sombras mejorada" requires="521" tier="7">
+        <rank description="Tu facultad Desvanecer ahora tiene un 50% de probabilidad de eliminar todos los efectos de reducción de movimiento cuando los usas bajo Forma de las Sombras, y reduce el tiempo de lanzamiento o canalización perdido al recibir daño un 35% al lanzar cualquier hechizo de las Sombras mientras estés en Forma de las Sombras." lvl="1"/>
+        <rank description="Tu facultad Desvanecer ahora tiene un 100% de probabilidad de eliminar todos los efectos de reducción de movimiento cuando los usas bajo Forma de las Sombras, y reduce el tiempo de lanzamiento o canalización perdido al recibir daño un 70% al lanzar cualquier hechizo de las Sombras mientras estés en Forma de las Sombras." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_misery" key="1816" name="Infortunio" tier="7">
+        <rank description="Tus hechizos Palabra de las Sombras: dolor, Tortura mental y Toque vampírico también aumentan la probabilidad de golpe con hechizos dañinos un 1%, dura 24 s y aumenta el beneficio del poder con hechizos ganado por tu Explosión mental, Tortura mental y Abrasamiento mental un 5%." lvl="1"/>
+        <rank description="Tus hechizos Palabra de las Sombras: dolor, Tortura mental y Toque vampírico también aumentan la probabilidad de golpe con hechizos dañinos un 2%, dura 24 s y aumenta el beneficio del poder con hechizos ganado por tu Explosión mental, Tortura mental y Abrasamiento mental un 10%." lvl="2"/>
+        <rank description="Tus hechizos Palabra de las Sombras: dolor, Tortura mental y Toque vampírico también aumentan la probabilidad de golpe con hechizos dañinos un 3%, dura 24 s y aumenta el beneficio del poder con hechizos ganado por tu Explosión mental, Tortura mental y Abrasamiento mental un 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychichorrors" key="1908" name="Horror psíquico" tier="8">
+        <rank description="Aterrorizas al objetivo y provocas que tiemble de horror durante 3 s y que tire las armas de mano principal y a distancia durante 10 s." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_stoicism" key="1779" name="Toque vampírico" requires="521" tier="8">
+        <rank description="Inflige 450 p. de daño de las Sombras durante 15 s a tu objetivo y provoca que hasta 10 miembros de la banda o grupo ganen un 1% de su maná máximo cada 5 s cuando infliges daño con Explosión mental. Además, si el Toque vampírico se disipa causará 720 p. de daño al objetivo afectado." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_painandsuffering" key="1909" name="Dolor y sufrimiento" tier="8">
+        <rank description="Tu Tortura mental tiene un 33% de probabilidad de restablecer la duración de tu Palabra de las Sombras: dolor sobre el objetivo y reduce el daño que recibes de tu propia Palabra de las Sombras: muerte un 10%." lvl="1"/>
+        <rank description="Tu Tortura mental tiene un 66% de probabilidad de restablecer la duración de tu Palabra de las Sombras: dolor sobre el objetivo y reduce el daño que recibes de tu propia Palabra de las Sombras: muerte un 20%." lvl="2"/>
+        <rank description="Tu Tortura mental tiene un 100% de probabilidad de restablecer la duración de tu Palabra de las Sombras: dolor sobre el objetivo y reduce el daño que recibes de tu propia Palabra de las Sombras: muerte un 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_mindtwisting" key="1907" name="Fe distorsionada" tier="9">
+        <rank description="Aumenta tu poder con hechizos un 4% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 2% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="1"/>
+        <rank description="Aumenta tu poder con hechizos un 8% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 4% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="2"/>
+        <rank description="Aumenta tu poder con hechizos un 12% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 6% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="3"/>
+        <rank description="Aumenta tu poder con hechizos un 16% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 8% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="4"/>
+        <rank description="Aumenta tu poder con hechizos un 20% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 10% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersión" requires="1779" tier="10">
+        <rank description="Te conviertes en energía de las Sombras pura y reduces todo el daño recibido un 90%. No puedes atacar ni lanzar hechizos, pero regeneras un 6% de maná cada 1 s durante 6 s. Dispersión se puede lanzar mientras estás aturdido, asustado o silenciado, quita todos los efectos de frenado y que afectan al movimiento al lanzarlo y te hace inmune a ellos mientras dura." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

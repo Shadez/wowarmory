@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="en_gb" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="WarlockDestruction" icon="spell_shadow_rainoffire" key="Destruction" name="Destruction" order="2">
+      <talent column="1" icon="spell_shadow_shadowbolt" key="944" name="Improved Shadow Bolt" tier="0">
+        <rank description="Increases the damage done by your Shadow Bolt spell by 2%, and your Shadow Bolt has a 20% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5%. Effect lasts 30 sec." lvl="1"/>
+        <rank description="Increases the damage done by your Shadow Bolt spell by 4%, and your Shadow Bolt has a 40% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5%. Effect lasts 30 sec." lvl="2"/>
+        <rank description="Increases the damage done by your Shadow Bolt spell by 6%, and your Shadow Bolt has a 60% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5%. Effect lasts 30 sec." lvl="3"/>
+        <rank description="Increases the damage done by your Shadow Bolt spell by 8%, and your Shadow Bolt has a 80% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5%. Effect lasts 30 sec." lvl="4"/>
+        <rank description="Increases the damage done by your Shadow Bolt spell by 10%, and your Shadow Bolt has a 100% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5%. Effect lasts 30 sec." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_deathpact" key="943" name="Bane" tier="0">
+        <rank description="Reduces the casting time of your Shadow Bolt. Chaos Bolt and Immolate spells by 0.1 sec and your Soul Fire spell by 0.4 sec." lvl="1"/>
+        <rank description="Reduces the casting time of your Shadow Bolt. Chaos Bolt and Immolate spells by 0.2 sec and your Soul Fire spell by 0.8 sec." lvl="2"/>
+        <rank description="Reduces the casting time of your Shadow Bolt. Chaos Bolt and Immolate spells by 0.3 sec and your Soul Fire spell by 1.2 sec." lvl="3"/>
+        <rank description="Reduces the casting time of your Shadow Bolt. Chaos Bolt and Immolate spells by 0.4 sec and your Soul Fire spell by 1.6 sec." lvl="4"/>
+        <rank description="Reduces the casting time of your Shadow Bolt. Chaos Bolt and Immolate spells by 0.5 sec and your Soul Fire spell by 2 sec." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_fire" key="982" name="Aftermath" tier="1">
+        <rank description="Increases the periodic damage done by your Immolate by 3%, and your Conflagrate has a 50% chance to daze the target for 5 sec." lvl="1"/>
+        <rank description="Increases the periodic damage done by your Immolate by 6%, and your Conflagrate has a 100% chance to daze the target for 5 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_mage_moltenarmor" key="1887" name="Molten Skin" tier="1">
+        <rank description="Reduces all damage taken by 2%." lvl="1"/>
+        <rank description="Reduces all damage taken by 4%." lvl="2"/>
+        <rank description="Reduces all damage taken by 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_windsofwoe" key="941" name="Cataclysm" tier="1">
+        <rank description="Reduces the Mana cost of your Destruction spells by 4%." lvl="1"/>
+        <rank description="Reduces the Mana cost of your Destruction spells by 7%." lvl="2"/>
+        <rank description="Reduces the Mana cost of your Destruction spells by 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_firebolt" key="983" name="Demonic Power" tier="2">
+        <rank description="Reduces the cooldown of your Succubus' Lash of Pain spell by 3 sec. and reduces the casting time of your Imp's Firebolt spell by 0.25 sec." lvl="1"/>
+        <rank description="Reduces the cooldown of your Succubus' Lash of Pain spell by 6 sec. and reduces the casting time of your Imp's Firebolt spell by 0.50 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_scourgebuild" key="963" name="Shadowburn" tier="2">
+        <rank description="Instantly blasts the target for 87 to 99 Shadow damage.  If the target dies within 5 sec of Shadowburn, and yields experience or honor, the caster gains a Soul Shard." lvl="1"/>
+        <spell castTime="0" cooldown="15000" maxRange="20">
+          <power cost="20" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowwordpain" key="967" name="Ruin" tier="2">
+        <rank description="Increases the critical strike damage bonus of your Destruction spells and your Imp's Firebolt spell by 20%." lvl="1"/>
+        <rank description="Increases the critical strike damage bonus of your Destruction spells and your Imp's Firebolt spell by 40%." lvl="2"/>
+        <rank description="Increases the critical strike damage bonus of your Destruction spells and your Imp's Firebolt spell by 60%." lvl="3"/>
+        <rank description="Increases the critical strike damage bonus of your Destruction spells and your Imp's Firebolt spell by 80%." lvl="4"/>
+        <rank description="Increases the critical strike damage bonus of your Destruction spells and your Imp's Firebolt spell by 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_lavaspawn" key="985" name="Intensity" tier="3">
+        <rank description="Reduces the pushback suffered from damaging attacks while casting or channeling any Destruction spell by 35%." lvl="1"/>
+        <rank description="Reduces the pushback suffered from damaging attacks  while casting or channeling any Destruction spell by 70%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_corpseexplode" key="964" name="Destructive Reach" tier="3">
+        <rank description="Increases the range of your Destruction spells by 10% and reduces threat caused by Destruction spells by 10%." lvl="1"/>
+        <rank description="Increases the range of your Destruction spells by 20% and reduces threat caused by Destruction spells by 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_fire_soulburn" key="965" name="Improved Searing Pain" tier="3">
+        <rank description="Increases the critical strike chance of your Searing Pain spell by 4%." lvl="1"/>
+        <rank description="Increases the critical strike chance of your Searing Pain spell by 7%." lvl="2"/>
+        <rank description="Increases the critical strike chance of your Searing Pain spell by 10%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_playingwithfire" key="1817" name="Backlash" requires="985" tier="4">
+        <rank description="Increases your critical strike chance with spells by an additional 1% and gives you a 8% chance when hit by a physical attack to reduce the cast time of your next Shadow Bolt or Incinerate spell by 100%.  This effect lasts 8 sec and will not occur more than once every 8 seconds." lvl="1"/>
+        <rank description="Increases your critical strike chance with spells by an additional 2% and gives you a 16% chance when hit by a physical attack to reduce the cast time of your next Shadow Bolt or Incinerate spell by 100%.  This effect lasts 8 sec and will not occur more than once every 8 seconds." lvl="2"/>
+        <rank description="Increases your critical strike chance with spells by an additional 3% and gives you a 25% chance when hit by a physical attack to reduce the cast time of your next Shadow Bolt or Incinerate spell by 100%.  This effect lasts 8 sec and will not occur more than once every 8 seconds." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_immolation" key="961" name="Improved Immolate" tier="4">
+        <rank description="Increases the damage done by your Immolate spell by 10%." lvl="1"/>
+        <rank description="Increases the damage done by your Immolate spell by 20%." lvl="2"/>
+        <rank description="Increases the damage done by your Immolate spell by 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_flameshock" key="981" name="Devastation" requires="967" tier="4">
+        <rank description="Increases the critical strike chance of your Destruction spells by 5%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_netherprotection" key="1679" name="Nether Protection" tier="5">
+        <rank description="After being hit with a spell, you have a 10% chance to gain Nether Protection, reducing all damage by that spell school by 30% for 8 sec." lvl="1"/>
+        <rank description="After being hit with a spell, you have a 20% chance to gain Nether Protection, reducing all damage by that spell school by 30% for 8 sec." lvl="2"/>
+        <rank description="After being hit with a spell, you have a 30% chance to gain Nether Protection, reducing all damage by that spell school by 30% for 8 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_selfdestruct" key="966" name="Emberstorm" tier="5">
+        <rank description="Increases the damage done by your Fire spells by 3% and reduces the cast time of your Incinerate spell by 0.05 sec." lvl="1"/>
+        <rank description="Increases the damage done by your Fire spells by 6% and reduces the cast time of your Incinerate spell by 0.10 sec." lvl="2"/>
+        <rank description="Increases the damage done by your Fire spells by 9% and reduces the cast time of your Incinerate spell by 0.15 sec." lvl="3"/>
+        <rank description="Increases the damage done by your Fire spells by 12% and reduces the cast time of your Incinerate spell by 0.20 sec." lvl="4"/>
+        <rank description="Increases the damage done by your Fire spells by 15% and reduces the cast time of your Incinerate spell by 0.25 sec." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_fire_fireball" key="968" name="Conflagrate" requires="961" tier="6">
+        <rank description="Consumes an Immolate or Shadowflame effect on the enemy target to instantly deal damage equal to 60% of your Immolate or Shadowflame, and causes an additional 40% damage over 6 sec." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_soulleech_3" key="1678" name="Soul Leech" tier="6">
+        <rank description="Gives your Shadow Bolt, Shadowburn, Chaos Bolt, Soul Fire, Incinerate, Searing Pain and Conflagrate spells a 10% chance to return health equal to 20% of the damage caused." lvl="1"/>
+        <rank description="Gives your Shadow Bolt, Shadowburn, Chaos Bolt, Soul Fire, Incinerate, Searing Pain and Conflagrate spells a 20% chance to return health equal to 20% of the damage caused." lvl="2"/>
+        <rank description="Gives your Shadow Bolt, Shadowburn, Chaos Bolt, Soul Fire, Incinerate, Searing Pain and Conflagrate spells a 30% chance to return health equal to 20% of the damage caused." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_fire_volcano" key="986" name="Pyroclasm" tier="6">
+        <rank description="When you critically strike with Searing Pain or Conflagrate, your Fire and Shadow spell damage is increased by 2% for 10 sec." lvl="1"/>
+        <rank description="When you critically strike with Searing Pain or Conflagrate, your Fire and Shadow spell damage is increased by 4% for 10 sec." lvl="2"/>
+        <rank description="When you critically strike with Searing Pain or Conflagrate, your Fire and Shadow spell damage is increased by 6% for 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowandflame" key="1677" name="Shadow and Flame" tier="7">
+        <rank description="Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 4% of your bonus spell damage effects." lvl="1"/>
+        <rank description="Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 8% of your bonus spell damage effects." lvl="2"/>
+        <rank description="Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 12% of your bonus spell damage effects." lvl="3"/>
+        <rank description="Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 16% of your bonus spell damage effects." lvl="4"/>
+        <rank description="Your Shadow Bolt, Shadowburn, Chaos Bolt and Incinerate spells gain an additional 20% of your bonus spell damage effects." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_improvedsoulleech" key="1889" name="Improved Soul Leech" requires="1678" tier="7">
+        <rank description="Your Soul Leech effect also restores mana to you and your summoned demon equal to 1% of maximum mana, and has a 50% chance to grant up to 10 party or raid members mana regeneration equal to 1% of maximum mana per 5 sec. Lasts for 15 sec." lvl="1"/>
+        <rank description="Your Soul Leech effect also restores mana to you and your summoned demon equal to 2% of maximum mana, and has a 100% chance to grant up to 10 party or raid members mana regeneration equal to 1% of maximum mana per 5 sec. Lasts for 15 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_backdraft" key="1888" name="Backdraft" requires="968" tier="8">
+        <rank description="When you cast Conflagrate, the cast time and global cooldown of your next three Destruction spells is reduced by 10%. Lasts 15 sec." lvl="1"/>
+        <rank description="When you cast Conflagrate, the cast time and global cooldown of your next three Destruction spells is reduced by 20%. Lasts 15 sec." lvl="2"/>
+        <rank description="When you cast Conflagrate, the cast time and global cooldown of your next three Destruction spells is reduced by 30%. Lasts 15 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowfury" key="1676" name="Shadowfury" tier="8">
+        <rank description="Shadowfury is unleashed, causing 343 to 407 Shadow damage and stunning all enemies within 8 yds for 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="30">
+          <power cost="27" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warlock_empoweredimp" key="2045" name="Empowered Imp" tier="8">
+        <rank description="Increases the damage done by your Imp by 10%, and all critical hits done by your Imp have a 33% chance to increase your spell critical hit chance for your next spell by 100%. This effect lasts 8 sec." lvl="1"/>
+        <rank description="Increases the damage done by your Imp by 20%, and all critical hits done by your Imp have a 66% chance to increase your spell critical hit chance for your next spell by 100%. This effect lasts 8 sec." lvl="2"/>
+        <rank description="Increases the damage done by your Imp by 30%, and all critical hits done by your Imp have a 100% chance to increase your spell critical hit chance for your next spell by 100%. This effect lasts 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_fireandbrimstone" key="1890" name="Fire and Brimstone" tier="9">
+        <rank description="Increases the damage done by your Incinerate and Chaos Bolt spells to targets afflicted by your Immolate by 2%, and the critical strike chance of your Conflagrate spell is increased by 5%." lvl="1"/>
+        <rank description="Increases the damage done by your Incinerate and Chaos Bolt spells to targets afflicted by your Immolate by 4%, and the critical strike chance of your Conflagrate spell is increased by 10%." lvl="2"/>
+        <rank description="Increases the damage done by your Incinerate and Chaos Bolt spells to targets afflicted by your Immolate by 6%, and the critical strike chance of your Conflagrate spell is increased by 15%." lvl="3"/>
+        <rank description="Increases the damage done by your Incinerate and Chaos Bolt spells to targets afflicted by your Immolate by 8%, and the critical strike chance of your Conflagrate spell is increased by 20%." lvl="4"/>
+        <rank description="Increases the damage done by your Incinerate and Chaos Bolt spells to targets afflicted by your Immolate by 10%, and the critical strike chance of your Conflagrate spell is increased by 25%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_chaosbolt" key="1891" name="Chaos Bolt" tier="10">
+        <rank description="Sends a bolt of chaotic fire at the enemy, dealing 837 to 1061 Fire damage. Chaos Bolt cannot be resisted, and pierces through all absorption effects." lvl="1"/>
+        <spell castTime="2500" cooldown="12000" maxRange="30">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockSummoning" icon="spell_shadow_metamorphosis" key="Demonology" name="Demonology" order="1">
+      <talent column="0" icon="inv_stone_04" key="1221" name="Improved Healthstone" tier="0">
+        <rank description="Increases the amount of Health restored by your Healthstone by 10%." lvl="1"/>
+        <rank description="Increases the amount of Health restored by your Healthstone by 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonimp" key="1222" name="Improved Imp" tier="0">
+        <rank description="Increases the effect of your Imp's Firebolt, Fire Shield, and Blood Pact spells by 10%." lvl="1"/>
+        <rank description="Increases the effect of your Imp's Firebolt, Fire Shield, and Blood Pact spells by 20%." lvl="2"/>
+        <rank description="Increases the effect of your Imp's Firebolt, Fire Shield, and Blood Pact spells by 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_metamorphosis" key="1223" name="Demonic Embrace" tier="0">
+        <rank description="Increases your total Stamina by 4%." lvl="1"/>
+        <rank description="Increases your total Stamina by 7%." lvl="2"/>
+        <rank description="Increases your total Stamina by 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_felmending" key="1883" name="Fel Synergy" tier="0">
+        <rank description="You have a 50% chance to heal your pet for 15% of the amount of spell damage done by you." lvl="1"/>
+        <rank description="You have a 100% chance to heal your pet for 15% of the amount of spell damage done by you." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_lifedrain" key="1224" name="Improved Health Funnel" tier="1">
+        <rank description="Increases the amount of Health transferred by your Health Funnel spell by 10% and reduces the health cost by 10%. In addition, your summoned Demon takes 15% less damage while under the effect of your Health Funnel." lvl="1"/>
+        <rank description="Increases the amount of Health transferred by your Health Funnel spell by 20% and reduces the health cost by 20%. In addition, your summoned Demon takes 30% less damage while under the effect of your Health Funnel." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonvoidwalker" key="1225" name="Demonic Brutality" tier="1">
+        <rank description="Increases the effectiveness of your Voidwalker's Torment, Consume Shadows, Sacrifice and Suffering spells by 10%, and increases the attack power bonus on your Felguard's Demonic Frenzy effect by 1%." lvl="1"/>
+        <rank description="Increases the effectiveness of your Voidwalker's Torment, Consume Shadows, Sacrifice and Suffering spells by 20%, and increases the attack power bonus on your Felguard's Demonic Frenzy effect by 2%." lvl="2"/>
+        <rank description="Increases the effectiveness of your Voidwalker's Torment, Consume Shadows, Sacrifice and Suffering spells by 30%, and increases the attack power bonus on your Felguard's Demonic Frenzy effect by 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_magicalsentry" key="1242" name="Fel Vitality" tier="1">
+        <rank description="Increases the Stamina and Intellect of your Imp, Voidwalker, Succubus, Felhunter and Felguard by 5% and increases your maximum health and mana by 1%." lvl="1"/>
+        <rank description="Increases the Stamina and Intellect of your Imp, Voidwalker, Succubus, Felhunter and Felguard by 10% and increases your maximum health and mana by 2%." lvl="2"/>
+        <rank description="Increases the Stamina and Intellect of your Imp, Voidwalker, Succubus, Felhunter and Felguard by 15% and increases your maximum health and mana by 3%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonsuccubus" key="1243" name="Improved Succubus" tier="2">
+        <rank description="Reduces the cast time of your Succubus' Seduction by 22%, and increases the duration of your Succubus' Seduction and Lesser Invisibility spells by 10%." lvl="1"/>
+        <rank description="Reduces the cast time of your Succubus' Seduction by 44%, and increases the duration of your Succubus' Seduction and Lesser Invisibility spells by 20%." lvl="2"/>
+        <rank description="Reduces the cast time of your Succubus' Seduction by 66%, and increases the duration of your Succubus' Seduction and Lesser Invisibility spells by 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_gathershadows" key="1282" name="Soul Link" tier="2">
+        <rank description="When active, 20% of all damage taken by the caster is taken by your Imp, Voidwalker, Succubus, Felhunter, Felguard, or enslaved demon instead.  That damage cannot be prevented. Lasts as long as the demon is active and controlled." lvl="1"/>
+        <spell castTime="0" maxRange="100">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_removecurse" key="1226" name="Fel Domination" tier="2">
+        <rank description="Your next Imp, Voidwalker, Succubus, Felhunter or Felguard Summon spell has its casting time reduced by 5.5 sec and its Mana cost reduced by 50%." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_ragingscream" key="1671" name="Demonic Aegis" tier="2">
+        <rank description="Increases the effectiveness of your Demon Armor and Fel Armor spells by 10%." lvl="1"/>
+        <rank description="Increases the effectiveness of your Demon Armor and Fel Armor spells by 20%." lvl="2"/>
+        <rank description="Increases the effectiveness of your Demon Armor and Fel Armor spells by 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowworddominate" key="1262" name="Unholy Power" requires="1282" tier="3">
+        <rank description="Increases the damage done by your Voidwalker, Succubus, Felhunter and Felguard's melee attacks and your Imp's Firebolt by 4%." lvl="1"/>
+        <rank description="Increases the damage done by your Voidwalker, Succubus, Felhunter and Felguard's melee attacks and your Imp's Firebolt by 8%." lvl="2"/>
+        <rank description="Increases the damage done by your Voidwalker, Succubus, Felhunter and Felguard's melee attacks and your Imp's Firebolt by 12%." lvl="3"/>
+        <rank description="Increases the damage done by your Voidwalker, Succubus, Felhunter and Felguard's melee attacks and your Imp's Firebolt by 16%." lvl="4"/>
+        <rank description="Increases the damage done by your Voidwalker, Succubus, Felhunter and Felguard's melee attacks and your Imp's Firebolt by 20%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_impphaseshift" key="1227" name="Master Summoner" requires="1226" tier="3">
+        <rank description="Reduces the casting time of your Imp, Voidwalker, Succubus, Felhunter and Fel Guard Summoning spells by 2 sec and the Mana cost by 20%." lvl="1"/>
+        <rank description="Reduces the casting time of your Imp, Voidwalker, Succubus, Felhunter and Fel Guard Summoning spells by 4 sec and the Mana cost by 40%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_manafeed" key="1281" name="Mana Feed" requires="1262" tier="4">
+        <rank description="When you gain mana from Drain Mana or Life Tap spells, your summoned demon gains 100% of the mana you gain." lvl="1"/>
+      </talent>
+      <talent column="2" icon="inv_ammo_firetar" key="1261" name="Master Conjuror" tier="4">
+        <rank description="Increases the combat ratings gained from your conjured Firestone and Spellstone by 150%." lvl="1"/>
+        <rank description="Increases the combat ratings gained from your conjured Firestone and Spellstone by 300%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowpact" key="1244" name="Master Demonologist" requires="1262" tier="5">
+        <rank description="Grants both the Warlock and the summoned demon an effect as long as that demon is active.&lt;br/&gt;&lt;br/&gt;Imp - Increases your Fire damage by 1%, and increases the critical effect chance of your Fire spells by 1%.&lt;br/&gt;&lt;br/&gt;Voidwalker - Reduces Physical damage taken by 2%.&lt;br/&gt;&lt;br/&gt;Succubus - Increases your Shadow damage by 1%, and increases the critical effect chance of your Shadow spells by 1%.&lt;br/&gt;&lt;br/&gt;Felhunter - Reduces all spell damage taken by 2%.&lt;br/&gt;&lt;br/&gt;Felguard - Increases all damage done by 1%, and reduces all damage taken by 1%." lvl="1"/>
+        <rank description="Grants both the Warlock and the summoned demon an effect as long as that demon is active.&lt;br/&gt;&lt;br/&gt;Imp - Increases your Fire damage by 2%, and increases the critical effect chance of your Fire spells by 2%.&lt;br/&gt;&lt;br/&gt;Voidwalker - Reduces Physical damage taken by 4%.&lt;br/&gt;&lt;br/&gt;Succubus - Increases your Shadow damage by 2%, and increases the critical effect chance of your Shadow spells by 2%.&lt;br/&gt;&lt;br/&gt;Felhunter - Reduces all spell damage taken by 4%.&lt;br/&gt;&lt;br/&gt;Felguard - Increases all damage done by 2%, and reduces all damage taken by 2%." lvl="2"/>
+        <rank description="Grants both the Warlock and the summoned demon an effect as long as that demon is active.&lt;br/&gt;&lt;br/&gt;Imp - Increases your Fire damage by 3%, and increases the critical effect chance of your Fire spells by 3%.&lt;br/&gt;&lt;br/&gt;Voidwalker - Reduces Physical damage taken by 6%.&lt;br/&gt;&lt;br/&gt;Succubus - Increases your Shadow damage by 3%, and increases the critical effect chance of your Shadow spells by 3%.&lt;br/&gt;&lt;br/&gt;Felhunter - Reduces all spell damage taken by 6%.&lt;br/&gt;&lt;br/&gt;Felguard - Increases all damage done by 3%, and reduces all damage taken by 3%." lvl="3"/>
+        <rank description="Grants both the Warlock and the summoned demon an effect as long as that demon is active.&lt;br/&gt;&lt;br/&gt;Imp - Increases your Fire damage by 4%, and increases the critical effect chance of your Fire spells by 4%.&lt;br/&gt;&lt;br/&gt;Voidwalker - Reduces Physical damage taken by 8%.&lt;br/&gt;&lt;br/&gt;Succubus - Increases your Shadow damage by 4%, and increases the critical effect chance of your Shadow spells by 4%.&lt;br/&gt;&lt;br/&gt;Felhunter - Reduces all spell damage taken by 8%.&lt;br/&gt;&lt;br/&gt;Felguard - Increases all damage done by 4%, and reduces all damage taken by 4%." lvl="4"/>
+        <rank description="Grants both the Warlock and the summoned demon an effect as long as that demon is active.&lt;br/&gt;&lt;br/&gt;Imp - Increases your Fire damage by 5%, and increases the critical effect chance of your Fire spells by 5%.&lt;br/&gt;&lt;br/&gt;Voidwalker - Reduces Physical damage taken by 10%.&lt;br/&gt;&lt;br/&gt;Succubus - Increases your Shadow damage by 5%, and increases the critical effect chance of your Shadow spells by 5%.&lt;br/&gt;&lt;br/&gt;Felhunter - Reduces all spell damage taken by 10%.&lt;br/&gt;&lt;br/&gt;Felguard - Increases all damage done by 5%, and reduces all damage taken by 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_warlock_moltencore" key="1283" name="Molten Core" tier="5">
+        <rank description="Increases the duration of your Immolate by 3 sec, and you have a 4% chance to gain the Molten Core effect when your Corruption deals damage. The Molten Core effect empowers your next 3 Incinerate or Soul Fire spells cast within 15 sec.&lt;br/&gt;&lt;br/&gt;Incinerate - Increases damage done by 6% and reduces cast time by 10%.&lt;br/&gt;&lt;br/&gt;Soul Fire - Increases damage done by 6% and increases critical strike chance by 5%." lvl="1"/>
+        <rank description="Increases the duration of your Immolate by 6 sec, and you have a 8% chance to gain the Molten Core effect when your Corruption deals damage. The Molten Core effect empowers your next 3 Incinerate or Soul Fire spells cast within 15 sec.&lt;br/&gt;&lt;br/&gt;Incinerate - Increases damage done by 12% and reduces cast time by 20%.&lt;br/&gt;&lt;br/&gt;Soul Fire - Increases damage done by 12% and increases critical strike chance by 10%." lvl="2"/>
+        <rank description="Increases the duration of your Immolate by 9 sec, and you have a 12% chance to gain the Molten Core effect when your Corruption deals damage. The Molten Core effect empowers your next 3 Incinerate or Soul Fire spells cast within 15 sec.&lt;br/&gt;&lt;br/&gt;Incinerate - Increases damage done by 18% and reduces cast time by 30%.&lt;br/&gt;&lt;br/&gt;Soul Fire - Increases damage done by 18% and increases critical strike chance by 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_demonicfortitude" key="1680" name="Demonic Resilience" tier="6">
+        <rank description="Reduces the chance you'll be critically hit by melee and spells by 1% and reduces all damage your summoned demon takes by 5%." lvl="1"/>
+        <rank description="Reduces the chance you'll be critically hit by melee and spells by 2% and reduces all damage your summoned demon takes by 10%." lvl="2"/>
+        <rank description="Reduces the chance you'll be critically hit by melee and spells by 3% and reduces all damage your summoned demon takes by 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_demonicempowerment" key="1880" name="Demonic Empowerment" requires="1244" tier="6">
+        <rank description="Grants the Warlock's summoned demon Empowerment.&lt;br/&gt;&lt;br/&gt;Imp - Increases the Imp's spell critical strike chance by 20% for 30 sec.&lt;br/&gt;&lt;br/&gt;Voidwalker - Increases the Voidwalker's health by 20%, and its threat generated from spells and attacks by 20% for 20 sec.&lt;br/&gt;&lt;br/&gt;Succubus - Instantly vanishes, causing the Succubus to go into an improved Invisibility state. The vanish effect removes all stuns, snares and movement impairing effects from the Succubus.&lt;br/&gt;&lt;br/&gt;Felhunter - Dispels all magical effects from the Felhunter.&lt;br/&gt;&lt;br/&gt;Felguard - Increases the Felguard's attack speed by 20% and breaks all stun, snare and movement impairing effects and makes your Felguard immune to them for 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="100">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1263" name="Demonic Knowledge" tier="6">
+        <rank description="Increases your spell damage by an amount equal to 4% of the total of your active demon's Stamina plus Intellect." lvl="1"/>
+        <rank description="Increases your spell damage by an amount equal to 8% of the total of your active demon's Stamina plus Intellect." lvl="2"/>
+        <rank description="Increases your spell damage by an amount equal to 12% of the total of your active demon's Stamina plus Intellect." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonictactics" key="1673" name="Demonic Tactics" tier="7">
+        <rank description="Increases melee and spell critical strike chance for you and your summoned demon by 2%." lvl="1"/>
+        <rank description="Increases melee and spell critical strike chance for you and your summoned demon by 4%." lvl="2"/>
+        <rank description="Increases melee and spell critical strike chance for you and your summoned demon by 6%." lvl="3"/>
+        <rank description="Increases melee and spell critical strike chance for you and your summoned demon by 8%." lvl="4"/>
+        <rank description="Increases melee and spell critical strike chance for you and your summoned demon by 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball02" key="2261" name="Decimation" tier="7">
+        <rank description="When you Shadowbolt, Incinerate or Soul Fire a target that is at or below 35% health, the cast time of Soul Fire spell is reduced by 20% for 10 sec. Soul Fires cast under the effect of Decimation cost no shard." lvl="1"/>
+        <rank description="When you Shadowbolt, Incinerate or Soul Fire a target that is at or below 35% health, the cast time of your Soul Fire spell is reduced by 40% for 10 sec. Soul Fires cast under the effect of Decimation cost no shard." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_improveddemonictactics" key="1882" name="Improved Demonic Tactics" requires="1673" tier="8">
+        <rank description="Increases your summoned demon's critical strike chance equal to 10% of your critical strike chance." lvl="1"/>
+        <rank description="Increases your summoned demon's critical strike chance equal to 20% of your critical strike chance." lvl="2"/>
+        <rank description="Increases your summoned demon's critical strike chance equal to 30% of your critical strike chance." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_summonfelguard" key="1672" name="Summon Felguard" tier="8">
+        <rank description="Summons a Felguard under the command of the Warlock." lvl="1"/>
+        <spell castTime="10000">
+          <power cost="80" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_demonicempathy" key="1884" name="Nemesis" tier="8">
+        <rank description="Reduces the cooldown of your Demonic Empowerment, Metamorphosis, and Fel Domination spells by 10%." lvl="1"/>
+        <rank description="Reduces the cooldown of your Demonic Empowerment, Metamorphosis, and Fel Domination spells by 20%." lvl="2"/>
+        <rank description="Reduces the cooldown of your Demonic Empowerment, Metamorphosis, and Fel Domination spells by 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Demonic Pact" tier="9">
+        <rank description="Increases your spell damage by 2%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 2% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="1"/>
+        <rank description="Increases your spell damage by 4%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 4% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="2"/>
+        <rank description="Increases your spell damage by 6%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 6% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="3"/>
+        <rank description="Increases your spell damage by 8%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 8% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="4"/>
+        <rank description="Increases your spell damage by 10%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 10% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_demonform" key="1886" name="Metamorphosis" tier="10">
+        <rank description="You transform into a Demon for 30 sec.  This form increases your armor by 600%, damage by 20%, reduces the chance you'll be critically hit by melee attacks by 6% and reduces the duration of stun and snare effects by 50%.  You gain some unique demon abilities in addition to your normal abilities. 3 minute cooldown." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="WarlockCurses" icon="spell_shadow_deathcoil" key="Affliction" name="Affliction" order="0">
+      <talent column="0" icon="spell_shadow_curseofsargeras" key="1284" name="Improved Curse of Agony" tier="0">
+        <rank description="Increases the damage done by your Curse of Agony by 5%." lvl="1"/>
+        <rank description="Increases the damage done by your Curse of Agony by 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="1005" name="Suppression" tier="0">
+        <rank description="Increases your chance to hit with spells by 1%, and reduces the mana cost of your Affliction spells by 2%." lvl="1"/>
+        <rank description="Increases your chance to hit with spells by 2%, and reduces the mana cost of your Affliction spells by 4%." lvl="2"/>
+        <rank description="Increases your chance to hit with spells by 3%, and reduces the mana cost of your Affliction spells by 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_abominationexplosion" key="1003" name="Improved Corruption" tier="0">
+        <rank description="Increases the damage done by your Corruption by 2%, and increases the critical strike chance of your Seed of Corruption by 1%." lvl="1"/>
+        <rank description="Increases the damage done by your Corruption by 4%, and increases the critical strike chance of your Seed of Corruption by 2%." lvl="2"/>
+        <rank description="Increases the damage done by your Corruption by 6%, and increases the critical strike chance of your Seed of Corruption by 3%." lvl="3"/>
+        <rank description="Increases the damage done by your Corruption by 8%, and increases the critical strike chance of your Seed of Corruption by 4%." lvl="4"/>
+        <rank description="Increases the damage done by your Corruption by 10%, and increases the critical strike chance of your Seed of Corruption by 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_curseofmannoroth" key="1006" name="Improved Curse of Weakness" tier="1">
+        <rank description="Increases the amount of attack power reduced by your Curse of Weakness by 10%." lvl="1"/>
+        <rank description="Increases the amount of attack power reduced by your Curse of Weakness by 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_haunting" key="1101" name="Improved Drain Soul" tier="1">
+        <rank description="Returns 7% of your maximum mana if the target is killed by you while you drain its soul.  In addition, your Affliction spells generate 10% less threat." lvl="1"/>
+        <rank description="Returns 15% of your maximum mana if the target is killed by you while you drain its soul.  In addition, your Affliction spells generate 20% less threat." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="1007" name="Improved Life Tap" tier="1">
+        <rank description="Increases the amount of Mana awarded by your Life Tap spell by 10%." lvl="1"/>
+        <rank description="Increases the amount of Mana awarded by your Life Tap spell by 20%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_lifedrain02" key="1004" name="Soul Siphon" tier="1">
+        <rank description="Increases the amount drained by your Drain Life and Drain Soul spells by an additional 3% for each of your Affliction effects on the target, up to a maximum of 9% additional effect." lvl="1"/>
+        <rank description="Increases the amount drained by your Drain Life and Drain Soul spells by an additional 6% for each of your Affliction effects on the target, up to a maximum of 18% additional effect." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_possession" key="2205" name="Improved Fear" tier="2">
+        <rank description="Causes your Fear spell to inflict a Nightmare on the target when the fear effect ends. The Nightmare effect reduces the target's movement speed by 15% for 5 sec." lvl="1"/>
+        <rank description="Causes your Fear spell to inflict a Nightmare on the target when the fear effect ends. The Nightmare effect reduces the target's movement speed by 30% for 5 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_fingerofdeath" key="1001" name="Fel Concentration" tier="2">
+        <rank description="Reduces the pushback suffered from damaging attacks  while casting Drain Life, Drain Mana, Drain Soul, Unstable Affliction, and Haunt by 23%." lvl="1"/>
+        <rank description="Reduces the pushback suffered from damaging attacks  while casting Drain Life, Drain Mana, Drain Soul, Unstable Affliction, and Haunt spells by 46%." lvl="2"/>
+        <rank description="Reduces the pushback suffered from damaging attacks  while casting Drain Life, Drain Mana, Drain Soul,  Unstable Affliction, and Haunt spells by 70%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_contagion" key="1061" name="Amplify Curse" tier="2">
+        <rank description="Reduces the global cooldown of your Curses by 0.5 sec." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_callofbone" key="1021" name="Grim Reach" tier="3">
+        <rank description="Increases the range of your Affliction spells by 10%." lvl="1"/>
+        <rank description="Increases the range of your Affliction spells by 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_twilight" key="1002" name="Nightfall" tier="3">
+        <rank description="Gives your Corruption and Drain Life spells a 2% chance to cause you to enter a Shadow Trance state after damaging the opponent.  The Shadow Trance state reduces the casting time of your next Shadow Bolt spell by 100%." lvl="1"/>
+        <rank description="Gives your Corruption and Drain Life spells a 4% chance to cause you to enter a Shadow Trance state after damaging the opponent.  The Shadow Trance state reduces the casting time of your next Shadow Bolt spell by 100%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_abominationexplosion" key="1764" name="Empowered Corruption" tier="3">
+        <rank description="Increases the damage of your Corruption spell by an amount equal to 12% of your spell power." lvl="1"/>
+        <rank description="Increases the damage of your Corruption spell by an amount equal to 24% of your spell power." lvl="2"/>
+        <rank description="Increases the damage of your Corruption spell by an amount equal to 36% of your spell power." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowembrace" key="1763" name="Shadow Embrace" tier="4">
+        <rank description="Your Shadow Bolt and Haunt spells apply the Shadow Embrace effect, increasing all shadow periodic damage dealt to the target by you by 1%, and reduces all periodic healing done to the target by 2%. Lasts for 12 sec. Stacks up to 3  times." lvl="1"/>
+        <rank description="Your Shadow Bolt and Haunt spells apply the Shadow Embrace effect, increasing all shadow periodic damage dealt to the target by you by 2%, and reduces all periodic healing done to the target by 4%. Lasts for 12 sec. Stacks up to 3 times." lvl="2"/>
+        <rank description="Your Shadow Bolt and Haunt spells apply the Shadow Embrace effect, increasing all shadow periodic damage dealt to the target by you by 3%, and reduces all periodic healing done to the target by 6%. Lasts for 12 sec. Stacks up to 3 times." lvl="3"/>
+        <rank description="Your Shadow Bolt and Haunt spells apply the Shadow Embrace effect, increasing all shadow periodic damage dealt to the target by you by 4%, and reduces all periodic healing done to the target by 8%. Lasts for 12 sec. Stacks up to 3 times." lvl="4"/>
+        <rank description="Your Shadow Bolt and Haunt spells apply the Shadow Embrace effect, increasing all shadow periodic damage dealt to the target by you by 5%, and reduces all periodic healing done to the target by 10%. Lasts for 12 sec. Stacks up to 3 times." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="1041" name="Siphon Life" tier="4">
+        <rank description="When you deal damage with your Corruption spell, you are instantly healed for 40% of the damage done. In addition, the damage done by your Corruption, Seed of Corruption and Unstable Affliction damage over time effects is increased by 5%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_grimward" key="1081" name="Curse of Exhaustion" requires="1061" tier="4">
+        <rank description="Reduces the target's movement speed by 30% for 12 sec.  Only one Curse per Warlock can be active on any one target." lvl="1"/>
+        <spell castTime="0" maxRange="30">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Improved Felhunter" tier="5">
+        <rank description="Your Felhunter regains 8% of its maximum mana each time it hits with its Shadow Bite ability and the cooldown on that ability is reduced by 2 sec.  In addition, increases the effect of your Felhunter's Fel Intelligence by 5%." lvl="1"/>
+        <rank description="Your Felhunter regains 8% of its maximum mana each time it hits with its Shadow Bite ability and the cooldown on that ability is reduced by 4 sec.  In addition, increases the effect of your Felhunter's Fel Intelligence by 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Shadow Mastery" requires="1041" tier="5">
+        <rank description="Increases the damage dealt or life drained by your Shadow spells and your Felhunter's Shadow Bite ability by 3%." lvl="1"/>
+        <rank description="Increases the damage dealt or life drained by your Shadow spells and your Felhunter's Shadow Bite ability by 6%." lvl="2"/>
+        <rank description="Increases the damage dealt or life drained by your Shadow spells and your Felhunter's Shadow Bite ability by 9%." lvl="3"/>
+        <rank description="Increases the damage dealt or life drained by your Shadow spells and your Felhunter's Shadow Bite ability by 12%." lvl="4"/>
+        <rank description="Increases the damage dealt or life drained by your Shadow spells and your Felhunter's Shadow Bite ability by 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warlock_eradication" key="1878" name="Eradication" tier="6">
+        <rank description="When you deal damage with Corruption, you have 6% chance to increase your spell casting speed by 6% for 10 sec." lvl="1"/>
+        <rank description="When you deal damage with Corruption, you have 6% chance to increase your spell casting speed by 12% for 10 sec." lvl="2"/>
+        <rank description="When you deal damage with Corruption, you have 6% chance to increase your spell casting speed by 20% for 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_painfulafflictions" key="1669" name="Contagion" tier="6">
+        <rank description="Increases the damage of Curse of Agony, Corruption and Seed of Corruption by 1% and reduces the chance your helpful Affliction spells and damage over time effects will be dispelled by an additional 6%." lvl="1"/>
+        <rank description="Increases the damage of Curse of Agony, Corruption and Seed of Corruption by 2% and reduces the chance your helpful Affliction spells and damage over time effects  will be dispelled by an additional 12%." lvl="2"/>
+        <rank description="Increases the damage of Curse of Agony, Corruption and Seed of Corruption by 3% and reduces the chance your helpful Affliction spells and damage over time effects  will be dispelled by an additional 18%." lvl="3"/>
+        <rank description="Increases the damage of Curse of Agony, Corruption and Seed of Corruption by 4% and reduces the chance your helpful Affliction spells and damage over time effects  will be dispelled by an additional 24%." lvl="4"/>
+        <rank description="Increases the damage of Curse of Agony, Corruption and Seed of Corruption by 5% and reduces the chance your helpful Affliction spells and damage over time effects  will be dispelled by an additional 30%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_darkritual" key="1022" name="Dark Pact" tier="6">
+        <rank description="Drains 305 of your summoned demon's Mana, returning 100% to you." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathscream" key="1668" name="Improved Howl of Terror" tier="7">
+        <rank description="Reduces the casting time of your Howl of Terror spell by 0.8 sec." lvl="1"/>
+        <rank description="Reduces the casting time of your Howl of Terror spell by 1.5 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_curseofachimonde" key="1667" name="Malediction" tier="7">
+        <rank description="Increases your spell damage by 1%, and increases the periodic critical strike chance of your Corruption and Unstable Affliction spells by 3%." lvl="1"/>
+        <rank description="Increases your spell damage by 2%, and increases the periodic critical strike chance of your Corruption and Unstable Affliction spells by 6%." lvl="2"/>
+        <rank description="Increases your spell damage by 3%, and increases the periodic critical strike chance of your Corruption and Unstable Affliction spells by 9%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_deathsembrace" key="1875" name="Death's Embrace" tier="8">
+        <rank description="Increases the amount drained by your Drain Life by 10% while your health is at or below 20% health, and increases the damage done by your Shadow spells by 4% when your target is at or below 35% health." lvl="1"/>
+        <rank description="Increases the amount drained by your Drain Life by 20% while your health is at or below 20% health, and increases the damage done by your Shadow spells by 8% when your target is at or below 35% health." lvl="2"/>
+        <rank description="Increases the amount drained by your Drain Life by 30% while your health is at or below 20% health, and increases the damage done by your Shadow spells by 12% when your target is at or below 35% health." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Unstable Affliction" requires="1669" tier="8">
+        <rank description="Shadow energy slowly destroys the target, causing 550 damage over 15 sec.  In addition, if the Unstable Affliction is dispelled it will cause 990 damage to the dispeller and silence them for 5 sec." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="15" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_unstableaffliction_2" key="2245" name="Pandemic" requires="1670" tier="8">
+        <rank description="Grants the periodic damage from your Corruption and Unstable Affliction spells the ability to critically hit for 100% increased damage, and increases the critical strike damage bonus of your Haunt spell by 100%." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_everlastingaffliction" key="1876" name="Everlasting Affliction" tier="9">
+        <rank description="Your Corruption and Unstable Affliction spells gain an additional 1% of your bonus spell damage, and your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 20% chance to reset the duration of your Corruption spell on the target." lvl="1"/>
+        <rank description="Your Corruption and Unstable Affliction spells gain an additional 2% of your bonus spell damage, and your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 40% chance to reset the duration of your Corruption spell on the target." lvl="2"/>
+        <rank description="Your Corruption and Unstable Affliction spells gain an additional 3% of your bonus spell damage, and your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 60% chance to reset the duration of your Corruption spell on the target." lvl="3"/>
+        <rank description="Your Corruption and Unstable Affliction spells gain an additional 4% of your bonus spell damage, and your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 80% chance to reset the duration of your Corruption spell on the target." lvl="4"/>
+        <rank description="Your Corruption and Unstable Affliction spells gain an additional 5% of your bonus spell damage, and your Drain Life, Drain Soul, Shadow Bolt, and Haunt spells have a 100% chance to reset the duration of your Corruption spell on the target." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warlock_haunt" key="2041" name="Haunt" tier="10">
+        <rank description="You send a ghostly soul into the target, dealing 405 to 473 Shadow damage and increasing all damage done by your Shadow damage-over-time effects on the target by 20% for 12 sec. When the Haunt spell ends or is dispelled, the soul returns to you, healing you for 100% of the damage it did to the target." lvl="1"/>
+        <spell castTime="1500" cooldown="8000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

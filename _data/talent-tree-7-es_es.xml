@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_es" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="ShamanEnhancement" icon="spell_nature_lightningshield" key="Enhancement" name="Mejora" order="1">
+      <talent column="0" icon="spell_nature_earthbindtotem" key="610" name="Tótems de mejoría" tier="0">
+        <rank description="Aumenta un 5% el efecto de tu Tótem Lengua de Fuego y de tu Tótem Fuerza de la Tierra." lvl="1"/>
+        <rank description="Aumenta un 10% el efecto de tu Tótem Lengua de Fuego y de tu Tótem Fuerza de la Tierra." lvl="2"/>
+        <rank description="Aumenta un 15% el efecto de tu Tótem Lengua de Fuego y de tu Tótem Fuerza de la Tierra." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_stoneclawtotem" key="2101" name="Trabazón con la Tierra" tier="0">
+        <rank description="Aumenta un 25% la salud de tu Tótem Garra de piedra y un 10% el radio de tu Tótem Nexo Terrestre. Además reduce el tiempo de reutilización de ambos tótems un 15%." lvl="1"/>
+        <rank description="Aumenta un 50% la salud de tu Tótem Garra de piedra y un 20% el radio de tu Tótem Nexo Terrestre. Además reduce el tiempo de reutilización de ambos tótems un 30%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_grimward" key="614" name="Conocimiento ancestral" tier="0">
+        <rank description="Aumenta tu intelecto un 2%." lvl="1"/>
+        <rank description="Aumenta tu intelecto un 4%." lvl="2"/>
+        <rank description="Aumenta tu intelecto un 6%." lvl="3"/>
+        <rank description="Aumenta tu intelecto un 8%." lvl="4"/>
+        <rank description="Aumenta tu intelecto un 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stoneskintotem" key="609" name="Tótems de guardián" tier="1">
+        <rank description="Aumenta la cantidad de daño que reduce tu Tótem Piel de piedra un 10% y reduce el tiempo de reutilización de tu Tótem derribador 1 s." lvl="1"/>
+        <rank description="Aumenta la cantidad de daño que reduce tu Tótem Piel de piedra un 20% y reduce el tiempo de reutilización de tu Tótem derribador 2 s." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_thunderbolt" key="613" name="Golpes de trueno" tier="1">
+        <rank description="Mejora tu probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 1%." lvl="1"/>
+        <rank description="Mejora tu probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 2%." lvl="2"/>
+        <rank description="Mejora tu probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 3%." lvl="3"/>
+        <rank description="Mejora tu probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 4%." lvl="4"/>
+        <rank description="Mejora tu probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_spiritwolf" key="605" name="Lobo fantasmal mejorado" tier="1">
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Lobo fantasmal 1 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Lobo fantasmal 2 s." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_lightningshield" key="607" name="Escudos mejorados" tier="1">
+        <rank description="Aumenta un 5% el daño infligido con tus orbes de Escudo de relámpagos, aumenta la cantidad de maná que ganas con tus orbes de Escudo de agua un 5% y aumenta la cantidad de sanación que hacen tus orbes de Escudo de tierra un 5%." lvl="1"/>
+        <rank description="Aumenta un 10% el daño infligido con tus orbes de Escudo de relámpagos, aumenta la cantidad de maná que ganas con tus orbes de Escudo de agua un 10% y aumenta la cantidad de sanación que hacen tus orbes de Escudo de tierra un 10%." lvl="2"/>
+        <rank description="Aumenta un 15% el daño infligido con tus orbes de Escudo de relámpagos, aumenta la cantidad de maná que ganas con tus orbes de Escudo de agua un 15% y aumenta la cantidad de sanación que hacen tus orbes de Escudo de tierra un 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_flametounge" key="611" name="Armas elementales" tier="2">
+        <rank description="Aumenta el daño infligido por el efecto de Arma Viento Furioso un 13%, aumenta el daño con hechizos de tu Arma Lengua de Fuego un 10% y aumenta el bonus de sanación de tu Arma de Vida terrestre un 10%." lvl="1"/>
+        <rank description="Aumenta el daño infligido por el efecto de Arma Viento Furioso un 27%, aumenta el daño con hechizos de tu Arma Lengua de Fuego un 20% y aumenta el bonus de sanación de tu Arma de Vida terrestre un 20%." lvl="2"/>
+        <rank description="Aumenta el daño infligido por el efecto de Arma Viento Furioso un 40%, aumenta el daño con hechizos de tu Arma Lengua de Fuego un 30% y aumenta el bonus de sanación de tu Arma de Vida terrestre un 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_elementalabsorption" key="617" name="Enfoque chamanístico" tier="2">
+        <rank description="Reduce el coste de maná de tus hechizos de Choque un 45%." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_mirrorimage" key="601" name="Anticipación" tier="2">
+        <rank description="Aumenta tu probabilidad de esquivar un 1% extra y reduce la duración de todos los efectos de desarmar que se usen frente a ti un 16%. No se acumula con otros efectos de reducción de duración de desarmar." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de esquivar un 2% extra y reduce la duración de todos los efectos de desarmar que se usen frente a ti un 25%. No se acumula con otros efectos de reducción de duración de desarmar." lvl="2"/>
+        <rank description="Aumenta tu probabilidad de esquivar un 3% extra y reduce la duración de todos los efectos de desarmar que se usen frente a ti un 50%. No se acumula con otros efectos de reducción de duración de desarmar." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Aluvión" requires="613" tier="3">
+        <rank description="Aumenta tu velocidad de ataque un 5% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="1"/>
+        <rank description="Aumenta tu velocidad de ataque un 10% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="2"/>
+        <rank description="Aumenta tu velocidad de ataque un 15% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="3"/>
+        <rank description="Aumenta tu velocidad de ataque un 20% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="4"/>
+        <rank description="Aumenta tu velocidad de ataque un 25% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_devotion" key="615" name="Consistencia" tier="3">
+        <rank description="Aumenta tu aguante un 2% y reduce la duración de los efectos de reducción del movimiento sobre ti un 6%." lvl="1"/>
+        <rank description="Aumenta tu aguante un 4% y reduce la duración de los efectos de reducción del movimiento sobre ti un 12%." lvl="2"/>
+        <rank description="Aumenta tu aguante un 6% y reduce la duración de los efectos de reducción del movimiento sobre ti un 18%." lvl="3"/>
+        <rank description="Aumenta tu aguante un 8% y reduce la duración de los efectos de reducción del movimiento sobre ti un 24%." lvl="4"/>
+        <rank description="Aumenta tu aguante un 10% y reduce la duración de los efectos de reducción del movimiento sobre ti un 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_windfury" key="1647" name="Tótem Viento Furioso mejorado" tier="4">
+        <rank description="Aumenta la celeridad cuerpo a cuerpo de tu Tótem Viento Furioso un 2%." lvl="1"/>
+        <rank description="Aumenta la celeridad cuerpo a cuerpo de tu Tótem Viento Furioso un 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_parry" key="616" name="Armas de espíritu" tier="4">
+        <rank description="Da la posibilidad de parar los ataques enemigos cuerpo a cuerpo y reduce la amenaza generada un 30%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_nature_bloodlust" key="2083" name="Maña mental" tier="4">
+        <rank description="Aumenta tu poder de ataque un 33% de tu intelecto." lvl="1"/>
+        <rank description="Aumenta tu poder de ataque un 66% de tu intelecto." lvl="2"/>
+        <rank description="Aumenta tu poder de ataque un 100% de tu intelecto." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Ira desatada" tier="5">
+        <rank description="Aumenta tu pericia 3 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 4% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="1"/>
+        <rank description="Aumenta tu pericia 6 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 7% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="2"/>
+        <rank description="Aumenta tu pericia 9 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 10% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Maestría en armas" tier="5">
+        <rank description="Aumenta un 4% el daño infligido con todas las armas." lvl="1"/>
+        <rank description="Aumenta un 7% el daño infligido con todas las armas." lvl="2"/>
+        <rank description="Aumenta un 10% el daño infligido con todas las armas." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_fire_bluecano" key="2263" name="Poder congelado" tier="5">
+        <rank description="Aumenta un 5% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Latigazo de lava y Choque sobre los objetivos afectados por el efecto de tu ataque Estigma de Escarcha, y tu Choque de Escarcha tiene un 50% de probabilidad de paralizar al objetivo con Hielo durante 5 s cuando se usa sobre objetivos a 15 m de ti o más." lvl="1"/>
+        <rank description="Aumenta un 10% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Latigazo de lava y Choque sobre los objetivos afectados por el efecto de tu ataque Estigma de Escarcha, y tu Choque de Escarcha tiene un 100% de probabilidad de paralizar al objetivo con Hielo durante 5 s cuando se usa sobre objetivos a 15 m de ti o más." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_dualwieldspecialization" key="1692" name="Especialización en doble empuñadura" requires="1690" tier="6">
+        <rank description="Aumenta tu probabilidad de golpear con doble empuñadura un 2% extra." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de golpear con doble empuñadura un 4% extra." lvl="2"/>
+        <rank description="Aumenta tu probabilidad de golpear con doble empuñadura un 6% extra." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_dualwield" key="1690" name="Doble empuñadura" requires="616" tier="6">
+        <rank description="Permite que las armas de una mano y las armas de mano izquierda se equipen como armas de mano izquierda." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_shaman_stormstrike" key="901" name="Golpe de tormenta" tier="6">
+        <rank description="Ataque instantáneo con ambas armas. Además, las 4 fuentes siguientes de daño de Naturaleza infligidas al objetivo por el chamán aumentan un 20%. Dura 12 s." lvl="1"/>
+        <spell castTime="0" cooldown="8000" maxRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shaman_staticshock" key="2055" name="Choque estático" tier="7">
+        <rank description="Tienes un 2% de probabilidad de golpear a tu objetivo con una carga de orbe de Escudo de relámpagos cuando infliges ataques y facultades cuerpo a cuerpo y aumenta el número de cargas de tu Escudo de relámpagos en 2." lvl="1"/>
+        <rank description="Tienes un 4% de probabilidad de golpear a tu objetivo con una carga de orbe de Escudo de relámpagos cuando infliges ataques y facultades cuerpo a cuerpo y aumenta el número de cargas de tu Escudo de relámpagos en 4." lvl="2"/>
+        <rank description="Tienes un 6% de probabilidad de golpear a tu objetivo con una carga de orbe de Escudo de relámpagos cuando infliges ataques y facultades cuerpo a cuerpo y aumenta el número de cargas de tu Escudo de relámpagos en 6." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_shaman_lavalash" key="2249" name="Latigazo de lava" requires="1690" tier="7">
+        <rank description="Cargas con lava el arma de tu mano izquierda e infliges instantáneamente un 100% de daño con arma con tu mano izquierda. El daño aumenta un 25% si tu arma de mano izquierda está encantada con Lengua de Fuego." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="4" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shaman_improvedstormstrike" key="2054" name="Golpe de tormenta mejorado" requires="901" tier="7">
+        <rank description="Con Golpe de tormenta, tienes una probabilidad del 50% de que te otorgue un 20% de tu maná base." lvl="1"/>
+        <rank description="Con Golpe de tormenta, tienes una probabilidad del 100% de que te otorgue un 20% de tu maná base." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_mentalquickness" key="1691" name="Presura mental" tier="8">
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos de chamán un 2% y aumenta tu poder con hechizos en una cantidad igual al 10% de tu poder de ataque." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos de chamán un 4% y aumenta tu poder con hechizos en una cantidad igual al 20% de tu poder de ataque." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos instantáneos de chamán un 6% y aumenta tu poder con hechizos en una cantidad igual al 30% de tu poder de ataque." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_shamanrage" key="1693" name="Ira del chamán" tier="8">
+        <rank description="Reduce todo el daño recibido un 30% y da a tus ataques cuerpo a cuerpo que infligen daño la probabilidad de regenerar maná igual al 15% de tu poder de ataque. Este hechizo se puede usar mientras se está aturdido. Dura 15 s." lvl="1"/>
+        <spell castTime="0" cooldown="60000"/>
+      </talent>
+      <talent column="2" icon="spell_nature_earthelemental_totem" key="2056" name="Poder terráneo" tier="8">
+        <rank description="Tus pulsos de tótem Nexo Terrestre tienen un 50% de probabilidad de eliminar todos los efectos de frenado sobre ti y sobre los objetivos amistosos cercanos. Tu Choque de tierra reduce la velocidad de ataque del enemigo un 5% extra." lvl="1"/>
+        <rank description="Tus pulsos de tótem Nexo Terrestre tienen un 100% de probabilidad de eliminar todos los efectos de frenado sobre ti y sobre los objetivos amistosos cercanos. Tu Choque de tierra reduce la velocidad de ataque del enemigo un 10% extra." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_maelstromweapon" key="2057" name="Arma vorágine" tier="9">
+        <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes la posibilidad de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="1"/>
+        <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes una posibilidad (mayor que el rango 1) de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="2"/>
+        <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes la posibilidad (mayor que el rango 2) de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="3"/>
+        <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes la posibilidad (mayor que el rango 3) de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="4"/>
+        <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes la posibilidad (mayor que el rango 4) de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_feralspirit" key="2058" name="Espíritu feral" tier="10">
+        <rank description="Invoca 2 espíritus de lobo a las órdenes del taumaturgo, duran 45 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="30">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="ShamanElementalCombat" icon="spell_nature_lightning" key="Elemental" name="Elemental" order="0">
+      <talent column="1" icon="spell_nature_wispsplode" key="564" name="Convección" tier="0">
+        <rank description="Reduce el coste de maná de tus hechizos Choque, Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Corte de viento un 2%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Choque, Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Corte de viento un 4%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos Choque, Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Corte de viento un 6%." lvl="3"/>
+        <rank description="Reduce el coste de maná de tus hechizos Choque, Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Corte de viento un 8%." lvl="4"/>
+        <rank description="Reduce el coste de maná de tus hechizos Choque, Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Corte de viento un 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_fire_fireball" key="563" name="Conmoción" tier="0">
+        <rank description="Aumenta un 1% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Tormenta de truenos, Ráfaga de lava y Choque." lvl="1"/>
+        <rank description="Aumenta un 2% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Tormenta de truenos, Ráfaga de lava y Choque." lvl="2"/>
+        <rank description="Aumenta un 3% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Tormenta de truenos, Ráfaga de lava y Choque." lvl="3"/>
+        <rank description="Aumenta un 4% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Tormenta de truenos, Ráfaga de lava y Choque." lvl="4"/>
+        <rank description="Aumenta un 5% el daño infligido con tus hechizos Descarga de relámpagos, Cadena de relámpagos, Tormenta de truenos, Ráfaga de lava y Choque." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_immolation" key="561" name="Llamada de las llamas" tier="1">
+        <rank description="Aumenta un 5% el daño infligido con tus Tótems de Fuego y Nova de Fuego, y el daño infligido por tu Ráfaga de lava un 2%." lvl="1"/>
+        <rank description="Aumenta un 10% el daño infligido con tus Tótems de Fuego y Nova de Fuego, y el daño infligido por tu Ráfaga de lava un 4%." lvl="2"/>
+        <rank description="Aumenta un 15% el daño infligido con tus Tótems de Fuego y Nova de Fuego, y el daño infligido por tu Ráfaga de lava un 6%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_spiritarmor" key="1640" name="Amparo elemental" tier="1">
+        <rank description="Reduce todo el daño recibido un 2%." lvl="1"/>
+        <rank description="Reduce todo el daño recibido un 4%." lvl="2"/>
+        <rank description="Reduce todo el daño recibido un 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_fire_elementaldevastation" key="1645" name="Devastación elemental" tier="1">
+        <rank description="Los críticos de tus hechizos ofensivos no periódicos aumentan tu probabilidad de asestar un golpe crítico con ataques cuerpo a cuerpo un 3% durante 10 s." lvl="1"/>
+        <rank description="Los críticos de tus hechizos ofensivos no periódicos aumentan tu probabilidad de asestar un golpe crítico con ataques cuerpo a cuerpo un 6% durante 10 s." lvl="2"/>
+        <rank description="Los críticos de tus hechizos ofensivos no periódicos aumentan tu probabilidad de asestar un golpe crítico con ataques cuerpo a cuerpo un 9% durante 10 s." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_frost_frostward" key="575" name="Reverberación" tier="2">
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque y Corte de viento 0.2 s." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque y Corte de viento 0.4 s." lvl="2"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque y Corte de viento 0.6 s." lvl="3"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque y Corte de viento 0.8 s." lvl="4"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque y Corte de viento 1 s." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_manaburn" key="574" name="Enfoque elemental" tier="2">
+        <rank description="Tras asestar un golpe crítico no periódico con hechizos de Fuego, Escarcha o Naturaleza, entras en un estado de Lanzamiento libre. El estado de Lanzamiento libre reduce el coste de maná de tus próximos 2 hechizos de daño o sanación un 40%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_fire_volcano" key="565" name="Furia elemental" tier="2">
+        <rank description="Aumenta un 20% el bonus de daño por golpe crítico de tu Tótem abrasador, de tu Tótem de magma y de tus hechizos de Fuego, Escarcha y Naturaleza." lvl="1"/>
+        <rank description="Aumenta un 40% el bonus de daño por golpe crítico de tu Tótem abrasador, de tu Tótem de magma y de tus hechizos de Fuego, Escarcha y Naturaleza." lvl="2"/>
+        <rank description="Aumenta un 60% el bonus de daño por golpe crítico de tu Tótem abrasador, de tu Tótem de magma y de tus hechizos de Fuego, Escarcha y Naturaleza." lvl="3"/>
+        <rank description="Aumenta un 80% el bonus de daño por golpe crítico de tu Tótem abrasador, de tu Tótem de magma y de tus hechizos de Fuego, Escarcha y Naturaleza." lvl="4"/>
+        <rank description="Aumenta un 100% el bonus de daño por golpe crítico de tu Tótem abrasador, de tu Tótem de magma y de tus hechizos de Fuego, Escarcha y Naturaleza." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_fire_sealoffire" key="567" name="Nova de Fuego mejorada" tier="3">
+        <rank description="Aumenta el daño infligido por tu Nova de Fuego un 10% y reduce el tiempo de reutilización 2 s." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tu Nova de Fuego un 20% y reduce el tiempo de reutilización 4 s." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_soulleech_2" key="1642" name="Ojo de la tormenta" tier="3">
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Maleficio un 23%." lvl="1"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Maleficio un 46%." lvl="2"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Descarga de relámpagos, Cadena de relámpagos, Ráfaga de lava y Maleficio un 70%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_stormreach" key="1641" name="Alcance elemental" tier="4">
+        <rank description="Aumenta 3 m el alcance de tus hechizos de Descarga de relámpagos, Cadena de relámpagos, Nova de Fuego y Ráfaga de lava, aumenta el radio de tu hechizo Tormenta de truenos un 10% y aumenta el alcance de tu hechizo Choque de llamas 7 m." lvl="1"/>
+        <rank description="Aumenta 6 m el alcance de tus hechizos de Descarga de relámpagos, Cadena de relámpagos, Nova de Fuego y Ráfaga de lava, aumenta el radio de tu hechizo Tormenta de truenos un 20% y aumenta el alcance de tu hechizo Choque de llamas 15 m." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_callstorm" key="562" name="Llamada del trueno" requires="574" tier="4">
+        <rank description="Aumenta un 5% extra la probabilidad de conseguir un golpe crítico con tus hechizos Descarga de relámpagos, Cadena de relámpagos y Tormenta de truenos." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_unrelentingstorm" key="1682" name="Tormenta inexorable" tier="4">
+        <rank description="Regenera maná en una cantidad equivalente al 4% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="1"/>
+        <rank description="Regenera maná en una cantidad equivalente al 8% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="2"/>
+        <rank description="Regenera maná en una cantidad equivalente al 12% de tu intelecto cada 5 s, incluso mientras lanzas hechizos." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_nature_elementalprecision_1" key="1685" name="Precisión elemental" tier="5">
+        <rank description="Aumenta tu probabilidad de golpear con tus hechizos de Fuego, Escarcha y de Naturaleza un 1% y reduce la amenaza causada por hechizos de Fuego, Escarcha y Naturaleza un 10%." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de golpear con tus hechizos de Fuego, Escarcha y de Naturaleza un 2% y reduce la amenaza causada por hechizos de Fuego, Escarcha y Naturaleza un 20%." lvl="2"/>
+        <rank description="Aumenta tu probabilidad de golpear con tus hechizos de Fuego, Escarcha y de Naturaleza un 3% y reduce la amenaza causada por hechizos de Fuego, Escarcha y Naturaleza un 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_lightning_lightningbolt01" key="721" name="Maestría en relámpagos" requires="565" tier="5">
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.1 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.2 s." lvl="2"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.3 s." lvl="3"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.4 s." lvl="4"/>
+        <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.5 s." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_wispheal" key="573" name="Maestría elemental" requires="562" tier="6">
+        <rank description="Cuando se activa, tus próximos hechizos Descarga de relámpagos, Cadena de relámpagos o Ráfaga de lava se convierten en hechizos de lanzamiento instantáneos. Además, obtienes un 15% de celeridad con hechizos durante 15 s. Maestría elemental comparte tiempo de reutilización con Presteza de la Naturaleza." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shaman_stormearthfire" key="2052" name="Tormenta, Tierra y Fuego" tier="6">
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Cadena de relámpagos 0,75 s, el alcance de tu Tótem Nexo Terrestre también tiene un 33% de probabilidad de enraizar a los objetivos durante 5 s al lanzarlo y el daño periódico infligido por tu Choque de llamas aumenta un 20%." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Cadena de relámpagos 1,5 s, el alcance de tu Tótem Nexo Terrestre también tiene un 66% de probabilidad de enraizar a los objetivos durante 5 s al lanzarlo y el daño periódico infligido por tu Choque de llamas aumenta un 40%." lvl="2"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Cadena de relámpagos 2,5 s, el alcance de tu Tótem Nexo Terrestre también tiene un 100% de probabilidad de enraizar a los objetivos durante 5 s al lanzarlo y el daño periódico infligido por tu Choque de llamas aumenta un 60%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_fire_blueflamering" key="2262" name="Ecos retumbantes" tier="7">
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque de llamas y Choque de Escarcha 1 s extra, aumenta el daño directo infligido por tus hechizos Choque de llamas y tu Choque de Escarcha un 10% extra." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tus hechizos Choque de llamas y Choque de Escarcha 2 s extra, aumenta el daño directo infligido por tus hechizos Choque de llamas y tu Choque de Escarcha un 20% extra." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Juramento elemental" requires="573" tier="7">
+        <rank description="Tus golpes críticos no periódicos con hechizos otorgan a los miembros de tu grupo o banda en un radio de 100 m Juramento elemental, que aumenta la probabilidad de golpe crítico con hechizos un 3%. Además, mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 5% más de daño con hechizos. Dura 15 s." lvl="1"/>
+        <rank description="Tus golpes críticos no periódicos con hechizos otorgan a los miembros de tu grupo o banda en un radio de 100 m Juramento elemental, que aumenta la probabilidad de golpe crítico con hechizos un 5%. Además, mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 10% más de daño con hechizos. Dura 15 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Sobrecarga de relámpagos" tier="7">
+        <rank description="Da a tus hechizos Descarga de relámpagos y Cadena de relámpagos un 11% de probabilidad de lanzar un segundo hechizo similar sobre el mismo objetivo sin ningún coste extra que inflige la mitad de daño y nada de amenaza." lvl="1"/>
+        <rank description="Da a tus hechizos Descarga de relámpagos y Cadena de relámpagos un 22% de probabilidad de lanzar un segundo hechizo similar sobre el mismo objetivo sin ningún coste extra que inflige la mitad de daño y nada de amenaza." lvl="2"/>
+        <rank description="Da a tus hechizos Descarga de relámpagos y Cadena de relámpagos un 33% de probabilidad de lanzar un segundo hechizo similar sobre el mismo objetivo sin ningún coste extra que inflige la mitad de daño y nada de amenaza." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shaman_astralshift" key="2050" name="Cambio astral" tier="8">
+        <rank description="Mientras estés aturdido, asustado o silenciado, te desplazarás al plano astral, reduciendo todo el daño recibido un 10% durante todo el tiempo que el efecto se mantenga sobre ti." lvl="1"/>
+        <rank description="Mientras estés aturdido, asustado o silenciado, te desplazarás al plano astral, reduciendo todo el daño recibido un 20% durante todo el tiempo que el efecto se mantenga sobre ti." lvl="2"/>
+        <rank description="Mientras estés aturdido, asustado o silenciado, te desplazarás al plano astral, reduciendo todo el daño recibido un 30% durante todo el tiempo que el efecto se mantenga sobre ti." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_fire_totemofwrath" key="1687" name="Tótem de cólera" tier="8">
+        <rank description="Invoca un Tótem de cólera con 5 p. de salud a los pies del taumaturgo. El tótem aumenta 100 p. el poder con hechizos a todos los miembros de la banda y grupo y aumenta la probabilidad de golpe crítico de todos los ataques un 3% frente a todos los enemigos en un radio de 40 m. Dura 5 min." lvl="1"/>
+        <spell castTime="0">
+          <power cost="5" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shaman_lavaflow" key="2051" name="Flujos de lava" tier="8">
+        <rank description="Aumenta el bonus de daño con golpe crítico de tu hechizo Ráfaga de lava un 6% y cuando se disipa tu Choque de llamas, tu velocidad de lanzamiento de hechizos aumenta un 10% durante 6 s." lvl="1"/>
+        <rank description="Aumenta el bonus de daño con golpe crítico de tu hechizo Ráfaga de lava un 12% y cuando se disipa tu Choque de llamas, tu velocidad de lanzamiento de hechizos aumenta un 20% durante 6 s." lvl="2"/>
+        <rank description="Aumenta el bonus de daño con golpe crítico de tu hechizo Ráfaga de lava un 24% y cuando se disipa tu Choque de llamas, tu velocidad de lanzamiento de hechizos aumenta un 30% durante 6 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_unused2" key="2252" name="Chamanismo" tier="9">
+        <rank description="Tus hechizos Descarga de relámpagos y Cadena de relámpagos ganan un 4% extra y tu Ráfaga de lava un 5% extra de tu bonus de efectos de daño." lvl="1"/>
+        <rank description="Tus hechizos Descarga de relámpagos y Cadena de relámpagos ganan un 8% extra y tu Ráfaga de lava un 10% extra de tu bonus de efectos de daño." lvl="2"/>
+        <rank description="Tus hechizos Descarga de relámpagos y Cadena de relámpagos ganan un 12% extra y tu Ráfaga de lava un 15% extra de tu bonus de efectos de daño." lvl="3"/>
+        <rank description="Tus hechizos Descarga de relámpagos y Cadena de relámpagos ganan un 16% extra y tu Ráfaga de lava un 20% extra de tu bonus de efectos de daño." lvl="4"/>
+        <rank description="Tus hechizos Descarga de relámpagos y Cadena de relámpagos ganan un 20% extra y tu Ráfaga de lava un 25% extra de tu bonus de efectos de daño." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_thunderstorm" key="2053" name="Tormenta de truenos" tier="10">
+        <rank description="Invoca una descarga de relámpagos que te energiza e inflige daño a los enemigos cercanos en un radio de 10 m. Te restaura un 8% de maná e inflige 551-629 p. de daño de Naturaleza a todos los enemigos cercanos y los lanza a 20 m. Este hechizo se puede usar mientras se está aturdido." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="ShamanRestoration" icon="spell_nature_magicimmunity" key="Restoration" name="Restauración" order="2">
+      <talent column="1" icon="spell_nature_magicimmunity" key="586" name="Ola de sanación mejorada" tier="0">
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Ola de sanación 0.1 s." lvl="1"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Ola de sanación 0.2 s." lvl="2"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Ola de sanación 0.3 s." lvl="3"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Ola de sanación 0.4 s." lvl="4"/>
+        <rank description="Reduce el tiempo de lanzamiento de tu hechizo Ola de sanación 0.5 s." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_moonglow" key="595" name="Enfoque totémico" tier="0">
+        <rank description="Reduce el coste de maná de tus tótems un 5%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus tótems un 10%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus tótems un 15%." lvl="3"/>
+        <rank description="Reduce el coste de maná de tus tótems un 20%." lvl="4"/>
+        <rank description="Reduce el coste de maná de tus tótems un 25%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_reincarnation" key="589" name="Reencarnación mejorada" tier="1">
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Reencarnación 7 min. y aumenta un 10% extra la cantidad de salud y maná que recuperas cuando te reencarnas." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu hechizo Reencarnación 15 min. y aumenta un 20% extra la cantidad de salud y maná que recuperas cuando te reencarnas." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingtouch" key="1646" name="Gracia de sanación" tier="1">
+        <rank description="Reduce la amenaza generada por tus hechizos de sanación un 5% y reduce las probabilidades de que tus hechizos de ayuda y tus efectos de daño en el tiempo se disipen un 10%." lvl="1"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de sanación un 10% y reduce las probabilidades de que tus hechizos de ayuda y tus efectos de daño en el tiempo se disipen un 20%." lvl="2"/>
+        <rank description="Reduce la amenaza generada por tus hechizos de sanación un 15% y reduce las probabilidades de que tus hechizos de ayuda y tus efectos de daño en el tiempo se disipen un 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_manarecharge" key="593" name="Enfoque de las mareas" tier="1">
+        <rank description="Reduce el coste de maná de tus hechizos de sanación un 1%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos de sanación un 2%." lvl="2"/>
+        <rank description="Reduce el coste de maná de tus hechizos de sanación un 3%." lvl="3"/>
+        <rank description="Reduce el coste de maná de tus hechizos de sanación un 4%." lvl="4"/>
+        <rank description="Reduce el coste de maná de tus hechizos de sanación un 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_shaman_watershield" key="583" name="Escudo de agua mejorado" tier="2">
+        <rank description="Tienes un 33% de probabilidad de obtener instantáneamente maná como si consumieras un orbe de Escudo de agua cuando ganas un efecto crítico por tus hechizos Ola de sanación o Mareas Vivas, un 20% de probabilidad cuando ganas un efecto crítico con tu hechizo Ola de sanación inferior y un 10% de probabilidad cuando ganas un efecto crítico con tu hechizo Sanación en cadena." lvl="1"/>
+        <rank description="Tienes un 66% de probabilidad de obtener instantáneamente maná como si consumieras un orbe de Escudo de agua cuando ganas un efecto crítico por tus hechizos Ola de sanación o Mareas Vivas, un 40% de probabilidad cuando ganas un efecto crítico con tu hechizo Ola de sanación inferior y un 20% de probabilidad cuando ganas un efecto crítico con tu hechizo Sanación en cadena." lvl="2"/>
+        <rank description="Tienes un 100% de probabilidad de obtener instantáneamente maná como si consumieras un orbe de Escudo de agua cuando ganas un efecto crítico por tus hechizos Ola de sanación o Mareas Vivas, un 60% de probabilidad cuando ganas un efecto crítico con tu hechizo Ola de sanación inferior y un 30% de probabilidad cuando ganas un efecto crítico con tu hechizo Sanación en cadena." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavelesser" key="587" name="Enfoque de sanación" tier="2">
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas cualquier hechizo de sanación de chamán un 23%." lvl="1"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas cualquier hechizo de sanación de chamán un 46%." lvl="2"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas cualquier hechizo de sanación de chamán un 70%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_frostbolt" key="582" name="Fuerza de las mareas" tier="2">
+        <rank description="Aumenta un 60% la probabilidad de efecto crítico de tu Ola sanación de sanación, Ola de sanación inferior y Sanación en cadena. Cada sanación crítica reduce la probabilidad un 20%. Dura 20 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="spell_nature_undyingstrength" key="581" name="Sanación ancestral" tier="2">
+        <rank description="Reduce el daño físico recibido de tu objetivo un 3% durante 15 s después de recibir un efecto crítico de uno de tus hechizos de sanación." lvl="1"/>
+        <rank description="Reduce el daño físico recibido de tu objetivo un 7% durante 15 s después de recibir un efecto crítico de uno de tus hechizos de sanación." lvl="2"/>
+        <rank description="Reduce el daño físico recibido de tu objetivo un 10% durante 15 s después de recibir un efecto crítico de uno de tus hechizos de sanación." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_manaregentotem" key="588" name="Tótems restauradores" tier="3">
+        <rank description="Aumenta un 7% el efecto de Tótem Fuente de maná y aumenta la cantidad sanada por tu Tótem Corriente de sanación un 15%." lvl="1"/>
+        <rank description="Aumenta un 12% el efecto de Tótem Fuente de maná y aumenta la cantidad sanada por tu Tótem Corriente de sanación un 30%." lvl="2"/>
+        <rank description="Aumenta un 20% el efecto de Tótem Fuente de maná y aumenta la cantidad sanada por tu Tótem Corriente de sanación un 45%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_tranquility" key="594" name="Dominio de las mareas" tier="3">
+        <rank description="Aumenta un 1% la probabilidad de efecto crítico de tus hechizos de sanación y de relámpago." lvl="1"/>
+        <rank description="Aumenta un 2% la probabilidad de efecto crítico de tus hechizos de sanación y de relámpago." lvl="2"/>
+        <rank description="Aumenta un 3% la probabilidad de efecto crítico de tus hechizos de sanación y de relámpago." lvl="3"/>
+        <rank description="Aumenta un 4% la probabilidad de efecto crítico de tus hechizos de sanación y de relámpago." lvl="4"/>
+        <rank description="Aumenta un 5% la probabilidad de efecto crítico de tus hechizos de sanación y de relámpago." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_healingway" key="1648" name="Camino de sanación" tier="4">
+        <rank description="Aumenta la cantidad sanada por tu hechizo Ola de sanación un 8%." lvl="1"/>
+        <rank description="Aumenta la cantidad sanada por tu hechizo Ola de sanación un 16%." lvl="2"/>
+        <rank description="Aumenta la cantidad sanada por tu hechizo Ola de sanación un 25%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_ravenform" key="591" name="Presteza de la Naturaleza" tier="4">
+        <rank description="Cuando se activa, tu próximo hechizo de Naturaleza con un tiempo de lanzamiento de base inferior a 10 s se convertirá en un hechizo de lanzamiento instantáneo. Presteza de la Naturaleza comparte tiempo de reutilización con Maestría elemental." lvl="1"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="1695" name="Mente centrada" tier="4">
+        <rank description="Reduce la duración de cualquier efecto de silenciamiento o interrupción que se use contra el chamán un 10%. Este efecto no se acumula con otros efectos similares." lvl="1"/>
+        <rank description="Reduce la duración de cualquier efecto de silenciamiento o interrupción que se use contra el chamán un 20%. Este efecto no se acumula con otros efectos similares." lvl="2"/>
+        <rank description="Reduce la duración de cualquier efecto de silenciamiento o interrupción que se use contra el chamán un 30%. Este efecto no se acumula con otros efectos similares." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_wizardmark" key="592" name="Purificación" tier="5">
+        <rank description="Aumenta un 2% la efectividad de tus hechizos de sanación." lvl="1"/>
+        <rank description="Aumenta un 4% la efectividad de tus hechizos de sanación." lvl="2"/>
+        <rank description="Aumenta un 6% la efectividad de tus hechizos de sanación." lvl="3"/>
+        <rank description="Aumenta un 8% la efectividad de tus hechizos de sanación." lvl="4"/>
+        <rank description="Aumenta un 10% la efectividad de tus hechizos de sanación." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_natureguardian" key="1699" name="Guardián de la Naturaleza" tier="6">
+        <rank description="Cada vez que recibas un ataque dañino que reduzca tu salud por debajo del 30%, tu salud máxima aumenta un 3% durante 10 s y tu nivel de amenaza en el atacante se reduce. 30 s de tiempo de reutilización." lvl="1"/>
+        <rank description="Cada vez que recibas un ataque dañino que reduzca tu salud por debajo del 30%, tu salud máxima aumenta un 6% durante 10 s y tu nivel de amenaza en el atacante se reduce. 30 s de tiempo de reutilización." lvl="2"/>
+        <rank description="Cada vez que recibas un ataque dañino que reduzca tu salud por debajo del 30%, tu salud máxima aumenta un 9% durante 10 s y tu nivel de amenaza en el atacante se reduce. 30 s de tiempo de reutilización." lvl="3"/>
+        <rank description="Cada vez que recibas un ataque dañino que reduzca tu salud por debajo del 30%, tu salud máxima aumenta un 12% durante 10 s y tu nivel de amenaza en el atacante se reduce. 30 s de tiempo de reutilización." lvl="4"/>
+        <rank description="Cada vez que recibas un ataque dañino que reduzca tu salud por debajo del 30%, tu salud máxima aumenta un 15% durante 10 s y tu nivel de amenaza en el atacante se reduce. 30 s de tiempo de reutilización." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_frost_summonwaterelemental" key="590" name="Tótem Marea de maná" requires="588" tier="6">
+        <rank description="Invoca un Tótem Marea de maná con un 10% de la salud del taumaturgo a los pies de este durante 12 s que restaura un 6% del maná total cada 3 s a los miembros del grupo en un radio de 30 m." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_shaman_cleansespirit" key="2084" name="Limpiar espíritu" requires="592" tier="6">
+        <rank description="Limpia el espíritu de un objetivo amistoso, disipando 1 efecto de veneno, 1 efecto de enfermedad y 1 efecto de maldición." lvl="1"/>
+        <spell castTime="0" maxRange="40">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_shaman_blessingofeternals" key="2060" name="Bendición de los Eternos" tier="7">
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos un 2% y aumenta la probabilidad de aplicar el efecto de sanación en el tiempo de Arma de Vida terrestre un 40% al objetivo cuando está al 35% de salud o menos." lvl="1"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos un 4% y aumenta la probabilidad de aplicar el efecto de sanación en el tiempo de Arma de Vida terrestre un 80% al objetivo cuando está al 35% de salud o menos." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_healingwavegreater" key="1697" name="Sanación en cadena mejorada" tier="7">
+        <rank description="Aumenta la cantidad sanada por tu hechizo Sanación en cadena un 10%." lvl="1"/>
+        <rank description="Aumenta la cantidad sanada por tu hechizo Sanación en cadena un 20%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_natureblessing" key="1696" name="Bendición de la Naturaleza" tier="7">
+        <rank description="Aumenta la sanación en una cantidad equivalente al 5% de tu intelecto." lvl="1"/>
+        <rank description="Aumenta la sanación en una cantidad equivalente al 10% de tu intelecto." lvl="2"/>
+        <rank description="Aumenta la sanación en una cantidad equivalente al 15% de tu intelecto." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shaman_ancestralawakening" key="2061" name="Despertar ancestral" tier="8">
+        <rank description="Cuando realizas sanación crítica con tu Ola de sanación, tu Ola de sanación inferior o Mareas Vivas, invocas a un espíritu ancestral para que te ayude, sana instantáneamente al objetivo amistoso de tu grupo o banda con el porcentaje de salud más bajo en un radio de 40 m un 10% de la cantidad de sanación realizada." lvl="1"/>
+        <rank description="Cuando realizas sanación crítica con tu Ola de sanación, tu Ola de sanación inferior o Mareas Vivas, invocas a un espíritu ancestral para que te ayude, sana instantáneamente al objetivo amistoso de tu grupo o banda con el porcentaje de salud más bajo en un radio de 40 m un 20% de la cantidad de sanación realizada." lvl="2"/>
+        <rank description="Cuando realizas sanación crítica con tu Ola de sanación, tu Ola de sanación inferior o Mareas Vivas, invocas a un espíritu ancestral para que te ayude, sana instantáneamente al objetivo amistoso de tu grupo o banda con el porcentaje de salud más bajo en un radio de 40 m un 30% de la cantidad de sanación realizada." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_skinofearth" key="1698" name="Escudo de tierra" tier="8">
+        <rank description="Protege al objetivo con un escudo de tierra que reduce el tiempo perdido de lanzamiento o canalización cuando recibe daño un 30% y provoca que los ataques sanen al objetivo escudado 150 p. Este efecto solo puede tener lugar cada pocos segundos. 6 cargas. Dura 10 min. Escudo de tierra solo puede utilizarse con un objetivo a la vez y solo puede haber un escudo elemental activo a la vez sobre el objetivo." lvl="1"/>
+        <spell castTime="0" maxRange="40">
+          <power cost="15" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_skinofearth" key="2059" name="Escudo de tierra mejorado" requires="1698" tier="8">
+        <rank description="Aumenta la cantidad de cargas de tu Escudo de tierra en 1 y aumenta la sanación hecha por tu Escudo de tierra un 5%." lvl="1"/>
+        <rank description="Aumenta la cantidad de cargas de tu Escudo de tierra en 2 y aumenta la sanación hecha por tu Escudo de tierra un 10%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shaman_tidalwaves" key="2063" name="Maremotos" tier="9">
+        <rank description="Tienes un 20% de probabilidad tras lanzar Sanación en cadena o Mareas Vivas de reducir el tiempo de lanzamiento de tu Ola de sanación un 30% y de aumentar la probabilidad de efecto crítico de tu Ola de sanación inferior un 25%, hasta que se lancen dos de tales hechizos. Además, tu Ola de sanación gana un 4% de tus efectos de bonus de sanación y tu Ola de sanación inferior gana un 2% de tus efectos de bonus de sanación." lvl="1"/>
+        <rank description="Tienes un 40% de probabilidad tras lanzar Sanación en cadena o Mareas Vivas de reducir el tiempo de lanzamiento de tu Ola de sanación un 30% y de aumentar la probabilidad de efecto crítico de tu Ola de sanación inferior un 25%, hasta que se lancen dos de tales hechizos. Además, tu Ola de sanación gana un 8% de tus efectos de bonus de sanación y tu Ola de sanación inferior gana un 4% de tus efectos de bonus de sanación." lvl="2"/>
+        <rank description="Tienes un 60% de probabilidad tras lanzar Sanación en cadena o Mareas Vivas de reducir el tiempo de lanzamiento de tu Ola de sanación un 30% y de aumentar la probabilidad de efecto crítico de tu Ola de sanación inferior un 25%, hasta que se lancen dos de tales hechizos. Además, tu Ola de sanación gana un 12% de tus efectos de bonus de sanación y tu Ola de sanación inferior gana un 6% de tus efectos de bonus de sanación." lvl="3"/>
+        <rank description="Tienes un 80% de probabilidad tras lanzar Sanación en cadena o Mareas Vivas de reducir el tiempo de lanzamiento de tu Ola de sanación un 30% y de aumentar la probabilidad de efecto crítico de tu Ola de sanación inferior un 25%, hasta que se lancen dos de tales hechizos. Además, tu Ola de sanación gana un 16% de tus efectos de bonus de sanación y tu Ola de sanación inferior gana un 8% de tus efectos de bonus de sanación." lvl="4"/>
+        <rank description="Tienes un 100% de probabilidad tras lanzar Sanación en cadena o Mareas Vivas de reducir el tiempo de lanzamiento de tu Ola de sanación un 30% y de aumentar la probabilidad de efecto crítico de tu Ola de sanación inferior un 25%, hasta que se lancen dos de tales hechizos. Además, tu Ola de sanación gana un 20% de tus efectos de bonus de sanación y tu Ola de sanación inferior gana un 10% de tus efectos de bonus de sanación." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_riptide" key="2064" name="Mareas Vivas" tier="10">
+        <rank description="Sana a un objetivo aliado 639-691 p. y luego 665 p. durante 15 s. Tu próxima Sanación en cadena lanzada a ese objetivo principal en menos de 15 s consumirá el efecto de sanación en el tiempo y aumentará el efecto de Sanación en cadena un 25%." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="18" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="WarriorFury" icon="ability_warrior_innerrage" key="Fury" name="Fureur" order="1">
+      <talent column="0" icon="inv_shoulder_22" key="2250" name="Armé jusqu'aux dents" tier="0">
+        <rank description="Augmente votre puissance d'attaque de 1 pour chaque tranche de 108 points de votre valeur d'armure." lvl="1"/>
+        <rank description="Augmente votre puissance d'attaque de 2 pour chaque tranche de 108 points de votre valeur d'armure." lvl="2"/>
+        <rank description="Augmente votre puissance d'attaque de 3 pour chaque tranche de 108 points de votre valeur d'armure." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_purge" key="158" name="Voix tonitruante" tier="0">
+        <rank description="Augmente de 25% la zone d'effet et la durée de vos techniques Cri de guerre, Cri démoralisant et Cri de commandement." lvl="1"/>
+        <rank description="Augmente de 50% la zone d'effet et la durée de vos techniques Cri de guerre, Cri démoralisant et Cri de commandement." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_eviscerate" key="157" name="Cruauté" tier="0">
+        <rank description="Augmente vos chances d'infliger un coup critique avec les armes de mêlée de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les armes de mêlée de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les armes de mêlée de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les armes de mêlée de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'infliger un coup critique avec les armes de mêlée de 5%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_warcry" key="161" name="Cri démoralisant amélioré" tier="1">
+        <rank description="Augmente la réduction de puissance d'attaque en mêlée de votre Cri démoralisant de 8%." lvl="1"/>
+        <rank description="Augmente la réduction de puissance d'attaque en mêlée de votre Cri démoralisant de 16%." lvl="2"/>
+        <rank description="Augmente la réduction de puissance d'attaque en mêlée de votre Cri démoralisant de 24%." lvl="3"/>
+        <rank description="Augmente la réduction de puissance d'attaque en mêlée de votre Cri démoralisant de 32%." lvl="4"/>
+        <rank description="Augmente la réduction de puissance d'attaque en mêlée de votre Cri démoralisant de 40%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_stoneclawtotem" key="159" name="Colère déchaînée" tier="1">
+        <rank description="Vous confère une chance de gagner un point de rage supplémentaire quand vous infligez des dégâts en mêlée avec une arme." lvl="1"/>
+        <rank description="Vous confère une chance de gagner un point de rage supplémentaire quand vous infligez des dégâts en mêlée avec une arme. L'effet se produit plus souvent qu'avec Colère déchaînée (Rang 1)." lvl="2"/>
+        <rank description="Vous confère une chance de gagner un point de rage supplémentaire quand vous infligez des dégâts en mêlée avec une arme. L'effet se produit plus souvent qu'avec Colère déchaînée (Rang 2)." lvl="3"/>
+        <rank description="Vous confère une chance de gagner un point de rage supplémentaire quand vous infligez des dégâts en mêlée avec une arme. L'effet se produit plus souvent qu'avec Colère déchaînée (Rang 3)." lvl="4"/>
+        <rank description="Vous confère une chance de gagner un point de rage supplémentaire quand vous infligez des dégâts en mêlée avec une arme. L'effet se produit plus souvent qu'avec Colère déchaînée (Rang 4)." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_cleave" key="166" name="Enchaînement amélioré" tier="2">
+        <rank description="Augmente le bonus de dégâts infligé par votre technique Enchaînement de 40%." lvl="1"/>
+        <rank description="Augmente le bonus de dégâts infligé par votre technique Enchaînement de 80%." lvl="2"/>
+        <rank description="Augmente le bonus de dégâts infligé par votre technique Enchaînement de 120%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_deathscream" key="160" name="Hurlement perçant" tier="2">
+        <rank description="Tous les ennemis se trouvant à moins de 10 mètres du guerrier sont hébétés, et leur vitesse de déplacement est réduite de 50% pendant 6 sec." lvl="1"/>
+        <spell castTime="0">
+          <power cost="10" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_summonimp" key="661" name="Folie sanguinaire" tier="2">
+        <rank description="Régénère 2% de votre nombre total de points de vie sur 6 sec après avoir reçu un coup critique." lvl="1"/>
+        <rank description="Régénère 4% de votre nombre total de points de vie sur 6 sec après avoir reçu un coup critique." lvl="2"/>
+        <rank description="Régénère 6% de votre nombre total de points de vie sur 6 sec après avoir reçu un coup critique." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="154" name="Présence impérieuse" tier="2">
+        <rank description="Augmente de 5% le bonus à la puissance d'attaque en mêlée de votre Cri de guerre et le bonus aux points de vie de votre Cri de commandement." lvl="1"/>
+        <rank description="Augmente de 10% le bonus à la puissance d'attaque en mêlée de votre Cri de guerre et le bonus aux points de vie de votre Cri de commandement." lvl="2"/>
+        <rank description="Augmente de 15% le bonus à la puissance d'attaque en mêlée de votre Cri de guerre et le bonus aux points de vie de votre Cri de commandement." lvl="3"/>
+        <rank description="Augmente de 20% le bonus à la puissance d'attaque en mêlée de votre Cri de guerre et le bonus aux points de vie de votre Cri de commandement." lvl="4"/>
+        <rank description="Augmente de 25% le bonus à la puissance d'attaque en mêlée de votre Cri de guerre et le bonus aux points de vie de votre Cri de commandement." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_dualwield" key="1581" name="Spécialisation Ambidextrie" tier="3">
+        <rank description="Augmente de 5% les points de dégâts infligés par l'arme que vous utilisez en main gauche." lvl="1"/>
+        <rank description="Augmente de 10% les points de dégâts infligés par l'arme que vous utilisez en main gauche." lvl="2"/>
+        <rank description="Augmente de 15% les points de dégâts infligés par l'arme que vous utilisez en main gauche." lvl="3"/>
+        <rank description="Augmente de 20% les points de dégâts infligés par l'arme que vous utilisez en main gauche." lvl="4"/>
+        <rank description="Augmente de 25% les points de dégâts infligés par l'arme que vous utilisez en main gauche." lvl="5"/>
+      </talent>
+      <talent column="1" icon="inv_sword_48" key="1542" name="Exécution améliorée" tier="3">
+        <rank description="Réduit le coût en rage de votre technique Exécution de 2." lvl="1"/>
+        <rank description="Réduit le coût en rage de votre technique Exécution de 5." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_unholyfrenzy" key="155" name="Enrager" tier="3">
+        <rank description="Vous confère 30% de chances de bénéficier d'un bonus aux dégâts en mêlée de 2% pendant 12 sec lorsque vous êtes victime d'une attaque qui vous inflige des dégâts. Cet effet ne se cumule pas avec Démolisseurs." lvl="1"/>
+        <rank description="Vous confère 30% de chances de bénéficier d'un bonus aux dégâts en mêlée de 4% pendant 12 sec lorsque vous êtes victime d'une attaque qui vous inflige des dégâts. Cet effet ne se cumule pas avec Démolisseurs." lvl="2"/>
+        <rank description="Vous confère 30% de chances de bénéficier d'un bonus aux dégâts en mêlée de 6% pendant 12 sec lorsque vous êtes victime d'une attaque qui vous inflige des dégâts. Cet effet ne se cumule pas avec Démolisseurs." lvl="3"/>
+        <rank description="Vous confère 30% de chances de bénéficier d'un bonus aux dégâts en mêlée de 8% pendant 12 sec lorsque vous êtes victime d'une attaque qui vous inflige des dégâts. Cet effet ne se cumule pas avec Démolisseurs." lvl="4"/>
+        <rank description="Vous confère 30% de chances de bénéficier d'un bonus aux dégâts en mêlée de 10% pendant 12 sec lorsque vous êtes victime d'une attaque qui vous inflige des dégâts. Cet effet ne se cumule pas avec Démolisseurs." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_marksmanship" key="1657" name="Précision" tier="4">
+        <rank description="Augmente vos chances de toucher l'ennemi avec vos armes de mêlée de 1%." lvl="1"/>
+        <rank description="Augmente vos chances de toucher l'ennemi avec vos armes de mêlée de 2%." lvl="2"/>
+        <rank description="Augmente vos chances de toucher l'ennemi avec vos armes de mêlée de 3%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_deathpact" key="165" name="Souhait mortel" tier="4">
+        <rank description="Lorsque cette technique est activée, vous enragez et vos dégâts physiques sont augmentés de 20%, mais tous les dégâts subis sont augmentés de 5%. Dure 30 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000">
+          <power cost="10" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_rogue_sprint" key="1543" name="Interception améliorée" tier="4">
+        <rank description="Réduit le temps de recharge de votre technique Interception de 5 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre technique Interception de 10 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_ancestralguardian" key="1541" name="Rage berserker améliorée" tier="5">
+        <rank description="La technique Rage berserker génère 10 points de rage quand elle est utilisée." lvl="1"/>
+        <rank description="La technique Rage berserker génère 20 points de rage quand elle est utilisée." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_ghoulfrenzy" key="156" name="Rafale" tier="5">
+        <rank description="Lorsque vous infligez un coup critique en mêlée, augmente votre vitesse d'attaque de 5% pour les 3 prochains coups." lvl="1"/>
+        <rank description="Lorsque vous infligez un coup critique en mêlée, augmente votre vitesse d'attaque de 10% pour les 3 prochains coups." lvl="2"/>
+        <rank description="Lorsque vous infligez un coup critique en mêlée, augmente votre vitesse d'attaque de 15% pour les 3 prochains coups." lvl="3"/>
+        <rank description="Lorsque vous infligez un coup critique en mêlée, augmente votre vitesse d'attaque de 20% pour les 3 prochains coups." lvl="4"/>
+        <rank description="Lorsque vous infligez un coup critique en mêlée, augmente votre vitesse d'attaque de 25% pour les 3 prochains coups." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_endlessrage" key="1864" name="Intensifier la rage" tier="6">
+        <rank description="Réduit le temps de recharge de vos techniques Rage sanguinaire, Rage berserker, Témérité et Souhait mortel de 11%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Rage sanguinaire, Rage berserker, Témérité et Souhait mortel de 22%." lvl="2"/>
+        <rank description="Réduit le temps de recharge de vos techniques Rage sanguinaire, Rage berserker, Témérité et Souhait mortel de 33%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_bloodlust" key="167" name="Sanguinaire" requires="165" tier="6">
+        <rank description="Attaque instantanément la cible et lui inflige 13 points de dégâts. De plus, les 3 prochaines attaques de mêlée réussies rendent 1% du maximum de points de vie. Cet effet dure 8 sec. Les dégâts sont proportionnels à votre puissance d'attaque." lvl="1"/>
+        <spell castTime="0" cooldown="4000" maxRange="5">
+          <power cost="20" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_whirlwind" key="1655" name="Tourbillon amélioré" tier="6">
+        <rank description="Augmente les dégâts de votre technique Tourbillon de 10%." lvl="1"/>
+        <rank description="Augmente les dégâts de votre technique Tourbillon de 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_furiousresolve" key="1865" name="Attaques furieuses" tier="7">
+        <rank description="Vos attaques de mêlée normales ont une chance de réduire tous les soins prodigués à la cible de 25% pendant 10 sec. Cet effet est cumulable jusqu'à 2 fois." lvl="1"/>
+        <rank description="Vos attaques de mêlée normales ont une chance de réduire tous les soins prodigués à la cible de 25% pendant 10 sec. Cet effet est cumulable jusqu'à 2 fois. Se produit plus souvent qu'Attaques furieuses (Rang 1)." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_racial_avatar" key="1658" name="Posture berserker améliorée" tier="7">
+        <rank description="Augmente la Force de 4% et réduit la menace générée de 2% lorsque vous êtes en posture berserker." lvl="1"/>
+        <rank description="Augmente la Force de 8% et réduit la menace générée de 4% lorsque vous êtes en posture berserker." lvl="2"/>
+        <rank description="Augmente la Force de 12% et réduit la menace générée de 6% lorsque vous êtes en posture berserker." lvl="3"/>
+        <rank description="Augmente la Force de 16% et réduit la menace générée de 8% lorsque vous êtes en posture berserker." lvl="4"/>
+        <rank description="Augmente la Force de 20% et réduit la menace générée de 10% lorsque vous êtes en posture berserker." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_heroicleap" key="1868" name="Fureur héroïque" tier="8">
+        <rank description="Dissipe tous les effets d'immobilisation et met fin au temps de recharge de votre technique Interception." lvl="1"/>
+        <spell castTime="0" cooldown="45000"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_rampage" key="1659" name="Saccager" requires="167" tier="8">
+        <rank description="Vos coups critiques en mêlée vous font vous déchaîner, ce qui augmente les chances de coup critique en mêlée et à distance de tous les membres du groupe et du raid se trouvant à moins de 45 mètres de 5%. Dure 10 sec." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_bloodsurge" key="1866" name="Afflux sanguin" requires="167" tier="8">
+        <rank description="Vos coups réussis avec Frappe héroïque, Sanguinaire et Tourbillon ont 7% de chances de rendre votre prochain Heurtoir instantané pendant 5 sec." lvl="1"/>
+        <rank description="Vos coups réussis avec Frappe héroïque, Sanguinaire et Tourbillon ont 13% de chances de rendre votre prochain Heurtoir instantané pendant 5 sec." lvl="2"/>
+        <rank description="Vos coups réussis avec Frappe héroïque, Sanguinaire et Tourbillon ont 20% de chances de rendre votre prochain Heurtoir instantané pendant 5 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_intensifyrage" key="2234" name="Fureur sans fin" tier="9">
+        <rank description="Augmente les dégâts infligés par vos techniques Heurtoir, Tourbillon et Sanguinaire de 2%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par vos techniques Heurtoir, Tourbillon et Sanguinaire de 4%." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par vos techniques Heurtoir, Tourbillon et Sanguinaire de 6%." lvl="3"/>
+        <rank description="Augmente les dégâts infligés par vos techniques Heurtoir, Tourbillon et Sanguinaire de 8%." lvl="4"/>
+        <rank description="Augmente les dégâts infligés par vos techniques Heurtoir, Tourbillon et Sanguinaire de 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_titansgrip" key="1867" name="Poigne du titan" tier="10">
+        <rank description="Vous permet de manier les haches, les masses et les épées à deux mains d’une seule main. Lorsque vous portez une arme à deux mains d'une seule main, les dégâts physiques que vous infligez sont réduits de 10%." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="WarriorArms" icon="ability_rogue_eviscerate" key="Arms" name="Armes" order="0">
+      <talent column="0" icon="ability_rogue_ambush" key="124" name="Frappe héroïque améliorée" tier="0">
+        <rank description="Réduit le coût en rage de votre technique Frappe héroïque de 1 points." lvl="1"/>
+        <rank description="Réduit le coût en rage de votre technique Frappe héroïque de 2 points." lvl="2"/>
+        <rank description="Réduit le coût en rage de votre technique Frappe héroïque de 3 points." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_parry" key="130" name="Déviation" tier="0">
+        <rank description="Augmente vos chances de Parer de 1%." lvl="1"/>
+        <rank description="Augmente vos chances de Parer de 2%." lvl="2"/>
+        <rank description="Augmente vos chances de Parer de 3%." lvl="3"/>
+        <rank description="Augmente vos chances de Parer de 4%." lvl="4"/>
+        <rank description="Augmente vos chances de Parer de 5%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_gouge" key="127" name="Pourfendre amélioré" tier="0">
+        <rank description="Augmente de 10% les dégâts de saignement infligés par votre technique Pourfendre." lvl="1"/>
+        <rank description="Augmente de 20% les dégâts de saignement infligés par votre technique Pourfendre." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_charge" key="126" name="Charge améliorée" tier="1">
+        <rank description="Augmente la quantité de Rage générée par votre technique Charge de 5." lvl="1"/>
+        <rank description="Augmente la quantité de Rage générée par votre technique Charge de 10." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_magic_magearmor" key="641" name="Volonté de fer" tier="1">
+        <rank description="Réduit de 7% la durée de tous les effets d'étourdissement et de charme utilisés contre vous." lvl="1"/>
+        <rank description="Réduit de 14% la durée de tous les effets d'étourdissement et de charme utilisés contre vous." lvl="2"/>
+        <rank description="Réduit de 20% la durée de tous les effets d'étourdissement et de charme utilisés contre vous." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_enchantarmor" key="128" name="Maîtrise tactique" tier="1">
+        <rank description="Vous conservez jusqu'à 5 points de rage supplémentaires lorsque vous changez de posture. Augmente aussi considérablement la menace générée par vos techniques Sanguinaire et Frappe mortelle quand vous êtes en posture défensive." lvl="1"/>
+        <rank description="Vous conservez jusqu'à 10 points de rage supplémentaires lorsque vous changez de posture. Augmente aussi considérablement la menace générée par vos techniques Sanguinaire et Frappe mortelle quand vous êtes en posture défensive (Plus efficace que le Rang 1)." lvl="2"/>
+        <rank description="Vous conservez jusqu'à 15 points de rage supplémentaires lorsque vous changez de posture. Augmente aussi considérablement la menace générée par vos techniques Sanguinaire et Frappe mortelle quand vous êtes en posture défensive (Plus efficace que le Rang 2)." lvl="3"/>
+      </talent>
+      <talent column="0" icon="inv_sword_05" key="131" name="Fulgurance améliorée" tier="2">
+        <rank description="Augmente de 25% vos chances d'infliger un coup critique avec la technique Fulgurance." lvl="1"/>
+        <rank description="Augmente de 50% vos chances d'infliger un coup critique avec la technique Fulgurance." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofstamina" key="137" name="Maîtrise de la Rage" tier="2">
+        <rank description="Génère 1 point de rage toutes les 3 secondes." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_searingarrow" key="662" name="Empaler" tier="2">
+        <rank description="Augmente de 10% le bonus aux dégâts des coups critiques réussis avec vos techniques." lvl="1"/>
+        <rank description="Augmente de 20% le bonus aux dégâts des coups critiques réussis avec vos techniques." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_backstab" key="121" name="Blessures profondes" requires="662" tier="2">
+        <rank description="Vos coups critiques font saigner l'adversaire et lui infligent 16% des points de dégâts moyens de votre arme de mêlée en 6 sec." lvl="1"/>
+        <rank description="Vos coups critiques font saigner l'adversaire et lui infligent 32% des points de dégâts moyens de votre arme de mêlée en 6 sec." lvl="2"/>
+        <rank description="Vos coups critiques font saigner l'adversaire et lui infligent 48% des points de dégâts moyens de votre arme de mêlée en 6 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_axe_09" key="136" name="Spécialisation Arme 2M" tier="3">
+        <rank description="Augmente de 2% les points de dégâts que vous infligez avec les armes à deux mains." lvl="1"/>
+        <rank description="Augmente de 4% les points de dégâts que vous infligez avec les armes à deux mains." lvl="2"/>
+        <rank description="Augmente de 6% les points de dégâts que vous infligez avec les armes à deux mains." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_rogue_hungerforblood" key="2232" name="Goût du sang" tier="3">
+        <rank description="Chaque fois que votre technique Pourfendre inflige des dégâts, vous avez 33% de chances de permettre l'utilisation de votre technique Fulgurance pendant 9 sec. 1 charge. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="1"/>
+        <rank description="Chaque fois que votre technique Pourfendre inflige des dégâts, vous avez 66% de chances de permettre l'utilisation de votre technique Fulgurance pendant 9 sec. 1 charge. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="2"/>
+        <rank description="Chaque fois que votre technique Pourfendre inflige des dégâts, vous avez 100% de chances de permettre l'utilisation de votre technique Fulgurance pendant 9 sec. 1 charge. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="inv_axe_06" key="132" name="Spécialisation Hache d'hast" tier="4">
+        <rank description="Augmente de 1% vos chances d'infliger un coup critique avec les haches et les armes d'hast ainsi que les dégâts de ces critiques." lvl="1"/>
+        <rank description="Augmente de 2% vos chances d'infliger un coup critique avec les haches et les armes d'hast ainsi que les dégâts de ces critiques." lvl="2"/>
+        <rank description="Augmente de 3% vos chances d'infliger un coup critique avec les haches et les armes d'hast ainsi que les dégâts de ces critiques." lvl="3"/>
+        <rank description="Augmente de 4% vos chances d'infliger un coup critique avec les haches et les armes d'hast ainsi que les dégâts de ces critiques." lvl="4"/>
+        <rank description="Augmente de 5% vos chances d'infliger un coup critique avec les haches et les armes d'hast ainsi que les dégâts de ces critiques." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_rogue_slicedice" key="133" name="Attaques circulaires" tier="4">
+        <rank description="Vos 5 prochaines attaques de mêlée frappent un adversaire proche supplémentaire." lvl="1"/>
+        <spell castTime="0" cooldown="30000">
+          <power cost="30" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_mace_01" key="125" name="Spécialisation Masse" tier="4">
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 3% de l'armure de votre adversaire." lvl="1"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 6% de l'armure de votre adversaire." lvl="2"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 9% de l'armure de votre adversaire." lvl="3"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 12% de l'armure de votre adversaire." lvl="4"/>
+        <rank description="Vos attaques avec les masses ignorent jusqu'à 15% de l'armure de votre adversaire." lvl="5"/>
+      </talent>
+      <talent column="3" icon="inv_sword_27" key="123" name="Spécialisation Epée" tier="4">
+        <rank description="Vous confère 2% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir infligé des dégâts avec votre épée. Cet effet ne survient pas plus d'une fois toutes les 6 secondes." lvl="1"/>
+        <rank description="Vous confère 4% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir infligé des dégâts avec votre épée. Cet effet ne survient pas plus d'une fois toutes les 6 secondes." lvl="2"/>
+        <rank description="Vous confère 6% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir infligé des dégâts avec votre épée. Cet effet ne survient pas plus d'une fois toutes les 6 secondes." lvl="3"/>
+        <rank description="Vous confère 8% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir infligé des dégâts avec votre épée. Cet effet ne survient pas plus d'une fois toutes les 6 secondes." lvl="4"/>
+        <rank description="Vous confère 10% de chances de bénéficier d'une attaque supplémentaire sur la même cible après avoir infligé des dégâts avec votre épée. Cet effet ne survient pas plus d'une fois toutes les 6 secondes." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_weaponmastery" key="134" name="Maîtrise des armes" tier="5">
+        <rank description="Réduit la probabilité que vos attaques soient esquivées de 1% et réduit la durée de tous les effets de désarmement utilisés contre vous de 25%. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="1"/>
+        <rank description="Réduit la probabilité que vos attaques soient esquivées de 2% et réduit la durée de tous les effets de désarmement utilisés contre vous de 50%. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_shockwave" key="129" name="Brise-genou amélioré" tier="5">
+        <rank description="Confère à votre technique Brise-genou 5% de chances d'immobiliser votre cible pendant 5 sec." lvl="1"/>
+        <rank description="Confère à votre technique Brise-genou 10% de chances d'immobiliser votre cible pendant 5 sec." lvl="2"/>
+        <rank description="Confère à votre technique Brise-genou 15% de chances d'immobiliser votre cible pendant 5 sec." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_warrior_bloodnova" key="1859" name="Traumatisme" tier="5">
+        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 15% pendant 15 sec." lvl="1"/>
+        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 30% pendant 15 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_harass" key="1663" name="Second souffle" tier="6">
+        <rank description="Chaque fois que vous êtes atteint par un effet d'étourdissement ou d'immobilisation, vous gagnez 10 points de rage et 5% de votre total de points de vie en 10 sec." lvl="1"/>
+        <rank description="Chaque fois que vous êtes atteint par un effet d'étourdissement ou d'immobilisation, vous gagnez 20 points de rage et 10% de votre total de points de vie en 10 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_savageblow" key="135" name="Frappe mortelle" requires="133" tier="6">
+        <rank description="Une attaque vicieuse qui inflige les dégâts de l'arme plus 85 et blesse la cible. L'effet des sorts de soins dont elle est la cible est réduit de 50% pendant 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="30" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warrior_offensivestance" key="1862" name="Force des armes" tier="6">
+        <rank description="Augmente votre total de Force et d'Endurance de 2% et votre expertise de 2." lvl="1"/>
+        <rank description="Augmente votre total de Force et d'Endurance de 4% et votre expertise de 4." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_warrior_decisivestrike" key="2233" name="Heurtoir amélioré" tier="6">
+        <rank description="Réduit le temps de frappe de votre technique Heurtoir de 0.5 sec." lvl="1"/>
+        <rank description="Réduit le temps de frappe de votre technique Heurtoir de 1 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_bullrush" key="2283" name="Mastodonte" tier="7">
+        <rank description="Votre technique Charge est à présent utilisable en combat, mais son temps de recharge est augmenté de 5 sec. Après une Charge, votre prochaine technique Heurtoir ou Frappe mortelle bénéficie de 25% de chances supplémentaires d'être critique si elle est utilisée dans les 10 sec." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_savageblow" key="1824" name="Frappe mortelle améliorée" requires="135" tier="7">
+        <rank description="Augmente les dégâts infligés par votre technique Frappe mortelle de 3% et réduit le temps de recharge de 0.3 sec." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre technique Frappe mortelle de 6% et réduit le temps de recharge de 0.7 sec." lvl="2"/>
+        <rank description="Augmente les dégâts infligés par votre technique Frappe mortelle de 10% et réduit le temps de recharge de 1 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_unrelentingassault" key="1860" name="Assaut continuel" tier="7">
+        <rank description="Réduit le temps de recharge de vos techniques Fulgurance et Vengeance de 2 secondes et augmente les dégâts infligés par ces deux techniques de 10%. De plus, si vous frappez un personnage-joueur avec Fulgurance alors qu'il est en train d'incanter un sort, ses dégâts et soins magiques sont réduits de 25% pendant 6 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Fulgurance et Vengeance de 4 secondes et augmente les dégâts infligés par ces deux techniques de 20%. De plus, si vous frappez un personnage-joueur avec Fulgurance alors qu'il est en train d'incanter un sort, ses dégâts et soins magiques sont réduits de 50% pendant 6 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_improveddisciplines" key="1662" name="Mort soudaine" tier="8">
+        <rank description="Vos coups en mêlée ont 3% de chances de permettre l'utilisation d'Exécution quel que soit le montant de points de vie restant à la cible. De plus, vous conservez 3 points de rage après avoir utilisé Exécution." lvl="1"/>
+        <rank description="Vos coups en mêlée ont 6% de chances de permettre l'utilisation d'Exécution quel que soit le montant de points de vie restant à la cible. De plus, vous conservez 7 points de rage après avoir utilisé Exécution." lvl="2"/>
+        <rank description="Vos coups en mêlée ont 9% de chances de permettre l'utilisation d'Exécution quel que soit le montant de points de vie restant à la cible. De plus, vous conservez 10 points de rage après avoir utilisé Exécution." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_endlessrage" key="1661" name="Rage infinie" tier="8">
+        <rank description="Vous générez 25% de rage supplémentaires lorsque vous infligez des dégâts." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_bloodfrenzy" key="1664" name="Frénésie sanglante" tier="8">
+        <rank description="Augmente votre vitesse d'attaque en mêlée de 5%. De plus, vos techniques Pourfendre et Blessures profondes augmentent aussi tous les dégâts physiques infligés à cette cible de 2%." lvl="1"/>
+        <rank description="Augmente votre vitesse d'attaque en mêlée de 10%. De plus, vos techniques Pourfendre et Blessures profondes augmentent aussi tous les dégâts physiques infligés à cette cible de 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_trauma" key="2231" name="Démolisseurs" tier="9">
+        <rank description="Vos coups critiques en mêlée vous font Enrager, ce qui augmente tous les dégâts infligés de 2% pendant 12 sec. Cet effet ne se cumule pas avec Enrager." lvl="1"/>
+        <rank description="Vos coups critiques en mêlée vous font Enrager, ce qui augmente tous les dégâts infligés de 4% pendant 12 sec. Cet effet ne se cumule pas avec Enrager." lvl="2"/>
+        <rank description="Vos coups critiques en mêlée vous font Enrager, ce qui augmente tous les dégâts infligés de 6% pendant 12 sec. Cet effet ne se cumule pas avec Enrager." lvl="3"/>
+        <rank description="Vos coups critiques en mêlée vous font Enrager, ce qui augmente tous les dégâts infligés de 8% pendant 12 sec. Cet effet ne se cumule pas avec Enrager." lvl="4"/>
+        <rank description="Vos coups critiques en mêlée vous font Enrager, ce qui augmente tous les dégâts infligés de 10% pendant 12 sec. Cet effet ne se cumule pas avec Enrager." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_bladestorm" key="1863" name="Tempête de lames" tier="10">
+        <rank description="Exécute instantanément une attaque Tourbillon sur un maximum de 4 cibles et pendant les prochaines 6 sec, vous exécuterez une attaque Tourbillon toutes les 1 sec. Tant que vous êtes sous l'effet de Tempête de lames, vous pouvez vous déplacer mais vous ne pouvez pas exécuter d'autres techniques. Cependant, vous ne ressentez ni pitié, ni remords, ni peur et vous ne pouvez être arrêté à moins d'être tué." lvl="1"/>
+        <spell castTime="0" cooldown="90000">
+          <power cost="25" type="rage"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="WarriorProtection" icon="inv_shield_06" key="Protection" name="Protection" order="2">
+      <talent column="0" icon="ability_racial_bloodrage" key="142" name="Rage sanguinaire améliorée" tier="0">
+        <rank description="Augmente la rage instantanée générée par votre technique Rage sanguinaire de 25%." lvl="1"/>
+        <rank description="Augmente la rage instantanée générée par votre technique Rage sanguinaire de 50%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_shield_06" key="1601" name="Spécialisation Bouclier" tier="0">
+        <rank description="Augmente de 1% vos chances de bloquer les attaques avec un bouclier, avec 20% de chances de générer 5 points de Rage quand vous bloquez, esquivez ou parez." lvl="1"/>
+        <rank description="Augmente de 2% vos chances de bloquer les attaques avec un bouclier, avec 40% de chances de générer 5 points de Rage quand vous bloquez, esquivez ou parez." lvl="2"/>
+        <rank description="Augmente de 3% vos chances de bloquer les attaques avec un bouclier, avec 60% de chances de générer 5 points de Rage quand vous bloquez, esquivez ou parez." lvl="3"/>
+        <rank description="Augmente de 4% vos chances de bloquer les attaques avec un bouclier, avec 80% de chances de générer 5 points de Rage quand vous bloquez, esquivez ou parez." lvl="4"/>
+        <rank description="Augmente de 5% vos chances de bloquer les attaques avec un bouclier, avec 100% de chances de générer 5 points de Rage quand vous bloquez, esquivez ou parez." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_thunderclap" key="141" name="Coup de tonnerre amélioré" tier="0">
+        <rank description="Réduit le coût de votre technique Coup de tonnerre de 1 points de rage et augmente les dégâts de 10% et l'effet de ralentissement de 4% supplémentaires." lvl="1"/>
+        <rank description="Réduit le coût de votre technique Coup de tonnerre de 2 points de rage et augmente les dégâts de 20% et l'effet de ralentissement de 7% supplémentaires." lvl="2"/>
+        <rank description="Réduit le coût de votre technique Coup de tonnerre de 4 points de rage et augmente les dégâts de 30% et l'effet de ralentissement de 10% supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_incite" key="144" name="Emulation" tier="1">
+        <rank description="Augmente de 5% vos chances de réaliser un coup critique avec les techniques Frappe héroïque, Coup de tonnerre et Enchaînement." lvl="1"/>
+        <rank description="Augmente de 10% vos chances de réaliser un coup critique avec les techniques Frappe héroïque, Coup de tonnerre et Enchaînement." lvl="2"/>
+        <rank description="Augmente de 15% vos chances de réaliser un coup critique avec les techniques Frappe héroïque, Coup de tonnerre et Enchaînement." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_nature_mirrorimage" key="138" name="Anticipation" tier="1">
+        <rank description="Augmente vos chances d'esquiver une attaque de 1%." lvl="1"/>
+        <rank description="Augmente vos chances d'esquiver une attaque de 2%." lvl="2"/>
+        <rank description="Augmente vos chances d'esquiver une attaque de 3%." lvl="3"/>
+        <rank description="Augmente vos chances d'esquiver une attaque de 4%." lvl="4"/>
+        <rank description="Augmente vos chances d'esquiver une attaque de 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_ashestoashes" key="153" name="Dernier rempart" tier="2">
+        <rank description="Activée, cette technique vous confère temporairement 30% de votre maximum de points de vie en plus pendant 20 sec. Lorsque l'effet expire, les points de vie sont perdus." lvl="1"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_revenge" key="147" name="Vengeance améliorée" tier="2">
+        <rank description="Augmente les dégâts de votre technique Vengeance de 10% et vous confère 25% de chances d'étourdir la cible pendant 3 sec." lvl="1"/>
+        <rank description="Augmente les dégâts de votre technique Vengeance de 20% et vous confère 50% de chances d'étourdir la cible pendant 3 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_shieldmastery" key="1654" name="Maîtrise du bouclier" tier="2">
+        <rank description="Augmente de 15% votre valeur de blocage et réduit de 10 sec. le temps de recharge de votre technique Maîtrise du blocage." lvl="1"/>
+        <rank description="Augmente de 30% votre valeur de blocage et réduit de 20 sec. le temps de recharge de votre technique Maîtrise du blocage." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_holy_devotion" key="140" name="Résistance" tier="2">
+        <rank description="Augmente la valeur d'armure des objets de 2% et réduit la durée de tous les effets affectant le déplacement de 6%." lvl="1"/>
+        <rank description="Augmente la valeur d'armure des objets de 4% et réduit la durée de tous les effets affectant le déplacement de 12%." lvl="2"/>
+        <rank description="Augmente la valeur d'armure des objets de 6% et réduit la durée de tous les effets affectant le déplacement de 18%." lvl="3"/>
+        <rank description="Augmente la valeur d'armure des objets de 8% et réduit la durée de tous les effets affectant le déplacement de 24%." lvl="4"/>
+        <rank description="Augmente la valeur d'armure des objets de 10% et réduit la durée de tous les effets affectant le déplacement de 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_shieldreflection" key="2247" name="Renvoi de sort amélioré" tier="3">
+        <rank description="Réduit la probabilité que vous soyez touché par les sorts de 2%, et quand la technique est utilisée, elle renvoie le premier sort lancé contre les 2 membres du groupe les plus proches se trouvant à moins de 20 mètres." lvl="1"/>
+        <rank description="Réduit la probabilité que vous soyez touché par les sorts de 4%, et quand la technique est utilisée, elle renvoie le premier sort lancé contre les 4 membres du groupe les plus proches se trouvant à moins de 20 mètres." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_disarm" key="151" name="Désarmement amélioré" tier="3">
+        <rank description="Réduit le temps de recharge de votre technique Désarmement de 10 secondes et fait subir à la cible 5% de dégâts supplémentaires quand elle est désarmée." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre technique Désarmement de 20 secondes et fait subir à la cible 10% de dégâts supplémentaires quand elle est désarmée." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_sunder" key="146" name="Percer" tier="3">
+        <rank description="Réduit le coût en rage de vos techniques Fracasser armure et Dévaster de 1." lvl="1"/>
+        <rank description="Réduit le coût en rage de vos techniques Fracasser armure et Dévaster de 2." lvl="2"/>
+        <rank description="Réduit le coût en rage de vos techniques Fracasser armure et Dévaster de 3." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_shieldwall" key="150" name="Disciplines améliorées" tier="4">
+        <rank description="Réduit le temps de recharge de vos techniques Mur protecteur, Représailles et Témérité de 30 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos techniques Mur protecteur, Représailles et Témérité de 60 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_thunderbolt" key="152" name="Coup traumatisant" tier="4">
+        <rank description="Etourdit l'adversaire pendant 5 sec et lui inflige 10 points de dégâts (en fonction de la puissance d'attaque)." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="5">
+          <power cost="15" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warrior_shieldbash" key="149" name="Imposition du silence" tier="4">
+        <rank description="Confère à vos techniques Coup de bouclier et Lancer héroïque 50% de chances de réduire la cible au silence pendant 3 sec et augmente les dégâts de votre technique Heurt de bouclier de 5%." lvl="1"/>
+        <rank description="Confère à vos techniques Coup de bouclier et Lancer héroïque 100% de chances de réduire la cible au silence pendant 3 sec et augmente les dégâts de votre technique Heurt de bouclier de 10%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_sword_20" key="702" name="Spécialisation Arme 1M" tier="5">
+        <rank description="Augmente de 2% les dégâts physiques que vous infligez quand une arme de mêlée à une main est équipée." lvl="1"/>
+        <rank description="Augmente de 4% les dégâts physiques que vous infligez quand une arme de mêlée à une main est équipée." lvl="2"/>
+        <rank description="Augmente de 6% les dégâts physiques que vous infligez quand une arme de mêlée à une main est équipée." lvl="3"/>
+        <rank description="Augmente de 8% les dégâts physiques que vous infligez quand une arme de mêlée à une main est équipée." lvl="4"/>
+        <rank description="Augmente de 10% les dégâts physiques que vous infligez quand une arme de mêlée à une main est équipée." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_defensivestance" key="1652" name="Posture défensive améliorée" tier="6">
+        <rank description="Lorsque vous êtes en posture défensive, tous les dégâts des sorts sont réduits de 3% et lorsque vous parez, bloquez ou esquivez une attaque, vous avez 50% de chances d'enrager, ce qui augmente les dégâts physiques infligés de 5% pendant 12 sec." lvl="1"/>
+        <rank description="Lorsque vous êtes en posture défensive, tous les dégâts des sorts sont réduits de 6% et lorsque vous parez, bloquez ou esquivez une attaque, vous avez 100% de chances d'enrager, ce qui augmente les dégâts physiques infligés de 10% pendant 12 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_vigilance" key="148" name="Vigilance" requires="152" tier="6">
+        <rank description="Focalise votre regard protecteur sur une cible appartenant au groupe ou raid, ce qui réduit les dégâts qu'elle subit de 3% et vous transfère -10% de la menace qu'elle génère. De plus, chaque fois qu'elle est touchée par une attaque, le temps de recharge de votre Provocation prend fin. Dure 30 min. Une seule cible à la fois peut bénéficier de cet effet." lvl="1"/>
+        <spell castTime="0" maxRange="30"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_focusedrage" key="1660" name="Rage focalisée" tier="6">
+        <rank description="Réduit le coût en rage de vos techniques offensives de 1." lvl="1"/>
+        <rank description="Réduit le coût en rage de vos techniques offensives de 2." lvl="2"/>
+        <rank description="Réduit le coût en rage de vos techniques offensives de 3." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_helmet_21" key="1653" name="Vitalité" tier="7">
+        <rank description="Augmente votre total de Force et d'Endurance de 2% et votre expertise de 2." lvl="1"/>
+        <rank description="Augmente votre total de Force et d'Endurance de 4% et votre expertise de 4." lvl="2"/>
+        <rank description="Augmente votre total de Force et d'Endurance de 6% et votre expertise de 6." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_safeguard" key="1870" name="Protéger" tier="7">
+        <rank description="Réduit les dégâts subis par la cible de votre technique Intervention de 15% pendant 6 sec." lvl="1"/>
+        <rank description="Réduit les dégâts subis par la cible de votre technique Intervention de 30% pendant 6 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_warrior_warbringer" key="2236" name="Porteguerre" tier="8">
+        <rank description="Vos techniques Charge, Interception et Intervention sont à présent utilisables en combat et avec n'importe quelle posture. De plus, Intervention dissipe tous les effets affectant le déplacement." lvl="1"/>
+      </talent>
+      <talent column="1" icon="inv_sword_11" key="1666" name="Dévaster" tier="8">
+        <rank description="Fracasse l'armure de la cible, provoquant l'effet Fracasser armure. De plus, inflige 120% des dégâts de l'arme plus 48 pour chaque Fracasser armure sur la cible. L'effet de fracassement d'armure peut être cumulé jusqu'à 5 fois." lvl="1"/>
+        <spell castTime="0" maxRange="5">
+          <power cost="15" type="rage"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_warrior_criticalblock" key="1893" name="Blocage critique" tier="8">
+        <rank description="Vos blocages réussis ont 20% de chances de bloquer le double du montant normal. Augmente vos chances d'infliger un coup critique avec votre technique Heurt de bouclier de 5% supplémentaires." lvl="1"/>
+        <rank description="Vos blocages réussis ont 40% de chances de bloquer le double du montant normal. Augmente vos chances d'infliger un coup critique avec votre technique Heurt de bouclier de 10% supplémentaires." lvl="2"/>
+        <rank description="Vos blocages réussis ont 60% de chances de bloquer le double du montant normal. Augmente vos chances d'infliger un coup critique avec votre technique Heurt de bouclier de 15% supplémentaires." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_swordandboard" key="1871" name="Epée et bouclier" requires="1666" tier="9">
+        <rank description="Augmente les chances de coup critique de votre technique Dévaster de 5%, et quand votre technique Dévaster ou Vengeance inflige des dégâts, elle a 10% de chances de mettre fin au temps de recharge de votre technique Heurt de bouclier et de réduire son coût de 100% pendant 5 sec." lvl="1"/>
+        <rank description="Augmente les chances de coup critique de votre technique Dévaster de 10%, et quand votre technique Dévaster ou Vengeance inflige des dégâts, elle a 20% de chances de mettre fin au temps de recharge de votre technique Heurt de bouclier et de réduire son coût de 100% pendant 5 sec." lvl="2"/>
+        <rank description="Augmente les chances de coup critique de votre technique Dévaster de 15%, et quand votre technique Dévaster ou Vengeance inflige des dégâts, elle a 30% de chances de mettre fin au temps de recharge de votre technique Heurt de bouclier et de réduire son coût de 100% pendant 5 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_shield_31" key="2246" name="Bouclier de dégâts" tier="9">
+        <rank description="Chaque fois qu'une attaque en mêlée vous inflige des dégâts ou que vous la bloquez, vous infligez un montant de dégâts égal à 10% de votre valeur de blocage." lvl="1"/>
+        <rank description="Chaque fois qu'une attaque en mêlée vous inflige des dégâts ou que vous la bloquez, vous infligez un montant de dégâts égal à 20% de votre valeur de blocage." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_warrior_shockwave" key="1872" name="Onde de choc" tier="10">
+        <rank description="Projette une onde de force devant le guerrier, qui inflige 20 points de dégâts (en fonction de la puissance d'attaque) et étourdit toutes les cibles ennemies se trouvant à moins de 10 mètres dans un cône devant lui pendant 4 sec." lvl="1"/>
+        <spell castTime="0" cooldown="20000">
+          <power cost="15" type="rage"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

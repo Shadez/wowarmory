@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="PriestDiscipline" icon="spell_holy_wordfortitude" key="Discipline" name="Discipline" order="0">
+      <talent column="1" icon="spell_magic_magearmor" key="342" name="Volonté inflexible" tier="0">
+        <rank description="Réduit la durée des effets d'étourdissement, de peur et de silence contre vous de 6% supplémentaires." lvl="1"/>
+        <rank description="Réduit la durée des effets d'étourdissement, de peur et de silence contre vous de 12% supplémentaires." lvl="2"/>
+        <rank description="Réduit la durée des effets d'étourdissement, de peur et de silence contre vous de 18% supplémentaires." lvl="3"/>
+        <rank description="Réduit la durée des effets d'étourdissement, de peur et de silence contre vous de 24% supplémentaires." lvl="4"/>
+        <rank description="Réduit la durée des effets d'étourdissement, de peur et de silence contre vous de 30% supplémentaires." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofvengeance" key="1898" name="Disciplines jumelles" tier="0">
+        <rank description="Augmente de 1% les dégâts et les soins produits par vos sorts instantanés." lvl="1"/>
+        <rank description="Augmente de 2% les dégâts et les soins produits par vos sorts instantanés." lvl="2"/>
+        <rank description="Augmente de 3% les dégâts et les soins produits par vos sorts instantanés." lvl="3"/>
+        <rank description="Augmente de 4% les dégâts et les soins produits par vos sorts instantanés." lvl="4"/>
+        <rank description="Augmente de 5% les dégâts et les soins produits par vos sorts instantanés." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_nature_manaregentotem" key="352" name="Résolution silencieuse" tier="1">
+        <rank description="Diminue la menace générée par vos sorts du Sacré et de Discipline de 7% et réduit la probabilité que vos sorts bénéfiques et effets de dégâts sur la durée soient dissipés de 10%." lvl="1"/>
+        <rank description="Diminue la menace générée par vos sorts du Sacré et de Discipline de 14% et réduit la probabilité que vos sorts bénéfiques et effets de dégâts sur la durée soient dissipés de 20%." lvl="2"/>
+        <rank description="Diminue la menace générée par vos sorts du Sacré et de Discipline de 20% et réduit la probabilité que vos sorts bénéfiques et effets de dégâts sur la durée soient dissipés de 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_innerfire" key="346" name="Feu intérieur amélioré" tier="1">
+        <rank description="Augmente l'effet de votre sort Feu intérieur de 15% et augmente son nombre total de charges de 4." lvl="1"/>
+        <rank description="Augmente l'effet de votre sort Feu intérieur de 30% et augmente son nombre total de charges de 8." lvl="2"/>
+        <rank description="Augmente l'effet de votre sort Feu intérieur de 45% et augmente son nombre total de charges de 12." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_wordfortitude" key="344" name="Mot de pouvoir : Robustesse amélioré" tier="1">
+        <rank description="Augmente les effets de vos sorts Mot de pouvoir : Robustesse et Prière de robustesse de 15%, en plus d'augmenter votre total d'Endurance de 2%." lvl="1"/>
+        <rank description="Augmente les effets de vos sorts Mot de pouvoir : Robustesse et Prière de robustesse de 30%, en plus d'augmenter votre total d'Endurance de 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_tranquility" key="321" name="Martyre" tier="1">
+        <rank description="Vous confère 50% de chances de bénéficier de l'effet Incantation focalisée pendant 6 sec après avoir été victime d'un coup critique en mêlée ou à distance. Cet effet réduit les interruptions causées par les attaques infligeant des dégâts pendant l'incantation de sorts de prêtre et réduit la durée des effets d'interruption de 10%." lvl="1"/>
+        <rank description="Vous confère 100% de chances de bénéficier de l'effet Incantation focalisée pendant 6 sec après avoir été victime d'un coup critique en mêlée ou à distance. Cet effet réduit les interruptions causées par les attaques infligeant des dégâts pendant l'incantation de sorts de prêtre et réduit la durée des effets d'interruption de 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_nature_sleep" key="347" name="Méditation" tier="2">
+        <rank description="Vous confère 17% de votre vitesse de récupération du mana normale pendant l'incantation." lvl="1"/>
+        <rank description="Vous confère 33% de votre vitesse de récupération du mana normale pendant l'incantation." lvl="2"/>
+        <rank description="Vous confère 50% de votre vitesse de récupération du mana normale pendant l'incantation." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_frost_windwalkon" key="348" name="Focalisation améliorée" tier="2">
+        <rank description="Lorsqu'elle est activée, cette technique réduit de 100% le coût en mana de votre prochain sort et augmente ses chances d'infliger un effet critique de 25%, si ce sort peut avoir un effet critique." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="spell_holy_powerwordshield" key="343" name="Mot de pouvoir : Bouclier amélioré" tier="2">
+        <rank description="Augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier de 5%." lvl="1"/>
+        <rank description="Augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier de 10%." lvl="2"/>
+        <rank description="Augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier de 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_absolution" key="1769" name="Absolution" tier="3">
+        <rank description="Réduit le coût en mana de vos sorts Dissipation de la magie, Guérison des maladies, Abolir maladie et Dissipation de masse de 5%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts Dissipation de la magie, Guérison des maladies, Abolir maladie et Dissipation de masse de 10%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts Dissipation de la magie, Guérison des maladies, Abolir maladie et Dissipation de masse de 15%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hibernation" key="341" name="Sagacité" tier="3">
+        <rank description="Réduit le coût en mana de vos sorts instantanés de 4%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts instantanés de 7%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts instantanés de 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_manaburn" key="350" name="Brûlure de mana améliorée" tier="3">
+        <rank description="Réduit le temps d'incantation du sort Brûlure de mana de 0.5 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation du sort Brûlure de mana de 1 sec." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_powerwordshield" key="2268" name="Bouclier réflecteur" tier="4">
+        <rank description="Renvoie 22% des dégâts que vous absorbez avec votre Mot de pouvoir : Bouclier à l'attaquant. Ces dégâts ne génèrent pas de menace." lvl="1"/>
+        <rank description="Renvoie 45% des dégâts que vous absorbez avec votre Mot de pouvoir : Bouclier à l'attaquant. Ces dégâts ne génèrent pas de menace." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_nature_enchantarmor" key="1201" name="Force mentale" tier="4">
+        <rank description="Augmente votre total d'Intelligence de 3%." lvl="1"/>
+        <rank description="Augmente votre total d'Intelligence de 6%." lvl="2"/>
+        <rank description="Augmente votre total d'Intelligence de 9%." lvl="3"/>
+        <rank description="Augmente votre total d'Intelligence de 12%." lvl="4"/>
+        <rank description="Augmente votre total d'Intelligence de 15%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_pureofheart" key="351" name="Protection de l'âme" requires="343" tier="4">
+        <rank description="Réduit le temps de recharge de votre technique Mot de pouvoir : Bouclier de 4 sec. et réduit son coût en mana de 15%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_focusedpower" key="1771" name="Puissance focalisée" tier="5">
+        <rank description="Augmente les dégâts et les soins produits par vos sorts de 2%. De plus, le temps d'incantation de Dissipation de masse est réduit de 0.5 sec." lvl="1"/>
+        <rank description="Augmente les dégâts et les soins produits par vos sorts de 4%. De plus, le temps d'incantation de Dissipation de masse est réduit de 1 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_arcane_mindmastery" key="1772" name="Illumination" tier="5">
+        <rank description="Augmente votre total d'Esprit de 2% et augmente votre hâte des sorts de 2%." lvl="1"/>
+        <rank description="Augmente votre total d'Esprit de 4% et augmente votre hâte des sorts de 4%." lvl="2"/>
+        <rank description="Augmente votre total d'Esprit de 6% et augmente votre hâte des sorts de 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_focusedpower" key="1858" name="Volonté focalisée" tier="6">
+        <rank description="Augmente les chances d'effet critique de vos sorts de 1%, et après avoir subi un coup critique, vous bénéficiez de l'effet Volonté focalisée, qui réduit tous les dégâts subis de 2% et augmente les effets des soins sur vous de 3%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="1"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts de 2%, et après avoir subi un coup critique, vous bénéficiez de l'effet Volonté focalisée, qui réduit tous les dégâts subis de 3% et augmente les effets des soins sur vous de 4%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="2"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts de 3%, et après avoir subi un coup critique, vous bénéficiez de l'effet Volonté focalisée, qui réduit tous les dégâts subis de 4% et augmente les effets des soins sur vous de 5%. Cumulable jusqu'à 3 fois. Dure 8 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_powerinfusion" key="322" name="Infusion de puissance" requires="1201" tier="6">
+        <rank description="Imprègne la cible de puissance, ce qui augmente la vitesse d'incantation des sorts de 20% et réduit le coût en mana de tous les sorts de 20%. Dure 15 sec." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_chastise" key="1773" name="Soins rapides améliorés" tier="6">
+        <rank description="Réduit le coût en mana de vos Soins rapides de 5% et augmente leurs chances d'effet critique de 4% sur les cibles alliées ne disposant que de 50% ou moins de leurs points de vie." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos Soins rapides de 10% et augmente leurs chances d'effet critique de 7% sur les cibles alliées ne disposant que de 50% ou moins de leurs points de vie." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos Soins rapides de 15% et augmente leurs chances d'effet critique de 10% sur les cibles alliées ne disposant que de 50% ou moins de leurs points de vie." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Regain d'espoir" tier="7">
+        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 2% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 50% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 20 sec quand vous lancez Mot de pouvoir : Bouclier." lvl="1"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 4% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 100% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 20 sec quand vous lancez Mot de pouvoir : Bouclier." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_rapture" key="1896" name="Extase" tier="7">
+        <rank description="Quand votre Mot de pouvoir : Bouclier est complètement absorbé ou dissipé, vous recevez instantanément 1,5% de votre total de mana, et vous avez 33% de chances de donner à la cible protégée 2% de son total de mana, 8 points de rage, 16 points d'énergie ou 32 points de puissance runique. Cet effet ne peut se produire plus d'une fois toutes les 12 sec." lvl="1"/>
+        <rank description="Quand votre Mot de pouvoir : Bouclier est complètement absorbé ou dissipé, vous recevez instantanément 2% de votre total de mana, et vous avez 66% de chances de donner à la cible protégée 2% de son total de mana, 8 points de rage, 16 points d'énergie ou 32 points de puissance runique. Cet effet ne peut se produire plus d'une fois toutes les 12 sec." lvl="2"/>
+        <rank description="Quand votre Mot de pouvoir : Bouclier est complètement absorbé ou dissipé, vous recevez instantanément 2,5% de votre total de mana, et vous avez 100% de chances de donner à la cible protégée 2% de son total de mana, 8 points de rage, 16 points d'énergie ou 32 points de puissance runique. Cet effet ne peut se produire plus d'une fois toutes les 12 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_aspiration" key="1894" name="Aspiration" tier="7">
+        <rank description="Réduit le temps de recharge de vos sorts Focalisation améliorée, Infusion de puissance, Suppression de la douleur et Pénitence de 10%." lvl="1"/>
+        <rank description="Réduit le temps de recharge de vos sorts Focalisation améliorée, Infusion de puissance, Suppression de la douleur et Pénitence de 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_devineaegis" key="1895" name="Egide divine" tier="8">
+        <rank description="Les soins critiques créent un bouclier de protection autour de la cible, qui absorbe un montant de dégâts égal à 10% des soins reçus. Dure 12 sec." lvl="1"/>
+        <rank description="Les soins critiques créent un bouclier de protection autour de la cible, qui absorbe un montant de dégâts égal à 20% des soins reçus. Dure 12 sec." lvl="2"/>
+        <rank description="Les soins critiques créent un bouclier de protection autour de la cible, qui absorbe un montant de dégâts égal à 30% des soins reçus. Dure 12 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_painsupression" key="1774" name="Suppression de la douleur" tier="8">
+        <rank description="Réduit instantanément la menace d'une cible alliée de 5%, réduit tous les dégâts subis de 40% et augmente la résistance aux mécanismes de Dissipation de 65% pendant 8 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_hopeandgrace" key="1901" name="Grâce" tier="8">
+        <rank description="Vos sorts Soins rapides, Soins supérieurs et Pénitence ont 50% de chances de donner la Grâce à la cible, ce qui augmente tous les soins que lui prodigue le prêtre de 3%. Cet effet est cumulable jusqu'à 3 fois et dure 15 sec. Grâce ne peut être active que sur une cible à la fois." lvl="1"/>
+        <rank description="Vos sorts Soins rapides, Soins supérieurs et Pénitence ont 100% de chances de donner la Grâce à la cible, ce qui augmente tous les soins que lui prodigue le prêtre de 3%. Cet effet est cumulable jusqu'à 3 fois et dure 15 sec. Grâce ne peut être active que sur une cible à la fois." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_borrowedtime" key="1202" name="Sursis" tier="9">
+        <rank description="Fait bénéficier votre prochain sort de 5% de hâte des sorts supplémentaire après avoir lancé Mot de pouvoir : Bouclier, et augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier d'un montant égal à 8% de votre puissance des sorts." lvl="1"/>
+        <rank description="Fait bénéficier votre prochain sort de 10% de hâte des sorts supplémentaire après avoir lancé Mot de pouvoir : Bouclier, et augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier d'un montant égal à 16% de votre puissance des sorts." lvl="2"/>
+        <rank description="Fait bénéficier votre prochain sort de 15% de hâte des sorts supplémentaire après avoir lancé Mot de pouvoir : Bouclier, et augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier d'un montant égal à 24% de votre puissance des sorts." lvl="3"/>
+        <rank description="Fait bénéficier votre prochain sort de 20% de hâte des sorts supplémentaire après avoir lancé Mot de pouvoir : Bouclier, et augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier d'un montant égal à 32% de votre puissance des sorts." lvl="4"/>
+        <rank description="Fait bénéficier votre prochain sort de 25% de hâte des sorts supplémentaire après avoir lancé Mot de pouvoir : Bouclier, et augmente les dégâts absorbés par votre Mot de pouvoir : Bouclier d'un montant égal à 40% de votre puissance des sorts." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_penance" key="1897" name="Pénitence" tier="10">
+        <rank description="Lance une salve de lumière sacrée sur la cible et inflige 240 points de dégâts du Sacré à un ennemi ou rend 670 à 756 points de vie à un allié instantanément et toutes les 1 sec. pendant 2 sec." lvl="1"/>
+        <spell castTime="0" channeled="1" cooldown="12000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestHoly" icon="spell_holy_guardianspirit" key="Holy" name="Sacré" order="1">
+      <talent column="0" icon="spell_holy_healingfocus" key="410" name="Focalisation des soins" tier="0">
+        <rank description="Réduit de 35% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez tout sort de soins." lvl="1"/>
+        <rank description="Réduit de 70% l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez tout sort de soins." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_renew" key="406" name="Rénovation améliorée" tier="0">
+        <rank description="Augmente de 5% le montant de points de vie rendus par votre sort Rénovation." lvl="1"/>
+        <rank description="Augmente de 10% le montant de points de vie rendus par votre sort Rénovation." lvl="2"/>
+        <rank description="Augmente de 15% le montant de points de vie rendus par votre sort Rénovation." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofsalvation" key="401" name="Spécialisation (Sacré)" tier="0">
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 1%." lvl="1"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 2%." lvl="2"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 3%." lvl="3"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 4%." lvl="4"/>
+        <rank description="Augmente les chances d'obtenir un effet critique avec vos sorts du Sacré de 5%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_spellwarding" key="411" name="Protection contre les sorts" tier="1">
+        <rank description="Réduit tous les dégâts des sorts subis de 2%." lvl="1"/>
+        <rank description="Réduit tous les dégâts des sorts subis de 4%." lvl="2"/>
+        <rank description="Réduit tous les dégâts des sorts subis de 6%." lvl="3"/>
+        <rank description="Réduit tous les dégâts des sorts subis de 8%." lvl="4"/>
+        <rank description="Réduit tous les dégâts des sorts subis de 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofwrath" key="1181" name="Fureur divine" tier="1">
+        <rank description="Réduit le temps d'incantation de vos sorts Châtiment, Flammes sacrées, Soins et Soins supérieurs de 0.1 sec." lvl="1"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Châtiment, Flammes sacrées, Soins et Soins supérieurs de 0.2 sec." lvl="2"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Châtiment, Flammes sacrées, Soins et Soins supérieurs de 0.3 sec." lvl="3"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Châtiment, Flammes sacrées, Soins et Soins supérieurs de 0.4 sec." lvl="4"/>
+        <rank description="Réduit le temps d'incantation de vos sorts Châtiment, Flammes sacrées, Soins et Soins supérieurs de 0.5 sec." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_restoration" key="442" name="Prière du désespoir" tier="2">
+        <rank description="Rend instantanément 263 à 325 points de vie au lanceur de sorts." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_blessedrecovery" key="1636" name="Rétablissement béni" tier="2">
+        <rank description="Lorsque vous avez été frappé par un coup critique en mêlée ou à distance, Rétablissement béni vous rend 5% des points de dégâts subis en 6 sec. Les coups critiques supplémentaires subis pendant l'effet augmentent les soins reçus." lvl="1"/>
+        <rank description="Lorsque vous avez été frappé par un coup critique en mêlée ou à distance, Rétablissement béni vous rend 10% des points de dégâts subis en 6 sec. Les coups critiques supplémentaires subis pendant l'effet augmentent les soins reçus." lvl="2"/>
+        <rank description="Lorsque vous avez été frappé par un coup critique en mêlée ou à distance, Rétablissement béni vous rend 15% des points de dégâts subis en 6 sec. Les coups critiques supplémentaires subis pendant l'effet augmentent les soins reçus." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_holy_layonhands" key="361" name="Inspiration" tier="2">
+        <rank description="Réduit de 3% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un des sorts suivants : Soins rapides, Soins, Soins supérieurs, Soins de lien, Pénitence, Prière de guérison, Prière de soins ou Cercle de soins." lvl="1"/>
+        <rank description="Réduit de 7% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un des sorts suivants : Soins rapides, Soins, Soins supérieurs, Soins de lien, Pénitence, Prière de guérison, Prière de soins ou Cercle de soins." lvl="2"/>
+        <rank description="Réduit de 10% les dégâts physiques subis par votre cible pendant 15 sec. après avoir reçu un effet critique de l'un des sorts suivants : Soins rapides, Soins, Soins supérieurs, Soins de lien, Pénitence, Prière de guérison, Prière de soins ou Cercle de soins." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_purify" key="1635" name="Allonge du Sacré" tier="3">
+        <rank description="Augmente de 10% la portée de vos sorts Châtiment et Flammes sacrées et le rayon d'effet de vos sorts Prière de soins, Nova sacrée, Hymne divin et Cercle de soins." lvl="1"/>
+        <rank description="Augmente de 20% la portée de vos sorts Châtiment et Flammes sacrées et le rayon d'effet de vos sorts Prière de soins, Nova sacrée, Hymne divin et Cercle de soins." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_heal02" key="408" name="Soin amélioré" tier="3">
+        <rank description="Réduit le coût en mana de vos sorts Soins inférieurs, Soins, Soins supérieurs, Hymne divin et Pénitence de 5%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts Soins inférieurs, Soins, Soins supérieurs, Hymne divin et Pénitence de 10%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts Soins inférieurs, Soins, Soins supérieurs, Hymne divin et Pénitence de 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_searinglightpriest" key="403" name="Lumière incendiaire" requires="1181" tier="3">
+        <rank description="Augmente de 5% les dégâts infligés par vos sorts Châtiment, Flammes sacrées, Nova sacrée et Pénitence." lvl="1"/>
+        <rank description="Augmente de 10% les dégâts infligés par vos sorts Châtiment, Flammes sacrées, Nova sacrée et Pénitence." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_prayerofhealing02" key="413" name="Prières guérisseuses" tier="4">
+        <rank description="Réduit le coût en mana de vos sorts Prière de soins et Prière de guérison de 10%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts Prière de soins et Prière de guérison de 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_enchant_essenceeternallarge" key="1561" name="Esprit de rédemption" tier="4">
+        <rank description="Augmente le total d'Esprit de 5%, et au moment de sa mort, le prêtre devient l'Esprit de rédemption pendant 15 sec. L'Esprit de rédemption ne peut pas se déplacer ou attaquer, ni être attaqué ou ciblé par aucun sort ou effet. Tant qu'il est sous cette forme, le prêtre peut lancer tout sort de soins sans le moindre coût. À la fin de l'effet, le prêtre meurt." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_holy_spiritualguidence" key="402" name="Direction spirituelle" tier="4">
+        <rank description="Augmente la puissance des sorts d'un montant égal à 5% de votre Esprit total." lvl="1"/>
+        <rank description="Augmente la puissance des sorts d'un montant égal à 10% de votre Esprit total." lvl="2"/>
+        <rank description="Augmente la puissance des sorts d'un montant égal à 15% de votre Esprit total." lvl="3"/>
+        <rank description="Augmente la puissance des sorts d'un montant égal à 20% de votre Esprit total." lvl="4"/>
+        <rank description="Augmente la puissance des sorts d'un montant égal à 25% de votre Esprit total." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_surgeoflight" key="1766" name="Vague de Lumière" tier="5">
+        <rank description="Vos coups critiques avec les sorts confèrent 25% de chances à votre prochain sort Châtiment ou Soins rapides d'être instantané et de ne pas coûter de mana, mais sans pouvoir être un coup critique. Cet effet dure 10 sec." lvl="1"/>
+        <rank description="Vos coups critiques avec les sorts confèrent 50% de chances à votre prochain sort Châtiment ou Soins rapides d'être instantané et de ne pas coûter de mana, mais sans pouvoir être un coup critique. Cet effet dure 10 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_nature_moonglow" key="404" name="Soins spirituels" tier="5">
+        <rank description="Augmente le montant de points de vie rendus par vos sorts de soins de 2%." lvl="1"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts de soins de 4%." lvl="2"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts de soins de 6%." lvl="3"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts de soins de 8%." lvl="4"/>
+        <rank description="Augmente le montant de points de vie rendus par vos sorts de soins de 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_fanaticism" key="1768" name="Concentration sacrée" tier="6">
+        <rank description="Votre régénération de mana due à l'Esprit est augmentée de 16% pendant 8 sec. après avoir réussi des soins critiques avec Soins rapides, Soins supérieurs, Soins de lien ou Rénovation surpuissante." lvl="1"/>
+        <rank description="Votre régénération de mana due à l'Esprit est augmentée de 32% pendant 8 sec. après avoir réussi des soins critiques avec Soins rapides, Soins supérieurs, Soins de lien ou Rénovation surpuissante." lvl="2"/>
+        <rank description="Votre régénération de mana due à l'Esprit est augmentée de 50% pendant 8 sec. après avoir réussi des soins critiques avec Soins rapides, Soins supérieurs, Soins de lien ou Rénovation surpuissante." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Puits de lumière" requires="1561" tier="6">
+        <rank description="Crée un Puits de lumière sacré. Les membres du groupe ou du raid peuvent cliquer sur le Puits de lumière pour recevoir 801 points de vie en 6 sec. L'effet est annulé si vous subissez des dégâts directs égaux à 30% de vos points de vie. La durée du Puits de lumière est de 3 min ou bien 10 utilisations." lvl="1"/>
+        <spell castTime="500" cooldown="180000" maxRange="40">
+          <power cost="17" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessedresillience" key="1765" name="Résilience bénie" tier="6">
+        <rank description="Augmente l'efficacité de vos sorts de soins de 1%, et les coups critiques contre vous ont 20% de chances de vous empêcher d'être à nouveau frappé par un coup critique pendant 6 sec." lvl="1"/>
+        <rank description="Augmente l'efficacité de vos sorts de soins de 2%, et les coups critiques contre vous ont 40% de chances de vous empêcher d'être à nouveau frappé par un coup critique pendant 6 sec." lvl="2"/>
+        <rank description="Augmente l'efficacité de vos sorts de soins de 3%, et les coups critiques contre vous ont 60% de chances de vous empêcher d'être à nouveau frappé par un coup critique pendant 6 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_symbolofhope" key="2279" name="Corps et âme" tier="7">
+        <rank description="Quand vous lancez Mot de pouvoir : Bouclier, vous augmentez la vitesse de déplacement de la cible de 30% pendant 4 sec., et vous avez 50% de chances lorsque vous lancez Abolir maladie sur vous-même d'également dissiper 1 effet de poison en plus des maladies." lvl="1"/>
+        <rank description="Quand vous lancez Mot de pouvoir : Bouclier, vous augmentez la vitesse de déplacement de la cible de 60% pendant 4 sec., et vous avez 100% de chances lorsque vous lancez Abolir maladie sur vous-même d'également dissiper 1 effet de poison en plus des maladies." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_greaterheal" key="1767" name="Soins surpuissants" tier="7">
+        <rank description="Votre sort Soins supérieurs bénéficie de 8% supplémentaires, tandis que vos Soins rapides et Soins de lien bénéficient de 4% supplémentaires des effets du bonus relatif aux soins." lvl="1"/>
+        <rank description="Votre sort Soins supérieurs bénéficie de 16% supplémentaires, tandis que vos Soins rapides et Soins de lien bénéficient de 8% supplémentaires des effets du bonus relatif aux soins." lvl="2"/>
+        <rank description="Votre sort Soins supérieurs bénéficie de 24% supplémentaires, tandis que vos Soins rapides et Soins de lien bénéficient de 12% supplémentaires des effets du bonus relatif aux soins." lvl="3"/>
+        <rank description="Votre sort Soins supérieurs bénéficie de 32% supplémentaires, tandis que vos Soins rapides et Soins de lien bénéficient de 16% supplémentaires des effets du bonus relatif aux soins." lvl="4"/>
+        <rank description="Votre sort Soins supérieurs bénéficie de 40% supplémentaires, tandis que vos Soins rapides et Soins de lien bénéficient de 20% supplémentaires des effets du bonus relatif aux soins." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_serendipity" key="1904" name="Heureux hasard" tier="7">
+        <rank description="Quand vous soignez avec Soins de lien ou Soins rapides, le temps d'incantation de votre prochain sort Soins supérieurs ou Prière de soins est réduit de 4%. Cumulable jusqu'à 3 fois. Dure 20 sec." lvl="1"/>
+        <rank description="Quand vous soignez avec Soins de lien ou Soins rapides, le temps d'incantation de votre prochain sort Soins supérieurs ou Prière de soins est réduit de 8%. Cumulable jusqu'à 3 fois. Dure 20 sec." lvl="2"/>
+        <rank description="Quand vous soignez avec Soins de lien ou Soins rapides, le temps d'incantation de votre prochain sort Soins supérieurs ou Prière de soins est réduit de 12%. Cumulable jusqu'à 3 fois. Dure 20 sec." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_infusionoflight" key="1902" name="Rénovation surpuissante" tier="8">
+        <rank description="Votre sort Rénovation bénéficie de 5% supplémentaires de votre bonus aux soins, et votre Rénovation rend instantanément à la cible 5% de l'effet périodique total." lvl="1"/>
+        <rank description="Votre sort Rénovation bénéficie de 10% supplémentaires de votre bonus aux soins, et votre Rénovation rend instantanément à la cible 10% de l'effet périodique total." lvl="2"/>
+        <rank description="Votre sort Rénovation bénéficie de 15% supplémentaires de votre bonus aux soins, et votre Rénovation rend instantanément à la cible 15% de l'effet périodique total." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_circleofrenewal" key="1815" name="Cercle de soins" tier="8">
+        <rank description="Rend à 5 membres au maximum du groupe ou du raid alliés se trouvant à moins de 15 mètres de la cible 343 à 379 points de vie." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="40">
+          <power cost="21" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_testoffaith" key="1903" name="Epreuve de la Foi" tier="8">
+        <rank description="Augmente les soins de 4% sur les cibles alliées qui ne disposent plus que de 50% ou moins de leurs points de vie." lvl="1"/>
+        <rank description="Augmente les soins de 8% sur les cibles alliées qui ne disposent plus que de 50% ou moins de leurs points de vie." lvl="2"/>
+        <rank description="Augmente les soins de 12% sur les cibles alliées qui ne disposent plus que de 50% ou moins de leurs points de vie." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_divineprovidence" key="1905" name="Providence divine" tier="9">
+        <rank description="Augmente de 2% le montant de points de vie rendus par Cercle de soins, Soins de lien, Nova sacrée, Prière de soins, Hymne divin et Prière de guérison, et réduit de 6% le temps de recharge de votre Prière de guérison." lvl="1"/>
+        <rank description="Augmente de 4% le montant de points de vie rendus par Cercle de soins, Soins de lien, Nova sacrée, Prière de soins, Hymne divin et Prière de guérison, et réduit de 12% le temps de recharge de votre Prière de guérison." lvl="2"/>
+        <rank description="Augmente de 6% le montant de points de vie rendus par Cercle de soins, Soins de lien, Nova sacrée, Prière de soins, Hymne divin et Prière de guérison, et réduit de 18% le temps de recharge de votre Prière de guérison." lvl="3"/>
+        <rank description="Augmente de 8% le montant de points de vie rendus par Cercle de soins, Soins de lien, Nova sacrée, Prière de soins, Hymne divin et Prière de guérison, et réduit de 24% le temps de recharge de votre Prière de guérison." lvl="4"/>
+        <rank description="Augmente de 10% le montant de points de vie rendus par Cercle de soins, Soins de lien, Nova sacrée, Prière de soins, Hymne divin et Prière de guérison, et réduit de 30% le temps de recharge de votre Prière de guérison." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_holy_guardianspirit" key="1911" name="Esprit gardien" tier="10">
+        <rank description="Fait appel à un esprit gardien pour veiller sur la cible alliée. L'esprit augmente les soins prodigués à la cible de 40% et l'empêche également de mourir en se sacrifiant pour elle. Ce sacrifice met fin à l'effet mais rend à la cible 50% de ses points de vie maximum. Dure 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PriestShadow" icon="spell_shadow_shadowwordpain" key="Shadow" name="Ombre" order="2">
+      <talent column="0" icon="spell_shadow_requiem" key="465" name="Connexion spirituelle" tier="0">
+        <rank description="Vous donne 33% de chances de gagner un bonus de 100% à l'Esprit après avoir tué une cible qui rapporte de l'expérience ou de l'honneur. Votre mana se régénère à 83% de la vitesse de récupération normale pendant l'incantation de sorts. Dure 15 sec." lvl="1"/>
+        <rank description="Vous donne 66% de chances de gagner un bonus de 100% à l'Esprit après avoir tué une cible qui rapporte de l'expérience ou de l'honneur. Votre mana se régénère à 83% de la vitesse de récupération normale pendant l'incantation de sorts. Dure 15 sec." lvl="2"/>
+        <rank description="Vous donne 100% de chances de gagner un bonus de 100% à l'Esprit après avoir tué une cible qui rapporte de l'expérience ou de l'honneur. Votre mana se régénère à 83% de la vitesse de récupération normale pendant l'incantation de sorts. Dure 15 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_requiem" key="2027" name="Connexion spirituelle améliorée" requires="465" tier="0">
+        <rank description="Vos coups critiques réussis avec Attaque mentale et Mot de l'ombre : Mort ont 100% de chances et vos coups critiques avec Fouet mental 50% de chances d'augmenter votre total d'Esprit de 5%. Pendant ce temps, votre mana se régénèrera à un taux de 17% lors des incantations. Dure 8 sec." lvl="1"/>
+        <rank description="Vos coups critiques réussis avec Attaque mentale et Mot de l'ombre : Mort ont 100% de chances vos coups critiques avec Fouet mental ont 50% de chances d'augmenter votre total d'Esprit de 10%. Pendant ce temps, votre mana se régénèrera à un taux de 33% lors des incantations. Dure 8 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_twilight" key="462" name="Ténèbres" tier="0">
+        <rank description="Augmente les dégâts de vos sorts d'Ombre de 2%." lvl="1"/>
+        <rank description="Augmente les dégâts de vos sorts d'Ombre de 4%." lvl="2"/>
+        <rank description="Augmente les dégâts de vos sorts d'Ombre de 6%." lvl="3"/>
+        <rank description="Augmente les dégâts de vos sorts d'Ombre de 8%." lvl="4"/>
+        <rank description="Augmente les dégâts de vos sorts d'Ombre de 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_shadowward" key="466" name="Affinité avec l'Ombre" tier="1">
+        <rank description="Réduit la menace générée par vos sorts d'Ombre de 8%, et vous recevez 5% de votre mana de base quand vos sorts Mot de l'ombre : Douleur ou Toucher vampirique sont dissipés." lvl="1"/>
+        <rank description="Réduit la menace générée par vos sorts d'Ombre de 16%, et vous recevez 10% de votre mana de base quand vos sorts Mot de l'ombre : Douleur ou Toucher vampirique sont dissipés." lvl="2"/>
+        <rank description="Réduit la menace générée par vos sorts d'Ombre de 25%, et vous recevez 15% de votre mana de base quand vos sorts Mot de l'ombre : Douleur ou Toucher vampirique sont dissipés." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowwordpain" key="482" name="Mot de l'ombre : Douleur amélioré" tier="1">
+        <rank description="Augmente les dégâts infligés par votre sort Mot de l'ombre : Douleur de 3%." lvl="1"/>
+        <rank description="Augmente les dégâts infligés par votre sort Mot de l'ombre : Douleur de 6%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_burningspirit" key="463" name="Focalisation de l'ombre" tier="1">
+        <rank description="Augmente vos chances de toucher avec vos sorts d'Ombre de 1%, et réduit le coût en mana de vos sorts d'Ombre de 2%." lvl="1"/>
+        <rank description="Augmente vos chances de toucher avec vos sorts d'Ombre de 2%, et réduit le coût en mana de vos sorts d'Ombre de 4%." lvl="2"/>
+        <rank description="Augmente vos chances de toucher avec vos sorts d'Ombre de 3%, et réduit le coût en mana de vos sorts d'Ombre de 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychicscream" key="542" name="Cri psychique amélioré" tier="2">
+        <rank description="Réduit le temps de recharge de votre sort Cri psychique de 2 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre sort Cri psychique de 4 sec." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_unholyfrenzy" key="481" name="Attaque mentale améliorée" tier="2">
+        <rank description="Réduit le temps de recharge de votre sort Attaque mentale de 0.5 sec., et tant que vous êtes en forme d'Ombre il a également 20% de chances de réduire tous les soins prodigués à la cible de 20% pendant 10 sec." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre sort Attaque mentale de 1 sec., et tant que vous êtes en forme d'Ombre il a également 40% de chances de réduire tous les soins prodigués à la cible de 20% pendant 10 sec." lvl="2"/>
+        <rank description="Réduit le temps de recharge de votre sort Attaque mentale de 1.5 sec., et tant que vous êtes en forme d'Ombre il a également 60% de chances de réduire tous les soins prodigués à la cible de 20% pendant 10 sec." lvl="3"/>
+        <rank description="Réduit le temps de recharge de votre sort Attaque mentale de 2 sec., et tant que vous êtes en forme d'Ombre il a également 80% de chances de réduire tous les soins prodigués à la cible de 20% pendant 10 sec." lvl="4"/>
+        <rank description="Réduit le temps de recharge de votre sort Attaque mentale de 2.5 sec., et tant que vous êtes en forme d'Ombre il a également 100% de chances de réduire tous les soins prodigués à la cible de 20% pendant 10 sec." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_siphonmana" key="501" name="Fouet mental" tier="2">
+        <rank description="Attaque l'esprit de la cible avec l'énergie de l'Ombre. Inflige 45 points de dégâts d'Ombre en 3 sec. et réduit la vitesse de la cible de 50%." lvl="1"/>
+        <spell castTime="0" channeled="1" maxRange="30">
+          <power cost="9" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_magic_lesserinvisibilty" key="483" name="Ombres voilées" tier="3">
+        <rank description="Réduit le temps de recharge de votre technique Oubli de 3 sec. et celui de votre technique Ombrefiel d'1 minute." lvl="1"/>
+        <rank description="Réduit le temps de recharge de votre technique Oubli de 6 sec. et celui de votre technique Ombrefiel de 2 minutes." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_chilltouch" key="881" name="Allonge de l'Ombre" tier="3">
+        <rank description="Augmente de 10% la portée de vos sorts offensifs d'Ombre." lvl="1"/>
+        <rank description="Augmente de 20% la portée de vos sorts offensifs d'Ombre." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_shadow_blackplague" key="461" name="Tissage de l'ombre" tier="3">
+        <rank description="Vos sorts d'Ombre infligeant des dégâts ont 33% de chances d'augmenter les dégâts d'Ombre que vous infligez de 2% pendant 15 sec. Cumulable jusqu'à 5 fois." lvl="1"/>
+        <rank description="Vos sorts d'Ombre infligeant des dégâts ont 66% de chances d'augmenter les dégâts d'Ombre que vous infligez de 2% pendant 15 sec. Cumulable jusqu'à 5 fois." lvl="2"/>
+        <rank description="Vos sorts d'Ombre infligeant des dégâts ont 100% de chances d'augmenter les dégâts d'Ombre que vous infligez de 2% pendant 15 sec. Cumulable jusqu'à 5 fois." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_impphaseshift" key="541" name="Silence" requires="542" tier="4">
+        <rank description="Rend la cible silencieuse, l'empêchant de lancer des sorts pendant 5 sec. Les incantations de sorts des victimes personnages non joueurs sont également interrompues pendant 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="45000" maxRange="30">
+          <power cost="225" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_shadow_unsummonbuilding" key="484" name="Etreinte vampirique" tier="4">
+        <rank description="Vous emplit de l'énergie de l'étreinte de l'Ombre, qui vous soigne pour 15% et les autres membres du groupe pour 3% de tous les dégâts d'Ombre que vous infligez avec des sorts monocible pendant 30 min." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1638" name="Etreinte vampirique améliorée" requires="484" tier="4">
+        <rank description="Augmente de 33% les soins prodigués par Etreinte vampirique." lvl="1"/>
+        <rank description="Augmente de 67% les soins prodigués par Etreinte vampirique." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_focusedmind" key="1777" name="Esprit focalisé" tier="4">
+        <rank description="Réduit le coût en mana de vos sorts Attaque mentale, Contrôle mental, Fouet mental et Incandescence mentale de 5%." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts Attaque mentale, Contrôle mental, Fouet mental et Incandescence mentale de 10%." lvl="2"/>
+        <rank description="Réduit le coût en mana de vos sorts Attaque mentale, Contrôle mental, Fouet mental et Incandescence mentale de 15%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_skull" key="1781" name="Fonte de l'esprit" tier="5">
+        <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 2%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 3%." lvl="1"/>
+        <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 4%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 6%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste dévorante améliorée" tier="5">
+        <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 5%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 10% du total de son effet périodique." lvl="1"/>
+        <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 10%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 20% du total de son effet périodique." lvl="2"/>
+        <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 15%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 30% du total de son effet périodique." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_shadowform" key="521" name="Forme d'Ombre" requires="484" tier="6">
+        <rank description="Adopte une Forme d'Ombre qui augmente de 15% les dégâts d'Ombre que vous infligez en plus de réduire de 15% tous les dégâts que vous subissez et de 30% la menace générée. Cependant, vous ne pouvez pas lancer de sorts du Sacré lorsque vous êtes sous cette forme, à part Guérison des maladies et Abolir maladie. Les dégâts périodiques de vos sorts Mot de l'ombre : Douleur, Peste dévorante et Toucher vampirique sont augmentés de 100% quand ils sont critiques, Peste dévorante et Toucher vampirique bénéficient également du bonus de hâte." lvl="1"/>
+        <spell castTime="0" cooldown="1500">
+          <power cost="13" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_shadowpower" key="1778" name="Puissance de l'ombre" tier="6">
+        <rank description="Augmente le bonus de dégâts des coups critiques de vos sorts Attaque mentale, Fouet mental et Mot de l'ombre : Mort de 20%." lvl="1"/>
+        <rank description="Augmente le bonus de dégâts des coups critiques de vos sorts Attaque mentale, Fouet mental et Mot de l'ombre : Mort de 40%." lvl="2"/>
+        <rank description="Augmente le bonus de dégâts des coups critiques de vos sorts Attaque mentale, Fouet mental et Mot de l'ombre : Mort de 60%." lvl="3"/>
+        <rank description="Augmente le bonus de dégâts des coups critiques de vos sorts Attaque mentale, Fouet mental et Mot de l'ombre : Mort de 80%." lvl="4"/>
+        <rank description="Augmente le bonus de dégâts des coups critiques de vos sorts Attaque mentale, Fouet mental et Mot de l'ombre : Mort de 100%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_summonvoidwalker" key="1906" name="Forme d'Ombre améliorée" requires="521" tier="7">
+        <rank description="Votre technique Oubli a maintenant 50% de chances d'annuler tous les effets affectant le déplacement lorsque vous êtes en forme d'Ombre. Réduit de 35% le temps d'incantation ou de canalisation perdu provoqué par les dégâts pendant l'incantation des sorts d'Ombre lorsque vous êtes en forme d'Ombre." lvl="1"/>
+        <rank description="Votre technique Oubli a maintenant 100% de chances d'annuler tous les effets affectant le déplacement lorsque vous êtes en forme d'Ombre. Réduit de 70% le temps d'incantation ou de canalisation perdu provoqué par les dégâts pendant l'incantation des sorts d'Ombre lorsque vous êtes en forme d'Ombre." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_misery" key="1816" name="Misère" tier="7">
+        <rank description="Vos sorts Mot de l'ombre : Douleur, Fouet mental et Toucher vampirique augmentent aussi les chances de toucher des sorts néfastes de 1% pendant 24 sec. Augmente également de 5% l'avantage octroyé par votre puissance des sorts dont bénéficient Attaque mentale, Fouet mental et Incandescence mentale." lvl="1"/>
+        <rank description="Vos sorts Mot de l'ombre : Douleur, Fouet mental et Toucher vampirique augmentent aussi les chances de toucher des sorts néfastes de 2% pendant 24 sec. Augmente également de 10% l'avantage octroyé par votre puissance des sorts dont bénéficient Attaque mentale, Fouet mental et Incandescence mentale." lvl="2"/>
+        <rank description="Vos sorts Mot de l'ombre : Douleur, Fouet mental et Toucher vampirique augmentent aussi les chances de toucher des sorts néfastes de 3% pendant 24 sec. Augmente également de 15% l'avantage octroyé par votre puissance des sorts dont bénéficient Attaque mentale, Fouet mental et Incandescence mentale." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_psychichorrors" key="1908" name="Horreur psychique" tier="8">
+        <rank description="Vous terrifiez la cible, qui tremble, horrifiée, pendant 3 sec et laisse tomber son arme tenue en main droite et ses armes à distance pendant 10 sec." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="spell_holy_stoicism" key="1779" name="Toucher vampirique" requires="521" tier="8">
+        <rank description="Inflige 450 points de dégâts d'Ombre en 15 sec. à votre cible et fait recevoir à un maximum de 10 membres du groupe ou du raid un montant de mana égal à 1% de leur maximum de mana toutes les 5 sec. quand vous infligez des dégâts avec Attaque mentale. De plus, si le Toucher vampirique est dissipé, il inflige 720 points de dégâts à la cible affectée." lvl="1"/>
+        <spell castTime="1500" maxRange="30">
+          <power cost="16" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_shadow_painandsuffering" key="1909" name="Douleur et souffrance" tier="8">
+        <rank description="Votre Fouet mental a 33% de chances de réinitialiser la durée de Mot de l'ombre : Douleur sur la cible et il réduit les dégâts que vous inflige votre propre Mot de l'ombre : Mort de 10%." lvl="1"/>
+        <rank description="Votre Fouet mental a 66% de chances de réinitialiser la durée de Mot de l'ombre : Douleur sur la cible et il réduit les dégâts que vous inflige votre propre Mot de l'ombre : Mort de 20%." lvl="2"/>
+        <rank description="Votre Fouet mental a 100% de chances de réinitialiser la durée de Mot de l'ombre : Douleur sur la cible et il réduit les dégâts que vous inflige votre propre Mot de l'ombre : Mort de 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_mindtwisting" key="1907" name="Foi distordue" tier="9">
+        <rank description="Augmente la puissance de vos sorts de 4% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 2% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="1"/>
+        <rank description="Augmente la puissance de vos sorts de 8% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 4% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="2"/>
+        <rank description="Augmente la puissance de vos sorts de 12% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 6% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="3"/>
+        <rank description="Augmente la puissance de vos sorts de 16% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 8% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="4"/>
+        <rank description="Augmente la puissance de vos sorts de 20% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 10% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="5"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersion" requires="1779" tier="10">
+        <rank description="Votre corps devient de l'énergie d'ombre pure, ce qui réduit tous les dégâts subis de 90%. Vous ne pouvez pas attaquer ni lancer de sorts, mais vous régénérez 6% de votre mana toutes les sec. pendant 6 sec. Dispersion peut être lancé lorsque vous êtes étourdi, apeuré ou réduit au silence, dissipe tous les effets affectant le déplacement à son lancement et vous rend insensible à eux tant que vous êtes de l'énergie pure." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

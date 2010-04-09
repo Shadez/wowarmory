@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="HunterSurvival" icon="ability_hunter_swiftstrike" key="Survival" name="Überleben" order="2">
+      <talent column="0" icon="ability_hunter_improvedtracking" key="1623" name="Verbessertes Fährtenlesen" tier="0">
+        <rank description="Während die Fährte von Dämonen, Drachen, Elementaren, Humanoiden, Riesen, Untoten oder Wildtieren verfolgt wird, ist jeglicher verursachter Schaden gegen diese Ziele um 1% erhöht." lvl="1"/>
+        <rank description="Während die Fährte von Dämonen, Drachen, Elementaren, Humanoiden, Riesen, Untoten oder Wildtieren verfolgt wird, ist jeglicher verursachter Schaden gegen diese Ziele um 2% erhöht." lvl="2"/>
+        <rank description="Während die Fährte von Dämonen, Drachen, Elementaren, Humanoiden, Riesen, Untoten oder Wildtieren verfolgt wird, ist jeglicher verursachter Schaden gegen diese Ziele um 3% erhöht." lvl="3"/>
+        <rank description="Während die Fährte von Dämonen, Drachen, Elementaren, Humanoiden, Riesen, Untoten oder Wildtieren verfolgt wird, ist jeglicher verursachter Schaden gegen diese Ziele um 4% erhöht." lvl="4"/>
+        <rank description="Während die Fährte von Dämonen, Drachen, Elementaren, Humanoiden, Riesen, Untoten oder Wildtieren verfolgt wird, ist jeglicher verursachter Schaden gegen diese Ziele um 5% erhöht." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_townwatch" key="1820" name="Falkenauge" tier="0">
+        <rank description="Erhöht die Reichweite Eurer Distanzwaffen um 2 Meter." lvl="1"/>
+        <rank description="Erhöht die Reichweite Eurer Distanzwaffen um 4 Meter." lvl="2"/>
+        <rank description="Erhöht die Reichweite Eurer Distanzwaffen um 6 Meter." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_racial_bloodrage" key="1621" name="Wilde Schläge" tier="0">
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Fähigkeiten 'Raptorstoß', 'Mungobiss' und 'Gegenangriff' um 10%." lvl="1"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Fähigkeiten 'Raptorstoß', 'Mungobiss' und 'Gegenangriff' um 20%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_kick" key="1310" name="Sicherer Stand" tier="1">
+        <rank description="Verringert die Dauer von bewegungseinschränkenden Effekten um 10%." lvl="1"/>
+        <rank description="Verringert die Dauer von bewegungseinschränkenden Effekten um 20%." lvl="2"/>
+        <rank description="Verringert die Dauer von bewegungseinschränkenden Effekten um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_stranglevines" key="1304" name="Einfangen" tier="1">
+        <rank description="Sowohl Eure Frostfalle als auch Eure Schlangenfalle setzen bei ihrer Auslösung alle Ziele gefangen. Jedes der Ziele wird 2 Sek. lang bewegungsunfähig." lvl="1"/>
+        <rank description="Sowohl Eure Frostfalle als auch Eure Schlangenfalle setzen bei ihrer Auslösung alle Ziele gefangen. Jedes der Ziele wird 3 Sek. lang bewegungsunfähig." lvl="2"/>
+        <rank description="Sowohl Eure Frostfalle als auch Eure Schlangenfalle setzen bei ihrer Auslösung alle Ziele gefangen. Jedes der Ziele wird 4 Sek. lang bewegungsunfähig." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_ensnare" key="1305" name="Fallenbeherrschung" tier="1">
+        <rank description="Frostfalle und Eiskältefalle - Erhöht die Dauer um 10%.&lt;br/&gt;&lt;br/&gt;Feuerbrandfalle, Sprengfalle und Schwarzer Pfeil - Erhöht den regelmäßigen Schaden um 10%.&lt;br/&gt;&lt;br/&gt;Schlangenfalle - Erhöht die Anzahl der beschworenen Schlangen um 2." lvl="1"/>
+        <rank description="Frostfalle und Eiskältefalle - Erhöht die Dauer um 20%.&lt;br/&gt;&lt;br/&gt;Feuerbrandfalle, Sprengfalle und Schwarzer Pfeil - Erhöht den regelmäßigen Schaden um 20%.&lt;br/&gt;&lt;br/&gt;Schlangenfalle - Erhöht die Anzahl der beschworenen Schlangen um 4." lvl="2"/>
+        <rank description="Frostfalle und Eiskältefalle - Erhöht die Dauer um 30%.&lt;br/&gt;&lt;br/&gt;Feuerbrandfalle, Sprengfalle und Schwarzer Pfeil - Erhöht den regelmäßigen Schaden um 30%.&lt;br/&gt;&lt;br/&gt;Schlangenfalle - Erhöht die Anzahl der beschworenen Schlangen um 6." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_survivalinstincts" key="1810" name="Überlebensinstinkte" tier="1">
+        <rank description="Verringert jeglichen erlittenen Schaden um 2% und erhöht die kritische Trefferchance von 'Arkaner Schuss', 'Zuverlässiger Schuss' und 'Explosivschuss' um 2%." lvl="1"/>
+        <rank description="Verringert jeglichen erlittenen Schaden um 4% und erhöht die kritische Trefferchance von 'Arkaner Schuss', 'Zuverlässiger Schuss' und 'Explosivschuss' um 4%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_shadow_twilight" key="1622" name="Überlebenskünstler" tier="2">
+        <rank description="Erhöht Eure Ausdauer um 2%." lvl="1"/>
+        <rank description="Erhöht Eure Ausdauer um 4%." lvl="2"/>
+        <rank description="Erhöht Eure Ausdauer um 6%." lvl="3"/>
+        <rank description="Erhöht Eure Ausdauer um 8%." lvl="4"/>
+        <rank description="Erhöht Eure Ausdauer um 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_golemstormbolt" key="1814" name="Streuschuss" tier="2">
+        <rank description="Ein einzelner Kurzdistanzschuss, der 50% Waffenschaden zufügt und das Ziel 4 Sek. lang die Orientierung verlieren lässt. Jeglicher erlittene Schaden wird den Effekt aufheben. Stoppt Euren Angriff bei Benutzung." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="15">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_parry" key="1311" name="Abwehr" tier="2">
+        <rank description="Erhöht Eure Parierchance um 1% und verringert die Dauer aller auf Euch angewandten Entwaffnungseffekte um 16%. Dieser Effekt ist mit anderen Effekten, welche die Entwaffnungsdauer verringern, nicht stapelbar." lvl="1"/>
+        <rank description="Erhöht Eure Parierchance um 2% und verringert die Dauer aller auf Euch angewandten Entwaffnungseffekte um 25%. Dieser Effekt ist mit anderen Effekten, welche die Entwaffnungsdauer verringern, nicht stapelbar." lvl="2"/>
+        <rank description="Erhöht Eure Parierchance um 3% und verringert die Dauer aller auf Euch angewandten Entwaffnungseffekte um 50%. Dieser Effekt ist mit anderen Effekten, welche die Entwaffnungsdauer verringern, nicht stapelbar." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_rogue_feigndeath" key="1309" name="Überlebenstaktik" tier="2">
+        <rank description="Verringert die Chance, dass Eurer Fähigkeit 'Totstellen' und Euren Fallen widerstanden wird, um 2% und verringert die Abklingzeit von 'Rückzug' um 2 Sek." lvl="1"/>
+        <rank description="Verringert die Chance, dass Eurer Fähigkeit 'Totstellen' und Euren Fallen widerstanden wird, um 4% und verringert die Abklingzeit von 'Rückzug' um 4 Sek." lvl="2"/>
+      </talent>
+      <talent column="1" icon="inv_misc_bomb_05" key="2229" name="T.N.T." tier="3">
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Feuerbrandfalle', 'Sprengfalle', 'Explosivschuss' und 'Schwarzer Pfeil' um 2%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Feuerbrandfalle', 'Sprengfalle', 'Explosivschuss' und 'Schwarzer Pfeil' um 4%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Feuerbrandfalle', 'Sprengfalle', 'Explosivschuss' und 'Schwarzer Pfeil' um 6%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_lockandload" key="1306" name="Sichern und Laden" tier="3">
+        <rank description="Wird ein Ziel durch Eure Eiskälte- oder Frostfalle oder Eure Fähigkeit 'Eiskältepfeil' gefangen, besteht eine Chance von 33%; oder erleidet es durch den regelmäßigen Effekt Eurer Feuerbrandfalle, Sprengfalle oder Eurer Fähigkeit 'Schwarzer Pfeil' Schaden, besteht eine Chance von 2%, dass Eure nächsten 2 Anwendungen von 'Arkaner Schuss' oder 'Explosivschuss' keine Abklingzeit auslösen, kein Mana kosten und keine Munition verbrauchen. Dieser Effekt hat eine Abklingzeit von 22 Sek." lvl="1"/>
+        <rank description="Wird ein Ziel durch Eure Eiskälte- oder Frostfalle oder Eure Fähigkeit 'Eiskältepfeil' gefangen, besteht eine Chance von 66%; oder erleidet es durch den regelmäßigen Effekt Eurer Feuerbrandfalle, Sprengfalle oder Eurer Fähigkeit 'Schwarzer Pfeil' Schaden, besteht eine Chance von 4%, dass Eure nächsten 2 Anwendungen von 'Arkaner Schuss' oder 'Explosivschuss' keine Abklingzeit auslösen, kein Mana kosten und keine Munition verbrauchen. Dieser Effekt hat eine Abklingzeit von 22 Sek." lvl="2"/>
+        <rank description="Wird ein Ziel durch Eure Eiskälte- oder Frostfalle oder Eure Fähigkeit 'Eiskältepfeil' gefangen, besteht eine Chance von 100%; oder erleidet es durch den regelmäßigen Effekt Eurer Feuerbrandfalle, Sprengfalle oder Eurer Fähigkeit 'Schwarzer Pfeil' Schaden, besteht eine Chance von 6%, dass Eure nächsten 2 Anwendungen von 'Arkaner Schuss' oder 'Explosivschuss' keine Abklingzeit auslösen, kein Mana kosten und keine Munition verbrauchen. Dieser Effekt hat eine Abklingzeit von 22 Sek." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_huntervswild" key="2228" name="Jäger vs. Natur" requires="1622" tier="4">
+        <rank description="Erhöht Eure Nahkampf- und Distanzangriffskraft und die Eures Tieres um einen Wert, der 10% Eurer gesamten Ausdauer entspricht." lvl="1"/>
+        <rank description="Erhöht Eure Nahkampf- und Distanzangriffskraft und die Eures Tieres um einen Wert, der 20% Eurer gesamten Ausdauer entspricht." lvl="2"/>
+        <rank description="Erhöht Eure Nahkampf- und Distanzangriffskraft und die Eures Tieres um einen Wert, der 30% Eurer gesamten Ausdauer entspricht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_blessingofstamina" key="1321" name="Tötungstrieb" tier="4">
+        <rank description="Erhöht Eure Chance mit jeglichem Angriff einen kritischen Treffer zu erzielen um 1%." lvl="1"/>
+        <rank description="Erhöht Eure Chance mit jeglichem Angriff einen kritischen Treffer zu erzielen um 2%." lvl="2"/>
+        <rank description="Erhöht Eure Chance mit jeglichem Angriff einen kritischen Treffer zu erzielen um 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_challange" key="1312" name="Gegenangriff" requires="1311" tier="4">
+        <rank description="Ein Schlag, der aktiv wird, nachdem ein gegnerischer Angriff pariert wurde. Dieser Angriff verursacht 53 Schaden und macht das Ziel 5 Sek. lang bewegungsunfähig. Auf 'Gegenangriff' kann nicht mit 'Blocken', 'Ausweichen' oder 'Parieren' reagiert werden." lvl="1"/>
+        <spell castTime="0" cooldown="5000" maxRange="5">
+          <power cost="3" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="0" icon="spell_nature_invisibilty" key="1303" name="Blitzartige Reflexe" tier="5">
+        <rank description="Erhöht Eure Beweglichkeit um 3%." lvl="1"/>
+        <rank description="Erhöht Eure Beweglichkeit um 6%." lvl="2"/>
+        <rank description="Erhöht Eure Beweglichkeit um 9%." lvl="3"/>
+        <rank description="Erhöht Eure Beweglichkeit um 12%." lvl="4"/>
+        <rank description="Erhöht Eure Beweglichkeit um 15%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_resourcefulness" key="1809" name="Improvisation" tier="5">
+        <rank description="Verringert die Manakosten aller Fallen, aller Nahkampffähigkeiten und der Fähigkeit 'Schwarzer Pfeil' um 20% und die Abklingzeit aller Fallen sowie von 'Schwarzer Pfeil' um 2 Sek." lvl="1"/>
+        <rank description="Verringert die Manakosten aller Fallen, aller Nahkampffähigkeiten und der Fähigkeit 'Schwarzer Pfeil' um 40% und die Abklingzeit aller Fallen sowie von 'Schwarzer Pfeil' um 4 Sek." lvl="2"/>
+        <rank description="Verringert die Manakosten aller Fallen, aller Nahkampffähigkeiten und der Fähigkeit 'Schwarzer Pfeil' um 60% und die Abklingzeit aller Fallen sowie von 'Schwarzer Pfeil' um 6 Sek." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_rogue_findweakness" key="1812" name="Schwäche aufdecken" requires="1303" tier="6">
+        <rank description="Eure kritischen Distanztreffer haben eine Chance von 33%, dem Ziel den Effekt 'Schwäche aufdecken' zuzufügen. Dieser Effekt erhöht Eure Angriffskraft gegen dieses Ziel 7 Sek. lang um 25% Eurer Beweglichkeit." lvl="1"/>
+        <rank description="Eure kritischen Distanztreffer haben eine Chance von 66%, dem Ziel den Effekt 'Schwäche aufdecken' zuzufügen. Dieser Effekt erhöht Eure Angriffskraft gegen dieses Ziel 7 Sek. lang um 25% Eurer Beweglichkeit." lvl="2"/>
+        <rank description="Eure kritischen Distanztreffer haben eine Chance von 100%, dem Ziel den Effekt 'Schwäche aufdecken' zuzufügen. Dieser Effekt erhöht Eure Angriffskraft gegen dieses Ziel 7 Sek. lang um 25% Eurer Beweglichkeit." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_spear_02" key="1325" name="Stich des Flügeldrachen" requires="1321" tier="6">
+        <rank description="Verschießt einen Stachel, der das Ziel 30 Sek. lang einschläfert. Jeglicher erlittene Schaden hebt den Effekt wieder auf. Wenn das Ziel wieder aufwacht, verursacht der Stich im Verlauf von 6 Sek. insgesamt 300 Naturschaden. Auf dem Ziel kann gleichzeitig nur ein Biss oder Stich pro Jäger aktiv sein." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="35" minRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_thrillofthehunt" key="1811" name="Jagdfieber" tier="6">
+        <rank description="Wenn einer Eurer Schüsse einen kritischen Treffer erzielt, besteht eine Chance von 33%, dass Ihr 40% der Manakosten zurückerhaltet." lvl="1"/>
+        <rank description="Wenn einer Eurer Schüsse einen kritischen Treffer erzielt, besteht eine Chance von 66%, dass Ihr 40% der Manakosten zurückerhaltet." lvl="2"/>
+        <rank description="Wenn einer Eurer Schüsse einen kritischen Treffer erzielt, besteht eine Chance von 100%, dass Ihr 40% der Manakosten zurückerhaltet." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_mastertactitian" key="1813" name="Meister der Taktik" tier="7">
+        <rank description="Eure erfolgreichen Distanzangriffe haben eine Chance von 10%, Eure kritische Trefferchance mit allen Angriffen 8 Sek. lang um 2% zu erhöhen." lvl="1"/>
+        <rank description="Eure erfolgreichen Distanzangriffe haben eine Chance von 10%, Eure kritische Trefferchance mit allen Angriffen 8 Sek. lang um 4% zu erhöhen." lvl="2"/>
+        <rank description="Eure erfolgreichen Distanzangriffe haben eine Chance von 10%, Eure kritische Trefferchance mit allen Angriffen 8 Sek. lang um 6% zu erhöhen." lvl="3"/>
+        <rank description="Eure erfolgreichen Distanzangriffe haben eine Chance von 10%, Eure kritische Trefferchance mit allen Angriffen 8 Sek. lang um 8% zu erhöhen." lvl="4"/>
+        <rank description="Eure erfolgreichen Distanzangriffe haben eine Chance von 10%, Eure kritische Trefferchance mit allen Angriffen 8 Sek. lang um 10% zu erhöhen." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_potentvenom" key="2141" name="Giftpfeile" requires="1325" tier="7">
+        <rank description="Wird 'Stich des Flügeldrachen' gebannt, wird der Bannende ebenfalls für 16% der verbliebenen Dauer von 'Stich des Flügeldrachen' betroffen. Erhöht zudem jeglichen Schaden um 1%, den Ihr an Zielen verursacht, die von Eurem 'Schlangenbiss' betroffen sind." lvl="1"/>
+        <rank description="Wird 'Stich des Flügeldrachen' gebannt, wird der Bannende ebenfalls für 25% der verbliebenen Dauer von 'Stich des Flügeldrachen' betroffen. Erhöht zudem jeglichen Schaden um 2%, den Ihr an Zielen verursacht, die von Eurem 'Schlangenbiss' betroffen sind." lvl="2"/>
+        <rank description="Wird 'Stich des Flügeldrachen' gebannt, wird der Bannende ebenfalls für 50% der verbliebenen Dauer von 'Stich des Flügeldrachen' betroffen. Erhöht zudem jeglichen Schaden um 3%, den Ihr an Zielen verursacht, die von Eurem 'Schlangenbiss' betroffen sind." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_pointofnoescape" key="2142" name="Kein Entkommen" tier="8">
+        <rank description="Erhöht die kritische Trefferchance aller Eurer Angriffe gegen alle Ziele, die von Euren Fähigkeiten 'Frostfalle', 'Eiskältefalle' und 'Eiskältepfeil' betroffen sind, um 3%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance aller Eurer Angriffe gegen alle Ziele, die von Euren Fähigkeiten 'Frostfalle', 'Eiskältefalle' und 'Eiskältepfeil' betroffen sind, um 6%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_shadow_painspike" key="1322" name="Schwarzer Pfeil" tier="8">
+        <rank description="Feuert einen schwarzen Pfeil auf das Ziel ab, der Euren verursachten Schaden am Ziel um 6% erhöht und im Verlauf von 15 Sek. 786 Schattenschaden zufügt. Der schwarze Pfeil teilt sich eine Abklingzeit mit Fallenzaubern." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="35" minRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_hunter_longshots" key="2143" name="Scharfschützentraining" tier="8">
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeit 'Tödlicher Schuss' um 5%. Wenn Ihr 6 Sek. lang stillsteht, erhöht das Scharfschützentraining den verursachten Schaden Eurer Fähigkeiten 'Zuverlässiger Schuss', 'Gezielter Schuss', 'Schwarzer Pfeil' und 'Explosivschuss' um 2%. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeit 'Tödlicher Schuss' um 10%. Wenn Ihr 6 Sek. lang stillsteht, erhöht das Scharfschützentraining den verursachten Schaden Eurer Fähigkeiten 'Zuverlässiger Schuss', 'Gezielter Schuss', 'Schwarzer Pfeil' und 'Explosivschuss' um 4%. Hält 15 Sek. lang an." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeit 'Tödlicher Schuss' um 15%. Wenn Ihr 6 Sek. lang stillsteht, erhöht das Scharfschützentraining den verursachten Schaden Eurer Fähigkeiten 'Zuverlässiger Schuss', 'Gezielter Schuss', 'Schwarzer Pfeil' und 'Explosivschuss' um 6%. Hält 15 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_huntingparty" key="2144" name="Jagdgesellschaft" requires="1811" tier="9">
+        <rank description="Erhöht Eure gesamte Beweglichkeit um zusätzliche 1%. Die kritischen Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Explosivschuss' und 'Zuverlässiger Schuss' haben eine Chance von 33%, bei bis zu 10 Gruppen- oder Schlachtzugsmitgliedern alle 5 Sek. 1% ihres maximalen Manas wiederherzustellen. Hält 15 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Beweglichkeit um zusätzliche 2%. Die kritischen Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Explosivschuss' und 'Zuverlässiger Schuss' haben eine Chance von 66%, bei bis zu 10 Gruppen- oder Schlachtzugsmitgliedern alle 5 Sek. 1% ihres maximalen Manas wiederherzustellen. Hält 15 Sek. lang an." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Beweglichkeit um zusätzliche 3%. Die kritischen Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Explosivschuss' und 'Zuverlässiger Schuss' haben eine Chance von 100%, bei bis zu 10 Gruppen- oder Schlachtzugsmitgliedern alle 5 Sek. 1% ihres maximalen Manas wiederherzustellen. Hält 15 Sek. lang an." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_explosiveshot" key="2145" name="Explosivschuss" requires="1322" tier="10">
+        <rank description="Feuert ein Explosivgeschoss, das beim feindlichen Ziel 146 bis 174 Feuerschaden verursacht. Die Sprengladungen verursachen 2 Sek. lang pro Sekunde weiteren Schaden." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="35" minRange="5">
+          <power cost="7" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="HunterBeastMastery" icon="ability_hunter_beasttaming" key="BeastMastery" name="Tierherrschaft" order="0">
+      <talent column="1" icon="spell_nature_ravenform" key="1382" name="Verbesserter Aspekt des Falken" tier="0">
+        <rank description="Sind 'Aspekt des Falken' oder 'Aspekt des Drachenfalken' aktiv, besteht bei allen normalen Distanzangriffen eine Chance von 10%, dass das Distanzangriffstempo 12 Sek. lang um 3% erhöht wird." lvl="1"/>
+        <rank description="Sind 'Aspekt des Falken' oder 'Aspekt des Drachenfalken' aktiv, besteht bei allen normalen Distanzangriffen eine Chance von 10%, dass das Distanzangriffstempo 12 Sek. lang um 6% erhöht wird." lvl="2"/>
+        <rank description="Sind 'Aspekt des Falken' oder 'Aspekt des Drachenfalken' aktiv, besteht bei allen normalen Distanzangriffen eine Chance von 10%, dass das Distanzangriffstempo 12 Sek. lang um 9% erhöht wird." lvl="3"/>
+        <rank description="Sind 'Aspekt des Falken' oder 'Aspekt des Drachenfalken' aktiv, besteht bei allen normalen Distanzangriffen eine Chance von 10%, dass das Distanzangriffstempo 12 Sek. lang um 12% erhöht wird." lvl="4"/>
+        <rank description="Sind 'Aspekt des Falken' oder 'Aspekt des Drachenfalken' aktiv, besteht bei allen normalen Distanzangriffen eine Chance von 10%, dass das Distanzangriffstempo 12 Sek. lang um 15% erhöht wird." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_nature_reincarnation" key="1389" name="Belastbarkeitsausbildung" tier="0">
+        <rank description="Erhöht die Gesundheit Eures Tiers um 2% und Eure gesamte Gesundheit um 1%." lvl="1"/>
+        <rank description="Erhöht die Gesundheit Eures Tiers um 4% und Eure gesamte Gesundheit um 2%." lvl="2"/>
+        <rank description="Erhöht die Gesundheit Eures Tiers um 6% und Eure gesamte Gesundheit um 3%." lvl="3"/>
+        <rank description="Erhöht die Gesundheit Eures Tiers um 8% und Eure gesamte Gesundheit um 4%." lvl="4"/>
+        <rank description="Erhöht die Gesundheit Eures Tiers um 10% und Eure gesamte Gesundheit um 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_silenthunter" key="1624" name="Konzentriertes Feuer" tier="1">
+        <rank description="Jeglicher von Euch verursachte Schaden wird um 1% erhöht, während Euer Tier aktiv ist. Die kritische Trefferchance der Spezialfähigkeiten Eures Tieres wird um 10% erhöht, während 'Fass!' aktiv ist." lvl="1"/>
+        <rank description="Jeglicher von Euch verursachte Schaden wird um 2% erhöht, während Euer Tier aktiv ist. Die kritische Trefferchance der Spezialfähigkeiten Eures Tieres wird um 20% erhöht, während 'Fass!' aktiv ist." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_aspectofthemonkey" key="1381" name="Verbesserter Aspekt des Affen" tier="1">
+        <rank description="Erhöht den Ausweichbonus von 'Aspekt des Affen' und 'Aspekt des Drachenfalken' um 2%." lvl="1"/>
+        <rank description="Erhöht den Ausweichbonus von 'Aspekt des Affen' und 'Aspekt des Drachenfalken' um 4%." lvl="2"/>
+        <rank description="Erhöht den Ausweichbonus von 'Aspekt des Affen' und 'Aspekt des Drachenfalken' um 6%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_misc_pelt_bear_03" key="1395" name="Dickes Fell" tier="1">
+        <rank description="Erhöht die Rüstungswertung Eurer Tiere um 7% und Euren Rüstungsbonus durch Gegenstände um 4%." lvl="1"/>
+        <rank description="Erhöht die Rüstungswertung Eurer Tiere um 14% und Euren Rüstungsbonus durch Gegenstände um 7%." lvl="2"/>
+        <rank description="Erhöht die Rüstungswertung Eurer Tiere um 20% und Euren Rüstungsbonus durch Gegenstände um 10%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_beastsoothe" key="1625" name="Verbessertes Tier wiederbeleben" tier="1">
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Tier wiederbeleben' um 3 Sek., reduziert die Manakosten um 20% und erhöht die Gesundheit, mit der das Tier wiederkehrt um zusätzliche 15%." lvl="1"/>
+        <rank description="Verringert die Zauberzeit Eures Zaubers 'Tier wiederbeleben' um 6 Sek., reduziert die Manakosten um 40% und erhöht die Gesundheit, mit der das Tier wiederkehrt um zusätzliche 30%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_mount_jungletiger" key="1384" name="Orientierung" tier="2">
+        <rank description="Erhöht den Tempo-Bonus Eures 'Aspekt des Geparden' und 'Aspekt des Rudels' um 4% und erhöht Eure Reitgeschwindigkeit um 5%. Die Erhöhung der Reitgeschwindigkeit ist nicht mit anderen Effekten stapelbar." lvl="1"/>
+        <rank description="Erhöht den Tempo-Bonus Eures 'Aspekt des Geparden' und 'Aspekt des Rudels' um 8% und erhöht Eure Reitgeschwindigkeit um 10%. Die Erhöhung der Reitgeschwindigkeit ist nicht mit anderen Effekten stapelbar." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_aspectmastery" key="2138" name="Meister der Aspekte" tier="2">
+        <rank description="Aspekt der Viper - Verringert den Schadensabzug um 10%.&lt;br/&gt;&lt;br/&gt;Aspekt des Affen - Verringert den erlittenen Schaden um 5%.&lt;br/&gt;&lt;br/&gt;Aspekt des Falken - Erhöht den Angriffskraftbonus um 30%.&lt;br/&gt;&lt;br/&gt;Aspekt des Drachenfalken - Kombiniert die Boni von 'Aspekt des Affen' und 'Aspekt des Falken'." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_bullrush" key="1396" name="Entfesselter Zorn" tier="2">
+        <rank description="Erhöht den von Euren Tieren angerichteten Schaden um 3%." lvl="1"/>
+        <rank description="Erhöht den von Euren Tieren angerichteten Schaden um 6%." lvl="2"/>
+        <rank description="Erhöht den von Euren Tieren angerichteten Schaden um 9%." lvl="3"/>
+        <rank description="Erhöht den von Euren Tieren angerichteten Schaden um 12%." lvl="4"/>
+        <rank description="Erhöht den von Euren Tieren angerichteten Schaden um 15%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mendpet" key="1385" name="Verbessertes Tier heilen" tier="3">
+        <rank description="Verringert die Manakosten Eures Zaubers 'Tier heilen' um 10% und gewährt dem Zauber 'Tier heilen' eine Chance von 25%, 1 Fluch, Krankheit, magischen oder Gifteffekt von Eurem Tier zu entfernen." lvl="1"/>
+        <rank description="Verringert die Manakosten Eures Zaubers 'Tier heilen' um 20% und gewährt dem Zauber 'Tier heilen' eine Chance von 50%, 1 Fluch, Krankheit, magischen oder Gifteffekt von Eurem Tier zu entfernen." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_04" key="1393" name="Wildheit" tier="3">
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Tiere um 2%." lvl="1"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Tiere um 4%." lvl="2"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Tiere um 6%." lvl="3"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Tiere um 8%." lvl="4"/>
+        <rank description="Erhöht die Chance für einen kritischen Treffer Eurer Tiere um 10%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_druid_demoralizingroar" key="1388" name="Geistbande" tier="4">
+        <rank description="Regeneriert alle 10 Sek. 1% Eurer Gesundheit und der Eures Tiers, und erhöht sowohl Eure erhaltene Heilung, als auch die Eures Tiers um 5%. Der Effekt ist wirksam, so lang Euer Tier aktiv ist." lvl="1"/>
+        <rank description="Regeneriert alle 10 Sek. 2% Eurer gesamten Gesundheit und der Eures Tiers, und erhöht sowohl Eure erhaltene Heilung, als auch die Eures Tiers um 10%. Der Effekt ist wirksam, so lang Euer Tier aktiv ist." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_devour" key="1387" name="Einschüchterung" tier="4">
+        <rank description="Befiehlt Eurem Tier, sein Ziel einzuschüchtern. Verursacht ein hohes Maß an Bedrohung und betäubt das Ziel 3 Sek. lang. Hält 15 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="100">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="spell_nature_abolishmagic" key="1390" name="Wildtierdisziplin" tier="4">
+        <rank description="Erhöht die Fokusregeneration Eurer Tiere um 50%." lvl="1"/>
+        <rank description="Erhöht die Fokusregeneration Eurer Tiere um 100%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_animalhandler" key="1799" name="Tiere abrichten" tier="5">
+        <rank description="Erhöht die Angriffskraft Eures Tieres um 5% und erhöht die Dauer Eurer Fähigkeit 'Ruf des Meisters' um 3 Sek." lvl="1"/>
+        <rank description="Erhöht die Angriffskraft Eures Tieres um 10% und erhöht die Dauer Eurer Fähigkeit 'Ruf des Meisters' um 6 Sek." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_monsterclaw_03" key="1397" name="Raserei" requires="1393" tier="5">
+        <rank description="Gewährt Eurem Tier eine Chance von 20%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="1"/>
+        <rank description="Gewährt Eurem Tier eine Chance von 40%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="2"/>
+        <rank description="Gewährt Eurem Tier eine Chance von 60%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="3"/>
+        <rank description="Gewährt Eurem Tier eine Chance von 80%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="4"/>
+        <rank description="Gewährt Eurem Tier eine Chance von 100%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Wilde Eingebung" tier="6">
+        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 1% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 3% erhöht." lvl="1"/>
+        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 2% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 6% erhöht." lvl="2"/>
+        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 3% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 9% erhöht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Zorn des Wildtiers" requires="1387" tier="6">
+        <rank description="Versetzt Euer Tier in einen Kampfrausch, wodurch es 10 Sek. lang 50% zusätzlichen Schaden verursacht. Einmal im Kampfrausch, gibt es keine Möglichkeit mehr, es zu stoppen, es sei denn, es wird getötet." lvl="1"/>
+        <spell castTime="0" cooldown="120000" maxRange="100">
+          <power cost="10" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_catlikereflexes" key="1801" name="Katzenhafte Reflexe" tier="6">
+        <rank description="Erhöht Eure Ausweichchance um 1% und die Eures Tieres um zusätzliche 3%. Außerdem wird die Abklingzeit Eurer Fähigkeit 'Fass!' um 10 Sek. verringert." lvl="1"/>
+        <rank description="Erhöht Eure Ausweichchance um 2% und die Eures Tieres um zusätzliche 6%. Außerdem wird die Abklingzeit Eurer Fähigkeit 'Fass!' um 20 Sek. verringert." lvl="2"/>
+        <rank description="Erhöht Eure Ausweichchance um 3% und die Eures Tieres um zusätzliche 9%. Außerdem wird die Abklingzeit Eurer Fähigkeit 'Fass!' um 30 Sek. verringert." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_invigeration" key="2136" name="Kräftigung" requires="1800" tier="7">
+        <rank description="Erzielt Euer Tier mit einer Spezialfähigkeit einen kritischen Treffer, besteht eine Chance von 50%, dass sofort 1% Eures Mana wiederhergestellt werden." lvl="1"/>
+        <rank description="Erzielt Euer Tier mit einer Spezialfähigkeit einen kritischen Treffer, besteht eine Chance von 100%, dass sofort 1% Eures Mana wiederhergestellt werden." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_serpentswiftness" key="1802" name="Gewandtheit der Schlange" tier="7">
+        <rank description="Erhöht Euer Distanzangriffstempo um 4% und das Nahkampfangriffstempo Eures Tieres um 4%." lvl="1"/>
+        <rank description="Erhöht Euer Distanzangriffstempo um 8% und das Nahkampfangriffstempo Eures Tieres um 8%." lvl="2"/>
+        <rank description="Erhöht Euer Distanzangriffstempo um 12% und das Nahkampfangriffstempo Eures Tieres um 12%." lvl="3"/>
+        <rank description="Erhöht Euer Distanzangriffstempo um 16% und das Nahkampfangriffstempo Eures Tieres um 16%." lvl="4"/>
+        <rank description="Erhöht Euer Distanzangriffstempo um 20% und das Nahkampfangriffstempo Eures Tieres um 20%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_longevity" key="2140" name="Langlebigkeit" tier="8">
+        <rank description="Verringert die Abklingzeiten Eurer Fähigkeiten 'Zorn des Wildtiers' und 'Einschüchterung' sowie der Spezialfähigkeiten Eures Tiers um 10%." lvl="1"/>
+        <rank description="Verringert die Abklingzeiten Eurer Fähigkeiten 'Zorn des Wildtiers' und 'Einschüchterung' sowie der Spezialfähigkeiten Eures Tiers um 20%." lvl="2"/>
+        <rank description="Verringert die Abklingzeiten Eurer Fähigkeiten 'Zorn des Wildtiers' und 'Einschüchterung' sowie der Spezialfähigkeiten Eures Tiers um 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_beastwithin" key="1803" name="Wildes Herz" requires="1386" tier="8">
+        <rank description="Erhöht jeglichen von Euch verursachten Schaden um 10%. Zudem verfallt Ihr, wenn Euer Tier unter dem Einfluss von 'Zorn des Wildtiers' steht, ebenfalls in Wut und verursacht 10 Sek. lang 10% zusätzlichen Schaden bei um 50% verringerten Manakosten aller Fähigkeiten. Während Ihr wütend seid, spürt Ihr kein Mitleid, Gnade oder Furcht und könnt nur durch den Tod aufgehalten werden." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_cobrastrikes" key="2137" name="Kobrastöße" requires="1802" tier="8">
+        <rank description="Ihr habt eine Chance von 20%, dass kritische Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Zuverlässiger Schuss' oder 'Tödlicher Schuss' die nächsten 2 Spezialangriffe Eures Tiers kritisch treffen lassen." lvl="1"/>
+        <rank description="Ihr habt eine Chance von 40%, dass kritische Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Zuverlässiger Schuss' oder 'Tödlicher Schuss' die nächsten 2 Spezialangriffe Eures Tiers kritisch treffen lassen." lvl="2"/>
+        <rank description="Ihr habt eine Chance von 60%, dass kritische Treffer Eurer Fähigkeiten 'Arkaner Schuss', 'Zuverlässiger Schuss' oder 'Tödlicher Schuss' die nächsten 2 Spezialangriffe Eures Tiers kritisch treffen lassen." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_separationanxiety" key="2227" name="Seelenverwandtschaft" tier="9">
+        <rank description="Erhöht den Schaden Eures Tieres um 4% und, wenn Euer Tier aktiv ist, Euer Bewegungstempo und das Eures Tieres um 2%. Nicht stapelbar mit anderen Effekten, die das Bewegungstempo erhöhen." lvl="1"/>
+        <rank description="Erhöht den Schaden Eures Tieres um 8% und, wenn Euer Tier aktiv ist, Euer Bewegungstempo und das Eures Tieres um 4%. Nicht stapelbar mit anderen Effekten, die das Bewegungstempo erhöhen." lvl="2"/>
+        <rank description="Erhöht den Schaden Eures Tieres um 12% und, wenn Euer Tier aktiv ist, Euer Bewegungstempo und das Eures Tieres um 6%. Nicht stapelbar mit anderen Effekten, die das Bewegungstempo erhöhen." lvl="3"/>
+        <rank description="Erhöht den Schaden Eures Tieres um 16% und, wenn Euer Tier aktiv ist, Euer Bewegungstempo und das Eures Tieres um 8%. Nicht stapelbar mit anderen Effekten, die das Bewegungstempo erhöhen." lvl="4"/>
+        <rank description="Erhöht den Schaden Eures Tieres um 20% und, wenn Euer Tier aktiv ist, Euer Bewegungstempo und das Eures Tieres um 10%. Nicht stapelbar mit anderen Effekten, die das Bewegungstempo erhöhen." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_beastmastery" key="2139" name="Herr der Tiere" tier="10">
+        <rank description="Ihr habt die Kunst der Wildtierausbildung gemeistert und erhaltet die Fähigkeit exotische Tiere zu zähmen. Die Gesamtzahl der Fertigkeitspunkte Eures Tiers wird um 4 erhöht." lvl="1"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterMarksmanship" icon="ability_marksmanship" key="Marksmanship" name="Treffsicherheit" order="1">
+      <talent column="0" icon="spell_frost_stun" key="1341" name="Verbesserter erschütternder Schuss" tier="0">
+        <rank description="Erhöht die Betäubungsdauer Eurer Fähigkeit 'Erschütternder Schuss' um 1 Sek." lvl="1"/>
+        <rank description="Erhöht die Betäubungsdauer Eurer Fähigkeit 'Erschütternder Schuss' um 2 Sek." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_focusedaim" key="2197" name="Konzentriertes Zielen" tier="0">
+        <rank description="Verringert die durch erlittenen Schaden verursachte Zauberzeiterhöhung beim Wirken von 'Zuverlässiger Schuss' um 23% und erhöht Eure Trefferchance um 1%." lvl="1"/>
+        <rank description="Verringert die durch erlittenen Schaden verursachte Zauberzeiterhöhung beim Wirken von 'Zuverlässiger Schuss' um 46% und erhöht Eure Trefferchance um 2%." lvl="2"/>
+        <rank description="Verringert die durch erlittenen Schaden verursachte Zauberzeiterhöhung beim Wirken von 'Zuverlässiger Schuss' um 70% und erhöht Eure Trefferchance um 3%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_searingarrow" key="1344" name="Tödliche Schüsse" tier="0">
+        <rank description="Erhöht Eure Chance, mit Distanzwaffen einen kritischen Treffer zu erzielen, um 1%." lvl="1"/>
+        <rank description="Erhöht Eure Chance, mit Distanzwaffen einen kritischen Treffer zu erzielen, um 2%." lvl="2"/>
+        <rank description="Erhöht Eure Chance, mit Distanzwaffen einen kritischen Treffer zu erzielen, um 3%." lvl="3"/>
+        <rank description="Erhöht Eure Chance, mit Distanzwaffen einen kritischen Treffer zu erzielen, um 4%." lvl="4"/>
+        <rank description="Erhöht Eure Chance, mit Distanzwaffen einen kritischen Treffer zu erzielen, um 5%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_zenarchery" key="1806" name="Sorgfältiges Zielen" tier="1">
+        <rank description="Erhöht Eure Distanzangriffskraft um einen Betrag, der 33% Eurer gesamten Intelligenz entspricht." lvl="1"/>
+        <rank description="Erhöht Eure Distanzangriffskraft um einen Betrag, der 66% Eurer gesamten Intelligenz entspricht." lvl="2"/>
+        <rank description="Erhöht Eure Distanzangriffskraft um einen Betrag, der 100% Eurer gesamten Intelligenz entspricht." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_snipershot" key="1343" name="Verbessertes Mal des Jägers" tier="1">
+        <rank description="Erhöht den Angriffskraftbonus Eurer Fähigkeit 'Mal des Jägers' um 10% und verringert die Manakosten um 33%." lvl="1"/>
+        <rank description="Erhöht den Angriffskraftbonus Eurer Fähigkeit 'Mal des Jägers' um 20% und verringert die Manakosten um 66%." lvl="2"/>
+        <rank description="Erhöht den Angriffskraftbonus Eurer Fähigkeit 'Mal des Jägers' um 30% und verringert die Manakosten um 100%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_piercedamage" key="1349" name="Todbringende Schüsse" tier="1">
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Distanzfähigkeiten um 6%." lvl="1"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Distanzfähigkeiten um 12%." lvl="2"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Distanzfähigkeiten um 18%." lvl="3"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Distanzfähigkeiten um 24%." lvl="4"/>
+        <rank description="Erhöht den kritischen Schadensbonus Eurer Distanzfähigkeiten um 30%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_goforthethroat" key="1818" name="An die Kehle gehen" tier="2">
+        <rank description="Durch Eure kritischen Distanztreffer erhält Euer Tier 25 Fokus." lvl="1"/>
+        <rank description="Durch Eure kritischen Distanztreffer erhält Euer Tier 50 Fokus." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_impalingbolt" key="1346" name="Verbesserter arkaner Schuss" tier="2">
+        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Arkaner Schuss' um 5%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Arkaner Schuss' um 10%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Arkaner Schuss' um 15%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_spear_07" key="1345" name="Gezielter Schuss" requires="1349" tier="2">
+        <rank description="Ein gezielter Schuss, der den Distanzschaden um 5 erhöht und auf das Ziel gewirkte Heileffekte um 50% verringert. Hält 10 Sek. lang an." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="35" minRange="5">
+          <power cost="8" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="3" icon="ability_hunter_rapidkilling" key="1819" name="Schneller Tod" tier="2">
+        <rank description="Die Abklingzeit Eurer Fähigkeit 'Schnellfeuer' wird um 1 Min. verringert. Nach dem Töten eines Gegners, der Erfahrung oder Ehre gewährt, verursacht Euer nächster 'Gezielter Schuss', 'Arkaner Schuss' oder 'Schimärenschuss' 10% mehr Schaden. Der Effekt hält bis zu 20 Sek. lang an." lvl="1"/>
+        <rank description="Die Abklingzeit Eurer Fähigkeit 'Schnellfeuer' wird um 2 Min. verringert. Nach dem Töten eines Gegners, der Erfahrung oder Ehre gewährt, verursacht Euer nächster 'Gezielter Schuss', 'Arkaner Schuss' oder 'Schimärenschuss' 20% mehr Schaden. Der Effekt hält bis zu 20 Sek. lang an." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_quickshot" key="1348" name="Verbesserte Stiche und Bisse" tier="3">
+        <rank description="Erhöht den von Euren Fähigkeiten 'Schlangenbiss' und 'Stich des Flügeldrachen' verursachten Schaden um 10% und das von 'Vipernbiss' abgezogene Mana um 10%. Verringert zusätzlich die Chance, dass Stiche und Bisse, die Schaden im Laufe der Zeit verursachen, gebannt werden um 10%." lvl="1"/>
+        <rank description="Erhöht den von Euren Fähigkeiten 'Schlangenbiss' und 'Stich des Flügeldrachen' verursachten Schaden um 20% und das von 'Vipernbiss' abgezogene Mana um 20%. Verringert zusätzlich die Chance, dass Stiche und Bisse, die Schaden im Laufe der Zeit verursachen, gebannt werden um 20%." lvl="2"/>
+        <rank description="Erhöht den von Euren Fähigkeiten 'Schlangenbiss' und 'Stich des Flügeldrachen' verursachten Schaden um 30% und das von 'Vipernbiss' abgezogene Mana um 30%. Verringert zusätzlich die Chance, dass Stiche und Bisse, die Schaden im Laufe der Zeit verursachen, gebannt werden um 30%." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_frost_wizardmark" key="1342" name="Effizienz" tier="3">
+        <rank description="Verringert die Manakosten Eurer Schüsse und Stiche um 3%." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Schüsse und Stiche um 6%." lvl="2"/>
+        <rank description="Verringert die Manakosten Eurer Schüsse und Stiche um 9%." lvl="3"/>
+        <rank description="Verringert die Manakosten Eurer Schüsse und Stiche um 12%." lvl="4"/>
+        <rank description="Verringert die Manakosten Eurer Schüsse und Stiche um 15%." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_arcane_starfire" key="1351" name="Erschütterndes Sperrfeuer" tier="4">
+        <rank description="Erfolgreiche Angriffe mit 'Schimärenschuss' und 'Mehrfachschuss' haben eine Chance von 50%, das Ziel 4 Sek. lang benommen zu machen." lvl="1"/>
+        <rank description="Erfolgreiche Angriffe mit 'Schimärenschuss' und 'Mehrfachschuss' haben eine Chance von 100%, das Ziel 4 Sek. lang benommen zu machen." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_readiness" key="1353" name="Bereitschaft" tier="4">
+        <rank description="Bei Aktivierung schließt diese Fähigkeit die Abklingzeit aller anderen Jägerfähigkeiten, mit Ausnahme von 'Zorn des Wildtiers', sofort ab." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_upgrademoonglaive" key="1347" name="Sperrfeuer" tier="4">
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Mehrfachschuss', 'Gezielter Schuss' und 'Salve' um 4%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Mehrfachschuss', 'Gezielter Schuss' und 'Salve' um 8%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeiten 'Mehrfachschuss', 'Gezielter Schuss' und 'Salve' um 12%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_combatexperience" key="1804" name="Kampferfahrung" tier="5">
+        <rank description="Erhöht Eure gesamte Beweglichkeit und Intelligenz um 2%." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Beweglichkeit und Intelligenz um 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_weapon_rifle_06" key="1362" name="Distanzwaffen-Spezialisierung" tier="5">
+        <rank description="Erhöht den Schaden, den Ihr mit Distanzwaffen zufügt, um 1%." lvl="1"/>
+        <rank description="Erhöht den Schaden, den Ihr mit Distanzwaffen zufügt, um 3%." lvl="2"/>
+        <rank description="Erhöht den Schaden, den Ihr mit Distanzwaffen zufügt, um 5%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_piercingshots" key="2130" name="Durchschlagende Schüsse" tier="6">
+        <rank description="Die kritischen Treffer Eurer Fähigkeiten 'Gezielter Schuss', 'Zuverlässiger Schuss' und 'Schimärenschuss' lassen das Ziel im Verlauf von 8 Sek. für 10% des verursachten Schadens bluten." lvl="1"/>
+        <rank description="Die kritischen Treffer Eurer Fähigkeiten 'Gezielter Schuss', 'Zuverlässiger Schuss' und 'Schimärenschuss' lassen das Ziel im Verlauf von 8 Sek. für 20% des verursachten Schadens bluten." lvl="2"/>
+        <rank description="Die kritischen Treffer Eurer Fähigkeiten 'Gezielter Schuss', 'Zuverlässiger Schuss' und 'Schimärenschuss' lassen das Ziel im Verlauf von 8 Sek. für 30% des verursachten Schadens bluten." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_trueshot" key="1361" name="Aura des Volltreffers" requires="1353" tier="6">
+        <rank description="Erhöht die Angriffskraft von Gruppen- und Schlachtzugsmitgliedern in einem Umkreis von 45 Metern um 10%. Hält bis Abbruch an." lvl="1"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Verbessertes Sperrfeuer" requires="1347" tier="6">
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeiten 'Mehrfachschuss' und 'Gezielter Schuss' um 4% und verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeitverringerung beim Kanalisieren von 'Salve' um 33%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeiten 'Mehrfachschuss' und 'Gezielter Schuss' um 8% und verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeitverringerung beim Kanalisieren von 'Salve' um 66%." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eurer Fähigkeiten 'Mehrfachschuss' und 'Gezielter Schuss' um 12% und verringert die Dauer der durch erlittenen Schaden verursachten Zauberzeitverringerung beim Kanalisieren von 'Salve' um 100%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mastermarksman" key="1807" name="Meisterschütze" tier="7">
+        <rank description="Erhöht Eure kritische Trefferchance um 1% und verringert die Manakosten von 'Zuverlässiger Schuss', 'Gezielter Schuss' und 'Schimärenschuss' um 5%." lvl="1"/>
+        <rank description="Erhöht Eure kritische Trefferchance um 2% und verringert die Manakosten von 'Zuverlässiger Schuss', 'Gezielter Schuss' und 'Schimärenschuss' um 10%." lvl="2"/>
+        <rank description="Erhöht Eure kritische Trefferchance um 3% und verringert die Manakosten von 'Zuverlässiger Schuss', 'Gezielter Schuss' und 'Schimärenschuss' um 15%." lvl="3"/>
+        <rank description="Erhöht Eure kritische Trefferchance um 4% und verringert die Manakosten von 'Zuverlässiger Schuss', 'Gezielter Schuss' und 'Schimärenschuss' um 20%." lvl="4"/>
+        <rank description="Erhöht Eure kritische Trefferchance um 5% und verringert die Manakosten von 'Zuverlässiger Schuss', 'Gezielter Schuss' und 'Schimärenschuss' um 25%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_rapidregeneration" key="2131" name="Rasche Erholung" tier="7">
+        <rank description="Steht Ihr unter dem Effekt von 'Schnellfeuer', werden alle 3 Sek. 2% Eures Manas wiederhergestellt. Wird 'Schneller Tod' ausgelöst, gewinnt Ihr 6 Sek. lang alle 2 Sek. 1% Eures Manas." lvl="1"/>
+        <rank description="Steht Ihr unter dem Effekt von 'Schnellfeuer', werden alle 3 Sek. 4% Eures Manas wiederhergestellt. Wird 'Schneller Tod' ausgelöst, gewinnt Ihr 6 Sek. lang alle 2 Sek. 2% Eures Manas." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_wildquiver" key="2132" name="Pfeilhagel" tier="8">
+        <rank description="Wenn Ihr durch 'Automatischer Schuss' Schaden verursacht, besteht eine Chance von 4%, dass ein zusätzlicher Schuss abgefeuert wird, der 80% Waffenschaden als Naturschaden verursacht. Pfeilhagel verbraucht keine Munition." lvl="1"/>
+        <rank description="Wenn Ihr durch 'Automatischer Schuss' Schaden verursacht, besteht eine Chance von 8%, dass ein zusätzlicher Schuss abgefeuert wird, der 80% Waffenschaden als Naturschaden verursacht. Pfeilhagel verbraucht keine Munition." lvl="2"/>
+        <rank description="Wenn Ihr durch 'Automatischer Schuss' Schaden verursacht, besteht eine Chance von 12%, dass ein zusätzlicher Schuss abgefeuert wird, der 80% Waffenschaden als Naturschaden verursacht. Pfeilhagel verbraucht keine Munition." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_theblackarrow" key="1808" name="Unterdrückender Schuss" requires="1807" tier="8">
+        <rank description="Ein Schuss, der 50% Waffenschaden zufügt und das Ziel 3 Sek. lang zum Schweigen bringt. Das Zauberwirken von Nichtspieler-Zielen ist ebenfalls 3 Sek. lang unterbrochen." lvl="1"/>
+        <spell castTime="0" cooldown="20000" maxRange="35" minRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_hunter_improvedsteadyshot" key="2133" name="Verbesserter zuverlässiger Schuss" tier="8">
+        <rank description="Treffer Eurer Fähigkeit 'Zuverlässiger Schuss' haben eine Chance von 5%, den verursachten Schaden Eures nächsten 'Gezielter Schuss', 'Arkaner Schuss' oder 'Schimärenschuss' um 15% zu erhöhen und die Manakosten dieses Schusses um 20% zu verringern." lvl="1"/>
+        <rank description="Treffer Eurer Fähigkeit 'Zuverlässiger Schuss' haben eine Chance von 10%, den verursachten Schaden Eures nächsten 'Gezielter Schuss', 'Arkaner Schuss' oder 'Schimärenschuss' um 15% zu erhöhen und die Manakosten dieses Schusses um 20% zu verringern." lvl="2"/>
+        <rank description="Treffer Eurer Fähigkeit 'Zuverlässiger Schuss' haben eine Chance von 15%, den verursachten Schaden Eures nächsten 'Gezielter Schuss', 'Arkaner Schuss' oder 'Schimärenschuss' um 15% zu erhöhen und die Manakosten dieses Schusses um 20% zu verringern." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_assassinate" key="2134" name="Zum Tode verurteilt" tier="9">
+        <rank description="Erhöht den Schaden Eurer Schüsse und der Spezialfähigkeiten Eures Tieres an markierten Zielen um 1% und erhöht den kritischen Schadensbonus Eurer Fähigkeiten 'Gezielter Schuss', 'Arkaner Schuss', 'Zuverlässiger Schuss', 'Tödlicher Schuss' und 'Schimärenschuss' um 2%." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Schüsse und der Spezialfähigkeiten Eures Tieres an markierten Zielen um 2% und erhöht den kritischen Schadensbonus Eurer Fähigkeiten 'Gezielter Schuss', 'Arkaner Schuss', 'Zuverlässiger Schuss', 'Tödlicher Schuss' und 'Schimärenschuss' um 4%." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Schüsse und der Spezialfähigkeiten Eures Tieres an markierten Zielen um 3% und erhöht den kritischen Schadensbonus Eurer Fähigkeiten 'Gezielter Schuss', 'Arkaner Schuss', 'Zuverlässiger Schuss', 'Tödlicher Schuss' und 'Schimärenschuss' um 6%." lvl="3"/>
+        <rank description="Erhöht den Schaden Eurer Schüsse und der Spezialfähigkeiten Eures Tieres an markierten Zielen um 4% und erhöht den kritischen Schadensbonus Eurer Fähigkeiten 'Gezielter Schuss', 'Arkaner Schuss', 'Zuverlässiger Schuss', 'Tödlicher Schuss' und 'Schimärenschuss' um 8%." lvl="4"/>
+        <rank description="Erhöht den Schaden Eurer Schüsse und der Spezialfähigkeiten Eures Tieres an markierten Zielen um 5% und erhöht den kritischen Schadensbonus Eurer Fähigkeiten 'Gezielter Schuss', 'Arkaner Schuss', 'Zuverlässiger Schuss', 'Tödlicher Schuss' und 'Schimärenschuss' um 10%." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_chimerashot2" key="2135" name="Schimärenschuss" tier="10">
+        <rank description="Verursacht 125% Waffenschaden, frischt die Dauer des auf das Ziel wirkenden Stiches oder Bisses auf und löst einen Effekt aus:&lt;br/&gt;&lt;br/&gt;Schlangenbiss - Verursacht sofort 40% des von 'Schlangenbiss' verursachten Schadens.&lt;br/&gt;&lt;br/&gt;Vipernbiss - Stellt Euer Mana in Höhe von 60% des gesamten von 'Vipernbiss' entzogenen Mana wieder her.&lt;br/&gt;&lt;br/&gt;Skorpidstich - Versucht, das Ziel 10 Sek. lang zu entwaffnen. Dieser Effekt kann pro Minute nur einmal auftreten." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="35" minRange="5">
+          <power cost="12" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>
