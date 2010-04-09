@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 131
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -46,10 +46,10 @@ Class Connector {
     /** Armory configs **/
     public $armoryconfig;
     
-    /** Current armory locale (ru_ru, en_gb or es_es) **/
+    /** Current armory locale (ru_ru or en_gb) **/
     public $_locale;
     
-    /** Locale (0 - en_gb, 8 - ru_ru, etc.)**/
+    /** Locale (0 - en_gb, 2 - fr_fr, 3 - de_de, etc.)**/
     public $_loc;
     
     /**
@@ -80,6 +80,31 @@ Class Connector {
             case 'en_gb':
             case 'en_us':
                 $this->_loc = 0;
+                break;
+            /*
+            case 'ko_kr':
+                $this->_loc = 1;
+                break;
+            */
+            case 'fr_fr':
+                $this->_loc = 2;
+                break;
+            case 'de_de':
+                $this->_loc = 3;
+                break;
+            /*
+            case 'cn_cn': //(?)
+                $this->_loc = 4;
+                break;
+            case 'zh_tw':
+                $this->_loc = 5;
+                break;
+            */
+            case 'es_es':
+                $this->_loc = 6;
+                break;
+            case 'es_mx':
+                $this->_loc = 7;
                 break;
             case 'ru_ru':
                 $this->_loc = 8;

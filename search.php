@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 130
+ * @revision 131
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -184,9 +184,5 @@ $xml->XMLWriter()->endElement();  //armorySearch
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-echo '<!-- ';
-print_r($armory->aDB->getStatistics());
-print_r($armory->wDB->getStatistics());
-echo '-->';
 exit;
 ?>
