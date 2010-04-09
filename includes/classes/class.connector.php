@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 131
+ * @revision 132
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -75,6 +75,13 @@ Class Connector {
         $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
         $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+        $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+        if($user_locale && self::IsAllowedLocale($user_locale)) {
+            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $user_locale.$user_locale;
+        }
+        else {
+            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        }
         $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($this->_locale) {
             case 'en_gb':
@@ -108,6 +115,29 @@ Class Connector {
                 break;
             case 'ru_ru':
                 $this->_loc = 8;
+                break;
+        }
+    }
+    
+    private function IsAllowedLocale($locale = false) {
+        if(!$locale) {
+            $locale = $this->_locale;
+        }
+        if(!$locale) {
+            return false;
+        }
+        switch($locale) {
+            case 'de':
+            case 'en':
+            case 'en':
+            case 'es':
+            case 'es':
+            case 'fr':
+            case 'ru':
+                return true;
+                break;
+            default:
+                return false;
                 break;
         }
     }
