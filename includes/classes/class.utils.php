@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 127
+ * @revision 130
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -565,60 +565,6 @@ Class Utils extends Connector {
         return $radius[0]." - ".$radius[2];
     }
     
-    public function GetDungeonList($expansion) {
-        $data = array();
-        switch($expansion) {
-            case 0: // WoW Classic
-                $data = $this->aDB->select("
-                SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
-                    FROM `armory_instance_template`
-                        WHERE `expansion`=0");                
-                break;
-            case 1: // WoW TBC
-                $data = $this->aDB->select("
-                SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
-                    FROM `armory_instance_template`
-                        WHERE `expansion`=1");   
-                break;
-            case 2: // WoW WotLK
-                $data = $this->aDB->select("
-                    SELECT `id`, `name_".$this->_locale."` AS `name`, `boss_num`, `key`, `levelMin`, `levelMax`, `partySize`, `raid`
-                        FROM `armory_instance_template`
-                            WHERE `expansion`=2");   
-                break;
-        }
-        $count = count($data);
-        for($i=0;$i<$count;$i++) {
-            $data[$i]['bosses'] = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `bossname` FROM `armory_instance_data` WHERE `instance_id`=?", $data[$i]['id']);
-        }
-        return $data;
-    }
-    
-    public function GetFactionList($expansion) {
-        $data = array();
-        switch($expansion) {
-            case 0: // WoW Classic
-                $data = $this->aDB->select("
-                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
-                    FROM `armory_faction`
-                        WHERE `expansion`=0 AND `hasRewards`=1");
-                break;
-            case 1: // WoW TBC
-                $data = $this->aDB->select("
-                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
-                    FROM `armory_faction`
-                        WHERE `expansion`=1 AND `hasRewards`=1");
-                break;
-            case 2: // WoW WotLK
-                $data = $this->aDB->select("
-                SELECT `id`, `name_".$this->_locale."` AS `name`, `friendlyTo` AS `side`
-                    FROM `armory_faction`
-                        WHERE `expansion`=2 AND `hasRewards`=1");
-                break;
-        }
-        return $data;
-    }
-    
     public function GetArmoryString($id) {
         $str = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
         return $str;
@@ -660,6 +606,18 @@ Class Utils extends Connector {
                 return 6; // Death Knight is default class
                 break;
         }
+    }
+    
+    public function GetDungeonKey($instance_id) {
+        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=? LIMIT 1", $instance_id);
+    }
+    
+    public function GetBossDungeonKey($bossIdOrKey) {
+        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `id`=? OR `name_id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?) LIMIT 1", $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey);
+    }
+    
+    public function GetDungeonId($instance_key) {
+        return $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $instance_key);
     }
 }
 ?>

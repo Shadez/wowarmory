@@ -5,10 +5,10 @@
 <xsl:include href="subtype.xsl" />
 
 <xsl:variable name="dungeonsXml" select="document('../../_data/dungeons.xml')" />
-<xsl:variable name="locDungeons" select="document('../../data/dungeonStrings.xml')" />
+<xsl:variable name="locDungeons" select="document(concat('../../data/dungeonStrings-', $lang, '.xml'))" />
 
 <xsl:variable name="factionsXml" select="document('../../_data/factions.xml')/root" />
-<xsl:variable name="locFactions" select="document('../../data/factionStrings.xml')" />
+<xsl:variable name="locFactions" select="document(concat('../../data/factionStrings-', $lang, '.xml'))" />
 
 <xsl:variable name="advOptionsXml" select="document('../../_data/items/advoptions.xml')" />
 
@@ -117,7 +117,7 @@
     <div class="filter-container" id="childPvP{$factionLower}">
   <div name="divErrorPvP" id="divErrorPvP">  	
 	<div class="option-cont"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.pvpsource']"/></div>
-      <div class="input-cont"><select id="pvp" name="fl[pvp]">
+      <div class="input-cont"><select id="pvp" name="pvp">
         <option name="pvpall" id="pvpall" value="all"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.allpvpsources']"/></option>
 		<xsl:variable name="locpvpxml" select="document(concat('../../_data/items/pvp', $factionLetter, '.xml'))" />
         <xsl:for-each select="$locpvpxml/pvpVendors/pvpVendor">
@@ -133,7 +133,7 @@
   <div class="filter-container" id="childReputationRewards">
   <div id="divErrorFaction">
   <div class="option-cont"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.faction']"/></div>
-    <div class="input-cont"><select id="faction" name="fl[faction]">
+    <div class="input-cont"><select id="faction" name="faction">
       <option name="faction-1" id="faction-1" value="-1"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.select.allfactions']"/></option>
       <xsl:for-each select="$releasesXml/releases/release">
         <xsl:variable name="releaseKey" select="@key" />
@@ -153,7 +153,7 @@
   <div class="filter-container" id="childDungeon">
   <div id="divErrorDungeon">
   <div class="option-cont"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.dropsfrom']"/></div>
-    <div class="input-cont"><select id="dungeon" onChange="changedungeon(this.value)" onKeyUp="changedungeon(this.value)" name="fl[dungeon]">
+    <div class="input-cont"><select id="dungeon" onChange="changedungeon(this.value)" onKeyUp="changedungeon(this.value)" name="dungeon">
       <option name="dungeonall" id="dungeonall" value="all"><xsl:value-of select="$loc/strs/items/sources/dungeons/str[@id='armory.item-search.alldungeonraid']"/></option>
       <option name="dungeondungeons" id="dungeondungeons" value="dungeons"><xsl:value-of select="$loc/strs/items/sources/dungeons/str[@id='armory.item-search.dungeononly']"/></option>	  
       <option name="dungeonraids" id="dungeonraids" value="raids"><xsl:value-of select="$loc/strs/items/sources/dungeons/str[@id='armory.item-search.raidonly']"/></option>	  	  
@@ -196,7 +196,7 @@
 	
   <div class="filter-container" id="child{@key}">
    <div class="option-cont"><xsl:value-of select="$textBoss"/></div>	
-    <div class="input-cont"><select id="boss" name="fl[boss]">
+    <div class="input-cont"><select id="boss" name="boss">
       <option id="bossall" name="bossall" value="all"><xsl:value-of select="$textBossOne"/><xsl:value-of select="$dungeonName" /><xsl:value-of select="$textBossTwo"/></option>
 	  <xsl:for-each select="boss">
         <option id="boss{@id}" name="boss{@id}" value="{@id}"><xsl:value-of select="@name" /></option>
@@ -319,7 +319,7 @@
   <xsl:call-template name="advOptions" />
 
   <div class="filter-container" id="childItemType"><div class="option-cont"><xsl:value-of select="$loc/strs/items/types/str[@id='armory.item-search.itemtype']"/></div>
-    <div class="input-cont"><select id="type" onChange="changetype(this.value)" onKeyUp="changetype(this.value)" name="fl[type]">
+    <div class="input-cont"><select id="type" onChange="changetype(this.value)" onKeyUp="changetype(this.value)" name="type">
 	  <option id="typeall" name="typeall" value="all"><xsl:value-of select="$loc/strs/items/types/str[@id='armory.item-search.allitems']"/></option>
 	  <option id="typeweapons" name="typeweapons" value="weapons"><xsl:value-of select="$loc/strs/items/types/str[@id='armory.item-search.weapons']"/></option>
 	  <option id="typearmor" name="typearmor" value="armor"><xsl:value-of select="$loc/strs/items/types/str[@id='armory.item-search.armor']"/></option>
@@ -343,7 +343,7 @@
   </div>
 
   <div class="filter-container" id="childSource"><div class="option-cont"><xsl:value-of select="$loc/strs/items/sources/general/str[@id='armory.item-search.source']"/></div>
-    <div class="input-cont"><select id="source" onChange="changesource(this.value)" onKeyUp="changesource(this.value)" name="fl[source]">
+    <div class="input-cont"><select id="source" onChange="changesource(this.value)" onKeyUp="changesource(this.value)" name="source">
 	  <option id="sourceall" name="sourceall" value="all" selected="selected"><xsl:value-of select="$loc/strs/items/sources/general/str[@id='armory.item-search.allsources']"/></option>
 	  <option id="sourcedungeon" name="sourcedungeon" value="dungeon"><xsl:value-of select="$loc/strs/items/sources/general/str[@id='armory.item-search.dungeonraiddrops']"/></option>
 	  <option id="sourcereputation" name="sourcereputation" value="reputation"><xsl:value-of select="$loc/strs/items/sources/general/str[@id='armory.item-search.reputationrewards']"/></option>
@@ -353,7 +353,7 @@
   </div>
   
   <div id="childUsableByDruid">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypetank" id="classTypetank" value="tank"><xsl:value-of select="$textTank"/></option>
   <option name="classTypemelee" id="classTypemelee" value="melee"><xsl:value-of select="$textMelee"/></option>
@@ -363,7 +363,7 @@
   </div>  
 
   <div id="childUsableByPaladin">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypetank" id="classTypetank" value="tank"><xsl:value-of select="$textTank"/></option>
   <option name="classTypemelee" id="classTypemelee" value="melee"><xsl:value-of select="$textMelee"/></option>
@@ -373,7 +373,7 @@
   </div>  
 
   <div id="childUsableByShaman">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypemelee" id="classTypemelee" value="melee"><xsl:value-of select="$textMelee"/></option>
   <option name="classTypecaster" id="classTypecaster" value="caster"><xsl:value-of select="$textCaster"/></option>
@@ -382,7 +382,7 @@
   </div>  
 
   <div id="childUsableByPriest">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypecaster" id="classTypecaster" value="caster"><xsl:value-of select="$textCaster"/></option>
   <option name="classTypehealer" id="classTypehealer" value="healer"><xsl:value-of select="$textHealer"/></option>      
@@ -390,7 +390,7 @@
   </div>  
 
   <div id="childUsableByWarlock">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypedot" id="classTypedot" value="dot"><xsl:value-of select="$loc/strs/classes/str[@id='items.warlocks.damage']"/></option>
   <option name="classTypedd" id="classTypedd" value="dd"><xsl:value-of select="$loc/strs/classes/str[@id='items.warlocks.damagecrit']"/></option>      
@@ -398,7 +398,7 @@
   </div>  
 
   <div id="childUsableByWarrior">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypetank" id="classTypetank" value="tank"><xsl:value-of select="$textTank"/></option>
   <option name="classTypemelee" id="classTypemelee" value="melee"><xsl:value-of select="$textMelee"/></option>  
@@ -406,7 +406,7 @@
   </div> 
   
   <div id="childUsableByDeathKnight">
-  <select name="fl[classType]" id="classType" >
+  <select name="classType" id="classType" >
   <option name="classTypeall" id="classTypeall" value="all"><xsl:value-of select="$textAnyType"/></option>  
   <option name="classTypetank" id="classTypetank" value="tank"><xsl:value-of select="$textTank"/></option>
   <option name="classTypemelee" id="classTypemelee" value="melee"><xsl:value-of select="$textMelee"/></option>  
@@ -434,7 +434,7 @@
 	<div class="sub-filters">	
 
 	  <div class="sub-label"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.slot']"/> </div>	
-	  <select id="slot" name="fl[slot]">
+	  <select id="slot" name="slot">
 	    <option id="slotall" name="slotall" value="all"><xsl:value-of select="$textAllSlots"/></option>
         <option id="slotmain" name="slotmain" value="main"><xsl:value-of select="$loc/strs/items/weaponSlots/str[@id='armory.item-search.weapons.main']"/></option>
         <option id="slotoff" name="slotoff" value="off"><xsl:value-of select="$loc/strs/items/weaponSlots/str[@id='armory.item-search.weapons.off']"/></option>
@@ -447,7 +447,7 @@
 	<div class="sub-filters">
 	
 	  <div class="sub-label"><xsl:value-of select="$loc/strs/items/weaponTypes/str[@id='armory.item-search.weapontype']"/></div>
-	  <select id="subTp" name="fl[subTp]">
+	  <select id="subTp" name="subTp">
 		<xsl:call-template name="itemSubtypeWeapons" />
 	  </select>
 	</div>
@@ -467,14 +467,14 @@
   <div class="sub-filters" id="gemParentUsableBy"></div>  	
 	<div class="sub-filters">
 	<div class="sub-label"><xsl:value-of select="$loc/strs/items/gems/str[@id='armory.item-search.gemtype']"/></div>
-	<select id="subTp" name="fl[subTp]">
+	<select id="subTp" name="subTp">
 		<xsl:call-template name="itemSubtypeGems" />
 	</select>
 	</div>
 	
   <div class="sub-filters">
 	<div class="sub-label"><xsl:value-of select="$textRarity"/></div>
-	<select id="rrt" name="fl[rrt]">
+	<select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>	  
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -491,12 +491,12 @@
 
   <div class="filter-container" id="childRecipes">
 	<div class="option-cont"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.recipes']"/></div>
-	<div class="input-cont"><select id="subTp" name="fl[subTp]">
+	<div class="input-cont"><select id="subTp" name="subTp">
 		<xsl:call-template name="itemSubtypeRecipes" />
 	</select> </div>
 
 	<div class="option-cont"><xsl:value-of select="$textRarity"/></div>
-	<div class="input-cont"><select id="rrt" name="fl[rrt]">
+	<div class="input-cont"><select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -506,14 +506,14 @@
 
   <div name="divErrorLevel" id="divErrorLevel"> 
 	<div class="option-cont"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.requiredskilllevel']"/></div>
-	<div class="input-cont"><input type="text" name="fl[minSkill]" id="minSkill" class="irange"/> - <input type="text" name="fl[maxSkill]" id="maxSkill" class="irange"/></div>   
+	<div class="input-cont"><input type="text" name="minSkill" id="minSkill" class="irange"/> - <input type="text" name="maxSkill" id="maxSkill" class="irange"/></div>   
   </div>
 	
   </div>
 
   <div class="filter-container" id="childConsumablesNoPoor">
 	<div class="option-cont"><xsl:value-of select="$textRarity"/></div>
-	<div class="input-cont"><select id="rrt" name="fl[rrt]">
+	<div class="input-cont"><select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -524,7 +524,7 @@
   
   <div class="filter-container" id="childMiscRarity">
 	<div class="option-cont"><xsl:value-of select="$textRarity"/></div>
-	<div class="input-cont"><select id="rrt" name="fl[rrt]">
+	<div class="input-cont"><select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -538,7 +538,7 @@
   
   <div id="childRarity">
 	<div id="childRarityClass" class="sub-label-top"><xsl:value-of select="$textRarity"/></div>
-	<select id="rrt" name="fl[rrt]">
+	<select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtpr" name="rrtpr" value="pr"><xsl:value-of select="$loc/strs/items/rarity/str[@id='armory.item-search.poor']"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>
@@ -554,13 +554,13 @@
   <div id="childRequiredLevel">
   <div name="divErrorLevel" id="divErrorLevel">   
 	<div class="sub-label" id="textLevelRange"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.requiredlevel']"/></div>
-	<input class="irange" name="fl[rqrMin]" id="rqrMin" type="text" value="" maxlength="2" size="10"/> - <input name="fl[rqrMax]" class="irange" id="rqrMax" type="text" size="2" value="" maxlength="2"/>
+	<input class="irange" name="rqrMin" id="rqrMin" type="text" value="" maxlength="2" size="10"/> - <input name="rqrMax" class="irange" id="rqrMax" type="text" size="2" value="" maxlength="2"/>
   </div>
   </div>
 
   <div id="childUsableBy">
 	<div class="sub-label" style="font-size: 12px; color:#003333;"> <img src="/_images/icons/icon-question.gif" border="0" onMouseOver="setTipText('{$loc/strs/items/str[@id='armory.items.hover.desiredby']}');" class="desiredHelp staticTip" /> <xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.usableby']"/></div>
-	<select id="usbleBy" name="fl[usbleBy]" onChange="javascript: changeusbleBy(this.value)" onKeyUp="javascript: changeusbleBy(this.value)">
+	<select id="usbleBy" name="usbleBy" onChange="javascript: changeusbleBy(this.value)" onKeyUp="javascript: changeusbleBy(this.value)">
 	  <option id="usbleByall" name="usbleByall" value="all"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.allclasses']"/></option>
 	  <option id="usbleBy1" name="usbleBy1" value="1"><xsl:value-of select="$loc/strs/classes/str[@id='armory.classes.class.1']" /></option>
 	  <option id="usbleBy2" name="usbleBy2" value="2"><xsl:value-of select="$loc/strs/classes/str[@id='armory.classes.class.2']" /></option>
@@ -581,7 +581,7 @@
 	  <div class="a-option"><div id="replaceAdvancedOptions"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.advancedfilters']"/></div></div>
       <div class="advanced-cont">	
 	    <div id="parentAdvancedFilters"></div>
-      <div id="idAndOr" style="display: none;"><input class="irange" type="radio" id="andor" name="fl[andor]" value="and" checked="checked" style="float: left" /><div style="float: left " onMouseOver="setTipText('{$loc/strs/itemsOptions/str[@id='armory.item-search.matchalltip']}')" class="staticTip"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.matchall']"/></div><input class="irange" type="radio" id="andor" name="fl[andor]" value="or" style="float: left; margin-left: 20px;" /><div style="float: left;" class="staticTip" onMouseOver="setTipText('{$loc/strs/itemsOptions/str[@id='armory.item-search.matchonetip']}')"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.matchone']"/></div><br /></div>		
+      <div id="idAndOr" style="display: none;"><input class="irange" type="radio" id="andor" name="andor" value="and" checked="checked" style="float: left" /><div style="float: left " onMouseOver="setTipText('{$loc/strs/itemsOptions/str[@id='armory.item-search.matchalltip']}')" class="staticTip"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.matchall']"/></div><input class="irange" type="radio" id="andor" name="andor" value="or" style="float: left; margin-left: 20px;" /><div style="float: left;" class="staticTip" onMouseOver="setTipText('{$loc/strs/itemsOptions/str[@id='armory.item-search.matchonetip']}')"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.matchone']"/></div><br /></div>		
       </div>
       <div id="parentAdvancedButtons">
       <div id="idAddFilterWeapon"><a class="add-filter" href="javascript: addAdvOpt();"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.addfilter']"/></a></div>
@@ -631,7 +631,7 @@
 
   <div class="sub-filters">
 	<div class="sub-label"><xsl:value-of select="$textRarity"/></div>
-	<select id="rrt" name="fl[rrt]">
+	<select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>	  
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -646,7 +646,7 @@
 	
 	<div class="sub-filters">
 	<div class="sub-label"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.slot']"/></div>
-	<select id="slot" name="fl[slot]">
+	<select id="slot" name="slot">
 	  <option id="slotall" name="slotall" value="all"><xsl:value-of select="$textAllSlots"/></option>
 	  <option id="slothead" name="slothead" value="head"><xsl:value-of select="$textHead"/></option>
 	  <option id="slotshoulders" name="slotshoulders" value="shoulders"><xsl:value-of select="$textShoulders"/></option>
@@ -660,7 +660,7 @@
 	
   <div class="sub-filters">
 	<div class="sub-label"><xsl:value-of select="$textRarity"/></div>
-	<select id="rrt" name="fl[rrt]">
+	<select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>	  
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -675,7 +675,7 @@
 
   <div id="childSlotAll">
 	<div class="sub-label"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.slot']"/></div>
-	<select id="slot" name="fl[slot]">
+	<select id="slot" name="slot">
 	  <option id="slotall" name="slotall" value="all"><xsl:value-of select="$textAllSlots"/></option>
 	  <optgroup label="{$loc/strs/items/slots/str[@id='armor']}">		  
 	  <option id="slothead" name="slothead" value="head"><xsl:value-of select="$textHead"/></option>
@@ -706,7 +706,7 @@
 
   <div id="childSlot">
 	<div class="sub-label"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.slot']"/></div>
-	<select id="slot" name="fl[slot]">
+	<select id="slot" name="slot">
 	  <option id="slotall" name="slotall" value="all"><xsl:value-of select="$textAllSlots"/></option>
 	  <option id="slothead" name="slothead" value="head"><xsl:value-of select="$textHead"/></option>
 	  <option id="slotneck" name="slotneck" value="neck"><xsl:value-of select="$textNeck"/></option>
@@ -751,7 +751,7 @@
 <!--	<div class="sub-filters" id="armorParentItemLevel"></div>-->
 	<div class="sub-filters">
 	  <div class="sub-label"><xsl:value-of select="$loc/strs/items/armorType/str[@id='armory.item-search.armor.armortype']"/></div>
-	  <select id="subTp" name="fl[subTp]">
+	  <select id="subTp" name="subTp">
 		<xsl:call-template name="itemSubtypeArmor" />
 	  </select>
 	</div>	
@@ -1064,7 +1064,7 @@
   <!-- Containers -->
   <div class="filter-container" id="childContainers">
     <div class="option-cont"><xsl:value-of select="$loc/strs/items/bags/str[@id='armory.item-search.bags.bagtype']"/></div>
-	<div class="input-cont"><select id="subTp" name="fl[subTp]">
+	<div class="input-cont"><select id="subTp" name="subTp">
     <option id="subTpall" name="subTpall" value="all"><xsl:value-of select="$loc/strs/items/bags/str[@id='armory.item-search.bags.allbags']"/></option>
     <option id="subTpbag" name="subTpbag" value="bag"><xsl:value-of select="$loc/strs/items/bags/str[@id='armory.item-search.bags.bag']"/></option>
     <option id="subTpsoul" name="subTpsoul" value="soul"><xsl:value-of select="$loc/strs/items/bags/str[@id='armory.item-search.bags.soul']"/></option>
@@ -1082,14 +1082,14 @@
   <!-- Projectiles -->
   <div class="filter-container" id="childProjectiles">
     <div class="option-cont"><xsl:value-of select="$loc/strs/items/projectileTypes/str[@id='armory.item-search.projectiles.type']"/></div>
-	<div class="input-cont"><select id="projectiles" name="fl[subTp]">
+	<div class="input-cont"><select id="projectiles" name="subTp">
     <option name="subTpall" id="subTpall" value="all"><xsl:value-of select="$loc/strs/items/projectileTypes/str[@id='armory.item-search.projectiles.all']"/></option>
     <option id="subTparrow" name="subTparrow" value="arrow"><xsl:value-of select="$loc/strs/items/projectileTypes/str[@id='armory.item-search.projectiles.arrow']"/></option>
     <option name="subTpbullet" id="subTpbullet" value="bullet"><xsl:value-of select="$loc/strs/items/projectileTypes/str[@id='armory.item-search.projectiles.bullet']"/></option>
     </select></div>
 
 	<div class="option-cont"><xsl:value-of select="$textRarity"/></div>
-	<div class="input-cont"><select id="rrt" name="fl[rrt]">
+	<div class="input-cont"><select id="rrt" name="rrt">
 	  <option id="rrtall" name="rrtall" value="all"><xsl:value-of select="$textAll"/></option>
 	  <option id="rrtcn" name="rrtcn" value="cn"><xsl:value-of select="$textCommon"/></option>
 	  <option id="rrtun" name="rrtun" value="un"><xsl:value-of select="$textUncommon"/></option>
@@ -1104,7 +1104,7 @@
   <!-- Quivers -->
   <div class="filter-container" id="childQuivers">
    <div class="option-cont"><xsl:value-of select="$loc/strs/items/quiverTypes/str[@id='armory.item-search.quiver.type']"/></div>
-	<div class="input-cont"><select id="quivers" name="fl[subTp]">
+	<div class="input-cont"><select id="quivers" name="subTp">
     <option id="subTall" name="subTall" value="all"><xsl:value-of select="$loc/strs/items/quiverTypes/str[@id='armory.item-search.quiver.all']"/></option>
     <option id="subTquiver" name="subTquiver" value="quiver"><xsl:value-of select="$loc/strs/items/quiverTypes/str[@id='armory.item-search.quiver.quiver']"/></option>
     <option id="subTammopouch" name="subTammopouch" value="ammopouch"><xsl:value-of select="$loc/strs/items/quiverTypes/str[@id='armory.item-search.quiver.ammo']"/></option>
@@ -1114,7 +1114,7 @@
   <!-- Difficulty -->
   <div class="filter-container" id="childHeroic">
    <div class="option-cont"><xsl:value-of select="$loc/strs/dungeons/str[@id='difficulty.title']"/></div>
-	<div class="input-cont"><select id="difficulty" name="fl[difficulty]">
+	<div class="input-cont"><select id="difficulty" name="difficulty">
     <option id="difficultyall" name="difficultyall" value="all"><xsl:value-of select="$loc/strs/dungeons/str[@id='difficulty.all']"/></option>	
     <option id="difficultynormal" name="difficultynormal" value="normal"><xsl:value-of select="$loc/strs/dungeons/str[@id='difficulty.normalonly']"/></option>
     <option id="difficultyheroic" name="difficultyheroic" value="heroic"><xsl:value-of select="$loc/strs/dungeons/str[@id='difficulty.heroiconly']"/></option>

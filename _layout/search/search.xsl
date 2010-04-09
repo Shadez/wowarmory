@@ -324,7 +324,7 @@
 				<td>
 					<xsl:choose>
 						<xsl:when test="current()/filter[@name='source']/@areaName">
-							<a href="search.xml?fl[source]=dungeon&amp;fl[dungeon]={current()/filter[@name='source']/@areaKey}&amp;boss=all&amp;difficulty=all&amp;type=all&amp;searchType=items"><xsl:value-of select="current()/filter[@name='source']/@areaName" /></a>
+							<a href="search.xml?source=dungeon&amp;dungeon={current()/filter[@name='source']/@areaKey}&amp;boss=all&amp;difficulty=all&amp;type=all&amp;searchType=items"><xsl:value-of select="current()/filter[@name='source']/@areaName" /></a>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="$loc/strs/itemsSearchColumns/str[@id=concat('armory.searchColumn.', current()/filter[@name='source']/@value)]" />

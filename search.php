@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 130
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,21 +23,22 @@
  **/
 
 define('__ARMORY__', true);
-define('load_search_class', true);
 define('load_characters_class', true);
 define('load_mangos_class', true);
 define('load_items_class', true);
+define('load_search_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 header('Content-type: text/xml');
+$advancedItemsSearch = false;
 if(isset($_GET['searchQuery'])) {
     $search->searchQuery = Utils::escape($_GET['searchQuery']);
 }
-/*
 elseif(isset($_GET['source'])) {
+    $advancedItemsSearch = true;
     $search->get_array = $_GET;
-}*/
+}
 else {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
@@ -74,10 +75,19 @@ if($count_teams = $search->SearchArenaTeams(true)) {
     $teams_search = $search->SearchArenaTeams();
     $selected = 'arenateams';
 }
-if($count_items = $search->DoSearchItems(true)) {
-    $totalCount = $totalCount+$count_items;
-    $items_search = $search->DoSearchItems();
-    $selected = 'items';
+if($advancedItemsSearch) {
+    if($count_items = $search->AdvancedItemsSearch(true)) {
+        $totalCount = $totalCount+$count_items;
+        $items_search = $search->AdvancedItemsSearch();
+        $selected = 'items';
+    }
+}
+else {
+    if($count_items = $search->DoSearchItems(true)) {
+        $totalCount = $totalCount+$count_items;
+        $items_search = $search->DoSearchItems();
+        $selected = 'items';
+    }
 }
 if(isset($_GET['selectedTab'])) {
     $selected = $_GET['selectedTab'];
@@ -174,5 +184,9 @@ $xml->XMLWriter()->endElement();  //armorySearch
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
+echo '<!-- ';
+print_r($armory->aDB->getStatistics());
+print_r($armory->wDB->getStatistics());
+echo '-->';
 exit;
 ?>
