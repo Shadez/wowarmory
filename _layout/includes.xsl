@@ -778,7 +778,7 @@
 <xsl:template name="truncate">
 	<xsl:param name="string"/>
 	<xsl:param name="length"/>
-	<xsl:param name="suffix" select="'…'" />
+	<xsl:param name="suffix" select="'...'" />
 
 	<xsl:value-of select="substring($string, 1, $length)"/>
 
