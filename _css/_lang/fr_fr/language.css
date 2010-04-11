@@ -1,0 +1,199 @@
+@charset "utf-8";
+/*
+World of Warcraft Armory localization file
+(c) Blizzard Entertainment 2007. All rights reserved.
+*/
+/* bold tags used in the armory */
+/*...........................................................*/
+.item-content,.language-filter a,.rlbox a,.related-links a.noflash,.relatedlinknew a,.faq-over,.armory-news h1,.sublisting,table.data-table strong,tr.masthead td,.enchantName,.enchantNameClone,td.relevance q,.select3 li.tab-content,.pnav a.p,.pnav a.sel,.mnav a.p,.mnav a.sel,.pnav p,.mnav p,.item-icon a,.generic-name h3,.generic-name h4,.teamRank span,.arenaTeam-name h3,.arenaTeam-name h4,.arenaRealm-info a,.arenaRealm-info a:active,.arenaRealm-info a:visited,.smList,.player-name span,.team-name span,.simple-team td a,a.play-prev,a.play-prev:active,a.play-prev:visited,a.play-last,a.play-last:active,a.play-last:visited,a.play-down100,a.play-down100:active,a.play-down100:visited,a.play-up100,a.play-up100:active,a.play-up100:visited,.teamstanding-noflash,.generic-title span,a.menuLink,a.menuLink:link,a.menuLink:visited,.realm-info a,.realm-info a:active,.realm-info a:visited,.fly-horz a,.fly-horz a:active,.fly-horz a:visited,.profile-stats,.drop-stats a,.set-lang,.drop-lang a,.drop-lang a:visited,.drop-lang a:active,.drop-link a,.drop-link a:visited,.drop-link a:active,.character-stats span,.character-stats i,.health-stat p,.mana-stat p,.rage-stat p,.energy-stat p,.bar-container,.spec-wrapper span,.resists b,.resists span,.arena-ranking a,ul.badges-pvp li h4,ul.badges-pvp li em,ul.legend-arena h4,ul.badges-legend li h3,.bonus-footer p,.faction-name a,.faction-name a:active,.faction-name a:link,.faction-name span,a.rep-data,a.skill-data,.faction-level p,a.copy-link b,a.copy-link-character b,a.pin-link b,a.copy-link strong,a.pin-link strong,a.copy-link-character strong,.stats-content h3,.stats-content h4,td.nameplate span,.male em,.female em,tr.level-range td,.error-message,.error-message h3,.treeName,div.tournament_box_newsdate,div.tournament_rules_official,.slot div,.advances,.upperbracket,.lowerbracket,.item-title2,#parentPredefinedFilter u,.detail-search,.detail-search a.button-lite,.detail-search-results,.detail-search-results a.button-lite,a.button-red,a.button-red:active,a.button-red:visited,.alt-stats a,.alt-stats a:active,.alt-stats a:visited,.item-related h3,.open-filter b,.open-filter strong,.close-filter a,a.item-count,a.item-add,.insert-error,.mobName,.dungeon-content,.faction-content,.dungeon-header,.update-content h2,.update-item span,.faq-nav a,.faq-nav a:active,.faq-nav a:visited,.relatedlinknew	a,.relatedlinknew a:active,.relatedlinknew a:visited{font-weight:bold}
+.teamstanding-noflash,.level-noflash,.arenaTeam-name h3,.arenaTeam-name h4,.generic-name h3,.generic-name h4, .ps a{font-weight:bold !important}
+/* layout */
+/*...........................................................*/
+.parch-front{height:328px;width:950px;margin:0 auto;background:url('../../../images/theme/wrath/fr_fr/parch-front.jpg') no-repeat 0 0}
+.front-top .logo[class]{position:relative;z-index:20;width:356px;height:79px;background:url('../../../images/theme/wrath/fr_fr/logo.png') no-repeat -2px 0;margin:0 auto}
+.front-top .logo {width:356px;height:79px;margin:0 auto;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/_images/theme/wrath/fr_fr/logo.png',sizingMethod='image')}
+.int-top .logo[class]{width:209px;height:120px;margin:0 0 0 10px;background:url('../../../images/theme/wrath/fr_fr/logo-sm.png') no-repeat 0 0;float:left}
+.int-top .logo {width:209px;height:120px;margin:0 0 0 10px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/_images/theme/wrath/fr_fr/logo-sm.png',sizingMethod='image');float:left}
+.int-top .logo a {width:209px;height:100px;display:block;z-index:5;position:relative}
+.tree a{font-weight:bold}
+.global-nav span{display:none}
+.beta{background:url('../../../images/fr_fr/beta.gif')}
+.legalicon{background:url('/shared/wow-com/images/icons/esrb/teen-desc.gif') 50% 50% no-repeat;width:125px;height:70px;float:left; margin:0 10px;}
+.legalicon2{background:url('/shared/wow-com/images/icons/esrb/content-warning.gif') 0 50% no-repeat;width:147px;height:70px;float:left;}
+.legalicon3{background:url('/shared/wow-com/images/icons/esrb/ectppsvivendi.gif') 0 50% no-repeat;width:144px;height:70px;float:left;}
+body.errorpage{margin:0;background:url(../../../images/fr_fr/errorpage.jpg) #000 50% 0 no-repeat;padding-top:360px}
+/* team categories */
+/*...........................................................*/
+.team2 a{background:url('../../../images/fr_fr/tt2.jpg') no-repeat 0 0;left:19px}
+.team3 a{background:url('../../../images/fr_fr/tt3.jpg') no-repeat 0 0;left:91px}
+.team5 a{background:url('../../../images/fr_fr/tt5.jpg') no-repeat 0 0;left:74px}
+.team2 a:hover,.team3 a:hover,.team5 a:hover{background-position:0 100%}
+/* Character Search / Profiles */
+/*...........................................................*/
+.header-cp,.header-tp,.header-gp,.header-gs{position:absolute}
+.header-cp{top:-31px;left:-51px;background:url('../../../images/fr_fr/header-cp.gif') no-repeat;width:275px;height:146px}
+.header-tp{top:-31px;left:-51px;background:url('../../../images/fr_fr/header-tp.gif') no-repeat;width:275px;height:146px}
+.header-gp{top:-93px;left:-59px;background:url('../../../images/fr_fr/header-gp.gif') no-repeat;width:258px;height:209px}
+#achievements .b-title{background:url('../../../images/fr_fr/subtitle-achievements.gif') no-repeat;top:-41px;left:-46px;width:250px;height:72px}
+#arenateams .b-title{background:url('../../../images/fr_fr/subtitle-arenateams.gif') no-repeat;top:-41px;left:-46px;width:250px;height:72px}
+.kids h2{background:url('../../../images/fr_fr/text-cp-prompt.gif') no-repeat}
+.kids .levelBar-wrapper{background:url('../../../images/fr_fr/levelBar-bg.gif') no-repeat}
+.character-details h4{font:bold 11px Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:uppercase}
+.character-details h1{font-weight:normal;line-height:18px}
+.character-details h2{font-size:24px;line-height:25px}
+.character-details h3{font-size:20px;line-height:20px}
+.character-outer,.character-clone{font:18px Georgia,"Times New Roman",Times,serif;letter-spacing:-1px}
+.profile-banner h1{font:bold 22px Georgia,"Times New Roman",Times,serif;text-transform:uppercase}
+/* Guild Profiles */
+/*...........................................................*/
+.header-gs{}
+a.reset{display:block;width:63px;height:27px;margin-top:13px;background:url('../../../images/fr_fr/button-reset.gif') no-repeat 0 0}
+a.reset:hover{background-position:0 100%}
+/* talents */
+/*...........................................................*/
+.exportbutton{width:100%;text-align:center;margin-top:-30px}
+.exportbutton div{margin:0 auto;width:250px;height:48px;background:url(../../../images/fr_fr/button-export.gif) 0 -48px no-repeat;vertical-align:middle}
+.exportbutton a{height:100%;width:100%;outline:none;display:block;background:url(../../../images/fr_fr/button-export.gif) 0 0 no-repeat;cursor:pointer}
+.exportbutton a:link,.exportbutton a:hover,.exportbutton a:visited,.exportbutton a:active,.exportbutton span{font:bold 16px 'Trebuchet MS',Arial,Helvetica,sans-serif;color:#503512;text-decoration:none}
+.exportbutton span{padding-top:5px;height:32px;line-height:32px;display:block}
+.exportbutton a:hover{background:none}
+/* Updates */
+/*...........................................................*/
+.ud-url{background:url('../../../images/fr_fr/updates/armory4-url.jpg') no-repeat 50% 0;height:60px;position:relative;top:-10px;margin-bottom:-10px}
+.ud-item{background:url('../../../images/fr_fr/updates/armory4-item.jpg') no-repeat 50% 0;height:60px;position:relative;top:-5px}
+.ud-calc a, .ud-plugin a {display:block; height:100%;}
+.ud-plugin {float:right;margin:0;background:url('../../../images/fr_fr/updates/armory6.gif') no-repeat;width:390px;height:77px;position:relative;right:-20px;}
+.ud-calc{float:right;margin:0;background:url('../../../images/fr_fr/updates/armory5.gif') no-repeat;width:356px;height:333px;position:relative;right:-20px;}
+.ud-paging{float:right;margin:0;background:url('../../../images/fr_fr/updates/armory4.gif') no-repeat;width:339px;height:338px;position:relative;right:-20px;top:-10px}
+.ud-pin{float:right;margin:0;background:url('../../../images/fr_fr/updates/armory3.gif') no-repeat;width:339px;height:318px;position:relative;right:-20px;top:-10px}
+.ud-pin em.e1,.ud-pin em.e2,.ud-pin em.e3,.ud-pin em.e4,.ud-pin em.e5,.ud-upgrade em.e1,.ud-desired em.e1,.ud-desired em.e2,.ud-paging em.e1,.ud-paging em.e2,.ud-calc em.e1,.ud-calc em.e2,.ud-calc em.e3,.ud-bankcontents em.e1,.ud-bankcontents em.e2,.ud-bankcontents em.e3{position:absolute;display:block;font-weight:bold;line-height:normal !important;text-align:center;font:bold italic 12px Arial,Helvetica,sans-serif}
+.ud-calc em.e1{top:30px;left:95px;width:140px;}
+.ud-calc em.e2{top:242px;left:25px;width:130px;}
+.ud-calc em.e3{top:266px;left:191px;width:140px;}
+.ud-paging em.e1{top:45px;left:120px;width:125px}
+.ud-paging em.e2{top:295px;left:129px;width:125px}
+.ud-pin em.e1{top:35px;left:60px;width:100px}
+.ud-pin em.e2{top:27px;left:210px;width:80px}
+.ud-pin em.e3{top:250px;left:20px;width:80px}
+.ud-pin em.e4{top:250px;left:130px;width:80px}
+.ud-pin em.e5{top:250px;left:240px;width:80px}
+.ud-options{margin:0 0 10px 0;background:url('../../../images/fr_fr/updates/armory4.jpg') no-repeat;width:557px;height:189px;position:relative;left:-10px}
+.ud-upgrade{float:right;margin:0;background:url('../../../images/fr_fr/updates/armory1.gif') no-repeat;width:326px;height:326px;position:relative;}
+.ud-upgrade em.e1{top:252px;left:90px;width:130px}
+.ud-desired{float:right;margin:0;background:url('../../../images/fr_fr/updates/armory2.gif') no-repeat;width:328px;height:317px;position:relative;}
+.ud-desired em.e1{top:35px;left:90px;width:130px}
+.ud-desired em.e2{top:258px;left:90px;width:130px}
+#showHideUpdatefindupgrade { height: 350px; }
+#showHideUpdatedesiredby p.foot {clear: both;}
+/* arena calculator */
+/*...........................................................*/
+.ud-login {float:right;margin:0;background:url('../../../images/fr_fr/updates/armory7.gif') no-repeat;width:309px;height:245px;position:relative;right:-10px;}
+.ud-bankcontents {float:right;margin:0;background:url('../../../images/fr_fr/updates/armory8.gif') no-repeat;width:352px;height:333px;position:relative;right:-20px;}
+.arenacalc .sidebar h1 div {background:url(../../../images/fr_fr/calc-reftitle.gif) 0 0 no-repeat;}
+.ud-bankcontents em.e1{top:22px;left:144px;width:130px;}
+.ud-bankcontents em.e2{top:206px;left:14px;width:90px;}
+.ud-bankcontents em.e3{top:266px;left:219px;width:90px;}
+.ud-banklog{margin:0; padding:0; display:block; width:568px;height:177px;position:relative;left:-10px}
+.ud-guildtabard {float:right;margin:0;background:url('../../../images/fr_fr/updates/armory10.gif') no-repeat;width:385px;height:254px;position:relative;right:-10px;}
+.ud-calendar {float:right;margin:0;background:url('../../../images/fr_fr/updates/armory11.gif') no-repeat;width:302px;height:312px;position:relative;right:-10px;}
+/* Battlegroups */
+/*...........................................................*/
+.battlegroups0 a.bg-button,.battlegroups1 a.bg-button,.realms0 a.realms-button,.realms1 a.realms-button{display:block;width:266px;height:53px}
+.battlegroups0 a.bg-button,.battlegroups1 a.bg-button{background:url('../../../images/fr_fr/select-bg.jpg') no-repeat}
+.realms0 a.realms-button,.realms1 a.realms-button{background:url('../../../images/fr_fr/select-realm.jpg') no-repeat 0 0}
+.battlegroups0 a.bg-button:hover,.battlegroups1 a.bg-button:hover,.realms0 a.realms-button:hover,.realms1 a.realms-button:hover,.battlegroups1 a.bg-button,.realms1 a.realms-button{background-position:0 100%}
+.battlegroups0 a.bg-button,.realms0 a.realms-button{background-position:0 0}
+a.battlegroupSmall{display:block;width:21px !important;height:21px;margin:3px 3px 0;z-index:999;position:relative}
+a.battlegroupSmall:hover{border-bottom:none !important}
+
+/*special event battlegroup*/
+.coliseum-large	 	{ background: url('../../../images/fr_fr/coliseum.jpg') no-repeat; }
+/*normal battlegroups*/
+a.coliseum			{ background: url('../../../images/fr_fr/title-coliseum.gif') no-repeat; }
+
+/* coliseum */
+a.coliseum1 		{ background: url('../../../images/fr_fr/title-coliseum1.gif') no-repeat; }
+a.coliseum2 		{ background: url('../../../images/fr_fr/title-coliseum2.gif') no-repeat; }
+a.coliseum3 		{ background: url('../../../images/fr_fr/title-coliseum3.gif') no-repeat; }
+a.coliseum4 		{ background: url('../../../images/fr_fr/title-coliseum4.gif') no-repeat; }
+.group-coliseumtitle{ background: url('../../../images/fr_fr/title-coliseumbattlegroups.gif') 0 0 no-repeat;}
+
+/* en */
+.groupretaliation{background:url('../../../images/en_gb/battlegroups/icons-small/retaliation.png') no-repeat}
+.groupblackout{background:url('../../../images/en_gb/battlegroups/icons-small/blackout.png') no-repeat}
+.groupbloodlust{background:url('../../../images/en_gb/battlegroups/icons-small/bloodlust.png') no-repeat}
+.groupconviction{background:url('../../../images/en_gb/battlegroups/icons-small/conviction.png') no-repeat}
+.groupcyclone{background:url('../../../images/en_gb/battlegroups/icons-small/cyclone.png') no-repeat}
+.groupintimidation{background:url('../../../images/en_gb/battlegroups/icons-small/intimidation.png') no-repeat}
+.groupimpact{background:url('../../../images/en_gb/battlegroups/icons-small/impact.png') no-repeat}
+.groupmisery{background:url('../../../images/en_gb/battlegroups/icons-small/misery.png') no-repeat}
+.groupnightfall{background:url('../../../images/en_gb/battlegroups/icons-small/nightfall.png') no-repeat}
+.grouprampage{background:url('../../../images/en_gb/battlegroups/icons-small/rampage.png') no-repeat}
+.groupreckoning{background:url('../../../images/en_gb/battlegroups/icons-small/reckoning.png') no-repeat}
+.groupruin{background:url('../../../images/en_gb/battlegroups/icons-small/ruin.png') no-repeat}
+.groupvigor{background:url('../../../images/en_gb/battlegroups/icons-small/vigor.png') no-repeat}
+.groupvindication{background:url('../../../images/en_gb/battlegroups/icons-small/vindication.png') no-repeat}
+.groupwhirlwind{background:url('../../../images/en_gb/battlegroups/icons-small/whirlwind.png') no-repeat}
+/* de */
+.groupambush{background:url('../../../images/de_de/battlegroups/icons-small/ambush.png') no-repeat}
+.groupblastwave{background:url('../../../images/de_de/battlegroups/icons-small/blastwave.png') no-repeat}
+.groupcharge{background:url('../../../images/de_de/battlegroups/icons-small/charge.png') no-repeat}
+.groupbloodthirst{background:url('../../../images/de_de/battlegroups/icons-small/bloodthirst.png') no-repeat}
+.groupdeadliness{background:url('../../../images/de_de/battlegroups/icons-small/deadliness.png') no-repeat}
+.groupemberstorm{background:url('../../../images/de_de/battlegroups/icons-small/emberstorm.png') no-repeat}
+.groupfrenzy{background:url('../../../images/de_de/battlegroups/icons-small/frenzy.png') no-repeat}
+.grouphemorrhage{background:url('../../../images/de_de/battlegroups/icons-small/hemorrhage.png') no-repeat}
+.groupmalediction{background:url('../../../images/de_de/battlegroups/icons-small/malediction.png') no-repeat}
+.groupshadowburn{background:url('../../../images/de_de/battlegroups/icons-small/shadowburn.png') no-repeat}
+.groupstormstrike{background:url('../../../images/de_de/battlegroups/icons-small/stormstrike.png') no-repeat}
+/* fr */
+.groupcataclysm{background:url('../../../images/fr_fr/battlegroups/icons-small/cataclysm.png') 0 0 no-repeat;}
+.groupferocity{background:url('../../../images/fr_fr/battlegroups/icons-small/ferocity.png') no-repeat}
+.groupretaliation{background:url('../../../images/fr_fr/battlegroups/icons-small/retaliation.png') no-repeat}
+.groupriposte{background:url('../../../images/fr_fr/battlegroups/icons-small/riposte.png') no-repeat}
+.groupruthlessness{background:url('../../../images/fr_fr/battlegroups/icons-small/ruthlessness.png') no-repeat}
+.groupvengeance{background:url('../../../images/fr_fr/battlegroups/icons-small/vengeance.png') no-repeat}
+/* es */
+.groupcruelty{background:url('../../../images/es_es/battlegroups/icons-small/cruelty.png') no-repeat}
+.grouprockbiter{background:url('../../../images/es_es/battlegroups/icons-small/rockbiter.png') no-repeat}
+/* ru */
+.groupflurry{background:url('../../../images/ru_ru/battlegroups/icons-small/flurry.png') no-repeat}
+
+
+/* login button */
+a.login-button { float: left; display: block;  height: 23px; width: 112px; background-position:0 0; background: url('../../../images/fr_fr/button-login.gif') top left  no-repeat;}
+a.cancel-button { float: right; display: block; height: 23px; width: 112px; background-position:0 0; background: url('../../../images/fr_fr/button-cancel.gif') top left  no-repeat;}
+
+/* guild motd */
+.guild-motd { margin: 0 142px 0 200px; width:526px;padding: 6px; font-style: italic;overflow:hidden }
+
+/* Specific LG changes */
+#loadingDivInnerText{position:absolute;top:12px;right:2px;text-align:center;width:155px;height:62px;color:black;font:14px "Arial Black",Arial,Helvetica,sans-serif;text-transform:uppercase}
+#loadingDivInnerText em{display:block;font-style:normal;color:white;position:absolute;top:-1px;right:1px;text-align:center;width:155px;height:62px}
+.arenaTeam-badge{float:right;width:150px;height:200px;background:url('../../../images/fr_fr/arena-badge-bg.gif') no-repeat 4px 16px;position:relative;margin:0 0 -20px 0}
+
+.lowerbracket{position:absolute;top:335px;left:0px;font-style:italic;font-weight:bold;color:#baa050}
+
+.parch-profile-banner{height:113px;width:480px;background:url('../../../images/fr_fr/parch-title-shadow.jpg') no-repeat;text-align:center; margin: -1px auto 7px; z-index: 10000;}
+
+.stats-console table{width:305px !important}
+
+.propass { font-size: 15px; left: -4px; position: relative;line-height:30px; }
+.user-data {line-height:12px; }
+.pinselect {line-height:10px; font-size:10px;}
+
+/* Sub-Nav */
+#nav li ul a,#nav li ul a:visited, #nav li ul span,#nav ul{width:14.5em}
+#nav li ul ul { left:17.4em;}
+
+/* Advertisements */
+.armory300 {height:250px;background:#000;}
+.ad-container {width:728px;height:90px;margin:0 auto;background:#000;}
+
+/* mobile armory page */
+.mobileArmoryTitle { background:url('../../../images/mobile-armory/fr_fr/title.jpg') center top !important;}
+.mobileArmoryContent .screens .screen1 {background:url('../../../images/mobile-armory/fr_fr/screen_thumb_01.jpg')}
+.mobileArmoryContent .screens .screen2 {background:url('../../../images/mobile-armory/fr_fr/screen_thumb_02.jpg')}
+.mobileArmoryContent .screens .screen3 {background:url('../../../images/mobile-armory/fr_fr/screen_thumb_03.jpg')}
+.mobileArmoryContent .screens .screen4 {background:url('../../../images/mobile-armory/fr_fr/screen_thumb_04.jpg')}
+.mobileArmoryContent .screens .screen5 {background:url('../../../images/mobile-armory/fr_fr/screen_thumb_05.jpg')}

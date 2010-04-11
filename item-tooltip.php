@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 135
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -501,15 +501,15 @@ if(is_array($itemSource)) {
     $xml->XMLWriter()->startElement('itemSource');
     foreach($itemSource as $source_key => $source_value) {
         $xml->XMLWriter()->writeAttribute($source_key, $source_value);
-    }
+    }    
     $xml->XMLWriter()->endElement(); //itemSource
 }
-
 $xml->XMLWriter()->endElement();   //itemTooltip
 $xml->XMLWriter()->endElement();  //itemTooltips
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
+// echo htmlspecialchars_decode($xml_cache_data); // F@#K
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($itemID, ($characters->guid) ? $characters->guid : 0, 'item-toolip');

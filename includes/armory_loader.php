@@ -30,8 +30,8 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r128');
-define('ARMORY_REVISION', 128);
+define('DB_VERSION', 'armory_r135');
+define('ARMORY_REVISION', 135);
 $armory = new Connector;
 if($armory->armoryconfig['server_version'] > 0) {
     $file_ver = (int) $armory->armoryconfig['server_version'];

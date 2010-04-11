@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 135
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,29 +49,19 @@ Class Items extends Connector {
      * @return string
      **/
     public function getItemName($itemID) {
-        switch(strtolower($this->_locale)) {
-            case 'en_gb':
-                $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                break;
-            case 'ru_ru':
-                $itemName = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
-                if(!$itemName) {
-                    // Lookup for original name
-                    $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                }
-                break;
-            case 'es_es':
-                $itemName = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
-                if(!$itemName) {
-                    // Lookup for original name
-                    $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                }
-                break;
-            default:
-                return false;
-                break;
+        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
         }
-        return $itemName;
+        else {
+            $itemName = $this->wDB->selectCell("SELECT `name_loc" . $this->_loc . "` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
+            if(!$itemName) {
+                $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+            }
+        }
+        if($itemName) {
+            return $itemName;
+        }
+        return false;
     }
     
     /**
@@ -93,29 +83,19 @@ Class Items extends Connector {
      * @return string
      **/
     public function GetItemDescription($itemID) {
-        switch(strtolower($this->_locale)) {
-            case 'en_gb':
-                $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                break;
-            case 'ru_ru':
-                $itemDescription = $this->wDB->selectCell("SELECT `description_loc8` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
-                if(!$itemDescription) {
-                    // Lookup for original name
-                    $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                }
-                break;
-            case 'es_es':
-                $itemDescription = $this->wDB->selectCell("SELECT `description_loc6` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
-                if(!$itemDescription) {
-                    // Lookup for original name
-                    $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
-                }
-                break;
-            default:
-                return false;
-                break;
+        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
         }
-        return $itemDescription;
+        else {
+            $itemDescription = $this->wDB->selectCell("SELECT `description_loc" . $this->_loc . "` FROM `locales_item` WHERE `entry`=? LIMIT 1", $itemID);
+            if(!$itemDescription) {
+                $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+            }
+        }
+        if($itemDescription) {
+            return $itemDescription;
+        }
+        return false;
     }
     
     /**
@@ -149,15 +129,14 @@ Class Items extends Connector {
      * @return string
      **/
     public function AllowableClasses($mask) {
-		$mask&=0x5DF;
+		$mask &= 0x5DF;
 		// Return zero if for all class (or for none
-		if($mask==0x5DF || $mask==0) {
+		if($mask == 0x5DF || $mask == 0) {
             return 0;
 		}
         $i=1;
         $rMask = array();
-		while($mask)
-		{
+		while($mask) {
 			if($mask & 1) {
                 $rMask[$i] = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $i);
 	    	}

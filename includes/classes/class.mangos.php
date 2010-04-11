@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 135
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,24 +69,16 @@ Class Mangos extends Connector {
     public function QuestInfo($quest, $infoType) {
         switch($infoType) {
             case 'title':
-                switch($this->_locale) {
-                    case 'en_gb':
-                        $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
-                        break;
-                    case 'ru_ru':
-                        $info = $this->wDB->selectCell("SELECT `Title_loc8` FROM `locales_quest` WHERE `entry`=?", $quest);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
-                        }
-                        break;
-                    case 'es_es':
-                        $info = $this->wDB->selectCell("SELECT `Title_loc6` FROM `locales_quest` WHERE `entry`=?", $quest);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
-                        }
-                        break;
+                if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                    $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
                 }
-				break;            
+                else {
+                    $info = $this->wDB->selectCell("SELECT `Title_loc" . $this->_loc . "` FROM `locales_quest` WHERE `entry`=?", $quest);
+                    if(!$info) {
+                        $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=?", $quest);
+                    }
+                }
+                break;            
             case 'reqlevel':
 				$info = $this->wDB->selectCell("SELECT `MinLevel` FROM `quest_template` WHERE `entry`=?", $quest);
 				break;				
@@ -96,7 +88,10 @@ Class Mangos extends Connector {
 				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
                 break;
 			}
-        return $info;
+        if($info) {
+            return $info;
+        }
+        return false;
     }
     
     /**
@@ -138,40 +133,16 @@ Class Mangos extends Connector {
     public function GameobjectInfo($entry, $infoType) {
         switch($infoType) {
             case 'name':
-                switch($this->_locale) {
-                    case 'ru_ru':
-                        $info = $this->wDB->selectCell("
-                        SELECT `name_loc8`
-                            FROM `locales_gameobject`
-                                WHERE `entry`=?", $entry);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("
-                            SELECT `name`
-                                FROM `gameobject_template`
-                                    WHERE `entry`=?", $entry);
-                        }
-                        break;
-                    case 'es_es':
-                        $info = $this->wDB->selectCell("
-                        SELECT `name_loc6`
-                            FROM `locales_gameobject`
-                                WHERE `entry`=?", $entry);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("
-                            SELECT `name`
-                                FROM `gameobject_template`
-                                    WHERE `entry`=?", $entry);
-                        }
-                        break;
-                    default:
-                        $info = $this->wDB->selectCell("
-                        SELECT `name`
-                            FROM `gameobject_template`
-                                WHERE `entry`=?", $entry);
-                        break;
+                if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                    $info = $this->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=?", $entry);
                 }
-				break;
-            
+                else {
+                    $info = $this->wDB->selectCell("SELECT `name_loc".$this->_loc."` FROM `locales_gameobject` WHERE `entry`=?", $entry);
+                    if(!$info) {
+                        $info = $this->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=?", $entry);
+                    }
+                }
+				break;            
             case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=?", $entry);
 				$info = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_maps` WHERE `id`=?", $mapID);
@@ -188,7 +159,10 @@ Class Mangos extends Connector {
                 }
                 break;
 		}
-		return $info;
+		if($info) {
+            return $info;
+		}
+        return false;
     }
     
     /**
@@ -198,58 +172,36 @@ Class Mangos extends Connector {
      * @return string
      **/
     public function GetNPCName($npc) {
-        switch($this->_locale) {
-            case 'en_gb':
-                $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                break;
-            case 'ru_ru':
-                $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                if(!$name) {
-                    // Check KillCredit(s)
-                    $kc_entry = 0;
-                    $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
-                    if($KillCredit['KillCredit1'] > 0) {
-                        $kc_entry = $KillCredit['KillCredit1'];
-                    }
-                    elseif($KillCredit['KillCredit2'] > 0) {
-                        $kc_entry = $KillCredit['KillCredit2'];
-                    }
-                    if($kc_entry > 0) {
-                        $name = $this->wDB->selectCell("SELECT `name_loc8` FROM `locales_creature` WHERE `entry`=?", $kc_entry);
-                        if(!$name) {
-                            $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                        }
-                    }
-                    else {
-                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                    }
-                }
-                break;
-            case 'es_es':
-                $name = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                if(!$name) {
-                    // Check KillCredit(s)
-                    $kc_entry = 0;
-                    $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
-                    if($KillCredit['KillCredit1'] > 0) {
-                        $kc_entry = $KillCredit['KillCredit1'];
-                    }
-                    elseif($KillCredit['KillCredit2'] > 0) {
-                        $kc_entry = $KillCredit['KillCredit2'];
-                    }
-                    if($kc_entry > 0) {
-                        $name = $this->wDB->selectCell("SELECT `name_loc6` FROM `locales_creature` WHERE `entry`=?", $kc_entry);
-                        if(!$name) {
-                            $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                        }
-                    }
-                    else {
-                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                    }
-                }
-                break;
+        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            return $this->wDB->selectCel("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
         }
-        return $name;
+        else {
+            $name = $this->wDB->selectCell("SELECT `name_loc" . $this->_loc . "` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+            if(!$name) {
+                // Check KillCredit
+                $kc_entry = false;
+                $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                if($KillCredit['KillCredit1'] > 0) {
+                    $kc_entry = $KillCredit['KillCredit1'];
+                }
+                elseif($KillCredit['KillCredit2'] > 0) {
+                    $kc_entry = $KillCredit['KillCredit2'];
+                }
+                if($kc_entry > 0) {
+                    $name = $this->wDB->selectCell("SELECT `name_loc" . $this->_loc . "` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $kc_entry);
+                    if(!$name) {
+                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                    }
+                }
+                else {
+                    $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                }
+            }
+        }
+        if($name) {
+            return $name;
+        }
+        return false;
 	}
     
     /**
@@ -311,7 +263,6 @@ Class Mangos extends Connector {
                     }
                 }
                 if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
-                    //$areaUrl = sprintf('fl[source]=dungeon&amp;fl[dungeon]=%s&amp;fl[boss]=all&amp;fl[difficulty]=all', $info);
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }
@@ -323,22 +274,27 @@ Class Mangos extends Connector {
                 return $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=?", $npc);
                 break;
             case 'subname':
-                switch($this->_locale) {
-                    case 'en_gb':
-                        $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
-                        break;
-                    case 'ru_ru':
-                        $info = $this->wDB->selectCell("SELECT `subname_loc8` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                    return $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                }
+                else {
+                    $info = $this->wDB->selectCell("SELECT `subname_loc". $this->_loc ."` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                    if(!$info) {
+                        $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $npc);
+                        $kc_entry = false;
+                        if($killCredit['KillCredit1'] > 0) {
+                            $kc_entry = $killCredit['KillCredit1'];
                         }
-                        break;
-                    case 'es_es':
-                        $info = $this->wDB->selectCell("SELECT `subname_loc6` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
-                        if(!$info) {
-                            $info = $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+                        elseif($killCredit['KillCredit2'] > 0) {
+                            $kc_entry = $killCredit['KillCredit2'];
                         }
-                        break;
+                        if($kc_entry) {
+                            $info = $this->wDB->selectCell("SELECT `subname_loc". $this->_loc ."` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $kc_entry);
+                        }
+                        if(!$info) {
+                            $info = $this->wDB->selectCell("SELECT `subname_loc". $this->_loc ."` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
+                        }
+                    }
                 }
                 break;				
 			case 'dungeonlevel':
@@ -428,7 +384,10 @@ Class Mangos extends Connector {
                 }
                 break;
 		}
-		return $info;
+		if($info) {
+            return $info;
+		}
+        return false;
 	}
     
     /**

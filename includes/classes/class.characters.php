@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 127
+ * @revision 135
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -784,7 +784,7 @@ Class Characters extends Connector {
         foreach($professions as $prof) {
             $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']);
             $p[$i]['value'] = $prof['value'];
-            $p[$i]['key'] = str_replace('-sm', '', $p[$i]['icon']);
+            $p[$i]['key'] = str_replace('-sm', '', (isset($p[$i]['icon'])) ? $p[$i]['icon'] : '' );
             $p[$i]['max'] = 450;
             unset($p[$i]['icon']);
             $i++;
@@ -1670,49 +1670,63 @@ Class Characters extends Connector {
     /**
      * IN DEVELOPMENT
      **/
-    public function GetCharacterFeed() {
+    public function GetCharacterFeed($full = false) {
         if(!$this->guid) {
             return false;
         }
-        $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
+        if($full) {
+            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
+        }
+        else {
+            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 10", $this->guid);
+        }
         if(!$data) {
             return false;
         }
         $feed_data = array();
         $i = 0;
-        foreach($data as $feed) {
-            switch($feed['type']) {
+        // Strings
+        $_strings = $this->aDB->select("SELECT `id`, `string_".$this->_locale."` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16)");
+        foreach($data as $event) {
+            $event_date = strtotime($event['date']);
+            switch($event['type']) {
                 case TYPE_ACHIEVEMENT_FEED:
-                    if($tmp = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=? AND `achievement`=?", $this->guid, $feed['data'])) {
-                        if($tmp != strtotime($feed['date'])) {
-                            continue;
+                    $send_data = array('achievement' => $event['data'], 'date' => $event_date);
+                    $achievement_info = Achievements::GetAchievementInfo($send_data);
+                    if(!isset($achievement_info['points'])) {
+                        $achievement_info['points'] = 0;
+                    }
+                    $feed_data[$i]['event'] = array(
+                        'type'   => 'achievement',
+                        'date'   => date('d.m.Y', $event_date),
+                        'time'   => date('H:i:s', $event_date),
+                        'id'     => $event['data'],
+                        'points' => $achievement_info['points']
+                    );
+                    if($achievement_info['categoryId'] == 81) {
+                        $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s.', 
+                        $achievement_info['icon'], $achievement_info['name'], $achievement_info['points'], $achievement_info['desc']);
+                        // Feats of strenght
+                        foreach($_strings as $str) {
+                            if($str['id'] == 14) {
+                                $feed_data[$i]['title'] = sprintf('%s [%s].', $str['string'], $achievement_info['name']);
+                                $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>',
+                                $str['string'], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['name']);
+                            }
                         }
                     }
-                    $feed_data[$i]['data'] = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `points`, `iconname` FROM `armory_achievement` WHERE `id`=?", $feed['data']);
-                    $feed_data[$i]['header'] = array(
-                        'type'    => 'achievement',
-                        'date'    => date('d.m.Y', strtotime($feed['date'])),
-                        'time'    => date('H:i:s', strtotime($feed['date'])),
-                        'reldate' => '',
-                        'id'      => $feed['data'],
-                        'sort'    => 'earlier',
-                        'points'  => $feed_data[$i]['data']['points']
-                    );
+                    else {
+                        foreach($_strings as $str) {
+                            if($str['id'] == 13) {
+                                $feed_data[$i]['title'] = sprintf('%s [%s].', $str['string'], $achievement_info['name']);
+                            }
+                        }
+                    }
+                    $feed_data[$i]['tooltip'] = $tooltip;
                     break;
                 case TYPE_ITEM_FEED:
-                    $feed_data[$i]['name'] = Items::getItemName($feed['data']);
-                    $feed_data[$i]['quality'] = Items::GetItemInfo($feed['data'], 'quality');
-                    $feed_data[$i]['icon'] = Items::getItemIcon($feed['data']);
-                    $feed_data[$i]['type'] = $feed['type'];
-                    $feed_data[$i]['date'] = strtotime($feed['date']);
-                    $feed_data[$i]['data'] = $feed['data'];
                     break;
                 case TYPE_BOSS_FEED:
-                    $feed_data[$i]['name'] = Mangos::GetNPCName($feed['data']);
-                    $feed_data[$i]['counter'] = $feed['counter'];
-                    $feed_data[$i]['type'] = $feed['type'];
-                    $feed_data[$i]['date'] = strtotime($feed['date']);
-                    $feed_data[$i]['data'] = $feed['data'];
                     break;
             }
             $i++;

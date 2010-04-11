@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 135
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -258,9 +258,6 @@ if($quest_reward = $items->BuildLootTable($itemID, 'questreward')) {
     }
     $xml->XMLWriter()->endElement(); //rewardFromQuests
 }
-
-
-
 $xml->XMLWriter()->endElement();   //item
 $xml->XMLWriter()->endElement();  //itemInfo
 $xml->XMLWriter()->endElement(); //page
