@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 131
+ * @revision 137
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -62,16 +62,18 @@ Class SearchMgr extends Connector {
     }
     
     public function AdvancedItemsSearch($count=false) {
-        if( (!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
-            echo 'check array fail';
+        if((!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
             return false;
         }
         if(!isset($this->get_array['source'])) {
             return false;
         }
+        $allowedDungeon = false;
         switch($this->get_array['source']) {
-            case 'dungeon':
             case 'all':
+                $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` ORDER BY `ItemLevel` DESC LIMIT 200");
+                break;
+            case 'dungeon':
                 if(!isset($this->get_array['dungeon'])) {
                     $this->get_array['dungeon'] = 'all';
                 }
@@ -82,103 +84,143 @@ Class SearchMgr extends Connector {
                     $this->get_array['boss'] = 'all';
                 }
                 $sql_query = null;
-                switch($this->get_array['difficulty']) {
-                    case 'all':
-                        $difficulty = null;
-                        $sql_query .= "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
-                        break;
-                    case 'normal':
-                        $difficulty = 'n';
-                        $sql_query .= "SELECT `lootid_1`, `lootid_2`, `type` FROM `armory_instance_data`";
-                        break;
-                    case 'heroic':
-                        $difficulty = 'h';
-                        $sql_query .= "SELECT `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
-                        break;
-                }
-                if(isset($this->get_array['dungeon']) && $this->get_array['dungeon'] != 'all' && !empty($this->get_array['dungeon'])) {
-                    $instance_id = Utils::GetDungeonId($this->get_array['dungeon']);
-                    $sql_query .= sprintf(" WHERE `instance_id`=%d", $instance_id);
-                }
-                if(isset($this->get_array['boss']) && $this->get_array['boss'] != 'all' && !empty($this->get_array['boss'])) {
-                    if(is_numeric($this->get_array['boss'])) {
-                        $sql_query .= sprintf(" AND `id`=%d", $this->get_array['boss']);
-                    }
-                    else {
-                        $sql_query .= sprintf(" AND `key`='%s'", $this->get_array['boss']);
-                    }
-                }
-                $sql_query .= ' LIMIT 10';
-                $boss_lootids = $this->aDB->select($sql_query);
-                if(!$boss_lootids) {
-                    return false;
-                }
-                $loot_table = array();
-                $loot_template = null;
-                foreach($boss_lootids as $loot_id) {
-                    for($i=1;$i<5;$i++) {
-                        if(isset($loot_id['lootid_'.$i])) {
-                            $loot_table[] = $loot_id['lootid_'.$i];
-                            if($loot_id['type'] == 'object') {
-                                $loot_template = '`gameobject_loot_template`';
-                                $source_type = 'sourceType.creatureDrop';
-                            }
-                            elseif($loot_id['type'] == 'npc') {
-                                $loot_template = '`creature_loot_template`';
-                                $source_type = 'sourceType.gameObjectDrop';
-                            }
-                        }
-                    }
-                }
-                if($this->get_array['boss'] != 'all') {
-                    $current_instance_key = $this->get_array['dungeon'];
-                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
-                }
-                if($this->searchQuery) {
-                    $item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
-                    if(!$item_ids) {
+                if(self::IsExtendedCost()) {
+                    $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`=? LIMIT 1", $this->get_array['dungeon']);
+                    if(!$item_extended_cost) {
                         return false;
                     }
-                    $items_entry = array();
-                    foreach($item_ids as $_i_id) {
-                        $items_entry[] = $_i_id['entry'];
+                    $extended_cost = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=? OR `item2`=? OR `item3`=? OR `item4`=? OR `item5`=?", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
+                    if(!$extended_cost) {
+                        return false;
                     }
-                    $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChangeOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $items_entry);
+                    $cost_ids = array();
+                    foreach($extended_cost as $cost) {
+                        $cost_ids[] = $cost['id'];
+                    }
+                    $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids);
                 }
                 else {
-                    $items_query = $this->wDB->select("SELECT `entry` ,`item`, `ChanceOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) LIMIT 200", $loot_table);
-                }
-                if(!$items_query) {
-                    return false;
-                }
-                $items_result = array();
-                $exists_items = array();
-                $i = 0;
-                foreach($items_query as $item) {
-                    if(!$count) {
-                        if(isset($exists_items[$item['item']])) {
-                            continue;
-                        }
-                        if($this->get_array['boss'] == 'all') {
-                            $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
-                            $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
-                            
-                        }
-                        $item_data = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `entry`=?", $item['item']);
-                        $items_result[$i]['data'] = array();
-                        $items_result[$i]['filters'] = array();
-                        $items_result[$i]['data']['id'] = $item_data['id'];
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
-                            $items_result[$i]['data']['name'] = Items::getItemName($item['item']);
+                    $allowedDungeon = true;
+                    switch($this->get_array['difficulty']) {
+                        case 'all':
+                            $difficulty = null;
+                            $sql_query .= "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
+                            break;
+                        case 'normal':
+                            $difficulty = 'n';
+                            $sql_query .= "SELECT `lootid_1`, `lootid_2`, `type` FROM `armory_instance_data`";
+                            break;
+                        case 'heroic':
+                            $difficulty = 'h';
+                            $sql_query .= "SELECT `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
+                            break;
+                    }
+                    if(isset($this->get_array['dungeon']) && $this->get_array['dungeon'] != 'all' && !empty($this->get_array['dungeon'])) {
+                        $instance_id = Utils::GetDungeonId($this->get_array['dungeon']);
+                        $sql_query .= sprintf(" WHERE `instance_id`=%d", $instance_id);
+                    }
+                    if(isset($this->get_array['boss']) && $this->get_array['boss'] != 'all' && !empty($this->get_array['boss'])) {
+                        if(is_numeric($this->get_array['boss'])) {
+                            $sql_query .= sprintf(" AND `id`=%d", $this->get_array['boss']);
                         }
                         else {
-                            $items_result[$i]['data']['name'] = $item_data['name'];
+                            $sql_query .= sprintf(" AND `key`='%s'", $this->get_array['boss']);
                         }
-                        $items_result[$i]['data']['rarity'] = $item_data['rarity'];
-                        $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item_data['displayid']);
-                        $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item_data['ItemLevel']);
-                        $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100);
-                        if($current_dungeon_data && is_array($current_dungeon_data)) {
+                    }
+                    $sql_query .= ' LIMIT 10';
+                    $boss_lootids = $this->aDB->select($sql_query);
+                    if(!$boss_lootids) {
+                        return false;
+                    }
+                    $loot_table = array();
+                    $loot_template = null;
+                    foreach($boss_lootids as $loot_id) {
+                        for($i=1;$i<5;$i++) {
+                            if(isset($loot_id['lootid_'.$i])) {
+                                $loot_table[] = $loot_id['lootid_'.$i];
+                                if($loot_id['type'] == 'object') {
+                                    $loot_template = '`gameobject_loot_template`';
+                                    $source_type = 'sourceType.creatureDrop';
+                                }
+                                elseif($loot_id['type'] == 'npc') {
+                                    $loot_template = '`creature_loot_template`';
+                                    $source_type = 'sourceType.gameObjectDrop';
+                                }
+                            }
+                        }
+                    }
+                    if($this->get_array['boss'] != 'all') {
+                        $current_instance_key = $this->get_array['dungeon'];
+                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
+                    }
+                    if($this->searchQuery) {
+                        $item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                        if(!$item_ids) {
+                            return false;
+                        }
+                        $items_entry = array();
+                        foreach($item_ids as $_i_id) {
+                            $items_entry[] = $_i_id['entry'];
+                        }
+                        $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChangeOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $items_entry);
+                    }
+                    else {
+                        $items_query = $this->wDB->select("SELECT `entry` ,`item`, `ChanceOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) LIMIT 200", $loot_table);
+                    }
+                }
+                break;
+            case 'reputation':
+                if(!isset($this->get_array['faction'])) {
+                    $this->get_array['faction'] = 'all';
+                }
+                if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
+                    $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                }
+                else {
+                    $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                }
+                break;
+        }
+        if(!$items_query) {
+            return false;
+        }
+        $items_result = array();
+        $exists_items = array();
+        $i = 0;
+        foreach($items_query as $item) {
+            if($i >= 200) {
+                if($count) {
+                    return $i;
+                }
+                else {
+                    return $items_result;
+                }
+            }
+            else {
+                if(isset($exists_items[$item['item']])) {
+                    continue; // do not add the same items to result array
+                }
+                if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss']) && $this->get_array['boss'] == 'all') {
+                    $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
+                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
+                }
+                $item_data = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `entry`=?", $item['item']);
+                $items_result[$i]['data'] = array();
+                $items_result[$i]['filters'] = array();
+                $items_result[$i]['data']['id'] = $item_data['id'];
+                if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                    $items_result[$i]['data']['name'] = Items::getItemName($item['item']);
+                }
+                else {
+                    $items_result[$i]['data']['name'] = $item_data['name'];
+                }
+                $items_result[$i]['data']['rarity'] = $item_data['rarity'];
+                $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item_data['displayid']);
+                $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item_data['ItemLevel']);
+                $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100);
+                switch($this->get_array['source']) {
+                    case 'dungeon':
+                        if(isset($current_dungeon_data) && $allowedDungeon && is_array($current_dungeon_data)) {
                             $items_result[$i]['filters'][2] = array(
                                 'areaId' => $current_dungeon_data['id'],
                                 'areaKey' => $current_instance_key,
@@ -187,16 +229,28 @@ Class SearchMgr extends Connector {
                                 'value' => $source_type
                             );
                         }
-                        $exists_items[$item['item']] = $item['item'];
-                    }
-                    $i++;
-                }
-                if($count == true) {
-                    return $i;
-                }
-                return $items_result;
-                break;
+                        elseif(!$allowedDungeon && self::IsExtendedCost()) {
+                            $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
+                        }
+                        break;
+                    case 'reputation':
+                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.factionReward');
+                        break;
+                    case 'quest':
+                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.questReward');
+                        break;
+                    case 'pvpAlliance':
+                    case 'pvpHorde':
+                        break;
+                }                    
+                $exists_items[$item['item']] = $item['item'];
+            }
+            $i++;
         }
+        if($count == true) {
+            return $i;
+        }
+        return $items_result;        
     }
     
     public function SearchArenaTeams($num=false) {

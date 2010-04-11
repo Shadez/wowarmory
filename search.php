@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 131
+ * @revision 137
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -35,11 +35,11 @@ $advancedItemsSearch = false;
 if(isset($_GET['searchQuery'])) {
     $search->searchQuery = Utils::escape($_GET['searchQuery']);
 }
-elseif(isset($_GET['source'])) {
+if(isset($_GET['source'])) {
     $advancedItemsSearch = true;
     $search->get_array = $_GET;
 }
-else {
+if(!isset($_GET['searchQuery']) && !isset($_GET['source'])) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
@@ -123,9 +123,24 @@ $results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => '',
 foreach($results_info as $result_key => $result_value) {
     $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }
-$xml->XMLWriter()->startElement('filters');
-$xml->XMLWriter()->endElement();
-
+if(isset($_GET['source'])) {
+    $xml->XMLWriter()->startElement('filters');
+    $maxCount = 30;
+    $filtersCount = 0;
+    foreach($_GET as $filter_get_key => $filter_get_value) {
+        if($filtersCount >= $maxCount) {
+            break;
+        }
+        if(is_string($filter_get_key) && is_string($filter_get_value)) {
+            $xml->XMLWriter()->startElement('filter');
+            $xml->XMLWriter()->writeAttribute('name', $filter_get_key);
+            $xml->XMLWriter()->writeAttribute('value', $filter_get_value);
+            $xml->XMLWriter()->endElement();
+        }
+        $filtersCount++;
+    }
+    $xml->XMLWriter()->endElement();
+}
 if(isset($characters_search) && is_array($characters_search) && $selected == 'characters') {
     $xml->XMLWriter()->startElement('characters');
     foreach($characters_search as $_results_characters) {

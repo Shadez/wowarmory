@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 137
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -376,49 +376,22 @@ define('TYPE_ACHIEVEMENT_FEED', 1);
 define('TYPE_ITEM_FEED',        2);
 define('TYPE_BOSS_FEED',        3);
 
-/* Item mods */
-define('ITEM_MOD_MANA', 0);
-define('ITEM_MOD_HEALTH', 1);
-define('ITEM_MOD_AGILITY', 3);
-define('ITEM_MOD_STRENGTH', 4);
-define('ITEM_MOD_INTELLECT', 5);
-define('ITEM_MOD_SPIRIT', 6);
-define('ITEM_MOD_STAMINA', 7);
-define('ITEM_MOD_DEFENSE_SKILL_RATING', 12);
-define('ITEM_MOD_DODGE_RATING', 13);
-define('ITEM_MOD_PARRY_RATING', 14);
-define('ITEM_MOD_BLOCK_RATING', 15);
-define('ITEM_MOD_HIT_MELEE_RATING', 16);
-define('ITEM_MOD_HIT_RANGED_RATING', 17);
-define('ITEM_MOD_HIT_SPELL_RATING', 18);
-define('ITEM_MOD_CRIT_MELEE_RATING', 19);
-define('ITEM_MOD_CRIT_RANGED_RATING', 20);
-define('ITEM_MOD_CRIT_SPELL_RATING', 21);
-define('ITEM_MOD_HIT_TAKEN_MELEE_RATING', 22);
-define('ITEM_MOD_HIT_TAKEN_RANGED_RATING', 23);
-define('ITEM_MOD_HIT_TAKEN_SPELL_RATING', 24);
-define('ITEM_MOD_CRIT_TAKEN_MELEE_RATING', 25);
-define('ITEM_MOD_CRIT_TAKEN_RANGED_RATING', 26);
-define('ITEM_MOD_CRIT_TAKEN_SPELL_RATING', 27);
-define('ITEM_MOD_HASTE_MELEE_RATING', 28);
-define('ITEM_MOD_HASTE_RANGED_RATING', 29);
-define('ITEM_MOD_HASTE_SPELL_RATING', 30);
-define('ITEM_MOD_HIT_RATING', 31);
-define('ITEM_MOD_CRIT_RATING', 32);
-define('ITEM_MOD_HIT_TAKEN_RATING', 33);
-define('ITEM_MOD_CRIT_TAKEN_RATING', 34);
-define('ITEM_MOD_RESILIENCE_RATING', 35);
-define('ITEM_MOD_HASTE_RATING', 36);
-define('ITEM_MOD_EXPERTISE_RATING', 37);
-define('ITEM_MOD_ATTACK_POWER', 38);
-define('ITEM_MOD_RANGED_ATTACK_POWER', 39);
-define('ITEM_MOD_FERAL_ATTACK_POWER', 40);
-define('ITEM_MOD_SPELL_HEALING_DONE', 41);
-define('ITEM_MOD_SPELL_DAMAGE_DONE', 42);
-define('ITEM_MOD_MANA_REGENERATION', 43);
-define('ITEM_MOD_ARMOR_PENETRATION_RATING', 44);
-define('ITEM_MOD_SPELL_POWER', 45);
-define('ITEM_MOD_HEALTH_REGEN', 46);
-define('ITEM_MOD_SPELL_PENETRATION', 47);
-define('ITEM_MOD_BLOCK_VALUE', 48);
+/* Item classes */
+define('ITEM_CLASS_CONSUMABLE', 0);
+define('ITEM_CLASS_CONTAINER', 1);
+define('ITEM_CLASS_WEAPON', 2);
+define('ITEM_CLASS_GEM', 3);
+define('ITEM_CLASS_ARMOR', 4);
+define('ITEM_CLASS_REAGENT', 5);
+define('ITEM_CLASS_PROJECTILE', 6);
+define('ITEM_CLASS_TRADE_GOODS', 7);
+define('ITEM_CLASS_GENERIC', 8);
+define('ITEM_CLASS_RECIPE', 9);
+define('ITEM_CLASS_MONEY', 10);
+define('ITEM_CLASS_QUIVER', 11);
+define('ITEM_CLASS_QUEST', 12);
+define('ITEM_CLASS_KEY', 13);
+define('ITEM_CLASS_PERMANENT', 14);
+define('ITEM_CLASS_MISC', 15);
+define('ITEM_CLASS_GLYPH', 16);
 ?>

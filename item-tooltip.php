@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 135
+ * @revision 137
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -104,10 +104,13 @@ $xml->XMLWriter()->startElement('inventoryType');
 $xml->XMLWriter()->text($data['InventoryType']);
 $xml->XMLWriter()->endElement();  //inventoryType
 $xml->XMLWriter()->startElement('subclassName');
-if($data['class'] == 2 || $data['class'] == 4) {
-    $xml->XMLWriter()->text($items->GetItemSubTypeInfo($itemID, true));
-}
+$xml->XMLWriter()->text($items->GetItemSubTypeInfo($itemID, true));
 $xml->XMLWriter()->endElement();  //subclassName
+if($data['class'] == ITEM_CLASS_CONTAINER) {
+    $xml->XMLWriter()->startElement('containerSlots');
+    $xml->XMLWriter()->text($data['ContainerSlots']);
+    $xml->XMLWriter()->endElement(); //containerSlots
+}
 $xml->XMLWriter()->endElement(); //equipData
 if($data['fire_res'] > 0) {
     $xml->XMLWriter()->startElement('fireResist');
@@ -262,7 +265,9 @@ for($i=1;$i<11;$i++) {
     }
 }
 $xml->XMLWriter()->startElement('armor');
-$xml->XMLWriter()->writeAttribute('armorBonus', 0); // TODO
+if($data['ArmorDamageModifier'] > 0) {
+    $xml->XMLWriter()->writeAttribute('armorBonus', 1);
+}
 $xml->XMLWriter()->text($data['armor']);
 $xml->XMLWriter()->endElement(); //armor
 $ench_array = array (
@@ -297,7 +302,7 @@ if($characters->guid) {
     $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->guid);
     if($enchantment) {
         $xml->XMLWriter()->startElement('enchant');
-        $xml->XMLWriter()->text($armory->aDB->selectCell("SELECT `text_" . $_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
+        $xml->XMLWriter()->text($armory->aDB->selectCell("SELECT `text_" . $armory->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
         $xml->XMLWriter()->endElement(); //enchant
     }
 }
