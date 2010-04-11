@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 130
+ * @revision 138
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -246,6 +246,9 @@ Class Utils extends Connector {
     }
     
     public function GetMaxArray($arr) {
+        if(!is_array($arr)) {
+            return false;
+        }
         $keys = array_keys($arr);
         $cnt=count($arr);
 		$min=$max=$arr[$keys[0]];

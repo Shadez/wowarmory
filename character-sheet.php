@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 127
+ * @revision 138
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -148,23 +148,41 @@ $xml->XMLWriter()->startElement('talentSpecs');
 $talent_data = $characters->CalculateCharacterTalents();
 $current_tree = array();
 $activeSpec = $armory->cDB->selectCell("SELECT `activeSpec` FROM `characters` WHERE `guid`=?", $characters->guid);
-for($i=0;$i<2;$i++) {
-    $current_tree[$i] = Utils::GetMaxArray($talent_data['points'][$i]);
-    $talent_spec[$i] = array(
-        'group' => $i+1,
-        'icon'  => $characters->ReturnTalentTreeIcon($current_tree[$i]),
-        'prim'  => $characters->ReturnTalentTreesNames($current_tree[$i]),
-        'treeOne' => $talent_data['points'][$i][$characters->GetTalentTab(0)],
-        'treeTwo' => $talent_data['points'][$i][$characters->GetTalentTab(1)],
-        'treeThree' => $talent_data['points'][$i][$characters->GetTalentTab(2)]
-    );    
-    if($activeSpec == $i) {
-        $talent_spec[$i]['active'] = 1;
+if($talent_data && is_array($talent_data)) {
+    $specCount = $armory->cDB->selectCell("SELECT `specCount` FROM `characters` WHERE `guid`=?", $characters->guid);
+    for($i=0;$i<$specCount;$i++) {
+        $current_tree[$i] = Utils::GetMaxArray($talent_data['points'][$i]);
+        $talent_spec[$i] = array(
+            'group' => $i+1,
+            'icon'  => $characters->ReturnTalentTreeIcon($current_tree[$i]),
+            'prim'  => $characters->ReturnTalentTreesNames($current_tree[$i]),
+            'treeOne' => $talent_data['points'][$i][$characters->GetTalentTab(0)],
+            'treeTwo' => $talent_data['points'][$i][$characters->GetTalentTab(1)],
+            'treeThree' => $talent_data['points'][$i][$characters->GetTalentTab(2)]
+        );    
+        if($activeSpec == $i) {
+            $talent_spec[$i]['active'] = 1;
+        }
+    }
+    foreach($talent_spec as $m_spec) {
+        $xml->XMLWriter()->startElement('talentSpec');
+        foreach($m_spec as $spec_key => $spec_value) {
+            $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
+        }
+        $xml->XMLWriter()->endElement(); //talentSpec
     }
 }
-foreach($talent_spec as $m_spec) {
+else {
+    $talent_spec = array(
+        'group' => 1,
+        'icon' => 'ability_seal',
+        'prim' => '',
+        'treeOne' => 0,
+        'treeTwo' => 0,
+        'treeThree' => 0
+    );
     $xml->XMLWriter()->startElement('talentSpec');
-    foreach($m_spec as $spec_key => $spec_value) {
+    foreach($talent_spec as $spec_key => $spec_value) {
         $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
     }
     $xml->XMLWriter()->endElement(); //talentSpec
