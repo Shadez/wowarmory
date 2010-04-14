@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 128
+ * @revision 139
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,8 +30,8 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r135');
-define('ARMORY_REVISION', 135);
+define('DB_VERSION', 'armory_r139');
+define('ARMORY_REVISION', 139);
 $armory = new Connector;
 if($armory->armoryconfig['server_version'] > 0) {
     $file_ver = (int) $armory->armoryconfig['server_version'];

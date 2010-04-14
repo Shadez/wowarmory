@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 137
+ * @revision 139
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,9 +69,152 @@ Class SearchMgr extends Connector {
             return false;
         }
         $allowedDungeon = false;
+        // Get item IDs first (if $this->searchQuery)
+        $item_id_array = array();
+        if($this->searchQuery) {
+            $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            if($_item_ids) {
+                foreach($_item_ids as $id) {
+                    $item_id_array[] = $id['entry'];
+                }
+            }
+        }
+        $quality_types = array(
+            'pr' => 0,
+            'cn' => 1,
+            'un' => 2,
+            're' => 3,
+            'ec' => 4,
+            'lg' => 5,
+            'hm' => 7
+        );
+        
         switch($this->get_array['source']) {
             case 'all':
-                $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` ORDER BY `ItemLevel` DESC LIMIT 200");
+                $sql_query = "SELECT `entry` AS `item` FROM `item_template`";
+                $andor = false;
+                if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
+                    /* Type */
+                    if($this->get_array['type'] != 'all') {
+                        $type_info = $this->aDB->selectCell("SELECT `type` FROM `armory_item_sources` WHERE `key`=? AND `parent`=0", $this->get_array['type']);
+                        if(!$type_info) {
+                            return false;
+                        }
+                        $sql_query = sprintf("SELECT `entry` AS `item` FROM `item_template` WHERE `class`=%d", $type_info);
+                        $andor = true;
+                    }
+                    /* Subtype */
+                    if(isset($this->get_array['subTp']) && !empty($this->get_array['subTp'])) {
+                        if($this->get_array['subTp'] != 'all') {
+                            $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=? AND `parent`=?", $this->get_array['subTp'], $type_info);
+                            if($subtype_info) {
+                                $sql_query .= sprintf(" AND `subclass`=%d", $subtype_info['subtype']);
+                                $andor = true;
+                            }
+                        }
+                    }
+                    /* Required level */
+                    if((isset($this->get_array['rqrMin']) && !empty($this->get_array['rqrMin'])) && (isset($this->get_array['rqrMax']) && !empty($this->get_array['rqrMax']))) {
+                        if($andor) {
+                            $sql_query .= sprintf(" AND `RequiredLevel` BETWEEN %d AND %d", (int) $this->get_array['rqrMin'], (int) $this->get_array['rqrMax']);
+                        }
+                        else {
+                            $sql_query .= sprintf(" WHERE `RequiredLevel` BETWEEN %d AND %d", (int) $this->get_array['rqrMin'], (int) $this->get_array['rqrMax']);
+                            $andor = true;
+                        }                        
+                    }
+                    elseif(isset($this->get_array['rqrMin']) && !empty($this->get_array['rqrMin'])) {
+                        if($andor) {
+                            $sql_query .= sprintf(" AND `RequiredLevel` >= %d", (int) $this->get_array['rqrMin']);
+                        }
+                        else {
+                            $sql_query .= sprintf(" WHERE `RequiredLevel` >= %d", (int) $this->get_array['rqrMin']);
+                        }
+                    }
+                    elseif(isset($this->get_array['rqrMax']) && !empty($this->get_array['rqrMax'])) {
+                        if($andor) {
+                            $sql_query .= sprintf(" AND `RequiredLevel` <= %d", (int) $this->get_array['rqrMax']);
+                        }
+                        else {
+                            $sql_query .= sprintf(" WHERE `RequiredLevel` <= %d", (int) $this->get_array['rqrMax']);
+                        }
+                    }
+                    /* Quality */
+                    if(isset($this->get_array['rrt']) && !empty($this->get_array['rrt'])) {
+                        if(isset($quality_types[$this->get_array['rrt']])) {
+                            if($andor) {
+                                $sql_query .= sprintf(" AND `Quality`=%d", $quality_types[$this->get_array['rrt']]);
+                            }
+                            else {
+                                $sql_query .= sprintf(" WHERE `Quality`=%d", $quality_types[$this->get_array['rrt']]);
+                            }
+                        }
+                    }
+                    /* Usable by */
+                    if(isset($this->get_array['usbleBy']) && !empty($this->get_array['usbleBy'])) {
+                        $usable_by = (int) $this->get_array['usbleBy'];
+                        $classes_mask = array(
+                            1 => 1,
+                            2 => 2,
+                            3 => 4,
+                            4 => 8,
+                            5 => 16,
+                            6 => 32,
+                            7 => 64,
+                            8 => 128,
+                            9 => 256,
+                            11=> 1024
+                        );
+                        if(isset($classes_mask[$usable_by])) {
+                            if($andor) {
+                                $sql_query .= sprintf(" AND `AllowableClass`&%d", $classes_mask[$usable_by]);
+                            }
+                            else {
+                                $sql_query .= sprintf(" WHERE `AllowableClass`&%d", $classes_mask[$usable_by]);
+                            }
+                        }
+                    }
+                    /* Class types */
+                    /*
+                    // TODO
+                    if(isset($this->get_array['classType']) && !empty($this->get_array['classType'])) {
+                        switch($this->get_array['classType']) {
+                            case 'tank':
+                                break;
+                            case 'melee':
+                                break;
+                            case 'caster':
+                                break;
+                            case 'healer':
+                                break;
+                            case 'dot': // Warlock: damage only
+                                break;
+                            case 'dd': // Warlock: damage + crit
+                                break;
+                        }
+                    }*/
+                    
+                    /* Search string */
+                    if(isset($this->searchQuery)&& !empty($this->searchQuery)) {
+                        if($andor) {
+                            $sql_query .= sprintf(" AND `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                        }
+                        else {
+                            $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                        }
+                    }
+                    else {
+                        $sql_query .= " ORDER BY `ItemLevel` DESC LIMIT 200";
+                    }
+                }
+                else {
+                    if(isset($this->searchQuery) && !empty($this->searchQuery)) {
+                        $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s'", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                    }
+                    $sql_query .= " ORDER BY `ItemLevel` DESC LIMIT 200";
+                }
+                $items_query = $this->wDB->select($sql_query);
+                unset($sql_query);
                 break;
             case 'dungeon':
                 if(!isset($this->get_array['dungeon'])) {
@@ -97,7 +240,12 @@ Class SearchMgr extends Connector {
                     foreach($extended_cost as $cost) {
                         $cost_ids[] = $cost['id'];
                     }
-                    $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids);
+                    if($this->searchQuery && is_array($item_id_array)) {
+                        $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) AND `item` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids, $item_id_array);
+                    }
+                    else {
+                        $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids);
+                    }
                 }
                 else {
                     $allowedDungeon = true;
@@ -127,7 +275,6 @@ Class SearchMgr extends Connector {
                             $sql_query .= sprintf(" AND `key`='%s'", $this->get_array['boss']);
                         }
                     }
-                    $sql_query .= ' LIMIT 10';
                     $boss_lootids = $this->aDB->select($sql_query);
                     if(!$boss_lootids) {
                         return false;
@@ -153,16 +300,11 @@ Class SearchMgr extends Connector {
                         $current_instance_key = $this->get_array['dungeon'];
                         $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
                     }
-                    if($this->searchQuery) {
-                        $item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
-                        if(!$item_ids) {
-                            return false;
+                    if($this->searchQuery && is_array($item_id_array)) {
+                        $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $item_id_array);
+                        if(!$items_query) {
+                            $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChanceOrQuestChance` FROM `gameobject_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $item_id_array);
                         }
-                        $items_entry = array();
-                        foreach($item_ids as $_i_id) {
-                            $items_entry[] = $_i_id['entry'];
-                        }
-                        $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChangeOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $items_entry);
                     }
                     else {
                         $items_query = $this->wDB->select("SELECT `entry` ,`item`, `ChanceOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) LIMIT 200", $loot_table);
@@ -196,7 +338,7 @@ Class SearchMgr extends Connector {
                     return $items_result;
                 }
             }
-            else {
+            elseif(!$count) {
                 if(isset($exists_items[$item['item']])) {
                     continue; // do not add the same items to result array
                 }
@@ -242,7 +384,7 @@ Class SearchMgr extends Connector {
                     case 'pvpAlliance':
                     case 'pvpHorde':
                         break;
-                }                    
+                }
                 $exists_items[$item['item']] = $item['item'];
             }
             $i++;

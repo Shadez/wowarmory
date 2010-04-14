@@ -559,7 +559,7 @@
   </div>
 
   <div id="childUsableBy">
-	<div class="sub-label" style="font-size: 12px; color:#003333;"> <img src="/_images/icons/icon-question.gif" border="0" onMouseOver="setTipText('{$loc/strs/items/str[@id='armory.items.hover.desiredby']}');" class="desiredHelp staticTip" /> <xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.usableby']"/></div>
+	<div class="sub-label" style="font-size: 12px; color:#003333;"> <img src="images/icons/icon-question.gif" border="0" onMouseOver="setTipText('{$loc/strs/items/str[@id='armory.items.hover.desiredby']}');" class="desiredHelp staticTip" /> <xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.usableby']"/></div>
 	<select id="usbleBy" name="usbleBy" onChange="javascript: changeusbleBy(this.value)" onKeyUp="javascript: changeusbleBy(this.value)">
 	  <option id="usbleByall" name="usbleByall" value="all"><xsl:value-of select="$loc/strs/itemsOptions/str[@id='armory.item-search.allclasses']"/></option>
 	  <option id="usbleBy1" name="usbleBy1" value="1"><xsl:value-of select="$loc/strs/classes/str[@id='armory.classes.class.1']" /></option>
