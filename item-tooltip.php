@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 137
+ * @revision 142
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -112,6 +112,50 @@ if($data['class'] == ITEM_CLASS_CONTAINER) {
     $xml->XMLWriter()->endElement(); //containerSlots
 }
 $xml->XMLWriter()->endElement(); //equipData
+if($data['class'] == ITEM_CLASS_WEAPON) {
+    $xml->XMLWriter()->startElement('damageData');
+    $xml->XMLWriter()->startElement('damage');
+    $xml->XMLWriter()->startElement('type');
+    $xml->XMLWriter()->text('0');
+    $xml->XMLWriter()->endElement(); //type
+    $xml->XMLWriter()->startElement('min');
+    $xml->XMLWriter()->text($data['dmg_min1']);
+    $xml->XMLWriter()->endElement(); //min
+    $xml->XMLWriter()->startElement('max');
+    $xml->XMLWriter()->text($data['dmg_max1']);
+    $xml->XMLWriter()->endElement();   //max
+    $xml->XMLWriter()->endElement();  //damage
+    
+    $xml->XMLWriter()->startElement('speed');
+    $xml->XMLWriter()->text(round($data['delay']/1000, 2));
+    $xml->XMLWriter()->endElement(); //speed
+    $xml->XMLWriter()->startElement('dps');
+    $dps = null;
+    for($jj=1;$jj<=2;$jj++) {
+        $d_type = $data['dmg_type'.$jj];
+        $d_min = $data['dmg_min'.$jj];
+        $d_max = $data['dmg_max'.$jj];
+        if(($d_max>0) && ($data['class'] != ITEM_CLASS_PROJECTILE)) {
+            $delay = $data['delay'] / 1000;
+            if($delay>0) {
+                $dps = $dps + round(($d_max+$d_min) / (2*$delay), 1);
+            }
+            if($jj>1) {
+                $delay=0;
+            }
+       	}
+    }
+    $xml->XMLWriter()->text($dps);
+    $xml->XMLWriter()->endElement(); //dps
+    
+    $xml->XMLWriter()->endElement(); //damageData
+    
+}
+if($data['block'] > 0) {
+    $xml->XMLWriter()->startElement('blockValue');
+    $xml->XMLWriter()->text($data['block']);
+    $xml->XMLWriter()->endElement(); //blockValue
+}
 if($data['fire_res'] > 0) {
     $xml->XMLWriter()->startElement('fireResist');
     $xml->XMLWriter()->text($data['fire_res']);
@@ -508,6 +552,11 @@ if(is_array($itemSource)) {
         $xml->XMLWriter()->writeAttribute($source_key, $source_value);
     }    
     $xml->XMLWriter()->endElement(); //itemSource
+}
+if($itemSource['value'] == 'sourceType.vendor' && $reqArenaRating = $items->IsRequiredArenaRating($itemID)) {
+    $xml->XMLWriter()->startElement('requiredPersonalArenaRating');
+    $xml->XMLWriter()->writeAttribute('personalArenaRating', $reqArenaRating);
+    $xml->XMLWriter()->endElement(); //requiredPersonalArenaRating
 }
 $xml->XMLWriter()->endElement();   //itemTooltip
 $xml->XMLWriter()->endElement();  //itemTooltips

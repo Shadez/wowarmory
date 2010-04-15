@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 141
+ * @revision 142
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -456,7 +456,7 @@ Class SearchMgr extends Connector {
             $arenateams[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
             $arenateams[$i]['factionId'] = Characters::GetCharacterFaction($arenateams[$i]['race']);
             $arenateams[$i]['relevance'] = 100;
-            $arenateams[$i]['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultRealmName']), $arenateams[$i]['size'], urlencode($arenateams[$i]['name']));
+            $arenateams[$i]['url'] = sprintf('r=%s&amp;ts=%d&amp;t=%s', urlencode($this->armoryconfig['defaultRealmName']), $arenateams[$i]['size'], urlencode($arenateams[$i]['name']));
             unset($arenateams[$i]['race']);
         }
         return $arenateams;
@@ -484,7 +484,7 @@ Class SearchMgr extends Connector {
             $guilds[$i]['factionId'] = Characters::GetCharacterFaction($guilds[$i]['race']);
             $guilds[$i]['relevance'] = 100;
             $guilds[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
-            $guilds[$i]['url'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($guilds[$i]['name']));
+            $guilds[$i]['url'] = sprintf('r=%s&amp;gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($guilds[$i]['name']));
             unset($guilds[$i]['race']);
         }
         return $guilds;
@@ -511,7 +511,7 @@ Class SearchMgr extends Connector {
             for($j=0;$j<$count_data;$j++) {
                 if($cur_realm_data[$j]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $cur_realm_data[$j]['guid'])) {
                     $cur_realm_data[$j]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $cur_realm_data[$j]['guildId']);
-                    $cur_realm_data[$j]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($cur_realm_data[$j]['guild']));
+                    $cur_realm_data[$j]['guildUrl'] = sprintf('r=%s&amp;gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($cur_realm_data[$j]['guild']));
                 }
                 $cur_realm_data[$j]['url'] = 'r='.urlencode($this->armoryconfig['defaultRealmName']).'&cn='.urlencode($cur_realm_data[$j]['name']);
                 $cur_realm_data[$j]['relevance'] = 100; // TODO
