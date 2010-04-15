@@ -141,13 +141,13 @@
     
     <div class="menuItem bmlist">
     	<a class="character-achievement staticTip" onMouseOver="setTipText('{$loc/strs/login/str[@id='armory.login.achievements']}');" 
-            href="/character-achievements.xml?{@url}"><xsl:value-of select="@achPoints"/></a>
+            href="character-achievements.xml?{@url}"><xsl:value-of select="@achPoints"/></a>
     	
         <a href="javascript:void(0);" class="rmBookmark staticTip"
             onMouseOver="setTipText('{$loc/strs/login/str[@id='armory.login.bookmark.remove']}');">&#160;</a>    
     
     	<em class="classId{@classId} staticTip" onmouseover="setTipText('{$txtClassbm}')"></em>
-        <a href="/character-sheet.xml?{@url}" class="charName"><xsl:value-of select="@name"/></a>
+        <a href="character-sheet.xml?{@url}" class="charName"><xsl:value-of select="@name"/></a>
         <span>&#160;-&#160;<xsl:value-of select="@realm"/></span>      
     
         <p>

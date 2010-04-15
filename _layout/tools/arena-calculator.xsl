@@ -23,7 +23,7 @@
 
 <div class="info-pane">
 <div class="profile-wrapper">
-<blockquote><b class="iarenateams"><h4><a href="/battlegroups.xml"><xsl:value-of select="$loc/strs/arena/str[@id='arena']"/></a></h4><h3><xsl:value-of select="$loc/strs/arenaCalc/str[@id='title']"/></h3></b></blockquote>
+<blockquote><b class="iarenateams"><h4><a href="battlegroups.xml"><xsl:value-of select="$loc/strs/arena/str[@id='arena']"/></a></h4><h3><xsl:value-of select="$loc/strs/arenaCalc/str[@id='title']"/></h3></b></blockquote>
 
 
 <div class="sidebarstretch">
@@ -273,7 +273,7 @@
 	<div class="sidebar-module pinned-player" id = "hideOpera">
 		<h2>
 			<span></span>
-			<a href="/updates.xml#anchorpinprofile" id="hideWhatPin"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.whatsthis']"/></a>
+			<a href="updates.xml#anchorpinprofile" id="hideWhatPin"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.whatsthis']"/></a>
 			<xsl:value-of select="$loc/strs/arenaCalc/str[@id='pinnedProfile']"/>
 		</h2>
 		<div class="sidebar-module-bot">

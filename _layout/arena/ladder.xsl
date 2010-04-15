@@ -33,7 +33,7 @@
 						<div class="info-pane">
 							 <blockquote>							 												
 							 	<b class="iarenateams">
-									<h4 style="width: 300px;"><a href="/battlegroups.xml"><xsl:value-of select="$loc/strs/arena/str[@id='arena-ladders']"/></a></h4>
+									<h4 style="width: 300px;"><a href="battlegroups.xml"><xsl:value-of select="$loc/strs/arena/str[@id='arena-ladders']"/></a></h4>
 									<h3 style="width: 300px;">
 										<xsl:choose>
 											<xsl:when test="$arenaTournamentMode"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.arenaTournament']" /></xsl:when>
@@ -489,7 +489,7 @@
 						<xsl:variable name="factionTxt" select="$loc/strs/unsorted/str[@id=concat('armory.labels.faction.',current()/@factionId)]" />
 						<tr onmouseover="popIconLarge('teamIconBoxFlash','iconObject{position()}')" onmouseout="popIconSmall('teamIconBoxFlash','iconObject{position()}')">
 							<td class="rightNum" style="font-weight: bold;"><xsl:value-of select="@ranking" /></td>
-							<td style="padding-left: 40px;"><a href="/team-info.xml?{@realmUrl}"><xsl:value-of select="@name" /></a></td>
+							<td style="padding-left: 40px;"><a href="team-info.xml?{@realmUrl}"><xsl:value-of select="@name" /></a></td>
 							<td style="white-space: nowrap"><xsl:value-of select="@realm" /></td>
 							<td class="centNum"><img class="staticTip" onmouseover="setTipText('{$factionTxt}');" src="images/icons/faction/icon-{@factionId}.gif" /></td>
 							<td class="rightNum" style="font-weight: bold; color: #678705;"><xsl:value-of select="@seasonGamesWon" /></td>

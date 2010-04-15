@@ -4,7 +4,7 @@
 <xsl:import href="header.xsl" />
 <xsl:output method="html" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
-<xsl:template name="head-content"><link rel="stylesheet" type="text/css" href="_css/character-select.css" /><link rel="stylesheet" type="text/css" href="_css/character/feed.css" /><link rel="alternate" type="application/rss+xml" title="{characterInfo/character/@name} - {$loc/strs/custom-rss/str[@id='activity']}" href="/character-feed.atom?{characterInfo/character/@charUrl}" />
+<xsl:template name="head-content"><link rel="stylesheet" type="text/css" href="_css/character-select.css" /><link rel="stylesheet" type="text/css" href="_css/character/feed.css" /><link rel="alternate" type="application/rss+xml" title="{characterInfo/character/@name} - {$loc/strs/custom-rss/str[@id='activity']}" href="character-feed.atom?{characterInfo/character/@charUrl}" />
 
 
 

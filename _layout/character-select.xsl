@@ -226,7 +226,7 @@
 							<img class="primchar-avatar" src="images/portraits/wow-default/{$primChar/@genderId}-{$primChar/@raceId}-{$primChar/@classId}.gif" />
 						</xsl:otherwise>
 					</xsl:choose>
-                    <h6><a id="{$primChar/@url}" class="selChar selPrimaryChar" href="/character-sheet.xml?{$primChar/@url}"><xsl:value-of select="$primChar/@name"/></a></h6>
+                    <h6><a id="{$primChar/@url}" class="selChar selPrimaryChar" href="character-sheet.xml?{$primChar/@url}"><xsl:value-of select="$primChar/@name"/></a></h6>
                     <span>
                         Level <xsl:value-of select="$primChar/@level" />&#160;
                         <xsl:value-of select="$loc/strs/races/str[@id=concat('armory.races.race.',$primChar/@raceId,'.',$primChar/@genderId)]" />&#160;

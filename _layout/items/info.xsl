@@ -34,7 +34,7 @@
 
 	<blockquote>
 		<b class="iitems">
-			<h4><a href="/item-search.xml"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.items']"/></a></h4>
+			<h4><a href="item-search.xml"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.items']"/></a></h4>
 			<h3><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.item-results']"/></h3>
 		</b>
 	</blockquote>
@@ -61,7 +61,7 @@
 <xsl:template match="item" mode="itemInfoContent">		
 	<blockquote>
 		<b class="iitems">
-			<h4><a href="/item-search.xml"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.items']"/></a></h4>
+			<h4><a href="item-search.xml"><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.items']"/></a></h4>
 			<h3><xsl:value-of select="$loc/strs/unsorted/str[@id='armory.labels.item-results']"/></h3>
 		</b>
 	</blockquote>
@@ -103,7 +103,7 @@
 												<strong>
 													<xsl:choose>
 														<xsl:when test="dropCreatures/creature[1]/@url">
-															<a href="/search.xml?searchType=items&amp;{dropCreatures/creature[1]/@url}"><xsl:value-of select="dropCreatures/creature[1]/@name" /></a>
+															<a href="search.xml?searchType=items&amp;{dropCreatures/creature[1]/@url}"><xsl:value-of select="dropCreatures/creature[1]/@name" /></a>
 														</xsl:when>
 														<xsl:otherwise>
 															<xsl:value-of select="dropCreatures/creature[1]/@name" />
@@ -117,7 +117,7 @@
 													<strong>
 														<xsl:choose>
 															<xsl:when test="containerObjects/object[1]/@url">
-																<a href="/search.xml?searchType=items&amp;{containerObjects/object[1]/@url}"><xsl:value-of select="containerObjects/object[1]/@name" /></a>
+																<a href="search.xml?searchType=items&amp;{containerObjects/object[1]/@url}"><xsl:value-of select="containerObjects/object[1]/@name" /></a>
 															</xsl:when>
 															<xsl:otherwise>
 																<xsl:value-of select="containerObjects/object[1]/@name" />

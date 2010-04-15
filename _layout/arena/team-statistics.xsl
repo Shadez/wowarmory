@@ -180,7 +180,7 @@
                 </img>	 
             </div>
         </div>
-        <a class="standing-link" href="/arena-ladder.xml?{@realmUrl}"><img src="images/pixel.gif" /></a>			
+        <a class="standing-link" href="arena-ladder.xml?{@realmUrl}"><img src="images/pixel.gif" /></a>			
     </div>
 </xsl:template>
 

@@ -162,8 +162,8 @@
                     	<xsl:if test="current()/@teamRank = '0'">
                         	<xsl:attribute name="class">data3</xsl:attribute>
                         </xsl:if>
-                        <td><a href="/character-sheet.xml?{@charUrl}"><xsl:value-of select="@name" /></a></td>
-                        <td><a href="/guild-info.xml?{@guildUrl}"><xsl:value-of select="@guild" /></a></td>
+                        <td><a href="character-sheet.xml?{@charUrl}"><xsl:value-of select="@name" /></a></td>
+                        <td><a href="guild-info.xml?{@guildUrl}"><xsl:value-of select="@guild" /></a></td>
                         <td>
                         	<img class="staticTip" onmouseover="setTipText('{$raceTxt}');" src="images/icons/race/{@raceId}-{@genderId}.gif" />&#160;
                             <img class="staticTip" onmouseover="setTipText('{$classTxt}');" src="images/icons/class/{@classId}.gif" />
