@@ -270,7 +270,7 @@
 				<xsl:for-each select="guildBank/items/item">				
 					<tr>
 						<td>							
-							<a href="/item-info.xml?i={@id}" class="staticTip itemToolTip rarity{@qi}" id="i={@id}" 
+							<a href="item-info.xml?i={@id}" class="staticTip itemToolTip rarity{@qi}" id="i={@id}" 
 								style="background: url('wow-icons/_images/21x21/{@icon}.png') no-repeat 0 50%; padding: 3px 0 3px 25px; line-height: 28px;">
 								<xsl:value-of select="@name" />
 							</a> x <xsl:value-of select="@quantity" />

@@ -215,7 +215,7 @@
 					
 					<tr>
 						<xsl:if test="@rank = '0'"><xsl:attribute name="class">data3</xsl:attribute></xsl:if>						
-						<td style="padding-left: 7px;"><a href="/character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a></td>
+						<td style="padding-left: 7px;"><a href="character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a></td>
 						<td class="rightNum"><span class="achievPtsSpan"><xsl:value-of select="@achPoints" /></span></td>
 						<td class="rightNum"><xsl:value-of select="@level" /></td>
 						<td style="text-align:right;">

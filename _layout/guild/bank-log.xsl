@@ -277,7 +277,7 @@
 					<xsl:if test="not(@unknown = 1)">
 						<xsl:variable name="subInfo" select="current()/item" />			
 						<tr>
-							<td><a href="/character-sheet.xml?n={@player}&amp;r={/page/guildInfo/guildHeader/@realm}"><xsl:value-of select="@player" /></a></td>
+							<td><a href="character-sheet.xml?n={@player}&amp;r={/page/guildInfo/guildHeader/@realm}"><xsl:value-of select="@player" /></a></td>
 							<td><xsl:value-of select="/page/guildInfo/guildRanks/rank[@id=current()/@rank]/@name" /></td>
 							<td>
 								<span style="display: none"><xsl:value-of select="@otab" /></span>
