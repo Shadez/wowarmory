@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 140
+ * @revision 141
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,6 +91,27 @@ Class SearchMgr extends Connector {
         
         switch($this->get_array['source']) {
             case 'all':
+            case 'quest':
+                if($this->get_array['source'] == 'quest') {
+                    $quest_items_query = $this->wDB->select("SELECT `RewChoiceItemId1`, `RewChoiceItemId2`, `RewChoiceItemId3`, `RewChoiceItemId4`, `RewChoiceItemId5`, `RewChoiceItemId6`, `RewItemId1`, `RewItemId2`, `RewItemId3`, `RewItemId4` FROM `quest_template` ORDER BY `entry` DESC LIMIT 800");
+                    if(!$quest_items_query) {
+                        return false;
+                    }
+                    $qItems = array();
+                    foreach($quest_items_query as $qItem) {
+                        for($i=1;$i<6;$i++) {
+                            if(isset($qItem['RewChoiceItemId'.$i]) && $qItem['RewChoiceItemId'.$i] > 0) {
+                                $qItems[] = $qItem['RewChoiceItemId'.$i];
+                            }
+                            if(isset($qItem['RewItemId'.$i]) && $qItem['RewItemId'.$i] > 0) {
+                                $qItems[] = $qItem['RewItemId'.$i];
+                            }
+                        }
+                    }
+                    if(!$qItems) {
+                        return false;
+                    }
+                }
                 $sql_query = "SELECT `entry` AS `item` FROM `item_template`";
                 $andor = false;
                 if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
@@ -204,6 +225,22 @@ Class SearchMgr extends Connector {
                         }
                     }
                     else {
+                        if($this->get_array['source'] == 'quest') {
+                            $q_items_count = count($qItems);
+                            if($andor) {
+                                $sql_query .= " AND `entry` IN (";
+                            }
+                            else {
+                                $sql_query .= " WHERE `entry` IN (";
+                            }
+                            for($i=0;$i<$q_items_count;$i++) {
+                                if($i) {
+                                    $sql_query .= ', ';
+                                }
+                                $sql_query .= $qItems[$i];
+                            }
+                            $sql_query .= ')';
+                        }
                         $sql_query .= " ORDER BY `ItemLevel` DESC LIMIT 200";
                     }
                 }
