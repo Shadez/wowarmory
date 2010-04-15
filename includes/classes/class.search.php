@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 139
+ * @revision 140
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -105,7 +105,7 @@ Class SearchMgr extends Connector {
                     }
                     /* Subtype */
                     if(isset($this->get_array['subTp']) && !empty($this->get_array['subTp'])) {
-                        if($this->get_array['subTp'] != 'all') {
+                        if($this->get_array['subTp'] != 'all' && isset($type_info) && $type_info) {
                             $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=? AND `parent`=?", $this->get_array['subTp'], $type_info);
                             if($subtype_info) {
                                 $sql_query .= sprintf(" AND `subclass`=%d", $subtype_info['subtype']);
@@ -323,7 +323,7 @@ Class SearchMgr extends Connector {
                 }
                 break;
         }
-        if(!$items_query) {
+        if(!isset($items_query) || !$items_query) {
             return false;
         }
         $items_result = array();
