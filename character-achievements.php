@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 147
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -158,6 +158,16 @@ if($achievement_category > 0) {
     exit;
 }
 
+/** Basic info **/
+$guilds->guid = $characters->guid;
+if($isCharacter && $guilds->extractPlayerGuildId()) {
+    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+}
+elseif($isCharacter) {
+    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+}
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
@@ -167,7 +177,7 @@ $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'achievements');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'character');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->writeAttribute('tabUrl', $tabUrl);
 $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
@@ -177,14 +187,6 @@ if(!$isCharacter) {
     $xml_cache_data = $xml->StopXML();
     echo $xml_cache_data;
     exit;
-}
-/** Basic info **/
-$guilds->guid = $characters->guid;
-if($guilds->extractPlayerGuildId()) {
-    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
-}
-else {
-    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
 }
 $characters->GetCharacterTitle();
 $character_element = array(

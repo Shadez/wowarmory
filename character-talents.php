@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 147
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -52,6 +52,18 @@ if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] ==
         exit;
     }
 }
+/** Basic info **/
+$characters->_structCharacter();
+$achievements->guid = $characters->guid;
+$guilds->guid = $characters->guid;
+if($isCharacter && $guilds->extractPlayerGuildId()) {
+    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+}
+elseif($isCharacter) {
+    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+}
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
@@ -61,7 +73,7 @@ $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'talents');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'character');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->writeAttribute('tabUrl', $tabUrl);
 $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
@@ -71,16 +83,6 @@ if(!$isCharacter) {
     $xml_cache_data = $xml->StopXML();
     echo $xml_cache_data;
     exit;
-}
-/** Basic info **/
-$characters->_structCharacter();
-$achievements->guid = $characters->guid;
-$guilds->guid = $characters->guid;
-if($guilds->extractPlayerGuildId()) {
-    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
-}
-else {
-    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
 }
 $characters->GetCharacterTitle();
 $character_element = array(
@@ -167,7 +169,7 @@ $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true) {
+if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-talents');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
