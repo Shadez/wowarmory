@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 146
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -98,10 +98,7 @@ if($player_model['playerFlags']&0x00000400) {
 if($player_model['playerFlags']&0x00000800) {
     $character_model_data['hide_cloak'] = 1;
 }
-if(count($character_model_data['hair_color']) == 1) {
-    $character_model_data['hair_color'] = '0'.$character_model_data['hair_color'];
-}
-if(count($character_model_data['skin_style']) == 1) {
+if(strlen($character_model_data['skin_style']) == 1) {
     $character_model_data['skin_style'] = '0'.$character_model_data['skin_style'];
 }
 $character_model_data['class'] = $characters->class;
@@ -591,11 +588,14 @@ foreach($subtexture_data as $model) {
     }
 }
 $xml->XMLWriter()->endElement(); //texture
+if(strlen($character_model_data['hair_color']) == 1) {
+    $character_model_data['hair_color'] = '0'.$character_model_data['hair_color'];
+}
 $xml->XMLWriter()->startElement('texture');
-$xml->XMLWriter()->writeAttribute('file', sprintf('character/%s/hair00_%d.png', $character_model_data['race'], $character_model_data['hair_color']));
+$xml->XMLWriter()->writeAttribute('file', 'character/'.$character_model_data['race'].'/hair00_'.$character_model_data['hair_color'].'.png');
 $xml->XMLWriter()->writeAttribute('id', 6);
 $xml->XMLWriter()->endElement(); //texture
-if($character_model_data['hide_cloak'] == 0 && $model_data_texture['back_texture']) {
+if($character_model_data['hide_cloak'] == 0 && isset($model_data_texture['back_texture'])) {
     $xml->XMLWriter()->startElement('texture');
     $xml->XMLWriter()->writeAttribute('file', $model_data_texture['back_texture']['file']);
     $xml->XMLWriter()->writeAttribute('id', 2);
@@ -603,15 +603,18 @@ if($character_model_data['hide_cloak'] == 0 && $model_data_texture['back_texture
 }
 $xml->XMLWriter()->endElement(); //textures
 
-$xml->XMLWriter()->startElement('attachments');
-foreach($model_data_attachment as $attachment) {
-    $xml->XMLWriter()->startElement('attachment');
-    foreach($attachment as $attachment_key => $attachment_value) {
-        $xml->XMLWriter()->writeAttribute($attachment_key, $attachment_value);
+if(isset($model_data_attachment) && is_array($model_data_attachment)) {
+    $xml->XMLWriter()->startElement('attachments');
+    foreach($model_data_attachment as $attachment) {
+        $xml->XMLWriter()->startElement('attachment');
+        foreach($attachment as $attachment_key => $attachment_value) {
+            $xml->XMLWriter()->writeAttribute($attachment_key, $attachment_value);
+        }
+        $xml->XMLWriter()->endElement(); //attachment
     }
-    $xml->XMLWriter()->endElement(); //attachment
+    $xml->XMLWriter()->endElement(); //attachments
 }
-$xml->XMLWriter()->endElement(); //attachments
+
 
 $animation_data = array(
     array('id' => 0,    'key' => 'stand',              'weapons' => 'melee'),
