@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 148
+ * @revision 150
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,6 +27,7 @@ Class SearchMgr extends Connector {
     public $get_array;
     public $bossSearchKey;
     public $instanceSearchKey;
+    private $boss_loot_ids;
     
     public function DoSearchItems($count=false) {
         if(!$this->searchQuery) {
@@ -87,6 +88,22 @@ Class SearchMgr extends Connector {
             'ec' => 4,
             'lg' => 5,
             'hm' => 7
+        );
+        $slot_types = array(
+            'head' => 1,
+            'neck' => 2,
+            'shoulders' => 3,
+            'shirt' => 4,
+            'chest' => 5,
+            'waist' => 6,
+            'legs' => 7,
+            'feet' => 8,
+            'wrists' => 9,
+            'hands' => 10,
+            'finger' => 11,
+            'trinket' => 12,
+            'back' => 16,
+            'offhand' => 22
         );
         switch($this->get_array['source']) {
             case 'all':
@@ -149,6 +166,7 @@ Class SearchMgr extends Connector {
                         }
                         else {
                             $sql_query .= sprintf(" WHERE `RequiredLevel` >= %d", (int) $this->get_array['rqrMin']);
+                            $andor = true;
                         }
                     }
                     elseif(isset($this->get_array['rqrMax']) && !empty($this->get_array['rqrMax'])) {
@@ -157,6 +175,7 @@ Class SearchMgr extends Connector {
                         }
                         else {
                             $sql_query .= sprintf(" WHERE `RequiredLevel` <= %d", (int) $this->get_array['rqrMax']);
+                            $andor = true;
                         }
                     }
                     /* Quality */
@@ -167,6 +186,7 @@ Class SearchMgr extends Connector {
                             }
                             else {
                                 $sql_query .= sprintf(" WHERE `Quality`=%d", $quality_types[$this->get_array['rrt']]);
+                                $andor = true;
                             }
                         }
                     }
@@ -191,6 +211,7 @@ Class SearchMgr extends Connector {
                             }
                             else {
                                 $sql_query .= sprintf(" WHERE `AllowableClass`&%d", $classes_mask[$usable_by]);
+                                $andor = true;
                             }
                         }
                     }
@@ -213,6 +234,19 @@ Class SearchMgr extends Connector {
                                 break;
                         }
                     }*/
+                    
+                    /* Slot */
+                    if(isset($this->get_array['slot']) && !empty($this->get_array['slot'])) {
+                        if(isset($slot_types[$this->get_array['slot']])) {
+                            if($andor) {
+                                $sql_query .= sprintf(" AND `InventoryType`=%d", $slot_types[$this->get_array['slot']]);
+                            }
+                            else {
+                                $sql_query .= sprintf(" WHERE `InventoryType`=%d", $slot_types[$this->get_array['slot']]);
+                                $andor = true;
+                            }
+                        }
+                    }
                     
                     /* Search string */
                     if(isset($this->searchQuery)&& !empty($this->searchQuery)) {
@@ -622,6 +656,50 @@ Class SearchMgr extends Connector {
             }
         }
         return $arrayRewrite;  
+    }
+    
+    private function CreateSqlQuery() {
+        if(!$this->get_array) {
+            return false;
+        }
+        if(!isset($this->get_array['source'])) {
+            $this->get_array['source'] = 'all';
+        }
+        $sql_query = null;
+        switch($this->get_array['source']) {
+            case 'all':
+                $sql_query = 'SELECT `entry` AS `item` FROM `item_template` ORDER BY `ItemLevel` DESC LIMIT 200';
+                break;
+            case 'quest':
+                $sql_query = 'SELECT DISTINCT `entry` AS `item` FROM `item_template` WHERE `entry` IN (SELECT `RewChoiceItemId1`, `RewChoiceItemId2`, `RewChoiceItemId3`, `RewChoiceItemId4`, `RewChoiceItemId5`, `RewChoiceItemId6`, `RewItemId1`, `RewItemId2`, `RewItemId3`, `RewItemId4` FROM `quest_template`) ORDER BY `ItemLevel` LIMIT 200';
+                break;
+            case 'dungeon':
+                if(!is_array($this->boss_loot_ids)) {
+                    return false;
+                }
+                $sql_query = 'SELECT DISTINCT `item` FROM `creature_loot_template` WHERE `entry` IN (';
+                $mcount = count($this->boss_loot_ids);
+                for($i=0;$i<$mcount;$i++) {
+                    if($i) {
+                        $sql_query .= ', ';
+                    }
+                    $sql_query .= $this->boss_loot_ids[$i];
+                }
+                $sql_query .= ') ORDER BY `item` DESC LIMIT 200';
+                break;
+            case 'reputation':
+                if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
+                    $sql_query = 'SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200';
+                }
+                else {
+                    $sql_query = sprintf('SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction`=%d ORDER BY `ItemLevel` DESC LIMIT 200', (int) $this->get_array['faction']);
+                }
+                break;
+        }
+        if($sql_query) {
+            return $sql_query;
+        }
+        return false;
     }
 }
 ?>

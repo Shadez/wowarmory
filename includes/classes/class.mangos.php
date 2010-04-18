@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 135
+ * @revision 150
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -153,7 +153,6 @@ Class Mangos extends Connector {
                     return false;
                 }
                 if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=?", $mapID)) {
-                    //$areaUrl = sprintf('fl[source]=dungeon&amp;fl[dungeon]=%s&amp;fl[boss]=all&amp;fl[difficulty]=all', $info);
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }

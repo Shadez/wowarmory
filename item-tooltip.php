@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 142
+ * @revision 150
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,13 +53,13 @@ $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'item-tooltip.xml');
 $itemID = (int) $_GET['i'];
-if($itemID == 0 || !$armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=?", $itemID)) {
+if(!$items->IsItemExists($itemID)) {
     $xml->XMLWriter()->startElement('itemTooltips');
     $xml->XMLWriter()->startElement('itemTooltip');        
     $xml->XMLWriter()->endElement();   //itemTooltip
     $xml->XMLWriter()->endElement();  //itemTooltips
     $xml->XMLWriter()->endElement(); //page
-    $xml->StopXML();
+    echo $xml->StopXML();
     exit;
 }
 $data = $armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
@@ -69,7 +69,7 @@ $xml->XMLWriter()->startElement('id');
 $xml->XMLWriter()->text($itemID);
 $xml->XMLWriter()->endElement(); //id
 $xml->XMLWriter()->startElement('name');
-if($armory->_locale == 'en_gb') {
+if($armory->_locale == 'en_gb' || $armory->_locale == 'en_us') {
     $xml->XMLWriter()->text($data['name']);
 }
 else {
@@ -77,7 +77,7 @@ else {
 }
 $xml->XMLWriter()->endElement(); //name
 $xml->XMLWriter()->startElement('icon');
-$xml->XMLWriter()->text($items->getItemIcon($itemID));
+$xml->XMLWriter()->text($items->getItemIcon($itemID, $data['displayid']));
 $xml->XMLWriter()->endElement(); //icon
 // 3.2.x heroic item flag
 if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
@@ -104,7 +104,7 @@ $xml->XMLWriter()->startElement('inventoryType');
 $xml->XMLWriter()->text($data['InventoryType']);
 $xml->XMLWriter()->endElement();  //inventoryType
 $xml->XMLWriter()->startElement('subclassName');
-$xml->XMLWriter()->text($items->GetItemSubTypeInfo($itemID, true));
+$xml->XMLWriter()->text($items->GetItemSubTypeInfo($itemID, true, $data));
 $xml->XMLWriter()->endElement();  //subclassName
 if($data['class'] == ITEM_CLASS_CONTAINER) {
     $xml->XMLWriter()->startElement('containerSlots');
@@ -147,9 +147,7 @@ if($data['class'] == ITEM_CLASS_WEAPON) {
     }
     $xml->XMLWriter()->text($dps);
     $xml->XMLWriter()->endElement(); //dps
-    
     $xml->XMLWriter()->endElement(); //damageData
-    
 }
 if($data['block'] > 0) {
     $xml->XMLWriter()->startElement('blockValue');
@@ -350,7 +348,6 @@ if($characters->guid) {
         $xml->XMLWriter()->endElement(); //enchant
     }
 }
-
 $xml->XMLWriter()->startElement('socketData');
 $socket_data = false;
 $socketBonusCheck = array();
@@ -466,36 +463,30 @@ if($allowable_races) {
     }
     $xml->XMLWriter()->endElement(); //allowableRaces
 }
-
 if($data['RequiredSkill'] > 0) {
     $xml->XMLWriter()->startElement('requiredSkill');
     $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_skills` WHERE `id`=?", $data['RequiredSkill']));
     $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
     $xml->XMLWriter()->endElement(); //requiredSkill
 }
-
 if($data['RequiredReputationFaction'] > 0) {    
     $xml->XMLWriter()->startElement('requiredFaction');
     $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_faction` WHERE `id`=?", $data['RequiredReputationFaction']));
     $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
     $xml->XMLWriter()->endElement(); //requiredFaction
 }
-
 $xml->XMLWriter()->startElement('requiredLevel');
 $xml->XMLWriter()->text($data['RequiredLevel']);
 $xml->XMLWriter()->endElement(); //requiredLevel
-
 $xml->XMLWriter()->startElement('itemLevel');
 $xml->XMLWriter()->text($data['ItemLevel']);
 $xml->XMLWriter()->endElement(); //itemLevel
-
 if($data['itemset'] > 0) {
     $xml->XMLWriter()->startElement('setData');
     $setdata = $armory->aDB->selectRow("SELECT * FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
     $xml->XMLWriter()->startElement('name');
     $xml->XMLWriter()->text($setdata['name_'.$armory->_locale]);
     $xml->XMLWriter()->endElement();
-    
     for($i=1;$i<11;$i++) {
         if($setdata['item'.$i] > 0 && $items->IsItemExists($setdata['item'.$i])) {
             $xml->XMLWriter()->startElement('item');
@@ -503,7 +494,6 @@ if($data['itemset'] > 0) {
             $xml->XMLWriter()->endElement(); //item
         }
     }
-    
     $itemsetbonus = $items->GetItemSetBonusInfo($setdata);
     if(is_array($itemsetbonus)) {
         foreach($itemsetbonus as $item_bonus) {
@@ -512,12 +502,17 @@ if($data['itemset'] > 0) {
             $xml->XMLWriter()->writeAttribute('threshold', $item_bonus['threshold']);
             $xml->XMLWriter()->endElement(); //setBonus
         }
-    }    
+    }
     $xml->XMLWriter()->endElement(); //setData
 }
 if(!empty($data['description'])) {
     $xml->XMLWriter()->startElement('desc');
-    $xml->XMLWriter()->text($items->GetItemDescription($itemID));
+    if($armory->_locale == 'en_gb' || $armory->_locale == 'en_us') {
+        $xml->XMLWriter()->text($data['description']);
+    }
+    else {
+        $xml->XMLWriter()->text($items->GetItemDescription($itemID));
+    }
     $xml->XMLWriter()->endElement(); //desc
 }
 $xml->XMLWriter()->startElement('spellData');
@@ -531,15 +526,12 @@ for($i=1;$i<4;$i++) {
         if($spellInfo) {
             $spellInfo = str_replace('&quot;', '"', $spellInfo);
             $xml->XMLWriter()->startElement('spell');
-            
             $xml->XMLWriter()->startElement('trigger');
             $xml->XMLWriter()->text($data['spelltrigger_'.$i]);
             $xml->XMLWriter()->endElement();  //trigger
-            
             $xml->XMLWriter()->startElement('desc');
             $xml->XMLWriter()->text($spellInfo);
             $xml->XMLWriter()->endElement();  //desc
-            
             $xml->XMLWriter()->endElement(); //spell
         }
     }
@@ -563,10 +555,9 @@ $xml->XMLWriter()->endElement();  //itemTooltips
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-// echo htmlspecialchars_decode($xml_cache_data); // F@#K
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
-    $cache_data = $utils->GenerateCacheData($itemID, ($characters->guid) ? $characters->guid : 0, 'item-toolip');
+    $cache_data = $utils->GenerateCacheData($itemID, ($characters->guid) ? $characters->guid : 0, 'item-tooltip');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'tooltips');
 }
 exit;
