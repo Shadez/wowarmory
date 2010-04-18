@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 147
+ * @revision 149
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,6 +53,7 @@ if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] ==
     }
 }
 /** Basic info **/
+$tabUrl = false;
 $guilds->guid = $characters->guid;
 if($isCharacter && $guilds->extractPlayerGuildId()) {
     $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 147
+ * @revision 149
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -159,6 +159,7 @@ if($achievement_category > 0) {
 }
 
 /** Basic info **/
+$tabUrl = false;
 $guilds->guid = $characters->guid;
 if($isCharacter && $guilds->extractPlayerGuildId()) {
     $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
@@ -246,11 +247,13 @@ foreach($info_categories as $achievement_category) {
 $last_achievements = $achievements->GetLastAchievements();
 if(is_array($last_achievements)) {
     foreach($last_achievements as $l_achievement) {
-        $xml->XMLWriter()->startElement('achievement');
-        foreach($l_achievement as $l_a_key => $l_a_value) {
-            $xml->XMLWriter()->writeAttribute($l_a_key, $l_a_value);
+        if(is_array($l_achievement)) {
+            $xml->XMLWriter()->startElement('achievement');
+            foreach($l_achievement as $l_a_key => $l_a_value) {
+                $xml->XMLWriter()->writeAttribute($l_a_key, $l_a_value);
+            }
+            $xml->XMLWriter()->endElement(); //achievement
         }
-        $xml->XMLWriter()->endElement(); //achievement
     }
 }
 $xml->XMLWriter()->endElement();    //summary
