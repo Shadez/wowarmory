@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 145
+ * @revision 148
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -88,7 +88,6 @@ Class SearchMgr extends Connector {
             'lg' => 5,
             'hm' => 7
         );
-        
         switch($this->get_array['source']) {
             case 'all':
             case 'quest':
@@ -306,7 +305,7 @@ Class SearchMgr extends Connector {
                     }
                     if(isset($this->get_array['boss']) && $this->get_array['boss'] != 'all' && !empty($this->get_array['boss'])) {
                         if(is_numeric($this->get_array['boss'])) {
-                            $sql_query .= sprintf(" AND `id`=%d", $this->get_array['boss']);
+                            $sql_query .= sprintf(" AND `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d", $this->get_array['boss'], $this->get_array['boss'], $this->get_array['boss'], $this->get_array['boss'], $this->get_array['boss']);
                         }
                         else {
                             $sql_query .= sprintf(" AND `key`='%s'", $this->get_array['boss']);
