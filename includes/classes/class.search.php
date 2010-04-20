@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 150
+ * @revision 152
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -133,6 +133,9 @@ Class SearchMgr extends Connector {
                 if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
                     /* Type */
                     if($this->get_array['type'] != 'all') {
+                        if($this->get_array['type'] == 'misc') {
+                            $this->get_array['type'] = 'miscellaneous';
+                        }
                         $type_info = $this->aDB->selectCell("SELECT `type` FROM `armory_item_sources` WHERE `key`=? AND `parent`=0", $this->get_array['type']);
                         if(!$type_info) {
                             return false;
@@ -531,17 +534,24 @@ Class SearchMgr extends Connector {
         $cur_realm_data = array();
         $results_count  = 0;
         if($num == true) {
-            $count_chars = $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-            $results_count = $results_count+$count_chars;
-            $count_chars = 0;
+            $count_chars = $this->cDB->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE ? AND `level` >= ? LIMIT 200", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
+            $count_result = count($count_chars);
+            for($i=0;$i<$count_result;$i++) {
+                if(self::IsCharacterAllowedForSearch($count_chars[$i]['guid'], $count_chars[$i]['level'], $count_chars[$i]['account'])) {
+                    $results_count++;
+                }
+            }
         }
         else {
             $cur_realm_data = $this->cDB->select("
-            SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`
+            SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account`
                 FROM `characters`
                     WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
             $count_data = count($cur_realm_data);
             for($j=0;$j<$count_data;$j++) {
+                if(!self::IsCharacterAllowedForSearch($cur_realm_data[$j]['guid'], $cur_realm_data[$j]['level'], $cur_realm_data[$j]['account'])) {
+                    continue;
+                }
                 if($cur_realm_data[$j]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $cur_realm_data[$j]['guid'])) {
                     $cur_realm_data[$j]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $cur_realm_data[$j]['guildId']);
                     $cur_realm_data[$j]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($cur_realm_data[$j]['guild']));
@@ -557,6 +567,7 @@ Class SearchMgr extends Connector {
                 $cur_realm_data[$j]['faction'] = ($cur_realm_data[$j]['factionId'] == 0) ? Utils::GetArmoryString(11) : Utils::GetArmoryString(12);
                 $cur_realm_data[$j]['searchRank'] = $j+1;
                 unset($cur_realm_data[$j]['guid']); // Do not show guid in XML result
+                unset($cur_realm_data[$j]['account']); // Do not show account in XML result
             }
         }
         if($num == true) {
@@ -658,46 +669,13 @@ Class SearchMgr extends Connector {
         return $arrayRewrite;  
     }
     
-    private function CreateSqlQuery() {
-        if(!$this->get_array) {
+    private function IsCharacterAllowedForSearch($guid, $level, $account_id) {
+        if($level < $this->armoryconfig['minlevel']) {
             return false;
         }
-        if(!isset($this->get_array['source'])) {
-            $this->get_array['source'] = 'all';
-        }
-        $sql_query = null;
-        switch($this->get_array['source']) {
-            case 'all':
-                $sql_query = 'SELECT `entry` AS `item` FROM `item_template` ORDER BY `ItemLevel` DESC LIMIT 200';
-                break;
-            case 'quest':
-                $sql_query = 'SELECT DISTINCT `entry` AS `item` FROM `item_template` WHERE `entry` IN (SELECT `RewChoiceItemId1`, `RewChoiceItemId2`, `RewChoiceItemId3`, `RewChoiceItemId4`, `RewChoiceItemId5`, `RewChoiceItemId6`, `RewItemId1`, `RewItemId2`, `RewItemId3`, `RewItemId4` FROM `quest_template`) ORDER BY `ItemLevel` LIMIT 200';
-                break;
-            case 'dungeon':
-                if(!is_array($this->boss_loot_ids)) {
-                    return false;
-                }
-                $sql_query = 'SELECT DISTINCT `item` FROM `creature_loot_template` WHERE `entry` IN (';
-                $mcount = count($this->boss_loot_ids);
-                for($i=0;$i<$mcount;$i++) {
-                    if($i) {
-                        $sql_query .= ', ';
-                    }
-                    $sql_query .= $this->boss_loot_ids[$i];
-                }
-                $sql_query .= ') ORDER BY `item` DESC LIMIT 200';
-                break;
-            case 'reputation':
-                if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
-                    $sql_query = 'SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200';
-                }
-                else {
-                    $sql_query = sprintf('SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction`=%d ORDER BY `ItemLevel` DESC LIMIT 200', (int) $this->get_array['faction']);
-                }
-                break;
-        }
-        if($sql_query) {
-            return $sql_query;
+        $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $account_id);
+        if($gmLevel <= $this->armoryconfig['minGmLevelToShow']) {
+            return true;
         }
         return false;
     }
