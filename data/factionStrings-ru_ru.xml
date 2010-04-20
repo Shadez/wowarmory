@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="ru_ru" requestUrl="/data/factionStrings.xml">
+  <factions>
+    <faction id="1037" name="Авангард Альянса" release="2"/>
+    <faction id="1091" name="Драконий союз" release="2"/>
+    <faction id="1073" name="Калу'ак" release="2"/>
+    <faction id="1090" name="Кирин-Тор" release="2"/>
+    <faction id="1105" name="Оракулы" release="2"/>
+    <faction id="1156" name="Пепельный союз" release="2"/>
+    <faction id="1104" name="Племя Бешеного Сердца" release="2"/>
+    <faction id="1124" name="Похитители Солнца" release="2"/>
+    <faction id="1098" name="Рыцари Черного Клинка" release="2"/>
+    <faction id="1106" name="Серебряный Авангард" release="2"/>
+    <faction id="1094" name="Серебряный союз" release="2"/>
+    <faction id="1119" name="Сыны Ходира" release="2"/>
+    <faction id="1052" name="Экспедиция Орды" release="2"/>
+    <faction id="932" name="Алдоры" release="1"/>
+    <faction id="967" name="Аметистовое Око" release="1"/>
+    <faction id="1077" name="Армия Расколотого Солнца" release="1"/>
+    <faction id="942" name="Кенарийская экспедиция" release="1"/>
+    <faction id="933" name="Консорциум" release="1"/>
+    <faction id="1015" name="Крылья Пустоты" release="1"/>
+    <faction id="978" name="Куренай" release="1"/>
+    <faction id="941" name="Маг'хары" release="1"/>
+    <faction id="1011" name="Нижний Город" release="1"/>
+    <faction id="1038" name="Огри'ла" release="1"/>
+    <faction id="946" name="Оплот Чести" release="1"/>
+    <faction id="1012" name="Пеплоусты-служители" release="1"/>
+    <faction id="990" name="Песчаная Чешуя" release="1"/>
+    <faction id="934" name="Провидцы" release="1"/>
+    <faction id="970" name="Спореггар" release="1"/>
+    <faction id="1031" name="Стражи Небес Ша'тар" release="1"/>
+    <faction id="947" name="Траллмар" release="1"/>
+    <faction id="989" name="Хранители Времени" release="1"/>
+    <faction id="935" name="Ша'тар" release="1"/>
+    <faction id="59" name="Братство Тория" release="0"/>
+    <faction id="576" name="Древобрюхи" release="0"/>
+    <faction id="609" name="Круг Кенария" release="0"/>
+    <faction id="270" name="Племя Зандалар" release="0"/>
+    <faction id="910" name="Род Ноздорму" release="0"/>
+    <faction id="529" name="Серебряный Рассвет" release="0"/>
+    <faction id="909" name="Ярмарка Новолуния" release="0"/>
+  </factions>
+</page>

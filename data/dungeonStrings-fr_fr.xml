@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/data/dungeonStrings.xml">
+  <dungeons>
+    <dungeon id="4812" key="icecrowncitadel25" name="Citadelle de la Couronne de glace (25)" release="2">
+      <boss id="37957" name="Seigneur Gargamoelle"/>
+      <boss id="38106" name="Dame Murmemort"/>
+      <boss id="202180" name="Armurerie de la canonnière"/>
+      <boss id="38582" name="Porte-mort Saurcroc"/>
+      <boss id="37504" name="Pulentraille"/>
+      <boss id="38390" name="Trognepus"/>
+      <boss id="38431" name="Professeur Putricide"/>
+      <boss id="38401" name="Prince Valanar"/>
+      <boss id="38434" name="Reine de sang Lana'thel"/>
+      <boss id="202339" name="Cache du Marcherêve"/>
+      <boss id="38265" name="Sindragosa"/>
+      <boss id="39166" name="Le roi-liche"/>
+    </dungeon>
+    <dungeon id="4812" key="icecrowncitadel10" name="Citadelle de la Couronne de glace (10)" release="2">
+      <boss id="36612" name="Seigneur Gargamoelle"/>
+      <boss id="36855" name="Dame Murmemort"/>
+      <boss id="202178" name="Armurerie de la canonnière"/>
+      <boss id="37813" name="Porte-mort Saurcroc"/>
+      <boss id="36626" name="Pulentraille"/>
+      <boss id="36627" name="Trognepus"/>
+      <boss id="36678" name="Professeur Putricide"/>
+      <boss id="37970" name="Prince Valanar"/>
+      <boss id="37955" name="Reine de sang Lana'thel"/>
+      <boss id="201959" name="Cache du Marcherêve"/>
+      <boss id="36853" name="Sindragosa"/>
+      <boss id="36597" name="Le roi-liche"/>
+    </dungeon>
+    <dungeon id="4809" key="forgeofsouls" name="La Forge des âmes" release="2">
+      <boss id="36497" name="Bronjahm"/>
+      <boss id="36502" name="Dévoreur d'âmes"/>
+    </dungeon>
+    <dungeon id="4813" key="pitofsaron" name="Fosse de Saron" release="2">
+      <boss id="36494" name="Maître-forge Gargivre"/>
+      <boss id="36476" name="Ick"/>
+      <boss id="36658" name="Seigneur du Fléau Tyrannus"/>
+    </dungeon>
+    <dungeon id="4820" key="hallsofreflection" name="Salles des Reflets" release="2">
+      <boss id="38112" name="Falric"/>
+      <boss id="38113" name="Marwyn"/>
+      <boss id="201710" name="Le coffre du capitaine"/>
+    </dungeon>
+    <dungeon id="2159" key="onyxiaslair" name="Repaire d'Onyxia" release="2">
+      <boss id="10184" name="Onyxia"/>
+    </dungeon>
+    <dungeon id="4722" key="trialofthecrusader25" name="L'épreuve du croisé (25)" release="2">
+      <boss id="34566" name="Anub'arak"/>
+      <boss id="35347" name="Eydis Plaie-sombre"/>
+      <boss id="35350" name="Fjola Plaie-lumineuse"/>
+      <boss id="195633" name="Cache des champions"/>
+      <boss id="35216" name="Seigneur Jaraxxus"/>
+      <boss id="35447" name="Glace-hurlante"/>
+    </dungeon>
+    <dungeon id="4722" key="trialofthecrusader10" name="L'épreuve du croisé (10)" release="2">
+      <boss id="34564" name="Anub'arak"/>
+      <boss id="34496" name="Eydis Plaie-sombre"/>
+      <boss id="34497" name="Fjola Plaie-lumineuse"/>
+      <boss id="195631" name="Cache des champions"/>
+      <boss id="34780" name="Seigneur Jaraxxus"/>
+      <boss id="34797" name="Glace-hurlante"/>
+    </dungeon>
+    <dungeon id="4723" key="trialofthechampion" name="L'épreuve du champion" release="2">
+      <boss id="35451" name="Le Chevalier noir"/>
+      <boss id="195374" name="Cache d'Eadric"/>
+      <boss id="195323" name="Cache du confesseur"/>
+      <boss id="195709" name="Cache du champion"/>
+    </dungeon>
+    <dungeon id="4273" key="ulduar" name="Ulduar" release="2">
+      <boss id="32871" name="Algalon l'Observateur"/>
+      <boss id="33113" name="Léviathan des flammes"/>
+      <boss id="33186" name="Tranchécaille"/>
+      <boss id="33293" name="Déconstructeur XT-002"/>
+      <boss id="33118" name="Ignis le maître de la Fournaise"/>
+      <boss id="32867" name="Brise-acier"/>
+      <boss id="32927" name="Maître des runes Molgeim"/>
+      <boss id="32857" name="Mande-foudre Brundir"/>
+      <boss id="195046" name="Cache de pierre vivante"/>
+      <boss id="33515" name="Auriaya"/>
+      <boss id="194957" name="Cache de l'innovation"/>
+      <boss id="194308" name="Cache de l'hiver"/>
+      <boss id="194312" name="Cache des tempêtes"/>
+      <boss id="194331" name="Cadeau de Freya"/>
+      <boss id="33271" name="Général Vezax"/>
+      <boss id="33288" name="Yogg-Saron"/>
+    </dungeon>
+    <dungeon id="4500" key="theeyeofeternity" name="L'Œil de l'éternité" release="2">
+      <boss id="28859" name="Malygos"/>
+    </dungeon>
+    <dungeon id="4493" key="theobsidiansanctum" name="Le sanctum Obsidien" release="2">
+      <boss id="28860" name="Sartharion"/>
+    </dungeon>
+    <dungeon id="3456" key="naxxramas" name="Naxxramas" release="2">
+      <boss id="181366" name="Coffre des quatre cavaliers"/>
+      <boss id="15956" name="Anub'Rekhan"/>
+      <boss id="15932" name="Gluth"/>
+      <boss id="16060" name="Gothik le Moissonneur"/>
+      <boss id="15953" name="Grande veuve Faerlina"/>
+      <boss id="15931" name="Grobbulus"/>
+      <boss id="15936" name="Heigan l'Impur"/>
+      <boss id="16061" name="Instructeur Razuvious"/>
+      <boss id="15990" name="Kel'Thuzad"/>
+      <boss id="16011" name="Horreb"/>
+      <boss id="15952" name="Maexxna"/>
+      <boss id="15954" name="Noth le Porte-peste"/>
+      <boss id="16028" name="Le Recousu"/>
+      <boss id="15989" name="Saphiron"/>
+      <boss id="15928" name="Thaddius"/>
+    </dungeon>
+    <dungeon id="4603" key="vaultarchavon" name="Caveau d'Archavon" release="2">
+      <boss id="31125" name="Archavon le Gardien des pierres"/>
+      <boss id="33993" name="Emalon le Guetteur d'orage"/>
+    </dungeon>
+    <dungeon id="4100" key="cullingofstratholme" name="L'Épuration de Stratholme" release="2">
+      <boss id="26530" name="Salramm le Façonneur de chair"/>
+      <boss id="26529" name="Grancrochet"/>
+      <boss id="26533" name="Mal'Ganis"/>
+      <boss id="26532" name="Chronoseigneur Epoque"/>
+      <boss id="32273" name="Corrupteur infini"/>
+    </dungeon>
+    <dungeon id="4272" key="hallsoflightning" name="Les salles de Foudre" release="2">
+      <boss id="28586" name="Général Bjarngrim"/>
+      <boss id="28546" name="Ionar"/>
+      <boss id="28587" name="Volkhan"/>
+      <boss id="28923" name="Loken"/>
+    </dungeon>
+    <dungeon id="4228" key="theoculus" name="L'Oculus" release="2">
+      <boss id="27654" name="Drakos l'Interrogateur"/>
+      <boss id="27447" name="Varos Arpentenuée"/>
+      <boss id="27655" name="Seigneur-mage Urom"/>
+      <boss id="27656" name="Gardien-tellurique Eregos"/>
+    </dungeon>
+    <dungeon id="1196" key="utgardepinnacle" name="Cime d'Utgarde" release="2">
+      <boss id="26668" name="Svala Tristetombe"/>
+      <boss id="26687" name="Gortok Pâle-sabot"/>
+      <boss id="26693" name="Skadi le Brutal"/>
+      <boss id="26861" name="Roi Ymiron"/>
+    </dungeon>
+    <dungeon id="4264" key="hallsofstone" name="Les salles de Pierre" release="2">
+      <boss id="190586" name="Coffre du tribunal"/>
+      <boss id="27978" name="Sjonnir le Sculptefer"/>
+      <boss id="27975" name="Damoiselle de peine"/>
+      <boss id="27977" name="Krystallus"/>
+    </dungeon>
+    <dungeon id="4416" key="gundrak" name="Gundrak" release="2">
+      <boss id="29304" name="Slad'ran"/>
+      <boss id="29305" name="Moorabi"/>
+      <boss id="29306" name="Gal'darah"/>
+      <boss id="29307" name="Colosse drakkari"/>
+    </dungeon>
+    <dungeon id="4415" key="violethold" name="Le fort Pourpre" release="2">
+      <boss id="29315" name="Erekem"/>
+      <boss id="29316" name="Moragg"/>
+      <boss id="29313" name="Ichoron"/>
+      <boss id="29266" name="Xevozz"/>
+      <boss id="29312" name="Lavanthor"/>
+      <boss id="29314" name="Zuramat l'Oblitérateur"/>
+      <boss id="31134" name="Cyanigosa"/>
+    </dungeon>
+    <dungeon id="4196" key="draktharonkeep" name="Donjon de Drak'Tharon" release="2">
+      <boss id="26630" name="Trollétripe"/>
+      <boss id="26631" name="Novos l'Invocateur"/>
+      <boss id="27483" name="Roi Dred"/>
+      <boss id="26632" name="Le prophète Tharon'ja"/>
+    </dungeon>
+    <dungeon id="4494" key="ahnkahet" name="Ahn'kahet : l'Ancien royaume" release="2">
+      <boss id="29308" name="Prince Taldaram"/>
+      <boss id="29309" name="Ancien Nadox"/>
+      <boss id="29310" name="Jedoga Cherchelombre"/>
+      <boss id="30258" name="Amanitar"/>
+      <boss id="29311" name="Héraut Volazj"/>
+    </dungeon>
+    <dungeon id="4277" key="azjol-nerub" name="Azjol-Nérub" release="2">
+      <boss id="28684" name="Krik'thir le Gardien de porte"/>
+      <boss id="28921" name="Hadronox"/>
+      <boss id="29120" name="Anub'arak"/>
+    </dungeon>
+    <dungeon id="4265" key="thenexus" name="Le Nexus" release="2">
+      <boss id="26723" name="Keristrasza"/>
+      <boss id="26731" name="Grand magus Telestra"/>
+      <boss id="26763" name="Anomalus"/>
+      <boss id="26794" name="Ormorok le Sculpte-arbre"/>
+    </dungeon>
+    <dungeon id="206" key="utgardekeep" name="Donjon d'Utgarde" release="2">
+      <boss id="23953" name="Prince Keleseth"/>
+      <boss id="24200" name="Skarvald le Constructeur"/>
+      <boss id="24201" name="Dalronn le Contrôleur"/>
+      <boss id="23980" name="Ingvar le Pilleur"/>
+    </dungeon>
+    <dungeon id="4075" key="sunwellplateau" name="Plateau du Puits de soleil" release="1">
+      <boss id="24850" name="Kalecgos"/>
+      <boss id="24882" name="Brutallus"/>
+      <boss id="25038" name="Gangrebrume"/>
+      <boss id="25165" name="Dame Sacrocingle"/>
+      <boss id="25166" name="Grande démoniste Alythess"/>
+      <boss id="25741" name="M'uru"/>
+      <boss id="25315" name="Kil'jaeden"/>
+    </dungeon>
+    <dungeon id="3959" key="blacktemple" name="Temple noir" release="1">
+      <boss id="23420" name="Essence de la colère"/>
+      <boss id="22949" name="Gathios le Briseur"/>
+      <boss id="22950" name="Grand néantomancien Zerevor"/>
+      <boss id="22951" name="Dame Malande"/>
+      <boss id="22947" name="Mère Shahraz"/>
+      <boss id="22871" name="Teron Fielsang"/>
+      <boss id="22952" name="Veras Ombrenoir"/>
+      <boss id="22887" name="Grand seigneur de guerre Naj'entus"/>
+      <boss id="22898" name="Supremus"/>
+      <boss id="22948" name="Gurtogg Fièvresang"/>
+      <boss id="22841" name="Ombre d'Akama"/>
+      <boss id="22917" name="Illidan Hurlorage"/>
+    </dungeon>
+    <dungeon id="3606" key="hyjalsummit" name="Sommet d'Hyjal" release="1">
+      <boss id="17808" name="Anetheron"/>
+      <boss id="17842" name="Azgalor"/>
+      <boss id="17888" name="Kaz'rogal"/>
+      <boss id="17767" name="Rage Froidhiver"/>
+      <boss id="17968" name="Archimonde"/>
+    </dungeon>
+    <dungeon id="3845" key="eye" name="Donjon de la Tempête" release="1">
+      <boss id="19514" name="Al'ar"/>
+      <boss id="18805" name="Grande astromancienne Solarian"/>
+      <boss id="19622" name="Kael'thas Haut-soleil"/>
+      <boss id="19516" name="Saccageur du Vide"/>
+    </dungeon>
+    <dungeon id="3607" key="serpentshrinecavern" name="Caverne du sanctuaire du Serpent" release="1">
+      <boss id="21214" name="Seigneur des fonds Karathress"/>
+      <boss id="21216" name="Hydross l'Instable"/>
+      <boss id="21215" name="Leotheras l'Aveugle"/>
+      <boss id="21213" name="Morogrim Marcheur-des-flots"/>
+      <boss id="21212" name="Dame Vashj"/>
+      <boss id="21217" name="Le Rôdeur d'En bas"/>
+    </dungeon>
+    <dungeon id="3805" key="zulaman" name="Zul'Aman" release="1">
+      <boss id="23576" name="Nalorakk"/>
+      <boss id="23574" name="Akil'zon"/>
+      <boss id="23578" name="Jan'alai"/>
+      <boss id="23577" name="Halazzi"/>
+      <boss id="24363" name="Seigneur des maléfices Malacrass"/>
+      <boss id="23863" name="Zul'jin"/>
+      <boss id="186672" name="Sac d'Ashli"/>
+      <boss id="186667" name="Paquet de Kraz"/>
+      <boss id="187021" name="Sacoche de Harkor"/>
+      <boss id="186648" name="Malle de Tanzar"/>
+    </dungeon>
+    <dungeon id="3836" key="magtheridonslair" name="Le repaire de Magtheridon" release="1">
+      <boss id="17257" name="Magtheridon"/>
+    </dungeon>
+    <dungeon id="3923" key="gruulslair" name="Repaire de Gruul" release="1">
+      <boss id="19044" name="Gruul le Tue-dragon"/>
+      <boss id="18831" name="Haut Roi Maulgar"/>
+    </dungeon>
+    <dungeon id="3457" key="karazhan" name="Karazhan" release="1">
+      <boss id="16152" name="Attumen le Veneur"/>
+      <boss id="17521" name="Le Grand Méchant Loup"/>
+      <boss id="185119" name="Coffre couvert de poussière"/>
+      <boss id="18168" name="La Mégère"/>
+      <boss id="15691" name="Le conservateur"/>
+      <boss id="16179" name="Hyakiss la Rôdeuse"/>
+      <boss id="17534" name="Julianne"/>
+      <boss id="16457" name="Damoiselle de vertu"/>
+      <boss id="15687" name="Moroes"/>
+      <boss id="15689" name="Dédain-du-Néant"/>
+      <boss id="17225" name="Plaie-de-nuit"/>
+      <boss id="15690" name="Prince Malchezaar"/>
+      <boss id="16181" name="Rodak le ravageur"/>
+      <boss id="17533" name="Romulo"/>
+      <boss id="16524" name="Ombre d'Aran"/>
+      <boss id="16180" name="Shadikith le glisseur"/>
+      <boss id="15688" name="Terestian Malsabot"/>
+    </dungeon>
+    <dungeon id="4131" key="magistersterrace" name="Terrasse des Magistères" release="1">
+      <boss id="24723" name="Selin Coeur-de-feu"/>
+      <boss id="24744" name="Vexallus"/>
+      <boss id="24560" name="Prêtresse Delrissa"/>
+      <boss id="24664" name="Kael'thas Haut-soleil"/>
+    </dungeon>
+    <dungeon id="3848" key="arcatraz" name="L'Arcatraz" release="1">
+      <boss id="20885" name="Dalliah l'Auspice-funeste"/>
+      <boss id="20912" name="Messager Cieuriss"/>
+      <boss id="20886" name="Scrute-courroux Soccothrates"/>
+      <boss id="20870" name="Zereketh le Délié"/>
+    </dungeon>
+    <dungeon id="3790" key="auchenaicrypts" name="Cryptes Auchenaï" release="1">
+      <boss id="18373" name="Exarque Maladaar"/>
+      <boss id="18371" name="Shirrak le Veillemort"/>
+    </dungeon>
+    <dungeon id="2366" key="blackmorass" name="Le Noir Marécage" release="1">
+      <boss id="17881" name="Aeonus"/>
+      <boss id="17879" name="Chronoseigneur Déjà"/>
+      <boss id="17880" name="Temporus"/>
+    </dungeon>
+    <dungeon id="3713" key="bloodfurnace" name="La Fournaise du sang" release="1">
+      <boss id="17380" name="Broggok"/>
+      <boss id="17377" name="Keli'dan le Briseur"/>
+      <boss id="17381" name="Le Faiseur"/>
+    </dungeon>
+    <dungeon id="3847" key="botanica" name="La Botanica" release="1">
+      <boss id="3847" name="Orendil Largefeuille"/>
+      <boss id="17975" name="Grand botaniste Freywinn"/>
+      <boss id="17980" name="Laj"/>
+      <boss id="17978" name="Rirépine le Tendre"/>
+      <boss id="17977" name="Brise-dimension"/>
+    </dungeon>
+    <dungeon id="3562" key="hellfireramparts" name="Remparts des Flammes infernales" release="1">
+      <boss id="17308" name="Omor l'Intouché"/>
+      <boss id="17536" name="Nazan"/>
+      <boss id="17306" name="Gardien des guetteurs Gargolmar"/>
+    </dungeon>
+    <dungeon id="3792" key="manatombs" name="Tombes-mana" release="1">
+      <boss id="18344" name="Prince-nexus Shaffar"/>
+      <boss id="18341" name="Pandemonius"/>
+      <boss id="18343" name="Tavarok"/>
+    </dungeon>
+    <dungeon id="3849" key="mechanar" name="Le Méchanar" release="1">
+      <boss id="184465" name="Cache de la Légion"/>
+      <boss id="19218" name="Gardien de porte Gyro-Meurtre"/>
+      <boss id="19710" name="Gardien de porte Main-en-fer"/>
+      <boss id="19219" name="Mécano-seigneur Capacitus"/>
+      <boss id="19221" name="Néantomancienne Sepethrea"/>
+      <boss id="19220" name="Pathaleon le Calculateur"/>
+    </dungeon>
+    <dungeon id="2367" key="oldhillsbradfoothills" name="Contreforts de Hautebrande d'antan" release="1">
+      <boss id="17862" name="Capitaine Skarloc"/>
+      <boss id="18096" name="Chasseur d'époques"/>
+      <boss id="17848" name="Lieutenant Drake"/>
+    </dungeon>
+    <dungeon id="3791" key="sethekkhalls" name="Les salles des Sethekk" release="1">
+      <boss id="18472" name="Tisseur d'ombre Syth"/>
+      <boss id="18473" name="Roi-serre Ikiss"/>
+    </dungeon>
+    <dungeon id="3789" key="shadowlabyrinth" name="Labyrinthe des ombres" release="1">
+      <boss id="18731" name="Ambassadeur Gueule-d'enfer"/>
+      <boss id="18667" name="Coeur-noir le Séditieux"/>
+      <boss id="18732" name="Grand Maître Vorpil"/>
+      <boss id="18708" name="Marmon"/>
+    </dungeon>
+    <dungeon id="3714" key="shatteredhalls" name="Les Salles brisées" release="1">
+      <boss id="20923" name="Garde de sang Porung"/>
+      <boss id="16807" name="Grand démoniste Néanathème"/>
+      <boss id="16809" name="Porteguerre O'mrogg"/>
+      <boss id="16808" name="Chef de guerre Kargath Lamepoing"/>
+    </dungeon>
+    <dungeon id="3717" key="slavepens" name="Les enclos aux esclaves" release="1">
+      <boss id="17941" name="Mennu le Traître"/>
+      <boss id="17942" name="Bourbierreux"/>
+      <boss id="17991" name="Rokmar le Crépitant"/>
+    </dungeon>
+    <dungeon id="3715" key="steamvault" name="Le Caveau de la vapeur" release="1">
+      <boss id="17797" name="Hydromancienne Thespia"/>
+      <boss id="17796" name="Mekgénieur Montevapeur"/>
+      <boss id="17798" name="Seigneur de guerre Kalithresh"/>
+    </dungeon>
+    <dungeon id="3716" key="underbog" name="La Basse-tourbière" release="1">
+      <boss id="17882" name="La Traqueuse noire"/>
+      <boss id="18105" name="Ghaz'an"/>
+      <boss id="17770" name="Hungarfen"/>
+      <boss id="17826" name="Seigneur des marais Musel'ek"/>
+    </dungeon>
+    <dungeon id="3428" key="templeofahnqiraj" name="Ahn'Qiraj" release="0">
+      <boss id="15516" name="Garde de guerre Sartura"/>
+      <boss id="15727" name="C'Thun"/>
+      <boss id="15276" name="Empereur Vek'lor"/>
+      <boss id="15275" name="Empereur Vek'nilash"/>
+      <boss id="15510" name="Fankriss l'Inflexible"/>
+      <boss id="15511" name="Seigneur Kri"/>
+      <boss id="15517" name="Ouro"/>
+      <boss id="15509" name="Princesse Huhuran"/>
+      <boss id="15543" name="Princesse Yauj"/>
+      <boss id="15263" name="Le prophète Skeram"/>
+      <boss id="15544" name="Vem"/>
+      <boss id="15299" name="Viscidus"/>
+    </dungeon>
+    <dungeon id="2677" key="blackwinglair" name="Repaire de l'Aile noire" release="0">
+      <boss id="12017" name="Seigneur des couvées Lanistaire"/>
+      <boss id="14020" name="Chromaggus"/>
+      <boss id="14601" name="Rochébène"/>
+      <boss id="11983" name="Gueule-de-feu"/>
+      <boss id="11981" name="Flamegor"/>
+      <boss id="11583" name="Nefarian"/>
+      <boss id="12435" name="Tranchetripe l'Indompté"/>
+      <boss id="13020" name="Vaelastrasz le Corrompu"/>
+    </dungeon>
+    <dungeon id="2717" key="moltencore" name="Cœur du Magma" release="0">
+      <boss id="12056" name="Baron Geddon"/>
+      <boss id="12057" name="Garr"/>
+      <boss id="12259" name="Gehennas"/>
+      <boss id="11988" name="Golemagg l'Incinérateur"/>
+      <boss id="12118" name="Lucifron"/>
+      <boss id="11982" name="Magmadar"/>
+      <boss id="12018" name="Chambellan Executus"/>
+      <boss id="11502" name="Ragnaros"/>
+      <boss id="12264" name="Shazzrah"/>
+      <boss id="12098" name="Messager de Sulfuron"/>
+    </dungeon>
+    <dungeon id="3429" key="ruinsofahnqiraj" name="Ruines d'Ahn'Qiraj" release="0">
+      <boss id="15369" name="Ayamiss le Chasseur"/>
+      <boss id="15370" name="Buru Grandgosier"/>
+      <boss id="15341" name="Général Rajaxx"/>
+      <boss id="15348" name="Kurinnaxx"/>
+      <boss id="15340" name="Moam"/>
+      <boss id="15339" name="Ossirian l'Intouché"/>
+    </dungeon>
+    <dungeon id="1977" key="zulgurub" name="Zul'Gurub" release="0">
+      <boss id="11382" name="Seigneur sanglant Mandokir"/>
+      <boss id="15114" name="Gahz'ranka"/>
+      <boss id="14834" name="Hakkar"/>
+      <boss id="14509" name="Grand prêtre Thekal"/>
+      <boss id="14507" name="Grand prêtre Venoxis"/>
+      <boss id="14515" name="Grande prêtresse Arlokk"/>
+      <boss id="14517" name="Grande prêtresse Jeklik"/>
+      <boss id="14510" name="Grande prêtresse Mar'li"/>
+      <boss id="11380" name="Jin'do le Maléficieur"/>
+    </dungeon>
+    <dungeon id="719" key="blackfathomdepths" name="Profondeurs de Brassenoire" release="0">
+      <boss id="4829" name="Aku'mai"/>
+      <boss id="12876" name="Baron Aquanis"/>
+      <boss id="6243" name="Gelihast"/>
+      <boss id="4887" name="Ghamoo-ra"/>
+      <boss id="4831" name="Dame Sarevess"/>
+      <boss id="12902" name="Lorgus Jett"/>
+      <boss id="4830" name="Vieux Serra'kis"/>
+      <boss id="4832" name="Seigneur du crépuscule Kelris"/>
+    </dungeon>
+    <dungeon id="1583" key="blackrockspire" name="Pic Rochenoire" release="0">
+      <boss id="9596" name="Bannok Hache-sinistre"/>
+      <boss id="10263" name="Gangregarde ardent"/>
+      <boss id="10376" name="Croc cristallin"/>
+      <boss id="10363" name="Général Drakkisath"/>
+      <boss id="9718" name="Ghok Bounnebaffe"/>
+      <boss id="10268" name="Gizrul l'esclavagiste"/>
+      <boss id="10899" name="Goraluk Brisenclume"/>
+      <boss id="10339" name="Gyth"/>
+      <boss id="10220" name="Halycon"/>
+      <boss id="9196" name="Généralissime Omokk"/>
+      <boss id="10509" name="Jed Guette-runes"/>
+      <boss id="16042" name="Seigneur Valthalak"/>
+      <boss id="16080" name="Mor Sabot-gris"/>
+      <boss id="10596" name="Matriarche Couveuse"/>
+      <boss id="9568" name="Seigneur Wyrmthalak"/>
+      <boss id="9816" name="Pyrogarde Prophète ardent"/>
+      <boss id="9736" name="Intendant Zigris"/>
+      <boss id="9236" name="Chasseresse des ombres Vosh'gajin"/>
+      <boss id="10264" name="Solakar Voluteflamme"/>
+      <boss id="9218" name="Seigneur de bataille Pierre-du-pic"/>
+      <boss id="9219" name="Boucher Pierre-du-pic"/>
+      <boss id="9217" name="Seigneur magus Pierre-du-pic"/>
+      <boss id="10430" name="La Bête"/>
+      <boss id="10584" name="Urok Hurleruine"/>
+      <boss id="9237" name="Maître de guerre Voone"/>
+      <boss id="10429" name="Chef de guerre Rend Main-noire"/>
+    </dungeon>
+    <dungeon id="1584" key="blackrockdepths" name="Profondeurs de Rochenoire" release="0">
+      <boss id="9156" name="Ambassadeur Cinglefouet"/>
+      <boss id="181074" name="Butin de l'arène"/>
+      <boss id="9031" name="Anub'shiah"/>
+      <boss id="9016" name="Bael'Gar"/>
+      <boss id="169243" name="Coffre des sept"/>
+      <boss id="9438" name="Gardien noir Bethek"/>
+      <boss id="9442" name="Gardien noir Ofgut"/>
+      <boss id="9443" name="Gardien noir Pelver"/>
+      <boss id="9439" name="Gardien noir Uggel"/>
+      <boss id="9437" name="Gardien noir Vorfalk"/>
+      <boss id="9441" name="Gardien noir Zimrel"/>
+      <boss id="9019" name="Empereur Dagran Thaurissan"/>
+      <boss id="9029" name="Eviscérateur"/>
+      <boss id="9056" name="Fineous Sombrevire"/>
+      <boss id="9033" name="Général Forgehargne"/>
+      <boss id="8983" name="Seigneur golem Argelmach"/>
+      <boss id="9027" name="Gorosh le Derviche"/>
+      <boss id="9028" name="Grison"/>
+      <boss id="9032" name="Hedrum le Rampant"/>
+      <boss id="9018" name="Grande Interrogatrice Gerstahn"/>
+      <boss id="10076" name="Grande prêtresse de Thaurissan"/>
+      <boss id="9319" name="Maître-chien Grebmar"/>
+      <boss id="9537" name="Hurley Soufflenoir"/>
+      <boss id="9017" name="Seigneur Incendius"/>
+      <boss id="9025" name="Seigneur Roccor"/>
+      <boss id="9938" name="Magmus"/>
+      <boss id="9030" name="Ok'thor le Briseur"/>
+      <boss id="8923" name="Panzor l'Invincible"/>
+      <boss id="9502" name="Phalange"/>
+      <boss id="9499" name="Lanfiche Brouillecircuit"/>
+      <boss id="8929" name="Princesse Moira Barbe-de-bronze"/>
+      <boss id="9024" name="Pyromancien Blé-du-savoir"/>
+      <boss id="9543" name="Ribbly Fermevanne"/>
+      <boss id="16059" name="Theldren"/>
+      <boss id="9042" name="Verek"/>
+      <boss id="9041" name="Gardien Stilgiss"/>
+      <boss id="9476" name="Sentinelle Ruinepoigne"/>
+    </dungeon>
+    <dungeon id="1581" key="deadmines" name="Les Mortemines" release="0">
+      <boss id="596" name="Noble manipulé"/>
+      <boss id="647" name="Capitaine Vertepeau"/>
+      <boss id="645" name="Macaron"/>
+      <boss id="639" name="Edwin VanCleef"/>
+      <boss id="626" name="Contremaître Crispechardon"/>
+      <boss id="1763" name="Gilnid"/>
+      <boss id="599" name="Marisa du'Paige"/>
+      <boss id="3586" name="Mineur Johnson"/>
+      <boss id="646" name="M. Châtiment"/>
+      <boss id="644" name="Rhahk'Zor"/>
+      <boss id="643" name="Sneed"/>
+      <boss id="642" name="Déchiqueteur de Sneed"/>
+    </dungeon>
+    <dungeon id="2557" key="diremaul" name="Hache-tripes" release="0">
+      <boss id="11492" name="Alzzin le Modeleur"/>
+      <boss id="14325" name="Capitaine Kromcrabouille"/>
+      <boss id="14324" name="Cho'Rush l'Observateur"/>
+      <boss id="14308" name="Ferra"/>
+      <boss id="14321" name="Garde Fengus"/>
+      <boss id="14326" name="Garde Mol'dar"/>
+      <boss id="14323" name="Garde Slip'kik"/>
+      <boss id="13280" name="Hydrogénos"/>
+      <boss id="11488" name="Illyanna Corvichêne"/>
+      <boss id="11496" name="Immol'thar"/>
+      <boss id="16097" name="Isalien"/>
+      <boss id="11501" name="Roi Gordok"/>
+      <boss id="14327" name="Lethtendris"/>
+      <boss id="14506" name="Seigneur Hel'nurath"/>
+      <boss id="11487" name="Magistère Kalendris"/>
+      <boss id="14349" name="Pimgib"/>
+      <boss id="11486" name="Prince Tortheldrin"/>
+      <boss id="14354" name="Pusillin"/>
+      <boss id="14322" name="Kreeg le Marteleur"/>
+      <boss id="11489" name="Tendris Crochebois"/>
+      <boss id="11467" name="Tsu'zee"/>
+      <boss id="11490" name="Zevrim Sabot-de-ronce"/>
+      <boss id="179564" name="Tribut des Gordok"/>
+    </dungeon>
+    <dungeon id="721" key="gnomeregan" name="Gnomeregan" release="0">
+      <boss id="6229" name="Faucheur de foule 9-60"/>
+      <boss id="6228" name="Ambassadeur Sombrefer"/>
+      <boss id="6235" name="Electrocuteur 6000"/>
+      <boss id="7361" name="Grubbis"/>
+      <boss id="7800" name="Mekgénieur Thermojoncteur"/>
+      <boss id="6231" name="Techbot"/>
+      <boss id="7079" name="Retombée visqueuse"/>
+    </dungeon>
+    <dungeon id="2100" key="maraudon" name="Maraudon" release="0">
+      <boss id="12225" name="Celebras le Maudit"/>
+      <boss id="12203" name="Glissement de terrain"/>
+      <boss id="12236" name="Seigneur Vylelangue"/>
+      <boss id="12237" name="Meshlok le Moissonneur"/>
+      <boss id="13282" name="Noxcion"/>
+      <boss id="12201" name="Princesse Theradras"/>
+      <boss id="12258" name="Tranchefouet"/>
+      <boss id="13596" name="Grippe-charogne"/>
+      <boss id="13718" name="Le Prophète sans nom"/>
+      <boss id="13601" name="Bricoleur Kadenaz"/>
+    </dungeon>
+    <dungeon id="2437" key="ragefirechasm" name="Gouffre de Ragefeu" release="0">
+      <boss id="11519" name="Bazzalan"/>
+      <boss id="11518" name="Jergosh l'Invocateur"/>
+      <boss id="11517" name="Lorgnesilex"/>
+      <boss id="11520" name="Taragaman l'Affameur"/>
+      <boss id="17830" name="Zelemar le Courroucé"/>
+    </dungeon>
+    <dungeon id="722" key="razorfendowns" name="Souilles de Tranchebauge" release="0">
+      <boss id="7358" name="Amnennar le Porte-froid"/>
+      <boss id="8567" name="Glouton"/>
+      <boss id="7357" name="Mordresh Oeil-de-feu"/>
+      <boss id="7356" name="Pestegueule le Pourrissant"/>
+      <boss id="7354" name="Groinfendu"/>
+      <boss id="7355" name="Tuten'kash"/>
+    </dungeon>
+    <dungeon id="491" key="razorfenkraul" name="Kraal de Tranchebauge" release="0">
+      <boss id="4422" name="Agathelos le Déchaîné"/>
+      <boss id="4424" name="Aggem Malépine"/>
+      <boss id="4425" name="Chasseur aveugle"/>
+      <boss id="4421" name="Charlga Trancheflanc"/>
+      <boss id="4428" name="Nécrorateur Jargba"/>
+      <boss id="4842" name="Implorateur de la terre Halmgar"/>
+      <boss id="4420" name="Seigneur Brusquebroche"/>
+      <boss id="6168" name="Roogug"/>
+    </dungeon>
+    <dungeon id="796" key="scarletmonastery" name="Monastère écarlate" release="0">
+      <boss id="6487" name="Arcaniste Doan"/>
+      <boss id="6490" name="Azshir le Sans-sommeil"/>
+      <boss id="4543" name="Mage de sang Thalnos"/>
+      <boss id="6488" name="Champion déchu"/>
+      <boss id="3975" name="Hérode"/>
+      <boss id="4542" name="Grand Inquisiteur Fairbanks"/>
+      <boss id="3977" name="Grande inquisitrice Blanchetête"/>
+      <boss id="3974" name="Maître-chien Loksey"/>
+      <boss id="3983" name="Interrogateur Vislar"/>
+      <boss id="6489" name="Echine-de-fer"/>
+      <boss id="3976" name="Commandant écarlate Mograine"/>
+    </dungeon>
+    <dungeon id="2057" key="scholomance" name="Scholomance" release="0">
+      <boss id="1853" name="Sombre Maître Gandling"/>
+      <boss id="14516" name="Chevalier de la mort Ravassombre"/>
+      <boss id="11261" name="Docteur Theolen Krastinov"/>
+      <boss id="10505" name="Instructrice Malicia"/>
+      <boss id="10503" name="Jandice Barov"/>
+      <boss id="10506" name="Kirtonos le Héraut"/>
+      <boss id="16118" name="Kormok"/>
+      <boss id="10502" name="Dame Illucia Barov"/>
+      <boss id="10504" name="Seigneur Alexei Barov"/>
+      <boss id="10901" name="Gardien du savoir Polkelt"/>
+      <boss id="10433" name="Marduk Noirétang"/>
+      <boss id="10508" name="Ras Murmegivre"/>
+      <boss id="11622" name="Cliquettripes"/>
+      <boss id="10507" name="Le Voracien"/>
+      <boss id="10432" name="Vectus"/>
+    </dungeon>
+    <dungeon id="209" key="shadowfangkeep" name="Donjon d'Ombrecroc" release="0">
+      <boss id="4275" name="Archimage Arugal"/>
+      <boss id="3887" name="Baron d'Argelaine"/>
+      <boss id="4278" name="Commandant Printeval"/>
+      <boss id="3872" name="Capitaine Ligemort"/>
+      <boss id="4274" name="Fenrus le Dévoreur"/>
+      <boss id="4279" name="Odo l'Aveugle"/>
+      <boss id="3886" name="Tranchegriffe le Boucher"/>
+      <boss id="3914" name="Rethiltripe"/>
+      <boss id="3927" name="Maître-loup Nandos"/>
+    </dungeon>
+    <dungeon id="717" key="stockade" name="La Prison" release="0">
+      <boss id="1716" name="Bazil Thredd"/>
+      <boss id="1720" name="Bruegal Poing-de-fer"/>
+      <boss id="1663" name="Dextren Ward"/>
+      <boss id="1717" name="Hamhock"/>
+      <boss id="1666" name="Kam Furie-du-fond"/>
+      <boss id="1696" name="Targorr le Terrifiant"/>
+    </dungeon>
+    <dungeon id="2017" key="stratholme" name="Stratholme" release="0">
+      <boss id="10811" name="Archiviste Galford"/>
+      <boss id="10812" name="Grand croisé Dathrohan"/>
+      <boss id="10813" name="Balnazzar"/>
+      <boss id="10440" name="Baron Vaillefendre"/>
+      <boss id="10436" name="Baronne Anastari"/>
+      <boss id="11121" name="Fabricant d'épées de la Garde noire"/>
+      <boss id="10997" name="Maître canonnier Willey"/>
+      <boss id="11120" name="Forgeur de marteaux cramoisi"/>
+      <boss id="11058" name="Fras Siabi"/>
+      <boss id="10558" name="Chanteloge Forrestin"/>
+      <boss id="16101" name="Jarien"/>
+      <boss id="10435" name="Magistrat Barthilas"/>
+      <boss id="10438" name="Maleki le Blafard"/>
+      <boss id="11032" name="Malor le Zélé"/>
+      <boss id="10437" name="Nerub'enkan"/>
+      <boss id="11143" name="Postier Malown"/>
+      <boss id="10439" name="Ramstein Grandgosier"/>
+      <boss id="10393" name="Krân"/>
+      <boss id="16102" name="Sothos"/>
+      <boss id="10809" name="Echine-de-pierre"/>
+      <boss id="11082" name="Messager de Stratholme"/>
+      <boss id="10516" name="Le Condamné"/>
+      <boss id="10808" name="Timmy le Cruel"/>
+    </dungeon>
+    <dungeon id="1477" key="sunkentemple" name="Temple englouti" release="0">
+      <boss id="8580" name="Atal'alarion"/>
+      <boss id="8443" name="Avatar d'Hakkar"/>
+      <boss id="5721" name="Fauche-rêve"/>
+      <boss id="5713" name="Balafreur"/>
+      <boss id="5722" name="Hazzas"/>
+      <boss id="5715" name="Hukku"/>
+      <boss id="1063" name="Jade"/>
+      <boss id="5710" name="Jammal'an le prophète"/>
+      <boss id="5401" name="Kazkaz l'Impie"/>
+      <boss id="5714" name="Loro"/>
+      <boss id="5717" name="Mijan"/>
+      <boss id="5719" name="Morphaz"/>
+      <boss id="5711" name="Ogom le Misérable"/>
+      <boss id="5709" name="Ombre d'Eranikus"/>
+      <boss id="5708" name="Rejeton d'Hakkar"/>
+      <boss id="5399" name="Veyzhak le Cannibale"/>
+      <boss id="5720" name="Tisserand"/>
+      <boss id="5400" name="Zekkis"/>
+      <boss id="5712" name="Zolo"/>
+      <boss id="5716" name="Zul'Lor"/>
+    </dungeon>
+    <dungeon id="1337" key="uldaman" name="Uldaman" release="0">
+      <boss id="7206" name="Ancien gardien des pierres"/>
+      <boss id="2748" name="Archaedas"/>
+      <boss id="6906" name="Baelog"/>
+      <boss id="7057" name="Maître des fouilles Pellaphlange"/>
+      <boss id="6907" name="Eric « l'Agile »"/>
+      <boss id="7291" name="Galgann Martel-de-feu"/>
+      <boss id="4854" name="Grimelok"/>
+      <boss id="7228" name="Ironaya"/>
+      <boss id="2932" name="Magregan Fondombre"/>
+      <boss id="7023" name="Sentinelle d'obsidienne"/>
+      <boss id="6908" name="Olaf"/>
+      <boss id="6910" name="Revelosh"/>
+      <boss id="4857" name="Gardien des pierres"/>
+    </dungeon>
+    <dungeon id="718" key="wailingcaverns" name="Cavernes des lamentations" release="0">
+      <boss id="5912" name="Dragon féerique déviant"/>
+      <boss id="3653" name="Kresh"/>
+      <boss id="3671" name="Dame Anacondra"/>
+      <boss id="3669" name="Seigneur Cobrahn"/>
+      <boss id="3670" name="Seigneur Pythas"/>
+      <boss id="3673" name="Seigneur Serpentis"/>
+      <boss id="3655" name="Magglish le Dingue"/>
+      <boss id="3654" name="Mutanus le Dévoreur"/>
+      <boss id="3674" name="Skum"/>
+      <boss id="3652" name="Trigore le Flagelleur"/>
+      <boss id="5775" name="Verdan l'Immortel"/>
+    </dungeon>
+    <dungeon id="1176" key="zulfarrak" name="Zul'Farrak" release="0">
+      <boss id="8127" name="Antu'sul"/>
+      <boss id="7267" name="Chef Ukorz Scalpessable"/>
+      <boss id="10081" name="Ame en peine poudreuse"/>
+      <boss id="7273" name="Gahz'rilla"/>
+      <boss id="7795" name="Hydromancienne Velratha"/>
+      <boss id="7796" name="Nekrum Mâchentrailles"/>
+      <boss id="7797" name="Ruuzlu"/>
+      <boss id="10080" name="Sandarr Ravadune"/>
+      <boss id="7274" name="Bourreau furie-des-sables"/>
+      <boss id="7275" name="Prêtre des ombres Sezz'ziz"/>
+      <boss id="7272" name="Theka le Martyr"/>
+      <boss id="7271" name="Féticheur Zum'rah"/>
+      <boss id="10082" name="Zerillis"/>
+    </dungeon>
+  </dungeons>
+</page>
