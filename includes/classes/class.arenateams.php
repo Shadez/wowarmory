@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 153
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -46,7 +46,7 @@ Class Arenateams extends Connector {
         $this->captainguid   = $arenaInfo['captainguid'];
         $this->teamlogostyle = self::GetArenaTeamEmblem($this->arenateamid);
         $this->teamfaction   = Characters::GetCharacterFaction($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
-        $this->teamfaction = 1;
+        $this->teamfaction   = 1;
         $this->teamtype      = $arenaInfo['type'];
         self::GetTeamList();
     }
@@ -93,7 +93,7 @@ Class Arenateams extends Connector {
         if(!$this->teamname) {
             return false;
         }
-        if(!$this->cDB->selectCell("SELECT `arenateamid` FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname)) {
+        if(!$this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname)) {
             return false;
         }
         return true;

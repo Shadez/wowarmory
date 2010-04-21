@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 138
+ * @revision 153
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -65,12 +65,12 @@ Class Utils extends Connector {
         return true;
     }
     
-    public function getCharsArray($select=false) {
+    public function getCharsArray($select = false) {
         if(!$_SESSION['accountId']) {
             return false;
         }
         if($select == true) {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected`<>1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected` <> 1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
             $chars['0']['show'] = true;
             $chars['1']['show'] = true;
         }
@@ -82,7 +82,7 @@ Class Utils extends Connector {
     }
     
     public function guildBankRights($guildid) {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         $selectedCharData = $this->getCharacter();
@@ -95,21 +95,21 @@ Class Utils extends Connector {
     }
     
     public function CountSelectedCharacters() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']);
     }
     
     public function CountAllCharacters() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         return $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
     }
     
     public function GetAllCharacters() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         $gField = PLAYER_GUILDID+1;
@@ -137,7 +137,7 @@ Class Utils extends Connector {
     }
     
     public function getCharacter() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
@@ -148,7 +148,7 @@ Class Utils extends Connector {
     }
     
     public function loadRandomCharacter() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
@@ -162,7 +162,7 @@ Class Utils extends Connector {
     }
     
     public function getCharacterBookmarks() {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
             return false;
         }
         $guids = $this->aDB->select("SELECT `guid` FROM `armory_bookmarks` WHERE `account`=?", $_SESSION['accountId']);
@@ -172,9 +172,9 @@ Class Utils extends Connector {
             foreach($guids as $char) {
                 $bookmarks[$i] = $this->cDB->selectRow("SELECT `name`, `class`, `level` FROM `characters` WHERE `guid`=? LIMIT 1", $char['guid']);
                 $charAchievements = $this->cDB->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=?", $char['guid']);
-                $countAchievements = count($charAchievements);
-                for($j=0;$j<$countAchievements;$j++) {
-                    $ach[$j] = $charAchievements[$j]['achievement'];
+                $ach = array();
+                foreach($charAchievements as $achievement) {
+                    $ach[] = $achievement['achievement'];
                 }
                 $bookmarks[$i]['apoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (?a)", $ach);
                 $i++;
@@ -196,16 +196,20 @@ Class Utils extends Connector {
         $hunter_pet_bonus = array(0.22, 0.1287, 0.3, 0.4, 0.35, 0.0, 0.0, 0.0);
         $warlock_pet_bonus = array(0.0, 0.0, 0.3, 0.4, 0.35, 0.15, 0.57, 0.3);
         if($unitClass == CLASS_WARLOCK) {
-            if($warlock_pet_bonus[$stat])
+            if($warlock_pet_bonus[$stat]) {
                 return $value * $warlock_pet_bonus[$stat];
-            else
+            }
+            else {
                 return 0;
+            }
         }
         elseif($unitClass == CLASS_HUNTER) {
-            if($hunter_pet_bonus[$stat])
+            if($hunter_pet_bonus[$stat]) {
                 return $value * $hunter_pet_bonus[$stat];
-            else
+            }
+            else {
                 return 0;
+            }
         }
         return 0;
     }
@@ -225,8 +229,7 @@ Class Utils extends Connector {
     }
     
     public function GetRating($level) {
-        $rating = $this->aDB->selectRow("SELECT * FROM `armory_rating` WHERE `level`=?", $level);
-        return $rating;
+        return $this->aDB->selectRow("SELECT * FROM `armory_rating` WHERE `level`=?", $level);
     }
     
     public function escape($string) {
@@ -251,18 +254,16 @@ Class Utils extends Connector {
         }
         $keys = array_keys($arr);
         $cnt=count($arr);
-		$min=$max=$arr[$keys[0]];
-		$index_min=$index_max=0; 
-		for($i=1;$i<$cnt;$i++)
-		{ 
-			if($arr[$keys[$i]]>$max)
-			{ 
-				$index_max=$i; 
-				$max=$arr[$keys[$i]]; 
-			}
-		}
-		return $index_max;
-	}
+        $min=$max=$arr[$keys[0]];
+        $index_min=$index_max=0; 
+        for($i=1;$i<$cnt;$i++) {
+            if($arr[$keys[$i]]>$max) {
+                $index_max=$i;
+                $max=$arr[$keys[$i]];
+            }
+        }
+        return $index_max;
+    }
     
     public function GetSpellBonusDamage($school, $guid) {
         $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school;
@@ -315,7 +316,7 @@ Class Utils extends Connector {
             1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
             1463, 3259, 456, 1400, 1402, 3117, 4078, 4576
-        )"); // 3.3.2 IDs
+        )"); // 3.3.3a IDs
         if(!$achievements_data) {
             return false;
         }
@@ -338,31 +339,32 @@ Class Utils extends Connector {
     public function GetAttackPowerForStat($statIndex, $effectiveStat, $class) {
         $ap = 0;
         if($statIndex == STAT_STRENGTH) {
-            switch ($class) {
+            switch($class) {
                 case CLASS_WARRIOR:
                 case CLASS_PALADIN:
                 case CLASS_DK:
                 case CLASS_DRUID:
-                    $baseStr=min($effectiveStat,20);
-                    $moreStr=$effectiveStat-$baseStr;
-                    $ap=$baseStr + 2*$moreStr;
+                    $baseStr = min($effectiveStat,20);
+                    $moreStr = $effectiveStat-$baseStr;
+                    $ap = $baseStr + 2*$moreStr;
                     break;
                 default:
-                    $ap=$effectiveStat - 10;
+                    $ap = $effectiveStat - 10;
                     break;
             }
         }
-        else if($statIndex == STAT_AGILITY) {
+        elseif($statIndex == STAT_AGILITY) {
             switch ($class) {
                 case CLASS_SHAMAN:
                 case CLASS_ROGUE:
                 case CLASS_HUNTER:
-                $ap = $effectiveStat - 10;
+                    $ap = $effectiveStat - 10;
+                    break;
             }
         }
         if($ap < 0) {
             $ap = 0;
-        }        
+        }
         return $ap;
     }
     
@@ -398,7 +400,7 @@ Class Utils extends Connector {
         if(!$item) {
             return SKILL_UNARMED;
         }
-        if($item['class'] != 2) {
+        if($item['class'] != ITEM_CLASS_WEAPON) {
             return SKILL_UNARMED;
         }
         switch ($item['subclass']) {
@@ -423,18 +425,19 @@ Class Utils extends Connector {
     
     public function getSkill($id, $char_data) {
         $skillInfo = array(0,0,0,0,0,0);
-        for ($i=0;$i<128;$i++)
-        if(($char_data[PLAYER_SKILL_INFO_1_1 + $i*3] & 0x0000FFFF) == $id) {
-            $data0 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3];
-            $data1 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 1];
-            $data2 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 2];
-            $skillInfo[0]=$data0&0x0000FFFF; // skill id
-            $skillInfo[1]=$data0>>16;        // skill flag
-            $skillInfo[2]=$data1&0x0000FFFF; // skill
-            $skillInfo[3]=$data1>>16;        // max skill
-            $skillInfo[4]=$data2&0x0000FFFF; // pos buff
-            $skillInfo[5]=$data2>>16;        // neg buff
-            break;
+        for ($i=0;$i<128;$i++) {
+            if(($char_data[PLAYER_SKILL_INFO_1_1 + $i*3] & 0x0000FFFF) == $id) {
+                $data0 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3];
+                $data1 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 1];
+                $data2 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 2];
+                $skillInfo[0]=$data0&0x0000FFFF; // skill id
+                $skillInfo[1]=$data0>>16;        // skill flag
+                $skillInfo[2]=$data1&0x0000FFFF; // skill
+                $skillInfo[3]=$data1>>16;        // max skill
+                $skillInfo[4]=$data2&0x0000FFFF; // pos buff
+                $skillInfo[5]=$data2>>16;        // neg buff
+                break;
+            }
         }
         return $skillInfo;
     }
@@ -447,8 +450,10 @@ Class Utils extends Connector {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
-        if(file_exists('cache/'.$file_dir.'/'.$file_id.'.data')) {
-            $data_contents = file_get_contents('cache/'.$file_dir.'/'.$file_id.'.data');
+        $cache_path = sprintf('cache/%s/%s.cache', $file_dir, $file_id);
+        $data_path = sprintf('cache/%s/%s.data', $file_dir, $file_id);
+        if(file_exists($data_path)) {
+            $data_contents = @file_get_contents($data_path);
             $data_explode = explode(':', $data_contents);
             $cache_timestamp = $data_explode[0];
             $cache_revision  = $data_explode[1];
@@ -457,13 +462,17 @@ Class Utils extends Connector {
             $cache_locale    = $data_explode[4];
             $file_expire = $cache_timestamp + $this->armoryconfig['cache_lifetime'];
             if($file_expire < time() || $cache_revision != ARMORY_REVISION) {
+                self::DeleteCache($file_id, $file_dir); // Remove old cache
                 return false;
             }
             else {
-                if(file_exists('cache/'.$file_dir.'/'.$file_id.'.cache')) {
-                    $cache_contents = @file_get_contents('cache/'.$file_dir.'/'.$file_id.'.cache');
+                if(file_exists($cache_path)) {
+                    $cache_contents = @file_get_contents($cache_path);
                     if(sizeof($cache_contents) > 0x00) {
                         return $cache_contents;
+                    }
+                    else {
+                        self::DeleteCache($file_id, $file_dir); // Remove old cache
                     }
                 }
             }
@@ -471,17 +480,31 @@ Class Utils extends Connector {
         return false;
     }
     
+    public function DeleteCache($file_id, $file_dir) {
+        $data_path  = sprintf('cache/%s/%s.data', $file_dir, $file_id);
+        $cache_path = sprintf('cache/%s/%s.cache', $file_dir, $file_id);
+        if(file_exists($data_path)) {
+            @unlink($data_path);
+        }
+        if(file_exists($cache_path)) {
+            @unlink($cache_path);
+        }
+        return;
+    }
+    
     public function WriteCache($file_id, $filedata, $filecontents, $filedir='characters') {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
+        $data_path  = sprintf('cache/%s/%s.data', $filedir, $file_id);
+        $cache_path = sprintf('cache/%s/%s.cache', $filedir, $file_id);
         $error_message = null;
-        $cacheData = @fopen('cache/'.$filedir.'/'.$file_id.'.data', 'w+');
+        $cacheData = @fopen($data_path, 'w+');
         if(!@fwrite($cacheData, $filedata)) {
-            $error_message .= sprintf('Unable to write %s.data\n', $file_id);
+            $error_message .= sprintf('Unable to write %s.data ', $file_id);
         }
         @fclose($cacheData);
-        $cacheCache = @fopen('cache/'.$filedir.'/'.$file_id.'.cache', 'w+');
+        $cacheCache = @fopen($cache_path, 'w+');
         if(!@fwrite($cacheCache, $filecontents)) {
             $error_message .= sprintf('Unable to write %s.cache', $file_id);
         }
@@ -560,53 +583,52 @@ Class Utils extends Connector {
         );
         $radius = @$gSpellRadiusIndex[$index];
         if ($radius == 0) {
-            return "Err index $index";
-        }        
-        if ($radius[0]==0 OR $radius[0]==$radius[2]) {
+            return false;
+        }
+        if ($radius[0]==0 || $radius[0] == $radius[2]) {
             return $radius[2];
         }
-        return $radius[0]." - ".$radius[2];
+        return $radius[0].' - '.$radius[2];
     }
     
     public function GetArmoryString($id) {
-        $str = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
-        return $str;
+        return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
     }
     
     public function GetClassId($class_string) {
         switch(strtolower($class_string)) {
             case 'death knight':
-                return 6;
+                return CLASS_DK;
                 break;
             case 'druid':
-                return 11;
+                return CLASS_DRUID;
                 break;
             case 'hunter':
-                return 3;
+                return CLASS_HUNTER;
                 break;
             case 'mage':
-                return 8;
+                return CLASS_MAGE;
                 break;
             case 'paladin':
-                return 2;
+                return CLASS_PALADIN;
                 break;
             case 'priest':
-                return 5;
+                return CLASS_PRIEST;
                 break;
             case 'rogue':
-                return 4;
+                return CLASS_ROGUE;
                 break;
             case 'shaman':
-                return 7;
+                return CLASS_SHAMAN;
                 break;
             case 'warlock':
-                return 9;
+                return CLASS_WARLOCK;
                 break;
             case 'warrior':
-                return 1;
+                return CLASS_WARRIOR;
                 break;
             default:
-                return 6; // Death Knight is default class
+                return CLASS_DK; // Death Knight is default class for talent calc
                 break;
         }
     }

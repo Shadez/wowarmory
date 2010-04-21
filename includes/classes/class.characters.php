@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 135
+ * @revision 153
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -203,20 +203,20 @@ Class Characters extends Connector {
                 case 1:
                     if($title['place'] == 'suffix') {
                         $this->character_title['suffix'] = $title['titleF'];
-                        $this->character_title['prefix'] = '';
+                        $this->character_title['prefix'] = null;
                     }
                     elseif($title['place'] == 'prefix') {
-                        $this->character_title['suffix'] = '';
+                        $this->character_title['suffix'] = null;
                         $this->character_title['prefix'] = $title['titleF'];
                     }
                     break;
                 case 0:
                     if($title['place'] == 'suffix') {
                         $this->character_title['suffix'] = $title['titleM'];
-                        $this->character_title['prefix'] = '';
+                        $this->character_title['prefix'] = null;
                     }
                     elseif($title['place'] == 'prefix') {
-                        $this->character_title['suffix'] = '';
+                        $this->character_title['suffix'] = null;
                         $this->character_title['prefix'] = $title['titleM'];
                     }
                     break;
@@ -274,7 +274,7 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns string with 'r=realm&n=name&gn=guild' format. !Requires $this->race!
+     * Returns string with 'r=realm&n=name&gn=guild' format. !Requires $this->guid!
      * @category Characters class
      * @example Characters::returnCharacterUrl()
      * @return string
@@ -302,12 +302,8 @@ Class Characters extends Connector {
                 return false;
             }
             $class = $this->class;
-        }        
-        $text = $this->aDB->selectCell("
-        SELECT `name_" . $this->_locale . "` 
-            FROM `armory_classes` 
-                WHERE `id`=?", $class);
-        return $text;
+        }
+        return $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $class);
     }
     
     /**
@@ -323,11 +319,7 @@ Class Characters extends Connector {
             }
             $race = $this->race;
         }
-        $text = $this->aDB->selectCell("
-        SELECT `name_" . $this->_locale . "` 
-            FROM `armory_races` 
-                WHERE `id`=?", $race);
-        return $text;
+        return $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_races` WHERE `id`=?", $race);
     }
     
     /**
@@ -529,76 +521,75 @@ Class Characters extends Connector {
      * @example Characters::getCharacterEnchant('head', 100)
      * @return int
      **/
-    public function getCharacterEnchant($slot, $guid='') {
-        if(empty($guid)) {
+    public function getCharacterEnchant($slot, $guid = null) {
+        if($guid == null) {
             $guid = $this->guid;
         }
         switch($slot) {
             case 'head':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT, $guid);
                 break;
             case 'neck':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENCHANTMENT, $guid);
 				break;
 			case 'shoulder':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENCHANTMENT, $guid);
 				break;
 			case 'shirt':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENCHANTMENT, $guid);
 				break;
 			case 'chest':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENCHANTMENT, $guid);
 				break;
 			case 'wrist':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENCHANTMENT, $guid);
 				break;
 			case 'legs':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENCHANTMENT, $guid);
 				break;
 			case 'boots':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENCHANTMENT, $guid);
 				break;
 			case 'belt':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENCHANTMENT, $guid);
 				break;
 			case 'gloves':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENCHANTMENT, $guid);
 				break;
 			case 'ring1':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENCHANTMENT, $guid);
 				break;
 			case 'ring2':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENCHANTMENT, $guid);
 				break;
 			case 'trinket1':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENCHANTMENT, $guid);
 				break;
             case 'trinket2':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENCHANTMENT, $guid);
 				break;
 			case 'back':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENCHANTMENT, $guid);
 				break;
 			case 'mainhand':
             case 'stave':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENCHANTMENT, $guid);
 				break;
 			case 'offhand':
             case 'gun':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENCHANTMENT, $guid);
 			    break;
 			case 'relic':
             case 'sigil':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENCHANTMENT, $guid);
 				break;
 			case 'tabard':
-				$ItemInv = $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
+				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
 				break;
 			default:
-				$ItemInv = '0';
+				return 0;
 				break;
         }
-        return $ItemInv;
     }
 		
 	/*****************
@@ -646,6 +637,12 @@ Class Characters extends Connector {
         return $tab_class;
     }
     
+    /**
+     * Calculates and returns array with character talent specs. !Required $this->guid and $this->class!
+     * @category Character class
+     * @example Characters::CalculateCharacterTalents()
+     * @return array
+     **/
     public function CalculateCharacterTalents() {
         if(!$this->class || !$this->guid) {
             return false;
@@ -692,6 +689,9 @@ Class Characters extends Connector {
         return $talent_data;
     }
     
+    /**
+     * Old method
+     **/
     public function extractCharacterTalents() {
         return false;
     }
@@ -772,10 +772,8 @@ Class Characters extends Connector {
      * @return array
      **/
     public function extractCharacterProfessions() {
-        $professions = $this->cDB->select("
-        SELECT * FROM `character_skills`
-            WHERE `skill` IN (164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773)
-                AND `guid`=? LIMIT 2", $this->guid);
+        $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
+        $professions = $this->cDB->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $this->guid, $skills_professions);
         if(!$professions) {
             return false;
         }
@@ -791,7 +789,6 @@ Class Characters extends Connector {
         }
         return $p;
     }
-    
     
     /**
      * Returns array with character reputation (faction name, description, value)
@@ -835,9 +832,12 @@ Class Characters extends Connector {
      * @exapmle Characters::GetDataField(1203)
      * @return int
      **/
-    public function GetDataField($fieldNum, $guid='') {
-        if($guid=='') {
+    public function GetDataField($fieldNum, $guid = null) {
+        if($guid == null) {
             $guid = $this->guid;
+        }
+        if(!$guid) {
+            return false;
         }
         $dataField = $fieldNum+1;
         $qData = $this->cDB->selectCell("
@@ -849,22 +849,22 @@ Class Characters extends Connector {
     
     // Health value
     public function GetMaxHealth() {
-        return $this->GetDataField(UNIT_FIELD_HEALTH);
+        return $this->cDB->selectCell("SELECT `health` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
     }
     
     // Mana value
     public function GetMaxMana() {
-        return $this->GetDataField(UNIT_FIELD_POWER1);
+        return $this->cDB->selectCell("SELECT `power1` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
     }
     
     // Rage value
     public function GetMaxRage() {
-        return $this->GetDataField(UNIT_FIELD_POWER2);
+        return $this->cDB->selectCell("SELECT `power2` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
     }
     
     // Energy (or Runic power for DK) value
     public function GetMaxEnergy() {
-        return $this->GetDataField(UNIT_FIELD_POWER4);
+        return $this->cDB->selectCell("SELECT `power3` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
     }
     
     public function SetRating() {
@@ -880,7 +880,7 @@ Class Characters extends Connector {
     /**
      * Returns $stat_string stat for current player
      **/
-    public function GetCharacterStat($stat_string, $type=false) {
+    public function GetCharacterStat($stat_string, $type = false) {
         switch($stat_string) {
             case 'strength':
                 return $this->GetCharacterStrength();
@@ -1751,23 +1751,24 @@ Class Characters extends Connector {
             'g1' => Items::extractSocketInfo($this->guid, $item_id, 2),
             'g2' => Items::extractSocketInfo($this->guid, $item_id, 3)
         );
+        $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item_id);
         $enchantment = $this->getCharacterEnchant($slot);
         $item_info = array(
-            'displayInfoId'          => Items::GetItemInfo($item_id, 'displayid'),
+            'displayInfoId'          => $item_data['displayid'],
             'durability'             => $durability['current'],
-            'icon'                   => Items::getItemIcon($item_id),
+            'icon'                   => Items::getItemIcon($item_id, $item_data['displayid']),
             'id'                     => $item_id,
-            'level'                  => Items::GetItemInfo($item_id, 'itemlevel'),
+            'level'                  => $item_data['ItemLevel'],
             'maxDurability'          => $durability['max'],
-            'name'                   => Items::getItemName($item_id),
-            'permanentEnchantIcon'   => '0',
-            'permanentEnchantItemId' => '0',
-            'permanentenchant'       => '',
+            'name'                   => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $item_data['name'] : Items::getItemName($item_id),
+            'permanentEnchantIcon'   => 0,
+            'permanentEnchantItemId' => 0,
+            'permanentenchant'       => null,
             'pickUp'                 => 'PickUpLargeChain',
             'putDown'                => 'PutDownLArgeChain',
-            'randomPropertiesId'     => '0',
-            'rarity'                 => Items::GetItemInfo($item_id, 'quality'),
-            'seed'                   => '0',
+            'randomPropertiesId'     => 0,
+            'rarity'                 => $item_data['Quality'],
+            'seed'                   => 0,
             'slot'                   => $slot['slotid']
         );
         for($i=0;$i<3;$i++) {

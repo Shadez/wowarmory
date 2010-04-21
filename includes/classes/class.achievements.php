@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 126
+ * @revision 153
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,7 +49,7 @@ Class Achievements extends Connector {
      * @example Achievements::calculateAchievementPoints()
      * @return int
      **/
-    public function CalculateAchievementPoints($guid=null) {
+    public function CalculateAchievementPoints($guid = null) {
         if($guid == null) {
             $guid = $this->guid;
         }
@@ -67,7 +67,7 @@ Class Achievements extends Connector {
                 )
                 ", $guid);
         $this->pts = $pts;
-        return $pts;
+        return $this->pts;
     }
     
     /**
@@ -102,7 +102,7 @@ Class Achievements extends Connector {
         }
         $achievement_data = array('categoryId' => $category);
         $categories = null;
-        // 3.3.2
+        // 3.3.3a
         switch($category) {
             case 92:
                 $categories = '92';
@@ -164,16 +164,12 @@ Class Achievements extends Connector {
                     WHERE `categoryId` IN (".$categories.")
                 )
                 AND `guid`=?", $this->guid);
-            $count_ids = count($achievement_ids);
-            $str_ids = '';
-            for($i=0;$i<$count_ids;$i++) {
-                if($i) {
-                    $str_ids .= ', ';
-                }
-                $str_ids .= $achievement_ids[$i]['achievement'];
+            $ids = array();
+            foreach($achievement_ids as $ach) {
+                $ids[] = $ach['achievement'];
             }
-            $achievement_data['earned'] = $count_ids;
-            $achievement_data['points'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (".$str_ids.")");
+            $achievement_data['earned'] = count($ids);
+            $achievement_data['points'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (?a)", $ids);
             if(!$achievement_data['earned']) {
                 $achievement_data['earned'] = 0;
             }
@@ -192,7 +188,6 @@ Class Achievements extends Connector {
      * Returns array with 5 latest completed achievements. Requires $this->guid!
      * @category Achievements class
      * @example Achievements::GetLastAchievements()
-     * @todo Full rewrite
      * @return array
      **/
     public function GetLastAchievements() {
@@ -216,17 +211,14 @@ Class Achievements extends Connector {
      * @example Achievements::GetAchievementDate(17, false)
      * @return string
      **/
-    public function GetAchievementDate($guid='', $achId='') {
-        if(empty($guid)) {
+    public function GetAchievementDate($guid = null, $achId = null) {
+        if($guid == null) {
             $guid = $this->guid;
         }
-        if(empty($achId)) {
+        if($achId == null) {
             $achId = $this->achId;
         }
-        $achievement_date = $this->cDB->selectCell("
-        SELECT `date`
-            FROM `character_achievement`
-                WHERE `achievement`=? AND `guid`=? LIMIT 1", $achId, $guid);
+        $achievement_date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=? AND `guid`=? LIMIT 1", $achId, $guid);
         if(!$achievement_date) {
             return false;
         }
@@ -299,6 +291,7 @@ Class Achievements extends Connector {
         }
         return $root_tree;
     }
+    
     public function BuildStatisticsCategoriesTree() {
         $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_statistics_category` WHERE `parentCategory`=1");
         $root_tree = array();
@@ -355,8 +348,8 @@ Class Achievements extends Connector {
         if(!$this->guid || !$achId) {
             return false;
         }
-        if($achId == 0 || $achId == '-1' || !$this->IsAchievementExists($achId)) {
-            return true;
+        if($achId == 0 || $achId == -1 || !$this->IsAchievementExists($achId)) {
+            return false;
         }
         $date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=? AND `achievement`=?", $this->guid, $achId);
         if($date) {
@@ -366,7 +359,7 @@ Class Achievements extends Connector {
     }
     
     public function IsAchievementExists($achId) {
-        $data = $this->aDB->selectCell("SELECT `id` FROM `armory_achievement` WHERE `id`=?", $achId);
+        $data = $this->aDB->selectCell("SELECT 1 FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achId);
         if($data) {
             return true;
         }
@@ -394,7 +387,7 @@ Class Achievements extends Connector {
             if($completed) {
                 $return_data['completed'][$this->achId]['data'] = $achievement;
                 $return_data['completed'][$this->achId]['data']['categoryId'] = $page_id;
-                if($return_data['completed'][$this->achId]['data']['titleReward'] != '') {
+                if($return_data['completed'][$this->achId]['data']['titleReward'] != null) {
                     $return_data['completed'][$this->achId]['data']['reward'] = $return_data['completed'][$this->achId]['data']['titleReward'];
                     unset($return_data['completed'][$this->achId]['data']['titleReward']);
                 }
@@ -447,10 +440,6 @@ Class Achievements extends Connector {
                 }
                 $return_data['incompleted'][$this->achId]['criteria'] = self::BuildAchievementCriteriaTable();
             }
-            /*
-            if(isset($return_data['incompleted'][$parentId])) {
-                $return_data['incompleted'][$parentId]['display'] = 0;
-            }*/
             $i++;
         }
         return $return_data;
