@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 153
+ * @revision 155
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -643,6 +643,10 @@ Class Utils extends Connector {
     
     public function GetDungeonId($instance_key) {
         return $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $instance_key);
+    }
+    
+    public function GetDungeonData($instance_key) {
+        return $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`=?", $instance_key);
     }
 }
 ?>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 154
+ * @revision 155
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -342,18 +342,65 @@ Class SearchMgr extends Connector {
                 }
                 else {
                     $allowedDungeon = true;
+                    $instance_data = Utils::GetDungeonData($this->get_array['dungeon']);
+                    if(!is_array($instance_data)) {
+                        return false;
+                    }
                     switch($this->get_array['difficulty']) {
                         case 'all':
                             $difficulty = null;
-                            $sql_query .= "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
+                            switch($instance_data['difficulty']) {
+                                case 1: // 10 Man
+                                    if($instance_data['is_heroic'] == 1) {
+                                        $sql_query .= "SELECT `lootid_1`, `lootid_3`, `type` FROM `armory_instance_data`";
+                                    }
+                                    else {
+                                        $sql_query .= "SELECT `lootid_1`, `type` FROM `armory_instance_data`";
+                                    }
+                                    break;
+                                case 2: // 25 Man
+                                    if($instance_data['is_heroic'] == 1) {
+                                        $sql_query .= "SELECT `lootid_2`, `lootid_4`, `type` FROM `armory_instance_data`";
+                                    }
+                                    else {
+                                        $sql_query .= "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                    }
+                                    break;
+                                default:
+                                    if($instance_data['is_heroic'] == 1) {
+                                        $sql_query .= "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
+                                    }
+                                    else {
+                                        $sql_query .= "SELECT `lootid_1`, `lootid_2`, `type` FROM `armory_instance_data`";
+                                    }
+                                    break;
+                            }
                             break;
                         case 'normal':
+                            switch($instance_data['difficulty']) {
+                                case 2:  // 25 Man (icc/toc)
+                                    $sql_query .= "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                    break;
+                                case 1:  // 10 Man (icc/toc)
+                                default: // All others
+                                    $sql_query .= "SELECT `lootid_1`, `type` FROM `armory_instance_data`";
+                                    break;
+                            }
                             $difficulty = 'n';
-                            $sql_query .= "SELECT `lootid_1`, `lootid_2`, `type` FROM `armory_instance_data`";
                             break;
                         case 'heroic':
+                            switch($instance_data['difficulty']) { // instance diffuclty, not related to get_array['difficulty']
+                                case 1: // 10 Man (icc/toc)
+                                    $sql_query .= "SELECT `lootid_3` `type` FROM `armory_instance_data`";
+                                    break;
+                                case 2: // 25 Man (icc/toc)
+                                    $sql_query .= "SELECT `lootid_4`, `type` FROM `armory_instance_data`";
+                                    break;
+                                default: // All others
+                                    $sql_query .= "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                    break;
+                            }
                             $difficulty = 'h';
-                            $sql_query .= "SELECT `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
                             break;
                     }
                     if(isset($this->get_array['dungeon']) && $this->get_array['dungeon'] != 'all' && !empty($this->get_array['dungeon'])) {

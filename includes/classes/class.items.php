@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 150
+ * @revision 155
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -753,11 +753,89 @@ Class Items extends Connector {
     }
     
     public function GetImprovedItemSource($itemID, $bossID) {
-        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$this->_locale."` AS `name` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$this->_locale."` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
             return false;
         }
-        $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+        $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
+        $heroic_strings = array(
+            'de_de' => ' (Heroisch)',
+            'en_gb' => ' (Heroic)',
+            'en_us' => ' (Heroic)',
+            'es_es' => ' (Heroico)',
+            'es_mx' => ' (Heroico)',
+            'fr_fr' => ' (Héroïque)',
+            'ru_ru' => ' (Героическое)',
+        );
+        $item_difficulty = null;
+        for($i=1;$i<5;$i++) {
+            if(isset($dungeonData['lootid_'.$i]) && $dungeonData['lootid_'.$i] == $bossID && isset($difficulty_enum[$i])) {
+                $item_difficulty = $difficulty_enum[$i];
+            }
+        }
+        switch($item_difficulty) {
+            case '10n':
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
+                }
+                else {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                }
+                if(!$instance_data) {
+                    return false;
+                }
+                break;
+            case '10h':
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
+                }
+                else {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                }
+                if(!$instance_data) {
+                    return false;
+                }
+                if(isset($heroic_strings[$this->_locale])) {
+                    $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                }
+                break;
+            case '25n':
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
+                }
+                else {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                }
+                if(!$instance_data) {
+                    return false;
+                }
+                if($instance_data['is_heroic'] == 0) {
+                    if(isset($heroic_strings[$this->_locale])) {
+                        $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                    }
+                    else {
+                        $instance_data['areaName'] .= ' (25)';
+                    }
+                }
+                break;
+            case '25h':
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
+                }
+                else {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                }
+                if(!$instance_data) {
+                    return false;
+                }
+                if(isset($heroic_strings[$this->_locale])) {
+                    $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                }
+                break;
+        }
+        if(!isset($instance_data)) {
+            return false;
+        }
         $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         $instance_data['creatureName'] = $dungeonData['name'];
         $instance_data['dropRate'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
