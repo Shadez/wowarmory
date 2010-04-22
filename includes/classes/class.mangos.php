@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 150
+ * @revision 156
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -349,7 +349,7 @@ Class Mangos extends Connector {
                     $kc_entry = 0;
                 }
                 $npc_id = $npc.', '.$kc_entry;
-                $instance = $this->aDB->selectCell("SELECT `dungeon_id` FROM `armory_instance_data` WHERE `id` IN (?) OR `name_id` IN (?) OR `lootid_1` IN (?) OR `lootid_2` IN (?) OR `lootid_3` IN (?) OR `lootid_4` IN (?)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
+                $instance = $this->aDB->selectCell("SELECT `instance_id` FROM `armory_instance_data` WHERE `id` IN (?) OR `name_id` IN (?) OR `lootid_1` IN (?) OR `lootid_2` IN (?) OR `lootid_3` IN (?) OR `lootid_4` IN (?)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
                 if($instance > 0) {
                     return true;
                 }
