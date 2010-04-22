@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 152
+ * @revision 154
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,7 +40,7 @@ Class SearchMgr extends Connector {
             }
             return $count_items;
         }
-        $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+        $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
         if(!$items) {
             return false;
         }
@@ -74,7 +74,7 @@ Class SearchMgr extends Connector {
         $item_id_array = array();
         if($this->searchQuery) {
             $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
-            if($_item_ids) {
+            if(is_array($_item_ids)) {
                 foreach($_item_ids as $id) {
                     $item_id_array[] = $id['entry'];
                 }
@@ -128,7 +128,7 @@ Class SearchMgr extends Connector {
                         return false;
                     }
                 }
-                $sql_query = "SELECT `entry` AS `item` FROM `item_template`";
+                $sql_query = "SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template`";
                 $andor = false;
                 if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
                     /* Type */
@@ -140,7 +140,7 @@ Class SearchMgr extends Connector {
                         if(!$type_info) {
                             return false;
                         }
-                        $sql_query = sprintf("SELECT `entry` AS `item` FROM `item_template` WHERE `class`=%d", $type_info);
+                        $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `class`=%d", $type_info);
                         $andor = true;
                     }
                     /* Subtype */
@@ -233,7 +233,7 @@ Class SearchMgr extends Connector {
                                 break;
                             case 'dot': // Warlock: damage only
                                 break;
-                            case 'dd': // Warlock: damage + crit
+                            case 'dd':  // Warlock: damage + crit
                                 break;
                         }
                     }*/
@@ -314,10 +314,30 @@ Class SearchMgr extends Connector {
                         $cost_ids[] = $cost['id'];
                     }
                     if($this->searchQuery && is_array($item_id_array)) {
-                        $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) AND `item` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids, $item_id_array);
+                        $items_query = $this->wDB->select("
+                        SELECT DISTINCT
+                        `item_template`.`entry` AS `id`,
+                        `item_template`.`name`,
+                        `item_template`.`ItemLevel`,
+                        `item_template`.`Quality` AS `rarity`,
+                        `item_template`.`displayid`
+                        FROM `item_template` AS `item_template`
+                        LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
+                        WHERE `npc_vendor`.`ExtendedCost` IN (?a) AND `npc_vendor`.`item` IN (?a)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $cost_ids, $item_id_array);
                     }
                     else {
-                        $items_query = $this->wDB->select("SELECT DISTINCT `item` FROM `npc_vendor` WHERE `ExtendedCost` IN (?a) ORDER BY `item` DESC LIMIT 200", $cost_ids);
+                        $items_query = $this->wDB->select("
+                        SELECT DISTINCT
+                        `item_template`.`entry` AS `id`,
+                        `item_template`.`name`,
+                        `item_template`.`ItemLevel`,
+                        `item_template`.`Quality` AS `rarity`,
+                        `item_template`.`displayid`
+                        FROM `item_template` AS `item_template`
+                        LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
+                        WHERE `npc_vendor`.`ExtendedCost` IN (?a)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $cost_ids);
                     }
                 }
                 else {
@@ -374,13 +394,55 @@ Class SearchMgr extends Connector {
                         $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
                     }
                     if($this->searchQuery && is_array($item_id_array)) {
-                        $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $item_id_array);
+                        $items_query = $this->wDB->select("
+                        SELECT
+                        `item_template`.`entry` AS `id`,
+                        `item_template`.`name`,
+                        `item_template`.`ItemLevel`,
+                        `item_template`.`Quality` AS `rarity`,
+                        `item_template`.`displayid`,
+                        `creature_loot_template`.`entry`,
+                        `creature_loot_template`.`item`,
+                        `creature_loot_template`.`ChanceOrQuestChance`
+                        FROM `item_template` AS `item_template`
+                        LEFT JOIN `creature_loot_template` AS `creature_loot_template` ON `creature_loot_template`.`item`=`item_template`.`entry`
+                        WHERE `creature_loot_template`.`entry` IN (?a) AND `creature_loot_template`.`item` IN (?a)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
+                        $loot_table, $item_id_array);
                         if(!$items_query) {
-                            $items_query = $this->wDB->select("SELECT `entry`, `item`, `ChanceOrQuestChance` FROM `gameobject_loot_template` WHERE `entry` IN (?a) AND `item` IN (?a) LIMIT 200", $loot_table, $item_id_array);
+                            $items_query = $this->wDB->select("
+                            SELECT
+                            `item_template`.`entry` AS `id`,
+                            `item_template`.`name`,
+                            `item_template`.`ItemLevel`,
+                            `item_template`.`Quality` AS `rarity`,
+                            `item_template`.`displayid`,
+                            `gameobject_loot_template`.`entry`,
+                            `gameobject_loot_template`.`item`,
+                            `gameobject_loot_template`.`ChanceOrQuestChance`
+                            FROM `item_template` AS `item_template`
+                            LEFT JOIN `gameobject_loot_template` AS `gameobject_loot_template` ON `gameobject_loot_template`.`item`=`item_template`.`entry`
+                            WHERE `gameobject_loot_template`.`entry` IN (?a) AND `gameobject_loot_template`.`item` IN (?a)
+                            ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
+                            $loot_table, $item_id_array);
                         }
                     }
                     else {
-                        $items_query = $this->wDB->select("SELECT `entry` ,`item`, `ChanceOrQuestChance` FROM ".$loot_template." WHERE `entry` IN (?a) LIMIT 200", $loot_table);
+                        $items_query = $this->wDB->select("
+                        SELECT
+                        `item_template`.`entry` AS `id`,
+                        `item_template`.`name`,
+                        `item_template`.`ItemLevel`,
+                        `item_template`.`Quality` AS `rarity`,
+                        `item_template`.`displayid`,
+                        ".$loot_template.".`entry`,
+                        ".$loot_template.".`item`,
+                        ".$loot_template.".`ChanceOrQuestChance`
+                        FROM `item_template` AS `item_template`
+                        LEFT JOIN ".$loot_template." AS ".$loot_template." ON ".$loot_template.".`item`=`item_template`.`entry`
+                        WHERE ".$loot_template.".`entry` IN (?a)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
+                        $loot_table);
                     }
                 }
                 break;
@@ -389,14 +451,14 @@ Class SearchMgr extends Connector {
                     $this->get_array['faction'] = 'all';
                 }
                 if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 else {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `item` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 break;
         }
-        if(!isset($items_query) || !$items_query) {
+        if(!isset($items_query) || !is_array($items_query)) {
             return false;
         }
         $items_result = array();
@@ -412,26 +474,25 @@ Class SearchMgr extends Connector {
                 }
             }
             elseif(!$count) {
-                if(isset($exists_items[$item['item']])) {
+                if(isset($exists_items[$item['id']])) {
                     continue; // do not add the same items to result array
                 }
                 if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss']) && $this->get_array['boss'] == 'all') {
                     $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
                     $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
                 }
-                $item_data = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `entry`=?", $item['item']);
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
-                $items_result[$i]['data']['id'] = $item_data['id'];
+                $items_result[$i]['data']['id'] = $item['id'];
                 if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
-                    $items_result[$i]['data']['name'] = Items::getItemName($item['item']);
+                    $items_result[$i]['data']['name'] = Items::getItemName($item['id']);
                 }
                 else {
-                    $items_result[$i]['data']['name'] = $item_data['name'];
+                    $items_result[$i]['data']['name'] = $item['name'];
                 }
-                $items_result[$i]['data']['rarity'] = $item_data['rarity'];
-                $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item_data['displayid']);
-                $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item_data['ItemLevel']);
+                $items_result[$i]['data']['rarity'] = $item['rarity'];
+                $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item['displayid']);
+                $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item['ItemLevel']);
                 $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100);
                 switch($this->get_array['source']) {
                     case 'dungeon':
@@ -458,14 +519,14 @@ Class SearchMgr extends Connector {
                     case 'pvpHorde':
                         break;
                 }
-                $exists_items[$item['item']] = $item['item'];
+                $exists_items[$item['id']] = $item['id'];
             }
             $i++;
         }
         if($count == true) {
             return $i;
         }
-        return $items_result;        
+        return $items_result;
     }
     
     public function SearchArenaTeams($num=false) {
