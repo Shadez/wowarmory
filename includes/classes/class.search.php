@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 155
+ * @revision 159
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -577,6 +577,9 @@ Class SearchMgr extends Connector {
     }
     
     public function SearchArenaTeams($num=false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
         if($num == true) {
             $teamsNum = $this->cDB->selectCell("
             SELECT COUNT(`arenateamid`)
@@ -607,6 +610,9 @@ Class SearchMgr extends Connector {
     }
     
     public function SearchGuilds($num=false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
         if($num == true) {
             $guildsNum = $this->cDB->selectCell("
             SELECT COUNT(`guildid`)
@@ -687,37 +693,6 @@ Class SearchMgr extends Connector {
         else {
             return $cur_realm_data;
         }
-    }
-
-    public function SearchItems($num=false) {
-        if($num == true) {
-            $itemsNum = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? LIMIT 200", '%' . $this->searchQuery .'%');
-            $itemsNumRuRU = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `locales_item` WHERE `name_loc8` LIKE ? LIMIT 200", '%' . $this->searchQuery . '%');
-            $rNum = $itemsNum + $itemsNumRuRU;
-            if($rNum > 200) {
-                $rNum = 200;
-            }
-            return $rNum;
-        }
-        $searchResults = $this->wDB->select("
-        SELECT `entry`, `Quality`, `ItemLevel`
-            FROM `item_template`
-                WHERE `name` LIKE ? OR `entry` IN 
-                (
-                    SELECT `entry`
-                    FROM `locales_item`
-                    WHERE `name_loc8` LIKE ?
-                )
-                LIMIT 200", '%' . $this->searchQuery . '%', '%' . $this->searchQuery . '%');
-        if(!$searchResults) {
-            return false;
-        }
-        $countItems = count($searchResults);
-        for($i=0;$i<$countItems;$i++) {
-            $searchResults[$i]['name'] = Items::GetItemName($searchResults[$i]['entry']);
-            $searchResults[$i]['icon'] = Items::GetItemIcon($searchResults[$i]['entry']);
-        }
-        return $searchResults;
     }
     
     public function IsExtendedCost() {
