@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 109
+ * @revision 160
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,60 +26,92 @@ define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
 define('load_achievements_class', true);
-define('load_items_class', true);
-define('load_mangos_class', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-// Additional CSS
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";
-        @import "_css/character/sheet.css";');
+header('Content-type: text/xml');
 if(isset($_GET['n'])) {
-    $charname = $_GET['n'];
+    $characters->name = $_GET['n'];
 }
 elseif(isset($_GET['cn'])) {
-    $charname = $_GET['cn'];
+    $characters->name = $_GET['cn'];
 }
 else {
-    $charname = false;
+    $characters->name = false;
 }
-$characters->name = Utils::escape($charname);
-// Check
-if(!$characters->IsCharacter()) {
-    $armory->ArmoryError($armory->tpl->get_config_vars('armory_error_profile_unavailable_title'), $armory->tpl->get_config_vars('armory_error_profile_unavailable_text'));
-}
-// All ok, generate basic character info
+$characters->GetCharacterGuid();
+$isCharacter = $characters->IsCharacter();
 $characters->_structCharacter();
+/** Basic info **/
+$tabUrl = false;
 $achievements->guid = $characters->guid;
-$guilds->guid = $characters->guid;
-
-// Send data to Smarty
-$armory->tpl->assign('class', $characters->class);
-$armory->tpl->assign('race', $characters->race);
-$armory->tpl->assign('name', $characters->name);
-$armory->tpl->assign('level', $characters->level);
-$armory->tpl->assign('realm', $armory->armoryconfig['defaultRealmName']);
-$armory->tpl->assign('portrait_path', $characters->characterAvatar());
-$armory->tpl->assign('pts', $achievements->calculateAchievementPoints());
-$armory->tpl->assign('character_url_string', $characters->returnCharacterUrl());
-$armory->tpl->assign('faction_string_class', ($characters->GetCharacterFaction() == '1') ? 'Horde' : 'Alliance');
-if($guilds->extractPlayerGuildId()) {
-    $armory->tpl->assign('guildName', $guilds->getGuildName());
+$guilds->guid       = $characters->guid;
+$arenateams->guid   = $characters->guid;
+if($isCharacter && $guilds->extractPlayerGuildId()) {
+    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+}
+elseif($isCharacter) {
+    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+}
+$xml->LoadXSLT('character/feed.xsl');
+/** Header **/
+// Load XSLT template
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('requestUrl', 'character-feed.xml');
+$xml->XMLWriter()->startElement('tabInfo');
+$xml->XMLWriter()->writeAttribute('subTab', 'feed');
+$xml->XMLWriter()->writeAttribute('tab', 'character');
+$xml->XMLWriter()->writeAttribute('tabGroup', 'character');
+$xml->XMLWriter()->writeAttribute('tabUrl', $tabUrl);
+$xml->XMLWriter()->endElement(); //tabInfo
+if(!$isCharacter) {
+    $xml->XMLWriter()->startElement('characterInfo');
+    $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
+    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement(); //page
+    $xml_cache_data = $xml->StopXML();
+    echo $xml_cache_data;
+    exit;
 }
 
-/*** Character Title ***/
-// TODO: show commas
-$charTitle = $characters->GetCharacterTitle();
-$armory->tpl->assign('titleName', $characters->name);
-$armory->tpl->assign('urlName', 'r='.urlencode($armory->armoryconfig['defaultRealmName']).'&cn='.urlencode($characters->name));
-$armory->tpl->assign('characterArenaTeamInfo', $characters->getCharacterArenaTeamInfo());
-$armory->tpl->assign('characterArenaTeamInfoButton', $characters->getCharacterArenaTeamInfo(true));
-$armory->tpl->assign('character_title_'.$charTitle['place'], $charTitle['title']);
-$armory->tpl->assign('characterFeed', $characters->GetCharacterFeed(true));
-
-$armory->tpl->assign('tpl2include', 'character_feed');
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('character_sheet_start.tpl');
-exit();
+$characters->GetCharacterTitle();
+$character_element = array(
+    // TODO: add GetLocaleString() method
+    'battleGroup'  => $armory->armoryconfig['defaultBGName'],
+    'charUrl'      => $charTabUrl,
+    'class'        => $characters->returnClassText(),
+    'classId'      => $characters->class,
+    'classUrl'     => sprintf('c='),
+    'faction'      => null,
+    'factionId'    => $characters->GetCharacterFaction(),
+    'gender'       => null,
+    'genderId'     => $characters->gender,
+    'guildName'    => ($guilds->guid) ? $guilds->guildName : null,
+    'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : null,
+    'lastModified' => null,
+    'level'        => $characters->level,
+    'name'         => $characters->name,
+    'points'       => $achievements->CalculateAchievementPoints(),
+    'prefix'       => $characters->character_title['prefix'],
+    'race'         => $characters->returnRaceText(),
+    'raceId'       => $characters->race,
+    'realm'        => $armory->armoryconfig['defaultRealmName'],
+    'suffix'       => $characters->character_title['suffix'],
+    'titeId'       => $characters->character_title['titleId'],
+);
+$xml->XMLWriter()->startElement('characterInfo');
+$xml->XMLWriter()->startElement('character');
+foreach($character_element as $c_elem_name => $c_elem_value) {
+    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+}
+$xml->XMLWriter()->endElement();   //character
+$xml->XMLWriter()->endElement();  //characterInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>
