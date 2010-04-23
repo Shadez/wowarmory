@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 155
+ * @revision 157
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,6 +33,10 @@ if(!@include('classes/class.connector.php')) {
 define('DB_VERSION', 'armory_r155');
 define('ARMORY_REVISION', 155);
 $armory = new Connector;
+/* Check maintenance */
+if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
+    header('Location: maintenance.xml');
+}
 if($armory->armoryconfig['server_version'] > 0) {
     $file_ver = (int) $armory->armoryconfig['server_version'];
     if(!@include('UpdateFields'.$file_ver.'.php')) {

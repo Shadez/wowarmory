@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 128
+ * @revision 157
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -68,5 +68,6 @@ $ArmoryConfig['settings']['cache_lifetime']   = 86400; // In seconds; default - 
 $ArmoryConfig['settings']['minlevel']         = 10; // Character must have this level or higher to be shown in Armory
 $ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - only players, 1 - moderators, 2 - GMs, 3 - everyone
 $ArmoryConfig['settings']['defaultLocale']    = 'ru_ru'; // Can be 'ru_ru' or 'en_gb'
-$ArmoryConfig['settings']['showScriptInfo']   = true;   // Display script info (generation time, etc.) ? (true/false)
+$ArmoryConfig['settings']['showScriptInfo']   = true;    // Display script info (generation time, etc.) ? (true/false)
+$ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/false)
 ?>
