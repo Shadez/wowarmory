@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 153
+ * @revision 158
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -92,6 +92,10 @@ Class Characters extends Connector {
             FROM `characters`
                 WHERE `name`=? AND `level`>=? LIMIT 1", $this->name, $this->armoryconfig['minlevel']);
         if(!$guid) {
+            return false;
+        }
+        $armory_stats = $this->cDB->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=? LIMIT 1", $guid['guid']);
+        if(!$armory_stats) {
             return false;
         }
         $gmAccount = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $guid['account']);
