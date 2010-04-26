@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 155
+ * @revision 161
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -295,7 +295,7 @@ Class Items extends Connector {
                 break;
 			case 'boss':
 				$BossLoot = $this->wDB->select("
-				SELECT `entry`, `ChanceOrQuestChance`
+				SELECT `entry`
 					FROM `creature_loot_template`
 						WHERE `item`=?", $item);                        
 				if(is_array($BossLoot)) {
@@ -310,7 +310,8 @@ Class Items extends Connector {
                         }
                         $lootTable[$i]['area'] = Mangos::GetNpcInfo($bItem['entry'], 'map');
                         $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
-                        $lootTable[$i]['dropRate'] = Mangos::DropPercent($bItem['ChanceOrQuestChance']);
+                        $drop_percent = Mangos::GenerateLootPercent($bItem['entry'], 'creature_loot_template', $item);
+                        $lootTable[$i]['dropRate'] = Mangos::DropPercent($drop_percent);
                         if($lootTable[$i]['areaUrl'] && Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
                             $lootTable[$i]['url'] = str_replace('boss=all', 'boss='.$bItem['entry'], $lootTable[$i]['areaUrl']);
                         }
@@ -320,18 +321,19 @@ Class Items extends Connector {
                 break;
 			case 'chest':
 				$ChestLoot = $this->wDB->select("
-				SELECT `entry`, `ChanceOrQuestChance`
+				SELECT `entry`
 					FROM `gameobject_loot_template`
 						WHERE `item`=?", $item);
                 if(is_array($ChestLoot)) {
                     $i = 0;
                     foreach($ChestLoot as $cItem) {
+                        $drop_percent = Mangos::GenerateLootPercent($cItem['entry'], 'gameobject_loot_template', $item);
                         $lootTable[$i] = array (
                             'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
                             'area' => Mangos::GameobjectInfo($cItem['entry'], 'map'),
                             'areaUrl' => Mangos::GameobjectInfo($cItem['entry'], 'areaUrl'),
                             'id' => $cItem['entry'],
-                            'dropRate' => Mangos::DropPercent($cItem['ChanceOrQuestChance'])
+                            'dropRate' => Mangos::DropPercent($drop_percent)
                         );
                         $i++;
     				}
@@ -398,19 +400,20 @@ Class Items extends Connector {
                 break;
             case 'disenchant':
                 $DisenchantLoot = $this->wDB->select("
-                SELECT `item`, `ChanceOrQuestChance`, `maxcount`, `mincountOrRef`
+                SELECT `item`, `maxcount`, `mincountOrRef`
                     FROM `disenchant_loot_template`
                         WHERE `entry`=?", $item);
                 if(is_array($DisenchantLoot)) {
                     $i = 0;
                     foreach($DisenchantLoot as $dItem) {
                         $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $dItem['item']);
+                        $drop_percent = Mangos::GenerateLootPercent($item, 'disenchant_loot_template', $item);
                         $lootTable[$i] = array (
                             'id'       => $dItem['item'],
                             'name'     => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
-                            'dropRate' => Mangos::DropPercent($dItem['ChanceOrQuestChance']),
+                            'dropRate' => Mangos::DropPercent($drop_percent),
                             'maxCount' => $dItem['maxcount'],
-                            'maxCount' => $dItem['mincountOrRef'],
+                            'minCount' => $dItem['mincountOrRef'],
                             'icon'     => self::getItemIcon($dItem['item'], $tmp_info['displayid']),
                             'quality'  => $tmp_info['Quality']
                         );
@@ -764,7 +767,7 @@ Class Items extends Connector {
             'en_us' => ' (Heroic)',
             'es_es' => ' (Heroico)',
             'es_mx' => ' (Heroico)',
-            'fr_fr' => ' (Héroïque)',
+            'fr_fr' => ' (HГ©roГЇque)',
             'ru_ru' => ' (Героическое)',
         );
         $item_difficulty = null;
@@ -838,7 +841,13 @@ Class Items extends Connector {
         }
         $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         $instance_data['creatureName'] = $dungeonData['name'];
-        $instance_data['dropRate'] = Mangos::DropPercent($this->wDB->selectCell("SELECT `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=? AND `entry`=? LIMIT 1", $itemID, $bossID));
+        if($bossID > 100000) { // GameObject
+            $drop_percent = Mangos::GenerateLootPercent($bossID, 'gameobject_loot_template', $itemID);
+        }
+        else { // Creature
+            $drop_percent = Mangos::GenerateLootPercent($bossID, 'creature_loot_template', $itemID);
+        }
+        $instance_data['dropRate'] = Mangos::DropPercent($drop_percent);
         $instance_data['value'] = 'sourceType.creatureDrop';
         return $instance_data;
     }

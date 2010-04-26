@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 156
+ * @revision 161
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -116,10 +116,10 @@ Class Mangos extends Connector {
         elseif($percent > 3) {
             return 2;
         }
-        elseif($percent > 1) {
+        elseif($percent > 0 && $percent < 1) {
             return 1;
         }
-        elseif($percent <= 0) {
+        elseif($percent < 0 || $percent == 0) {
             return 0;
         }
     }
@@ -426,6 +426,48 @@ Class Mangos extends Connector {
             return false;
         }
         return $costInfo;
+    }
+    
+    public function GenerateLootPercent($boss_id, $db_table, $item_id) {
+        // CSWOWD code
+        $allowed_tables = array(
+            'creature_loot_template'   => true,
+            'disenchant_loot_template' => true,
+            'fishing_loot_template'    => true,
+            'gameobject_loot_template' => true,
+            'item_loot_template'       => true,
+            'reference_loot_template'  => true
+        );
+        if(!isset($allowed_tables[$db_table])) {
+            return 0;
+        }
+        $lootTable = $this->wDB->select("SELECT `ChanceOrQuestChance`, `groupid`, `mincountOrRef`, `item` FROM `".$db_table."` WHERE `entry`=?", $boss_id);
+        if(!$lootTable) {
+            return 0;
+        }
+        $percent = 0;
+        foreach($lootTable as $loot) {
+            if($loot['ChanceOrQuestChance'] > 0 && $loot['item'] == $item_id) {
+                $percent = $loot['ChanceOrQuestChance'];
+            }
+            elseif($loot['ChanceOrQuestChance'] == 0 && $loot['item'] == $item_id) {
+                $current_group = $loot['groupid'];
+                $percent = 0;
+                $i = 0;
+                foreach($lootTable as $tLoot) {
+                    if($tLoot['groupid'] == $current_group) {
+                        if($tLoot['ChanceOrQuestChance'] > 0) {
+                            $percent += $tLoot['ChanceOrQuestChance'];
+                        }
+                        else {
+                            $i++;
+                        }
+                    }
+                }
+                $percent = round((100 - $percent) / $i, 3);
+            }
+        }
+        return $percent;
     }
 }
 ?>
