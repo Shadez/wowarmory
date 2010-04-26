@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 163
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -24,10 +24,11 @@
 
 define('__ARMORY__', true);
 define('load_characters_class', true);
+define('load_achievements_class', true);
+define('load_items_class', true); // For TYPE_ITEM_FEED cases
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
-header('Content-type: text/xml');
 if(isset($_GET['n'])) {
     $characters->name = $_GET['n'];
 }
@@ -40,50 +41,67 @@ else {
 $characters->GetCharacterGuid();
 $isCharacter = $characters->IsCharacter();
 // Get page cache
+if(isset($_GET['full'])) {
+    if($isCharacter) {
+        $character_feed = $characters->GetCharacterFeed(true);
+    }
+    $cache_name = 'character-feed-data-full';
+}
+else {
+    if($isCharacter) {
+        $character_feed = $characters->GetCharacterFeed();
+    }
+    $cache_name = 'character-feed-data';
+}
 if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-feed-data', $characters->name, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId($cache_name, $characters->name, $armory->armoryconfig['defaultRealmName']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
         exit;
     }
 }
-$feed_header = array('today' => date('d.m.Y'), 'yesterday' => date('m d, Y'), 'time' => date('H:i:s'), 'v' => '0.8');
+$feed_header = array('today' => date('d.m.Y'), 'yesterday' => date('M d, Y', strtotime('yesterday')), 'time' => date('H:i:s'), 'v' => '0.8');
 $xml->XMLWriter()->startElement('feed');
 foreach($feed_header as $feed_key => $feed_value) {
     $xml->XMLWriter()->writeAttribute($feed_key, $feed_value);
 }
-$character_feed = $characters->GetCharacterFeed();
-if(is_array($character_feed)) {
+if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
     foreach($character_feed as $feed_item) {
         $xml->XMLWriter()->startElement('event');
-        foreach($feed_item['header'] as $f_header_key => $f_header_value) {
-            $xml->XMLWriter()->writeAttribute($f_header_key, $f_header_value);
+        foreach($feed_item['event'] as $f_header_key => $f_header_value) {
+            $xml->XMLWriter()->startAttribute($f_header_key);
+            $xml->XMLWriter()->writeRaw($f_header_value);
+            $xml->XMLWriter()->endAttribute();
         }
         $xml->XMLWriter()->startElement('character');
         $xml->XMLWriter()->writeAttribute('name', $characters->name);
-        $xml->XMLWriter()->writeAttribute('characterurl', sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)));
+        $xml->XMLWriter()->writeAttribute('characterUrl', sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)));
         $xml->XMLWriter()->endElement(); //character
-        $xml->XMLWriter()->startElement('title');
-        $xml->XMLWriter()->text($feed_item['data']['title']);
-        $xml->XMLWriter()->endElement(); //title
-        $xml->XMLWriter()->startElement('desc');
-        $xml->XMLWriter()->text($feed_item['data']['desc']);
-        $xml->XMLWriter()->endElement();  //desc
-        if(isset($feed_item['data']['tooltip'])) {
+        if(isset($feed_item['title'])) {
+            $xml->XMLWriter()->startElement('title');
+            $xml->XMLWriter()->writeRaw($feed_item['title']);
+            $xml->XMLWriter()->endElement();  //title
+        }
+        if(isset($feed_item['desc'])) {
+            $xml->XMLWriter()->startElement('desc');
+            $xml->XMLWriter()->writeRaw($feed_item['desc']);
+            $xml->XMLWriter()->endElement();  //desc
+        }
+        if(isset($feed_item['tooltip'])) {
             $xml->XMLWriter()->startElement('tooltip');
-            $xml->XMLWriter()->text($feed_item['data']['tooltip']);
+            $xml->XMLWriter()->writeRaw($feed_item['tooltip']);
             $xml->XMLWriter()->endElement(); //tooltip
         }
         $xml->XMLWriter()->endElement(); //event
     }
 }
-$xml->XMLWriter()->endElement(); //feed
+$xml->XMLWriter()->endElement();  //feed
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
-    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-feed-data');
+    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, $cache_name);
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
 exit;

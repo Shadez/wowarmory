@@ -77,7 +77,6 @@ if(!$isCharacter) {
     echo $xml_cache_data;
     exit;
 }
-
 $characters->GetCharacterTitle();
 $character_element = array(
     // TODO: add GetLocaleString() method

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 158
+ * @revision 163
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1672,7 +1672,11 @@ Class Characters extends Connector {
     }
     
     /**
-     * IN DEVELOPMENT
+     * Returns info about last character activity. Requires MaNGOS core patch (tools/character_feed)!
+     * $full used only in character-feed.php
+     * @category Characters class
+     * @example Characters::GetCharacterFeed()
+     * @return array
      **/
     public function GetCharacterFeed($full = false) {
         if(!$this->guid) {
@@ -1690,9 +1694,25 @@ Class Characters extends Connector {
         $feed_data = array();
         $i = 0;
         // Strings
-        $_strings = $this->aDB->select("SELECT `id`, `string_".$this->_locale."` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16)");
+        $feed_strings = $this->aDB->select("SELECT `id`, `string_".$this->_locale."` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)");
+        if(!$feed_strings) {
+            return false;
+        }
+        $_strings = array();
+        foreach($feed_strings as $str) {
+            $_strings[$str['id']] = $str['string'];
+        }
         foreach($data as $event) {
             $event_date = strtotime($event['date']);
+            if(date('d.m.Y') == date('d.m.Y', $event_date)) {
+                $sort = 'today';
+            }
+            elseif(date('d.m.Y', $event_date) == date('d.m.Y', strtotime('yesterday'))) {
+                $sort = 'yesterday';
+            }
+            else {
+                $sort = 'earlier';
+            }
             switch($event['type']) {
                 case TYPE_ACHIEVEMENT_FEED:
                     $send_data = array('achievement' => $event['data'], 'date' => $event_date);
@@ -1705,32 +1725,140 @@ Class Characters extends Connector {
                         'date'   => date('d.m.Y', $event_date),
                         'time'   => date('H:i:s', $event_date),
                         'id'     => $event['data'],
-                        'points' => $achievement_info['points']
+                        'points' => $achievement_info['points'],
+                        'sort'   => $sort
                     );
+                    $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
                     if($achievement_info['categoryId'] == 81) {
-                        $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s.', 
-                        $achievement_info['icon'], $achievement_info['name'], $achievement_info['points'], $achievement_info['desc']);
                         // Feats of strenght
-                        foreach($_strings as $str) {
-                            if($str['id'] == 14) {
-                                $feed_data[$i]['title'] = sprintf('%s [%s].', $str['string'], $achievement_info['name']);
-                                $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>',
-                                $str['string'], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['name']);
-                            }
-                        }
+                        $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['title']);
                     }
                     else {
-                        foreach($_strings as $str) {
-                            if($str['id'] == 13) {
-                                $feed_data[$i]['title'] = sprintf('%s [%s].', $str['string'], $achievement_info['name']);
-                            }
-                        }
+                        $points_string = sprintf($_strings[18], $achievement_info['points']);
+                        $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[13], $achievement_info['title']);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
                     }
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;
                 case TYPE_ITEM_FEED:
+                    $item = $this->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=? LIMIT 1", $event['data']);
+                    if(!$item) {
+                        continue;
+                    }
+                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item['displayid']);
+                    // Is item equipped?
+                    $invenory_slots = array(
+                        1 => 'head',
+                        2 => 'neck',
+                        3 => 'shoulder',
+                        4 => 'shirt',
+                        5 => 'chest',
+                        6 => 'belt',
+                        7 => 'legs',
+                        8 => 'boots',
+                        9 => 'wrist',
+                        10 => 'gloves',
+                        11 => 'ring',
+                        12 => 'trinket',
+                        13 => 'mainhand',
+                        14 => 'offhand',
+                        15 => 'relic',
+                        16 => 'back',
+                        17 => 'mainhand',
+                        18 => 'bag',
+                        19 => 'tabard',
+                        20 => 'chest',
+                        21 => 'mainhand',
+                        22 => 'offhand',
+                        23 => 'relic',
+                        26 => 'relic',
+                        28 => 'relic',
+                    );
+                    $item_slot = -1;
+                    if(isset($invenory_slots[$item['InventoryType']])) {
+                        if($item['InventoryType'] == 11) {
+                            $rings = array('ring1', 'ring2');
+                            foreach($rings as $r_slot) {
+                                $tmp_id = self::getCharacterEquip($r_slot);
+                                if($tmp_id == $event['data']) {
+                                    $item_slot = $item['InventoryType'];
+                                }
+                            }
+                        }
+                        elseif($item['InventoryType'] == 12) {
+                            $trinkets = array('trinket1', 'trinket2');
+                            foreach($trinkets as $t_slot) {
+                                $tmp_id = self::getCharacterEquip($t_slot);
+                                if($tmp_id == $event['data']) {
+                                    $item_slot = $item['InventoryType'];
+                                }
+                            }
+                        }
+                        $item_id = self::getCharacterEquip($invenory_slots[$item['InventoryType']]);
+                        if($item_id == $event['data']) {
+                            $item_slot = $item['InventoryType'];
+                        }
+                        else {
+                            $item_slot = -1;
+                        }
+                    }
+                    $feed_data[$i]['event'] = array(
+                        'type' => 'loot',
+                        'date' => date('d.m.Y', $event_date),
+                        'time' => date('H:i:s', $event_date),
+                        'icon' => $item_icon,
+                        'id'   => $event['data'],
+                        'slot' => $item_slot,
+                        'sort' => $sort
+                    );
+                    if($this->_locale != 'en_gb' && $this->_locale != 'en_us') {
+                        $item['name'] = Items::getItemName($event['data']);
+                    }
+                    $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
+                    $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d&amp;cn=%s&amp;r=%s&amp;s=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event['data'], urlencode($this->name), urlencode($this->armoryconfig['defaultRealmName']), $item['InventoryType'], $event['data'], $item['Quality'], $item['name']);
                     break;
                 case TYPE_BOSS_FEED:
+                    // Get criterias
+                    $achievement_ids = array();
+                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=?", $event['data']);
+                    if(!$criterias) {
+                        // Search for KillCredit
+                        $kc_entry = 0;
+                        $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $event['data']);
+                        for($i=1;$i<3;$i++) {
+                            if($KillCredit['KillCredit'.$i] > 0) {
+                                $kc_entry = $KillCredit['KillCredit'.$i];
+                            }
+                        }
+                        if($kc_entry == 0) {
+                            continue;
+                        }
+                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=?", $kc_entry);
+                        if(!$criterias || !is_array($criterias)) {
+                            continue;
+                        }
+                    }
+                    foreach($criterias as $crit) {
+                        $achievement_ids[] = $crit['referredAchievement'];
+                    }
+                    if(!$achievement_ids || !is_array($achievement_ids)) {
+                        continue;
+                    }
+                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement` WHERE `id` IN (?a) AND `flags`=1", $achievement_ids);
+                    if(!$achievement || !is_array($achievement)) {
+                        continue;
+                    }
+                    $feed_data[$i]['event'] = array(
+                        'type' => 'bosskill',
+                        'date'   => date('d.m.Y', $event_date),
+                        'time'   => date('H:i:s', $event_date),
+                        'id'     => $event['data'],
+                        'points' => 0,                        
+                        'sort'   => $sort
+                    );
+                    $feed_data[$i]['title'] = sprintf('%s [%s] %d %s', $_strings[16], $achievement['name'], $event['counter'], $_strings[17]);
+                    $feed_data[$i]['desc'] = sprintf('%d %s.', $event['counter'], $achievement['name']);
                     break;
             }
             $i++;

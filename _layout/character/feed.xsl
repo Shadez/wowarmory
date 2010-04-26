@@ -69,7 +69,7 @@
          <span><xsl:value-of select="$loc/strs/custom-rss/str[@id='activity_desc']"/></span>        </h1>
        
         <div class="activity_body_rpt"><div class="activity_body_top"><div class="activity_body_btm"><div class="activity_body_int">
-            <xsl:variable name="feeddata" select="document(concat('../../character-feed-data.xml?',character/@charUrl,'&amp;loc=',$lang))" />
+            <xsl:variable name="feeddata" select="document(concat('../../character-feed-data.xml?',character/@charUrl,'&amp;full=true&amp;loc=',$lang))" />
             
             <xsl:if test="count($feeddata/feed/event[@sort='today']) &gt; 0">
                 <h3><xsl:value-of select="$loc/strs/custom-rss/str[@id='today']"/></h3>
