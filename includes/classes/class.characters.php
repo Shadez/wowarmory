@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 163
+ * @revision 165
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1795,12 +1795,14 @@ Class Characters extends Connector {
                                 }
                             }
                         }
-                        $item_id = self::getCharacterEquip($invenory_slots[$item['InventoryType']]);
-                        if($item_id == $event['data']) {
-                            $item_slot = $item['InventoryType'];
-                        }
                         else {
-                            $item_slot = -1;
+                            $item_id = self::getCharacterEquip($invenory_slots[$item['InventoryType']]);
+                            if($item_id == $event['data']) {
+                                $item_slot = $item['InventoryType'];
+                            }
+                            else {
+                                $item_slot = -1;
+                            }
                         }
                     }
                     $feed_data[$i]['event'] = array(
