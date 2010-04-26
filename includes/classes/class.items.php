@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 161
+ * @revision 162
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -407,7 +407,7 @@ Class Items extends Connector {
                     $i = 0;
                     foreach($DisenchantLoot as $dItem) {
                         $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $dItem['item']);
-                        $drop_percent = Mangos::GenerateLootPercent($item, 'disenchant_loot_template', $item);
+                        $drop_percent = Mangos::GenerateLootPercent($item, 'disenchant_loot_template', $dItem['item']);
                         $lootTable[$i] = array (
                             'id'       => $dItem['item'],
                             'name'     => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
