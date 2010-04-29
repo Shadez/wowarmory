@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 169
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,7 +29,7 @@ if(!@include('includes/armory_loader.php')) {
 header('Content-type: text/xml');
 
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('achievement-firsts', $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('achievement-firsts', $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -43,35 +43,43 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'achievement-firsts.xml');
-$xml->XMLWriter()->startElement('realmInfo');
-// Get achievements
-$achievement_firsts = $utils->realmFirsts();
-if(is_array($achievement_firsts)) {
-    foreach($achievement_firsts as $achievement_info) {
-        $xml->XMLWriter()->startElement('achievement');
-        $xml->XMLWriter()->writeAttribute('dateCompleted', $achievement_info['dateCompleted']);
-        $xml->XMLWriter()->writeAttribute('desc', $achievement_info['desc']);
-        $xml->XMLWriter()->writeAttribute('icon', $achievement_info['icon']);
-        $xml->XMLWriter()->writeAttribute('title', $achievement_info['title']);
-        $xml->XMLWriter()->writeAttribute('realm', $armory->armoryconfig['defaultRealmName']);
-        $xml->XMLWriter()->startElement('character');
-        $xml->XMLWriter()->writeAttribute('classId', $achievement_info['class']);
-        $xml->XMLWriter()->writeAttribute('genderId', $achievement_info['gender']);
-        $xml->XMLWriter()->writeAttribute('guild', $achievement_info['guildname']);
-        if(isset($achievement_info['guildname'])) {
-            $xml->XMLWriter()->writeAttribute('guildId', $achievement_info['guildid']);
-            $xml->XMLWriter()->writeAttribute('guildUrl', sprintf('gn=%s&r=%s', urlencode($achievement_info['guildname']), urlencode($armory->armoryconfig['defaultRealmName'])));
+$isRealm = $armory->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $_GET['r']);
+if($isRealm) {
+    $xml->XMLWriter()->startElement('realmInfo');
+    // Get achievements
+    $achievement_firsts = $utils->realmFirsts();
+    if(is_array($achievement_firsts)) {
+        foreach($achievement_firsts as $achievement_info) {
+            $xml->XMLWriter()->startElement('achievement');
+            $xml->XMLWriter()->writeAttribute('dateCompleted', $achievement_info['dateCompleted']);
+            $xml->XMLWriter()->writeAttribute('desc', $achievement_info['desc']);
+            $xml->XMLWriter()->writeAttribute('icon', $achievement_info['icon']);
+            $xml->XMLWriter()->writeAttribute('title', $achievement_info['title']);
+            $xml->XMLWriter()->writeAttribute('realm', $armory->currentRealmInfo['name']);
+            $xml->XMLWriter()->startElement('character');
+            $xml->XMLWriter()->writeAttribute('classId', $achievement_info['class']);
+            $xml->XMLWriter()->writeAttribute('genderId', $achievement_info['gender']);
+            $xml->XMLWriter()->writeAttribute('guild', $achievement_info['guildname']);
+            if(isset($achievement_info['guildname'])) {
+                $xml->XMLWriter()->writeAttribute('guildId', $achievement_info['guildid']);
+                $xml->XMLWriter()->writeAttribute('guildUrl', sprintf('gn=%s&r=%s', urlencode($achievement_info['guildname']), urlencode($armory->currentRealmInfo['name'])));
+            }
+            $xml->XMLWriter()->writeAttribute('name', $achievement_info['charname']);
+            $xml->XMLWriter()->writeAttribute('raceId', $achievement_info['race']);
+            $xml->XMLWriter()->writeAttribute('realm', $armory->currentRealmInfo['name']);
+            $xml->XMLWriter()->writeAttribute('url', sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($achievement_info['charname'])));
+            $xml->XMLWriter()->endElement();  // character
+            $xml->XMLWriter()->endElement(); // achievement
         }
-        $xml->XMLWriter()->writeAttribute('name', $achievement_info['charname']);
-        $xml->XMLWriter()->writeAttribute('raceId', $achievement_info['race']);
-        $xml->XMLWriter()->writeAttribute('realm', $armory->armoryconfig['defaultRealmName']);
-        $xml->XMLWriter()->writeAttribute('url', sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($achievement_info['charname'])));
-        $xml->XMLWriter()->endElement();  // character
-        $xml->XMLWriter()->endElement(); // achievement
     }
+    
+    $xml->XMLWriter()->endElement();  //realmInfo
 }
-
-$xml->XMLWriter()->endElement();  //realmInfo
+else {
+    $xml->XMLWriter()->startElement('error');
+    $xml->XMLWriter()->writeAttribute('errCode', 'noData');
+    $xml->XMLWriter()->endElement(); //error
+}
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
