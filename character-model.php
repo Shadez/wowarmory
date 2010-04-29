@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 146
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,9 +40,12 @@ else {
 }
 $characters->GetCharacterGuid();
 $isCharacter = $characters->IsCharacter();
+if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
+    $isCharacter = false;
+}
 // Get page cache
 if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-model', $characters->name, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('character-model', $characters->name, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -57,7 +60,7 @@ $xml->XMLWriter()->writeAttribute('requestUrl', 'character-model.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'character');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name)) : '' );
 $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 159
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -580,119 +580,152 @@ Class SearchMgr extends Connector {
         if(!$this->searchQuery) {
             return false;
         }
+        $results = array(); // Full results
+        $current_realm = array();
+        $count_results = 0; // All realms results
+        $count_results_currrent_realm = 0; // Current realm results
+        $db = null; // Temporary handler
         if($num == true) {
-            $teamsNum = $this->cDB->selectCell("
-            SELECT COUNT(`arenateamid`)
-                FROM `arena_team`
-                    WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-            return $teamsNum;
+            foreach($this->realmData as $realm_info) {
+                $count_results_currrent_realm = 0;
+                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+                $db->query("SET NAMES ?", $realm_info['charset_characters']);
+                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                $count_results = $count_results + $count_results_currrent_realm;
+            }
+            return $count_results;
         }
-        $arenateams = $this->cDB->select("
-        SELECT `arena_team`.`name`, `arena_team`.`type` AS `size`, `arena_team_stats`.`rating`, `characters`.`race`
-            FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team`.`arenateamid`=`arena_team_stats`.`arenateamid`
-                LEFT JOIN `characters` AS `characters` ON `arena_team`.`captainguid`=`characters`.`guid`
-                    WHERE `arena_team`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-        if(!$arenateams) {
-            return false;
-        }
-        $arena_count = count($arenateams);
-        for($i=0;$i<$arena_count;$i++) {
-            $arenateams[$i]['teamSize'] = $arenateams[$i]['size'];
-            $arenateams[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
-            $arenateams[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
-            $arenateams[$i]['factionId'] = Characters::GetCharacterFaction($arenateams[$i]['race']);
-            $arenateams[$i]['relevance'] = 100;
-            $arenateams[$i]['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultRealmName']), $arenateams[$i]['size'], urlencode($arenateams[$i]['name']));
-            unset($arenateams[$i]['race']);
-        }
-        return $arenateams;
-    }
-    
-    public function SearchGuilds($num=false) {
-        if(!$this->searchQuery) {
-            return false;
-        }
-        if($num == true) {
-            $guildsNum = $this->cDB->selectCell("
-            SELECT COUNT(`guildid`)
-                FROM `guild`
-                    WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-            return $guildsNum;
-        }
-        $guilds = $this->cDB->select("
-        SELECT `guild`.`name`, `characters`.`race`
-            FROM `guild` AS `guild`
-                LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid`
-                    WHERE `guild`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-        if(!$guilds) {
-            return false;
-        }
-        $guilds_count = count($guilds);
-        for($i=0;$i<$guilds_count;$i++) {
-            $guilds[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
-            $guilds[$i]['factionId'] = Characters::GetCharacterFaction($guilds[$i]['race']);
-            $guilds[$i]['relevance'] = 100;
-            $guilds[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
-            $guilds[$i]['url'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($guilds[$i]['name']));
-            unset($guilds[$i]['race']);
-        }
-        return $guilds;
-    }
-    
-    public function SearchCharacters($num=false) {
-        if(!$this->searchQuery) {
-            return false;
-        }
-        $results_data   = array();
-        $cur_realm_data = array();
-        $results_count  = 0;
-        if($num == true) {
-            $count_chars = $this->cDB->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE ? AND `level` >= ? LIMIT 200", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
-            $count_result = count($count_chars);
-            for($i=0;$i<$count_result;$i++) {
-                if(self::IsCharacterAllowedForSearch($count_chars[$i]['guid'], $count_chars[$i]['level'], $count_chars[$i]['account'])) {
-                    $results_count++;
-                }
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $current_realm = $db->select("
+            SELECT `arena_team`.`name`, `arena_team`.`type` AS `size`, `arena_team_stats`.`rating`, `characters`.`race`
+                FROM `arena_team` AS `arena_team`
+                    LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team`.`arenateamid`=`arena_team_stats`.`arenateamid`
+                    LEFT JOIN `characters` AS `characters` ON `arena_team`.`captainguid`=`characters`.`guid`
+                        WHERE `arena_team`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            if(!$current_realm) {
+                continue;
+            }
+            $count_current_realm = count($current_realm);
+            foreach($current_realm as $realm) {
+                $realm['teamSize'] = $realm['size'];
+                $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
+                $realm['factionId'] = Characters::GetCharacterFaction($realm['race']);
+                $realm['relevance'] = 100;
+                $realm['realm'] = $realm_info['name'];
+                $realm['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($realm_info['name']), $realm['size'], urlencode($realm['name']));
+                unset($realm['race']);
+                $results[] = $realm;
             }
         }
-        else {
-            $cur_realm_data = $this->cDB->select("
-            SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account`
-                FROM `characters`
-                    WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
-            $count_data = count($cur_realm_data);
-            for($j=0;$j<$count_data;$j++) {
-                if(!self::IsCharacterAllowedForSearch($cur_realm_data[$j]['guid'], $cur_realm_data[$j]['level'], $cur_realm_data[$j]['account'])) {
+        if($results) {
+            return $results;
+        }
+        return false;
+    }
+    
+    public function SearchGuilds($num = false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
+        $results = array(); // Full results
+        $current_realm = array();
+        $count_results = 0; // All realms results
+        $count_results_currrent_realm = 0; // Current realm results
+        $db = null; // Temporary handler
+        if($num == true) {
+            foreach($this->realmData as $realm_info) {
+                $count_results_currrent_realm = 0;
+                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+                $db->query("SET NAMES ?", $realm_info['charset_characters']);
+                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`guildid`) FROM `guild` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                $count_results = $count_results + $count_results_currrent_realm;
+            }
+            return $count_results;
+        }
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $current_realm = $db->select("SELECT `guild`.`name`, `characters`.`race` FROM `guild` AS `guild` LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid` WHERE `guild`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            if(!$current_realm) {
+                continue;
+            }
+            $count_current_realm = count($current_realm);
+            foreach($current_realm as $realm) {
+                $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
+                $realm['factionId'] = Characters::GetCharacterFaction($realm['race']);
+                $realm['relevance'] = 100;
+                $realm['realm'] = $realm_info['name'];
+                $realm['url'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
+                unset($realm['race']);
+                $results[] = $realm;
+            }
+        }
+        if($results) {
+            return $results;
+        }
+        return false;
+    }
+    
+    public function SearchCharacters($num = false) {
+        if(!$this->searchQuery) {
+            return false;
+        }
+        $results = array(); // Full results
+        $current_realm = array();
+        $count_results = 0; // All realms results
+        $count_results_currrent_realm = 0; // Current realm results
+        $characters_data = array(); // Temp results
+        $db = null; // Temporary handler
+        if($num == true) {
+            foreach($this->realmData as $realm_info) {
+                $count_results_currrent_realm = 0;
+                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+                $db->query("SET NAMES ?", $realm_info['charset_characters']);
+                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE ? AND `level` >= ? LIMIT 200", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
+            }
+            $count_result_chars = count($characters_data);
+            for($i=0;$i<$count_result_chars;$i++) {
+                if(self::IsCharacterAllowedForSearch($characters_data[$i][0]['guid'], $characters_data[$i][0]['level'], $characters_data[$i][0]['account'])) {
+                    $count_results++;
+                }
+            }
+            return $count_results;
+        }
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
+            if(!$current_realm) {
+                continue;
+            }
+            $count_current_realm = count($current_realm);
+            foreach($current_realm as $realm) {
+                if(!self::IsCharacterAllowedForSearch($realm['guid'], $realm['level'], $realm['account'])) {
                     continue;
                 }
-                if($cur_realm_data[$j]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $cur_realm_data[$j]['guid'])) {
-                    $cur_realm_data[$j]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $cur_realm_data[$j]['guildId']);
-                    $cur_realm_data[$j]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($cur_realm_data[$j]['guild']));
+                if($realm['guildId'] = $db->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $realm['guid'])) {
+                    $realm['guild'] = $db->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $realm['guildId']);
+                    $realm['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['guild']));
                 }
-                $cur_realm_data[$j]['url'] = 'r='.urlencode($this->armoryconfig['defaultRealmName']).'&cn='.urlencode($cur_realm_data[$j]['name']);
-                $cur_realm_data[$j]['relevance'] = 100; // TODO
-                $cur_realm_data[$j]['battleGroup'] = $this->armoryconfig['defaultBGName'];
-                $cur_realm_data[$j]['battleGroupId'] = 1;
-                $cur_realm_data[$j]['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $cur_realm_data[$j]['classId']);
-                $cur_realm_data[$j]['race'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_races` WHERE `id`=?", $cur_realm_data[$j]['raceId']);
-                $cur_realm_data[$j]['realm'] = $this->armoryconfig['defaultRealmName'];
-                $cur_realm_data[$j]['factionId'] = Characters::GetCharacterFaction($cur_realm_data[$j]['raceId']);
-                $cur_realm_data[$j]['faction'] = ($cur_realm_data[$j]['factionId'] == 0) ? Utils::GetArmoryString(11) : Utils::GetArmoryString(12);
-                $cur_realm_data[$j]['searchRank'] = $j+1;
-                unset($cur_realm_data[$j]['guid']); // Do not show guid in XML result
-                unset($cur_realm_data[$j]['account']); // Do not show account in XML result
+                $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), $realm['name']);
+                $realm['relevance'] = 100;
+                $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
+                $realm['battleGroupId'] = 1;
+                $realm['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $realm['classId']);
+                $realm['race'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_races` WHERE `id`=?", $realm['raceId']);
+                $realm['realm'] = $realm_info['name'];
+                $realm['factionId'] = Characters::GetCharacterFaction($realm['raceId']);
+                $realm['searchRank'] = 1; //???
+                unset($realm['account'], $realm['guid']);
+                $results[] = $realm;
             }
         }
-        if($num == true) {
-            return $results_count;
+        if($results) {
+            return $results;
         }
-        elseif(!$cur_realm_data) {
-            return false;
-        }
-        else {
-            return $cur_realm_data;
-        }
+        return false;
     }
     
     public function IsExtendedCost() {

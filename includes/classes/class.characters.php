@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 167
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -305,7 +305,7 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $url_string = 'r=' . urlencode($this->armoryconfig['defaultRealmName']) . '&cn=' . urlencode($this->name);
+        $url_string = 'r=' . urlencode($this->currentRealmInfo['name']) . '&cn=' . urlencode($this->name);
         if($guildID = $this->GetDataField(PLAYER_GUILDID)) {
             $url_string .= '&gn=' . urlencode($this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $guildID));
         }
@@ -1755,12 +1755,12 @@ Class Characters extends Connector {
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['title']);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title']);
                     }
                     else {
                         $points_string = sprintf($_strings[18], $achievement_info['points']);
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[13], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
                     }
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;

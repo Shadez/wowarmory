@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 155
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -129,7 +129,7 @@ Class Utils extends Connector {
         for($i=0;$i<$count;$i++) {
             $chars[$i]['account'] = strtoupper($_SESSION['username']);
             $chars[$i]['factionId'] = Characters::GetCharacterFaction($chars[$i]['raceId']);
-            $chars[$i]['realm'] = $this->armoryconfig['defaultRealmName'];
+            $chars[$i]['realm'] = $this->currentRealmInfo['name'];
             $chars[$i]['relevance'] = '100';
             $chars[$i]['url'] = 'r='.urlencode($chars[$i]['realm']).'&cn='.urlencode($chars[$i]['name']);
         }

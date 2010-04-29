@@ -40,6 +40,9 @@ else {
 }
 $characters->GetCharacterGuid();
 $isCharacter = $characters->IsCharacter();
+if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
+    $isCharacter = false;
+}
 // Get page cache
 if(isset($_GET['full'])) {
     if($isCharacter) {
@@ -54,7 +57,7 @@ else {
     $cache_name = 'character-feed-data';
 }
 if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId($cache_name, $characters->name, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId($cache_name, $characters->name, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -76,7 +79,7 @@ if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
         }
         $xml->XMLWriter()->startElement('character');
         $xml->XMLWriter()->writeAttribute('name', $characters->name);
-        $xml->XMLWriter()->writeAttribute('characterUrl', sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name)));
+        $xml->XMLWriter()->writeAttribute('characterUrl', sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name)));
         $xml->XMLWriter()->endElement(); //character
         if(isset($feed_item['title'])) {
             $xml->XMLWriter()->startElement('title');

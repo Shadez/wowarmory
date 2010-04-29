@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 164
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,14 +30,28 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r164');
-define('ARMORY_REVISION', 164);
+define('DB_VERSION', 'armory_r168');
+define('ARMORY_REVISION', 168);
 $armory = new Connector;
+/* Check DbVersion */
+$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
+if($dbVersion != DB_VERSION) {
+    if(empty($dbVersion)) {
+	     echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
+    }
+    die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
+}
 /* Check maintenance */
 if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
 }
-if($armory->armoryconfig['server_version'] > 0) {
+if(isset($armory->currentRealmInfo['version']) && $armory->currentRealmInfo['version'] > 0) {
+    $file_ver = (int) $armory->currentRealmInfo['version'];
+    if(!@include('UpdateFields'.$file_ver.'.php')) {
+        die('<b>Error:</b> can not load UpdateFields'.$file_ver.'.php.!');
+    }
+}
+elseif(!isset($armory->currentRealmInfo['version']) && $armory->armoryconfig['server_version'] > 0) {
     $file_ver = (int) $armory->armoryconfig['server_version'];
     if(!@include('UpdateFields'.$file_ver.'.php')) {
         die('<b>Error:</b> can not load UpdateFields'.$file_ver.'.php.!');
@@ -152,14 +166,6 @@ if(defined('load_search_class')) {
         die('<b>Error:</b> can not load search engine class!');
     }
     $search = new SearchMgr;
-}
-
-$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
-if($dbVersion != DB_VERSION) {
-    if(empty($dbVersion)) {
-	     echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
-    }
-    die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {

@@ -46,7 +46,7 @@ $characters->GetCharacterGuid();
 $isCharacter = $characters->IsCharacter();
 // Get page cache
 if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-sheet', $characters->name, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('character-sheet', $characters->name, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -62,12 +62,12 @@ $guilds->guid       = $characters->guid;
 $arenateams->guid   = $characters->guid;
 $tabUrl = false;
 if($isCharacter && $guilds->extractPlayerGuildId()) {
-    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
-    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name), urlencode($guilds->getGuildName()));
 }
 elseif($isCharacter) {
-    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
-    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($characters->name));
+    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name));
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name));
 }
 /** Header **/
 $xml->XMLWriter()->startElement('page');
@@ -101,7 +101,7 @@ $character_element = array(
     'gender'       => '',
     'genderId'     => $characters->gender,
     'guildName'    => ($guilds->guildName) ? $guilds->guildName : '',
-    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : '',
+    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : '',
     'lastModified' => date('d M Y'),
     'level'        => $characters->level,
     'name'         => $characters->name,
@@ -109,7 +109,7 @@ $character_element = array(
     'prefix'       => (isset($characters->character_title['prefix'])) ? $characters->character_title['prefix'] : null,
     'race'         => $characters->returnRaceText(),
     'raceId'       => $characters->race,
-    'realm'        => $armory->armoryconfig['defaultRealmName'],
+    'realm'        => $armory->currentRealmInfo['name'],
     'suffix'       => (isset($characters->character_title['suffix'])) ? $characters->character_title['suffix'] : null,
     'titeId'       => (isset($characters->character_title['titleId'])) ? $characters->character_title['titleId'] : null,
 );

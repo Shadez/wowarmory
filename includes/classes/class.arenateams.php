@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 153
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -71,14 +71,14 @@ Class Arenateams extends Connector {
         $arenateaminfo['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
         $arenateaminfo['data']['lastSeasonRanking'] = 0;
         $arenateaminfo['data']['name'] = $this->teamname;
-        $arenateaminfo['data']['realm'] = $this->armoryconfig['defaultRealmName'];
-        $arenateaminfo['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $this->teamtype);
+        $arenateaminfo['data']['realm'] = $this->currentRealmInfo['name'];
+        $arenateaminfo['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $this->teamtype);
         $arenateaminfo['data']['relevance'] = 0;
         $arenateaminfo['data']['season'] = 0;
         $arenateaminfo['data']['size'] = $this->teamtype;
         $arenateaminfo['data']['teamSize'] = $this->teamtype;
-        $arenateaminfo['data']['teamUrl'] = sprintf('r=%s&t=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->teamname));
-        $arenateaminfo['data']['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultRealmName']), $this->teamtype, urlencode($this->teamname));
+        $arenateaminfo['data']['teamUrl'] = sprintf('r=%s&t=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->teamname));
+        $arenateaminfo['data']['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->currentRealmInfo['name']), $this->teamtype, urlencode($this->teamname));
         $arenateaminfo['emblem'] = self::GetArenaTeamEmblem();
         if(is_array($this->players)) {
             $arenateaminfo['members'] = $this->players;
@@ -147,10 +147,10 @@ Class Arenateams extends Connector {
         for($i=0;$i<$count_players;$i++) {
             if($this->players[$i]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $this->players[$i]['guid'])) {
                 $this->players[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $this->players[$i]['guildId']);
-                $this->players[$i]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->players[$i]['guild']));
+                $this->players[$i]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->players[$i]['guild']));
             }
             $this->players[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
-            $this->players[$i]['charUrl'] = sprintf('r=%s&cn=%s', urlencode($this->armoryconfig['defaultRealmName']), urlencode($this->players[$i]['name']));
+            $this->players[$i]['charUrl'] = sprintf('r=%s&cn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->players[$i]['name']));
             unset($this->players[$i]['guid']);
         }
     }
@@ -189,13 +189,13 @@ Class Arenateams extends Connector {
             $result_areanteams[$i]['data']['factionId'] = Characters::GetCharacterFaction($result_areanteams[$i]['data']['race']);
             //$result_areanteams[$i]['data']['factionId'] = 1;
             $result_areanteams[$i]['data']['lastSeasonRanking'] = '';
-            $result_areanteams[$i]['data']['realm'] = $this->armoryconfig['defaultRealmName'];
-            $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $type, urlencode($team['name']));
+            $result_areanteams[$i]['data']['realm'] = $this->currentRealmInfo['name'];
+            $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $type, urlencode($team['name']));
             $result_areanteams[$i]['data']['relevance'] = 0;
             $result_areanteams[$i]['data']['season'] = 0;
             $result_areanteams[$i]['data']['size'] = $type;
             $result_areanteams[$i]['data']['teamSize'] = $type;
-            $result_areanteams[$i]['data']['teamUrl'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->armoryconfig['defaultRealmName']), $type, urlencode($team['name']));
+            $result_areanteams[$i]['data']['teamUrl'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $type, urlencode($team['name']));
             $result_areanteams[$i]['emblem'] = self::GetArenaTeamEmblem($team['arenateamid']);
             unset($result_areanteams[$i]['data']['arenateamid']);
             unset($result_areanteams[$i]['data']['captainguid']);

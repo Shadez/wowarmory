@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -47,7 +47,9 @@ $characters->GetCharacterGuid();
 $isCharacter = $characters->IsCharacter();
 $characters->_structCharacter();
 $achievements->guid = $characters->guid;
-
+if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
+    $isCharacter = false;
+}
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);

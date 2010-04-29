@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 133
+ * @revision 168
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -52,6 +52,11 @@ Class Connector {
     /** Locale (0 - en_gb, 2 - fr_fr, 3 - de_de, etc.)**/
     public $_loc;
     
+    /** Links for multirealm info **/
+    public $realmData;    
+    public $connectionData;
+    public $currentRealmInfo;
+    
     /**
      * Initialize database & template handlers, sets up sql/site configs
      * @category Main system functions
@@ -67,14 +72,47 @@ Class Connector {
         }        
         $this->mysqlconfig  = $ArmoryConfig['mysql'];
         $this->armoryconfig = $ArmoryConfig['settings'];
+        $this->realmData    = $ArmoryConfig['multiRealm'];
         $this->aDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_armory'].':'.$this->mysqlconfig['pass_armory'].'@'.$this->mysqlconfig['host_armory'].'/'.$this->mysqlconfig['name_armory']);
-        $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
-        $this->rDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_realmd'].':'.$this->mysqlconfig['pass_realmd'].'@'.$this->mysqlconfig['host_realmd'].'/'.$this->mysqlconfig['name_realmd']);
-        $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
         $this->aDB->query("SET NAMES ?", $this->mysqlconfig['charset_armory']);
-        $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
+        $this->rDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_realmd'].':'.$this->mysqlconfig['pass_realmd'].'@'.$this->mysqlconfig['host_realmd'].'/'.$this->mysqlconfig['name_realmd']);
+        if(isset($_GET['r'])) {
+            $realmName = urldecode($_GET['r']);
+            $realm_info = $this->aDB->selectRow("SELECT `id`, `version` FROM `armory_realm_data` WHERE `name`=?", $realmName);
+            if(!$realm_info) {
+                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
+                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
+                $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
+                $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+            }
+            elseif(isset($this->realmData[$realm_info['id']])) {
+                $this->connectionData = $this->realmData[$realm_info['id']];
+                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->connectionData['user_characters'].':'.$this->connectionData['pass_characters'].'@'.$this->connectionData['host_characters'].'/'.$this->connectionData['name_characters']);
+                $this->cDB->query("SET NAMES ?", $this->connectionData['charset_characters']);
+                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'version' => $realm_info['version'], 'connected' => true);
+                if(isset($this->connectionData['name_mangos'])) {
+                    $this->wDB = DbSimple_Generic::connect('mysql://'.$this->connectionData['user_mangos'].':'.$this->connectionData['pass_mangos'].'@'.$this->connectionData['host_mangos'].'/'.$this->connectionData['name_mangos']);
+                    $this->wDB->query("SET NAMES ?", $this->connectionData['charset_mangos']);
+                }
+                else {
+                    $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
+                    $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+                }
+            }
+            else {
+                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
+                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
+                $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
+                $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+            }
+        }
+        else {
+            $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
+            $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
+            $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
+            $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+        }
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
-        $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
         $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
         if($user_locale && $http_locale = self::IsAllowedLocale($user_locale)) {
             $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
@@ -100,11 +138,11 @@ Class Connector {
                 $this->_loc = 3;
                 break;
             /*
-            case 'cn_cn': //(?)
-                $this->_loc = 4;
+            case 'zh_cn':
+                $this->_loc = 4; // China
                 break;
             case 'zh_tw':
-                $this->_loc = 5;
+                $this->_loc = 5; // Taiwan
                 break;
             */
             case 'es_es':
