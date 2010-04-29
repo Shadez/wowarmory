@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 170
+ * @revision 172
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,7 +43,7 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'achievement-firsts.xml');
-$realmName = (isset($_GET['r'])) ? $_GET['r'] : null;
+$realmName = (isset($_GET['r'])) ? $_GET['r'] : $armory->currentRealmInfo['name'];
 $isRealm = $armory->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $realmName);
 if($isRealm) {
     $xml->XMLWriter()->startElement('realmInfo');
