@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 173
+ * @revision 174
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -262,7 +262,7 @@ Class Items extends Connector {
                 $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
                 $itemSetBonuses[$i]['threshold'] = $i;
             }
-		}
+	   }
 	   return $itemSetBonuses;
     }
     
@@ -276,35 +276,26 @@ Class Items extends Connector {
     public function BuildLootTable($item, $vendor, $data=false) {
         $lootTable = array();
         switch($vendor) {
-			case 'vendor':
-				$VendorLoot = $this->wDB->select("
-				SELECT `entry`, `ExtendedCost`
-					FROM `npc_vendor`
-						WHERE `item`=?", $item);
-				if(is_array($VendorLoot)) {
+            case 'vendor':
+                $VendorLoot = $this->wDB->select("SELECT `entry`, `ExtendedCost` FROM `npc_vendor` WHERE `item`=?", $item);
+                if(is_array($VendorLoot)) {
 				    $i = 0;
-					foreach($VendorLoot as $vItem) {
+                    foreach($VendorLoot as $vItem) {
                         $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, name FROM `creature_template` WHERE `entry`=?", $vItem['entry']);
                         if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($vItem['entry']);
                         }
                         $lootTable[$i]['area'] = Mangos::GetNpcInfo($vItem['entry'], 'map');
-						$i++;
-					}
-				}
+                        $i++;
+                    }
+                }
                 break;
-			case 'boss':
-				$BossLoot = $this->wDB->select("
-				SELECT `entry`
-					FROM `creature_loot_template`
-						WHERE `item`=?", $item);                        
-				if(is_array($BossLoot)) {
+            case 'boss':
+                $BossLoot = $this->wDB->select("SELECT `entry` FROM `creature_loot_template` WHERE `item`=?", $item);
+                if(is_array($BossLoot)) {
 				    $i = 0;
-					foreach($BossLoot as $bItem) {
-                        $lootTable[$i] = $this->wDB->selectRow("
-                        SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification`
-                            FROM `creature_template`
-                                WHERE `entry`=?", $bItem['entry']);
+                    foreach($BossLoot as $bItem) {
+                        $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=?", $bItem['entry']);
                         if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
                         }
@@ -316,14 +307,11 @@ Class Items extends Connector {
                             $lootTable[$i]['url'] = str_replace('boss=all', 'boss='.$bItem['entry'], $lootTable[$i]['areaUrl']);
                         }
                         $i++;
-					}
-				}
+                    }
+                }
                 break;
-			case 'chest':
-				$ChestLoot = $this->wDB->select("
-				SELECT `entry`
-					FROM `gameobject_loot_template`
-						WHERE `item`=?", $item);
+            case 'chest':
+                $ChestLoot = $this->wDB->select("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=?", $item);
                 if(is_array($ChestLoot)) {
                     $i = 0;
                     foreach($ChestLoot as $cItem) {
@@ -336,15 +324,15 @@ Class Items extends Connector {
                             'dropRate' => Mangos::DropPercent($drop_percent)
                         );
                         $i++;
-    				}
-                }break;
-			case 'questreward':
-				$QuestLoot = $this->wDB->select("
-				SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
-					FROM `quest_template`
-						WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
-						`RewChoiceItemId4` = ? OR `RewChoiceItemId5` = ? OR `RewChoiceItemId6` = ?", $item, $item, $item, 
-						$item, $item, $item);
+                    }
+                }
+                break;
+            case 'questreward':
+                $QuestLoot = $this->wDB->select("
+                SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
+                    FROM `quest_template`
+                        WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
+                            `RewChoiceItemId4` = ? OR `RewChoiceItemId5` = ? OR `RewChoiceItemId6` = ?", $item, $item, $item, $item, $item, $item);
                 if(is_array($QuestLoot)) {
                     $i = 0;
                     foreach($QuestLoot as $qItem) {
@@ -354,7 +342,7 @@ Class Items extends Connector {
                         }
                         $lootTable[$i]['area'] = Mangos::QuestInfo($qItem['id'], 'map');
                         $i++;
-    				}
+                    }
                 }
                 break;
             case 'queststart':
@@ -399,10 +387,7 @@ Class Items extends Connector {
                 }
                 break;
             case 'disenchant':
-                $DisenchantLoot = $this->wDB->select("
-                SELECT `item`, `maxcount`, `mincountOrRef`
-                    FROM `disenchant_loot_template`
-                        WHERE `entry`=?", $item);
+                $DisenchantLoot = $this->wDB->select("SELECT `item`, `maxcount`, `mincountOrRef` FROM `disenchant_loot_template` WHERE `entry`=?", $item);
                 if(is_array($DisenchantLoot)) {
                     $i = 0;
                     foreach($DisenchantLoot as $dItem) {
@@ -423,12 +408,12 @@ Class Items extends Connector {
                 break;
             case 'craft':
                 $CraftLoot = $this->aDB->select("
-                    SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
-                        `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
-                        `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
-                        FROM `armory_spell`
-                            WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
+                SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
+                    `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                    `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                    `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                    FROM `armory_spell`
+                        WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
                 if(is_array($CraftLoot)) {
                     $i=0;
                     foreach($CraftLoot as $craftItem) {
@@ -466,9 +451,9 @@ Class Items extends Connector {
             case 'reagent':
                 $ReagentLoot = $this->aDB->select("
                 SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
-                `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
-                `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                    `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                    `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                    `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
                 FROM `armory_spell`
                     WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR
                         `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
@@ -480,10 +465,8 @@ Class Items extends Connector {
                     $lootTable[$i]['spell']   = array();
                     $lootTable[$i]['item']    = array();
                     $lootTable[$i]['reagent'] = array();
-                    
                     $lootTable[$i]['spell']['name'] = $ReagentItem['SpellName'];
                     $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `armory_spellicon` WHERE `id`=?", $ReagentItem['spellicon']);
-                    
                     for($j=1;$j<4;$j++) {
                         if($ReagentItem['EffectItemType_'.$j] > 0) {
                             $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $ReagentItem['EffectItemType_'.$j]);
@@ -506,7 +489,7 @@ Class Items extends Connector {
                 }
                 break;
         }
-		return $lootTable;
+        return $lootTable;
     }
     
     /**
@@ -582,7 +565,7 @@ Class Items extends Connector {
      * @example Items::GetItemDataField(10, 333)
      * @return int
      **/
-    public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid=0) {
+    public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0) {
         $dataField = $field+1;
         if($use_item_guid > 0) {
             $qData = $this->cDB->selectCell("
@@ -605,138 +588,144 @@ Class Items extends Connector {
         $letter = array('${','}');
         $values = array( '[',']');
         $text = str_replace($letter, $values, $text);
-    
-    	$signs = array('+', '-', '/', '*', '%', '^');
+        $signs = array('+', '-', '/', '*', '%', '^');
         $data = $text;
-    	$pos = 0;
+        $pos = 0;
         $npos = 0;
-    	$str = '';
+        $str = null;
         $cacheSpellData=array(); // Spell data for spell
         $lastCount = 1;
-        while (false!==($npos=strpos($data, '$', $pos))) {
-    	   if ($npos!=$pos)
+        while(false !== ($npos = strpos($data, '$', $pos))) {
+            if($npos != $pos) {
                 $str .= substr($data, $pos, $npos-$pos);
-    		$pos = $npos+1;
-    		if ('$' == substr($data, $pos, 1))
-    		{
-    			$str .= '$';
+            }
+            $pos = $npos + 1;
+            if('$' == substr($data, $pos, 1)) {
+                $str .= '$';
     			$pos++;
     			continue;
     		}
-    
-    		if (!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result))
-    			continue;
-    		$pos += strlen($result[0]);
-    		$op = $result[3];
-    		$oparg = $result[4];
-    		$lookup = $result[5]? $result[5]:$spell['id'];
-    		$var = $result[6] ? $result[6]:$result[7];
-    		if (!$var)
-    			continue;
-            if ($var[0]=='l')
-            {
-                $select = explode(':', substr($var, 1));
-                $str.=@$select[$lastCount==1 ? 0:1];
+            if(!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result)) {
+                continue;
             }
-            else if ($var[0]=='g')
-            {
-                $select = explode(':', substr($var, 1));
-                $str.=$select[0];
+            $pos += strlen($result[0]);
+            $op = $result[3];
+            $oparg = $result[4];
+            $lookup = $result[5]? $result[5]:$spell['id'];
+            $var = $result[6] ? $result[6]:$result[7];
+            if(!$var) {
+                continue;
             }
-            else
-            {
+            if($var[0] == 'l') {
+                $select = explode(':', substr($var, 1));
+                $str .= @$select[$lastCount == 1 ? 0 : 1];
+            }
+            elseif($var[0] == 'g') {
+                $select = explode(':', substr($var, 1));
+                $str .= $select[0];
+            }
+            else {
                 $spellData = @$cacheSpellData[$lookup];
-                if ($spellData == 0)
-                {
-                    if ($lookup == $spell['id']) $cacheSpellData[$lookup] = $this->getSpellData($spell);
-                    else                         $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $lookup));
+                if($spellData == 0) {
+                    if($lookup == $spell['id']) {
+                        $cacheSpellData[$lookup] = $this->getSpellData($spell);
+                    }
+                    else {
+                        $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $lookup));
+                    }
                     $spellData = @$cacheSpellData[$lookup];
                 }
-                if ($spellData && $base = @$spellData[strtolower($var)])
-                {
-                    if ($op && is_numeric($oparg) && is_numeric($base))
-                    {
+                if($spellData && $base = @$spellData[strtolower($var)]) {
+                    if($op && is_numeric($oparg) && is_numeric($base)) {
                          $equation = $base.$op.$oparg;
                          eval("\$base = $equation;");
     		        }
-                    if (is_numeric($base)) $lastCount = $base;
+                    if(is_numeric($base)) {
+                        $lastCount = $base;
+                    }
                 }
-                else
+                else {
                     $base = $var;
+                }
                 $str.=$base;
             }
-    	}
-    	$str .= substr($data, $pos);
-    	$str = preg_replace_callback("/\[.+[+\-\/*\d]\]/", array($this, 'my_replace'), $str);
-    	return $str;
+        }
+        $str .= substr($data, $pos);
+        $str = preg_replace_callback("/\[.+[+\-\/*\d]\]/", array($this, 'my_replace'), $str);
+        return $str;
     }
     
     public function getSpellData($spell) {
-      // Basepoints
-      $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
-      $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
-      $s3 = abs($spell['EffectBasePoints_3']+$spell['EffectBaseDice_3']);
-      if ($spell['EffectDieSides_1']>$spell['EffectBaseDice_1']) $s1.=" - ".abs($spell['EffectBasePoints_1']+$spell['EffectDieSides_1']);
-      if ($spell['EffectDieSides_2']>$spell['EffectBaseDice_2']) $s2.=" - ".abs($spell['EffectBasePoints_2']+$spell['EffectDieSides_2']);
-      if ($spell['EffectDieSides_3']>$spell['EffectBaseDice_3']) $s3.=" - ".abs($spell['EffectBasePoints_3']+$spell['EffectDieSides_3']);
-    
-      $d  = 0;
-      if ($spell['DurationIndex'])
-       if ($spell_duration = $this->aDB->selectRow("SELECT * FROM `armory_spell_duration` WHERE `id`=?", $spell['DurationIndex']))
-         $d = $spell_duration['duration_1']/1000;
-    
-      // Tick duration
-      $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
-      $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
-      $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
-    
-      // Points per tick
-      $o1 = @intval($s1*$d/$t1);
-      $o2 = @intval($s2*$d/$t2);
-      $o3 = @intval($s3*$d/$t3);
-    
-      $spellData['t1']=$t1;
-      $spellData['t2']=$t2;
-      $spellData['t3']=$t3;
-      $spellData['o1']=$o1;
-      $spellData['o2']=$o2;
-      $spellData['o3']=$o3;
-      $spellData['s1']=$s1;
-      $spellData['s2']=$s2;
-      $spellData['s3']=$s3;
-      $spellData['m1']=$s1;
-      $spellData['m2']=$s2;
-      $spellData['m3']=$s3;
-      $spellData['x1']= $spell['EffectChainTarget_1'];
-      $spellData['x2']= $spell['EffectChainTarget_2'];
-      $spellData['x3']= $spell['EffectChainTarget_3'];
-      $spellData['i'] = $spell['MaxAffectedTargets'];
-      $spellData['d'] = $d;
-      $spellData['d1']= Utils::getTimeText($d);
-      $spellData['d2']= Utils::getTimeText($d);
-      $spellData['d3']= Utils::getTimeText($d);
-      $spellData['v'] = $spell['AffectedTargetLevel'];
-      $spellData['u'] = $spell['StackAmount'];
-      $spellData['a1']= Utils::getRadius($spell['EffectRadiusIndex_1']);
-      $spellData['a2']= Utils::getRadius($spell['EffectRadiusIndex_2']);
-      $spellData['a3']= Utils::getRadius($spell['EffectRadiusIndex_3']);
-      $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
-      $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
-      $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
-      $spellData['e'] = $spell['EffectMultipleValue_1'];
-      $spellData['e1']= $spell['EffectMultipleValue_1'];
-      $spellData['e2']= $spell['EffectMultipleValue_2'];
-      $spellData['e3']= $spell['EffectMultipleValue_3'];
-      $spellData['f1']= $spell['DmgMultiplier_1'];
-      $spellData['f2']= $spell['DmgMultiplier_2'];
-      $spellData['f3']= $spell['DmgMultiplier_3'];
-      $spellData['q1']= $spell['EffectMiscValue_1'];
-      $spellData['q2']= $spell['EffectMiscValue_2'];
-      $spellData['q3']= $spell['EffectMiscValue_3'];
-      $spellData['h'] = $spell['procChance'];
-      $spellData['n'] = $spell['procCharges'];
-      $spellData['z'] = "<home>";
-      return $spellData;
+        // Basepoints
+        $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
+        $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
+        $s3 = abs($spell['EffectBasePoints_3']+$spell['EffectBaseDice_3']);
+        if($spell['EffectDieSides_1']>$spell['EffectBaseDice_1']) {
+            $s1 .= ' - ' . abs($spell['EffectBasePoints_1'] + $spell['EffectDieSides_1']);
+        }
+        if($spell['EffectDieSides_2']>$spell['EffectBaseDice_2']) {
+            $s2 .= ' - ' . abs($spell['EffectBasePoints_2'] + $spell['EffectDieSides_2']);
+        }
+        if($spell['EffectDieSides_3']>$spell['EffectBaseDice_3']) {
+            $s3 .= ' - ' . abs($spell['EffectBasePoints_3'] + $spell['EffectDieSides_3']);
+        }
+        $d = 0;
+        if($spell['DurationIndex']) {
+            if($spell_duration = $this->aDB->selectRow("SELECT * FROM `armory_spell_duration` WHERE `id`=?", $spell['DurationIndex'])) {
+                $d = $spell_duration['duration_1']/1000;
+            }
+        }
+        // Tick duration
+        $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
+        $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
+        $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
+        
+        // Points per tick
+        $o1 = @intval($s1*$d/$t1);
+        $o2 = @intval($s2*$d/$t2);
+        $o3 = @intval($s3*$d/$t3);
+        $spellData['t1']=$t1;
+        $spellData['t2']=$t2;
+        $spellData['t3']=$t3;
+        $spellData['o1']=$o1;
+        $spellData['o2']=$o2;
+        $spellData['o3']=$o3;
+        $spellData['s1']=$s1;
+        $spellData['s2']=$s2;
+        $spellData['s3']=$s3;
+        $spellData['m1']=$s1;
+        $spellData['m2']=$s2;
+        $spellData['m3']=$s3;
+        $spellData['x1']= $spell['EffectChainTarget_1'];
+        $spellData['x2']= $spell['EffectChainTarget_2'];
+        $spellData['x3']= $spell['EffectChainTarget_3'];
+        $spellData['i'] = $spell['MaxAffectedTargets'];
+        $spellData['d'] = $d;
+        $spellData['d1']= Utils::getTimeText($d);
+        $spellData['d2']= Utils::getTimeText($d);
+        $spellData['d3']= Utils::getTimeText($d);
+        $spellData['v'] = $spell['AffectedTargetLevel'];
+        $spellData['u'] = $spell['StackAmount'];
+        $spellData['a1']= Utils::getRadius($spell['EffectRadiusIndex_1']);
+        $spellData['a2']= Utils::getRadius($spell['EffectRadiusIndex_2']);
+        $spellData['a3']= Utils::getRadius($spell['EffectRadiusIndex_3']);
+        $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
+        $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
+        $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
+        $spellData['e'] = $spell['EffectMultipleValue_1'];
+        $spellData['e1']= $spell['EffectMultipleValue_1'];
+        $spellData['e2']= $spell['EffectMultipleValue_2'];
+        $spellData['e3']= $spell['EffectMultipleValue_3'];
+        $spellData['f1']= $spell['DmgMultiplier_1'];
+        $spellData['f2']= $spell['DmgMultiplier_2'];
+        $spellData['f3']= $spell['DmgMultiplier_3'];
+        $spellData['q1']= $spell['EffectMiscValue_1'];
+        $spellData['q2']= $spell['EffectMiscValue_2'];
+        $spellData['q3']= $spell['EffectMiscValue_3'];
+        $spellData['h'] = $spell['procChance'];
+        $spellData['n'] = $spell['procCharges'];
+        $spellData['z'] = "<home>";
+        return $spellData;
     }
     
     public function my_replace($matches) {
@@ -744,7 +733,6 @@ Class Items extends Connector {
         //eval("\$text = abs(".$text.");");
         return intval($text);
     }
-    
     // End of CSWOWD functions
     
     public function GetItemSourceByKey($key) {
@@ -767,8 +755,8 @@ Class Items extends Connector {
             'en_us' => ' (Heroic)',
             'es_es' => ' (Heroico)',
             'es_mx' => ' (Heroico)',
-            'fr_fr' => ' (HÐ“Â©roÐ“Ð‡que)',
-            'ru_ru' => ' (Ð“ÐµÑ€Ð¾Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ)',
+            'fr_fr' => ' (Heroique)',
+            'ru_ru' => ' (Ãåðîè÷åñêîå)',
         );
         $item_difficulty = null;
         for($i=1;$i<5;$i++) {
@@ -860,7 +848,7 @@ Class Items extends Connector {
         return true;
     }
     
-    public function GetItemModelData($displayId, $row=null, $itemid=0) {
+    public function GetItemModelData($displayId, $row = null, $itemid = 0) {
         if($itemid > 0) {
             $displayId = self::GetItemInfo($itemid, 'displayid');
         }
