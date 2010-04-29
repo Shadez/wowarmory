@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 171
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -111,6 +111,9 @@ Class Connector {
             $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
             $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
             $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+        }
+        if(!$this->currentRealmInfo) {
+            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'connected' => true);
         }
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
         $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
