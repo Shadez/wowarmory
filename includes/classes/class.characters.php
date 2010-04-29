@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 165
+ * @revision 167
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -139,6 +139,9 @@ Class Characters extends Connector {
         if(!$this->name) {
             return false;
         }
+        if($this->guid) {
+            return $this->guid;
+        }
         $this->guid = $this->cDB->selectCell("SELECT `guid` FROM `characters` WHERE `name`=? LIMIT 1", $this->name);
         return $this->guid;
     }
@@ -156,6 +159,9 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
+        if($this->name) {
+            return $this->name;
+        }
         $this->name = $this->cDB->selectCell("SELECT `name` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
         return $this->name;
     }
@@ -170,6 +176,9 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
+        if($this->level) {
+            return $this->level;
+        }
         $this->level = $this->cDB->selectCell("SELECT `level` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
         return $this->level;
     }
@@ -183,6 +192,9 @@ Class Characters extends Connector {
     public function GetCharacterRace() {
         if(!$this->guid) {
             return false;
+        }
+        if($this->race) {
+            return $this->race;
         }
         $this->race = $this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
         return $this->race;
@@ -243,6 +255,9 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
+        if($this->class) {
+            return $this->class;
+        }
         $this->class = $this->cDB->selectCell("SELECT `class` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
         return $this->class;
     }
@@ -256,6 +271,9 @@ Class Characters extends Connector {
     public function GetCharacterGender() {
         if(!$this->guid) {
             return false;
+        }
+        if($this->gender) {
+            return $this->gender;
         }
         $this->gender = $this->cDB->selectCell("SELECT `gender` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
         return $this->gender;
@@ -1717,6 +1735,9 @@ Class Characters extends Connector {
                 case TYPE_ACHIEVEMENT_FEED:
                     $send_data = array('achievement' => $event['data'], 'date' => $event_date);
                     $achievement_info = Achievements::GetAchievementInfo($send_data);
+                    if(!isset($achievement_info['title']) || !$achievement_info['title'] || empty($achievement_info['title'])) {
+                        continue;
+                    }
                     if(!isset($achievement_info['points'])) {
                         $achievement_info['points'] = 0;
                     }
@@ -1728,6 +1749,8 @@ Class Characters extends Connector {
                         'points' => $achievement_info['points'],
                         'sort'   => $sort
                     );
+                    $achievement_info['desc'] = str_replace("'", "\'", $achievement_info['desc']);
+                    $achievement_info['title'] = str_replace("'", "\'", $achievement_info['title']);
                     $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
@@ -1818,7 +1841,7 @@ Class Characters extends Connector {
                         $item['name'] = Items::getItemName($event['data']);
                     }
                     $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
-                    $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d&amp;cn=%s&amp;r=%s&amp;s=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event['data'], urlencode($this->name), urlencode($this->armoryconfig['defaultRealmName']), $item['InventoryType'], $event['data'], $item['Quality'], $item['name']);
+                    $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event['data'], $event['data'], $item['Quality'], $item['name']);
                     break;
                 case TYPE_BOSS_FEED:
                     // Get criterias
