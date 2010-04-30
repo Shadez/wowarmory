@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 175
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -687,7 +687,7 @@ Class SearchMgr extends Connector {
             }
             $count_result_chars = count($characters_data);
             for($i=0;$i<$count_result_chars;$i++) {
-                if(self::IsCharacterAllowedForSearch($characters_data[$i][0]['guid'], $characters_data[$i][0]['level'], $characters_data[$i][0]['account'])) {
+                if(isset($characters_data[$i][0]) && self::IsCharacterAllowedForSearch($characters_data[$i][0]['guid'], $characters_data[$i][0]['level'], $characters_data[$i][0]['account'])) {
                     $count_results++;
                 }
             }

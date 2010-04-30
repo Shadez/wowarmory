@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 161
+ * @revision 175
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -172,7 +172,7 @@ Class Mangos extends Connector {
      **/
     public function GetNPCName($npc) {
         if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
-            return $this->wDB->selectCel("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
+            return $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=? LIMIT 1", $npc);
         }
         else {
             $name = $this->wDB->selectCell("SELECT `name_loc" . $this->_loc . "` FROM `locales_creature` WHERE `entry`=? LIMIT 1", $npc);
