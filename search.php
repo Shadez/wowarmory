@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 137
+ * @revision 179
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -57,7 +57,7 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'search.xml');
-$xml->XMLWriter()->writeAttribute('requestQuery', ($search->searchQuery) ? $search->searchQuery.'&amp;searchType='.$_GET['searchType'] : '');
+$xml->XMLWriter()->writeAttribute('requestQuery', ($search->searchQuery) ? $search->searchQuery.'&amp;searchType='.$_GET['searchType'] : null);
 $xml->XMLWriter()->startElement('armorySearch');
 $selected = 'characters';
 if($count_characters = $search->SearchCharacters(true)) {
@@ -118,8 +118,9 @@ $xml->XMLWriter()->writeAttribute('type', 'guilds');
 $xml->XMLWriter()->endElement();  //tab
 $xml->XMLWriter()->endElement(); //tabs
 
+$searchType = (isset($_GET['searchType'])) ? $_GET['searchType'] : 'characters';
 $xml->XMLWriter()->startElement('searchResults');
-$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => '', 'searchMsg' => '', 'searchFilter' => '', 'searchText' => $search->searchQuery, 'searchType' => $_GET['searchType'], 'url' => 'searchType='.$_GET['searchType'].'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
+$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => '', 'searchMsg' => '', 'searchFilter' => '', 'searchText' => urlencode($search->searchQuery), 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
 foreach($results_info as $result_key => $result_value) {
     $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }

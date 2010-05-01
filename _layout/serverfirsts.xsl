@@ -140,6 +140,9 @@
 <xsl:param name="frstrlm">
 <xsl:choose><xsl:when test="guild/@realm"><xsl:value-of select="guild/@realm"/></xsl:when><xsl:otherwise><xsl:value-of select="character/@realm"/></xsl:otherwise></xsl:choose>
 </xsl:param>
+<xsl:param name="realmUrl">
+<xsl:choose><xsl:when test="character/@realmUrl"><xsl:value-of select="character/@realmUrl"></xsl:value-of></xsl:when></xsl:choose>
+</xsl:param>
 
 <div class="firsts_achievement firsts_closed" onclick="toggle_first(this)">
 <div class="expand_btn"><xsl:comment/></div>
@@ -237,7 +240,7 @@
 	<xsl:text> </xsl:text>
 	<xsl:value-of select="$loc/strs/achievements/str[@id='achv.on']"/>
 	<xsl:text> </xsl:text>
-	<xsl:if test="not(../@realm)">[<a href="achievement-firsts.xml?r={$frstrlm}"><xsl:value-of select="$frstrlm"/></a>] </xsl:if>
+	<xsl:if test="not(../@realm)">[<a href="achievement-firsts.xml?r={$realmUrl}"><xsl:value-of select="$frstrlm"/></a>] </xsl:if>
 	<b class="timestamp-firsts"><xsl:value-of select="@dateCompleted"/></b></div>
 <br clear="all"/>
 </div>
