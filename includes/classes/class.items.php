@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 174
+ * @revision 178
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -749,15 +749,7 @@ Class Items extends Connector {
             return false;
         }
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
-        $heroic_strings = array(
-            'de_de' => ' (Heroisch)',
-            'en_gb' => ' (Heroic)',
-            'en_us' => ' (Heroic)',
-            'es_es' => ' (Heroico)',
-            'es_mx' => ' (Heroico)',
-            'fr_fr' => ' (Heroique)',
-            'ru_ru' => ' (Героическое)',
-        );
+        $heroic_string = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=19");
         $item_difficulty = null;
         for($i=1;$i<5;$i++) {
             if(isset($dungeonData['lootid_'.$i]) && $dungeonData['lootid_'.$i] == $bossID && isset($difficulty_enum[$i])) {
@@ -786,8 +778,8 @@ Class Items extends Connector {
                 if(!$instance_data) {
                     return false;
                 }
-                if(isset($heroic_strings[$this->_locale])) {
-                    $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                if($heroic_string) {
+                    $instance_data['areaName'] .= ' ' . $heroic_string;
                 }
                 break;
             case '25n':
@@ -801,8 +793,8 @@ Class Items extends Connector {
                     return false;
                 }
                 if($instance_data['is_heroic'] == 0) {
-                    if(isset($heroic_strings[$this->_locale])) {
-                        $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                    if($heroic_string) {
+                        $instance_data['areaName'] .= ' ' . $heroic_string;
                     }
                     else {
                         $instance_data['areaName'] .= ' (25)';
@@ -819,8 +811,8 @@ Class Items extends Connector {
                 if(!$instance_data) {
                     return false;
                 }
-                if(isset($heroic_strings[$this->_locale])) {
-                    $instance_data['areaName'] .= $heroic_strings[$this->_locale];
+                if($heroic_string) {
+                    $instance_data['areaName'] .= ' ' . $heroic_string;
                 }
                 break;
         }
