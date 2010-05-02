@@ -694,7 +694,7 @@
 			  <a class="prev-off"><img src="_images/pixel.gif" width="1" height="1" /></a>
 			</xsl:when>
 			<xsl:otherwise>
-			  <a href="javascript:{$objectName}.setPageNumber({$currentPageNumber - 1});" class="prev"><img src="/_images/pixel.gif" width="1" height="1" /></a>
+			  <a href="javascript:{$objectName}.setPageNumber({$currentPageNumber - 1});" class="prev"><img src="images/pixel.gif" width="1" height="1" /></a>
 			</xsl:otherwise>
 
 		  </xsl:choose>
@@ -892,29 +892,29 @@
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:when>
-	<xsl:when test="/page/@requestUrl='../vault/character-calendar.xml'">
+	<xsl:when test="/page/@requestUrl='vault/character-calendar.xml'">
 		<xsl:call-template name="related-info">
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-calendar.xml')" />
 		</xsl:call-template>
 	</xsl:when>
 
-	<xsl:when test="/page/@requestUrl='/vault/calendar-feed.xml'">
+	<xsl:when test="/page/@requestUrl='vault/calendar-feed.xml'">
 		<xsl:call-template name="related-info">
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-calendar-feed.xml')" />
 		</xsl:call-template>
 	</xsl:when>
-	<xsl:when test="/page/@requestUrl='/arena-team-game-chart.xml'">
+	<xsl:when test="/page/@requestUrl='arena-team-game-chart.xml'">
 		<xsl:call-template name="related-info">
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-arena-reports.xml')" />
 		</xsl:call-template>
 
 	</xsl:when>
-	<xsl:when test="/page/@requestUrl='/arena-team-report-opposing-teams.xml'">
+	<xsl:when test="/page/@requestUrl='arena-team-report-opposing-teams.xml'">
 		<xsl:call-template name="related-info">
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-opponent-history.xml')" />
 		</xsl:call-template>
 	</xsl:when>
-	<xsl:when test="/page/@requestUrl='/arena-game.xml'">
+	<xsl:when test="/page/@requestUrl='arena-game.xml'">
 		<xsl:call-template name="related-info">
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-match-report.xml')" />
 
@@ -925,7 +925,7 @@
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-mobile-armory.xml')" />
 		</xsl:call-template>
 	</xsl:when>
-    <xsl:when test="/page/customrss or /page/@requestUrl = '../character-feed.xml'">
+    <xsl:when test="/page/customrss or /page/@requestUrl = 'character-feed.xml'">
 		<xsl:call-template name="related-info">
 
 			<xsl:with-param name="src" select="concat('../_content/',$lang,'/ri-character-feed.xml')"/>

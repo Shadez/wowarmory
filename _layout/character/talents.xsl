@@ -163,7 +163,7 @@
 												<xsl:attribute name="class">activeTalents</xsl:attribute>
 											</xsl:if>
 											<div>
-												<img src="/wow-icons/_images/21x21/{@icon}.png" />
+												<img src="wow-icons/_images/21x21/{@icon}.png" />
 												<xsl:value-of select="@prim" />
 											</div>
 										</a>
