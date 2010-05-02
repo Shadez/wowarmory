@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 185
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -72,6 +72,9 @@ Class Characters extends Connector {
      * Character title data (title, prefix, suffix, titleId)
      **/
     public $character_title = array('prefix' => null, 'suffix' => null, 'titleId' => 0);
+    
+    private $m_specCount;
+    private $m_activeSpec;
         
     /******************************/
     /***  Basic character info  ***/
@@ -116,15 +119,17 @@ Class Characters extends Connector {
         if(!$this->name) {
             return false;
         }
-        $character_info = $this->cDB->selectRow("SELECT `guid`, `level`, `class`, `race`, `gender` FROM `characters` WHERE `name`=?", $this->name);
+        $character_info = $this->cDB->selectRow("SELECT `guid`, `level`, `class`, `race`, `gender`, `specCount`, `activeSpec` FROM `characters` WHERE `name`=?", $this->name);
         if(!$character_info) {
             return false;
         }
-        $this->guid   = $character_info['guid'];
-        $this->level  = $character_info['level'];
-        $this->race   = $character_info['race'];
-        $this->class  = $character_info['class'];
-        $this->gender = $character_info['gender'];
+        $this->guid         = $character_info['guid'];
+        $this->level        = $character_info['level'];
+        $this->race         = $character_info['race'];
+        $this->class        = $character_info['class'];
+        $this->gender       = $character_info['gender'];
+        $this->m_specCount  = $character_info['specCount'];
+        $this->m_activeSpec = $character_info['activeSpec'];
         self::GetCharacterFaction();
         return true;
     }
@@ -707,49 +712,84 @@ Class Characters extends Connector {
                 $talent_build[$last_spec] .= 0;
             }
         }
-        $talent_data = array('build' => $talent_build, 'points' => $talent_points);
+        $talent_data = array('points' => $talent_points);
+        return $talent_data;
+    }
+    
+    public function CalculateCharacterTalentBuild() {
+        if(!$this->guid || !$this->class) {
+            return false;
+        }
+        $build_tree = array(1 => null, 2 => null);
+        $tab_class = self::GetTalentTab();
+        $specs_talents = array();
+        $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        $talent_data = array(0 => null, 1 => null); // Talent build
+        if(!$character_talents) {
+            return false;
+        }
+        foreach($character_talents as $_tal) {
+            $specs_talents[$_tal['spec']][$_tal['talent_id']] = $_tal['current_rank']+1;
+        }
+        for($i=0;$i<3;$i++) {
+            if(!isset($tab_class[$i])) {
+                continue;
+            }
+            $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+            if(!$current_tab) {
+                continue;
+            }
+            foreach($current_tab as $tab) {
+                for($j=0;$j<2;$j++) {
+                    if(isset($specs_talents[$j][$tab['TalentID']])) {
+                        $talent_data[$j] .= $specs_talents[$j][$tab['TalentID']];
+                    }
+                    else {
+                        $talent_data[$j] .= 0;
+                    }
+                }
+            }
+        }
         return $talent_data;
     }
     
     /**
-     * Old method
-     **/
-    public function extractCharacterTalents() {
-        return false;
-    }
-    
-    /**
-     * Returns array with character glyphs (great & small). Requires $this->guid!
+     * Returns array with glyph data for all specs
      * @category Character class
-     * @example Characters::extractCharacterGlyphs()
+     * @example Characters::GetCharacterGlyphs()
      * @return array
      **/
-    public function extractCharacterGlyphs() {
+    public function GetCharacterGlyphs($spec = -1) {
         if(!$this->guid) {
             return false;
         }
-        $glyphData = array();
-        $glyphData['big'] = array();
-        $glyphData['small'] = array();
-        $glyphFields = array(0 => 1319, 1 => 1320, 2 => 1321, 3 => 1322, 4 => 1323, 5 => 1324);
-        for($i=0;$i<6;$i++) {
-            $glyph_id = $this->GetDataField($glyphFields[$i]);
-            $glyph_info = $this->aDB->selectRow("
-            SELECT `id`, `type`, `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`
-                FROM `armory_glyphproperties` WHERE `id`=?", $glyph_id);
-            if(!$glyph_info) {
-                continue;
-            }
-            if($glyph_info['type'] == 0) {
-                $glyphData['big'][$i] = $glyph_info;
-                $glyphData['big'][$i]['type'] = 'major';
-            }
-            elseif($glyph_info['type'] == 1) {
-                $glyphData['small'][$i] = $glyph_info;
-                $glyphData['small'][$i]['type'] = 'minor';
-            }
+        if($spec >= 0) {
+            $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
         }
-        return $glyphData;
+        else {
+            $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
+        }
+        if(!$glyphs_data) {
+            return false;
+        }
+        $data = array(0 => array(), 1 => array());
+        $i = 0;
+        foreach($glyphs_data as $glyph) {
+            $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+            $data[$glyph['spec']][$i] = array(
+                'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
+                'id'     => $glyph['glyph'],
+                'name'   => str_replace('"', '&quot;', $current_glyph['name'])
+            );
+            if($current_glyph['type'] == 0) {
+                $data[$glyph['spec']][$i]['type'] = 'major';
+            }
+            else {
+                $data[$glyph['spec']][$i]['type'] = 'minor';
+            }
+            $i++;
+        }
+        return $data;
     }
     
     /**
@@ -1935,6 +1975,14 @@ Class Characters extends Connector {
             }
         }
         return $item_info;
+    }
+    
+    public function GetSpecCount() {
+        return $this->m_specCount;
+    }
+    
+    public function GetActiveSpec() {
+        return $this->m_activeSpec;
     }
 }
 ?>

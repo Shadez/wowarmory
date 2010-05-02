@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 185
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -122,52 +122,45 @@ foreach($character_element as $c_elem_name => $c_elem_value) {
 }
 $xml->XMLWriter()->endElement();   //character
 
-$talents = $characters->extractCharacterTalents();
-$talent_points = array();
-$talent_tree   = array();
-for($i=0;$i<3;$i++) {
-    $talent_points[$i] = $characters->talentCounting($characters->getTabOrBuild('tab', $i));
+$talent_build = $characters->CalculateCharacterTalentBuild();
+$talent_points = $characters->CalculateCharacterTalents();
+$build = array();
+$points = array();
+$talent_info = array();
+$current_tree = array();
+$glyphs = $characters->GetCharacterGlyphs();
+for($i = 0; $i < $characters->GetSpecCount(); $i++ ) {
+    $current_tree[$i] = Utils::GetMaxArray($talent_points['points'][$i]);
+    $talent_info[$i] = array(
+        'treeOne'   => $talent_points['points'][$i][$characters->GetTalentTab(0)],
+        'treeThree' => $talent_points['points'][$i][$characters->GetTalentTab(2)],
+        'treeTwo'   => $talent_points['points'][$i][$characters->GetTalentTab(1)],
+        'value'     => $talent_build[$i]
+    );
 }
-$current_tree = Utils::GetMaxArray($talent_points);
-
-$talent_spec = array(
-    'treeOne'   => $talent_points[0],
-    'treeThree' => $talent_points[2],
-    'treeTwo'   => $talent_points[1],
-    'value'     => $talents
-);
 $xml->XMLWriter()->startElement('talents');
-$xml->XMLWriter()->startElement('talentGroup');
-$xml->XMLWriter()->writeAttribute('active', 1);
-$xml->XMLWriter()->writeAttribute('group', 1);
-$xml->XMLWriter()->writeAttribute('icon', $characters->ReturnTalentTreeIcon($current_tree));
-$xml->XMLWriter()->writeAttribute('prim', $characters->ReturnTalentTreesNames($current_tree));
-$xml->XMLWriter()->startElement('talentSpec');
-foreach($talent_spec as $spec_key => $spec_value) {
-    $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
-}
-$xml->XMLWriter()->endElement();     //talentSpec
-$glyphs = $characters->extractCharacterGlyphs();
-if($glyphs) {
+for($i = 0; $i < $characters->GetSpecCount(); $i++) {
+    $xml->XMLWriter()->startElement('talentGroup');
+    $xml->XMLWriter()->writeAttribute('active', ($i == $characters->GetActiveSpec()) ? 1 : 0);
+    $xml->XMLWriter()->writeAttribute('group', $i+1);
+    $xml->XMLWriter()->writeAttribute('icon', $characters->ReturnTalentTreeIcon($current_tree[$i]));
+    $xml->XMLWriter()->writeAttribute('prim', $characters->ReturnTalentTreesNames($current_tree[$i]));
+    $xml->XMLWriter()->startElement('talentSpec');
+    foreach($talent_info[$i] as $tinfo_key => $tinfo_value) {
+        $xml->XMLWriter()->writeAttribute($tinfo_key, $tinfo_value);
+    }
+    $xml->XMLWriter()->endElement(); //talentSpec
     $xml->XMLWriter()->startElement('glyphs');
-    foreach($glyphs['big'] as $majorGlyphs) {
+    foreach($glyphs[$i] as $_glyph) {
         $xml->XMLWriter()->startElement('glyph');
-        foreach($majorGlyphs as $mg_key => $mg_value) {
-            $xml->XMLWriter()->writeAttribute($mg_key, $mg_value);
+        foreach($_glyph as $glyph_key => $glyph_value) {
+            $xml->XMLWriter()->writeAttribute($glyph_key, $glyph_value);
         }
-        $xml->XMLWriter()->endElement(); //glyph
+        $xml->XMLWriter()->endElement(); //glyphs    
     }
-    foreach($glyphs['small'] as $majorGlyphs) {
-        $xml->XMLWriter()->startElement('glyph');
-        foreach($majorGlyphs as $mg_key => $mg_value) {
-            $xml->XMLWriter()->writeAttribute($mg_key, $mg_value);
-        }
-        $xml->XMLWriter()->endElement(); //glyph
-    }
-    $xml->XMLWriter()->endElement();  //talentGroup
+    $xml->XMLWriter()->endElement();  //glyphs    
+    $xml->XMLWriter()->endElement(); //talentGroup
 }
-
-$xml->XMLWriter()->endElement();    //talentGroup
 $xml->XMLWriter()->endElement();   //talents
 $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->endElement(); //page
