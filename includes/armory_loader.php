@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 178
+ * @revision 182
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 define('DB_VERSION', 'armory_r178');
-define('ARMORY_REVISION', 178);
+define('ARMORY_REVISION', 182);
 $armory = new Connector;
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
@@ -45,22 +45,8 @@ if($dbVersion != DB_VERSION) {
 if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
 }
-if(isset($armory->currentRealmInfo['version']) && $armory->currentRealmInfo['version'] > 0) {
-    $file_ver = (int) $armory->currentRealmInfo['version'];
-    if(!@include('UpdateFields'.$file_ver.'.php')) {
-        die('<b>Error:</b> can not load UpdateFields'.$file_ver.'.php.!');
-    }
-}
-elseif(!isset($armory->currentRealmInfo['version']) && $armory->armoryconfig['server_version'] > 0) {
-    $file_ver = (int) $armory->armoryconfig['server_version'];
-    if(!@include('UpdateFields'.$file_ver.'.php')) {
-        die('<b>Error:</b> can not load UpdateFields'.$file_ver.'.php.!');
-    }
-}
-else {
-    if(!@include('UpdateFields.php')) {
-        die('<b>Error:</b> can not load UpdateFields.php!');
-    }
+if(!@include('UpdateFields.php')) {
+    die('<b>Error:</b> can not load UpdateFields.php!');
 }
 if(!@include('defines.php')) {
     die('<b>Error:</b> can not load defines.php!');
