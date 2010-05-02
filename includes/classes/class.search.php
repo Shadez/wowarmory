@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 175
+ * @revision 181
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,7 +29,7 @@ Class SearchMgr extends Connector {
     public $instanceSearchKey;
     private $boss_loot_ids;
     
-    public function DoSearchItems($count=false) {
+    public function DoSearchItems($count = false) {
         if(!$this->searchQuery) {
             return false;
         }
@@ -62,7 +62,7 @@ Class SearchMgr extends Connector {
         return $result_data;
     }
     
-    public function AdvancedItemsSearch($count=false) {
+    public function AdvancedItemsSearch($count = false) {
         if((!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
             return false;
         }
@@ -576,7 +576,7 @@ Class SearchMgr extends Connector {
         return $items_result;
     }
     
-    public function SearchArenaTeams($num=false) {
+    public function SearchArenaTeams($num = false) {
         if(!$this->searchQuery) {
             return false;
         }
@@ -709,7 +709,7 @@ Class SearchMgr extends Connector {
                     $realm['guild'] = $db->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $realm['guildId']);
                     $realm['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['guild']));
                 }
-                $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), $realm['name']);
+                $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 $realm['relevance'] = 100;
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
@@ -761,7 +761,7 @@ Class SearchMgr extends Connector {
         return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
     }
     
-    public function MakeUniqueArray($array, $preserveKeys=false) {
+    public function MakeUniqueArray($array, $preserveKeys = false) {
         // Unique Array for return  
         $arrayRewrite = array();  
         // Array with the md5 hashes  
