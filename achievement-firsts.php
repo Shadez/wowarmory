@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 179
+ * @revision 186
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -45,6 +45,7 @@ $realmName = (isset($_GET['r'])) ? urldecode($_GET['r']) : $armory->currentRealm
 $isRealm = $armory->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $realmName);
 if($isRealm) {
     $xml->XMLWriter()->startElement('realmInfo');
+    $xml->XMLWriter()->writeAttribute('realm', $realmName);
     // Get achievements
     $achievement_firsts = $utils->realmFirsts();
     if(is_array($achievement_firsts)) {
@@ -54,7 +55,8 @@ if($isRealm) {
             $xml->XMLWriter()->writeAttribute('desc', $achievement_info['desc']);
             $xml->XMLWriter()->writeAttribute('icon', $achievement_info['icon']);
             $xml->XMLWriter()->writeAttribute('title', $achievement_info['title']);
-            $xml->XMLWriter()->writeAttribute('realm', $armory->currentRealmInfo['name']);
+            $xml->XMLWriter()->writeAttribute('id', $achievement_info['id']);
+            $xml->XMLWriter()->writeAttribute('realm', $realmName);
             $xml->XMLWriter()->startElement('character');
             $xml->XMLWriter()->writeAttribute('classId', $achievement_info['class']);
             $xml->XMLWriter()->writeAttribute('genderId', $achievement_info['gender']);
