@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 187
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -155,7 +155,7 @@ Class Arenateams extends Connector {
         }
     }
     
-    public function BuildArenaLadderList($type, $page, $num = false) {
+    public function BuildArenaLadderList($type, $page, $num = false, $order = 'rank', $type = 'DESC') {
         if($num == true) {
             return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
         }
@@ -174,7 +174,7 @@ Class Arenateams extends Connector {
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
                     WHERE `type`=?
-                        ORDER BY `arena_team_stats`.`rank` LIMIT ".$page.", 20
+                        ORDER BY `arena_team_stats`.`".$order."` ".$type." LIMIT ".$page.", 20
         ", $type);
         if(!$arenaTeamInfo) {
             return false;

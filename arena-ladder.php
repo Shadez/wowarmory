@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
+ * @revision 187
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,8 +53,8 @@ $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'arena-ladder.xml');
 $ladder_result = array(
     'battleGroup'      => $armory->armoryconfig['defaultBGName'],
-    'filterField'      => '',
-    'filterValue'      => '',
+    'filterField'      => null,
+    'filterValue'      => null,
     'level'            => 80,
     'maxPage'          => $maxPage,
     'page'             => $page,
@@ -77,7 +77,25 @@ else {
     $page--;
     $limit_query = $page*20;
 }
-$arenateams = $arenateams->BuildArenaLadderList($current_type, $limit_query);
+$sort = 'rank';
+$type = 'desc';
+if(isset($_GET['sf'])) {
+    switch($_GET['sf']) {
+        case 'sgw':
+            $sort = 'wins';
+            $type = 'DESC';
+            break;
+        case 'sgl':
+            $sort = 'wins';
+            $type = 'ASC';
+            break;
+        case 'rating':
+            $sort = 'rating';
+            $type = 'DESC';
+            break;
+    }
+}
+$arenateams = $arenateams->BuildArenaLadderList($current_type, $limit_query, false, $sort, $type);
 if($arenateams) {
     foreach($arenateams as $team) {
         $xml->XMLWriter()->startElement('arenaTeam');
