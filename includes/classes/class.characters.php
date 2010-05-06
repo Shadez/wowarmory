@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 185
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 188
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -75,7 +75,7 @@ Class Characters extends Connector {
     
     private $m_specCount;
     private $m_activeSpec;
-        
+            
     /******************************/
     /***  Basic character info  ***/
     /******************************/
@@ -211,7 +211,7 @@ Class Characters extends Connector {
      * @example Characters::GetCharacterTitle(false)
      * @return none
      **/
-    public function GetCharacterTitle($guid=false) {
+    public function GetCharacterTitle($guid = false) {
         if($guid) {
             $this->guid = $guid;
         }
@@ -835,7 +835,7 @@ Class Characters extends Connector {
      **/
     public function extractCharacterProfessions() {
         $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
-        $professions = $this->cDB->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $this->guid, $skills_professions);
+        $professions = $this->cDB->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $skills_professions, $this->guid);
         if(!$professions) {
             return false;
         }
