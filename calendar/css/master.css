@@ -3,7 +3,7 @@
 /**************************************************************/
 
 .calendar-holder {width: 1px; height: 906px; clear: both; left: -10px;}
-.calendar-container {width: 876px; height:821px; background:url('/_images/calendar/calendar-bg-bottom.jpg') no-repeat top left; float: left; margin-left:6px;  padding-top: 3px; margin-top: 55px;}
+.calendar-container {width: 876px; height:821px; background:url('/../../images/calendar/calendar-bg-bottom.jpg') no-repeat top left; float: left; margin-left:6px;  padding-top: 3px; margin-top: 55px;}
 #calendar-loading-target { width:100%; height: 85px; z-index: 2; position: absolute; padding-left:13px; }
 .calendar-weekday { font-family: Georgia, "Times New Roman", Times, serif; color: #794d0a; font-size: 16px; font-style: italic; text-align: center; width: 121px; height: 45px; position: absolute;  top: 10px;}
 
@@ -106,10 +106,10 @@
 
 .calendar .month td.invited .day-hasinvite {
 	display: block;
-	background: url('/_images/calendar/hasinvite.png');
+	background: url('/../../images/calendar/hasinvite.png');
 }
 .calendar .month th.selected {
-	background:url('/_images/calendar/daybg.gif');
+	background:url('/../../images/calendar/daybg.gif');
 	background-repeat: no-repeat;
 	background-position: center 4px;
 }
@@ -184,7 +184,7 @@
 .calendar .month td .dropicon {
 	width: 17px;
 	height: 17px;
-	background:url('/_images/calendar/dropdownarrow.gif') top left no-repeat;
+	background:url('/../../images/calendar/dropdownarrow.gif') top left no-repeat;
 	margin: -37px 7px 0 0;
 	cursor: pointer;
 	z-index: 0;
@@ -229,7 +229,7 @@
 
 
 div > .calendar-detail {
-	background:url('/_images/calendar/window1-contour.png') top left no-repeat;
+	background:url('/../../images/calendar/window1-contour.png') top left no-repeat;
 }
 
 
@@ -250,7 +250,7 @@ div > .calendar-detail {
 	width: 362px;
 	height: 572px;
 	margin: 23px 0 0 23px;
-	background:url('/_images/calendar/window1-inside.jpg') top left no-repeat;
+	background:url('/../../images/calendar/window1-inside.jpg') top left no-repeat;
 }
 
 .calendar-confirmation-contents,
@@ -315,12 +315,12 @@ div > .calendar-detail.guild,
 div > .calendar-confirmation-dialog,
 div > .calendar-detail-simple {
 	height: 394px;
-	background:url('/_images/calendar/windowsmall-contour.png') top left no-repeat;
+	background:url('/../../images/calendar/windowsmall-contour.png') top left no-repeat;
 }
 
 div > .calendar-confirmation-dialog {
 	height: 258px;
-	background:url('/_images/calendar/windowmini-contour.png') top left no-repeat;
+	background:url('/../../images/calendar/windowmini-contour.png') top left no-repeat;
 }
 
 
@@ -331,7 +331,7 @@ div > .calendar-confirmation-dialog {
 	width: 362px;
 	height: 316px;
 	margin: 23px 0 0 23px;
-	background:url('/_images/calendar/windowsmall-inside.jpg') top left no-repeat;
+	background:url('/../../images/calendar/windowsmall-inside.jpg') top left no-repeat;
 }
 
 .calendar-confirmation-dialog .calendar-detail-mini-bg {
@@ -339,7 +339,7 @@ div > .calendar-confirmation-dialog {
 	width: 362px;
 	height: 182px;
 	margin: 23px 0 0 23px;
-	background:url('/_images/calendar/windowmini-inside.jpg') top left no-repeat;
+	background:url('/../../images/calendar/windowmini-inside.jpg') top left no-repeat;
 }
 
 .calendar-confirmation-contents {
@@ -398,7 +398,7 @@ div > .calendar-confirmation-dialog {
 .calendar-detail a.disabled, .calendar-detail a.disabled:hover  {
 	cursor: default;
 	color: inherit;
-	background: url('/_images/button-grey.gif') no-repeat 0 0;
+	background: url('/../../images/button-grey.gif') no-repeat 0 0;
 	color: #888
 }
 .calendar-detail div.disabled {
@@ -491,7 +491,7 @@ a.actionButton, a.actionButton:active, a.actionButton:visited {
 	width: 131px;
 	text-align: center;
 	height: 19px;
-	background: url('/_images/button-red.gif') no-repeat 0 0;
+	background: url('/../../images/button-red.gif') no-repeat 0 0;
 	text-decoration:none;
 	font-size: 12px;
 	padding: 4px 0 2px 0;
@@ -524,7 +524,7 @@ a.actionButton:hover{
 	font-weight: bold;
 	color: #888;
 	cursor: default;
-	background: url('/_images/button-grey.gif') no-repeat 0 0;
+	background: url('/../../images/button-grey.gif') no-repeat 0 0;
 	width: 131px;
 	display: block;
 }
@@ -642,34 +642,34 @@ font-weight: bold;
 	width: 283px;
 }
 .calendar-detail .warrior {
-	background: url(/_images/icons/class/1.gif)
+	background: url(/../../images/icons/class/1.gif)
 }
 .calendar-detail .deathknight {
-	background: url(/_images/icons/class/6.gif)
+	background: url(/../../images/icons/class/6.gif)
 }
 .calendar-detail .paladin {
-	background: url(/_images/icons/class/2.gif)
+	background: url(/../../images/icons/class/2.gif)
 }
 .calendar-detail .priest {
-	background: url(/_images/icons/class/5.gif)
+	background: url(/../../images/icons/class/5.gif)
 }
 .calendar-detail .shaman {
-	background: url(/_images/icons/class/7.gif)
+	background: url(/../../images/icons/class/7.gif)
 }
 .calendar-detail .druid {
-	background: url(/_images/icons/class/11.gif)
+	background: url(/../../images/icons/class/11.gif)
 }
 .calendar-detail .rogue {
-	background: url(/_images/icons/class/4.gif)
+	background: url(/../../images/icons/class/4.gif)
 }
 .calendar-detail .mage {
-	background: url(/_images/icons/class/8.gif)
+	background: url(/../../images/icons/class/8.gif)
 }
 .calendar-detail .warlock {
-	background: url(/_images/icons/class/9.gif)
+	background: url(/../../images/icons/class/9.gif)
 }
 .calendar-detail .hunter {
-	background: url(/_images/icons/class/3.gif)
+	background: url(/../../images/icons/class/3.gif)
 }
 
 /* Day events tooltip & shared */
@@ -757,14 +757,14 @@ font-weight: bold;
 
 
 div > .calendar-day-events-select {
-	background:url('/_images/calendar/window2-contour.png') top left no-repeat;
+	background:url('/../../images/calendar/window2-contour.png') top left no-repeat;
 }
 .calendar-day-events-select-bg {
 	position: absolute;
 	width: 362px;
 	height: 572px;
 	margin: 23px 0 0 23px;
-	background:url('/_images/calendar/window2-inside.jpg') top left no-repeat;
+	background:url('/../../images/calendar/window2-inside.jpg') top left no-repeat;
 }
 
 .calendar-day-events-select ol.events {
@@ -776,7 +776,7 @@ div > .calendar-day-events-select {
 	height: 20px;
 	margin:0;
 	padding:6px 20px 0 5px;
-	background: url('/_images/calendar/list-bg.gif') top left no-repeat;
+	background: url('/../../images/calendar/list-bg.gif') top left no-repeat;
 	line-height: 12px;
 	cursor: pointer;
 }
@@ -813,7 +813,7 @@ div > .calendar-day-events-select {
 
 }
 .calendar-day-events-select li.selected {
-	background: url('/_images/calendar/list-bg.gif') bottom left no-repeat;
+	background: url('/../../images/calendar/list-bg.gif') bottom left no-repeat;
 }
 
 /* Calendar Event Filter */
@@ -821,7 +821,7 @@ div > .calendar-day-events-select {
 .calendar-drop {
 	height:29px;
 	width:139px;
-	background:url('/_images/calendar/dropdown.gif') no-repeat !important;
+	background:url('/../../images/calendar/dropdown.gif') no-repeat !important;
 	display:block;
 	margin:0;
 	text-decoration:none !important;
@@ -847,7 +847,7 @@ div > .calendar-day-events-select {
 .calendar-button {
 	height:32px;
 	width:35px;
-	background:url('/_images/calendar/feed.jpg') no-repeat !important;
+	background:url('/../../images/calendar/feed.jpg') no-repeat !important;
 	display:block;
 	margin:0;
 	text-decoration:none !important;
@@ -881,7 +881,7 @@ div > .calendar-day-events-select {
 }
 
 .calendar-filter-contents li {
-	background:url('/_images/calendar/select-off.gif') top left no-repeat;
+	background:url('/../../images/calendar/select-off.gif') top left no-repeat;
 	background-position: 0 2px;
 	padding-left: 17px;
 	cursor: pointer;
@@ -891,7 +891,7 @@ div > .calendar-day-events-select {
 	color: #979282;
 }
 .select-custom li.selected {
-	background-image: url('/_images/calendar/select-on.gif');
+	background-image: url('/../../images/calendar/select-on.gif');
 	color: #a07c00;
 }
 
@@ -940,7 +940,7 @@ div > .calendar-day-events-select {
 }
 
 .calendar-timezone li {
-	background:url('/_images/calendar/select-off.gif') top left no-repeat;
+	background:url('/../../images/calendar/select-off.gif') top left no-repeat;
 	background-position: 0 2px;
 	padding-left: 17px;
 	cursor: pointer;
@@ -978,20 +978,20 @@ div > .calendar-day-events-select {
 
 
 .reldiv > .calendar-box-gradient {
-	background:url('/_images/calendar/gradient.png');
+	background:url('/../../images/calendar/gradient.png');
 }
 .reldiv > .calendar-box-hover {
-	background:url('/_images/calendar/hover.png');
+	background:url('/../../images/calendar/hover.png');
 }
 
 
 .reldiv > .calendar-box-selected {
-	background:url('/_images/calendar/selected.png');
+	background:url('/../../images/calendar/selected.png');
 }
 
 
 .reldiv > .calendar-box-othermonth {
-	background:url('/_images/calendar/othermonth.png');
+	background:url('/../../images/calendar/othermonth.png');
 	background-repeat:no-repeat;
 }
 
@@ -1000,7 +1000,7 @@ div > .calendar-day-events-select {
 	margin: -7px 0 0 -7px;
 	width: 134px;
 	height: 134px;
-	background:url('/_images/calendar/today.png');
+	background:url('/../../images/calendar/today.png');
 	z-index: 1;
 }
 
@@ -1083,7 +1083,7 @@ img.hourglass {
 }
 
 #calendar-filter-holder { 
-	background:#F2E0A0 url(/_images/item-input-box.gif) repeat-x scroll 0 0; 
+	background:#F2E0A0 url(/../../images/item-input-box.gif) repeat-x scroll 0 0; 
 	margin-right:40px;
 	margin-bottom:5px;
 	border:3px solid #d3a54d;
@@ -1093,7 +1093,7 @@ img.hourglass {
 .feed-link {font-size:12px;}
 .feed-link-description {color:#794D0A;font-family:Georgia,"Times New Roman",Times,serif;font-size:11px;font-style:italic;}
 
-.calendar-prev-month { display:block; width:33px; height:29px; background:url(/_images/calendar/arrow-left.gif) no-repeat;position:absolute;top:0px;left:16px;z-index:12345;}
+.calendar-prev-month { display:block; width:33px; height:29px; background:url(/../../images/calendar/arrow-left.gif) no-repeat;position:absolute;top:0px;left:16px;z-index:12345;}
 .calendar-prev-month:hover { background-position:0px -29px;}
-.calendar-next-month { display:block; width:33px; height:29px; background:url(/_images/calendar/arrow-right.gif) no-repeat;position:absolute;left:46px;top:0px;z-index:12345;}
+.calendar-next-month { display:block; width:33px; height:29px; background:url(/../../images/calendar/arrow-right.gif) no-repeat;position:absolute;left:46px;top:0px;z-index:12345;}
 .calendar-next-month:hover { background-position:0px -29px;}

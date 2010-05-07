@@ -5,7 +5,7 @@
 .calendar .month td .dropicon {
 	width: 17px;
 	height: 17px;
-	background:url('/_images/calendar/dropdownarrow.gif') top left no-repeat;
+	background:url('/../../images/calendar/dropdownarrow.gif') top left no-repeat;
 	float: right;
 	margin: -37px 7px 0 0;
 	cursor: pointer;
@@ -16,5 +16,5 @@
 div > .calendar-detail.guild {
 	height: 394px;
 	margin-top: 350px;
-	background:url('/_images/calendar/windowsmall-contour.png') top left no-repeat;
+	background:url('/../../images/calendar/windowsmall-contour.png') top left no-repeat;
 }

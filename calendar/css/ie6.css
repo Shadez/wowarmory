@@ -4,41 +4,41 @@
 
 
 .calendar-box-gradient {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/gradient.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/gradient.png');
 }
 .calendar-box-hover {
-	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/hover.png'); */
+	/*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/hover.png'); */
 }
 .calendar-box-selected {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/selected.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/selected.png');
 }
 
 .calendar-box-othermonth {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/othermonth.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/othermonth.png');
 }
 
 .calendar-box-today {
 	margin: -7px 0 0 -7px;
 	width: 134px;
 	height: 134px;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/today.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/today.png');
 	z-index: 8;
 }
 
 .calendar-day-events-select {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/window2-contour.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/window2-contour.png');
 }
 
 /* ie6 fix */
 .calendar-detail {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/window1-contour.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/window1-contour.png');
 }
 
 .guild,
 .calendar-confirmation-dialog,
 .calendar-detail-simple {
 	height: 394px;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/windowsmall-contour.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/windowsmall-contour.png');
 }
 
 .guild .calendar-detail-bg,
@@ -47,17 +47,17 @@
 	width: 362px;
 	height: 316px;
 	margin: 23px 0 0 23px;
-	background:url('/_images/calendar/windowsmall-inside.jpg') top left no-repeat;
+	background:url('/../../images/calendar/windowsmall-inside.jpg') top left no-repeat;
 }
 
 .calendar-confirmation-dialog {
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/windowmini-contour.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/windowmini-contour.png');
 }
 
 .calendar-detail .actions .disabled { /* ie6 - no chained class selector support */
 	cursor: default !important;
 	color: inherit !important;
-	background: url('/_images/button-grey.gif') no-repeat 0 0 !important;
+	background: url('/../../images/button-grey.gif') no-repeat 0 0 !important;
 	color: #888 !important
 }
 .calendar-detail .actions .disabled:hover { /* ie6 - no chained class selector support */
@@ -99,7 +99,7 @@
 .calendar .month td .dropicon {
 	width: 17px;
 	height: 17px;
-	background:url('/_images/calendar/dropdownarrow.gif') top left no-repeat;
+	background:url('/../../images/calendar/dropdownarrow.gif') top left no-repeat;
 	float: right;
 	margin: 0 3px 16px 0;
 	cursor: pointer;
@@ -108,7 +108,7 @@
 
 .calendar .month td.invited .day-hasinvite {
 	background: none;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/_images/calendar/hasinvite.png');
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/../../images/calendar/hasinvite.png');
 }
 
 
