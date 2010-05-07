@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 181
+ * @revision 189
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,18 +29,42 @@ Class SearchMgr extends Connector {
     public $instanceSearchKey;
     private $boss_loot_ids;
     
-    public function DoSearchItems($count = false) {
-        if(!$this->searchQuery) {
+    public function DoSearchItems($count = false, $findUpgrade = false) {
+        if(!$this->searchQuery && !$findUpgrade) {
             return false;
         }
+        if($findUpgrade > 0) {
+            $source_item_data = $this->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $findUpgrade);
+            /*
+            ,
+            `stat_type1`, `stat_value1`, `stat_type2`, `stat_value2`, `stat_type3`, `stat_value3`, `stat_type4`, `stat_value4`,
+            `stat_type5`, `stat_value5`, `stat_type6`, `stat_value6`, `stat_type7`, `stat_value7`, `stat_type8`, `stat_value8`,
+            `stat_type9`, `stat_value9`, `stat_type10`, `stat_value10`
+            */
+            if(!$source_item_data) {
+                return false;
+            }
+        }
         if($count == true) {
-            $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            if($findUpgrade) {
+                $sql_query = sprintf("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
+                $count_items = $this->wDB->selectCell($sql_query);
+            }
+            else {
+                $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            }
             if($count_items > 200) {
                 return 200;
             }
             return $count_items;
         }
-        $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+        if($findUpgrade) {
+            $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
+            $items = $this->wDB->select($sql_query);
+        }
+        else {
+            $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+        }
         if(!$items) {
             return false;
         }
@@ -48,7 +72,7 @@ Class SearchMgr extends Connector {
         $i = 0;
         foreach($items as $item) {
             $result_data[$i]['data'] = $item;
-            $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id']);
+            $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id'], $item['displayid']);
             if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
                 $result_data[$i]['data']['name'] = Items::getItemName($item['id']);
             }

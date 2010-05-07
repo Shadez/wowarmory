@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 179
+ * @revision 189
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,6 +32,7 @@ if(!@include('includes/armory_loader.php')) {
 }
 header('Content-type: text/xml');
 $advancedItemsSearch = false;
+$findGearUpgrade     = false;
 if(isset($_GET['searchQuery'])) {
     $search->searchQuery = Utils::escape($_GET['searchQuery']);
 }
@@ -39,7 +40,11 @@ if(isset($_GET['source'])) {
     $advancedItemsSearch = true;
     $search->get_array = $_GET;
 }
-if(!isset($_GET['searchQuery']) && !isset($_GET['source'])) {
+if(isset($_GET['pi']) && is_numeric($_GET['pi']) && $_GET['pi'] > 0) {
+    $findGearUpgrade = true;
+    $itemID = (int) $_GET['pi'];
+}
+if(!isset($_GET['searchQuery']) && !isset($_GET['source']) && !isset($_GET['pi'])) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
@@ -82,6 +87,13 @@ if($advancedItemsSearch) {
         $selected = 'items';
     }
 }
+elseif($findGearUpgrade) {
+    if($count_items = $search->DoSearchItems(true, $itemID)) {
+        $totalCount = $totalCount+$count_items;
+        $items_search = $search->DoSearchItems(false, $itemID);
+        $selected = 'items';
+    }
+}
 else {
     if($count_items = $search->DoSearchItems(true)) {
         $totalCount = $totalCount+$count_items;
@@ -120,7 +132,7 @@ $xml->XMLWriter()->endElement(); //tabs
 
 $searchType = (isset($_GET['searchType'])) ? $_GET['searchType'] : 'characters';
 $xml->XMLWriter()->startElement('searchResults');
-$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => '', 'searchMsg' => '', 'searchFilter' => '', 'searchText' => urlencode($search->searchQuery), 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
+$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => null, 'searchMsg' => null, 'searchFilter' => null, 'searchText' => urlencode($search->searchQuery), 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
 foreach($results_info as $result_key => $result_value) {
     $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }
