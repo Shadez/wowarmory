@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="en_gb" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="HunterPetCunning" icon="ability_hunter_combatexperience" key="Cunning" name="Cunning" order="2">
+      <talent column="0" icon="spell_nature_guardianward" key="2118" name="Cobra Reflexes" tier="0">
+        <rank description="Increases your pet's attack speed by 15%.  Your pet will hit faster but each hit will do less damage." lvl="1"/>
+        <rank description="Increases your pet's attack speed by 30%.  Your pet will hit faster but each hit will do less damage." lvl="2"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_druid_dash" key="2119" name="Dash" tier="0">
+        <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="21238021" column="1" icon="spell_shadow_burningspirit" key="2201" name="Dive" tier="0">
+        <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2120" name="Great Stamina" tier="0">
+        <rank description="Increases your pet's total Stamina by 4%." lvl="1"/>
+        <rank description="Increases your pet's total Stamina by 8%." lvl="2"/>
+        <rank description="Increases your pet's total Stamina by 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2121" name="Natural Armor" tier="0">
+        <rank description="Increases your pet's armor by 5%." lvl="1"/>
+        <rank description="Increases your pet's armor by 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Boar's Speed" tier="1">
+        <rank description="Increases your pet's movement speed by 30%." lvl="1"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Mobility" requires="2119" tier="1">
+        <rank description="Reduces the cooldown on your pet's Dash ability by 8 sec." lvl="1"/>
+        <rank description="Reduces the cooldown on your pet's Dash ability by 16 sec." lvl="2"/>
+      </talent>
+      <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Mobility" requires="2201" tier="1">
+        <rank description="Reduces the cooldown on your pet's Dive ability by 8 sec." lvl="1"/>
+        <rank description="Reduces the cooldown on your pet's Dive ability by 16 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Owl's Focus" tier="1">
+        <rank description="Your pet has a 15% chance after using an ability that the next ability will cost no Focus if used within 8 sec." lvl="1"/>
+        <rank description="Your pet has a 30% chance after using an ability that the next ability will cost no Focus if used within 8 sec." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_jewelry_necklace_22" key="2127" name="Spiked Collar" tier="1">
+        <rank description="Your pet does an additional 3% damage with all attacks." lvl="1"/>
+        <rank description="Your pet does an additional 6% damage with all attacks." lvl="2"/>
+        <rank description="Your pet does an additional 9% damage with all attacks." lvl="3"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2166" name="Culling the Herd" tier="2">
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 1% increased damage for 10 sec." lvl="1"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 2% increased damage for 10 sec." lvl="2"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 3% increased damage for 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Lionhearted" tier="2">
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 15%." lvl="1"/>
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 30%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_racial_cannibalize" key="2206" name="Carrion Feeder" tier="2">
+        <rank description="Your pet can generate health and happiness by eating a corpse.  Will not work on the remains of elemental or mechanical creatures." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_resistnature" key="2168" name="Great Resistance" tier="3">
+        <rank description="Your pet takes 5% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 10% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 15% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_survivalinstincts" key="2177" name="Cornered" tier="3">
+        <rank description="When at less than 35% health, your pet does 25% more damage and has a 30% reduced chance to be critically hit." lvl="1"/>
+        <rank description="When at less than 35% health, your pet does 50% more damage and has a 60% reduced chance to be critically hit." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_misc_fish_48" key="2183" name="Feeding Frenzy" requires="2127" tier="3">
+        <rank description="Your pet does 8% additional damage to targets with less than 35% health." lvl="1"/>
+        <rank description="Your pet does 16% additional damage to targets with less than 35% health." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_lacerate" key="2181" name="Wolverine Bite" tier="4">
+        <rank description="A fierce attack causing 5 damage, modified by pet level, that your pet can use after it makes a critical attack.  Cannot be dodged, blocked or parried." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="5"/>
+      </talent>
+      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Roar of Recovery" tier="4">
+        <rank description="Your pet's inspiring roar restores 30% of your total mana over 9 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_bullrush" key="2175" name="Bullheaded" requires="2177" tier="4">
+        <rank description="Removes all movement impairing effects and all effects which cause loss of control of your pet, and reduces damage done to your pet by 20% for 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="inv_misc_ahnqirajtrinket_02" key="2257" name="Grace of the Mantis" tier="4">
+        <rank description="Reduces the chance your pet will be critically hit by melee attacks by 2%." lvl="1"/>
+        <rank description="Reduces the chance your pet will be critically hit by melee attacks by 4%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_misc_horn_04" key="2256" name="Wild Hunt" requires="2181" tier="5">
+        <rank description="Increases the contribution your pet gets from your Stamina by 20% and attack power by 15%." lvl="1"/>
+        <rank description="Increases the contribution your pet gets from your Stamina by 40% and attack power by 30%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_demoralizingroar" key="2278" name="Roar of Sacrifice" requires="2257" tier="5">
+        <rank description="Protects a friendly target from critical strikes, making attacks against that target unable to be critical strikes, but 20% of all damage taken by that target is also taken by the pet.  Lasts 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="40"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterPetFerocity" icon="ability_druid_swipe" key="Ferocity" name="Ferocity" order="0">
+      <talent column="0" icon="spell_nature_guardianward" key="2107" name="Cobra Reflexes" tier="0">
+        <rank description="Increases your pet's attack speed by 15%.  Your pet will hit faster but each hit will do less damage." lvl="1"/>
+        <rank description="Increases your pet's attack speed by 30%.  Your pet will hit faster but each hit will do less damage." lvl="2"/>
+      </talent>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Dive" tier="0">
+        <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Dash" tier="0">
+        <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2112" name="Great Stamina" tier="0">
+        <rank description="Increases your pet's total Stamina by 4%." lvl="1"/>
+        <rank description="Increases your pet's total Stamina by 8%." lvl="2"/>
+        <rank description="Increases your pet's total Stamina by 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2113" name="Natural Armor" tier="0">
+        <rank description="Increases your pet's armor by 5%." lvl="1"/>
+        <rank description="Increases your pet's armor by 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_cower" key="2124" name="Improved Cower" tier="1">
+        <rank description="The movement speed penalty of your pet's Cower is reduced by 50%." lvl="1"/>
+        <rank description="The movement speed penalty of your pet's Cower is reduced by 100%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_primaltenacity" key="2128" name="Bloodthirsty" tier="1">
+        <rank description="Your pet's attacks have a 10% chance to increase its happiness by 5% and heal 5% of its total health." lvl="1"/>
+        <rank description="Your pet's attacks have a 20% chance to increase its happiness by 5% and heal 5% of its total health." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_jewelry_necklace_22" key="2125" name="Spiked Collar" tier="1">
+        <rank description="Your pet does an additional 3% damage with all attacks." lvl="1"/>
+        <rank description="Your pet does an additional 6% damage with all attacks." lvl="2"/>
+        <rank description="Your pet does an additional 9% damage with all attacks." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_pet_boar" key="2151" name="Boar's Speed" tier="1">
+        <rank description="Increases your pet's movement speed by 30%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2106" name="Culling the Herd" tier="2">
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 1% increased damage for 10 sec." lvl="1"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 2% increased damage for 10 sec." lvl="2"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 3% increased damage for 10 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Lionhearted" tier="2">
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 15%." lvl="1"/>
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 30%." lvl="2"/>
+      </talent>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Charge" tier="2">
+        <rank description="Your pet charges an enemy, immobilizing the target for 1 sec, and increasing the pet's melee attack power by 25% for its next attack." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Swoop" tier="2">
+        <rank description="Your pet swoops at an enemy, immobilizing the target for 1 sec, and adds 25% melee attack power to the pet's next attack." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Heart of the Phoenix" requires="2128" tier="3">
+        <rank description="When your pet dies, it will miraculously return to life with full health." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_spider" key="2129" name="Spider's Bite" tier="3">
+        <rank description="Increases the critical strike chance of your pet by 3%." lvl="1"/>
+        <rank description="Increases the critical strike chance of your pet by 6%." lvl="2"/>
+        <rank description="Increases the critical strike chance of your pet by 9%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_resistnature" key="2154" name="Great Resistance" tier="3">
+        <rank description="Your pet takes 5% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 10% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 15% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="0" icon="ability_druid_berserk" key="2155" name="Rabid" tier="4">
+        <rank description="Your pet goes into a killing frenzy.  Successful attacks have a chance to increase attack power by 5%.  This effect will stack up to 5 times.  Lasts 20 sec." lvl="1"/>
+        <spell castTime="0" cooldown="45000"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mendpet" key="2153" name="Lick Your Wounds" requires="2156" tier="4">
+        <rank description="Your pet heals itself for 100% of its total health over 5 sec while channeling." lvl="1"/>
+        <spell castTime="0" channeled="1" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_druid_kingofthejungle" key="2157" name="Call of the Wild" requires="2129" tier="4">
+        <rank description="Your pet roars, increasing your pet's and your melee and ranged attack power by 10%.  Lasts 20 sec." lvl="1"/>
+        <spell castTime="0" cooldown="300000"/>
+      </talent>
+      <talent column="0" icon="inv_misc_fish_35" key="2254" name="Shark Attack" tier="5">
+        <rank description="Your pet does an additional 3% damage with all attacks." lvl="1"/>
+        <rank description="Your pet does an additional 6% damage with all attacks." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_horn_04" key="2253" name="Wild Hunt" requires="2157" tier="5">
+        <rank description="Increases the contribution your pet gets from your Stamina by 20% and attack power by 15%." lvl="1"/>
+        <rank description="Increases the contribution your pet gets from your Stamina by 40% and attack power by 30%." lvl="2"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterPetTenacity" icon="ability_hunter_pet_bear" key="Tenacity" name="Tenacity" order="1">
+      <talent column="0" icon="spell_nature_guardianward" key="2114" name="Cobra Reflexes" tier="0">
+        <rank description="Increases your pet's attack speed by 15%.  Your pet will hit faster but each hit will do less damage." lvl="1"/>
+        <rank description="Increases your pet's attack speed by 30%.  Your pet will hit faster but each hit will do less damage." lvl="2"/>
+      </talent>
+      <talent categoryMask0="3179210" categoryMask1="1610612736" column="1" icon="ability_hunter_pet_bear" key="2237" name="Charge" tier="0">
+        <rank description="Your pet charges an enemy, immobilizing the target for 1 sec, and increasing the pet's melee attack power by 25% for its next attack." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2116" name="Great Stamina" tier="0">
+        <rank description="Increases your pet's total Stamina by 4%." lvl="1"/>
+        <rank description="Increases your pet's total Stamina by 8%." lvl="2"/>
+        <rank description="Increases your pet's total Stamina by 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2117" name="Natural Armor" tier="0">
+        <rank description="Increases your pet's armor by 5%." lvl="1"/>
+        <rank description="Increases your pet's armor by 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_jewelry_necklace_22" key="2126" name="Spiked Collar" tier="1">
+        <rank description="Your pet does an additional 3% damage with all attacks." lvl="1"/>
+        <rank description="Your pet does an additional 6% damage with all attacks." lvl="2"/>
+        <rank description="Your pet does an additional 9% damage with all attacks." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_boar" key="2160" name="Boar's Speed" tier="1">
+        <rank description="Increases your pet's movement speed by 30%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_lifedrain" key="2173" name="Blood of the Rhino" requires="2116" tier="1">
+        <rank description="Increases your pet's total Stamina by 2% and increases all healing effects on your pet by 20%." lvl="1"/>
+        <rank description="Increases your pet's total Stamina by 4% and increases all healing effects on your pet by 40%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_helmet_94" key="2122" name="Pet Barding" requires="2117" tier="1">
+        <rank description="Increases your pet's armor by 5% and chance to Dodge by 1%." lvl="1"/>
+        <rank description="Increases your pet's armor by 10% and chance to Dodge by 2%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2110" name="Culling the Herd" tier="2">
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 1% increased damage for 10 sec." lvl="1"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 2% increased damage for 10 sec." lvl="2"/>
+        <rank description="When your pet's Claw, Bite, or Smack ability deals a critical strike, you and your pet deal 3% increased damage for 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_physical_taunt" key="2123" name="Guard Dog" tier="2">
+        <rank description="Your pet's Growl generates 10% additional threat and 10% of its total happiness." lvl="1"/>
+        <rank description="Your pet's Growl generates 20% additional threat and 10% of its total happiness." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Lionhearted" tier="2">
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 15%." lvl="1"/>
+        <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 30%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_golemthunderclap" key="2277" name="Thunderstomp" tier="2">
+        <rank description="Shakes the ground with thundering force, doing 3 to 5 Nature damage to all enemies within 8 yards.  This ability causes a moderate amount of additional threat." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="5">
+          <power cost="20" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_misc_ahnqirajtrinket_02" key="2163" name="Grace of the Mantis" tier="3">
+        <rank description="Reduces the chance your pet will be critically hit by melee attacks by 2%." lvl="1"/>
+        <rank description="Reduces the chance your pet will be critically hit by melee attacks by 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_resistnature" key="2161" name="Great Resistance" tier="3">
+        <rank description="Your pet takes 5% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 10% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="Your pet takes 15% less damage from Arcane, Fire, Frost, Nature and Shadow magic." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="0" icon="spell_nature_shamanrage" key="2171" name="Last Stand" tier="4">
+        <rank description="Your pet temporarily gains 30% of its maximum health for 20 sec.  After the effect expires, the health is lost." lvl="1"/>
+        <spell castTime="0" cooldown="360000"/>
+      </talent>
+      <talent column="1" icon="spell_nature_reincarnation" key="2170" name="Taunt" requires="2123" tier="4">
+        <rank description="Your pet taunts the target to attack it for 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_demoralizingroar" key="2172" name="Roar of Sacrifice" requires="2163" tier="4">
+        <rank description="Protects a friendly target from critical strikes, making attacks against that target unable to be critical strikes, but 20% of all damage taken by that target is also taken by the pet.  Lasts 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="40"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_pet_turtle" key="2169" name="Intervene" tier="4">
+        <rank description="Your pet runs at high speed towards a group member, intercepting the next melee or ranged attack made against them." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="25" minRange="8">
+          <power cost="20" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_gorilla" key="2258" name="Silverback" tier="5">
+        <rank description="Your pet's Growl also heals it for 1% of its total health." lvl="1"/>
+        <rank description="Your pet's Growl also heals it for 2% of its total health." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_horn_04" key="2255" name="Wild Hunt" requires="2172" tier="5">
+        <rank description="Increases the contribution your pet gets from your Stamina by 20% and attack power by 15%." lvl="1"/>
+        <rank description="Increases the contribution your pet gets from your Stamina by 40% and attack power by 30%." lvl="2"/>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>

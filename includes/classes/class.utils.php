@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 191
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -316,22 +316,59 @@ Class Utils extends Connector {
             1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
             1463, 3259, 456, 1400, 1402, 3117, 4078, 4576
-        )"); // 3.3.3a IDs
+        )
+        ORDER BY `character_achievement`.`date` DESC"); // 3.3.3a IDs
         if(!$achievements_data) {
             return false;
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $achievements_data[$i]['title'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['desc']  = $this->aDB->selectCell("SELECT `description_".$this->_locale."` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['icon']  = $this->aDB->selectCell("SELECT `iconname` FROM `armory_achievement` WHERE `id`=?", $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['dateCompleted'] = date('Y-m-d\TH:i:s\Z', $achievements_data[$i]['date']);            
+            $tmp_info = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `desc`, `iconname` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
+            $achievements_data[$i]['title'] = $tmp_info['name'];
+            $achievements_data[$i]['desc']  = $tmp_info['desc'];
+            $achievements_data[$i]['icon']  = $tmp_info['iconname'];
+            $achievements_data[$i]['id']    = $achievements_data[$i]['achievement'];
+            $achievements_data[$i]['dateCompleted'] = date('Y-m-d\TH:i:s\Z', $achievements_data[$i]['date']);
         }
         /*
         $start_id = $countAch+1;
         //                   Sartharion Malygos Kel'thuzed Yogg-Saron ToGC  The Lich King
         $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
         $bosses = array();
+        */
+        $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
+        /*$i = count($achievements_data)+1;
+        foreach($boss_firsts as $rf) {
+            $tmp = $this->cDB->select("
+            SELECT
+            `character_achievement`.`achievement`,
+            `character_achievement`.`date`,
+            `character_achievement`.`guid`,
+            `characters`.`name` AS `charname`,
+            `characters`.`race`,
+            `characters`.`class`,
+            `characters`.`gender`,
+            `guild`.`name` AS `guildname`,
+            `guild`.`guildid`,
+            `guild_member`.`guildid`
+            FROM `character_achievement` AS `character_achievement`
+            LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
+            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`character_achievement`.`guid`
+            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
+            WHERE `character_achievement`.`achievement`=?
+            ORDER BY `character_achievement`.`date` DESC", $rf);
+            if($tmp) {
+                foreach($tmp as $ach) {
+                    if($ach['guildid'] != null) {
+                         $achievements_data[$rf][$ach['guildid']]['info'] = array('guildId' => $ach['guildid'], 'name' => $ach['guildname'], 'achievementId' => $ach['achievement']);
+                    }
+                    else {
+                        $ach['guildid'] = 0;
+                    }
+                    $achievements_data[$rf][$ach['guildid']]['members'][] = $ach;
+                }
+            }
+        }
         */
         return $achievements_data;
     }
@@ -647,6 +684,16 @@ Class Utils extends Connector {
     
     public function GetDungeonData($instance_key) {
         return $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`=?", $instance_key);
+    }
+    
+    public function PetTalentCalcData($key) {
+        switch(strtolower($key)) {
+            case 'ferocity':
+            case 'tenacity':
+            case 'cunning':
+                return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_".$this->_locale."` AS `name` FROM `armory_petcalc` WHERE `key`=? AND `catId` >= 0", strtolower($key));
+                break;
+        }
     }
 }
 ?>

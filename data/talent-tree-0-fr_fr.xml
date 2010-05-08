@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/talent-tree.xml">
+  <talentTrees>
+    <tree bgImage="HunterPetCunning" icon="ability_hunter_combatexperience" key="Cunning" name="Ruse" order="2">
+      <talent column="0" icon="spell_nature_guardianward" key="2118" name="Reflexes du cobra" tier="0">
+        <rank description="Augmente la vitesse d'attaque de votre familier de 15%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="1"/>
+        <rank description="Augmente la vitesse d'attaque de votre familier de 30%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="2"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_druid_dash" key="2119" name="Celerite" tier="0">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 80% pendant 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="21238021" column="1" icon="spell_shadow_burningspirit" key="2201" name="Plongeon" tier="0">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 80% pendant 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2120" name="Endurance superieure" tier="0">
+        <rank description="Augmente l'Endurance totale de votre familier de 4%." lvl="1"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 8%." lvl="2"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2121" name="Armure naturelle" tier="0">
+        <rank description="Armure de votre familier augmentee de 5%." lvl="1"/>
+        <rank description="Armure de votre familier augmentee de 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Vitesse du sanglier" tier="1">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 30%." lvl="1"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Mobilite" requires="2119" tier="1">
+        <rank description="Reduit le temps de recharge de la technique Celerite de votre familier de 8 sec." lvl="1"/>
+        <rank description="Reduit le temps de recharge de la technique Celerite de votre familier de 16 sec." lvl="2"/>
+      </talent>
+      <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Mobilite" requires="2201" tier="1">
+        <rank description="Reduit le temps de recharge de la technique Plongeon de votre familier de 8 sec." lvl="1"/>
+        <rank description="Reduit le temps de recharge de la technique Plongeon de votre familier de 16 sec." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Focalisation de la chouette" tier="1">
+        <rank description="Apres avoir utilise une technique, votre familier a 15% de chances que la prochaine technique ne coute pas de points de focalisation si elle est utilisee dans les 8 sec." lvl="1"/>
+        <rank description="Apres avoir utilise une technique, votre familier a 30% de chances que la prochaine technique ne coute pas de points de focalisation si elle est utilisee dans les 8 sec." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_jewelry_necklace_22" key="2127" name="Collier cloute" tier="1">
+        <rank description="Votre familier inflige 3% de degats supplementaires avec toutes ses attaques." lvl="1"/>
+        <rank description="Votre familier inflige 6% de degats supplementaires avec toutes ses attaques." lvl="2"/>
+        <rank description="Votre familier inflige 9% de degats supplementaires avec toutes ses attaques." lvl="3"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2166" name="Abattage du troupeau" tier="2">
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 1% de degats supplementaires pendant 10 sec." lvl="1"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 2% de degats supplementaires pendant 10 sec." lvl="2"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 3% de degats supplementaires pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Au coeur de lion" tier="2">
+        <rank description="Reduit de 15% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="1"/>
+        <rank description="Reduit de 30% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_racial_cannibalize" key="2206" name="Mangeur de charognes" tier="2">
+        <rank description="Votre familier peut generer des points de vie et de la satisfation en mangeant un cadavre. Ne fonctionne pas sur les restes de creatures elementaires ou mecaniques." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="5"/>
+      </talent>
+      <talent column="1" icon="spell_nature_resistnature" key="2168" name="Grande resistance" tier="3">
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 5% de degats en moins a votre familier." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 10% de degats en moins a votre familier." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 15% de degats en moins a votre familier." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_survivalinstincts" key="2177" name="Accule" tier="3">
+        <rank description="Quand il dispose de moins de 35% de ses points de vie, votre familier inflige 25% de degats supplementaires et la probabilite qu'il subisse un coup critique est reduite de 30%." lvl="1"/>
+        <rank description="Quand il dispose de moins de 35% de ses points de vie, votre familier inflige 50% de degats supplementaires et la probabilite qu'il subisse un coup critique est reduite de 60%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_misc_fish_48" key="2183" name="Frenesie affamee" requires="2127" tier="3">
+        <rank description="Votre familier inflige 8% de degats supplementaires aux cibles disposant de moins de 35% de leurs points de vie." lvl="1"/>
+        <rank description="Votre familier inflige 16% de degats supplementaires aux cibles disposant de moins de 35% de leurs points de vie." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_lacerate" key="2181" name="Morsure de carcajou" tier="4">
+        <rank description="Une violente attaque infligeant 5 points de degats, modifie par le niveau du familier, que votre familier peut utiliser apres avoir effectue une attaque critique. Elle ne peut etre esquivee, bloquee ou paree." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="5"/>
+      </talent>
+      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Rugissement de recuperation" tier="4">
+        <rank description="Le rugissement de votre familier vous remotive et vous rend 30% de votre total de mana en 9 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="40"/>
+      </talent>
+      <talent column="2" icon="ability_warrior_bullrush" key="2175" name="Tete de taureau" requires="2177" tier="4">
+        <rank description="Dissipe tous les effets affectant le deplacement et tous les effets qui provoquent une perte du controle de votre familier, en plus de reduire tous les degats infliges a votre familier de 20% pendant 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="3" icon="inv_misc_ahnqirajtrinket_02" key="2257" name="Grace de la mante" tier="4">
+        <rank description="Reduit la probabilite que votre familier soit touche par des attaques en melee de 2%." lvl="1"/>
+        <rank description="Reduit la probabilite que votre familier soit touche par des attaques en melee de 4%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_misc_horn_04" key="2256" name="Chasse sauvage" requires="2181" tier="5">
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 20% et de votre puissance d'attaque de 15%." lvl="1"/>
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 40% et de votre puissance d'attaque de 30%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_druid_demoralizingroar" key="2278" name="Rugissement de sacrifice" requires="2257" tier="5">
+        <rank description="Protege une cible alliee des coups critiques en empechant les attaques contre elles d'etre critiques, mais 20% du montant de degats subi par la cible est egalement subi par le familier. Dure 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="40"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterPetFerocity" icon="ability_druid_swipe" key="Ferocity" name="Ferocite" order="0">
+      <talent column="0" icon="spell_nature_guardianward" key="2107" name="Reflexes du cobra" tier="0">
+        <rank description="Augmente la vitesse d'attaque de votre familier de 15%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="1"/>
+        <rank description="Augmente la vitesse d'attaque de votre familier de 30%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="2"/>
+      </talent>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Plongeon" tier="0">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 80% pendant 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Celerite" tier="0">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 80% pendant 16 sec." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2112" name="Endurance superieure" tier="0">
+        <rank description="Augmente l'Endurance totale de votre familier de 4%." lvl="1"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 8%." lvl="2"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2113" name="Armure naturelle" tier="0">
+        <rank description="Armure de votre familier augmentee de 5%." lvl="1"/>
+        <rank description="Armure de votre familier augmentee de 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="ability_druid_cower" key="2124" name="Derobade amelioree" tier="1">
+        <rank description="La penalite affectant la vitesse de deplacement causee par la Derobade de votre familier est reduite de 50%." lvl="1"/>
+        <rank description="La penalite affectant la vitesse de deplacement causee par la Derobade de votre familier est reduite de 100%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_druid_primaltenacity" key="2128" name="Assoiffe de sang" tier="1">
+        <rank description="Les attaques de votre familier ont 10% de chances d'augmenter sa satisfaction de 5% et de le soigner pour 5% de son total de points de vie." lvl="1"/>
+        <rank description="Les attaques de votre familier ont 20% de chances d'augmenter sa satisfaction de 5% et de le soigner pour 5% de son total de points de vie." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_jewelry_necklace_22" key="2125" name="Collier cloute" tier="1">
+        <rank description="Votre familier inflige 3% de degats supplementaires avec toutes ses attaques." lvl="1"/>
+        <rank description="Votre familier inflige 6% de degats supplementaires avec toutes ses attaques." lvl="2"/>
+        <rank description="Votre familier inflige 9% de degats supplementaires avec toutes ses attaques." lvl="3"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_pet_boar" key="2151" name="Vitesse du sanglier" tier="1">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 30%." lvl="1"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2106" name="Abattage du troupeau" tier="2">
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 1% de degats supplementaires pendant 10 sec." lvl="1"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 2% de degats supplementaires pendant 10 sec." lvl="2"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 3% de degats supplementaires pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Au coeur de lion" tier="2">
+        <rank description="Reduit de 15% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="1"/>
+        <rank description="Reduit de 30% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="2"/>
+      </talent>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Charge" tier="2">
+        <rank description="Votre familier charge un ennemi et l'immobilise pendant 1 sec. Augmente de 25% la puissance d'attaque en melee du familier pour sa prochaine attaque." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Pique" tier="2">
+        <rank description="Votre familier descend en pique sur un ennemi et l'immobilise pendant 1 sec. Ajoute egalement 25% a la puissance d'attaque en melee de la prochaine attaque du familier." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Coeur du phenix" requires="2128" tier="3">
+        <rank description="Quand votre familier meurt, il revient miraculeusement a la vie avec tous ses points de vie." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_spider" key="2129" name="Piqure d'araignee" tier="3">
+        <rank description="Augmente de 3% les chances de coup critique de votre familier." lvl="1"/>
+        <rank description="Augmente de 6% les chances de coup critique de votre familier." lvl="2"/>
+        <rank description="Augmente de 9% les chances de coup critique de votre familier." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_resistnature" key="2154" name="Grande resistance" tier="3">
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 5% de degats en moins a votre familier." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 10% de degats en moins a votre familier." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 15% de degats en moins a votre familier." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="0" icon="ability_druid_berserk" key="2155" name="Atteint de la rage" tier="4">
+        <rank description="Votre familier entre dans une frenesie meurtriere. Les attaques reussies ont une chance d'augmenter sa puissance d'attaque de 5%. Cet effet est cumulable jusqu'a 5 fois. Dure 20 sec." lvl="1"/>
+        <spell castTime="0" cooldown="45000"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_mendpet" key="2153" name="Lecher ses plaies" requires="2156" tier="4">
+        <rank description="Votre familier se soigne lui-meme pour 100% de son total de points de vie en 5 sec lors de la canalisation." lvl="1"/>
+        <spell castTime="0" channeled="1" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_druid_kingofthejungle" key="2157" name="Appel du fauve" requires="2129" tier="4">
+        <rank description="Votre familier rugit, ce qui augmente sa puissance d'attaque en melee et a distance ainsi que la votre de 10%. Dure 20 sec." lvl="1"/>
+        <spell castTime="0" cooldown="300000"/>
+      </talent>
+      <talent column="0" icon="inv_misc_fish_35" key="2254" name="Attaque de requin" tier="5">
+        <rank description="Votre familier inflige 3% de degats supplementaires avec toutes ses attaques." lvl="1"/>
+        <rank description="Votre familier inflige 6% de degats supplementaires avec toutes ses attaques." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_horn_04" key="2253" name="Chasse sauvage" requires="2157" tier="5">
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 20% et de votre puissance d'attaque de 15%." lvl="1"/>
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 40% et de votre puissance d'attaque de 30%." lvl="2"/>
+      </talent>
+    </tree>
+    <tree bgImage="HunterPetTenacity" icon="ability_hunter_pet_bear" key="Tenacity" name="Tenacite" order="1">
+      <talent column="0" icon="spell_nature_guardianward" key="2114" name="Reflexes du cobra" tier="0">
+        <rank description="Augmente la vitesse d'attaque de votre familier de 15%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="1"/>
+        <rank description="Augmente la vitesse d'attaque de votre familier de 30%. Votre familier porte ses coups plus vite mais ils infligent moins de degats a chaque fois." lvl="2"/>
+      </talent>
+      <talent categoryMask0="3179210" categoryMask1="1610612736" column="1" icon="ability_hunter_pet_bear" key="2237" name="Charge" tier="0">
+        <rank description="Votre familier charge un ennemi et l'immobilise pendant 1 sec. Augmente de 25% la puissance d'attaque en melee du familier pour sa prochaine attaque." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2116" name="Endurance superieure" tier="0">
+        <rank description="Augmente l'Endurance totale de votre familier de 4%." lvl="1"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 8%." lvl="2"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2117" name="Armure naturelle" tier="0">
+        <rank description="Armure de votre familier augmentee de 5%." lvl="1"/>
+        <rank description="Armure de votre familier augmentee de 10%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_jewelry_necklace_22" key="2126" name="Collier cloute" tier="1">
+        <rank description="Votre familier inflige 3% de degats supplementaires avec toutes ses attaques." lvl="1"/>
+        <rank description="Votre familier inflige 6% de degats supplementaires avec toutes ses attaques." lvl="2"/>
+        <rank description="Votre familier inflige 9% de degats supplementaires avec toutes ses attaques." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_boar" key="2160" name="Vitesse du sanglier" tier="1">
+        <rank description="Augmente la vitesse de deplacement de votre familier de 30%." lvl="1"/>
+      </talent>
+      <talent column="2" icon="spell_shadow_lifedrain" key="2173" name="Sang du rhinoceros" requires="2116" tier="1">
+        <rank description="Augmente l'Endurance totale de votre familier de 2% et augmente tous les effets de soins sur votre familier de 20%." lvl="1"/>
+        <rank description="Augmente l'Endurance totale de votre familier de 4% et augmente tous les effets de soins sur votre familier de 40%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="inv_helmet_94" key="2122" name="Barde du familier" requires="2117" tier="1">
+        <rank description="Augmente l'Armure de votre familier de 5% et ses chances d'esquiver de 1%." lvl="1"/>
+        <rank description="Augmente l'Armure de votre familier de 10% et ses chances d'esquiver de 2%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="inv_misc_monsterhorn_06" key="2110" name="Abattage du troupeau" tier="2">
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 1% de degats supplementaires pendant 10 sec." lvl="1"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 2% de degats supplementaires pendant 10 sec." lvl="2"/>
+        <rank description="Quand la technique Griffe, Morsure ou Coup de patte de votre familier inflige un coup critique, votre familier et vous infligez 3% de degats supplementaires pendant 10 sec." lvl="3"/>
+      </talent>
+      <talent column="1" icon="ability_physical_taunt" key="2123" name="Chien de garde" tier="2">
+        <rank description="Le Grondement de votre familier genere 10% de menace supplementaire et 10% de son total de satisfaction." lvl="1"/>
+        <rank description="Le Grondement de votre familier genere 20% de menace supplementaire et 10% de son total de satisfaction." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Au coeur de lion" tier="2">
+        <rank description="Reduit de 15% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="1"/>
+        <rank description="Reduit de 30% la duree de tous les effets d'etourdissement et de peur utilises contre votre familier." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_golemthunderclap" key="2277" name="Grondeterre" tier="2">
+        <rank description="Fait violemment trembler le sol et inflige 3 a 5 points de degats de Nature a tous les ennemis se trouvant dans un rayon de 8 metres. Cette technique genere une quantite moderee de menace supplementaire." lvl="1"/>
+        <spell castTime="0" cooldown="10000" maxRange="5">
+          <power cost="20" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="inv_misc_ahnqirajtrinket_02" key="2163" name="Grace de la mante" tier="3">
+        <rank description="Reduit la probabilite que votre familier soit touche par des attaques en melee de 2%." lvl="1"/>
+        <rank description="Reduit la probabilite que votre familier soit touche par des attaques en melee de 4%." lvl="2"/>
+      </talent>
+      <talent column="3" icon="spell_nature_resistnature" key="2161" name="Grande resistance" tier="3">
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 5% de degats en moins a votre familier." lvl="1"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 10% de degats en moins a votre familier." lvl="2"/>
+        <spell castTime="0"/>
+        <rank description="La magie des Arcanes, du Feu, du Givre, de la Nature et de l'Ombre inflige 15% de degats en moins a votre familier." lvl="3"/>
+        <spell castTime="0"/>
+      </talent>
+      <talent column="0" icon="spell_nature_shamanrage" key="2171" name="Dernier rempart" tier="4">
+        <rank description="Votre familier recoit temporairement 30% de ses points de vie maximum pendant 20 sec. Quand l'effet se termine, ces points de vie sont perdus." lvl="1"/>
+        <spell castTime="0" cooldown="360000"/>
+      </talent>
+      <talent column="1" icon="spell_nature_reincarnation" key="2170" name="Provocation" requires="2123" tier="4">
+        <rank description="Votre familier provoque la cible pour l'attaquer pendant 3 sec." lvl="1"/>
+        <spell castTime="0" cooldown="180000" maxRange="5"/>
+      </talent>
+      <talent column="2" icon="ability_druid_demoralizingroar" key="2172" name="Rugissement de sacrifice" requires="2163" tier="4">
+        <rank description="Protege une cible alliee des coups critiques en empechant les attaques contre elles d'etre critiques, mais 20% du montant de degats subi par la cible est egalement subi par le familier. Dure 12 sec." lvl="1"/>
+        <spell castTime="0" cooldown="60000" maxRange="40"/>
+      </talent>
+      <talent column="3" icon="ability_hunter_pet_turtle" key="2169" name="Intervention" tier="4">
+        <rank description="Votre familier court a grande vitesse vers un membre du groupe et intercepte la prochaine attaque en melee ou a distance faite contre lui." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="25" minRange="8">
+          <power cost="20" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="ability_hunter_pet_gorilla" key="2258" name="Dos argente" tier="5">
+        <rank description="Le Grondement de votre familier lui rend egalement 1% de son total de points de vie." lvl="1"/>
+        <rank description="Le Grondement de votre familier lui rend egalement 2% de son total de points de vie." lvl="2"/>
+      </talent>
+      <talent column="2" icon="inv_misc_horn_04" key="2255" name="Chasse sauvage" requires="2172" tier="5">
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 20% et de votre puissance d'attaque de 15%." lvl="1"/>
+        <rank description="Augmente la part que votre familier recoit de votre Endurance de 40% et de votre puissance d'attaque de 30%." lvl="2"/>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>
