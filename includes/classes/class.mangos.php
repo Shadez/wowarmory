@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 175
+ * @revision 192
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -468,6 +468,10 @@ Class Mangos extends Connector {
             }
         }
         return $percent;
+    }
+    
+    public function GetVendorExtendedCost($itemID) {
+        $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $itemID);
     }
 }
 ?>

@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 178
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -107,16 +107,17 @@ Class Items extends Connector {
      * @return string
      **/
     public function AllowableRaces($mask) {
-        $mask&=0x7FF;
+        $mask &= 0x7FF;
         // Return zero if for all class (or for none
-		if ($mask == 0x7FF OR $mask == 0) {
+		if($mask == 0x7FF || $mask == 0) {
             return 0;
 		}
-        $i=1;
+        $i = 1;
         $rMask = array();
+        $races = $this->aDB->select("SELECT `id` AS ARRAY_KEY, `name_".$this->_locale."` AS `name` FROM `armory_races`");
 		while($mask) {
 			if($mask & 1) {
-                $rMask[$i] = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_races` WHERE `id`=?", $i);
+                $rMask[$i] = $races[$i]['name'];
 		   	}
 			$mask>>=1;
 			$i++;
@@ -138,9 +139,10 @@ Class Items extends Connector {
 		}
         $i=1;
         $rMask = array();
+        $classes = $this->aDB->select("SELECT `id` AS ARRAY_KEY, `name_".$this->_locale."` AS `name` FROM `armory_classes`");
 		while($mask) {
 			if($mask & 1) {
-                $rMask[$i] = $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $i);
+                $rMask[$i] = $classes[$i]['name'];
 	    	}
 			$mask>>=1;
 			$i++;
@@ -155,14 +157,8 @@ Class Items extends Connector {
      * @return string
      **/
     public function GetItemSource($item) {
-		$bossLoot = $this->wDB->selectCell("
-		SELECT `entry`
-			FROM `creature_loot_template`
-				WHERE `item`=? LIMIT 1", $item);
-        $chestLoot = $this->wDB->selectCell("
-        SELECT `entry`
-            FROM `gameobject_loot_template`
-                WHERE `item`=? LIMIT 1", $item);
+		$bossLoot = $this->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=? LIMIT 1", $item);
+        $chestLoot = $this->wDB->selectCell("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=? LIMIT 1", $item);
         if($bossLoot) {
             if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && self::IsUniqueLoot($item)) {
                 // We got boss loot, generate improved tooltip.
@@ -184,10 +180,7 @@ Class Items extends Connector {
             }
         }
         
-        $vendorLoot = $this->wDB->selectCell("
-		SELECT `entry`
-			FROM `npc_vendor`
-				WHERE `item`=? LIMIT 1", $item);		
+        $vendorLoot = $this->wDB->selectCell("SELECT `entry` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $item);		
         $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
         if($vendorLoot && $reputationReward > 0) {
             return array('value' => 'sourceType.factionReward');
@@ -206,10 +199,7 @@ Class Items extends Connector {
             return array('value' => 'sourceType.questReward');
         }
         
-        $craftLoot = $this->aDB->selectCell("
-        SELECT `id`
-            FROM `armory_spell`
-                WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
+        $craftLoot = $this->aDB->selectCell("SELECT `id` FROM `armory_spell` WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         if($craftLoot) {
             return array('value' => 'sourceType.createdByPlans');
         }
@@ -241,9 +231,9 @@ Class Items extends Connector {
         }
         else {
             $loot = array(
-                'source' => 'Unknown',
+                'source'   => 'Unknown',
                 'instance' => 'Unknown',
-                'percent' => 'Unknown'
+                'percent'  => 'Unknown'
             );
         }
         return $loot;
@@ -749,7 +739,7 @@ Class Items extends Connector {
             return false;
         }
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
-        $heroic_string = $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=19");
+        $heroic_string = Utils::GetArmoryString(19);
         $item_difficulty = null;
         for($i=1;$i<5;$i++) {
             if(isset($dungeonData['lootid_'.$i]) && $dungeonData['lootid_'.$i] == $bossID && isset($difficulty_enum[$i])) {
@@ -923,6 +913,10 @@ Class Items extends Connector {
             return $arenaTeamRating;
         }
         return false;
+    }
+    
+    public function GetItemData($itemID) {
+        $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Faction`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
     }
 }
 ?>

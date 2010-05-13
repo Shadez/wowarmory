@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -51,7 +51,7 @@ if(!$isGuild) {
 }
 // Get page cache
 if($guilds->guildId > 0 && $isGuild && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('guild-bank-log', $guilds->guildName, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('guild-bank-log', $guilds->guildName, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'guilds')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -69,7 +69,7 @@ $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'guildBankLog');
 $xml->XMLWriter()->writeAttribute('tab', 'guild');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'guild');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)) : '' );
+$xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null);
 $xml->XMLWriter()->endElement(); //tabInfo
 /** Basic info **/
 $guilds->_structGuildInfo();
@@ -85,14 +85,12 @@ $guild_header = array(
     'count'        => $guilds->CountGuildMembers(),
     'faction'      => $guilds->guildFaction,
     'name'         => $guilds->guildName,
-    'nameUrl'      => sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName)),
-    'realm'        => $armory->armoryconfig['defaultRealmName'],
-    'realmUrl'     => urlencode($armory->armoryconfig['defaultRealmName']),
-    'url'          => sprintf('r=%s&gn=%s', urlencode($armory->armoryconfig['defaultRealmName']), urlencode($guilds->guildName))
+    'nameUrl'      => sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)),
+    'realm'        => $armory->currentRealmInfo['name'],
+    'realmUrl'     => urlencode($armory->currentRealmInfo['name']),
+    'url'          => sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName))
 );
-// <guildInfo> start
 $xml->XMLWriter()->startElement('guildInfo');
-// <guildHeader> start
 $xml->XMLWriter()->startElement('guildHeader');
 foreach($guild_header as $header_key => $header_value) {
     $xml->XMLWriter()->writeAttribute($header_key, $header_value);
@@ -119,7 +117,7 @@ foreach($guild_ranks as $rank) {
     }
     $xml->XMLWriter()->endElement(); //rank
 }
-$xml->XMLWriter()->endElement();   //guildRanks
+$xml->XMLWriter()->endElement(); //guildRanks
 $xml->XMLWriter()->startElement('guildBank');
 $guild_bags = $guilds->GetGuildBankTabs();
 $xml->XMLWriter()->startElement('bags');

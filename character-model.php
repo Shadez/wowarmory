@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -65,7 +65,7 @@ $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
     $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
-    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement(); //characterInfo
     $xml->XMLWriter()->endElement(); //page
     $xml_cache_data = $xml->StopXML();
     echo $xml_cache_data;
@@ -76,7 +76,8 @@ $characters->_structCharacter();
 $items->charGuid = $characters->guid;
 
 $character_model_data = array();
-$character_model_data['race'] = $armory->aDB->selectCell("SELECT `modeldata_1` FROM `armory_races` WHERE `id`=?", $characters->race);
+$race_model_data = $utils->RaceModelData($characters->race);
+$character_model_data['race'] = $race_model_data['modeldata_1'];
 if($characters->gender == 1) {
     $character_model_data['gender'] = 'female';
     $character_model_data['gender_1'] = 'f';
@@ -85,9 +86,8 @@ else {
     $character_model_data['gender'] = 'male';
     $character_model_data['gender_1'] = 'm';
 }
-$character_model_data['race_gender'] = $armory->aDB->selectCell("SELECT `modeldata_2` FROM `armory_races` WHERE `id`=?", $characters->race).$character_model_data['gender_1'];
-
-$player_model = $armory->cDB->selectRow("SELECT `playerBytes`, `playerBytes2`, `playerFlags` FROM `characters` WHERE `guid`=?", $characters->guid);
+$character_model_data['race_gender'] = $race_model_data['modeldata_2'].$character_model_data['gender_1'];
+$player_model = $characters->PlayerBytes();
 $character_model_data['face_color'] = ($player_model['playerBytes']>>8)%256;
 $character_model_data['hair_style'] = ($player_model['playerBytes']>>16)%256;
 $character_model_data['hair_color'] = ($player_model['playerBytes']>>24)%256;
@@ -124,7 +124,6 @@ $xml->XMLWriter()->startElement('model');
 foreach($model_data as $model_key => $model_value) {
     $xml->XMLWriter()->writeAttribute($model_key, $model_value);
 }
-
 $xml->XMLWriter()->startElement('components');
 $components = array(100, 200, 801, 401, 601, $character_model_data['hair_style'], 901, 302, 1600, 1201, 702, 1001, 1401, 1501, 0, 101, 301, 1101, 502, 1502);
 $count_components = count($components);
@@ -144,7 +143,6 @@ foreach($components as $component) {
 }
 $xml->XMLWriter()->endElement(); //components
 $subtexture_data = array();
-
 /** MAIN TEXTURES **/
 $tmpid = 0;
 if($tmpid = $characters->GetCharacterEquip('shirt')) {
@@ -231,7 +229,7 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/torsouppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'suffixFile' => '_u.png',
+            'suffixFile' => '_f.png',
             'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
@@ -245,7 +243,7 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_u.png',
+            'suffixFile' => '_f.png',
             'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
@@ -344,7 +342,7 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
             'prefix' => 'item/texturecomponents/torsouppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'suffixFile' => '_u.png',
+            'suffixFile' => '_f.png',
             'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
@@ -358,7 +356,7 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_u.png',
+            'suffixFile' => '_f.png',
             'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
@@ -562,18 +560,6 @@ else {
     }
     unset($tmpid);
 }
-/*
-if($tmpid = $characters->GetCharacterEquip('relic')) {
-    if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
-        $model_data_attachment['relic_ranged_texture'] = array(
-            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
-        );
-    }
-    unset($tmpid);
-}*/
-
 $xml->XMLWriter()->startElement('textures');
 $xml->XMLWriter()->startElement('texture');
 $xml->XMLWriter()->writeAttribute('file', sprintf('character/%s/%s/%s%sskin00_%s.png', $character_model_data['race'], $character_model_data['gender'], $character_model_data['race'], $character_model_data['gender'], $character_model_data['skin_style']));
@@ -605,7 +591,6 @@ if($character_model_data['hide_cloak'] == 0 && isset($model_data_texture['back_t
     $xml->XMLWriter()->endElement(); //texture
 }
 $xml->XMLWriter()->endElement(); //textures
-
 if(isset($model_data_attachment) && is_array($model_data_attachment)) {
     $xml->XMLWriter()->startElement('attachments');
     foreach($model_data_attachment as $attachment) {
@@ -617,8 +602,6 @@ if(isset($model_data_attachment) && is_array($model_data_attachment)) {
     }
     $xml->XMLWriter()->endElement(); //attachments
 }
-
-
 $animation_data = array(
     array('id' => 0,    'key' => 'stand',              'weapons' => 'melee'),
     array('id' => 69,   'key' => 'dance',              'weapons' => 'no'),
@@ -652,7 +635,6 @@ foreach($animation_data as $anim) {
     $xml->XMLWriter()->endElement();   //animation
 }
 $xml->XMLWriter()->endElement();  //animations
-
 $xml->XMLWriter()->endElement();  //character
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();

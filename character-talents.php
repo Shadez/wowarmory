@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 186
+ * @revision 192
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -100,7 +100,7 @@ $character_element = array(
     'factionId'    => $characters->GetCharacterFaction(),
     'gender'       => null,
     'genderId'     => $characters->gender,
-    'guildName'    => ($guilds->guid) ? $guilds->guildName : '',
+    'guildName'    => ($guilds->guid) ? $guilds->guildName : null,
     'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null,
     'lastModified' => null,
     'level'        => $characters->level,
@@ -121,7 +121,6 @@ foreach($character_element as $c_elem_name => $c_elem_value) {
     $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
 }
 $xml->XMLWriter()->endElement();   //character
-
 $talent_build = $characters->CalculateCharacterTalentBuild();
 $talent_points = $characters->CalculateCharacterTalents();
 $build = array();

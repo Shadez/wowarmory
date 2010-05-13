@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 149
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -96,12 +96,12 @@ $character_element = array(
     'class'        => $characters->returnClassText(),
     'classId'      => $characters->class,
     'classUrl'     => sprintf('c='),
-    'faction'      => '',
+    'faction'      => null,
     'factionId'    => $characters->GetCharacterFaction(),
-    'gender'       => '',
+    'gender'       => null,
     'genderId'     => $characters->gender,
-    'guildName'    => ($guilds->guildName) ? $guilds->guildName : '',
-    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : '',
+    'guildName'    => ($guilds->guildName) ? $guilds->guildName : null,
+    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null,
     'lastModified' => date('d M Y'),
     'level'        => $characters->level,
     'name'         => $characters->name,
@@ -150,9 +150,9 @@ $xml->XMLWriter()->startElement('characterTab');
 $xml->XMLWriter()->startElement('talentSpecs');
 $talent_data = $characters->CalculateCharacterTalents();
 $current_tree = array();
-$activeSpec = $armory->cDB->selectCell("SELECT `activeSpec` FROM `characters` WHERE `guid`=?", $characters->guid);
+$activeSpec = $characters->GetActiveSpec();
 if($talent_data && is_array($talent_data)) {
-    $specCount = $armory->cDB->selectCell("SELECT `specCount` FROM `characters` WHERE `guid`=?", $characters->guid);
+    $specCount = $characters->GetSpecCount();
     for($i=0;$i<$specCount;$i++) {
         $current_tree[$i] = Utils::GetMaxArray($talent_data['points'][$i]);
         $talent_spec[$i] = array(
@@ -179,7 +179,7 @@ else {
     $talent_spec = array(
         'group' => 1,
         'icon' => 'ability_seal',
-        'prim' => '',
+        'prim' => null,
         'treeOne' => 0,
         'treeTwo' => 0,
         'treeThree' => 0
@@ -330,7 +330,6 @@ foreach($defense_stats as $stat) {
     $xml->XMLWriter()->endElement();
 }
 $xml->XMLWriter()->endElement(); //defense
-
 /** Character items **/
 $xml->XMLWriter()->startElement('items');
 $gear_array = array(
@@ -354,7 +353,6 @@ $gear_array = array(
     array('slot' => 'relic', 'slotid'    => INV_RANGED_RELIC),
     array('slot' => 'tabard', 'slotid'   => INV_TABARD),
 );
-
 foreach($gear_array as $gear) {
     $item_info = $characters->GetCharacterItemInfo($gear);
     if($item_info && is_array($item_info)) {

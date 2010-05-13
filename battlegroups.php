@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -40,17 +40,21 @@ $current_BG = array(
     'display'      => $armory->armoryconfig['defaultBGName'],
     'ladderUrl'    => sprintf('b=%s', urlencode($armory->armoryconfig['defaultBGName'])),
     'name'         => strtolower($armory->armoryconfig['defaultBGName']),
-    'sortPosition' => '1'
+    'sortPosition' => 1
 );
 foreach($current_BG as $bg_key => $bg_value) {
     $xml->XMLWriter()->writeAttribute($bg_key, $bg_value);
 }
 $xml->XMLWriter()->startElement('realms');
-$xml->XMLWriter()->startElement('realm');
-$xml->XMLWriter()->writeAttribute('name', $armory->armoryconfig['defaultRealmName']);
-$xml->XMLWriter()->writeAttribute('nameEn', $armory->armoryconfig['defaultRealmName']);
-$xml->XMLWriter()->writeAttribute('nameUrl', urlencode($armory->armoryconfig['defaultRealmName']));
-$xml->XMLWriter()->endElement();   //realm
+if(is_array($armory->realmData)) {
+    foreach($armory->realmData as $realm) {
+        $xml->XMLWriter()->startElement('realm');
+        $xml->XMLWriter()->writeAttribute('name', $realm['name']);
+        $xml->XMLWriter()->writeAttribute('nameEn', $realm['name']);
+        $xml->XMLWriter()->writeAttribute('nameUrl', 'r='.urlencode($realm['name']));
+        $xml->XMLWriter()->endElement(); //realm
+    }
+}
 $xml->XMLWriter()->endElement();  //realms
 $xml->XMLWriter()->endElement(); //battlegroup
 $xml->XMLWriter()->endElement();  //battlegroups

@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -91,13 +91,9 @@ if($achievement_category > 0) {
         // Write cache to file
         $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-achievements');
         $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
-        if($cache_handler != 0x01) {
-            echo sprintf('<!-- Error occured while cache write: %s -->', $cache_handler); //debug
-        }
     }
     exit;
 }
-
 /** Basic info **/
 $tabUrl = false;
 $guilds->guid = $characters->guid;
@@ -137,13 +133,13 @@ $character_element = array(
     'class'        => $characters->returnClassText(),
     'classId'      => $characters->class,
     'classUrl'     => sprintf('c='),
-    'faction'      => '',
+    'faction'      => null,
     'factionId'    => $characters->GetCharacterFaction(),
-    'gender'       => '',
+    'gender'       => null,
     'genderId'     => $characters->gender,
-    'guildName'    => ($guilds->guid) ? $guilds->guildName : '',
-    'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : '',
-    'lastModified' => '',
+    'guildName'    => ($guilds->guid) ? $guilds->guildName : null,
+    'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null,
+    'lastModified' => null,
     'level'        => $characters->level,
     'name'         => $characters->name,
     'points'       => $achievements->CalculateAchievementPoints(),
@@ -165,10 +161,7 @@ $xml->XMLWriter()->endElement();   //character
 $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->startElement('statistics');
 $xml->XMLWriter()->startElement('summary');
-
 $xml->XMLWriter()->endElement();    //summary
-
-// root
 $xml->XMLWriter()->startElement('rootCategories');
 $root_categories = $achievements->BuildStatisticsCategoriesTree();
 foreach($root_categories as $category) {
@@ -185,8 +178,8 @@ foreach($root_categories as $category) {
     }
     $xml->XMLWriter()->endElement(); //category
 }
-$xml->XMLWriter()->endElement();    //rootCategories
-$xml->XMLWriter()->endElement();   //statistics
+$xml->XMLWriter()->endElement();   //rootCategories
+$xml->XMLWriter()->endElement();  //statistics
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;

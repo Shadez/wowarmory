@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 163
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -84,12 +84,12 @@ if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
         if(isset($feed_item['title'])) {
             $xml->XMLWriter()->startElement('title');
             $xml->XMLWriter()->writeRaw($feed_item['title']);
-            $xml->XMLWriter()->endElement();  //title
+            $xml->XMLWriter()->endElement(); //title
         }
         if(isset($feed_item['desc'])) {
             $xml->XMLWriter()->startElement('desc');
             $xml->XMLWriter()->writeRaw($feed_item['desc']);
-            $xml->XMLWriter()->endElement();  //desc
+            $xml->XMLWriter()->endElement(); //desc
         }
         if(isset($feed_item['tooltip'])) {
             $xml->XMLWriter()->startElement('tooltip');
@@ -99,7 +99,7 @@ if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
         $xml->XMLWriter()->endElement(); //event
     }
 }
-$xml->XMLWriter()->endElement();  //feed
+$xml->XMLWriter()->endElement(); //feed
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {

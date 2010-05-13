@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 191
+ * @revision 192
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -112,35 +112,46 @@ Class Utils extends Connector {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $gField = PLAYER_GUILDID+1;
-        $chars = $this->cDB->select("
-        SELECT
-        `characters`.`name`, 
-        `characters`.`class` AS `classId`, 
-        `characters`.`race` AS `raceId`, 
-        `characters`.`gender` AS `genderId`, 
-        `characters`.`level`,
-        `guild`.`name` AS `guild`,
-        `guild`.`guildid` AS `guildId`
-        FROM `characters` AS `characters`
-        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`characters`.`data`, ' ', ".$gField."), ' ', '-1') AS UNSIGNED)
-        WHERE `account`=?", $_SESSION['accountId']);
-        $count = count($chars);
-        for($i=0;$i<$count;$i++) {
-            $chars[$i]['account'] = strtoupper($_SESSION['username']);
-            $chars[$i]['factionId'] = Characters::GetCharacterFaction($chars[$i]['raceId']);
-            $chars[$i]['realm'] = $this->currentRealmInfo['name'];
-            $chars[$i]['relevance'] = '100';
-            $chars[$i]['url'] = 'r='.urlencode($chars[$i]['realm']).'&cn='.urlencode($chars[$i]['name']);
+        $results = array();
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES UTF8");
+            $chars_data = $db->select("
+            SELECT
+            `characters`.`name`, 
+            `characters`.`class` AS `classId`, 
+            `characters`.`race` AS `raceId`, 
+            `characters`.`gender` AS `genderId`, 
+            `characters`.`level`,
+            `guild_member`.`guildid` AS `guildId`,
+            `guild`.`name` AS `guild`
+            FROM `characters` AS `characters`
+            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildId`
+            WHERE `characters`.`account`=?", $_SESSION['accountId']);
+            if(!$chars_data) {
+                continue;
+            }
+            foreach($chars_data as $realm) {
+                $realm['account'] = strtoupper($_SESSION['username']);
+                $realm['factionId'] = Characters::GetCharacterFaction($realm['raceId']);
+                $realm['realm'] = $realm_info['name'];
+                $realm['relevance'] = 100;
+                $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm['realm']), urlencode($realm['name']));
+                $results[] = $realm;
+            }
         }
-        return $chars;
+        if(is_array($results)) {
+            return $results;
+        }
+        return false;
     }
     
     public function getCharacter() {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
+        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `realm` FROM `armory_login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
         if(!$data) {
             return $this->loadRandomCharacter();
         }
@@ -151,7 +162,7 @@ Class Utils extends Connector {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
+        $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `realm` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
         if(!$char) {
             return false;
         }
@@ -253,13 +264,13 @@ Class Utils extends Connector {
             return false;
         }
         $keys = array_keys($arr);
-        $cnt=count($arr);
-        $min=$max=$arr[$keys[0]];
+        $cnt = count($arr);
+        $min = $max = $arr[$keys[0]];
         $index_min=$index_max=0; 
-        for($i=1;$i<$cnt;$i++) {
+        for($i = 1; $i < $cnt; $i++) {
             if($arr[$keys[$i]]>$max) {
-                $index_max=$i;
-                $max=$arr[$keys[$i]];
+                $index_max = $i;
+                $max = $arr[$keys[$i]];
             }
         }
         return $index_max;
@@ -566,10 +577,27 @@ Class Utils extends Connector {
     
     public function getTimeText($seconds) {
         $text = "";
-        if ($seconds >=24*3600) {$text.= intval($seconds/(24*3600))." days"; if ($seconds%=24*3600) $text.=" ";}
-        if ($seconds >=   3600) {$text.= intval($seconds/3600)." hours"; if ($seconds%=3600) $text.=" ";}
-        if ($seconds >=     60) {$text.= intval($seconds/60)." min"; if ($seconds%=60) $text.=" ";}
-        if ($seconds >       0) {$text.= $seconds." sec";}
+        if($seconds >=24*3600) {
+            $text .= intval($seconds / (24 * 3600)) . ' days';
+            if($seconds %= 24 * 3600) {
+                $text .= ' ';
+            }
+        }
+        if($seconds >= 3600) {
+            $text .= intval($seconds / 3600) . ' hours';
+            if($seconds %= 3600) {
+                $text .= ' ';
+            }
+        }
+        if($seconds >= 60) {
+            $text .= intval($seconds / 60).' min';
+            if($seconds %= 60) {
+                $text .= ' ';
+            }
+        }
+        if($seconds > 0) {
+            $text .= $seconds.' sec';
+        }
         return $text;
     }
     
@@ -619,10 +647,10 @@ Class Utils extends Connector {
         '49'=>array(90,0,90)
         );
         $radius = @$gSpellRadiusIndex[$index];
-        if ($radius == 0) {
+        if($radius == 0) {
             return false;
         }
-        if ($radius[0]==0 || $radius[0] == $radius[2]) {
+        if($radius[0] == 0 || $radius[0] == $radius[2]) {
             return $radius[2];
         }
         return $radius[0].' - '.$radius[2];
@@ -632,6 +660,9 @@ Class Utils extends Connector {
         return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
     }
     
+    /**
+     * At this moment can be called from talent-calc.php only
+     **/
     public function GetClassId($class_string) {
         switch(strtolower($class_string)) {
             case 'death knight':
@@ -694,6 +725,14 @@ Class Utils extends Connector {
                 return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_".$this->_locale."` AS `name` FROM `armory_petcalc` WHERE `key`=? AND `catId` >= 0", strtolower($key));
                 break;
         }
+    }
+    
+    public function IsRealm($rName) {
+        return $this->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $rName);
+    }
+    
+    public function RaceModelData($raceId) {
+        return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=?", $raceId);
     }
 }
 ?>

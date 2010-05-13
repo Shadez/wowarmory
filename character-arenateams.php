@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 192
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -83,7 +83,7 @@ $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
     $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
-    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement();  //characterInfo
     $xml->XMLWriter()->endElement(); //page
     $xml_cache_data = $xml->StopXML();
     echo $xml_cache_data;
@@ -97,13 +97,13 @@ $character_element = array(
     'class'        => $characters->returnClassText(),
     'classId'      => $characters->class,
     'classUrl'     => sprintf('c='),
-    'faction'      => '',
+    'faction'      => null,
     'factionId'    => $characters->GetCharacterFaction(),
-    'gender'       => '',
+    'gender'       => null,
     'genderId'     => $characters->gender,
-    'guildName'    => ($guilds->guildName) ? $guilds->guildName : '',
-    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : '',
-    'lastModified' => '',
+    'guildName'    => ($guilds->guildName) ? $guilds->guildName : null,
+    'guildUrl'     => ($guilds->guildName) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null,
+    'lastModified' => null,
     'level'        => $characters->level,
     'name'         => $characters->name,
     'points'       => $achievements->CalculateAchievementPoints(),

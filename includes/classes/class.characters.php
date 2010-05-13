@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 188
+ * @revision 192
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -90,10 +90,7 @@ Class Characters extends Connector {
         if(!$this->name) {
             return false;
         }
-        $guid = $this->cDB->selectRow("
-        SELECT `guid`, `account`
-            FROM `characters`
-                WHERE `name`=? AND `level`>=? LIMIT 1", $this->name, $this->armoryconfig['minlevel']);
+        $guid = $this->cDB->selectRow("SELECT `guid`, `account` FROM `characters` WHERE `name`=? AND `level`>=? LIMIT 1", $this->name, $this->armoryconfig['minlevel']);
         if(!$guid) {
             return false;
         }
@@ -365,7 +362,7 @@ Class Characters extends Connector {
         $energy = 'e';
         $runic  = 'p';
         
-        $switch = array (
+        $switch = array(
             '1' => $rage,
             '2' => $mana,
             '3' => $mana,
@@ -1983,6 +1980,17 @@ Class Characters extends Connector {
     
     public function GetActiveSpec() {
         return $this->m_activeSpec;
+    }
+    
+    public function GetDBStatistics() {
+        return $this->cDB->getStatistics();
+    }
+    
+    public function PlayerBytes() {
+        if(!$this->guid) {
+            return false;
+        }
+        return $this->cDB->selectRow("SELECT `playerBytes`, `playerBytes2`, `playerFlags` FROM `characters` WHERE `guid`=?", $this->guid);
     }
 }
 ?>
