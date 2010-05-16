@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 189
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 193
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -700,7 +700,6 @@ Class SearchMgr extends Connector {
         $current_realm = array();
         $count_results = 0; // All realms results
         $count_results_currrent_realm = 0; // Current realm results
-        $characters_data = array(); // Temp results
         $db = null; // Temporary handler
         if($num == true) {
             foreach($this->realmData as $realm_info) {
@@ -709,9 +708,9 @@ Class SearchMgr extends Connector {
                 $db->query("SET NAMES ?", $realm_info['charset_characters']);
                 $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE ? AND `level` >= ? LIMIT 200", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
             }
-            $count_result_chars = count($characters_data);
+            $count_result_chars = count($characters_data[0]);
             for($i=0;$i<$count_result_chars;$i++) {
-                if(isset($characters_data[$i][0]) && self::IsCharacterAllowedForSearch($characters_data[$i][0]['guid'], $characters_data[$i][0]['level'], $characters_data[$i][0]['account'])) {
+                if(isset($characters_data[0][$i]) && self::IsCharacterAllowedForSearch($characters_data[0][$i]['guid'], $characters_data[0][$i]['level'], $characters_data[0][$i]['account'])) {
                     $count_results++;
                 }
             }
