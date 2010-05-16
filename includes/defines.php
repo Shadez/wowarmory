@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 137
+ * @revision 194
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,7 +36,7 @@ define('CLASS_DK',      0x06);
 define('CLASS_SHAMAN',  0x07);
 define('CLASS_MAGE',    0x08);
 define('CLASS_WARLOCK', 0x09);
-define('CLASS_DRUID',   0x0A);
+define('CLASS_DRUID',   0x0B);
 
 /*** Races ***/
 define('RACE_HUMAN',    0x01);
@@ -356,10 +356,10 @@ define('INV_NECK', 1);
 define('INV_SHOULDER', 2);
 define('INV_SHIRT', 3);
 define('INV_CHEST', 4);
-define('INV_BELT', 5);
+define('INV_BRACERS', 5);
 define('INV_LEGS', 6);
 define('INV_BOOTS', 7);
-define('INV_BRACERS', 8);
+define('INV_BELT', 8);
 define('INV_GLOVES', 9);
 define('INV_RING_1', 10);
 define('INV_RING_2', 11);
