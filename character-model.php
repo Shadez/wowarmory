@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 195
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,22 +30,22 @@ if(!@include('includes/armory_loader.php')) {
 }
 header('Content-type: text/xml');
 if(isset($_GET['n'])) {
-    $characters->name = $_GET['n'];
+    $name = $_GET['n'];
 }
 elseif(isset($_GET['cn'])) {
-    $characters->name = $_GET['cn'];
+    $name = $_GET['cn'];
 }
 else {
-    $characters->name = false;
+    $name = false;
 }
-$characters->GetCharacterGuid();
-$isCharacter = $characters->IsCharacter();
+$characters->BuildCharacter($name);
+$isCharacter = $characters->CheckPlayer();
 if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
     $isCharacter = false;
 }
 // Get page cache
-if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-model', $characters->name, $armory->currentRealmInfo['name']);
+if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('character-model', $characters->GetName(), $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -60,7 +60,7 @@ $xml->XMLWriter()->writeAttribute('requestUrl', 'character-model.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'character');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($characters->IsCharacter()) ? sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name)) : '' );
+$xml->XMLWriter()->writeAttribute('tabUrl', ($isCharacter) ? sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName())) : null);
 $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
@@ -72,13 +72,11 @@ if(!$isCharacter) {
     exit;
 }
 /** Basic info **/
-$characters->_structCharacter();
-$items->charGuid = $characters->guid;
-
+$items->charGuid = $characters->GetGUID();
 $character_model_data = array();
-$race_model_data = $utils->RaceModelData($characters->race);
+$race_model_data = $utils->RaceModelData($characters->GetRace());
 $character_model_data['race'] = $race_model_data['modeldata_1'];
-if($characters->gender == 1) {
+if($characters->GetGender() == 1) {
     $character_model_data['gender'] = 'female';
     $character_model_data['gender_1'] = 'f';
 }
@@ -87,7 +85,7 @@ else {
     $character_model_data['gender_1'] = 'm';
 }
 $character_model_data['race_gender'] = $race_model_data['modeldata_2'].$character_model_data['gender_1'];
-$player_model = $characters->PlayerBytes();
+$player_model = $characters->GetPlayerBytes();
 $character_model_data['face_color'] = ($player_model['playerBytes']>>8)%256;
 $character_model_data['hair_style'] = ($player_model['playerBytes']>>16)%256;
 $character_model_data['hair_color'] = ($player_model['playerBytes']>>24)%256;
@@ -104,7 +102,7 @@ if($player_model['playerFlags']&0x00000800) {
 if(strlen($character_model_data['skin_style']) == 1) {
     $character_model_data['skin_style'] = '0'.$character_model_data['skin_style'];
 }
-$character_model_data['class'] = $characters->class;
+$character_model_data['class'] = $characters->GetClass();
 
 $model_data = array(
     'baseY'    => 0.97,
@@ -126,15 +124,14 @@ foreach($model_data as $model_key => $model_value) {
 }
 $xml->XMLWriter()->startElement('components');
 $components = array(100, 200, 801, 401, 601, $character_model_data['hair_style'], 901, 302, 1600, 1201, 702, 1001, 1401, 1501, 0, 101, 301, 1101, 502, 1502);
-$count_components = count($components);
 if($character_model_data['gender_1'] == 'm') {
-    $components[$count_components+1] = 1301;
+    $components[count($components)+1] = 1301;
 }
 else {
-    $components[$count_components+1] = 1302;
+    $components[count($components)+1] = 1302;
 }
-if($character_model_data['class'] == 6) {
-    $components[$count_components+2] = 1703;
+if($character_model_data['class'] == CLASS_DK) {
+    $components[count($components)+1] = 1703;
 }
 foreach($components as $component) {
     $xml->XMLWriter()->startElement('component');
@@ -535,7 +532,7 @@ if($tmpid = $characters->GetCharacterEquip('mainhand')) {
 /**
  * Off hand (texture)
  **/
-if($characters->class == CLASS_PALADIN || $characters->class == CLASS_WARRIOR || $characters->class == CLASS_SHAMAN) {
+if($characters->GetClass() == CLASS_PALADIN || $characters->GetClass() == CLASS_WARRIOR || $characters->GetClass() == CLASS_SHAMAN) {
     if($tmpid = $characters->GetCharacterEquip('offhand')) {
         $model_data_attachment['off_hand_texture'] = array(
             'linkPoint' => 0,
@@ -641,7 +638,7 @@ $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
-    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-model');
+    $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-model');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
 exit;

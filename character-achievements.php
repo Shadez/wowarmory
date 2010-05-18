@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 195
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -24,7 +24,6 @@
 
 define('__ARMORY__', true);
 define('load_characters_class', true);
-define('load_guilds_class', true);
 define('load_achievements_class', true);
 if(isset($_GET['c'])) {
     define('load_mangos_class', true);
@@ -43,28 +42,27 @@ else {
     $achievement_category = 0;
 }
 if(isset($_GET['n'])) {
-    $characters->name = $_GET['n'];
+    $name = $_GET['n'];
 }
 elseif(isset($_GET['cn'])) {
-    $characters->name = $_GET['cn'];
+    $name = $_GET['cn'];
 }
 else {
-    $characters->name = false;
+    $name = false;
 }
-$characters->GetCharacterGuid();
-$isCharacter = $characters->IsCharacter();
-$characters->_structCharacter();
-$achievements->guid = $characters->guid;
+$characters->BuildCharacter($name);
+$isCharacter = $characters->CheckPlayer();
+$achievements->guid = $characters->GetGUID();
 if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
     $isCharacter = false;
 }
 // Get page cache
-if($characters->guid > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if($characters->GetGUID() > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     if($achievement_category > 0) {
-        $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->name, $armory->currentRealmInfo['name']);
+        $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->GetName(), $armory->currentRealmInfo['name']);
     }
     else {
-        $cache_id = $utils->GenerateCacheId('character-achievements', $characters->name, $armory->currentRealmInfo['name']);
+        $cache_id = $utils->GenerateCacheId('character-achievements', $characters->GetName(), $armory->currentRealmInfo['name']);
     }
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
@@ -77,8 +75,7 @@ if($achievement_category > 0) {
     $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
     $xml->XMLWriter()->writeAttribute('requestUrl', 'character-achievements.xml');
     $xml->XMLWriter()->startElement('category');
-    $faction = ($characters->faction == 1) ? 0 : 1;
-    $achievements_page = $achievements->LoadAchievementPage($achievement_category, $faction);
+    $achievements_page = $achievements->LoadAchievementPage($achievement_category, ($characters->GetFaction() == 1) ? 0 : 1);
     $i = 0;
     if(isset($achievements_page['completed'])) {
         foreach($achievements_page['completed'] as $achievement) {
@@ -150,21 +147,20 @@ if($achievement_category > 0) {
     echo $xml_cache_data;
     if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
         // Write cache to file
-        $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-achievements');
+        $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-achievements');
         $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
     }
     exit;
 }
 /** Basic info **/
 $tabUrl = false;
-$guilds->guid = $characters->guid;
-if($isCharacter && $guilds->extractPlayerGuildId()) {
-    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name), urlencode($guilds->getGuildName()));
-    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name), urlencode($guilds->getGuildName()));
+if($isCharacter && $characters->GetGuildID() > 0) {
+    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()), urlencode($characters->GetGuildName()));
+    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()), urlencode($characters->GetGuildName()));
 }
 elseif($isCharacter) {
-    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name));
-    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->name));
+    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()));
+    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()));
 }
 /** Header **/
 $xml->XMLWriter()->startElement('page');
@@ -186,29 +182,29 @@ if(!$isCharacter) {
     echo $xml_cache_data;
     exit;
 }
-$characters->GetCharacterTitle();
+$character_title = $characters->GetChosenTitleInfo();
 $character_element = array(
     'battleGroup' => $armory->armoryconfig['defaultBGName'],
     'charUrl'      => $charTabUrl,
-    'class'        => $characters->returnClassText(),
-    'classId'      => $characters->class,
-    'classUrl'     => sprintf('c='),
+    'class'        => $characters->GetClassText(),
+    'classId'      => $characters->GetClass(),
+    'classUrl'     => null,
     'faction'      => null,
-    'factionId'    => $characters->GetCharacterFaction(),
+    'factionId'    => $characters->GetFaction(),
     'gender'       => null,
-    'genderId'     => $characters->gender,
-    'guildName'    => ($guilds->guid) ? $guilds->guildName : null,
-    'guildUrl'     => ($guilds->guid) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null,
+    'genderId'     => $characters->GetGender(),
+    'guildName'    => ($characters->GetGuildID() > 0) ? $characters->GetGuildName() : null,
+    'guildUrl'     => ($characters->GetGuildID() > 0) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetGuildName())) : null,
     'lastModified' => null,
-    'level'        => $characters->level,
-    'name'         => $characters->name,
+    'level'        => $characters->GetLevel(),
+    'name'         => $characters->GetName(),
     'points'       => $achievements->CalculateAchievementPoints(),
-    'prefix'       => $characters->character_title['prefix'],
-    'race'         => $characters->returnRaceText(),
-    'raceId'       => $characters->race,
+    'prefix'       => $character_title['prefix'],
+    'race'         => $characters->GetRaceText(),
+    'raceId'       => $characters->GetRace(),
     'realm'        => $armory->currentRealmInfo['name'],
-    'suffix'       => $characters->character_title['suffix'],
-    'titeId'       => $characters->character_title['titleId'],
+    'suffix'       => $character_title['suffix'],
+    'titleId'      => $character_title['titleId'],
 );
 $xml->XMLWriter()->startElement('characterInfo');
 $xml->XMLWriter()->startElement('character');
@@ -278,7 +274,7 @@ $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
-    $cache_data = $utils->GenerateCacheData($characters->name, $characters->guid, 'character-achievements');
+    $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-achievements');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
 exit;

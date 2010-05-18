@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 150
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 195
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -31,15 +31,13 @@ if(!@include('includes/armory_loader.php')) {
 }
 header('Content-type: text/xml');
 $itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : null;
-$characters->name = (isset($_GET['cn'])) ? $_GET['cn'] : null;
-if($characters->name) {
-    $characters->GetCharacterGuid();
+$name = (isset($_GET['cn'])) ? $_GET['cn'] : null;
+if($name != null) {
+    $characters->BuildCharacter($name);
 }
-if(!$characters->guid) {
-    $characters->guid = false;
-}
+$isCharacter = $characters->CheckPlayer();
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, $characters->name, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, ($characters->CheckPlayer()) ? $characters->GetName() : null, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'tooltips')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -82,7 +80,7 @@ $xml->XMLWriter()->endElement(); //icon
 // 3.2.x heroic item flag
 if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
     $xml->XMLWriter()->startElement('heroic');
-    $xml->XMLWriter()->text('1');
+    $xml->XMLWriter()->text(1);
     $xml->XMLWriter()->endElement();//heroic
 }
 $xml->XMLWriter()->startElement('overallQualityId');
@@ -340,8 +338,8 @@ $ench_array = array (
     26=>'gun',
     28=>'sigil'
 );
-if($characters->guid) {
-    $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->guid);
+if($isCharacter) {
+    $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->GetGUID());
     if($enchantment) {
         $xml->XMLWriter()->startElement('enchant');
         $xml->XMLWriter()->text($armory->aDB->selectCell("SELECT `text_" . $armory->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
@@ -357,7 +355,7 @@ for($i=1;$i<4;$i++) {
             case 1:
                 $color = 'Meta';
                 $socket_data = array('color' => 'Meta');
-                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                $gem = $items->extractSocketInfo($characters->GetGUID(), $itemID, $i);
                 if($gem) {
                     $socket_data['enchant'] = $gem['enchant'];
                     $socket_data['icon'] = $gem['icon'];
@@ -369,7 +367,7 @@ for($i=1;$i<4;$i++) {
                 break;
             case 2:
                 $socket_data = array('color' => 'Red');
-                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                $gem = $items->extractSocketInfo($characters->GetGUID(), $itemID, $i);
                 if($gem) {
                     $socket_data['enchant'] = $gem['enchant'];
                     $socket_data['icon'] = $gem['icon'];
@@ -381,7 +379,7 @@ for($i=1;$i<4;$i++) {
                 break;
             case 4:
                 $socket_data = array('color' => 'Yellow');
-                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                $gem = $items->extractSocketInfo($characters->GetGUID(), $itemID, $i);
                 if($gem) {
                     $socket_data['enchant'] = $gem['enchant'];
                     $socket_data['icon'] = $gem['icon'];
@@ -393,7 +391,7 @@ for($i=1;$i<4;$i++) {
                 break;
             case 8:
                 $socket_data = array('color' => 'Blue');
-                $gem = $items->extractSocketInfo($characters->guid, $itemID, $i);
+                $gem = $items->extractSocketInfo($characters->GetGUID(), $itemID, $i);
                 if($gem) {
                     $socket_data['enchant'] = $gem['enchant'];
                     $socket_data['icon'] = $gem['icon'];
@@ -557,7 +555,7 @@ $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
-    $cache_data = $utils->GenerateCacheData($itemID, ($characters->guid) ? $characters->guid : 0, 'item-tooltip');
+    $cache_data = $utils->GenerateCacheData($itemID, ($characters->CheckPlayer()) ? $characters->GetGUID() : 0, 'item-tooltip');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'tooltips');
 }
 exit;

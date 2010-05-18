@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 195
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,58 +27,126 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Characters extends Connector {
-
+    
     /**
-     * Player GUID
+     * Player guid
      **/
-    public $guid;
+    private $guid;
     
     /**
      * Player name
      **/
-    public $name;
-    
-    /**
-     * Player level
-     **/
-    public $level;
+    private $name;
     
     /**
      * Player race
      **/
-    public $race;
+    private $race;
     
     /**
      * Player class
      **/
-    public $class;
-    
-    /**
-     * Player faction
-     **/
-    public $faction;
+    private $class;
     
     /**
      * Player gender
+     * (0 - male, 1 - female)
      **/
-    public $gender;
+    private $gender;
     
     /**
-     * Character stat calculating variable
+     * Player level
      **/
-    public $rating;
+    private $level;
     
     /**
-     * Character title data (title, prefix, suffix, titleId)
+     * Player model display info
      **/
-    public $character_title = array('prefix' => null, 'suffix' => null, 'titleId' => 0);
+    private $playerBytes;
+    private $playerBytes2;
+    private $playerFlags;
     
-    private $m_specCount;
-    private $m_activeSpec;
-            
-    /******************************/
-    /***  Basic character info  ***/
-    /******************************/
+    /**
+     * Player title ID
+     **/
+    private $chosenTitle;
+    
+    /**
+     * Player health value
+     **/
+    private $health;
+    
+    /**
+     * Player powers values
+     **/
+    private $power1;
+    private $power2;
+    private $power3;
+    
+    /**
+     * Account ID
+     * (currently not used)
+     **/
+    private $account;
+    
+    /**
+     * Talent specs count
+     **/
+    private $specCount;
+    
+    /**
+     * Active talent spec ID
+     * (0 or 1)
+     **/
+    private $activeSpec;
+
+    /**
+     * Player faction
+     * (1 - Horde, 0 - Alliance)
+     **/
+    private $faction;
+    
+    /**
+     * Array with player stats constants
+     * (depends on character level)
+     **/
+    private $rating;
+     
+    /**
+     * Player title data
+     * (prefix, suffix, titleId)
+     **/
+    private $character_title = array('prefix' => null, 'suffix' => null, 'titleId' => null);
+    
+    /**
+     * Player guild ID
+     **/
+    private $guild_id;
+    
+    /**
+     * Player guild name
+     **/
+    private $guild_name;
+    
+    /**
+     * Player guild rank ID
+     **/
+    private $guild_rank_id;
+    
+    /**
+     * Player guild rank name
+     **/
+    private $guild_rank_name;
+    
+    /**
+     * $this->class text
+     **/
+    private $classText;
+    
+    /**
+     * $this->race text
+     **/
+    private $raceText;
     
     /**
      * Is character exists? !Requires $this->name!
@@ -87,268 +155,313 @@ Class Characters extends Connector {
      * @return bool
      **/
     public function IsCharacter() {
-        if(!$this->name) {
-            return false;
-        }
-        $guid = $this->cDB->selectRow("SELECT `guid`, `account` FROM `characters` WHERE `name`=? AND `level`>=? LIMIT 1", $this->name, $this->armoryconfig['minlevel']);
-        if(!$guid) {
-            return false;
-        }
-        $armory_stats = $this->cDB->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=? LIMIT 1", $guid['guid']);
-        if(!$armory_stats) {
-            return false;
-        }
-        $gmAccount = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $guid['account']);
-        $showIt = ($gmAccount <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
-        if($guid && $showIt) {
-            return true;
-        }
         return false;
     }
     
-    /**
-     * Constructs basic character info
-     * @category Characters class
-     * @example Characters::_structCharacter()
-     * @return bool
-     **/
-    public function _structCharacter() {
-        if(!$this->name) {
+    public function BuildCharacter($name) {
+        if(!is_string($name)) {
             return false;
         }
-        $character_info = $this->cDB->selectRow("SELECT `guid`, `level`, `class`, `race`, `gender`, `specCount`, `activeSpec` FROM `characters` WHERE `name`=?", $this->name);
-        if(!$character_info) {
+        $player_data = $this->cDB->selectRow("
+        SELECT
+        `characters`.`guid`,
+        `characters`.`account`,
+        `characters`.`name`,
+        `characters`.`race`,
+        `characters`.`class`,
+        `characters`.`gender`,
+        `characters`.`level`,
+        `characters`.`playerBytes`,
+        `characters`.`playerBytes2`,
+        `characters`.`playerFlags`,
+        `characters`.`specCount`,
+        `characters`.`activeSpec`,
+        `characters`.`chosenTitle`,
+        `characters`.`health`,
+        `characters`.`power1`,
+        `characters`.`power2`,
+        `characters`.`power3`,
+        `guild_member`.`guildid` AS `guild_id`,
+        `guild`.`name` AS `guild_name`
+        FROM `characters` AS `characters`
+        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
+        WHERE `characters`.`name`=? LIMIT 1", $name);
+        if(!$player_data || !is_array($player_data)) {
             return false;
         }
-        $this->guid         = $character_info['guid'];
-        $this->level        = $character_info['level'];
-        $this->race         = $character_info['race'];
-        $this->class        = $character_info['class'];
-        $this->gender       = $character_info['gender'];
-        $this->m_specCount  = $character_info['specCount'];
-        $this->m_activeSpec = $character_info['activeSpec'];
-        self::GetCharacterFaction();
+        // Is character allowed to be displayed in Armory?
+        $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
+        if(!$gmLevel) {
+            unset($player_data);
+            // Unknown account
+            return false;
+        }
+        $allowed = ($gmLevel <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
+        if(!$allowed || $player_data['level'] < $this->armoryconfig['minlevel']) {
+            unset($player_data);
+            return false;
+        }
+        // Class/race/faction checks
+        if($player_data['class'] >= MAX_CLASSES) {
+            // Unknown class
+            unset($player_data);
+            return false;
+        }
+        elseif($player_data['race'] >= MAX_RACES) {
+            // Unknown race
+            unset($player_data);
+            return false;
+        }
+        // Get player factionID
+        $horde_races    = array(RACE_ORC,     RACE_TROLL, RACE_TAUREN, RACE_UNDEAD, RACE_BLOODELF);
+        $alliance_races = array(RACE_DRAENEI, RACE_DWARF, RACE_GNOME,  RACE_HUMAN,  RACE_NIGHTELF);
+        if(in_array($player_data['race'], $horde_races)) {
+            $this->faction = 1;
+        }
+        elseif(in_array($player_data['race'], $alliance_races)) {
+            $this->faction = 0;
+        }
+        else {
+            // Unknown class
+            unset($player_data);
+            return false;
+        }
+        // Everything correct, build class
+        foreach($player_data as $pData_key => $pData_value) {
+            $this->{$pData_key} = $pData_value;
+        }
+        // Get race and class strings
+        $race_class = $this->aDB->selectRow("
+        SELECT
+        `armory_races`.`name_".$this->_locale."` AS `race`,
+        `armory_classes`.`name_".$this->_locale."` AS `class`
+        FROM `armory_races` AS `armory_races`
+        LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=?d
+        WHERE `armory_races`.`id`=?d", $this->class, $this->race);
+        $this->classText = $race_class['class'];
+        $this->raceText = $race_class['race'];
+        // Get title info
+        if($this->chosenTitle > 0) {
+            $this->__GetTitleInfo();
+        }
         return true;
     }
     
     /**
-     * Returns character GUID. !Requires $this->name!
+     * Constructs character title info
      * @category Characters class
-     * @example Characters::GetCharacterGuid()
-     * @return int
-     **/ 
-    public function GetCharacterGuid() {
-        if(!$this->name) {
+     * @return void
+     **/
+    private function __GetTitleInfo() {
+        $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
+        if(!$title_data) {
+            return true;
+        }
+        switch($this->gender) {
+            case 0:
+                if($title_data['place'] == 'prefix') {
+                    $this->character_title['prefix'] = $title_data['titleM'];
+                }
+                elseif($title_data['place'] == 'suffix') {
+                    $this->character_title['suffix'] = $title_data['titleM'];
+                }
+                break;
+            case 1:
+                if($title_data['place'] == 'prefix') {
+                    $this->character_title['prefix'] = $title_data['titleF'];
+                }
+                elseif($title_data['place'] == 'suffix') {
+                    $this->character_title['suffix'] = $title_data['titleF'];
+                }
+                break;
+        }
+        $this->character_title['titleId'] = $this->chosenTitle;
+    }
+    
+    public function CheckPlayer() {
+        if(!$this->guid || !$this->name) {
             return false;
         }
-        if($this->guid) {
-            return $this->guid;
-        }
-        $this->guid = $this->cDB->selectCell("SELECT `guid` FROM `characters` WHERE `name`=? LIMIT 1", $this->name);
+        return true;
+    }
+    
+    /**
+     * Returns player GUID
+     * @category Characters class
+     * @example Characters::GetGUID();
+     * @return int
+     **/
+    public function GetGUID() {
         return $this->guid;
     }
     
     /**
-     * Returns character name. !Requires $this->guid!
+     * Returns player name
      * @category Characters class
-     * @example Characters::GetCharacterName()
+     * @example Characters::GetName();
      * @return string
      **/
-    public function GetCharacterName($guid = false) {
-        if($guid) {
-            $this->guid = $guid;
-        }
-        if(!$this->guid) {
-            return false;
-        }
-        if($this->name) {
-            return $this->name;
-        }
-        $this->name = $this->cDB->selectCell("SELECT `name` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+    public function GetName() {
         return $this->name;
     }
     
     /**
-     * Returns character level. !Requires $this->guid!
+     * Returns player class
      * @category Characters class
-     * @example Characters::GetCharacterLevel()
+     * @example Characters::GetClass();
      * @return int
      **/
-    public function GetCharacterLevel() {
-        if(!$this->guid) {
-            return false;
-        }
-        if($this->level) {
-            return $this->level;
-        }
-        $this->level = $this->cDB->selectCell("SELECT `level` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
-        return $this->level;
-    }
-    
-    /**
-     * Returns character race (int). !Requires $this->guid!
-     * @category Characters class
-     * @example Characters::GetCharacterRace()
-     * @return int
-     **/
-    public function GetCharacterRace() {
-        if(!$this->guid) {
-            return false;
-        }
-        if($this->race) {
-            return $this->race;
-        }
-        $this->race = $this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
-        return $this->race;
-    }
-    
-    /**
-     * Fills $this->character_title with character selected title (if exists), place (suffix or prefix) and ID according with character gender. Requries $this->gender! If $guid not provided, function will use $this->guid.
-     * @category Character class
-     * @example Characters::GetCharacterTitle(false)
-     * @return none
-     **/
-    public function GetCharacterTitle($guid = false) {
-        if($guid) {
-            $this->guid = $guid;
-        }
-        if(!$this->gender) {
-            $this->GetCharacterGender();
-        }        
-        $title = $this->aDB->selectRow("SELECT `id`, `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?", $this->cDB->selectCell("SELECT `chosenTitle` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid));
-        if($title) {
-            switch($this->gender) {
-                case 1:
-                    if($title['place'] == 'suffix') {
-                        $this->character_title['suffix'] = $title['titleF'];
-                        $this->character_title['prefix'] = null;
-                    }
-                    elseif($title['place'] == 'prefix') {
-                        $this->character_title['suffix'] = null;
-                        $this->character_title['prefix'] = $title['titleF'];
-                    }
-                    break;
-                case 0:
-                    if($title['place'] == 'suffix') {
-                        $this->character_title['suffix'] = $title['titleM'];
-                        $this->character_title['prefix'] = null;
-                    }
-                    elseif($title['place'] == 'prefix') {
-                        $this->character_title['suffix'] = null;
-                        $this->character_title['prefix'] = $title['titleM'];
-                    }
-                    break;
-                default:
-                    $this->character_title['suffix'] = null;
-                    $this->character_title['prefix'] = null;
-                    break;
-            }
-            $this->character_title['titleId'] = isset($title['id']) ? $title['id'] : null;
-        }
-    }
-    
-    /**
-     * Returns character class (int). !Requires $this->guid!
-     * @category Characters class
-     * @example Characters::GetCharacterClass()
-     * @return int
-     **/
-    public function GetCharacterClass() {
-        if(!$this->guid) {
-            return false;
-        }
-        if($this->class) {
-            return $this->class;
-        }
-        $this->class = $this->cDB->selectCell("SELECT `class` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+    public function GetClass() {
         return $this->class;
     }
     
     /**
-     * Returns character gender (int). !Requires $this->race!
+     * Returns player race
      * @category Characters class
-     * @example Characters::GetCharacterGender()
+     * @example Characters::GetRace();
      * @return int
      **/
-    public function GetCharacterGender() {
-        if(!$this->guid) {
-            return false;
-        }
-        if($this->gender) {
-            return $this->gender;
-        }
-        $this->gender = $this->cDB->selectCell("SELECT `gender` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+    public function GetRace() {
+        return $this->race;
+    }
+    
+    /**
+     * Returns player level
+     * @category Characters class
+     * @example Characters::GetLevel();
+     * @return int
+     **/    
+    public function GetLevel() {
+        return $this->level;
+    }
+    
+    /**
+     * Returns player gender
+     * @category Characters class
+     * @example Characters::GetGender();
+     * @return int
+     **/
+    public function GetGender() {
         return $this->gender;
     }
     
     /**
-     * Returns character faction (int). !Requires $this->race!
+     * Returns player faction
      * @category Characters class
-     * @example Characters::GetCharacterFaction()
+     * @example Characters::GetFaction();
      * @return int
      **/
-    public function GetCharacterFaction($race = null) {
-        // 1 - Horde, 0 - Alliance
-        if($race == null) {
-            $race = $this->race;
-            $this->faction = ($race == 1 || $race == 3 || $race == 4 || $race == 7 || $race == 11) ? 0 : 1;
-            return $this->faction;
-        }
-        return ($race == 1 || $race == 3 || $race == 4 || $race == 7 || $race == 11) ? 0 : 1;
+    public function GetFaction() {
+        return $this->faction;
     }
     
     /**
-     * Returns string with 'r=realm&n=name&gn=guild' format. !Requires $this->guid!
+     * Returns player account ID
      * @category Characters class
-     * @example Characters::returnCharacterUrl()
-     * @return string
+     * @example Characters::GetAccountID();
+     * @return int
      **/
-    public function returnCharacterUrl() {
-        if(!$this->guid) {
-            return false;
-        }
-        $url_string = 'r=' . urlencode($this->currentRealmInfo['name']) . '&cn=' . urlencode($this->name);
-        if($guildID = $this->GetDataField(PLAYER_GUILDID)) {
-            $url_string .= '&gn=' . urlencode($this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $guildID));
-        }
-        return $url_string;
+    public function GetAccountID() {
+        return $this->account;
     }
     
     /**
-     * Returns character class (text). !Requires $this->class!
+     * Returns active talent spec ID
      * @category Characters class
-     * @example Characters::returnClassText()
-     * @return string
+     * @example Characters::GetActiveSpec();
+     * @return int
      **/
-    public function returnClassText($class = null) {
-        if($class == null) {
-            if(!$this->class) {
-                return false;
-            }
-            $class = $this->class;
-        }
-        return $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_classes` WHERE `id`=?", $class);
+    public function GetActiveSpec() {
+        return $this->activeSpec;
     }
     
     /**
-     * Returns character race (text). !Requires $this->race!
+     * Returns talent specs count
      * @category Characters class
-     * @example Characters::returnRaceText()
+     * @example Characters::GetSpecCount();
+     * @return int
+     **/
+    public function GetSpecCount() {
+        return $this->specCount;
+    }
+    
+    /**
+     * Returns array with player model info
+     * @category Characters class
+     * @example Characters::GetPlayerBytes();
+     * @return array
+     **/
+    public function GetPlayerBytes() {
+        return array('playerBytes' => $this->playerBytes, 'playerBytes2' => $this->playerBytes2, 'playerFlags' => $this->playerFlags);
+    }
+    
+    /**
+     * Returns player guild name
+     * @category Characters class
+     * @example Characters::GetGuildName();
      * @return string
      **/
-    public function returnRaceText($race = null) {
-        if($race == null) {
-            if(!$this->race) {
-                return false;
-            }
-            $race = $this->race;
+    public function GetGuildName() {
+        return $this->guild_name;
+    }
+    
+    /**
+     * Returns player guild ID
+     * @category Characters class
+     * @example Characters::GetGuildID();
+     * @return int
+     **/
+    public function GetGuildID() {
+        return $this->guild_id;
+    }
+    
+    /**
+     * Returns array with chosen title info
+     * @category Characters class
+     * @example Characters::GetChosenTitleInfo();
+     * @return array
+     **/
+    public function GetChosenTitleInfo() {
+        return $this->character_title;
+    }
+    
+    /**
+     * Returns text string for $this->class ID
+     * @category Characters class
+     * @example Characters::GetClassText();
+     * @return string
+     **/
+    public function GetClassText() {
+        return $this->classText;
+    }
+    
+    /**
+     * Returns text string for $this->race ID
+     * @category Characters class
+     * @example Characters::GetRaceText();
+     * @return string
+     **/
+    public function GetRaceText() {
+        return $this->raceText;
+    }
+    
+    /**
+     * Returns character URL string (r=realmName&cn=CharName&gn=GuildName)
+     * @category Characters class
+     * @example Characters::GetUrlString();
+     * @return string
+     **/
+    public function GetUrlString() {
+        $url = sprintf('r=%s&cn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->name));
+        if($this->guild_id > 0) {
+            $url .= sprintf('&gn=%s', $this->guild_name);
         }
-        return $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_races` WHERE `id`=?", $race);
+        return $url;
     }
     
     /**
      * Returns array with additional energy bar data (mana for paladins, mages, warlocks & hunters, etc.)
-     * !Requires $this->class!
      * @category Characters class
      * @example Characters::GetSecondBar()
      * @return array
@@ -1053,8 +1166,7 @@ Class Characters extends Connector {
      * Returns array with character strenght data (for <baseStats>)
      **/
     public function GetCharacterStrength() {
-        $tmp_stats    = array();
-        
+        $tmp_stats = array();
         $tmp_stats['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0), 0);
         $tmp_stats['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0), 0);        
         $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_STAT0);
@@ -1064,7 +1176,7 @@ Class Characters extends Connector {
             $tmp_stats['block'] = max(0, $tmp_stats['effective']*BLOCK_PER_STRENGTH - 10);
         }
         else {
-            $tmp_stats['block'] = '-1';
+            $tmp_stats['block'] = -1;
         }
         $player_stats = array(
             'attack'    => $tmp_stats['attack'],
@@ -1081,7 +1193,7 @@ Class Characters extends Connector {
         $tmp_stats    = array();
         $rating       = $this->SetRating();
         
-        $tmp_stats['effective'] =$this->GetDataField(UNIT_FIELD_STAT1);
+        $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_STAT1);
         $tmp_stats['bonus_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT1), 0);
         $tmp_stats['negative_agility'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT1), 0);
         $tmp_stats['base'] = $tmp_stats['effective']-$tmp_stats['bonus_agility']-$tmp_stats['negative_agility'];
@@ -1974,23 +2086,8 @@ Class Characters extends Connector {
         return $item_info;
     }
     
-    public function GetSpecCount() {
-        return $this->m_specCount;
-    }
-    
-    public function GetActiveSpec() {
-        return $this->m_activeSpec;
-    }
-    
     public function GetDBStatistics() {
         return $this->cDB->getStatistics();
-    }
-    
-    public function PlayerBytes() {
-        if(!$this->guid) {
-            return false;
-        }
-        return $this->cDB->selectRow("SELECT `playerBytes`, `playerBytes2`, `playerFlags` FROM `characters` WHERE `guid`=?", $this->guid);
     }
 }
 ?>
