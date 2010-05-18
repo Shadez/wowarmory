@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 196
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -134,7 +134,7 @@ Class Utils extends Connector {
             }
             foreach($chars_data as $realm) {
                 $realm['account'] = strtoupper($_SESSION['username']);
-                $realm['factionId'] = Characters::GetCharacterFaction($realm['raceId']);
+                $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['relevance'] = 100;
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm['realm']), urlencode($realm['name']));
@@ -733,6 +733,42 @@ Class Utils extends Connector {
     
     public function RaceModelData($raceId) {
         return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=?", $raceId);
+    }
+    
+    /**
+     * Returns icon name for selected class & talent tree
+     * @category Utils
+     * @example Utils::ReturnTalentTreeIcon(2)
+     * @return string
+     **/
+    public function ReturnTalentTreeIcon($spec, $class) {
+        return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d LIMIT 1", $class, $spec);
+    }
+    
+    /**
+     * Returns talent tree name for selected class
+     * @category Utils
+     * @example Utils::ReturnTalentTreeNames(2)
+     * @return string
+     **/
+    public function ReturnTalentTreeName($spec, $class) {
+		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d", $class, $spec);
+	}
+    
+    public function GetFactionId($raceID) {
+        // Get player factionID
+        $horde_races    = array(RACE_ORC,     RACE_TROLL, RACE_TAUREN, RACE_UNDEAD, RACE_BLOODELF);
+        $alliance_races = array(RACE_DRAENEI, RACE_DWARF, RACE_GNOME,  RACE_HUMAN,  RACE_NIGHTELF);
+        if(in_array($raceID, $horde_races)) {
+            return 1;
+        }
+        elseif(in_array($raceID, $alliance_races)) {
+            return 0;
+        }
+        else {
+            // Unknown class
+            return false;
+        }
     }
 }
 ?>

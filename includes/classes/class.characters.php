@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 195
+ * @revision 196
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -213,17 +213,9 @@ Class Characters extends Connector {
             unset($player_data);
             return false;
         }
-        // Get player factionID
-        $horde_races    = array(RACE_ORC,     RACE_TROLL, RACE_TAUREN, RACE_UNDEAD, RACE_BLOODELF);
-        $alliance_races = array(RACE_DRAENEI, RACE_DWARF, RACE_GNOME,  RACE_HUMAN,  RACE_NIGHTELF);
-        if(in_array($player_data['race'], $horde_races)) {
-            $this->faction = 1;
-        }
-        elseif(in_array($player_data['race'], $alliance_races)) {
-            $this->faction = 0;
-        }
-        else {
-            // Unknown class
+        $this->faction = Utils::GetFactionId($player_data['race']);
+        if(!$this->faction) {
+            // Unknown faction
             unset($player_data);
             return false;
         }

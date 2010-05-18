@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 187
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 196
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -45,7 +45,7 @@ Class Arenateams extends Connector {
         $this->arenateamid   = $arenaInfo['arenateamid'];
         $this->captainguid   = $arenaInfo['captainguid'];
         $this->teamlogostyle = self::GetArenaTeamEmblem($this->arenateamid);
-        $this->teamfaction   = Characters::GetCharacterFaction($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
+        $this->teamfaction   = Utils::GetFactionId($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
         $this->teamfaction   = 1;
         $this->teamtype      = $arenaInfo['type'];
         self::GetTeamList();
@@ -186,7 +186,7 @@ Class Arenateams extends Connector {
             $result_areanteams[$i]['data']['num'] = $i+1;
             $result_areanteams[$i]['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
             $result_areanteams[$i]['data']['faction'] = '';
-            $result_areanteams[$i]['data']['factionId'] = Characters::GetCharacterFaction($result_areanteams[$i]['data']['race']);
+            $result_areanteams[$i]['data']['factionId'] = Utils::GetFactionId($result_areanteams[$i]['data']['race']);
             //$result_areanteams[$i]['data']['factionId'] = 1;
             $result_areanteams[$i]['data']['lastSeasonRanking'] = '';
             $result_areanteams[$i]['data']['realm'] = $this->currentRealmInfo['name'];

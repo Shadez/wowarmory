@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 193
+ * @revision 196
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -635,7 +635,7 @@ Class SearchMgr extends Connector {
             foreach($current_realm as $realm) {
                 $realm['teamSize'] = $realm['size'];
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
-                $realm['factionId'] = Characters::GetCharacterFaction($realm['race']);
+                $realm['factionId'] = Utils::GetFactionId($realm['race']);
                 $realm['relevance'] = 100;
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($realm_info['name']), $realm['size'], urlencode($realm['name']));
@@ -678,7 +678,7 @@ Class SearchMgr extends Connector {
             $count_current_realm = count($current_realm);
             foreach($current_realm as $realm) {
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
-                $realm['factionId'] = Characters::GetCharacterFaction($realm['race']);
+                $realm['factionId'] = Utils::GetFactionId($realm['race']);
                 $realm['relevance'] = 100;
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
@@ -739,7 +739,7 @@ Class SearchMgr extends Connector {
                 $realm['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $realm['classId']);
                 $realm['race'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_races` WHERE `id`=?", $realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
-                $realm['factionId'] = Characters::GetCharacterFaction($realm['raceId']);
+                $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
                 unset($realm['account'], $realm['guid']);
                 $results[] = $realm;
