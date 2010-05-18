@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 194
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 197
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -37,6 +37,7 @@ define('CLASS_SHAMAN',  0x07);
 define('CLASS_MAGE',    0x08);
 define('CLASS_WARLOCK', 0x09);
 define('CLASS_DRUID',   0x0B);
+define('MAX_CLASSES',   0x0C);
 
 /*** Races ***/
 define('RACE_HUMAN',    0x01);
@@ -45,10 +46,11 @@ define('RACE_DWARF',    0x03);
 define('RACE_NIGHTELF', 0x04);
 define('RACE_UNDEAD',   0x05);
 define('RACE_TAUREN',   0x06);
-define('RACE_GNOM',     0x07);
+define('RACE_GNOME',    0x07);
 define('RACE_TROLL',    0x08);
 define('RACE_BLOODELF', 0x0A);
 define('RACE_DRAENEI',  0x0B);
+define('MAX_RACES',     0x0C);
 
 /*** Achievements ***/
 define('ACHIEVEMENTS_CATEGORY_GENERAL',     92);
@@ -394,4 +396,80 @@ define('ITEM_CLASS_KEY', 13);
 define('ITEM_CLASS_PERMANENT', 14);
 define('ITEM_CLASS_MISC', 15);
 define('ITEM_CLASS_GLYPH', 16);
+
+/* Item mods */
+define('ITEM_MOD_MANA', 0);
+define('ITEM_MOD_HEALTH', 1);
+define('ITEM_MOD_AGILITY', 3);
+define('ITEM_MOD_STRENGTH', 4);
+define('ITEM_MOD_INTELLECT', 5);
+define('ITEM_MOD_SPIRIT', 6);
+define('ITEM_MOD_STAMINA', 7);
+define('ITEM_MOD_DEFENSE_SKILL_RATING', 12);
+define('ITEM_MOD_DODGE_RATING', 13);
+define('ITEM_MOD_PARRY_RATING', 14);
+define('ITEM_MOD_BLOCK_RATING', 15);
+define('ITEM_MOD_HIT_MELEE_RATING', 16);
+define('ITEM_MOD_HIT_RANGED_RATING', 17);
+define('ITEM_MOD_HIT_SPELL_RATING', 18);
+define('ITEM_MOD_CRIT_MELEE_RATING', 19);
+define('ITEM_MOD_CRIT_RANGED_RATING', 20);
+define('ITEM_MOD_CRIT_SPELL_RATING', 21);
+define('ITEM_MOD_HIT_TAKEN_MELEE_RATING', 22);
+define('ITEM_MOD_HIT_TAKEN_RANGED_RATING', 23);
+define('ITEM_MOD_HIT_TAKEN_SPELL_RATING', 24);
+define('ITEM_MOD_CRIT_TAKEN_MELEE_RATING', 25);
+define('ITEM_MOD_CRIT_TAKEN_RANGED_RATING', 26);
+define('ITEM_MOD_CRIT_TAKEN_SPELL_RATING', 27);
+define('ITEM_MOD_HASTE_MELEE_RATING', 28);
+define('ITEM_MOD_HASTE_RANGED_RATING', 29);
+define('ITEM_MOD_HASTE_SPELL_RATING', 30);
+define('ITEM_MOD_HIT_RATING', 31);
+define('ITEM_MOD_CRIT_RATING', 32);
+define('ITEM_MOD_HIT_TAKEN_RATING', 33);
+define('ITEM_MOD_CRIT_TAKEN_RATING', 34);
+define('ITEM_MOD_RESILIENCE_RATING', 35);
+define('ITEM_MOD_HASTE_RATING', 36);
+define('ITEM_MOD_EXPERTISE_RATING', 37);
+define('ITEM_MOD_ATTACK_POWER', 38);
+define('ITEM_MOD_RANGED_ATTACK_POWER', 39);
+define('ITEM_MOD_FERAL_ATTACK_POWER', 40);//deprecated
+define('ITEM_MOD_SPELL_HEALING_DONE', 41);//deprecated
+define('ITEM_MOD_SPELL_DAMAGE_DONE', 42);//deprecated
+define('ITEM_MOD_MANA_REGENERATION', 43);
+define('ITEM_MOD_ARMOR_PENETRATION_RATING', 44);
+define('ITEM_MOD_SPELL_POWER', 45);
+define('ITEM_MOD_HEALTH_REGEN', 46);
+define('ITEM_MOD_SPELL_PENETRATION', 47);
+define('ITEM_MOD_BLOCK_VALUE', 48);
+
+define('CR_WEAPON_SKILL', 0);
+define('CR_DEFENSE_SKILL', 1);
+define('CR_DODGE', 2);
+define('CR_PARRY', 3);
+define('CR_BLOCK', 4);
+define('CR_HIT_MELEE', 5);
+define('CR_HIT_RANGED', 6);
+define('CR_HIT_SPELL', 7);
+define('CR_CRIT_MELEE', 8);
+define('CR_CRIT_RANGED', 9);
+define('CR_CRIT_SPELL', 10);
+define('CR_HIT_TAKEN_MELEE', 11);
+define('CR_HIT_TAKEN_RANGED', 12);
+define('CR_HIT_TAKEN_SPELL', 13);
+define('CR_CRIT_TAKEN_MELEE', 14);
+define('CR_CRIT_TAKEN_RANGED', 15);
+define('CR_CRIT_TAKEN_SPELL', 16);
+define('CR_HASTE_MELEE', 17);
+define('CR_HASTE_RANGED', 18);
+define('CR_HASTE_SPELL', 19);
+define('CR_WEAPON_SKILL_MAINHAND', 20);
+define('CR_WEAPON_SKILL_OFFHAND', 21);
+define('CR_WEAPON_SKILL_RANGED', 22);
+define('CR_EXPERTISE', 23);
+define('CR_ARMOR_PENETRATION', 24);
+
+define('BASE_ATTACK', 0);
+define('OFF_ATTACK', 1);
+define('RANGED_ATTACK', 2);
 ?>
