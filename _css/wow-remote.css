@@ -1,0 +1,93 @@
+/* wow anywhere */
+/*...........................................................*/
+#wowa-wrapper {overflow:hidden;width:100%;position:relative;color:#4c3400;}
+#wowa-wrapper .clear {clear:both}
+#wowa-wrapper .left {float:left;}
+#wowa-wrapper .right {float:right;}
+#wowa-wrapper .ralign {text-align:right;}
+#wowa-wrapper h1 {margin:0px;padding:0px;font-size:18px;font-family:arial;font-weight:bold;}
+#wowa-wrapper h2 {margin:0px;padding:0px;font-size:15px;font-family:verdana;letter-spacing:-0.45px;font-weight:bold;color:#4c3400;}
+#wowa-wrapper p.descrip {font-family:arial; line-height:23px;font-size:14px;text-align:justify;}
+#wowa-header {height:221px; width:100%;}
+
+#wowa-intro {height:485px; width:100%;background:url('../images/wow-remote/bg-intro.jpg') no-repeat}
+#wowa-intro .wowa-list {float:right; right:20px;width:476px; height:100%;position:relative; }
+#wowa-intro a.subscribe {background:url('../images/wow-remote/button-subscribe.gif') no-repeat 0 0;margin:30px 0px 0px 150px; width:231px;height:53px;display:block;padding-left:10px; line-height:49px; font-size:15px; font-weight:bold;text-align:center; text-decoration:none; color:#fff; font-family:verdana;}
+#wowa-intro a.subscribe:hover {background:url('../images/wow-remote/button-subscribe.gif') no-repeat 0 -53px;}
+#wowa-intro span.faq{display:block;width:231px;margin-left:150px;padding:0px 3px 0px 5px;font-size:0.9em;text-align:center;}
+#wowa-intro span.subscribe {background:url('../images/wow-remote/button-subscribe.gif') no-repeat 0 -106px;margin:30px 0px 0px 150px; width:231px;height:53px;display:block;padding-left:10px; line-height:49px; font-size:15px; font-weight:bold;text-align:center; text-decoration:none; color:#ccc; font-family:verdana;}
+
+.wowa-pricing {height:55px; width:430px; float:left;position:absolute;top:590px;}
+.wowa-pricing p.price{float:right;margin-top:-5px;position:relative;height:100%;}
+.wowa-pricing p.price span{text-align:right;overflow:display;margin-top:1px;}
+.wowa-pricing p.price span.pricing-num{display:block;overflow:display;font-size:14px;font-family:'trebuchet ms';color:#790000;font-weight:bold;}
+.wowa-pricing p.price span.pricing-num em{font-size:36px;font-style:normal;letter-spacing:-1px;}
+.wowa-pricing p.price span.pricing-per{font-family:arial;font-size:12px;margin-top:-3px;color:#4c3400;float:right;overflow:display;}
+.wowa-pricing p.margin{margin:3px 0px 0px 25px;}
+.wowa-pricing p.margin span.pricing-num em{font-size:30px;font-style:normal;}
+.wowa-pricing p.mxp{width:85px;} /* IE requires fixed widths for proper floats. No pretty way to do this */
+.wowa-pricing p.clp{width:125px;}
+.wowa-pricing p.ars{width:85px;}
+.wowa-pricing p.eur{width:110px;}
+.wowa-pricing p.rub{width:75px;}
+.wowa-pricing p.gbp{width:110px;}
+.wowa-pricing .wowa-pricing-ast{position:relative;font-family:arial;float:right;height:100%;width:15px;font-size:2.2em;color:#9d916f;font-style:italic;}
+.wowa-pricing .wowa-pricing-wrap{position:relative;float:right;overflow:hidden;height:100%;margin:0px;}
+#wowa-wrapper .wowa-notice{font-size:0.9em;font-style:italic; color:#9d916f;}
+#wowa-wrapper .wowa-pricing .wowa-notice{position:relative;margin-right:15px;text-align:right;display:block;clear:both;}
+#wowa-wrapper #wowa-try p.wowa-notice{text-align:center;display:block;margin-top:5px;}
+
+.wowa-list img {float:left;top:45px;position:relative;margin-right:20px;}
+.wowa-list h1 {width:100%;display:inline;position:relative;top:54px;}
+.wowa-list p {width:350px;margin:65px 0px 10px 70px;}
+.wowa-list ul {display:block;margin:0px 30px 0px 55px;position:relative;padding:0px;}
+.wowa-list ul li{background:url('../images/wow-remote/bullet.gif') no-repeat 10px 0px;}
+.wowa-list ul li.text{list-style-type:none; padding:3px 10px 3px 43px;font-size:15px;font-family:arial;font-weight:bold;}
+.wowa-list ul li.break{list-style-type:none;background-color:red;height:5px;font-size:0;line-height:0;margin:0px 20px 0px 43px; background:url('../images/wow-remote/line.png') no-repeat -10px 0px;}
+
+#wowa-sub-bot {height:173px; width:100%;background:url('../images/wow-remote/bg-button-subscribe-bottom.jpg') no-repeat}
+#wowa-sub-bot a {position:relative; top:34px; margin:0 0 0 294px;color:#fff; text-decoration:none; font-family:verdana;font-size: 20px;font-weight:bold; padding-left:15px;line-height:65px;display:block;text-align:center;height:68px;width:304px;background:url('../images/wow-remote/button-subscribe-big.gif') no-repeat top left}
+#wowa-sub-bot a:hover {background:url('../images/wow-remote/button-subscribe-big.gif') no-repeat 0 -68px;}
+#wowa-sub-bot span {position:relative; top:34px; margin:0 0 0 294px;color:#ccc; text-decoration:none; font-family:verdana;font-size: 20px;font-weight:bold; padding-left:15px;line-height:65px;display:block;text-align:center;height:68px;width:304px;background:url('../images/wow-remote/button-subscribe-big.gif') no-repeat 0 -136px;}
+#wowa-try {height:380px;width:100%; background:url('../images/wow-remote/bg-try.jpg') no-repeat;}
+#wowa-try-wrap {width:385px;position:relative; top:45px; left:53px;overflow:display;}
+#wowa-try h2{width:100%; text-align:center;}
+#wowa-try p.descrip{margin:3px 0px 0px 5px;}
+#wowa-try span.try-buttons{display:block;overflow:hidden;margin-top:10px;}
+#wowa-try span.try-buttons a{display:block; cursor:pointer; font-size:11px;text-align:center;text-decoration:none;color:#004077;font-family:verdana; font-weight:bold;width:194px;height:56px;}
+#wowa-try span.try-buttons a.web {background:url('../images/wow-remote/button-tan.gif') no-repeat 0 0;line-height:54px;margin-left:-5px;float:left;}
+#wowa-try span.try-buttons a.web:hover {background:url('../images/wow-remote/button-tan.gif') no-repeat 0 -56px;}
+#wowa-try span.try-buttons a.mobile {background:url('../images/wow-remote/button-tan.gif') no-repeat 0 -112px;line-height:12px;margin-right:-5px;float:right;}
+#wowa-try span.try-buttons a.mobile:hover {background:url('../images/wow-remote/button-tan.gif') no-repeat 0 -168px;}
+#wowa-try span.try-buttons a.mobile span {padding:15px 14px 0px 13px;display:block;}
+#wowa-try span.try-buttons a.mobile:hover {background:url('../images/wow-remote/button-tan.gif') no-repeat 0 -168px;}
+#wowa-try span.try-buttons a.disabled {cursor:default;background:url('../images/wow-remote/button-tan.gif') no-repeat 0 -224px;line-height:54px;margin-right:-5px;float:right;color:#333;}
+
+#wowa-table {height:777px;width:100%; background:url('../images/wow-remote/bg-table.jpg') repeat}
+#wowa-table-wrapper {width:746px;position:relative;left:72px;top:10px;}
+#wowa-table-wrapper #shadow-top{width:100%;height:23px; background:url('../images/wow-remote/table-shadow-top.png') no-repeat;}
+#wowa-table-wrapper #shadow-body{width:100%;background:url('../images/wow-remote/table-shadow-body.png') repeat;}
+#wowa-table-wrapper #shadow-bot{height:23px;width:100%;background:url('../images/wow-remote/table-shadow-bot.png') no-repeat}
+#wowa-table table{position:relative;left:21px;width:703px;}
+#wowa-table thead{font-size:15px; height:35px;font-family:arial;font-weight:bold;background:url('../images/wow-remote/bg-table-head.gif') repeat}
+#wowa-table thead .c-first{width:455px;text-align:left;}
+#wowa-table thead .c-second{width:109px;}
+#wowa-table thead .c-third{width:120px;}
+#wowa-table tbody tr{height:36px;border:1px solid #917636;font-family:arial; font-size:14px;letter-spacing:-.2px}
+#wowa-table table tr td,#wowa-table table tr th {border:1px solid #917636;}
+#wowa-table tbody tr.dark {background:url('../images/wow-remote/bg-table-dark.gif') repeat}
+#wowa-table tbody tr.light {background:url('../images/wow-remote/bg-table-light.gif') repeat}
+#wowa-table tbody .check {text-align:center;}
+#wowa-table table .text {padding:0px 5px 0px 15px;}
+
+.wowa-screens-wrap{height:218px;background-image:url('../images/wow-remote/bg-screenshots.jpg');}
+.wowa-screens-wrap #slide-left img{height:29px; width:29px; margin:5px;cursor:pointer;}
+.wowa-screens-wrap #slide-right img{height:29px; width:29px; margin:5px;cursor:pointer;}
+.wowa-screens-nav {z-index:5;width:40px;position:absolute; height:100%;padding-top:80px;}
+.nav-left{background:url('../images/wow-remote/bg-nav-left.jpg') no-repeat; float:left;}
+.nav-right{background:url('../images/wow-remote/bg-nav-right.jpg') no-repeat;float:right;right:0;}
+.wowa-screens {float:left;position:absolute;height:218px;overflow:hidden;width:100%;}
+#wowa-screens-slide a {float:left; height:188px;width:125px; margin:12px 20px 10px 20px;}
+#wowa-screens-slide {float:left;z-index:0;position:absolute;left:30px;height:240px;width:100%;overflow:hidden;}
+
+#blackout { position:fixed;opacity:1 !important;top:0;left:0;height:100%;width:100%;background:url('../images/mobile-armory/black.png') 0 0 repeat;z-index:1000; }

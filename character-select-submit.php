@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 61
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 198
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,38 +23,47 @@
  **/
 
 define('__ARMORY__', true);
-
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-
 if(!isset($_SESSION['accountId'])) {
-    header('Location: login.xml');
     exit;
 }
-
-if(isset($_GET['action'])) {
-    switch($_GET['action']) {
-        case 'add':
-            if(!$armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                if($data = $armory->cDB->selectRow("SELECT `guid`, `account`, `name`, `level`, `race`, `class`, `gender` FROM `characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                    $data['selected'] = 0;
-                    $armory->aDB->query("INSERT IGNORE INTO `armory_login_characters` (?#) VALUES (?a)", array_keys($data), array_values($data));
-                }
+if(isset($_GET)) {
+    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?d", $_SESSION['accountId']);
+    $delete_query = sprintf("DELETE FROM `armory_login_characters` WHERE `account`='%d'", $_SESSION['accountId']);
+    $armory->aDB->query($delete_query);
+    for($i = 1; $i < 4; $i++) {
+        if(isset($_GET['cn' . $i]) && isset($_GET['r' . $i])) {
+            $realmName = urldecode($_GET['r' . $i]);
+            $realm_data = $armory->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=? LIMIT 1", $realmName);
+            if(!$realm_data) {
+                continue;
             }
-            break;
-        case 'delete':
-            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                $armory->aDB->query("DELETE FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId']);
+            elseif(!isset($armory->realmData[$realm_data['id']])) {
+                continue;
             }
-            break;
-        case 'setmain':
-            if($data = $armory->aDB->selectCell("SELECT `guid` FROM `armory_login_characters` WHERE `name`=? AND `account`=? LIMIT 1", $_GET['name'], $_SESSION['accountId'])) {
-                $armory->aDB->query("UPDATE `armory_login_characters` SET `selected`=0 WHERE `account`=?", $_SESSION['accountId']);
-                $armory->aDB->query("UPDATE `armory_login_characters` SET `selected`=1 WHERE `name`=? AND `account`=?", $_GET['name'], $_SESSION['accountId']);
+            $armory->connectionData = $armory->realmData[$realm_data['id']];
+            $db = DbSimple_Generic::connect('mysql://'.$armory->connectionData['user_characters'].':'.$armory->connectionData['pass_characters'].'@'.$armory->connectionData['host_characters'].'/'.$armory->connectionData['name_characters']);
+            if(!$db) {
+                continue;
             }
-            break;
+            $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`=? AND `account`=?d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
+            if(!$char_data) {
+                continue;
+            }
+            $char_data['realm_id'] = $realm_data['id'];
+            if(isset($_GET['cn1']) && $i == 1) {
+                $char_data['selected'] = 1;
+            }
+            else {
+                $char_data['selected'] = $i;
+            }
+            $char_data['num'] = $i;
+            $add_query = sprintf("INSERT INTO `armory_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $i, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_data['id'], $char_data['selected']);
+            $armory->aDB->query($add_query);
+        }
     }
 }
-header('Location: character-select.xml');
+exit;
 ?>

@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 153
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 198
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -62,7 +62,7 @@ Class Achievements extends Connector {
                 WHERE `id` IN 
                 (
                     SELECT `achievement` 
-                    FROM `" . $this->mysqlconfig['name_characters'] . "`.`character_achievement`
+                    FROM `" . $this->connectionData['name_characters'] . "`.`character_achievement`
                     WHERE `guid`=?
                 )
                 ", $guid);

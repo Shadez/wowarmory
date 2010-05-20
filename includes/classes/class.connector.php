@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 171
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 198
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -63,7 +63,7 @@ Class Connector {
      * @example Connector::__construct()
      * @return bool
      **/
-    public function __construct() {
+    public function Connector() {
         if(!@include('configuration.php')) {
             die('<b>Error</b>: unable to load configuration file!');
         }
@@ -114,6 +114,9 @@ Class Connector {
         }
         if(!$this->currentRealmInfo) {
             $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'connected' => true);
+        }
+        if(!$this->connectionData) {
+            $this->connectionData = $this->realmData[1];
         }
         $this->rDB->query("SET NAMES ?", $this->mysqlconfig['charset_realmd']);
         $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));

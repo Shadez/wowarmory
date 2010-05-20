@@ -71,7 +71,7 @@
 		<div id="profileRight" class="profile-right">				
 			<xsl:choose>
 				<xsl:when test="$IS_LOGGED_IN = 'true'">
-					<xsl:variable name="bm" select = "document('../../vault/bookmarks.xml')/page/characters"/>
+					<xsl:variable name="bm" select = "document('../../bookmarks.xml')/page/characters"/>
 					<xsl:variable name="userHasMaxBookmarks" select="$bm/@count &gt;= $bm/@max"/>
 					<xsl:variable name="isBookmarkedCharacter" select="$bm/character/@name = $c/@name and $bm/character/@realm = $c/@realm"/>
 

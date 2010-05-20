@@ -66,7 +66,7 @@
                 
                 <xsl:call-template name="characterPromote" />
                 
-                <a href="/character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a>
+                <a href="character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a>
             </td>
 			<td style="text-align:right; padding-right:3px; font-weight: bold; width: 50px;">
 				<span style="display: none;"><xsl:value-of select="@achPoints" /></span>

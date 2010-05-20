@@ -1,0 +1,376 @@
+
+a, a:visited, a:active, a:link { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a, a img { border: none; }
+
+/* formatting */
+.ar { text-align: right; }
+.ac { text-align: center; }
+.al { text-align: left; }
+.textGreen { color: green; }
+.textRed { color: red; }
+.textYellow { color: yellow; }
+.textGray { color: #71674e; }
+.noresults { background-position: left center; }
+.rarity1 { text-shadow: #121211 1px 1px 1px; }
+.fitlerTitleSmallText { color: #dc9d53; font-style: italic; zoom: 1; position: relative; }
+.alertSmallText { color: yellow; font-style: italic; float: right; zoom: 1; background: url("../images/bullet.gif") 0 -40px no-repeat; padding-left: 25px; }
+.buttonTitle { float: right; padding-top: 7px; padding-right: 5px; }
+.emptyResult { text-align: center; padding: 10px; background: url("../images/ahouse/row2-bg.gif") 0 0 repeat; }
+.emptyResult2 { padding: 50px; background: none; text-align: center; }
+.emptyResult2 span { background: url("../images/bullet-report.gif") 0 2px no-repeat; padding: 5px 25px; }
+#infoPaneContainer.summaryTakeover .emptyResult2 { padding: 100px; }
+
+.radioInput, .radioInput.disabled { padding: 0; border: none; background: none; margin: 0; }
+
+/* buy/bid money */
+.buyCol, .bidCol { height: 17px; margin: 0; padding: 0; overflow: hidden; text-align: right; }
+.buyCol .goldCoin, .bidCol .goldCoin, .ppuCol .goldCoin { float: right; }
+.ppuCol .goldCoin { margin-left: 10px; }
+.buyCol .silverCoin, .buyCol .copperCoin,
+.bidCol .silverCoin, .bidCol .copperCoin,
+.ppuCol .silverCoin, .ppuCol .copperCoin { float: right; display: block; width: 14px; }
+.goldCoin { color: #8d6700; background-image: url("../images/ahouse/gold.gif"); }
+.silverCoin { color: #63625d; background-image: url("../images/ahouse/silver.gif") }
+.copperCoin { color: #a04d00; background-image: url("../images/ahouse/copper.gif") }
+.noBuyout { opacity: .50; }
+
+.enter-bid-silver, .enter-bid-copper { width: 25px; text-align: right; }
+.enter-bid-gold { width: 50px; text-align: right; }
+
+/* icons */
+.timeShort { padding: 2px 0 2px 20px; background: url("../images/ahouse/time-short.gif") center left no-repeat; }
+.timeMedium { padding: 2px 0 2px 20px; background: url("../images/ahouse/time-medium.gif") center left no-repeat; }
+.timeLong { padding: 2px 0 2px 20px; background: url("../images/ahouse/time-long.gif") center left no-repeat; }
+.timeVeryLong { padding: 2px 0 2px 20px; background: url("../images/ahouse/time-verylong.gif") center left no-repeat; }
+.mailLetter { height: 14px; padding: 2px 0 2px 25px; background: url("../images/mail-letter.gif") 0 50% no-repeat; }
+
+/* loading bar */
+#auctionHouseContent { width: 890px; }
+#auctionHouseContent.loadingContent { background: url("../images/ahouse/spinner_large.gif") center center no-repeat; padding: 175px 0; }
+.summaryTakeover #auctionHouseContent.loadingContent { background: url("../images/ahouse/spinner_large2.gif") center center no-repeat; padding: 175px 0; }
+	
+/*---------------------------------------
+	Button
+---------------------------------------*/
+
+a.houseButton { outline: none; cursor: pointer; color: #fcf4dc;  float: right;  text-decoration: none;  background: url('../images/ahouse/button-left.png') left top no-repeat;  padding-left: 10px; position: relative; margin-bottom: 1px; }
+a.houseButton span { text-align: center; background: url('../images/ahouse/button-right.png') right top no-repeat; height: 18px; float: left;  display: block;  padding: 1px 12px 2px 2px;  font-weight: bold; text-decoration: none; }
+
+/* alt colors */
+/*.auctionTable tr.odd a.houseButton { background: url('../images/ahouse/button-left.gif') left top no-repeat; }
+.auctionTable tr.odd a.houseButton span { background: url('../images/ahouse/button-right-red.gif') right top no-repeat; }*/
+
+/* hover */
+a.houseButton:hover/*, .auctionTable tr.odd a.houseButton:hover*/ { color: #fff; background-position: left -21px; }
+a.houseButton:hover span/*, .auctionTable tr.odd a.houseButton:hover span*/ { background-position: right -21px; }
+	
+/* disabled */
+a.houseButton.disabled { color: #bea573; cursor: default; background: url('../images/ahouse/button-left.png') 0 -42px no-repeat; }
+a.houseButton.disabled span { background: url('../images/ahouse/button-right.png') right -42px no-repeat; }
+/*.auctionTable tr.odd a.houseButton.disabled { background: url('../images/ahouse/button-left-red.gif') 0 -42px no-repeat; }
+.auctionTable tr.odd a.houseButton.disabled span { background: url('../images/ahouse/button-right-red.gif') right -42px no-repeat; }*/
+
+/* states */
+a.houseButton.active/*, .auctionTable tr.odd a.houseButton.active*/ { color: green; cursor: default; background: none; }
+a.houseButton.active span/*, .auctionTable tr.odd a.houseButton.active span*/ { background: none; }
+	
+/*---------------------------------------
+	Title Bar
+---------------------------------------*/
+
+.tableTitle { padding: 10px 10px 9px 10px; position: relative; background: url('../images/ahouse/title-bg.gif') top left repeat; border-bottom: 1px solid #6e2100;}
+.tableTitle a.toggler { font-size: 14px; background: url('../images/ahouse/toggler-plusminus.gif') top left no-repeat; padding: 1px 0 1px 25px; text-decoration: none; margin: 0; color: #ffd200; }
+.tableTitle a.toggler:hover { color: #fff; background: url('../images/ahouse/toggler-plusminus.gif') 0 -18px no-repeat; }
+.tableTitle a.toggler.opened { background: url('../images/ahouse/toggler-plusminus.gif') 0 -36px no-repeat; }
+.tableTitle a.toggler.closed { outline: none; color: #DC9D53; background: url('../images/ahouse/toggler-plusminus.gif') 0 -54px no-repeat; cursor: default; }
+.tableTitle a.toggler.closed:hover { outline: none; color: #DC9D53; }
+.tableTitle .houseButton,
+.tableTitle .awesomeButton { position: absolute; top: 9px; right: 10px; }
+	
+/*---------------------------------------
+	Data Tables
+---------------------------------------*/
+
+.auctionTable { border-bottom: 1px solid #cb9c35; border-top: 1px solid #914D02; width: 100%; }
+.auctionTable tr { background: url("../images/ahouse/row-bg.gif") repeat; }
+.auctionTable tr.odd { background: url("../images/ahouse/row2-bg.gif") repeat; }
+.auctionTable tr.auction-clone td { border: none; }
+.auctionTable.altTable tr { background: url("../images/ahouse/rows/row-bg.gif") repeat; }
+.auctionTable.altTable tr.odd { background: url("../images/ahouse/rows/row2-bg.gif") repeat; }
+.auctionTable tr:hover { background: url("../images/ahouse/row-hover.gif") repeat; }
+.auctionTable tr.selected { background: url("../images/ahouse/row-select-right.gif") repeat; }
+.auctionTable tr.auction-selected { background: #fff url("../images/ahouse/overlay-top.gif") 0 0 repeat-x;  }
+.auctionTable tr.auction-selected.auction-clone { background: #f9efbd url("../images/ahouse/row-open.gif") repeat; }
+.auctionTable tr td { border-top: 1px solid #cb9c35; padding: 3px; }
+/*.auctionTable tr.auction-selected td { border-top: 2px solid #261e00; }*/
+
+/* Headers */
+.auctionTable .tableHead th { background: url('../images/ahouse/table-head-bg.gif') repeat-x 0 100%; font-size: 12px; color: white; text-align: left; padding: 4px 10px 5px 10px; position: relative;}
+.auctionTable .tableHead th.ar { text-align: right; }
+.auctionTable .tableHead th.ac { text-align: center; }
+.auctionTable .tableSort th { padding: 0; }
+.auctionTable .tableSort .emptyCell { padding: 3px 10px; display: block; }
+.auctionTable .tableSort a.sortLink, 
+.auctionTable .tableSort a.sortLink:active, 
+.auctionTable .tableSort a.sortLink:visited { display: block; padding: 3px 5px; margin: 0 1px; color: white; border: none; background: #a54f00 url('../images/ahouse/table-head-link.gif') top left repeat-x; border: 1px solid #914d02; text-decoration:none; z-index: 1; }
+.auctionTable .tableSort a.sortLink:hover { text-decoration:none; background: #a54f00 url('../images/ahouse/table-head-link2.gif') top left repeat-x; }
+		
+/* DD Sorters */
+.sortDropdown { top: 27px; right: 0; left: inherit; text-align: left;}
+.sortDropdownWrapper { position: relative; }
+.sortDropdownWrapper a.sortLink,
+.sortDropdownWrapper a.sortLink:active,
+.sortDropdownWrapper a.sortLink:visited { padding-right: 18px !important; }
+.sortToggler { position: absolute; top: 4px; right: 5px; width: 18px; height: 18px; cursor: pointer; background: url("../images/ahouse/toggler-arrows.gif") no-repeat; }	
+.sortToggler:hover { background: url("../images/ahouse/toggler-arrows.gif") 0 -18px no-repeat; }
+.sortToggler.active { background: url("../images/ahouse/toggler-arrows.gif") 0 -36px no-repeat; }
+	
+/* Content within tables */
+.auctionTable .itemList { float: left; margin-right: 5px; width: 43px; height: 43px; position: relative; }
+.auctionTable .itemListStack { position: absolute; bottom: 3px; right: 5px; color: white; font-weight: bold; font-size: 14px; text-shadow: 0 0 3px #000000; }
+.auctionTable .col1 { width: 315px; }
+.auctionTable .col2 { width: 350px; }
+
+.sellerName {  font-weight: normal; color: #a04d00; text-decoration: none; }
+.sellerName:hover { text-decoration: underline; }
+.sellerName:active, .sellerName:visited, .sellerName:link { font-weight: normal; }
+.isSeller { width: 95px; text-align: center; font-weight: bold; float: right; }
+	
+.auctionTable .houseButton span { width: 75px; text-align: center; }
+.auctionTable .houseButton { clear: both; }
+.auctionTable .moneyCol { padding-top: 5px; position: relative; }
+	
+.cloneTable { border: 1px solid #f5eba9; width: 100%; }
+.cloneTable tr, .cloneTable td { border: none; background: #f9f6da; }
+	
+/*---------------------------------------
+	Auction Summary
+---------------------------------------*/
+
+#auctionSummary { position: relative; height: 550px; color: #6c471a; }
+#auctionSummary h2 { margin: 0; padding: 0; font-weight: normal; font-family:"Calibri","Arial",sans-serif; font-size: 20px; color: #B00700; margin-bottom: 10px; }
+
+#summaryLeft { width: 375px; left: 90px; top: 70px; position: absolute; }
+#summaryRight { width: 320px; right: 80px; top: 70px; position: absolute; }
+#summaryDesc { line-height: 125%; }
+
+.summaryTable { width: 100%; border-top: 1px solid #d8bb68; border-bottom: 1px solid #f9f1ca; border-collapse: inherit; margin-bottom: 20px; }
+.summaryTable td { padding: 5px; border-bottom: 1px solid #d8bb68; border-top: 1px solid #f9f1ca; }
+.summaryTable td.cell1 { border-right: 1px solid #d8bb68; }
+.summaryTable td.cell2 { border-left: 1px solid #f9f1ca; }
+.summaryTable b, .summaryTable .buyCol { font-size: 18px; }
+.summaryTable .progressBar { background: #b39349; }
+.summaryTable .silverCoin, .summaryTable .copperCoin { width: 20px; }
+#summaryRight .summaryTable .progressBarLoader { background: url('../images/ahouse/progress-bar-red.png') top left repeat; }
+
+#auctionIcons { margin-top: 15px; }
+#auctionIcons .auctionIcon { float: left; padding: 0 6px; width: 68px; margin: 0 6px; text-align: center; font-size: 11px; }
+#auctionIcons .auctionIcon a, .auctionIcon a img { border: none; text-decoration: none;  }
+
+#auctionHouseSelect { margin: 15px 15px 0 15px; }
+#auctionHouseSelect a { display: block; color: #a17419; background: url("../images/rss_check_bg.gif") 0 0 no-repeat; padding-left: 30px; text-decoration: none; font-size: 18px; font-weight: normal; height: 25px; line-height: 25px;  margin-right: 15px; float: left; }
+#auctionHouseSelect a:hover { background: url("../images/rss_check_bg.gif") 0 -24px no-repeat; text-decoration: underline;  }
+#auctionHouseSelect a.checked { background: url("../images/rss_check_bg.gif") 0 -47px no-repeat; color:#005BA1;  }
+#auctionHouseSelect a.checked:hover { background: url("../images/rss_check_bg.gif") 0 -71px no-repeat; color:#005BA1;  }
+	
+#upgradeElite { width: 698px; /*748*/ height: 92px; /*142*/ cursor: pointer; background: url("../images/ahouse/upgrade-bg.png") center center no-repeat; position: absolute; top: 350px; left: 75px; padding: 25px; color: #fff; }
+#upgradeElite h2 { z-index: 1; font: normal 22px Georgia, "Times New Roman", Times, serif; color: #fff; margin-bottom: 10px; }
+#upgradeElite ul { list-style: none; color: #ffcc00; margin: 0 0 0 10px; padding: 0; }
+#upgradeElite ul li { padding-left: 20px; background: url('../images/ahouse/bullet.gif') center left no-repeat; }
+#upgradeElite a.yellowButton { position: absolute; top: 40px; right: 25px; }
+#upgradeElite.eliteHover { background: url("../images/ahouse/upgrade-bg-hover.png") center center no-repeat; }
+
+a.yellowButton { z-index: 5; width: 226px; height: 60px; display: block; text-align: center; line-height: 60px; background: url("../images/ahouse/button-upgrade.png") -15px -15px no-repeat; color: #654005; text-transform: uppercase; text-decoration: none; font-size: 14px; }
+a.yellowButton:hover, a.yellowButton.upgradeHover { background: url("../images/ahouse/button-upgrade.png") -15px -105px no-repeat; }
+a.yellowButton.disabled, a.yellowButton.disabled:hover { background: url("../images/ahouse/button-upgrade.png") -15px -195px no-repeat; }
+
+#iconBrowse a { display: block; background: url('../images/ahouse/icon-browse.png') center 3px no-repeat; }
+#iconBids a { display: block; background: url('../images/ahouse/icon-bids.png') center 3px no-repeat; }
+#iconAuctions a { display: block; background: url('../images/ahouse/icon-auctions.png') center 3px no-repeat; }
+#iconCreate a { display: block; background: url('../images/ahouse/icon-create.png') center 3px no-repeat; }
+#iconUpgrade { float: left; width: 55px; height: 55px; margin-right: 10px; }
+.iconFrame { display: block; cursor: pointer; width: 68px; height: 68px; margin-bottom: 5px; background: url('../images/ahouse/icon-frame.png') center top no-repeat; }
+
+/*---------------------------------------
+	User Header
+---------------------------------------*/
+
+#auctionUser { height: 106px;  width: 890px; overflow: hidden; position: relative; border-bottom: 3px solid #E1A93F; }
+#auctionUser.houseHorde { background: transparent url("../images/ahouse/header-horde.jpg") repeat scroll 0 0; }
+#auctionUser.houseAlliance { background: transparent url("../images/ahouse/header-alliance.jpg") repeat scroll 0 0; }
+
+#charAvatar { padding: 17px 0 0 22px; }
+#charAvatar a img { border: none; }
+#charTitle { position: absolute; left: 115px; bottom: 60px; width: 710px; }
+#charTitle h2 { color: white; display: block; font-size: 28px; font-weight: bold;  margin: 0; padding: 0; font-family: "Calibri", "Arial", sans-serif; }
+#charTitle .suffix {  color:white; font-size:15px; font-weight:normal; padding: 0 0 2px 5px;}
+#charTitle .changeChar { border: none; margin-left: 5px; margin-bottom: -5px; }
+#charTitle .changeChar img { border: none; }
+#charRealm { float: right; color: #FFD200; font-weight: bold; padding-top: 5px; }
+#charRealm a { color: #FFD200; }
+#charHouses { position: absolute; top: 20px; right: 19px; }
+#charHouses a, #charHouses a img { border: none; }
+#charLevel { color: white; height: 37px; left: 35px; line-height: 36px; font: bold 24px Georgia, "Times New Roman", Times, serif; position: absolute; text-align: center; text-shadow: 0 0 4px #000000, 0 0 4px #000000, 0 0 4px #000000; top: 66px; padding-top: 2px; width: 37px; }
+.houseHorde #charLevel { background:transparent url("../images/lvlbg_horde.png") no-repeat scroll 0 0; }
+.houseAlliance #charLevel { background:transparent url("../images/lvlbg_alliance.png") no-repeat scroll 0 0; }
+
+#auctionHouse { position: absolute; left: 115px; top: 60px; width: 710px; color:#FFD200;}
+#houseTitle { float: right; color: white; font: normal 22px "Georgia", "Times New Roman", "Times", serif; line-height: normal; text-decoration:none; }	
+		
+#auctionTabard { position: absolute; top: 43px; right: 7px; width: 43px; height: 47px; }
+#auctionTabard.tabardAlliance { background: url("../images/ahouse/alliance-tabard.gif") center center no-repeat; }
+#auctionTabard.tabardHorde { background: url("../images/ahouse/horde-tabard.gif") center center no-repeat; }
+#auctionTabard.tabardNeutral { background: url("../images/ahouse/neutral-tabard.gif") center center no-repeat; }
+	
+#auctionUser .goldCoin { color: #FFD200; background: url("../images/ahouse/gold.gif") center right no-repeat; float: left; }
+#auctionUser .silverCoin { color: #FFD200; background: url("../images/ahouse/silver.gif") center right no-repeat; float: left; }
+#auctionUser .copperCoin { color: #FFD200; background: url("../images/ahouse/copper.gif") center right no-repeat; float: left; }
+		
+/*---------------------------------------
+	Search
+---------------------------------------*/
+
+#auctionHeader { background: transparent url("../images/ahouse/header-grad.jpg") top center repeat; color: #a18638; padding: 10px 15px; width: 861px; z-index: 10; }
+#auctionSearch { color: #6a5f3f; }
+#auctionSearch td { padding: 3px; }
+#auctionSearch .inputField { background: #ffffff; border: 1px solid #decc78; padding: 5px; font-size: 12px; }	
+#auctionSearch select { padding: 4px; }
+#auctionSearch .houseButton { margin: 0 5px; }
+
+.searchBox { float: left; margin-right: 17px; }
+.searchBox label { display: block; font-weight: bold; margin-bottom: 3px; }
+.searchSelects { padding: 2px 10px 0 0; }
+.searchSelects select { margin-right: 10px; }
+.searchRow { margin-bottom: 10px; }
+#browseButtons { padding: 5px 365px 0 0 }
+		
+#auctionSelectBox { width: 367px; height: 28px; background: url("../images/ahouse/select-box.jpg") top left no-repeat; position: relative; }
+#auctionSelectBox.hover1, #auctionSelectBox.active1 { background: url("../images/ahouse/select-box.jpg") 0 -28px no-repeat; }
+#auctionSelectBox.hover2, #auctionSelectBox.active2 { background: url("../images/ahouse/select-box.jpg") 0 -56px no-repeat; }
+#auctionSelectBox.hover3, #auctionSelectBox.active3 { background: url("../images/ahouse/select-box.jpg") 0 -84px no-repeat; }
+#auctionSelectBox .selectCol1, #auctionSelectBox .selectCol3{ width: 120px; float: left;  }
+#auctionSelectBox .selectCol2 { width: 125px; float: left; }
+#auctionSelectBox .selectCol1 .tierAnchor, #auctionSelectBox .selectCol2 .tierAnchor, #auctionSelectBox .selectCol3 .tierAnchor { padding: 5px 0 4px 10px; display: block; }
+			
+.selectDropdown { width: 150px; background: url("../images/ahouse/dd-bot.gif") 0 100% no-repeat; position: absolute; padding: 0 0 2px 0; top: 25px; left: 5px; z-index: 15; }
+.selectDropdown ul { list-style: none; padding: 5px 0 3px 0; margin: 0; background: #420504 url("../images/ahouse/dd-bg.gif") 0 0 no-repeat; }
+.selectDropdown a, 
+.selectDropdown a:visited, 
+.selectDropdown a:active,
+table.auctionTable tr.masthead div#sortByDD ul li a, 
+table.auctionTable tr.masthead div#sortByDD ul li a:visited, 
+table.auctionTable tr.masthead div#sortByDD ul li a:active { display: block; color: #FFD200; padding: 1px 10px; background: none; border: none; }
+.selectDropdown a:hover { background: #510400; color: #ffffff; }
+
+#selectTier2 { left: 125px; }
+#selectTier3 { left: 245px; }
+
+/*---------------------------------------
+	Create
+---------------------------------------*/
+
+#createAuction { float: left; background: url('../images/ahouse/create-tile.jpg') 416px 0 repeat-y; }
+#createAuction .inputField { padding: 3px; border: 1px solid #B39349; background: #FFF7CE; margin-right: 5px; }
+#createAuction select.inputField { font-size: 12px; padding: 4px; }
+#createAuction .label { font-weight: bold; }
+
+#createLeft  { width: 416px; min-height: 700px; float: left; background: url('../images/ahouse/create-top-left.jpg') 0 0 no-repeat; }
+#createRight { width: 474px; min-height: 700px; float: left; background: url('../images/ahouse/create-frame.jpg') bottom right no-repeat; position: relative; }
+#createOverlay { width: 416px; position: absolute; top: 0; left: 0; background: transparent; z-index: 10; }
+
+#createFilter { padding: 15px 15px 5px 15px; }
+#createFilter .houseButton { margin-right: 4px; }
+#createFilter .filterField { float: left; width: 50%; padding-bottom: 10px; text-align: right; }
+#createFilter .filterField2 { padding-bottom: 10px; text-align: right; }
+#createFilter .filterField input, #createFilter .filterField select { margin-left: 5px; }
+#createFilter .filterField2 input { margin: 0 0 0 5px; }
+#createFilter .spinner { margin: 0 5px -2px 0; }
+#filterItemList { height: 540px; overflow-y: auto; padding-bottom: 5px; }
+#filterItemList .auctionTable { border: 0; z-index: 15; }
+#filterItemList a { padding: 4px 0 4px 25px; }
+#filterItemContent { position: relative; }
+#createBrowseTabs .houseButton:first-child { margin: 0; }
+#createBrowseTabs .houseButton span { width: 69px; }
+#createBrowseTabs .houseButton.opened { height: 33px; display: block; background: url('../images/ahouse/button-bubble.png') no-repeat; }
+#createBrowseTabs .houseButton.opened span { background: none; color: #B00700; }
+
+#chooseAnItem { width: 434px; padding: 45px 20px;  }
+.chooseBubble { width: 426px; }
+.chooseBubble .bubbleBody { padding: 20px 20px 10px 30px; background: url("../images/ahouse/bubble-header.png") left top no-repeat; }
+.chooseBubble .bubbleFoot { background: url("../images/ahouse/bubble-footer.png") left top no-repeat; height: 10px; }
+.chooseBubble h2 { font: bold 24px "Calibri","Arial",sans-serif; color: #B00700; margin: 0 0 5px 0; text-shadow: 0 0 3px #fff2c7; }
+.chooseBubble p { margin: 15px 0; line-height: 200%; }
+#wowRemoteIntercept { position: absolute; top: 90px; right: 30px; }
+
+#createAuctionForm table td { padding: 4px; }
+#itemFields { width: 444px; padding: 15px; }
+#itemFields #itemNameIcon { position: relative; margin-bottom: 15px; }
+#itemFields #itemIcon { float: left; width: 43px; height: 43px; margin-right: 10px; position: relative; }
+#itemFields #itemName { font-size: 28px; font-weight: bold; padding-top: 0px; color: #B00700; font-family:"Calibri","Arial",sans-serif; text-shadow: 0 0 3px #d3a248; line-height: 90%; }
+#itemFields #totalQuantity { position: absolute; bottom: 5px; right: 5px; font-weight: bold; color: white; font-size: 18px; text-shadow: 0 0 3px #000000; }
+#itemFields #itemName.rarity0 { color:#5B5B5B !important}/*grey*/
+#itemFields #itemName.rarity1 { color:#ffffff !important; text-shadow: 0 0 3px #000000; }/*white*/
+#itemFields #itemName.rarity2 { color:#007200 !important}/*green*/
+#itemFields #itemName.rarity3 { color:#004385 !important}/*blue*/
+#itemFields #itemName.rarity4 { color:#5D1F88 !important}/*purple*/
+#itemFields #itemName.rarity5 { color:#C24E00 !important}/*orange*/
+#itemFields #itemName.rarity6 { color:#b62121 !important}/*gold/red*/
+#itemFields #itemName.rarity7 { color:#7e7046 !important}/*gold*/
+#itemFields input[name='duration'] { margin: 0 5px; }
+#itemFields input[disabled] { color: #999; border: 1px solid #999; }
+
+#similarAuctions { width: 444px; padding: 15px; }
+#similarAuctions .houseButton { margin-left: 5px; }
+#similarAuctions table { width: 100%; }
+#similarAuctions h3 { margin: 0; padding: 0; font-weight: normal; font-family:"Calibri","Arial",sans-serif; font-size: 18px; color: #B00700; text-shadow: 0 0 3px #d3a248; padding: 2px 0; }
+#similarHeader { padding-bottom: 10px; }
+
+#createControls { text-align: center; padding-top: 10px; }
+.progressBar { background: #c9ac64 url('../images/ahouse/progress-bar-ani.gif') center center repeat; padding: 0px; height: 15px; text-align: left; position: relative; border: 1px solid black; }
+.progressBar .progressBarLoader { background: url('../images/ahouse/progress-bar.png') top left repeat; height: 15px; display: block; line-height: 15px; color: #fff; text-align: center; }
+.progressBar .progressPercent { position: absolute; left: 45%; top: -1px; color: #fff; }
+.progressBar.progressStopped { background: url('../images/ahouse/progress-bar-stripe.png') center center repeat; }
+#createMsg, #finishMsg, #createErrors, #depositError { font-weight: bold; padding-top: 10px; }
+#progressWrap { height: 23px; padding: 10px 12px 10px 10px; background: url('../images/ahouse/progress-bar-bg.jpg') top left no-repeat; }
+#progressWrap table { height: 23px; }
+#progressWrap table td { padding-left: 5px; }
+
+a.createButton { background:url('../images/mobile-armory/download_btn_left.png') left top no-repeat; display:block; padding-left:16px; position:relative; color:white; text-decoration:none; font-weight:bold; }
+a.createButton span { background:url('../images/mobile-armory/download_btn_right.png') right top no-repeat; height: 41px; line-height:41px; display:block; padding:0 30px 0 14px; position:relative; cursor:pointer }
+a.createButton.disabledCreate { cursor: default; background-position: left -82px; }
+a.createButton.disabledCreate span { cursor: default; background-position: right -82px; }
+a.createButton:hover { background-position:left -41px; color:white !important }
+a.createButton:hover span { background-position: right -41px}
+a.createButton.disabledCreate:hover { background-position: left -82px; }
+a.createButton.disabledCreate:hover span { background-position: right -82px; }
+
+/*---------------------------------------
+	Misc
+---------------------------------------*/
+
+#pager { z-index: 1; }
+.info-pane.summaryTakeover { background:url("../images/ahouse/summary-bg.jpg") top center no-repeat; border: none; padding: 0 3px 3px 3px; border-top:3px solid #E1A93F; height: 670px; }
+.info-pane.summaryTakeover #auctionUser { border: none; margin-bottom: 3px; }
+
+.hiddenSubmit { border:medium none; font-size:1px; height:0; line-height:0; margin:0; padding:0; width:0; }
+
+#overlayMask { top: 0; left: 0; position: fixed; z-index: 1000; background: #000; opacity: .7; }
+
+/*.auction-overlay { z-index: 1500; position: absolute; width: 890px; border: 3px solid #261e00; -moz-box-shadow: 0 0 10px #000; }*/
+.action-row { padding: 8px 5px; height: 35px; background: #5c1b00 url('../images/ahouse/overlay-bot.gif') top left repeat-x; }
+.auctionTable tr td.action-row { padding: 8px 5px; /*border-bottom: 2px solid #261e00;*/ }
+.action-row .action-button { float: right; width: 100px; }
+.action-row .action-button a { width: 100px; height: 33px; line-height: 33px; text-align: center; display: block; background: url('../images/ahouse/confirm.gif') 0 0 no-repeat; color: #fff; font-weight: bold; }
+.action-row .action-button a:hover { text-decoration: none; background: url('../images/ahouse/confirm.gif') 0 -33px no-repeat; color: #313b1f; }
+.action-row .action-message { padding: 0 10px; float: right; text-align: right; color: #fff; }
+.action-row .action-message a { color: #fff; }
+.action-close { padding-right: 15px; background: url('../images/ahouse/cancel.gif') 100% 50% no-repeat; }
+.action-message .goldCoin { color: yellow; background: url("../images/ahouse/gold.gif") 100% 0 no-repeat; }
+.action-message .silverCoin { color: yellow; background: url("../images/ahouse/silver.gif") 100% 0 no-repeat; }
+.action-message .copperCoin { color: yellow; background: url("../images/ahouse/copper.gif") 100% 0 no-repeat; }
+.overlay-cancel .action-message .overlay-start { padding-top: 8px; }
+.overlay-bid .action-message .overlay-start { padding-top: 5px; }
+
+.auctionButtons { width: 105px; }
+.auctionButtons.locked { text-align: center; padding-top: 10px; }

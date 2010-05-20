@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
+ * @revision 198
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -79,6 +79,7 @@ $ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/
     Without it multirealm wouldn't work.
 */
 
+$ArmoryConfig['multiRealm'][2]['id']                 = 1;
 $ArmoryConfig['multiRealm'][1]['name']               = 'MaNGOS1';
 $ArmoryConfig['multiRealm'][1]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][1]['user_characters']    = 'root';
@@ -91,6 +92,7 @@ $ArmoryConfig['multiRealm'][1]['pass_mangos']        = '';
 $ArmoryConfig['multiRealm'][1]['name_mangos']        = 'mangos';
 $ArmoryConfig['multiRealm'][1]['charset_mangos']     = 'UTF8';
 
+$ArmoryConfig['multiRealm'][2]['id']                 = 2;
 $ArmoryConfig['multiRealm'][2]['name']               = 'MaNGOS2';
 $ArmoryConfig['multiRealm'][2]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][2]['user_characters']    = 'root';

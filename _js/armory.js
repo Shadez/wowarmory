@@ -886,13 +886,13 @@ function ajaxBookmarkChar(){
 	if(asyncType == true){
 		$("#profileRight")[0].innerHTML = "<div class=\"bmcEnabled\"></div>";
 	}		
-	buildBookmarkMenu("/vault/bookmarks.xml?" + charUrl + "&action=1");
+	buildBookmarkMenu("bookmarks.xml?" + charUrl + "&action=1");
 }
 
 //removes a bookmarked character from the drop down list
 function ajaxRemoveChar(removedLink, clickedItem){	
 	$(theGlobalToolTip).hide();	//hide tooltip	
-	buildBookmarkMenu("/vault/bookmarks.xml?" + removedLink + "&action=2");	
+	buildBookmarkMenu("bookmarks.xml?" + removedLink + "&action=2");	
 }
 
 

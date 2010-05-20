@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 196
+ * @revision 198
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -105,7 +105,14 @@ Class Utils extends Connector {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
+        $count_all = 0;
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $current = $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
+            $count_all += $current;
+        }
+        unset($realm_info, $db);
+        return $count_all;
     }
     
     public function GetAllCharacters() {
@@ -118,6 +125,7 @@ Class Utils extends Connector {
             $db->query("SET NAMES UTF8");
             $chars_data = $db->select("
             SELECT
+            `characters`.`guid`,
             `characters`.`name`, 
             `characters`.`class` AS `classId`, 
             `characters`.`race` AS `raceId`, 
@@ -137,7 +145,27 @@ Class Utils extends Connector {
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['relevance'] = 100;
+                if($realm['level'] < $this->armoryconfig['minlevel']) {
+                    $realm['relevance'] = 0;
+                }
+                elseif($realm['level'] >= $this->armoryconfig['minlevel'] && $realm['level'] <= 79) {
+                    $realm['relevance'] = $realm['level'];
+                }
+                elseif($realm['level'] == 80) {
+                    $realm['relevance'] = 100;
+                }
+                else {
+                    $realm['relevance'] = 0; // Unknown
+                }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm['realm']), urlencode($realm['name']));
+                $realm['selected'] = $this->aDB->selectCell("SELECT `selected` FROM `armory_login_characters` WHERE `account`=?d AND `guid`=?d AND `realm_id`=?d LIMIT 1", $_SESSION['accountId'], $realm['guid'], $realm_info['id']);
+                if($realm['selected'] > 2) {
+                    $realm['selected'] = 2;
+                }
+                elseif($realm['selected'] == 0) {
+                    unset($realm['selected']);
+                }
+                unset($realm['guid']); // Do not show GUID in XML results
                 $results[] = $realm;
             }
         }
@@ -148,51 +176,96 @@ Class Utils extends Connector {
     }
     
     public function getCharacter() {
-        if(!isset($_SESSION['accountId'])) {
-            return false;
-        }
-        $data = $this->aDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `realm` FROM `armory_login_characters` WHERE `account`=? AND `selected`=1", $_SESSION['accountId']);
-        if(!$data) {
-            return $this->loadRandomCharacter();
-        }
-        return $data;
+        return;
     }
     
     public function loadRandomCharacter() {
-        if(!isset($_SESSION['accountId'])) {
-            return false;
-        }
-        $char = $this->cDB->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `realm` FROM `characters` WHERE `account`=? LIMIT 1", $_SESSION['accountId']);
-        if(!$char) {
-            return false;
-        }
-        $char['account'] = $_SESSION['accountId'];
-        $char['selected'] = 1;
-        $this->aDB->query("INSERT INTO `armory_login_characters` (?#) VALUES (?a)", array_keys($char), array_values($char));
-        return $char;
+        return;
     }
     
-    public function getCharacterBookmarks() {
+    public function GetBookmarks() {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $guids = $this->aDB->select("SELECT `guid` FROM `armory_bookmarks` WHERE `account`=?", $_SESSION['accountId']);
-        if($guids) {
-            $bookmarks = array();
-            $i = 0;
-            foreach($guids as $char) {
-                $bookmarks[$i] = $this->cDB->selectRow("SELECT `name`, `class`, `level` FROM `characters` WHERE `guid`=? LIMIT 1", $char['guid']);
-                $charAchievements = $this->cDB->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=?", $char['guid']);
-                $ach = array();
-                foreach($charAchievements as $achievement) {
-                    $ach[] = $achievement['achievement'];
-                }
-                $bookmarks[$i]['apoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (?a)", $ach);
-                $i++;
-            }
-            return $bookmarks;
+        // Bookmarks limit is 60
+        $bookmarks_data = $this->aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `armory_bookmarks` WHERE `account`=?d LIMIT 60", $_SESSION['accountId']);
+        if(!$bookmarks_data) {
+            return false;
         }
-        return false;
+        $result = array();
+        foreach($bookmarks_data as $bookmark) {
+            $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=?", $bookmark['realm']);
+            if(!$realm) {
+                continue;
+            }
+            elseif(!isset($this->realmData[$realm['id']])) {
+                continue;
+            }
+            $realm_info = $this->realmData[$realm['id']];
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            if(!$db) {
+                continue;
+            }
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $guid = $db->selectCell("SELECT `guid` FROM `characters` WHERE `name`=?", $bookmark['name']);
+            if(!$guid) {
+                continue;
+            }
+            $bookmark['achPoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (SELECT `achievement` FROM `" . $realm_info['name_characters'] . "`.`character_achievement` WHERE `guid`=?)", $guid);
+            $result[] = $bookmark;
+            unset($db, $realm_info, $achievement_ids, $guid, $realm);
+        }
+        return $result;
+    }
+    
+    public function AddBookmark($name, $realmName) {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        if($this->GetBookmarksCount() >= 60) {
+            // Unable to store more than 60 bookmarks for single account
+            return false;
+        }
+        $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=?", $realmName);
+        if(!$realm) {
+            return false;
+        }
+        elseif(!isset($this->realmData[$realm['id']])) {
+            return false;
+        }
+        $realm_info = $this->realmData[$realm['id']];
+        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        if(!$db) {
+            return false;
+        }
+        $char_data = $db->selectRow("SELECT `name`, `class` AS `classId`, `level` FROM `characters` WHERE `name`=? LIMIT 1", $name);
+        if(!$char_data) {
+            return false;
+        }
+        $char_data['realmUrl'] = sprintf('r=%s&cn=%s', urlencode($realmName), urlencode($name));
+        $query = sprintf("INSERT IGNORE INTO `armory_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
+        $this->aDB->query($query);
+        return true;
+    }
+    
+    public function DeleteBookmark($name, $realmName) {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $query = sprintf("DELETE FROM `armory_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
+        $this->aDB->query($query);
+        return true;
+    }
+    
+    public function GetBookmarksCount() {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `armory_bookmarks` WHERE `account`=?d", $_SESSION['accountId']);
+        if($count > 60) {
+            return 60;
+        }
+        return $count;
     }
     
     public function createShaHash() {
