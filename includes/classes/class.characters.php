@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 200
+ * @revision 201
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -190,7 +190,7 @@ Class Characters extends Connector {
         if(!$player_data || !is_array($player_data)) {
             return false;
         }
-        switch($this->armoryconfig['server_type']) {
+        switch($this->currentRealmInfo['server_type']) {
             case 'mangos':
                 $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
                 break;
