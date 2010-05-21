@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 202
+ * @revision 203
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -468,6 +468,33 @@ Class Characters extends Connector {
             $url .= sprintf('&gn=%s', $this->guild_name);
         }
         return $url;
+    }
+    
+    public function GetHeader(Achievements $achievements) {
+        $header = array(
+            'battleGroup'  => $this->armoryconfig['defaultBGName'],
+            'charUrl'      => $this->GetUrlString(),
+            'class'        => $this->classText,
+            'classId'      => $this->class,
+            'classUrl'     => sprintf("c=%s", urlencode($this->classText)),
+            'faction'      => null,
+            'factionId'    => $this->faction,
+            'gender'       => null,
+            'genderId'     => $this->gender,
+            'guildName'    => ($this->guild_id > 0) ? $this->guild_name : null,
+            'guildUrl'     => ($this->guild_id > 0) ? sprintf('r=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->guild_name)) : null,
+            'lastModified' => null,
+            'level'        => $this->level,
+            'name'         => $this->name,
+            'points'       => $achievements->CalculateAchievementPoints(),
+            'prefix'       => $this->character_title['prefix'],
+            'race'         => $this->raceText,
+            'raceId'       => $this->race,
+            'realm'        => $this->currentRealmInfo['name'],
+            'suffix'       => $this->character_title['suffix'],
+            'titleId'      => $this->character_title['titleId'],
+        );
+        return $header;
     }
     
     /**
@@ -975,7 +1002,12 @@ Class Characters extends Connector {
         foreach($glyphs_data as $glyph) {
             switch($this->currentRealmInfo['type']) {
                 case 'mangos':
-                    $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                    if($this->_locale == 'ru_ru' || $this->_locale == 'en_gb') {
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                    }
+                    else {
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                    }
                     $data[$glyph['spec']][$i] = array(
                         'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
                         'id'     => $glyph['glyph'],

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 196
+ * @revision 203
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,6 +31,7 @@ Class SearchMgr extends Connector {
     
     public function DoSearchItems($count = false, $findUpgrade = false) {
         if(!$this->searchQuery && !$findUpgrade) {
+            echo '1 fail';
             return false;
         }
         if($findUpgrade > 0) {
@@ -51,7 +52,12 @@ Class SearchMgr extends Connector {
                 $count_items = $this->wDB->selectCell($sql_query);
             }
             else {
-                $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                if($this->_loc == 0) {
+                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
+                }
+                else {
+                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                }
             }
             if($count_items > 200) {
                 return 200;
@@ -63,7 +69,12 @@ Class SearchMgr extends Connector {
             $items = $this->wDB->select($sql_query);
         }
         else {
-            $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            if($this->_loc == 0) {
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
+            }
+            else {
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            }
         }
         if(!$items) {
             return false;
@@ -97,7 +108,12 @@ Class SearchMgr extends Connector {
         // Get item IDs first (if $this->searchQuery)
         $item_id_array = array();
         if($this->searchQuery) {
-            $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            if($this->_loc == 0) {
+                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            }
+            else {
+                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+            }
             if(is_array($_item_ids)) {
                 foreach($_item_ids as $id) {
                     $item_id_array[] = $id['entry'];
@@ -278,10 +294,20 @@ Class SearchMgr extends Connector {
                     /* Search string */
                     if(isset($this->searchQuery)&& !empty($this->searchQuery)) {
                         if($andor) {
-                            $sql_query .= sprintf(" AND `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                            if($this->_loc == 0) {
+                                $sql_query .= sprintf(" AND `name` LIKE '%s' ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%');
+                            }
+                            else {
+                                $sql_query .= sprintf(" AND `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                            }
                         }
                         else {
-                            $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                            if($this->_loc == 0) {
+                                $sql_query .= sprintf(" WHERE `name` LIKE '%s' ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%');
+                            }
+                            else {
+                                $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                            }
                         }
                     }
                     else {
@@ -306,7 +332,12 @@ Class SearchMgr extends Connector {
                 }
                 else {
                     if(isset($this->searchQuery) && !empty($this->searchQuery)) {
-                        $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s'", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                        if($this->_loc == 0) {
+                            $sql_query .= sprintf(" WHERE `name` LIKE '%s'", '%'.mysql_escape_string($this->searchQuery).'%');
+                        }
+                        else {
+                            $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s'", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
+                        }
                     }
                     $sql_query .= " ORDER BY `ItemLevel` DESC LIMIT 200";
                 }

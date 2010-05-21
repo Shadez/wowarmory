@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 203
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -730,7 +730,10 @@ Class Utils extends Connector {
     }
     
     public function GetArmoryString($id) {
-        return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
+        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+            return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
+        }
+        return $this->aDB->selectCell("SELECT `string_en_gb` FROM `armory_string` WHERE `id`=?", $id);
     }
     
     /**

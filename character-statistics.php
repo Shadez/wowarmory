@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 195
+ * @revision 203
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,16 +91,7 @@ if($achievement_category > 0) {
     }
     exit;
 }
-/** Basic info **/
-$tabUrl = false;
-if($isCharacter && $characters->GetGuildID() > 0) {
-    $tabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()), urlencode($characters->GetGuildName()));
-    $charTabUrl = sprintf('r=%s&cn=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()), urlencode($characters->GetGuildName()));
-}
-elseif($isCharacter) {
-    $tabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()));
-    $charTabUrl = sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName()));
-}
+$tabUrl = $characters->GetUrlString();
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
@@ -122,29 +113,7 @@ if(!$isCharacter) {
     exit;
 }
 $character_title = $characters->GetChosenTitleInfo();
-$character_element = array(
-    'battleGroup' => $armory->armoryconfig['defaultBGName'],
-    'charUrl'      => $charTabUrl,
-    'class'        => $characters->GetClassText(),
-    'classId'      => $characters->GetClass(),
-    'classUrl'     => null,
-    'faction'      => null,
-    'factionId'    => $characters->GetFaction(),
-    'gender'       => null,
-    'genderId'     => $characters->GetGender(),
-    'guildName'    => ($characters->GetGuildID() > 0) ? $characters->GetGuildName() : null,
-    'guildUrl'     => ($characters->GetGuildID() > 0) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetGuildName())) : null,
-    'lastModified' => null,
-    'level'        => $characters->GetLevel(),
-    'name'         => $characters->GetName(),
-    'points'       => $achievements->CalculateAchievementPoints(),
-    'prefix'       => $character_title['prefix'],
-    'race'         => $characters->GetRaceText(),
-    'raceId'       => $characters->GetRace(),
-    'realm'        => $armory->currentRealmInfo['name'],
-    'suffix'       => $character_title['suffix'],
-    'titleId'      => $character_title['titleId'],
-);
+$character_element = $characters->GetHeader($achievements);
 $xml->XMLWriter()->startElement('characterInfo');
 $xml->XMLWriter()->startElement('character');
 foreach($character_element as $c_elem_name => $c_elem_value) {
