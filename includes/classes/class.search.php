@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 204
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,6 @@ Class SearchMgr extends Connector {
     
     public function DoSearchItems($count = false, $findUpgrade = false) {
         if(!$this->searchQuery && !$findUpgrade) {
-            echo '1 fail';
             return false;
         }
         if($findUpgrade > 0) {
