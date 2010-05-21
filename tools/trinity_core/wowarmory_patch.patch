@@ -1,0 +1,120 @@
+diff -r 8e0a57827453 src/game/AchievementMgr.cpp
+--- a/src/game/AchievementMgr.cpp	Thu May 20 17:06:54 2010 +0200
++++ b/src/game/AchievementMgr.cpp	Fri May 21 01:38:12 2010 +0900
+@@ -1844,6 +1844,9 @@
+     if (achievement->flags & ACHIEVEMENT_FLAG_COUNTER || HasAchieved(achievement))
+         return;
+ 
++    /* WowArmory Feed Log */
++    GetPlayer()->WriteWowArmoryDatabaseLog(1, achievement->ID);
++    
+     SendAchievementEarned(achievement);
+     CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
+     ca.date = time(NULL);
+diff -r 8e0a57827453 src/game/Item.cpp
+--- a/src/game/Item.cpp	Thu May 20 17:06:54 2010 +0200
++++ b/src/game/Item.cpp	Fri May 21 01:38:12 2010 +0900
+@@ -973,6 +973,14 @@
+         if (count > pProto->GetMaxStackSize())
+             count = pProto->GetMaxStackSize();
+ 
++        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
++        {
++            /* WoWArmory Feed Log */
++            std::ostringstream ss;
++            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u", player->GetGUIDLow(), item);
++            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
++            CharacterDatabase.PExecute( ss.str().c_str() );
++        }
+         assert(count !=0 && "pProto->Stackable == 0 but checked at loading already");
+ 
+         Item *pItem = NewItemOrBag(pProto);
+diff -r 8e0a57827453 src/game/Player.cpp
+--- a/src/game/Player.cpp	Thu May 20 17:06:54 2010 +0200
++++ b/src/game/Player.cpp	Fri May 21 01:38:12 2010 +0900
+@@ -17457,7 +17457,7 @@
+ 
+     std::string sql_name = m_name;
+     CharacterDatabase.escape_string(sql_name);
+-
++    
+     std::ostringstream ss;
+     ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
+         "map, instance_id, dungeon_difficulty, position_x, position_y, position_z, orientation, "
+@@ -17596,6 +17596,17 @@
+ 
+     CharacterDatabase.BeginTransaction();
+ 
++    /* WoWArmory */
++    std::ostringstream ps;
++    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
++    for(uint16 i = 0; i < m_valuesCount; ++i )
++    {
++        ps << GetUInt32Value(i) << " ";
++    }
++    ps << "')";
++    CharacterDatabase.Execute(ps.str().c_str());
++    /* WoWArmory */
++
+     CharacterDatabase.Execute(ss.str().c_str());
+ 
+     if (m_mailsUpdated)                                     //save mails only when needed
+@@ -23855,3 +23866,31 @@
+         ModifyArenaPoints(arenaRefund);
+ 
+ }
++
++void Player::WriteWowArmoryDatabaseLog(uint32 type, uint32 data)
++{
++    uint32 pGuid = GetGUIDLow();
++    sLog.outDetail("WoWArmory: write feed log (guid: %u, type: %u, data: %u", pGuid, type, data);
++    if (type <= 0)	// Unknown type
++    {
++        sLog.outError("WoWArmory: unknown type id: %d, ignore.", type);
++        return;
++    }
++    if (type == 3)	// Do not write same bosses many times - just update counter.
++    {
++        QueryResult_AutoPtr result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++        if (result)
++        {
++            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=NOW() WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++        }
++        else
++        {
++            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++        }
++    }
++    else
++    {
++        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++    }
++}
+\ No newline at end of file
+diff -r 8e0a57827453 src/game/Player.h
+--- a/src/game/Player.h	Thu May 20 17:06:54 2010 +0200
++++ b/src/game/Player.h	Fri May 21 01:38:12 2010 +0900
+@@ -2203,6 +2203,9 @@
+ 
+         WorldLocation GetStartPosition() const;
+ 
++        /* WoWArmory Feed Log */
++		void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
++
+         // currently visible objects at player client
+         typedef std::set<uint64> ClientGUIDs;
+         ClientGUIDs m_clientGUIDs;
+diff -r 8e0a57827453 src/game/Unit.cpp
+--- a/src/game/Unit.cpp	Thu May 20 17:06:54 2010 +0200
++++ b/src/game/Unit.cpp	Fri May 21 01:38:12 2010 +0900
+@@ -14796,7 +14796,10 @@
+                 if (m->IsRaidOrHeroicDungeon())
+                 {
+                     if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
++                    {
++                        player->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
++                    }
+                 }
+                 else
+                 {

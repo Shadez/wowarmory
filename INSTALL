@@ -4,7 +4,7 @@ How to install WoW Armory
 
 SYSTEM REQUIREMENTS:
 1. Apache HTTP Server with Mod Rewrite
-2. PHP5 (PHP6 not supported)
+2. PHP5 (PHP6 not supported) with XMLWriter package installed and enabled
 3. MySQL5 Server
 
 INSTALLATION STEPS:
@@ -22,13 +22,16 @@ INSTALLATION STEPS:
 9. For full work you need to patch MaNGOS core with tools/armory_character_stats/wowarmory_character_stats_*.patch
    and your characters DB with provided SQL update (characters.sql - in the same folder).
 10. If you use UNIX system, you need to manage access rights to allow script write data to 'cache' folder.
+11. If you have diffirent servers (MaNGOS and Trinity Core):
+    Open 'includes/classes/configuration.php' and edit $ArmoryConfig['multiRealm'][REALM_ID]['type'] to 'trinity' or 'mangos'.
+	
 ========================
 Как установить Оружейную
 ========================
 
 СИСТЕМНЫЕ ТРЕБОВАНИЯ:
 1. Web-сервер Apache с подключенным Mod Rewrite
-2. PHP5 (PHP6 не поддерживается)
+2. PHP5 (PHP6 не поддерживается) с установленным и подключенным пакетом XMLWriter
 3. MySQL-сервер 5
 
 ПОРЯДОК УСТАНОВКИ:
@@ -46,3 +49,5 @@ INSTALLATION STEPS:
 9. Для работы страниц персонажа вам необходимо пропатчить ядро MaNGOS файлом tools/armory_character_stats/wowarmory_character_stats_*.patch,
 	 а так же, базу персонажей файлом characters.sql (в папке патча).
 10. Если вы используете UNIX-систему, вам необходимо изменить права доступа к папке cache чтобы скрипт мог записывать кэшированные файлы.
+11. Если у вас запущено несколько реалмов с разными серверами (MaNGOS и Trinity Core):
+    Откройте файл 'includes/classes/configuration.php' и измените параметр $ArmoryConfig['multiRealm'][REALM_ID]['type'] на 'trinity' или 'mangos'.

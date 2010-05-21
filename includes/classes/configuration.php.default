@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 199
+ * @revision 200
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -63,7 +63,7 @@ $ArmoryConfig['settings']['useNews']          = false;
 $ArmoryConfig['settings']['defaultRealmId']   = 1;
 $ArmoryConfig['settings']['defaultRealmName'] = 'MaNGOS'; // Realm name
 $ArmoryConfig['settings']['defaultBGName']    = 'Massive Network'; // "Battlegroup" name, just cosmetic
-$ArmoryConfig['settings']['useCache']         = true;
+$ArmoryConfig['settings']['useCache']         = false;
 $ArmoryConfig['settings']['cache_lifetime']   = 86400; // In seconds; default - 1 day.
 $ArmoryConfig['settings']['minlevel']         = 10; // Character must have this level or higher to be shown in Armory
 $ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - only players, 1 - moderators, 2 - GMs, 3 - everyone
@@ -77,10 +77,13 @@ $ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/
     $ArmoryConfig[1]['name'] MUST be added to `armory_realm_data` table:
         # INSERT INTO `armory_realm_data` (`id`, `name`, `version`) VALUES ('1', 'MaNGOS1', '333');
     Without it multirealm wouldn't work.
+    
+    $ArmoryConfig['multiRealm'][1]['type'] values: 'mangos' if you running MaNGOS realm and 'trinity' if you running Trinity realm.
 */
 
 $ArmoryConfig['multiRealm'][1]['id']                 = 1;
 $ArmoryConfig['multiRealm'][1]['name']               = 'MaNGOS1';
+$ArmoryConfig['multiRealm'][1]['type']               = 'mangos';
 $ArmoryConfig['multiRealm'][1]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][1]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][1]['pass_characters']    = '';
@@ -93,7 +96,8 @@ $ArmoryConfig['multiRealm'][1]['name_mangos']        = 'mangos';
 $ArmoryConfig['multiRealm'][1]['charset_mangos']     = 'UTF8';
 
 $ArmoryConfig['multiRealm'][2]['id']                 = 2;
-$ArmoryConfig['multiRealm'][2]['name']               = 'MaNGOS2';
+$ArmoryConfig['multiRealm'][2]['name']               = 'Trinity1';
+$ArmoryConfig['multiRealm'][2]['type']               = 'trinity';
 $ArmoryConfig['multiRealm'][2]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][2]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][2]['pass_characters']    = '';
@@ -102,6 +106,6 @@ $ArmoryConfig['multiRealm'][2]['charset_characters'] = 'UTF8';
 $ArmoryConfig['multiRealm'][2]['host_mangos']        = 'localhost';
 $ArmoryConfig['multiRealm'][2]['user_mangos']        = 'root';
 $ArmoryConfig['multiRealm'][2]['pass_mangos']        = '';
-$ArmoryConfig['multiRealm'][2]['name_mangos']        = 'mangos';
+$ArmoryConfig['multiRealm'][2]['name_mangos']        = 'world';
 $ArmoryConfig['multiRealm'][2]['charset_mangos']     = 'UTF8';
 ?>

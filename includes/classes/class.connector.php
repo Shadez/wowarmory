@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 200
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -89,7 +89,7 @@ Class Connector {
                 $this->connectionData = $this->realmData[$realm_info['id']];
                 $this->cDB = DbSimple_Generic::connect('mysql://'.$this->connectionData['user_characters'].':'.$this->connectionData['pass_characters'].'@'.$this->connectionData['host_characters'].'/'.$this->connectionData['name_characters']);
                 $this->cDB->query("SET NAMES ?", $this->connectionData['charset_characters']);
-                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'version' => $realm_info['version'], 'connected' => true);
+                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'version' => $realm_info['version'], 'type' => $this->connectionData['type'], 'connected' => true);
                 if(isset($this->connectionData['name_mangos'])) {
                     $this->wDB = DbSimple_Generic::connect('mysql://'.$this->connectionData['user_mangos'].':'.$this->connectionData['pass_mangos'].'@'.$this->connectionData['host_mangos'].'/'.$this->connectionData['name_mangos']);
                     $this->wDB->query("SET NAMES ?", $this->connectionData['charset_mangos']);
@@ -113,7 +113,7 @@ Class Connector {
             $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
         }
         if(!$this->currentRealmInfo) {
-            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'connected' => true);
+            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'type' => $this->realmData[1]['type'], 'connected' => true);
         }
         if(!$this->connectionData) {
             $this->connectionData = $this->realmData[1];

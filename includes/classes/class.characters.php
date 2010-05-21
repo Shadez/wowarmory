@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 196
+ * @revision 200
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -190,8 +190,18 @@ Class Characters extends Connector {
         if(!$player_data || !is_array($player_data)) {
             return false;
         }
-        // Is character allowed to be displayed in Armory?
-        $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
+        switch($this->armoryconfig['server_type']) {
+            case 'mangos':
+                $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
+                break;
+            case 'trinity':
+                $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=? AND `RealmID` IN (-1, ?d)", $player_data['account'], $this->connectionData['id']);
+                break;
+            default:
+                unset($player_data);
+                return false;
+                break;
+        }
         if(!$gmLevel) {
             unset($player_data);
             // Unknown account
@@ -202,6 +212,7 @@ Class Characters extends Connector {
             unset($player_data);
             return false;
         }
+        // Is character allowed to be displayed in Armory?
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
@@ -768,6 +779,7 @@ Class Characters extends Connector {
     
     /**
      * Calculates and returns array with character talent specs. !Required $this->guid and $this->class!
+     * Depends on $this->currentRealmInfo['server_type'] (mangos or trinity realm)
      * @category Character class
      * @example Characters::CalculateCharacterTalents()
      * @return array
@@ -777,13 +789,12 @@ Class Characters extends Connector {
             return false;
         }
         $talentTree = array();
-        
         $tab_class = self::GetTalentTab();
         $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
         if(!$character_talents) {
             return false;
         }
-        $class_talents = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
         $talent_build = array();
         $talent_build[0] = null;
         $talent_build[1] = null;
@@ -802,13 +813,27 @@ Class Characters extends Connector {
             $current_found = false;
             $last_spec = 0;
             foreach($character_talents as $char_talent) {
-                if($char_talent['talent_id'] == $class_talent['TalentID']) {
-                    $talent_ranks = $char_talent['current_rank']+1;
-                    $talent_build[$char_talent['spec']] .= $talent_ranks; // not 0-4, is 1-5
-                    $current_found = true;
-                    $talent_points[$char_talent['spec']][$class_talent['TalentTab']] += $talent_ranks;
+                switch($this->currentRealmInfo['type']) {
+                    case 'mangos':
+                        if($char_talent['talent_id'] == $class_talent['TalentID']) {
+                            $talent_ranks = $char_talent['current_rank']+1;
+                            $talent_build[$char_talent['spec']] .= $talent_ranks; // not 0-4, is 1-5
+                            $current_found = true;
+                            $talent_points[$char_talent['spec']][$class_talent['TalentTab']] += $talent_ranks;
+                        }
+                        $last_spec = $char_talent['spec'];
+                        break;
+                    case 'trinity':
+                        for($k = 1; $k < 6; $k++) {
+                            if($char_talent['spell'] == $class_talent['Rank_' . $k]) {
+                                $talent_build[$char_talent['spec']] .= $k;
+                                $current_found = true;
+                                $talent_points[$char_talent['spec']][$class_talent['TalentTab']] += $k;
+                            }
+                        }
+                        $last_spec = $char_talent['spec'];
+                        break;
                 }
-                $last_spec = $char_talent['spec'];
             }
             if(!$current_found) {
                 $talent_build[$last_spec] .= 0;
@@ -831,24 +856,76 @@ Class Characters extends Connector {
             return false;
         }
         foreach($character_talents as $_tal) {
-            $specs_talents[$_tal['spec']][$_tal['talent_id']] = $_tal['current_rank']+1;
+            if($this->currentRealmInfo['type'] == 'mangos') {
+                $specs_talents[$_tal['spec']][$_tal['talent_id']] = $_tal['current_rank']+1;
+            }
+            elseif($this->currentRealmInfo['type'] == 'trinity') {
+                $specs_talents[$_tal['spec']][$_tal['spell']] = true;
+            }
         }
-        for($i=0;$i<3;$i++) {
-            if(!isset($tab_class[$i])) {
-                continue;
-            }
-            $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
-            if(!$current_tab) {
-                continue;
-            }
-            foreach($current_tab as $tab) {
-                for($j=0;$j<2;$j++) {
-                    if(isset($specs_talents[$j][$tab['TalentID']])) {
-                        $talent_data[$j] .= $specs_talents[$j][$tab['TalentID']];
+        if($this->currentRealmInfo['type'] == 'trinity') {
+            for($i = 0; $i < 3; $i++) {
+                $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                if(!$current_tab) {
+                    continue;
+                }
+                foreach($current_tab as $tab) {
+                    for($j = 0; $j < 2; $j++) {
+                        if(isset($specs_talents[$j][$tab['Rank_5']])) {
+                            $talent_data[$j] .= 5;
+                        }
+                        elseif(isset($specs_talents[$j][$tab['Rank_4']])) {
+                            $talent_data[$j] .= 4;
+                        }
+                        elseif(isset($specs_talents[$j][$tab['Rank_3']])) {
+                            $talent_data[$j] .= 3;
+                        }
+                        elseif(isset($specs_talents[$j][$tab['Rank_2']])) {
+                            $talent_data[$j] .= 2;
+                        }
+                        elseif(isset($specs_talents[$j][$tab['Rank_1']])) {
+                            $talent_data[$j] .= 1;
+                        }
+                        else {
+                            $talent_data[$j] .= 0;
+                        }
                     }
-                    else {
-                        $talent_data[$j] .= 0;
-                    }
+                }
+            }
+        }
+        elseif($this->currentRealmInfo['type'] == 'mangos') {
+            for($i=0;$i<3;$i++) {
+                if(!isset($tab_class[$i])) {
+                    continue;
+                }
+                switch($this->currentRealmInfo['type']) {
+                    case 'mangos':
+                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                        if(!$current_tab) {
+                            continue;
+                        }
+                        foreach($current_tab as $tab) {
+                            for($j=0;$j<2;$j++) {
+                                if(isset($specs_talents[$j][$tab['TalentID']])) {
+                                    $talent_data[$j] .= $specs_talents[$j][$tab['TalentID']];
+                                }
+                                else {
+                                    $talent_data[$j] .= 0;
+                                }
+                            }
+                        }
+                        break;
+                    case 'trinity':
+                        $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                        if(!$current_tab) {
+                            continue;
+                        }
+                        foreach($current_tab as $tab) {
+                            for($j=0;$j<2;$j++) {
+                                //if(isset($specs_talents[$j]))
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -865,11 +942,23 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        if($spec >= 0) {
-            $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
-        }
-        else {
-            $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
+        switch($this->currentRealmInfo['type']) {
+            case 'mangos':
+                if($spec >= 0) {
+                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
+                }
+                else {
+                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
+                }
+                break;
+            case 'trinity':
+                if($spec >= 0) {
+                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=?", $this->guid, $spec);
+                }
+                else {
+                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`", $this->guid);
+                }
+                break;
         }
         if(!$glyphs_data) {
             return false;
@@ -877,19 +966,43 @@ Class Characters extends Connector {
         $data = array(0 => array(), 1 => array());
         $i = 0;
         foreach($glyphs_data as $glyph) {
-            $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
-            $data[$glyph['spec']][$i] = array(
-                'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
-                'id'     => $glyph['glyph'],
-                'name'   => str_replace('"', '&quot;', $current_glyph['name'])
-            );
-            if($current_glyph['type'] == 0) {
-                $data[$glyph['spec']][$i]['type'] = 'major';
+            switch($this->currentRealmInfo['type']) {
+                case 'mangos':
+                    $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                    $data[$glyph['spec']][$i] = array(
+                        'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
+                        'id'     => $glyph['glyph'],
+                        'name'   => str_replace('"', '&quot;', $current_glyph['name'])
+                    );
+                    if($current_glyph['type'] == 0) {
+                        $data[$glyph['spec']][$i]['type'] = 'major';
+                    }
+                    else {
+                        $data[$glyph['spec']][$i]['type'] = 'minor';
+                    }
+                    $i++;
+                    break;
+                case 'trinity':
+                    for($j=1;$j<7;$j++) {
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_" . $this->_locale ."` AS `name`, `description_" . $this->_locale . "` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph' . $j]);
+                        if(!$current_glyph) {
+                            continue;
+                        }
+                        $data[$glyph['spec']][$i] = array(
+                            'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
+                            'id'     => $glyph['glyph' . $j],
+                            'name'   => str_replace('"', '&quot;', $current_glyph['name'])
+                        );
+                        if($current_glyph['type'] == 0) {
+                            $data[$glyph['spec']][$i]['type'] = 'major';
+                        }
+                        else {
+                            $data[$glyph['spec']][$i]['type'] = 'minor';
+                        }
+                        $i++;
+                    }
+                    break;
             }
-            else {
-                $data[$glyph['spec']][$i]['type'] = 'minor';
-            }
-            $i++;
         }
         return $data;
     }
@@ -2080,6 +2193,20 @@ Class Characters extends Connector {
     
     public function GetDBStatistics() {
         return $this->cDB->getStatistics();
+    }
+    
+    public function ModifyMoney($amount, $type) {
+        switch($type) {
+            // Add money
+            case 1:
+                $this->money += $amount;
+                break;
+            // Remove money
+            case 2:
+                $this->money -= $amount;
+                break;
+        }
+        return true;
     }
 }
 ?>
