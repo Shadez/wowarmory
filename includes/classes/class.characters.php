@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 201
+ * @revision 202
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -190,17 +190,25 @@ Class Characters extends Connector {
         if(!$player_data || !is_array($player_data)) {
             return false;
         }
-        switch($this->currentRealmInfo['server_type']) {
-            case 'mangos':
-                $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
-                break;
-            case 'trinity':
-                $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=? AND `RealmID` IN (-1, ?d)", $player_data['account'], $this->connectionData['id']);
-                break;
-            default:
-                unset($player_data);
-                return false;
-                break;
+        // Is character allowed to be displayed in Armory?
+        $gmLevel = false;
+        $gmLevel_mangos = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
+        $gmLevel_trinity = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=? AND `RealmID` IN (-1, ?d)", $player_data['account'], $this->connectionData['id']);
+        if($gmLevel_mangos && $gmLevel_trinity) {
+            // MaNGOS doesn't have `account_access` table in `realmd` DB
+            if($this->currentRealmInfo['type'] == 'trinity') {
+                $gmLevel = $gmLevel_trinity;
+            }
+            else {
+                // error?
+                $gmLevel = $gmLevel_mangos;
+            }
+        }
+        elseif($gmLevel_mangos && !$gmLevel_trinity) {
+            $gmLevel = $gmLevel_mangos;
+        }
+        elseif($gmLevel_trinity && !$gmLevel_mangos) {
+            $gmLevel = $gmLevel_trinity;
         }
         if(!$gmLevel) {
             unset($player_data);
@@ -212,7 +220,6 @@ Class Characters extends Connector {
             unset($player_data);
             return false;
         }
-        // Is character allowed to be displayed in Armory?
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
