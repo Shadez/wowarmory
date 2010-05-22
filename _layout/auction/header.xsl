@@ -6,7 +6,7 @@
 	<!-- User Variables -->
     <xsl:variable name="loginStatus" select="document('../../login-status.xml')" />  
     <xsl:variable name="username" select="$loginStatus/page/loginStatus/@username" />
-    <xsl:variable name="user" select="document('../../vault/character-select.xml?sel=2')" />
+    <xsl:variable name="user" select="document('../../character-select.xml?sel=2')" />
     <xsl:variable name="char" select="$user/page/characters/character[@selected=1]" />
 
     <xsl:variable name="wowAnywhere" select="'../../wow-remote.xml'" />
@@ -78,7 +78,7 @@
                 
             	<h2>
                     <xsl:value-of select="$char/@name" />
-                    <!--<a href="/vault/character-select.xml" onmouseover="setTipText('{$loc/strs/auctionHouse/str[@id='house.changeChar']}');" class="staticTip changeChar"><img src="/_images/ahouse/me.gif" alt="" /></a>-->
+                    <!--<a href="character-select.xml" onmouseover="setTipText('{$loc/strs/auctionHouse/str[@id='house.changeChar']}');" class="staticTip changeChar"><img src="/_images/ahouse/me.gif" alt="" /></a>-->
 
                     <xsl:if test="/page/auctionStatus/mailInfo/@total > 50">
                         <xsl:variable name="mailAlert" select="$loc/strs/auctionHouse/str[@id='create.mailboxNotice']" />

@@ -60,7 +60,7 @@
                <xsl:variable name="username" select="$login-status/page/loginStatus/@username" />
 
                <xsl:if test="string-length($username) != 0">
-               <xsl:variable name="realms" select="document('character-select.xml?sel=2')/page/characters/character/@realm"/>
+               <xsl:variable name="realms" select="document('../character-select.xml?sel=2')/page/characters/character/@realm"/>
                 <xsl:if test="$realms">
                  <div class="f_nav_stitle"><xsl:value-of select="$loc/strs/achievements/str[@id='serverfirsts.realmnav.myrealms']"/>:</div>
 	                <xsl:for-each select="$realms[not(. = preceding::character/@realm)]"> <!-- distinct-values -->
@@ -102,7 +102,7 @@
                     </xsl:apply-templates>
                    </xsl:when>
                    <xsl:otherwise>
-                   <div style="text-align:center; padding:70px 0; background:url(../images/tip-bg1.gif); font-size:21px; vertical-align:middle;">
+                   <div style="text-align:center; padding:70px 0; background:url(images/tip-bg1.gif); font-size:21px; vertical-align:middle;">
                    <xsl:value-of select="$loc/strs/achievements/str[@id='error']"/>
                    <div class="error"><xsl:variable name="errcode" select="concat('error.',/page/error/@errCode)"/>
                     <xsl:choose><xsl:when test="/page/error/@attempt">
@@ -206,7 +206,7 @@
      <xsl:variable name="cstr" select="concat('armory.classes.class.',@classId)"/>
      <xsl:variable name="rstr" select="concat('armory.races.race.',@raceId)"/>
 	    <a class="chr staticTip" href="character-sheet.xml?{@url}">
-        <xsl:attribute name="onmouseover">setTipText('&lt;img src="../images/icons/race/<xsl:value-of select="@raceId"/>-<xsl:value-of select="@genderId"/>.gif" align="absmiddle" /&gt;  <xsl:value-of select="$loc/strs/races/str[@id=$rstr]"/>&lt;br/&gt; &lt;img src="../images/icons/class/<xsl:value-of select="@classId"/>.gif" align="absmiddle"/&gt;  <xsl:value-of select="$loc/strs/classes/str[@id=$cstr]"/>')</xsl:attribute>
+        <xsl:attribute name="onmouseover">setTipText('&lt;img src="images/icons/race/<xsl:value-of select="@raceId"/>-<xsl:value-of select="@genderId"/>.gif" align="absmiddle" /&gt;  <xsl:value-of select="$loc/strs/races/str[@id=$rstr]"/>&lt;br/&gt; &lt;img src="../images/icons/class/<xsl:value-of select="@classId"/>.gif" align="absmiddle"/&gt;  <xsl:value-of select="$loc/strs/classes/str[@id=$cstr]"/>')</xsl:attribute>
         <xsl:value-of select="@name"/></a><xsl:if test="position() != last()">, </xsl:if>
     </xsl:for-each>
 </div>

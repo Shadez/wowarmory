@@ -113,7 +113,7 @@
         	<xsl:attribute name="style">top: 64px; right: 10px;</xsl:attribute>
         </xsl:if>
         <div id="myCharacters">
-        	<a id="changeLink" href="../../character-select.xml">[<xsl:value-of select="$loc/strs/common/str[@id='user.manage.settings']"/>]</a>
+        	<a id="changeLink" href="character-select.xml">[<xsl:value-of select="$loc/strs/common/str[@id='user.manage.settings']"/>]</a>
             <xsl:value-of select="$loc/strs/common/str[@id='user.change.character']"/>
 
 		  </div>
