@@ -106,7 +106,7 @@
 
    <xsl:variable name="user" select="document('../../character-select.xml?sel=2')" />
 	<xsl:variable name="profile" select="$user/page/characters/character" />
-   <xsl:variable name="bookmark" select="document('../../vault/bookmarks.xml')/page/characters" />
+   <xsl:variable name="bookmark" select="document('../../bookmarks.xml')/page/characters" />
 
 	<div id="menuHolder">
     	<xsl:if test="/page/pageIndex">
@@ -127,7 +127,7 @@
 				<div class="menuItem charlist">
 					 <a href="character-achievements.xml?{@url}" class="character-achievement staticTip" 
 					 	onmouseover="setTipText('{$loc/strs/login/str[@id='armory.login.achievements']}');"><xsl:value-of select="@achPoints" /></a>	
-					 <a href="vault/character-calendar.xml?{@url}" class="user-alerts staticTip" style="display: none;" 
+					 <a href="character-calendar.xml?{@url}" class="user-alerts staticTip" style="display: none;" 
 					 	onmouseover="setTipText('{$loc/strs/login/str[@id='armory.login.calendar.pending']}')">0</a>					  
 					 <a href="character-sheet.xml?{@url}" class="charName js-character-name">
 					 	<em class="classId{@classId} staticTip" onmouseover="setTipText('{$txtClass}')"></em>
