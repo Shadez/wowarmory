@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 207
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,86 +31,86 @@ Class Characters extends Connector {
     /**
      * Player guid
      **/
-    private $guid;
+    private $guid = false;
     
     /**
      * Player name
      **/
-    private $name;
+    private $name = false;
     
     /**
      * Player race
      **/
-    private $race;
+    private $race = false;
     
     /**
      * Player class
      **/
-    private $class;
+    private $class = false;
     
     /**
      * Player gender
      * (0 - male, 1 - female)
      **/
-    private $gender;
+    private $gender = false;
     
     /**
      * Player level
      **/
-    private $level;
+    private $level = false;
     
     /**
      * Player model display info
      **/
-    private $playerBytes;
-    private $playerBytes2;
-    private $playerFlags;
+    private $playerBytes = false;
+    private $playerBytes2 = false;
+    private $playerFlags = false;
     
     /**
      * Player title ID
      **/
-    private $chosenTitle;
+    private $chosenTitle = false;
     
     /**
      * Player health value
      **/
-    private $health;
+    private $health = false;
     
     /**
      * Player powers values
      **/
-    private $power1;
-    private $power2;
-    private $power3;
+    private $power1 = false;
+    private $power2 = false;
+    private $power3 = false;
     
     /**
      * Account ID
      * (currently not used)
      **/
-    private $account;
+    private $account = false;
     
     /**
      * Talent specs count
      **/
-    private $specCount;
+    private $specCount = false;
     
     /**
      * Active talent spec ID
      * (0 or 1)
      **/
-    private $activeSpec;
+    private $activeSpec = false;
 
     /**
      * Player faction
      * (1 - Horde, 0 - Alliance)
      **/
-    private $faction;
+    private $faction = false;
     
     /**
      * Array with player stats constants
      * (depends on character level)
      **/
-    private $rating;
+    private $rating = false;
      
     /**
      * Player title data
@@ -121,41 +121,41 @@ Class Characters extends Connector {
     /**
      * Player guild ID
      **/
-    private $guild_id;
+    private $guild_id = false;
     
     /**
      * Player guild name
      **/
-    private $guild_name;
+    private $guild_name = false;
     
     /**
      * Player guild rank ID
      **/
-    private $guild_rank_id;
+    private $guild_rank_id = false;
     
     /**
      * Player guild rank name
      **/
-    private $guild_rank_name;
+    private $guild_rank_name = false;
     
     /**
      * $this->class text
      **/
-    private $classText;
+    private $classText = false;
     
     /**
      * $this->race text
      **/
-    private $raceText;
+    private $raceText = false;
     
     /**
-     * Is character exists? !Requires $this->name!
+     * Is character exists?
      * @category Characters class
      * @example Characters::IsCharacter()
      * @return bool
      **/
     public function IsCharacter() {
-        return false;
+        return self::CheckPlayer();
     }
     
     public function BuildCharacter($name) {
@@ -232,7 +232,7 @@ Class Characters extends Connector {
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
-        if(!$this->faction) {
+        if($this->faction != 0 && $this->faction != 1) {
             // Unknown faction
             unset($player_data);
             return false;
@@ -2246,6 +2246,20 @@ Class Characters extends Connector {
                 break;
         }
         return true;
+    }
+    
+    public function LookupActiveLots() {
+        if(!$this->guid || !isset($_SESSION['accountId'])) {
+            return false;
+        }
+        return AuctionHouseHandler::LookupActiveLotsByGUID($this->guid);
+    }
+    
+    public function CreateAuction(&$data) {
+        if(!$this->guid || !isset($_SESSION['accountId'])) {
+            return false;
+        }
+        return AuctionHouseHandler::CreateAuction($this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
     }
 }
 ?>
