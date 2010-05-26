@@ -725,6 +725,10 @@
 		<str id="related-info.header.noflash">Achtung: Benötigt Adobe Flash Player 9+</str>
 		<str id="related-info.noflash">Es ist kein Adobe Flash Player verfügbar oder es ist ein Flash Player installiert, der älter als Version 9 ist. Um alle Features des Arsenals nutzen zu können, wird Adobe Flash Player 9 (oder besser) benötigt. Klickt auf den obenstehenden Button, um die neuste Version des Flash Players zu installieren.</str>
 
+        <str id="breaking.news">Spannende Neuigkeiten</str>
+        <str id="motd">Web-Auktionshaus: Beta-Updates</str>
+
+
 		<str id="labels.regioncolon">Region:</str>
 		<str id="labels.selectregioncolon">Wählt eine Region aus:</str>
 
@@ -808,10 +812,12 @@
 		<str id="user.no.character">Kein Charakter ausgewählt</str>
 		<str id="user.manage.chars">Charaktere verwalten</str>
 		<str id="user.manage.settings">Ändern</str>
+		<str id="user.manage.more">Weitere Charaktere</str>
+		<str id="user.manage.switch">Zum Hauptcharakter ernennen</str>
 		<str id="loading">Lädt...</str>
 		<str id="saving">Speichert...</str>
 		<str id="pose_saved">Pose gespeichert!</str>
-		
+		<str id="social.media.links">Das World of Warcraft-Arsenal ist auch verfügbar über <param-html1/> und <param-html2/>!</str>
 	</common>
 
 	<character>
@@ -828,7 +834,7 @@
 		<str id="character-profiles">Charakterprofile</str>
 		<str id="character-level">Stufe</str>
 		<str id="character-level-sheet">Stufe</str>
-		<str id="noteten">Hinweis: Charaktere unter Stufe 10 werden nicht angezeigt</str>
+		<str id="noteten">Charaktere unter Stufe 10 werden nicht angezeigt</str>
 		<str id="character.tip.primary">Dieser Charakter wurde als euer Hauptcharakter vermerkt. Ein Link zum Profil dieses Charakters wird in der rechten oberen Ecke des Arsenals angezeigt werden.</str>
 		<str id="character.tip.secondary">Das Profil dieses Charakters wird unter eurem Hauptcharakterprofil vermerkt. Klickt, um diesen Charakter zu eurem Hauptcharakter zu machen.</str>
 	</character>
@@ -836,18 +842,18 @@
 		<str id="makePrimary">Als Hauptcharakter auswählen</str>
 		<str id="removeFromEasyAccess">Aus meinem Charaktermenü entfernen</str>
 		<str id="selectedCharacters">Meine Charaktere</str>
-		<str id="inactiveLicense">Hinweis: Diese Lizenz ist nicht aktiv.</str>
+		<str id="inactiveLicense">Diese Lizenz ist nicht aktiv.</str>
 		<str id="availableSlot">Verfügbare Charakterplätze</str>
 		<str id="easyAccessLimit">Die Maximalanzahl der verfügbaren Plätze des Schnellzugriffs wurde erreicht. Entfernt einen Charakter, um neue hinzuzufügen.</str>
 		<str id="addToEasyAccess">Zu meinem Charaktermenü hinzufügen</str>
-		<str id="noCharsAvailable">Dieser Account verfügt über keine auswählbaren Charaktere. Grund hierfür könnte sein, dass bereits alle Charaktere dieses Accounts bereits ausgewählt wurden.</str>
+		<str id="noCharsAvailable">Dieser Account verfügt über keine auswählbaren Charaktere. Grund hierfür könnte sein, dass bereits alle Charaktere des Accounts ausgewählt wurden.</str>
 		<str id="charSelection">Charakterauswahl</str>
 		<str>
       <h1>Charakterauswahl</h1>
 		<p>Diese Funktion erlaubt es euch, bis zu <strong>drei</strong> eurer Charaktere für einen schnellen Zugriff vorzumerken. Solltet ihr über mehr als drei wählbare Charaktere verfügen, müsst ihr zuerst die Auswahl für einen Charakter aufheben, bevor ihr einen anderen Charakter auswählen könnt.</p>
-		<p>
-        <strong>Hinweis: </strong>Sollte einer der von euch ausgewählten Charaktere zu einem neuen Kalenderereignis eingeladen worden sein, wird dieser eine Benachrichtigungen erhalten.</p>
+		<p>Sollte einer der von euch ausgewählten Charaktere zu einem neuen Kalenderereignis eingeladen worden sein, wird dieser eine Benachrichtigungen erhalten.</p>
     </str>
+        <str id="primaryChar">Hauptcharakter</str>
 	</character-select>
 	<custom-rss>
 		<str id="activity">Charakter-Aktivitäten</str>
@@ -882,6 +888,7 @@
 		<str id="recent_act">Letzte Aktivitäten</str>
 		<str id="viewfull_feed">Zeige frühere Aktivitäten</str>
 		<str id="currently_equipped">(Angelegt)</str>
+		<str id="vendored">(Verscheuert)</str>
 		<str id="today">Heute</str>
 		<str id="yesterday">Gestern</str>
 		<str id="previous">Frühere Einträge</str>
@@ -912,8 +919,8 @@
 		<str id="guildrank">Gildenrang</str>
 		<str id="guild-rank">Rang </str>
 		<str id="guild-leader">Gildenmeister</str>
-		<str id="noteten">Hinweis: Mitglieder unter Stufe 10 werden nicht angezeigt</str>
-		<str id="toomany">Hinweis: Zu viele Gildenmitglieder. Nur hochstufige Mitglieder werden angezeigt.</str>
+		<str id="noteten">Mitglieder unter Stufe 10 werden nicht angezeigt</str>
+		<str id="toomany">Nur hochstufige Mitglieder werden angezeigt</str>
 		<str id="searchroster">Gildenmitgliederliste durchsuchen</str>
 	</guild>
 
@@ -1037,7 +1044,7 @@
 		</legend>
 
 		<arenaLadderData>
-			<str id="armory.arena-ladder-data.header.arena.tournament">Arenaturnier</str>
+			<str id="armory.arena-ladder-data.header.arena.tournament">Arenapass</str>
 			<str id="armory.arena-ladder-data.header.2v2">2v2-Arena-Ranglistenergebnisse</str>
 			<str id="armory.arena-ladder-data.header.3v3">3v3-Arena-Ranglistenergebnisse</str>
 			<str id="armory.arena-ladder-data.header.5v5">5v5-Arena-Ranglistenergebnisse</str>
@@ -1164,7 +1171,7 @@
 		<str id="armory.labels.rarity">Seltenheit</str>
 		<str id="armory.labels.na">n.V.</str>
 		<str id="armory.labels.notapplicable">Nicht anwendbar</str>
-		<str id="armory.labels.arenaTournament">Arenaturnier</str>
+		<str id="armory.labels.arenaTournament">Arenapass</str>
 		<str id="armory.labels.comingsoon">Demnächst</str>
 		<str id="armory.labels.period">.</str>
 
@@ -1172,7 +1179,7 @@
 		<str id="armory.arenatab.3v3-arena-ladder">3v3-Rangliste</str>
 		<str id="armory.arenatab.5v5-arena-ladder">5v5-Rangliste</str>
 		<str id="armory.arenatab.hof">Ruhmeshalle</str>
-		<str id="armory.arenatab.arenaTournament">Arenaturnier</str>
+		<str id="armory.arenatab.arenaTournament">Arenapass</str>
 		<str id="armory.arenatab.calc">Arena-Rechner</str>
 
 		<str id="armory.arenatab.teamprofile">Teamprofil</str>
@@ -1321,6 +1328,16 @@
 		<str id="armory.tabs.bc">Burning Crusade</str>
 		<str id="armory.tabs.classic">Original</str>
 		
+		<!-- auction tabs -->
+		<str id="auction.tabs.summary">Zusammenfassung</str>
+		<str id="auction.tabs.browseAuctions">Auktionen durchsuchen</str>
+		<str id="auction.tabs.myBids">Gebote</str>
+		<str id="auction.tabs.activeBids">Aktive Gebote</str>
+		<str id="auction.tabs.completedAuctions">Abgeschlossene Auktionen</str>
+		<str id="auction.tabs.myAuctions">Auktionen</str>
+		<str id="auction.tabs.activeAuctions">Aktive Auktionen</str>
+		<str id="auction.tabs.createAuction">Auktion erstellen</str>
+
 		<str id="armory.tabs.character.guild.mouseover">Hier kommt ihr zum Gildenbereich.</str>
 		<str id="armory.tabs.character.arenateams.mouseover">Hier kommt ihr zum Arena-Teambereich</str>
 		<str id="armory.tabs.arenatournament.mouseover">Hier kommt ihr zum Bereich des Arenaturniers.</str>
@@ -1355,6 +1372,14 @@
 		<str id="armory.menu.faqs">Arsenal FAQ</str>
 		<str id="armory.menu.tools">Einstellungen</str>
 		<str id="armory.menu.searchPlugin">Such-Plug-in Browser</str>	
+		<str id="armory.menu.auctionHouse">Auktionshaus</str>	
+		<str id="armory.menu.misc">Sonstiges</str>
+		<str id="armory.menu.ah.summary">Zusammenfassung</str>	
+		<str id="armory.menu.ah.bids">Meine Gebote</str>	
+		<str id="armory.menu.ah.browse">Auktionen durchsuchen</str>	
+		<str id="armory.menu.ah.auctions">Meine Auktionen</str>
+		<str id="armory.menu.ah.create">Auktion erstellen</str>
+		<str id="armory.menu.ah.faq">Auktionshaus-FAQ</str>
 
 <!--character profile header-->
 		<str id="armory.icon.realm">Realm</str>
@@ -1404,8 +1429,9 @@
 		<str id="armory.team-info.2v2">2v2</str>
 		<str id="armory.team-info.3v3">3v3</str>
 		<str id="armory.team-info.5v5">5v5</str>
-		<str id="armory.team-info.titleBefore">Arena-Teamstatistiken für </str>
+
 		<str id="armory.team-info.titleAfter"/>
+		<str id="armory.team-info.titleBefore">Arena-Teamstatistiken für </str>
 		<str id="armory.team-info.team-rating">Teamwertung</str>
 
 <!--character-search.xsl-->
@@ -1538,7 +1564,7 @@
 		<str id="armory.labels.facebook.goback">Zurück</str>
 		<str id="armory.labels.facebook.returntomyfeed">Zu “Mein Feed” zurückkehren</str>
 		<str id="armory.labels.facebook.returntofacebook">Zurück zu Facebook</str>
-		<str id="armory.labels.facebook.selectotherregions">Ihr könnt auch versuchen, die eingestellte Region für das Charakterfeed des Arsenals zu ändern: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">USA</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europa</a> oder <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Korea</a>.</str>
+		<str id="armory.labels.facebook.selectotherregions">Anzeigeprobleme mit dem Charakter können möglicherweise durch einen Wechsel der Region für den Chrakter-Feed behoben werden: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">USA</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europa</a> oder <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Korea</a>.</str>
 		<str id="armory.labels.facebook.error">Aufgrund einer hohen Serverbelastung ist diese Information derzeit nicht verfügbar. </str>
 		<str id="armory.labels.facebook.error2">In der Regel ist dies nur ein kleines temporäres Problem. Bitte versucht es in Kürze noch einmal. Versucht bitte alternativ euch zusätzlich aus Facebook aus- sowie erneut einzuloggen, dies behebt in manchen Fällen ebenfalls einige der Fehler.</str>
 
@@ -1566,7 +1592,7 @@
 		<str id="armory.dungeons.seealsocolon">Siehe auch: </str>
 		<str id="armory.dungeons.viewbosses">Bosse aufrufen</str>
 		<str id="armory.dungeons.notecolon">Hinweis:</str>
-		<str id="armory.dungeons.notesparse">Nur Gegenstände, die im Spiel bereits "entdeckt" wurden (es wurde mindestens ein solcher Gegenstand von einem Spieler gefunden) können im Arsenal gefunden werden. Als Resultat daraus können die Beute-Tabellen mancher Bosse (insbesondere die von neueren Schlachtzugs-Bossen) unvollständig sein und auffällige Lücken enthalten. Diese Tabellen sollten sich im Laufe der Zeit füllen, wenn immer mehr Gegenstände entdeckt werden.</str>
+		<str id="armory.dungeons.notesparse">Gegenstände müssen in der derzeitigen Version des Spiels vorhanden sein, um im Arsenal aufzutauchen.</str>
 
 <!--factions.xsl-->
 		<str id="armory.factions.bc">Fraktionen in The Burning Crusade</str>
@@ -1581,6 +1607,7 @@
 		<str id="armory.faq.arenacalculator">Arena-Rechner</str>
 		<str id="armory.faq.arenaladder">Arena-Ranglisten</str>
 		<str id="armory.faq.login">Anmeldung im Arsenal</str>
+		<str id="armory.faq.auctionhouse">Auktionshaus</str>
 		<str id="armory.faq.characterfeeds">Charakter-Feeds</str>
 		<str id="armory.faq.characterprofiles">Charakterprofile</str>
 		<str id="armory.faq.recommended">Besseren Gegenstand finden</str>
@@ -2235,35 +2262,35 @@
 		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
 		<str id="armory.character-reputation.url.zandalartribe">http://www.wow-europe.com/de/info/basics/factions/zandalar/index.html</str>
 
-		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.shatteredsunoffensive">search.xml?source=reputation&amp;faction=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">search.xml?source=reputation&amp;faction=1012&amp;searchType=items</str>
 
 		<!-- WOTLK REPS -->
 		<!-- horde -->
 		<!--
-		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thehandofvengeance">search.xml?source=reputation&amp;faction=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">search.xml?source=reputation&amp;faction=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">search.xml?source=reputation&amp;faction=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">search.xml?source=reputation&amp;faction=1085&amp;searchType=items</str>
 		-->
 
 		<!-- alliance -->
 		<!--
-		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.explorersleague">search.xml?source=reputation&amp;faction=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">search.xml?source=reputation&amp;faction=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">search.xml?source=reputation&amp;faction=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">search.xml?source=reputation&amp;faction=1050&amp;searchType=items</str>
 		-->
 
 		<!-- both factions -->
-		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.argentcrusade">search.xml?source=reputation&amp;faction=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">search.xml?source=reputation&amp;faction=1090&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.knightsoftheebonblade">search.xml?source=reputation&amp;faction=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">search.xml?source=reputation&amp;faction=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">search.xml?source=reputation&amp;faction=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">search.xml?source=reputation&amp;faction=1104&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.theoracles">search.xml?source=reputation&amp;faction=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">search.xml?source=reputation&amp;faction=1119&amp;searchType=items</str>
 		
 		<str id="armory.character-reputation.group.grouped">Standardeinstellung</str>
 		<str id="armory.character-reputation.group.ungrouped">Sortierte Ansicht</str>
@@ -2843,7 +2870,7 @@
 		<str id="bagnocafter"/>
 		<str id="resultsfound">Ergebnisse gefunden</str>
 		<str id="transactionsfound">Transaktionen gefunden</str>
-		<str id="notetime">Hinweis: Datum und Uhrzeit werden in lokalen Daten angezeigt.</str>
+		<str id="notetime">Datum und Uhrzeit werden in lokalen Daten angezeigt.</str>
 		<str id="nopermission">Ihr verfügt nicht über genügend Rechte.</str>
 		<str id="none">--Keine--</str>
 		<str id="alltypes">Alle Kategorien</str>
@@ -3237,9 +3264,9 @@
 	</serverBusy>
 
 	<propass>
-		<str id="forum.link.mouseover">Klickt hier, um zum Forum für das Arenaturnier zu gelangen.</str>
+		<str id="forum.link.mouseover">Klickt hier, um zum Forum für den Arenapass zu gelangen.</str>
 		<str id="forum.link">http://forums.wow-europe.com/board.html?forumId=3901821&amp;sid=3</str>
-		<str id="teamstats">Teamstatistiken des Arenaturniers</str>
+		<str id="teamstats">Teamstatistiken des Arenapass-Events</str>
 		<str id="pvpinfo">Persönliche PvP-Informationen:</str>
 		<str id="personalrating">PERSÖNLICHE WERTUNG: </str>
 		<str id="winrecord">SIEGREKORD: </str>
@@ -3258,7 +3285,7 @@
 
 		<str id="teaminfo">Team-Informationen</str>
 		<str id="arena">Arena</str>
-		<str id="tournament">Turnier</str>
+		<str id="tournament">Arenapass</str>
 		<str id="rating">WERTUNG: </str>
 	</propass>
 
@@ -3479,4 +3506,257 @@
 		<str id="download">Download per iTunes</str>
 		<str id="intro">Es gibt eine neue Möglichkeit, das Arsenal zu durchsuchen und zwar mit eurem iPhone™ oder iPod touch®. Testet jetzt die World of Warcraft Mobile Armory, die als kostenloser Download im Apple App Store verfügbar ist.</str>
 	</mobileArmoryInterstitial>
+	
+	<wowRemotePage>
+		<str id="intro.title">World of Warcraft Web-Auktionshaus</str>
+		<str id="intro.text">Ab sofort habt ihr über euren Webbrowser oder Mobilfunkgerät Zugriff auf das World of Warcraft-Auktionshaus. Durchsucht kostenlos das Auktionshaus oder abonniert den Service World of Warcraft Connect, mit dem ihr:</str>
+		<str id="feature.browse">In Echtzeit auf Auktionen bieten oder Sofortkäufe tätigen könnt.</str>
+		<str id="feature.create">Erstellt Auktionen für Gegenstände aus euren Taschen, eurer Bank oder eurem Briefkasten.</str>
+		<str id="feature.collect">Gold aus erfolgreichen Auktionen abholen.</str>
+		<str id="price.period">für je 30 Tage</str>
+		<str id="price.only">Nur</str>		
+		<str id="price.notice">*Preise können je nach Land und Währung schwanken.</str>
+		<str id="try.free.title">Durchsucht kostenlos das World of Warcraft Web-Auktionshaus</str>
+		<str id="try.wr.text">Jeder kann das Auktionshaus über die Arsenal-Webseite oder sein Mobilfunkgerät KOSTENLOS durchsuchen. Folgt den nachfolgenden Links, um die Auktionshaus-Webseite zu besuchen oder die kostenlose Anwendung für euer iPhone® oder iPod touch®  herunterzuladen. Weitere Mobilfunkgeräte werden bald unterstützt werden.</str>
+		<str id="try.wr.faq">Erfahrt mehr über <br/>World of Warcraft Connect.</str>
+		<str id="try.notice">iPhone und iPod touch sind Markenzeichen von Apple Inc., eingetragen in den USA und anderen Ländern.</str>
+		<str id="btn.try.web">KOSTENLOSES Web-Auktionshaus</str>
+		<str id="btn.try.mobile">KOSTENLOSES Mobiles Auktionshaus auf iTunes®</str>
+		<str id="btn.subscribe">Jetzt abonnieren</str>
+		<str id="btn.subscribe.beta">In Kürze</str>
+		<str id="table.descrip.head">World of Warcraft-Auktionshaus-Inhalte</str>
+		<str id="table.free.head">Kostenlos</str>
+		<str id="table.wr.head">Abonnement</str>
+		<str id="table.descrip.1">Durchsucht das Auktionshaus</str>
+		<str id="table.descrip.2">Erhaltet Nachrichten in Echtzeit über erfolgreiche oder abgelaufene Auktionen</str>
+		<str id="table.descrip.3">Erhaltet Nachrichten in Echtzeit über gewonnene Gebote oder falls ihr überbotene wurdet</str>
+		<str id="table.descrip.4">Seht den verfügbaren Goldbetrag eures Charakters</str>
+		<str id="table.descrip.5">Seht den Status eurer Auktionen und sucht nach ähnlichen Auktionen</str>
+		<str id="table.descrip.6">Seht die verkaufbaren Gegenstände in euren Taschen, eurem Bankfach sowie Briefkasten</str>
+		<str id="table.descrip.7">Verfolgt den Status der Auktionen, für die ihr mitbietet</str>
+		<str id="table.descrip.8">Seht die Gegenstände, die ihr im Auktionshaus verkauft habt</str>
+		<str id="table.descrip.9">Seht eure abgelaufenen Auktionen</str>
+		<str id="table.descrip.10">Seht den Status der von euch erstellten Auktionen</str>
+		<str id="table.descrip.11">Seht eure erfolgreichen Auktionen</str>
+		<str id="table.descrip.12">Bietet auf Auktionen</str>
+		<str id="table.descrip.13">Sofortkauf für Auktionen</str>
+		<str id="table.descrip.14">Erstellt Auktionen für Gegenstände aus euren Taschen, eurem Bankfach sowie Briefkasten</str>
+		<str id="table.descrip.15">Holt das Gold für eure erfolgreichen Auktionen ab</str>
+		<str id="table.descrip.16">Holt das Gold für eure nicht erfolgreichen Gebote ab</str>
+		<str id="table.descrip.17">Holt alle ausstehenden Goldbeträge mit einem einzigen Klick ab</str>
+		<str id="table.descrip.18">Auktionen abbrechen</str>
+		<str id="table.descrip.19">Stellt Gegenstände aus abgelaufenen Auktionen erneut ein</str>
+	</wowRemotePage>
+	
+	<auctionHouse> <!-- to localize all the strings below -->
+		<str id="auctionHouse">Auktionshaus</str>
+		<str id="auctions">Auktionen</str>
+		<str id="auctions.create">Auktion erstellen</str>
+		<str id="auctions.create2">Erstellen</str>
+		<str id="auctions.browse">Auktionen durchsuchen</str>
+		<str id="auctions.browse2">Auktionen durchsuchen</str>k
+		<str id="auctions.active">Aktive Auktionen</str>
+		<str id="auctions.similar">Ähnliche Auktionen</str>
+		<str id="auctions.sold">Verkauft</str>
+		<str id="auctions.ended">Beendet</str>
+		<str id="auctions.ended.tip">Du musst deine Gegenstände im Spiel während der verbleibenden Zeit abholen, damit diese nicht gelöscht werden.</str>
+		<str id="auctions.won">Gewonnen</str>
+		<str id="auctions.won.tip">Diese Gegenstände wurden an deinen Briefkasten im Spiel verschickt.</str>
+		<str id="auctions.lost">Nicht gewonnen</str>
+		<str id="auctions.my">Meine Auktionen</str>
+		<str id="bids">Gebote</str>
+		<str id="bids.my">Meine Gebote</str>
+		<str id="bids.active">Aktive Gebote</str>
+		<str id="sort.name">Name</str>
+		<str id="sort.rarity">Seltenheit</str>
+		<str id="sort.qty">Menge</str>
+		<str id="sort.qty2">Menge</str>
+		<str id="sort.level">Mindeststufe</str>
+		<str id="sort.level2">Mindeststufe</str>
+		<str id="sort.timeLeft">Restzeit</str>
+		<str id="sort.buyout">Sofortkauf</str>
+		<str id="sort.buyoutPrice">Sofortkaufpreis</str>
+		<str id="sort.buyoutPriceUnit">Sofortkauf pro Gegenstand</str>
+		<str id="sort.bid">Gebot</str>
+		<str id="sort.bidBuyout">Gebot/Sofortkauf</str>
+		<str id="sort.bidPrice">Gebotspreis</str>
+		<str id="sort.bidPriceUnit">Gebotspreis pro Gegenstand</str>
+		<str id="sort.winPrice">Endpreis</str>
+		<str id="sort.highBidder">Höchstbietender</str>
+		<str id="sort.options">Optionen</str>
+		<str id="sort.soldPrice">Verkaufspreis</str>
+		<str id="sort.buyer">Käufer</str>
+		<str id="sort.status">Status</str>
+		<str id="sort.seller">Verkäufer</str>
+		<str id="sort.moneyEarned">Gold erhalten</str>
+		<str id="sort.house">Haus</str>
+        <str id="sort.minRarity">Niedrigste Seltenheit</str>
+        <str id="sort.itemLevel">Gegenstandsstufe</str>
+		<str id="money.getAll">Gesamtes Gold abholen</str>
+		<str id="money.get">Gold abholen</str>
+		<str id="money.claim">Du musst dein Gold während der verbleibenden Zeit im Spiel abholen, ansonsten wird dieses gelöscht.</str>
+		<str id="money.claimItem">Du musst deine Gegenstände während der verbleibenden Zeit abholen, damit diese nicht gelöscht werden.</str>
+		<str id="money.claimBoth">Du musst dein Gold / Gegenstände während der verbleibenden Zeit abholen, damit diese nicht gelöscht werden.</str>
+		<str id="browse.itemName">Gegenstandsname</str>
+		<str id="browse.categories">Kategorien</str>
+		<str id="browse.levelRange">Stufenbereich</str>
+		<str id="browse.choose">Wählen</str>
+		<str id="browse.useable">Benutzbar</str>
+		<str id="browse.reset">Zurücksetzen</str>
+		<str id="browse.search">Suchen</str>
+		<str id="browse.noResults">Deine Suche hat kein Ergebnis ergeben, bitte versuch es erneut.</str>
+		<str id="status.noBids">Keine Gebote</str>
+		<str id="status.highBidder">Höchstbietender</str>
+		<str id="status.noBuyer">Kein Käufer</str>
+		<str id="status.outbid">Überbieten</str>
+		<str id="status.expired">Ausgelaufen</str>
+		<str id="status.cancelled">Abgebrochen</str>
+		<str id="summary.select">Auktionshaus auswählen</str>
+		<str id="summary.alliance">Allianz</str>
+		<str id="summary.alliance.house">Auktionshaus der Allianz</str>
+		<str id="summary.horde">Horde</str>
+		<str id="summary.horde.house">Auktionshaus der Horde</str>
+		<str id="summary.neutral">Neutral</str>
+		<str id="summary.neutral.house">Neutrales Auktionshaus</str>
+		<str id="summary.title">Web-Auktionshaus</str>
+		<str id="summary.desc">Das Web-Auktionshaus erlaubt es dir, das Auktionshaus deines Realms über einen Webbrowser oder die Arsenal-Anwendung für das iPhone zu durchsuchen. Mit einem Abonnement für World of Warcraft Connect kannst du außerdem sowohl für Gegenstände Gebote abgeben (oder diese per Sofortkauf erwerben) als auch eigene Gegenstände zum Verkauf einstellen.</str>
+		<str id="summary.activity">
+      <param1/>s Auktionsaktivitäten</str>
+		<str id="summary.mailbox">Post</str>
+		<str id="summary.mailTotal">Gesamtanzahl der Gegenstände im Briefkasten</str>
+		<str id="summary.selling">Verkäufe</str>
+		<str id="summary.goldEarned">Gold erhalten</str>
+		<str id="summary.mailbox">Briefkasten</str>
+		<str id="summary.mailFull">Dein Briefkasten ist voll! Es kann lediglich auf die letzten 50 Verkaufsnachrichten zugegriffen werden.</str>
+		<str id="button.cancel">Abbrechen</str>
+		<str id="button.cancelAuction">Abbrechen</str>
+		<str id="button.buyout">Sofortkauf</str>
+		<str id="button.rebid">Gebot abgeben</str>
+		<str id="button.bid">Gebot</str>
+		<str id="button.confirm">Bestätigen</str>
+		<str id="button.confirmBid">Gebot bestätigen</str>
+		<str id="button.confirmBuyout">Sofortkauf bestätigen</str>
+		<str id="button.ok">OK</str>
+		<str id="button.no">Nein</str>
+		<str id="button.yes">Ja</str>
+		<str id="button.upgrade">Abonnement verlängern</str>
+		<str id="button.filter">Filter</str>
+		<str id="button.create">Erstellen</str>
+		<str id="button.stop">Stoppen</str>
+		<str id="button.finish">Beenden</str>
+		<str id="button.retry">Erneut versuchen</str>
+        <str id="button.search">Suchen</str>
+        <str id="button.continue">Weiter</str>
+        <str id="button.close">Schließen</str>
+		<str id="msg.error">Ein  Fehler ist während diesem Vorgang aufgetreten, bitte später erneut versuchen.</str>
+		<str id="msg.maxBids">Du hast die Anzahl an Auktionen innerhalb einer Stunde, für die du bieten oder per Sofortkauf erwerben kannst, überschritten. Bitte versuche es später erneut.</str>
+		<str id="msg.cancelAuction">Beim Abbrechen dieser Auktion wird die Einstellgebühr nicht erstattet. Fortfahren?</str>
+		<str id="msg.subscription">Das Bieten auf Auktionen erfodert den Abschluß eines Auktionshaus-Abonnements.</str>
+		<str id="msg.errorMoney">Du hast nicht ausreichend Gold, um an dieser Auktion teilzunehmen oder den Gegenstand per Sofortkauf zu erwerben.</str>
+		<str id="msg.confirmation">Diese Nachricht nicht erneut anzeigen</str>
+		<str id="msg.buyout">Du erwirbst diesen Gegenstand per Sofortkauf zu nachfolgendem Betrag, möchtest du fortfahren?</str>
+		<str id="msg.enterBid">Bitte Gebot eintragen</str>
+		<str id="msg.noBids">Keine Gebote für Auktionen vorhanden.</str>
+		<str id="msg.noWonLost">Du hast an keiner Auktion teilgenommen.</str>
+		<str id="msg.browseListing">Auktionshaus durchsuchen.</str>
+		<str id="msg.noListings">Keine Auktionen erstellt.</str>
+		<str id="msg.createAuction">Erstelle eine Auktion, um deine Gegenstände zu verkaufen.</str>
+		<str id="msg.isSeller">Du bist der Verkäufer</str>
+		<str id="msg.bidFinish">Dein Gebot wurde abgegeben!</str>
+		<str id="msg.buyoutFinish">Du hast diese Auktion erfolgreich per Sofortkauf erworben, du solltest den Gegenstand/Gegenstände in Kürze erhalten!</str>
+		<str id="msg.noSimilar">Keine ähnlichen Gegenstände gefunden.</str>
+		<str id="msg.highPriceUnit">Höchster Preis / Gegenstand</str>
+		<str id="msg.lowPriceUnit">Niedrigster Preis / Gegenstand</str>
+		<str id="msg.stopCreation">Durch das Verlassen dieses Bildschirms oder dem Betätigen von Stop wird dieser Erstellungsvorgang abgebrochen.</str>
+		<str id="msg.auctionCreated">Deine Auktion/-en wurde/-n erstellt!</str>
+        <str id="msg.myAuction">Eigene Auktion</str>
+        <str id="msg.noBladeData1">Du bietest derzeit auf keine Auktionen.</str>
+		<str id="msg.noBladeData2">Du hast keine Auktionen gewonnen.</str>
+		<str id="msg.noBladeData3">Alle Gebote auf Aktionen waren bisher erfolgreich.</str>
+		<str id="msg.noBladeData4">Du hast keine aktiven Auktionen.</str>
+		<str id="msg.noBladeData5">Du hast keine erfolgreichen Auktionen.</str>
+		<str id="msg.noBladeData6">Du hast keine abgelaufenen Auktionen.</str>
+        <str id="msg.logoutOfGame">Du musst dich aus dem Spiel abmelden, um Zugriff auf diese Seite zu erhalten.</str>
+        <str id="msg.beginSearch">Gib deine Suchkriterien ein und klicke auf "Suche".</str>
+        <str id="msg.auctionLimitReached">Es werden lediglich die 500 aktuellsten Auktionen angezeigt.</str>
+        <str id="msg.bidsLimitReached">Es werden lediglich die 500 aktuellsten Gebote angezeigt.</str>
+		<str id="time.short">Kurz</str>
+		<str id="time.short.msg">Weniger als 30 Minuten</str>
+		<str id="time.medium">Mittel</str>
+		<str id="time.medium.msg">Zwischen 30 Minuten und 2 Stunden</str>
+		<str id="time.long">Lang</str>
+		<str id="time.long.msg">Zwischen 2 und 12 Stunden</str>
+		<str id="time.verylong">Sehr lang</str>
+		<str id="time.verylong.msg">Länger als 12 Stunden</str>
+		<str id="buyoutTotal">Sofortkäufe insgesamt</str>
+		<str id="relist">Neu sortieren</str>
+		<str id="active">Aktiv</str>
+		<str id="completed">Abgeschlossen</str>
+		<str id="days">Tage</str>
+		<str id="won">Gewonnen</str>
+		<str id="lost">Verloren</str>
+		<str id="cancelled">Abgebrochen</str>
+		<str id="expired">Abgelaufen</str>
+		<str id="sold">Verkauft</str>
+		<str id="outbid">Überboten</str>
+		<str id="pending">Ausstehend</str>
+		<str id="create.stackSize">Stapelgröße</str>
+		<str id="create.totalStacks">Anzahl Stapel</str>
+		<str id="create.minRarity">Geringste Seltenheit</str>
+		<str id="create.mailbox">Post</str>
+		<str id="create.bags">Tasche</str>
+		<str id="create.bank">Bank</str>
+		<str id="create.inventory">Inventar</str>
+		<str id="create.all">Alle</str>
+		<str id="create.max">Max</str>
+		<str id="create.quantity">Menge</str>
+		<str id="create.stacks">Stapel</str>
+		<str id="create.pricePer">Preis</str>
+		<str id="create.perStack">pro Stapel</str>
+		<str id="create.perItem">pro Gegenstand</str>
+		<str id="create.duration">Dauer</str>
+		<str id="create.startPrice">Startpreis</str>
+		<str id="create.buyoutPrice">Sofortkaufpreis</str>
+		<str id="create.optional">optional</str>
+		<str id="create.deposit">Einstellgebühr</str>
+		<str id="create.creating">Erstelle <param-html1/> von <param-html2/>-Auktionen</str>
+		<str id="create.12hours">12 Stunden</str>
+		<str id="create.24hours">24 Stunden</str>
+		<str id="create.48hours">48 Stunden</str>
+		<str id="create.filter.all">Alle meine Gegenstände</str>
+		<str id="create.filter.co">Verbrauchbare Gegenstände</str>
+		<str id="create.filter.tr">Handelsgüter</str>
+		<str id="create.filter.eq">Ausrüstbare Gegenstände</str>
+		<str id="create.maxQty">Max. Anzahl pro Stapel</str>
+		<str id="create.qtyLeft">Verbleibende Stapelanzahl</str>
+        <str id="create.depositFee">Du hast nicht genügend Gold, um die Gebühr abzudecken.</str>
+		<str id="create.chooseItem">Was möchtest du verkaufen?</str>
+		<str id="create.chooseInfo1">Wählt zuerst links einen Gegenstand aus. Hierbei kann jeder transferierbare Gegenstand (ausgenommen sind accountgebundene Gegenstände) verkauft werden, der sich in deinen Taschen, deiner Bank oder deinem Briefkasten befindet.</str>
+		<str id="create.chooseInfo2">Nach der Auswahl kannst du einen Start- sowie Sofortkaufpreis bestimmen, die Anzahl an Gegenständen sowie an Stapeln (für mehrere Auktionen des gleichen Gegenstandes).</str>
+		<str id="create.mailboxNotice">Du hast mehr als 50 Nachrichten in deinem Briefkasten. Auf Gegenstände, die an Nachrichten angehangen sind,&lt;br /&gt; die älter als die letzten 50 Nachrichten sind, kann nicht zugegriffen werden.</str>
+        <str id="upgrade.title">Zu "World of Warcraft Connect" erweitern</str>
+		<str id="upgrade.button">Abonnement erweitern</str>
+		<str id="upgrade.text1">Sofortkauf und Gebote auf Auktionen</str>
+		<str id="upgrade.text2">Abholen von Gold aus eurem Briefkasten</str>
+		<str id="upgrade.text3">Erstellt Auktionen!</str>
+		<str id="toast.bid">Dein Gebot wurde abgegeben.</str>
+		<str id="toast.sold">Eine Auktion war erfolgreich.</str>
+		<str id="toast.won">Du hast eine Auktion gewonnen!</str>
+		<str id="toast.cancelled">Auktion abgebrochen.</str>
+		<str id="toast.created">Auktion erstellt.</str>
+		<str id="toast.outbid">Du wurdest überboten!</str>
+		<str id="toast.expired">Eine Auktion ist abgelaufen.</str>
+		<str id="toast.interrupted">Prozess unterbrochen.</str>
+		<str id="toast.totalCreated">{total} Auktion(en) erstellt.</str>
+		<str id="error">Auktionshaus-Fehler</str>
+		<str id="na">Entfällt</str>
+		<str id="find">Im Auktionshaus finden</str>
+        <str id="viewAll">Alle anzeigen</str>
+        <str id="house.switchAlliance">Zum Auktionshaus der Allianz wechseln</str>
+        <str id="house.switchHorde">Zum Auktionshaus der Horde wechseln</str>
+        <str id="house.switchNeutral">Zum neutralen Auktionshaus wechseln</str>
+        <str id="house.changeChar">Charakter wechseln</str>
+        <str id="remote.required">Benötigt World of Warcraft Connect</str>
+        <str id="remote.message">Ihr benötigt ein Abonnement für World of Warcraft Connect, um im Auktionshaus Gegenstände kaufen und verkaufen zu können.</str>
+	</auctionHouse>
 </strs>

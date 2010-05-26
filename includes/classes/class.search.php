@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 213
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -576,15 +576,15 @@ Class SearchMgr extends Connector {
                     $this->get_array['faction'] = 'all';
                 }
                 if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 else {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 break;
         }
         if(!isset($items_query) || !is_array($items_query)) {
-            $this->Log()->writeError('%s : unable to get items for `%s` query (current locale: %s, locId: %d) ', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to get items for "%s" query (current locale: %s, locId: %d) ', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
             return false;
         }
         $items_result = array();

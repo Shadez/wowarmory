@@ -194,6 +194,9 @@
 		<str id="related-info.header.noflash">Alert: Adobe Flash Player 9+ Required</str>
 		<str id="related-info.noflash">We've detected that you either do not have Adobe Flash Player, have javascript disabled or are using a version prior to version 10. The Armory requires Flash Player 10 (or later) in order to take full advantage of all the site's features. Click the button above to install the latest version of Adobe Flash Player.</str>
 
+        <str id="breaking.news">Breaking News</str>
+        <str id="motd">Remote Auction House: Beta Updates</str>
+
 		<str id="labels.regioncolon">Region:</str>
 		<str id="labels.selectregioncolon">Select a Region:</str>
 
@@ -277,10 +280,12 @@
 		<str id="user.no.character">No Character Selected</str>
 		<str id="user.manage.chars">Character Settings</str>
 		<str id="user.manage.settings">Change</str>
+		<str id="user.manage.more">More Characters</str>
+		<str id="user.manage.switch">Make this your primary</str>
 		<str id="loading">Loading...</str>
 		<str id="saving">Saving...</str>
 		<str id="pose_saved">Pose Saved!</str>
-		
+		<str id="social.media.links">The World of Warcraft Armory is also available on <param-html1/> and the <param-html2/>!</str>
 	</common>
 
 	<character>
@@ -297,7 +302,7 @@
 		<str id="character-profiles">Character Profiles</str>
 		<str id="character-level">Level</str>
 		<str id="character-level-sheet">Level</str>
-		<str id="noteten">Note: Characters below level 10 are not displayed</str>
+		<str id="noteten">Characters below level 10 are not displayed.</str>
 		<str id="character.tip.primary">This character is designated as your primary character. A link to this character's profile will appear in the top right corner of the Armory.</str>
 		<str id="character.tip.secondary">This character's profile will be bookmarked under your main character's profile. Click to make this your primary character instead.</str>
 	</character>
@@ -305,7 +310,7 @@
 		<str id="makePrimary">Designate as primary character</str>
 		<str id="removeFromEasyAccess">Remove from My Characters menu</str>
 		<str id="selectedCharacters">My Characters</str>
-		<str id="inactiveLicense">Note: This license is inactive.</str>
+		<str id="inactiveLicense">This license is inactive.</str>
 		<str id="availableSlot">Available character slot</str>
 		<str id="easyAccessLimit">The quick access character limit has been reached. Remove a character to add new ones.</str>
 		<str id="addToEasyAccess">Add to My Characters menu</str>
@@ -314,10 +319,10 @@
 		<str>
       <h1>Character Selection</h1>
 		<p>This interface allows you to select up to <strong>three</strong> characters on this account to bookmark for easy access. If you have more than three eligible characters, you must first unselect a character before selecting a different one.</p>
-		<p>
-        <strong>Note: </strong>The characters you select will also receive alerts when any of them are invited to new calendar events.</p>
+		<p>The characters you select will also receive alerts when any of them are invited to new calendar events.</p>
     </str>
-	</character-select>
+        <str id="primaryChar">Primary Character</str>
+    </character-select>
 	<custom-rss>
 		<str id="activity">Character Activity</str>
 		<str id="facebook_link">Go to the Armory application on Facebook</str>
@@ -351,6 +356,7 @@
 		<str id="recent_act">Recent Activity</str>
 		<str id="viewfull_feed">View Earlier Activity</str>
 		<str id="currently_equipped">(Equipped)</str>
+		<str id="vendored">(Vendored)</str>
 		<str id="today">Today</str>
 		<str id="yesterday">Yesterday</str>
 		<str id="previous">Previous Entries</str>
@@ -381,8 +387,8 @@
 		<str id="guildrank">Guild Rank</str>
 		<str id="guild-rank">Rank </str>
 		<str id="guild-leader">Guild Master</str>
-		<str id="noteten">Note: Members below level 10 are not displayed</str>
-		<str id="toomany">Note: Too many guild members. Only high level members are listed.</str>
+		<str id="noteten">Members below level 10 are not displayed.</str>
+		<str id="toomany">Only high-level members are displayed.</str>
 		<str id="searchroster">Search Guild Roster</str>
 	</guild>
 
@@ -789,6 +795,16 @@
 		<str id="armory.tabs.wotlk">Wrath of the Lich King</str>
 		<str id="armory.tabs.bc">Burning Crusade</str>
 		<str id="armory.tabs.classic">Classic</str>
+		
+		<!-- auction tabs -->
+		<str id="auction.tabs.summary">Summary</str>
+		<str id="auction.tabs.browseAuctions">Browse Auctions</str>
+		<str id="auction.tabs.myBids">My Bids</str>
+		<str id="auction.tabs.activeBids">Active Bids</str>
+		<str id="auction.tabs.completedAuctions">Completed Auctions</str>
+		<str id="auction.tabs.myAuctions">My Auctions</str>
+		<str id="auction.tabs.activeAuctions">Active Auctions</str>
+		<str id="auction.tabs.createAuction">Create Auctions</str>
 
 		<str id="armory.tabs.character.guild.mouseover">Clicking on this tab will take you to the Guilds section</str>
 		<str id="armory.tabs.character.arenateams.mouseover">Clicking on this tab will take you to the Arena Teams section</str>
@@ -823,8 +839,16 @@
 		<str id="armory.menu.updates">Armory Updates</str>
 		<str id="armory.menu.faqs">Armory FAQs</str>
 		<str id="armory.menu.tools">Tools</str>
-		<str id="armory.menu.searchPlugin">Browser Search Plug</str>
-
+		<str id="armory.menu.searchPlugin">Browser Search Plugin</str>
+		<str id="armory.menu.auctionHouse">Auction House</str>	
+		<str id="armory.menu.misc">Misc</str>
+		<str id="armory.menu.ah.summary">Summary</str>	
+		<str id="armory.menu.ah.bids">My Bids</str>	
+		<str id="armory.menu.ah.browse">Browse Auctions</str>	
+		<str id="armory.menu.ah.auctions">My Auctions</str>
+		<str id="armory.menu.ah.create">Create Auctions</str>
+		<str id="armory.menu.ah.faq">Auction House FAQ</str>
+		
 <!--character profile header-->
 		<str id="armory.icon.realm">Realm</str>
 		<str id="armory.icon.battleGroup">Battlegroup</str>
@@ -1035,7 +1059,7 @@
 		<str id="armory.dungeons.seealsocolon">See Also: </str>
 		<str id="armory.dungeons.viewbosses">View Bosses</str>
 		<str id="armory.dungeons.notecolon">Note:</str>
-		<str id="armory.dungeons.notesparse">Only items that have been discovered in-game (at least one of that item has been acquired) are searchable in the Armory. As a result, some loot tables (particularly those of newer raid bosses) may be incomplete, and may appear conspicuously sparse. New loot tables should gradually populate over time as more of their items are discovered.</str>
+		<str id="armory.dungeons.notesparse">Items must appear in the current version of the game to be searchable in the Armory.</str>
 
 <!--factions.xsl-->
 		<str id="armory.factions.bc">Burning Crusade Factions</str>
@@ -1050,6 +1074,7 @@
 		<str id="armory.faq.arenacalculator">Arena Calculator</str>
 		<str id="armory.faq.arenaladder">Arena Ladder</str>
 		<str id="armory.faq.login">Armory Login</str>
+		<str id="armory.faq.auctionhouse">Auction House</str>
 		<str id="armory.faq.characterfeeds">Character Feeds</str>
 		<str id="armory.faq.characterprofiles">Character Profiles</str>
 		<str id="armory.faq.recommended">Find an Upgrade</str>
@@ -1579,10 +1604,10 @@
 		<str id="armory.character-reputation.url.netherwing">http://www.worldofwarcraft.com/info/basics/factions/netherwing-tips.html</str>
 
 		<str id="armory.character-reputation.name.ogri'la">Ogri'la</str>
-		<str id="armory.character-reputation.url.ogri'la">/search.xml?fl[source]=reputation&amp;fl[faction]=1038&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ogri'la">search.xml?source=reputation&amp;faction=1038&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.sha'tariskyguard">Sha'tari Skyguard</str>
-		<str id="armory.character-reputation.url.sha'tariskyguard">/search.xml?fl[source]=reputation&amp;fl[faction]=1031&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">search.xml?source=reputation&amp;faction=1031&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
 		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>
@@ -1704,35 +1729,35 @@
 		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
 		<str id="armory.character-reputation.url.zandalartribe">http://www.worldofwarcraft.com/info/basics/factions/zandalar/index.html</str>
 
-		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.shatteredsunoffensive">search.xml?source=reputation&amp;faction=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">search.xml?source=reputation&amp;faction=1012&amp;searchType=items</str>
 
 		<!-- WOTLK REPS -->
 		<!-- horde -->
 		<!--
-		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thehandofvengeance">search.xml?source=reputation&amp;faction=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">search.xml?source=reputation&amp;faction=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">search.xml?source=reputation&amp;faction=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">search.xml?source=reputation&amp;faction=1085&amp;searchType=items</str>
 		-->
 
 		<!-- alliance -->
 		<!--
-		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.explorersleague">search.xml?source=reputation&amp;faction=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">search.xml?source=reputation&amp;faction=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">search.xml?source=reputation&amp;faction=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">search.xml?source=reputation&amp;faction=1050&amp;searchType=items</str>
 		-->
 
 		<!-- both factions -->
-		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.argentcrusade">search.xml?source=reputation&amp;faction=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">search.xml?source=reputation&amp;faction=1090&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.knightsoftheebonblade">search.xml?source=reputation&amp;faction=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">search.xml?source=reputation&amp;faction=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">search.xml?source=reputation&amp;faction=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">search.xml?source=reputation&amp;faction=1104&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.theoracles">search.xml?source=reputation&amp;faction=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">search.xml?source=reputation&amp;faction=1119&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.group.grouped">Default View</str>
 		<str id="armory.character-reputation.group.ungrouped">Listed View</str>
@@ -2312,7 +2337,7 @@
 		<str id="bagnocafter"/>
 		<str id="resultsfound">Results Found</str>
 		<str id="transactionsfound">Transactions Found</str>
-		<str id="notetime">Note: Date and times are displayed in local time</str>
+		<str id="notetime">Date and times are displayed in local time.</str>
 		<str id="nopermission">You don't have view permissions.</str>
 		<str id="none">--None--</str>
 		<str id="alltypes">All Item Types</str>
@@ -2949,4 +2974,261 @@
 		<str id="download">Download from iTunes</str>
 		<str id="intro">There's a new way to browse the Armory from your iPhone™ or iPod touch®. Check out the World of Warcraft Mobile Armory, available now as a free download from the Apple App Store.</str>
 	</mobileArmoryInterstitial>
+	
+	<wowRemotePage>
+		<str id="intro.title">World of Warcraft Remote Auction House</str>
+		<str id="intro.text">Now you can access the World of Warcraft Auction House from your web browser or mobile device. Browse the Auction House for free, or with a subscription to the new World of Warcraft Remote service, you can:</str>
+		<str id="feature.browse">Bid on and buy out auctions with real-time results.</str>
+		<str id="feature.create">Create auctions from items in your bags, bank, or mailbox.</str>
+		<str id="feature.collect">Collect gold earned in your auctions.</str>
+		<str id="price.period">per 30 days</str>
+		<str id="price.only">Only</str>		
+		<str id="price.notice">*Prices may vary by country and currency.</str>
+		<str id="try.free.title">Browse the World of Warcraft Remote Auction House for FREE </str>
+		<str id="try.wr.text">Anyone can browse the Auction House via the Armory website or mobile device for FREE. Follow the links below to visit the Auction House website or download the free app on iTunes® for the iPhone® or iPod touch®. Additional mobile devices will be supported in the future. </str>
+		<str id="try.wr.faq">Learn more about <br/>World of Warcraft Remote.</str>
+		<str id="try.notice">iPhone and iPod touch are trademarks of Apple Inc.</str>
+		<str id="btn.try.web">FREE Web Auction House</str>
+		<str id="btn.try.mobile">FREE Mobile Auction House on iTunes</str>
+		<str id="btn.subscribe">Subscribe Now</str>
+		<str id="btn.subscribe.beta">Coming Soon</str>
+		<str id="table.descrip.head">World of Warcraft Remote Auction House Features</str>
+		<str id="table.free.head">Free</str>
+		<str id="table.wr.head">Subscription</str>
+		<str id="table.descrip.1">Browse the Auction House</str>
+		<str id="table.descrip.2">Get real-time notifications when your auctions sell or expire</str>
+		<str id="table.descrip.3">Get real-time notifications when you win auctions or when you are outbid</str>
+		<str id="table.descrip.4">View your characters' current gold</str>
+		<str id="table.descrip.5">View the status of your auctions and search for similar auctions</str>
+		<str id="table.descrip.6">View the items you can sell in your bags, bank, and mailbox</str>
+		<str id="table.descrip.7">View the status of auctions you are bidding on</str>
+		<str id="table.descrip.8">View the items you've sold in the Auction House</str>
+		<str id="table.descrip.9">View your expired auctions</str>
+		<str id="table.descrip.10">View the status of auctions you created</str>
+		<str id="table.descrip.11">View your successful auctions</str>
+		<str id="table.descrip.12">Bid on auctions</str>
+		<str id="table.descrip.13">Buy out auctions</str>
+		<str id="table.descrip.14">Create auctions from items in your bags, bank, and mailbox</str>
+		<str id="table.descrip.15">Collect gold from successful auctions</str>
+		<str id="table.descrip.16">Collect gold from unsuccessful bids</str>
+		<str id="table.descrip.17">Collect all outstanding gold with a single click</str>
+		<str id="table.descrip.18">Cancel your auctions</str>
+		<str id="table.descrip.19">Relist items for sale from your expired auctions</str>
+	</wowRemotePage>
+	
+	<auctionHouse>
+		<str id="auctionHouse">Auction House</str>
+		<str id="auctions">Auctions</str>
+		<str id="auctions.create">Create Auctions</str>
+		<str id="auctions.create2">Create</str>
+		<str id="auctions.browse">Browse Auctions</str>
+		<str id="auctions.browse2">Browse</str>
+		<str id="auctions.active">Active Auctions</str>
+		<str id="auctions.similar">Similar Auctions</str>
+		<str id="auctions.sold">Sold</str>
+		<str id="auctions.ended">Ended</str>
+		<str id="auctions.ended.tip">You must reclaim your items in-game within the remaining time or they will be deleted.</str>
+		<str id="auctions.won">Won</str>
+		<str id="auctions.won.tip">These items have been delivered to your in-game mailbox.</str>
+		<str id="auctions.lost">Didn't Win</str>
+		<str id="auctions.my">My Auctions</str>
+		<str id="bids">Bids</str>
+		<str id="bids.my">My Bids</str>
+		<str id="bids.active">Active Bids</str>
+		<str id="sort.name">Name</str>
+		<str id="sort.rarity">Rarity</str>
+		<str id="sort.qty">Quantity</str>
+		<str id="sort.qty2">Qty</str>
+		<str id="sort.level">Required Level</str>
+		<str id="sort.level2">Req. Level</str>
+		<str id="sort.timeLeft">Time Left</str>
+		<str id="sort.buyout">Buyout</str>
+		<str id="sort.buyoutPrice">Buyout Price</str>
+		<str id="sort.buyoutPriceUnit">Buyout Price Per Item</str>
+		<str id="sort.bid">Bid</str>
+		<str id="sort.bidBuyout">Bid / Buyout</str>
+		<str id="sort.bidPrice">Bid Price</str>
+		<str id="sort.bidPriceUnit">Bid Price Per Item</str>
+		<str id="sort.winPrice">Win Price</str>
+		<str id="sort.highBidder">High Bidder</str>
+		<str id="sort.options">Options</str>
+		<str id="sort.soldPrice">Sold Price</str>
+		<str id="sort.buyer">Buyer</str>
+		<str id="sort.status">Status</str>
+		<str id="sort.seller">Seller</str>
+		<str id="sort.moneyEarned">Gold Earned</str>
+		<str id="sort.house">House</str>
+        <str id="sort.minRarity">Minimum Rarity</str>
+        <str id="sort.itemLevel">Item Level</str>
+		<str id="money.getAll">Claim All Gold</str>
+		<str id="money.get">Claim Gold</str>
+		<str id="money.claim">You must claim your gold within the remaining time or it will be deleted.</str>
+		<str id="money.claimItem">You must claim your item within the remaining time or it will be deleted.</str>
+		<str id="money.claimBoth">You must claim your gold / item(s) within the remaining time or they will be deleted.</str>
+		<str id="browse.itemName">Item Name</str>
+		<str id="browse.categories">Categories</str>
+		<str id="browse.levelRange">Level Range</str>
+		<str id="browse.choose">Choose</str>
+		<str id="browse.useable">Usable</str>
+		<str id="browse.reset">Reset</str>
+		<str id="browse.search">Search</str>
+		<str id="browse.noResults">Your search did not produce any results, please try again.</str>
+		<str id="status.noBids">No Bids</str>
+		<str id="status.highBidder">High Bidder</str>
+		<str id="status.noBuyer">No Buyer</str>
+		<str id="status.outbid">Outbid</str>
+		<str id="status.expired">Expired</str>
+		<str id="status.cancelled">Canceled</str>
+		<str id="summary.select">Select an Auction House</str>
+		<str id="summary.alliance">Alliance</str>
+		<str id="summary.alliance.house">Alliance Auction House</str>
+		<str id="summary.horde">Horde</str>
+		<str id="summary.horde.house">Horde Auction House</str>
+		<str id="summary.neutral">Neutral</str>
+		<str id="summary.neutral.house">Neutral Auction House</str>
+		<str id="summary.title">Remote Auction House</str>
+		<str id="summary.desc">The Remote Auction House lets you browse your realm's auction house through a web browser or the iPhone's Armory app. With a subscription to World of Warcraft Remote, you can also both bid on (or buy out) existing auctions as well as list your own items for sale from your bags, bank, and mailbox.</str>
+		<str id="summary.activity">
+      <param1/>'s Auction Activity</str>
+		<str id="summary.mailbox">Mailbox</str>
+		<str id="summary.mailTotal">Total Mail Items</str>
+		<str id="summary.selling">Selling</str>
+		<str id="summary.goldEarned">Gold Earned</str>
+		<str id="summary.mailbox">Mailbox</str>
+		<str id="summary.mailFull">Your mailbox is full! Only the 50 most recent messages can be accessed for selling purposes.</str>
+		<str id="button.cancel">Cancel</str>
+		<str id="button.cancelAuction">Cancel</str>
+		<str id="button.buyout">Buyout</str>
+		<str id="button.rebid">Bid Again</str>
+		<str id="button.bid">Bid</str>
+		<str id="button.confirm">Confirm</str>
+		<str id="button.confirmBid">Confirm Bid</str>
+		<str id="button.confirmBuyout">Confirm Buyout</str>
+		<str id="button.ok">OK</str>
+		<str id="button.no">No</str>
+		<str id="button.yes">Yes</str>
+		<str id="button.upgrade">Upgrade Subscription</str>
+		<str id="button.filter">Filter</str>
+		<str id="button.create">Create</str>
+		<str id="button.stop">Stop</str>
+		<str id="button.finish">Finish</str>
+		<str id="button.retry">Retry</str>
+        <str id="button.search">Search</str>
+        <str id="button.continue">Continue</str>
+        <str id="button.close">Close</str>
+		<str id="msg.error">An error occurred when attempting this action, please try again later.</str>
+		<str id="msg.maxBids">You've exceeded the number of auctions that you can bid on or buy out within 1 hour. Please try again later.</str>
+		<str id="msg.cancelAuction">If you cancel this auction, the listing fee will not be refunded. Proceed?</str>
+		<str id="msg.subscription">Bidding on auctions requires an Auction House subscription.</str>
+		<str id="msg.errorMoney">You don't have enough gold to bid on or buy out this auction.</str>
+		<str id="msg.confirmation">Don't show this message again</str>
+		<str id="msg.buyout">You are buying out this item for the following amount, are you sure?</str>
+		<str id="msg.enterBid">Enter your bid</str>
+		<str id="msg.noBids">You have not bid on any auctions.</str>
+		<str id="msg.noWonLost">You have not participated in any auctions.</str>
+		<str id="msg.browseListing">Browse the auction house.</str>
+		<str id="msg.noListings">You have not created any auctions.</str>
+		<str id="msg.createAuction">Create an auction to sell your items.</str>
+		<str id="msg.isSeller">You are the seller</str>
+		<str id="msg.bidFinish">Your bid has been placed!</str>
+		<str id="msg.buyoutFinish">You have successfully bought out this auction and should receive your item(s) shortly!</str>
+		<str id="msg.noSimilar">No similar items found.</str>
+		<str id="msg.highPriceUnit">Highest Price / Item</str>
+		<str id="msg.lowPriceUnit">Lowest Price / Item</str>
+		<str id="msg.stopCreation">Leaving this screen or clicking Stop will interrupt the creation process.</str>
+		<str id="msg.auctionCreated">Your auction(s) have been created!</str>
+        <str id="msg.myAuction">Your Auction</str>
+        <str id="msg.noBladeData1">You are not bidding on any auctions.</str>
+		<str id="msg.noBladeData2">You have not won any auctions.</str>
+		<str id="msg.noBladeData3">You have not lost any auctions.</str>
+		<str id="msg.noBladeData4">You have no active auctions.</str>
+		<str id="msg.noBladeData5">You have not sold any auctions.</str>
+		<str id="msg.noBladeData6">You have no expired auctions.</str>
+        <str id="msg.logoutOfGame">You must log out of the game before you can access this page.</str>
+        <str id="msg.beginSearch">Enter your search criteria and click "Search".</str>
+        <str id="msg.auctionLimitReached">Only the 500 most recent auctions are displayed.</str>
+        <str id="msg.bidsLimitReached">Only the 500 most recent bids are displayed.</str>
+        <str id="msg.ppuBid">Price per unit:</str>
+        <str id="msg.ppuBuy">Buyout price per unit:</str>
+		<str id="time.short">Short</str>
+		<str id="time.short.msg">Less than 30 mins</str>
+		<str id="time.medium">Medium</str>
+		<str id="time.medium.msg">Between 30 mins and 2 hours</str>
+		<str id="time.long">Long</str>
+		<str id="time.long.msg">Between 2 hours and 12 hours</str>
+		<str id="time.verylong">Very Long</str>
+		<str id="time.verylong.msg">Greater than 12 hours</str>
+		<str id="buyoutTotal">Buyout Total</str>
+		<str id="relist">Relist</str>
+		<str id="active">Active</str>
+		<str id="completed">Completed</str>
+		<str id="days">Days</str>
+		<str id="won">Won</str>
+		<str id="lost">Didn't Win</str>
+		<str id="cancelled">Canceled</str>
+		<str id="expired">Expired</str>
+		<str id="sold">Sold</str>
+		<str id="outbid">Outbid</str>
+		<str id="pending">Pending</str>
+		<str id="create.stackSize">Stack Size</str>
+		<str id="create.totalStacks">Total Stacks</str>
+		<str id="create.minRarity">Min. Rarity</str>
+		<str id="create.mailbox">Mail</str>
+		<str id="create.bags">Bags</str>
+		<str id="create.bank">Bank</str>
+		<str id="create.inventory">Inventory</str>
+		<str id="create.all">All</str>
+		<str id="create.max">Max</str>
+		<str id="create.quantity">Quantity</str>
+		<str id="create.stacks">Stacks</str>
+		<str id="create.pricePer">Price</str>
+		<str id="create.perStack">Per stack</str>
+		<str id="create.perItem">Per item</str>
+		<str id="create.duration">Duration</str>
+		<str id="create.startPrice">Starting Price</str>
+		<str id="create.buyoutPrice">Buyout Price</str>
+		<str id="create.optional">optional</str>
+		<str id="create.deposit">Deposit Total</str>
+		<str id="create.creating">Creating <param-html1/> of <param-html2/> auctions</str>
+		<str id="create.12hours">12 Hours</str>
+		<str id="create.24hours">24 Hours</str>
+		<str id="create.48hours">48 Hours</str>
+		<str id="create.filter.all">All My Items</str>
+		<str id="create.filter.co">Consumables</str>
+		<str id="create.filter.tr">Trade Goods</str>
+		<str id="create.filter.eq">Equipable Items</str>
+		<str id="create.maxQty">Max Quantity Per Stack</str>
+		<str id="create.qtyLeft">Stack Quantity Remaining</str>
+        <str id="create.depositFee">You do not have enough gold to cover the deposit fee.</str>
+		<str id="create.chooseItem">What do you want to sell?</str>
+		<str id="create.chooseInfo1">Begin by selecting an item to the left. You can sell any transferable item (excluding account-bound items) from your bags, bank, or mailbox.</str>
+		<str id="create.chooseInfo2">Once selected, you can set a starting price, a buyout price, the quantity you wish to sell, and the number of stacks (to create multiple auctions for that item).</str>
+		<str id="create.mailboxNotice">You have over 50 messages in your mailbox. Items attached to&lt;br /&gt; messages that are older than the most recent 50 cannot be accessed.</str>
+        <str id="upgrade.title">Upgrade to World of Warcraft Remote</str>
+		<str id="upgrade.button">Upgrade Subscription</str>
+		<str id="upgrade.text1">Buy Out and Bid on Auctions</str>
+		<str id="upgrade.text2">Retrieve Gold from Your Mailbox</str>
+		<str id="upgrade.text3">Create Auctions!</str>
+		<str id="toast.bid">Your bid has been placed.</str>
+		<str id="toast.sold">An auction has sold.</str>
+		<str id="toast.won">You won an auction!</str>
+		<str id="toast.cancelled">Auction canceled.</str>
+		<str id="toast.created">Auction created.</str>
+		<str id="toast.outbid">You have been outbid!</str>
+		<str id="toast.expired">An auction has expired.</str>
+		<str id="toast.interrupted">Process interrupted.</str>
+		<str id="toast.totalCreated">{total} auction(s) created.</str>
+        <str id="toast.transaction">{total} remaining transaction(s).</str>
+        <str id="toast.transactionMax">Transaction limit reached.</str>
+		<str id="error">Auction House Error</str>
+		<str id="na">N/A</str>
+		<str id="find">Find In Auction House</str>
+        <str id="viewAll">View All</str>
+        <str id="house.switchAlliance">Switch to the Alliance Auction House</str>
+        <str id="house.switchHorde">Switch to the Horde Auction House</str>
+        <str id="house.switchNeutral">Switch to the Neutral Auction House</str>
+        <str id="house.changeChar">Change Character</str>
+        <str id="remote.required">World of Warcraft Remote Required</str>
+        <str id="remote.message">You must have a subscription to World of Warcraft Remote in order to buy and sell items on the Auction House.</str>
+  	</auctionHouse>
 </strs>

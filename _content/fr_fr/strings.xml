@@ -183,8 +183,12 @@
 		<str id="related-info.header.armorynew">À l'affiche</str>
 		<str id="related-info.header.updates">Nouveautés</str>
 		<str id="related-info.header.faq">Foire aux questions</str>
-		<str id="related-info.header.noflash">Attention : Adobe Flash Player 9+ est nécessaire !</str>
-		<str id="related-info.noflash">Nous avons détecté que vous n’avez pas Adobe Flash Player ou que vous utilisez une version antérieure à la version 9. L’Armurerie nécessite que vous ayez installé Flash Player 9 (ou une version ultérieure) afin de bénéficier de toutes les fonctionnalités du site. Cliquez sur le bouton ci-dessus pour installer la dernière version d’Adobe Flash Player.</str>
+		<str id="related-info.header.noflash">Attention : Adobe Flash Player 10+ est nécessaire !</str>
+		<str id="related-info.noflash">Nous avons détecté que vous n’avez pas Adobe Flash Player, que vous avez désactivé JavaScript ou que vous utilisez une version antérieure à la version 10 de Flash. L’Armurerie nécessite que vous ayez installé Flash Player 10 (ou une version ultérieure) afin de bénéficier de toutes les fonctionnalités du site. Cliquez sur le bouton ci-dessus pour installer la dernière version d’Adobe Flash Player.</str>
+		
+        <str id="breaking.news">Dernières nouvelles</str>
+        <str id="motd">Hôtel des ventes Nomade : la bêta à l'affiche</str>
+
 
 		<str id="labels.regioncolon">Région :</str>
 		<str id="labels.selectregioncolon">Choisir une région :</str>
@@ -269,10 +273,12 @@
 		<str id="user.no.character">Aucun personnage choisi</str>
 		<str id="user.manage.chars">Gérer les personnages</str>
 		<str id="user.manage.settings">Changer</str>
+		<str id="user.manage.more">Plus de personnages</str>
+		<str id="user.manage.switch">Définir comme perso. principal</str>
 		<str id="loading">Chargement...</str>
 		<str id="saving">Sauvegarde...</str>
 		<str id="pose_saved">Pose sauvegardée !</str>
-		
+		<str id="social.media.links">L'Armurerie de World of Warcraft est également disponible sur <param-html1/> et <param-html2/> !</str>
 	</common>
 
 	<character>
@@ -289,7 +295,7 @@
 		<str id="character-profiles">Fiches de perso.</str>
 		<str id="character-level">Niveau</str>
 		<str id="character-level-sheet">de niveau</str>
-		<str id="noteten">Note : Les membres de niveaux inférieurs à 10 ne sont pas affichés</str>
+		<str id="noteten">Les membres de niveaux inférieurs à 10 ne sont pas affichés</str>
 		<str id="character.tip.primary">Ce personnage est votre personnage principal. Un lien vers sa fiche apparaîtra dans le coin supérieur droit de l’Armurerie.</str>
 		<str id="character.tip.secondary">La fiche de ce personnage apparaîtra en favori sous celle de votre personnage principal. Cliquez pour en faire votre nouveau personnage principal.</str>
 	</character>
@@ -297,7 +303,7 @@
 		<str id="makePrimary">En faire le personnage principal</str>
 		<str id="removeFromEasyAccess">Supprimer du menu de personnages</str>
 		<str id="selectedCharacters">Mes personnages</str>
-		<str id="inactiveLicense">Attention : cette licence n'est pas active.</str>
+		<str id="inactiveLicense">Cette licence n'est pas active.</str>
 		<str id="availableSlot">Emplacement de personnage disponible</str>
 		<str id="easyAccessLimit">Vous avez utilisé tous les emplacements de raccourci de personnages. Veuillez en supprimer un pour en mettre un nouveau.</str>
 		<str id="addToEasyAccess">Ajouter à mon menu de personnages</str>
@@ -306,9 +312,9 @@
 		<str>
       <h1>Sélection du personnage</h1>
 		<p>Cette interface vous permet de sélectionner jusqu'à <strong>trois</strong> personnages de ce compte pour les mettre en raccourci. Si vous disposez de plus de trois personnages qui remplissent ces conditions, vous devez tout d'abord déselectionner un personnage avant d'en choisir un autre.</p>
-		<p>
-        <strong>Remarque : </strong>les personnages sélectionnés recevront également des alertes quand l'un d'entre eux sera invité à un nouvel évènement du calendrier.</p>
+		<p>Les personnages sélectionnés recevront également des alertes quand l'un d'entre eux sera invité à un nouvel évènement du calendrier.</p>
     </str>
+        <str id="primaryChar">Personnage principal</str>
 	</character-select>
 	<custom-rss>
 		<str id="activity">Activité du personnage</str>
@@ -328,7 +334,7 @@
 		</filters>
 		<str id="more">plus</str>
 		<str id="less">moins</str>
-		<str id="min.rarity">Rareté minimum</str>
+		<str id="min.rarity">Rareté minimum </str>
 		<str id="min.ilvl">Niveau d'objet minimum</str>
 		<str id="add_chars">Personnages(jusque 5):</str>
 		<str id="add_example">Exemple : </str>
@@ -343,6 +349,7 @@
 		<str id="recent_act">Activité récente</str>
 		<str id="viewfull_feed">Voir activité précédente</str>
 		<str id="currently_equipped">(Équipé)</str>
+		<str id="vendored">(Revendu)</str>
 		<str id="today">Aujourd'hui</str>
 		<str id="yesterday">Hier</str>
 		<str id="previous">Entrées précédentes</str>
@@ -373,8 +380,8 @@
 		<str id="guildrank">Grade de guilde</str>
 		<str id="guild-rank">Grade </str>
 		<str id="guild-leader">Maître de guilde</str>
-		<str id="noteten">Note : Les membres de niveaux inférieurs à 10 ne sont pas affichés</str>
-		<str id="toomany">Il a trop de membres pour cette guilde. Seuls les membres de hauts niveaux sont affichés.</str>
+		<str id="noteten">Les membres de niveaux inférieurs à 10 ne sont pas affichés</str>
+		<str id="toomany">Seuls les membres de hauts niveaux sont affichés.</str>
 		<str id="searchroster">Rechercher un membre de l’équipe</str>
 	</guild>
 
@@ -498,7 +505,7 @@
 		</legend>
 
 		<arenaLadderData>
-			<str id="armory.arena-ladder-data.header.arena.tournament">Tournoi d'arène</str>
+			<str id="armory.arena-ladder-data.header.arena.tournament">Pass Arènes</str>
 			<str id="armory.arena-ladder-data.header.2v2">Résultats de classement d’arène 2c2</str>
 			<str id="armory.arena-ladder-data.header.3v3">Résultats de classement d’arène 3c3</str>
 			<str id="armory.arena-ladder-data.header.5v5">Résultats de classement d’arène 5c5</str>
@@ -625,7 +632,7 @@
 		<str id="armory.labels.rarity">Rareté</str>
 		<str id="armory.labels.na">N-A</str>
 		<str id="armory.labels.notapplicable">Non applicable</str>
-		<str id="armory.labels.arenaTournament">Tournoi d’arène</str>
+		<str id="armory.labels.arenaTournament">Pass Arènes</str>
 		<str id="armory.labels.comingsoon">Bientôt</str>
 		<str id="armory.labels.period">.</str>
 
@@ -633,7 +640,7 @@
 		<str id="armory.arenatab.3v3-arena-ladder">Classement 3c3</str>
 		<str id="armory.arenatab.5v5-arena-ladder">Classement 5c5</str>
 		<str id="armory.arenatab.hof">Panthéon</str>
-		<str id="armory.arenatab.arenaTournament">Tournoi d’arène</str>
+		<str id="armory.arenatab.arenaTournament">Pass Arènes</str>
 		<str id="armory.arenatab.calc">Calculateur d’arène</str>
 
 		<str id="armory.arenatab.teamprofile">Fiche de l’équipe</str>
@@ -782,12 +789,22 @@
 		<str id="armory.tabs.bc">Burning Crusade</str>
 		<str id="armory.tabs.classic">Classique</str>
 
+		<!-- auction tabs -->
+		<str id="auction.tabs.summary">Résumé</str>
+		<str id="auction.tabs.browseAuctions">Consulter les enchères</str>
+		<str id="auction.tabs.myBids">Mes offres</str>
+		<str id="auction.tabs.activeBids">Offres en cours</str>
+		<str id="auction.tabs.completedAuctions">Enchères closes</str>
+		<str id="auction.tabs.myAuctions">Mes ventes</str>
+		<str id="auction.tabs.activeAuctions">Ventes actives</str>
+		<str id="auction.tabs.createAuction">Mettre aux enchères</str>
+
 		<str id="armory.tabs.character.guild.mouseover">Cliquer sur cet onglet vous emmènera vers la section des guildes</str>
 		<str id="armory.tabs.character.arenateams.mouseover">Cliquer sur cet onglet vous emmènera vers la section des équipes d'arène</str>
 		<str id="armory.tabs.arenatournament.mouseover">Cliquer sur cet onglet vous emmènera vers la section de tournoi d’arène</str>
 		<str id="armory.tabs.hof.mouseover">Cliquer sur cet onglet vous emmènera vers la section du Panthéon</str>
 		<str id="armory.arenatournament.tabs.ladder.mouseover">Voir le classement des éliminatoires</str>
-
+		
 		<!-- menu navigation strings not found in other places -->
 		<str id="armory.menu.itemCollections">Collections d'objets</str>
 		<str id="armory.menu.heirloomItems">Héritages</str>
@@ -816,6 +833,14 @@
 		<str id="armory.menu.faqs">F.A.Q. de l'Armurerie</str>
 		<str id="armory.menu.tools">Outils</str>
 		<str id="armory.menu.searchPlugin">Module de recherche de l'Armurerie</str>	
+		<str id="armory.menu.auctionHouse">Hôtel des ventes</str>	
+		<str id="armory.menu.misc">Divers</str>
+		<str id="armory.menu.ah.summary">Résumé</str>	
+		<str id="armory.menu.ah.bids">Mes offres</str>	
+		<str id="armory.menu.ah.browse">Consulter les enchères</str>	
+		<str id="armory.menu.ah.auctions">Mes ventes</str>
+		<str id="armory.menu.ah.create">Mettre aux enchères</str>
+		<str id="armory.menu.ah.faq">F.A.Q. de l'hôtel de ventes</str>
 
 <!--character profile header-->
 		<str id="armory.icon.realm">Royaume</str>
@@ -825,7 +850,7 @@
 		<str id="armory.forum.link.arena">Ce lien vous mènera aux forums d'arène</str>
 
 <!--arena-tournament.xsl tabs-->
-		<str id="armory.arenatournament.tabs.news">News</str>
+		<str id="armory.arenatournament.tabs.news">Actualités</str>
 		<str id="armory.arenatournament.tabs.info">Informations</str>
 		<str id="armory.arenatournament.tabs.faq">F.A.Q.</str>
 		<str id="armory.arenatournament.tabs.rules">Règlement</str>
@@ -834,7 +859,7 @@
 		<str id="armory.arenatournament.tabs.partners">Partenaires</str>
 		<str id="armory.arenatournament.tabs.brackets">Éliminatoires</str>
 		<str id="armory.arenatournament.tabs.ladder">Classement</str>
-		<str id="armory.arenatournament.header.news">News</str>
+		<str id="armory.arenatournament.header.news">Actualités</str>
 
 <!--battlegroups.xsl-->
 		<str id="armory.select-battlegroup.label.select-realm">ou sélectionnez votre royaume :</str>
@@ -998,7 +1023,7 @@
 		<str id="armory.labels.facebook.goback">Retour</str>
 		<str id="armory.labels.facebook.returntomyfeed">Retour à « Mon fil d’info »</str>
 		<str id="armory.labels.facebook.returntofacebook">Retour sur Facebook</str>
-		<str id="armory.labels.facebook.selectotherregions">Vous voudrez peut-être changer le fil d’info de vos personnages pour une autre région : <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">Amériques</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europe</a> or <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Corée</a>.</str>
+		<str id="armory.labels.facebook.selectotherregions">Les problèmes d'affichage de personnage peuvent être corrigés en changeant le fil d'info du personnage vers une région différente<!--Vous voudrez peut-être changer le fil d’info de vos personnages pour une autre région&#160;-->: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">Amériques</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europe</a> or <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Corée</a>.</str>
 		<str id="armory.labels.facebook.error">Le traffic actuellement surchargé rend cette information inaccessible.</str>
 		<str id="armory.labels.facebook.error2">Veuillez réessayer dans quelques instants. Vous pouvez aussi essayer de vous déconnecter puis de vous reconnecter à Facebook, ce qui pourra aider à résoudre certaines erreurs.</str>
 		
@@ -1026,7 +1051,7 @@
 		<str id="armory.dungeons.seealsocolon">Voir aussi : </str>
 		<str id="armory.dungeons.viewbosses">Voir les boss</str>
 		<str id="armory.dungeons.notecolon">Note :</str>
-		<str id="armory.dungeons.notesparse">Seuls les objets qui ont été découverts en jeu (un de ces objets au moins a été acquis par un joueur) sont stockés dans l’Armurerie. En conséquence, certaines tables de butin de boss (et principalement celles des nouveaux boss de raid) pourraient être incomplètes et paraître plutôt minces. Le butin de ces tables et des autres boss devrait se mettre peu à peu à jour, au fur et à mesure de la découverte des objets par les joueurs.</str>
+		<str id="armory.dungeons.notesparse">Les objets doivent apparaître dans la version actuelle du jeu pour être consultables dans l'Armurerie.</str>
 
 <!--factions.xsl-->
 		<str id="armory.factions.bc">Factions de Burning Crusade</str>
@@ -1041,6 +1066,7 @@
 		<str id="armory.faq.arenacalculator">Calculateur d'arène</str>
 		<str id="armory.faq.arenaladder">Classement d’arène</str>
 		<str id="armory.faq.login">Connection à l’Armurerie</str>
+		<str id="armory.faq.auctionhouse">Hôtel de ventes</str>
 		<str id="armory.faq.characterfeeds">Fil d'info de personnage</str>
 		<str id="armory.faq.characterprofiles">Fiches de personnage</str>
 		<str id="armory.faq.recommended">Trouver mieux</str>
@@ -1571,10 +1597,10 @@
 		<str id="armory.character-reputation.url.netherwing">http://www.wow-europe.com/fr/info/basics/mounts/netherwing-tips.html</str>
 
 		<str id="armory.character-reputation.name.ogri'la">Ogri’la</str>
-		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1038&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.comsearch.xml?source=reputation&amp;faction=1038&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.sha'tariskyguard">Sha’tari Skyguard</str>
-		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1031&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.comsearch.xml?source=reputation&amp;faction=1031&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
 		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>
@@ -1696,35 +1722,35 @@
 		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
 		<str id="armory.character-reputation.url.zandalartribe">http://www.wow-europe.com/fr/info/basics/factions/zandalar/index.html</str>
 
-		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.shatteredsunoffensive">search.xml?source=reputation&amp;faction=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">search.xml?source=reputation&amp;faction=1012&amp;searchType=items</str>
 
 		<!-- WOTLK REPS -->
 		<!-- horde -->
 		<!--
-		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thehandofvengeance">search.xml?source=reputation&amp;faction=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">search.xml?source=reputation&amp;faction=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">search.xml?source=reputation&amp;faction=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">search.xml?source=reputation&amp;faction=1085&amp;searchType=items</str>
 		-->
 
 		<!-- alliance -->
 		<!--
-		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.explorersleague">search.xml?source=reputation&amp;faction=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">search.xml?source=reputation&amp;faction=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">search.xml?source=reputation&amp;faction=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">search.xml?source=reputation&amp;faction=1050&amp;searchType=items</str>
 		-->
 
 		<!-- both factions -->
-		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.argentcrusade">search.xml?source=reputation&amp;faction=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">search.xml?source=reputation&amp;faction=1090&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.knightsoftheebonblade">search.xml?source=reputation&amp;faction=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">search.xml?source=reputation&amp;faction=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">search.xml?source=reputation&amp;faction=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">search.xml?source=reputation&amp;faction=1104&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.theoracles">search.xml?source=reputation&amp;faction=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">search.xml?source=reputation&amp;faction=1119&amp;searchType=items</str>
 		
 		<str id="armory.character-reputation.group.grouped">Vue par défaut</str>
 		<str id="armory.character-reputation.group.ungrouped">Tri par critère</str>
@@ -2304,7 +2330,7 @@
 		<str id="bagnocafter"/>
 		<str id="resultsfound">Résultats trouvés</str>
 		<str id="transactionsfound">transactions trouvées</str>
-		<str id="notetime">Remarque : l’heure et la date sont affichées en heure locale.</str>
+		<str id="notetime">L’heure et la date sont affichées en heure locale.</str>
 		<str id="nopermission">Vous n'avez pas les permissions.</str>
 		<str id="none">--Aucune--</str>
 		<str id="alltypes">Tous les types d’objets</str>
@@ -2701,9 +2727,9 @@
 	</serverBusy>
 
 	<propass>
-		<str id="forum.link.mouseover">Ce lien vous mènera au forum du tournoi d'arène 2008.</str>
+		<str id="forum.link.mouseover">Ce lien vous mènera au forum du Pass Arènes.</str>
 		<str id="forum.link">http://forums.wow-europe.com/board.html?forumId=3901823&amp;sid=2</str>
-		<str id="teamstats">Statistiques d'équipe de tournoi d'arène</str>
+		<str id="teamstats">Statistiques de l’équipe du Pass Arènes</str>
 		<str id="pvpinfo">Informations personnelles de JcJ :</str>
 		<str id="personalrating">COTE PERSONNELLE : </str>
 		<str id="winrecord">HISTORIQUE DES VICTOIRES : </str>
@@ -2722,7 +2748,7 @@
 
 		<str id="teaminfo">Infos d'équipe</str>
 		<str id="arena">Arène</str>
-		<str id="tournament">Tournoi</str>
+		<str id="tournament">Pass Arènes</str>
 		<str id="rating">CLASSEMENT : </str>
 	</propass>
 
@@ -2940,6 +2966,260 @@
 	<mobileArmoryInterstitial>
 		<str id="continue">Continuer vers l'Armurerie</str>
 		<str id="download">Télécharger depuis iTunes</str>
-		<str id="intro">Désormais, il existe une nouvelle manière de consulter l’Armurerie depuis votre iPhone™ ou iPod touch®. Découvrez l’Armurerie mobile de World of Warcraft, disponible dès maintenant en téléchargement gratuit sur l’App Store d’Apple..</str>
+		<str id="intro">Désormais, il existe une nouvelle manière de consulter l’Armurerie depuis votre iPhone™ ou iPod touch®. Découvrez l’Armurerie mobile de World of Warcraft, disponible dès maintenant en téléchargement gratuit sur l’App Store d’Apple.</str>
 	</mobileArmoryInterstitial>
+	
+	<wowRemotePage>
+		<str id="intro.title">Hôtel des ventes de World of Warcraft</str>
+		<str id="intro.text">Vous pouvez maintenant accéder à l'hôtel des ventes de World of Warcraft depuis votre navigateur Internet ou votre téléphone portable. Parcourez gratuitement les ventes en jeu, ou abonnez-vous au nouveau service World of Warcraft Nomade pour pouvoir : </str>
+		<str id="feature.browse">Enchérir sur des offres ou acheter au prix d'achat direct en temps réel.</str>
+		<str id="feature.create">Mettre aux enchères depuis vos sacs, votre banque ou votre boîte aux lettres.</str>
+		<str id="feature.collect">Recevoir l'or obtenu de vos ventes.</str>
+		<str id="price.period">tous les 30 jours</str>
+		<str id="price.only">Seulement</str>		
+		<str id="price.notice">*Les prix peuvent varier en fonction du pays et de la devise.</str>
+		<str id="try.free.title">Consultez l'hôtel des ventes World of Warcraft Nomade GRATUITEMENT</str>
+		<str id="try.wr.text">Tout le monde peut consulter l'hôtel des ventes par le site Internet de l'Armurerie ou par les applications Armurerie pour portable et ceci GRATUITEMENT. Suivez les liens ci-dessous pour visiter le site de l'hôtel des ventes ou pour télécharger l'application gratuite sur iTunes® pour l'iPhone® ou l'iPod touch®. Des applications pour des appareils portables supplémentaires seront ajoutées ultérieurement.</str>
+		<str id="try.wr.faq">En savoir plus sur <br/>World of Warcraft Nomade.</str>
+		<str id="try.notice">iPhone et iPod touch sont des marques d'Apple Inc., déposées aux États-Unis et dans d'autres pays.</str>
+		<str id="btn.try.web">Hôtel des ventes Internet GRATUIT</str>
+		<str id="btn.try.mobile">Hôtel des ventes pour portable GRATUIT sur iTunes</str>
+		<str id="btn.subscribe">S'abonner</str>
+		<str id="btn.subscribe.beta">Prochainement</str>
+		<str id="table.descrip.head">Fonctionnalités de l'hôtel des ventes de World of Warcraft</str>
+		<str id="table.free.head">Gratuit</str>
+		<str id="table.wr.head">Abonnement</str>
+		<str id="table.descrip.1">Consulter l'hôtel des ventes</str>
+		<str id="table.descrip.2">Recevez des notifications en temps réel sur la vente ou l'expiration de vos mises aux enchères</str>
+		<str id="table.descrip.3">Recevez des notifications en temps réel quand vous remportez des enchères ou quand quelqu'un a surenchéri</str>
+		<str id="table.descrip.4">Voir l'or de votre personnage</str>
+		<str id="table.descrip.5">Consulter le statut de vos enchères et rechercher les enchères similaires</str>
+		<str id="table.descrip.6">Voir les objets dans vos sacs, votre banque et votre boîte aux lettres que vous pouvez mettre en vente</str>
+		<str id="table.descrip.7">Voir où en sont vos enchères</str>
+		<str id="table.descrip.8">Voir les objets que vous avez vendus à l'hôtel des ventes</str>
+		<str id="table.descrip.9">Voir vos objets qui n'ont pas trouvé preneur</str>
+		<str id="table.descrip.10">Voir où en sont vos mises en vente</str>
+		<str id="table.descrip.11">Voir vos objets qui ont trouvé acheteur</str>
+		<str id="table.descrip.12">Enchérir</str>
+		<str id="table.descrip.13">Acheter immédiatement</str>
+		<str id="table.descrip.14">Mettre en vente vos objets dans vos sacs, votre banque et votre boîte aux lettres</str>
+		<str id="table.descrip.15">Récupérer l'or de vos ventes</str>
+		<str id="table.descrip.16">Récupérer l'or de vos enchères perdues</str>
+		<str id="table.descrip.17">Récupérer tout l'or en un seul clic</str>
+		<str id="table.descrip.18">Annuler vos mises en vente</str>
+		<str id="table.descrip.19">Remettre vos objets invendus aux enchères</str>
+	</wowRemotePage>
+	
+	<auctionHouse>
+		<str id="auctionHouse">Hôtel des ventes</str>
+		<str id="auctions">Enchères</str>
+		<str id="auctions.create">Mettre aux enchères</str>
+		<str id="auctions.create2">Créer</str>
+		<str id="auctions.browse">Consulter les enchères</str>
+		<str id="auctions.browse2">Consulter</str>
+		<str id="auctions.active">Enchères actives</str>
+		<str id="auctions.similar">Enchères similaires</str>
+		<str id="auctions.sold">Vendues</str>
+		<str id="auctions.ended">Closes</str>
+		<str id="auctions.ended.tip">Vous devez récupérer vos objets en jeu dans le temps imparti, sans quoi ils seront effacés.</str>
+		<str id="auctions.won">Gagnées</str>
+		<str id="auctions.won.tip">Ces objets vous ont été envoyés par courrier en jeu.</str>
+		<str id="auctions.lost">Perdues</str>
+		<str id="auctions.my">Mes ventes</str>
+		<str id="bids">Offres</str>
+		<str id="bids.my">Mes offres</str>
+		<str id="bids.active">Offres actives</str>
+		<str id="sort.name">Nom</str>
+		<str id="sort.rarity">Rareté</str>
+		<str id="sort.qty">Quantité</str>
+		<str id="sort.qty2">Qté.</str>
+		<str id="sort.level">Niv. requis</str>
+		<str id="sort.level2">Niv. requis</str>
+		<str id="sort.timeLeft">Durée</str>
+		<str id="sort.buyout">Achat immédiat</str>
+		<str id="sort.buyoutPrice">Prix d'achat immédiat</str>
+		<str id="sort.buyoutPriceUnit">Prix d'achat immédiat par objet</str>
+		<str id="sort.bid">Offre</str>
+		<str id="sort.bidBuyout">Offre / Achat immédiat</str>
+		<str id="sort.bidPrice">Prix de l'offre</str>
+		<str id="sort.bidPriceUnit">Prix de l'offre par objet</str>
+		<str id="sort.winPrice">Prix gagnant</str>
+		<str id="sort.highBidder">Acheteur</str>
+		<str id="sort.options">Options</str>
+		<str id="sort.soldPrice">Prix de vente final</str>
+		<str id="sort.buyer">Acheteur</str>
+		<str id="sort.status">Statut</str>
+		<str id="sort.seller">Vendeur</str>
+		<str id="sort.moneyEarned">Or gagné</str>
+		<str id="sort.house">Hôtel</str>
+        <str id="sort.minRarity">Rareté minimum </str>
+        <str id="sort.itemLevel">Niveau d'objet</str>
+		<str id="money.getAll">Récupérer tout l'or</str>
+		<str id="money.get">Récup. l'or</str>
+		<str id="money.claim">Vous devez récupérer votre or dans le temps imparti, sans quoi il sera effacé.</str>
+		<str id="money.claimItem">Vous devez récupérer votre objet dans le temps imparti, sans quoi il sera effacé.</str>
+		<str id="money.claimBoth">Vous devez récupérer vos objets et votre or dans le temps imparti, sans quoi ils seront effacés.</str>
+		<str id="browse.itemName">Nom de l'objet </str>
+		<str id="browse.categories">Catégories </str>
+		<str id="browse.levelRange">Niveaux </str>
+		<str id="browse.choose">Choisir</str>
+		<str id="browse.useable">Utilisable</str>
+		<str id="browse.reset">Réinitialiser</str>
+		<str id="browse.search">Rechercher</str>
+		<str id="browse.noResults">Aucun résultat n'a été trouvé, veuillez réessayer.</str>
+		<str id="status.noBids">Aucune offre</str>
+		<str id="status.highBidder">Acheteur</str>
+		<str id="status.noBuyer">Aucun acheteur</str>
+		<str id="status.outbid">Surenchérir</str>
+		<str id="status.expired">Close</str>
+		<str id="status.cancelled">Annulée</str>
+		<str id="summary.select">Choisir un hôtel des ventes</str>
+		<str id="summary.alliance">Alliance</str>
+		<str id="summary.alliance.house">Hôtel des ventes de l'Alliance</str>
+		<str id="summary.horde">Horde</str>
+		<str id="summary.horde.house">Hôtel des ventes de la Horde</str>
+		<str id="summary.neutral">Neutre</str>
+		<str id="summary.neutral.house">Hôtel des ventes neutre</str>
+		<str id="summary.title">Hôtel des ventes Nomade</str>
+		<str id="summary.desc">L'Hôtel des ventes Nomade vous permet d'accéder aux hôtels des ventes de votre royaume via un navigateur Internet ou l'application Armurerie sur iPhone. Avec un abonnement à « World of Warcraft Nomade », vous pouvez placer vos offres d'achat ou mettre aux enchères vos propres objets contenus dans vos sacs, votre banque ou votre boîte aux lettres.</str>
+		<str id="summary.activity">Enchères de <param1/>
+    </str>
+		<str id="summary.mailbox">Boîte aux lettres</str>
+		<str id="summary.mailTotal">Nombre de courriers dans la boîte</str>
+		<str id="summary.selling">Ventes</str>
+		<str id="summary.goldEarned">Or gagné</str>
+		<str id="summary.mailbox">Boîte aux lettres</str>
+		<str id="summary.mailFull">Votre boîte aux lettres est pleine ! Seuls les 50 courriers les plus récents sont accessibles pour de nouvelles mises aux enchères.</str>
+		<str id="button.cancel">Annuler</str>
+		<str id="button.cancelAuction">Annuler</str>
+		<str id="button.buyout">Achat imm.</str>
+		<str id="button.rebid">Surenchérir</str>
+		<str id="button.bid">Enchérir</str>
+		<str id="button.confirm">Confirmer</str>
+		<str id="button.confirmBid">Confirmer l'enchère</str>
+		<str id="button.confirmBuyout">Confirmer l'achat</str>
+		<str id="button.ok">OK</str>
+		<str id="button.no">Non</str>
+		<str id="button.yes">Oui</str>
+		<str id="button.upgrade">Mettre l'abonnement à niveau</str>
+		<str id="button.filter">Filtre </str>
+		<str id="button.create">Mettre aux enchères</str>
+		<str id="button.stop">Stop</str>
+		<str id="button.finish">Terminer</str>
+		<str id="button.retry">Réessayer</str>
+        <str id="button.search">Rechercher </str>
+        <str id="button.continue">Continuer</str>
+        <str id="button.close">Fermer</str>
+		<str id="msg.error">Une erreur est survenue, veuillez réessayer plus tard.</str>
+		<str id="msg.maxBids">Vous avez dépassé le nombre maximal d'offres que vous pouvez placer par heure. Veuillez réessayer plus tard.</str>
+		<str id="msg.cancelAuction">Si vous annulez cette mise aux enchères, le coût du dépôt ne vous sera pas restitué. Voulez-vous continuer ?</str>
+		<str id="msg.subscription">Pour faire une offre sur une enchère, vous devez être titulaire d'un abonnement à l'hôtel des ventes.</str>
+		<str id="msg.errorMoney">Vous n'avez pas assez d'or pour acheter ou placer une offre sur cette enchère.</str>
+		<str id="msg.confirmation">Ne plus montrer ce message à l'avenir.</str>
+		<str id="msg.buyout">Vous allez acheter cet objet pour le montant suivant, confirmez-vous ?</str>
+		<str id="msg.enterBid">Saisissez votre offre.</str>
+		<str id="msg.noBids">Vous n'avez aucune offre en cours.</str>
+		<str id="msg.noWonLost">Vous n'avez participé à aucune enchère.</str>
+		<str id="msg.browseListing">Consultez l'hôtel des ventes.</str>
+		<str id="msg.noListings">Vous n'avez rien mis aux enchères.</str>
+		<str id="msg.createAuction">Mettez votre objet aux enchères.</str>
+		<str id="msg.isSeller">Vous êtes le vendeur.</str>
+		<str id="msg.bidFinish">Votre offre est placée !</str>
+		<str id="msg.buyoutFinish">Vous avez acheté cet objet : vous le recevrez bientôt par courrier !</str>
+		<str id="msg.noSimilar">Objets similaires introuvables.</str>
+		<str id="msg.highPriceUnit">Prix le plus élevé / Objet</str>
+		<str id="msg.lowPriceUnit">Prix le plus bas / Objet</str>
+		<str id="msg.stopCreation">Quitter cet écran ou cliquer sur Stop interrompra le processus de mise aux enchères.</str>
+		<str id="msg.auctionCreated">Vos objets ont été mis aux enchères !</str>
+        <str id="msg.myAuction">Vos enchères</str>
+        <str id="msg.noBladeData1">Vous n'avez aucune offre en cours.</str>
+		<str id="msg.noBladeData2">Vous n'avez gagné aucune enchère.</str>
+		<str id="msg.noBladeData3">Vous n'avez perdu aucune enchère.</str>
+		<str id="msg.noBladeData4">Vous n'avez aucun objet aux enchères.</str>
+		<str id="msg.noBladeData5">Aucune de vos offres n'est gagnante.</str>
+		<str id="msg.noBladeData6">Aucune de vos mises en vente n'a encore expiré.</str>
+        <str id="msg.logoutOfGame">Vous devez vous déconnecter du jeu avant de pouvoir accéder à cette page.</str>
+        <str id="msg.beginSearch">Saisissez l'objet de votre recherche et cliquez sur « Rechercher ».</str>
+        <str id="msg.auctionLimitReached">Seules les 500 mises en vente les plus récentes sont affichées.</str>
+        <str id="msg.bidsLimitReached">Seules les 500 enchères les plus récentes sont affichées.</str>
+		<str id="time.short">Court</str>
+		<str id="time.short.msg">Moins de 30 min.</str>
+		<str id="time.medium">Moyen</str>
+		<str id="time.medium.msg">Entre 30 min et 2h.</str>
+		<str id="time.long">Long</str>
+		<str id="time.long.msg">Entre 2h et 12h.</str>
+		<str id="time.verylong">Très Long</str>
+		<str id="time.verylong.msg">Plus de 12h.</str>
+		<str id="buyoutTotal">Montant total</str>
+		<str id="relist">Remettre en vente</str>
+		<str id="active">Actives</str>
+		<str id="completed">Closes</str>
+		<str id="days">jours</str>
+		<str id="won">Gagnées</str>
+		<str id="lost">Perdues</str>
+		<str id="cancelled">Annulées</str>
+		<str id="expired">Expirées</str>
+		<str id="sold">Ventes</str>
+		<str id="outbid">Surenchères</str>
+		<str id="pending">En cours</str>
+		<str id="create.stackSize">Taille de la pile</str>
+		<str id="create.totalStacks">Nombre de piles</str>
+		<str id="create.minRarity">Rareté min. </str>
+		<str id="create.mailbox">Courrier</str>
+		<str id="create.bags">Sacs</str>
+		<str id="create.bank">Banque</str>
+		<str id="create.inventory">Inventaire</str>
+		<str id="create.all">Tout</str>
+		<str id="create.max">Max.</str>
+		<str id="create.quantity">Quantité</str>
+		<str id="create.stacks">Piles</str>
+		<str id="create.pricePer">Prix</str>
+		<str id="create.perStack">Par pile</str>
+		<str id="create.perItem">Par objet</str>
+		<str id="create.duration">Durée</str>
+		<str id="create.startPrice">Prix de départ</str>
+		<str id="create.buyoutPrice">Prix d'achat imm.</str>
+		<str id="create.optional">optionnel</str>
+		<str id="create.deposit">Total des dépôts</str>
+		<str id="create.creating">Mettre en vente <param-html1/> sur <param-html2/>
+    </str>
+		<str id="create.12hours">12 heures</str>
+		<str id="create.24hours">24 heures</str>
+		<str id="create.48hours">48 heures</str>
+		<str id="create.filter.all">Tous mes objets</str>
+		<str id="create.filter.co">Consommables</str>
+		<str id="create.filter.tr">Objets d'artisanat</str>
+		<str id="create.filter.eq">Objets utilisables</str>
+		<str id="create.maxQty">Quantité max. par pile</str>
+		<str id="create.qtyLeft">Quantité restante de la pile</str>
+        <str id="create.depositFee">Vous n'avez pas assez d'or pour mettre ces objets en vente.</str>
+		<str id="create.chooseItem">Que voulez-vous vendre ?</str>
+		<str id="create.chooseInfo1">Commencez par sélectionner un objet sur la gauche. Vous pouvez vendre tout objet pouvant être transféré (hors objets liés au compte), qu'il se trouve dans un sac, votre banque ou votre boîte aux lettres.</str>
+		<str id="create.chooseInfo2">Une fois sélectionné, vous pouvez décider d'un prix de départ, d'un prix d'achat immédiat optionnel, de la quantité à mettre en vente et du nombre de piles (si vous souhaitez déposer plusieurs enchères pour cet objet).</str>
+		<str id="create.mailboxNotice">Vous avez plus de 50 courriers dans votre boîte aux lettres. Les&lt;br /&gt; objets joints aux courriers antérieurs ne sont pas accessibles.</str>
+        <str id="upgrade.title">Mettre à niveau vers World of Warcraft Nomade</str>
+		<str id="upgrade.button">Mettre votre abonnement à niveau</str>
+		<str id="upgrade.text1">Placer une offre sur une enchère</str>
+		<str id="upgrade.text2">Récupérer l'or dans votre boîte aux lettres</str>
+		<str id="upgrade.text3">Mettre aux enchères !</str>
+		<str id="toast.bid">Votre offre a été placée.</str>
+		<str id="toast.sold">Vous avez vendu un objet.</str>
+		<str id="toast.won">Votre offre est gagnante !</str>
+		<str id="toast.cancelled">Mise aux enchères annulée.</str>
+		<str id="toast.created">Mise aux enchères déposée.</str>
+		<str id="toast.outbid">Quelqu'un a surenchéri sur votre offre !</str>
+		<str id="toast.expired">Une mise en vente a pris fin.</str>
+		<str id="toast.interrupted">Processus interrompu.</str>
+		<str id="toast.totalCreated">{total} mises aux enchères déposées.</str>
+		<str id="error">Erreur de l'hôtel des ventes</str>
+		<str id="na">N/D</str>
+		<str id="find">Trouver un hôtel des ventes</str>
+        <str id="viewAll">Tout afficher</str>
+        <str id="house.switchAlliance">Basculer sur l'hôtel des ventes de l'Alliance</str>
+        <str id="house.switchHorde">Basculer sur l'hôtel des ventes de la Horde</str>
+        <str id="house.switchNeutral">Basculer sur l'hôtel des ventes neutre</str>
+        <str id="house.changeChar">Changer de personnage</str>
+        <str id="remote.required">Requiert World of Warcraft Nomade</str>
+        <str id="remote.message">Vous devez être abonné à World of Warcraft Nomade pour vendre ou acheter des objets à l’hôtel des ventes.</str>
+	</auctionHouse>
 </strs>

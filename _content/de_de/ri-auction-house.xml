@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Auktionshaus">
+	<faqlist>
+		<!--commenting out live version of the FAQ
+		<faq question = "Was ist das Web-Auktionshaus?">
+			Die kostenlose Version des Web-Auktionshauses verschafft euch Einblick in alle Auktionshäuser, auf die die Charaktere eures Accounts Zugriff haben (nachdem ihr euch in das Arsenal eingeloggt habt). Mit einem Abonnement von World of Warcraft Connect könnt ihr zusätzlich auf vorhandene Auktionen mitbieten (oder diese per Sofortkauf erwerben) als auch eigene Gegenstände aus dem Inventar eurer Taschen, der Bank oder dem Briefkasten als Auktion einstellen. Außerdem habt ihr die Möglichkeit, Gold für eure erfolgreich abgeschlossenen Auktionen abzuholen oder, falls ihr überboten wurdet, das für euer Gebot eingesetzte Gold wieder zu entnehmen.
+		</faq>
+		<faq question = "Wie durchsuche ich das Auktionshaus?">
+			Klickt auf den 'Auktionen durchsuchen'-Reiter und tragt anschließend den Suchbegriff in das Feld ein. Ihr könnt eure Suche eingrenzen, indem ihr die Filter und Optionen benutzt, die denen im Spiel entsprechen. Abonnenten von World of Warcraft Connect können im Ergebnis-Fenster auf Gegenstände bieten oder diese per Sofortkauf erwerben.
+		</faq>	
+		<faq question = "Wie erstelle ich Auktionen?">
+			Das Erstellen von Auktionen erfordert ein Abonnement für World of Warcraft Connect. Nutzt den Reiter 'Auktion erstellen' und wählt auf der linken Seite des Bildschirms den gewünschten Gegenstand aus, den ihr verkaufen möchtet. Ihr könnt alle transferierbaren Gegenstände (accountgebundene Gegenstände nicht eingeschlossen) aus euren Taschen, der Bank oder dem Briefkasten verkaufen. Einmal ausgewählt, könnt ihr einen Start- sowie Sofortkaufpreis, die Anzahl der Gegenstände sowie Stacks (zum erstellen von mehreren gleichen Auktionen) festlegen.
+		</faq>
+		<faq question = "Wie kann ich Gold für erfolgreiche Auktionen sowie nicht erfolgreiche Gebote abholen?">
+			Das Abholen von Gold erfordert ein Abonnement für World of Warcraft Connect. Jede erfolgreiche Auktion besitzt einen Knopf 'Gold abholen', der sich neben dem Reiter 'Auktionen' befindet. Klickt einfach auf diesen Knopf (oder alternativ auf den Knopf 'Gesamtes Gold abholen' für das Gold aller erfolgreichen Auktionen), um das Gold aus eurem Briefkasten abzuholen. Außerdem könnt ihr auch Gold für nicht erfolgreiche Gebote im Reiter 'Gebote' abholen.
+		</faq>
+		<faq question = "Wie abonniere ich World of Warcraft Connect und wieviel kostet die Funktion?">
+			Alle Informationen zu World of Warcraft Connect, inklusive den Preisen, Inhalten und wie man abonniert, erhaltet ihr in der <a href="http://eu.battle.net/account/management">Battle.net-Accountverwaltung</a> oder in der <a href="/wow-remote.xml">FAQ zu World of Warcraft Connect</a>.
+		</faq>
+		<faq question = "Ist die Anzahl an Transaktionen begrenzt, die man mit World of Warcraft Connect durchführen kann?">
+			Da mit World of Warcraft Connect mehrere Transaktionen einfach durchgeführt werden können, wurde die Anzahl der möglichen Aktionen (inklusive Gebote, Sofortkäufe und Erstellen von Auktionen) pro Tag pro World of Warcraft-Account limitiert. Diese Begrenzung ist ausreichend hoch angesetzt, sollte daher von den meisten Spielern nicht erreicht werden und kann sich in Zukunft auch noch ändern.
+		</faq>
+		<faq question = "Ist das Web-Auktionshaus von den wöchentlichen Wartungsarbeiten betroffen?">
+			Das Web-Auktionshaus ist während Wartungsarbeiten nicht verfügbar, dies gilt auch für die wöchentlichen Wartungsarbeiten der Spiel- und Web-Server jeden Mittwoch.
+		</faq>
+		<xsl:if test="$region = 'KR'">
+		<faq question = "Ich spiele World of Warcraft in einem Internet Gaming Room (IGR) ohne ein Abonnement des Spiels. Kann ich World of Warcraft Connect in einem IGR ebenfalls gebührenfrei nutzen?">
+		Um die Funktionen von World of Warcraft Connect, wie das Kaufen und Verkaufen von Gegenständen, zu nutzen wird ein Abonnement von World of Warcraft Connect benötigt. Dies gilt auch, wenn ihr World of Warcraft in einem IGR ohne Abonnement spielt, da ein Abonnement für World of Warcraft Connect unabhängig vom Abonnement des Spiels ist.
+		</faq>
+		</xsl:if>-->
+		<!--begin beta FAQ-->
+		<faq question="Was ist der Betatest für das World of Warcraft Web-Auktionshaus?">
+			Das Web-Auktionshauses ist ein neuer, derzeit sich im Betatest befindlicher Inhalt, der euch Einblick in alle Auktionshäuser, auf die die Charaktere eures Accounts Zugriff haben, erlaubt. Nach Ablauf der Betaphase und der Liveschaltung des Web-Auktionshauses können Spieler ein Abonnement für den bald verfügbaren Service World of Warcraft Connect erwerben, mit dem ihr zusätzlich auf vorhandene Auktionen mitbieten (oder diese per Sofortkauf erwerben) als auch eigene Gegenstände aus dem Inventar eurer Taschen, der Bank oder dem Briefkasten als Auktion einstellen. Außerdem habt ihr die Möglichkeit, Gold für eure erfolgreich abgeschlossenen Auktionen abzuholen oder, falls ihr überboten wurdet, das für euer Gebot eingesetzte Gold wieder zu entnehmen. All diese Optionen werden über euren Web-Browser oder kompatible Mobilfunkgeräte verfügbar sein.
+		</faq>
+		<faq question="Wie durchsuche ich das Auktionshaus über einen Web-Browser?">
+			Nachdem ihr euch eingeloggt habt und einen Charakter ausgewählt habt, klickt auf den 'Auktionen durchsuchen'-Reiter und tragt anschließend den Suchbegriff in das Feld ein. Ihr könnt eure Suche eingrenzen, indem ihr die Filter und Optionen benutzt, die denen im Spiel entsprechen.  Klickt auf das Fraktionssysmbol in der oberen rechten Ecke von eurem Interface, um von dem Auktionshaus eurer Fraktion zu dem neutralen Auktionshaus zu wechseln. Ihr benötigt hierfür kein Abonnement von World of Warcraft Connect, dieses muss erst nach Ablauf des Betatests abgeschlossen werden, sofern ihr auf Gegenstände bieten oder diese per Sofortkauf erwerben möchtet. 
+		</faq>	
+		<faq question="Wie erstelle ich Auktionen?">
+			Nutzt den Reiter 'Auktion erstellen' und wählt auf der linken Seite des Bildschirms aus der Liste den gewünschten Gegenstand aus, den ihr verkaufen möchtet. Ihr könnt alle transferierbaren Gegenstände (accountgebundene Gegenstände nicht eingeschlossen) aus euren Taschen, der Bank oder dem Briefkasten verkaufen. Einmal ausgewählt, könnt ihr einen Start- sowie Sofortkaufpreis, die Anzahl der Gegenstände sowie Stacks (zum Erstellen von mehreren gleichen Auktionen) festlegen. Beachtet bitte, dass nach Ablauf des Betatests ein Abonnement für World of Warcraft Connect benötigt wird, um Auktionen zu erstellen.
+		</faq>
+		<faq question="Wie kann ich Gold für erfolgreiche Auktionen sowie nicht erfolgreiche Gebote abholen?">
+			Jede erfolgreiche Auktion besitzt einen Knopf 'Gold abholen', der sich neben dem Reiter 'Auktionen' befindet. Klickt einfach auf diesen Knopf (oder alternativ auf den Knopf 'Gesamtes Gold abholen' für das Gold aller erfolgreichen Auktionen), um das Gold aus eurem Briefkasten abzuholen. Außerdem könnt ihr auch Gold für nicht erfolgreiche Gebote im Reiter 'Gebote' abholen. Beachtet bitte, dass nach Ablauf des Betatests und dem Start dieses Inhalts ein Abonnement für World of Warcraft Connect benötigt wird, um diese Optionen zu nutzen.
+		</faq>
+		<faq question="Wie abonniere ich World of Warcraft Connect und wieviel kostet die Funktion?">
+			Derzeit sind noch keine Abonnements für World of Warcraft Connect erhältlich, alle Informationen zu World of Warcraft Connect, inklusive den Preisen, Inhalten und wie man abonniert, erhaltet ihr nach Ablauf des Betatests in der <a href="/wow-remote.xml">FAQ zu World of Warcraft Connect</a>.
+		</faq>
+		<faq question="Ist die Anzahl an Transaktionen begrenzt, die man mit World of Warcraft Connect durchführen kann?">
+			Ja. Um Missbrauch zu verhindern, haben wir ein System entwickelt, die die Anzahl der täglichen Transaktionen im Auktionshaus (inklusive Gebote, Sofortkäufe und Erstellen von Auktionen) auf 25 pro Tag pro World of Warcraft-Account limitiert. Nach Ablauf des Betatests und dem Start von World of Warcraft Connect planen wir aktuell, diese Anzahl auf 200 anzuheben (mit einem Abonnement von World of Warcraft Connect), diese Zahl kann sich jedoch noch ändern. Mit diesem System möchten wir sicherstellen, dass die meisten Spieler, die den Service nutzen, nicht an dieses Limit stossen. Wir werden genau beobachten, wie er genutzt wird und können so, falls nötig, entsprechende Anpassungen vornehmen.  
+		</faq>
+		<faq question="Ist das Web-Auktionshaus von den wöchentlichen Wartungsarbeiten betroffen?">
+			Das Web-Auktionshaus ist während Wartungsarbeiten nicht verfügbar, dies gilt auch für die wöchentlichen Wartungsarbeiten der Spiel- und Web-Server jeden Mittwoch. Zusätzlich wird während des Betatests der Service aus Testgründen eventuell zeitweise nicht erreichbar.
+		</faq>
+		<faq question="Wer kann an dem Betatest des World of Warcraft Web-Auktionshauses teilnehmen?">
+		Das Web-Auktionshaus-Betatest steht für alle Spieler auf ausgewählten World of Warcraft-Servern  zur Verfügung – ihr müsst euch nicht anmelden, um daran teilzunehmen. Besucht den Betatest-Thread in den offiziellen World of Warcraft-Foren, um eine vollständige Liste der ausgewählten Server zu erhalten. Falls euer Server nicht aufgelistet wird, überprüft die Liste zu einem späteren Zeitpunkt erneut, da wir planen, den Betatest in der Zukunft auf weitere Server auszuweiten.
+		</faq>
+		<faq question="Ich spiele World of Warcraft in einem Internet Gaming Room (IGR) ohne ein Abonnement des Spiels. Kann ich World of Warcraft Connect in einem IGR ebenfalls gebührenfrei nutzen?" regOnly="KR">
+		Um die Funktionen von World of Warcraft Connect, wie das Kaufen und Verkaufen von Gegenständen, zu nutzen wird ein Abonnement von World of Warcraft Connect benötigt. Dies gilt auch, wenn ihr World of Warcraft in einem IGR ohne Abonnement spielt, da ein Abonnement für World of Warcraft Connect unabhängig vom Abonnement des Spiels ist.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="World of Warcraft Connect" url="/wow-remote.xml"/>
+				
+		<relatedlink type="hr"/>
+		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
+		<relatedlink name="Browser Such-Plugin" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Neu im Arsenal" url="/updates.xml"/>
+		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=2405522417#10"/>
+		<relatedlink name="Fehler melden" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

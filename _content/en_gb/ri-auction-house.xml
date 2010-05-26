@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Auction House">
+	<faqlist>
+		<!--commenting out live version of the FAQ
+		<faq question = "What is the Remote Auction House?">
+			The Remote Auction House allows players to log in to the Armory and browse any Auction House that the characters on their World of Warcraft account have access to. With a subscription to World of Warcraft Remote, you can also bid on or buy out existing auctions; post items for sale from your bags, bank, and mailbox; and collect gold that you earn in auctions or that is returned as a result of being outbid, all through the web or your compatible mobile device.
+		</faq>
+		<faq question = "How do I browse the Auction House?">
+			After you log in and designate a primary character, click on the Browse Auctions tab, and then enter the search term in the field. You can narrow your search using the filters and options, which are similar to those available in the game. To switch between the character’s faction-specific auction house and the realm’s neutral auction house, click the faction symbol in the upper-right corner of the interface. A World of Warcraft Remote subscription is not required to browse the Auction House in this fashion; however, you need to subscribe to World of Warcraft Remote in order to bid on or buy out items from the results window.
+		</faq>	
+		<faq question = "How do I create auctions?">
+			Creating auctions requires a subscription to World of Warcraft Remote. From the Create Auctions tab, select the item you wish to sell from the list on the left side of the screen. You can sell any transferable item (excluding account-bound items) from your bags, bank, or mailbox. Once selected, you can set a starting price, a buyout price, the quantity you wish to sell, and the number of stacks (to create multiple auctions for that item).
+		</faq>
+		<faq question = "How can I collect gold from successful auctions and unsuccessful bids?">
+			Collecting gold requires a subscription to World of Warcraft Remote. To collect gold from a successful auction, click the My Auctions tab, and then click the Claim Gold button next to the successful auction, or the Claim All Gold button to claim the gold from all successful auctions. The gold will be removed from your mailbox and given to your character. You can also reclaim gold from unsuccessful bids on the My Bids tab.
+		</faq>
+		<faq question = "How do I subscribe to World of Warcraft Remote?">
+			For complete details on World of Warcraft Remote, including pricing, features, and how to subscribe, go to <a href="http://www.battle.net/account/management">Battle.net Account Management</a>, or read the <a href="/wow-remote.xml">World of Warcraft Remote FAQ</a>.
+		</faq>
+		<faq question = "Is there a limit to the number of transactions (purchases and sales) I can make?">
+			Yes. In order to help prevent abuse of this service, there is a system in place to limit the total number of Auction House transactions (including bids, buyouts, and creating auctions) that a single World of Warcraft account can perform through World of Warcraft Remote each day. Currently, the limit is set to 200 transactions per day. Our goal with this system is to ensure that most players who are using the service will not reach the limit, and we will be continuously monitoring how the service is used and making adjustments to the system as needed. 
+		</faq>
+		<faq question = "Is the Remote Auction House affected by weekly maintenance?">
+			The Remote Auction House will be unavailable during periods of downtime, which includes the weekly Tuesday maintenance period.
+		</faq>
+		<xsl:if test="$region = 'KR'">
+		<faq question = "I play World of Warcraft in an Internet Gaming Room (IGR) without subscribing to the game. Can I use World of Warcraft Remote in an IGR without subscribing to it as well?">
+		To use World of Warcraft Remote features such as buying and selling items on the Remote Auction House, a subscription to World of Warcraft Remote is required. This still applies if you play World of Warcraft in an IGR without subscribing to the game, because a World of Warcraft Remote subscription is separate and distinct from a subscription to the game itself.
+		</faq>
+		</xsl:if>-->
+		<!--begin beta FAQ-->
+		<faq question="What is the World of Warcraft Remote Auction House beta test?">
+			The Remote Auction House is a new feature, currently undergoing beta testing, that allows players to log in to the Armory and browse any Auction House that the characters on their World of Warcraft account have access to. Once beta testing is complete and the Remote Auction House is live, players who subscribe to an upcoming service called World of Warcraft Remote will also be able to bid on or buy out existing auctions; post items for sale from their bags, bank, and mailbox; and collect gold that they earn in auctions or that is returned as a result of being outbid, all through the web or their compatible mobile device. During the beta-testing period, players will be able to try out and test all of these features, including premium features such as making bids and posting auctions, without a subscription to World of Warcraft Remote.
+		</faq>
+		<faq question="How do I browse the Remote Auction House via the web?">
+			After you log in and designate a primary character, click on the Browse Auctions tab, and then enter the search term in the field. You can narrow your search using the filters and options, which are similar to those available in the game. To switch between the character’s faction-specific auction house and the realm’s neutral auction house, click the faction symbol in the upper-right corner of the interface. A World of Warcraft Remote subscription will not be required to browse the Auction House in this fashion; however, please note that after the beta test concludes, you will need to subscribe to World of Warcraft Remote in order to bid on or buy out items from the results window.
+		</faq>	
+		<faq question="How do I create auctions?">
+			From the Create Auctions tab, select the item you wish to sell from the list on the left side of the screen. You can sell any transferable item (excluding account-bound items) from your bags, bank, or mailbox. Once selected, you can set a starting price, a buyout price, the quantity you wish to sell, and the number of stacks (to create multiple auctions for that item). Please note that after the beta test concludes, you will need a subscription to World of Warcraft Remote in order to create auctions.
+		</faq>
+		<faq question="How can I collect gold from successful auctions and unsuccessful bids?">
+			To collect gold from a successful auction, click the My Auctions tab, and then click the Claim Gold button next to the successful auction, or the Claim All Gold button to claim the gold from all successful auctions. The gold will be removed from your mailbox and given to your character. You can also reclaim gold from unsuccessful bids on the My Bids tab. Please note that after the beta test concludes and the live service launches, you will need a subscription to World of Warcraft Remote to use these features.
+		</faq>
+		<faq question="How will I subscribe to World of Warcraft Remote?">
+			Subscriptions to World of Warcraft Remote are not yet available; we’ll have more information about how to subscribe after the Remote Auction House beta test concludes. In the meantime, you can visit the <a href="/wow-remote.xml">World of Warcraft Remote FAQ</a> for more information.
+		</faq>
+		<faq question="Is there a limit to the number of transactions (purchases and sales) I can make?">
+			Yes. In order to help prevent abuse of this service, there will be a system in place to limit the total number of Auction House transactions (including bids, buyouts, and creating auctions) that a single World of Warcraft account can perform through World of Warcraft Remote each day. For the purposes of the beta test, the limit is set to 25 transactions per day per World of Warcraft account. When the Remote Auction House beta test ends and the live World of Warcraft Remote service launches, we plan to increase the limit to 200 transactions per day (with a World of Warcraft Remote subscription), though this limit is subject to change. Our goal with this system is to ensure that most players who are using the service will not reach the limit, and we will be continuously monitoring how the service is used and making adjustments to the system as needed.  
+		</faq>
+		<faq question="Is the Remote Auction House affected by weekly maintenance?">
+			The Remote Auction House will be unavailable during periods of downtime, which includes the weekly Tuesday maintenance period. In addition, during the beta-testing period, the service may be unavailable for periods of time for testing purposes.
+		</faq>
+		<faq question="Who can participate in the World of Warcraft Remote Auction House beta test?">
+		The Remote Auction House beta test is open to existing World of Warcraft players on select realms -- you do not need to sign up to participate. For a complete list of realms currently participating in the beta test, visit the Remote Auction House Beta Test thread in the official World of Warcraft forums. If you do not see your realm listed, check back later, as we plan to expand the beta test to all realms in the future.
+		</faq>
+		<faq question="I play World of Warcraft in an Internet Gaming Room (IGR) without subscribing to the game. Can I use World of Warcraft Remote in an IGR without subscribing to it as well?" regOnly="KR">
+		To use World of Warcraft Remote features such as buying and selling items on the Remote Auction House, a subscription to World of Warcraft Remote is required. This still applies if you play World of Warcraft in an IGR without subscribing to the game, because a World of Warcraft Remote subscription is separate and distinct from a subscription to the game itself.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="World of Warcraft Remote" url="/wow-remote.xml"/>
+				
+		<relatedlink type="hr"/>
+		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
+		<relatedlink name="Browser Search Plugin" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Armory Updates" url="/updates.xml"/>
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

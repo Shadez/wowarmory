@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="La Casa de Subastas">
+	<faqlist>
+		<!--commenting out live version of the FAQ
+		<faq question = "¿Qué es la Casa de Subastas Online?">
+			La Casa de Subastas Online permite a los jugadores iniciar sesión en la Armería y entrar en cualquier casa de subastas a la que tengan acceso los personajes de tu cuenta. En cambio, si te suscribes a World of Warcraft A Distancia, podrás comprar y pujar por objetos en subasta, así como poner en venta los objetos que se encuentren en tus bolsas, banco y buzón de correos. También puedes recoger el oro que hayas obtenido de tus subastas o el oro reembolsado como consecuencia de que tu puja haya sido superada, y todo a través de la web o de tu dispositivo móvil compatible con esta aplicación.
+		</faq>
+		<faq question = "¿Cómo puedo acceder a la casa de subastas a través de la Armería online?">
+			Después de iniciar sesión y haber designado a tu personaje principal, haz clic en la pestaña 'Ver subastas' y escribe el nombre del objeto que buscas en el campo de búsqueda. Puedes restringir tu búsqueda utilizando los filtros y las opciones correspondientes, del mismo modo que en el juego. Para cambiar entre la casa de subastas de la facción del personaje y la casa de subastas neutral del reino, haz clic en el símbolo de facción que aparece en la esquina superior derecha de la página. No es necesario estar suscrito a World of Warcraft A Distancia para acceder a la casa de subastas de esta facción. Sin embargo, es necesario estar suscrito a World of Warcraft A Distancia para comprar o pujar por objetos desde la ventana de resultados.
+		</faq>	
+		<faq question = "¿Qué hay que hacer para crear subastas?">
+			En primer lugar, para crear subastas debes estar suscrito a World of Warcraft A Distancia. Si es así, haz clic en la pestaña 'Crear subastas' y selecciona el objeto de la lista que deseas vender. Puedes vender cualquier objeto transferible (salvo si está ligado a la cuenta) que se encuentre en tus bolsas, banco o buzón de correos. Una vez seleccionado, puedes establecer el precio inicial, el precio de compra, la cantidad que deseas vender y el total de montones (para crear subastas múltiples de dicho objeto).
+		</faq>
+		<faq question = "¿Cómo puedo recoger el oro de subastas vendidas y pujas perdidas?">
+			En primer lugar, para recoger el oro debes estar suscrito a World of Warcraft A Distancia. Si es así, junto a cada subasta vendida en la pestaña 'Mis subastas' aparecerá el botón 'Recoger oro'. Sólo tienes que hacer clic en él (o en 'Recoger todo el oro' para el de todas las subastas vendidas) para retirar el oro de tu buzón de correos y entregárselo a tu personaje. También puedes recoger el oro de las pujas perdidas desde la pestaña 'Mis pujas'.
+		</faq>
+		<faq question = "¿Cómo puedo suscribirme a World of Warcraft A Distancia?">
+			Puedes encontrar toda la información sobre World of Warcraft A Distancia, incluido el precio, las opciones y cómo suscribirse a este servicio, en la página de <a href="http://eu.battle.net/account/management">Gestión de cuentas de Battle.net</a> o consultar la sección de <a href="/wow-remote.xml">preguntas frecuentes sobre World of Warcraft A Distancia</a>.
+		</faq>
+		<faq question = "¿Existe un límite de transacciones (subastas y pujas) que puedo realizar?">
+			Sí. para ayudar a evitar el abuso de este servicio, se ha establecido un sistema para limitar el número total de transacciones mediante la casa de subastas (pujas, compras y creación de subastas) que se puede realizar desde una misma licencia de World of Warcraft cada día a través de World of Warcraft A Distancia. Actualmente, el límite está establecido en 200 transacciones por día. Nuestro objetivo con este sistema es asegurarnos de que la mayoría de los jugadores que utilizan este servicio no llege a alcanzar este límite, y por otro lado, controlaremos de forma regular cómo se está utilizando este servicio e iremos realizando ajustes cuando lo consideremos necesario.
+		</faq>
+		<faq question = "¿Se verá afectada la Casa de Subastas Online por el mantenimiento semanal?">
+			La Casa de Subastas Online no estará disponible durante los períodos de mantenimiento, incluido el que se realiza cada miércoles para los servidores del juego y de las páginas web.
+		</faq>
+		<xsl:if test="$region = 'KR'">
+		<faq question = "Suelo jugar a World of Warcraft cyber-café sin estar suscrito al juego. ¿Puedo utilizar también World of Warcraft A Distancia desde un cyber-café sin estar suscrito al servicio?">
+		Para utilizar todas las funciones de World of Warcraft A Distancia, tales como comprar y vender objetos en la Casa de Subastas Online, es necesario estar suscrito a dicho servicio. Esto se debe a que, aunque suelas jugar a World of Warcraft desde un cyber-café sin estar suscrito al juego, World of Warcraft A Distancia requiere una suscripción aparte y diferente a la del juego.
+		</faq>
+		</xsl:if>-->
+		<!--begin beta FAQ-->
+		<faq question="¿Qué es la Casa de Subastas Online?">
+			La Casa de Subastas Online es un nueva aplicación, actualmente en fase de prueba beta, que permite a los jugadores iniciar sesión en la Armería y entrar en cualquier casa de subastas a la que tengan acceso los personajes de tu cuenta. Una vez que haya finalizado el período de prueba beta y se abra la Casa de Subastas Online, los jugadores que se suscriban al nuevo servicio World of Warcraft A Distancia podrán comprar y pujar por objetos en subasta, así como poner en venta los objetos que se encuentren en sus bolsas, banco y buzón de correos. También podrán recoger el oro que hayan obtenido de tus subastas o el oro reembolsado como consecuencia de que su puja haya sido superada, y todo a través de la web o de un dispositivo móvil compatible con esta aplicación. Durante el período de prueba beta, los jugadores podrán probar todas las funciones, incluidas las funciones avanzadas como crear subastas o pujar por objetos en subasta, sin necesidad de una suscripción a World of Warcraft A Distancia.
+		</faq>
+		<faq question="¿Cómo puedo acceder a la Casa de Subastas Online a través de la web?">
+			Después de iniciar sesión y haber designado a tu personaje principal, haz clic en la pestaña 'Ver subastas' y escribe el nombre del objeto que buscas en el campo de búsqueda. Puedes restringir tu búsqueda utilizando los filtros y las opciones correspondientes, del mismo modo que en el juego. Para cambiar entre la casa de subastas de la facción del personaje y la casa de subastas neutral del reino, haz clic en el símbolo de facción que aparece en la esquina superior derecha de la página. No será necesario estar suscrito a World of Warcraft A Distancia para acceder a la casa de subastas de esta facción. Sin embargo, hay que tener en cuenta que una vez que acabe el período de prueba beta, será necesario estar suscrito a World of Warcraft A Distancia para comprar o pujar por objetos desde la ventana de resultados. 
+		</faq>	
+		<faq question="¿Qué hay que hacer para crear subastas?">
+			Haz clic en la pestaña 'Crear subastas' y selecciona el objeto de la lista que deseas vender. Puedes vender cualquier objeto transferible (salvo si está ligado a la cuenta) que se encuentre en tus bolsas, banco o buzón de correos. Una vez seleccionado, puedes establecer el precio inicial, el precio de compra, la cantidad que deseas vender y el total de montones (para crear subastas múltiples de dicho objeto). Hay que tener en cuenta que una vez que acabe el período de prueba beta, será necesario estar suscrito a World of Warcraft A Distancia para poder crear subastas.
+		</faq>
+		<faq question="¿Cómo puedo recoger el oro de subastas vendidas y pujas perdidas?">
+			Para recoger el oro de una subasta vendida, abre la pestaña 'Mis subastas' y a continuación haz clic en el botón 'Recoger oro' que aparece junto a la subasta vendida, o en 'Recoger todo el oro' para retirar el de todas las subastas vendidas. El oro será retirado de tu buzón de correos y entregado a tu personaje. También puedes recoger el oro de las pujas perdidas desde la pestaña 'Mis pujas'. Ten en cuenta que una vez finalizado el período de prueba beta y se abra el servicio al público, será necesario estar suscrito a World of Warcraft A Distancia para realizar estas operaciones.
+		</faq>
+		<faq question="¿Cómo podré suscribirme a World of Warcraft A Distancia?">
+			Aún no está disponible el servicio de suscripción a World of Warcraft A Distancia. Ofreceremos más información sobre cómo suscribirse al servicio una vez que haya acabado el período de la prueba beta. Mientras tanto, puedes consultar las <a href="/wow-remote.xml">preguntas frecuentes sobre World of Warcraft A Distancia</a> para tener más información.
+		</faq>
+		<faq question="¿Existe un límite máximo de transacciones (compras y ventas) que puedo realizar?">
+			Sí. Para tratar de evitar abusos en el servicio, se establecerá un sistema para limitar el número total de transacciones en la Casa de Subastas (incluido pujas, comprar y creación de subastas) que puede realizar una misma licencia de World of Warcraft a través de World of Warcraft A Distancia en un mismo día. Durante la prueba beta, el límite está establecido en 25 transacciones diarias por cada licencia de World of Warcraft. A partir del momento en el que finalice el período de la prueba beta y se abra el servicio World of Warcraft A Distancia, tenemos pensado incrementar ese límite hasta 200 transacciones por día (si estás suscrito al servicio), aunque dicho límite estará sujeto a posibles cambios. El objetivo de este sistema es asegurarnos de que la mayor parte de los jugadores que utilicen este servicio no llegue a alcanzar dicho límite, y por otro lado, controlaremos de forma regular cómo se está utilizando este servicio e iremos realizando ajustes cuando lo consideremos necesario.  
+		</faq>
+		<faq question="¿Se verá afectada la Casa de Subastas Online por el mantenimiento semanal?">
+			La Casa de Subastas Online no estará disponible durante los períodos de mantenimiento, incluido el que se realiza cada miércoles para los servidores del juego y de las páginas web. Además, durante el período de la prueba beta, es posible que el servicio no esté disponible durante un tiempo por motivos de pruebas.
+		</faq>
+		<faq question="¿Quién pueden participar en la prueba beta de la Casa de Subasta Online de World of Warcraft?">
+		La prueba beta de la Casa de Subastas Online está abierta a todos los jugadores de World of Warcraft en ciertos reinos, y no es necesario registrarse para participar. Para ver una lista completa de los reinos disponibles para la prueba beta, consulta los foros oficiales de World of Warcraft sobre la prueba beta de la Casa de Subastas Online. Si tu reino no aparece en la lista, vuelve a consultar más adelante ya que nuestra intención es ampliar en el futuro la prueba beta a todos los reinos.
+		</faq>
+		<faq question="Suelo jugar a World of Warcraft cyber-café sin estar suscrito al juego. ¿Puedo utilizar también World of Warcraft A Distancia desde un cyber-café sin estar suscrito al servicio?" regOnly="KR">
+		Para utilizar todas las funciones de World of Warcraft A Distancia, tales como comprar y vender objetos en la Casa de Subastas Online, es necesario estar suscrito a dicho servicio. Esto se debe a que, aunque suelas jugar a World of Warcraft desde un cyber-café sin estar suscrito al juego, World of Warcraft A Distancia requiere una suscripción aparte y diferente a la del juego.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="World of Warcraft A Distancia" url="/wow-remote.xml"/>
+				
+		<relatedlink type="hr"/>
+		<relatedlink name="Armería Móvil de World of Warcraft" url="/iphone.xml"/>
+		<relatedlink name="Motor de búsqueda para tu navegador" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Novedades en la Armería" url="/updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
+		<relatedlink name="Informa de un error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

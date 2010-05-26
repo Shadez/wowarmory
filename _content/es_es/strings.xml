@@ -185,7 +185,11 @@
 		<str id="related-info.header.updates">Noticias</str>
 		<str id="related-info.header.faq">Preguntas frecuentes</str>
 		<str id="related-info.header.noflash">Se requiere Adobe Flash Player 9 ó superior</str>
-		<str id="related-info.noflash">Hemos detectado que no tienes Adobe Flash Player, o que estás usando una versión anterior a la versión 9. Para ver la Armería con el máximo de calidad, necesitas la versión 9 ó superior. Haz clic en el botón de arriba para instalar la última versión.</str>
+		<str id="related-info.noflash">Hemos detectado que no tienes Adobe Flash Player, que tienes el javascript desactivado, o que estás usando una versión anterior a la versión 10. Para ver la Armería con el máximo de calidad, necesitas la versión 10 ó superior. Haz clic en el botón de arriba para instalar la última versión.</str>
+		
+		<str id="breaking.news">Noticias de última hora</str>
+        <str id="motd">Casa de Subastas Online: novedades sobre la beta</str>
+
 
 		<str id="labels.regioncolon">Región:</str>
 		<str id="labels.selectregioncolon">Selecciona una región:</str>
@@ -270,9 +274,12 @@
 		<str id="user.no.character">Ningún personaje seleccionado</str>
 		<str id="user.manage.chars">gestionar personajes</str>
 		<str id="user.manage.settings">Cambiar</str>
+		<str id="user.manage.more">Más personajes</str>
+		<str id="user.manage.switch">Asignar como personaje principal</str>
 		<str id="loading">Cargando...</str>
 		<str id="saving">Guardando...</str>
 		<str id="pose_saved">¡Pose guardada!</str>
+		<str id="social.media.links">La Armería de World of Warcraft también está disponible para <param-html1/> y <param-html2/>.</str>
 	</common>
 
 	<character>
@@ -290,7 +297,7 @@
 		<str id="character-profiles">Perfiles de personaje</str>
 		<str id="character-level">Nivel</str>
 		<str id="character-level-sheet">de nivel</str>
-		<str id="noteten">Nota: no se muestran los personajes de nivel inferior a 10</str>
+		<str id="noteten">No se muestran los personajes de nivel inferior a 10</str>
 		<str id="character.tip.primary">Este personaje está asignado como tu personaje principal. En la parte superior derecha de la Armería aparecerá un enlance al perfil del personaje.</str>
 		<str id="character.tip.secondary">El perfil de este personaje se enmarcará por debajo del perfil de tu personaje principal. Haz clic para hacer que éste sea tu personaje principal.</str>
 	</character>
@@ -298,7 +305,7 @@
 		<str id="makePrimary">Asignar como personaje principal</str>
 		<str id="removeFromEasyAccess">Quitar del menú de Mis Personajes</str>
 		<str id="selectedCharacters">Mis Personajes</str>
-		<str id="inactiveLicense">Nota: esta liciencia no está activa.</str>
+		<str id="inactiveLicense">Esta liciencia no está activa.</str>
 		<str id="availableSlot">Espacio para personajes disponible</str>
 		<str id="easyAccessLimit">Has alcanzado el número máximo de personajes a los que tener un acceso rápido. Elimina un personaje si deseas añadir uno nuevo.</str>
 		<str id="addToEasyAccess">Añadir al menú de Mis Personajes</str>
@@ -307,9 +314,9 @@
 		<str>
       <h1>Selección de personaje</h1>
 		<p>Esta interfaz te permite seleccionar hasta <strong>tres</strong> personajes de esta cuenta para tener un fácil acceso a ellos. Si posees más de tres personajes elegibles, tienes que seleccionar sólo aquéllos que desees escoger.</p>
-		<p>
-        <strong>Aviso: </strong>Los personajes que selecciones recibirán un aviso cuando cualquiera de ellos sea invitado a los nuevos acontecimientos del calendario.</p>
+		<p>Los personajes que selecciones recibirán un aviso cuando cualquiera de ellos sea invitado a nuevos acontecimientos del calendario.</p>
     </str>
+        <str id="primaryChar">Personaje principal</str>
 	</character-select>
 	<custom-rss>
 		<str id="activity">Actividad del personaje</str>
@@ -344,6 +351,7 @@
 		<str id="recent_act">Actividad reciente</str>
 		<str id="viewfull_feed">Ver primera actividad</str>
 		<str id="currently_equipped">(Equipado)</str>
+		<str id="vendored">(Revendido)</str>
 		<str id="today">Hoy</str>
 		<str id="yesterday">Ayer</str>
 		<str id="previous">Entradas anteriores</str>
@@ -374,8 +382,8 @@
 		<str id="guildrank">Rango en la hermandad</str>
 		<str id="guild-rank">Rango </str>
 		<str id="guild-leader">Maestro</str>
-		<str id="noteten">Nota: no se muestran los personajes de nivel inferior a 10</str>
-		<str id="toomany">Atención: demasiados miembros en la hermandad. Sólo aparecen en la lista los miembros de más alto rango.</str>
+		<str id="noteten">No se muestran los personajes de nivel inferior a 10</str>
+		<str id="toomany">Sólo aparecen en la lista los miembros de más alto rango.</str>
 		<str id="searchroster">Buscar en la lista de la hermandad</str>
 	</guild>
 
@@ -489,7 +497,7 @@
 		<legend>
 			<str id="arenaladder.title">Iconos de las Arenas</str>
 			<str id="arena.title">Iconos de las Arenas</str>
-			<str id="arena">Estos iconos especiales son un símbolo visible de la destreza de tu equipo en Las Arenas. Según vaya mejorando tu posición, tu icono cambiará a de manera acorde.</str>
+			<str id="arena">Estos iconos especiales son un símbolo visible de la destreza de tu equipo en las Arenas. Según vaya mejorando tu posición, tu icono cambiará a de manera acorde.</str>
 			<str id="arena.uranked">Sin posición</str>
 			<str id="arena.top1000">Top 1000</str>
 			<str id="arena.top500">Top 500</str>
@@ -499,7 +507,7 @@
 		</legend>
 
 		<arenaLadderData>
-			<str id="armory.arena-ladder-data.header.arena.tournament">Torneos en las Arenas</str>
+			<str id="armory.arena-ladder-data.header.arena.tournament">Pase de Arenas</str>
 			<str id="armory.arena-ladder-data.header.2v2">Resultados de "ladder" de Arenas 2c2</str>
 			<str id="armory.arena-ladder-data.header.3v3">Resultados de "ladder" de Arenas 3c3</str>
 			<str id="armory.arena-ladder-data.header.5v5">Resultados de "ladder" de Arenas 5c5</str>
@@ -626,7 +634,7 @@
 		<str id="armory.labels.rarity">Rareza</str>
 		<str id="armory.labels.na">N/A</str>
 		<str id="armory.labels.notapplicable">No aplicable</str>
-		<str id="armory.labels.arenaTournament">Torneos en las Arenas</str>
+		<str id="armory.labels.arenaTournament">Pase de Arenas</str>
 		<str id="armory.labels.comingsoon">Próximamente</str>
 		<str id="armory.labels.period">.</str>
 
@@ -634,7 +642,7 @@
 		<str id="armory.arenatab.3v3-arena-ladder">Ladder 3c3</str>
 		<str id="armory.arenatab.5v5-arena-ladder">Ladder 5c5</str>
 		<str id="armory.arenatab.hof">Salón de la Fama</str>
-		<str id="armory.arenatab.arenaTournament">Torneos en las Arenas</str>
+		<str id="armory.arenatab.arenaTournament">Pase de Arenas</str>
 		<str id="armory.arenatab.calc">Calculadora para las Arenas</str>
 
 		<str id="armory.arenatab.teamprofile">Perfil de equipo</str>
@@ -706,7 +714,7 @@
 		<str id="armory.labels.header.pvp">JcJ</str>
 		<str id="armory.labels.header.skills">Habilidades</str>
 		<str id="armory.labels.header.talents">Talentos</str>
-		<str id="armory.labels.header.arenateams">Equipos de arena</str>
+		<str id="armory.labels.header.arenateams">Equipos de Arenas</str>
 		<str id="armory.labels.header.arena">Arenas</str>
 		<str id="armory.labels.header.guild">Hermandad</str>
 		<str id="armory.labels.header.banklog">Registro bancario</str>
@@ -782,6 +790,16 @@
 		<str id="armory.tabs.wotlk">Wrath of the Lich King</str>
 		<str id="armory.tabs.bc">Burning Crusade</str>
 		<str id="armory.tabs.classic">Clásico</str>
+		
+		<!-- auction tabs -->
+		<str id="auction.tabs.summary">Inicio</str>
+		<str id="auction.tabs.browseAuctions">Ver subastas</str>
+		<str id="auction.tabs.myBids">Mis pujas</str>
+		<str id="auction.tabs.activeBids">Pujas activas</str>
+		<str id="auction.tabs.completedAuctions">Subastas completadas</str>
+		<str id="auction.tabs.myAuctions">Mis subastas</str>
+		<str id="auction.tabs.activeAuctions">Subastas activas</str>
+		<str id="auction.tabs.createAuction">Crear subastas</str>
 
 		<str id="armory.tabs.character.guild.mouseover">Haz clic aquí para ir a la sección de hermandades.</str>
 		<str id="armory.tabs.character.arenateams.mouseover">Haz clic en esta pestaña para ir a la sección de equipos de las Arenas. </str>
@@ -817,6 +835,15 @@
 		<str id="armory.menu.faqs">Preguntas frecuentes</str>
 		<str id="armory.menu.tools">Herramientas</str>
 		<str id="armory.menu.searchPlugin">Plugin de búsqueda</str>	
+		<str id="armory.menu.auctionHouse">Casa de Subastas</str>	
+		<str id="armory.menu.misc">Varios</str>
+		<str id="armory.menu.ah.summary">Inicio</str>	
+		<str id="armory.menu.ah.bids">Mis pujas</str>	
+		<str id="armory.menu.ah.browse">Ver subastas</str>	
+		<str id="armory.menu.ah.auctions">Mis subastas</str>
+		<str id="armory.menu.ah.create">Crear subastas</str>
+		<str id="armory.menu.ah.faq">Preguntas frecuentes</str>
+
 <!--character profile header-->
 		<str id="armory.icon.realm">Reino</str>
 		<str id="armory.icon.battleGroup">Grupo de batalla</str>
@@ -995,7 +1022,7 @@
 		<str id="armory.labels.facebook.goback">Volver</str>
 		<str id="armory.labels.facebook.returntomyfeed">Volver a "Mi canal"</str>
 		<str id="armory.labels.facebook.returntofacebook">Volver a Facebook</str>
-		<str id="armory.labels.facebook.selectotherregions">También puedes cambiar de región para el canal de personajes de la Armería: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">América</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europa</a> or <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Corea</a>.</str>
+		<str id="armory.labels.facebook.selectotherregions">Si tienes problemas para ver el personaje correctamente, puedes cambiar de región para el canal de personajes de la Armería: <a href="http://us.wowarmory.com/fb/my-feed.html?region=US&amp;fboverridep">América</a>, <a href="http://eu.wowarmory.com/fb/my-feed.html?region=EU&amp;fboverridep">Europa</a> or <a href="http://kr.wowarmory.com/fb/my-feed.html?region=KR&amp;fboverridep">Corea</a>.</str>
 		<str id="armory.labels.facebook.error">Debido a una sobrecarga en el servidor, esta información no está disponible ahora. </str>
 		<str id="armory.labels.facebook.error2">Por favor, vuelve a intentarlo en unos minutos ya que normalmente este problema sólo es temporal. También puedes intentar cerrar sesión en Facebook y volver a conectar. Esto puede ayudar a resolver ciertos errores.</str>
 		
@@ -1023,7 +1050,7 @@
 		<str id="armory.dungeons.seealsocolon">Ver también: </str>
 		<str id="armory.dungeons.viewbosses">Ver jefes</str>
 		<str id="armory.dungeons.notecolon">Nota:</str>
-		<str id="armory.dungeons.notesparse">Sólo se pueden buscar en la Armería los objetos que se hayan 'descubierto' en el juego (que se hayan adquirido al menos en una ocasión). Por esa  razón, algunas de las tablas de objetos que se pueden obtener de los jefes (sobre todo las de los nuevos jefes de bandas) pueden no estar completas, y pueden parecer sospechosamente vacías. Dichas tablas de objetos se irán llenando a medida que se van descubriendo más objetos.</str>
+		<str id="armory.dungeons.notesparse">Los objetos deben aparecer en la versión actual del juego para poder encontrarlos en la Armería.</str>
 
 <!--factions.xsl-->
 		<str id="armory.factions.bc">Facciones de The Burning Crusade</str>
@@ -1038,6 +1065,7 @@
 		<str id="armory.faq.arenacalculator">Calculadora para las Arenas</str>
 		<str id="armory.faq.arenaladder">'Ladder' de Arenas</str>
 		<str id="armory.faq.login">Inicio de sesión en la Armería</str>
+		<str id="armory.faq.auctionhouse">Casa de Subastas</str>
 		<str id="armory.faq.characterfeeds">Canales de personajes</str>
 		<str id="armory.faq.characterprofiles">Perfiles de personajes</str>
 		<str id="armory.faq.recommended">Buscar mejoras</str>
@@ -1078,7 +1106,7 @@
 		<str id="armory.search.closeQuote">"</str>
 		<str id="armory.search.normalSpace"> </str>
 		<str id="armory.search.label.noSearchResults">No hay resultados</str>
-		<str id="armory.search.label.noSearchResultsText">No se ha encontrado ningún resultado para tu búsqueda. Para estar seguros de que tu búsqueda cumple con los parámetros de la Armería, asegúrate de:</str>
+		<str id="armory.search.label.noSearchResultsText">No se ha encontrado ningún resultado. Para estar seguros de que tu búsqueda cumple con los parámetros de la Armería, asegúrate de:</str>
 		<str id="armory.search.label.search.categories">Buscar únicamente en las categorías disponibles en la Armería: objetos, personajes, equipos de Arenas, hermandades y facciones.</str>
 		<str id="armory.search.label.search.name">Buscar sólo por nombre.</str>
 		<str id="armory.search.label.search.return">Volver a la Armería</str>
@@ -1098,7 +1126,7 @@
 		<str id="armory.search.oneResult">1 resultado para</str>
 		<str id="armory.search.resultsFor">resultados para</str>
 		<str id="armory.search.label.noSearchResults">No hay resultados</str>
-		<str id="armory.search.label.noSearchResultsText">No se ha encontrado ningún resultado para tu búsqueda. Para estar seguros de que tu búsqueda cumple con los parámetros de la Armería, asegúrate de:</str>
+		<str id="armory.search.label.noSearchResultsText">No se ha encontrado ningún resultado. Para estar seguros de que tu búsqueda cumple con los parámetros de la Armería, asegúrate de:</str>
 	</deleted>
 
 	<itemsSearch>
@@ -1568,10 +1596,10 @@
 		<str id="armory.character-reputation.url.netherwing">http://www.wow-europe.com/es/info/basics/mounts/netherwing-tips.html</str>
 
 		<str id="armory.character-reputation.name.ogri'la">Ogri'la</str>
-		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1038&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.comsearch.xml?source=reputation&amp;faction=1038&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.sha'tariskyguard">Sha'tari Skyguard</str>
-		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?fl[source]=reputation&amp;fl[faction]=1031&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.comsearch.xml?source=reputation&amp;faction=1031&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
 		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>
@@ -1693,35 +1721,35 @@
 		<str id="armory.character-reputation.icon.zandalartribe">INV_Bijou_Gold</str>
 		<str id="armory.character-reputation.url.zandalartribe">http://www.wow-europe.com/es/info/basics/factions/zandalar/index.html</str>
 
-		<str id="armory.character-reputation.url.shatteredsunoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1077&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.ashtonguedeathsworn">/search.xml?fl[source]=reputation&amp;fl[faction]=1012&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.shatteredsunoffensive">search.xml?source=reputation&amp;faction=1077&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ashtonguedeathsworn">search.xml?source=reputation&amp;faction=1012&amp;searchType=items</str>
 
 		<!-- WOTLK REPS -->
 		<!-- horde -->
 		<!--
-		<str id="armory.character-reputation.url.thehandofvengeance">/search.xml?fl[source]=reputation&amp;fl[faction]=10650&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesunreavers">/search.xml?fl[source]=reputation&amp;fl[faction]=1124&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thetaunka">/search.xml?fl[source]=reputation&amp;fl[faction]=1064&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.warsongoffensive">/search.xml?fl[source]=reputation&amp;fl[faction]=1085&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thehandofvengeance">search.xml?source=reputation&amp;faction=10650&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesunreavers">search.xml?source=reputation&amp;faction=1124&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thetaunka">search.xml?source=reputation&amp;faction=1064&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.warsongoffensive">search.xml?source=reputation&amp;faction=1085&amp;searchType=items</str>
 		-->
 
 		<!-- alliance -->
 		<!--
-		<str id="armory.character-reputation.url.explorersleague">/search.xml?fl[source]=reputation&amp;fl[faction]=1068&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thefrostborn">/search.xml?fl[source]=reputation&amp;fl[faction]=1126&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesilvercovenant">/search.xml?fl[source]=reputation&amp;fl[faction]=1094&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.valianceexpedition">/search.xml?fl[source]=reputation&amp;fl[faction]=1050&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.explorersleague">search.xml?source=reputation&amp;faction=1068&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thefrostborn">search.xml?source=reputation&amp;faction=1126&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesilvercovenant">search.xml?source=reputation&amp;faction=1094&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.valianceexpedition">search.xml?source=reputation&amp;faction=1050&amp;searchType=items</str>
 		-->
 
 		<!-- both factions -->
-		<str id="armory.character-reputation.url.argentcrusade">/search.xml?fl[source]=reputation&amp;fl[faction]=1106&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.kirintor">/search.xml?fl[source]=reputation&amp;fl[faction]=1090&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.knightsoftheebonblade">/search.xml?fl[source]=reputation&amp;fl[faction]=1098&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thekalu'ak">/search.xml?fl[source]=reputation&amp;fl[faction]=1073&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thewyrmrestaccord">/search.xml?fl[source]=reputation&amp;fl[faction]=1091&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.frenzyhearttribe">/search.xml?fl[source]=reputation&amp;fl[faction]=1104&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.theoracles">/search.xml?fl[source]=reputation&amp;fl[faction]=1105&amp;searchType=items</str>
-		<str id="armory.character-reputation.url.thesonsofhodir">/search.xml?fl[source]=reputation&amp;fl[faction]=1119&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.argentcrusade">search.xml?source=reputation&amp;faction=1106&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.kirintor">search.xml?source=reputation&amp;faction=1090&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.knightsoftheebonblade">search.xml?source=reputation&amp;faction=1098&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thekalu'ak">search.xml?source=reputation&amp;faction=1073&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thewyrmrestaccord">search.xml?source=reputation&amp;faction=1091&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.frenzyhearttribe">search.xml?source=reputation&amp;faction=1104&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.theoracles">search.xml?source=reputation&amp;faction=1105&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.thesonsofhodir">search.xml?source=reputation&amp;faction=1119&amp;searchType=items</str>
 		
 		<str id="armory.character-reputation.group.grouped">Vista predeterminada</str>
 		<str id="armory.character-reputation.group.ungrouped">Ver en forma de lista</str>
@@ -2099,9 +2127,9 @@
 		<str id="armory.classes.class.8">Mago</str>
 		<str id="armory.classes.class.8.0">Mago</str>
 		<str id="armory.classes.class.8.1">Maga</str>
-		<str id="armory.classes.class.6">Caballero de la muerte</str>
-		<str id="armory.classes.class.6.0">Caballero de la muerte</str>
-		<str id="armory.classes.class.6.1">Caballero de la muerte</str>
+		<str id="armory.classes.class.6">Cab. de la Muerte</str>
+		<str id="armory.classes.class.6.0">Cab. de la Muerte</str>
+		<str id="armory.classes.class.6.1">Cab. de la Muerte</str>
 
 		<str id="item-filter.anytype">Todos los tipos</str>
 		<str id="item-filter.tank">Tanque</str>
@@ -2301,7 +2329,7 @@
 		<str id="bagnocafter"/>
 		<str id="resultsfound">Resultados encontrados</str>
 		<str id="transactionsfound">Transacciones encontradas</str>
-		<str id="notetime">Nota: fecha y hora locales. </str>
+		<str id="notetime">La fecha y la hora corresponden al horario local</str>
 		<str id="nopermission">No tienes permiso para acceder.</str>
 		<str id="none">--Ninguno--</str>
 		<str id="alltypes">Todos los tipos de objetos</str>
@@ -2696,9 +2724,9 @@
 	</serverBusy>
 
 	<propass>
-		<str id="forum.link.mouseover">El siguiente enlace te llevará a los foros del Torneo en las Arenas</str>
+		<str id="forum.link.mouseover">El siguiente enlace te llevará a los foros del Pase de Arenas</str>
 		<str id="forum.link">http://forums.wow-europe.com/board.html?forumId=3901824&amp;sid=4</str>
-		<str id="teamstats">Estadísticas de equipo en el Torneo de Arenas</str>
+		<str id="teamstats">Estadísticas de equipo en el Pase de Arenas</str>
 		<str id="pvpinfo">Información JcJ personal:</str>
 		<str id="personalrating">CALIFICACIÓN PERSONAL: </str>
 		<str id="winrecord">RÉCORD DE VICTORIAS: </str>
@@ -2717,7 +2745,7 @@
 
 		<str id="teaminfo">Información del equipo</str>
 		<str id="arena">Arenas</str>
-		<str id="tournament">Torneo</str>
+		<str id="tournament">Pase de Arenas</str>
 		<str id="rating">CLASIFICACIÓN: </str>
 	</propass>
 
@@ -2937,4 +2965,258 @@
 		<str id="download">Descargar de iTunes</str>
 		<str id="intro">Ahora puedes consultar la Armería desde tu iPhone™ o iPod touch®. Echa un vistazo a la Armería Móvil de World of Warcraft, que podrás descargar gratis desde la App Store de Apple.</str>
 	</mobileArmoryInterstitial>
+	
+	<wowRemotePage>
+		<str id="intro.title">Casa de Subastas Online de World of Warcraft A Distancia</str>
+		<str id="intro.text">Ahora puedes acceder a la Casa de Subastas de World of Warcraft desde tu navegador de Internet o dispositivo móvil. Puedes acceder a la Casa de Subastas de forma gratuita o mediante una suscripción al nuevo servicio World of Warcraft A Distancia, que te permitirá:</str>
+		<str id="feature.browse">Comprar o pujar por objetos en subasta con resultados en tiempo real.</str>
+		<str id="feature.create">Poner objetos a subastar directamente desde tus bolsas, banco y buzón del juego.</str>
+		<str id="feature.collect">Recoger el oro obtenido de tus subastas.</str>
+		<str id="price.period">por 30 días</str>
+		<str id="price.only">Sólo</str>		
+		<str id="price.notice">*Los precios pueden variar según el país y la moneda.</str>
+		<str id="try.free.title">Consulta GRATIS la Casa de Subastas Online de World of Warcraft</str>
+		<str id="try.wr.text">Todos los jugadores pueden acceder de forma gratuita a la Casa de Subastas a través de la página web de la Armería o a través de un dispositivo móvil compatible. Haz clic en los que aparecen a continuación para entrar en la página de la Casa de Subastas o descarga la aplicación gratuita desde iTunes® para tu iPhone® o iPod® touch. En próximas fechas también estarán disponibles para otros dispositivos móviles. </str>
+		<str id="try.wr.faq">Más información sobre <br/>World of Warcraft A Distancia.</str>
+		<str id="try.notice">iPhone y iPod son marcas registradas de Apple Inc., registradas en EE.UU y otros países.</str>
+		<str id="btn.try.web">Casa de Subastas GRATIS</str>
+		<str id="btn.try.mobile">Casa de Subastas móvil en iTunes GRATIS</str>
+		<str id="btn.subscribe">Suscríbete ya</str>
+		<str id="table.descrip.head">Características de la Casa de Subastas World of Warcraft</str>
+		<str id="table.free.head">Gratis</str>
+		<str id="table.wr.head">Suscripción</str>
+		<str id="btn.subscribe.beta">Próximamente</str>
+		<str id="table.descrip.1">Revista la Casa de Subastas</str>
+		<str id="table.descrip.2">Recibe notifiaciones al instante cuando tus subastas se han vendido o han caducado</str>
+		<str id="table.descrip.3">Recibe notificaciones al instante cuando ganes una puja o cuando tu puja ha sido superada</str>
+		<str id="table.descrip.4">Revisa la cantidad de oro de tus personajes en todo momento</str>
+		<str id="table.descrip.5">Revisa el estado de tus subastas y busca subastas similares</str>
+		<str id="table.descrip.6">Pon a la venta objetos desde tus bolsas, banco y buzón del juego</str>
+		<str id="table.descrip.7">Revisa el estado de subastas por las que has pujado</str>
+		<str id="table.descrip.8">Revisa los objetos que has vendido a través de la Casa de Subastas</str>
+		<str id="table.descrip.9">Revisa el estado de tus subastas que han expirado</str>
+		<str id="table.descrip.10">Revisa el estado de las subastas que has creado</str>
+		<str id="table.descrip.11">Revisa el estado de tus subastas vendidas</str>
+		<str id="table.descrip.12">Realiza pujas en la Casa de Subastas</str>
+		<str id="table.descrip.13">Compra objetos directamente en la Casa de Subastas</str>
+		<str id="table.descrip.14">Pon a subastar objetos directamente desde tus bolsas, banco y buzón del juego</str>
+		<str id="table.descrip.15">Recoge las ganancias de tus ventas en la Casa de Subastas</str>
+		<str id="table.descrip.16">Recupera el oro invertido en pujas por objetos que no has ganado</str>
+		<str id="table.descrip.17">Recoge todo el oro con un sólo clic</str>
+		<str id="table.descrip.18">Cancela tus subastas</str>
+		<str id="table.descrip.19">Vuelve a subastar objetos cuya subasta ha expirado</str>
+	</wowRemotePage>
+	
+	<auctionHouse>
+		<str id="auctionHouse">Casa de Subastas</str>
+		<str id="auctions">Subastas</str>
+		<str id="auctions.create">Crear subastas</str>
+		<str id="auctions.create2">Crear</str>
+		<str id="auctions.browse">Ver subastas</str>
+		<str id="auctions.browse2">Ver</str>
+		<str id="auctions.active">Subastas activas</str>
+		<str id="auctions.similar">Subastas similares</str>
+		<str id="auctions.sold">Vendidas</str>
+		<str id="auctions.ended">Finalizadas</str>
+		<str id="auctions.ended.tip">Debes recuperar tus objetos en el juego dentro del plazo establecido o estos objetos serán eliminados.</str>
+		<str id="auctions.won">Ganadas</str>
+		<str id="auctions.won.tip">Estos objetos serán enviados a tu buzón de correo dentro del juego.</str>
+		<str id="auctions.lost">Perdidas</str>
+		<str id="auctions.my">Subastas</str>
+		<str id="bids">Pujas</str>
+		<str id="bids.my">Pujas</str>
+		<str id="bids.active">Pujas activas</str>
+		<str id="sort.name">Nombre</str>
+		<str id="sort.rarity">Rareza</str>
+		<str id="sort.qty">Cantidad</str>
+		<str id="sort.qty2">Cant.</str>
+		<str id="sort.level">Nivel mínimo</str>
+		<str id="sort.level2">Nivel mín.</str>
+		<str id="sort.timeLeft">Tiempo rest.</str>
+		<str id="sort.buyout">Comprar</str>
+		<str id="sort.buyoutPrice">Precio de compra</str>
+		<str id="sort.buyoutPriceUnit">Precio de compra/obj.</str>
+		<str id="sort.bid">Puja</str>
+		<str id="sort.bidBuyout">Puja/Compra</str>
+		<str id="sort.bidPrice">Precio de puja</str>
+		<str id="sort.bidPriceUnit">Precio de puja/obj.</str>
+		<str id="sort.winPrice">Precio ganador</str>
+		<str id="sort.highBidder">Mejor postor</str>
+		<str id="sort.options">Opciones</str>
+		<str id="sort.soldPrice">Precio de venta</str>
+		<str id="sort.buyer">Comprador</str>
+		<str id="sort.status">Estado</str>
+		<str id="sort.seller">Vendedor</str>
+		<str id="sort.moneyEarned">Oro obtenido</str>
+		<str id="sort.house">Casa</str>
+        <str id="sort.minRarity">Nivel mínimo de rareza</str>
+        <str id="sort.itemLevel">Nivel de objeto</str>
+		<str id="money.getAll">Recoger todo el oro</str>
+		<str id="money.get">Recoger oro</str>
+		<str id="money.claim">Debes recoger tu oro dentro del plazo establecido o de lo contrario será eliminado.</str>
+		<str id="money.claimItem">Debes recoger tu objeto dentro del plazo establecido o de lo contrario será eliminado.</str>
+		<str id="money.claimBoth">Debes recoger tu oro y tus objetos dentro del plazo establecido o de lo contrario serán eliminados.</str>
+		<str id="browse.itemName">Nombre del objeto</str>
+		<str id="browse.categories">Categorías</str>
+		<str id="browse.levelRange">Rango de nivel</str>
+		<str id="browse.choose">Escoge</str>
+		<str id="browse.useable">Utilizable</str>
+		<str id="browse.reset">Reiniciar</str>
+		<str id="browse.search">Buscar</str>
+		<str id="browse.noResults">Tu búsqueda no ha dado ningún resultado. Por favor, inténtalo de nuevo.</str>
+		<str id="status.noBids">Ninguna puja</str>
+		<str id="status.highBidder">Mejor postor</str>
+		<str id="status.noBuyer">Ningún comprador</str>
+		<str id="status.outbid">Puja superada</str>
+		<str id="status.expired">Finalizada</str>
+		<str id="status.cancelled">Cancelada</str>
+		<str id="summary.select">Selecciona una casa de subastas</str>
+		<str id="summary.alliance">Alianza</str>
+		<str id="summary.alliance.house">Casa de Subastas de la Alianza</str>
+		<str id="summary.horde">Horda</str>
+		<str id="summary.horde.house">Casa de Subastas de la Horda</str>
+		<str id="summary.neutral">Neutral</str>
+		<str id="summary.neutral.house">Casa de subastas neutral</str>
+		<str id="summary.title">Casa de Subastas Online</str>
+		<str id="summary.desc">La Casa de Subastas Online te permite acceder a la casa de subastas de tu reino a través de un navegador de la red o de la aplicación de la Armería para iPhone. Además, si te suscribes a World of Warcraft A Distancia, podrás comprar o pujar por objetos en subasta, así como poner en venta los objetos de tus bolsas, banco o buzón.</str>
+		<str id="summary.activity">
+      <param1/>: actividad de subastas</str>
+		<str id="summary.mailbox">Buzón</str>
+		<str id="summary.mailTotal">Total de objetos recibidos</str>
+		<str id="summary.selling">Venta</str>
+		<str id="summary.goldEarned">Oro obtenido</str>
+		<str id="summary.mailbox">Buzón</str>
+		<str id="summary.mailFull">¡Tu buzón está lleno! Sólo podrás acceder a tus últimos 50 mensajes relacionados con tus ventas.</str>
+		<str id="button.cancel">Cancelar</str>
+		<str id="button.cancelAuction">Cancelar</str>
+		<str id="button.buyout">Comprar</str>
+		<str id="button.rebid">Volver a pujar</str>
+		<str id="button.bid">Pujar</str>
+		<str id="button.confirm">Confirmar</str>
+		<str id="button.confirmBid">Confirmar puja</str>
+		<str id="button.confirmBuyout">Confirmar compra</str>
+		<str id="button.ok">OK</str>
+		<str id="button.no">No</str>
+		<str id="button.yes">Sí</str>
+		<str id="button.upgrade">Actualizar suscripción</str>
+		<str id="button.filter">Filtro</str>
+		<str id="button.create">Crear</str>
+		<str id="button.stop">Detener</str>
+		<str id="button.finish">Finalizar</str>
+		<str id="button.retry">Reintentar</str>
+        <str id="button.search">Buscar</str>
+        <str id="button.continue">Continuar</str>
+        <str id="button.close">Cerrar</str>
+		<str id="msg.error">Se ha producido un error al intentar realizar esta acción. Por favor, vuelve a intentarlo más tarde.</str>
+		<str id="msg.maxBids">Has alcanzado el límite de compras o pujas de subastas permitido en 1 hora. Por favor, vuelve a intentarlo más tarde.</str>
+		<str id="msg.cancelAuction">Si cancelas esta subasta, perderás tu depósito. ¿Deseas continuar?</str>
+		<str id="msg.subscription">Para realizar una puja es necesario estar suscrito a la Casa de Subastas.</str>
+		<str id="msg.errorMoney">No tienes oro suficiente para comprar o hacer una pujar por esta subasta.</str>
+		<str id="msg.confirmation">No volver a mostrar este mensaje</str>
+		<str id="msg.buyout">¿Estás seguro de que deseas comprar este objeto por la cantidad que aparece a continuación?</str>
+		<str id="msg.enterBid">Introduce tu puja</str>
+		<str id="msg.noBids">No has realizado ninguna puja por ninguna subasta.</str>
+		<str id="msg.noWonLost">Aún no has participado en ninguna subasta.</str>
+		<str id="msg.browseListing">Ver objetos en la Casa de Subastas.</str>
+		<str id="msg.noListings">Aún no has creado ninguna subasta.</str>
+		<str id="msg.createAuction">Crea una subasta para vender tus objetos.</str>
+		<str id="msg.isSeller">Tú eres el vendedor</str>
+		<str id="msg.bidFinish">¡Tu subasta ha sido creada!</str>
+		<str id="msg.buyoutFinish">¡Has adquirido esta subasta y en breve recibirás el(los) objeto(s)!</str>
+		<str id="msg.noSimilar">No se encontraron objetos similares.</str>
+		<str id="msg.highPriceUnit">Precio más alto / Objeto</str>
+		<str id="msg.lowPriceUnit">Precio más bajo / Objeto</str>
+		<str id="msg.stopCreation">Si abandonas esta pantalla o haces clic en "Detener", se interrumpirá el proceso de creación.</str>
+		<str id="msg.auctionCreated">¡Tu(s) subasta(s) ha(n) sido creada(s)!</str>
+        <str id="msg.myAuction">Tu subasta</str>
+        <str id="msg.noBladeData1">No has realizado ninguna puja por ninguna subasta.</str>
+		<str id="msg.noBladeData2">No has ganado ninguna subasta.</str>
+		<str id="msg.noBladeData3">No has perdido ninguna subasta.</str>
+		<str id="msg.noBladeData4">No tienes subastas activas.</str>
+		<str id="msg.noBladeData5">No has vendido ninguna subasta.</str>
+		<str id="msg.noBladeData6">No tienes subastas que hayan expirado.</str>
+        <str id="msg.logoutOfGame">Debes desconectarte del juego antes de poder acceder a esta página.</str>
+        <str id="msg.beginSearch">Escribe el término que buscas y haz clic en "Buscar".</str>
+        <str id="msg.auctionLimitReached">Sólo se muestran las últimas 500 subastas realizadas.</str>
+        <str id="msg.bidsLimitReached">Sólo se muestran las últimas 500 pujas realizadas.</str>
+		<str id="time.short">Breve</str>
+		<str id="time.short.msg">Menos de 30 min.</str>
+		<str id="time.medium">Medio</str>
+		<str id="time.medium.msg">Entre 30 min. y 2 horas</str>
+		<str id="time.long">Largo</str>
+		<str id="time.long.msg">Entre 2 y 12 horas</str>
+		<str id="time.verylong">Muy largo</str>
+		<str id="time.verylong.msg">Más de 12 horas</str>
+		<str id="buyoutTotal">Total de la compra</str>
+		<str id="relist">Subastar</str>
+		<str id="active">Activa</str>
+		<str id="completed">Completada</str>
+		<str id="days">Días</str>
+		<str id="won">Ganada</str>
+		<str id="lost">Perdida</str>
+		<str id="cancelled">Cancelada</str>
+		<str id="expired">Finalizada</str>
+		<str id="sold">Vendida</str>
+		<str id="outbid">Puja superada</str>
+		<str id="pending">Pendiente</str>
+		<str id="create.stackSize">Vol. del montón</str>
+		<str id="create.totalStacks">Montones (total)</str>
+		<str id="create.minRarity">Rareza mínima</str>
+		<str id="create.mailbox">Buzón</str>
+		<str id="create.bags">Bolsas</str>
+		<str id="create.bank">Banco</str>
+		<str id="create.inventory">Inventario</str>
+		<str id="create.all">Todo</str>
+		<str id="create.max">Máx.</str>
+		<str id="create.quantity">Cantidad</str>
+		<str id="create.stacks">Montones</str>
+		<str id="create.pricePer">Precio</str>
+		<str id="create.perStack">Por montón</str>
+		<str id="create.perItem">Por objeto</str>
+		<str id="create.duration">Duración</str>
+		<str id="create.startPrice">Precio inicial</str>
+		<str id="create.buyoutPrice">Precio de compra</str>
+		<str id="create.optional">opcional</str>
+		<str id="create.deposit">Depósito total</str>
+		<str id="create.creating">Subastar <param-html1/> de <param-html2/>
+    </str>
+		<str id="create.12hours">12 horas</str>
+		<str id="create.24hours">24 horas</str>
+		<str id="create.48hours">48 horas</str>
+		<str id="create.filter.all">Todos mis objetos</str>
+		<str id="create.filter.co">Consumibles</str>
+		<str id="create.filter.tr">Obj. comerciables</str>
+		<str id="create.filter.eq">Obj. equipables</str>
+		<str id="create.maxQty">Cantidad total por montón</str>
+		<str id="create.qtyLeft">Cantidad restante del montón</str>
+        <str id="create.depositFee">No tienes suficiente oro para cubrir la cuota de depósito.</str>
+		<str id="create.chooseItem">¿Qué quieres vender?</str>
+		<str id="create.chooseInfo1">Primero, selecciona un objeto del lado izquierdo. Podrás vender cualquier objeto transferible (salvo si está ligado a la cuenta) que se encuentre en tus bolsas, banco o buzón.</str>
+		<str id="create.chooseInfo2">Una vez seleccionado, podrás establecer el precio inicial, el precio de compra, la cantidad que deseas vender y el total de montones (para crear subastas múltiples con ese tipo de objeto).</str>
+		<str id="create.mailboxNotice">Hay más de 50 mensajes en tu buzón. No podrás acceder a los objetos que se&lt;br /&gt; encuentren adjuntos a cualquier correo que no figure entre los últimos 50 mensajes.</str>
+        <str id="upgrade.title">Actualiza a World of Warcraft A Distancia</str>
+		<str id="upgrade.button">Actualizar suscripción</str>
+		<str id="upgrade.text1">Puja y compra de subastas</str>
+		<str id="upgrade.text2">Recupera el oro de tu buzón</str>
+		<str id="upgrade.text3">¡Crea subastas!</str>
+		<str id="toast.bid">Se ha efectuado tu puja.</str>
+		<str id="toast.sold">Un artículo ha sido vendido.</str>
+		<str id="toast.won">¡Ganaste una subasta!</str>
+		<str id="toast.cancelled">Subasta cancelada.</str>
+		<str id="toast.created">Subasta creada.</str>
+		<str id="toast.outbid">¡Tu puja ha sido superada!</str>
+		<str id="toast.expired">Ha expirado una subasta.</str>
+		<str id="toast.interrupted">Proceso interrumpido.</str>
+		<str id="toast.totalCreated">{total} subasta(s) creada(s).</str>
+		<str id="error">Error en la Casa de Subastas</str>
+		<str id="na">N/D</str>
+		<str id="find">Buscar en la Casa de Subastas</str>
+        <str id="viewAll">Ver todo</str>
+        <str id="house.switchAlliance">Ir a la Casa de Subastas de la Alianza</str>
+        <str id="house.switchHorde">Ir a la Casa de Subastas de la Horda</str>
+        <str id="house.switchNeutral">Ir a la Casa de Subastas Neutral</str>
+        <str id="house.changeChar">Cambiar personaje</str>
+        <str id="remote.required">Requiere World of Warcraft A Distancia</str>
+        <str id="remote.message">Necesitas estar suscrito a World of Warcraft A Distancia para comprar y vender objetos en la Casa de Subastas.</str>
+	</auctionHouse>
 </strs>

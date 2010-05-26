@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="L’hôtel des ventes">
+	<faqlist>
+		<!--commenting out live version of the FAQ
+		<faq question = "Qu’est-ce que l’Hôtel des ventes Nomade&#160;?">
+			L’Hôtel des ventes Nomade vous permet de consulter n’importe quel hôtel des ventes auxquels les personnages de votre compte ont accès (après vous être connecté à l'Armurerie). À l’aide d’un abonnement à «&#160;World of Warcraft Nomade&#160;», vous pourrez également enchérir (ou effectuer des achats immédiats) ainsi que mettre en vente vos propres objets directement depuis vos sacs, votre banque ou votre boîte aux lettres. Il vous sera également possible de récupérer l’or de vos ventes ou de vos enchères perdues.
+		</faq>
+		<faq question = "Comment puis-je consulter l’hôtel des ventes sur l'Armurerie&#160;?">
+			Tout d'abord, connectez-vous et désignez un personnage principal, puis cliquez sur l’onglet «&#160;Consulter les enchères&#160;». Saisissez alors le mot recherché dans le champ prévu à cet effet. Vous pouvez affiner votre recherche en utilisant les options et filtres fonctionnant de manière similaire à ceux se trouvant en jeu. Pour basculer de l'hôtel des ventes de votre faction à un hôtel neutre, cliquez sur le symbole de faction dans le coin supérieur droit de l'interface. Un abonnement «&#160;World of Warcraft Nomade&#160;» n'est pas nécessaire pour consulter les hôtels des ventes, mais est requis pour enchérir, acheter immédiatement ou mettre en vente des objets depuis la fenêtre des résultats de la recherche.
+		</faq>	
+		<faq question = "Comment puis-je mettre des objets aux enchères&#160;?">
+			Un abonnement à «&#160;World of Warcraft Nomade&#160;» est nécessaire pour cela. Depuis l’onglet «&#160;Mettre aux enchères&#160;», choisissez l’objet que vous souhaitez vendre dans la liste située à gauche de l’écran. Vous pouvez mettre en vente n’importe quel objet transférable (hors objets liés au compte) depuis vos sacs, votre banque ou votre boîte aux lettres. Une fois celui-ci sélectionné, vous pouvez définir un prix de départ et/ou d’achat immédiat, la quantité que vous souhaitez mettre en vente, et le nombre de piles (pour déposer plusieurs enchères en même temps du même type d'objets).
+		</faq>
+		<faq question = "Comment puis-je récupérer l’or obtenu par mes ventes ou enchères perdues&#160;?">
+			Un abonnement à «&#160;World of Warcraft Nomade&#160;» est nécessaire pour récupérer votre or. Chaque vente réussie devrait être accompagnée d’un bouton «&#160;Récup. l'or&#160;» dans l’onglet «&#160;Mes ventes&#160;». Cliquez simplement sur ce bouton (ou sur le bouton «&#160;Récupérer tout l'or&#160;» si vous souhaitez prendre l’or de toutes les ventes réussies) pour obtenir l’or se trouvant dans votre boîte aux lettres. Vous pouvez également récupérer l’or de vos enchères perdues depuis l’onglet «&#160;Mes offres&#160;».
+		</faq>
+		<faq question = "Comment puis-je souscrire à «&#160;World of Warcraft Nomade&#160;»&#160;?">
+			Pour connaître tous les détails au sujet de «&#160;World of Warcraft Nomade&#160;», dont le prix, les fonctionnalités et comment vous y abonner, rendez-vous sur la <a href="http://eu.battle.net/account/management">page de gestion de compte Battle.net</a> ou consultez la <a href="/wow-remote.xml">F.A.Q. de «&#160;World of Warcraft Nomade&#160;»</a>.
+		</faq>
+		<faq question = "Y a-t-il une limite au nombre de transactions que je peux effectuer avec «&#160;World of Warcraft Nomade&#160;»&#160;?">
+			Oui. Pour éviter tout abus de ce service, et puisque «&#160;World of Warcraft Nomade&#160;» permet de faire de multiples transactions, une limite de 200 transactions quotidiennes a été mise en place. Cette limite est suffisamment élevée pour que la grande majorité des joueurs ne l’atteigne jamais, et nous surveillerons constamment l'utilisation du service pour l'ajuster et l'adapter en cas de besoin.
+		</faq>
+		<faq question = "L’Hôtel des ventes Nomade est-il affecté par la maintenance hebdomadaire&#160;?">
+			L’Hôtel des ventes Nomade ne sera pas disponible pendant les périodes de maintenance, y compris celles ayant lieu tous les mercredis pour les serveurs du jeu et des sites Internet.
+		</faq>
+		<xsl:if test="$region = 'KR'">
+		<faq question = "Je joue à World of Warcraft dans une salle de jeu Internet sans abonnement au jeu. Puis-je utiliser World of Warcraft Nomade sans m’abonner à ce service également&#160;?">
+		Pour utiliser les fonctionnalités de World of Warcraft Nomade comme acheter ou vendre des objets dans l’hôtel des ventes Nomade, un abonnement à World of Warcraft Nomade est requis. C’est le cas même si vous jouez dans une salle de jeu Internet avec un accès sans abonnement au jeu. Ceci vient du fait que l’abonnement au jeu World of Warcraft et l’abonnement au service World of Warcraft Nomade sont deux abonnements distincts et séparés.
+		</faq>
+		</xsl:if>-->
+		<!--begin beta FAQ-->
+		<faq question="Qu’est-ce que l’Hôtel des ventes Nomade ?">
+			L’Hôtel des ventes Nomade est une application en cours de phase de test bêta, qui vous permet de consulter n’importe quel hôtel des ventes auxquels les personnages de votre compte ont accès (après vous être connecté à l'Armurerie). Quand la bêta sera terminée et que cette application sera publique, vous pourrez également enchérir (ou effectuer des achats immédiats) ainsi que mettre en vente vos propres objets directement depuis vos sacs, votre banque ou votre boîte aux lettres si vous souscrivez à un abonnement. Il vous sera alors également possible de récupérer l’or de vos ventes ou de vos enchères perdues. Pendant la période de test de la bêta, vous pourrez essayer toutes ces fonctionnalités gratuitement sans abonnement à l'Hôtel des ventes Nomade.
+		</faq>
+		<faq question="Comment puis-je consulter l’hôtel des ventes sur Internet ?">
+			Tout d'abord, connectez-vous et désignez un personnage principal, puis cliquez sur l’onglet « Consulter les enchères ». Saisissez alors le mot recherché dans le champ prévu à cet effet. Vous pouvez affiner votre recherche en utilisant les options et filtres fonctionnant de manière similaire à ceux se trouvant en jeu. Pour basculer de l'hôtel des ventes de votre faction à un hôtel neutre, cliquez sur le symbole de faction dans le coin supérieur droit de l'interface. Un abonnement « World of Warcraft Nomade » n'est pas nécessaire pour consulter les hôtels des ventes, mais il sera requis après la période de test de la bêta pour enchérir, acheter immédiatement ou mettre en vente des objets depuis la fenêtre des résultats de la recherche.
+		</faq>	
+		<faq question="Comment puis-je mettre des objets aux enchères ?">
+			Depuis l’onglet « Mettre aux enchères », choisissez l’objet que vous souhaitez vendre dans la liste située à gauche de l’écran. Vous pouvez mettre en vente n’importe quel objet transférable (hors objets liés au compte) depuis vos sacs, votre banque ou votre boîte aux lettres. Une fois celui-ci sélectionné, vous pouvez définir un prix de départ et/ou d’achat immédiat, la quantité que vous souhaitez mettre en vente, et le nombre de piles (pour déposer plusieurs enchères en même temps du même type d'objets). Attention, après la fin de la bêta, il vous faudra souscrire à un abonnement à l'Hôtel des ventes Nomade pour utiliser ces fonctionnalités.
+		</faq>
+		<faq question="Comment puis-je récupérer l’or obtenu par mes ventes ou enchères perdues ?">
+			Un abonnement à « World of Warcraft Nomade » est nécessaire pour récupérer votre or. Chaque vente réussie devrait être accompagnée d’un bouton « Récup. l'or » dans l’onglet « Mes ventes ». Cliquez simplement sur ce bouton (ou sur le bouton « Récupérer tout l'or » si vous souhaitez prendre l’or de toutes les ventes réussies) pour obtenir l’or se trouvant dans votre boîte aux lettres. Vous pouvez également récupérer l’or de vos enchères perdues depuis l’onglet « Mes offres ».
+		</faq>
+		<faq question="Comment puis-je souscrire à « World of Warcraft Nomade » ?">
+			Les abonnements à l'Hôtel des ventes Nomade de World of Warcraft ne sont pas encore disponibles ; nous vous expliquerons ultérieurement comment faire pour vous abonner, dès que la bêta aura pris fin. D'ici là, vous pouvez consulter la <a href="/wow-remote.xml">F.A.Q. de « World of Warcraft Nomade »</a> pour en savoir plus.
+		</faq>
+		<faq question="Y a-t-il une limite au nombre de transactions que je peux effectuer avec « World of Warcraft Nomade » ?">
+			Oui. Pour éviter tout abus de ce service, et puisque « World of Warcraft Nomade » permet de faire de multiples transactions, une limite de 25 transactions quotidiennes a été mise en place spécialement pour cette bêta sur chaque compte World of Warcraft. Après la fin de cette bêta, nous prévoyons d'augmenter ce seuil à 200 transactions quotidiennes pour les abonnés à ce service, bien que cette restriction soit sujette à modification ultérieure. Cette limite est suffisamment élevée pour que la grande majorité des joueurs ne l’atteigne jamais, et nous surveillerons constamment l'utilisation du service pour l'ajuster et l'adapter en cas de besoin.
+		</faq>
+		<faq question="L’Hôtel des ventes Nomade est-il affecté par la maintenance hebdomadaire ?">
+			L’Hôtel des ventes Nomade ne sera pas disponible pendant les périodes de maintenance, y compris celles ayant lieu tous les mercredis pour les serveurs du jeu et des sites Internet. De plus, au cours de cette phase de test bêta, il est possible que le service soit indisponible de temps à autres pour cause de tests.
+		</faq>
+		<faq question="Qui peut participer à la bêta de l'Hôtel des ventes Nomade de World of Warcraft ?">
+			La bêta de l’Hôtel des ventes Nomade sera ouverte à tous les joeuurs de World of Warcraft sur des royaumes sélectionnés : vous n'avez pas à postuler pour y participer. Pour consulter la liste complète des royaumes ouverts à cette bêta, rendez-vous sur le fil de discussion dédié sur nos forums officiels. Si votre royaume n'est pas dans la liste, n'hésitez pas à garder un œil sur cette liste car nous prévoyons de l'étendre progressivement à tous les royaumes.
+		</faq>
+		<faq question="Je joue à World of Warcraft dans une salle de jeu Internet sans abonnement au jeu. Puis-je utiliser World of Warcraft Nomade sans m’abonner à ce service également ?" regOnly="KR">
+		Pour utiliser les fonctionnalités de World of Warcraft Nomade comme acheter ou vendre des objets dans l’hôtel des ventes Nomade, un abonnement à World of Warcraft Nomade est requis. C’est le cas même si vous jouez dans une salle de jeu Internet avec un accès sans abonnement au jeu. Ceci vient du fait que l’abonnement au jeu World of Warcraft et l’abonnement au service World of Warcraft Nomade sont deux abonnements distincts et séparés.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="World of Warcraft Nomade" url="/wow-remote.xml"/>
+				
+		<relatedlink type="hr"/>
+		<relatedlink name="Armurerie Mobile pour World of Warcraft" url="/iphone.xml"/>
+		<relatedlink name="Outil de recherche pour navigateur" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Mises à jour de l'Armurerie" url="/updates.xml"/>
+		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
+		<relatedlink name="Signaler une erreur" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Copiez votre rapport d'erreur ci-dessous. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

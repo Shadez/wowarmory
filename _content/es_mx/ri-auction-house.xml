@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Auction House">
+	<faqlist>
+	<!--commenting out live version of the FAQ
+		<faq question = "¿Qué es la Casa de Subastas en la Web?">
+			Esta característica permitirá a los jugadores iniciar sesión en la Armería y buscar objetos en cualquiera de las casas de subastas a las que puedan acceder sus personajes. Si te suscribes a World of Warcraft Remoto, también podrás realizar pujas o comprar subastas existentes y poner a la venta los objetos que tengas en tus bolsas, banco o buzón. Además, te será posible recoger el oro que obtengas a través de tus subastas, o las devoluciones en caso de que alguien efecúe una contraoferta; todo esto desde la web o un dispositivo móvil compatible.
+		</faq>
+				<faq question = "¿Cómo puedo ver que hay en la Casa de Subastas a través de la web?">
+				Una vez que inicies sesión y designes un personaje primario, haz clic en la pestaña "Ver Subastas" e ingresa lo que desees buscar en el campo. Podrás hacer que tu búsqueda sea más precisa, utilizando los filtros y opciones (similares a las que aparecen en el juego). Para cambiar entre la casa de subastas específica de la facción del personaje y la casa de subastas neutral del reino, haz clic en el símbolo de la facción ubicado del lado superior derecho de la interfaz. No es necesaria uan suscripción a World of Warcraft Remoto para buscar objetos en la Casa de Subastas, sin embargo, deberás suscribirte a World of Warcraft Remoto para que puedas realizar pujas o comprar objetos desde la ventana de resultados.
+		</faq>	
+		<faq question = "¿Cómo creo subastas?">
+		Para crear subastas es necesaria una suscripción a World of Warcraft Remoto. Desde la pestaña "Crear Subastas", selecciona el objeto que desees vender desde la lista ubicada del lado izquierdo de la pantalla. Podrás vender cualquier objeto transferible (excluyendo aquellos ligados a la cuenta) que se encuentre en tus bolsas, banco o buzón. Una vez que lleves a cabo tu selección, tendrás la opción de designar el precio inicial y de compra, la cantidad que quieres vender y el número de montones (para crear subastas múltiples con el mismo objeto).
+		</faq>
+		<faq question = "¿Cómo recojo el oro de mis subastas exitosas y de las pujas donde hubo contraoferta?">
+			Para que puedas hacer esto necesitarás una suscripción a World of Warcraft Remoto. Para recoger oro de una subasta exitosa, entra a la pestaña "Mis Subastas" y luego haz clic en el botón "Recoger Oro" (ubicado junto a la subasta exitosa), o en el botón "Recoger Todo" para recolectar todo el oro obtenido a través de las subastas que hayas vendido. Se extraerá el oro de tu buzón y se le entregará a tu personaje. También podrás recoger el oro devuelto cuando haya alguna contraoferta en alguna de tus pujas desde la pestaña "Mis Subastas".
+		</faq>
+				<faq question = "¿Cómo me suscribo a World of Warcraft Remoto?">
+			Para más información acerca de World of Warcraft Remoto, incluyendo su precio, características y la manera de suscribirte, visita la sección de <a href="http://www.battle.net/account/management">Gestión de cuenta de Battle.net</a>, o echa un vistazo a las <a href="/wow-remote.xml">PF de World of Warcraft Remoto</a>.
+		</faq>
+		<faq question = "¿Hay un límite en la cantidad de transacciones (compras y ventas) que puedo realizar?">
+			Sí, para impedir el abuso de este servicio, hay un sistema que limita la cantidad total de transacciones en la casa de subastas (incluyendo pujas, compras y la creación de subastas), que se podrán efectuar diariamente desde una licencia individual de World of Warcraft a través de World of Warcraft Remoto. Actualmente el límite es de 200 transacciones al día. Nuestro objetivo es asegurar que la mayoría de los jugadores que hagan uso del servicio no alcancen dicho límite. Estaremos monitoreando el uso del servicio y realizando ajustes al sistema según se requiera.
+		</faq>
+				<faq question = "¿Se verá afectada la Casa de Subastas en la Web por el mantenimiento semanal?">
+			La Casa de Subastas no estará disponible cuando los servidores se encuentren inactivos, lo que incluye el periodo de mantenimiento semanal del juego todos los martes.
+		</faq>
+		<xsl:if test="$region = 'KR'">
+		<faq question = "Juego World of Warcraft en un Centro de Juegos por Internet (IGR por sus siglas en inglés) sin una suscripción al juego. ¿Puedo usar World of Warcraft Remoto en uno de estos centros sin necesidad de una suscripción?">		
+		Para utilizar características de World of Warcraft Remoto, como compra y venta de objetos en la Casa de Subastas Remota, necesitarás una suscripción a dicho servicio. Esto no cambia aunque juegues World of Warcraft en un Centro de Juegos sin suscripción, ya que World of Warcraft Remoto tiene una suscripción por separado y es distinta del juego mismo.
+		</faq>
+		</xsl:if>-->
+		<!--begin beta FAQ-->
+		<faq question="¿Qué es la prueba beta de la Casa de Subastas en la Web">
+			La Casa de Subastas Remota es una nueva característica, actualmente en fase de prueba beta, que permitirá a los jugadores iniciar sesión en la Armería y buscar objetos en cualquiera de las casas de subastas a las que puedan acceder sus personajes. Una vez que concluya la prueba beta y se lleve a cabo el lanzamiento de la Casa de Subastas Remota, los jugadores que se suscriban a un servicio llamado World of Warcraft Remoto, que saldrá próximamente, podrán realizar pujas o comprar subastas existentes y poner a la venta los objetos que tengan en tus bolsas, banco o buzón. Además, les será posible recoger el oro que obtengan a través de sus subastas, o las devoluciones en caso de que alguien efecúe una contraoferta; todo esto desde la web o un dispositivo móvil compatible. Durante la fase de prueba beta, los jugadores podrán utilizar todas estas características, incluyendo las características premium como realizar pujas y crear subastas; sin la necesidad de una suscripción a World of Warcraft Remoto.
+		</faq>
+		<faq question="¿Cómo puedo ver que hay en la Casa de Subastas a través de la web?">
+			Una vez que inicies sesión y designes un personaje primario, haz clic en la pestaña "Ver Subastas" e ingresa lo que desees buscar en el campo. Podrás hacer que tu búsqueda sea más precisa, utilizando los filtros y opciones (similares a las que aparecen en el juego). Para cambiar entre la casa de subastas específica de la facción del personaje y la casa de subastas neutral del reino, haz clic en el símbolo de la facción ubicado del lado superior derecho de la interfaz. No es necesaria uan suscripción a World of Warcraft Remoto para buscar objetos en la Casa de Subastas, sin embargo, una vez que concluya la prueba beta, deberás suscribirte a World of Warcraft Remoto para que puedas realizar pujas o comprar objetos desde la ventana de resultados.
+		</faq>	
+		<faq question="¿Cómo creo subastas?">
+			Desde la pestaña "Crear Subastas", selecciona el objeto que desees vender desde la lista ubicada del lado izquierdo de la pantalla. Podrás vender cualquier objeto transferible (excluyendo aquellos ligados a la cuenta) que se encuentre en tus bolsas, banco o buzón. Una vez que lleves a cabo tu selección, tendrás la opción de designar el precio inicial y de compra, la cantidad que quieres vender y el número de montones (para crear subastas múltiples con el mismo objeto). Por favor ten en consideración que una vez que concluya la prueba beta, necesitarás una suscripción a World of Warcraft Remoto para que puedas crear subastas.
+		</faq>
+		<faq question="¿Cómo recojo el oro de mis subastas exitosas y de las pujas donde hubo contraoferta?">
+			Para recoger oro de una subasta exitosa, entra a la pestaña "Mis Subastas" y luego haz clic en el botón "Recoger Oro" (ubicado junto a la subasta exitosa), o en el botón "Recoger Todo" para recolectar todo el oro obtenido a través de las subastas que hayas vendido. Se extraerá el oro de tu buzón y se le entregará a tu personaje. También podrás recoger el oro devuelto cuando haya alguna contraoferta en alguna de tus pujas desde la pestaña "Mis Subastas". Por favor ten en consideración que una vez que concluya la prueba beta, necesitarás una suscripción a World of Warcraft Remoto para poder utilizar estas características.
+		</faq>
+		<faq question="¿Cómo me suscribo a World of Warcraft Remoto?">
+			Las suscripciones a World of Warcraft Remoto aún no están disponibles. Habrá más información disponible acerca de la forma de suscripción una vez que concluya la prueba beta de la Casa de Subastas Remota. Mientras tanto, echa un vistazo a las <a href="/wow-remote.xml">PF de World of Warcraft Remoto</a> si deseas más información.
+		</faq>
+		<faq question="¿Hay un límite en la cantidad de transacciones (compras y ventas) que puedo realizar?">
+			Sí, para impedir el abuso de este servicio, hay un sistema que limita la cantidad total de transacciones en la casa de subastas (incluyendo pujas, compras y la creación de subastas), que se podrán efectuar diariamente desde una licencia individual de World of Warcraft a través de World of Warcraft Remoto. Para propósitos de la prueba beta, el límite será de 25 transacciones al día por cuenta de World of Warcraft. Cuando concluya la prueba beta de la Casa de Subastas Remota y sea lanzado el servicio de World of Warcraft Remoto, planeamos aumentar dicho límite a 200 transacciones al día (con una suscripción a World of Warcraft Remoto); aunque dicho límite se encuentra sujeto a cambios. Nuestro objetivo es asegurar que la mayoría de los jugadores que hagan uso del servicio no alcancen dicho límite. Estaremos monitoreando el uso del servicio y realizando ajustes al sistema según se requiera.  
+		</faq>
+		<faq question="¿Se verá afectada la Casa de Subastas en la Web por el mantenimiento semanal?">
+			La Casa de Subastas no estará disponible cuando los servidores se encuentren inactivos, lo que incluye el periodo de mantenimiento semanal del juego todos los martes. Además, durante el periodo de prueba beta, el servicio puede no estar disponible en ciertos periodos para propósitos de prueba.
+		</faq>
+		<faq question="¿Quién puede participar en la prueba beta de World of Warcraft Remoto?">
+		La prueba beta de la Casa de Subastas Remota se encuentra disponible para los jugadores actuales de World of Warcraft en reinos selectos. No necesitas registrarte para participar. Si deseas una lista completa de los reinos que participan en la prueba beta, visita el hilo acerca de la prueba beta de la Casa de Subastas Remota en los foros oficiales de World of Warcraft. Si no encuentras tu reino, revisa más adelante, ya que planeamos expandir la prueba beta a todos los reinos en el futuro.
+		</faq>
+		<faq question="Juego World of Warcraft en un Centro de Juegos por Internet (IGR por sus siglas en inglés) sin una suscripción al juego. ¿Puedo usar World of Warcraft Remoto en uno de estos centros sin necesidad de una suscripción?" regOnly="KR">
+		Para utilizar características de World of Warcraft Remoto, como compra y venta de objetos en la Casa de Subastas Remota, necesitarás una suscripción a dicho servicio. Esto no cambia aunque juegues World of Warcraft en un Centro de Juegos sin suscripción, ya que World of Warcraft Remoto tiene una suscripción por separado y es distinta del juego mismo.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
+		<relatedlink type = "hr"/>-->
+		<relatedlink name="World of Warcraft Remoto" url="/wow-remote.xml"/>
+				
+		<relatedlink type="hr"/>
+		<relatedlink name="Armería Móvil de World of Warcraft" url="/iphone.xml"/>
+		<relatedlink name="Plug-in de búsqueda para tu navegador" url="/search-plugin.xml"/>
+		
+		<relatedlink type="hr"/>
+		<relatedlink name="Actualizaciones de la Armería" url="/updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
+		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>
