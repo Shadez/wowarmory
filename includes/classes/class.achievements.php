@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 212
+ * @revision 214
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -306,11 +306,11 @@ Class Achievements extends Connector {
     }
     
     public function BuildStatisticsCategoriesTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_statistics_category` WHERE `parentCategory`=1");
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=1");
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_statistics_category` WHERE `parentCategory`=?", $cat['id']);
+            $child_categories = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=?", $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);

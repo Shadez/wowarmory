@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 214
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -517,10 +517,16 @@ $xml->XMLWriter()->startElement('spellData');
 for($i=1;$i<4;$i++) {
     if($data['spellid_'.$i] > 0) {
         $spell_tmp = $armory->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $data['spellid_'.$i]);
-        if(!isset($spell_tmp['Description_'.$armory->_locale])) {
+        if($armory->_locale == 'en_gb' || $armory->_locale == 'ru_ru') {
+            $tmp_locale = $armory->_locale;
+        }
+        else {
+            $tmp_locale = 'en_gb';
+        }
+        if(!isset($spell_tmp['Description_' . $tmp_locale])) {
             continue;
         }
-        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$_locale]));
+        $spellInfo = $items->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$tmp_locale]));
         if($spellInfo) {
             $spellInfo = str_replace('&quot;', '"', $spellInfo);
             $xml->XMLWriter()->startElement('spell');

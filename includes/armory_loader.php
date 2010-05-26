@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 214
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,14 +30,14 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r198');
-define('ARMORY_REVISION', 198);
-$armory = new Connector;
+define('DB_VERSION', 'armory_r214');
+define('ARMORY_REVISION', 214);
+$armory = new Connector();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
 if($dbVersion != DB_VERSION) {
     if(empty($dbVersion)) {
-	     echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
+    	 echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
     }
     die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
 }
@@ -51,16 +51,18 @@ if(!@include('UpdateFields.php')) {
 if(!@include('defines.php')) {
     die('<b>Error:</b> can not load defines.php!');
 }
-if(!@include('classes/class.utils.php')) {
-    die('<b>Error:</b> can not load utils class!');
-}
 
-$utils = new Utils;
+if(!defined('skip_utils_class')) {
+    if(!@include('classes/class.utils.php')) {
+        die('<b>Error:</b> can not load utils class!');
+    }
+    $utils = new Utils;
+}
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
 }
-elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
+elseif(isset($_GET['logout']) && $_GET['logout'] == 1 && !defined('skip_utils_class')) {
     $utils->logoffUser();
     header('Location: index.xml');
 }
@@ -152,6 +154,12 @@ if(defined('load_search_class')) {
         die('<b>Error:</b> can not load search engine class!');
     }
     $search = new SearchMgr;
+}
+if(defined('load_itemproto_class')) {
+    if(!@include('classes/class.itemproto.php')) {
+        die('<b>Error:</b> can not load itemProto class!');
+    }
+    $proto = new ItemProto;
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {
