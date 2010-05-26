@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 212
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -159,7 +159,7 @@ Class Achievements extends Connector {
         if($categories != null) {
             $achievement_ids = $this->aDB->select("
             SELECT `achievement`
-                FROM `".$this->mysqlconfig['name_characters']."`.`character_achievement`
+                FROM `".$this->connectionData['name_characters']."`.`character_achievement`
                 WHERE `achievement` IN 
                 (
                     SELECT `id` 
@@ -167,6 +167,9 @@ Class Achievements extends Connector {
                     WHERE `categoryId` IN (".$categories.")
                 )
                 AND `guid`=?", $this->guid);
+            if(!$achievement_ids) {
+                return false;
+            }
             $ids = array();
             foreach($achievement_ids as $ach) {
                 $ids[] = $ach['achievement'];

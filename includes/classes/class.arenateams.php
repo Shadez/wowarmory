@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 212
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -163,63 +163,78 @@ Class Arenateams extends Connector {
         }
     }
     
-    public function BuildArenaLadderList($type, $page, $num = false, $order = 'rank', $type = 'DESC') {
+    public function BuildArenaLadderList($type, $page, $num = false, $order = 'rank', $sort = 'DESC') {
         if($num == true) {
             return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
         }
-        $arenaTeamInfo = $this->cDB->select("
-        SELECT
-        `arena_team`.`arenateamid`,
-        `arena_team`.`name`,
-        `arena_team_stats`.`rating`,
-        `arena_team_stats`.`games`  AS `gamesPlayed`,
-        `arena_team_stats`.`wins`   AS `gamesWon`,
-        `arena_team_stats`.`rank`   AS `ranking`,
-        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
-        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
-        `characters`.`race`
-            FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                    WHERE `type`=?
-                        ORDER BY `arena_team_stats`.`".$order."` ".$type." LIMIT ".$page.", 20
-        ", $type);
-        if(!$arenaTeamInfo) {
-            $this->Log()->writeLog('%s : unable to find any arena teams', __METHOD__);
-            return false;
-        }
         $result_areanteams = array();
         $i = 0;
-        foreach($arenaTeamInfo as $team) {
-            $result_areanteams[$i]['data'] = $team;
-            $result_areanteams[$i]['data']['num'] = $i+1;
-            $result_areanteams[$i]['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
-            $result_areanteams[$i]['data']['faction'] = '';
-            $result_areanteams[$i]['data']['factionId'] = Utils::GetFactionId($result_areanteams[$i]['data']['race']);
-            $result_areanteams[$i]['data']['lastSeasonRanking'] = '';
-            $result_areanteams[$i]['data']['realm'] = $this->currentRealmInfo['name'];
-            $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $type, urlencode($team['name']));
-            $result_areanteams[$i]['data']['relevance'] = 0;
-            $result_areanteams[$i]['data']['season'] = 0;
-            $result_areanteams[$i]['data']['size'] = $type;
-            $result_areanteams[$i]['data']['teamSize'] = $type;
-            $result_areanteams[$i]['data']['teamUrl'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $type, urlencode($team['name']));
-            $result_areanteams[$i]['emblem'] = self::GetArenaTeamEmblem($team['arenateamid']);
-            unset($result_areanteams[$i]['data']['arenateamid']);
-            unset($result_areanteams[$i]['data']['captainguid']);
-            $i++;
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $realmArenaTeamInfo = $db->select("
+            SELECT
+            `arena_team`.`arenateamid`,
+            `arena_team`.`name`,
+            `arena_team_stats`.`rating`,
+            `arena_team_stats`.`games`  AS `gamesPlayed`,
+            `arena_team_stats`.`wins`   AS `gamesWon`,
+            `arena_team_stats`.`rank`   AS `ranking`,
+            `arena_team_stats`.`played` AS `seasonGamesPlayed`,
+            `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+            `characters`.`race`
+                FROM `arena_team` AS `arena_team`
+                    LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+                    LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        WHERE `type`=?
+                            ORDER BY `arena_team_stats`.`".$order."` ".$sort." LIMIT ".$page.", 20
+            ", $type);
+            if(!$realmArenaTeamInfo) {
+                $this->Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
+                continue;
+            }
+            foreach($realmArenaTeamInfo as $team) {
+                $result_areanteams[$i]['data'] = $team;
+                $result_areanteams[$i]['data']['num'] = $i+1;
+                $result_areanteams[$i]['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
+                $result_areanteams[$i]['data']['faction'] = null;
+                $result_areanteams[$i]['data']['factionId'] = Utils::GetFactionId($result_areanteams[$i]['data']['race']);
+                $result_areanteams[$i]['data']['lastSeasonRanking'] = null;
+                $result_areanteams[$i]['data']['realm'] = $realm_info['name'];
+                $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($realm_info['name']), $type, urlencode($team['name']));
+                $result_areanteams[$i]['data']['relevance'] = 0;
+                $result_areanteams[$i]['data']['season'] = 0;
+                $result_areanteams[$i]['data']['size'] = $type;
+                $result_areanteams[$i]['data']['teamSize'] = $type;
+                $result_areanteams[$i]['data']['teamUrl'] = sprintf('r=%s&ts=%d&t=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($realm_info['name']), $type, urlencode($team['name']));
+                $result_areanteams[$i]['emblem'] = self::GetArenaTeamEmblem($team['arenateamid'], $db);
+                unset($result_areanteams[$i]['data']['arenateamid'], $result_areanteams[$i]['data']['captainguid']);
+                $i++;
+            }
+        }
+        if(!isset($result_areanteams[0]['data'])) {
+            $this->Log()->writeLog('%s : unable to find any arena teams', __METHOD__);
+            return false;
         }
         return $result_areanteams;
     }
     
-    public function GetArenaTeamEmblem($teamId=null) {
+    public function GetArenaTeamEmblem($teamId = null, $db = false) {
         if($teamId == null) {
             $teamId = $this->arenateamid;
         }
-        return $this->cDB->selectRow("
-        SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
-            FROM `arena_team`
-                WHERE `arenateamid`=?", $teamId);
+        if($db == false) {
+            return $this->cDB->selectRow("
+            SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
+                FROM `arena_team`
+                    WHERE `arenateamid`=?", $teamId);
+        }
+        else {
+            return $db->selectRow("
+            SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
+                FROM `arena_team`
+                    WHERE `arenateamid`=?", $teamId);
+        }
     }
     
     public function buildArenaIconsList($type) {
