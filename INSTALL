@@ -21,6 +21,7 @@ INSTALLATION STEPS:
 8. For 3D Viewer installation info read 3DViewer_info.txt
 9. For full work you need to patch MaNGOS core with tools/armory_character_stats/wowarmory_character_stats_*.patch
    and your characters DB with provided SQL update (characters.sql - in the same folder).
+   Trinity Core users: patch for TC is placed in tools/trinity_core folder.
 10. If you use UNIX system, you need to manage access rights to allow script write data to 'cache' folder.
 11. If you have diffirent servers (MaNGOS and Trinity Core):
     Open 'includes/classes/configuration.php' and edit $ArmoryConfig['multiRealm'][REALM_ID]['type'] to 'trinity' or 'mangos'.
@@ -48,6 +49,7 @@ INSTALLATION STEPS:
 8. Как установить и настроить 3D просмотрщик читайте в файле 3DViewer_info.txt
 9. Для работы страниц персонажа вам необходимо пропатчить ядро MaNGOS файлом tools/armory_character_stats/wowarmory_character_stats_*.patch,
 	 а так же, базу персонажей файлом characters.sql (в папке патча).
+    Пользователи Trinity Core: патч для TC находится в папке tools/trinity_core
 10. Если вы используете UNIX-систему, вам необходимо изменить права доступа к папке cache чтобы скрипт мог записывать кэшированные файлы.
 11. Если у вас запущено несколько реалмов с разными серверами (MaNGOS и Trinity Core):
     Откройте файл 'includes/classes/configuration.php' и измените параметр $ArmoryConfig['multiRealm'][REALM_ID]['type'] на 'trinity' или 'mangos'.
