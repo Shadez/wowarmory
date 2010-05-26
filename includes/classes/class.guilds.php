@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 168
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 209
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -77,6 +77,7 @@ Class Guilds extends Connector {
         }
         $guild_data = $this->cDB->selectRow("SELECT `name`, `leaderguid`, `BankMoney`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor` FROM `guild` WHERE `guildid`=?", $this->guildId);
         if(!$guild_data) {
+            $this->Log()->writeError('%s : unable to get data from DB for guild %d', __METHOD__, $this->guildId);
             return false;
         }
         $this->guildName       = $guild_data['name'];
@@ -99,6 +100,7 @@ Class Guilds extends Connector {
       **/
      public function initGuild() {
         if(!$this->guildName) {
+            $this->Log()->writeError('%s : guilName not defined', __METHOD__);
             return false;
         }
         $this->guildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`=? LIMIT 1", $this->guildName);
@@ -118,6 +120,7 @@ Class Guilds extends Connector {
             $this->guid = $guid;
         }
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $this->guildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $this->guid);
@@ -134,6 +137,7 @@ Class Guilds extends Connector {
       **/
      public function getGuildName() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $this->guildName = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->guildId);
@@ -148,6 +152,7 @@ Class Guilds extends Connector {
       **/
      public function CountGuildMembers() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         return $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `guild_member` WHERE `guildid`=?", $this->guildId);
@@ -161,6 +166,7 @@ Class Guilds extends Connector {
       **/     
      public function getGuildLeaderGuid() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $this->guildleaderguid = $this->cDB->selectCell("SELECT `leaderguid` FROM `guild` WHERE `guildid`=? LIMIT 1", $this->guildId);
@@ -174,6 +180,7 @@ Class Guilds extends Connector {
       **/
      public function getGuildTabardStyle() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $gTabard = $this->cDB->selectRow("
@@ -196,10 +203,11 @@ Class Guilds extends Connector {
       **/
      public function getGuildFaction() {
         if(!$this->guildleaderguid) {
+            $this->Log()->writeError('%s : guildleaderguid not defined', __METHOD__);
             return false;
         }
         $race = $this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guildleaderguid);
-        $this->guildFaction = ($race==2 || $race==5 || $race==6 || $race==8 || $race==10) ? '1' : '0';
+        $this->guildFaction = Utils::GetFactionId($race);
         return true;
      }
      
@@ -211,6 +219,7 @@ Class Guilds extends Connector {
       **/
      public function BuildGuildList() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $memberListTmp = $this->cDB->select("
@@ -255,6 +264,7 @@ Class Guilds extends Connector {
       **/
      public function GetGuildInfo() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         return $this->cDB->selectRow("SELECT `info`, `motd` FROM `guild` WHERE `guildid`=?", $this->guildId);
@@ -268,6 +278,7 @@ Class Guilds extends Connector {
       **/
      public function GetGuildBankTabs() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $tabs = $this->cDB->select("SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon` FROM `guild_bank_tab` WHERE `guildid`=?", $this->guildId);
@@ -287,6 +298,7 @@ Class Guilds extends Connector {
       **/
      public function showGuildBankContents() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $GuildBankContents = null;
@@ -317,6 +329,7 @@ Class Guilds extends Connector {
       **/
      public function GetGuildBankMoney() {
         if(!$this->guildBankMoney) {
+            $this->Log()->writeError('%s : guildBankMoney not defined', __METHOD__);
             return false;
         }
         return $this->guildBankMoney;
@@ -330,6 +343,7 @@ Class Guilds extends Connector {
       **/
      public function BuildGuildBankItemList() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         $items_list = $this->cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=?", $this->guildId);
@@ -362,6 +376,7 @@ Class Guilds extends Connector {
      
      public function GetGuildRanks() {
         if(!$this->guildId) {
+            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
         return $this->cDB->select("SELECT `rid` AS `id`, `rname` AS `name` FROM `guild_rank` WHERE `guildid`=?", $this->guildId);

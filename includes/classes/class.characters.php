@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -159,10 +159,10 @@ Class Characters extends Connector {
     }
     
     public function BuildCharacter($name) {
-        $this->Log()->writeLog('Prepare data build for player %s', $name);
         if(!is_string($name)) {
             return false;
         }
+        $this->Log()->writeLog('%s: Prepare data build for player %s', __METHOD__, $name);
         $player_data = $this->cDB->selectRow("
         SELECT
         `characters`.`guid`,
@@ -199,55 +199,52 @@ Class Characters extends Connector {
         if($gmLevel_mangos && $gmLevel_trinity) {
             // MaNGOS doesn't have `account_access` table in `realmd` DB
             if($this->currentRealmInfo['type'] == 'trinity') {
-                $this->Log()->writeLog('Detected MaNGOS AND Trinity data in realmd DB, using Trinity (by armoryconfig[type])');
+                $this->Log()->writeLog('%s: Detected MaNGOS AND Trinity data in realmd DB, using Trinity (by armoryconfig[type])', __METHOD__);
                 $gmLevel = $gmLevel_trinity;
             }
             else {
                 // error?
-                $this->Log()->writeLog('Detected MaNGOS AND Trinity data in realmd DB, using MaNGOS (by armoryconfig[type])');
+                $this->Log()->writeLog('%s: Detected MaNGOS AND Trinity data in realmd DB, using MaNGOS (by armoryconfig[type])', __METHOD__);
                 $gmLevel = $gmLevel_mangos;
             }
         }
         elseif($gmLevel_mangos && !$gmLevel_trinity) {
-            $gmLevel = $gmLevel_mangos;
+            $gmLevel = $gmLevel_mangos ;
         }
         elseif($gmLevel_trinity && !$gmLevel_mangos) {
             $gmLevel = $gmLevel_trinity;
         }
         if(!$gmLevel) {
-            unset($player_data);
-            $this->Log()->writeError('Unable to find gmlevel for account #%d (character: %d, %s)', $player_data['account'], $player_data['guid'], $player_data['name']);
-            // Unknown account
-            return false;
+            $gmLevel = 0;
         }
         $allowed = ($gmLevel <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if(!$allowed || $player_data['level'] < $this->armoryconfig['minlevel']) {
-            $this->Log()->writeLog('Player %d (%s) is not allowed to be displayed in Armory!', $player_data['guid'], $player_data['name']);
+            $this->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory!', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
-            $this->Log()->writeError('Player %d (%s) have incorrect data in DB: class %d not found.', $player_data['guid'], $player_data['name'], $player_data['class']);
+            $this->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: class %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
             unset($player_data);
             return false;
         }
         elseif($player_data['race'] >= MAX_RACES) {
             // Unknown race
-            $this->Log()->writeError('Player %d (%s) have incorrect data in DB: race %d not found.', $player_data['guid'], $player_data['name'], $player_data['race']);
+            $this->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: race %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
             unset($player_data);
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
         if($this->faction != 0 && $this->faction != 1) {
             // Unknown faction
-            $this->Log()->writeError('Player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
+            $this->Log()->writeError('%s : player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
             unset($player_data);
             return false;
         }
         // Everything correct, build class
-        $this->Log()->writeLog('All correct, player %s builded', $name);
+        $this->Log()->writeLog('%s : All correct, player %s builded', __METHOD__, $name);
         foreach($player_data as $pData_key => $pData_value) {
             $this->{$pData_key} = $pData_value;
         }
@@ -276,7 +273,7 @@ Class Characters extends Connector {
     private function __GetTitleInfo() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
         if(!$title_data) {
-            $this->Log()->writeError('Player %d (%s) have wrong chosenTitle id: %d', $this->guid, $this->name, $this->chosenTitle);
+            $this->Log()->writeError('%s: Player %d (%s) have wrong chosenTitle id: %d', __METHOD__, $this->guid, $this->name, $this->chosenTitle);
             return true;
         }
         switch($this->gender) {

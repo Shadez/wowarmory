@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 196
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -39,6 +39,7 @@ Class Arenateams extends Connector {
     
     public function _initTeam() {
         if(!$this->teamname) {
+            $this->Log()->writeError('%s : teamname not defined', __METHOD__);
             return false;
         }
         $arenaInfo           = $this->cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type` FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname);
@@ -53,6 +54,7 @@ Class Arenateams extends Connector {
     
     public function GetArenaTeamInfo() {
         if(!$this->arenateamid) {
+            $this->Log()->writeError('%s : arenateamid not defined', __METHOD__);
             return false;
         }
         $arenateaminfo = array();
@@ -66,6 +68,7 @@ Class Arenateams extends Connector {
         `wins2`  AS `seasonGamesWon`
             FROM `arena_team_stats` WHERE `arenateamid`=?", $this->arenateamid);
         if(!$arenateaminfo) {
+            $this->Log()->writeError('%s : unable to get data from DB for arenateam %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return false;
         }
         $arenateaminfo['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
@@ -91,6 +94,7 @@ Class Arenateams extends Connector {
     
     public function IsTeam() {
         if(!$this->teamname) {
+            $this->Log()->writeError('%s : teamname not defined', __METHOD__);
             return false;
         }
         if(!$this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname)) {
@@ -101,10 +105,12 @@ Class Arenateams extends Connector {
     
     public function GetCharacterArenaTeamInfo() {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $team_names = $this->cDB->select("SELECT `name` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=?)", $this->guid);
         if(!$team_names) {
+            $this->Log()->writeLog('%s : player %d does not have any arena teams', __METHOD__, $this->guid);
             return false;
         }
         $count_teams = count($team_names);
@@ -119,6 +125,7 @@ Class Arenateams extends Connector {
     
     public function getTeamStats() {
         if(!$this->arenateamid) {
+            $this->Log()->writeError('%s : arenateamid not defined', __METHOD__);
             return false;
         }
         $this->teamstats = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=? LIMIT 1", $this->arenateamid);
@@ -141,6 +148,7 @@ Class Arenateams extends Connector {
         WHERE `arena_team_member`.`arenateamid`=?
         ", $this->arenateamid);
         if(!$this->players) {
+            $this->Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return;
         }
         $count_players = count($this->players);
@@ -177,6 +185,7 @@ Class Arenateams extends Connector {
                         ORDER BY `arena_team_stats`.`".$order."` ".$type." LIMIT ".$page.", 20
         ", $type);
         if(!$arenaTeamInfo) {
+            $this->Log()->writeLog('%s : unable to find any arena teams', __METHOD__);
             return false;
         }
         $result_areanteams = array();
@@ -187,7 +196,6 @@ Class Arenateams extends Connector {
             $result_areanteams[$i]['data']['battleGroup'] = $this->armoryconfig['defaultBGName'];
             $result_areanteams[$i]['data']['faction'] = '';
             $result_areanteams[$i]['data']['factionId'] = Utils::GetFactionId($result_areanteams[$i]['data']['race']);
-            //$result_areanteams[$i]['data']['factionId'] = 1;
             $result_areanteams[$i]['data']['lastSeasonRanking'] = '';
             $result_areanteams[$i]['data']['realm'] = $this->currentRealmInfo['name'];
             $result_areanteams[$i]['data']['realmUrl'] = sprintf('b=%s&r=%s&ts=%d&select=%s', urlencode($this->armoryconfig['defaultBGName']), urlencode($this->currentRealmInfo['name']), $type, urlencode($team['name']));

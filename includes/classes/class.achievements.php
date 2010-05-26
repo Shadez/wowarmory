@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -369,7 +369,6 @@ Class Achievements extends Connector {
         if($date) {
             return true;
         }
-        $this->Log()->writeError('%s : unable to get completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
         return false;
     }
     
@@ -512,7 +511,6 @@ Class Achievements extends Connector {
         if($criteria_data) {
             return $criteria_data;
         }
-        $this->Log()->writeError('%s : progress for criteria %d and player %d not found in character_achievement_progress table', __METHOD__, $criteria_id, $this->guid);
         return false;
     }
     

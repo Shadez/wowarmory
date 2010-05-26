@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 195
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -179,7 +179,6 @@ Class Items extends Connector {
                 return array('value' => 'sourceType.gameObjectDrop');
             }
         }
-        
         $vendorLoot = $this->wDB->selectCell("SELECT `entry` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $item);		
         $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=?", $item);
         if($vendorLoot && $reputationReward > 0) {
@@ -188,8 +187,7 @@ Class Items extends Connector {
         elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
             return array('value' => 'sourceType.vendor');
         }
-        	
-		$questLoot = $this->wDB->selectCell("
+        $questLoot = $this->wDB->selectCell("
 		SELECT `entry`
 		  FROM `quest_template`
 		      WHERE `RewChoiceItemId1` = ? OR `RewChoiceItemId2` = ? OR `RewChoiceItemId3` = ? OR 
@@ -198,7 +196,6 @@ Class Items extends Connector {
         if($questLoot) {
             return array('value' => 'sourceType.questReward');
         }
-        
         $craftLoot = $this->aDB->selectCell("SELECT `id` FROM `armory_spell` WHERE `EffectItemType_1`=? OR `EffectItemType_2`=? OR `EffectItemType_3`=? LIMIT 1", $item, $item, $item);
         if($craftLoot) {
             return array('value' => 'sourceType.createdByPlans');
@@ -217,16 +214,16 @@ Class Items extends Connector {
         $loot = array();
         if($bossLoot) {
             $loot = array(
-                'source' =>   Mangos::GetNPCName($bossLoot['entry']),
+                'source'   => Mangos::GetNPCName($bossLoot['entry']),
                 'instance' => Mangos::GetNpcInfo($bossLoot['entry'], 'map'),
-                'percent' =>  Mangos::DropPercent($bossLoot['ChanceOrQuestChance'])
+                'percent'  => Mangos::DropPercent($bossLoot['ChanceOrQuestChance'])
             );
         }
         elseif($chestLoot) {
             $loot = array(
-                'source' =>   Mangos::GameobjectInfo($chestLoot['entry'], 'name'),
+                'source'   => Mangos::GameobjectInfo($chestLoot['entry'], 'name'),
                 'instance' => Mangos::GameobjectInfo($chestLoot['entry'], 'map'),
-                'percent' =>  Mangos::DropPercent($chestLoot['ChanceOrQuestChance'])
+                'percent'  => Mangos::DropPercent($chestLoot['ChanceOrQuestChance'])
             );
         }
         else {
@@ -246,7 +243,7 @@ Class Items extends Connector {
                 $spell_tmp = array();
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $itemsetdata['bonus'.$i]);
                 if(!isset($spell_tmp['Description_'.$this->_locale])) {
-                    $spell_tmp['Description_'.$this->_locale] = '';
+                    $spell_tmp['Description_'.$this->_locale] = null;
                 }
                 $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$this->_locale]));
                 $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
@@ -397,13 +394,24 @@ Class Items extends Connector {
                 }
                 break;
             case 'craft':
-                $CraftLoot = $this->aDB->select("
-                SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
-                    `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
-                    `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                    `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
-                    FROM `armory_spell`
-                        WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
+                if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+                    $CraftLoot = $this->aDB->select("
+                    SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
+                        `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                        `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                        `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                        FROM `armory_spell`
+                            WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
+                }
+                else {
+                    $CraftLoot = $this->aDB->select("
+                    SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
+                        `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
+                        `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
+                        `SpellName_en_gb` AS `SpellName`, `spellicon`
+                        FROM `armory_spell`
+                            WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
+                }
                 if(is_array($CraftLoot)) {
                     $i=0;
                     foreach($CraftLoot as $craftItem) {
@@ -736,6 +744,7 @@ Class Items extends Connector {
     public function GetImprovedItemSource($itemID, $bossID) {
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$this->_locale."` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
+            $this->Log()->writeError('%s : dungeonData for lootid %d not found (current_locale: %s, locId: %d)', __METHOD__, $bossID, $this->_locale, $this->_loc);
             return false;
         }
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');

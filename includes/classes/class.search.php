@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 204
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,10 +31,11 @@ Class SearchMgr extends Connector {
     
     public function DoSearchItems($count = false, $findUpgrade = false) {
         if(!$this->searchQuery && !$findUpgrade) {
+            $this->Log()->writeError('%s : unable to start search: no data provided', __METHOD__);
             return false;
         }
         if($findUpgrade > 0) {
-            $source_item_data = $this->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $findUpgrade);
+            $source_item_data = $this->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality`, `bonding` FROM `item_template` WHERE `entry`=?", $findUpgrade);
             /*
             ,
             `stat_type1`, `stat_value1`, `stat_type2`, `stat_value2`, `stat_type3`, `stat_value3`, `stat_type4`, `stat_value4`,
@@ -42,6 +43,7 @@ Class SearchMgr extends Connector {
             `stat_type9`, `stat_value9`, `stat_type10`, `stat_value10`
             */
             if(!$source_item_data) {
+                $this->Log()->writeError('%s : unable to item info for ID #%d (findUpgrade)', __METHOD__, $findUpgrade);
                 return false;
             }
         }
@@ -64,18 +66,19 @@ Class SearchMgr extends Connector {
             return $count_items;
         }
         if($findUpgrade) {
-            $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
+            $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
             $items = $this->wDB->select($sql_query);
         }
         else {
             if($this->_loc == 0) {
-                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE ? ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
             }
             else {
-                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
             }
         }
         if(!$items) {
+            $this->Log()->writeLog('%s : unable to find any items with `%s` query (current locale: %s, locId: %d)', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
             return false;
         }
         $result_data = array();
@@ -83,6 +86,10 @@ Class SearchMgr extends Connector {
         foreach($items as $item) {
             $result_data[$i]['data'] = $item;
             $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id'], $item['displayid']);
+            if(self::CanAuction($item)) {
+                $result_data[$i]['data']['canAuction'] = 1;
+            }
+            unset($result_data[$i]['data']['flags'], $result_data[$i]['data']['duration'], $result_data[$i]['data']['bonding']);
             if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
                 $result_data[$i]['data']['name'] = Items::getItemName($item['id']);
             }
@@ -98,9 +105,11 @@ Class SearchMgr extends Connector {
     
     public function AdvancedItemsSearch($count = false) {
         if((!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
+            $this->Log()->writeError('%s : start failed', __METHOD__);
             return false;
         }
         if(!isset($this->get_array['source'])) {
+            $this->Log()->writeError('%s : get_array[source] not defined', __METHOD__);
             return false;
         }
         $allowedDungeon = false;
@@ -167,7 +176,7 @@ Class SearchMgr extends Connector {
                         return false;
                     }
                 }
-                $sql_query = "SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template`";
+                $sql_query = "SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template`";
                 $andor = false;
                 if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
                     /* Type */
@@ -179,7 +188,7 @@ Class SearchMgr extends Connector {
                         if(!$type_info) {
                             return false;
                         }
-                        $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid` FROM `item_template` WHERE `class`=%d", $type_info);
+                        $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d", $type_info);
                         $andor = true;
                     }
                     /* Subtype */
@@ -374,7 +383,10 @@ Class SearchMgr extends Connector {
                         `item_template`.`name`,
                         `item_template`.`ItemLevel`,
                         `item_template`.`Quality` AS `rarity`,
-                        `item_template`.`displayid`
+                        `item_template`.`displayid`,
+                        `item_template`.`bonding`,
+                        `item_template`.`flags`,
+                        `item_template`.`duration`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
                         WHERE `npc_vendor`.`ExtendedCost` IN (?a) AND `npc_vendor`.`item` IN (?a)
@@ -387,7 +399,10 @@ Class SearchMgr extends Connector {
                         `item_template`.`name`,
                         `item_template`.`ItemLevel`,
                         `item_template`.`Quality` AS `rarity`,
-                        `item_template`.`displayid`
+                        `item_template`.`displayid`,
+                        `item_template`.`bonding`,
+                        `item_template`.`flags`,
+                        `item_template`.`duration`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
                         WHERE `npc_vendor`.`ExtendedCost` IN (?a)
@@ -502,6 +517,9 @@ Class SearchMgr extends Connector {
                         `item_template`.`ItemLevel`,
                         `item_template`.`Quality` AS `rarity`,
                         `item_template`.`displayid`,
+                        `item_template`.`bonding`,
+                        `item_template`.`flags`,
+                        `item_template`.`duration`,
                         `creature_loot_template`.`entry`,
                         `creature_loot_template`.`item`,
                         `creature_loot_template`.`ChanceOrQuestChance`
@@ -518,6 +536,9 @@ Class SearchMgr extends Connector {
                             `item_template`.`ItemLevel`,
                             `item_template`.`Quality` AS `rarity`,
                             `item_template`.`displayid`,
+                            `item_template`.`bonding`,
+                            `item_template`.`flags`,
+                            `item_template`.`duration`,
                             `gameobject_loot_template`.`entry`,
                             `gameobject_loot_template`.`item`,
                             `gameobject_loot_template`.`ChanceOrQuestChance`
@@ -536,6 +557,9 @@ Class SearchMgr extends Connector {
                         `item_template`.`ItemLevel`,
                         `item_template`.`Quality` AS `rarity`,
                         `item_template`.`displayid`,
+                        `item_template`.`bonding`,
+                        `item_template`.`flags`,
+                        `item_template`.`duration`,
                         ".$loot_template.".`entry`,
                         ".$loot_template.".`item`,
                         ".$loot_template.".`ChanceOrQuestChance`
@@ -560,6 +584,7 @@ Class SearchMgr extends Connector {
                 break;
         }
         if(!isset($items_query) || !is_array($items_query)) {
+            $this->Log()->writeError('%s : unable to get items for `%s` query (current locale: %s, locId: %d) ', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
             return false;
         }
         $items_result = array();
@@ -590,6 +615,9 @@ Class SearchMgr extends Connector {
                 }
                 else {
                     $items_result[$i]['data']['name'] = $item['name'];
+                }
+                if(self::CanAuction($item)) {
+                    $items_result[$i]['data']['canAuction'] = 1;
                 }
                 $items_result[$i]['data']['rarity'] = $item['rarity'];
                 $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item['displayid']);
@@ -632,6 +660,7 @@ Class SearchMgr extends Connector {
     
     public function SearchArenaTeams($num = false) {
         if(!$this->searchQuery) {
+            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results
@@ -681,6 +710,7 @@ Class SearchMgr extends Connector {
     
     public function SearchGuilds($num = false) {
         if(!$this->searchQuery) {
+            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results
@@ -724,6 +754,7 @@ Class SearchMgr extends Connector {
     
     public function SearchCharacters($num = false) {
         if(!$this->searchQuery) {
+            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results
@@ -782,6 +813,7 @@ Class SearchMgr extends Connector {
     }
     
     public function IsExtendedCost() {
+        $this->Log()->writeError('%s is for `dungeon` cases only!', __METHOD__);
         if(!isset($this->get_array['dungeon'])) {
             return false;
         }
@@ -794,6 +826,7 @@ Class SearchMgr extends Connector {
     
     public function GetItemSourceByKey() {
         if(!$this->bossSearchKey) {
+            $this->Log()->writeError('%s : bossSearchKey not defined', __METHOD__);
             return false;
         }
         return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?) LIMIT 1", $this->bossSearchKey);
@@ -809,6 +842,7 @@ Class SearchMgr extends Connector {
     
     public function GetItemSourceByInstanceKey() {
         if(!$this->instanceSearchKey) {
+            $this->Log()->writeError('%s : instanceSearchKey not defined', __METHOD__);
             return false;
         }
         return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
@@ -847,6 +881,30 @@ Class SearchMgr extends Connector {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Helper
+     **/
+    private function CanAuction($item_data) {
+        //                      Undef BoE BoU
+        $allowed_bondings = array(0,   2,  3);
+        if(!in_array($item_data['bonding'], $allowed_bondings)) {
+            // Wrong bonding type
+            return false;
+        }
+        elseif($item_data['flags']&0x00000002) {
+            // Conjured items can't be traded via auction.
+            return false;
+        }
+        elseif($item_data['duration'] > 0) {
+            // Items with duration can't be traded via auction.
+            return false;
+        }
+        else {
+            $this->Log()->writeLog('%s : item #%d can be traded via auction', __METHOD__, $item_data['id']);
+            return true;
+        }
     }
 }
 ?>

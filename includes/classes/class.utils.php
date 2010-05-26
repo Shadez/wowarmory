@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,13 +40,16 @@ Class Utils extends Connector {
     
     public function authUser() {
         if(!$this->username || !$this->password) {
+            $this->Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
         }
         $info = $this->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`=? LIMIT 1", $this->username);
         if(!$info) {
+            $this->Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
             return false;
         }
         elseif($info['sha_pass_hash'] != $this->createShaHash()) {
+            $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are diffirent (%s and %s), unable to auth user.', __METHOD__, $info['sha_pass_hash'], $this->createShaHash());
             return false;
         }
         else {
@@ -66,13 +69,14 @@ Class Utils extends Connector {
     }
     
     public function getCharsArray($select = false) {
-        if(!$_SESSION['accountId']) {
+        if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         if($select == true) {
             $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected` <> 1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
-            $chars['0']['show'] = true;
-            $chars['1']['show'] = true;
+            $chars[0]['show'] = true;
+            $chars[1]['show'] = true;
         }
         else {
             $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
@@ -83,12 +87,14 @@ Class Utils extends Connector {
     
     public function guildBankRights($guildid) {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         $selectedCharData = $this->getCharacter();
         /* Hack */
         $characterGuildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=? LIMIT 1", $selectedCharData['guid']);
         if(!$characterGuildId || $characterGuildId != $guildid) {
+            $this->Log()->writeError('%s : characterGuildId not found or selected character is not in the %d guild', __METHOD__, $guildid);
             return false;
         }
         return true;
@@ -96,6 +102,7 @@ Class Utils extends Connector {
     
     public function CountSelectedCharacters() {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']);
@@ -103,6 +110,7 @@ Class Utils extends Connector {
     
     public function CountAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         $count_all = 0;
@@ -117,6 +125,7 @@ Class Utils extends Connector {
     
     public function GetAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         $results = array();
@@ -185,6 +194,7 @@ Class Utils extends Connector {
     
     public function GetBookmarks() {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         // Bookmarks limit is 60
@@ -220,6 +230,7 @@ Class Utils extends Connector {
     
     public function AddBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         if($this->GetBookmarksCount() >= 60) {
@@ -250,6 +261,7 @@ Class Utils extends Connector {
     
     public function DeleteBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         $query = sprintf("DELETE FROM `armory_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
@@ -259,6 +271,7 @@ Class Utils extends Connector {
     
     public function GetBookmarksCount() {
         if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
         $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `armory_bookmarks` WHERE `account`=?d", $_SESSION['accountId']);
@@ -270,6 +283,7 @@ Class Utils extends Connector {
     
     public function createShaHash() {
         if(!$this->username || !$this->password) {
+            $this->Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
         }
         $this->shaHash = sha1(strtoupper($this->username).':'.strtoupper($this->password));
@@ -334,6 +348,7 @@ Class Utils extends Connector {
     
     public function GetMaxArray($arr) {
         if(!is_array($arr)) {
+            $this->Log()->writeError('%s : arr must be in array', __METHOD__);
             return false;
         }
         $keys = array_keys($arr);
@@ -403,6 +418,7 @@ Class Utils extends Connector {
         )
         ORDER BY `character_achievement`.`date` DESC"); // 3.3.3a IDs
         if(!$achievements_data) {
+            $this->Log()->writeLog('%s : unable to get data from DB for achievement firsts (theres no completed achievement firsts?)', __METHOD__);
             return false;
         }
         $countAch = count($achievements_data);
@@ -622,20 +638,15 @@ Class Utils extends Connector {
         $error_message = null;
         $cacheData = @fopen($data_path, 'w+');
         if(!@fwrite($cacheData, $filedata)) {
-            $error_message .= sprintf('Unable to write %s.data ', $file_id);
+            $this->Log()->writeError('%s : unable to write %s.data', __METHOD__, $file_id);
         }
         @fclose($cacheData);
         $cacheCache = @fopen($cache_path, 'w+');
         if(!@fwrite($cacheCache, $filecontents)) {
-            $error_message .= sprintf('Unable to write %s.cache', $file_id);
+            $this->Log()->writeError('%s : unable to write %s.cache', __METHOD__, $file_id);
         }
         @fclose($cacheCache);
-        if($error_message == null) {
-            return 0x01;
-        }
-        else {
-            return $error_message;
-        }
+        return 0x01;
     }
     
     public function GenerateCacheData($nameOrItemID, $charGuid, $page=null) {
@@ -649,7 +660,7 @@ Class Utils extends Connector {
     }
     
     public function getTimeText($seconds) {
-        $text = "";
+        $text = null;
         if($seconds >=24*3600) {
             $text .= intval($seconds / (24 * 3600)) . ' days';
             if($seconds %= 24 * 3600) {
@@ -843,6 +854,7 @@ Class Utils extends Connector {
         }
         else {
             // Unknown class
+            $this->Log()->writeError('%s : unknown race: %d', __METHOD__, $raceID);
             return false;
         }
     }

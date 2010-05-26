@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 209
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -200,6 +200,7 @@ Class Mangos extends Connector {
         if($name) {
             return $name;
         }
+        $this->Log()->writeError('%s : unable to find NPC name (id: #%d, KillCredit1: %d, KillCredit2: %d)', __METHOD__, $npc, (isset($KillCredit['KillCredit1'])) ? $KillCredit['KillCredit1'] : 0, (isset($KillCredit['KillCredit2'])) ? $KillCredit['KillCredit2'] : 0);
         return false;
 	}
     
@@ -407,6 +408,7 @@ Class Mangos extends Connector {
     public function GetExtendedCost($costId) {
         $costInfo = $this->aDB->selectRow("SELECT * FROM `armory_extended_cost` WHERE `id`=? LIMIT 1", $costId);
         if(!$costInfo) {
+            $this->Log()->writeError('%s : wrong cost id: #%d', __METHOD__, $costId);
             return false;
         }
         $extended_cost = array();
