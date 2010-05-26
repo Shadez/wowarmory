@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 210
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -192,6 +192,12 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s: unable to get data from characters DB for player %s', __METHOD__, $name);
             return false;
         }
+        $player_stats_check = $this->cDB->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=?d LIMIT 1", $player_data['guid']);
+        if(!$player_stats_check) {
+            $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
+            unset($player_data);
+            return false;
+        }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
         $gmLevel_mangos = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
@@ -209,7 +215,7 @@ Class Characters extends Connector {
             }
         }
         elseif($gmLevel_mangos && !$gmLevel_trinity) {
-            $gmLevel = $gmLevel_mangos ;
+            $gmLevel = $gmLevel_mangos;
         }
         elseif($gmLevel_trinity && !$gmLevel_mangos) {
             $gmLevel = $gmLevel_trinity;
@@ -273,8 +279,8 @@ Class Characters extends Connector {
     private function __GetTitleInfo() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
         if(!$title_data) {
-            $this->Log()->writeError('%s: Player %d (%s) have wrong chosenTitle id: %d', __METHOD__, $this->guid, $this->name, $this->chosenTitle);
-            return true;
+            $this->Log()->writeError('%s: Player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
+            return;
         }
         switch($this->gender) {
             case 0:

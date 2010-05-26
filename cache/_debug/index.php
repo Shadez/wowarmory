@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 210
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,7 @@ if(isset($_GET['clearLog'])) {
     @file_put_contents('tmp.dbg', null);
     header('Location: index.php');
 }
-echo '<html><head><title>WoWArmory Debug Log</title></head><body>';
+echo '<html><head><title>WoWArmory Debug Log</title></head><body><a href="?clearLog">Clear log</a><br /><hr />';
 @include('tmp.dbg');
 echo '</body></html>';
 ?>
