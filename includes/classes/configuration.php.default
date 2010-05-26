@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 200
+ * @revision 208
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,6 +70,8 @@ $ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - onl
 $ArmoryConfig['settings']['defaultLocale']    = 'ru_ru'; // Can be 'ru_ru' or 'en_gb'
 $ArmoryConfig['settings']['showScriptInfo']   = true;    // Display script info (generation time, etc.) ? (true/false) (not used now)
 $ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/false)
+$ArmoryConfig['settings']['useDebug']         = false;   // Use debug? (true/false). STRONGLY not recommended on live server!
+$ArmoryConfig['settings']['logLevel']         = 1;       // 1 - only errors, 2 - debug mode
 
 /*
     Multirealms info

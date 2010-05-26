@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 208
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -223,19 +223,21 @@ $xml->XMLWriter()->endElement(); //summary
 // root
 $xml->XMLWriter()->startElement('rootCategories');
 $root_categories = $achievements->BuildCategoriesTree();
-foreach($root_categories as $category) {
-    $xml->XMLWriter()->startElement('category');
-    $xml->XMLWriter()->writeAttribute('id', $category['id']);
-    $xml->XMLWriter()->writeAttribute('name', $category['name']);
-    if(isset($category['child']) && is_array($category['child'])) {
-        foreach($category['child'] as $category_child) {
-            $xml->XMLWriter()->startElement('category');
-            $xml->XMLWriter()->writeAttribute('name', $category_child['name']);
-            $xml->XMLWriter()->writeAttribute('id', $category_child['id']);
-            $xml->XMLWriter()->endElement(); //category
+if($root_categories && is_array($root_categories)) {
+    foreach($root_categories as $category) {
+        $xml->XMLWriter()->startElement('category');
+        $xml->XMLWriter()->writeAttribute('id', $category['id']);
+        $xml->XMLWriter()->writeAttribute('name', $category['name']);
+        if(isset($category['child']) && is_array($category['child'])) {
+            foreach($category['child'] as $category_child) {
+                $xml->XMLWriter()->startElement('category');
+                $xml->XMLWriter()->writeAttribute('name', $category_child['name']);
+                $xml->XMLWriter()->writeAttribute('id', $category_child['id']);
+                $xml->XMLWriter()->endElement(); //category
+            }
         }
+        $xml->XMLWriter()->endElement(); //category
     }
-    $xml->XMLWriter()->endElement(); //category
 }
 $xml->XMLWriter()->endElement();   //rootCategories
 $xml->XMLWriter()->endElement();  //achievements

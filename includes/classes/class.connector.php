@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 200
+ * @revision 208
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -57,10 +57,13 @@ Class Connector {
     public $connectionData;
     public $currentRealmInfo;
     
+    /** Debug handler **/
+    private $debugHandler;        
+    
     /**
-     * Initialize database & template handlers, sets up sql/site configs
+     * Initialize database handlers, debug handler, sets up sql/site configs
      * @category Main system functions
-     * @example Connector::__construct()
+     * @example Connector::Connector()
      * @return bool
      **/
     public function Connector() {
@@ -69,9 +72,13 @@ Class Connector {
         }
         if(!@require_once('libs/DbSimple/Generic.php')) {
             die('<b>Error</b>: unable to load database class!');
-        }        
+        }
+        if(!@require_once('class.debug.php')) {
+            die('<b>Error</b>: unable to load debug class!');
+        }
         $this->mysqlconfig  = $ArmoryConfig['mysql'];
         $this->armoryconfig = $ArmoryConfig['settings'];
+        $this->debugHandler = new ArmoryDebug(array('useDebug' => $this->armoryconfig['useDebug'], 'logLevel' => $this->armoryconfig['logLevel']));
         $this->realmData    = $ArmoryConfig['multiRealm'];
         $this->aDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_armory'].':'.$this->mysqlconfig['pass_armory'].'@'.$this->mysqlconfig['host_armory'].'/'.$this->mysqlconfig['name_armory']);
         $this->aDB->query("SET NAMES ?", $this->mysqlconfig['charset_armory']);
@@ -163,6 +170,12 @@ Class Connector {
         }
     }
     
+    /**
+     * Checks browser language from HTTP_ACCEPT_LANGUAGE
+     * @category Main system functions
+     * @example Connector::IsAllowedLocale('ru');
+     * @return mixed
+     **/
     private function IsAllowedLocale($locale) {
         switch($locale) {
             case 'de':
@@ -184,6 +197,13 @@ Class Connector {
                 return false;
                 break;
         }
+    }
+    
+    /**
+     * Returns debug log handler
+     **/
+    public function Log() {
+        return $this->debugHandler;
     }
 }
 ?>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 208
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -54,6 +54,7 @@ Class Achievements extends Connector {
             $guid = $this->guid;
         }
         if(!$guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $pts = $this->aDB->selectCell("
@@ -91,6 +92,7 @@ Class Achievements extends Connector {
      **/
     public function CountCharacterAchievements() {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         return $this->cDB->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=?", $this->guid);
@@ -98,6 +100,7 @@ Class Achievements extends Connector {
     
     public function GetSummaryAchievementData($category) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievement_data = array('categoryId' => $category);
@@ -192,10 +195,12 @@ Class Achievements extends Connector {
      **/
     public function GetLastAchievements() {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=? ORDER BY `date` DESC LIMIT 5", $this->guid);
         if(!$achievements) {
+            $this->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have achievements?)', __METHOD__, $this->guid);
             return false;
         }
         $aCount = count($achievements);
@@ -220,6 +225,7 @@ Class Achievements extends Connector {
         }
         $achievement_date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=? AND `guid`=? LIMIT 1", $achId, $guid);
         if(!$achievement_date) {
+            $this->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $guid);
             return false;
         }
         return date('Y-m-d\TH:i:s+02:00', $achievement_date);
@@ -274,6 +280,10 @@ Class Achievements extends Connector {
      **/
     public function BuildCategoriesTree() {
         $categoryIds = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1");
+        if(!$categoryIds) {
+            $this->Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, $this->_locale, $this->_loc);
+            return false;
+        }
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
@@ -321,10 +331,12 @@ Class Achievements extends Connector {
      **/
     public function GetAchievementInfo(&$achievementData) {
         if(!is_array($achievementData)) {
+            $this->Log()->writeError('%s : achievementData must be an array!', __METHOD__);
             return false;
         }
         $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `title`, `description_".$this->_locale."` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievementData['achievement']);
         if(!$achievementinfo) {
+            $this->Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], $this->_locale, $this->_loc);
             return false;
         }
         if($achievementinfo['points'] == 0) {
@@ -346,15 +358,18 @@ Class Achievements extends Connector {
     
     public function IsAchievementCompleted($achId) {
         if(!$this->guid || !$achId) {
+            $this->Log()->writeError('%s : player guid or achievement id not provided', __METHOD__);
             return false;
         }
         if($achId == 0 || $achId == -1 || !$this->IsAchievementExists($achId)) {
+            $this->Log()->writeError('%s : achievement %u not exists', __METHOD__, $achId);
             return false;
         }
         $date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=? AND `achievement`=?", $this->guid, $achId);
         if($date) {
             return true;
         }
+        $this->Log()->writeError('%s : unable to get completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
         return false;
     }
     
@@ -368,6 +383,7 @@ Class Achievements extends Connector {
     
     public function LoadAchievementPage($page_id, $faction) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
         }
         $achievements_data = $this->aDB->select(
@@ -375,6 +391,7 @@ Class Achievements extends Connector {
             FROM `armory_achievement`
                 WHERE `categoryId`=? AND `factionFlag` IN (?, -1) ORDER BY `OrderInCategory`", $page_id, $faction);
         if(!$achievements_data) {
+            $this->Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->_locale, $this->_loc);
             return false;
         }
         $return_data = array();
@@ -447,10 +464,12 @@ Class Achievements extends Connector {
     
     public function BuildAchievementCriteriaTable() {
         if(!$this->guid || !$this->achId) {
+            $this->Log()->writeError('%s : player guid or achievement id not defiend', __METHOD__);
             return false;
         }
         $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=? ORDER BY `order`", $this->achId);
         if(!$data) {
+            $this->Log()->writeError('%s : achievement criteria for achievement #%d not found', __METHOD__, $this->achId);
             return false;
         }
         $i = 0;
@@ -486,17 +505,20 @@ Class Achievements extends Connector {
     
     public function GetCriteriaData($criteria_id) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $criteria_data = $this->cDB->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=? AND `criteria`=?", $this->guid, $criteria_id);
         if($criteria_data) {
             return $criteria_data;
         }
+        $this->Log()->writeError('%s : progress for criteria %d and player %d not found in character_achievement_progress table', __METHOD__, $criteria_id, $this->guid);
         return false;
     }
     
     public function LoadStatisticsPage($page_id, $faction) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievements_data = $this->aDB->select(
@@ -504,6 +526,7 @@ Class Achievements extends Connector {
             FROM `armory_achievement`
                 WHERE `categoryId`=? AND `factionFlag` IN (?, -1)", $page_id, $faction);
         if(!$achievements_data) {
+            $this->Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->_locale, $this->_loc);
             return false;
         }
         $return_data = array();
@@ -520,10 +543,12 @@ Class Achievements extends Connector {
     
     public function GetCriteriaValue() {
         if(!$this->guid || !$this->achId) {
+            $this->Log()->writeError('%s : player guid or achievement id not defined', __METHOD__);
             return false;
         }
         $criteria_ids = $this->aDB->select("SELECT `id` FROM `armory_achievement_criteria` WHERE `referredAchievement`=?", $this->achId);
         if(!$criteria_ids) {
+            $this->Log()->writeError('%s : unable to get criterias for achievement %d', __METHOD__, $this->achId);
             return false;
         }
         $tmp_criteria_value = 0;
@@ -537,6 +562,7 @@ Class Achievements extends Connector {
             }
         }
         if(!$tmp_criteria_value) {
+            $this->Log()->writeError('%s : criteria value not found (id: %d)', __METHOD__, $this->achId);
             return 0;
         }
         return $tmp_criteria_value;

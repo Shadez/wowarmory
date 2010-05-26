@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 207
+ * @revision 208
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -159,6 +159,7 @@ Class Characters extends Connector {
     }
     
     public function BuildCharacter($name) {
+        $this->Log()->writeLog('Prepare data build for player %s', $name);
         if(!is_string($name)) {
             return false;
         }
@@ -188,6 +189,7 @@ Class Characters extends Connector {
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
         WHERE `characters`.`name`=? LIMIT 1", $name);
         if(!$player_data || !is_array($player_data)) {
+            $this->Log()->writeError('%s: unable to get data from characters DB for player %s', __METHOD__, $name);
             return false;
         }
         // Is character allowed to be displayed in Armory?
@@ -197,10 +199,12 @@ Class Characters extends Connector {
         if($gmLevel_mangos && $gmLevel_trinity) {
             // MaNGOS doesn't have `account_access` table in `realmd` DB
             if($this->currentRealmInfo['type'] == 'trinity') {
+                $this->Log()->writeLog('Detected MaNGOS AND Trinity data in realmd DB, using Trinity (by armoryconfig[type])');
                 $gmLevel = $gmLevel_trinity;
             }
             else {
                 // error?
+                $this->Log()->writeLog('Detected MaNGOS AND Trinity data in realmd DB, using MaNGOS (by armoryconfig[type])');
                 $gmLevel = $gmLevel_mangos;
             }
         }
@@ -212,32 +216,38 @@ Class Characters extends Connector {
         }
         if(!$gmLevel) {
             unset($player_data);
+            $this->Log()->writeError('Unable to find gmlevel for account #%d (character: %d, %s)', $player_data['account'], $player_data['guid'], $player_data['name']);
             // Unknown account
             return false;
         }
         $allowed = ($gmLevel <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if(!$allowed || $player_data['level'] < $this->armoryconfig['minlevel']) {
+            $this->Log()->writeLog('Player %d (%s) is not allowed to be displayed in Armory!', $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
+            $this->Log()->writeError('Player %d (%s) have incorrect data in DB: class %d not found.', $player_data['guid'], $player_data['name'], $player_data['class']);
             unset($player_data);
             return false;
         }
         elseif($player_data['race'] >= MAX_RACES) {
             // Unknown race
+            $this->Log()->writeError('Player %d (%s) have incorrect data in DB: race %d not found.', $player_data['guid'], $player_data['name'], $player_data['race']);
             unset($player_data);
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
         if($this->faction != 0 && $this->faction != 1) {
             // Unknown faction
+            $this->Log()->writeError('Player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
             unset($player_data);
             return false;
         }
         // Everything correct, build class
+        $this->Log()->writeLog('All correct, player %s builded', $name);
         foreach($player_data as $pData_key => $pData_value) {
             $this->{$pData_key} = $pData_value;
         }
@@ -266,6 +276,7 @@ Class Characters extends Connector {
     private function __GetTitleInfo() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
         if(!$title_data) {
+            $this->Log()->writeError('Player %d (%s) have wrong chosenTitle id: %d', $this->guid, $this->name, $this->chosenTitle);
             return true;
         }
         switch($this->gender) {
@@ -558,56 +569,6 @@ Class Characters extends Connector {
         return $data;
     }
     
-    /*****************
-    Function from MBA
-    ******************/
-    
-    public function talentCounting($tab, $dualSpec = false, $spec = null) {
-        if(!$this->guid) {
-            return false;
-        }
-        $pt = 0;
-        if($dualSpec == true) {
-            $resSpell = $this->cDB->select("
-            SELECT `spell`
-                FROM `character_talent`
-                    WHERE `guid`=? AND `spec`=?", $this->guid, $spec);
-        }
-        else {
-            $resSpell = $this->cDB->select("
-            SELECT `spell`
-                FROM `character_spell` 
-    				WHERE `guid`=? AND `disabled`=0", $this->guid);
-        }
-        if(!$resSpell) {
-            return false;
-        }
-		foreach($resSpell as $getSpell) {
-			$spells[] = $getSpell['spell'];
-		}
-		$resTal = $this->aDB->select("
-		SELECT `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5` 
-			FROM `armory_talents` 
-				WHERE `TalentTab` = ?", $tab);
-		foreach($resTal as $row) {
-			$ranks[] = $row;
-		}
-		foreach($ranks as $key => $val) {
-			foreach($spells as $k => $v) {
-				if(in_array($v, $val)) {
-					switch(array_search($v, $val)) {
-						case 'Rank_1': $pt += 1; break;
-						case 'Rank_2': $pt += 2; break;
-						case 'Rank_3': $pt += 3; break;
-						case 'Rank_4': $pt += 4; break;
-						case 'Rank_5': $pt += 5; break;
-					}
-				}
-			}
-		}
-        return $pt;
-	}
-    
     /**
      * Returns item id from $slot (head, neck, shoulder, etc.). Requires $this->guid!
      * @category Character class
@@ -616,6 +577,7 @@ Class Characters extends Connector {
      **/
     public function getCharacterEquip($slot) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         switch($slot) {
@@ -677,6 +639,7 @@ Class Characters extends Connector {
 				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENTRYID);
 				break;
 			default:
+                $this->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
 				return 0;
 				break;
         }
@@ -684,6 +647,7 @@ Class Characters extends Connector {
     
     public function GetCharacterEquipBySlot($slotID) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, $slotID);
@@ -761,6 +725,7 @@ Class Characters extends Connector {
 				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
 				break;
 			default:
+                $this->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
 				return 0;
 				break;
         }
@@ -820,12 +785,14 @@ Class Characters extends Connector {
      **/
     public function CalculateCharacterTalents() {
         if(!$this->class || !$this->guid) {
+            $this->Log()->writeError('%s : player class or guid not defined', __METHOD__);
             return false;
         }
         $talentTree = array();
         $tab_class = self::GetTalentTab();
         $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
         if(!$character_talents) {
+            $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
         $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
@@ -879,6 +846,7 @@ Class Characters extends Connector {
     
     public function CalculateCharacterTalentBuild() {
         if(!$this->guid || !$this->class) {
+            $this->Log()->writeError('%s : player class or guid not defined', __METHOD__);
             return false;
         }
         $build_tree = array(1 => null, 2 => null);
@@ -887,6 +855,7 @@ Class Characters extends Connector {
         $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
         $talent_data = array(0 => null, 1 => null); // Talent build
         if(!$character_talents) {
+            $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
         foreach($character_talents as $_tal) {
@@ -949,17 +918,6 @@ Class Characters extends Connector {
                             }
                         }
                         break;
-                    case 'trinity':
-                        $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
-                        if(!$current_tab) {
-                            continue;
-                        }
-                        foreach($current_tab as $tab) {
-                            for($j=0;$j<2;$j++) {
-                                //if(isset($specs_talents[$j]))
-                            }
-                        }
-                        break;
                 }
             }
         }
@@ -974,6 +932,7 @@ Class Characters extends Connector {
      **/
     public function GetCharacterGlyphs($spec = -1) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         switch($this->currentRealmInfo['type']) {
@@ -1072,16 +1031,6 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns character lifetime honorable kills. Requires $this->guid!
-     * @category Character class
-     * @example Characters::getCharacterHonorKills()
-     * @return int
-     **/
-    public function getCharacterHonorKills() {
-        return $this->GetDataField(PLAYER_FIELD_LIFETIME_HONORBALE_KILLS);
-    }
-    
-    /**
      * Returns array with character's professions (name, icon & current skill value)
      * @category Character class
      * @example Characters::extractCharacterProfessions()
@@ -1153,6 +1102,7 @@ Class Characters extends Connector {
             $guid = $this->guid;
         }
         if(!$guid) {
+            $this->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
         $dataField = $fieldNum+1;
@@ -1165,22 +1115,22 @@ Class Characters extends Connector {
     
     // Health value
     public function GetMaxHealth() {
-        return $this->cDB->selectCell("SELECT `health` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+        return $this->health;
     }
     
     // Mana value
     public function GetMaxMana() {
-        return $this->cDB->selectCell("SELECT `power1` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+        return $this->power1;
     }
     
     // Rage value
     public function GetMaxRage() {
-        return $this->cDB->selectCell("SELECT `power2` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+        return $this->power2;
     }
     
     // Energy (or Runic power for DK) value
     public function GetMaxEnergy() {
-        return $this->cDB->selectCell("SELECT `power3` FROM `characters` WHERE `guid`=? LIMIT 1", $this->guid);
+        return $this->power3;
     }
     
     public function SetRating() {
@@ -1916,6 +1866,7 @@ Class Characters extends Connector {
             $this->guid = $guid;
         }
         if(!$this->guid) {
+            $this->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
         $skillInfo = $this->cDB->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $this->guid, $skill);
@@ -1930,6 +1881,7 @@ Class Characters extends Connector {
      **/
     public function getCharacterArenaTeamInfo($check = false) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $arenaTeamInfo = array();
@@ -1991,6 +1943,7 @@ Class Characters extends Connector {
      **/
     public function GetCharacterFeed($full = false) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         if($full) {
@@ -2000,6 +1953,7 @@ Class Characters extends Connector {
             $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 10", $this->guid);
         }
         if(!$data) {
+            $this->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
             return false;
         }
         $feed_data = array();
@@ -2007,6 +1961,7 @@ Class Characters extends Connector {
         // Strings
         $feed_strings = $this->aDB->select("SELECT `id`, `string_".$this->_locale."` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)");
         if(!$feed_strings) {
+            $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->_locale, $this->_loc);
             return false;
         }
         $_strings = array();
@@ -2189,10 +2144,12 @@ Class Characters extends Connector {
      **/
     public function GetCharacterItemInfo($slot) {
         if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
         }
         $item_id = $this->getCharacterEquip($slot['slot']);
         if(!$item_id) {
+            $this->Log()->writeError('%s : unable to get item_id for player %d (%s); slotid is %s', __METHOD__, $this->guid, $this->name, $slot['slot']);
             return false;
         }
         $durability = Items::getItemDurability($this->guid, $item_id);
@@ -2250,6 +2207,7 @@ Class Characters extends Connector {
     
     public function LookupActiveLots() {
         if(!$this->guid || !isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : player guid not defined or unable to find active session', __METHOD__);
             return false;
         }
         return AuctionHouseHandler::LookupActiveLotsByGUID($this->guid);
@@ -2257,8 +2215,10 @@ Class Characters extends Connector {
     
     public function CreateAuction(&$data) {
         if(!$this->guid || !isset($_SESSION['accountId'])) {
+            $this->Log()->writeError('%s : player guid not defined or unable to find active session', __METHOD__);
             return false;
         }
+        $this->Log()->writeLog('%s : Add auction (guid: %d, faction: %d, houseId: %d, item: %d, seed: %d, count: %d, price1: %d, price2: %d)', __METHOD__, $this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
         return AuctionHouseHandler::CreateAuction($this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
     }
 }
