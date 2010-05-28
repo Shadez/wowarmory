@@ -15,7 +15,9 @@ function cloneDelete(theSource, theTarget) {
 		theSourceId.parentNode.removeChild(theSourceId);
 		document.getElementById(theTarget).appendChild(theClone);
 	} else {
+		if(document.getElementById(theSource)){
 		document.getElementById(theTarget).appendChild(document.getElementById(theSource));
+	}
 	}
 }
 
@@ -455,7 +457,11 @@ function toggleAllComplex(theInput){
 
 
   function changetype(whichSelected){
-    document.getElementById('showHideError').style.display = "none";
+	try{  
+	    document.getElementById('showHideError').style.display = "none";
+	} catch(e) {
+		return;
+	}
 	currentAdvOpt = "";
 
 	childrenToPhantom('parentSingle');
@@ -505,6 +511,8 @@ function toggleAllComplex(theInput){
 
 	} else if (whichSelected == "containers") {
 		cloneDelete('childContainers', 'parentSingle');		
+		cloneDelete('childRarity', 'parentSingle');		
+		document.getElementById('childRarityClass').className = "sub-label-top";
 	} else if (whichSelected == "projectiles") {
 		cloneDelete('childProjectiles', 'parentSingle');		
 	} else if (whichSelected == "quivers") {
@@ -531,6 +539,12 @@ function toggleAllComplex(theInput){
 	} else if (whichSelected == "consumables") {
 		cloneDelete('childRarity', 'parentSingle');		
 		document.getElementById('childRarityClass').className = "sub-label-top";		
+	} else if (whichSelected == "mounts") {
+		cloneDelete('childRarity', 'parentSingle');		
+		document.getElementById('childRarityClass').className = "sub-label-top";
+ 	} else if (whichSelected == "smallpets") {
+		cloneDelete('childRarity', 'parentSingle');		
+		document.getElementById('childRarityClass').className = "sub-label-top";						
 	} else if (whichSelected == "reagents") {
 		cloneDelete('childRarity', 'parentSingle');		
 		document.getElementById('childRarityClass').className = "sub-label-top";				
@@ -713,7 +727,7 @@ function roleMeleeDps() {
 }
 
 function roleCasterDps() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	deleteRest();	
 	setOr();
@@ -739,7 +753,7 @@ function roleMeleeDpsPvP() {
 
 function roleCasterDpsPvP() {
 	addPredefinedAdvOpt('spellPower');
-	addPredefinedAdvOpt('spellCritRating');	
+	addPredefinedAdvOpt('critRating');	
 	addPredefinedAdvOpt('resilience');
 	deleteRest();		
 	setOr();
@@ -768,7 +782,6 @@ function roleMeleeDpsDruid() {
 	addPredefinedAdvOpt('strength');
 	addPredefinedAdvOpt('agility');	
 	addPredefinedAdvOpt('critRating');
-	addPredefinedAdvOpt('feralAttackPower');	
 	addPredefinedAdvOpt('attackPower');
 	deleteRest();	
 	setOr();	
@@ -776,7 +789,7 @@ function roleMeleeDpsDruid() {
 
 function roleCasterDpsDruid() {
 	addPredefinedAdvOpt('spellPower');
-	addPredefinedAdvOpt('spellCritRating');	
+	addPredefinedAdvOpt('critRating');	
 	deleteRest();	
 	setOr();
 }
@@ -794,7 +807,6 @@ function roleMeleeDpsDruidPvP() {
 	addPredefinedAdvOpt('strength');
 	addPredefinedAdvOpt('agility');	
 	addPredefinedAdvOpt('critRating');
-	addPredefinedAdvOpt('feralAttackPower');	
 	addPredefinedAdvOpt('attackPower');
 	addPredefinedAdvOpt('resilience');
 	deleteRest();	
@@ -803,7 +815,7 @@ function roleMeleeDpsDruidPvP() {
 
 function roleCasterDpsDruidPvP() {
 	addPredefinedAdvOpt('spellPower');
-	addPredefinedAdvOpt('spellCritRating');	
+	addPredefinedAdvOpt('critRating');	
 	addPredefinedAdvOpt('resilience');
 	deleteRest();	
 	setOr();
@@ -841,7 +853,7 @@ function roleRangedDpsHunterPvP() {
 
 //Mage
 function roleCasterDpsMage() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('spellPowerArcane');
 	addPredefinedAdvOpt('spellPowerFire');
@@ -853,7 +865,7 @@ function roleCasterDpsMage() {
 
 
 function roleCasterDpsMagePvP() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('resilience');
 	deleteRest();			
@@ -889,7 +901,7 @@ function roleCasterDpsPaladin() {
 }
 
 function roleHealerPaladin() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	deleteRest();			
 	setOr();		
@@ -914,7 +926,7 @@ function roleCasterDpsPaladinPvP() {
 }
 
 function roleHealerPaladinPvP() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('resilience');
 	deleteRest();			
@@ -924,7 +936,7 @@ function roleHealerPaladinPvP() {
 
 
 function roleCasterDpsPriest() {
-	addPredefinedAdvOpt('spellCritRating');	
+	addPredefinedAdvOpt('critRating');	
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('spellPowerShadow');
 	deleteRest();			
@@ -999,7 +1011,7 @@ function roleMeleeDpsShaman() {
 }
 
 function roleCasterDpsShaman() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('spellPowerNature');
 	deleteRest();	
@@ -1029,7 +1041,7 @@ function roleMeleeDpsShamanPvP() {
 }
 
 function roleCasterDpsShamanPvP() {
-	addPredefinedAdvOpt('spellCritRating');
+	addPredefinedAdvOpt('critRating');
 	addPredefinedAdvOpt('spellPower');
 	addPredefinedAdvOpt('resilience');
 	deleteRest();	
