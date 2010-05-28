@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 217
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -71,6 +71,7 @@ if($characters->GetGUID() > 0 && $isCharacter && $armory->armoryconfig['useCache
     }
 }
 if($achievement_category > 0) {
+    $armory->Log()->writeLog('character-achievements.php : detected category: %d', $achievement_category);
     $xml->XMLWriter()->startElement('achievements');
     $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
     $xml->XMLWriter()->writeAttribute('requestUrl', 'character-achievements.xml');
@@ -109,6 +110,9 @@ if($achievement_category > 0) {
             $xml->XMLWriter()->endElement(); //achievement
         }
     }
+    else {
+        $armory->Log()->writeLog('character-achievements.php : player %d (%s) does not have any completed achievements in %d category', $characters->GetGUID(), $characters->GetName(), $achievement_category);
+    }
     if(isset($achievements_page['incompleted'])) {
         foreach($achievements_page['incompleted'] as $achievement) {
             if(isset($achievement['display']) && $achievement['display'] == 0) {
@@ -120,6 +124,9 @@ if($achievement_category > 0) {
                     $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
                 }
             }
+            else {
+                $armory->Log()->writeLog('character-achievements.php : achievement[data] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
+            }
             if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
                 foreach($achievement['criteria'] as $criteria) {
                     $xml->XMLWriter()->startElement('criteria');
@@ -128,6 +135,9 @@ if($achievement_category > 0) {
                     }
                     $xml->XMLWriter()->endElement(); //criteria
                 }
+            }
+            else {
+                $armory->Log()->writeLog('character-achievements.php : achievement[critera] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
             }
             if(isset($achievement['achievement_tree'])) {
                 foreach($achievement['achievement_tree'] as $achievement_tree) {
@@ -140,6 +150,9 @@ if($achievement_category > 0) {
             }
             $xml->XMLWriter()->endElement(); //achievement
         }
+    }
+    else {
+        $armory->Log()->writeLog('character-achievements.php : player %d (%s) does not have any incompleted achievements in %d category', $characters->GetGUID(), $characters->GetName(), $achievement_category);
     }
     $xml->XMLWriter()->endElement();  //category
     $xml->XMLWriter()->endElement(); //achievements
