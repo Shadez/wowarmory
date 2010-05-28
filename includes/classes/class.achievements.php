@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 214
+ * @revision 215
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -469,7 +469,7 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : player guid or achievement id not defiend', __METHOD__);
             return false;
         }
-        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=? ORDER BY `order`", $this->achId);
+        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=? ORDER BY `showOrder`", $this->achId);
         if(!$data) {
             $this->Log()->writeError('%s : achievement criteria for achievement #%d not found', __METHOD__, $this->achId);
             return false;
@@ -480,13 +480,15 @@ Class Achievements extends Connector {
             if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_HIDE_CRITERIA) {
                 continue;
             }
-            $achievement_criteria[$i]['id']   = $criteria['id'];
-            $achievement_criteria[$i]['name'] = $criteria['name_'.$this->_locale];
             $m_data = $this->GetCriteriaData($criteria['id']);
-            if(!$m_data['counter']) {
+            if(!isset($m_data['counter']) || !$m_data['counter']) {
                 $m_data['counter'] = 0;
             }
-            $achievement_criteria[$i]['counter'] = $m_data['counter'];
+            $achievement_criteria[$i]['id']   = $criteria['id'];
+            if(isset($m_data['date']) && $m_data['date'] > 0) {
+                $achievement_criteria[$i]['date'] = date('Y-m-d\TH:i:s\+01:00', $m_data['date']);
+            }
+            $achievement_criteria[$i]['name'] = $criteria['name_'.$this->_locale];
             if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag']&ACHIEVEMENT_FLAG_COUNTER) {
                 if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_MONEY_COUNTER) {
                     $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
