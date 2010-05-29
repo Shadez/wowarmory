@@ -14,7 +14,7 @@ index 6517f81..cf1d237 100644
      ca.date = time(NULL);
      ca.changed = true;
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index 82dc9ff..40db1b5 100644
+index b8d71b7..102932c 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
 @@ -949,7 +949,15 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
@@ -35,10 +35,10 @@ index 82dc9ff..40db1b5 100644
          Item *pItem = NewItemOrBag( pProto );
          if( pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player) )
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index c0a9059..814a464 100644
+index 7513657..b4109f1 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -22095,3 +22095,31 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
+@@ -22065,3 +22065,31 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
              SetFFAPvP(false);
      }
  }
@@ -70,8 +70,9 @@ index c0a9059..814a464 100644
 +        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
 +    }
 +}
+\ No newline at end of file
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 111108d..c43d099 100644
+index cdf20bb..5bb3982 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2188,6 +2188,9 @@ class MANGOS_DLL_SPEC Player : public Unit
@@ -79,16 +80,16 @@ index 111108d..c43d099 100644
  
          Object* GetObjectByTypeMask(ObjectGuid guid, TypeMask typemask);
 +		
-+		/* WoWArmory Feed Log */
-+		void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
++        /* WoWArmory Feed Log */
++        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
  
          // currently visible objects at player client
          ObjectGuidSet m_clientGUIDs;
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 3b36892..86d358f 100644
+index ddf3e35..18cd5b3 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -822,7 +822,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -839,7 +839,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
                      if (m->IsRaidOrHeroicDungeon())
                      {
                          if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)

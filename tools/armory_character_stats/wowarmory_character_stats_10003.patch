@@ -1,8 +1,8 @@
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index c0a9059..0bb7d2b 100644
+index 7513657..39cc703 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -16521,6 +16521,17 @@ void Player::SaveToDB()
+@@ -16545,6 +16545,17 @@ void Player::SaveToDB()
      outDebugStatsValues();
  
      CharacterDatabase.BeginTransaction();
@@ -19,4 +19,3 @@ index c0a9059..0bb7d2b 100644
 +    /* WoWArmory */
  
      CharacterDatabase.PExecute("DELETE FROM characters WHERE guid = '%u'",GetGUIDLow());
- 
