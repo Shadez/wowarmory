@@ -96,7 +96,7 @@ index ddf3e35..18cd5b3 100644
 -                            ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +						{
 +						    ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-+						    player->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry);
++						    creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry);
 +						}
                      }
                      else

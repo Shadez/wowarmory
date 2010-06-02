@@ -115,7 +115,7 @@ diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
 +					{
-+                        player->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
++                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
                          ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 @@ -14887,4 +14889,5 @@
                          ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
