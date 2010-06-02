@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 220
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -406,6 +406,9 @@ Class Mangos extends Connector {
     }
     
     public function GetExtendedCost($costId) {
+        if($costId == 0) {
+            return false;
+        }
         $costInfo = $this->aDB->selectRow("SELECT * FROM `armory_extended_cost` WHERE `id`=? LIMIT 1", $costId);
         if(!$costInfo) {
             $this->Log()->writeError('%s : wrong cost id: #%d', __METHOD__, $costId);
@@ -473,7 +476,7 @@ Class Mangos extends Connector {
     }
     
     public function GetVendorExtendedCost($itemID) {
-        $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $itemID);
+        return $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=? LIMIT 1", $itemID);
     }
 }
 ?>
