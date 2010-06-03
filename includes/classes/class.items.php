@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 214
+ * @revision 225
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -938,6 +938,20 @@ Class Items extends Connector {
     
     public function GetItemData($itemID) {
         return $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Faction`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+    }
+    
+    public function GetModelSuffix($name) {
+        $suffixes = array('_u.png', '_m.png', '_f.png');
+        $use_suffix = false;
+        foreach($suffixes as $suff) {
+            if(@file_exists('models/' . $name . $suff)) {
+                $use_suffix = $suff;
+            }
+        }
+        if($use_suffix) {
+            return $use_suffix;
+        }
+        return false;
     }
 }
 ?>

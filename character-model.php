@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 195
+ * @revision 225
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -151,13 +151,14 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'prefix' => 'item/texturecomponents/armuppertexture/',
             'file'   => $items->GetItemModelData(0, 'texture_2', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.0
         );
+        $subtexture_data['shirt_au']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['file']);
+        $subtexture_data['shirt_au']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['fileBackup']);
+            
         /**
          * Shirt (armlower)
          **/
@@ -165,13 +166,14 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'prefix' => 'item/texturecomponents/armlowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.25
         );
+        $subtexture_data['shirt_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_al']['prefix'] . $subtexture_data['shirt_al']['file']);
+        $subtexture_data['shirt_al']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_al']['prefix'] . $subtexture_data['shirt_al']['fileBackup']);
+        
         /**
          * Shirt (torsoupper)
          **/
@@ -179,13 +181,14 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'prefix' => 'item/texturecomponents/torsouppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.0
         );
+        $subtexture_data['shirt_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_tu']['prefix'] . $subtexture_data['shirt_tu']['file']);
+        $subtexture_data['shirt_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_tu']['prefix'] . $subtexture_data['shirt_tu']['fileBackup']);
+        
         /**
          * Shirt (torsolower)
          **/
@@ -193,13 +196,14 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.25
         );
+        
+        $subtexture_data['shirt_tl']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_tl']['prefix'] . $subtexture_data['shirt_tl']['file']);
+        $subtexture_data['shirt_tl']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_tl']['prefix'] . $subtexture_data['shirt_tl']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -212,13 +216,14 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/armuppertexture/',
             'file'   => $items->GetItemModelData(0, 'texture_2', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.0
         );
+        $subtexture_data['chest_au']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_au']['prefix'] . $subtexture_data['chest_au']['file']);
+        $subtexture_data['chest_au']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_au']['prefix'] . $subtexture_data['chest_au']['fileBackup']);
+        
         /**
          * Chest (torsoupper)
          **/        
@@ -226,13 +231,14 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/torsouppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'suffixFile' => '_f.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.0
         );
+        $subtexture_data['chest_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_tu']['prefix'] . $subtexture_data['chest_tu']['file']);
+        $subtexture_data['chest_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_tu']['prefix'] . $subtexture_data['chest_tu']['fileBackup']);
+        
         /**
          * Chest (torsolower)
          **/        
@@ -240,13 +246,14 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_f.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.25
         );
+        $subtexture_data['chest_tl']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_tl']['prefix'] . $subtexture_data['chest_tl']['file']);
+        $subtexture_data['chest_tl']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_tl']['prefix'] . $subtexture_data['chest_tl']['fileBackup']);
+        
         /**
          * Chest (legupper)
          **/        
@@ -254,13 +261,14 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/leguppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.375
         );
+        $subtexture_data['chest_lu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_lu']['prefix'] . $subtexture_data['chest_lu']['file']);
+        $subtexture_data['chest_lu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_lu']['prefix'] . $subtexture_data['chest_lu']['fileBackup']);
+        
         /**
          * Chest (leglower)
          **/
@@ -268,13 +276,13 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'prefix' => 'item/texturecomponents/leglowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.625
         );
+        $subtexture_data['chest_ll']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_ll']['prefix'] . $subtexture_data['chest_ll']['file']);
+        $subtexture_data['chest_ll']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_ll']['prefix'] . $subtexture_data['chest_ll']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -287,13 +295,13 @@ if($tmpid = $characters->GetCharacterEquip('wrist')) {
             'prefix' => 'item/texturecomponents/armlowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.25
         );
+        $subtexture_data['bracers_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['bracers_al']['prefix'] . $subtexture_data['bracers_al']['file']);
+        $subtexture_data['bracers_al']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['bracers_al']['prefix'] . $subtexture_data['bracers_al']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -306,13 +314,14 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
             'prefix' => 'item/texturecomponents/armlowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.25
         );
+        $subtexture_data['gloves_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['gloves_al']['prefix'] . $subtexture_data['gloves_al']['file']);
+        $subtexture_data['gloves_al']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['gloves_al']['prefix'] . $subtexture_data['gloves_al']['fileBackup']);
+        
         /**
          * Hand (main)
          **/
@@ -320,13 +329,13 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
             'prefix' => 'item/texturecomponents/handtexture/',
             'file'   => $items->GetItemModelData(0, 'visual_2', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_2', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.0,
             'y' => 0.5
         );
+        $subtexture_data['hand']['suffixFile'] = $items->GetModelSuffix($subtexture_data['hand']['prefix'] . $subtexture_data['hand']['file']);
+        $subtexture_data['hand']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['hand']['prefix'] . $subtexture_data['hand']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -339,13 +348,14 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
             'prefix' => 'item/texturecomponents/torsouppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'suffixFile' => '_f.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.0
         );
+        $subtexture_data['tabard_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['tabard_tu']['prefix'] . $subtexture_data['tabard_tu']['file']);
+        $subtexture_data['tabard_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['tabard_tu']['prefix'] . $subtexture_data['tabard_tu']['fileBackup']);
+        
         /**
          * Tabard (torsolower)
          **/        
@@ -353,13 +363,13 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_f.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.25
         );
+        $subtexture_data['tabard_tl']['suffixFile'] = $items->GetModelSuffix($subtexture_data['tabard_tl']['prefix'] . $subtexture_data['tabard_tl']['file']);
+        $subtexture_data['tabard_tl']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['tabard_tl']['prefix'] . $subtexture_data['tabard_tl']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -372,13 +382,14 @@ if($tmpid = $characters->GetCharacterEquip('belt')) {
             'prefix' => 'item/texturecomponents/torsolowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.25
         );
+        $subtexture_data['belt_tl']['suffixFile'] = $items->GetModelSuffix($subtexture_data['belt_tl']['prefix'] . $subtexture_data['belt_tl']['file']);
+        $subtexture_data['belt_tl']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['belt_tl']['prefix'] . $subtexture_data['belt_tl']['fileBackup']);
+        
         /**
          * Belt (legupper)
          **/
@@ -386,13 +397,13 @@ if($tmpid = $characters->GetCharacterEquip('belt')) {
             'prefix' => 'item/texturecomponents/leguppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.375
         );
+        $subtexture_data['belt_lu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['belt_lu']['prefix'] . $subtexture_data['belt_lu']['file']);
+        $subtexture_data['belt_lu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['belt_lu']['prefix'] . $subtexture_data['belt_lu']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -405,13 +416,14 @@ if($tmpid = $characters->GetCharacterEquip('legs')) {
             'prefix' => 'item/texturecomponents/leguppertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.375
         );
+        $subtexture_data['leg_lu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['leg_lu']['prefix'] . $subtexture_data['leg_lu']['file']);
+        $subtexture_data['leg_lu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['leg_lu']['prefix'] . $subtexture_data['leg_lu']['fileBackup']);
+        
         /**
          * Leg (leglower)
          **/
@@ -419,13 +431,13 @@ if($tmpid = $characters->GetCharacterEquip('legs')) {
             'prefix' => 'item/texturecomponents/leglowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.625
         );
+        $subtexture_data['leg_ll']['suffixFile'] = $items->GetModelSuffix($subtexture_data['leg_ll']['prefix'] . $subtexture_data['leg_ll']['file']);
+        $subtexture_data['leg_ll']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['leg_ll']['prefix'] . $subtexture_data['leg_ll']['fileBackup']);
     }
     unset($tmpid);
 }
@@ -438,13 +450,13 @@ if($tmpid = $characters->GetCharacterEquip('boots')) {
             'prefix' => 'item/texturecomponents/leglowertexture/',
             'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.625
         );
+        $subtexture_data['boot_ll']['suffixFile'] = $items->GetModelSuffix($subtexture_data['boot_ll']['prefix'] . $subtexture_data['boot_ll']['file']);
+        $subtexture_data['boot_ll']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['boot_ll']['prefix'] . $subtexture_data['boot_ll']['fileBackup']);
         
         /**
          * Boot (foot)
@@ -453,13 +465,13 @@ if($tmpid = $characters->GetCharacterEquip('boots')) {
             'prefix' => 'item/texturecomponents/foottexture/',
             'file'   => $items->GetItemModelData(0, 'visual_7', $tmpid),
             'fileBackup' => $items->GetItemModelData(0, 'visual_7', $tmpid),
-            'suffixFile' => '_u.png',
-            'suffixFileBackup' => '_m.png',
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
             'y' => 0.875
         );
+        $subtexture_data['boot_fo']['suffixFile'] = $items->GetModelSuffix($subtexture_data['boot_fo']['prefix'] . $subtexture_data['boot_fo']['file']);
+        $subtexture_data['boot_fo']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['boot_fo']['prefix'] . $subtexture_data['boot_fo']['fileBackup']);
     }
     unset($tmpid);
 }
