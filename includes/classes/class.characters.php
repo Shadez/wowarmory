@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 210
+ * @revision 226
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -262,6 +262,11 @@ Class Characters extends Connector {
         FROM `armory_races` AS `armory_races`
         LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=?d
         WHERE `armory_races`.`id`=?d", $this->class, $this->race);
+        if(!$race_class) {
+            $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
+            unset($player_data);
+            return false;
+        }
         $this->classText = $race_class['class'];
         $this->raceText = $race_class['race'];
         // Get title info
@@ -2223,6 +2228,17 @@ Class Characters extends Connector {
         }
         $this->Log()->writeLog('%s : Add auction (guid: %d, faction: %d, houseId: %d, item: %d, seed: %d, count: %d, price1: %d, price2: %d)', __METHOD__, $this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
         return AuctionHouseHandler::CreateAuction($this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
+    }
+    
+    public function GetActivePetData($full = false) {
+        $data = false;
+        if(!$full) {
+            $data = $this->cDB->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+        }
+        else {
+            $data = $this->cDB->selectRow("SELECT * FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+        }
+        return $data;
     }
 }
 ?>

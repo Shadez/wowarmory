@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 215
+ * @revision 226
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -168,7 +168,9 @@ Class Achievements extends Connector {
                 )
                 AND `guid`=?", $this->guid);
             if(!$achievement_ids) {
-                return false;
+                $achievement_data['earned'] = 0;
+                $achievement_data['points'] = 0;
+                return $achievement_data;
             }
             $ids = array();
             foreach($achievement_ids as $ach) {
