@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 209
+ * @revision 224
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -131,6 +131,10 @@ Class Utils extends Connector {
         $results = array();
         foreach($this->realmData as $realm_info) {
             $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            if(!$db) {
+                $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+                continue;
+            }
             $db->query("SET NAMES UTF8");
             $chars_data = $db->select("
             SELECT
@@ -147,6 +151,7 @@ Class Utils extends Connector {
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildId`
             WHERE `characters`.`account`=?", $_SESSION['accountId']);
             if(!$chars_data) {
+                $this->Log()->writeLog('%s : no characters found for account %d in `%s` database', __METHOD__, $_SESSION['accountId'], $realm_info['name_characters']);
                 continue;
             }
             foreach($chars_data as $realm) {
@@ -181,6 +186,7 @@ Class Utils extends Connector {
         if(is_array($results)) {
             return $results;
         }
+        $this->Log()->writeLog('%s : unable to find any character for account %d', __METHOD__, $_SESSION['accountId']);
         return false;
     }
     
@@ -200,6 +206,7 @@ Class Utils extends Connector {
         // Bookmarks limit is 60
         $bookmarks_data = $this->aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `armory_bookmarks` WHERE `account`=?d LIMIT 60", $_SESSION['accountId']);
         if(!$bookmarks_data) {
+            $this->Log()->writeLog('%s : bookmarks for account %d not found', __METHOD__, $_SESSION['accountId']);
             return false;
         }
         $result = array();
