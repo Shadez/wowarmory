@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 214
+ * @revision 228
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -338,7 +338,7 @@ $ench_array = array (
     26=>'gun',
     28=>'sigil'
 );
-if($isCharacter) {
+if($isCharacter && isset($ench_array[$data['InventoryType']])) {
     $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->GetGUID());
     if($enchantment) {
         $xml->XMLWriter()->startElement('enchant');
