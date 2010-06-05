@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 226
+ * @revision 229
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1789,15 +1789,14 @@ Class Characters extends Connector {
     public function GetCharacterDefense() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
-        $gskill = $this->getCharacterSkill(SKILL_DEFENCE);
+        $gskill    = $this->cDB->selectRow("SELECT * FROM `character_skills` WHERE `guid`=? AND `skill`=95", $this->guid);
+        $tmp_value = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
         
         $tmp_stats['defense_rating_skill'] = $gskill['value'];
-        $tmp_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
-        $tmp_stats['plusDefense'] = $tmp_stats['value']/Utils::GetRatingCoefficient($rating, 2);
-        $buff = intval($tmp_stats['plusDefense']);
-        $tmp_stats['rating'] = $tmp_stats['plusDefense']+$buff;
+        $tmp_stats['plusDefense'] = round($tmp_value/Utils::GetRatingCoefficient($rating, 2));
+        $tmp_stats['value'] = $gskill['value'];
+        $tmp_stats['rating'] = $tmp_value;
         $tmp_stats['increasePercent'] = DODGE_PARRY_BLOCK_PERCENT_PER_DEFENSE * ($tmp_stats['rating'] - $this->level*5);
-        $tmp_stats['increasePercent'] = max($tmp_stats['increasePercent'], 0);
         $tmp_stats['decreasePercent'] = $tmp_stats['increasePercent'];
         
         unset($rating);
@@ -2008,6 +2007,7 @@ Class Characters extends Connector {
                     $achievement_info['desc'] = str_replace("'", "\'", $achievement_info['desc']);
                     $achievement_info['title'] = str_replace("'", "\'", $achievement_info['title']);
                     $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
+                    //$tooltip = sprintf('<div class="myTable"><img src="wow-icons/_images/51x51/%s.jpg" align="left" class="ach_tooltip" /><strong style="color: #fff;">%s (%d)</strong><br />%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
