@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 230
+ * @revision 231
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -290,14 +290,12 @@ Class Arenateams extends Connector {
             $current_count = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
             $summary = $summary+$current_count;
         }
-        $this->Log()->writeLog('%s : found %d arena teams (type: %d)', __METHOD__, $summary, $type);
         return $summary;
     }
     
     public function CountPageNum($type) {
         $all_teams = self::CountArenaTeams($type);
         $result = round($all_teams/20);
-        $this->Log()->writeLog('%s : calculated %d pages for arena teams type %d (returned teams num: %d)', __METHOD__, $result, $type, $all_teams);
         return $result;
     }
 }
