@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 212
+ * @revision 230
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -163,9 +163,21 @@ Class Arenateams extends Connector {
         }
     }
     
-    public function BuildArenaLadderList($type, $page, $num = false, $order = 'rank', $sort = 'DESC') {
+    public function BuildArenaLadderList($type, $page, $num = false, $order = 'rank', $sort = 'ASC') {
         if($num == true) {
-            return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
+            $summary = 0;
+            foreach($this->realmData as $realm_info) {
+                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+                $db->query("SET NAMES ?", $realm_info['charset_characters']);
+                $current_count = $db->selectCell("
+                SELECT
+                COUNT(`arena_team`.`arenateamid`) 
+                    FROM `arena_team` AS `arena_team` 
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid` = `arena_team`.`arenateamid` 
+                        WHERE `arena_team`.`type` = ? AND `arena_team_stats`.`rank` > 0", $type);
+                $summary = $current_count+$summary;
+            }
+            return $summary;
         }
         $result_areanteams = array();
         $i = 0;
@@ -186,7 +198,7 @@ Class Arenateams extends Connector {
                 FROM `arena_team` AS `arena_team`
                     LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                     LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                        WHERE `type`=?
+                        WHERE `arena_team`.`type`=? AND `arena_team_stats`.`rank` > 0
                             ORDER BY `arena_team_stats`.`".$order."` ".$sort." LIMIT ".$page.", 20
             ", $type);
             if(!$realmArenaTeamInfo) {
@@ -224,16 +236,24 @@ Class Arenateams extends Connector {
             $teamId = $this->arenateamid;
         }
         if($db == false) {
-            return $this->cDB->selectRow("
+            $arenaTeamEmblem = $this->cDB->selectRow("
             SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
                 FROM `arena_team`
                     WHERE `arenateamid`=?", $teamId);
+            $arenaTeamEmblem['background'] = dechex($arenaTeamEmblem['background']);
+            $arenaTeamEmblem['borderColor'] = dechex($arenaTeamEmblem['borderColor']);
+            $arenaTeamEmblem['iconColor'] = dechex($arenaTeamEmblem['iconColor']);
+            return $arenaTeamEmblem;
         }
-        else {
-            return $db->selectRow("
+        elseif(is_object($db)) {
+            $arenaTeamEmblem = $db->selectRow("
             SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
                 FROM `arena_team`
                     WHERE `arenateamid`=?", $teamId);
+            $arenaTeamEmblem['background'] = dechex($arenaTeamEmblem['background']);
+            $arenaTeamEmblem['borderColor'] = dechex($arenaTeamEmblem['borderColor']);
+            $arenaTeamEmblem['iconColor'] = dechex($arenaTeamEmblem['iconColor']);
+            return $arenaTeamEmblem;
         }
     }
     
@@ -263,12 +283,22 @@ Class Arenateams extends Connector {
     }
     
     public function CountArenaTeams($type) {
-        return $this->cDB->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
+        $summary = 0;
+        foreach($this->realmData as $realm_info) {
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $current_count = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
+            $summary = $summary+$current_count;
+        }
+        $this->Log()->writeLog('%s : found %d arena teams (type: %d)', __METHOD__, $summary, $type);
+        return $summary;
     }
     
     public function CountPageNum($type) {
         $all_teams = self::CountArenaTeams($type);
-        return round($all_teams/20);        
+        $result = round($all_teams/20);
+        $this->Log()->writeLog('%s : calculated %d pages for arena teams type %d (returned teams num: %d)', __METHOD__, $result, $type, $all_teams);
+        return $result;
     }
 }
 ?>

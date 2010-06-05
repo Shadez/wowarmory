@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 187
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 230
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -78,20 +78,20 @@ else {
     $limit_query = $page*20;
 }
 $sort = 'rank';
-$type = 'desc';
+$type = 'ASC';
 if(isset($_GET['sf'])) {
     switch($_GET['sf']) {
         case 'sgw':
             $sort = 'wins';
-            $type = 'DESC';
+            $type = 'ASC';
             break;
         case 'sgl':
             $sort = 'wins';
-            $type = 'ASC';
+            $type = 'DESC';
             break;
         case 'rating':
             $sort = 'rating';
-            $type = 'DESC';
+            $type = 'ASC';
             break;
     }
 }
