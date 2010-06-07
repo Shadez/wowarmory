@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 234
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -87,10 +87,10 @@ Class Connector {
             $realmName = urldecode($_GET['r']);
             $realm_info = $this->aDB->selectRow("SELECT `id`, `version` FROM `armory_realm_data` WHERE `name`=?", $realmName);
             if(!$realm_info) {
-                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
-                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-                $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
-                $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_characters'].':'.$this->realmData[1]['pass_characters'].'@'.$this->realmData[1]['host_characters'].'/'.$this->realmData[1]['name_characters']);
+                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_mangos'].':'.$this->realmData[1]['pass_mangos'].'@'.$this->realmData[1]['host_mangos'].'/'.$this->realmData[1]['name_mangos']);
+                $this->cDB->query("SET NAMES ?", $this->realmData[1]['charset_characters']);
+                $this->wDB->query("SET NAMES ?", $this->realmData[1]['charset_mangos']);
             }
             elseif(isset($this->realmData[$realm_info['id']])) {
                 $this->connectionData = $this->realmData[$realm_info['id']];
@@ -102,22 +102,22 @@ Class Connector {
                     $this->wDB->query("SET NAMES ?", $this->connectionData['charset_mangos']);
                 }
                 else {
-                    $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-                    $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+                    $this->wDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_mangos'].':'.$this->realmData[1]['pass_mangos'].'@'.$this->realmData[1]['host_mangos'].'/'.$this->realmData[1]['name_mangos']);
+                    $this->wDB->query("SET NAMES ?", $this->realmData[1]['charset_mangos']);
                 }
             }
             else {
-                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
-                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-                $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
-                $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+                $this->cDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_characters'].':'.$this->realmData[1]['pass_characters'].'@'.$this->realmData[1]['host_characters'].'/'.$this->realmData[1]['name_characters']);
+                $this->wDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_mangos'].':'.$this->realmData[1]['pass_mangos'].'@'.$this->realmData[1]['host_mangos'].'/'.$this->realmData[1]['name_mangos']);
+                $this->cDB->query("SET NAMES ?", $this->realmData[1]['charset_characters']);
+                $this->wDB->query("SET NAMES ?", $this->realmData[1]['charset_mangos']);
             }
         }
         else {
-            $this->cDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_characters'].':'.$this->mysqlconfig['pass_characters'].'@'.$this->mysqlconfig['host_characters'].'/'.$this->mysqlconfig['name_characters']);
-            $this->wDB = DbSimple_Generic::connect('mysql://'.$this->mysqlconfig['user_mangos'].':'.$this->mysqlconfig['pass_mangos'].'@'.$this->mysqlconfig['host_mangos'].'/'.$this->mysqlconfig['name_mangos']);
-            $this->cDB->query("SET NAMES ?", $this->mysqlconfig['charset_characters']);
-            $this->wDB->query("SET NAMES ?", $this->mysqlconfig['charset_mangos']);
+            $this->cDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_characters'].':'.$this->realmData[1]['pass_characters'].'@'.$this->realmData[1]['host_characters'].'/'.$this->realmData[1]['name_characters']);
+            $this->wDB = DbSimple_Generic::connect('mysql://'.$this->realmData[1]['user_mangos'].':'.$this->realmData[1]['pass_mangos'].'@'.$this->realmData[1]['host_mangos'].'/'.$this->realmData[1]['name_mangos']);
+            $this->cDB->query("SET NAMES ?", $this->realmData[1]['charset_characters']);
+            $this->wDB->query("SET NAMES ?", $this->realmData[1]['charset_mangos']);
         }
         if(!$this->currentRealmInfo) {
             $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'type' => $this->realmData[1]['type'], 'connected' => true);
@@ -139,25 +139,12 @@ Class Connector {
             case 'en_us':
                 $this->_loc = 0;
                 break;
-            /*
-            case 'ko_kr':
-                $this->_loc = 1;
-                break;
-            */
             case 'fr_fr':
                 $this->_loc = 2;
                 break;
             case 'de_de':
                 $this->_loc = 3;
                 break;
-            /*
-            case 'zh_cn':
-                $this->_loc = 4; // China
-                break;
-            case 'zh_tw':
-                $this->_loc = 5; // Taiwan
-                break;
-            */
             case 'es_es':
                 $this->_loc = 6;
                 break;

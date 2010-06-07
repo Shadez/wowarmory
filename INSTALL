@@ -15,6 +15,11 @@ INSTALLATION STEPS:
    If you get error 'MySQL server has gone away', change Query limit in MySQL server config file (my.ini (or my.cnf)).
 	Google it, if you don't know what it is;
 4. Rename includes/classes/configuration.php.default to configuration.php and edit this file (read comments).
+   Characters DB configs are stored in
+       $ArmoryConfig['multiRealm'][1]['*_characters']
+   And World DB configs are stored in
+       $ArmoryConfig['multiRealm'][1]['*_mangos']
+   You should edit these values according with your MySQL configs (user/password/dbname).
 5. Downloads icons archive from "Downloads" on GitHub.com and unpack it to "wow-icons/_images/"
 6. Unzip htaccess.zip archive and place unpacked .htaccess file to root site dir for correct scripts work.
 7. If there are some sql updates in 'sql/updates' dir (rev. 82 or higher), you need to upload it to DB too.
@@ -43,6 +48,12 @@ INSTALLATION STEPS:
 	Если вы получаете ошибку 'MySQL Server has gone away', измените лимит запроса в конфигурационном файле сервера MySQL
 	(my.ini (или my.cnf)). Используйте Google, если не знаете что это и как менять;
 4. Переименуйте файл includes/classes/configuration.php.default в configuration.php и отредактируйте его (см. комментарии).
+   Внимание!
+   Параметры подключения к базе персонажей находятся в:
+       $ArmoryConfig['multiRealm'][1]['*_characters']
+   Параметры подключения к игровой базе (мир) находятся в:
+       $ArmoryConfig['multiRealm'][1]['*_mangos']
+   Вы должны изменить значения этих параметров согласно вашим настройкам MySQL (пользователь/пароль/имя базы) 
 5. Скачайте архив иконок из раздела "Downloads" на GitHub.com и распакуйте в папку "wow-icons/_images/"
 6. Распакуйте архив htaccess.zip и поместите распакованный файл .htaccess в корень сайта для правильной работы скриптов.
 7. Если в папке 'sql/updates' присутствуют обновления для базы (ревизии 82 и выше), вам будет необходимо так же залить их базу. 
