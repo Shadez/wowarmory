@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 227
+ * @revision 232
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,8 +30,8 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r227');
-define('ARMORY_REVISION', 227);
+define('DB_VERSION', 'armory_r232');
+define('ARMORY_REVISION', 232);
 $armory = new Connector();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
@@ -118,6 +118,12 @@ if(defined('load_characters_class')) {
         die('<b>Error:</b> can not load characters class!');
     }
     $characters = new Characters;
+}
+if(defined('load_player_class')) {
+    if(!@include('classes/class.player.php')) {
+        die('<b>Error:</b> can not load player class!');
+    }
+    $player = new Player;
 }
 if(defined('load_guilds_class')) {
     if(!@include('classes/class.guilds.php')) {
