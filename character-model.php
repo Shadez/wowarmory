@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 225
+ * @revision 237
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,6 +91,8 @@ $character_model_data['hair_style'] = ($player_model['playerBytes']>>16)%256;
 $character_model_data['hair_color'] = ($player_model['playerBytes']>>24)%256;
 $character_model_data['skin_style'] = $player_model['playerBytes']%256;
 $character_model_data['facial_hair'] = $player_model['playerBytes2']%256;
+$character_model_data['hair_style'] += 2; // Hack?
+
 $character_model_data['hide_helm'] = 0;
 $character_model_data['hide_cloak'] = 0;
 if($player_model['playerFlags']&0x00000400) {
