@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 235
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,6 +49,22 @@ if(!$isGuild) {
     echo $xml->StopXML();
     exit;
 }
+if(!isset($_SESSION['accountId'])) {
+    header('Location: login.xml?ref=' . urlencode(sprintf('guild-bank-log.xml?r=%s&gn=%s', $armory->currentRealmInfo['name'], $guilds->guildName)));
+}
+elseif(!$utils->IsAllowedToGuildBank($guilds->guildId, $armory->currentRealmInfo['id'])) {
+    // Load XSLT template
+    $xml->LoadXSLT('error/error.xsl');
+    $xml->XMLWriter()->startElement('page');
+    $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->startElement('errorhtml');
+    $xml->XMLWriter()->endElement();  //errorhtml
+    $xml->XMLWriter()->endElement(); //page
+    echo $xml->StopXML();
+    exit;
+}
+
 // Get page cache
 if($guilds->guildId > 0 && $isGuild && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     $cache_id = $utils->GenerateCacheId('guild-bank-log', $guilds->guildName, $armory->currentRealmInfo['name']);

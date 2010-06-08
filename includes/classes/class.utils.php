@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 224
+ * @revision 235
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -85,18 +85,33 @@ Class Utils extends Connector {
         return $chars;
     }
     
-    public function guildBankRights($guildid) {
+    public function IsAllowedToGuildBank($guildId, $realmId) {
         if(!isset($_SESSION['accountId'])) {
             $this->Log()->writeError('%s : session not found', __METHOD__);
             return false;
         }
-        $selectedCharData = $this->getCharacter();
-        /* Hack */
-        $characterGuildId = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=? LIMIT 1", $selectedCharData['guid']);
-        if(!$characterGuildId || $characterGuildId != $guildid) {
-            $this->Log()->writeError('%s : characterGuildId not found or selected character is not in the %d guild', __METHOD__, $guildid);
+        if(!isset($this->realmData[$realmId])) {
+            $this->Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
             return false;
         }
+        $realm_info = $this->realmData[$realmId];
+        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        if(!$db) {
+            $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+        }
+        $db->query("SET NAMES ?", $realm_info['charset_characters']);
+        $chars_data = $db->select("
+        SELECT
+        `characters`.`guid`,
+        `guild_member`.`guildid` AS `guildId`
+        FROM `characters` AS `characters`
+        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+        WHERE `characters`.`account`=? AND `guild_member`.`guildid`=?", $_SESSION['accountId'], $guildId);
+        if(!$chars_data) {
+            $this->Log()->writeLog('%s : account %d does not have any character in %d guild on realm %d', __METHOD__, $_SESSION['accountId'], $guildId, $realmId);
+            return false;
+        }
+        // Account have character in $guildId guild
         return true;
     }
     
