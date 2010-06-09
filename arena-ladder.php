@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 230
+ * @revision 238
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -47,6 +47,9 @@ $maxPage = $arenateams->CountPageNum($current_type);
 if($page > $maxPage) {
     $page = 1;
 }
+$sortDir = (isset($_GET['sd'])) ? $_GET['sd'] : 'a';
+$sortField = (isset($_GET['sf'])) ? $_GET['sf'] : 'rating';
+
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
@@ -58,8 +61,8 @@ $ladder_result = array(
     'level'            => 80,
     'maxPage'          => $maxPage,
     'page'             => $page,
-    'sortDir'          => 'a',
-    'sortField'        => 'rank',
+    'sortDir'          => $sortDir,
+    'sortField'        => $sortField,
     'teamSize'         => $current_type,
     'url'              => sprintf('b=%s&ts=%d', urlencode($armory->armoryconfig['defaultBGName']), $current_type),
     'xmlSchemaVersion' => '1.0'
@@ -81,17 +84,32 @@ $sort = 'rank';
 $type = 'ASC';
 if(isset($_GET['sf'])) {
     switch($_GET['sf']) {
-        case 'sgw':
-            $sort = 'wins';
-            $type = 'ASC';
-            break;
-        case 'sgl':
-            $sort = 'wins';
-            $type = 'DESC';
-            break;
-        case 'rating':
-            $sort = 'rating';
-            $type = 'ASC';
+        case 'rank':   // rank
+        case 'name':   // name
+        case 'sgw':    // wins
+        case 'sgl':    // lose
+        case 'rating': // rating
+            if($_GET['sf'] == 'name') {
+                $sort = '`arena_team`.`name`';
+            }
+            elseif($_GET['sf'] == 'sgw') {
+                $sort = '`arena_team_stats`.`wins2`';
+            }
+            elseif($_GET['sf'] == 'sgl') {
+                $sort = 'lose'; // Unique sorting
+            }
+            else {
+                $sort = '`arena_team_stats`.`' . $_GET['sf'] .'`';
+            }
+            if(!isset($_GET['sd'])) {
+                $type = 'ASC';
+            }
+            elseif($_GET['sd'] == 'a') {
+                $type = 'ASC';
+            }
+            elseif($_GET['sd'] == 'd') {
+                $type = 'DESC';
+            }
             break;
     }
 }
