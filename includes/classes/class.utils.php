@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 235
+ * @revision 239
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,7 +70,7 @@ Class Utils extends Connector {
     
     public function getCharsArray($select = false) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if($select == true) {
@@ -87,7 +87,7 @@ Class Utils extends Connector {
     
     public function IsAllowedToGuildBank($guildId, $realmId) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if(!isset($this->realmData[$realmId])) {
@@ -115,9 +115,33 @@ Class Utils extends Connector {
         return true;
     }
     
+    public function IsAccountHaveCurrentCharacter($guid, $realmId) {
+        if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
+            return false;
+        }
+        if(!isset($this->realmData[$realmId])) {
+            $this->Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
+            return false;
+        }
+        $realm_info = $this->realmData[$realmId];
+        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        if(!$db) {
+            $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+        }
+        $db->query("SET NAMES ?", $realm_info['charset_characters']);
+        $chars_data = $db->select("SELECT 1 FROM `characters` WHERE `account`=? AND `guid`=?", $_SESSION['accountId'], $guid);
+        if(!$chars_data) {
+            $this->Log()->writeLog('%s : user with account %d does not have character %d', __METHOD__, $_SESSION['accountId'], $guid);
+            return false;
+        }
+        // Account $_SESSION['accountId'] have character $guid on $realmId realm
+        return true;
+    }
+    
     public function CountSelectedCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']);
@@ -125,7 +149,7 @@ Class Utils extends Connector {
     
     public function CountAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $count_all = 0;
@@ -140,7 +164,7 @@ Class Utils extends Connector {
     
     public function GetAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $results = array();
@@ -215,7 +239,7 @@ Class Utils extends Connector {
     
     public function GetBookmarks() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         // Bookmarks limit is 60
@@ -252,7 +276,7 @@ Class Utils extends Connector {
     
     public function AddBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if($this->GetBookmarksCount() >= 60) {
@@ -283,7 +307,7 @@ Class Utils extends Connector {
     
     public function DeleteBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $query = sprintf("DELETE FROM `armory_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
@@ -293,7 +317,7 @@ Class Utils extends Connector {
     
     public function GetBookmarksCount() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeError('%s : session not found', __METHOD__);
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `armory_bookmarks` WHERE `account`=?d", $_SESSION['accountId']);
