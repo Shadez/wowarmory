@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 189
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 243
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,7 +64,7 @@ $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'search.xml');
 $xml->XMLWriter()->writeAttribute('requestQuery', ($search->searchQuery) ? $search->searchQuery.'&amp;searchType='.$_GET['searchType'] : null);
 $xml->XMLWriter()->startElement('armorySearch');
-$selected = 'characters';
+$selected = null;
 if($count_characters = $search->SearchCharacters(true)) {
     $totalCount = $totalCount+$count_characters;
     $characters_search = $search->SearchCharacters();
@@ -73,32 +73,42 @@ if($count_characters = $search->SearchCharacters(true)) {
 if($count_guilds = $search->SearchGuilds(true)) {
     $totalCount = $totalCount+$count_guilds;
     $guilds_search = $search->SearchGuilds();
-    $selected = 'guilds';
+    if($selected != 'characters') {
+        $selected = 'guilds';
+    }
 }
 if($count_teams = $search->SearchArenaTeams(true)) {
     $totalCount = $totalCount+$count_teams;
     $teams_search = $search->SearchArenaTeams();
-    $selected = 'arenateams';
+    if($selected != 'characters') {
+        $selected = 'arenateams';
+    }
 }
 if($advancedItemsSearch) {
     if($count_items = $search->AdvancedItemsSearch(true)) {
         $totalCount = $totalCount+$count_items;
         $items_search = $search->AdvancedItemsSearch();
-        $selected = 'items';
+        if($selected != 'characters') {
+            $selected = 'items';
+        }
     }
 }
 elseif($findGearUpgrade) {
     if($count_items = $search->DoSearchItems(true, $itemID)) {
         $totalCount = $totalCount+$count_items;
         $items_search = $search->DoSearchItems(false, $itemID);
-        $selected = 'items';
+        if($selected != 'characters') {
+            $selected = 'items';
+        }
     }
 }
 else {
     if($count_items = $search->DoSearchItems(true)) {
         $totalCount = $totalCount+$count_items;
         $items_search = $search->DoSearchItems();
-        $selected = 'items';
+        if($selected != 'characters') {
+            $selected = 'items';
+        }
     }
 }
 if(isset($_GET['selectedTab'])) {
