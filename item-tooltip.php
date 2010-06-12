@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 228
+ * @revision 242
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -89,6 +89,10 @@ $xml->XMLWriter()->endElement();//overallQualityId
 $xml->XMLWriter()->startElement('bonding');
 $xml->XMLWriter()->text($data['bonding']);
 $xml->XMLWriter()->endElement();//bonding
+$xml->XMLWriter()->startElement('maxCount');
+$xml->XMLWriter()->text($data['maxcount']);
+$xml->XMLWriter()->endElement();//maxCount
+
 if($data['startquest'] > 0) {
     $xml->XMLWriter()->startElement('startQuestId');
     $xml->XMLWriter()->text($data['startquest']);
