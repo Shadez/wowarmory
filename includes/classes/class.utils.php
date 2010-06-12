@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 240
+ * @revision 241
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -917,7 +917,7 @@ Class Utils extends Connector {
      * See SQL update for 240 rev. (sql/updates/armory_r240_armory_news.sql) for example news.
      **/
     public function GetArmoryNews() {
-        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_" . $this->_locale ."` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_". $this->_locale ."` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `id` DESC");
+        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_" . $this->_locale ."` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_". $this->_locale ."` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC");
         $allNews = array();
         $i = 0;
         foreach($news as $new) {
