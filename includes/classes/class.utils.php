@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 239
+ * @revision 240
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -903,6 +903,44 @@ Class Utils extends Connector {
             $this->Log()->writeError('%s : unknown race: %d', __METHOD__, $raceID);
             return false;
         }
+    }
+    
+    /**
+     * Returns array with latest news.
+     * To add new item, you need to execute simple query to armory DB:
+     * ===========
+     * INSERT INTO `armory_news`
+     * (`date`,              `title_en_gb`, `title_*`,           `text_en_gb`, `text_*` `display`) 
+     * VALUES
+     * (UNIXTIMESTAMP_HERE, 'Title (ENGB)', 'Title (ANY Locale)', 'Text ENGB', 'Text (ANY Locale)', 1);
+     * ==========
+     * See SQL update for 240 rev. (sql/updates/armory_r240_armory_news.sql) for example news.
+     **/
+    public function GetArmoryNews() {
+        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_" . $this->_locale ."` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_". $this->_locale ."` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `id` DESC");
+        $allNews = array();
+        $i = 0;
+        foreach($news as $new) {
+            $allNews[$i] = array();
+            $allNews[$i]['posted'] = date('Y-m-d\TH:i:s\Z', $new['date']);
+            if(!isset($new['titleLoc']) || empty($new['titleLoc'])) {
+                $allNews[$i]['title'] = (!empty($new['titleOriginal'])) ? $new['titleOriginal'] : null;
+            }
+            else {
+                $allNews[$i]['title'] = (!empty($new['titleLoc'])) ? $new['titleLoc'] : null;
+            }
+            if(!isset($new['textLoc']) || empty($new['textLoc'])) {
+                $allNews[$i]['text'] = (!empty($new['textOriginal'])) ? $new['textOriginal'] : null;
+            }
+            else {
+                $allNews[$i]['text'] = (!empty($new['textLoc'])) ? $new['textLoc'] : null;
+            }
+            $i++;
+        }
+        if($allNews) {
+            return $allNews;
+        }
+        return false;
     }
 }
 ?>

@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 240
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,14 +27,25 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 header('Content-type: text/xml');
-/*$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
 $xml->XMLWriter()->writeAttribute('requestUrl', 'newsfeed.xml');
-$xml->XMLWriter()->startElement('news');
-$xml->XMLWriter()->endElement();  //news
+$armory_news = $utils->GetArmoryNews();
+if($armory_news && is_array($armory_news)) {
+    foreach($armory_news as $news) {
+        $xml->XMLWriter()->startElement('news');
+        $xml->XMLWriter()->writeAttribute('icon', 'news');
+        $xml->XMLWriter()->writeAttribute('posted', $news['posted']);
+        $xml->XMLWriter()->startElement('story');
+        $xml->XMLWriter()->writeAttribute('permalink', null);
+        $xml->XMLWriter()->writeAttribute('title', $news['title']);
+        $xml->XMLWriter()->text($news['text']);
+        $xml->XMLWriter()->endElement();  //story
+        $xml->XMLWriter()->endElement(); //news
+    }
+}
 $xml->XMLWriter()->endElement(); //page
-echo $xml->StopXML();
+echo htmlspecialchars_decode($xml->StopXML()); // htmlspecialchars_decode used to enable HTML tags
 exit;
-*/
 ?>
