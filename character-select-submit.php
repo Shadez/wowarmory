@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 245
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,6 +27,7 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 if(!isset($_SESSION['accountId'])) {
+    $armory->Log()->writeLog('character-select-submit : session not found!');
     exit;
 }
 if(isset($_GET)) {
@@ -38,18 +39,23 @@ if(isset($_GET)) {
             $realmName = urldecode($_GET['r' . $i]);
             $realm_data = $armory->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=? LIMIT 1", $realmName);
             if(!$realm_data) {
+                $armory->Log()->writeLog('character-select-submit : realm %s not found in database!', $realmName);
                 continue;
             }
             elseif(!isset($armory->realmData[$realm_data['id']])) {
+                $armory->Log()->writeLog('character-select-submit : connection data to realm %s (ID: %d) not found!', $realmName, $realm_data['id']);
                 continue;
             }
             $armory->connectionData = $armory->realmData[$realm_data['id']];
             $db = DbSimple_Generic::connect('mysql://'.$armory->connectionData['user_characters'].':'.$armory->connectionData['pass_characters'].'@'.$armory->connectionData['host_characters'].'/'.$armory->connectionData['name_characters']);
             if(!$db) {
+                $armory->Log()->writeLog('character-select-submit : unable to connect to MySQL database (host: %s, user: %s, password: %s, name: %s)', $armory->connectionDaa['host_characters'], $armory->connectionDaa['user_characters'], $armory->connectionDaa['pass_characters'], $armory->connectionDaa['name_characters']);
                 continue;
             }
+            $db->query("SET NAMES UTF8");
             $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`=? AND `account`=?d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
             if(!$char_data) {
+                $armory->Log()->writeLog('character-select-submit : unable to get character data from DB (name: %s, accountId: %d)', $_GET['cn' . $i], $_SESSION['accountId']);
                 continue;
             }
             $char_data['realm_id'] = $realm_data['id'];
@@ -62,8 +68,10 @@ if(isset($_GET)) {
             $char_data['num'] = $i;
             $add_query = sprintf("INSERT INTO `armory_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $i, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_data['id'], $char_data['selected']);
             $armory->aDB->query($add_query);
+            //echo $add_query;
         }
     }
 }
+$armory->Log()->writeLog('character-select-submit : $_GET variable not found!');
 exit;
 ?>
