@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 248
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -214,6 +214,23 @@ if($data['Faction'] == 1 || $data['Faction'] == 2) {
         $xml->XMLWriter()->endElement();  //item
     }    
     $xml->XMLWriter()->endElement(); //translationFor
+}
+/* Random properties */
+if($randProperties = $items->BuildLootTable($itemID, 'randomProperty')) {
+    $xml->XMLWriter()->startElement('randomProperties');
+    foreach($randProperties as $prop) {
+        $xml->XMLWriter()->startElement('randomProperty');
+        $xml->XMLWriter()->writeAttribute('suffix', $prop['name']);
+        if(is_array($prop['data'])) {
+            foreach($prop['data'] as $property) {
+                $xml->XMLWriter()->startElement('randomPropertyEnchant');
+                $xml->XMLWriter()->writeAttribute('name', $property);
+                $xml->XMLWriter()->endElement();  //randomPropertyEnchant
+            }
+        }
+        $xml->XMLWriter()->endElement(); //randomProperty
+    }
+    $xml->XMLWriter()->endElement(); //randomProperties
 }
 /* Quest info */
 if($start_quest = $items->BuildLootTable($itemID, 'queststart')) {

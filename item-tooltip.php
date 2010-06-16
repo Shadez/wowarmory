@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 242
+ * @revision 248
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -348,6 +348,29 @@ if($isCharacter && isset($ench_array[$data['InventoryType']])) {
         $xml->XMLWriter()->startElement('enchant');
         $xml->XMLWriter()->text($armory->aDB->selectCell("SELECT `text_" . $armory->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
         $xml->XMLWriter()->endElement(); //enchant
+    }
+}
+// Random property
+if($data['RandomProperty'] > 0) {
+    if(!$isCharacter) {
+        $xml->XMLWriter()->startElement('randomEnchantData');
+        $xml->XMLWriter()->endElement(); //randomEnchantData
+    }
+    if($isCharacter && $rPropInfo = $items->GetRandomPropertiesData($itemID, $characters->GetGUID())) {
+        if(is_array($rPropInfo)) {
+            $xml->XMLWriter()->startElement('randomEnchantData');
+            $xml->XMLWriter()->startElement('suffix');
+            $xml->XMLWriter()->text($rPropInfo['suffix']);
+            $xml->XMLWriter()->endElement(); //enchant
+            if(is_array($rPropInfo['data'])) {
+                foreach($rPropInfo['data'] as $randProp) {
+                    $xml->XMLWriter()->startElement('enchant');
+                    $xml->XMLWriter()->text($randProp);
+                    $xml->XMLWriter()->endElement(); //enchant
+                }
+            }
+            $xml->XMLWriter()->endElement(); //randomEnchantData
+        }
     }
 }
 $xml->XMLWriter()->startElement('socketData');

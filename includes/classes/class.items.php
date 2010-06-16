@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 225
+ * @revision 248
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -498,6 +498,47 @@ Class Items extends Connector {
                     $i++;
                 }
                 break;
+            case 'randomProperty':
+                $itemPropertyId = $this->wDB->selectCell("SELECT `randomProperty` FROM `item_template` WHERE `entry`=? LIMIT 1", $item);
+                if($itemPropertyId <= 0 || !$itemPropertyId) {
+                    return false;
+                }
+                $enchants_entries = $this->wDB->select("SELECT * FROM `item_enchantment_template` WHERE `entry`=?", $itemPropertyId);
+                if(!$enchants_entries) {
+                    return false;
+                }
+                $count = count($enchants_entries);
+                $ids = array();
+                for($i = 0; $i < $count; $i++) {
+                    $ids[$enchants_entries[$i]['ench']] = $enchants_entries[$i]['ench'];
+                }
+                $enchants = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id` IN (?a)", $ids);
+                if(!$enchants) {
+                    return false;
+                }
+                $i = 0;
+                foreach($enchants as $entry) {
+                    $str_tmp = array();
+                    $lootTable[$i]['name'] = $entry['name'];
+                    $lootTable[$i]['data'] = array();
+                    for($j=1;$j<4;$j++) {
+                        if($entry['ench_' . $j] > 0) {
+                            $str_tmp[$entry['ench_' . $j]] = $entry['ench_' . $j];
+                        }
+                    }
+                    $enchs = $this->aDB->select("SELECT `text_".$this->_locale."` AS `text` FROM `armory_enchantment` WHERE `id` IN (?a)", $str_tmp);
+                    if(!$enchs) {
+                        $i++;
+                        continue;
+                    }
+                    $k = 0;
+                    foreach($enchs as $m_ench) {
+                        $lootTable[$i]['data'][$k] = $m_ench['text'];
+                        $k++;
+                    }
+                    $i++;
+                }
+                break;
         }
         return $lootTable;
     }
@@ -951,7 +992,24 @@ Class Items extends Connector {
         if($use_suffix) {
             return $use_suffix;
         }
-        return false;
+        return '_u.png';
+    }
+    
+    public function GetRandomPropertiesData($item_entry, $owner_guid) {
+        $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
+        $rand_data = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id`=?", $enchId);
+        if(!$rand_data) {
+            return false;
+        }
+        $return_data = array();
+        $return_data['suffix'] = $rand_data['name'];
+        $return_data['data'] = array();
+        for($i = 1; $i < 4; $i++) {
+            if($rand_data['ench_' . $i] > 0) {
+                $return_data['data'][$i] = $this->aDB->selectCell("SELECT `text_" . $this->_locale . "` FROM `armory_enchantment` WHERE `id`=?", $rand_data['ench_' . $i]);
+            }
+        }
+        return $return_data;
     }
 }
 ?>
