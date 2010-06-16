@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 213
+ * @revision 247
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -591,18 +591,18 @@ Class SearchMgr extends Connector {
         $exists_items = array();
         $i = 0;
         foreach($items_query as $item) {
+            if(isset($exists_items[$item['id']])) {
+                continue; // do not add the same items to result array
+            }
             if($i >= 200) {
                 if($count) {
-                    return $i;
+                    return count($exists_items);
                 }
                 else {
                     return $items_result;
                 }
             }
             elseif(!$count) {
-                if(isset($exists_items[$item['id']])) {
-                    continue; // do not add the same items to result array
-                }
                 if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss']) && $this->get_array['boss'] == 'all') {
                     $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
                     $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
@@ -648,12 +648,12 @@ Class SearchMgr extends Connector {
                     case 'pvpHorde':
                         break;
                 }
-                $exists_items[$item['id']] = $item['id'];
             }
+            $exists_items[$item['id']] = $item['id'];
             $i++;
         }
         if($count == true) {
-            return $i;
+            return count($exists_items);
         }
         return $items_result;
     }
