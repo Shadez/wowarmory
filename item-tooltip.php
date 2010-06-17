@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 248
+ * @revision 249
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -351,7 +351,7 @@ if($isCharacter && isset($ench_array[$data['InventoryType']])) {
     }
 }
 // Random property
-if($data['RandomProperty'] > 0) {
+if($data['RandomProperty'] > 0 || $data['RandomSuffix'] > 0) {
     if(!$isCharacter) {
         $xml->XMLWriter()->startElement('randomEnchantData');
         $xml->XMLWriter()->endElement(); //randomEnchantData

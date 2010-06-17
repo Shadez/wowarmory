@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 248
+ * @revision 249
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -499,9 +499,18 @@ Class Items extends Connector {
                 }
                 break;
             case 'randomProperty':
-                $itemPropertyId = $this->wDB->selectCell("SELECT `randomProperty` FROM `item_template` WHERE `entry`=? LIMIT 1", $item);
-                if($itemPropertyId <= 0 || !$itemPropertyId) {
+                $itemProperty = $this->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry`=? LIMIT 1", $item);
+                if(!$itemProperty || ($itemProperty['RandomProperty'] == 0 && $itemProperty['RandomSuffix'] == 0)) {
                     return false;
+                }
+                $type = false;
+                if($itemProperty['RandomProperty'] > 0) {
+                    $itemPropertyId = $itemProperty['RandomProperty'];
+                    $type = 'property'; 
+                }
+                elseif($itemProperty['RandomSuffix'] > 0) {
+                    $itemPropertyId = $itemProperty['RandomSuffix'];
+                    $type = 'suffix';
                 }
                 $enchants_entries = $this->wDB->select("SELECT * FROM `item_enchantment_template` WHERE `entry`=?", $itemPropertyId);
                 if(!$enchants_entries) {
@@ -512,28 +521,49 @@ Class Items extends Connector {
                 for($i = 0; $i < $count; $i++) {
                     $ids[$enchants_entries[$i]['ench']] = $enchants_entries[$i]['ench'];
                 }
-                $enchants = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id` IN (?a)", $ids);
+                if($type == 'property') {
+                    $enchants = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id` IN (?a)", $ids);
+                }
+                elseif($type == 'suffix') {
+                    $enchants = $this->aDB->select("SELECT `id`, `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3`, `ench_4`, `ench_5`, `pref_1`, `pref_2`, `pref_3`, `pref_4`, `pref_5` FROM `armory_randomsuffix` WHERE `id` IN (?a)", $ids);
+                }
                 if(!$enchants) {
                     return false;
                 }
                 $i = 0;
+                $item_data = $this->wDB->selectRow("SELECT `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item);
+                $points = self::GetRandomPropertiesPoints($item_data['ItemLevel'], $item_data['InventoryType'], $item_data['Quality']);
                 foreach($enchants as $entry) {
                     $str_tmp = array();
                     $lootTable[$i]['name'] = $entry['name'];
                     $lootTable[$i]['data'] = array();
-                    for($j=1;$j<4;$j++) {
-                        if($entry['ench_' . $j] > 0) {
-                            $str_tmp[$entry['ench_' . $j]] = $entry['ench_' . $j];
+                    for($j=1;$j<6;$j++) {
+                        if(isset($entry['ench_' . $j]) && $entry['ench_' . $j] > 0) {
+                            if($type == 'property') {
+                                $str_tmp[$entry['ench_' . $j]] = $entry['ench_' . $j];
+                            }
+                            elseif($type == 'suffix') {
+                                $str_tmp[$entry['ench_' . $j]] = $entry['ench_' . $j];
+                            }
                         }
                     }
-                    $enchs = $this->aDB->select("SELECT `text_".$this->_locale."` AS `text` FROM `armory_enchantment` WHERE `id` IN (?a)", $str_tmp);
+                    $enchs = $this->aDB->select("SELECT `id`, `text_".$this->_locale."` AS `text` FROM `armory_enchantment` WHERE `id` IN (?a)", $str_tmp);
                     if(!$enchs) {
                         $i++;
                         continue;
                     }
                     $k = 0;
                     foreach($enchs as $m_ench) {
-                        $lootTable[$i]['data'][$k] = $m_ench['text'];
+                        if($type == 'suffix') {
+                            for($l=1;$l<3;$l++) {
+                                if(isset($entry['ench_' . $l]) && $entry['ench_' . $l] > 0) {
+                                    $lootTable[$i]['data'][$k] = str_replace('$i', round($points * $entry['pref_' . $l] / 10000, 0), $m_ench['text']);
+                                }
+                            }
+                        }
+                        else {
+                            $lootTable[$i]['data'][$k] = $m_ench['text'];
+                        }
                         $k++;
                     }
                     $i++;
@@ -1010,6 +1040,79 @@ Class Items extends Connector {
             }
         }
         return $return_data;
+    }
+    
+    /* CSWOWD code */
+    public function GetRandomPropertiesPoints($itemLevel, $type, $quality, $itemId = null) {
+        if($itemId != null) {
+            $data = $this->wDB->selectRow("SELECT `ItemLevel`, `type`, `Quality` FROM `item_template` WHERE `entry`=?", $itemId);
+            $itemLevel = $data['ItemLevel'];
+            $type = $data['type'];
+            $quality = $data['Quality'];
+        }
+        if($itemLevel < 0 || $itemLevel > 300) {
+            return false;
+        }
+        $field = null;
+        switch($quality) {
+            case 2:
+                $field .= 'uncommon';
+                break;
+            case 3:
+                $field .= 'rare';
+                break;
+            case 4:
+                $field .= 'epic';
+                break;
+            default:
+                return false;
+                break;
+        }
+        switch($type) {
+            case  0: // INVTYPE_NON_EQUIP:
+            case 18: // INVTYPE_BAG:
+            case 19: // INVTYPE_TABARD:
+            case 24: // INVTYPE_AMMO:
+            case 27: // INVTYPE_QUIVER:
+            case 28: // INVTYPE_RELIC:
+                return 0;
+            case  1: // INVTYPE_HEAD:
+            case  4: // INVTYPE_BODY:
+            case  5: // INVTYPE_CHEST:
+            case  7: // INVTYPE_LEGS:
+            case 17: // INVTYPE_2HWEAPON:
+            case 20: // INVTYPE_ROBE:
+                $field .= '_0';
+                    break;
+            case  3: // INVTYPE_SHOULDERS:
+            case  6: // INVTYPE_WAIST:
+            case  8: // INVTYPE_FEET:
+            case 10: // INVTYPE_HANDS:
+            case 12: // INVTYPE_TRINKET:
+                $field .= '_1';
+                break;
+            case  2: // INVTYPE_NECK:
+            case  9: // INVTYPE_WRISTS:
+            case 11: // INVTYPE_FINGER:
+            case 14: // INVTYPE_SHIELD:
+            case 16: // INVTYPE_CLOAK:
+            case 23: // INVTYPE_HOLDABLE:
+                $field .= '_2';
+                break;
+            case 13: // INVTYPE_WEAPON:
+            case 21: // INVTYPE_WEAPONMAINHAND:
+            case 22: // INVTYPE_WEAPONOFFHAND:
+                $field .= '_3';
+                break;
+            case 15: // INVTYPE_RANGED:
+            case 25: // INVTYPE_THROWN:
+            case 26: // INVTYPE_RANGEDRIGHT:
+                $field .= '_4';
+                break;
+            default:
+                return 0;
+        }
+        return $this->aDB->selectCell("SELECT `" . $field . "` FROM `armory_randompropertypoints` WHERE `itemlevel`=?", $itemLevel);
     }
 }
 ?>
