@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 208
+ * @revision 250
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,6 +69,19 @@ Class ArmoryDebug {
         return;
     }
     
+    public function writeSql($sqlText) {
+        if($this->config['useDebug'] == false || $this->config['logLevel'] == 1) {
+            return;
+        }
+        $args = func_get_args();
+        $error_log = self::AddStyle('sql');
+        $error_log .= call_user_func_array('sprintf', $args);
+        $error_log .= '<br />
+';
+        self::__writeFile($error_log);
+        return;
+    }
+    
     private function AddStyle($type) {
         if($this->config['useDebug'] == false) {
             return;
@@ -80,12 +93,15 @@ Class ArmoryDebug {
             case 'error':
                 $log = sprintf('<strong>ERROR</strong> [%s]: ', date('d-m-Y H:i:s'));
                 break;
+            case 'sql':
+                $log = sprintf('<strong>SQL</strong> [%s]: ', date('d-m-Y H:i:s'));
+                break;
         }
         return $log;
     }
     
     private function __writeFile($data) {
-        file_put_contents($this->file, $data, FILE_APPEND);
+        @file_put_contents($this->file, $data, FILE_APPEND);
     }
 }
 ?>

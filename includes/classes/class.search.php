@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 247
+ * @revision 250
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -178,6 +178,7 @@ Class SearchMgr extends Connector {
                 }
                 $sql_query = "SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template`";
                 $andor = false;
+                $type_info = false;
                 if(isset($this->get_array['type']) && !empty($this->get_array['type'])) {
                     /* Type */
                     if($this->get_array['type'] != 'all') {
@@ -185,7 +186,8 @@ Class SearchMgr extends Connector {
                             $this->get_array['type'] = 'miscellaneous';
                         }
                         $type_info = $this->aDB->selectCell("SELECT `type` FROM `armory_item_sources` WHERE `key`=? AND `parent`=0", $this->get_array['type']);
-                        if(!$type_info) {
+                        if($type_info === false) {
+                            $this->Log()->writeLog('%s : type for key %s not found in `armory_item_sources`', __METHOD__, $this->get_array['type']);
                             return false;
                         }
                         $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d", $type_info);
@@ -193,11 +195,14 @@ Class SearchMgr extends Connector {
                     }
                     /* Subtype */
                     if(isset($this->get_array['subTp']) && !empty($this->get_array['subTp'])) {
-                        if($this->get_array['subTp'] != 'all' && isset($type_info) && $type_info) {
+                        if($this->get_array['subTp'] != 'all' && $type_info !== false) {
                             $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=? AND `parent`=?", $this->get_array['subTp'], $type_info);
                             if($subtype_info) {
                                 $sql_query .= sprintf(" AND `subclass`=%d", $subtype_info['subtype']);
                                 $andor = true;
+                            }
+                            else {
+                                $this->Log()->writeLog('%s : subtype for subTp %s not found in `armory_item_sources`', __METHOD__, $this->get_array['subTp']);
                             }
                         }
                     }
@@ -902,7 +907,7 @@ Class SearchMgr extends Connector {
             return false;
         }
         else {
-            $this->Log()->writeLog('%s : item #%d can be traded via auction', __METHOD__, $item_data['id']);
+            //$this->Log()->writeLog('%s : item #%d can be traded via auction', __METHOD__, $item_data['id']);
             return true;
         }
     }
