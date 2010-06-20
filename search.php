@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 243
+ * @revision 252
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -44,7 +44,10 @@ if(isset($_GET['pi']) && is_numeric($_GET['pi']) && $_GET['pi'] > 0) {
     $findGearUpgrade = true;
     $itemID = (int) $_GET['pi'];
 }
-if(!isset($_GET['searchQuery']) && !isset($_GET['source']) && !isset($_GET['pi'])) {
+if(isset($_GET['rrt']) && $_GET['rrt'] == 'hm') {
+    $search->heirloom = true;
+}
+if(!isset($_GET['searchQuery']) && !isset($_GET['source']) && !isset($_GET['pi']) && !isset($_GET['rrt'])) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);

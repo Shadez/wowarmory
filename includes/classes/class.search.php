@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 251
+ * @revision 252
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,10 +27,11 @@ Class SearchMgr extends Connector {
     public $get_array;
     public $bossSearchKey;
     public $instanceSearchKey;
+    public $heirloom = false;
     private $boss_loot_ids;
     
     public function DoSearchItems($count = false, $findUpgrade = false) {
-        if(!$this->searchQuery && !$findUpgrade) {
+        if(!$this->searchQuery && !$findUpgrade && !$this->heirloom) {
             $this->Log()->writeError('%s : unable to start search: no data provided', __METHOD__);
             return false;
         }
@@ -52,6 +53,9 @@ Class SearchMgr extends Connector {
                 $sql_query = sprintf("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
                 $count_items = $this->wDB->selectCell($sql_query);
             }
+            elseif($this->heirloom == true) {
+                $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `Quality`=7");
+            }
             else {
                 if($this->_loc == 0) {
                     $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
@@ -68,6 +72,9 @@ Class SearchMgr extends Connector {
         if($findUpgrade) {
             $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
             $items = $this->wDB->select($sql_query);
+        }
+        elseif($this->heirloom == true) {
+            $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `Quality`=7 ORDER BY `ItemLevel` DESC LIMIT 200");
         }
         else {
             if($this->_loc == 0) {
@@ -97,6 +104,9 @@ Class SearchMgr extends Connector {
                 array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
                 array('name' => 'relevance', 'value' => 100)
             );
+            if($this->heirloom == true) {
+                $result_data[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
+            }
             $i++;
             unset($result_data[$i]['data']['ItemLevel']);
         }
