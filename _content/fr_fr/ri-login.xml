@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Se connecter à l'Armurerie">
+	<faqlist>
+		<faq question="Pourquoi l'Armurerie me demande-t-elle de me connecter ?">
+			Au vu de la nature des informations affichées, vous devez vous identifier pour accéder à certaines zones de l'Armurerie ; par exemple, pour consulter le calendrier des joueurs. D'autres zones sécurisés supplémentaires pourront être implémentées à l'avenir.
+		</faq>
+		<faq question="Quelles sont les autres fonctionnalités accessibles après identification ?">
+			Vous pouvez maintenant mettre plusieurs fiches de personnages en raccourci dès que vous vous connectez, du moment qu'ils sont sur le compte en question. l'Armurerie désigne la fiche de personnage la plus pertinente dans le coin supérieur droit de la fenêtre. Plusieurs personnages seront déjà en raccourci dans une liste déroulante, et vous pourrez afficher davantage de personnages du compte en sélectionnant l'option idoine.
+		</faq>	
+		<faq question="J'ai des doutes sur la sécurité de mes informations de connexion, puis-je être certain que c'est bien sans risque ?">
+			Assurez-vous que le lien de la page de l'Armurerie contient bien wowarmory.com à sa racine. Notre système de connection vous redirige automatiquement vers notre serveur sécurisé d'authentification qui est hebergé sur un site Blizzard Entertainmet comme blizzard.com.
+		</faq>		
+		<faq question="Pourquoi ne suis-je pas capable de me connecter dans l'Armurerie ?">
+			Si vous avez des difficultés à vous connecter dans l'Armurerie, cela est peut-être dû à l'usage des cookies par votre navigateur. Les préfèrences de votre navigateur doivent autoriser l'Armurerie à stocker les cookies afin de permettre à la connexion de fonctionner.
+		</faq>		
+		<faq question="Combien de temps une connexion dure-t-elle ?">
+			Vous pouvez accéder aux fonctionnalités sécurisées, dont les banques de guilde et le calendrier des joueurs, pendant environ deux semaines après identification.
+		</faq>
+		<faq question="Comment puis-je me déconnecter ?">
+			Cliquez tout simplement sur l'option « Déconnectez-vous » en haut à droite de la fenêtre si vous souhaitez vous déconnecter de l'Armurerie. Fermer la fenêtre de l'Armurerie ne vous déonnecte plus, mais effacer vos cookies le fait. De plus, votre session de connexion expirera automatiquement après approximativement deux semaines.
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Récompenses des emblèmes de givre" url="search.xml?source=dungeon&amp;dungeon=emblemoffrost&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Récompenses d’Emblèmes de triomphe" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Objets « Héritage »" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Trouvés en donjons &amp; raids" url="dungeons.xml"/>
+		<relatedlink name="Récompenses de faction" url="factions.xml"/>
+		<relatedlink name="Récompenses JcJ" url="pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Informations sur les tournois d'arène" url="arena-tournament.xml"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="F.A.Q." url="faq-armory.xml"/>		
+		<relatedlink name="Signaler une erreur" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Décrivez l'erreur ci-dessous. Navigateur : NOM-DU-NAVIGATEUR. Adresse de la page sur laquelle se trouve l'erreur : ADRESSE"/>
+	</relatedlinks>
+</relatedinfo>

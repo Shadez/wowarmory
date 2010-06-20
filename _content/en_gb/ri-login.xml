@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Armory Login">
+	<faqlist>
+		<faq question="Why is the Armory asking me to log in?">
+			Certain areas of the Armory, such as the Player Calendar, require you to log in to access them because of the nature of the information in these areas. Additional login-protected areas may be added in the future.
+		</faq>
+		<faq question="Are there any other features that are accessible after logging in?">
+			After logging in, you can bookmark multiple character profiles of characters to the account you log in with. The character profile on the account with the highest relevance as determined by the Armory will automatically appear on the top right of the Armory. Several characters will already be bookmarked via a drop-down menu, and you can see more characters on the account by selecting the appropriate option in that menu.
+		</faq>	
+		<faq question="I’m concerned about the security of my account information, are you sure this is safe?">
+			Make sure that the URL of the Armory page contains wowarmory.com at its root. The login process automatically redirects to our secure login server which is hosted at a Blizzard Entertainment URL, such as blizzard.com.
+		</faq>		
+		<faq question="Why am I unable to log in to the Armory?">
+			If you are having issues logging in to the Armory, it may be related to your browser's cookie storage. Your browser's settings must allow the Armory to store cookies in order to use the login feature.
+		</faq>		
+		<faq question="How long does a logged-in session last?">
+			You should have access to the login-protected features, including the Guild Bank and Calendar pages, for approximately two weeks after you log in.
+		</faq>
+		<faq question="How do I log out?">
+			Simply click the "Log Out" option that appears on the top right of the window if you wish to log out of the Armory. Closing your Armory window will not log you out of the Armory, although deleting your browser's cookies will. In addition, your login session will automatically expire after approximately two weeks.  
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Emblem of Frost Rewards" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Emblem of Triumph Rewards" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Heirloom Items" url="search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeon &amp; Raid Drops" url="dungeons.xml"/>
+		<relatedlink name="Faction Rewards" url="factions.xml"/>
+		<relatedlink name="PvP Rewards" url="pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Arena Tournament Info" url="arena-tournament.xml"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

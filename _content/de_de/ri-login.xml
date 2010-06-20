@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Anmeldung im Arsenal">
+	<faqlist>
+		<faq question="3. Warum soll ich mich im Arsenal anmelden?">
+			Bestimmte Bereiche des Arsenals, wie der Spielerkalender, erfordern aufgrund der enthaltenen Funktionen und Daten eine Anmeldung. Zusätzliche geschützte Bereiche könnten auch in Zukunft hinzugefügt werden.
+		</faq>
+		<faq question="Gibt es weitere Features, die nach einer Anmeldung zur Verfügung stehen?">
+			Nach der Anmeldung könnt ihr jetzt mehrere Charakterprofile von Charakteren des Accounts, mit welchem ihr euch angemeldet habt, speichern. Im oberen rechten Bereich des Arsenals erscheint automatisch das Charakterprofil, für welches hinsichtlich des Arsenals die höchste Relevanz besteht. Im Auswahlmenü werden euch die weiteren Charaktere angezeigt und ihr könnt sie euch ansehen, indem ihr die entsprechende Option in diesem Menü auswählt.
+		</faq>	
+		<faq question="Ich sorge mich um die Sicherheit meiner Accountdaten, ist diese Anmeldung wirklich sicher?">
+			Stellt sicher, dass wowarmory.com im Ursprungspfad der URL dieser Seite enthalten ist. Der Anmeldevorgang leitet euch automatisch zu unserem sicheren Anmeldeserver unter einer URL von Blizzzard Entertainment, wie blizzard.com, weiter.
+		</faq>		
+		<faq question="Wieso kann ich mich im Arsenal nicht anmelden?">
+			Falls ihr Schwierigkeiten habt, euch im Arsenal anzumelden, könnte dies an dem Speicher für Cookies eures Browsers liegen. Die Einstellungen eures Browsers müssen so konfiguriert sein, dass die Cookies des Arsenals für die entsprechende Anmeldefunktion gespeichert werden können.
+		</faq>		
+		<faq question="Wie lange hält eine Sitzung nach der Anmeldung an?">
+			Nachdem ihr euch angemeldet habt, solltet ihr etwa 2 Wochen auf durch Anmeldung geschützte Features wie die Gildenbank und den Kalender Zugriff haben.
+		</faq>
+		<faq question="Wie beende ich meine aktuelle Sitzung?">
+			Wenn ihr euch im Arsenal abmelden möchtet, klickt einfach auf die Option "Abmelden", welche rechts oben im Fenster angezeigt wird. Das einfache Schließen eines Fensters, unter welchem das Arsenal aufgerufen wurde, führt nicht mehr zu einer Abmeldung, lediglich das Löschen der Cookies in eurem Browser. Des Weiteren endet eure Sitzung nach etwa 2 Wochen automatisch.  
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Belohnungen: Embleme des Frosts" url="search.xml?source=dungeon&amp;dungeon=emblemoffrost&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Belohnungen: Embleme des Triumphs" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Gegenstände: Erbstücke" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Dungeons und Schlachtzugdungeons" url="/dungeons.xml"/>
+		<relatedlink name="Belohnungen für Ruf" url="factions.xml"/>
+		<relatedlink name="Belohnungen für PvP" url="pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Arenaturnier" url="arena-tournament.xml"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>		
+		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
+		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
+	</relatedlinks>
+</relatedinfo>

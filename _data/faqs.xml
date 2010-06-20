@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs>
+  <faq file="ri-armory.xml" key="armory.faq.general" temp="faq-armory.xml"/>
+  <faq file="ri-achievements.xml" key="armory.faq.achievements" temp="faq-achievements.xml"/>
+  <faq file="ri-arena-calculator.xml" key="armory.faq.arenacalculator" temp="faq-arena-calculator.xml"/>    
+  <faq file="ri-arena-ladder.xml" key="armory.faq.arenaladder" temp="faq-arena-ladder.xml"/>  
+  <faq file="ri-login.xml" key="armory.faq.login" temp="faq-login.xml"/>
+  <faq file="ri-auction-house.xml" key="armory.faq.auctionhouse" temp="faq-auction-house.xml"/>
+  <faq file="ri-character-sheet.xml" key="armory.faq.characterprofiles" temp="faq-character-sheet.xml"/>
+  <faq file="ri-character-feed.xml" key="armory.faq.characterfeeds" temp="faq-character-feed.xml"/>
+  <faq file="ri-item-info-recommended.xml" key="armory.faq.recommended" temp="faq-item-info-recommended.xml"/>
+  <faq file="ri-guild-info.xml" key="armory.faq.guildprofiles" temp="faq-guild-info.xml"/>
+  <faq file="ri-item-info.xml" key="armory.faq.items" temp="faq-item-info.xml"/>
+  <faq file="ri-calendar.xml" key="armory.faq.calendar" temp="faq-calendar.xml"/>  
+  <faq file="ri-calendar-feed.xml" key="armory.faq.calendarfeeds" temp="faq-calendar-feed.xml"/> 
+  <faq file="ri-team-info.xml" key="armory.faq.team" temp="faq-team-info.xml"/>
+</faqs>

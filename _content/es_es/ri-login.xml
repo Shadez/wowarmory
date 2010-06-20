@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Inicio de sesión en la Armería">
+	<faqlist>
+		<faq question="¿Por qué me pide la Armería que inicie sesión?">
+			Ciertas zonas de la Armería, tales como el calendario de jugador, exigen el registro con tu cuenta debido a la naturaleza de la información que se muestra. En el futuro pueden añadirse nuevas características. 
+		</faq>
+		<faq question="¿Existen otras opciones accesibles una vez iniciada la sesión?">
+			Ahora, después de haber iniciado sesión, puedes seleccionar varios perfiles de personajes que se encuentren en tu cuenta. El perfil de personaje con mayor relevancia determinada por la Armería aparecerá automáticamente en la parte superior derecha del pantalla. Varios personajes ya aparecerán en el menú desplegable y puedes ver más personajes de la cuenta, seleccionando la opción correspondiente en dicho menú.
+		</faq>	
+		<faq question="Me preocupa la seguridad de la información de mi cuenta. ¿Es todo esto seguro? ">
+			Asegúrate de que en la dirección de la página de la Armería aparece wowarmory.com en la raíz. El proceso de inicio de sesión te redirigirá automáticamente a nuestro servidor seguro que se encuentra alojado en una dirección perteneciente a Blizzard Entertainment, como por ejemplo blizzard.com.
+		</faq>		
+		<faq question="¿Por qué no puedo iniciar sesión en la Armería?">
+			Es posible que estos problemas estén relacionados con el almacenamiento de cookies de tu navegador. La configuración del navegador debe permitir a la Armería almacenar las cookies para poder usar la opción de inicio de sesión.
+		</faq>		
+		<faq question="¿Cuánto tiempo dura una sesión iniciada?">
+			Tendrás acceso a las opciones protegidas para el acceso, entre ellas el banco de hermandad y el calendario de jugador, durante al menos dos semanas una vez iniciada la sesión.
+		</faq>
+		<faq question="¿Cómo cierro mi sesión?">
+			Sólo tienes que hacer clic en la opción “Cerrar sesión” en la parte superior derecha de la ventana si deseas salir de la Armería. Al cerrar la ventana de la página ya no te desconectarás de la Armería, pero sí al borrar las cookies de tu navegador. Además, tu inicio de sesión expirará automáticamente pasadas dos semanas, aproximadamente.  
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="Recompensas: Emblemas de Escarcha" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Recompensas: Emblemas de Triunfo" url="search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
+		<relatedlink name="Reliquias" url="search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>
+		<relatedlink type="hr"/>
+		<relatedlink name="Objetos en mazmorras y bandas" url="dungeons.xml"/>
+		<relatedlink name="Recompensas de facción" url="factions.xml"/>
+		<relatedlink name="Recompensas JcJ" url="pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Información del Torneo de Arenas" url="arena-tournament.xml"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
+		<relatedlink name="Informa de un error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Introduce tu informe de error a continuación. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
+	</relatedlinks>
+</relatedinfo>

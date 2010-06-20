@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><relatedinfo topic="Вход в Оружейную">
+	<faqlist>
+		<faq question="Почему при входе в Оружейную требуется ввести имя и пароль учетной записи?">
+			В некоторые разделы Оружейной, например календарь, можно зайти только по паролю учетной записи: это связано с характером информации, которая содержится в этих разделах. Возможно, в будущем добавятся другие разделы, защищенные паролем.
+		</faq>
+		<faq question="Есть ли другие возможности, доступные пользователю только после входа в систему?">
+			Вы можете сохранять профили нескольких персонажей и просматривать их, войдя в Оружейную под своей учетной записью. После входа в Оружейную вы увидите в верхнем правом углу экрана наиболее часто вызываемый профиль. В выпадающем меню вы также сможете выбрать другие сохраненные профили.
+		</faq>	
+		<faq question="Я боюсь, что информация о моей учетной записи попадет в чужие руки. Она точно надежно защищена?">
+			Убедитесь, что адрес Оружейной содержит корневой домен wowarmory.com. Во время входа в систему вы будете автоматически перенаправлены на наш безопасный сервер с корневым доменом, принадлежащим Blizzzard Entertainment URL, например blizzard.com.
+		</faq>		
+		<faq question="Почему я не могу войти в Оружейную?">
+			Сложности со входом в Оружейную могут быть связаны с функцией хранения файлов "cookie" вашего бразуера. Вы должны включить данную функцию, чтобы воспользоваться новыми возможностями входа в Оружейную.
+		</faq>		
+		<faq question="Как долго длится защищенная сессия?">
+			Войдя в систему под своей учетной записью, вы сможете пользоваться защищенными функциями Оружейной около 2 недель.
+		</faq>
+		<faq question="Как выйти из Оружейной?">
+			Нажмите кнопку "Выйти" в верхнем правом углу экрана, если вы хотите покинуть Оружейную. Закрытие окна Оружейной больше не привыодит к выходу из нее (однако, удалив файлы cookie, вам придется войти в Оружейную заново). Имя учетной записи и пароль сохраняются в течение двух недель.  
+		</faq>
+	</faqlist>
+	<relatedlinks>
+		<relatedlink name="награды за эмблемы льда" url="search.xml?source=dungeon&amp;dungeon=emblemoffrost&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Награды за эмблемы триумфа" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Фамильные вещи" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
+		<relatedlink type="hr"/>
+		<relatedlink name="Добыча в подземельях и рейдах" url="dungeons.xml"/>
+		<relatedlink name="Награды фракций" url="factions.xml"/>
+		<relatedlink name="Награды за PvP-бои" url="pvprewards.xml"/>		
+		<relatedlink type="hr"/>
+		<relatedlink name="Большой Турнир" url="arena-tournament.xml"/>		
+		<relatedlink type="hr"/>		
+		<relatedlink name="Часто задаваемые вопросы" url="faq-armory.xml"/>		
+		<relatedlink name="Сообщить об ошибке" type="report" url="mailto:wowarmory@blizzard.com?subject=Ошибка Оружейной&amp;body=Опишите, пожалуйста, в чем заключается ошибка. Браузер: НАЗВАНИЕ БРАУЗЕРА. Адрес страницы, на которой выдается ошибка: адрес"/>
+	</relatedlinks>
+</relatedinfo>
