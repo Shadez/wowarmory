@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 254
+ * @revision 257
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -41,9 +41,15 @@ elseif(isset($_GET['cn'])) {
 else {
     $name = false;
 }
+if(!isset($_GET['r'])) {
+    $_GET['r'] = false;
+}
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
+if($_GET['r'] === false || !$armory->currentRealmInfo) {
+    $isCharacter = false;
+}
 // Get page cache
 if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     $cache_id = $utils->GenerateCacheId('character-sheet', $characters->GetName(), $armory->currentRealmInfo['name']);
