@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 241
+ * @revision 255
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -231,6 +231,24 @@ Class Utils extends Connector {
     
     public function getCharacter() {
         return;
+    }
+    
+    public function GetActiveCharacter() {
+        if(!isset($_SESSION['accountId'])) {
+            $this->Log()->writeLog('%s : session not found', __METHOD__);
+            return false;
+        }
+        return $this->aDB->selectRow("
+        SELECT
+        `armory_login_characters`.`guid`,
+        `armory_login_characters`.`name`,
+        `armory_login_characters`.`race`,
+        `armory_login_characters`.`realm_id`,
+        `armory_realm_data`.`name` AS `realmName`
+        FROM `armory_login_characters` AS `armory_login_characters`
+        LEFT JOIN `armory_realm_data` AS `armory_realm_data` ON `armory_realm_data`.`id`=`armory_login_characters`.`realm_id`
+        WHERE `armory_login_characters`.`account`=? AND `armory_login_characters`.`selected`=1 LIMIT 1
+        ", $_SESSION['accountId']);
     }
     
     public function loadRandomCharacter() {
@@ -864,6 +882,10 @@ Class Utils extends Connector {
         return $this->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $rName);
     }
     
+    public function GetRealmIdByName($rName) {
+        return self::IsRealm($rName);
+    }
+    
     public function RaceModelData($raceId) {
         return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=?", $raceId);
     }
@@ -941,6 +963,99 @@ Class Utils extends Connector {
             return $allNews;
         }
         return false;
+    }
+    
+    public function IsItemComparsionAllowed($itemID) {
+        if(isset($_SESSION['accountId']) && isset($_COOKIE['armory_cookieDualTooltip']) && $_COOKIE['armory_cookieDualTooltip'] == 1) {
+            $activeChar = Utils::GetActiveCharacter();
+            if(!$activeChar) {
+                return false;
+            }
+            $realm_info = (isset($this->realmData[$activeChar['realm_id']])) ? $this->realmData[$activeChar['realm_id']] : null;
+            if($realm_info === null) {
+                return false;
+            }
+            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            if(!$db) {
+                return false;
+            }
+            $item_slot = $this->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=? AND (`class`=2 OR `class`=4)", $itemID);
+            if($item_slot === false) {
+                return false;
+            }
+            switch($item_slot) {
+                case 1:
+                    $slot_id = INV_HEAD;
+                    break;
+                case 2:
+                    $slot_id = INV_NECK;
+                    break;
+                case 3:
+                    $slot_id = INV_SHOULDER;
+                    break;
+                case 4:
+                    $slot_id = INV_SHIRT;
+                    break;
+                case 5:
+                    $slot_id = INV_CHEST;
+                    break;
+                case 6:
+                    $slot_id = INV_BRACERS;
+                    break;
+                case 7:
+                    $slot_id = INV_LEGS;
+                    break;
+                case 8:
+                    $slot_id = INV_BOOTS;
+                    break;
+                case 9:
+                    $slot_id = INV_BELT;
+                    break;
+                case 10:
+                    $slot_id = INV_GLOVES;
+                    break;
+                case 11:
+                    $slot_id = array(INV_RING_1, INV_RING_2);
+                    break;
+                case 12:
+                    $slot_id = array(INV_TRINKET_1, INV_TRINKET_2);
+                    break;
+                case 16:
+                    $slot_id = INV_BACK;
+                    break;
+                case 19:
+                    $slot_id = INV_TABARD;
+                    break;
+                case 20:
+                    $slot_id = INV_CHEST;
+                    break;
+                case 13:
+                case 17:
+                case 21:
+                    $slot_id = INV_MAIN_HAND;
+                    break;
+                case 14:
+                case 22:
+                    $slot_id = INV_OFF_HAND;
+                    break;
+                case 15:
+                case 23:
+                case 28:
+                    $slot_id = INV_RANGED_RELIC;
+                    break;
+                default:
+                    $slot_id = 0;
+                    break;
+            }
+            /*
+            $charItemID = $db->selectCell("
+            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
+                FROM `armory_character_stats` 
+    				WHERE `guid`=?", $guid);*/
+        }
+        else {
+            return false;
+        }
     }
 }
 ?>
