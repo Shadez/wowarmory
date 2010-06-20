@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 237
+ * @revision 254
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -38,7 +38,8 @@ elseif(isset($_GET['cn'])) {
 else {
     $name = false;
 }
-$characters->BuildCharacter($name);
+$realmId = $utils->GetRealmIdByName($_GET['r']);
+$characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
 if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
     $isCharacter = false;
@@ -119,6 +120,9 @@ $model_data = array(
 );
 
 $xml->XMLWriter()->startElement('character');
+if($utils->IsAccountHaveCurrentCharacter($characters->GetGUID(), $armory->currentRealmInfo['id'])) {
+    $xml->XMLWriter()->writeAttribute('owned', 1);
+}
 $xml->XMLWriter()->startElement('models');
 $xml->XMLWriter()->startElement('model');
 foreach($model_data as $model_key => $model_value) {

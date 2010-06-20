@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 254
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,7 +40,8 @@ elseif(isset($_GET['cn'])) {
 else {
     $name = false;
 }
-$characters->BuildCharacter($name);
+$realmId = $utils->GetRealmIdByName($_GET['r']);
+$characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
 if(!isset($_GET['r']) || !$armory->currentRealmInfo) {
     $isCharacter = false;
@@ -125,6 +126,10 @@ for($i = 0; $i < $characters->GetSpecCount(); $i++) {
     }
     $xml->XMLWriter()->endElement();  //glyphs    
     $xml->XMLWriter()->endElement(); //talentGroup
+}
+/* Hunter's pet talents */
+if($characters->GetClass() == CLASS_HUNTER && $characters->GetActivePetData() == true) {
+    // Talent counting here
 }
 $xml->XMLWriter()->endElement();   //talents
 $xml->XMLWriter()->endElement();  //characterInfo

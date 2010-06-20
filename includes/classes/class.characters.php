@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 229
+ * @revision 254
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -149,6 +149,11 @@ Class Characters extends Connector {
     private $raceText = false;
     
     /**
+     * Database handler
+     **/
+    private $db;
+    
+    /**
      * Is character exists?
      * @category Characters class
      * @example Characters::IsCharacter()
@@ -158,12 +163,23 @@ Class Characters extends Connector {
         return self::CheckPlayer();
     }
     
-    public function BuildCharacter($name) {
+    public function BuildCharacter($name, $realmId = 1) {
         if(!is_string($name)) {
+            $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
         }
-        $this->Log()->writeLog('%s: Prepare data build for player %s', __METHOD__, $name);
-        $player_data = $this->cDB->selectRow("
+        elseif(!isset($this->realmData[$realmId])) {
+            $this->Log()->writeError('%s : unable to find data for realmId %d', __METHOD__, $realmId);
+            return false;
+        }
+        $realm_info = $this->realmData[$realmId];
+        $this->db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        if(!$this->db) {
+            $this->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
+            return false;
+        }
+        $this->db->query("SET NAMES ?", (isset($realm_info['charset'])) ? $realm_info['charset'] : 'UTF8' );
+        $player_data = $this->db->selectRow("
         SELECT
         `characters`.`guid`,
         `characters`.`account`,
@@ -192,7 +208,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s: unable to get data from characters DB for player %s', __METHOD__, $name);
             return false;
         }
-        $player_stats_check = $this->cDB->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=?d LIMIT 1", $player_data['guid']);
+        $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=?d LIMIT 1", $player_data['guid']);
         if(!$player_stats_check) {
             $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
@@ -658,7 +674,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, $slotID);
+        return $this->db->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, $slotID);
     }
     
     /**
@@ -798,7 +814,7 @@ Class Characters extends Connector {
         }
         $talentTree = array();
         $tab_class = self::GetTalentTab();
-        $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
         if(!$character_talents) {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
@@ -860,7 +876,7 @@ Class Characters extends Connector {
         $build_tree = array(1 => null, 2 => null);
         $tab_class = self::GetTalentTab();
         $specs_talents = array();
-        $character_talents = $this->cDB->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
         $talent_data = array(0 => null, 1 => null); // Talent build
         if(!$character_talents) {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
@@ -946,18 +962,18 @@ Class Characters extends Connector {
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
                 if($spec >= 0) {
-                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
                 }
                 else {
-                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
                 }
                 break;
             case 'trinity':
                 if($spec >= 0) {
-                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=?", $this->guid, $spec);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=?", $this->guid, $spec);
                 }
                 else {
-                    $glyphs_data = $this->cDB->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`", $this->guid);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`", $this->guid);
                 }
                 break;
         }
@@ -1046,7 +1062,7 @@ Class Characters extends Connector {
      **/
     public function extractCharacterProfessions() {
         $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
-        $professions = $this->cDB->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $skills_professions, $this->guid);
+        $professions = $this->db->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $skills_professions, $this->guid);
         if(!$professions) {
             return false;
         }
@@ -1074,7 +1090,7 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $repData = $this->cDB->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=?", $this->guid); 
+        $repData = $this->db->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=?", $this->guid); 
         if(!$repData) {
             return false;
         }
@@ -1114,7 +1130,7 @@ Class Characters extends Connector {
             return false;
         }
         $dataField = $fieldNum+1;
-        $qData = $this->cDB->selectCell("
+        $qData = $this->db->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
             FROM `armory_character_stats` 
 				WHERE `guid`=?", $guid);
@@ -1455,7 +1471,7 @@ Class Characters extends Connector {
     public function GetCharacterMainHandMeleeSkill() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
-        $character_data = $this->cDB->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=?", $this->guid);
+        $character_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=?", $this->guid);
         
         $tmp_stats['melee_skill_id'] = Utils::getSkillFromItemID($this->getCharacterEquip('mainhand'));
         $tmp_stats['melee_skill'] = Utils::getSkill($tmp_stats['melee_skill_id'], $character_data);
@@ -1789,7 +1805,7 @@ Class Characters extends Connector {
     public function GetCharacterDefense() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
-        $gskill    = $this->cDB->selectRow("SELECT * FROM `character_skills` WHERE `guid`=? AND `skill`=95", $this->guid);
+        $gskill    = $this->db->selectRow("SELECT * FROM `character_skills` WHERE `guid`=? AND `skill`=95", $this->guid);
         $tmp_value = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
         
         $tmp_stats['defense_rating_skill'] = $gskill['value'];
@@ -1876,7 +1892,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
-        $skillInfo = $this->cDB->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $this->guid, $skill);
+        $skillInfo = $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $this->guid, $skill);
         return $skillInfo;
     }
     
@@ -1892,7 +1908,7 @@ Class Characters extends Connector {
             return false;
         }
         $arenaTeamInfo = array();
-        $tmp_info = $this->cDB->select(
+        $tmp_info = $this->db->select(
         "SELECT 
         `arena_team_member`.`arenateamid`,
         `arena_team_member`.`guid`,
@@ -1954,10 +1970,10 @@ Class Characters extends Connector {
             return false;
         }
         if($full) {
-            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
+            $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
         }
         else {
-            $data = $this->cDB->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 10", $this->guid);
+            $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 10", $this->guid);
         }
         if(!$data) {
             $this->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
@@ -2196,7 +2212,7 @@ Class Characters extends Connector {
     }
     
     public function GetDBStatistics() {
-        return $this->cDB->getStatistics();
+        return $this->db->getStatistics();
     }
     
     public function ModifyMoney($amount, $type) {
@@ -2233,10 +2249,10 @@ Class Characters extends Connector {
     public function GetActivePetData($full = false) {
         $data = false;
         if(!$full) {
-            $data = $this->cDB->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+            $data = $this->db->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
         }
         else {
-            $data = $this->cDB->selectRow("SELECT * FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+            $data = $this->db->selectRow("SELECT * FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
         }
         return $data;
     }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 203
+ * @revision 254
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -41,7 +41,8 @@ elseif(isset($_GET['cn'])) {
 else {
     $name = false;
 }
-$characters->BuildCharacter($name);
+$realmId = $utils->GetRealmIdByName($_GET['r']);
+$characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
 // Get page cache
 if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
@@ -111,7 +112,10 @@ if($character_arenateams && is_array($character_arenateams)) {
     }
     $xml->XMLWriter()->endElement(); //arenaTeams
 }
-$xml->XMLWriter()->endElement();   //character
+$xml->XMLWriter()->startElement('modelBasePath');
+$xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+$xml->XMLWriter()->endElement();  //modelBasePath
+$xml->XMLWriter()->endElement(); //character
 /** Character tab **/
 $xml->XMLWriter()->startElement('characterTab');
 $xml->XMLWriter()->startElement('talentSpecs');
