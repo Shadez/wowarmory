@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 254
+ * @revision 258
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -154,6 +154,16 @@ Class Characters extends Connector {
     private $db;
     
     /**
+     * Character realm name
+     **/
+    private $realmName;
+    
+    /**
+     * Character realm ID
+     **/
+    private $realmID;
+    
+    /**
      * Is character exists?
      * @category Characters class
      * @example Characters::IsCharacter()
@@ -289,6 +299,9 @@ Class Characters extends Connector {
         if($this->chosenTitle > 0) {
             $this->__GetTitleInfo();
         }
+        $this->realmName = $realm_info['name'];
+        $this->realmID   = $realm_info['id'];
+        unset($realm_info);
         return true;
     }
     
@@ -498,11 +511,31 @@ Class Characters extends Connector {
      * @return string
      **/
     public function GetUrlString() {
-        $url = sprintf('r=%s&cn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->name));
+        $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
         if($this->guild_id > 0) {
             $url .= sprintf('&gn=%s', $this->guild_name);
         }
         return $url;
+    }
+    
+    /**
+     * Returns character realm name
+     * @category Characters class
+     * @example Characters::GetRealmName()
+     * @return string
+     **/
+    public function GetRealmName() {
+        return $this->realmName;
+    }
+    
+    /**
+     * Returns character realm ID
+     * @category Characters class
+     * @example Characters::GetRealmID()
+     * @return int
+     **/
+    public function GetRealmID() {
+        return $this->realmID;
     }
     
     public function GetHeader(Achievements $achievements) {

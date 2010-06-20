@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 256
+ * @revision 258
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -67,7 +67,7 @@ $items->ItemTooltip($itemID, $xml, $characters);
 $xml->XMLWriter()->endElement();   //itemTooltip
 if($utils->IsItemComparsionAllowed($itemID)) {
     $primaryCharacter = $utils->GetActiveCharacter();
-    if(isset($primaryCharacter['name'])) {
+    if(isset($primaryCharacter['name']) && $primaryCharacter['name'] != $characters->GetRealmName() && $primaryCharacter['realm_id'] != $characters->GetRealmID()) {
         $newChar = new Characters;
         $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
         if($newChar->CheckPlayer()) {
