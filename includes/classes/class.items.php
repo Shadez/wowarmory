@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 253
+ * @revision 256
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1241,22 +1241,34 @@ Class Items extends Connector {
         return $bonus_template;
     }
     
-    public function ItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false) {
+    public function ItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
         if(!$xml || !$characters) {
             return false;
         }
-        return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent);
+        return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparsion);
     }
     
-    private function CreateAdditionalItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false) {
+    private function CreateAdditionalItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
         if(!$xml) {
             return false;
         }
+        elseif($parent == true && is_array($comparsion)) {
+            return false; // both variables can't have 'true' value.
+        }
+        // Item comparsion mode
+        $realm = false;
+        if(is_array($comparsion) && isset($this->realmData[$comparsion['realm_id']])) {
+            $realm = $this->realmData[$comparsion['realm_id']];
+        }
+        
         $data = $this->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=?", $itemID);
         if(!$data) {
             return false;
         }
         $isCharacter = $characters->CheckPlayer();
+        $xml->XMLWriter()->startElement('id');
+        $xml->XMLWriter()->text($itemID);
+        $xml->XMLWriter()->endElement(); //id
         $xml->XMLWriter()->startElement('name');
         if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
             $xml->XMLWriter()->text($data['name']);
@@ -1716,6 +1728,94 @@ Class Items extends Connector {
             }
         }
         return $data;
+    }
+    
+    public function GetItemSlotId($itemID) {
+        $item_slot = $this->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=? AND (`class`=2 OR `class`=4)", $itemID);
+        switch($item_slot) {
+            case 1:
+                $slot_id = INV_HEAD;
+                $slotname = 'head';
+                break;
+            case 2:
+                $slot_id = INV_NECK;
+                $slotname = 'neck';
+                break;
+            case 3:
+                $slot_id = INV_SHOULDER;
+                $slotname = 'shoulder';
+                break;
+            case 4:
+                $slot_id = INV_SHIRT;
+                $slotname = 'shirt';
+                break;
+            case 5:
+                $slot_id = INV_CHEST;
+                $slotname = 'chest';
+                break;
+            case 6:
+                $slot_id = INV_BRACERS;
+                $slotname = 'wrist';
+                break;
+            case 7:
+                $slot_id = INV_LEGS;
+                $slotname = 'legs';
+                break;
+            case 8:
+                $slot_id = INV_BOOTS;
+                $slotname = 'boots';
+                break;
+            case 9:
+                $slot_id = INV_BELT;
+                $slotname = 'belt';
+                break;
+            case 10:
+                $slot_id = INV_GLOVES;
+                $slotname = 'gloves';
+                break;
+            case 11:
+                $slot_id = array(INV_RING_1, INV_RING_2);
+                $slotname = array('ring1', 'ring2');
+                break;
+            case 12:
+                $slot_id = array(INV_TRINKET_1, INV_TRINKET_2);
+                $slotname = array('trinket1', 'trinket2');
+                break;
+            case 16:
+                $slot_id = INV_BACK;
+                $slotname = 'back';
+                break;
+            case 19:
+                $slot_id = INV_TABARD;
+                $slotname = 'tabard';
+                break;
+            case 20:
+                $slot_id = INV_CHEST;
+                $slotname = 'chest';
+                break;
+            case 13:
+            case 17:
+            case 21:
+                $slot_id = INV_MAIN_HAND;
+                $slotname = 'mainhand';
+                break;
+            case 14:
+            case 22:
+                $slot_id = INV_OFF_HAND;
+                $slotname = 'offhand';
+                break;
+            case 15:
+            case 23:
+            case 28:
+                $slot_id = INV_RANGED_RELIC;
+                $slotname = 'relic';
+                break;
+            default:
+                $slot_id = 0;
+                $slotname = null;
+                break;
+        }
+        return array('slot_id' => $slot_id, 'slotname' => $slotname);
     }
 }
 ?>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 253
+ * @revision 256
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -62,15 +62,44 @@ if(!$items->IsItemExists($itemID)) {
 }
 $xml->XMLWriter()->startElement('itemTooltips');
 $xml->XMLWriter()->startElement('itemTooltip');
-$xml->XMLWriter()->startElement('id');
-$xml->XMLWriter()->text($itemID);
-$xml->XMLWriter()->endElement(); //id
-
 /** ITEM TOOLTIP DATA GENERATED IN Items::ItemTooltip(int $itemID, XMLWriter $xml, Characters $characters)**/
-
 $items->ItemTooltip($itemID, $xml, $characters);
-
 $xml->XMLWriter()->endElement();   //itemTooltip
+if($utils->IsItemComparsionAllowed($itemID)) {
+    $primaryCharacter = $utils->GetActiveCharacter();
+    if(isset($primaryCharacter['name'])) {
+        $newChar = new Characters;
+        $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
+        if($newChar->CheckPlayer()) {
+            $itemSlot = $items->GetItemSlotId($itemID);
+            if(is_array($itemSlot)) {
+                $armory->Log()->writeLog('item-tooltip : itemSlot correct');
+                if(is_array($itemSlot['slotname'])) {
+                    foreach($itemSlot['slotname'] as $sId) {
+                        $compItemID = $newChar->getCharacterEquip($sId);
+                        if($compItemID > 0) {
+                            $xml->XMLWriter()->startElement('comparisonTooltips');
+                            $xml->XMLWriter()->startElement('itemTooltip');
+                            $items->ItemTooltip($compItemID, $xml, $newChar, false, true);
+                            $xml->XMLWriter()->endElement();  //itemTooltip
+                            $xml->XMLWriter()->endElement(); //comparisonTooltips
+                        }
+                    }
+                }
+                else {
+                    $compItemID = $newChar->getCharacterEquip($itemSlot['slotname']);
+                    if($compItemID > 0) {
+                        $xml->XMLWriter()->startElement('comparisonTooltips');
+                        $xml->XMLWriter()->startElement('itemTooltip');
+                        $items->ItemTooltip($compItemID, $xml, $newChar, false, true);
+                        $xml->XMLWriter()->endElement();  //itemTooltip
+                        $xml->XMLWriter()->endElement(); //comparisonTooltips
+                    }
+                }
+            }
+        }
+    }
+}
 $xml->XMLWriter()->endElement();  //itemTooltips
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
