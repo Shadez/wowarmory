@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 250
+ * @revision 251
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -415,9 +415,9 @@ Class SearchMgr extends Connector {
                     }
                 }
                 else {
-                    $allowedDungeon = true;
+                    $allowedDungeon = true;     
                     $instance_data = Utils::GetDungeonData($this->get_array['dungeon']);
-                    if(!is_array($instance_data)) {
+                    if(!is_array($instance_data) || !isset($instance_data['difficulty'])) {
                         return false;
                     }
                     switch($this->get_array['difficulty']) {
