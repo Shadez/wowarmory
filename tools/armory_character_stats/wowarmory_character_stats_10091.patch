@@ -1,13 +1,13 @@
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 7513657..39cc703 100644
+index fe43768..15bad00 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -16545,6 +16545,17 @@ void Player::SaveToDB()
+@@ -16619,6 +16619,17 @@ void Player::SaveToDB()
      outDebugStatsValues();
  
      CharacterDatabase.BeginTransaction();
-+	
-+	/* WoWArmory */
++    
++    /* WoWArmory */
 +    std::ostringstream ps;
 +    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
 +    for(uint16 i = 0; i < m_valuesCount; ++i )
@@ -19,3 +19,4 @@ index 7513657..39cc703 100644
 +    /* WoWArmory */
  
      CharacterDatabase.PExecute("DELETE FROM characters WHERE guid = '%u'",GetGUIDLow());
+ 
