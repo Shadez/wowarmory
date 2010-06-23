@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 256
+ * @revision 264
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -840,7 +840,7 @@ Class Items extends Connector {
         }
         switch($item_difficulty) {
             case '10n':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
                     $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
@@ -851,7 +851,7 @@ Class Items extends Connector {
                 }
                 break;
             case '10h':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
                     $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
@@ -865,7 +865,7 @@ Class Items extends Connector {
                 }
                 break;
             case '25n':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
                     $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
@@ -884,7 +884,7 @@ Class Items extends Connector {
                 }
                 break;
             case '25h':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722) {
+                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
                     $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
