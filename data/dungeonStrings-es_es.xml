@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_es" requestUrl="/data/dungeonStrings.xml">
   <dungeons>
+    <dungeon id="4987" key="rubysanctum25" name="El Sagrario Rubí (25)" release="2">
+      <boss id="39864" name="Halion"/>
+    </dungeon>
+    <dungeon id="4987" key="rubysanctum10" name="El Sagrario Rubí (10)" release="2">
+      <boss id="39863" name="Halion"/>
+    </dungeon>
     <dungeon id="4812" key="icecrowncitadel25" name="Ciudadela de la Corona de Hielo (25)" release="2">
       <boss id="37957" name="Lord Tuétano"/>
       <boss id="38106" name="Lady Susurramuerte"/>
@@ -687,7 +693,7 @@
       <boss id="4857" name="Vigilante de piedra"/>
     </dungeon>
     <dungeon id="718" key="wailingcaverns" name="Cuevas de los Lamentos" release="0">
-      <boss id="5912" name="Dragón faérico descarriado"/>
+      <boss id="5912" name="Dragón feérico descarriado"/>
       <boss id="3653" name="Kresh"/>
       <boss id="3671" name="Lady Anacondra"/>
       <boss id="3669" name="Lord Cobrahn"/>

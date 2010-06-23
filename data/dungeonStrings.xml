@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="ru_ru" requestUrl="/data/dungeonStrings.xml">
   <dungeons>
+    <dungeon id="4987" key="rubysanctum25" name="Рубиновое святилище (25)" release="2">
+      <boss id="39864" name="Халион"/>
+    </dungeon>
+    <dungeon id="4987" key="rubysanctum10" name="Рубиновое святилище (10)" release="2">
+      <boss id="39863" name="Халион"/>
+    </dungeon>
     <dungeon id="4812" key="icecrowncitadel25" name="Цитадель Ледяной Короны (25)" release="2">
       <boss id="37957" name="Лорд Ребрад"/>
       <boss id="38106" name="Леди Смертный Шепот"/>

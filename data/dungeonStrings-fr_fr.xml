@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="fr_fr" requestUrl="/data/dungeonStrings.xml">
   <dungeons>
+    <dungeon id="4987" key="rubysanctum25" name="Le sanctum Rubis (25)" release="2">
+      <boss id="39864" name="Halion"/>
+    </dungeon>
+    <dungeon id="4987" key="rubysanctum10" name="Le sanctum Rubis (10)" release="2">
+      <boss id="39863" name="Halion"/>
+    </dungeon>
     <dungeon id="4812" key="icecrowncitadel25" name="Citadelle de la Couronne de glace (25)" release="2">
       <boss id="37957" name="Seigneur Gargamoelle"/>
       <boss id="38106" name="Dame Murmemort"/>

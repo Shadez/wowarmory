@@ -9,6 +9,26 @@
 </tokens>
 
 <dungeons>
+<!-- Ruby Sanctum -->
+<dungeon hasHeroic="1" id="4987" key="rubysanctum25" levelMax="80" levelMin="80" nameId="4987" partySize="25" raid="1" release="2" showPartySize="true">
+    <bosses>
+    <boss id="39864" key="halion" nameId="39863" type="npc">
+        <lootTable difficulty="n" id="39864" type="npc"/>
+        <lootTable difficulty="h" id="39945" type="npc"/>
+    </boss>
+	</bosses>
+</dungeon>
+
+<dungeon hasHeroic="1" id="4987" key="rubysanctum10" levelMax="80" levelMin="80" nameId="4987" partySize="10" raid="1" release="2" showPartySize="true">
+    <bosses>
+    <boss id="39863" key="halion" nameId="39863" type="npc">
+        <lootTable difficulty="n" id="39863" type="npc"/>
+        <lootTable difficulty="h" id="39944" type="npc"/>
+    </boss>
+</bosses>
+</dungeon>
+
+
 <!--  Lich King -->
 
 <dungeon hasHeroic="1" id="4812" key="icecrowncitadel25" levelMax="80" levelMin="80" nameId="4812" partySize="25" raid="1" release="2" showPartySize="true">

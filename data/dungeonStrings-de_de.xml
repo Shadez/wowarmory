@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="de_de" requestUrl="/data/dungeonStrings.xml">
   <dungeons>
+    <dungeon id="4987" key="rubysanctum25" name="Das Rubinsanktum (25)" release="2">
+      <boss id="39864" name="Halion"/>
+    </dungeon>
+    <dungeon id="4987" key="rubysanctum10" name="Das Rubinsanktum (10)" release="2">
+      <boss id="39863" name="Halion"/>
+    </dungeon>
     <dungeon id="4812" key="icecrowncitadel25" name="Eiskronenzitadelle (25)" release="2">
       <boss id="37957" name="Lord Mark'gar"/>
       <boss id="38106" name="Lady Todeswisper"/>
@@ -421,7 +427,7 @@
       <boss id="4831" name="Lady Sarevess"/>
       <boss id="12902" name="Lorgus Jett"/>
       <boss id="4830" name="Alter Serra'kis"/>
-      <boss id="4832" name="Kelris, Lord des Schattenhammers"/>
+      <boss id="4832" name="Zwielichtfürst Kelris"/>
     </dungeon>
     <dungeon id="1583" key="blackrockspire" name="Schwarzfelsspitze" release="0">
       <boss id="9596" name="Bannok Grimmaxt"/>
