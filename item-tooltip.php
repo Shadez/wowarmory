@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 259
+ * @revision 262
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,7 +37,14 @@ if($name != null) {
 }
 $isCharacter = $characters->CheckPlayer();
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, ($characters->CheckPlayer()) ? $characters->GetName() : null, $armory->currentRealmInfo['name']);
+    if($utils->IsItemComparisonAllowed()) {
+        $selected_char_data = $utils->GetActiveCharacter();
+        $chars_data = sprintf('%s:%s:%s:%s', ($characters->CheckPlayer()) ? $characters->GetName() : null, $characters->GetRealmName(), $selected_char_data['name'], $selected_char_data['realmName']);
+        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, $chars_data, $armory->currentRealmInfo['name']);
+    }
+    else {
+        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, ($characters->CheckPlayer()) ? $characters->GetName() : null, $armory->currentRealmInfo['name']);
+    }
     if($cache_data = $utils->GetCache($cache_id, 'tooltips')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -65,7 +72,7 @@ $xml->XMLWriter()->startElement('itemTooltip');
 /** ITEM TOOLTIP DATA GENERATED IN Items::ItemTooltip(int $itemID, XMLWriter $xml, Characters $characters)**/
 $items->ItemTooltip($itemID, $xml, $characters);
 $xml->XMLWriter()->endElement();   //itemTooltip
-if($utils->IsItemComparsionAllowed($itemID)) {
+if($utils->IsItemComparisonAllowed()) {
     $primaryCharacter = $utils->GetActiveCharacter();
     if(isset($primaryCharacter['name'])) {
         if($primaryCharacter['name'] != $characters->GetName() || ($primaryCharacter['name'] == $characters->GetName() && $primaryCharacter['realm_id'] != $characters->GetRealmID())) {

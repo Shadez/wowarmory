@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 256
+ * @revision 262
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -965,7 +965,7 @@ Class Utils extends Connector {
         return false;
     }
     
-    public function IsItemComparsionAllowed($itemID) {
+    public function IsItemComparisonAllowed() {
         if(isset($_SESSION['accountId']) && isset($_COOKIE['armory_cookieDualTooltip']) && $_COOKIE['armory_cookieDualTooltip'] == 1) {
             return true;
         }
