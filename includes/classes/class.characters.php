@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 258
+ * @revision 265
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -149,6 +149,11 @@ Class Characters extends Connector {
     private $raceText = false;
     
     /**
+     * Equipped item IDs
+     **/
+    private $equipmentCache = false;
+    
+    /**
      * Database handler
      **/
     private $db;
@@ -208,6 +213,7 @@ Class Characters extends Connector {
         `characters`.`power1`,
         `characters`.`power2`,
         `characters`.`power3`,
+        `characters`.`equipmentCache`,
         `guild_member`.`guildid` AS `guild_id`,
         `guild`.`name` AS `guild_name`
         FROM `characters` AS `characters`
@@ -302,6 +308,19 @@ Class Characters extends Connector {
         $this->realmName = $realm_info['name'];
         $this->realmID   = $realm_info['id'];
         unset($realm_info);
+        $this->__HandleEquipmentCacheData();
+        return true;
+    }
+    
+    private function __HandleEquipmentCacheData() {
+        if(!$this->equipmentCache) {
+            return false;
+        }
+        $itemscache = explode(' ', $this->equipmentCache);
+        if(!$itemscache) {
+            return false;
+        }
+        $this->equipmentCache = $itemscache;
         return true;
     }
     
@@ -2288,6 +2307,16 @@ Class Characters extends Connector {
             $data = $this->db->selectRow("SELECT * FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
         }
         return $data;
+    }
+    
+    public function IsItemEquipped($itemID) {
+        if(!is_array($this->equipmentCache)) {
+            return false;
+        }
+        if(in_array($itemID, $this->equipmentCache)) {
+            return true;
+        }
+        return false;
     }
 }
 ?>

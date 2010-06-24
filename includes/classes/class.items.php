@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 264
+ * @revision 265
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1589,15 +1589,35 @@ Class Items extends Connector {
         $xml->XMLWriter()->endElement(); //itemLevel
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
-            $setdata = $this->aDB->selectRow("SELECT * FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
+            $itemsetName = $this->aDB->selectCell("SELECT `name_" . $this->_locale ."` FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
             $xml->XMLWriter()->startElement('name');
-            $xml->XMLWriter()->text($setdata['name_'.$this->_locale]);
+            $xml->XMLWriter()->text($itemsetName);
             $xml->XMLWriter()->endElement();
-            for($i=1;$i<11;$i++) {
-                if($setdata['item'.$i] > 0 && Items::IsItemExists($setdata['item'.$i])) {
-                    $xml->XMLWriter()->startElement('item');
-                    $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
-                    $xml->XMLWriter()->endElement(); //item
+            $setdata = $this->aDB->selectRow("SELECT * FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
+            //                   t9/t10                    Onyxia trinkets
+            if($data['itemset'] >= 843 && $data['itemset'] != 881 && $data['itemset'] != 882) {
+                // Get itemset info from other table (armory_itemsetdata)
+                $currentSetData = $this->aDB->selectRow("SELECT * FROM `armory_itemsetdata` WHERE `original`=? AND (`item1`=? OR `item2`=? OR `item3`=? OR `item4`=? OR `item5`=?)", $data['itemset'], $itemID, $itemID, $itemID, $itemID, $itemID);
+                if($currentSetData) {
+                    for($i=1;$i<6;$i++) {
+                        if(Items::IsItemExists($currentSetData['item'.$i])) {
+                            $xml->XMLWriter()->startElement('item');
+                            $xml->XMLWriter()->writeAttribute('name', Items::getItemName($currentSetData['item'.$i]));
+                            if($characters->IsItemEquipped($currentSetData['item'.$i])) {
+                                $xml->XMLWriter()->writeAttribute('equipped', 1);
+                            }
+                            $xml->XMLWriter()->endElement(); //item
+                        }
+                    }
+                }
+            }
+            else {
+                for($i=1;$i<10;$i++) {
+                    if(isset($setdata['item'.$i]) && Items::IsItemExists($setdata['item'.$i])) {
+                        $xml->XMLWriter()->startElement('item');
+                        $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
+                        $xml->XMLWriter()->endElement(); //item
+                    }
                 }
             }
             $itemsetbonus = Items::GetItemSetBonusInfo($setdata);
