@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 265
+ * @revision 266
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -801,7 +801,7 @@ Class Characters extends Connector {
 				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
 				break;
 			default:
-                $this->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
+                $this->Log()->writeLog('%s : wrong item slot query: %s', __METHOD__, $slot);
 				return 0;
 				break;
         }
@@ -2225,7 +2225,7 @@ Class Characters extends Connector {
         }
         $item_id = $this->getCharacterEquip($slot['slot']);
         if(!$item_id) {
-            $this->Log()->writeError('%s : unable to get item_id for player %d (%s); slotid is %s', __METHOD__, $this->guid, $this->name, $slot['slot']);
+            $this->Log()->writeLog('%s : unable to get item_id for player %d (%s); slotid is %s (nothing equipped?)', __METHOD__, $this->guid, $this->name, $slot['slot']);
             return false;
         }
         $durability = Items::getItemDurability($this->guid, $item_id);
@@ -2235,7 +2235,7 @@ Class Characters extends Connector {
             'g2' => Items::extractSocketInfo($this->guid, $item_id, 3)
         );
         $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item_id);
-        $enchantment = $this->getCharacterEnchant($slot);
+        $enchantment = $this->getCharacterEnchant($slot['slot']);
         $item_info = array(
             'displayInfoId'          => $item_data['displayid'],
             'durability'             => $durability['current'],
