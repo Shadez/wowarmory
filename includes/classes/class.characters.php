@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 266
+ * @revision 267
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -656,63 +656,67 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
+        if(!is_array($this->equipmentCache)) {
+            $this->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
+            return false;
+        }
         switch($slot) {
             case 'head':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENTRYID);
+				return $this->equipmentCache[0];
                 break;
             case 'neck':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENTRYID);
+				return $this->equipmentCache[2];
 				break;
 			case 'shoulder':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENTRYID);
+				return $this->equipmentCache[4];
 				break;
 			case 'shirt':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENTRYID);
+				return $this->equipmentCache[6];
 				break;
 			case 'chest':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENTRYID);
+				return $this->equipmentCache[8];
 				break;
 			case 'wrist':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENTRYID);
+				return $this->equipmentCache[10];
 				break;
 			case 'legs':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENTRYID);
+				return $this->equipmentCache[12];
 				break;
 			case 'boots':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENTRYID);
+				return $this->equipmentCache[14];
 				break;
 			case 'belt':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENTRYID);
+				return $this->equipmentCache[16];
 				break;
 			case 'gloves':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENTRYID);
+				return $this->equipmentCache[18];
 				break;
 			case 'ring1':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENTRYID);
+				return $this->equipmentCache[20];
 				break;
 			case 'ring2':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENTRYID);
+				return $this->equipmentCache[22];
 				break;
 			case 'trinket1':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENTRYID);
+				return $this->equipmentCache[24];
 				break;
             case 'trinket2':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENTRYID);
+				return $this->equipmentCache[26];
 				break;
 			case 'back':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENTRYID);
+				return $this->equipmentCache[28];
 				break;
 			case 'mainhand':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENTRYID);
+				return $this->equipmentCache[30];
 				break;
 			case 'offhand':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENTRYID);
+				return $this->equipmentCache[32];
 			    break;
 			case 'relic':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID);
+				return $this->equipmentCache[34];
 				break;
 			case 'tabard':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENTRYID);
+				return $this->equipmentCache[36];
 				break;
 			default:
                 $this->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
