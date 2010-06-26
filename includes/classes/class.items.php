@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 265
+ * @revision 268
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -601,17 +601,25 @@ Class Items extends Connector {
      * @example Items::extractSocketInfo(100, 3500, 1)
      * @return array
      **/ 
-    public function extractSocketInfo($guid, $item, $socketNum) {
+    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = false) {
         $data = array();
         $socketfield = array(
             1 => ITEM_FIELD_ENCHANTMENT_3_2,
             2 => ITEM_FIELD_ENCHANTMENT_4_2,
             3 => ITEM_FIELD_ENCHANTMENT_5_2
         );
-        $socketInfo = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
-            FROM `item_instance` 
-                WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
+        if($item_guid === false) {
+            $socketInfo = $this->cDB->selectCell("
+            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
+                FROM `item_instance` 
+                    WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
+        }
+        else {
+            $socketInfo = $this->cDB->selectCell("
+            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
+                FROM `item_instance` 
+                    WHERE `owner_guid`=? AND `guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item_guid, $item);
+        }
         if($socketInfo > 0) {
             $data['enchant_id'] = $socketInfo;
             $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
@@ -1025,10 +1033,16 @@ Class Items extends Connector {
         return '_u.png';
     }
     
-    public function GetRandomPropertiesData($item_entry, $owner_guid) {
-        $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
+    public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0) {
+        if($item_guid > 0) {
+            $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
+        }
+        else {
+            $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
+        }
         $rand_data = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id`=?", $enchId);
         if(!$rand_data) {
+            $this->Log()->writeLog('%s : unable to get rand_data from `armory_randomproperties` for id %d', __METHOD__, $enchId);
             return false;
         }
         $return_data = array();
@@ -1424,8 +1438,14 @@ Class Items extends Connector {
             26=>'gun',
             28=>'sigil'
         );
-        if(!$parent && $isCharacter && isset($ench_array[$data['InventoryType']])) {
-            $enchantment = $characters->getCharacterEnchant($ench_array[$data['InventoryType']], $characters->GetGUID());
+        if(isset($ench_array[$data['InventoryType']])) {
+            $itemSlotName = $ench_array[$data['InventoryType']];
+        }
+        else {
+            $itemSlotName = false;
+        }
+        if(!$parent && $isCharacter && $itemSlotName) {
+            $enchantment = $characters->getCharacterEnchant($itemSlotName, $characters->GetGUID());
             if($enchantment) {
                 $xml->XMLWriter()->startElement('enchant');
                 $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_" . $this->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
@@ -1438,21 +1458,25 @@ Class Items extends Connector {
                 $xml->XMLWriter()->startElement('randomEnchantData');
                 $xml->XMLWriter()->endElement(); //randomEnchantData
             }
-            if($isCharacter && $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID()) && !$parent) {
-                if(is_array($rPropInfo)) {
-                    $xml->XMLWriter()->startElement('randomEnchantData');
-                    $xml->XMLWriter()->startElement('suffix');
-                    $xml->XMLWriter()->text($rPropInfo['suffix']);
-                    $xml->XMLWriter()->endElement(); //enchant
-                    if(is_array($rPropInfo['data'])) {
-                        foreach($rPropInfo['data'] as $randProp) {
-                            $xml->XMLWriter()->startElement('enchant');
-                            $xml->XMLWriter()->text($randProp);
-                            $xml->XMLWriter()->endElement(); //enchant
-                        }
+            if($itemSlotName) {
+                $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+            }
+            else {
+                $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID());
+            }
+            if($isCharacter && !$parent && is_array($rPropInfo)) {
+                $xml->XMLWriter()->startElement('randomEnchantData');
+                $xml->XMLWriter()->startElement('suffix');
+                $xml->XMLWriter()->text($rPropInfo['suffix']);
+                $xml->XMLWriter()->endElement(); //enchant
+                if(is_array($rPropInfo['data'])) {
+                    foreach($rPropInfo['data'] as $randProp) {
+                        $xml->XMLWriter()->startElement('enchant');
+                        $xml->XMLWriter()->text($randProp);
+                        $xml->XMLWriter()->endElement(); //enchant
                     }
-                    $xml->XMLWriter()->endElement(); //randomEnchantData
                 }
+                $xml->XMLWriter()->endElement(); //randomEnchantData
             }
         }
         $xml->XMLWriter()->startElement('socketData');
@@ -1464,7 +1488,7 @@ Class Items extends Connector {
                     case 1:
                         $color = 'Meta';
                         $socket_data = array('color' => 'Meta');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i);
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
                         if($gem && !$parent) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1476,7 +1500,7 @@ Class Items extends Connector {
                         break;
                     case 2:
                         $socket_data = array('color' => 'Red');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i);
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
                         if($gem && !$parent) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1488,7 +1512,7 @@ Class Items extends Connector {
                         break;
                     case 4:
                         $socket_data = array('color' => 'Yellow');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i);
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
                         if($gem && !$parent) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1500,7 +1524,7 @@ Class Items extends Connector {
                         break;
                     case 8:
                         $socket_data = array('color' => 'Blue');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i);
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
                         if($gem && !$parent) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];

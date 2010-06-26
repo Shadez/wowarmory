@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 267
+ * @revision 268
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2321,6 +2321,76 @@ Class Characters extends Connector {
             return true;
         }
         return false;
+    }
+    
+    public function GetEquippedItemGuidBySlot($slot_id) {
+        if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            return false;
+        }
+        switch($slot_id) {
+            case 'head':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_HEAD);
+                break;
+            case 'neck':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_NECK);
+                break;
+            case 'shoulder':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_SHOULDER);
+                break;
+            case 'shirt':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_SHIRT);
+                break;
+            case 'chest':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_CHEST);
+                break;
+            case 'belt':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_BELT);
+                break;
+            case 'legs':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_LEGS);
+                break;
+            case 'wrist':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_WRIST);
+                break;
+            case 'boots':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_FEET);
+                break;
+            case 'gloves':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_GLOVES);
+                break;
+            case 'ring1':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_FINGER1);
+                break;
+            case 'ring2':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_FINGER2);
+                break;
+            case 'trinket1':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_TRINKET1);
+                break;
+            case 'trinket2':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_TRINKET2);
+                break;
+            case 'back':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_BACK);
+                break;
+            case 'mainhand':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_MAIN_HAND);
+                break;
+            case 'offhand':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_OFF_HAND);
+                break;
+            case 'relic':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_RANGED);
+                break;
+            case 'tabard':
+                return $this->GetDataField(PLAYER_SLOT_ITEM_TABARD);
+                break;
+            default:
+                $this->Log()->writeLog('%s : wrong item_slot: %s', __METHOD__, $slot_id);
+                return 0;
+                break;
+        }
     }
 }
 ?>
