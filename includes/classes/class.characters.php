@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 268
+ * @revision 269
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,37 +30,51 @@ Class Characters extends Connector {
     
     /**
      * Player guid
+     * @category Characters class
+     * @access   private
      **/
     private $guid = false;
     
     /**
      * Player name
+     * @category Characters class
+     * @access   private
      **/
     private $name = false;
     
     /**
-     * Player race
+     * Player race id
+     * @category Characters class
+     * @access   private
      **/
     private $race = false;
     
     /**
-     * Player class
+     * Player class id
+     * @category Characters class
+     * @access   private
      **/
     private $class = false;
     
     /**
      * Player gender
      * (0 - male, 1 - female)
+     * @category Characters class
+     * @access   private
      **/
     private $gender = false;
     
     /**
      * Player level
+     * @category Characters class
+     * @access   private
      **/
     private $level = false;
     
     /**
      * Player model display info
+     * @category Characters class
+     * @access   private
      **/
     private $playerBytes = false;
     private $playerBytes2 = false;
@@ -68,16 +82,22 @@ Class Characters extends Connector {
     
     /**
      * Player title ID
+     * @category Characters class
+     * @access   private
      **/
     private $chosenTitle = false;
     
     /**
      * Player health value
+     * @category Characters class
+     * @access   private
      **/
     private $health = false;
     
     /**
      * Player powers values
+     * @category Characters class
+     * @access   private
      **/
     private $power1 = false;
     private $power2 = false;
@@ -86,98 +106,138 @@ Class Characters extends Connector {
     /**
      * Account ID
      * (currently not used)
+     * @category Characters class
+     * @access   private
      **/
     private $account = false;
     
     /**
      * Talent specs count
+     * @category Characters class
+     * @access   private
      **/
     private $specCount = false;
     
     /**
      * Active talent spec ID
      * (0 or 1)
+     * @category Characters class
+     * @access   private
      **/
     private $activeSpec = false;
 
     /**
      * Player faction
      * (1 - Horde, 0 - Alliance)
+     * @category Characters class
+     * @access   private
      **/
     private $faction = false;
     
     /**
      * Array with player stats constants
      * (depends on character level)
+     * @category Characters class
+     * @access   private
      **/
     private $rating = false;
      
     /**
      * Player title data
      * (prefix, suffix, titleId)
+     * @category Characters class
+     * @access   private
      **/
     private $character_title = array('prefix' => null, 'suffix' => null, 'titleId' => null);
     
     /**
      * Player guild ID
+     * @category Characters class
+     * @access   private
      **/
     private $guild_id = false;
     
     /**
      * Player guild name
+     * @category Characters class
+     * @access   private
      **/
     private $guild_name = false;
     
     /**
      * Player guild rank ID
+     * @category Characters class
+     * @access   private
      **/
     private $guild_rank_id = false;
     
     /**
      * Player guild rank name
+     * @category Characters class
+     * @access   private
      **/
     private $guild_rank_name = false;
     
     /**
      * $this->class text
+     * @category Characters class
+     * @access   private
      **/
     private $classText = false;
     
     /**
      * $this->race text
+     * @category Characters class
+     * @access   private
      **/
     private $raceText = false;
     
     /**
      * Equipped item IDs
+     * @category Characters class
+     * @access   private
      **/
     private $equipmentCache = false;
     
     /**
      * Database handler
+     * @category Characters class
+     * @access   private
      **/
     private $db;
     
     /**
      * Character realm name
+     * @category Characters class
+     * @access   private
      **/
     private $realmName;
     
     /**
      * Character realm ID
+     * @category Characters class
+     * @access   private
      **/
     private $realmID;
     
     /**
-     * Is character exists?
+     * Checks current player (loaded or not).
      * @category Characters class
-     * @example Characters::IsCharacter()
-     * @return bool
+     * @access   public
+     * @return   bool
      **/
     public function IsCharacter() {
         return self::CheckPlayer();
     }
     
+    /**
+     * Init character, load data from DB, checks for requirements, etc.
+     * @category Characters class
+     * @access   public
+     * @param    string $name
+     * @param    int $realmId = 1
+     * @return   bool
+     **/
     public function BuildCharacter($name, $realmId = 1) {
         if(!is_string($name)) {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
@@ -312,6 +372,12 @@ Class Characters extends Connector {
         return true;
     }
     
+    /**
+     * Converts $this->equipmentCache from string to array
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
     private function __HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
             return false;
@@ -327,13 +393,14 @@ Class Characters extends Connector {
     /**
      * Constructs character title info
      * @category Characters class
-     * @return void
+     * @access   private
+     * @return   bool
      **/
     private function __GetTitleInfo() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
         if(!$title_data) {
             $this->Log()->writeError('%s: Player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
-            return;
+            return false;
         }
         switch($this->gender) {
             case 0:
@@ -354,8 +421,15 @@ Class Characters extends Connector {
                 break;
         }
         $this->character_title['titleId'] = $this->chosenTitle;
+        return true;
     }
     
+    /**
+     * Checks current player (loaded or not).
+     * @category Characters class
+     * @access   public
+     * @return   bool
+     **/
     public function CheckPlayer() {
         if(!$this->guid || !$this->name) {
             return false;
@@ -366,8 +440,8 @@ Class Characters extends Connector {
     /**
      * Returns player GUID
      * @category Characters class
-     * @example Characters::GetGUID();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetGUID() {
         return $this->guid;
@@ -376,8 +450,8 @@ Class Characters extends Connector {
     /**
      * Returns player name
      * @category Characters class
-     * @example Characters::GetName();
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetName() {
         return $this->name;
@@ -386,8 +460,8 @@ Class Characters extends Connector {
     /**
      * Returns player class
      * @category Characters class
-     * @example Characters::GetClass();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetClass() {
         return $this->class;
@@ -396,8 +470,8 @@ Class Characters extends Connector {
     /**
      * Returns player race
      * @category Characters class
-     * @example Characters::GetRace();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetRace() {
         return $this->race;
@@ -406,8 +480,8 @@ Class Characters extends Connector {
     /**
      * Returns player level
      * @category Characters class
-     * @example Characters::GetLevel();
-     * @return int
+     * @access   public
+     * @return   int
      **/    
     public function GetLevel() {
         return $this->level;
@@ -416,8 +490,8 @@ Class Characters extends Connector {
     /**
      * Returns player gender
      * @category Characters class
-     * @example Characters::GetGender();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetGender() {
         return $this->gender;
@@ -426,8 +500,8 @@ Class Characters extends Connector {
     /**
      * Returns player faction
      * @category Characters class
-     * @example Characters::GetFaction();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetFaction() {
         return $this->faction;
@@ -436,8 +510,8 @@ Class Characters extends Connector {
     /**
      * Returns player account ID
      * @category Characters class
-     * @example Characters::GetAccountID();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetAccountID() {
         return $this->account;
@@ -446,8 +520,8 @@ Class Characters extends Connector {
     /**
      * Returns active talent spec ID
      * @category Characters class
-     * @example Characters::GetActiveSpec();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetActiveSpec() {
         return $this->activeSpec;
@@ -456,8 +530,8 @@ Class Characters extends Connector {
     /**
      * Returns talent specs count
      * @category Characters class
-     * @example Characters::GetSpecCount();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetSpecCount() {
         return $this->specCount;
@@ -466,8 +540,8 @@ Class Characters extends Connector {
     /**
      * Returns array with player model info
      * @category Characters class
-     * @example Characters::GetPlayerBytes();
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function GetPlayerBytes() {
         return array('playerBytes' => $this->playerBytes, 'playerBytes2' => $this->playerBytes2, 'playerFlags' => $this->playerFlags);
@@ -476,8 +550,8 @@ Class Characters extends Connector {
     /**
      * Returns player guild name
      * @category Characters class
-     * @example Characters::GetGuildName();
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetGuildName() {
         return $this->guild_name;
@@ -486,8 +560,8 @@ Class Characters extends Connector {
     /**
      * Returns player guild ID
      * @category Characters class
-     * @example Characters::GetGuildID();
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetGuildID() {
         return $this->guild_id;
@@ -496,8 +570,8 @@ Class Characters extends Connector {
     /**
      * Returns array with chosen title info
      * @category Characters class
-     * @example Characters::GetChosenTitleInfo();
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function GetChosenTitleInfo() {
         return $this->character_title;
@@ -506,8 +580,8 @@ Class Characters extends Connector {
     /**
      * Returns text string for $this->class ID
      * @category Characters class
-     * @example Characters::GetClassText();
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetClassText() {
         return $this->classText;
@@ -516,8 +590,8 @@ Class Characters extends Connector {
     /**
      * Returns text string for $this->race ID
      * @category Characters class
-     * @example Characters::GetRaceText();
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetRaceText() {
         return $this->raceText;
@@ -526,8 +600,8 @@ Class Characters extends Connector {
     /**
      * Returns character URL string (r=realmName&cn=CharName&gn=GuildName)
      * @category Characters class
-     * @example Characters::GetUrlString();
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetUrlString() {
         $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
@@ -540,8 +614,8 @@ Class Characters extends Connector {
     /**
      * Returns character realm name
      * @category Characters class
-     * @example Characters::GetRealmName()
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetRealmName() {
         return $this->realmName;
@@ -550,13 +624,20 @@ Class Characters extends Connector {
     /**
      * Returns character realm ID
      * @category Characters class
-     * @example Characters::GetRealmID()
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetRealmID() {
         return $this->realmID;
     }
     
+    /**
+     * Generates character header (for XML output)
+     * @category Characters class
+     * @access   public
+     * @param    Achievements $achievements
+     * @return   array 
+     **/
     public function GetHeader(Achievements $achievements) {
         $header = array(
             'battleGroup'  => $this->armoryconfig['defaultBGName'],
@@ -587,8 +668,8 @@ Class Characters extends Connector {
     /**
      * Returns array with additional energy bar data (mana for paladins, mages, warlocks & hunters, etc.)
      * @category Characters class
-     * @example Characters::GetSecondBar()
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function GetSecondBar() {
         if(!$this->class) {
@@ -646,10 +727,10 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns item id from $slot (head, neck, shoulder, etc.). Requires $this->guid!
+     * Returns item ID from $slot (head, neck, shoulder, etc.). Requires $this->guid!
      * @category Character class
-     * @example Characters::getCharacterEquip('head')
-     * @return int
+     * @param    string $slot
+     * @return   int
      **/
     public function getCharacterEquip($slot) {
         if(!$this->guid) {
@@ -725,115 +806,96 @@ Class Characters extends Connector {
         }
     }
     
-    public function GetCharacterEquipBySlot($slotID) {
-        if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
-            return false;
-        }
-        return $this->db->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `guid`=? AND `slot`=? LIMIT 1", $this->guid, $slotID);
-    }
-    
     /**
      * Returns enchantment id of item contained in $slot slot. If $guid not provided, function will use $this->guid.
      * @category Character class
-     * @example Characters::getCharacterEnchant('head', 100)
-     * @return int
+     * @access   public
+     * @param    string $slot
+     * @return   int
      **/
-    public function getCharacterEnchant($slot, $guid = null) {
-        if($guid == null) {
-            $guid = $this->guid;
+    public function getCharacterEnchant($slot) {
+        if(is_array($this->equipmentCache)) {
+            $this->Log()->writeError('%s : this->equipmentCache must have array type!', __METHOD__);
+            return 0;
         }
         switch($slot) {
             case 'head':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT, $guid);
+                return $this->equipmentCache[1];
                 break;
             case 'neck':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_2_ENCHANTMENT, $guid);
-				break;
-			case 'shoulder':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_3_ENCHANTMENT, $guid);
-				break;
-			case 'shirt':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_4_ENCHANTMENT, $guid);
-				break;
-			case 'chest':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_5_ENCHANTMENT, $guid);
-				break;
-			case 'wrist':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_6_ENCHANTMENT, $guid);
-				break;
-			case 'legs':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_7_ENCHANTMENT, $guid);
-				break;
-			case 'boots':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_8_ENCHANTMENT, $guid);
-				break;
-			case 'belt':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_9_ENCHANTMENT, $guid);
-				break;
-			case 'gloves':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_10_ENCHANTMENT, $guid);
-				break;
-			case 'ring1':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_11_ENCHANTMENT, $guid);
-				break;
-			case 'ring2':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_12_ENCHANTMENT, $guid);
-				break;
-			case 'trinket1':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_13_ENCHANTMENT, $guid);
-				break;
+                return $this->equipmentCache[3];
+                break;
+            case 'shoulder':
+                return $this->equipmentCache[5];
+                break;
+            case 'shirt':
+                return $this->equipmentCache[7];
+                break;
+            case 'chest':
+                return $this->equipmentCache[9];
+                break;
+            case 'wrist':
+                return $this->equipmentCache[11];
+                break;
+            case 'legs':
+                return $this->equipmentCache[13];
+                break;
+            case 'boots':
+                return $this->equipmentCache[15];
+                break;
+            case 'belt':
+                return $this->equipmentCache[17];
+                break;
+            case 'gloves':
+                return $this->equipmentCache[19];
+                break;
+            case 'ring1':
+                return $this->equipmentCache[21];
+                break;
+            case 'ring2':
+                return $this->equipmentCache[23];
+                break;
+            case 'trinket1':
+                return $this->equipmentCache[25];
+                break;
             case 'trinket2':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_14_ENCHANTMENT, $guid);
-				break;
-			case 'back':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_15_ENCHANTMENT, $guid);
-				break;
-			case 'mainhand':
+                return $this->equipmentCache[27];
+                break;
+            case 'back':
+                return $this->equipmentCache[29];
+                break;
+            case 'mainhand':
             case 'stave':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_16_ENCHANTMENT, $guid);
-				break;
-			case 'offhand':
+                return $this->equipmentCache[31];
+                break;
+            case 'offhand':
             case 'gun':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_17_ENCHANTMENT, $guid);
-			    break;
-			case 'relic':
+                return $this->equipmentCache[33];
+                break;
+            case 'relic':
             case 'sigil':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENCHANTMENT, $guid);
-				break;
-			case 'tabard':
-				return $this->GetDataField(PLAYER_VISIBLE_ITEM_19_ENCHANTMENT, $guid);
-				break;
-			default:
+                return $this->equipmentCache[35];
+                break;
+            case 'tabard':
+                return $this->equipmentCache[37];
+                break;
+            default:
                 $this->Log()->writeLog('%s : wrong item slot query: %s', __METHOD__, $slot);
-				return 0;
-				break;
+                return 0;
+                break;
         }
     }
-		
-	/*****************
-	Function from MBA
-	******************/
-	
-    //get a tab from TalentTab
-    public function getTabOrBuild($type, $tabnum) {
-        if($type == "tab") {
-			$field = $this->aDB->selectCell("
-			SELECT `id`
-				FROM `armory_talenttab`
-					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($this->class-1)), $tabnum);
-		}
-		else {
-			$field = $this->aDB->selectCell("
-			SELECT `name_" . $this->_locale . "`
-				FROM `armory_talenttab`
-					WHERE `refmask_chrclasses` = ? AND `tab_number` = ? LIMIT 1", pow(2,($this->class-1)), $tabnum);
-		}
-		return $field;
-	}
     
+    /**
+     * Returns array with TalentTab IDs for current classID ($this->class)
+     * @category Characters class
+     * @access   public
+     * @param    int $tab_count = -1
+     * @return   array
+     **/
     public function GetTalentTab($tab_count = -1) {
         if(!$this->class) {
+            $this->Log()->writeError('%s : player class not defined', __METHOD__);
             return false;
         }
         $talentTabId = array(
@@ -858,10 +920,10 @@ Class Characters extends Connector {
     
     /**
      * Calculates and returns array with character talent specs. !Required $this->guid and $this->class!
-     * Depends on $this->currentRealmInfo['server_type'] (mangos or trinity realm)
+     * Depends on $this->currentRealmInfo['type'] ('mangos' or 'trinity' realm)
      * @category Character class
-     * @example Characters::CalculateCharacterTalents()
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function CalculateCharacterTalents() {
         if(!$this->class || !$this->guid) {
@@ -924,6 +986,12 @@ Class Characters extends Connector {
         return $talent_data;
     }
     
+    /**
+     * Returns character talent build for all specs (2 if character have dual talent specialization)
+     * @category Character class
+     * @access   public
+     * @return   array
+     **/
     public function CalculateCharacterTalentBuild() {
         if(!$this->guid || !$this->class) {
             $this->Log()->writeError('%s : player class or guid not defined', __METHOD__);
@@ -1007,8 +1075,9 @@ Class Characters extends Connector {
     /**
      * Returns array with glyph data for all specs
      * @category Character class
-     * @example Characters::GetCharacterGlyphs()
-     * @return array
+     * @access   public
+     * @param    int $spec = -1
+     * @return   array
      **/
     public function GetCharacterGlyphs($spec = -1) {
         if(!$this->guid) {
@@ -1088,8 +1157,9 @@ Class Characters extends Connector {
     /**
      * Returns talent tree name for selected class
      * @category Character class
-     * @example Characters::ReturnTalentTreeNames(2)
-     * @return string
+     * @access   public
+     * @param    int $spec
+     * @return   string
      **/
     public function ReturnTalentTreesNames($spec) {
 		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=?", $this->class, $spec);
@@ -1098,9 +1168,10 @@ Class Characters extends Connector {
     /**
      * Returns icon name for selected class & talent tree
      * @category Character class
-     * @example Characters::ReturnTalentTreeIcon(2)
-     * @todo Move this function to Utils class
-     * @return string
+     * @access   public
+     * @param    int $tree
+     * @return   string
+     * @todo     Move this function to Utils class
      **/
     public function ReturnTalentTreeIcon($tree) {
         $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $this->class, $tree);
@@ -1111,10 +1182,10 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns array with character's professions (name, icon & current skill value)
+     * Returns array with character professions (name, icon & current skill value)
      * @category Character class
-     * @example Characters::extractCharacterProfessions()
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function extractCharacterProfessions() {
         $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
@@ -1138,9 +1209,9 @@ Class Characters extends Connector {
     /**
      * Returns array with character reputation (faction name, description, value)
      * @category Character class
-     * @example Characters::getCharacterReputation()
-     * @todo Make parent sections
-     * @return array
+     * @access   public
+     * @todo     Make parent sections
+     * @return   array
      **/
     public function GetCharacterReputation() {
         if(!$this->guid) {
@@ -1167,15 +1238,13 @@ Class Characters extends Connector {
         return $factionReputation;
     }
     
-    /********************************************/
-    /*** Grab character info from `data` blob ***/
-    /********************************************/
-    
     /**
-     * Returns value of $fieldNum field. !Requires $this->guid or $guid as second parameter!
+     * Returns value of $fieldNum field. Requires $this->guid or int $guid as second parameter!
      * @category Characters class
-     * @exapmle Characters::GetDataField(1203)
-     * @return int
+     * @access   public
+     * @param    int $fieldNum
+     * @param    int $guid = null
+     * @return   int
      **/
     public function GetDataField($fieldNum, $guid = null) {
         if($guid == null) {
@@ -1193,26 +1262,54 @@ Class Characters extends Connector {
         return $qData;
     }
     
-    // Health value
+    /**
+     * Returns current health value
+     * @category Character class
+     * @access   public
+     * @return   int
+     **/
     public function GetMaxHealth() {
         return $this->health;
     }
     
-    // Mana value
+    /**
+     * Returns current mana value
+     * @category Character class
+     * @access   public
+     * @return   int
+     **/
     public function GetMaxMana() {
         return $this->power1;
     }
     
-    // Rage value
+    /**
+     * Returns current rage value
+     * @category Character class
+     * @access   public
+     * @return   int
+     **/
     public function GetMaxRage() {
-        return $this->power2;
+        return 100;
+        // return $this->power2;
     }
     
-    // Energy (or Runic power for DK) value
+    /**
+     * Returns current energy (for Rogues) or Runic power (for Death Knight) value
+     * @category Character class
+     * @access   public
+     * @return   int
+     **/
     public function GetMaxEnergy() {
-        return $this->power3;
+        return 100;
+        //return $this->power3;
     }
     
+    /**
+     * Assigns $this->rating variable (or returns it if it was already assigned)
+     * @category Character class
+     * @access   public
+     * @return   array
+     **/
     public function SetRating() {
         if($this->rating) {
             return $this->rating;
@@ -1224,7 +1321,12 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns $stat_string stat for current player
+     * Calls internal function to calculate character stat
+     * @category Character class
+     * @access   public
+     * @param    string $stat_string
+     * @param    int $type
+     * @return   int
      **/
     public function GetCharacterStat($stat_string, $type = false) {
         switch($stat_string) {
@@ -1259,7 +1361,7 @@ Class Characters extends Connector {
                 return $this->GetCharacterOffHandMeleeHaste();
                 break;
             case 'power':
-                if(!$type) {
+                if($type === false) {
                     return $this->GetCharacterAttackPower();
                 }
                 elseif($type == 1) {
@@ -1267,7 +1369,7 @@ Class Characters extends Connector {
                 }
                 break;
             case 'hitRating':
-                if(!$type) {
+                if($type === false) {
                     return $this->GetCharacterMeleeHitRating();
                 }
                 elseif($type == 1) {
@@ -1278,7 +1380,7 @@ Class Characters extends Connector {
                 }
                 break;
             case 'critChance':
-                if(!$type) {
+                if($type === false) {
                     return $this->GetCharacterMeleeCritChance();
                 }
                 elseif($type == 1) {
@@ -1337,9 +1439,12 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns array with character strenght data (for <baseStats>)
+     * Returns array with Strength value
+     * @category Character class
+     * @access   private
+     * @return   array
      **/
-    public function GetCharacterStrength() {
+    private function GetCharacterStrength() {
         $tmp_stats = array();
         $tmp_stats['bonus_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_POSSTAT0), 0);
         $tmp_stats['negative_strenght'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_NEGSTAT0), 0);        
@@ -1363,7 +1468,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterAgility() {
+    /**
+     * Returns array with Agility value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterAgility() {
         $tmp_stats    = array();
         $rating       = $this->SetRating();
         
@@ -1390,7 +1501,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterStamina() {
+    /**
+     * Returns array with Stamina value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterStamina() {
         $tmp_stats = array();
         
         $tmp_stats['effective'] = $this->GetDataField(UNIT_FIELD_STAT2);
@@ -1416,7 +1533,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterIntellect() {
+    /**
+     * Returns array with Intellect value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterIntellect() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1453,7 +1576,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterSpirit() {
+    /**
+     * Returns array with Spirit value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpirit() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1490,7 +1619,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterArmor() {
+    /**
+     * Returns array with Armor value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterArmor() {
         $tmp_stats = array();
         $levelModifier = 0;        
         
@@ -1524,7 +1659,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterMainHandMeleeSkill() {
+    /**
+     * Returns array with Expertise (MH melee) value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterMainHandMeleeSkill() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         $character_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=?", $this->guid);
@@ -1548,11 +1689,24 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterOffHandMeleeSkill() {
+    /**
+     * Returns array with Expertise (OH melee) value
+     * @category Character class
+     * @access   private
+     * @return   array
+     * @todo     correctly handle this stat
+     **/
+    private function GetCharacterOffHandMeleeSkill() {
         return array('value' => '', 'rating' => '');
     }
     
-    public function GetCharacterMainHandMeleeDamage() {
+    /**
+     * Returns array with Main hand melee damage value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterMainHandMeleeDamage() {
         $tmp_stats = array();
         
         $tmp_stats['min'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MINDAMAGE), 0);
@@ -1575,11 +1729,24 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterOffHandMeleeDamage() {
+    /**
+     * Returns array with Off hand melee damage value
+     * @category Character class
+     * @access   private
+     * @return   array
+     * @todo     correctly handle this stat
+     **/
+    private function GetCharacterOffHandMeleeDamage() {
         return array('speed' => 0, 'min' => 0, 'max'  => 0, 'percent' => 0, 'dps' => '0.0');
     }
     
-    public function GetCharacterMainHandMeleeHaste() {
+    /**
+     * Returns array with Main hand melee haste value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterMainHandMeleeHaste() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1591,11 +1758,24 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterOffHandMeleeHaste() {
+    /**
+     * Returns array with Off hand melee haste value
+     * @category Character class
+     * @access   private
+     * @return   array
+     * @todo     correctly handle this stat
+     **/
+    private function GetCharacterOffHandMeleeHaste() {
         return array('hastePercent' => 0, 'hasteRating' => 0, 'value' => 0);
     }
     
-    public function GetCharacterAttackPower() {
+    /**
+     * Returns array with Attack power value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterAttackPower() {
         $tmp_stats = array();
         
         $tmp_stats['multipler_melee_ap'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_ATTACK_POWER_MULTIPLIER), 8);
@@ -1620,7 +1800,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterMeleeHitRating() {
+    /**
+     * Returns array with Hit rating (melee) value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterMeleeHitRating() {
         $player_stats = array();
         $rating       = $this->SetRating();
 
@@ -1633,7 +1819,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterMeleeCritChance() {
+    /**
+     * Returns array with Melee crit value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterMeleeCritChance() {
         $rating = $this->SetRating();
         $player_stats = array();
         
@@ -1645,11 +1837,24 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterRangedWeaponSkill() {
+    /**
+     * Returns array with Ranged Expertise value
+     * @category Character class
+     * @access   private
+     * @return   array
+     * @todo     correctly handle this stat
+     **/
+    private function GetCharacterRangedWeaponSkill() {
         return array('value' => '-1', 'rating' => '-1');
     }
     
-    public function GetCharacterRangedDamage() {
+    /**
+     * Returns array with Ranged weapon damage value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterRangedDamage() {
         $tmp_stats     = array();
         $rangedSkillID = Mangos::getSkillFromItemID($this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID));
         
@@ -1683,7 +1888,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterRangedHaste() {
+    /**
+     * Returns array with Ranged weapon haste value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterRangedHaste() {
         $player_stats  = array();
         $rating        = $this->SetRating();
         $rangedSkillID = Mangos::getSkillFromItemID($this->GetDataField(PLAYER_VISIBLE_ITEM_18_ENTRYID));
@@ -1704,7 +1915,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterRangedAttackPower() {
+    /**
+     * Returns array with Ranged Attack Power value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterRangedAttackPower() {
         $player_stats = array();
         
         $multipler =  Utils::getFloatValue($this->GetDataField(UNIT_FIELD_RANGED_ATTACK_POWER_MULTIPLIER), 8);        
@@ -1735,7 +1952,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterRangedHitRating() {
+    /**
+     * Returns array with Ranged Hit Rating value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterRangedHitRating() {
         $player_stats = array();
         $rating       = $this->SetRating();
         
@@ -1748,7 +1971,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterRangedCritChance() {
+    /**
+     * Returns array with Ranged Crit value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterRangedCritChance() {
         $player_stats = array();
         $rating       = $this->SetRating();        
         
@@ -1760,7 +1989,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterSpellBonusDamage() {
+    /**
+     * Returns array with Spell Power (damage) value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellBonusDamage() {
         $tmp_stats  = array();
         $holySchool = 1;
         $minModifier = Utils::GetSpellBonusDamage($holySchool, $this->guid);
@@ -1789,7 +2024,13 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterSpellCritChance() {
+    /**
+     * Returns array with Spell Crit value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellCritChance() {
         $player_stats = array();
         $spellCrit    = array();
         $rating       = $this->SetRating();
@@ -1816,7 +2057,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterSpellHitRating() {
+    /**
+     * Returns array with Spell Hit value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellHitRating() {
         $player_stats = array();
         $rating       = $this->SetRating();
         
@@ -1829,11 +2076,23 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterSpellBonusHeal() {
+    /**
+     * Returns array with Spell Power (heal) value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellBonusHeal() {
         return array('value' => $this->GetDataField(PLAYER_FIELD_MOD_HEALING_DONE_POS));
     }
     
-    public function GetCharacterSpellHaste() {
+    /**
+     * Returns array with Spell Haste value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellHaste() {
         $player_stats = array();
         $rating       = $this->SetRating();
         $player_stats['hasteRating'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+19);
@@ -1843,11 +2102,24 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterSpellPenetration() {
+    /**
+     * Returns array with Spell Penetration value
+     * @category Character class
+     * @access   private
+     * @return   array
+     * @todo     correctly handle this stat
+     **/
+    private function GetCharacterSpellPenetration() {
         return array('value' => 0);
     }
     
-    public function GetCharacterSpellManaRegen() {
+    /**
+     * Returns array with Mana Regeneration value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterSpellManaRegen() {
         $player_stats = array();
         
         $player_stats['notCasting'] = $this->GetDataField(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER);
@@ -1858,7 +2130,13 @@ Class Characters extends Connector {
         return $player_stats;
     }
     
-    public function GetCharacterDefense() {
+    /**
+     * Returns array with Defense value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterDefense() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         $gskill    = $this->db->selectRow("SELECT * FROM `character_skills` WHERE `guid`=? AND `skill`=95", $this->guid);
@@ -1877,7 +2155,13 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterDodge() {
+    /**
+     * Returns array with Dodge value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterDodge() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1889,7 +2173,13 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterParry() {
+    /**
+     * Returns array with Parry value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterParry() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1901,7 +2191,13 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterBlock() {
+    /**
+     * Returns array with Block value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterBlock() {
         $tmp_stats = array();
                 
         $blockvalue = $this->GetDataField(PLAYER_BLOCK_PERCENTAGE);
@@ -1912,7 +2208,13 @@ Class Characters extends Connector {
         return $tmp_stats;
     }
     
-    public function GetCharacterResilence() {
+    /**
+     * Returns array with Resilence value
+     * @category Character class
+     * @access   private
+     * @return   array
+     **/
+    private function GetCharacterResilence() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
         
@@ -1937,10 +2239,12 @@ Class Characters extends Connector {
     /**
      * Returns skill info for $skill. If $guid not provided, function will use $this->guid. Not used now.
      * @category Character class
-     * @example Characters::getCharacterSkill()
-     * @return array
+     * @access   public
+     * @param    int $skill
+     * @param    int $guid = false
+     * @return   array
      **/
-    public function getCharacterSkill($skill, $guid=false) {
+    public function getCharacterSkill($skill, $guid = false) {
         if($guid) {
             $this->guid = $guid;
         }
@@ -1955,8 +2259,9 @@ Class Characters extends Connector {
     /**
      * Returns data for 2x2, 3x3 and 5x5 character arena teams (if exists). If $check == true, function will return boolean type. Used by character-*.php to check show or not 'Arena' button
      * @category Character class
-     * @example Characters::getCharacterArenaTeamInfo(false)
-     * @return bool/array
+     * @access   public
+     * @param    bool $check = false
+     * @return   mixed
      **/
     public function getCharacterArenaTeamInfo($check = false) {
         if(!$this->guid) {
@@ -2014,11 +2319,13 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns info about last character activity. Requires MaNGOS core patch (tools/character_feed)!
-     * $full used only in character-feed.php
+     * Returns info about last character activity. Requires MaNGOS/Trinity core patch (tools/character_feed)!
+     * bool $full used only in character-feed.php
      * @category Characters class
-     * @example Characters::GetCharacterFeed()
-     * @return array
+     * @access   public
+     * @param    bool $full = false
+     * @return   array
+     * @todo     Some bosses kills/achievement gains are not shown or shown with wrong date
      **/
     public function GetCharacterFeed($full = false) {
         if(!$this->guid) {
@@ -2220,7 +2527,12 @@ Class Characters extends Connector {
     }
     
     /**
-     * @todo enchantments
+     * Returns array with data for item placed in $slot['slot']
+     * @category Character class
+     * @access   public
+     * @param    array $slot
+     * @return   array
+     * @todo     item enchantments (as items or spells)
      **/
     public function GetCharacterItemInfo($slot) {
         if(!$this->guid) {
@@ -2267,10 +2579,24 @@ Class Characters extends Connector {
         return $item_info;
     }
     
+    /**
+     * Returns $this->db statistics (queries amount, generation time, etc.). Not used now.
+     * @category Character class
+     * @access   public
+     * @return   array
+     **/
     public function GetDBStatistics() {
         return $this->db->getStatistics();
     }
     
+    /**
+     * Modifies money value.
+     * @category Character class
+     * @access   public
+     * @param    int $amount
+     * @param    int $type
+     * @return   bool
+     **/
     public function ModifyMoney($amount, $type) {
         switch($type) {
             // Add money
@@ -2285,6 +2611,13 @@ Class Characters extends Connector {
         return true;
     }
     
+    /**
+     * Returns array with active AuctionHouse lots for current character. Not used now (until WoW-Remote feature not implemented).
+     * @category Character class
+     * @access   public
+     * @return   array
+     * @see      AuctionHouse::LookupActiveLotsByGUID()
+     **/
     public function LookupActiveLots() {
         if(!$this->guid || !isset($_SESSION['accountId'])) {
             $this->Log()->writeError('%s : player guid not defined or unable to find active session', __METHOD__);
@@ -2293,7 +2626,15 @@ Class Characters extends Connector {
         return AuctionHouseHandler::LookupActiveLotsByGUID($this->guid);
     }
     
-    public function CreateAuction(&$data) {
+    /**
+     * Creates auction.
+     * @category Character class
+     * @access   public
+     * @param    array $data
+     * @return   bool
+     * @see      AuctionHouseHandler::CreateAuction()
+     **/
+    public function CreateAuction($data) {
         if(!$this->guid || !isset($_SESSION['accountId'])) {
             $this->Log()->writeError('%s : player guid not defined or unable to find active session', __METHOD__);
             return false;
@@ -2302,7 +2643,22 @@ Class Characters extends Connector {
         return AuctionHouseHandler::CreateAuction($this->guid, $this->faction, $data['house_id'], $data['item_id'], $data['item_guid'], $data['count'], $data['price1'], $data['price2']);
     }
     
+    /**
+     * Checks for active pet or returns its data if bool $full == true
+     * @category Character class
+     * @access   public
+     * @param    bool $full = false
+     * @return   mixed
+     **/
     public function GetActivePetData($full = false) {
+        if(!$this->class) {
+            $this->Log()->writeError('%s : player class not provided.', __METHOD__);
+            return false;
+        }
+        elseif($this->class != CLASS_HUNTER) {
+            $this->Log()->writeLog('%s : only usable for CLASS_HUNTER', __METHOD__);
+            return false;
+        }
         $data = false;
         if(!$full) {
             $data = $this->db->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
@@ -2313,6 +2669,13 @@ Class Characters extends Connector {
         return $data;
     }
     
+    /**
+     * Checks is item with entry $itemID currently equipped on character.
+     * @category Character class
+     * @access   public
+     * @param    int $itemID
+     * @return   bool
+     **/
     public function IsItemEquipped($itemID) {
         if(!is_array($this->equipmentCache)) {
             return false;
@@ -2323,10 +2686,17 @@ Class Characters extends Connector {
         return false;
     }
     
+    /**
+     * Returns currently equipped item's GUID (depends on $slot_id)
+     * @category Character class
+     * @access   public
+     * @param    string $slot_id
+     * @return   int
+     **/
     public function GetEquippedItemGuidBySlot($slot_id) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not provided', __METHOD__);
-            return false;
+            return 0;
         }
         switch($slot_id) {
             case 'head':
