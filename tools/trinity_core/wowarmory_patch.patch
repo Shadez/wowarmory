@@ -1,44 +1,41 @@
-diff --git a/src/game/AchievementMgr.cpp b/src/game/AchievementMgr.cpp
---- a/src/game/AchievementMgr.cpp
-+++ b/src/game/AchievementMgr.cpp
-@@ -1848,7 +1848,9 @@
+diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
+--- a/src/server/game/Achievements/AchievementMgr.cpp
++++ b/src/server/game/Achievements/AchievementMgr.cpp
+@@ -1880,6 +1880,8 @@
      if (achievement->flags & ACHIEVEMENT_FLAG_COUNTER || HasAchieved(achievement))
          return;
  
--    SendAchievementEarned(achievement);
 +    /* WowArmory Feed Log */
 +    GetPlayer()->WriteWowArmoryDatabaseLog(1, achievement->ID);
-+	SendAchievementEarned(achievement);
+     SendAchievementEarned(achievement);
      CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
      ca.date = time(NULL);
-     ca.changed = true;
-diff --git a/src/game/Item.cpp b/src/game/Item.cpp
---- a/src/game/Item.cpp
-+++ b/src/game/Item.cpp
-@@ -973,7 +973,15 @@
+diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/Item/Item.cpp
+--- a/src/server/game/Entities/Item/Item.cpp
++++ b/src/server/game/Entities/Item/Item.cpp
+@@ -997,6 +997,14 @@
          if (count > pProto->GetMaxStackSize())
              count = pProto->GetMaxStackSize();
  
--        assert(count !=0 && "pProto->Stackable == 0 but checked at loading already");
 +        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +        {
-+            /* WoWArmory Feed Log */
++           /* WoWArmory Feed Log */
 +            std::ostringstream ss;
 +            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u", player->GetGUIDLow(), item);
 +            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
-+		assert(count !=0 && "pProto->Stackable == 0 but checked at loading already");
+         assert(count !=0 && "pProto->Stackable == 0 but checked at loading already");
  
          Item *pItem = NewItemOrBag(pProto);
-         if (pItem->Create(objmgr.GenerateLowGuid(HIGHGUID_ITEM), item, player))
-diff --git a/src/game/Player.cpp b/src/game/Player.cpp
---- a/src/game/Player.cpp
-+++ b/src/game/Player.cpp
-@@ -17530,6 +17530,19 @@
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -17604,6 +17604,19 @@
+ 
      std::string sql_name = m_name;
      CharacterDatabase.escape_string(sql_name);
- 
++    
 +    CharacterDatabase.BeginTransaction();
 +	
 +	/* WoWArmory */
@@ -51,19 +48,19 @@ diff --git a/src/game/Player.cpp b/src/game/Player.cpp
 +    ps << "')";
 +    CharacterDatabase.Execute( ps.str().c_str() );
 +    /* WoWArmory */
-+
+ 
      std::ostringstream ss;
      ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
-         "map, instance_id, dungeon_difficulty, position_x, position_y, position_z, orientation, "
-@@ -17666,7 +17679,6 @@
+@@ -17741,8 +17754,6 @@
      ss << uint32(GetByteValue(PLAYER_FIELD_BYTES, 2));
      ss << ")";
  
 -    CharacterDatabase.BeginTransaction();
- 
+-
      CharacterDatabase.Execute(ss.str().c_str());
  
-@@ -23942,3 +23954,30 @@
+     if (m_mailsUpdated)                                     //save mails only when needed
+@@ -24017,3 +24028,30 @@
      if (result)
          m_IsBGRandomWinner = true;
  }
@@ -94,31 +91,32 @@ diff --git a/src/game/Player.cpp b/src/game/Player.cpp
 +        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
 +    }
 +}
-diff --git a/src/game/Player.h b/src/game/Player.h
---- a/src/game/Player.h
-+++ b/src/game/Player.h
-@@ -2143,6 +2143,9 @@
+\ No newline at end of file
+diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+--- a/src/server/game/Entities/Player/Player.h
++++ b/src/server/game/Entities/Player/Player.h
+@@ -2189,6 +2189,9 @@
          float m_homebindZ;
  
          WorldLocation GetStartPosition() const;
-+		
++        
 +        /* WoWArmory Feed Log */
 +        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
  
          // currently visible objects at player client
          typedef std::set<uint64> ClientGUIDs;
-diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
---- a/src/game/Unit.cpp
-+++ b/src/game/Unit.cpp
-@@ -14884,4 +14884,6 @@
+diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
+--- a/src/server/game/Entities/Unit/Unit.cpp
++++ b/src/server/game/Entities/Unit/Unit.cpp
+@@ -14921,4 +14921,5 @@
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
-+					{
++                    {
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
+@@ -14924,4 +14925,6 @@
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
-                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-@@ -14887,4 +14889,5 @@
-                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                    }
                  }
                  else
