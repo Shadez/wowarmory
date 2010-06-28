@@ -27,6 +27,12 @@
 	</tabGroup>
 	<tabGroup id="arenaTeam">
 		<tab href="team-info.xml" id="teamInfo" key="armory.arenatab.teamprofile"/>
+		<tab href="arena-team-game-chart.xml" id="matchHistory" key="armory.arenatab.matchhistory">
+			<exclude region="CN"/>
+		</tab>
+		<tab href="arena-team-report-opposing-teams.xml" id="opponentHistory" key="armory.arenatab.opponenthistory">
+			<exclude region="CN"/>
+		</tab>
 	</tabGroup>
 	<tabGroup id="dungeons_and_factions">
 		<tab href="factions.xml" id="factions" key="armory.tabs.factions">
@@ -64,5 +70,12 @@
 			<subTab href="talent-calc.xml?pid=-3" id="Cunning" key="armory.tabs.pet.cunning" onclick="petTalentCalc.changePetTree(2); return false"/>
 		</tab>
 		<tab href="arena-calculator.xml" id="arenaCalculator" key="armory.arenatab.calc"/>	
+	</tabGroup>
+    <tabGroup id="auctionHouse">
+		<tab href="#summary" id="summary" key="auction.tabs.summary" onclick="Auction.openPage('summary');"/>
+		<tab href="#search" id="search" key="auction.tabs.browseAuctions" onclick="Auction.openPage('search');"/>
+		<tab href="#bids" id="bids" key="auction.tabs.myBids" onclick="Auction.openPage('bids');"/>
+		<tab href="#auctions" id="auctions" key="auction.tabs.myAuctions" onclick="Auction.openPage('auctions');"/>
+		<tab href="#create" id="create" key="auction.tabs.createAuction" onclick="Auction.openPage('create');"/>
 	</tabGroup>
 </tabGroups>

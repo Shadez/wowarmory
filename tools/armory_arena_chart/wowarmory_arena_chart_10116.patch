@@ -1,0 +1,121 @@
+diff --git a/src/game/BattleGround.cpp b/src/game/BattleGround.cpp
+index eb6ba1b..77dffb8 100644
+--- a/src/game/BattleGround.cpp
++++ b/src/game/BattleGround.cpp
+@@ -723,6 +723,44 @@ void BattleGround::EndBattleGround(uint32 winner)
+             DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %u, Losser change: %u ---", winner_rating, loser_rating, winner_change, loser_change);
+             SetArenaTeamRatingChangeForTeam(winner, winner_change);
+             SetArenaTeamRatingChangeForTeam(GetOtherTeam(winner), loser_change);
++            /* WoWArmory */
++            uint32 maxChartID;
++            QueryResult *result = CharacterDatabase.PQuery("SELECT MAX(gameid) FROM armory_game_chart");
++            if(!result)
++                maxChartID = 0;
++            else
++            {
++                maxChartID = (*result)[0].GetUInt32();
++                delete result;
++            }
++            uint32 gameID = maxChartID+1;
++            for(BattleGroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
++            {
++                Player *plr = sObjectMgr.GetPlayer(itr->first);
++                if (!plr)
++                    continue;
++                uint32 plTeamID = plr->GetArenaTeamId(winner_arena_team->GetSlot());
++                uint32 changeType;
++                uint32 resultRating;
++                uint32 resultTeamID;
++                if (plTeamID == winner_arena_team->GetId())
++                {
++                    changeType = 1; //win
++                    resultRating = winner_rating;
++                    resultTeamID = plTeamID;
++                }
++                else
++                {
++                    changeType = 2; //lose
++                    resultRating = loser_rating;
++                    resultTeamID = loser_arena_team->GetId();
++                }
++                std::ostringstream sql_query;
++                //                                                        gameid,              teamid,                     guid,                    changeType,             ratingChange,               teamRating,                  damageDone,                          deaths,                          healingDone,                           damageTaken,                           healingTaken,                         killingBlows,                      mapId,                 start,                   end
++                sql_query << "INSERT INTO armory_game_chart VALUES ('" << gameID << "', '" << resultTeamID << "', '" << plr->GetGUID() << "', '" << changeType << "', '" << winner_change << "', '" << resultRating << "', '" << itr->second->DamageDone << "', '" << itr->second->Deaths << "', '" << itr->second->HealingDone << "', '" << itr->second->DamageTaken << "', '" << itr->second->HealingTaken << "', '" << itr->second->KillingBlows << "', '" << m_MapId << "', '" << m_StartTime << "', '" << m_EndTime << "')";
++                CharacterDatabase.Execute(sql_query.str().c_str());
++            }
++            //* WoWArmory *//
+         }
+         else
+         {
+@@ -730,7 +768,6 @@ void BattleGround::EndBattleGround(uint32 winner)
+             SetArenaTeamRatingChangeForTeam(HORDE, 0);
+         }
+     }
+-
+     for(BattleGroundPlayerMap::iterator itr = m_Players.begin(); itr != m_Players.end(); ++itr)
+     {
+         uint32 team = itr->second.Team;
+@@ -1374,6 +1411,13 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
+         case SCORE_HEALING_DONE:                            // Healing Done
+             itr->second->HealingDone += value;
+             break;
++        /* WoWArmory (arena game chart) */
++        case SCORE_DAMAGE_TAKEN:
++            itr->second->DamageTaken += value;              // Damage Taken
++            break;
++        case SCORE_HEALING_TAKEN:
++            itr->second->HealingTaken += value;             // Healing Taken
++            break;
+         default:
+             sLog.outError("BattleGround: Unknown player score type %u", type);
+             break;
+diff --git a/src/game/BattleGround.h b/src/game/BattleGround.h
+index 32554e4..581f767 100644
+--- a/src/game/BattleGround.h
++++ b/src/game/BattleGround.h
+@@ -190,7 +190,10 @@ enum ScoreType
+     SCORE_GRAVEYARDS_DEFENDED   = 12,
+     SCORE_TOWERS_ASSAULTED      = 13,
+     SCORE_TOWERS_DEFENDED       = 14,
+-    SCORE_SECONDARY_OBJECTIVES  = 15
++    SCORE_SECONDARY_OBJECTIVES  = 15,
++    /* WoWArmory */
++    SCORE_DAMAGE_TAKEN          = 16,
++    SCORE_HEALING_TAKEN         = 17
+ };
+ 
+ enum ArenaType
+@@ -273,6 +276,8 @@ class BattleGroundScore
+         uint32 BonusHonor;
+         uint32 DamageDone;
+         uint32 HealingDone;
++        uint32 DamageTaken;
++        uint32 HealingTaken;
+ };
+ 
+ /*
+diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
+index 77bfa8f..947a1db 100644
+--- a/src/game/Unit.cpp
++++ b/src/game/Unit.cpp
+@@ -641,6 +641,9 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+             {
+                 // FIXME: kept by compatibility. don't know in BG if the restriction apply.
+                 bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
++                /* WoWArmory (arena game chart) */
++                if (BattleGround * bgV = ((Player*)pVictim)->GetBattleGround())
++                    bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_DAMAGE_TAKEN, damage);
+             }
+         }
+ 
+@@ -8852,6 +8855,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+ 
+     if (pVictim->GetTypeId()==TYPEID_PLAYER)
+     {
++        /* WoWArmory (arena game chart) */
++        if (BattleGround *bgV = ((Player*)pVictim)->GetBattleGround())
++            bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_HEALING_TAKEN, gain);
++
+         ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
+         ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
+     }
