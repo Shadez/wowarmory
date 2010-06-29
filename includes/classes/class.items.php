@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 272
+ * @revision 273
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1365,6 +1365,16 @@ Class Items extends Connector {
             $xml->XMLWriter()->text($dps);
             $xml->XMLWriter()->endElement(); //dps
             $xml->XMLWriter()->endElement(); //damageData
+        }
+        // Gem properties
+        if($data['class'] == ITEM_CLASS_GEM && $data['GemProperties'] > 0) {
+            $GemSpellItemEcnhID = $this->aDB->selectCell("SELECT `spellitemenchantement` FROM `armory_gemproperties` WHERE `id`=?", $data['GemProperties']);
+            $GemText = $this->aDB->selectCell("SELECT `text_" . $this->_locale . "` FROM `armory_enchantment` WHERE `id`=?", $GemSpellItemEcnhID);
+            if($GemText) {
+                $xml->XMLWriter()->startElement('gemProperties');
+                $xml->XMLWriter()->text($GemText);
+                $xml->XMLWriter()->endElement(); //gemProperties
+            }
         }
         if($data['block'] > 0) {
             $xml->XMLWriter()->startElement('blockValue');
