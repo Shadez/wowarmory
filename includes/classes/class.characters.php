@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 269
+ * @revision 272
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -380,10 +380,12 @@ Class Characters extends Connector {
      **/
     private function __HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
+            $this->Log()->writeError('%s : Characters::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__);
             return false;
         }
         $itemscache = explode(' ', $this->equipmentCache);
         if(!$itemscache) {
+            $this->Log()->writeError('%s : unable to convert Characters::$equipmentCache from string to array (function.explode). Character items would not be shown.', __METHOD__);
             return false;
         }
         $this->equipmentCache = $itemscache;
@@ -399,7 +401,7 @@ Class Characters extends Connector {
     private function __GetTitleInfo() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
         if(!$title_data) {
-            $this->Log()->writeError('%s: Player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
             return false;
         }
         switch($this->gender) {
@@ -814,8 +816,8 @@ Class Characters extends Connector {
      * @return   int
      **/
     public function getCharacterEnchant($slot) {
-        if(is_array($this->equipmentCache)) {
-            $this->Log()->writeError('%s : this->equipmentCache must have array type!', __METHOD__);
+        if(!is_array($this->equipmentCache)) {
+            $this->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
             return 0;
         }
         switch($slot) {
@@ -2546,9 +2548,9 @@ Class Characters extends Connector {
         }
         $durability = Items::getItemDurability($this->guid, $item_id);
         $gems = array(
-            'g0' => Items::extractSocketInfo($this->guid, $item_id, 1),
-            'g1' => Items::extractSocketInfo($this->guid, $item_id, 2),
-            'g2' => Items::extractSocketInfo($this->guid, $item_id, 3)
+            'g0' => Items::extractSocketInfo($this->guid, $item_id, 1, $this->GetEquippedItemGuidBySlot($slot['slot'])),
+            'g1' => Items::extractSocketInfo($this->guid, $item_id, 2, $this->GetEquippedItemGuidBySlot($slot['slot'])),
+            'g2' => Items::extractSocketInfo($this->guid, $item_id, 3, $this->GetEquippedItemGuidBySlot($slot['slot']))
         );
         $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item_id);
         $enchantment = $this->getCharacterEnchant($slot['slot']);

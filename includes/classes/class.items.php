@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 268
+ * @revision 272
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -618,7 +618,7 @@ Class Items extends Connector {
             $socketInfo = $this->cDB->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
-                    WHERE `owner_guid`=? AND `guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item_guid, $item);
+                    WHERE `owner_guid`=? AND `guid`=?", $guid, $item_guid);
         }
         if($socketInfo > 0) {
             $data['enchant_id'] = $socketInfo;
@@ -1445,7 +1445,7 @@ Class Items extends Connector {
             $itemSlotName = false;
         }
         if(!$parent && $isCharacter && $itemSlotName) {
-            $enchantment = $characters->getCharacterEnchant($itemSlotName, $characters->GetGUID());
+            $enchantment = $characters->getCharacterEnchant($itemSlotName);
             if($enchantment) {
                 $xml->XMLWriter()->startElement('enchant');
                 $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_" . $this->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
