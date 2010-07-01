@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 262
+ * @revision 274
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -972,6 +972,33 @@ Class Utils extends Connector {
         else {
             return false;
         }
+    }
+    
+    /**
+     * Checks all realms for correct configs (in configuration.php and `armory_realm_data` table)
+     * and inserts data to DB if something missing.
+     * @category Utils class
+     * @access   public
+     * @return   bool
+     **/
+    public function CheckConfigRealmData() {
+        if(!$this->realmData || !is_array($this->realmData) || !isset($this->realmData[1])) {
+            $this->Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and configured Armory right.', __METHOD__);
+            return false;
+        }
+        foreach($this->realmData as $myRealm) {
+            $tmpData = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=? LIMIT 1", $myRealm['name']);
+            if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'])) {
+                $replace = $this->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (?, ?)", $myRealm['id'], $myRealm['name']);
+                if($replace) {
+                    $this->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
+                }
+                else {
+                    $this->Log()->writeError('%s : realm data for realm "%s" was not added to `armory_realm_data` table. Please, execute this query manually: "REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (%d, \'%s\');"', __METHOD__, $myRealm['name'], $myRealm['id'], $myRealm['name']);
+                }
+            }
+        }
+        return true;
     }
 }
 ?>

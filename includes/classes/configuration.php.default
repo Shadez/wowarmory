@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 234
+ * @revision 274
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -60,16 +60,6 @@ $ArmoryConfig['settings']['showScriptInfo']   = true;    // Display script info 
 $ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/false)
 $ArmoryConfig['settings']['useDebug']         = false;   // Use debug? (true/false). STRONGLY not recommended on live server!
 $ArmoryConfig['settings']['logLevel']         = 1;       // 1 - only errors, 2 - debug mode
-
-/*
-    Multirealms info
-    
-    $ArmoryConfig[1]['name'] MUST be added to `armory_realm_data` table:
-        # INSERT INTO `armory_realm_data` (`id`, `name`, `version`) VALUES ('1', 'MaNGOS1', '333');
-    Without it multirealm wouldn't work.
-    
-    $ArmoryConfig['multiRealm'][1]['type'] values: 'mangos' if you running MaNGOS realm and 'trinity' if you running Trinity realm.
-*/
 
 $ArmoryConfig['multiRealm'][1]['id']                 = 1;
 $ArmoryConfig['multiRealm'][1]['name']               = 'MaNGOS1';
