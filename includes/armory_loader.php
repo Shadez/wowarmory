@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 274
+ * @revision 275
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
 define('DB_VERSION', 'armory_r265');
-define('ARMORY_REVISION', 265);
+@include('revision_nr.php');
 $armory = new Connector();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
@@ -40,6 +40,10 @@ if($dbVersion != DB_VERSION) {
     	 echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
     }
     die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
+}
+/* Check revision */
+if(!defined('ARMORY_REVISION')) {
+    die('<b>Error:</b> unable to detect Armory revision!');
 }
 /* Check maintenance */
 if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
