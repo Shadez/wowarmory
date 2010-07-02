@@ -723,32 +723,50 @@ img.p21s{position:relative;z-index:99;margin-left:4px}
 #changeLink { float: right; color: #FED500; margin: 0 4px 0 0; background: transparent url('../images/icons/user-menu-icons.gif') no-repeat scroll 0 -55px; padding-left: 15px; }
 .menuItem { height:35px; margin:1px 0 0; padding: 5px 5px 0 5px;  }
 .menuItem span { color:#A97A7A; font-size:11px; line-height:12px; text-transform:none;}
-.menuItem p { color:white; line-height:11px; margin: 5px 0 0 25px; padding:0; font-size: 10px; text-transform:none; }
+.menuItem p { color:white; margin: 1px 0 0 0; padding:0; font-size: 10px; text-transform:none; }
 .menuItem .charName { color: #FFD200; text-decoration: none; }
 .charName { font-weight: bold }
-.character-achievement { float: right; margin-top: 18px; font-size: 10px; line-height: 12px; color: #FFF !important; padding:0 16px 0 0; background:url('../images/icons/user-menu-icons.gif') no-repeat 100% -18px; }
-.charlist { color: #A97A7A ; background-color: #6A0100; } 
+.character-achievement { float: right; font-size: 10px; line-height: 12px; color: #FFF !important; padding:0 16px 0 0; background:url('../images/icons/user-menu-icons.gif') no-repeat 100% -18px; }
+.charlist { color: #A97A7A ; background-color: #6A0100; cursor: pointer; }
 .charlist:hover { background-color: #550100; }
 #myBookmarks { background-color: #141715; color: #fff; line-height: 24px; padding: 0 0 0 7px; font-size: 12px; margin: 0; font-weight: bold; } 
 .bmlist { background-color: #192221;}
 .bmlist:hover { background-color: #101615 }
 .bmlist span { color: #486666 !important; display: inline; font-weight: normal; }
-a.rmBookmark, a:visited.rmBookmark {float: right; position: relative; top: 0; right: -20px; background:url('../images/icons/remove.gif') no-repeat 0 -11px; width:11px; height: 12px; padding:0 !important; display:block; }
+a.rmBookmark, a:visited.rmBookmark {float: right; background:url('../images/icons/remove.gif') no-repeat 0 -11px; width:11px; height: 12px; padding:0 !important; display:block; margin-left: 5px; }
 a.rmBookmark:hover {background-position:0 0}
 .nobookmark,.nobookmark:hover {white-space:normal;background:#141715;text-align:center;padding:0;}
 .nobookmark strong {color:#ff9a18;font-weight:bold;line-height:25px;}
 .nobookmark p {color:#6c7379 !important;text-align:left;padding:0 10px 5px !important}
-.menuItem em, .user-mod em { background: url('../images/icons/class/classes.gif') no-repeat; width: 16px; display: block; height: 16px; margin: 0 5px 0 0px; float: left;}
-em.classId1{background-position:-64px -16px !important}
-em.classId2{background-position:-64px 0px !important}
-em.classId3{background-position:-32px 0px !important}
-em.classId4{background-position:-16px -16px !important}
-em.classId5{background-position:0 -16px !important}
-em.classId6{background-position:0 0}
-em.classId7{background-position:-32px -16px !important}
-em.classId8{background-position:-48px 0 !important}
-em.classId9{background-position:-48px -16px !important}
-em.classId11{background-position:-16px 0 !important}
+.menuItem .classMeta, .user-mod em, .bmlist em { background: url('../images/icons/class/classes.gif') no-repeat; width: 16px; display: block; height: 16px; margin: 0 5px 0 0px; float: left;}
+.menuItem .classId1, em.classId1 { background-position:-64px -16px !important}
+.menuItem .classId2, em.classId2 { background-position:-64px 0px !important}
+.menuItem .classId3, em.classId3 { background-position:-32px 0px !important}
+.menuItem .classId4, em.classId4 { background-position:-16px -16px !important}
+.menuItem .classId5, em.classId5 { background-position:0 -16px !important}
+.menuItem .classId6, em.classId6 { background-position:0 0}
+.menuItem .classId7, em.classId7 { background-position:-32px -16px !important}
+.menuItem .classId8, em.classId8 { background-position:-48px 0 !important}
+.menuItem .classId9, em.classId9 { background-position:-48px -16px !important}
+.menuItem .classId11, em.classId11 { background-position:-16px 0 !important}
+.menuItemRank { float: left; width: 25px; padding-top: 6px; }
+.menuItemAvatar { float: left; width: 30px; margin-right: 5px; }
+.menuItemMeta { float: left; width: 180px; }
+
+.user-mod .userName { padding-left: 25px; }
+.iconClassId1 { background: url("../images/icons/class/1.gif") 0 50% no-repeat; }
+.iconClassId2 { background: url("../images/icons/class/2.gif") 0 50% no-repeat; }
+.iconClassId3 { background: url("../images/icons/class/3.gif") 0 50% no-repeat; }
+.iconClassId4 { background: url("../images/icons/class/4.gif") 0 50% no-repeat; }
+.iconClassId5 { background: url("../images/icons/class/5.gif") 0 50% no-repeat; }
+.iconClassId6 { background: url("../images/icons/class/6.gif") 0 50% no-repeat; }
+.iconClassId7 { background: url("../images/icons/class/7.gif") 0 50% no-repeat; }
+.iconClassId8 { background: url("../images/icons/class/8.gif") 0 50% no-repeat; }
+.iconClassId9 { background: url("../images/icons/class/9.gif") 0 50% no-repeat; }
+.iconClassId10 { background: url("../images/icons/class/10.gif") 0 50% no-repeat; }
+.iconClassId11 { background: url("../images/icons/class/11.gif") 0 50% no-repeat; }
+.iconClassId12 { background: url("../images/icons/class/12.gif") 0 50% no-repeat; }
+
 /* paging arrows */
 .bookmarknumber {margin-left:5px; display: inline;}
 #bmArrows a{ line-height: 9px !important; font-weight: normal !important; display: block; width: 5px; height: 9px !important; text-decoration:none; float: left; padding: 0 !important; font-size:1px;}

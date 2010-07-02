@@ -30,7 +30,7 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r265');
+define('DB_VERSION', 'armory_r276');
 @include('revision_nr.php');
 $armory = new Connector();
 /* Check DbVersion */
