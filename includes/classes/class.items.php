@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 273
+ * @revision 277
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -601,21 +601,24 @@ Class Items extends Connector {
      * @example Items::extractSocketInfo(100, 3500, 1)
      * @return array
      **/ 
-    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = false) {
+    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = false, $db = null) {
         $data = array();
         $socketfield = array(
             1 => ITEM_FIELD_ENCHANTMENT_3_2,
             2 => ITEM_FIELD_ENCHANTMENT_4_2,
             3 => ITEM_FIELD_ENCHANTMENT_5_2
         );
+        if($db === null) {
+            $db = $this->cDB;
+        }
         if($item_guid === false) {
-            $socketInfo = $this->cDB->selectCell("
+            $socketInfo = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
                     WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = ?", $guid, $item);
         }
         else {
-            $socketInfo = $this->cDB->selectCell("
+            $socketInfo = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$socketfield[$socketNum]."), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
                     WHERE `owner_guid`=? AND `guid`=?", $guid, $item_guid);
@@ -627,6 +630,7 @@ Class Items extends Connector {
             $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             return $data;
         }
+        $this->Log()->writeLog('%s : unable to return data (guid:%d,item:%d,socketNum:%d,item_guid:%d,socketInfo:%d)', __METHOD__, $guid, $item, $socketNum, $item_guid, $socketInfo);
         return false;
     }
     
@@ -1498,8 +1502,8 @@ Class Items extends Connector {
                     case 1:
                         $color = 'Meta';
                         $socket_data = array('color' => 'Meta');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
-                        if($gem && !$parent) {
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
                             $currentColor = $this->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
@@ -1510,8 +1514,8 @@ Class Items extends Connector {
                         break;
                     case 2:
                         $socket_data = array('color' => 'Red');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
-                        if($gem && !$parent) {
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
                             $currentColor = $this->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
@@ -1522,8 +1526,8 @@ Class Items extends Connector {
                         break;
                     case 4:
                         $socket_data = array('color' => 'Yellow');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
-                        if($gem && !$parent) {
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
                             $currentColor = $this->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);
@@ -1534,8 +1538,8 @@ Class Items extends Connector {
                         break;
                     case 8:
                         $socket_data = array('color' => 'Blue');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName));
-                        if($gem && !$parent) {
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
                             $currentColor = $this->aDB->selectCell("SELECT `color` FROM `armory_gemproperties` WHERE `spellitemenchantement`=? LIMIT 1", $gem['enchant_id']);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 262
+ * @revision 277
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,8 +32,9 @@ if(!@include('includes/armory_loader.php')) {
 header('Content-type: text/xml');
 $itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : null;
 $name = (isset($_GET['cn'])) ? $_GET['cn'] : null;
+$realmId = (isset($_GET['r'])) ? $utils->GetRealmIdByName($_GET['r']) : 1;
 if($name != null) {
-    $characters->BuildCharacter($name);
+    $characters->BuildCharacter($name, $realmId);
 }
 $isCharacter = $characters->CheckPlayer();
 if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {

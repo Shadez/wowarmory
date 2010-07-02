@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 272
+ * @revision 277
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -243,7 +243,10 @@ Class Characters extends Connector {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
         }
-        elseif(!isset($this->realmData[$realmId])) {
+        if($realmId === false) {
+            $this->Log()->writeLog('%s : realmId not provided!', __METHOD__);
+        }
+        if(!isset($this->realmData[$realmId])) {
             $this->Log()->writeError('%s : unable to find data for realmId %d', __METHOD__, $realmId);
             return false;
         }
@@ -281,7 +284,7 @@ Class Characters extends Connector {
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
         WHERE `characters`.`name`=? LIMIT 1", $name);
         if(!$player_data || !is_array($player_data)) {
-            $this->Log()->writeError('%s: unable to get data from characters DB for player %s', __METHOD__, $name);
+            $this->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
         $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=?d LIMIT 1", $player_data['guid']);
@@ -1715,7 +1718,7 @@ Class Characters extends Connector {
         $tmp_stats['max'] = Utils::getFloatValue($this->GetDataField(UNIT_FIELD_MAXDAMAGE), 0);
         $tmp_stats['speed'] = round(Utils::getFloatValue($this->GetDataField(UNIT_FIELD_BASEATTACKTIME), 2)/1000, 2);
         $tmp_stats['melee_dmg'] = ($tmp_stats['min'] + $tmp_stats['max']) * 0.5;
-        $tmp_stats['dps'] = 0;//round((max($tmp_stats['melee_dmg'], 1) / $tmp_stats['speed']), 1);
+        $tmp_stats['dps'] = round((max($tmp_stats['melee_dmg'], 1) / $tmp_stats['speed']), 1);
         if($tmp_stats['speed'] < 0.1) {
             $tmp_stats['speed'] = '0.1';
         }
@@ -2763,6 +2766,16 @@ Class Characters extends Connector {
                 return 0;
                 break;
         }
+    }
+    
+    /**
+     * Returns database handler instance
+     * @category Characters class
+     * @access   public
+     * @return   object
+     **/
+    public function GetDB() {
+        return $this->db;
     }
 }
 ?>
