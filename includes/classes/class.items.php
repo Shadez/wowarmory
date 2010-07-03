@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 285
+ * @revision 286
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1471,25 +1471,27 @@ Class Items extends Connector {
                 $xml->XMLWriter()->startElement('randomEnchantData');
                 $xml->XMLWriter()->endElement(); //randomEnchantData
             }
-            if($itemSlotName && $isCharacter) {
-                $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
-            }
-            elseif($isCharacter) {
-                $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID());
-            }
-            if($isCharacter && !$parent && is_array($rPropInfo)) {
-                $xml->XMLWriter()->startElement('randomEnchantData');
-                $xml->XMLWriter()->startElement('suffix');
-                $xml->XMLWriter()->text($rPropInfo['suffix']);
-                $xml->XMLWriter()->endElement(); //enchant
-                if(is_array($rPropInfo['data'])) {
-                    foreach($rPropInfo['data'] as $randProp) {
-                        $xml->XMLWriter()->startElement('enchant');
-                        $xml->XMLWriter()->text($randProp);
-                        $xml->XMLWriter()->endElement(); //enchant
-                    }
+            else {
+                if($itemSlotName) {
+                    $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
                 }
-                $xml->XMLWriter()->endElement(); //randomEnchantData
+                else {
+                    $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID());
+                }
+                if($isCharacter && !$parent && is_array($rPropInfo)) {
+                    $xml->XMLWriter()->startElement('randomEnchantData');
+                    $xml->XMLWriter()->startElement('suffix');
+                    $xml->XMLWriter()->text($rPropInfo['suffix']);
+                    $xml->XMLWriter()->endElement(); //enchant
+                    if(is_array($rPropInfo['data'])) {
+                        foreach($rPropInfo['data'] as $randProp) {
+                            $xml->XMLWriter()->startElement('enchant');
+                            $xml->XMLWriter()->text($randProp);
+                            $xml->XMLWriter()->endElement(); //enchant
+                        }
+                    }
+                    $xml->XMLWriter()->endElement(); //randomEnchantData
+                }
             }
         }
         $xml->XMLWriter()->startElement('socketData');
