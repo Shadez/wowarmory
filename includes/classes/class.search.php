@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 252
+ * @revision 283
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -127,10 +127,13 @@ Class SearchMgr extends Connector {
         $item_id_array = array();
         if($this->searchQuery) {
             if($this->_loc == 0) {
-                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                // No SQL injection - already escaped in search.php
+                $itemsSql = sprintf("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
+                $_item_ids = $this->wDB->select($itemsSql);
             }
             else {
-                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                $itemsSql = sprintf("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%s` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%' . $this->searchQuery.'%');
+                $_item_ids = $this->wDB->select($itemsSql);
             }
             if(is_array($_item_ids)) {
                 foreach($_item_ids as $id) {
@@ -379,12 +382,15 @@ Class SearchMgr extends Connector {
                 }
                 $sql_query = null;
                 if(self::IsExtendedCost()) {
+                    $this->Log()->writeLog('%s : used ExtendedCost key: %s', __METHOD__, $this->get_array['dungeon']);
                     $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`=? LIMIT 1", $this->get_array['dungeon']);
                     if(!$item_extended_cost) {
+                        $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost key (%s) but data for this key is missed in `armory_item_sources`', __METHOD__, $this->get_array['dungeon']);
                         return false;
                     }
                     $extended_cost = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=? OR `item2`=? OR `item3`=? OR `item4`=? OR `item5`=?", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
                     if(!$extended_cost) {
+                        $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost (key: %s, id: %d) but data for this id is missed in `armory_extended_cost`', __METHOD__, $this->get_array['dungeon'], $item_extended_cost);
                         return false;
                     }
                     $cost_ids = array();
@@ -392,7 +398,27 @@ Class SearchMgr extends Connector {
                         $cost_ids[] = $cost['id'];
                     }
                     if($this->searchQuery && is_array($item_id_array)) {
-                        $items_query = $this->wDB->select("
+                        $mytmpcount = count($cost_ids);
+                        $str_query = null;
+                        $str_query_ids = null;
+                        for($i = 0; $i < $mytmpcount; $i++) {
+                            if($i) {
+                                $str_query .= ', ' . $cost_ids[$i] .', -' . $cost_ids[$i];
+                            }
+                            else {
+                                $str_query .= $cost_ids[$i].', -' . $cost_ids[$i];
+                            }
+                        }
+                        $countIds = count($item_id_array);
+                        for($ii = 0; $ii < $countIds; $ii++) {
+                            if($ii) {
+                                $str_query_ids .= ', ' . $item_id_array[$ii];
+                            }
+                            else {
+                                $str_query_ids .= $item_id_array[$ii];
+                            }
+                        }
+                        $sql_query_tmp = sprintf("
                         SELECT DISTINCT
                         `item_template`.`entry` AS `id`,
                         `item_template`.`name`,
@@ -404,11 +430,22 @@ Class SearchMgr extends Connector {
                         `item_template`.`duration`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
-                        WHERE `npc_vendor`.`ExtendedCost` IN (?a) AND `npc_vendor`.`item` IN (?a)
-                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $cost_ids, $item_id_array);
+                        WHERE `npc_vendor`.`ExtendedCost` IN (%s) AND `npc_vendor`.`item` IN (%s)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $str_query, $str_query_ids);
+                        $items_query = $this->wDB->select($sql_query_tmp);
                     }
                     else {
-                        $items_query = $this->wDB->select("
+                        $mytmpcount = count($cost_ids);
+                        $str_query = null;
+                        for($i = 0; $i < $mytmpcount; $i++) {
+                            if($i) {
+                                $str_query .= ', ' . $cost_ids[$i] .', -' . $cost_ids[$i];
+                            }
+                            else {
+                                $str_query .= $cost_ids[$i].', -' . $cost_ids[$i];
+                            }
+                        }
+                        $sql_query_tmp = sprintf("
                         SELECT DISTINCT
                         `item_template`.`entry` AS `id`,
                         `item_template`.`name`,
@@ -420,8 +457,9 @@ Class SearchMgr extends Connector {
                         `item_template`.`duration`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
-                        WHERE `npc_vendor`.`ExtendedCost` IN (?a)
-                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $cost_ids);
+                        WHERE `npc_vendor`.`ExtendedCost` IN (%s)
+                        ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $str_query);
+                        $items_query = $this->wDB->select($sql_query_tmp);
                     }
                 }
                 else {
@@ -611,9 +649,11 @@ Class SearchMgr extends Connector {
             }
             if($i >= 200) {
                 if($count) {
+                    $this->Log()->writeLog('%s : return count result', __METHOD__);
                     return count($exists_items);
                 }
                 else {
+                    $this->Log()->writeLog('%s : return result', __METHOD__);
                     return $items_result;
                 }
             }
@@ -828,8 +868,8 @@ Class SearchMgr extends Connector {
     }
     
     public function IsExtendedCost() {
-        $this->Log()->writeError('%s is for `dungeon` cases only!', __METHOD__);
         if(!isset($this->get_array['dungeon'])) {
+            $this->Log()->writeError('%s is for `dungeon` cases only!', __METHOD__);
             return false;
         }
         $key = $this->get_array['dungeon'];
