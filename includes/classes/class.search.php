@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 283
+ * @revision 284
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -649,11 +649,9 @@ Class SearchMgr extends Connector {
             }
             if($i >= 200) {
                 if($count) {
-                    $this->Log()->writeLog('%s : return count result', __METHOD__);
                     return count($exists_items);
                 }
                 else {
-                    $this->Log()->writeLog('%s : return result', __METHOD__);
                     return $items_result;
                 }
             }
