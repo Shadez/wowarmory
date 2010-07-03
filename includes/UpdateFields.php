@@ -1,5 +1,6 @@
 <?php
-// Auto generated for version 3.3.3.11723
+// Converted from MaNGOS GIT repository
+// Auto generated for version 3.3.5.12340
 define('OBJECT_FIELD_GUID', 0x0000);
 define('OBJECT_FIELD_TYPE', 0x0002);
 define('OBJECT_FIELD_ENTRY', 0x0003);
