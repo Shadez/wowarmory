@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 277
+ * @revision 285
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -630,7 +630,6 @@ Class Items extends Connector {
             $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=?", $socketInfo);
             return $data;
         }
-        $this->Log()->writeLog('%s : unable to return data (guid:%d,item:%d,socketNum:%d,item_guid:%d,socketInfo:%d)', __METHOD__, $guid, $item, $socketNum, $item_guid, $socketInfo);
         return false;
     }
     
@@ -1472,10 +1471,10 @@ Class Items extends Connector {
                 $xml->XMLWriter()->startElement('randomEnchantData');
                 $xml->XMLWriter()->endElement(); //randomEnchantData
             }
-            if($itemSlotName) {
+            if($itemSlotName && $isCharacter) {
                 $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
             }
-            else {
+            elseif($isCharacter) {
                 $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID());
             }
             if($isCharacter && !$parent && is_array($rPropInfo)) {
@@ -1502,7 +1501,7 @@ Class Items extends Connector {
                     case 1:
                         $color = 'Meta';
                         $socket_data = array('color' => 'Meta');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
                         if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1514,7 +1513,7 @@ Class Items extends Connector {
                         break;
                     case 2:
                         $socket_data = array('color' => 'Red');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
                         if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1526,7 +1525,7 @@ Class Items extends Connector {
                         break;
                     case 4:
                         $socket_data = array('color' => 'Yellow');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
                         if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
@@ -1538,7 +1537,7 @@ Class Items extends Connector {
                         break;
                     case 8:
                         $socket_data = array('color' => 'Blue');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, $characters->GetEquippedItemGuidBySlot($itemSlotName), $characters->GetDB());
+                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
                         if($gem && ($parent == false || $comparsion == true) ) {
                             $socket_data['enchant'] = $gem['enchant'];
                             $socket_data['icon'] = $gem['icon'];
