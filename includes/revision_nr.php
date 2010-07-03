@@ -1,5 +1,5 @@
 <?php
 
-define('ARMORY_REVISION', 281);
+define('ARMORY_REVISION', 282);
 
 ?>

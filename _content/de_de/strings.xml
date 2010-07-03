@@ -58,13 +58,13 @@
                 <span>Arenabelohnungen</span>
 										<ul>
 											<li>
-                    <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena6&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 6</a>
+                    <a href="/search.xml?source=pvpAlliance&amp;pvp=arena6&amp;type=all&amp;searchType=items">Belohnungen: Saison 6</a>
                   </li>
 											<li>
-                    <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena5&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 5</a>
+                    <a href="/search.xml?source=pvpAlliance&amp;pvp=arena5&amp;type=all&amp;searchType=items">Belohnungen: Saison 5</a>
                   </li>
 											<li>
-                    <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena4&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 4</a>
+                    <a href="/search.xml?source=pvpAlliance&amp;pvp=arena4&amp;type=all&amp;searchType=items">Belohnungen: Saison 4</a>
                   </li>
 										</ul>
 									</li>
@@ -73,343 +73,343 @@
                 <span>Währungsmarken</span>
 										<ul>
 											<li>
-                    <a href="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=badgeofjustice&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Abzeichen der Gerechtigkeit</a>
+                    <a href="/search.xml?source=dungeon&amp;dungeon=badgeofjustice&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Abzeichen der Gerechtigkeit</a>
                   </li>
 											<li>
-                    <a href="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemofheroism&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Embleme des Heldentums</a>
+                    <a href="/search.xml?source=dungeon&amp;dungeon=emblemofheroism&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Embleme des Heldentums</a>
                   </li>
 											<li>
-                    <a href="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemofvalor&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Embleme der Ehre</a>
+                    <a href="/search.xml?source=dungeon&amp;dungeon=emblemofvalor&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Embleme der Ehre</a>
                   </li>
 											<li>
-                    <a href="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemofconquest&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Embleme der Eroberung</a>
+                    <a href="/search.xml?source=dungeon&amp;dungeon=emblemofconquest&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Embleme der Eroberung</a>
                   </li>
 										</ul>
 									</li>
 									<li>
-                <a href="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Erbstücke</a>
+                <a href="/search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Erbstücke</a>
               </li>
 								</ul>
 							</li>
 <!-- Items -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=all&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Waffen</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=all&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Waffen</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=1haxe&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Einhandäxte</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=1haxe&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Einhandäxte</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=2haxe&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Zweihandäxte</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=2haxe&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Zweihandäxte</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=bow&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Bogen</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=bow&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Bogen</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=gun&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Schusswaffen</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=gun&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Schusswaffen</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=1hmce&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Einhandstreitkolben</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=1hmce&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Einhandstreitkolben</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=2hmce&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Zweihandstreitkolben</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=2hmce&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Zweihandstreitkolben</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=plarm&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Stangenwaffen</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=plarm&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Stangenwaffen</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=1hswd&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Einhandschwerter</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=1hswd&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Einhandschwerter</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=2hswd&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Zweihandschwerter</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=2hswd&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Zweihandschwerter</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=stv&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Stäbe</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=stv&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Stäbe</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=fwpn&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Faustwaffen</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=fwpn&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Faustwaffen</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=misc&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Verschiedenes</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=misc&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Verschiedenes</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=dggr&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Dolche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=dggr&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Dolche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=thrwn&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Wurfwaffe</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=thrwn&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Wurfwaffe</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=xbow&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Armbrüste</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=xbow&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Armbrüste</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=wnd&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Zauberstäbe</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=wnd&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Zauberstäbe</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=weapons&amp;fl[subTp]=fshpl&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Angelruten</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=weapons&amp;subTp=fshpl&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Angelruten</a>
               </li>
 								</ul>
 							</li>
 <!-- Armor -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=all&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Rüstung</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=all&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Rüstung</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=cloth&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Stoff</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=cloth&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Stoff</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=leather&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Leder</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=leather&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Leder</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=mail&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Schwere Rüstung</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=mail&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Schwere Rüstung</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=plate&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Platte</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=plate&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Platte</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=shield&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Schild</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=shield&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Schild</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=idol&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Götze</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=idol&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Götze</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=libram&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Buchbände</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=libram&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Buchbände</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=totem&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Totems</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=totem&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Totems</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=sigil&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Siegel</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=sigil&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Siegel</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=armor&amp;fl[subTp]=miscellaneous&amp;fl[slot]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Verschiedenes</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=armor&amp;subTp=miscellaneous&amp;slot=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Verschiedenes</a>
               </li>
 								</ul>
 							</li>
 <!-- Gems -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=all&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Edelsteine</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=all&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Edelsteine</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=blue&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Blau</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=blue&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Blau</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=red&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Rot</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=red&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Rot</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=yellow&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Gelb</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=yellow&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Gelb</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=meta&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Meta</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=meta&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Meta</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=green&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Grün</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=green&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Grün</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=orange&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Orange</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=orange&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Orange</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=purple&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Violett</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=purple&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Violett</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=gems&amp;fl[subTp]=prismatic&amp;fl[rrt]=all&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Prismatisch</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=gems&amp;subTp=prismatic&amp;rrt=all&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Prismatisch</a>
               </li>
 								</ul>
 							</li>
 <!-- Glyphs -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;searchType=items">Glyphen</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;searchType=items">Glyphen</a>
 								<ul>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=6&amp;searchType=items">Todesritter</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=6&amp;searchType=items">Todesritter</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=6&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=6&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=6&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=6&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=11&amp;searchType=items">Druide</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=11&amp;searchType=items">Druide</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=11&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=11&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=11&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=11&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=3&amp;searchType=items">Jäger</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=3&amp;searchType=items">Jäger</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=3&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=3&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=3&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=3&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=8&amp;searchType=items">Magier</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=8&amp;searchType=items">Magier</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=8&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=8&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=8&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=8&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=2&amp;searchType=items">Paladin</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=2&amp;searchType=items">Paladin</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=2&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=2&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=2&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=2&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=5&amp;searchType=items">Priester</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=5&amp;searchType=items">Priester</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=5&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=5&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=5&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=5&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=4&amp;searchType=items">Schurke</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=4&amp;searchType=items">Schurke</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=4&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=4&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=4&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=4&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=7&amp;searchType=items">Schamane</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=7&amp;searchType=items">Schamane</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=7&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=7&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=7&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=7&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=9&amp;searchType=items">Hexenmeister</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=9&amp;searchType=items">Hexenmeister</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=9&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=9&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=9&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=9&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 									<li class="fly">
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=1&amp;searchType=items">Krieger</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=1&amp;searchType=items">Krieger</a>
 										<ul>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=1&amp;fl[glyphTp]=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=1&amp;glyphTp=MAJOR&amp;searchType=items">Erhebliche Glyphen</a>
                   </li>
 											<li>
-                    <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[usbleBy]=1&amp;fl[glyphTp]=MINOR&amp;searchType=items">Geringe Glyphen</a>
+                    <a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;usbleBy=1&amp;glyphTp=MINOR&amp;searchType=items">Geringe Glyphen</a>
                   </li>
 										</ul>
 									</li>
 								</ul>
 <!--								<ul>
-									<li><a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[subTp]=major&amp;searchType=items">Erhebliche Glyphen</a></li>
-									<li><a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=glyphs&amp;fl[subTp]=minor&amp;searchType=items">Geringe Glyphen</a></li>
+									<li><a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;subTp=major&amp;searchType=items">Erhebliche Glyphen</a></li>
+									<li><a href="/search.xml?searchQuery=&amp;source=all&amp;type=glyphs&amp;subTp=minor&amp;searchType=items">Geringe Glyphen</a></li>
 								</ul>-->
 							</li>
 <!-- Containers -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=all&amp;searchType=items">Behälter</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=all&amp;searchType=items">Behälter</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=bag&amp;searchType=items">Tasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=bag&amp;searchType=items">Tasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=soul&amp;searchType=items">Seelentasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=soul&amp;searchType=items">Seelentasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=herb&amp;searchType=items">Kräutertasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=herb&amp;searchType=items">Kräutertasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=enchanting&amp;searchType=items">Verzauberertasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=enchanting&amp;searchType=items">Verzauberertasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=engineering&amp;searchType=items">Ingenieurstasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=engineering&amp;searchType=items">Ingenieurstasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=gem&amp;searchType=items">Edelsteintasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=gem&amp;searchType=items">Edelsteintasche</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=containers&amp;fl[subTp]=mining&amp;searchType=items">Bergbautasche</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=containers&amp;subTp=mining&amp;searchType=items">Bergbautasche</a>
               </li>
 								</ul>
 							</li>
 <!-- Consumables -->
 							<li>
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=consumables&amp;searchType=items#search.xml?searchType=items&amp;p=1&amp;sf=relevance&amp;sd=a&amp;fl[source]=all&amp;fl[type]=consumables">Verbrauchbar</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=consumables&amp;searchType=items#search.xml?searchType=items&amp;p=1&amp;sf=relevance&amp;sd=a&amp;source=all&amp;type=consumables">Verbrauchbar</a>
           </li>
 <!-- Trade Goods -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=tradegoods&amp;searchType=items">Handwerkswaren</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=tradegoods&amp;searchType=items">Handwerkswaren</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=recipes&amp;fl[subTp]=all&amp;fl[rrt]=all&amp;fl[minSkill]=&amp;fl[maxSkill]=&amp;searchType=items">Rezepte</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=recipes&amp;subTp=all&amp;rrt=all&amp;minSkill=&amp;maxSkill=&amp;searchType=items">Rezepte</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=reagents&amp;searchType=items">Reagenzien</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=reagents&amp;searchType=items">Reagenzien</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=enchP&amp;fl[slot]=all&amp;fl[rrt]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none">Verzauberungen</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=enchP&amp;slot=all&amp;rrt=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none">Verzauberungen</a>
               </li>
 								</ul>
 							</li>
 <!-- Projectiles -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=projectiles&amp;fl[subTp]=all&amp;searchType=items">Projektile</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=projectiles&amp;subTp=all&amp;searchType=items">Projektile</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=projectiles&amp;fl[subTp]=arrow&amp;searchType=items">Pfeile</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=projectiles&amp;subTp=arrow&amp;searchType=items">Pfeile</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=projectiles&amp;fl[subTp]=bullet&amp;searchType=items">Kugeln</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=projectiles&amp;subTp=bullet&amp;searchType=items">Kugeln</a>
               </li>
 								</ul>
 							</li>
 <!-- Quivers -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=quivers&amp;fl[subTp]=all&amp;searchType=items">Köcher</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=quivers&amp;subTp=all&amp;searchType=items">Köcher</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=quivers&amp;fl[subTp]=quiver&amp;searchType=items">Köcher</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=quivers&amp;subTp=quiver&amp;searchType=items">Köcher</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=quivers&amp;fl[subTp]=ammopouch&amp;searchType=items">Munitionsbeutel</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=quivers&amp;subTp=ammopouch&amp;searchType=items">Munitionsbeutel</a>
               </li>
 								</ul>
 							</li>
 <!-- Misc -->
 							<li class="fly">
-            <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=misc&amp;searchType=items">Verschiedenes</a>
+            <a href="/search.xml?searchQuery=&amp;source=all&amp;type=misc&amp;searchType=items">Verschiedenes</a>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=keys&amp;searchType=items">Schlüssel</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=keys&amp;searchType=items">Schlüssel</a>
               </li>
 								</ul>
 							</li>
@@ -418,10 +418,10 @@
             <span>Begleiter</span>
 								<ul>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=mounts&amp;searchType=items">Reittiere</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=mounts&amp;searchType=items">Reittiere</a>
               </li>
 									<li>
-                <a href="/search.xml?searchQuery=&amp;fl[source]=all&amp;fl[type]=smallpets&amp;searchType=items">Haustiere</a>
+                <a href="/search.xml?searchQuery=&amp;source=all&amp;type=smallpets&amp;searchType=items">Haustiere</a>
               </li>
 								</ul>
 							</li>
@@ -460,13 +460,13 @@
             <span>Belohnungen</span>
 								<ul>
 									<li>
-                <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena6&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 6</a>
+                <a href="/search.xml?source=pvpAlliance&amp;pvp=arena6&amp;type=all&amp;searchType=items">Belohnungen: Saison 6</a>
               </li>
 									<li>
-                <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena5&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 5</a>
+                <a href="/search.xml?source=pvpAlliance&amp;pvp=arena5&amp;type=all&amp;searchType=items">Belohnungen: Saison 5</a>
               </li>
 									<li>
-                <a href="/search.xml?fl[source]=pvpAlliance&amp;fl[pvp]=arena4&amp;fl[type]=all&amp;searchType=items">Belohnungen: Saison 4</a>
+                <a href="/search.xml?source=pvpAlliance&amp;pvp=arena4&amp;type=all&amp;searchType=items">Belohnungen: Saison 4</a>
               </li>
 								</ul>
 							</li>
@@ -2137,10 +2137,10 @@
 		<str id="armory.character-reputation.url.netherwing">http://www.wow-europe.com/de/info/basics/mounts/netherwing-tips.html</str>
 
 		<str id="armory.character-reputation.name.ogri'la">Ogri'la</str>
-		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?flsource]=reputation&amp;flfaction]=1038&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.ogri'la">http://eu.wowarmory.com/search.xml?flsource=reputation&amp;flfaction=1038&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.sha'tariskyguard">Sha'tari Skyguard</str>
-		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?flsource]=reputation&amp;flfaction]=1031&amp;searchType=items</str>
+		<str id="armory.character-reputation.url.sha'tariskyguard">http://eu.wowarmory.com/search.xml?flsource=reputation&amp;flfaction=1031&amp;searchType=items</str>
 
 		<str id="armory.character-reputation.name.cenarionexpedition">Cenarion Expedition</str>
 		<str id="armory.character-reputation.icon.cenarionexpedition">Spell_Nature_NatureGuardian</str>

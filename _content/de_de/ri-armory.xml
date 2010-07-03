@@ -24,9 +24,9 @@
 	<relatedlinks>
 		<!--<relatedlink name = "Neu im Arsenal - 19. November 2008" url = "/updates.xml" type = "new" />
 		<relatedlink type = "hr"/>-->
-		<relatedlink name="Belohnungen: Embleme des Frosts" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoffrost&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
-		<relatedlink name="Belohnungen: Embleme des Triumphs" url="/search.xml?fl[source]=dungeon&amp;fl[dungeon]=emblemoftriumph&amp;fl[type]=all&amp;fl[rrt]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[usbleBy]=all&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>		
-		<relatedlink name="Gegenstände: Erbstücke" url="/search.xml?fl[source]=all&amp;fl[type]=all&amp;fl[usbleBy]=all&amp;fl[rqrMin]=&amp;fl[rqrMax]=&amp;fl[rrt]=hm&amp;advOptName=none&amp;fl[andor]=and&amp;searchType=items&amp;fl[advOpt]=none"/>						
+		<relatedlink name="Belohnungen: Embleme des Frosts" url="search.xml?source=dungeon&amp;dungeon=emblemoffrost&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Belohnungen: Embleme des Triumphs" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
+		<relatedlink name="Gegenstände: Erbstücke" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena-Rechner" url="/arena-calculator.xml"/>
 		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
