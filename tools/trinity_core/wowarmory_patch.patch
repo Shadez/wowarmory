@@ -21,7 +21,7 @@ diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/I
 +        {
 +           /* WoWArmory Feed Log */
 +            std::ostringstream ss;
-+            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u", player->GetGUIDLow(), item);
++            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u)", player->GetGUIDLow(), item);
 +            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
@@ -108,13 +108,13 @@ diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -14921,4 +14921,5 @@
+@@ -14990,4 +14990,5 @@
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
 +                    {
                          ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-@@ -14924,4 +14925,6 @@
+@@ -14993,4 +14994,6 @@
                          ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
 +                    }

@@ -95,14 +95,13 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
              }
          }
  
-@@ -9640,6 +9642,10 @@
+@@ -9709,6 +9711,9 @@
  
      if (pVictim->GetTypeId() == TYPEID_PLAYER)
      {
 +        /* WoWArmory (arena game chart) */
 +        if (BattleGround *bgV = pVictim->ToPlayer()->GetBattleGround())
 +            bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_HEALING_TAKEN, gain);
-+        
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
      }
