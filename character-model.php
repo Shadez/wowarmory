@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 279
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -499,6 +499,9 @@ if($tmpid = $characters->GetCharacterEquip('head') && $character_model_data['hid
             'skinFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'00.skin',
             'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
         );
+        if($model_data_attachment['helm_texture']['texture'] == 'item/objectcomponents/head/.png') {
+            unset($model_data_attachment['helm_texture']);
+        }
     }
     unset($tmpid);
 }
@@ -510,6 +513,9 @@ if($tmpid = $characters->GetCharacterEquip('back')) {
         $model_data_texture['back_texture'] = array(
             'file' => 'item/objectcomponents/cape/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png'
         );
+        if($model_data_texture['back_texture']['file'] == 'item/objectcomponents/cape/.png') {
+            unset($model_data_texture['back_texture']);
+        }
     }
     unset($tmpid);
 }
@@ -532,6 +538,10 @@ if($tmpid = $characters->GetCharacterEquip('shoulder')) {
             'skinFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelName_2', $tmpid).'00.skin',   // What does 00 means?
             'texture' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelTexture_2', $tmpid).'.png',
         );
+        if($model_data_attachment['left_shoulder_texture']['texture'] == 'item/objectcomponents/shoulder/.png') {
+            unset($model_data_attachment['left_shoulder_texture']);
+            unset($model_data_attachment['right_shoulder_texture']);
+        }
     }
     unset($tmpid);
 }
@@ -547,6 +557,9 @@ if($tmpid = $characters->GetCharacterEquip('mainhand')) {
             'skinFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
             'texture' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
         );
+        if($model_data_attachment['main_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
+            unset($model_data_attachment['main_hand_texture']);
+        }
     }
     unset($tmpid);
 }
@@ -562,7 +575,13 @@ if($characters->GetClass() == CLASS_PALADIN || $characters->GetClass() == CLASS_
             'skinFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
             'texture' => 'item/objectcomponents/shield/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
         );
-        $model_data['use_shield'] = true;
+        if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/shield/.png') {
+            unset($model_data_attachment['off_hand_texture']);
+            $model_data['use_shield'] = false;
+        }
+        else {
+            $model_data['use_shield'] = true;
+        }
     }
     unset($tmpid);
 }
@@ -575,6 +594,9 @@ else {
             'skinFile'  => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
             'texture'   => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
         );
+        if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
+            unset($model_data_attachment['off_hand_texture']);
+        }
     }
     unset($tmpid);
 }
