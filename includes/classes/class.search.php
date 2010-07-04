@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 287
+ * @revision 288
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,6 +29,8 @@ Class SearchMgr extends Connector {
     public $instanceSearchKey;
     public $heirloom = false;
     private $boss_loot_ids;
+    private $results;
+    private $type_results;
     
     public function DoSearchItems($count = false, $findUpgrade = false) {
         if(!$this->searchQuery && !$findUpgrade && !$this->heirloom) {
@@ -821,7 +823,7 @@ Class SearchMgr extends Connector {
                 $realm['teamSize'] = $realm['size'];
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
-                $realm['relevance'] = 100;
+                $realm['relevance'] = 100; // Will be re-calculated in Search::CalculateRelevance()
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($realm_info['name']), $realm['size'], urlencode($realm['name']));
                 unset($realm['race']);
@@ -829,7 +831,10 @@ Class SearchMgr extends Connector {
             }
         }
         if($results) {
-            return $results;
+            $this->type_results = 'arenateams';
+            $this->results = $results;
+            self::CalculateRelevance();
+            return $this->results;
         }
         return false;
     }
@@ -864,7 +869,7 @@ Class SearchMgr extends Connector {
             foreach($current_realm as $realm) {
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
-                $realm['relevance'] = 100;
+                $realm['relevance'] = 100; // All guilds have 100% relevance and we don't need to call Search::CalculateRelevance()
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 unset($realm['race']);
@@ -881,6 +886,7 @@ Class SearchMgr extends Connector {
         if(!$this->searchQuery) {
             return false;
         }
+        $currentTimeStamp = time();
         $results = array(); // Full results
         $current_realm = array();
         $count_results = 0; // All realms results
@@ -901,6 +907,7 @@ Class SearchMgr extends Connector {
             }
             return $count_results;
         }
+        $accounts_cache = array(); // For relevance calculation
         foreach($this->realmData as $realm_info) {
             $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
             $db->query("SET NAMES ?", $realm_info['charset_characters']);
@@ -918,7 +925,6 @@ Class SearchMgr extends Connector {
                     $realm['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['guild']));
                 }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
-                $realm['relevance'] = 100;
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
                 $realm['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $realm['classId']);
@@ -926,6 +932,62 @@ Class SearchMgr extends Connector {
                 $realm['realm'] = $realm_info['name'];
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
+                /* Calculate relevance */
+                $realm['relevance'] = 100;
+                // Relevance by last login date will check `realmd`.`account`.`last_login` timestamp
+                // First of all - check character level
+                $temp_value = $realm['level'];
+                if($temp_value > 70 && $temp_value < PLAYER_MAX_LEVEL) {
+                    $realm['relevance'] -= 20;
+                }
+                elseif($temp_value > 60 && $temp_value < 70) {
+                    $realm['relevance'] -= 25;
+                }
+                elseif($temp_value > 50 && $temp_value < 60) {
+                    $realm['relevance'] -= 30;
+                }
+                elseif($temp_value > 40 && $temp_value < 50) {
+                    $realm['relevance'] -= 35;
+                }
+                elseif($temp_value > 30 && $temp_value < 40) {
+                    $realm['relevance'] -= 40;
+                }
+                elseif($temp_value > 20 && $temp_value < 30) {
+                    $realm['relevance'] -= 45;
+                }
+                elseif($temp_value < 20) {
+                    $realm['relevance'] -= 50;
+                    // characters with level < 20 have 50% relevance and other reasons can't change this value
+                    unset($realm['account'], $realm['guid']);
+                    $results[] = $realm;
+                    continue;
+                }
+                // Check last login date. If it's more than 2 days, decrease relevance by 4 for every day
+                if(!isset($accounts_cache[$realm['account']])) {
+                    $lastLogin = $this->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=?", $realm['account']);
+                    $accounts_cache[$realm['account']] = $lastLogin;
+                }
+                else {
+                    $lastLogin = $accounts_cache[$realm['account']];
+                }
+                $lastLoginTimestamp = strtotime($lastLogin);
+                $diff = $currentTimeStamp - $lastLoginTimestamp;
+                if($lastLogin && $diff > 0) {
+                    // 1 day is 86400 seconds
+                    $totalDays = round($diff/86400);
+                    if($totalDays > 2) {
+                        $decreaseRelevanceByLogin = $totalDays*4;
+                        $realm['relevance'] -= $decreaseRelevanceByLogin;
+                    }
+                }
+                // Relevance for characters can't be less than 50
+                if($realm['relevance'] < 50) {
+                    $realm['relevance'] = 50;
+                }
+                // Relevance can't be more than 100
+                if($realm['relevance'] > 100) {
+                    $realm['relevance'] = 100;
+                }
                 unset($realm['account'], $realm['guid']);
                 $results[] = $realm;
             }

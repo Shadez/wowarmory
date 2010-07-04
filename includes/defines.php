@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 268
+ * @revision 288
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -507,4 +507,6 @@ define('PLAYER_SLOT_ITEM_MAIN_HAND', PLAYER_FIELD_INV_SLOT_HEAD+30);
 define('PLAYER_SLOT_ITEM_OFF_HAND', PLAYER_FIELD_INV_SLOT_HEAD+32);
 define('PLAYER_SLOT_ITEM_RANGED', PLAYER_FIELD_INV_SLOT_HEAD+34);
 define('PLAYER_SLOT_ITEM_TABARD', PLAYER_FIELD_INV_SLOT_HEAD+36);
+
+define('PLAYER_MAX_LEVEL', 80); // Wrath
 ?>
