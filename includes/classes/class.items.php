@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 286
+ * @revision 289
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -998,7 +998,7 @@ Class Items extends Connector {
             $itemclassInfo = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=?", $itemID);
         }
         if($tooltip) {
-            if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] == '0') {
+            if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] === 0) {
                 return;
             }
             return $this->aDB->selectCell("SELECT `subclass_name_".$this->_locale."` FROM `armory_itemsubclass` WHERE `class`=? AND `subclass`=?", $itemclassInfo['class'], $itemclassInfo['subclass']);
@@ -1008,8 +1008,11 @@ Class Items extends Connector {
     
     public function IsRequiredArenaRating($itemID) {
         $extended_cost_id = $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=?", $itemID);
-        if(!$extended_cost_id) {
+        if($extended_cost_id === false) {
             return false;
+        }
+        if($extended_cost_id < 0) {
+            $extended_cost_id = abs($extended_cost_id);
         }
         $arenaTeamRating = $this->aDB->selectCell("SELECT `personalRating` FROM `armory_extended_cost` WHERE `id`=?", $extended_cost_id);
         if($arenaTeamRating > 0) {
