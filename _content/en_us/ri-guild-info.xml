@@ -73,7 +73,7 @@
 		<relatedlink name="Guild Management" type="external" url="http://www.worldofwarcraft.com/info/basics/guildtab.html"/>
 		<relatedlink name="Guild Leaders" type="external" url="http://www.worldofwarcraft.com/info/basics/guildleadership.html "/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
 		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
 	</relatedlinks>

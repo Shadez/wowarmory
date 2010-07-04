@@ -21,8 +21,8 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>	
-		<relatedlink name="Salón de la Fama de las Arenas" url="/hof/one/index.xml"/>
+		<relatedlink name="Calculadora para las Arenas" url="arena-calculator.xml"/>	
+		<relatedlink name="Salón de la Fama de las Arenas" url="hof/one/index.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Sistema de Arena" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
 		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>

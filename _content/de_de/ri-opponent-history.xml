@@ -26,12 +26,12 @@ Die genaue Klassenaufstellung des gegnerischen Teams findet ihr am besten, indem
 	</faqlist>
 	<relatedlinks>
 		<relatedlink name="Infos zum Arenaturnier" url="http://www.wow-europe.com/en/info/basics/arena/tournament/index.xml"/>
-		<relatedlink name="Ruhmeshalle der Arena" url="/hof/one/index.xml"/>
+		<relatedlink name="Ruhmeshalle der Arena" url="hof/one/index.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena-System" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
 		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>
 		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
 		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 

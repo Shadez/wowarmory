@@ -36,12 +36,12 @@ Below the graph is a list of the season’s matches that can be searched, sorted
 	
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Tournament Info" url="/arena-tournament.xml"/>
+		<relatedlink name="Arena Tournament Info" url="arena-tournament.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
 		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=1777873353&amp;sid=1"/>		
 		<relatedlink name="Report an Error" type="report" url="mailto:wowguide@blizzard.com?subject=WoW Armory Error&amp;body=Error on page: REPLACEURL%0A%0AType your error report here:%0A%0A%0A%0A%0A%0A---------------%0ARead the error reporting guidelines before submitting your email%0Ahttp://www.worldofwarcraft.com/info/faq/guide.html%0APlease use this email to report guide errors only. Any problems with the game or your account should be reported here: http://www.blizzard.com/support/wow/?id=aww01730p"/>
 	</relatedlinks>

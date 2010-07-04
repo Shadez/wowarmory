@@ -28,15 +28,15 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena-Rangliste" url="/battlegroups.xml"/>
-		<relatedlink name="Arenaturnier" url="/arena-tournament.xml"/>			
+		<relatedlink name="Arena-Rangliste" url="battlegroups.xml"/>
+		<relatedlink name="Arenaturnier" url="arena-tournament.xml"/>			
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena-Informationen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/index.html"/>
 		<relatedlink name="Arena: Insider-Vorschau" type="external" url="http://www.wow-europe.com/de/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink name="Arena-Belohnungen: Waffen" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-weapons.html"/>
 		<relatedlink name="Arena-Belohnungen: Klassenrüstungssets" type="external" url="http://www.wow-europe.com/de/info/basics/arena/rewards-class-armor.html"/>					
 		<relatedlink type="hr"/>
-		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>		
 		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
 	</relatedlinks>

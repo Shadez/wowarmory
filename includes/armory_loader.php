@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 278
+ * @revision 287
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,7 +30,7 @@ error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r276');
+define('DB_VERSION', 'armory_r287');
 @include('revision_nr.php');
 $armory = new Connector();
 /* Check DbVersion */
@@ -55,7 +55,6 @@ if(!@include('UpdateFields.php')) {
 if(!@include('defines.php')) {
     die('<b>Error:</b> can not load defines.php!');
 }
-
 if(!defined('skip_utils_class')) {
     if(!@include('classes/class.utils.php')) {
         die('<b>Error:</b> can not load utils class!');
@@ -67,8 +66,6 @@ if(!defined('skip_utils_class')) {
      **/
     $utils->CheckConfigRealmData();
 }
-
-
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
@@ -177,6 +174,13 @@ if(defined('load_itemproto_class')) {
         die('<b>Error:</b> can not load itemProto class!');
     }
     $proto = new ItemProto;
+}
+if(defined('__ARMORYADMIN__')) {
+    // This is a dev. placeholder I'm not totally sure about this feature ;)
+    if(!@include('classes/class.admin.php')) {
+        die('<b>Error:</b> can not load admin class!');
+    }
+    $admin = new ArmoryAdmin;
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {

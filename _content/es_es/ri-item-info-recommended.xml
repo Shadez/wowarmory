@@ -44,14 +44,14 @@ Estos son algunos de los trucos para sacarle el máximo partido a esta función.
 		<relatedlink name="Recompensas: Emblemas de Triunfo" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Reliquias" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Objetos de mazmorras y bandas" url="/dungeons.xml"/>
-		<relatedlink name="Recompensas de facción" url="/factions.xml"/>
-		<relatedlink name="Recompensas JcJ" url="/pvprewards.xml"/>		
+		<relatedlink name="Objetos de mazmorras y bandas" url="dungeons.xml"/>
+		<relatedlink name="Recompensas de facción" url="factions.xml"/>
+		<relatedlink name="Recompensas JcJ" url="pvprewards.xml"/>		
 		<relatedlink type="hr"/>
 		<relatedlink name="Atributos relacionados con el combate" type="external" url="http://www.wow-europe.com/es/info/basics/characters.html"/>				
 		<relatedlink name="Información básica sobre objetos" type="external" url="http://www.wow-europe.com/es/info/items/basics.html"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
 		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>

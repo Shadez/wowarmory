@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 284
+ * @revision 287
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -136,8 +136,16 @@ Class SearchMgr extends Connector {
                 $_item_ids = $this->wDB->select($itemsSql);
             }
             if(is_array($_item_ids)) {
-                foreach($_item_ids as $id) {
-                    $item_id_array[] = $id['entry'];
+                $tmp_count_ids = count($_item_ids);
+                $item_id_string = null;
+                for($i = 0; $i < $tmp_count_ids; $i++) {
+                    if($i) {
+                        $item_id_string .= ', ' . $_item_ids[$i]['entry'];
+                    }
+                    else {
+                        $item_id_string .= $_item_ids[$i]['entry'];
+                    }
+                    $item_id_array[] = $_item_ids[$i]['entry'];
                 }
             }
         }
@@ -318,22 +326,12 @@ Class SearchMgr extends Connector {
                     }
                     
                     /* Search string */
-                    if(isset($this->searchQuery)&& !empty($this->searchQuery)) {
+                    if($this->searchQuery && $item_id_string != null) {
                         if($andor) {
-                            if($this->_loc == 0) {
-                                $sql_query .= sprintf(" AND `name` LIKE '%s' ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%');
-                            }
-                            else {
-                                $sql_query .= sprintf(" AND `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
-                            }
+                            $sql_query .= sprintf(" AND `entry` IN (%s) ORDER BY `ItemLevel` LIMIT 200", $item_id_string);
                         }
                         else {
-                            if($this->_loc == 0) {
-                                $sql_query .= sprintf(" WHERE `name` LIKE '%s' ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%');
-                            }
-                            else {
-                                $sql_query .= sprintf(" WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` LIMIT 200", '%'.mysql_escape_string($this->searchQuery).'%', $this->_loc, '%'.mysql_escape_string($this->searchQuery).'%');
-                            }
+                            $sql_query .= sprintf(" WHERE `entry` IN (%s) ORDER BY `ItemLevel` LIMIT 200", $item_id_string);
                         }
                     }
                     else {
@@ -635,6 +633,81 @@ Class SearchMgr extends Connector {
                     $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 break;
+            case 'pvpAlliance':
+            case 'pvpHorde':
+                if(!isset($this->get_array['pvp'])) {
+                    $this->get_array['pvp'] = 'all';
+                }
+                if($this->get_array['pvp'] == 'all' || $this->get_array['pvp'] == -1) {
+                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key` IN ('wintergrasp', 'arena8', 'arena7', 'arena6', 'arena5', 'arena4', 'arena3', 'arena2', 'arena1', 'honor', 'ab', 'av', 'wsg', 'halaa', 'honorhold', 'terrokar', 'zangarmarsh', 'thrallmar')");
+                    if(!$pvpVendorsId) {
+                        $this->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources', __METHOD__);
+                        return false;
+                    }
+                }
+                else {
+                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key`=?", $this->get_array['pvp']);
+                    if(!$pvpVendorsId) {
+                        $this->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources (faction: %s, key: %s)', __METHOD__, $this->get_array['source'], $this->get_array['pvp']);
+                        return false;
+                    }
+                }
+                $countVendors = count($pvpVendorsId);
+                $string_vendors = null;
+                for($i = 0; $i < $countVendors; $i++) {
+                    $tmpVendID = explode('/', $pvpVendorsId[$i]['item']);
+                    if(is_array($tmpVendID) && isset($tmpVendID[0]) && isset($tmpVendID[1])) {
+                        if($this->get_array['source'] == 'pvpAlliance') {
+                            $vendors_id = $tmpVendID[0];
+                        }
+                        else {
+                            $vendors_id = $tmpVendID[1];
+                        }
+                    }
+                    else {
+                        $vendors_id = $pvpVendorsId[$i]['item'];
+                    }
+                    if($i) {
+                        $string_vendors .= ', ' . $vendors_id; 
+                    }
+                    else {
+                        $string_vendors .= $vendors_id;
+                    }
+                }
+                if($this->searchQuery && is_array($item_id_array)) {
+                    $sql_query_tmp = sprintf("
+                    SELECT DISTINCT
+                    `item_template`.`entry` AS `id`,
+                    `item_template`.`name`,
+                    `item_template`.`ItemLevel`,
+                    `item_template`.`Quality` AS `rarity`,
+                    `item_template`.`displayid`,
+                    `item_template`.`bonding`,
+                    `item_template`.`flags`,
+                    `item_template`.`duration`
+                    FROM `item_template` AS `item_template`
+                    LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
+                    WHERE `npc_vendor`.`entry` IN (%s) AND `npc_vendor`.`item` IN (%s)
+                    ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $string_vendors, $item_id_string);
+                    $items_query = $this->wDB->select($sql_query_tmp);
+                }
+                else {
+                    $items_query = $this->wDB->select("
+                    SELECT DISTINCT
+                    `item_template`.`entry` AS `id`,
+                    `item_template`.`name`,
+                    `item_template`.`ItemLevel`,
+                    `item_template`.`Quality` AS `rarity`,
+                    `item_template`.`displayid`,
+                    `item_template`.`bonding`,
+                    `item_template`.`flags`,
+                    `item_template`.`duration`
+                    FROM `item_template` AS `item_template`
+                    LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
+                    WHERE `npc_vendor`.`entry` IN (?)
+                    ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $string_vendors);
+                }
+                break;
         }
         if(!isset($items_query) || !is_array($items_query)) {
             $this->Log()->writeError('%s : unable to get items for "%s" query (current locale: %s, locId: %d) ', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
@@ -699,6 +772,7 @@ Class SearchMgr extends Connector {
                         break;
                     case 'pvpAlliance':
                     case 'pvpHorde':
+                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
                         break;
                 }
             }
@@ -713,7 +787,6 @@ Class SearchMgr extends Connector {
     
     public function SearchArenaTeams($num = false) {
         if(!$this->searchQuery) {
-            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results
@@ -763,7 +836,6 @@ Class SearchMgr extends Connector {
     
     public function SearchGuilds($num = false) {
         if(!$this->searchQuery) {
-            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results
@@ -807,7 +879,6 @@ Class SearchMgr extends Connector {
     
     public function SearchCharacters($num = false) {
         if(!$this->searchQuery) {
-            $this->Log()->writeError('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $results = array(); // Full results

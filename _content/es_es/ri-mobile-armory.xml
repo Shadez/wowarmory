@@ -27,8 +27,8 @@
 	<relatedlinks>
 		<relatedlink name="Descargar desde iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Novedades en la Armería" url="/updates.xml"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Novedades en la Armería" url="updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
 		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>

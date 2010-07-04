@@ -27,8 +27,8 @@
 	<relatedlinks>
 		<relatedlink name="Herunterladen über iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Neu im Arsenal" url="/updates.xml"/>
-		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Neu im Arsenal" url="updates.xml"/>
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>		
 		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
 		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
 	</relatedlinks>

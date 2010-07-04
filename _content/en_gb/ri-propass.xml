@@ -14,11 +14,11 @@
 		</faq>		
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Tournament Ladders" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Arena Tournament Ladders" url="battlegroups.xml#tournament"/>
 		<relatedlink name="Arena Tournament Info" url="http://www.wow-europe.com/en/info/basics/arena/tournament/index.xml"/>
 		<relatedlink name="Register" url="http://www.wow-europe.com/account/"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
 		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 	</relatedlinks>

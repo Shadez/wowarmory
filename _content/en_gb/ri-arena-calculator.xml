@@ -17,7 +17,7 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Tournament" url="/arena-tournament.xml"/>		
+		<relatedlink name="Arena Tournament" url="arena-tournament.xml"/>		
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena System" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
 		<relatedlink name="Inside Arenas" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>

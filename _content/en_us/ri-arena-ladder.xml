@@ -24,7 +24,7 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Calculator" url="/arena-calculator.xml"/>	
+		<relatedlink name="Arena Calculator" url="arena-calculator.xml"/>	
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena Intro" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
 		<relatedlink name="Inside Arenas" type="external" url="http://www.worldofwarcraft.com/insider/11/arena.xml"/>

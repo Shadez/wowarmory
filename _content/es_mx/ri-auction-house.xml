@@ -59,15 +59,15 @@
 	<relatedlinks>
 		<!--<relatedlink name = "Updates - November 19, 2008" url = "/updates.xml" type = "new" />
 		<relatedlink type = "hr"/>-->
-		<relatedlink name="World of Warcraft Remoto" url="/wow-remote.xml"/>
+		<relatedlink name="World of Warcraft Remoto" url="wow-remote.xml"/>
 				
 		<relatedlink type="hr"/>
-		<relatedlink name="Armería Móvil de World of Warcraft" url="/iphone.xml"/>
-		<relatedlink name="Plug-in de búsqueda para tu navegador" url="/search-plugin.xml"/>
+		<relatedlink name="Armería Móvil de World of Warcraft" url="iphone.xml"/>
+		<relatedlink name="Plug-in de búsqueda para tu navegador" url="search-plugin.xml"/>
 		
 		<relatedlink type="hr"/>
-		<relatedlink name="Actualizaciones de la Armería" url="/updates.xml"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Actualizaciones de la Armería" url="updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
 		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
 	</relatedlinks>

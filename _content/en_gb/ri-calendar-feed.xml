@@ -57,14 +57,14 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Character Search" url="/character-search.xml"/>
+		<relatedlink name="Character Search" url="character-search.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Character Attributes Guide" type="external" url="http://www.wow-europe.com/en/info/basics/index.html#character"/>
 		<relatedlink name="Races" type="external" url="http://www.wow-europe.com/en/info/races/index.html"/>
 		<relatedlink name="Classes" type="external" url="http://www.wow-europe.com/en/info/classes/index.html"/>
 		<relatedlink name="Professions" type="external" url="http://www.wow-europe.com/en/info/professions/intro.html"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
 		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
 	</relatedlinks>

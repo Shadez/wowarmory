@@ -27,8 +27,8 @@
 	<relatedlinks>
 		<relatedlink name="Download from iTunes" type="external" url="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=321057000&amp;mt=8"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Armory Updates" url="/updates.xml"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Armory Updates" url="updates.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
 		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 	</relatedlinks>

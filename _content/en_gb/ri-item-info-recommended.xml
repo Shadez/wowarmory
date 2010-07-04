@@ -44,15 +44,15 @@ Here are some tips to get the most out of the feature. Note that any changes mad
 		<relatedlink name="Emblem of Triumph Rewards" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Heirloom Items" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Dungeon &amp; Raid Drops" url="/dungeons.xml"/>
-		<relatedlink name="Faction Rewards" url="/factions.xml"/>
-		<relatedlink name="PvP Rewards" url="/pvprewards.xml"/>		
+		<relatedlink name="Dungeon &amp; Raid Drops" url="dungeons.xml"/>
+		<relatedlink name="Faction Rewards" url="factions.xml"/>
+		<relatedlink name="PvP Rewards" url="pvprewards.xml"/>		
 		<relatedlink type="hr"/>
 		<relatedlink name="Combat Ratings" type="external" url="http://www.wow-europe.com/en/info/basics/characters.html"/>				
 		<relatedlink name="Item Basics" type="external" url="http://www.wow-europe.com/en/info/items/basics.html"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>		
 		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 	</relatedlinks>
 </relatedinfo>

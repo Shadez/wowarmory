@@ -24,7 +24,7 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Calculator" url="/arena-calculator.xml"/>	
+		<relatedlink name="Arena Calculator" url="arena-calculator.xml"/>	
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena System" type="external" url="http://www.wow-europe.com/en/info/basics/arena/index.html"/>
 		<relatedlink name="Inside Arenas" type="external" url="http://www.wow-europe.com/en/misc/wowinsider/wowi11/arena.html"/>

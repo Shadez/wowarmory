@@ -28,13 +28,13 @@
 		<relatedlink name="Emblem of Triumph Rewards" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Heirloom Items" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
 		<relatedlink type="hr"/>
-		<relatedlink name="Arena Calculator" url="/arena-calculator.xml"/>
-		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
-		<relatedlink name="Browser Search Plugin" url="/search-plugin.xml"/>
+		<relatedlink name="Arena Calculator" url="arena-calculator.xml"/>
+		<relatedlink name="World of Warcraft Mobile Armory" url="iphone.xml"/>
+		<relatedlink name="Browser Search Plugin" url="search-plugin.xml"/>
 		
 		<relatedlink type="hr"/>
-		<relatedlink name="Armory Updates" url="/updates.xml"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="Armory Updates" url="updates.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>
 		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
 	</relatedlinks>

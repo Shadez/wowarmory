@@ -17,13 +17,13 @@ Tous les matchs d'arène disposent d'un rapport de match consultable, dans tous 
 
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Calculateur d’arène" url="/arena-calculator.xml"/>		
+		<relatedlink name="Calculateur d’arène" url="arena-calculator.xml"/>		
 		<relatedlink name="Système d’arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
 		<relatedlink name="Au cœur de l’arène" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Voir les données des royaumes USA" type="external" url="http://www.wowarmory.com/"/>		
 		<relatedlink type="hr"/>		
-		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q." url="faq-armory.xml"/>
 		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
 		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>

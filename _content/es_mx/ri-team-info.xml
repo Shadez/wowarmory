@@ -28,15 +28,15 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Escala de posiciones de la arena" url="/battlegroups.xml"/>
-		<relatedlink name="Información del Torneo Arena" url="/arena-tournament.xml"/>			
+		<relatedlink name="Escala de posiciones de la arena" url="battlegroups.xml"/>
+		<relatedlink name="Información del Torneo Arena" url="arena-tournament.xml"/>			
 		<relatedlink type="hr"/>
 		<relatedlink name="Sistema de la arena" type="external" url="http://www.worldofwarcraft.com/pvp/arena/index.xml"/>
 		<relatedlink name="Las arenas a detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink name="Recompensas de la arena: armas" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-weapons.html"/>
 		<relatedlink name="Recompensas de la arena: armaduras" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>			
 		<relatedlink type="hr"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
 		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
 		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>

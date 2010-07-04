@@ -17,13 +17,13 @@ Cada encuentro en la arena dispone de un informe de la partida, en todas las ram
 
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>		
+		<relatedlink name="Calculadora para las Arenas" url="arena-calculator.xml"/>		
 		<relatedlink name="Sistema de Arenas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
 		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Ver los datos del reino USA" type="external" url="http://www.wowarmory.com/"/>		
 		<relatedlink type="hr"/>		
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
 		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>

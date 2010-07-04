@@ -30,7 +30,7 @@
 		<relatedlink type="hr"/>
 		<relatedlink name="Arena Tournament Info" url="arena-tournament.xml"/>		
 		<relatedlink type="hr"/>		
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>		
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>		
 		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
 	</relatedlinks>
 </relatedinfo>

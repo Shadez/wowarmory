@@ -57,14 +57,14 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Charaktersuche" url="/character-search.xml"/>
+		<relatedlink name="Charaktersuche" url="character-search.xml"/>
 		<relatedlink type="hr"/>
 		<relatedlink name="Anleitung: Charakterattribute" type="external" url="http://www.wow-europe.com/de/info/basics/index.html#character"/>
 		<relatedlink name="Völker" type="external" url="http://www.wow-europe.com/de/info/races/index.html"/>
 		<relatedlink name="Klassen" type="external" url="http://www.wow-europe.com/de/info/classes/index.html"/>
 		<relatedlink name="Berufe" type="external" url="http://www.wow-europe.com/de/info/professions/intro.html"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=9164118936&amp;sid=3"/>		
 		<relatedlink name="Meldet einen Fehler" type="external" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
 	</relatedlinks>

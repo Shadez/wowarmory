@@ -14,11 +14,11 @@
 		</faq>		
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arenaturnier: Ranglisten" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Arenaturnier: Ranglisten" url="battlegroups.xml#tournament"/>
 		<relatedlink name="Arenaturnier: Informationen" url="http://www.wow-europe.com/de/info/basics/arena/tournament/index.xml"/>
 		<relatedlink name="Arenaturnier: Anmelden" url="http://www.wow-europe.com/account/"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>		
 		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Übersetzungsfehler melden" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
 	</relatedlinks>

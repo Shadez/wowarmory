@@ -28,13 +28,13 @@
 		<relatedlink name="Belohnungen: Embleme des Triumphs" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Gegenstände: Erbstücke" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
 		<relatedlink type="hr"/>
-		<relatedlink name="Arena-Rechner" url="/arena-calculator.xml"/>
-		<relatedlink name="World of Warcraft Mobile Armory" url="/iphone.xml"/>
-		<relatedlink name="Browser Such-Plugin" url="/search-plugin.xml"/>
+		<relatedlink name="Arena-Rechner" url="arena-calculator.xml"/>
+		<relatedlink name="World of Warcraft Mobile Armory" url="iphone.xml"/>
+		<relatedlink name="Browser Such-Plugin" url="search-plugin.xml"/>
 
 		<relatedlink type="hr"/>
-		<relatedlink name="Neu im Arsenal" url="/updates.xml"/>
-		<relatedlink name="Häufig gestellte Fragen" url="/faq-armory.xml"/>		
+		<relatedlink name="Neu im Arsenal" url="updates.xml"/>
+		<relatedlink name="Häufig gestellte Fragen" url="faq-armory.xml"/>		
 		<relatedlink name="Bekannte Probleme" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252444&amp;sid=3"/>
 		<relatedlink name="Fehler melden" type="report" url="http://forums.wow-europe.com/board.html?forumId=11113&amp;sid=3"/>
 	</relatedlinks>

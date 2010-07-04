@@ -73,7 +73,7 @@
 		<relatedlink name="Guild Management" type="external" url="http://www.wow-europe.com/en/info/basics/guildtab.html"/>
 		<relatedlink name="Guild Leadership" type="external" url="http://www.wow-europe.com/en/info/basics/guildleadership.html"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016061940&amp;sid=1"/>
 		<relatedlink name="Post About An Error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 	</relatedlinks>

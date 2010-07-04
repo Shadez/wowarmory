@@ -34,15 +34,15 @@
 
 
 	<relatedlinks>
-		<relatedlink name="Classement d'arène" url="/battlegroups.xml"/>
-		<relatedlink name="Informations sur le tournoi d'arène" url="/arena-tournament.xml"/>	
+		<relatedlink name="Classement d'arène" url="battlegroups.xml"/>
+		<relatedlink name="Informations sur le tournoi d'arène" url="arena-tournament.xml"/>	
 		<relatedlink type="hr"/>
 		<relatedlink name="Le système d'arène" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/index.html"/>
 		<relatedlink name="Au cœur des arènes" type="external" url="http://www.wow-europe.com/fr/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink name="Récompenses d’arène : armes" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/rewards-weapons.html"/>
 		<relatedlink name="Récompenses d’arène : armures" type="external" url="http://www.wow-europe.com/fr/info/basics/arena/rewards-class-armor.html"/>			
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q." url="/faq-armory.xml"/>		
+		<relatedlink name="F.A.Q." url="faq-armory.xml"/>		
 		<relatedlink name="Problèmes connus" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016252442&amp;sid=2"/>
 		<relatedlink name="Signaler une erreur technique" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Signaler une erreur de traduction" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11213&amp;sid=2"/>

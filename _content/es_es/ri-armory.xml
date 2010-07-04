@@ -28,13 +28,13 @@
 		<relatedlink name="Recompensas: Emblemas de Triunfo" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Reliquias" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
 		<relatedlink type="hr"/>
-		<relatedlink name="Calculadora para las Arenas" url="/arena-calculator.xml"/>
-		<relatedlink name="Armería Móvil de World of Warcraft" url="/iphone.xml"/>
-		<relatedlink name="Motor de búsqueda para tu navegador" url="/search-plugin.xml"/>
+		<relatedlink name="Calculadora para las Arenas" url="arena-calculator.xml"/>
+		<relatedlink name="Armería Móvil de World of Warcraft" url="iphone.xml"/>
+		<relatedlink name="Motor de búsqueda para tu navegador" url="search-plugin.xml"/>
 
 		<relatedlink type="hr"/>
-		<relatedlink name="Novedades en la Armería" url="/updates.xml"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Novedades en la Armería" url="updates.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
 		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>

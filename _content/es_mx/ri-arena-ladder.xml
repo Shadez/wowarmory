@@ -22,7 +22,7 @@
 		</faq>				
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Calculadora de Arena" url="/arena-calculator.xml"/>	
+		<relatedlink name="Calculadora de Arena" url="arena-calculator.xml"/>	
 		<relatedlink type="hr"/>
 		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
 		<relatedlink name="Las arenas a detalle" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/arena.xml"/>

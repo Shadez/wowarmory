@@ -24,7 +24,7 @@
 		<relatedlink name="Belohnungen: Embleme des Triumphs" url="search.xml?source=dungeon&amp;dungeon=emblemoftriumph&amp;type=all&amp;rrt=all&amp;rqrMin=&amp;rqrMax=&amp;usbleBy=all&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>		
 		<relatedlink name="Gegenstände: Erbstücke" url="search.xml?source=all&amp;type=all&amp;usbleBy=all&amp;rqrMin=&amp;rqrMax=&amp;rrt=hm&amp;advOptName=none&amp;andor=and&amp;searchType=items&amp;advOpt=none"/>						
 		<relatedlink type="hr"/>
-		<relatedlink name="Dungeons und Schlachtzugdungeons" url="/dungeons.xml"/>
+		<relatedlink name="Dungeons und Schlachtzugdungeons" url="dungeons.xml"/>
 		<relatedlink name="Belohnungen für Ruf" url="factions.xml"/>
 		<relatedlink name="Belohnungen für PvP" url="pvprewards.xml"/>		
 		<relatedlink type="hr"/>

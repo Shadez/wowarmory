@@ -28,15 +28,15 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Ladder de Arena" url="/battlegroups.xml"/>
-		<relatedlink name="Torneos en la Arena" url="/arena-tournament.xml"/>			
+		<relatedlink name="Ladder de Arena" url="battlegroups.xml"/>
+		<relatedlink name="Torneos en la Arena" url="arena-tournament.xml"/>			
 		<relatedlink type="hr"/>
 		<relatedlink name="Sistema de Arenas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/index.html"/>
 		<relatedlink name="Las Arenas en detalle" type="external" url="http://www.wow-europe.com/es/misc/wowinsider/wowi11/arena.html"/>
 		<relatedlink name="Recompensas Arena: Armas" type="external" url="http://www.wow-europe.com/es/info/basics/arena/rewards-weapons.html"/>
 		<relatedlink name="Recompensas Arena: Armaduras" type="external" url="http://www.wow-europe.com/es/info/basics/arena/rewards-class-armor.html"/>			
 		<relatedlink type="hr"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>		
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>		
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.wow-europe.com/thread.html?topicId=1016251969&amp;sid=4"/>
 		<relatedlink name="Informa de un error" type="report" url="http://forums.wow-europe.com/board.html?forumId=11088&amp;sid=1"/>
 		<relatedlink name="Informa de un problema de traducción" type="translation" url="http://forums.wow-europe.com/board.html?forumId=11200&amp;sid=4"/>

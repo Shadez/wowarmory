@@ -25,7 +25,7 @@
 		</faq>
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Información sobre el Torneo Arena" url="/arena-tournament.xml"/>			
+		<relatedlink name="Información sobre el Torneo Arena" url="arena-tournament.xml"/>			
 		
 		<relatedlink type="hr"/>
 		<relatedlink name="Introducción a la arena" type="external" url="http://www.worldofwarcraft.com/na/pvp/arena/index.xml"/>
@@ -34,7 +34,7 @@
 		<relatedlink name="Recompensas de la arena: armaduras" type="external" url="http://www.worldofwarcraft.com/pvp/rewards-arena-class-armor.html"/>
 		
 		<relatedlink type="hr"/>
-		<relatedlink name="Preguntas frecuentes" url="/faq-armory.xml"/>
+		<relatedlink name="Preguntas frecuentes" url="faq-armory.xml"/>
 		<relatedlink name="Problemas conocidos" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=6440987228&amp;sid=2"/>
 		<relatedlink name="Reporta errores en la página" type="report" url="mailto:wowarmory@blizzard.com?subject=Error en la Armería de WoW&amp;body=Escribe tu reporte de error a continuación. Navegador: REPLACEBROWSER. Error en la página: REPLACEURL"/>
 		<relatedlink name="Reporta problemas de traducción" type="translation" url="http://forums.worldofwarcraft.com/board.html?forumId=20002&amp;sid=2"/>

@@ -14,11 +14,11 @@
 		</faq>		
 	</faqlist>
 	<relatedlinks>
-		<relatedlink name="Arena Tournament Ladders" url="/battlegroups.xml#tournament"/>
+		<relatedlink name="Arena Tournament Ladders" url="battlegroups.xml#tournament"/>
 		<relatedlink name="Arena Tournament Info" url="http://www.worldofwarcraft.com/pvp/tournament/index.xml"/>
 		<relatedlink name="Register" url="http://www.worldofwarcraft.com/account/"/>
 		<relatedlink type="hr"/>
-		<relatedlink name="F.A.Q.s" url="/faq-armory.xml"/>
+		<relatedlink name="F.A.Q.s" url="faq-armory.xml"/>
 		<relatedlink name="Known Issues" type="external" url="http://forums.worldofwarcraft.com/thread.html?topicId=2765957433&amp;sid=1"/>		
 		<relatedlink name="Report an Error" type="report" url="mailto:wowarmory@blizzard.com?subject=WoW Armory Error&amp;body=Type your error report below. Browser Agent: REPLACEBROWSER. Error on page: REPLACEURL"/>
 	</relatedlinks>
