@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 289
+ * @revision 292
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,25 +26,31 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 session_start();
-error_reporting(E_ALL);
 if(!@include('classes/class.connector.php')) {
     die('<b>Error:</b> can not load connector class!');
 }
-define('DB_VERSION', 'armory_r289');
-@include('revision_nr.php');
+if(!@include('revision_nr.php')) {
+    die('<b>Error:</b> can not load revision_nr.php!');
+}
 $armory = new Connector();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
 if($dbVersion != DB_VERSION) {
-    if(empty($dbVersion)) {
-    	 echo '<b>Fatal error</b>: incorrect Armory DB name<br/>';
+    if(!$dbVersion) {
+    	 echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
     }
-    die(sprintf('<b>DbVersion error</b>: current version is %s but expected %s.', $dbVersion, DB_VERSION));
+    echo '<b>DB_VERSION error</b>:<br />';
+    if(!defined('DB_VERSION')) {
+        die('DB_VERSION constant not defined!');
+    }
+    die(sprintf('Current version is %s but expected %s.<br />
+    Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'"));
 }
 /* Check revision */
 if(!defined('ARMORY_REVISION')) {
-    die('<b>Error:</b> unable to detect Armory revision!');
+    die('<b>Revision error:</b> unable to detect Armory revision!');
 }
+error_reporting(E_ALL);
 /* Check maintenance */
 if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
