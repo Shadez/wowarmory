@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 277
+ * @revision 294
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -804,6 +804,13 @@ Class Utils extends Connector {
         return $radius[0].' - '.$radius[2];
     }
     
+    /**
+     * Returns string with ID #$id for $this->_locale locale from DB
+     * @category Utils class
+     * @access   public
+     * @param    int $id
+     * @return   string
+     **/
     public function GetArmoryString($id) {
         if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
             return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
@@ -812,7 +819,11 @@ Class Utils extends Connector {
     }
     
     /**
-     * At this moment can be called from talent-calc.php only
+     * Returns player class ID
+     * @category Utils class
+     * @access   public
+     * @param    string $class_string
+     * @return   int
      **/
     public function GetClassId($class_string) {
         switch(strtolower($class_string)) {
@@ -852,22 +863,57 @@ Class Utils extends Connector {
         }
     }
     
+    /**
+     * Returns instance key from DB
+     * @category Utils class
+     * @access   public
+     * @param    int $instance_id
+     * @return   array
+     **/
     public function GetDungeonKey($instance_id) {
         return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=? LIMIT 1", $instance_id);
     }
     
+    /**
+     * Returns instance ID from DB for $bossIdOrKey boss
+     * @category Utils class
+     * @access   public
+     * @param    string $bossIdOrKey
+     * @return   array
+     **/
     public function GetBossDungeonKey($bossIdOrKey) {
         return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `id`=? OR `name_id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?) LIMIT 1", $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey);
     }
     
+    /**
+     * Returns instance ID from DB
+     * @category Utils class
+     * @access   public
+     * @param    string $instance_key
+     * @return   array
+     **/
     public function GetDungeonId($instance_key) {
         return $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $instance_key);
     }
     
+    /**
+     * Returns dungeon data
+     * @category Utils class
+     * @access   public
+     * @param    string $instance_key
+     * @return   array
+     **/
     public function GetDungeonData($instance_key) {
         return $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`=?", $instance_key);
     }
     
+    /**
+     * Returns pet data for pet talent calculator
+     * @category Utils class
+     * @access   public
+     * @param    string $key
+     * @return   array
+     **/
     public function PetTalentCalcData($key) {
         switch(strtolower($key)) {
             case 'ferocity':
@@ -878,6 +924,13 @@ Class Utils extends Connector {
         }
     }
     
+    /**
+     * Checks for correct realm name
+     * @category Utils class
+     * @access   public
+     * @param    string $rName
+     * @return   int
+     **/
     public function IsRealm($rName) {
         $realmId = $this->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $rName);
         if($realmId > 0) {
@@ -887,10 +940,24 @@ Class Utils extends Connector {
         return false;
     }
     
+    /**
+     * Returns realm ID from DB
+     * @category Utils class
+     * @access   public
+     * @param    string $rName
+     * @return   array
+     **/
     public function GetRealmIdByName($rName) {
         return self::IsRealm($rName);
     }
     
+    /**
+     * Returns model data for race $raceId from DB (model Viewer)
+     * @category Utils class
+     * @access   public
+     * @param    int $raceId
+     * @return   array
+     **/
     public function RaceModelData($raceId) {
         return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=?", $raceId);
     }
@@ -898,8 +965,8 @@ Class Utils extends Connector {
     /**
      * Returns icon name for selected class & talent tree
      * @category Utils
-     * @example Utils::ReturnTalentTreeIcon(2)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function ReturnTalentTreeIcon($spec, $class) {
         return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d LIMIT 1", $class, $spec);
@@ -908,13 +975,20 @@ Class Utils extends Connector {
     /**
      * Returns talent tree name for selected class
      * @category Utils
-     * @example Utils::ReturnTalentTreeNames(2)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function ReturnTalentTreeName($spec, $class) {
 		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d", $class, $spec);
 	}
     
+    /**
+     * Returns faction ID for $raceID
+     * @category Utils class
+     * @access   public
+     * @param    int $raceID
+     * @return   int
+     **/
     public function GetFactionId($raceID) {
         // Get player factionID
         $horde_races    = array(RACE_ORC,     RACE_TROLL, RACE_TAUREN, RACE_UNDEAD, RACE_BLOODELF);
@@ -942,9 +1016,15 @@ Class Utils extends Connector {
      * (UNIXTIMESTAMP_HERE, 'Title (ENGB)', 'Title (ANY Locale)', 'Text ENGB', 'Text (ANY Locale)', 1);
      * ==========
      * See SQL update for 240 rev. (sql/updates/armory_r240_armory_news.sql) for example news.
+     * @category Utils class
+     * @access   public
+     * @return   array
      **/
     public function GetArmoryNews() {
         $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_" . $this->_locale ."` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_". $this->_locale ."` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC");
+        if(!$news) {
+            return false;
+        }
         $allNews = array();
         $i = 0;
         foreach($news as $new) {
@@ -970,6 +1050,12 @@ Class Utils extends Connector {
         return false;
     }
     
+    /**
+     * Checks for active session & cookie for dual items tooltips
+     * @category Utils class
+     * @access   public
+     * @return   bool
+     **/
     public function IsItemComparisonAllowed() {
         if(isset($_SESSION['accountId']) && isset($_COOKIE['armory_cookieDualTooltip']) && $_COOKIE['armory_cookieDualTooltip'] == 1) {
             return true;
