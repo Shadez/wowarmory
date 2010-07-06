@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 289
+ * @revision 293
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1878,6 +1878,13 @@ Class Items extends Connector {
                 break;
         }
         return array('slot_id' => $slot_id, 'slotname' => $slotname);
+    }
+    
+    public function IsVendorItem($itemID) {
+        if($this->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=?", $itemID)) {
+            return true;
+        }
+        return false;
     }
 }
 ?>

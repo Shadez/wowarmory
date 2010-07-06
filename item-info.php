@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 249
+ * @revision 293
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -72,7 +72,7 @@ if($data['SellPrice'] > 0 || $data['BuyPrice'] || $extended_cost > 0) {
     if($data['SellPrice'] > 0) {
         $xml->XMLWriter()->writeAttribute('sellPrice', $data['SellPrice']);
     }
-    if($data['BuyPrice'] > 0) {
+    if($data['BuyPrice'] > 0 && $items->IsVendorItem($itemID)) {
         $xml->XMLWriter()->writeAttribute('buyPrice', $data['BuyPrice']);
     }
     $cost_info = $mangos->GetExtendedCost($extended_cost);
