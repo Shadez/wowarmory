@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 297
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -84,11 +84,29 @@ if(!$isCharacter) {
 $character_title = $characters->GetChosenTitleInfo();
 $character_element = $characters->GetHeader($achievements);
 $xml->XMLWriter()->startElement('characterInfo');
-$xml->XMLWriter()->startElement('character');
-foreach($character_element as $c_elem_name => $c_elem_value) {
-    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+if($utils->IsWriteRaw()) {
+    $xml->XMLWriter()->writeRaw('<character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        if($c_elem_name == 'charUrl') {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
+        }
+        else {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+        }
+    }
+    $xml->XMLWriter()->writeRaw('>');
+    $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
 }
-$xml->XMLWriter()->endElement(); //character
+else {
+    $xml->XMLWriter()->startElement('character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+    }
+    $xml->XMLWriter()->startElement('modelBasePath');
+    $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+    $xml->XMLWriter()->endElement();  //modelBasePath
+    $xml->XMLWriter()->endElement(); //character
+}
 $talent_build = $characters->CalculateCharacterTalentBuild();
 $talent_points = $characters->CalculateCharacterTalents();
 $build = array();

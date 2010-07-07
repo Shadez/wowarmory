@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 297
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -84,38 +84,78 @@ if(!$isCharacter) {
 }
 $character_title = $characters->GetChosenTitleInfo();
 $character_element = $characters->GetHeader($achievements);
-$xml->XMLWriter()->startElement('characterInfo');
-$xml->XMLWriter()->startElement('character');
-foreach($character_element as $c_elem_name => $c_elem_value) {
-    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
-}
 $character_arenateams = $arenateams->GetCharacterArenaTeamInfo();
-if(is_array($character_arenateams)) {
-    $xml->XMLWriter()->startElement('arenaTeams');
-    foreach($character_arenateams as $arenateam) {
-        $xml->XMLWriter()->startElement('arenaTeam');
-        foreach($arenateam['data'] as $team_key => $team_value) {
-            $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+$xml->XMLWriter()->startElement('characterInfo');
+if($utils->IsWriteRaw()) {
+    $xml->XMLWriter()->writeRaw('<character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        if($c_elem_name == 'charUrl') {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
         }
-        $xml->XMLWriter()->startElement('emblem');
-        foreach($arenateam['emblem'] as $emblem_key => $emblem_value) {
-            $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+        else {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
         }
-        $xml->XMLWriter()->endElement();  //emblem
-        $xml->XMLWriter()->startElement('members');
-        foreach($arenateam['members'] as $member) {
-            $xml->XMLWriter()->startElement('character');
-            foreach($member as $member_key => $member_value) {
-                $xml->XMLWriter()->writeAttribute($member_key, $member_value);
-            }
-            $xml->XMLWriter()->endElement(); //character
-        }
-        $xml->XMLWriter()->endElement();  //members
-        $xml->XMLWriter()->endElement(); //arenaTeam
     }
-    $xml->XMLWriter()->endElement(); //arenaTeams
+    if($character_arenateams && is_array($character_arenateams)) {
+        $xml->XMLWriter()->writeRaw('><arenaTeams>'); // close <character> tag before open new
+        foreach($character_arenateams as $arenateam) {
+            $xml->XMLWriter()->writeRaw('<arenaTeam');
+            foreach($arenateam['data'] as $team_key => $team_value) {
+                $xml->XMLWriter()->writeRaw(' ' . $team_key.'="' . htmlspecialchars($team_value).'"');
+            }
+            $xml->XMLWriter()->writeRaw('><emblem');
+            foreach($arenateam['emblem'] as $emblem_key => $emblem_value) {
+                $xml->XMLWriter()->writeRaw(' ' . $emblem_key.'="' . $emblem_value.'"');
+            }
+            $xml->XMLWriter()->writeRaw('><members>');
+            foreach($arenateam['members'] as $member) {
+                $xml->XMLWriter()->writeRaw('<member');
+                foreach($member as $member_key => $member_value) {
+                    $xml->XMLWriter()->writeRaw(' ' . $member_key .'="' . htmlspecialchars($member_value) . '"');
+                }
+                $xml->XMLWriter()->writeRaw('/>'); //member
+            }
+            $xml->XMLWriter()->writeRaw('</members></emblem></arenaTeam>');
+        }
+        $xml->XMLWriter()->writeRaw('</arenaTeams>');
+    }
+    $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
 }
-$xml->XMLWriter()->endElement();   //character
+else {
+    $xml->XMLWriter()->startElement('character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+    }
+    if($character_arenateams && is_array($character_arenateams)) {
+        $xml->XMLWriter()->startElement('arenaTeams');
+        foreach($character_arenateams as $arenateam) {
+            $xml->XMLWriter()->startElement('arenaTeam');
+            foreach($arenateam['data'] as $team_key => $team_value) {
+                $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+            }
+            $xml->XMLWriter()->startElement('emblem');
+            foreach($arenateam['emblem'] as $emblem_key => $emblem_value) {
+                $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+            }
+            $xml->XMLWriter()->endElement();  //emblem
+            $xml->XMLWriter()->startElement('members');
+            foreach($arenateam['members'] as $member) {
+                $xml->XMLWriter()->startElement('character');
+                foreach($member as $member_key => $member_value) {
+                    $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+                }
+                $xml->XMLWriter()->endElement(); //character
+            }
+            $xml->XMLWriter()->endElement();  //members
+            $xml->XMLWriter()->endElement(); //arenaTeam
+        }
+        $xml->XMLWriter()->endElement(); //arenaTeams
+    }
+    $xml->XMLWriter()->startElement('modelBasePath');
+    $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+    $xml->XMLWriter()->endElement();  //modelBasePath
+    $xml->XMLWriter()->endElement(); //character
+}
 $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();

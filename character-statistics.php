@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 297
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -77,11 +77,20 @@ if($achievement_category > 0) {
     $i = 0;
     if($statistics_page) {
         foreach($statistics_page as $stat) {
-            $xml->XMLWriter()->startElement('statistic');
-            foreach($stat as $statistic_key => $statistic_value) {
-                $xml->XMLWriter()->writeAttribute($statistic_key, $statistic_value);
+            if($utils->IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<statistic');
+                foreach($stat as $statistic_key => $statistic_value) {
+                    $xml->XMLWriter()->writeRaw(' ' . $statistic_key . '="' . $statistic_value . '"');
+                }
+                $xml->XMLWriter()->writeRaw('/>');
             }
-            $xml->XMLWriter()->endElement();
+            else {
+                $xml->XMLWriter()->startElement('statistic');
+                foreach($stat as $statistic_key => $statistic_value) {
+                    $xml->XMLWriter()->writeAttribute($statistic_key, $statistic_value);
+                }
+                $xml->XMLWriter()->endElement();
+            }
         }
     }
     $xml->XMLWriter()->endElement();  //category
@@ -119,11 +128,29 @@ if(!$isCharacter) {
 $character_title = $characters->GetChosenTitleInfo();
 $character_element = $characters->GetHeader($achievements);
 $xml->XMLWriter()->startElement('characterInfo');
-$xml->XMLWriter()->startElement('character');
-foreach($character_element as $c_elem_name => $c_elem_value) {
-    $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+if($utils->IsWriteRaw()) {
+    $xml->XMLWriter()->writeRaw('<character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        if($c_elem_name == 'charUrl') {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
+        }
+        else {
+            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+        }
+    }
+    $xml->XMLWriter()->writeRaw('>');
+    $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
 }
-$xml->XMLWriter()->endElement();   //character
+else {
+    $xml->XMLWriter()->startElement('character');
+    foreach($character_element as $c_elem_name => $c_elem_value) {
+        $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+    }
+    $xml->XMLWriter()->startElement('modelBasePath');
+    $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+    $xml->XMLWriter()->endElement();  //modelBasePath
+    $xml->XMLWriter()->endElement(); //character
+}
 $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->startElement('statistics');
 $xml->XMLWriter()->startElement('summary');
@@ -131,18 +158,40 @@ $xml->XMLWriter()->endElement();    //summary
 $xml->XMLWriter()->startElement('rootCategories');
 $root_categories = $achievements->BuildStatisticsCategoriesTree();
 foreach($root_categories as $category) {
-    $xml->XMLWriter()->startElement('category');
-    $xml->XMLWriter()->writeAttribute('id', $category['id']);
-    $xml->XMLWriter()->writeAttribute('name', $category['name']);
-    if(isset($category['child']) && is_array($category['child'])) {
-        foreach($category['child'] as $category_child) {
-            $xml->XMLWriter()->startElement('category');
-            $xml->XMLWriter()->writeAttribute('name', $category_child['name']);
-            $xml->XMLWriter()->writeAttribute('id', $category_child['id']);
-            $xml->XMLWriter()->endElement(); //category
+    if($utils->IsWriteRaw()) {
+        $xml->XMLWriter()->writeRaw('<category');
+        $xml->XMLWriter()->writeRaw(' id="' . $category['id'] . '"');
+        if($category['id'] == 14807) {
+            $xml->XMLWriter()->writeRaw(' name="' . htmlspecialchars($category['name']) . '"');
         }
+        else {
+            $xml->XMLWriter()->writeRaw(' name="' . $category['name'] . '"');
+        }
+        $xml->XMLWriter()->writeRaw('>');
+        if(isset($category['child']) && is_array($category['child'])) {
+            foreach($category['child'] as $category_child) {
+                $xml->XMLWriter()->writeRaw('<category');
+                $xml->XMLWriter()->writeRaw(' name="' . $category_child['name'] . '"');
+                $xml->XMLWriter()->writeRaw(' id="' . $category_child['id'] . '"');
+                $xml->XMLWriter()->writeRaw('/>'); //category
+            }
+        }
+        $xml->XMLWriter()->writeRaw('</category>'); //category
     }
-    $xml->XMLWriter()->endElement(); //category
+    else {
+        $xml->XMLWriter()->startElement('category');
+        $xml->XMLWriter()->writeAttribute('id', $category['id']);
+        $xml->XMLWriter()->writeAttribute('name', $category['name']);
+        if(isset($category['child']) && is_array($category['child'])) {
+            foreach($category['child'] as $category_child) {
+                $xml->XMLWriter()->startElement('category');
+                $xml->XMLWriter()->writeAttribute('name', $category_child['name']);
+                $xml->XMLWriter()->writeAttribute('id', $category_child['id']);
+                $xml->XMLWriter()->endElement(); //category
+            }
+        }
+        $xml->XMLWriter()->endElement(); //category
+    }
 }
 $xml->XMLWriter()->endElement();   //rootCategories
 $xml->XMLWriter()->endElement();  //statistics

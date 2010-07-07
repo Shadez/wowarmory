@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 226
+ * @revision 297
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -467,6 +467,12 @@ Class Achievements extends Connector {
     }
     
     public function BuildAchievementCriteriaTable() {
+        if($this->_locale == 'es_es' || $this->_locale == 'es_mx') {
+            $locale = 'en_gb';
+        }
+        else {
+            $locale = $this->_locale;
+        }
         if(!$this->guid || !$this->achId) {
             $this->Log()->writeError('%s : player guid or achievement id not defiend', __METHOD__);
             return false;
@@ -490,7 +496,7 @@ Class Achievements extends Connector {
             if(isset($m_data['date']) && $m_data['date'] > 0) {
                 $achievement_criteria[$i]['date'] = date('Y-m-d\TH:i:s\+01:00', $m_data['date']);
             }
-            $achievement_criteria[$i]['name'] = $criteria['name_'.$this->_locale];
+            $achievement_criteria[$i]['name'] = $criteria['name_'.$locale];
             if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag']&ACHIEVEMENT_FLAG_COUNTER) {
                 if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_MONEY_COUNTER) {
                     $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
