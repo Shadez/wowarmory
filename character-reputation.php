@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 296
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,21 +91,41 @@ $xml->XMLWriter()->endElement(); //character
 $xml->XMLWriter()->startElement('reputationTab');
 $character_reputation = $characters->GetCharacterReputation();
 if($character_reputation) {
-    $xml->XMLWriter()->startElement('faction');
-    $header_faction = array(
-        'header' => 1, 'iconKey' => 'classic', 'id' => 1118, 'key' => 'classic', 'name' => 'World of Warcraft' // hack
-    );
-    foreach($header_faction as $head_key => $head_value) {
-        $xml->XMLWriter()->writeAttribute($head_key, $head_value);
+    if($utils->IsWriteRaw()) {
+        $xml->XMLWriter()->writeRaw('<faction');
+        $header_faction = array(
+            'header' => 1, 'iconKey' => 'classic', 'id' => 1118, 'key' => 'classic', 'name' => 'World of Warcraft' // hack
+        );
+        foreach($header_faction as $head_key => $head_value) {
+            $xml->XMLWriter()->writeRaw(' ' . $head_key .'="' . $head_value .'"');
+        }
+        $xml->XMLWriter()->writeRaw('>');
+        foreach($character_reputation as $faction) {
+            $xml->XMLWriter()->writeRaw('<faction');
+            foreach($faction as $rep_key => $rep_value) {
+                $xml->XMLWriter()->writeRaw(' ' . $rep_key .'="' . $rep_value .'"');
+            }
+            $xml->XMLWriter()->writeRaw('/>');
+        }
+        $xml->XMLWriter()->writeRaw('</faction>');
     }
-    foreach($character_reputation as $faction) {
+    else {
         $xml->XMLWriter()->startElement('faction');
-        foreach($faction as $rep_key => $rep_value) {
-            $xml->XMLWriter()->writeAttribute($rep_key, $rep_value);
+        $header_faction = array(
+            'header' => 1, 'iconKey' => 'classic', 'id' => 1118, 'key' => 'classic', 'name' => 'World of Warcraft' // hack
+        );
+        foreach($header_faction as $head_key => $head_value) {
+            $xml->XMLWriter()->writeAttribute($head_key, $head_value);
+        }
+        foreach($character_reputation as $faction) {
+            $xml->XMLWriter()->startElement('faction');
+            foreach($faction as $rep_key => $rep_value) {
+                $xml->XMLWriter()->writeAttribute($rep_key, $rep_value);
+            }
+            $xml->XMLWriter()->endElement(); //faction
         }
         $xml->XMLWriter()->endElement(); //faction
     }
-    $xml->XMLWriter()->endElement(); //faction
 }
 $xml->XMLWriter()->endElement();  //reputationTab
 $xml->XMLWriter()->endElement(); //page

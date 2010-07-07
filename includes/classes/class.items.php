@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 293
+ * @revision 296
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -237,15 +237,21 @@ Class Items extends Connector {
     }
     
     public function GetItemSetBonusInfo($itemsetdata) {
+        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+            $tmp_locale = $this->_locale;
+        }
+        else {
+            $tmp_locale = 'en_gb';
+        }
         $itemSetBonuses = array();
         for($i=1; $i<9; $i++) {
             if($itemsetdata['bonus'.$i] > 0) {
                 $spell_tmp = array();
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $itemsetdata['bonus'.$i]);
-                if(!isset($spell_tmp['Description_'.$this->_locale])) {
-                    $spell_tmp['Description_'.$this->_locale] = null;
+                if(!isset($spell_tmp['Description_'.$tmp_locale])) {
+                    $spell_tmp['Description_'.$tmp_locale] = null;
                 }
-                $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$this->_locale]));
+                $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$tmp_locale]));
                 $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
                 $itemSetBonuses[$i]['threshold'] = $i;
             }
@@ -1289,14 +1295,21 @@ Class Items extends Connector {
         $xml->XMLWriter()->startElement('id');
         $xml->XMLWriter()->text($itemID);
         $xml->XMLWriter()->endElement(); //id
-        $xml->XMLWriter()->startElement('name');
-        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
-            $xml->XMLWriter()->text($data['name']);
+        if(Utils::IsWriteRaw()) {
+            $xml->XMLWriter()->writeRaw('<name>');
+            $xml->XMLWriter()->writeRaw(Items::getItemName($itemID));
+            $xml->XMLWriter()->writeRaw('</name>');
         }
         else {
-            $xml->XMLWriter()->text(Items::getItemName($itemID));
+            $xml->XMLWriter()->startElement('name');
+            if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                $xml->XMLWriter()->text($data['name']);
+            }
+            else {
+                $xml->XMLWriter()->text(Items::getItemName($itemID));
+            }
+            $xml->XMLWriter()->endElement(); //name
         }
-        $xml->XMLWriter()->endElement(); //name
         $xml->XMLWriter()->startElement('icon');
         $xml->XMLWriter()->text(Items::getItemIcon($itemID, $data['displayid']));
         $xml->XMLWriter()->endElement(); //icon
@@ -1377,9 +1390,16 @@ Class Items extends Connector {
             $GemSpellItemEcnhID = $this->aDB->selectCell("SELECT `spellitemenchantement` FROM `armory_gemproperties` WHERE `id`=?", $data['GemProperties']);
             $GemText = $this->aDB->selectCell("SELECT `text_" . $this->_locale . "` FROM `armory_enchantment` WHERE `id`=?", $GemSpellItemEcnhID);
             if($GemText) {
-                $xml->XMLWriter()->startElement('gemProperties');
-                $xml->XMLWriter()->text($GemText);
-                $xml->XMLWriter()->endElement(); //gemProperties
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<gemProperties>');
+                    $xml->XMLWriter()->writeRaw($GemText);
+                    $xml->XMLWriter()->writeRaw('</gemProperties>');
+                }
+                else {
+                    $xml->XMLWriter()->startElement('gemProperties');
+                    $xml->XMLWriter()->text($GemText);
+                    $xml->XMLWriter()->endElement(); //gemProperties
+                }
             }
         }
         if($data['block'] > 0) {
@@ -1463,9 +1483,16 @@ Class Items extends Connector {
         if(!$parent && $isCharacter && $itemSlotName) {
             $enchantment = $characters->getCharacterEnchant($itemSlotName);
             if($enchantment) {
-                $xml->XMLWriter()->startElement('enchant');
-                $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_" . $this->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
-                $xml->XMLWriter()->endElement(); //enchant
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<enchant>');
+                    $xml->XMLWriter()->writeRaw($this->aDB->selectCell("SELECT `text_" . $this->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
+                    $xml->XMLWriter()->writeRaw('</enchant>'); //enchant
+                }
+                else {
+                    $xml->XMLWriter()->startElement('enchant');
+                    $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_" . $this->_locale ."` FROM `armory_enchantment` WHERE `id`=? LIMIT 1", $enchantment));
+                    $xml->XMLWriter()->endElement(); //enchant
+                }
             }
         }
         // Random property
@@ -1483,14 +1510,30 @@ Class Items extends Connector {
                 }
                 if($isCharacter && !$parent && is_array($rPropInfo)) {
                     $xml->XMLWriter()->startElement('randomEnchantData');
-                    $xml->XMLWriter()->startElement('suffix');
-                    $xml->XMLWriter()->text($rPropInfo['suffix']);
-                    $xml->XMLWriter()->endElement(); //enchant
+                    if(Utils::IsWriteRaw()) {
+                        $xml->XMLWriter()->writeRaw('<suffix>');
+                        $xml->XMLWriter()->writeRaw($rPropInfo['suffix']);
+                        $xml->XMLWriter()->writeRaw('</suffix>'); //suffix
+                    }
+                    else {
+                        $xml->XMLWriter()->startElement('suffix');
+                        $xml->XMLWriter()->text($rPropInfo['suffix']);
+                        $xml->XMLWriter()->endElement(); //suffix
+                    }
                     if(is_array($rPropInfo['data'])) {
-                        foreach($rPropInfo['data'] as $randProp) {
-                            $xml->XMLWriter()->startElement('enchant');
-                            $xml->XMLWriter()->text($randProp);
-                            $xml->XMLWriter()->endElement(); //enchant
+                        if(Utils::IsWriteRaw()) {
+                            foreach($rPropInfo['data'] as $randProp) {
+                                $xml->XMLWriter()->writeRaw('<enchant>');
+                                $xml->XMLWriter()->writeRaw($randProp);
+                                $xml->XMLWriter()->writeRaw('</enchant>'); //enchant
+                            }
+                        }
+                        else {
+                            foreach($rPropInfo['data'] as $randProp) {
+                                $xml->XMLWriter()->startElement('enchant');
+                                $xml->XMLWriter()->text($randProp);
+                                $xml->XMLWriter()->endElement(); //enchant
+                            }
                         }
                     }
                     $xml->XMLWriter()->endElement(); //randomEnchantData
@@ -1554,11 +1597,20 @@ Class Items extends Connector {
                         break;
                 }
                 if(is_array($socket_data)) {
-                    $xml->XMLWriter()->startElement('socket');
-                    foreach($socket_data as $socket_key => $socket_value) {
-                        $xml->XMLWriter()->writeAttribute($socket_key, $socket_value);
+                    if(Utils::IsWriteRaw()) {
+                        $xml->XMLWriter()->writeRaw('<socket');
+                        foreach($socket_data as $socket_key => $socket_value) {
+                            $xml->XMLWriter()->writeRaw(' ' . $socket_key .'="' . $socket_value .'"');
+                        }
+                        $xml->XMLWriter()->writeRaw('/>');
                     }
-                    $xml->XMLWriter()->endElement(); //socket
+                    else {
+                        $xml->XMLWriter()->startElement('socket');
+                        foreach($socket_data as $socket_key => $socket_value) {
+                            $xml->XMLWriter()->writeAttribute($socket_key, $socket_value);
+                        }
+                        $xml->XMLWriter()->endElement(); //socket
+                    }
                     $color = false;
                 }
             }
@@ -1586,18 +1638,32 @@ Class Items extends Connector {
         }
         if($data['socketBonus'] > 0) {
             $bonus_text = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=?", $data['socketBonus']);
-            $xml->XMLWriter()->startElement('socketMatchEnchant');
-            $xml->XMLWriter()->text($bonus_text);
-            $xml->XMLWriter()->endElement();  //socketMatchEnchant
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<socketMatchEnchant>');
+                $xml->XMLWriter()->writeRaw($bonus_text);
+                $xml->XMLWriter()->writeRaw('</socketMatchEnchant>');  //socketMatchEnchant
+            }
+            else {
+                $xml->XMLWriter()->startElement('socketMatchEnchant');
+                $xml->XMLWriter()->text($bonus_text);
+                $xml->XMLWriter()->endElement();  //socketMatchEnchant
+            }
         }
         $xml->XMLWriter()->endElement(); //socketData
         $allowable_classes = Items::AllowableClasses($data['AllowableClass']);
         if($allowable_classes) {
             $xml->XMLWriter()->startElement('allowableClasses');
             foreach($allowable_classes as $al_class) {
-                $xml->XMLWriter()->startElement('class');
-                $xml->XMLWriter()->text($al_class);
-                $xml->XMLWriter()->endElement(); //class
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<class>');
+                    $xml->XMLWriter()->writeRaw($al_class);
+                    $xml->XMLWriter()->writeRaw('</class>'); //class
+                }
+                else {
+                    $xml->XMLWriter()->startElement('class');
+                    $xml->XMLWriter()->text($al_class);
+                    $xml->XMLWriter()->endElement(); //class
+                }
             }
             $xml->XMLWriter()->endElement(); //allowableClasses
         }
@@ -1605,23 +1671,46 @@ Class Items extends Connector {
         if($allowable_races) {
             $xml->XMLWriter()->startElement('allowableRaces');
             foreach($allowable_races as $al_race) {
-                $xml->XMLWriter()->startElement('race');
-                $xml->XMLWriter()->text($al_race);
-                $xml->XMLWriter()->endElement(); //race
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<race>');
+                    $xml->XMLWriter()->writeRaw($al_race);
+                    $xml->XMLWriter()->writeRaw('</race>'); //race
+                }
+                else {
+                    $xml->XMLWriter()->startElement('race');
+                    $xml->XMLWriter()->text($al_race);
+                    $xml->XMLWriter()->endElement(); //race
+                }
             }
             $xml->XMLWriter()->endElement(); //allowableRaces
         }
         if($data['RequiredSkill'] > 0) {
-            $xml->XMLWriter()->startElement('requiredSkill');
-            $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_skills` WHERE `id`=?", $data['RequiredSkill']));
-            $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
-            $xml->XMLWriter()->endElement(); //requiredSkill
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<requiredSkill');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_skills` WHERE `id`=?", $data['RequiredSkill']) . '"');
+                $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'].'"');
+                $xml->XMLWriter()->writeRaw('/>'); //requiredSkill
+            }
+            else {
+                $xml->XMLWriter()->startElement('requiredSkill');
+                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_skills` WHERE `id`=?", $data['RequiredSkill']));
+                $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
+                $xml->XMLWriter()->endElement(); //requiredSkill
+            }
         }
         if($data['RequiredReputationFaction'] > 0) {    
-            $xml->XMLWriter()->startElement('requiredFaction');
-            $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $data['RequiredReputationFaction']));
-            $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
-            $xml->XMLWriter()->endElement(); //requiredFaction
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<requiredFaction');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $data['RequiredReputationFaction']) . '"');
+                $xml->XMLWriter()->writeRaw(' rep="' . $data['RequiredReputationRank'] . '"');
+                $xml->XMLWriter()->writeRaw('/>'); //requiredFaction
+            }
+            else {
+                $xml->XMLWriter()->startElement('requiredFaction');
+                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_faction` WHERE `id`=?", $data['RequiredReputationFaction']));
+                $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
+                $xml->XMLWriter()->endElement(); //requiredFaction
+            }
         }
         $xml->XMLWriter()->startElement('requiredLevel');
         $xml->XMLWriter()->text($data['RequiredLevel']);
@@ -1632,9 +1721,16 @@ Class Items extends Connector {
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
             $itemsetName = $this->aDB->selectCell("SELECT `name_" . $this->_locale ."` FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
-            $xml->XMLWriter()->startElement('name');
-            $xml->XMLWriter()->text($itemsetName);
-            $xml->XMLWriter()->endElement();
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<name>');
+                $xml->XMLWriter()->writeRaw($itemsetName);
+                $xml->XMLWriter()->writeRaw('</name>');
+            }
+            else {
+                $xml->XMLWriter()->startElement('name');
+                $xml->XMLWriter()->text($itemsetName);
+                $xml->XMLWriter()->endElement();
+            }
             $setdata = $this->aDB->selectRow("SELECT * FROM `armory_itemsetinfo` WHERE `id`=?", $data['itemset']);
             //                   t9/t10                    Onyxia trinkets
             if($data['itemset'] >= 843 && $data['itemset'] != 881 && $data['itemset'] != 882) {
@@ -1643,12 +1739,22 @@ Class Items extends Connector {
                 if($currentSetData) {
                     for($i=1;$i<6;$i++) {
                         if(Items::IsItemExists($currentSetData['item'.$i])) {
-                            $xml->XMLWriter()->startElement('item');
-                            $xml->XMLWriter()->writeAttribute('name', Items::getItemName($currentSetData['item'.$i]));
-                            if($characters->IsItemEquipped($currentSetData['item'.$i])) {
-                                $xml->XMLWriter()->writeAttribute('equipped', 1);
+                            if(Utils::IsWriteRaw()) {
+                                $xml->XMLWriter()->writeRaw('<item');
+                                $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($currentSetData['item'.$i]).'"');
+                                if($characters->IsItemEquipped($currentSetData['item'.$i])) {
+                                    $xml->XMLWriter()->writeRaw(' equipped="' . 1 . '"');
+                                }
+                                $xml->XMLWriter()->writeRaw('/>'); //item
                             }
-                            $xml->XMLWriter()->endElement(); //item
+                            else {
+                                $xml->XMLWriter()->startElement('item');
+                                $xml->XMLWriter()->writeAttribute('name', Items::getItemName($currentSetData['item'.$i]));
+                                if($characters->IsItemEquipped($currentSetData['item'.$i])) {
+                                    $xml->XMLWriter()->writeAttribute('equipped', 1);
+                                }
+                                $xml->XMLWriter()->endElement(); //item
+                            }
                         }
                     }
                 }
@@ -1656,19 +1762,34 @@ Class Items extends Connector {
             else {
                 for($i=1;$i<10;$i++) {
                     if(isset($setdata['item'.$i]) && Items::IsItemExists($setdata['item'.$i])) {
-                        $xml->XMLWriter()->startElement('item');
-                        $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
-                        $xml->XMLWriter()->endElement(); //item
+                        if(Utils::IsWriteRaw()) {
+                            $xml->XMLWriter()->writeRaw('<item');
+                            $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($setdata['item'.$i]) . '"');
+                            $xml->XMLWriter()->writeRaw('/>'); //item
+                        }
+                        else {
+                            $xml->XMLWriter()->startElement('item');
+                            $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
+                            $xml->XMLWriter()->endElement(); //item
+                        }
                     }
                 }
             }
             $itemsetbonus = Items::GetItemSetBonusInfo($setdata);
             if(is_array($itemsetbonus)) {
                 foreach($itemsetbonus as $item_bonus) {
-                    $xml->XMLWriter()->startElement('setBonus');
-                    $xml->XMLWriter()->writeAttribute('desc', $item_bonus['desc']);
-                    $xml->XMLWriter()->writeAttribute('threshold', $item_bonus['threshold']);
-                    $xml->XMLWriter()->endElement(); //setBonus
+                    if(Utils::IsWriteRaw()) {
+                        $xml->XMLWriter()->writeRaw('<setBonus');
+                        $xml->XMLWriter()->writeRaw(' desc="' . $item_bonus['desc'] . '"');
+                        $xml->XMLWriter()->writeRaw(' threshold="' . $item_bonus['threshold'] . '"');
+                        $xml->XMLWriter()->writeRaw('/>'); //setBonus
+                    }
+                    else {
+                        $xml->XMLWriter()->startElement('setBonus');
+                        $xml->XMLWriter()->writeAttribute('desc', $item_bonus['desc']);
+                        $xml->XMLWriter()->writeAttribute('threshold', $item_bonus['threshold']);
+                        $xml->XMLWriter()->endElement(); //setBonus
+                    }
                 }
             }
             $xml->XMLWriter()->endElement(); //setData
@@ -1726,10 +1847,18 @@ Class Items extends Connector {
                         $spellreagents = $this->GetSpellItemCreateReagentsInfo($spell_tmp['EffectItemType_' . $k]);
                         if(is_array($spellreagents)) {
                             foreach($spellreagents as $reagent) {
-                                $xml->XMLWriter()->startElement('reagent');
-                                $xml->XMLWriter()->writeAttribute('count', $reagent['count']);
-                                $xml->XMLWriter()->writeAttribute('name', $reagent['name']);
-                                $xml->XMLWriter()->endElement(); //reagent
+                                if(Utils::IsWriteRaw()) {
+                                    $xml->XMLWriter()->writeRaw('<reagent');
+                                    $xml->XMLWriter()->writeRaw(' count="' . $reagent['count'] . '"');
+                                    $xml->XMLWriter()->writeRaw(' name="' . $reagent['name'] . '"');
+                                    $xml->XMLWriter()->writeRaw('/>'); //reagent
+                                }
+                                else {
+                                    $xml->XMLWriter()->startElement('reagent');
+                                    $xml->XMLWriter()->writeAttribute('count', $reagent['count']);
+                                    $xml->XMLWriter()->writeAttribute('name', $reagent['name']);
+                                    $xml->XMLWriter()->endElement(); //reagent
+                                }
                             }
                         }
                         else {
@@ -1743,23 +1872,39 @@ Class Items extends Connector {
         }
         $xml->XMLWriter()->endElement(); //spellData
         if(!empty($data['description']) && $data['description'] != $spellInfo && $spellData != 1) {
-            $xml->XMLWriter()->startElement('desc');
-            if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
-                $xml->XMLWriter()->text($data['description']);
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<desc>');
+                $xml->XMLWriter()->writeRaw(Items::GetItemDescription($itemID));
+                $xml->XMLWriter()->writeRaw('</desc>'); //desc
             }
             else {
-                $xml->XMLWriter()->text(Items::GetItemDescription($itemID));
+                $xml->XMLWriter()->startElement('desc');
+                if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                    $xml->XMLWriter()->text($data['description']);
+                }
+                else {
+                    $xml->XMLWriter()->text(Items::GetItemDescription($itemID));
+                }
+                $xml->XMLWriter()->endElement(); //desc
             }
-            $xml->XMLWriter()->endElement(); //desc
         }
         if(!$parent) {
             $itemSource = Items::GetItemSource($itemID);
             if(is_array($itemSource)) {
-                $xml->XMLWriter()->startElement('itemSource');
-                foreach($itemSource as $source_key => $source_value) {
-                    $xml->XMLWriter()->writeAttribute($source_key, $source_value);
-                }    
-                $xml->XMLWriter()->endElement(); //itemSource
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<itemSource');
+                    foreach($itemSource as $source_key => $source_value) {
+                        $xml->XMLWriter()->writeRaw(' ' . $source_key .'="' . $source_value . '"');
+                    }    
+                    $xml->XMLWriter()->writeRaw('/>'); //itemSource
+                }
+                else {
+                    $xml->XMLWriter()->startElement('itemSource');
+                    foreach($itemSource as $source_key => $source_value) {
+                        $xml->XMLWriter()->writeAttribute($source_key, $source_value);
+                    }    
+                    $xml->XMLWriter()->endElement(); //itemSource
+                }
             }
             if($itemSource['value'] == 'sourceType.vendor' && $reqArenaRating = Items::IsRequiredArenaRating($itemID)) {
                 $xml->XMLWriter()->startElement('requiredPersonalArenaRating');

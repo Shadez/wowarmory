@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 294
+ * @revision 296
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1088,6 +1088,13 @@ Class Utils extends Connector {
                     $this->Log()->writeError('%s : realm data for realm "%s" was not added to `armory_realm_data` table. Please, execute this query manually: "REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (%d, \'%s\');"', __METHOD__, $myRealm['name'], $myRealm['id'], $myRealm['name']);
                 }
             }
+        }
+        return true;
+    }
+    
+    public function IsWriteRaw() {
+        if($this->_locale == 'en_gb' || $this->_locale == 'en_us' || $this->_locale == 'ru_ru') {
+            return false;
         }
         return true;
     }

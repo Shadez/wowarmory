@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 295
+ * @revision 296
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -609,9 +609,17 @@ Class Characters extends Connector {
      * @return   string
      **/
     public function GetUrlString() {
-        $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
-        if($this->guild_id > 0) {
-            $url .= sprintf('&gn=%s', $this->guild_name);
+        if(Utils::IsWriteRaw()) {
+            $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
+            if($this->guild_id > 0) {
+                $url .= sprintf('&gn=%s', $this->guild_name);
+            }
+        }
+        else {
+            $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
+            if($this->guild_id > 0) {
+                $url .= sprintf('&gn=%s', $this->guild_name);
+            }
         }
         return $url;
     }
@@ -667,6 +675,9 @@ Class Characters extends Connector {
             'suffix'       => $this->character_title['suffix'],
             'titleId'      => $this->character_title['titleId'],
         );
+        if(Utils::IsWriteRaw()) {
+            $header['guildUrl'] = ($this->guild_id > 0) ? sprintf('r=%s&amp;gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->guild_name)) : null;
+        }
         return $header;
     }
     
