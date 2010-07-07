@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 296
+ * @revision 298
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -99,8 +99,9 @@ if($utils->IsWriteRaw()) {
             $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
         }
     }
+    $xml->XMLWriter()->writeRaw('>');
     if($character_arenateams && is_array($character_arenateams)) {
-        $xml->XMLWriter()->writeRaw('><arenaTeams>'); // close <character> tag before open new
+        $xml->XMLWriter()->writeRaw('<arenaTeams>'); // close <character> tag before open new
         foreach($character_arenateams as $arenateam) {
             $xml->XMLWriter()->writeRaw('<arenaTeam');
             foreach($arenateam['data'] as $team_key => $team_value) {
