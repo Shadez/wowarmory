@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 295
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -79,7 +79,7 @@ $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
     $xml->XMLWriter()->writeAttribute('errCode', 'noCharacter');
-    $xml->XMLWriter()->endElement(); // characterInfo
+    $xml->XMLWriter()->endElement();  //characterInfo
     $xml->XMLWriter()->endElement(); //page
     $xml_cache_data = $xml->StopXML();
     echo $xml_cache_data;
@@ -170,7 +170,7 @@ else {
 $xml->XMLWriter()->endElement();  //talentSpecs
 /* Character professions */
 $xml->XMLWriter()->startElement('professions');
-$character_professions = $characters->extractCharacterProfessions();
+$character_professions = $characters->GetCharacterProfessions();
 if($character_professions) {
     foreach($character_professions as $char_professions) {
         $xml->XMLWriter()->startElement('skill');

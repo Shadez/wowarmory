@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 277
+ * @revision 295
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1192,7 +1192,7 @@ Class Characters extends Connector {
      * @access   public
      * @return   array
      **/
-    public function extractCharacterProfessions() {
+    public function GetCharacterProfessions() {
         $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
         $professions = $this->db->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $skills_professions, $this->guid);
         if(!$professions) {
