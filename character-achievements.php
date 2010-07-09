@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 297
+ * @revision 299
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -140,7 +140,7 @@ if($achievement_category > 0) {
                         $xml->XMLWriter()->endElement(); //achievement
                     }
                 }
-                $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
+                $xml->XMLWriter()->endElement(); //achievement
             }
         }
     }
