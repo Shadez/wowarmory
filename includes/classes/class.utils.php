@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 296
+ * @revision 300
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -724,27 +724,41 @@ Class Utils extends Connector {
     }
     
     public function getTimeText($seconds) {
+        $strings_array = array(
+            'en_gb' => array(
+                'days', 'hours', 'min', 'sec'
+            ),
+            'ru_ru' => array(
+                'дней', 'часов', 'мин', 'сек'
+            )
+        );
+        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+            $preferLocale = $strings_array[$this->_locale];
+        }
+        else {
+            $preferLocale = $strings_array['en_gb'];
+        }
         $text = null;
         if($seconds >=24*3600) {
-            $text .= intval($seconds / (24 * 3600)) . ' days';
+            $text .= intval($seconds / (24 * 3600)) . ' ' . $preferLocale[0];
             if($seconds %= 24 * 3600) {
                 $text .= ' ';
             }
         }
         if($seconds >= 3600) {
-            $text .= intval($seconds / 3600) . ' hours';
+            $text .= intval($seconds / 3600) . ' ' . $preferLocale[1];
             if($seconds %= 3600) {
                 $text .= ' ';
             }
         }
         if($seconds >= 60) {
-            $text .= intval($seconds / 60).' min';
+            $text .= intval($seconds / 60).' ' . $preferLocale[2];
             if($seconds %= 60) {
                 $text .= ' ';
             }
         }
         if($seconds > 0) {
-            $text .= $seconds.' sec';
+            $text .= $seconds.' '.  $preferLocale[3];
         }
         return $text;
     }

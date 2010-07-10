@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 296
+ * @revision 300
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -701,7 +701,7 @@ Class Items extends Connector {
             if('$' == substr($data, $pos, 1)) {
                 $str .= '$';
     			$pos++;
-    			continue;
+                continue;
     		}
             if(!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result)) {
                 continue;
@@ -798,11 +798,11 @@ Class Items extends Connector {
         $spellData['x2']= $spell['EffectChainTarget_2'];
         $spellData['x3']= $spell['EffectChainTarget_3'];
         $spellData['i'] = $spell['MaxAffectedTargets'];
-        $spellData['d'] = $d;
+        $spellData['d'] = Utils::getTimeText($d);
         $spellData['d1']= Utils::getTimeText($d);
         $spellData['d2']= Utils::getTimeText($d);
         $spellData['d3']= Utils::getTimeText($d);
-        $spellData['v'] = $spell['AffectedTargetLevel'];
+        $spellData['v'] = $spell['MaxTargetLevel'];
         $spellData['u'] = $spell['StackAmount'];
         $spellData['a1']= Utils::getRadius($spell['EffectRadiusIndex_1']);
         $spellData['a2']= Utils::getRadius($spell['EffectRadiusIndex_2']);
@@ -1807,8 +1807,14 @@ Class Items extends Connector {
                 else {
                     $tmp_locale = 'en_gb';
                 }
-                if(!isset($spell_tmp['Description_' . $tmp_locale])) {
-                    continue;
+                if(!isset($spell_tmp['Description_' . $tmp_locale]) || empty($spell_tmp['Description_' . $tmp_locale])) {
+                    // Try to find at least en_gb locale
+                    if(!isset($spell_tmp['Description_en_gb']) || empty($spell_tmp['Description_en_gb'])) {
+                        continue;
+                    }
+                    else {
+                        $tmp_locale = 'en_gb';
+                    }
                 }
                 $spellInfo = $this->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$tmp_locale]));
                 if($spellInfo) {
