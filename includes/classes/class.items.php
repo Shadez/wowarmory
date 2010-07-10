@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 300
+ * @revision 301
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -45,8 +45,8 @@ Class Items extends Connector {
     /**
      * Returns item name according with defined locale (ru_ru or en_gb)
      * @category Items class
-     * @example Items::getItemName(35000)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function getItemName($itemID) {
         if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
@@ -67,8 +67,8 @@ Class Items extends Connector {
     /**
      * Returns item icon
      * @category Items class
-     * @example Items::getItemIcon(35000)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function getItemIcon($itemID, $displayId = null) {
         if($displayId == null) {
@@ -81,8 +81,8 @@ Class Items extends Connector {
     /**
      * Returns item description (if isset) according with defined locale (ru_ru or en_gb)
      * @category Items class
-     * @example Items::getItemDescription(35000)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetItemDescription($itemID) {
         if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
@@ -103,8 +103,8 @@ Class Items extends Connector {
     /**
      * Returns available races string (if mask > 0)
      * @category Items class
-     * @example Items::AllowableRaces(690) // Horde only
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function AllowableRaces($mask) {
         $mask &= 0x7FF;
@@ -128,8 +128,8 @@ Class Items extends Connector {
     /**
      * Returns available classes string (if mask > 0)
      * @category Items class
-     * @example Items::AllowableClasses(16) // Priests
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function AllowableClasses($mask) {
 		$mask &= 0x5DF;
@@ -153,8 +153,8 @@ Class Items extends Connector {
     /**
      * Returns item source strin (vendor, drop, chest loot, etc.)
      * @category Items class
-     * @example Items::GetItemSource(35000)
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function GetItemSource($item) {
 		$bossLoot = $this->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=? LIMIT 1", $item);
@@ -205,8 +205,8 @@ Class Items extends Connector {
     /**
      * Return full loot info (not used now)
      * @category Items class
-     * @example Items::lootInfo(35000)
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function lootInfo($itemID) {
         $bossLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=?", $itemID);
@@ -236,6 +236,12 @@ Class Items extends Connector {
         return $loot;
     }
     
+    /**
+     * Return itemset bonus spell(s) info
+     * @category Items class
+     * @access   public
+     * @return   array
+     **/
     public function GetItemSetBonusInfo($itemsetdata) {
         if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
             $tmp_locale = $this->_locale;
@@ -248,8 +254,14 @@ Class Items extends Connector {
             if($itemsetdata['bonus'.$i] > 0) {
                 $spell_tmp = array();
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $itemsetdata['bonus'.$i]);
-                if(!isset($spell_tmp['Description_'.$tmp_locale])) {
-                    $spell_tmp['Description_'.$tmp_locale] = null;
+                if(!isset($spell_tmp['Description_'.$tmp_locale]) || empty($spell_tmp['Description_' . $tmp_locale])) {
+                    // try to find en_gb locale
+                    if(isset($spell_tmp['Description_en_gb']) && !empty($spell_tmp['Description_en_gb'])) {
+                        $tmp_locale = 'en_gb';
+                    }
+                    else {
+                        continue;
+                    }
                 }
                 $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$tmp_locale]));
                 $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
@@ -262,9 +274,9 @@ Class Items extends Connector {
     /**
      * Return array with loot info: dropped by, contained in, disenchating to, reagent for, etc.
      * @category Items class
-     * @example Items::BuildLootTable(35000, 'vendor')
-     * @todo Currency for
-     * @return array
+     * @access   public
+     * @todo     Currency for
+     * @return   array
      **/
     public function BuildLootTable($item, $vendor, $data=false) {
         $lootTable = array();
@@ -405,7 +417,7 @@ Class Items extends Connector {
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                        `SpellName_".$this->_locale."` AS `SpellName`, `SpellIconID`
                         FROM `armory_spell`
                             WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
                 }
@@ -414,7 +426,7 @@ Class Items extends Connector {
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_en_gb` AS `SpellName`, `spellicon`
+                        `SpellName_en_gb` AS `SpellName`, `SpellIconID`
                         FROM `armory_spell`
                             WHERE `EffectItemType_1` =? OR `EffectItemType_2`=? OR `EffectItemType_3`=?", $item, $item, $item);
                 }
@@ -425,7 +437,7 @@ Class Items extends Connector {
                         $lootTable[$i]['item']    = array();
                         $lootTable[$i]['reagent'] = array();                    
                         $lootTable[$i]['spell']['name'] = $craftItem['SpellName'];
-                        $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_speillicon` WHERE `id`=?", $craftItem['spellicon']);
+                        $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_speillicon` WHERE `id`=?", $craftItem['SpellIconID']);
                         for($o=1;$o<9;$o++) {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $craftItem['Reagent_'.$o]);
@@ -458,7 +470,7 @@ Class Items extends Connector {
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_".$this->_locale."` AS `SpellName`, `spellicon`
+                        `SpellName_".$this->_locale."` AS `SpellName`, `SpellIconID`
                     FROM `armory_spell`
                         WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR
                             `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
@@ -468,7 +480,7 @@ Class Items extends Connector {
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
-                        `SpellName_en_gb` AS `SpellName`, `spellicon`
+                        `SpellName_en_gb` AS `SpellName`, `SpellIconID`
                     FROM `armory_spell`
                         WHERE `Reagent_1`=? OR `Reagent_2`=? OR `Reagent_3`=? OR `Reagent_4`=? OR
                             `Reagent_5`=? OR `Reagent_6`=? OR `Reagent_7`=? OR `Reagent_8`=?", $item, $item, $item, $item, $item, $item, $item, $item);
@@ -482,7 +494,7 @@ Class Items extends Connector {
                     $lootTable[$i]['item']    = array();
                     $lootTable[$i]['reagent'] = array();
                     $lootTable[$i]['spell']['name'] = $ReagentItem['SpellName'];
-                    $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `armory_spellicon` WHERE `id`=?", $ReagentItem['spellicon']);
+                    $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `armory_spellicon` WHERE `id`=?", $ReagentItem['SpellIconID']);
                     for($j=1;$j<4;$j++) {
                         if($ReagentItem['EffectItemType_'.$j] > 0) {
                             $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=? LIMIT 1", $ReagentItem['EffectItemType_'.$j]);
@@ -582,9 +594,9 @@ Class Items extends Connector {
     /**
      * Some item info
      * @category Items class
-     * @example Items::GetItemInfo(3500, 'quality')
-     * @todo Add more cases
-     * @return string
+     * @access   public
+     * @todo     Add more cases
+     * @return   string
      **/
     public function GetItemInfo($itemID, $type) {
         switch($type) {
@@ -604,8 +616,8 @@ Class Items extends Connector {
     /**
      * Returns array with socket info (gem icon, enchant string, enchant id, item id)
      * @category Items class
-     * @example Items::extractSocketInfo(100, 3500, 1)
-     * @return array
+     * @access   public
+     * @return   array
      **/ 
     public function extractSocketInfo($guid, $item, $socketNum, $item_guid = false, $db = null) {
         $data = array();
@@ -642,8 +654,8 @@ Class Items extends Connector {
     /**
      * Returns array with current/max item durability for selected ($guid) character
      * @category Items class
-     * @example Items::getItemDurability(100, 35000)
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function getItemDurability($guid, $item) {
         $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, $item, $guid);
@@ -660,8 +672,8 @@ Class Items extends Connector {
     /**
      * Returns field ($field) value from `item_instance`.`data` field for current item guid (NOT char guid!)
      * @category Items class
-     * @example Items::GetItemDataField(10, 333)
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0) {
         $dataField = $field+1;
@@ -955,26 +967,7 @@ Class Items extends Connector {
     /**
      * IN_DEV
      **/
-    public function GetEnchantmentInfo($id) {
-        $spells = array();
-        $spell_id = $this->aDB->selectRow("
-        SELECT `spellid_1`, `spellid_2`, `spellid_3`, `type_1`, `type_2`, `type_3`
-            FROM `armory_enchantment`
-                WHERE `id`=?", $id);
-        for($i=1;$i<4;$i++) {
-            if($spell_id['type_'.$i] != 5) {
-                $spells[$i] = $spell_id['spellid_'.$i];
-            }
-        }
-        $item_id = $this->wDB->selectCell("
-        SELECT `entry`
-            FROM `item_template`
-                WHERE `spellid_1` IN(?a) OR `spellid_2` IN(?a) OR `spellid_3` IN(?a) OR `spellid_4` IN(?a) OR `spellid_5` IN(?a) LIMIT 1",
-                $spells, $spells, $spells, $spells, $spells);
-        if(!$item_id) {
-            return false;
-        }
-    }
+    public function GetEnchantmentInfo($id) {}
     
     public function GetFactionEquivalent($itemID, $factionID) {
         if($factionID == 1) {
@@ -1267,11 +1260,11 @@ Class Items extends Connector {
         return $bonus_template;
     }
     
-    public function ItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
+    public function ItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparison = false) {
         if(!$xml || !$characters) {
             return false;
         }
-        return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparsion);
+        return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparison);
     }
     
     private function CreateAdditionalItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
