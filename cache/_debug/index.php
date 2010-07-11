@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 219
+ * @revision 302
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,23 +30,30 @@ if(isset($_GET['clearLog'])) {
 }
 echo '<html><head><title>WoWArmory Debug Log</title></head><body><a href="?clearLog">Clear log</a><br /><hr />';
 if(@include('../../includes/classes/configuration.php')) {
-    echo sprintf("Configuration values are:<br />
-    <strong>ArmoryConfig['settings']['server_type']</strong> = %s<br />
+    @include('../../includes/revision_nr.php');
+    echo sprintf("<strong>Armory revision:</strong> %d<br />
+    <strong>DB Version:</strong> %s<br />
+    Configuration values are:<br />
     <strong>ArmoryConfig['settings']['siteCharset']</strong> = %s<br />
+    <strong>ArmoryConfig['settings']['configVersion']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['useCache']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['cache_lifetime']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['minlevel']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['minGmLevelToShow']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['defaultLocale']</strong> = %s<br />
+    <strong>ArmoryConfig['settings']['useDebug']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['logLevel']</strong> = %d<br /><br /><strong>Mulitrealm info:</strong> <br />
     ",
-    $ArmoryConfig['settings']['server_type'],
+    ARMORY_REVISION,
+    DB_VERSION,
     $ArmoryConfig['settings']['siteCharset'],
+    $ArmoryConfig['settings']['configVersion'],
     ($ArmoryConfig['settings']['useCache'] == true) ? 'true' : 'false',
     $ArmoryConfig['settings']['cache_lifetime'],
     $ArmoryConfig['settings']['minlevel'],
     $ArmoryConfig['settings']['minGmLevelToShow'],
     $ArmoryConfig['settings']['defaultLocale'],
+    ($ArmoryConfig['settings']['useDebug'] == true) ? 'true' : 'false',
     $ArmoryConfig['settings']['logLevel']    
     );
     if(is_array($ArmoryConfig['multiRealm'])) {

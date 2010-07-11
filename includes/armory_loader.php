@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 295
+ * @revision 301
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,18 +37,53 @@ $armory = new Connector();
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
 if($dbVersion != DB_VERSION) {
     if(!$dbVersion) {
-    	 echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
+        if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
+            $armory->Log()->writeError('ArmoryChecker: wrong Armory DB name!');
+        }
+        else {
+            echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
+        }
     }
-    echo '<b>DB_VERSION error</b>:<br />';
-    if(!defined('DB_VERSION')) {
-        die('DB_VERSION constant not defined!');
+    $errorDBVersion = sprintf('Current version is %s but expected %s.<br />
+    Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'");
+    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
+        $armory->Log()->writeError('ArmoryChecker : DB_VERSION error: %s', (defined('DB_VERSION')) ? $errorDBVersion : 'DB_VERSION constant not defined!');
     }
-    die(sprintf('Current version is %s but expected %s.<br />
-    Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'"));
+    else {
+        echo '<b>DB_VERSION error</b>:<br />';
+        if(!defined('DB_VERSION')) {
+            die('DB_VERSION constant not defined!');
+        }
+        die($errorDBVersion);
+    }
 }
 /* Check revision */
 if(!defined('ARMORY_REVISION')) {
-    die('<b>Revision error:</b> unable to detect Armory revision!');
+    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
+        $armory->Log()->writeError('ArmoryChecker : unable to detect Armroy revision!');
+    }
+    else {
+        die('<b>Revision error:</b> unable to detect Armory revision!');
+    }
+}
+/* Check config version */
+if(!defined('CONFIG_VERSION') || !isset($armory->armoryconfig['configVersion'])) {
+    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
+        $armory->Log()->writeError('ArmoryChecker : unable to detect Configuration version!');
+    }
+    else {
+        die('<b>ConfigVersion error:</b> unable to detect Configuration version!');
+    }
+}
+elseif(CONFIG_VERSION != $armory->armoryconfig['configVersion']) {
+    $CfgError = sprintf('<b>ConfigVersion error:</b> your config version is outdated (current: %d, expected: %d).<br />
+    Please, update your config file from configuration.php.default', $armory->armoryconfig['configVersion'], CONFIG_VERSION);
+    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
+        $armory->Log()->writeError('ArmoryChecker : %s', $CfgError);
+    }
+    else {
+        die($CfgError);
+    }
 }
 error_reporting(E_ALL);
 /* Check maintenance */
