@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 302
+ * @revision 303
  * @copyright (c) 2009-2010 Shadez  
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -60,7 +60,7 @@ $ArmoryConfig['settings']['showScriptInfo']   = true;    // Display script info 
 $ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/false)
 $ArmoryConfig['settings']['useDebug']         = false;   // Use debug? (true/false). STRONGLY not recommended on live server!
 $ArmoryConfig['settings']['logLevel']         = 1;       // 1 - only errors, 2 - debug mode
-$ArmoryConfig['settings']['configVersion']    = 11072010; // Do not change this value!
+$ArmoryConfig['settings']['configVersion']    = 1107201001; // Do not change this value!
 $ArmoryConfig['settings']['checkVersionType'] = 'show'; // How to output Armory check results (db revision, config version, etc.)
                                                        // Option can have 'show' or 'log' value (if nothing selected, script will use 'show' value)
                                                        // 'show': display error message and stop script work
