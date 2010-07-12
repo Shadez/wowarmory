@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 301
+ * @revision 304
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -963,11 +963,6 @@ Class Items extends Connector {
         }
         return $data;
     }
-    
-    /**
-     * IN_DEV
-     **/
-    public function GetEnchantmentInfo($id) {}
     
     public function GetFactionEquivalent($itemID, $factionID) {
         if($factionID == 1) {
@@ -2029,6 +2024,31 @@ Class Items extends Connector {
             return true;
         }
         return false;
+    }
+    
+    public function GenerateEnchantmentSpellData($spellID) {
+        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+            $tmp_locale = $this->_locale;
+        }
+        else {
+            $tmp_locale = 'en_gb';
+        }
+        $data = array();
+        $spell_info = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $spellID);
+        if(!isset($spell_info['Description_' . $tmp_locale]) || empty($spell_info['Description_' . $tmp_locale])) {
+            // Try to find en_gb locale
+            if(isset($spell_info['Description_en_gb']) && !empty($spell_info['Description_en_gb'])) {
+                $tmp_locale = 'en_gb';
+            }
+            else {
+                return false;
+            }
+        }
+        $data['name'] = $spell_info['SpellName_' . $tmp_locale];
+        $data['desc'] = $spell_info['Description_' . $tmp_locale];
+        $data['desc'] = str_replace('&quot;', '"', $data['desc']);
+        $data['desc'] = str_replace('&lt;br&gt;', '', $data['desc']);
+        return $data;
     }
 }
 ?>

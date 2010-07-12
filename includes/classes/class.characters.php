@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 296
+ * @revision 304
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1263,7 +1263,7 @@ Class Characters extends Connector {
      * @return   int
      **/
     public function GetDataField($fieldNum, $guid = null) {
-        if($guid == null) {
+        if($guid == null && $this->guid > 0) {
             $guid = $this->guid;
         }
         if(!$guid) {
@@ -2244,8 +2244,8 @@ Class Characters extends Connector {
         
         $player_stats = array(
             'value'         => $tmp_stats['value'],
-            'hitPercent'    => $tmp_stats['hitPercent'],
-            'damagePercent' => $tmp_stats['damagePercent']
+            'hitPercent'    => round($tmp_stats['hitPercent'], 2),
+            'damagePercent' => round($tmp_stats['damagePercent'], 2)
         );
         unset($rating);
         unset($tmp_stats);
@@ -2257,18 +2257,18 @@ Class Characters extends Connector {
      * @category Character class
      * @access   public
      * @param    int $skill
-     * @param    int $guid = false
+     * @param    int $guid = 0
      * @return   array
      **/
-    public function getCharacterSkill($skill, $guid = false) {
-        if($guid) {
-            $this->guid = $guid;
+    public function getCharacterSkill($skill, $guid = 0) {
+        if($guid == 0 && $this->guid > 0) {
+            $guid = $this->guid;
         }
-        if(!$this->guid) {
+        if($guid == 0) {
             $this->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
-        $skillInfo = $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $this->guid, $skill);
+        $skillInfo = $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $guid, $skill);
         return $skillInfo;
     }
     
@@ -2548,7 +2548,6 @@ Class Characters extends Connector {
      * @access   public
      * @param    array $slot
      * @return   array
-     * @todo     item enchantments (as items or spells)
      **/
     public function GetCharacterItemInfo($slot) {
         if(!$this->guid) {
@@ -2568,6 +2567,32 @@ Class Characters extends Connector {
         );
         $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item_id);
         $enchantment = $this->getCharacterEnchant($slot['slot']);
+        $originalSpell = 0;
+        $enchItemData = array();
+        $enchItemDisplayId = null;
+        if($enchantment > 0) {
+            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spell` WHERE `EffectMiscValue_1`=? OR `EffectMiscValue_2`=? OR `EffectMiscValue_3`=?", $enchantment, $enchantment, $enchantment);
+            if($originalSpell > 0) {
+                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=? OR `spellid_2`=? OR `spellid_3`=? OR `spellid_4`=? OR `spellid_5`=? LIMIT 1", $originalSpell, $originalSpell, $originalSpell, $originalSpell, $originalSpell);
+                if($enchItemData) {
+                    // Item
+                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $enchItemData['displayid']);
+                }
+                else {
+                    // Spell
+                    $spellEnchData = Items::GenerateEnchantmentSpellData($originalSpell);
+                    if(is_array($spellEnchData)) {
+                        $this->Log()->writeLog('%s : spellInfo for ench #%d found (name: %s)', __METHOD__, $enchantment, $spellEnchData['name']);
+                    }
+                    else {
+                        $this->Log()->writeLog('%s : spellInfo for ench #%d was not found!', __METHOD__, $enchantment);
+                    }
+                }
+            }
+            else {
+                $this->Log()->writeLog('%s : spellID for ench #%d was not found!', __METHOD__, $enchantment);
+            }
+        }
         $item_info = array(
             'displayInfoId'          => $item_data['displayid'],
             'durability'             => $durability['current'],
@@ -2576,9 +2601,7 @@ Class Characters extends Connector {
             'level'                  => $item_data['ItemLevel'],
             'maxDurability'          => $durability['max'],
             'name'                   => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $item_data['name'] : Items::getItemName($item_id),
-            'permanentEnchantIcon'   => 0,
-            'permanentEnchantItemId' => 0,
-            'permanentenchant'       => null,
+            'permanentenchant'       => $enchantment,
             'pickUp'                 => 'PickUpLargeChain',
             'putDown'                => 'PutDownLArgeChain',
             'randomPropertiesId'     => 0,
@@ -2591,6 +2614,15 @@ Class Characters extends Connector {
                 $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
                 $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
             }
+        }
+        if(is_array($enchItemData) && isset($enchItemData['entry'])) {
+            $item_info['permanentEnchantIcon'] = $enchItemDisplayId;
+            $item_info['permanentEnchantItemId'] = $enchItemData['entry'];
+        }
+        elseif(isset($spellEnchData) && is_array($spellEnchData) && isset($spellEnchData['name'])) {
+            $item_info['permanentEnchantIcon'] = 'trade_engraving';
+            $item_info['permanentEnchantSpellName'] = $spellEnchData['name'];
+            $item_info['permanentEnchantSpellDesc'] = $spellEnchData['desc'];
         }
         return $item_info;
     }
