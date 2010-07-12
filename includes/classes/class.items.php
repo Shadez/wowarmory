@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 304
+ * @revision 305
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2034,7 +2034,7 @@ Class Items extends Connector {
             $tmp_locale = 'en_gb';
         }
         $data = array();
-        $spell_info = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=?", $spellID);
+        $spell_info = $this->aDB->selectRow("SELECT `SpellName_".$tmp_locale."`, `Description_".$tmp_locale."`, `SpellName_en_gb`, `Description_en_gb` FROM `armory_spell` WHERE `id`=? LIMIT 1", $spellID);
         if(!isset($spell_info['Description_' . $tmp_locale]) || empty($spell_info['Description_' . $tmp_locale])) {
             // Try to find en_gb locale
             if(isset($spell_info['Description_en_gb']) && !empty($spell_info['Description_en_gb'])) {

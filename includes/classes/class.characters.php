@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 304
+ * @revision 305
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2571,9 +2571,9 @@ Class Characters extends Connector {
         $enchItemData = array();
         $enchItemDisplayId = null;
         if($enchantment > 0) {
-            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spell` WHERE `EffectMiscValue_1`=? OR `EffectMiscValue_2`=? OR `EffectMiscValue_3`=?", $enchantment, $enchantment, $enchantment);
+            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spellenchantment` WHERE `Value`=?", $enchantment);
             if($originalSpell > 0) {
-                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=? OR `spellid_2`=? OR `spellid_3`=? OR `spellid_4`=? OR `spellid_5`=? LIMIT 1", $originalSpell, $originalSpell, $originalSpell, $originalSpell, $originalSpell);
+                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=? LIMIT 1", $originalSpell);
                 if($enchItemData) {
                     // Item
                     $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $enchItemData['displayid']);
@@ -2581,16 +2581,7 @@ Class Characters extends Connector {
                 else {
                     // Spell
                     $spellEnchData = Items::GenerateEnchantmentSpellData($originalSpell);
-                    if(is_array($spellEnchData)) {
-                        $this->Log()->writeLog('%s : spellInfo for ench #%d found (name: %s)', __METHOD__, $enchantment, $spellEnchData['name']);
-                    }
-                    else {
-                        $this->Log()->writeLog('%s : spellInfo for ench #%d was not found!', __METHOD__, $enchantment);
-                    }
                 }
-            }
-            else {
-                $this->Log()->writeLog('%s : spellID for ench #%d was not found!', __METHOD__, $enchantment);
             }
         }
         $item_info = array(
@@ -2609,10 +2600,12 @@ Class Characters extends Connector {
             'seed'                   => 0,
             'slot'                   => $slot['slotid']
         );
-        for($i=0;$i<3;$i++) {
-            if($gems['g'.$i]['item'] > 0) {
-                $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
-                $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
+        if(is_array($gems)) {
+            for($i=0;$i<3;$i++) {
+                if($gems['g'.$i]['item'] > 0) {
+                    $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
+                    $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
+                }
             }
         }
         if(is_array($enchItemData) && isset($enchItemData['entry'])) {
