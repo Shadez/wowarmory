@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 305
+ * @revision 306
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -961,7 +961,11 @@ Class Items extends Connector {
         else {
             $data = $this->aDB->selectCell("SELECT `".$row."` FROM `armory_itemdisplayinfo` WHERE `displayid`=?", $displayId);
         }
-        return $data;
+        if($data) {
+            return $data;
+        }
+        $this->Log()->writeError('%s : unable to get model data for displayID %d (row: %s, itemid: %d)', __METHOD__, $displayId, $row, $itemid);
+        return false;
     }
     
     public function GetFactionEquivalent($itemID, $factionID) {
