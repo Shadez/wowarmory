@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 288
+ * @revision 310
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -831,10 +831,7 @@ Class SearchMgr extends Connector {
             }
         }
         if($results) {
-            $this->type_results = 'arenateams';
-            $this->results = $results;
-            self::CalculateRelevance();
-            return $this->results;
+            return $results;
         }
         return false;
     }
