@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 298
+ * @revision 309
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -169,7 +169,7 @@ $activeSpec = $characters->GetActiveSpec();
 if($talent_data && is_array($talent_data)) {
     $specCount = $characters->GetSpecCount();
     for($i=0;$i<$specCount;$i++) {
-        $current_tree[$i] = Utils::GetMaxArray($talent_data['points'][$i]);
+        $current_tree[$i] = $utils->GetMaxArray($talent_data['points'][$i]);
         $talent_spec[$i] = array(
             'group' => $i+1,
             'icon'  => $characters->ReturnTalentTreeIcon($current_tree[$i]),

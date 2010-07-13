@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 252
+ * @revision 309
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,7 +34,7 @@ header('Content-type: text/xml');
 $advancedItemsSearch = false;
 $findGearUpgrade     = false;
 if(isset($_GET['searchQuery'])) {
-    $search->searchQuery = Utils::escape($_GET['searchQuery']);
+    $search->searchQuery = $utils->escape($_GET['searchQuery']);
 }
 if(isset($_GET['source'])) {
     $advancedItemsSearch = true;

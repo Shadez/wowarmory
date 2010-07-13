@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 192
+ * @revision 309
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ if(!@include('includes/armory_loader.php')) {
 }
 header('Content-type: text/xml');
 if(isset($_GET['gn'])) {
-    $guilds->guildName = Utils::escape($_GET['gn']);
+    $guilds->guildName = $utils->escape($_GET['gn']);
 }
 else {
     $guilds->guildName = false;

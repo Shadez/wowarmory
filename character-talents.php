@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 297
+ * @revision 309
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -115,7 +115,7 @@ $talent_info = array();
 $current_tree = array();
 $glyphs = $characters->GetCharacterGlyphs();
 for($i = 0; $i < $characters->GetSpecCount(); $i++ ) {
-    $current_tree[$i] = Utils::GetMaxArray($talent_points['points'][$i]);
+    $current_tree[$i] = $utils->GetMaxArray($talent_points['points'][$i]);
     $talent_info[$i] = array(
         'treeOne'   => $talent_points['points'][$i][$characters->GetTalentTab(0)],
         'treeThree' => $talent_points['points'][$i][$characters->GetTalentTab(2)],
