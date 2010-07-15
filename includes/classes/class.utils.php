@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 300
+ * @revision 311
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -572,7 +572,9 @@ Class Utils extends Connector {
     public function GetCritChanceFromAgility($rating, $class, $agility) {
         $base = array(3.1891, 3.2685, -1.532, -0.295, 3.1765, 3.1890, 2.922, 3.454, 2.6222, 20, 7.4755);
         $ratingkey = array_keys($rating);
-        return $base[$class-1] + $agility*$rating[$ratingkey[$class]]*100;
+        if(isset($ratingkey[$class]) && isset($rating[$ratingkey[$class]]) && isset($base[$class-1])) {
+            return $base[$class-1] + $agility*$rating[$ratingkey[$class]]*100;
+        }
     }
     
     public function GetSpellCritChanceFromIntellect($rating, $class, $intellect) {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 305
+ * @revision 311
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -220,6 +220,9 @@ Class Characters extends Connector {
      **/
     private $realmID;
     
+    private $stats = array();
+    private $m_auraModifiersGroup = array();
+    
     /**
      * Checks current player (loaded or not).
      * @category Characters class
@@ -344,8 +347,6 @@ Class Characters extends Connector {
             unset($player_data);
             return false;
         }
-        // Everything correct, build class
-        $this->Log()->writeLog('%s : All correct, player %s builded', __METHOD__, $name);
         foreach($player_data as $pData_key => $pData_value) {
             $this->{$pData_key} = $pData_value;
         }
@@ -372,6 +373,8 @@ Class Characters extends Connector {
         $this->realmID   = $realm_info['id'];
         unset($realm_info);
         $this->__HandleEquipmentCacheData();
+        // Everything correct, build class
+        $this->Log()->writeLog('%s : All correct, player %s (race: %d, class: %d, level: %d) builded', __METHOD__, $name, $this->race, $this->class, $this->level);
         return true;
     }
     
