@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 312
+ * @revision 313
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -739,7 +739,7 @@ Class Utils extends Connector {
                 'days', 'hours', 'min', 'sec'
             ),
             'ru_ru' => array(
-                'дней', 'часов', 'мин', 'сек'
+                'РґРЅРµР№', 'С‡Р°СЃРѕРІ', 'РјРёРЅ', 'СЃРµРє'
             )
         );
         if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
