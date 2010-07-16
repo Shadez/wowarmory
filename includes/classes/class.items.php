@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 306
+ * @revision 317
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1735,7 +1735,7 @@ Class Items extends Connector {
                                 $xml->XMLWriter()->writeRaw('<item');
                                 $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($currentSetData['item'.$i]).'"');
                                 if($characters->IsItemEquipped($currentSetData['item'.$i])) {
-                                    $xml->XMLWriter()->writeRaw(' equipped="' . 1 . '"');
+                                    $xml->XMLWriter()->writeRaw(' equipped="1"');
                                 }
                                 $xml->XMLWriter()->writeRaw('/>'); //item
                             }
@@ -1757,11 +1757,17 @@ Class Items extends Connector {
                         if(Utils::IsWriteRaw()) {
                             $xml->XMLWriter()->writeRaw('<item');
                             $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($setdata['item'.$i]) . '"');
+                            if($characters->IsItemEquipped($setdata['item'.$i])) {
+                                $xml->XMLWriter()->writeRaw(' equipped="1"');
+                            }
                             $xml->XMLWriter()->writeRaw('/>'); //item
                         }
                         else {
                             $xml->XMLWriter()->startElement('item');
                             $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
+                            if($characters->IsItemEquipped($setdata['item'.$i])) {
+                                $xml->XMLWriter()->writeAttribute('equipped', 1);
+                            }
                             $xml->XMLWriter()->endElement(); //item
                         }
                     }
