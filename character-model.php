@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 279
+ * @revision 315
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -99,26 +99,29 @@ $character_model_data['hair_style'] += 2; // Hack?
 
 $character_model_data['hide_helm'] = 0;
 $character_model_data['hide_cloak'] = 0;
-if($player_model['playerFlags']&0x00000400) {
+if($player_model['playerFlags'] & 1024) {
     $character_model_data['hide_helm'] = 1;
 }
-if($player_model['playerFlags']&0x00000800) {
+if($player_model['playerFlags'] & 2048) {
     $character_model_data['hide_cloak'] = 1;
 }
 if(strlen($character_model_data['skin_style']) == 1) {
     $character_model_data['skin_style'] = '0'.$character_model_data['skin_style'];
 }
 $character_model_data['class'] = $characters->GetClass();
-
+$charModelDataInfo = $characters->GetModelData();
+if(!is_array($charModelDataInfo)) {
+    $charModelDataInfo = array('baseY' => 0.97, 'facedY' => 1.6, 'scale' => 1.7);
+}
 $model_data = array(
-    'baseY'    => 0.97,
-    'facedY'   => 1.6,
+    'baseY'    => $charModelDataInfo['baseY'],
+    'facedY'   => $charModelDataInfo['facedY'],
     'hideCape' => $character_model_data['hide_cloak'],
     'hideHelm' => $character_model_data['hide_helm'],
     'id'       => 0,
     'modelFile' => sprintf('character/%s/%s/%s%s.m2', $character_model_data['race'], $character_model_data['gender'], $character_model_data['race'], $character_model_data['gender']),
     'name'      => 'base',
-    'scale'     => 1.7,
+    'scale'     => $charModelDataInfo['scale'],
     'skinFile'  => sprintf('character/%s/%s/%s%s00.skin', $character_model_data['race'], $character_model_data['gender'], $character_model_data['race'], $character_model_data['gender']),
 );
 
@@ -133,14 +136,17 @@ foreach($model_data as $model_key => $model_value) {
 }
 $xml->XMLWriter()->startElement('components');
 $components = array(100, 200, 801, 401, 601, $character_model_data['hair_style'], 901, 302, 1600, 1201, 702, 1001, 1401, 1501, 0, 101, 301, 1101, 502, 1502);
-if($character_model_data['gender_1'] == 'm') {
-    $components[count($components)+1] = 1301;
+if($characters->GetGender() == 1) {
+    $components[count($components)+1] = 1302; // Legs type
 }
 else {
-    $components[count($components)+1] = 1302;
+    $components[count($components)+1] = 1301; // Legs type
 }
-if($character_model_data['class'] == CLASS_DK) {
-    $components[count($components)+1] = 1703;
+if($characters->GetRace() == RACE_BLOODELF) {
+    $components[count($components)+1] = 1702; // Eyes
+}
+if($characters->GetClass() == CLASS_DK) {
+    $components[count($components)+1] = 1703; // Eyes
 }
 foreach($components as $component) {
     $xml->XMLWriter()->startElement('component');
@@ -150,6 +156,17 @@ foreach($components as $component) {
 $xml->XMLWriter()->endElement(); //components
 $subtexture_data = array();
 /** MAIN TEXTURES **/
+/*
+    TEXTURE NAME STRUCTURE:
+        *_au - ARM UPPER    `armory_itemdisplayinfo`.`texture_2`
+        *_al - ARM LOWER    `armory_itemdisplayinfo`.`visual_1`
+        *_ha - HANDS        `armory_itemdisplayinfo`.`visual_2`
+        *_tu - TORSO UPPER  `armory_itemdisplayinfo`.`visual_3`
+        *_tl - TORSO LOWER  `armory_itemdisplayinfo`.`visual_4`
+        *_lu - LEG UPPER    `armory_itemdisplayinfo`.`visual_5`
+        *_ll - LEG LOWER    `armory_itemdisplayinfo`.`visual_6`
+        *_fo - FOOT         `armory_itemdisplayinfo`.`visual_7`
+*/
 $tmpid = 0;
 if($tmpid = $characters->GetCharacterEquip('shirt')) {
     if($items->GetItemModelData(0, 'texture_2', $tmpid)) {
@@ -162,8 +179,8 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
-            'y' => 0.0
+            'x' => '0.0',
+            'y' => '0.0'
         );
         $subtexture_data['shirt_au']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['file']);
         $subtexture_data['shirt_au']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['fileBackup']);
@@ -177,7 +194,7 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
+            'x' => '0.0',
             'y' => 0.25
         );
         $subtexture_data['shirt_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_al']['prefix'] . $subtexture_data['shirt_al']['file']);
@@ -193,7 +210,7 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
-            'y' => 0.0
+            'y' => '0.0'
         );
         $subtexture_data['shirt_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_tu']['prefix'] . $subtexture_data['shirt_tu']['file']);
         $subtexture_data['shirt_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_tu']['prefix'] . $subtexture_data['shirt_tu']['fileBackup']);
@@ -217,6 +234,7 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('chest')) {
+    $armory->Log()->writeLog('model : tmpid: %d', $tmpid);
     if($items->GetItemModelData(0, 'visual_3', $tmpid)) {
         /**
          * Chest (armupper)
@@ -227,11 +245,26 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
-            'y' => 0.0
+            'x' => '0.0',
+            'y' => '0.0'
         );
         $subtexture_data['chest_au']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_au']['prefix'] . $subtexture_data['chest_au']['file']);
         $subtexture_data['chest_au']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_au']['prefix'] . $subtexture_data['chest_au']['fileBackup']);
+        
+        /**
+         * Chest (armlower)
+         **/
+        $subtexture_data['chest_al'] = array(
+            'prefix' => 'item/texturecomponents/armlowertexture/',
+            'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'h' => 0.25,
+            'w' => 0.5,
+            'x' => '0.0',
+            'y' => 0.25
+        );
+        $subtexture_data['chest_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_al']['prefix'] . $subtexture_data['chest_al']['file']);
+        $subtexture_data['chest_al']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_al']['prefix'] . $subtexture_data['chest_al']['fileBackup']);
         
         /**
          * Chest (torsoupper)
@@ -242,8 +275,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
             'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
-            'y' => 0.0
+            'x' => '0.5',
+            'y' => '0.0'
         );
         $subtexture_data['chest_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['chest_tu']['prefix'] . $subtexture_data['chest_tu']['file']);
         $subtexture_data['chest_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['chest_tu']['prefix'] . $subtexture_data['chest_tu']['fileBackup']);
@@ -306,7 +339,7 @@ if($tmpid = $characters->GetCharacterEquip('wrist')) {
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
+            'x' => '0.0',
             'y' => 0.25
         );
         $subtexture_data['bracers_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['bracers_al']['prefix'] . $subtexture_data['bracers_al']['file']);
@@ -325,7 +358,7 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
             'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
-            'x' => 0.0,
+            'x' => '0.0',
             'y' => 0.25
         );
         $subtexture_data['gloves_al']['suffixFile'] = $items->GetModelSuffix($subtexture_data['gloves_al']['prefix'] . $subtexture_data['gloves_al']['file']);
@@ -340,7 +373,7 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
             'fileBackup' => $items->GetItemModelData(0, 'visual_2', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
-            'x' => 0.0,
+            'x' => '0.0',
             'y' => 0.5
         );
         $subtexture_data['hand']['suffixFile'] = $items->GetModelSuffix($subtexture_data['hand']['prefix'] . $subtexture_data['hand']['file']);
@@ -360,7 +393,7 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
-            'y' => 0.0
+            'y' => '0.0'
         );
         $subtexture_data['tabard_tu']['suffixFile'] = $items->GetModelSuffix($subtexture_data['tabard_tu']['prefix'] . $subtexture_data['tabard_tu']['file']);
         $subtexture_data['tabard_tu']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['tabard_tu']['prefix'] . $subtexture_data['tabard_tu']['fileBackup']);
@@ -417,7 +450,7 @@ if($tmpid = $characters->GetCharacterEquip('belt')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('legs')) {
-    if($items->GetItemModelData(0, 'visual_5', $tmpid)) {
+    if($items->GetItemModelData(0, 'visual_5', $tmpid) && (!isset($subtexture_data['chest_lu']) || !isset($subtexture_data['chest_lu']['file']) || $subtexture_data['chest_lu']['file'] === false || $subtexture_data['chest_lu']['file'] === null) ) {
         /**
          * Leg (legupper)
          **/
@@ -672,9 +705,9 @@ foreach($animation_data as $anim) {
     foreach($anim as $anim_key => $anim_value) {
         $xml->XMLWriter()->writeAttribute($anim_key, $anim_value);
     }
-    $xml->XMLWriter()->endElement();   //animation
+    $xml->XMLWriter()->endElement(); //animation
 }
-$xml->XMLWriter()->endElement();  //animations
+$xml->XMLWriter()->endElement();   //animations
 $xml->XMLWriter()->endElement();  //character
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();

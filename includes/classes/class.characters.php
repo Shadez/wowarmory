@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 312
+ * @revision 315
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -774,7 +774,7 @@ Class Characters extends Connector {
 				return $this->equipmentCache[8];
 				break;
 			case 'wrist':
-				return $this->equipmentCache[10];
+				return $this->equipmentCache[16];
 				break;
 			case 'legs':
 				return $this->equipmentCache[12];
@@ -783,7 +783,7 @@ Class Characters extends Connector {
 				return $this->equipmentCache[14];
 				break;
 			case 'belt':
-				return $this->equipmentCache[16];
+				return $this->equipmentCache[10];
 				break;
 			case 'gloves':
 				return $this->equipmentCache[18];
@@ -2816,6 +2816,61 @@ Class Characters extends Connector {
      **/
     public function GetDB() {
         return $this->db;
+    }
+    
+    public function GetModelData() {
+        if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            return false;
+        }
+        switch($this->race) {
+            case RACE_HUMAN:
+                if($this->gender == 1) {
+                    return array('baseY' => 1.05, 'facedY' => 1.625, 'scale' => 1.65);
+                }
+                return array('baseY' => 1.05, 'facedY' => 1.5, 'scale' => 1.65);
+                break;
+            case RACE_ORC:
+                if($this->gender == 1) {
+                    return array('baseY' => 1.05, 'facedY' => 1.7, 'scale' => 1.7);
+                }
+                return array('baseY' => 1.25, 'facedY' => 1.7, 'scale' => 1.3);
+                break;
+            case RACE_DWARF:
+                return array('baseY' => 0.75, 'facedY' => 1.45, 'scale' => 1.75);
+                break;
+            case RACE_NIGHTELF:
+                if($this->gender == 1) {
+                    return array('baseY' => 1.15, 'facedY' => 2.0, 'scale' => 1.5);
+                }
+                return array('baseY' => 1.25, 'facedY' => 2.0, 'scale' => 1.4);
+                break;
+            case RACE_UNDEAD:
+                return array('baseY' => 0.95, 'facedY' => 1.5, 'scale' => 1.8);
+                break;
+            case RACE_TAUREN:
+                return array('baseY' => 1.05, 'facedY' => 1.7, 'scale' => 1.55);
+                break;
+            case RACE_GNOME:
+                return array('baseY' => 0.55, 'facedY' => 0.7, 'scale' => 2.7);
+                break;
+            case RACE_TROLL:
+                return array('baseY' => 1.2, 'facedY' => 1.9, 'scale' => 1.45);
+                break;
+            case RACE_BLOODELF:
+                if($this->gender == 1) {
+                    return array('baseY' => 0.97, 'facedY' => 1.6, 'scale' => 1.7);
+                }
+                return array('baseY' => 1.05, 'facedY' => 1.75, 'scale' => 1.7);
+                break;
+            case RACE_DRAENEI:
+                return array('baseY' => 1.275, 'facedY' => 1.9, 'scale' => 1.375);
+                break;
+            default:
+                $this->Log()->writeError('%s : wrong character raceId: %d (player: %s, realm: %s)', __METHOD__, $this->race, $this->name, $this->realmName);
+                return false;
+                break;
+        }
     }
 }
 ?>

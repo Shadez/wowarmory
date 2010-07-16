@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 310
+ * @revision 315
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -881,6 +881,7 @@ Class SearchMgr extends Connector {
     
     public function SearchCharacters($num = false) {
         if(!$this->searchQuery) {
+            $this->Log()->writeLog('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $currentTimeStamp = time();
@@ -889,23 +890,28 @@ Class SearchMgr extends Connector {
         $count_results = 0; // All realms results
         $count_results_currrent_realm = 0; // Current realm results
         $db = null; // Temporary handler
+        $countRealmData = count($this->realmData);
         if($num == true) {
             foreach($this->realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
                 $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
                 $db->query("SET NAMES ?", $realm_info['charset_characters']);
-                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE ? AND `level` >= ? LIMIT 200", '%'.$this->searchQuery.'%', $this->armoryconfig['minlevel']);
+                $sql_query = sprintf("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s' AND `level` >= %d LIMIT 200", '%' . $this->searchQuery . '%', $this->armoryconfig['minlevel']);
+                $characters_data[] = $db->select($sql_query);
             }
-            $count_result_chars = count($characters_data[0]);
-            for($i=0;$i<$count_result_chars;$i++) {
-                if(isset($characters_data[0][$i]) && self::IsCharacterAllowedForSearch($characters_data[0][$i]['guid'], $characters_data[0][$i]['level'], $characters_data[0][$i]['account'])) {
-                    $count_results++;
+            for($ii = 0; $ii < $countRealmData; $ii++) {
+                $count_result_chars = count($characters_data[$ii]);
+                for($i=0;$i<$count_result_chars;$i++) {
+                    if(isset($characters_data[$ii][$i]) && self::IsCharacterAllowedForSearch($characters_data[$ii][$i]['guid'], $characters_data[$ii][$i]['level'], $characters_data[$ii][$i]['account'])) {
+                        $count_results++;
+                    }
                 }
             }
             return $count_results;
         }
         $accounts_cache = array(); // For relevance calculation
         foreach($this->realmData as $realm_info) {
+            $this->Log()->writeLog('%s : initiate connection to realmID #%d (%s)', __METHOD__, $realm_info['id'], $realm_info['name']);
             $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
             $db->query("SET NAMES ?", $realm_info['charset_characters']);
             $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
@@ -1032,27 +1038,27 @@ Class SearchMgr extends Connector {
     }
     
     public function MakeUniqueArray($array, $preserveKeys = false) {
-        // Unique Array for return  
-        $arrayRewrite = array();  
-        // Array with the md5 hashes  
-        $arrayHashes = array();  
+        // Unique Array for return
+        $arrayRewrite = array();
+        // Array with the md5 hashes
+        $arrayHashes = array();
         foreach($array as $key => $item) {
-            // Serialize the current element and create a md5 hash  
+            // Serialize the current element and create a md5 hash
             $hash = md5(serialize($item));
-            // If the md5 didn't come up yet, add the element to  
-            // to arrayRewrite, otherwise drop it  
-            if (!isset($arrayHashes[$hash])) {
-                // Save the current element hash  
-                $arrayHashes[$hash] = $hash;  
-                // Add element to the unique Array  
-                if ($preserveKeys) {
+            // If the md5 didn't come up yet, add the element to
+            // to arrayRewrite, otherwise drop it
+            if(!isset($arrayHashes[$hash])) {
+                // Save the current element hash
+                $arrayHashes[$hash] = $hash;
+                // Add element to the unique Array
+                if($preserveKeys) {
                     $arrayRewrite[$key] = $item;
-                } else {  
+                } else {
                     $arrayRewrite[] = $item;
                 }
             }
         }
-        return $arrayRewrite;  
+        return $arrayRewrite;
     }
     
     private function IsCharacterAllowedForSearch($guid, $level, $account_id) {
