@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 288
+ * @revision 316
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -358,10 +358,10 @@ define('INV_NECK', 1);
 define('INV_SHOULDER', 2);
 define('INV_SHIRT', 3);
 define('INV_CHEST', 4);
-define('INV_BRACERS', 5);
+define('INV_BELT', 5);
 define('INV_LEGS', 6);
 define('INV_BOOTS', 7);
-define('INV_BELT', 8);
+define('INV_BRACERS', 8);
 define('INV_GLOVES', 9);
 define('INV_RING_1', 10);
 define('INV_RING_2', 11);
@@ -509,4 +509,60 @@ define('PLAYER_SLOT_ITEM_RANGED', PLAYER_FIELD_INV_SLOT_HEAD+34);
 define('PLAYER_SLOT_ITEM_TABARD', PLAYER_FIELD_INV_SLOT_HEAD+36);
 
 define('PLAYER_MAX_LEVEL', 80); // Wrath
+
+define('MAX_ITEM_PROTO_DAMAGES', 2);                            // changed in 3.1.0
+define('MAX_ITEM_PROTO_SOCKETS', 3);
+define('MAX_ITEM_PROTO_SPELLS', 5);
+define('MAX_ITEM_PROTO_STATS', 11); // 10 in MaNGOS
+
+/* Unit Mod */
+define('UNIT_MOD_STAT_STRENGTH', 0);
+define('UNIT_MOD_STAT_AGILITY', 1);
+define('UNIT_MOD_STAT_STAMINA', 2);
+define('UNIT_MOD_STAT_INTELLECT', 3);
+define('UNIT_MOD_STAT_SPIRIT', 4);
+define('UNIT_MOD_HEALTH', 5);
+define('UNIT_MOD_MANA', 6);
+define('UNIT_MOD_RAGE', 7);
+define('UNIT_MOD_FOCUS', 8);
+define('UNIT_MOD_ENERGY', 9);
+define('UNIT_MOD_HAPPINESS', 10);
+define('UNIT_MOD_RUNE', 11);
+define('UNIT_MOD_RUNIC_POWER', 12);
+define('UNIT_MOD_ARMOR', 13);
+define('UNIT_MOD_RESISTANCE_HOLY', 14);
+define('UNIT_MOD_RESISTANCE_FIRE', 15);
+define('UNIT_MOD_RESISTANCE_NATURE', 16);
+define('UNIT_MOD_RESISTANCE_FROST', 17);
+define('UNIT_MOD_RESISTANCE_SHADOW', 18);
+define('UNIT_MOD_RESISTANCE_ARCANE', 19);
+define('UNIT_MOD_ATTACK_POWER', 20);
+define('UNIT_MOD_ATTACK_POWER_RANGED', 21);
+define('UNIT_MOD_DAMAGE_MAINHAND', 22);
+define('UNIT_MOD_DAMAGE_OFFHAND', 23);
+define('UNIT_MOD_DAMAGE_RANGED', 24);
+define('UNIT_MOD_END', 25);
+define('UNIT_MOD_STAT_START', UNIT_MOD_STAT_STRENGTH);
+define('UNIT_MOD_STAT_END', UNIT_MOD_STAT_SPIRIT+1);
+define('UNIT_MOD_RESISTANCE_START', UNIT_MOD_ARMOR);
+define('UNIT_MOD_RESISTANCE_END', UNIT_MOD_RESISTANCE_ARCANE+1);
+define('UNIT_MOD_POWER_START', UNIT_MOD_MANA);
+define('UNIT_MOD_POWER_END', UNIT_MOD_RUNIC_POWER+1);
+
+/* Unit Modifier Type */
+define('BASE_VALUE', 0);
+define('BASE_PCT', 1);
+define('TOTAL_VALUE', 2);
+define('TOTAL_PCT', 3);
+define('MODIFIER_TYPE_END', 4);
+
+/* Powers */
+define('POWER_MANA', 0);
+define('POWER_RAGE', 1);
+define('POWER_FOCUS', 2);
+define('POWER_ENERGY', 3);
+define('POWER_HAPPINESS', 4);
+define('POWER_RUNE', 5);
+define('POWER_RUNIC_POWER', 6);
+define('POWER_HEALTH', 0xFFFFFFFE); 
 ?>

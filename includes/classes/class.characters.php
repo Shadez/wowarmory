@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 315
+ * @revision 316
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -851,7 +851,7 @@ Class Characters extends Connector {
                 return $this->equipmentCache[9];
                 break;
             case 'wrist':
-                return $this->equipmentCache[11];
+                return $this->equipmentCache[17];
                 break;
             case 'legs':
                 return $this->equipmentCache[13];
@@ -860,7 +860,7 @@ Class Characters extends Connector {
                 return $this->equipmentCache[15];
                 break;
             case 'belt':
-                return $this->equipmentCache[17];
+                return $this->equipmentCache[11];
                 break;
             case 'gloves':
                 return $this->equipmentCache[19];
