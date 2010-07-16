@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 313
+ * @revision 314
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -384,7 +384,7 @@ Class Utils extends Connector {
     public function GetRatingCoefficient($rating, $id) {
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[44+$id]) || !isset($rating[$ratingkey[44+$id]])) {
-            return 0;
+            return 1;
         }
         $c = $rating[$ratingkey[44+$id]];
         if($c == 0) {
