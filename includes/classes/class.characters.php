@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 311
+ * @revision 312
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -219,9 +219,6 @@ Class Characters extends Connector {
      * @access   private
      **/
     private $realmID;
-    
-    private $stats = array();
-    private $m_auraModifiersGroup = array();
     
     /**
      * Checks current player (loaded or not).
@@ -2016,30 +2013,28 @@ Class Characters extends Connector {
      **/
     private function GetCharacterSpellBonusDamage() {
         $tmp_stats  = array();
-        $holySchool = 1;
-        $minModifier = Utils::GetSpellBonusDamage($holySchool, $this->guid);
+        $holySchool = SPELL_SCHOOL_HOLY;
+        $minModifier = Utils::GetSpellBonusDamage($holySchool, $this->guid, $this->db);
         
         for ($i=1;$i<7;$i++) {
-            $bonusDamage[$i] = Utils::GetSpellBonusDamage($i, $this->guid);
+            $bonusDamage[$i] = Utils::GetSpellBonusDamage($i, $this->guid, $this->db);
             $minModifier = min($minModifier, $bonusDamage);
         }
-        $tmp_stats['arcane'] = $bonusDamage[6];
-        $tmp_stats['fire']   = $bonusDamage[2];
-        $tmp_stats['frost']  = $bonusDamage[4];
-        $tmp_stats['holy']   = $bonusDamage[2];
-        $tmp_stats['nature'] = $bonusDamage[3];
-        $tmp_stats['shadow'] = $bonusDamage[5];
-        
-        $tmp_stats['attack'] = '-1';
-        $tmp_stats['damage'] = '-1';
-        if($this->class == 3 || $this->class == 9) {
-            $shadow = Utils::GetSpellBonusDamage(5, $this->guid);
-            $fire   = Utils::GetSpellBonusDamage(2, $this->guid);
+        $tmp_stats['holy']   = round($bonusDamage[1]);
+        $tmp_stats['fire']   = round($bonusDamage[2]);
+        $tmp_stats['nature'] = round($bonusDamage[3]);
+        $tmp_stats['frost']  = round($bonusDamage[4]);
+        $tmp_stats['shadow'] = round($bonusDamage[5]);
+        $tmp_stats['arcane'] = round($bonusDamage[6]);
+        $tmp_stats['attack'] = -1;
+        $tmp_stats['damage'] = -1;
+        if($this->class == CLASS_HUNTER || $this->class == CLASS_WARLOCK) {
+            $shadow = Utils::GetSpellBonusDamage(5, $this->guid, $this->db);
+            $fire   = Utils::GetSpellBonusDamage(2, $this->guid, $this->db);
             $tmp_stats['attack'] = Utils::ComputePetBonus(6, max($shadow, $fire), $this->class);
             $tmp_stats['damage'] = Utils::ComputePetBonus(5, max($shadow, $fire), $this->class);
         }
-        $tmp_stats['fromType'] = '';
-        
+        $tmp_stats['fromType'] = null;
         return $tmp_stats;
     }
     
@@ -2063,11 +2058,11 @@ Class Characters extends Connector {
             $spellCrit[$i] =  Utils::getFloatValue($s_crit_value, 2);
             $minCrit = min($minCrit, $spellCrit[$i]);
         }
-        $player_stats['arcane'] = $spellCrit[5];
+        $player_stats['holy']   = $spellCrit[1];
         $player_stats['fire']   = $spellCrit[2];
+        $player_stats['nature'] = $spellCrit[3]; 
         $player_stats['frost']  = $spellCrit[4];
-        $player_stats['holy']   = $spellCrit[2];
-        $player_stats['nature'] = $spellCrit[3];        
+        $player_stats['arcane'] = $spellCrit[5];       
         $player_stats['shadow'] = $spellCrit[6];
         
         unset($rating);
@@ -2167,6 +2162,12 @@ Class Characters extends Connector {
         $tmp_stats['rating'] = $tmp_value;
         $tmp_stats['increasePercent'] = DODGE_PARRY_BLOCK_PERCENT_PER_DEFENSE * ($tmp_stats['rating'] - $this->level*5);
         $tmp_stats['decreasePercent'] = $tmp_stats['increasePercent'];
+        if($tmp_stats['increasePercent'] < 0) {
+            $tmp_stats['increasePercent'] = 0;
+        }
+        if($tmp_stats['decreasePercent'] < 0) {
+            $tmp_stats['decreasePercent'] = 0;
+        }
         
         unset($rating);
         unset($gskill);

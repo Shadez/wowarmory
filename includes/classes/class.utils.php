@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 311
+ * @revision 312
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -358,7 +358,7 @@ Class Utils extends Connector {
         $hunter_pet_bonus = array(0.22, 0.1287, 0.3, 0.4, 0.35, 0.0, 0.0, 0.0);
         $warlock_pet_bonus = array(0.0, 0.0, 0.3, 0.4, 0.35, 0.15, 0.57, 0.3);
         if($unitClass == CLASS_WARLOCK) {
-            if($warlock_pet_bonus[$stat]) {
+            if(isset($warlock_pet_bonus[$stat])) {
                 return $value * $warlock_pet_bonus[$stat];
             }
             else {
@@ -366,7 +366,7 @@ Class Utils extends Connector {
             }
         }
         elseif($unitClass == CLASS_HUNTER) {
-            if($hunter_pet_bonus[$stat]) {
+            if(isset($hunter_pet_bonus[$stat])) {
                 return $value * $hunter_pet_bonus[$stat];
             }
             else {
@@ -383,6 +383,9 @@ Class Utils extends Connector {
     
     public function GetRatingCoefficient($rating, $id) {
         $ratingkey = array_keys($rating);
+        if(!isset($ratingkey[44+$id]) || !isset($rating[$ratingkey[44+$id]])) {
+            return 0;
+        }
         $c = $rating[$ratingkey[44+$id]];
         if($c == 0) {
             $c = 1;
@@ -428,25 +431,16 @@ Class Utils extends Connector {
         return $index_max;
     }
     
-    public function GetSpellBonusDamage($school, $guid) {
-        $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school;
-        $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school;
-        $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school;
-        $damage_done_pos = $this->cDB->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_pos."), ' ', '-1') AS UNSIGNED)
+    public function GetSpellBonusDamage($school, $guid, $db) {
+        $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school+1;
+        $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school+1;
+        $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school+1;
+        $sql = sprintf("
+        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)
             FROM `armory_character_stats` 
-                WHERE `guid`=?", $guid);
-        $damage_done_neg = $this->cDB->selectCell("
-		SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_neg."), ' ', '-1') AS UNSIGNED)
-			FROM `armory_character_stats` 
-				WHERE `guid`=?", $guid);
-        $damage_done_pct = $this->cDB->selectCell("
-		SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', ".$field_done_pct."), ' ', '-1') AS UNSIGNED)
-			FROM `armory_character_stats` 
-				WHERE `guid`=?", $guid);
-        $bonus = $damage_done_pos + $damage_done_neg;
-        $bonus = $bonus*Utils::getFloatValue($damage_done_pct, 5);
-        return $bonus;
+                WHERE `guid`=%d", $field_done_pos, $guid);
+        $damage_done_pos = $db->selectCell($sql);
+        return $damage_done_pos;
     }
     
     /**
@@ -580,18 +574,32 @@ Class Utils extends Connector {
     public function GetSpellCritChanceFromIntellect($rating, $class, $intellect) {
         $base = array(0, 3.3355, 3.602, 0, 1.2375, 0, 2.201, 0.9075, 1.7, 20, 1.8515);
         $ratingkey = array_keys($rating);
-        return $base[$class-1] + $intellect*$rating[$ratingkey[11+$class]]*100;
+        if(isset($base[$class-1]) && isset($ratingkey[11+$class]) && isset($rating[$ratingkey[11+$class]])) {
+            return $base[$class-1] + $intellect*$rating[$ratingkey[11+$class]]*100;
+        }
     }
     
     public function GetHRCoefficient($rating, $class) {
         $ratingkey = array_keys($rating);
-        $c = $rating[$ratingkey[22+$class]];if ($c==0) $c=1;
+        if(!isset($ratingkey[22+$class]) || !isset($rating[$ratingkey[22+$class]])) {
+            return 1;
+        }
+        $c = $rating[$ratingkey[22+$class]];
+        if($c == 0) {
+            $c = 1;
+        }
         return $c;
     }
     
     public function GetMRCoefficient($rating, $class) {
         $ratingkey = array_keys($rating);
-        $c = $rating[$ratingkey[33+$class]];if ($c==0) $c=1;
+        if(!isset($ratingkey[33+$class]) || !isset($rating[$ratingkey[33+$class]])) {
+            return 1;
+        }
+        $c = $rating[$ratingkey[33+$class]];
+        if($c == 0) {
+            $c = 1;
+        }
         return $c;
     }
     
@@ -731,7 +739,7 @@ Class Utils extends Connector {
                 'days', 'hours', 'min', 'sec'
             ),
             'ru_ru' => array(
-                'РґРЅРµР№', 'С‡Р°СЃРѕРІ', 'РјРёРЅ', 'СЃРµРє'
+                'дней', 'часов', 'мин', 'сек'
             )
         );
         if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
@@ -810,6 +818,9 @@ Class Utils extends Connector {
         '48'=>array(60,0,60),
         '49'=>array(90,0,90)
         );
+        if(!isset($gSpellRadiusIndex[$index])) {
+            return false;
+        }
         $radius = @$gSpellRadiusIndex[$index];
         if($radius == 0) {
             return false;
@@ -1113,6 +1124,70 @@ Class Utils extends Connector {
             return false;
         }
         return true;
+    }
+    
+    public function IsAchievementsComparison($returnFirstRealmName = false) {
+        if(!isset($_GET['r']) || (!isset($_GET['cn']) && !isset($_GET['n']))) {
+            $this->Log()->writeError('%s : realms names or characters names not provided', __METHOD__);
+            return false;
+        }
+        $realms = explode(',', $_GET['r']);
+        if(isset($_GET['n'])) {
+            $chars = explode(',', $_GET['n']);
+        }
+        elseif(isset($_GET['cn'])) {
+            $chars = explode(',', $_GET['cn']);
+        }
+        if(!is_array($realms) || !is_array($chars)) {
+            $this->Log()->writeError('%s : wrong data', __METHOD__);
+            return false;
+        }
+        $countR = count($realms);
+        $countC = count($chars);
+        $totalCount = 0;
+        if($countC == $countR) {
+            $totalCount = $countC;
+        }
+        else {
+            $this->Log()->writeError('%s : wrong realm and characters count are not equal (realms: %d, chars: %d)!', __METHOD__, $countR, $countC);
+            return false;
+        }
+        $data = array();
+        for($i = 0; $i < $totalCount; $i++) {
+            if(!isset($realms[$i]) || !isset($chars[$i])) {
+                $this->Log()->writeError('%s : missed data for %d count, ignore.', __METHOD__, $i);
+                continue;
+            }
+            $data[$i] = array('name' => $chars[$i], 'realm' => $realms[$i]);
+        }
+        if($returnFirstRealmName) {
+            return array(0 => array('name' => $chars[0], 'realm' => $realms[0]), 1 => array('name' => $chars[1], 'realm' => $realms[1]));
+        }
+        return $data;
+    }
+    
+    public function GetAchievementsComparisonDB($realms) {
+        if(!is_array($realms)) {
+            $this->Log()->writeError('%s : realms must be in array!', __METHOD__);
+            return false;
+        }
+        $countRealms = count($realms);
+        $db = array();
+        for($i = 0; $i < $countRealms; $i++) {
+            $rID = Utils::GetRealmIdByName($realms[$i]['realm']);
+            if(!$rID) {
+                $this->Log()->writeError('%s : unable to find realm ID for name "%s", ignore.', __METHOD__, $realms[$i]['realm']);
+                continue;
+            }
+            if(!isset($this->realmData[$rID])) {
+                $this->Log()->writeError('%s : connection info for realm id %d (name: "%s") not found, ignore.', __METHOD__, $rID, $realms[$i]['realm']);
+                continue;
+            }
+            $realm_info = $this->realmData[$i];
+            $db[$i] = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db[$i]->query("SET NAMES ?", (isset($realm_info['charset_characters'])) ? $realm_info['charset_characters'] : 'UTF8');
+        }
+        return $db;
     }
 }
 ?>
