@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 316
+ * @revision 318
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -564,5 +564,38 @@ define('POWER_ENERGY', 3);
 define('POWER_HAPPINESS', 4);
 define('POWER_RUNE', 5);
 define('POWER_RUNIC_POWER', 6);
-define('POWER_HEALTH', 0xFFFFFFFE); 
+define('POWER_HEALTH', 0xFFFFFFFE);
+
+/* ItemFlags */
+define('ITEM_FLAGS_BINDED', 0x00000001); // set in game at binding, not set in template
+define('ITEM_FLAGS_CONJURED', 0x00000002);
+define('ITEM_FLAGS_OPENABLE', 0x00000004);
+define('ITEM_FLAGS_WRAPPED', 0x00000008); // conflicts with heroic flag
+define('ITEM_FLAGS_HEROIC', 0x00000008); // weird...
+define('ITEM_FLAGS_BROKEN', 0x00000010); // appears red icon (like when item durability==0)
+define('ITEM_FLAGS_INDESTRUCTIBLE', 0x00000020); // used for totem. Item can not be destroyed, except by using spell (item can be reagent for spell and then allowed)
+define('ITEM_FLAGS_USABLE', 0x00000040); // ?
+define('ITEM_FLAGS_NO_EQUIP_COOLDOWN', 0x00000080); // ?
+define('ITEM_FLAGS_UNK3', 0x00000100); // saw this on item 47115, 49295...
+define('ITEM_FLAGS_WRAPPER', 0x00000200); // used or not used wrapper
+define('ITEM_FLAGS_IGNORE_BAG_SPACE', 0x00000400); // ignore bag space at new item creation?
+define('ITEM_FLAGS_PARTY_LOOT', 0x00000800); // determines if item is party loot or not
+define('ITEM_FLAGS_REFUNDABLE', 0x00001000); // item cost can be refunded within 2 hours after purchase
+define('ITEM_FLAGS_CHARTER', 0x00002000); // arena/guild charter
+define('ITEM_FLAGS_UNK4', 0x00008000); // a lot of items have this
+define('ITEM_FLAGS_UNK1', 0x00010000); // a lot of items have this
+define('ITEM_FLAGS_PROSPECTABLE', 0x00040000);
+define('ITEM_FLAGS_UNIQUE_EQUIPPED', 0x00080000);
+define('ITEM_FLAGS_USEABLE_IN_ARENA', 0x00200000);
+define('ITEM_FLAGS_THROWABLE', 0x00400000); // not used in game for check trow possibility, only for item in game tooltip
+define('ITEM_FLAGS_SPECIALUSE', 0x00800000); // last used flag in 2.3.0
+define('ITEM_FLAGS_BOA', 0x08000000); // bind on account (set in template for items that can binded in like way)
+define('ITEM_FLAGS_ENCHANT_SCROLL', 0x10000000); // for enchant scrolls
+define('ITEM_FLAGS_MILLABLE', 0x20000000);
+define('ITEM_FLAGS_BOP_TRADEABLE', 0x80000000);
+
+/* ItemFlags2*/
+define('ITEM_FLAGS2_HORDE_ONLY', 0x00000001); // drop in loot, sell by vendor and equipping only for horde
+define('ITEM_FLAGS2_ALLIANCE_ONLY', 0x00000002); // drop in loot, sell by vendor and equipping only for alliance
+define('ITEM_FLAGS2_EXT_COST_REQUIRES_GOLD', 0x00000004); // item cost include gold part in case extended cost use also
 ?>

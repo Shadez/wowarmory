@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 317
+ * @revision 318
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -304,8 +304,15 @@ Class Items extends Connector {
                         if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
                         }
-                        $lootTable[$i]['area'] = Mangos::GetNpcInfo($bItem['entry'], 'map');
-                        $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
+                        if(Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
+                            $areaData = Items::GetImprovedItemSource($item, $bItem['entry'], true);
+                            $lootTable[$i]['area'] = $areaData['areaName'];
+                            $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
+                        }
+                        else {
+                            $lootTable[$i]['area'] = Mangos::GetNpcInfo($bItem['entry'], 'map');
+                            $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
+                        }
                         $drop_percent = Mangos::GenerateLootPercent($bItem['entry'], 'creature_loot_template', $item);
                         $lootTable[$i]['dropRate'] = Mangos::DropPercent($drop_percent);
                         if($lootTable[$i]['areaUrl'] && Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
@@ -323,11 +330,18 @@ Class Items extends Connector {
                         $drop_percent = Mangos::GenerateLootPercent($cItem['entry'], 'gameobject_loot_template', $item);
                         $lootTable[$i] = array (
                             'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
-                            'area' => Mangos::GameobjectInfo($cItem['entry'], 'map'),
-                            'areaUrl' => Mangos::GameobjectInfo($cItem['entry'], 'areaUrl'),
                             'id' => $cItem['entry'],
                             'dropRate' => Mangos::DropPercent($drop_percent)
                         );
+                        if(Mangos::GameobjectInfo($cItem['entry'], 'isInInstance')) {
+                            $areaData = Items::GetImprovedItemSource($item, $cItem['entry'], true);
+                            $lootTable[$i]['area'] = $areaData['areaName'];
+                            $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
+                        }
+                        else {
+                            $lootTable[$i]['area'] = Mangos::GameobjectInfo($cItem['entry'], 'map');
+                            $lootTable[$i]['areaUrl'] = Mangos::GameobjectInfo($cItem['entry'], 'areaUrl');
+                        }
                         $i++;
                     }
                 }
@@ -853,7 +867,7 @@ Class Items extends Connector {
         return false;
     }
     
-    public function GetImprovedItemSource($itemID, $bossID) {
+    public function GetImprovedItemSource($itemID, $bossID, $areaDataOnly = false) {
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_".$this->_locale."` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
             $this->Log()->writeError('%s : dungeonData for lootid %d not found (current_locale: %s, locId: %d)', __METHOD__, $bossID, $this->_locale, $this->_loc);
@@ -867,9 +881,10 @@ Class Items extends Connector {
                 $item_difficulty = $difficulty_enum[$i];
             }
         }
+        $instance_heroic = array(4812, 4722, 4987);
         switch($item_difficulty) {
             case '10n':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
+                if(in_array($dungeonData['instance_id'], $instance_heroic)) {
                     $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
@@ -880,11 +895,11 @@ Class Items extends Connector {
                 }
                 break;
             case '10h':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
+                if(in_array($dungeonData['instance_id'], $instance_heroic)) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=10 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -894,11 +909,11 @@ Class Items extends Connector {
                 }
                 break;
             case '25n':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
+                if(in_array($dungeonData['instance_id'], $instance_heroic)) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -913,11 +928,11 @@ Class Items extends Connector {
                 }
                 break;
             case '25h':
-                if($dungeonData['instance_id'] == 4812 || $dungeonData['instance_id'] == 4722 || $dungeonData['instance_id'] == 4987) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
+                if(in_array($dungeonData['instance_id'], $instance_heroic)) {
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=? AND `partySize`=25 AND `is_heroic`=1", $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_".$this->_locale."` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=?", $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -929,6 +944,9 @@ Class Items extends Connector {
         }
         if(!isset($instance_data)) {
             return false;
+        }
+        if($areaDataOnly == true) {
+            return array('areaName' => $instance_data['areaName'], 'areaUrl' => sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $instance_data['key']));
         }
         $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `armory_instance_data` WHERE `id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=? OR `name_id`=? LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         $instance_data['creatureName'] = $dungeonData['name'];
@@ -1020,7 +1038,7 @@ Class Items extends Connector {
     }
     
     public function GetItemData($itemID) {
-        return $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Faction`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
+        return $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=? LIMIT 1", $itemID);
     }
     
     public function GetModelSuffix($name) {
@@ -1306,7 +1324,7 @@ Class Items extends Connector {
         $xml->XMLWriter()->text(Items::getItemIcon($itemID, $data['displayid']));
         $xml->XMLWriter()->endElement(); //icon
         // 3.2.x heroic item flag
-        if($data['Flags'] == 8 || ($data['Flags'] == 4104 && $data['itemset'] > 0)) {
+        if($data['Flags']&ITEM_FLAGS_HEROIC) {
             $xml->XMLWriter()->startElement('heroic');
             $xml->XMLWriter()->text(1);
             $xml->XMLWriter()->endElement();//heroic

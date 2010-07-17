@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 293
+ * @revision 318
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -83,7 +83,7 @@ if($data['SellPrice'] > 0 || $data['BuyPrice'] || $extended_cost > 0) {
                 $xml->XMLWriter()->writeAttribute($pvp_cost_key, $pvp_cost_value);
             }
         }
-        $xml->XMLWriter()->writeAttribute('factionId', ($data['Faction'] == 1) ? 0 : 1);
+        $xml->XMLWriter()->writeAttribute('factionId', ($data['Flags2']&ITEM_FLAGS2_HORDE_ONLY) ? 0 : 1);
     }
     if(is_array($cost_info)) {
         foreach($cost_info as $cost) {
@@ -202,10 +202,17 @@ if($craft_item = $items->BuildLootTable($itemID, 'craft')) {
     unset($craft_item, $crafted_item);
     $xml->XMLWriter()->endElement(); //createdBy
 }
-if($data['Faction'] == 1 || $data['Faction'] == 2) {
+$factionFlags = 0;
+if($data['Flags2']&ITEM_FLAGS2_ALLIANCE_ONLY) {
+    $factionFlags = 2;
+}
+elseif($data['Flags2']&ITEM_FLAGS2_HORDE_ONLY) {
+    $factionFlags = 1;
+}
+if($factionFlags > 0) {
     $xml->XMLWriter()->startElement('translationFor');
-    $xml->XMLWriter()->writeAttribute('factionEquiv', ($data['Faction'] == 1) ? 0 : 1);
-    $equivalent_item = $items->GetFactionEquivalent($itemID, $data['Faction']);
+    $xml->XMLWriter()->writeAttribute('factionEquiv', ($factionFlags == 1) ? 0 : 1);
+    $equivalent_item = $items->GetFactionEquivalent($itemID, $factionFlags);
     if($equivalent_item) {
         $xml->XMLWriter()->startElement('item');
         foreach($equivalent_item as $eq_key => $eq_value) {
