@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 314
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,7 +43,7 @@ Class Utils extends Connector {
             $this->Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
         }
-        $info = $this->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`=? LIMIT 1", $this->username);
+        $info = $this->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`='%s' LIMIT 1", $this->username);
         if(!$info) {
             $this->Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
             return false;
@@ -74,12 +74,12 @@ Class Utils extends Connector {
             return false;
         }
         if($select == true) {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? AND `selected` <> 1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=%d AND `selected` <> 1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
             $chars[0]['show'] = true;
             $chars[1]['show'] = true;
         }
         else {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=? ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
+            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `armory_login_characters` WHERE `account`=%d ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
         }
         // TODO: achievement points for each character
         return $chars;
@@ -95,18 +95,17 @@ Class Utils extends Connector {
             return false;
         }
         $realm_info = $this->realmData[$realmId];
-        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
         if(!$db) {
-            $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+            return false;
         }
-        $db->query("SET NAMES ?", $realm_info['charset_characters']);
         $chars_data = $db->select("
         SELECT
         `characters`.`guid`,
         `guild_member`.`guildid` AS `guildId`
         FROM `characters` AS `characters`
         LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
-        WHERE `characters`.`account`=? AND `guild_member`.`guildid`=?", $_SESSION['accountId'], $guildId);
+        WHERE `characters`.`account`=%d AND `guild_member`.`guildid`=%d", $_SESSION['accountId'], $guildId);
         if(!$chars_data) {
             $this->Log()->writeLog('%s : account %d does not have any character in %d guild on realm %d', __METHOD__, $_SESSION['accountId'], $guildId, $realmId);
             return false;
@@ -125,12 +124,11 @@ Class Utils extends Connector {
             return false;
         }
         $realm_info = $this->realmData[$realmId];
-        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
         if(!$db) {
-            $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+            return false;
         }
-        $db->query("SET NAMES ?", $realm_info['charset_characters']);
-        $chars_data = $db->select("SELECT 1 FROM `characters` WHERE `account`=? AND `guid`=?", $_SESSION['accountId'], $guid);
+        $chars_data = $db->select("SELECT 1 FROM `characters` WHERE `account`=%d AND `guid`=%d", $_SESSION['accountId'], $guid);
         if(!$chars_data) {
             $this->Log()->writeLog('%s : user with account %d does not have character %d', __METHOD__, $_SESSION['accountId'], $guid);
             return false;
@@ -144,7 +142,7 @@ Class Utils extends Connector {
             $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?", $_SESSION['accountId']);
+        return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
     }
     
     public function CountAllCharacters() {
@@ -154,8 +152,8 @@ Class Utils extends Connector {
         }
         $count_all = 0;
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $current = $this->cDB->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=?", $_SESSION['accountId']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+            $current = $db->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=%d", $_SESSION['accountId']);
             $count_all += $current;
         }
         unset($realm_info, $db);
@@ -169,12 +167,10 @@ Class Utils extends Connector {
         }
         $results = array();
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
             if(!$db) {
-                $this->Log()->writeError('%s : unable to connect to MySQL server (host: %s; user: %s; password: %s; db: %s)', __METHOD__, $realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
                 continue;
             }
-            $db->query("SET NAMES UTF8");
             $chars_data = $db->select("
             SELECT
             `characters`.`guid`,
@@ -188,7 +184,7 @@ Class Utils extends Connector {
             FROM `characters` AS `characters`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildId`
-            WHERE `characters`.`account`=?", $_SESSION['accountId']);
+            WHERE `characters`.`account`=%d", $_SESSION['accountId']);
             if(!$chars_data) {
                 $this->Log()->writeLog('%s : no characters found for account %d in `%s` database', __METHOD__, $_SESSION['accountId'], $realm_info['name_characters']);
                 continue;
@@ -211,7 +207,7 @@ Class Utils extends Connector {
                     $realm['relevance'] = 0; // Unknown
                 }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm['realm']), urlencode($realm['name']));
-                $realm['selected'] = $this->aDB->selectCell("SELECT `selected` FROM `armory_login_characters` WHERE `account`=?d AND `guid`=?d AND `realm_id`=?d LIMIT 1", $_SESSION['accountId'], $realm['guid'], $realm_info['id']);
+                $realm['selected'] = $this->aDB->selectCell("SELECT `selected` FROM `armory_login_characters` WHERE `account`=%d AND `guid`=%d AND `realm_id`=%d LIMIT 1", $_SESSION['accountId'], $realm['guid'], $realm_info['id']);
                 if($realm['selected'] > 2) {
                     $realm['selected'] = 2;
                 }
@@ -247,7 +243,7 @@ Class Utils extends Connector {
         `armory_realm_data`.`name` AS `realmName`
         FROM `armory_login_characters` AS `armory_login_characters`
         LEFT JOIN `armory_realm_data` AS `armory_realm_data` ON `armory_realm_data`.`id`=`armory_login_characters`.`realm_id`
-        WHERE `armory_login_characters`.`account`=? AND `armory_login_characters`.`selected`=1 LIMIT 1
+        WHERE `armory_login_characters`.`account`=%d AND `armory_login_characters`.`selected`=1 LIMIT 1
         ", $_SESSION['accountId']);
     }
     
@@ -261,14 +257,14 @@ Class Utils extends Connector {
             return false;
         }
         // Bookmarks limit is 60
-        $bookmarks_data = $this->aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `armory_bookmarks` WHERE `account`=?d LIMIT 60", $_SESSION['accountId']);
+        $bookmarks_data = $this->aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `armory_bookmarks` WHERE `account`=%d LIMIT 60", $_SESSION['accountId']);
         if(!$bookmarks_data) {
             $this->Log()->writeLog('%s : bookmarks for account %d not found', __METHOD__, $_SESSION['accountId']);
             return false;
         }
         $result = array();
         foreach($bookmarks_data as $bookmark) {
-            $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=?", $bookmark['realm']);
+            $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`='%s'", $bookmark['realm']);
             if(!$realm) {
                 continue;
             }
@@ -276,16 +272,15 @@ Class Utils extends Connector {
                 continue;
             }
             $realm_info = $this->realmData[$realm['id']];
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
             if(!$db) {
                 continue;
             }
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
-            $guid = $db->selectCell("SELECT `guid` FROM `characters` WHERE `name`=?", $bookmark['name']);
+            $guid = $db->selectCell("SELECT `guid` FROM `characters` WHERE `name`='%s'", $bookmark['name']);
             if(!$guid) {
                 continue;
             }
-            $bookmark['achPoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (SELECT `achievement` FROM `" . $realm_info['name_characters'] . "`.`character_achievement` WHERE `guid`=?)", $guid);
+            $bookmark['achPoints'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (SELECT `achievement` FROM `%s`.`character_achievement` WHERE `guid`=%d)", $realm_info['name_characters'], $guid);
             $result[] = $bookmark;
             unset($db, $realm_info, $achievement_ids, $guid, $realm);
         }
@@ -301,7 +296,7 @@ Class Utils extends Connector {
             // Unable to store more than 60 bookmarks for single account
             return false;
         }
-        $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=?", $realmName);
+        $realm = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`='%s'", $realmName);
         if(!$realm) {
             return false;
         }
@@ -309,17 +304,16 @@ Class Utils extends Connector {
             return false;
         }
         $realm_info = $this->realmData[$realm['id']];
-        $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
         if(!$db) {
             return false;
         }
-        $char_data = $db->selectRow("SELECT `name`, `class` AS `classId`, `level` FROM `characters` WHERE `name`=? LIMIT 1", $name);
+        $char_data = $db->selectRow("SELECT `name`, `class` AS `classId`, `level` FROM `characters` WHERE `name`='%s' LIMIT 1", $name);
         if(!$char_data) {
             return false;
         }
         $char_data['realmUrl'] = sprintf('r=%s&cn=%s', urlencode($realmName), urlencode($name));
-        $query = sprintf("INSERT IGNORE INTO `armory_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
-        $this->aDB->query($query);
+        $this->aDB->query("INSERT IGNORE INTO `armory_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
         return true;
     }
     
@@ -328,8 +322,7 @@ Class Utils extends Connector {
             $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
-        $query = sprintf("DELETE FROM `armory_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
-        $this->aDB->query($query);
+        $this->aDB->query("DELETE FROM `armory_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
         return true;
     }
     
@@ -338,7 +331,7 @@ Class Utils extends Connector {
             $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
-        $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `armory_bookmarks` WHERE `account`=?d", $_SESSION['accountId']);
+        $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `armory_bookmarks` WHERE `account`=%d", $_SESSION['accountId']);
         if($count > 60) {
             return 60;
         }
@@ -394,7 +387,7 @@ Class Utils extends Connector {
     }
     
     public function GetRating($level) {
-        return $this->aDB->selectRow("SELECT * FROM `armory_rating` WHERE `level`=?", $level);
+        return $this->aDB->selectRow("SELECT * FROM `armory_rating` WHERE `level`=%d", $level);
     }
     
     public function escape($string) {
@@ -435,11 +428,10 @@ Class Utils extends Connector {
         $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school+1;
         $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school+1;
         $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school+1;
-        $sql = sprintf("
+        $damage_done_pos = $db->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)
             FROM `armory_character_stats` 
                 WHERE `guid`=%d", $field_done_pos, $guid);
-        $damage_done_pos = $db->selectCell($sql);
         return $damage_done_pos;
     }
     
@@ -481,7 +473,7 @@ Class Utils extends Connector {
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $tmp_info = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `desc`, `iconname` FROM `armory_achievement` WHERE `id`=? LIMIT 1", $achievements_data[$i]['achievement']);
+            $tmp_info = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->_locale, $this->_locale, $achievements_data[$i]['achievement']);
             $achievements_data[$i]['title'] = $tmp_info['name'];
             $achievements_data[$i]['desc']  = $tmp_info['desc'];
             $achievements_data[$i]['icon']  = $tmp_info['iconname'];
@@ -513,7 +505,7 @@ Class Utils extends Connector {
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`character_achievement`.`guid`
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-            WHERE `character_achievement`.`achievement`=?
+            WHERE `character_achievement`.`achievement`=%d
             ORDER BY `character_achievement`.`date` DESC", $rf);
             if($tmp) {
                 foreach($tmp as $ach) {
@@ -607,7 +599,7 @@ Class Utils extends Connector {
         if($id == 0) {
             return SKILL_UNARMED;
         }
-        $item = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=? LIMIT 1", $id);
+        $item = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
         if(!$item) {
             return SKILL_UNARMED;
         }
@@ -839,10 +831,7 @@ Class Utils extends Connector {
      * @return   string
      **/
     public function GetArmoryString($id) {
-        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
-            return $this->aDB->selectCell("SELECT `string_".$this->_locale."` FROM `armory_string` WHERE `id`=?", $id);
-        }
-        return $this->aDB->selectCell("SELECT `string_en_gb` FROM `armory_string` WHERE `id`=?", $id);
+        return $this->aDB->selectCell("SELECT `string_%s` FROM `armory_string` WHERE `id`=%d", $this->_locale, $id);
     }
     
     /**
@@ -898,7 +887,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetDungeonKey($instance_id) {
-        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=? LIMIT 1", $instance_id);
+        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=%d LIMIT 1", $instance_id);
     }
     
     /**
@@ -909,7 +898,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetBossDungeonKey($bossIdOrKey) {
-        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `id`=? OR `name_id`=? OR `lootid_1`=? OR `lootid_2`=? OR `lootid_3`=? OR `lootid_4`=?) LIMIT 1", $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey);
+        return $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d) LIMIT 1", $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey);
     }
     
     /**
@@ -920,7 +909,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetDungeonId($instance_key) {
-        return $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $instance_key);
+        return $this->aDB->selectCell("SELECT `id` FROM `armory_instance_template` WHERE `key`='%s' LIMIT 1", $instance_key);
     }
     
     /**
@@ -931,7 +920,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetDungeonData($instance_key) {
-        return $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`=?", $instance_key);
+        return $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`='%s'", $this->_locale, $instance_key);
     }
     
     /**
@@ -946,7 +935,7 @@ Class Utils extends Connector {
             case 'ferocity':
             case 'tenacity':
             case 'cunning':
-                return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_".$this->_locale."` AS `name` FROM `armory_petcalc` WHERE `key`=? AND `catId` >= 0", strtolower($key));
+                return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_%s` AS `name` FROM `armory_petcalc` WHERE `key`='%s' AND `catId` >= 0", $this->_locale, strtolower($key));
                 break;
         }
     }
@@ -959,7 +948,7 @@ Class Utils extends Connector {
      * @return   int
      **/
     public function IsRealm($rName) {
-        $realmId = $this->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`=?", $rName);
+        $realmId = $this->aDB->selectCell("SELECT `id` FROM `armory_realm_data` WHERE `name`='%s'", $rName);
         if($realmId > 0) {
             return $realmId;
         }
@@ -986,7 +975,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function RaceModelData($raceId) {
-        return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=?", $raceId);
+        return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `armory_races` WHERE `id`=%d", $raceId);
     }
     
     /**
@@ -996,7 +985,7 @@ Class Utils extends Connector {
      * @return   string
      **/
     public function ReturnTalentTreeIcon($spec, $class) {
-        return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d LIMIT 1", $class, $spec);
+        return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $class, $spec);
     }
     
     /**
@@ -1006,7 +995,7 @@ Class Utils extends Connector {
      * @return   string
      **/
     public function ReturnTalentTreeName($spec, $class) {
-		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=?d AND `spec`=?d", $class, $spec);
+		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->_locale, $class, $spec);
 	}
     
     /**
@@ -1048,7 +1037,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetArmoryNews() {
-        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_" . $this->_locale ."` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_". $this->_locale ."` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC");
+        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC", $this->_locale, $this->_locale);
         if(!$news) {
             return false;
         }
@@ -1105,9 +1094,9 @@ Class Utils extends Connector {
             return false;
         }
         foreach($this->realmData as $myRealm) {
-            $tmpData = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=? LIMIT 1", $myRealm['name']);
+            $tmpData = $this->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
             if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'])) {
-                $replace = $this->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (?, ?)", $myRealm['id'], $myRealm['name']);
+                $replace = $this->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (%d, '%s')", $myRealm['id'], $myRealm['name']);
                 if($replace) {
                     $this->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
                 }
@@ -1184,8 +1173,10 @@ Class Utils extends Connector {
                 continue;
             }
             $realm_info = $this->realmData[$i];
-            $db[$i] = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db[$i]->query("SET NAMES ?", (isset($realm_info['charset_characters'])) ? $realm_info['charset_characters'] : 'UTF8');
+            $db[$i] = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+            if(!$db[$i]) {
+                unset($db[$i]);
+            }
         }
         return $db;
     }

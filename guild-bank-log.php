@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 309
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -119,8 +119,10 @@ $xml->XMLWriter()->endElement();  //emblem
 $xml->XMLWriter()->endElement(); //guildHeader
 $xml->XMLWriter()->startElement('guildMessages');
 $guild_info = $guilds->GetGuildInfo();
-foreach($guild_info as $info_key => $info_value) {
-    $xml->XMLWriter()->writeAttribute($info_key, $info_value);
+if(is_array($guild_info)) {
+    foreach($guild_info as $info_key => $info_value) {
+        $xml->XMLWriter()->writeAttribute($info_key, $info_value);
+    }
 }
 $xml->XMLWriter()->endElement(); //guildMessages
 // <guildRanks> start

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 316
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -251,12 +251,11 @@ Class Characters extends Connector {
             return false;
         }
         $realm_info = $this->realmData[$realmId];
-        $this->db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
+        $this->db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
         if(!$this->db) {
             $this->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
             return false;
         }
-        $this->db->query("SET NAMES ?", (isset($realm_info['charset'])) ? $realm_info['charset'] : 'UTF8' );
         $player_data = $this->db->selectRow("
         SELECT
         `characters`.`guid`,
@@ -282,12 +281,12 @@ Class Characters extends Connector {
         FROM `characters` AS `characters`
         LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-        WHERE `characters`.`name`=? LIMIT 1", $name);
+        WHERE `characters`.`name`='%s' LIMIT 1", $name);
         if(!$player_data || !is_array($player_data)) {
             $this->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
-        $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=?d LIMIT 1", $player_data['guid']);
+        $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
         if(!$player_stats_check) {
             $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
@@ -295,25 +294,11 @@ Class Characters extends Connector {
         }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
-        $gmLevel_mangos = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=?d LIMIT 1", $player_data['account']);
-        $gmLevel_trinity = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=? AND `RealmID` IN (-1, ?d)", $player_data['account'], $this->connectionData['id']);
-        if($gmLevel_mangos && $gmLevel_trinity) {
-            // MaNGOS doesn't have `account_access` table in `realmd` DB
-            if($this->currentRealmInfo['type'] == 'trinity') {
-                $this->Log()->writeLog('%s: Detected MaNGOS AND Trinity data in realmd DB, using Trinity (by armoryconfig[type])', __METHOD__);
-                $gmLevel = $gmLevel_trinity;
-            }
-            else {
-                // error?
-                $this->Log()->writeLog('%s: Detected MaNGOS AND Trinity data in realmd DB, using MaNGOS (by armoryconfig[type])', __METHOD__);
-                $gmLevel = $gmLevel_mangos;
-            }
+        if($this->currentRealmInfo['type'] == 'trinity') {
+            $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], $this->connectionData['id']);
         }
-        elseif($gmLevel_mangos && !$gmLevel_trinity) {
-            $gmLevel = $gmLevel_mangos;
-        }
-        elseif($gmLevel_trinity && !$gmLevel_mangos) {
-            $gmLevel = $gmLevel_trinity;
+        elseif($this->currentRealmInfo['type'] == 'mangos') {
+            $gmLevel = $gmLevel_mangos = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
         }
         if(!$gmLevel) {
             $gmLevel = 0;
@@ -345,16 +330,18 @@ Class Characters extends Connector {
             return false;
         }
         foreach($player_data as $pData_key => $pData_value) {
-            $this->{$pData_key} = $pData_value;
+            if(is_string($pData_key)) {
+                $this->{$pData_key} = $pData_value;
+            }
         }
         // Get race and class strings
         $race_class = $this->aDB->selectRow("
         SELECT
-        `armory_races`.`name_".$this->_locale."` AS `race`,
-        `armory_classes`.`name_".$this->_locale."` AS `class`
+        `armory_races`.`name_%s` AS `race`,
+        `armory_classes`.`name_%s` AS `class`
         FROM `armory_races` AS `armory_races`
-        LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=?d
-        WHERE `armory_races`.`id`=?d", $this->class, $this->race);
+        LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
+        WHERE `armory_races`.`id`=%d", $this->_locale, $this->_locale, $this->class, $this->race);
         if(!$race_class) {
             $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
             unset($player_data);
@@ -402,7 +389,7 @@ Class Characters extends Connector {
      * @return   bool
      **/
     private function __GetTitleInfo() {
-        $title_data = $this->aDB->selectRow("SELECT `title_F_".$this->_locale."` AS `titleF`, `title_M_".$this->_locale."` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=?d", $this->chosenTitle);
+        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=%d", $this->_locale, $this->_locale, $this->chosenTitle);
         if(!$title_data) {
             $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
             return false;
@@ -609,17 +596,9 @@ Class Characters extends Connector {
      * @return   string
      **/
     public function GetUrlString() {
-        if(Utils::IsWriteRaw()) {
-            $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
-            if($this->guild_id > 0) {
-                $url .= sprintf('&gn=%s', $this->guild_name);
-            }
-        }
-        else {
-            $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
-            if($this->guild_id > 0) {
-                $url .= sprintf('&gn=%s', $this->guild_name);
-            }
+        $url = sprintf('r=%s&cn=%s', urlencode($this->realmName), urlencode($this->name));
+        if($this->guild_id > 0) {
+            $url .= sprintf('&gn=%s', $this->guild_name);
         }
         return $url;
     }
@@ -926,6 +905,9 @@ Class Characters extends Connector {
             9 => array(302,303,301), // Warlock
             11=> array(283,281,282), // Druid
         );
+        if(!isset($talentTabId[$this->class])) {
+            return false;
+        }
         $tab_class = $talentTabId[$this->class];
         if($tab_count >= 0) {
             $values = array_values($tab_class);
@@ -948,12 +930,12 @@ Class Characters extends Connector {
         }
         $talentTree = array();
         $tab_class = self::GetTalentTab();
-        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=%d", $this->guid);
         if(!$character_talents) {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
-        $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (?a) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
         $talent_build = array();
         $talent_build[0] = null;
         $talent_build[1] = null;
@@ -967,6 +949,9 @@ Class Characters extends Connector {
         foreach($tab_class as $tab_key => $tab_value) {
             $num_tabs[$tab_key] = $i;
             $i++;
+        }
+        if(!$class_talents) {
+            return false;
         }
         foreach($class_talents as $class_talent) {
             $current_found = false;
@@ -1016,7 +1001,7 @@ Class Characters extends Connector {
         $build_tree = array(1 => null, 2 => null);
         $tab_class = self::GetTalentTab();
         $specs_talents = array();
-        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=?", $this->guid);
+        $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=%d", $this->guid);
         $talent_data = array(0 => null, 1 => null); // Talent build
         if(!$character_talents) {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
@@ -1032,7 +1017,7 @@ Class Characters extends Connector {
         }
         if($this->currentRealmInfo['type'] == 'trinity') {
             for($i = 0; $i < 3; $i++) {
-                $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                 if(!$current_tab) {
                     continue;
                 }
@@ -1067,7 +1052,7 @@ Class Characters extends Connector {
                 }
                 switch($this->currentRealmInfo['type']) {
                     case 'mangos':
-                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=? ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                         if(!$current_tab) {
                             continue;
                         }
@@ -1103,18 +1088,18 @@ Class Characters extends Connector {
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
                 if($spec >= 0) {
-                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=? ORDER BY `slot`", $this->guid, $spec);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=%d AND `spec`=%d ORDER BY `slot`", $this->guid, $spec);
                 }
                 else {
-                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`, `slot`", $this->guid);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=%d ORDER BY `spec`, `slot`", $this->guid);
                 }
                 break;
             case 'trinity':
                 if($spec >= 0) {
-                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? AND `spec`=?", $this->guid, $spec);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=%d AND `spec`=%d", $this->guid, $spec);
                 }
                 else {
-                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=? ORDER BY `spec`", $this->guid);
+                    $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=%d ORDER BY `spec`", $this->guid);
                 }
                 break;
         }
@@ -1127,10 +1112,10 @@ Class Characters extends Connector {
             switch($this->currentRealmInfo['type']) {
                 case 'mangos':
                     if($this->_locale == 'ru_ru' || $this->_locale == 'en_gb') {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_".$this->_locale."` AS `name`, `description_".$this->_locale."` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->_locale, $this->_locale, $glyph['glyph']);
                     }
                     else {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph']);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
                     }
                     $data[$glyph['spec']][$i] = array(
                         'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
@@ -1147,7 +1132,7 @@ Class Characters extends Connector {
                     break;
                 case 'trinity':
                     for($j=1;$j<7;$j++) {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_" . $this->_locale ."` AS `name`, `description_" . $this->_locale . "` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=?", $glyph['glyph' . $j]);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->_locale, $this->_locale, $glyph['glyph' . $j]);
                         if(!$current_glyph) {
                             continue;
                         }
@@ -1178,7 +1163,7 @@ Class Characters extends Connector {
      * @return   string
      **/
     public function ReturnTalentTreesNames($spec) {
-		return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=?", $this->class, $spec);
+		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->_locale, $this->class, $spec);
 	}
     
     /**
@@ -1190,7 +1175,7 @@ Class Characters extends Connector {
      * @todo     Move this function to Utils class
      **/
     public function ReturnTalentTreeIcon($tree) {
-        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=? AND `spec`=? LIMIT 1", $this->class, $tree);
+        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
         if($icon) {
             return $icon;
         }
@@ -1205,14 +1190,14 @@ Class Characters extends Connector {
      **/
     public function GetCharacterProfessions() {
         $skills_professions = array(164, 165, 171, 182, 186, 197, 202, 333, 393, 755, 773);
-        $professions = $this->db->select("SELECT * FROM `character_skills` WHERE `skill` IN (?a) AND `guid`=? LIMIT 2", $skills_professions, $this->guid);
+        $professions = $this->db->select("SELECT * FROM `character_skills` WHERE `skill` IN (%s) AND `guid`=%d LIMIT 2", $skills_professions, $this->guid);
         if(!$professions) {
             return false;
         }
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
-            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `icon` FROM `armory_professions` WHERE `id`=? LIMIT 1", $prof['skill']);
+            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `armory_professions` WHERE `id`=%d LIMIT 1", $this->_locale, $prof['skill']);
             $p[$i]['value'] = $prof['value'];
             $p[$i]['key'] = str_replace('-sm', '', (isset($p[$i]['icon'])) ? $p[$i]['icon'] : '' );
             $p[$i]['max'] = 450;
@@ -1233,7 +1218,7 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
-        $repData = $this->db->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=?", $this->guid); 
+        $repData = $this->db->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=%d", $this->guid); 
         if(!$repData) {
             return false;
         }
@@ -1242,7 +1227,7 @@ Class Characters extends Connector {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name`, `key` FROM `armory_faction` WHERE `id`=?", $faction['faction']);
+            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $faction['faction']);
             if($faction['standing'] > 42999) {
                 $factionReputation[$i]['reputation'] = 42999;
             }
@@ -1272,9 +1257,9 @@ Class Characters extends Connector {
         }
         $dataField = $fieldNum+1;
         $qData = $this->db->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', " . $dataField . "), ' ', '-1') AS UNSIGNED)  
+        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
             FROM `armory_character_stats` 
-				WHERE `guid`=?", $guid);
+				WHERE `guid`=%d", $dataField, $guid);
         return $qData;
     }
     
@@ -1684,7 +1669,7 @@ Class Characters extends Connector {
     private function GetCharacterMainHandMeleeSkill() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
-        $character_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=?", $this->guid);
+        $character_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid`=%d", $this->guid);
         
         $tmp_stats['melee_skill_id'] = Utils::getSkillFromItemID($this->getCharacterEquip('mainhand'));
         $tmp_stats['melee_skill'] = Utils::getSkill($tmp_stats['melee_skill_id'], $character_data);
@@ -1713,7 +1698,7 @@ Class Characters extends Connector {
      * @todo     correctly handle this stat
      **/
     private function GetCharacterOffHandMeleeSkill() {
-        return array('value' => '', 'rating' => '');
+        return array('value' => null, 'rating' => null);
     }
     
     /**
@@ -1861,7 +1846,7 @@ Class Characters extends Connector {
      * @todo     correctly handle this stat
      **/
     private function GetCharacterRangedWeaponSkill() {
-        return array('value' => '-1', 'rating' => '-1');
+        return array('value' => -1, 'rating' => -1);
     }
     
     /**
@@ -1981,7 +1966,7 @@ Class Characters extends Connector {
         $player_stats['value'] = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+6);
         $player_stats['increasedHitPercent'] = floor($player_stats['value']/ Utils::GetRatingCoefficient($rating, 7));
         $player_stats['reducedArmorPercent'] = $this->GetDataField(PLAYER_FIELD_MOD_TARGET_PHYSICAL_RESISTANCE);
-        $player_stats['penetration'] = '';
+        $player_stats['penetration'] = null;
         
         unset($rating);
         return $player_stats;
@@ -2153,7 +2138,7 @@ Class Characters extends Connector {
     private function GetCharacterDefense() {
         $tmp_stats = array();
         $rating    = $this->SetRating();
-        $gskill    = $this->db->selectRow("SELECT * FROM `character_skills` WHERE `guid`=? AND `skill`=95", $this->guid);
+        $gskill    = $this->db->selectRow("SELECT * FROM `character_skills` WHERE `guid`=%d AND `skill`=95", $this->guid);
         $tmp_value = $this->GetDataField(PLAYER_FIELD_COMBAT_RATING_1+1);
         
         $tmp_stats['defense_rating_skill'] = $gskill['value'];
@@ -2272,8 +2257,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
-        $skillInfo = $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=? AND `skill`=?", $guid, $skill);
-        return $skillInfo;
+        return $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=%d AND `skill`=%d", $guid, $skill);
     }
     
     /**
@@ -2301,7 +2285,7 @@ Class Characters extends Connector {
         FROM `arena_team_member` AS `arena_team_member`
         LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team_member`.`arenateamid`
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`arena_team_member`.`arenateamid`
-        WHERE `arena_team_member`.`guid`=?", $this->guid);
+        WHERE `arena_team_member`.`guid`=%d", $this->guid);
         if(!$tmp_info) {
             return false;
         }
@@ -2352,12 +2336,8 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        if($full) {
-            $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 50", $this->guid);
-        }
-        else {
-            $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=? ORDER BY `date` DESC LIMIT 10", $this->guid);
-        }
+        $limit = ($full == true) ? 50 : 10;
+        $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=%d ORDER BY `date` DESC LIMIT %d", $this->guid, $limit);
         if(!$data) {
             $this->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
             return false;
@@ -2365,7 +2345,7 @@ Class Characters extends Connector {
         $feed_data = array();
         $i = 0;
         // Strings
-        $feed_strings = $this->aDB->select("SELECT `id`, `string_".$this->_locale."` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)");
+        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->_locale);
         if(!$feed_strings) {
             $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->_locale, $this->_loc);
             return false;
@@ -2420,68 +2400,17 @@ Class Characters extends Connector {
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;
                 case TYPE_ITEM_FEED:
-                    $item = $this->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=? LIMIT 1", $event['data']);
+                    $item = $this->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $event['data']);
                     if(!$item) {
                         continue;
                     }
-                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item['displayid']);
+                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d", $item['displayid']);
                     // Is item equipped?
-                    $invenory_slots = array(
-                        1 => 'head',
-                        2 => 'neck',
-                        3 => 'shoulder',
-                        4 => 'shirt',
-                        5 => 'chest',
-                        6 => 'belt',
-                        7 => 'legs',
-                        8 => 'boots',
-                        9 => 'wrist',
-                        10 => 'gloves',
-                        11 => 'ring',
-                        12 => 'trinket',
-                        13 => 'mainhand',
-                        14 => 'offhand',
-                        15 => 'relic',
-                        16 => 'back',
-                        17 => 'mainhand',
-                        18 => 'bag',
-                        19 => 'tabard',
-                        20 => 'chest',
-                        21 => 'mainhand',
-                        22 => 'offhand',
-                        23 => 'relic',
-                        26 => 'relic',
-                        28 => 'relic',
-                    );
-                    $item_slot = -1;
-                    if(isset($invenory_slots[$item['InventoryType']])) {
-                        if($item['InventoryType'] == 11) {
-                            $rings = array('ring1', 'ring2');
-                            foreach($rings as $r_slot) {
-                                $tmp_id = self::getCharacterEquip($r_slot);
-                                if($tmp_id == $event['data']) {
-                                    $item_slot = $item['InventoryType'];
-                                }
-                            }
-                        }
-                        elseif($item['InventoryType'] == 12) {
-                            $trinkets = array('trinket1', 'trinket2');
-                            foreach($trinkets as $t_slot) {
-                                $tmp_id = self::getCharacterEquip($t_slot);
-                                if($tmp_id == $event['data']) {
-                                    $item_slot = $item['InventoryType'];
-                                }
-                            }
-                        }
-                        else {
-                            $item_id = self::getCharacterEquip($invenory_slots[$item['InventoryType']]);
-                            if($item_id == $event['data']) {
-                                $item_slot = $item['InventoryType'];
-                            }
-                            else {
-                                $item_slot = -1;
-                            }
-                        }
+                    if($this->IsItemEquipped($event['data'])) {
+                        $item_slot = $item['InventoryType'];
+                    }
+                    else {
+                        $item_slot = -1;
                     }
                     $feed_data[$i]['event'] = array(
                         'type' => 'loot',
@@ -2501,11 +2430,11 @@ Class Characters extends Connector {
                 case TYPE_BOSS_FEED:
                     // Get criterias
                     $achievement_ids = array();
-                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=?", $event['data']);
+                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=%d", $event['data']);
                     if(!$criterias) {
                         // Search for KillCredit
                         $kc_entry = 0;
-                        $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=?", $event['data']);
+                        $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $event['data']);
                         for($i=1;$i<3;$i++) {
                             if($KillCredit['KillCredit'.$i] > 0) {
                                 $kc_entry = $KillCredit['KillCredit'.$i];
@@ -2514,7 +2443,7 @@ Class Characters extends Connector {
                         if($kc_entry == 0) {
                             continue;
                         }
-                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=?", $kc_entry);
+                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=%d", $kc_entry);
                         if(!$criterias || !is_array($criterias)) {
                             continue;
                         }
@@ -2525,7 +2454,7 @@ Class Characters extends Connector {
                     if(!$achievement_ids || !is_array($achievement_ids)) {
                         continue;
                     }
-                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_".$this->_locale."` AS `name` FROM `armory_achievement` WHERE `id` IN (?a) AND `flags`=1", $achievement_ids);
+                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->_locale, $achievement_ids);
                     if(!$achievement || !is_array($achievement)) {
                         continue;
                     }
@@ -2569,18 +2498,18 @@ Class Characters extends Connector {
             'g1' => Items::extractSocketInfo($this->guid, $item_id, 2, $this->GetEquippedItemGuidBySlot($slot['slot'])),
             'g2' => Items::extractSocketInfo($this->guid, $item_id, 3, $this->GetEquippedItemGuidBySlot($slot['slot']))
         );
-        $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=?", $item_id);
+        $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item_id);
         $enchantment = $this->getCharacterEnchant($slot['slot']);
         $originalSpell = 0;
         $enchItemData = array();
         $enchItemDisplayId = null;
         if($enchantment > 0) {
-            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spellenchantment` WHERE `Value`=?", $enchantment);
+            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spellenchantment` WHERE `Value`=%d", $enchantment);
             if($originalSpell > 0) {
-                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=? LIMIT 1", $originalSpell);
+                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
                 if($enchItemData) {
                     // Item
-                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $enchItemData['displayid']);
+                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
                 }
                 else {
                     // Spell
@@ -2706,10 +2635,10 @@ Class Characters extends Connector {
         }
         $data = false;
         if(!$full) {
-            $data = $this->db->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+            $data = $this->db->selectCell("SELECT 1 FROM `character_pet` WHERE `owner`=%d LIMIT 1", $this->guid);
         }
         else {
-            $data = $this->db->selectRow("SELECT * FROM `character_pet` WHERE `owner`=?d LIMIT 1", $this->guid);
+            $data = $this->db->selectRow("SELECT * FROM `character_pet` WHERE `owner`=%d LIMIT 1", $this->guid);
         }
         return $data;
     }

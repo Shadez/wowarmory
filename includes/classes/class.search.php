@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 315
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -38,7 +38,7 @@ Class SearchMgr extends Connector {
             return false;
         }
         if($findUpgrade > 0) {
-            $source_item_data = $this->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality`, `bonding` FROM `item_template` WHERE `entry`=?", $findUpgrade);
+            $source_item_data = $this->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality`, `bonding` FROM `item_template` WHERE `entry`=%d", $findUpgrade);
             /*
             ,
             `stat_type1`, `stat_value1`, `stat_type2`, `stat_value2`, `stat_type3`, `stat_value3`, `stat_type4`, `stat_value4`,
@@ -52,18 +52,17 @@ Class SearchMgr extends Connector {
         }
         if($count == true) {
             if($findUpgrade) {
-                $sql_query = sprintf("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
-                $count_items = $this->wDB->selectCell($sql_query);
+                $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
             }
             elseif($this->heirloom == true) {
                 $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `Quality`=7");
             }
             else {
                 if($this->_loc == 0) {
-                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
+                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
                 }
                 else {
-                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?)", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%'.$this->searchQuery.'%');
                 }
             }
             if($count_items > 200) {
@@ -72,18 +71,17 @@ Class SearchMgr extends Connector {
             return $count_items;
         }
         if($findUpgrade) {
-            $sql_query = sprintf("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
-            $items = $this->wDB->select($sql_query);
+            $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel']);
         }
         elseif($this->heirloom == true) {
             $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `Quality`=7 ORDER BY `ItemLevel` DESC LIMIT 200");
         }
         else {
             if($this->_loc == 0) {
-                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE ? ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
             }
             else {
-                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE ? OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc".$this->_loc."` LIKE ?) ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', '%'.$this->searchQuery.'%');
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', $this->_loc, '%'.$this->searchQuery.'%');
             }
         }
         if(!$items) {
@@ -130,12 +128,10 @@ Class SearchMgr extends Connector {
         if($this->searchQuery) {
             if($this->_loc == 0) {
                 // No SQL injection - already escaped in search.php
-                $itemsSql = sprintf("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
-                $_item_ids = $this->wDB->select($itemsSql);
+                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
             }
             else {
-                $itemsSql = sprintf("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%s` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%' . $this->searchQuery.'%');
-                $_item_ids = $this->wDB->select($itemsSql);
+                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%' . $this->searchQuery.'%');
             }
             if(is_array($_item_ids)) {
                 $tmp_count_ids = count($_item_ids);
@@ -219,7 +215,7 @@ Class SearchMgr extends Connector {
                     /* Subtype */
                     if(isset($this->get_array['subTp']) && !empty($this->get_array['subTp'])) {
                         if($this->get_array['subTp'] != 'all' && $type_info !== false) {
-                            $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=? AND `parent`=?", $this->get_array['subTp'], $type_info);
+                            $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=%d AND `parent`=%d", $this->get_array['subTp'], $type_info);
                             if($subtype_info) {
                                 $sql_query .= sprintf(" AND `subclass`=%d", $subtype_info['subtype']);
                                 $andor = true;
@@ -383,12 +379,12 @@ Class SearchMgr extends Connector {
                 $sql_query = null;
                 if(self::IsExtendedCost()) {
                     $this->Log()->writeLog('%s : used ExtendedCost key: %s', __METHOD__, $this->get_array['dungeon']);
-                    $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`=? LIMIT 1", $this->get_array['dungeon']);
+                    $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`='%s' LIMIT 1", $this->get_array['dungeon']);
                     if(!$item_extended_cost) {
                         $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost key (%s) but data for this key is missed in `armory_item_sources`', __METHOD__, $this->get_array['dungeon']);
                         return false;
                     }
-                    $extended_cost = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=? OR `item2`=? OR `item3`=? OR `item4`=? OR `item5`=?", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
+                    $extended_cost = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
                     if(!$extended_cost) {
                         $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost (key: %s, id: %d) but data for this id is missed in `armory_extended_cost`', __METHOD__, $this->get_array['dungeon'], $item_extended_cost);
                         return false;
@@ -418,7 +414,7 @@ Class SearchMgr extends Connector {
                                 $str_query_ids .= $item_id_array[$ii];
                             }
                         }
-                        $sql_query_tmp = sprintf("
+                        $tmp_sql = sprintf("
                         SELECT DISTINCT
                         `item_template`.`entry` AS `id`,
                         `item_template`.`name`,
@@ -432,7 +428,7 @@ Class SearchMgr extends Connector {
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
                         WHERE `npc_vendor`.`ExtendedCost` IN (%s) AND `npc_vendor`.`item` IN (%s)
                         ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $str_query, $str_query_ids);
-                        $items_query = $this->wDB->select($sql_query_tmp);
+                        $items_query = $this->wDB->select($tmp_sql);
                     }
                     else {
                         $mytmpcount = count($cost_ids);
@@ -445,7 +441,7 @@ Class SearchMgr extends Connector {
                                 $str_query .= $cost_ids[$i].', -' . $cost_ids[$i];
                             }
                         }
-                        $sql_query_tmp = sprintf("
+                        $tmp_sql = sprintf("
                         SELECT DISTINCT
                         `item_template`.`entry` AS `id`,
                         `item_template`.`name`,
@@ -459,7 +455,7 @@ Class SearchMgr extends Connector {
                         LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
                         WHERE `npc_vendor`.`ExtendedCost` IN (%s)
                         ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $str_query);
-                        $items_query = $this->wDB->select($sql_query_tmp);
+                        $items_query = $this->wDB->select($tmp_sql);
                     }
                 }
                 else {
@@ -560,10 +556,10 @@ Class SearchMgr extends Connector {
                     }
                     if($this->get_array['boss'] != 'all') {
                         $current_instance_key = $this->get_array['dungeon'];
-                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
+                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->_locale, $current_instance_key);
                     }
                     if($this->searchQuery && is_array($item_id_array)) {
-                        $items_query = $this->wDB->select("
+                        $tmp_sql = sprintf("
                         SELECT
                         `item_template`.`entry` AS `id`,
                         `item_template`.`name`,
@@ -578,11 +574,12 @@ Class SearchMgr extends Connector {
                         `creature_loot_template`.`ChanceOrQuestChance`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN `creature_loot_template` AS `creature_loot_template` ON `creature_loot_template`.`item`=`item_template`.`entry`
-                        WHERE `creature_loot_template`.`entry` IN (?a) AND `creature_loot_template`.`item` IN (?a)
+                        WHERE `creature_loot_template`.`entry` IN (%s) AND `creature_loot_template`.`item` IN (%s)
                         ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
-                        $loot_table, $item_id_array);
+                        $loot_table, $item_id_string);
+                        $items_query = $this->wDB->select($tmp_sql);
                         if(!$items_query) {
-                            $items_query = $this->wDB->select("
+                            $tmp_sql = sprintf("
                             SELECT
                             `item_template`.`entry` AS `id`,
                             `item_template`.`name`,
@@ -597,9 +594,10 @@ Class SearchMgr extends Connector {
                             `gameobject_loot_template`.`ChanceOrQuestChance`
                             FROM `item_template` AS `item_template`
                             LEFT JOIN `gameobject_loot_template` AS `gameobject_loot_template` ON `gameobject_loot_template`.`item`=`item_template`.`entry`
-                            WHERE `gameobject_loot_template`.`entry` IN (?a) AND `gameobject_loot_template`.`item` IN (?a)
+                            WHERE `gameobject_loot_template`.`entry` IN (%s) AND `gameobject_loot_template`.`item` IN (%s)
                             ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
-                            $loot_table, $item_id_array);
+                            $loot_table, $item_id_string);
+                            $items_query = $this->wDB->select($tmp_sql);
                         }
                     }
                     else {
@@ -618,7 +616,7 @@ Class SearchMgr extends Connector {
                         ".$loot_template.".`ChanceOrQuestChance`
                         FROM `item_template` AS `item_template`
                         LEFT JOIN ".$loot_template." AS ".$loot_template." ON ".$loot_template.".`item`=`item_template`.`entry`
-                        WHERE ".$loot_template.".`entry` IN (?a)
+                        WHERE ".$loot_template.".`entry` IN (%s)
                         ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200",
                         $loot_table);
                     }
@@ -629,10 +627,10 @@ Class SearchMgr extends Connector {
                     $this->get_array['faction'] = 'all';
                 }
                 if($this->get_array['faction'] == 'all' || $this->get_array['faction'] == -1) {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction` > 0 ORDER BY `ItemLevel` DESC LIMIT 200");
                 }
                 else {
-                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction`=? ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
+                    $items_query = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `RequiredReputationFaction`=%d ORDER BY `ItemLevel` DESC LIMIT 200", $this->get_array['faction']);
                 }
                 break;
             case 'pvpAlliance':
@@ -648,7 +646,7 @@ Class SearchMgr extends Connector {
                     }
                 }
                 else {
-                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key`=?", $this->get_array['pvp']);
+                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key`='%s'", $this->get_array['pvp']);
                     if(!$pvpVendorsId) {
                         $this->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources (faction: %s, key: %s)', __METHOD__, $this->get_array['source'], $this->get_array['pvp']);
                         return false;
@@ -677,7 +675,7 @@ Class SearchMgr extends Connector {
                     }
                 }
                 if($this->searchQuery && is_array($item_id_array)) {
-                    $sql_query_tmp = sprintf("
+                    $tmp_sql = sprintf("
                     SELECT DISTINCT
                     `item_template`.`entry` AS `id`,
                     `item_template`.`name`,
@@ -691,7 +689,7 @@ Class SearchMgr extends Connector {
                     LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
                     WHERE `npc_vendor`.`entry` IN (%s) AND `npc_vendor`.`item` IN (%s)
                     ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $string_vendors, $item_id_string);
-                    $items_query = $this->wDB->select($sql_query_tmp);
+                    $items_query = $this->wDB->select($tmp_sql);
                 }
                 else {
                     $items_query = $this->wDB->select("
@@ -706,7 +704,7 @@ Class SearchMgr extends Connector {
                     `item_template`.`duration`
                     FROM `item_template` AS `item_template`
                     LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
-                    WHERE `npc_vendor`.`entry` IN (?)
+                    WHERE `npc_vendor`.`entry` IN (%s)
                     ORDER BY `item_template`.`ItemLevel` DESC LIMIT 200", $string_vendors);
                 }
                 break;
@@ -731,9 +729,9 @@ Class SearchMgr extends Connector {
                 }
             }
             elseif(!$count) {
-                if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss']) && $this->get_array['boss'] == 'all') {
+                if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss'])) {
                     $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
-                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_".$this->_locale."` AS `name` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $current_instance_key);
+                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`='%s' LIMIT 1", $this->_locale, $current_instance_key);
                 }
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
@@ -748,7 +746,7 @@ Class SearchMgr extends Connector {
                     $items_result[$i]['data']['canAuction'] = 1;
                 }
                 $items_result[$i]['data']['rarity'] = $item['rarity'];
-                $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=?", $item['displayid']);
+                $items_result[$i]['data']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d", $item['displayid']);
                 $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item['ItemLevel']);
                 $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100);
                 switch($this->get_array['source']) {
@@ -799,22 +797,20 @@ Class SearchMgr extends Connector {
         if($num == true) {
             foreach($this->realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-                $db->query("SET NAMES ?", $realm_info['charset_characters']);
-                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
                 $count_results = $count_results + $count_results_currrent_realm;
             }
             return $count_results;
         }
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
             $current_realm = $db->select("
             SELECT `arena_team`.`name`, `arena_team`.`type` AS `size`, `arena_team_stats`.`rating`, `characters`.`race`
                 FROM `arena_team` AS `arena_team`
                     LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team`.`arenateamid`=`arena_team_stats`.`arenateamid`
                     LEFT JOIN `characters` AS `characters` ON `arena_team`.`captainguid`=`characters`.`guid`
-                        WHERE `arena_team`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                        WHERE `arena_team`.`name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
             if(!$current_realm) {
                 continue;
             }
@@ -823,7 +819,7 @@ Class SearchMgr extends Connector {
                 $realm['teamSize'] = $realm['size'];
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
-                $realm['relevance'] = 100; // Will be re-calculated in Search::CalculateRelevance()
+                $realm['relevance'] = 100;
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&ts=%d&t=%s', urlencode($realm_info['name']), $realm['size'], urlencode($realm['name']));
                 unset($realm['race']);
@@ -848,17 +844,15 @@ Class SearchMgr extends Connector {
         if($num == true) {
             foreach($this->realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-                $db->query("SET NAMES ?", $realm_info['charset_characters']);
-                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`guildid`) FROM `guild` WHERE `name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+                $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`guildid`) FROM `guild` WHERE `name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
                 $count_results = $count_results + $count_results_currrent_realm;
             }
             return $count_results;
         }
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
-            $current_realm = $db->select("SELECT `guild`.`name`, `characters`.`race` FROM `guild` AS `guild` LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid` WHERE `guild`.`name` LIKE ? LIMIT 200", '%'.$this->searchQuery.'%');
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+            $current_realm = $db->select("SELECT `guild`.`name`, `characters`.`race` FROM `guild` AS `guild` LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid` WHERE `guild`.`name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
             if(!$current_realm) {
                 continue;
             }
@@ -866,7 +860,7 @@ Class SearchMgr extends Connector {
             foreach($current_realm as $realm) {
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
-                $realm['relevance'] = 100; // All guilds have 100% relevance and we don't need to call Search::CalculateRelevance()
+                $realm['relevance'] = 100; // All guilds have 100% relevance
                 $realm['realm'] = $realm_info['name'];
                 $realm['url'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 unset($realm['race']);
@@ -894,10 +888,8 @@ Class SearchMgr extends Connector {
         if($num == true) {
             foreach($this->realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-                $db->query("SET NAMES ?", $realm_info['charset_characters']);
-                $sql_query = sprintf("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s' AND `level` >= %d LIMIT 200", '%' . $this->searchQuery . '%', $this->armoryconfig['minlevel']);
-                $characters_data[] = $db->select($sql_query);
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s' AND `level` >= %d LIMIT 200", '%' . $this->searchQuery . '%', $this->armoryconfig['minlevel']);
             }
             for($ii = 0; $ii < $countRealmData; $ii++) {
                 $count_result_chars = count($characters_data[$ii]);
@@ -911,10 +903,11 @@ Class SearchMgr extends Connector {
         }
         $accounts_cache = array(); // For relevance calculation
         foreach($this->realmData as $realm_info) {
-            $this->Log()->writeLog('%s : initiate connection to realmID #%d (%s)', __METHOD__, $realm_info['id'], $realm_info['name']);
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
-            $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` LIKE ?", '%'.$this->searchQuery.'%');
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+            if(!$db) {
+                continue;
+            }
+            $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
             if(!$current_realm) {
                 continue;
             }
@@ -923,15 +916,15 @@ Class SearchMgr extends Connector {
                 if(!self::IsCharacterAllowedForSearch($realm['guid'], $realm['level'], $realm['account'])) {
                     continue;
                 }
-                if($realm['guildId'] = $db->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $realm['guid'])) {
-                    $realm['guild'] = $db->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $realm['guildId']);
+                if($realm['guildId'] = $db->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $realm['guid'])) {
+                    $realm['guild'] = $db->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=%d", $realm['guildId']);
                     $realm['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['guild']));
                 }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
-                $realm['class'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_classes` WHERE `id`=?", $realm['classId']);
-                $realm['race'] = $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_races` WHERE `id`=?", $realm['raceId']);
+                $realm['class'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_classes` WHERE `id`=%d", $this->_locale, $realm['classId']);
+                $realm['race'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_races` WHERE `id`=%d", $this->_locale, $realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
@@ -967,7 +960,7 @@ Class SearchMgr extends Connector {
                 }
                 // Check last login date. If it's more than 2 days, decrease relevance by 4 for every day
                 if(!isset($accounts_cache[$realm['account']])) {
-                    $lastLogin = $this->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=?", $realm['account']);
+                    $lastLogin = $this->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=%d", $realm['account']);
                     $accounts_cache[$realm['account']] = $lastLogin;
                 }
                 else {
@@ -1018,14 +1011,14 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : bossSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`=?) LIMIT 1", $this->bossSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s') LIMIT 1", $this->_locale, $this->bossSearchKey);
     }
     
     public function GetBossKeyById() {
         if(!isset($this->get_array['boss']) || !is_numeric($this->get_array['boss'])) {
             return false;
         }
-        $this->bossSearchKey = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=? LIMIT 1", $this->get_array['boss']);
+        $this->bossSearchKey = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=%d LIMIT 1", $this->get_array['boss']);
         return $this->bossSearchKey;
     }
     
@@ -1034,38 +1027,38 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : instanceSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_".$this->_locale."` FROM `armory_instance_template` WHERE `key`=? LIMIT 1", $this->instanceSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->_locale, $this->instanceSearchKey);
     }
     
     public function MakeUniqueArray($array, $preserveKeys = false) {
-        // Unique Array for return
-        $arrayRewrite = array();
-        // Array with the md5 hashes
-        $arrayHashes = array();
+        // Unique Array for return  
+        $arrayRewrite = array();  
+        // Array with the md5 hashes  
+        $arrayHashes = array();  
         foreach($array as $key => $item) {
-            // Serialize the current element and create a md5 hash
+            // Serialize the current element and create a md5 hash  
             $hash = md5(serialize($item));
-            // If the md5 didn't come up yet, add the element to
-            // to arrayRewrite, otherwise drop it
-            if(!isset($arrayHashes[$hash])) {
-                // Save the current element hash
-                $arrayHashes[$hash] = $hash;
-                // Add element to the unique Array
-                if($preserveKeys) {
+            // If the md5 didn't come up yet, add the element to  
+            // to arrayRewrite, otherwise drop it  
+            if (!isset($arrayHashes[$hash])) {
+                // Save the current element hash  
+                $arrayHashes[$hash] = $hash;  
+                // Add element to the unique Array  
+                if ($preserveKeys) {
                     $arrayRewrite[$key] = $item;
-                } else {
+                } else {  
                     $arrayRewrite[] = $item;
                 }
             }
         }
-        return $arrayRewrite;
+        return $arrayRewrite;  
     }
     
     private function IsCharacterAllowedForSearch($guid, $level, $account_id) {
         if($level < $this->armoryconfig['minlevel']) {
             return false;
         }
-        $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=? LIMIT 1", $account_id);
+        $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $account_id);
         if($gmLevel <= $this->armoryconfig['minGmLevelToShow']) {
             return true;
         }
@@ -1093,6 +1086,281 @@ Class SearchMgr extends Connector {
         else {
             //$this->Log()->writeLog('%s : item #%d can be traded via auction', __METHOD__, $item_data['id']);
             return true;
+        }
+    }
+    
+    /**
+     * Calculates relevance for item/character/arena team in search results
+     * This function is beta version!
+     * If somebody have info about how it works, please PM me on getmangos.com or on github.com
+     * @category Search class
+     * @access   private
+     * @return   bool
+     * @todo     try find more correct way to generate max/min ratings (for arenateams case)
+     **/
+    private function CalculateRelevance() {
+        if(!$this->results) {
+            $this->Log()->writeError('%s can be called only after Search::$results variable assigned', __METHOD__);
+            return false;
+        }
+        elseif(!$this->type_results) {
+            $this->Log()->writeError('%s : type_results not defined, ignore.', __METHOD__);
+            return false;
+        }
+        $accounts_cache = array(); // For last_login timestamps
+        $arenateams_cache = array(
+            'minRating' => array(
+                'value' => 0,
+                'teamSize' => 0
+            ),
+            'maxRating' => array(
+                'value' => 0,
+                'teamSize' => 0
+            ),
+            'minRating2' => array(
+                'value' => 0,
+                'loopId' => 0,
+            ),
+            'minRating3' => array(
+                'value' => 0,
+                'loopId' => 0,
+            ),
+            'minRating5' => array(
+                'value' => 0,
+                'loopId' => 0,
+            ),
+            'maxRating2' => array(
+                'value' => 0,
+                'loopId' => 0,
+            ),
+            'maxRating3' => array(
+                'value' => 0,
+                'loopId' => 0,
+            ),
+            'maxRating5' => array(
+                'value' => 0,
+                'loopId' => 0,
+            )
+        ); // For arenateams case
+        $currentTimeStamp = time(); // For characters relevance calculation
+        // Get max/min ratings value
+        $i = 0;
+        if($this->type_results == 'arenateams') {
+            foreach($this->results as $result_temp) {
+                if($result_temp['rating'] > $arenateams_cache['maxRating']['value']) {
+                    $arenateams_cache['maxRating'] = array(
+                        'value' => $result_temp['rating'],
+                        'teamSize' => $result_temp['teamSize'],
+                        'loopId' => $i,
+                        'handled' => false
+                    );
+                }
+                if($result_temp['rating'] > 0 && $arenateams_cache['minRating']['value'] > 0 && $result_temp['rating'] < $arenateams_cache['minRating']['value']) {
+                    $arenateams_cache['minRating'] = array(
+                        'value' => $result_temp['rating'],
+                        'teamSize' => $result_temp['teamSize'],
+                        'loopId' => $i,
+                        'handled' => false
+                    );
+                }
+                if($result_temp['rating'] > 0 && $arenateams_cache['maxRating' . $result_temp['teamSize']]['value'] > 0 && $result_temp['rating'] > $arenateams_cache['maxRating' . $result_temp['teamSize']]['value']) {
+                    $arenateams_cache['maxRating' . $result_temp['teamSize']] = array(
+                        'value' => $result_temp['rating'],
+                        'loopId' => $i
+                    );
+                }
+                if($result_temp['rating'] < $arenateams_cache['minRating' . $result_temp['teamSize']]['value']) {
+                    $arenateams_cache['minRating' . $result_temp['teamSize']] = array(
+                        'value' => $result_temp['rating'],
+                        'loopId' => $i
+                    );
+                }
+            }
+            $i++;
+        }
+        $totalCount = count($this->results);
+        for($i = 0; $i < $totalCount; $i++) {
+            // All results have 100 relevance now. This value will be decreased through loop (if any reason for it found)
+            switch($this->type_results) {
+                case 'characters':
+                    $this->results[$i]['relevance'] = 100;
+                    // Relevance by last login date will check `realmd`.`account`.`last_login` timestamp
+                    // First of all - check character level
+                    $temp_value = $this->results[$i]['level'];
+                    if($temp_value > 70 && $temp_value < PLAYER_MAX_LEVEL) {
+                        $this->results[$i]['relevance'] -= 20;
+                    }
+                    elseif($temp_value > 60 && $temp_value < 70) {
+                        $this->results[$i]['relevance'] -= 25;
+                    }
+                    elseif($temp_value > 50 && $temp_value < 60) {
+                        $this->results[$i]['relevance'] -= 30;
+                    }
+                    elseif($temp_value > 40 && $temp_value < 50) {
+                        $this->results[$i]['relevance'] -= 35;
+                    }
+                    elseif($temp_value > 30 && $temp_value < 40) {
+                        $this->results[$i]['relevance'] -= 40;
+                    }
+                    elseif($temp_value > 20 && $temp_value < 30) {
+                        $this->results[$i]['relevance'] -= 45;
+                    }
+                    elseif($temp_value < 20) {
+                        $this->results[$i]['relevance'] -= 50;
+                        continue; // characters with level < 20 have 50% relevance and other reasons can't change this value
+                    }
+                    // Check last login date. If it's more than 2 days, decrease relevance by 4 for every day
+                    if(!isset($accounts_cache[$this->results[$i]['account']])) {
+                        $lastLogin = $this->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=%d", $this->results[$i]['account']);
+                        $accounts_cache[$this->results[$i]['account']] = $lastLogin;
+                    }
+                    else {
+                        $lastLogin = $accounts_cache[$this->results[$i]['account']];
+                    }
+                    // unset 'account' value (for security reason)
+                    if(isset($this->results[$i]['account'])) {
+                        unset($this->results[$i]['account']);
+                    }
+                    $lastLoginTimestamp = strtotime($lastLogin);
+                    $diff = $currentTimeStamp - $lastLoginTimestamp;
+                    if($lastLogin && $diff > 0) {
+                        // 1 day is 86400 seconds
+                        $totalDays = round($diff/86400);
+                        if($totalDays > 2) {
+                            $decreaseRelevanceByLogin = $totalDays*4;
+                            $this->results[$i]['relevance'] -= $decreaseRelevanceByLogin;
+                        }
+                    }
+                    // Relevance for characters can't be less than 50
+                    if($this->results[$i]['relevance'] < 50) {
+                        $this->results[$i]['relevance'] = 50;
+                    }
+                    // Relevance can't be more than 100
+                    if($this->results[$i]['relevance'] > 100) {
+                        $this->results[$i]['relevance'] = 100;
+                    }
+                    break;
+                case 'arenateams':
+                    /*$this->results[$i]['relevance'] = 100;
+                    if($this->results[$i]['rating'] == 0) {
+                        $this->results[$i]['relevance'] = 50;
+                        continue;
+                    }
+                    // 5v5>3v3>2v2
+                    if($this->results[$i]['teamSize'] == 5) {
+                        if($this->results[$i]['rating'] > $arenateams_cache['maxRating5']['value']) {
+                            $tempRelevance = 5*5*;
+                        }
+                        elseif($this->results[$i]['rating'] < $arenateams_cache['maxRating5']['value']) {
+                            $tempRelevance = 5*5;
+                            $this->results[$arenateams_cache['maxRating5']['loopId']]['relevance'] -= FIX_ME;
+                        }
+                    }
+                    elseif($this->results[$i]['relevance'] == 3) {
+                        $tempRelevance = 5*3;
+                    }
+                    else {
+                        $tempRelevance = 5*2;
+                    }
+                    if($this->results[$i]['rating'] > $arenateams_cache['maxRating']['value']) {
+                        $arenateams_cache['maxRating'] = array(
+                            'value' => $this->results[$i]['rating'],
+                            'teamSize' => $this->results[$i]['teamSize'],
+                            'loopId' => $i
+                        );
+                        if($this->results[$i]['teamSize'] > $arenateams_cache['maxRating']['teamSize']) {
+                            $diff = ($this->results[$i]['teamSize']-$arenateams_cache['maxRating']['teamSize']);
+                            $tempRelevance += $this->results[$i]['teamSize'] - $arenateams_cache['maxRating']['teamSize'];
+                        }
+                    }
+                    // Relevance for arena teams can't be less than 50
+                    if($this->results[$i]['relevance'] < 50) {
+                        $this->results[$i]['relevance'] = 50;
+                    }
+                    // Relevance can't be more than 100
+                    if($this->results[$i]['relevance'] > 100) {
+                        $this->results[$i]['relevance'] = 100;
+                    }
+                    */
+                    break;
+                case 'items':
+                    // Relevance can't be more than 100
+                    if($this->results[$i]['relevance'] > 100) {
+                        $this->results[$i]['relevance'] = 100;
+                    }
+                    break;
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Do all dirty work with search filters here =)
+     * Can be called only from Search::AdvancedItemsSearch()
+     * @category Search class
+     * @access   public
+     * @return   bool
+     **/
+    public function HandleItemFilters() {
+        if(!$this->get_array) {
+            $this->Log()->writeError('%s : Search::$get_array not defined', __METHOD__);
+            return false;
+        }
+        // First of all - convert $_SERVER['QUERY_STRING'] to array
+        if(!isset($_SERVER['QUERY_STRING'])) {
+            $this->Log()->writeError('%s : unable to find SERVER[QUERY_STRING] array', __METHOD__);
+            return false;
+        }
+        $query_string = explode('&', urldecode($_SERVER['QUERY_STRING']));
+        if(!is_array($query_string)) {
+            $this->Log()->writeError('%s : SERVER[QUERY_STRING] exists but handler was unable to convert it to array', __METHOD__);
+            return false;
+        }
+        $sql_query = "SELECT `entry` FROM `item_template`";
+        $andor = false;
+        $options_holder = explode('&', $query_string);
+        $optionsCounter = count($options_holder);
+        for($i = 0; $i < $optionsCounter; $i++) {
+            $opt_value = $road[$i];
+            $opt_value = str_replace('fl[', '', $opt_value);
+            $opt_value = str_replace(']', '', $opt_value);
+            $tmp_expl = explode('=', $opt_value);
+            if($tmp_expl[0] == 'advOptName') {
+                // We need to get next 2 values (type (gt - great than; lt - less than) and value)
+                $tmpType = explode('=', $options_holder[$i+1]);
+                $tmpValue = explode('=', $options_holder[$i+2]);
+                $type = false;
+                if(!is_array($tmpType) || !is_array($tmpValue)) {
+                    continue;
+                }
+                elseif($tmpType[0] != 'advOptOper' || $tmpValue[0] != 'advOptValue') {
+                    continue;
+                }
+                if($tmpType[1] == 'gt') {
+                    $type = '>';
+                }
+                elseif($tmpType[1] == 'lt') {
+                    $type = '<';
+                }
+                if($tmpValue[1] < 0) {
+                    continue;
+                }
+                $tmp_data = null;
+                switch($tmp_expl[1]) {
+                    // All types can be found in _data/items/advoptions.xml
+                    case 'strength':
+                        $tmp_data = ' WHERE (';
+                        for($a=1;$a<11;$a++) {
+                            if($a) {
+                                $tmp_data .= 'OR `stat_type' . $a .'`' . $type .'=' . $tmpValue[1];
+                            }
+                            else {
+                                $tmp_data .= '`stat_type' . $a .'`' . $type .'=' . $tmpValue[1];
+                            }
+                        }
+                        break;
+                }
+            }
         }
     }
 }

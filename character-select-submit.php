@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 245
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,13 +31,13 @@ if(!isset($_SESSION['accountId'])) {
     exit;
 }
 if(isset($_GET)) {
-    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=?d", $_SESSION['accountId']);
+    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
     $delete_query = sprintf("DELETE FROM `armory_login_characters` WHERE `account`='%d'", $_SESSION['accountId']);
     $armory->aDB->query($delete_query);
     for($i = 1; $i < 4; $i++) {
         if(isset($_GET['cn' . $i]) && isset($_GET['r' . $i])) {
             $realmName = urldecode($_GET['r' . $i]);
-            $realm_data = $armory->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`=? LIMIT 1", $realmName);
+            $realm_data = $armory->aDB->selectRow("SELECT `id`, `name` FROM `armory_realm_data` WHERE `name`='%s' LIMIT 1");
             if(!$realm_data) {
                 $armory->Log()->writeLog('character-select-submit : realm %s not found in database!', $realmName);
                 continue;
@@ -47,13 +47,12 @@ if(isset($_GET)) {
                 continue;
             }
             $armory->connectionData = $armory->realmData[$realm_data['id']];
-            $db = DbSimple_Generic::connect('mysql://'.$armory->connectionData['user_characters'].':'.$armory->connectionData['pass_characters'].'@'.$armory->connectionData['host_characters'].'/'.$armory->connectionData['name_characters']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
             if(!$db) {
                 $armory->Log()->writeLog('character-select-submit : unable to connect to MySQL database (host: %s, user: %s, password: %s, name: %s)', $armory->connectionDaa['host_characters'], $armory->connectionDaa['user_characters'], $armory->connectionDaa['pass_characters'], $armory->connectionDaa['name_characters']);
                 continue;
             }
-            $db->query("SET NAMES UTF8");
-            $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`=? AND `account`=?d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
+            $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `account`=%d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
             if(!$char_data) {
                 $armory->Log()->writeLog('character-select-submit : unable to get character data from DB (name: %s, accountId: %d)', $_GET['cn' . $i], $_SESSION['accountId']);
                 continue;

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 271
+ * @revision 321
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,11 +43,11 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : teamname not defined', __METHOD__);
             return false;
         }
-        $arenaInfo           = $this->cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type` FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname);
+        $arenaInfo           = $this->cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type` FROM `arena_team` WHERE `name`='%s' LIMIT 1", $this->teamname);
         $this->arenateamid   = $arenaInfo['arenateamid'];
         $this->captainguid   = $arenaInfo['captainguid'];
         $this->teamlogostyle = self::GetArenaTeamEmblem($this->arenateamid);
-        $this->teamfaction   = Utils::GetFactionId($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=? LIMIT 1", $this->captainguid));
+        $this->teamfaction   = Utils::GetFactionId($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=%d LIMIT 1", $this->captainguid));
         $this->teamfaction   = 1;
         $this->teamtype      = $arenaInfo['type'];
         self::GetTeamList();
@@ -67,7 +67,7 @@ Class Arenateams extends Connector {
         `rank`   AS `ranking`,
         `played` AS `seasonGamesPlayed`,
         `wins2`  AS `seasonGamesWon`
-            FROM `arena_team_stats` WHERE `arenateamid`=?", $this->arenateamid);
+        FROM `arena_team_stats` WHERE `arenateamid`=%d", $this->arenateamid);
         if(!$arenateaminfo) {
             $this->Log()->writeError('%s : unable to get data from DB for arenateam %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return false;
@@ -99,7 +99,7 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : teamname not defined', __METHOD__);
             return false;
         }
-        if(!$this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`=? LIMIT 1", $this->teamname)) {
+        if(!$this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`='%s' LIMIT 1", $this->teamname)) {
             return false;
         }
         return true;
@@ -110,7 +110,7 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $team_names = $this->cDB->select("SELECT `name` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=?)", $this->guid);
+        $team_names = $this->cDB->select("SELECT `name` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=%d)", $this->guid);
         if(!$team_names) {
             $this->Log()->writeLog('%s : player %d does not have any arena teams', __METHOD__, $this->guid);
             return false;
@@ -130,7 +130,7 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : arenateamid not defined', __METHOD__);
             return false;
         }
-        $this->teamstats = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=? LIMIT 1", $this->arenateamid);
+        $this->teamstats = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=%d LIMIT 1", $this->arenateamid);
         return true;
     }
     
@@ -147,7 +147,7 @@ Class Arenateams extends Connector {
         `characters`.`gender` AS `genderId`
         FROM `arena_team_member` AS `arena_team_member`
         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
-        WHERE `arena_team_member`.`arenateamid`=?
+        WHERE `arena_team_member`.`arenateamid`=%d
         ", $this->arenateamid);
         if(!$this->players) {
             $this->Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
@@ -155,8 +155,8 @@ Class Arenateams extends Connector {
         }
         $count_players = count($this->players);
         for($i=0;$i<$count_players;$i++) {
-            if($this->players[$i]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=?", $this->players[$i]['guid'])) {
-                $this->players[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=?", $this->players[$i]['guildId']);
+            if($this->players[$i]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $this->players[$i]['guid'])) {
+                $this->players[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=%d", $this->players[$i]['guildId']);
                 $this->players[$i]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->players[$i]['guild']));
             }
             $this->players[$i]['battleGroup'] = $this->armoryconfig['defaultBGName'];
@@ -169,14 +169,13 @@ Class Arenateams extends Connector {
         if($num == true) {
             $summary = 0;
             foreach($this->realmData as $realm_info) {
-                $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-                $db->query("SET NAMES ?", $realm_info['charset_characters']);
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
                 $current_count = $db->selectCell("
                 SELECT
                 COUNT(`arena_team`.`arenateamid`) 
                     FROM `arena_team` AS `arena_team` 
                         LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid` = `arena_team`.`arenateamid` 
-                        WHERE `arena_team`.`type` = ? AND `arena_team_stats`.`rank` > 0", $type);
+                        WHERE `arena_team`.`type` = %d AND `arena_team_stats`.`rank` > 0", $type);
                 $summary = $current_count+$summary;
             }
             return $summary;
@@ -184,8 +183,7 @@ Class Arenateams extends Connector {
         $result_areanteams = array();
         $i = 0;
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
             if($order == 'lose') {
                 // Special sorting
                 $realmArenaTeamInfo = $db->select("
@@ -203,9 +201,9 @@ Class Arenateams extends Connector {
                     FROM `arena_team` AS `arena_team`
                         LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                            WHERE `arena_team`.`type`=? AND `arena_team_stats`.`rank` > 0
-                                ORDER BY `lose` ".$sort." LIMIT ".$page.", 20
-                ", $type);
+                            WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                                ORDER BY `lose` %s LIMIT %d, 20
+                ", $type, $sort, $page);
             }
             else {
                 $realmArenaTeamInfo = $db->select("
@@ -222,9 +220,9 @@ Class Arenateams extends Connector {
                     FROM `arena_team` AS `arena_team`
                         LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                            WHERE `arena_team`.`type`=? AND `arena_team_stats`.`rank` > 0
-                                ORDER BY ".$order." ".$sort." LIMIT ".$page.", 20
-                ", $type);
+                            WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                                ORDER BY %s %s LIMIT %d, 20
+                ", $type, $order, $sort, $page);
             }
             if(!$realmArenaTeamInfo) {
                 $this->Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
@@ -264,7 +262,7 @@ Class Arenateams extends Connector {
             $arenaTeamEmblem = $this->cDB->selectRow("
             SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
                 FROM `arena_team`
-                    WHERE `arenateamid`=?", $teamId);
+                    WHERE `arenateamid`=%d", $teamId);
             $arenaTeamEmblem['background'] = dechex($arenaTeamEmblem['background']);
             $arenaTeamEmblem['borderColor'] = dechex($arenaTeamEmblem['borderColor']);
             $arenaTeamEmblem['iconColor'] = dechex($arenaTeamEmblem['iconColor']);
@@ -274,7 +272,7 @@ Class Arenateams extends Connector {
             $arenaTeamEmblem = $db->selectRow("
             SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
                 FROM `arena_team`
-                    WHERE `arenateamid`=?", $teamId);
+                    WHERE `arenateamid`=%d", $teamId);
             $arenaTeamEmblem['background'] = dechex($arenaTeamEmblem['background']);
             $arenaTeamEmblem['borderColor'] = dechex($arenaTeamEmblem['borderColor']);
             $arenaTeamEmblem['iconColor'] = dechex($arenaTeamEmblem['iconColor']);
@@ -291,11 +289,10 @@ Class Arenateams extends Connector {
         `arena_team`.`BorderStyle`,
         `arena_team`.`BorderColor`,
         `arena_team_stats`.`rank`
-            FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                WHERE `type`=?
-                        ORDER BY `arena_team_stats`.`rank`
-        ", $type);
+        FROM `arena_team` AS `arena_team`
+        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+        WHERE `type`=%d
+        ORDER BY `arena_team_stats`.`rank`", $type);
         $j = 1;
         $count = count($arenaTeamInfo);
         for($i=0;$i<$count;$i++) {
@@ -310,9 +307,8 @@ Class Arenateams extends Connector {
     public function CountArenaTeams($type) {
         $summary = 0;
         foreach($this->realmData as $realm_info) {
-            $db = DbSimple_Generic::connect('mysql://'.$realm_info['user_characters'].':'.$realm_info['pass_characters'].'@'.$realm_info['host_characters'].'/'.$realm_info['name_characters']);
-            $db->query("SET NAMES ?", $realm_info['charset_characters']);
-            $current_count = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=?", $type);
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+            $current_count = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=%d", $type);
             $summary = $summary+$current_count;
         }
         return $summary;
@@ -370,7 +366,7 @@ Class Arenateams extends Connector {
         FROM `armory_game_chart` AS `armory_game_chart`
         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`armory_game_chart`.`guid`
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`armory_game_chart`.`teamid`
-        WHERE `armory_game_chart`.`gameid`=?", $this->gameid);
+        WHERE `armory_game_chart`.`gameid`=%d", $this->gameid);
         if(!$game_info) {
             $this->Log()->writeError('%s : unable to get data from characters DB for gameID %d', __METHOD__, $this->gameid);
             return false;
@@ -379,7 +375,7 @@ Class Arenateams extends Connector {
         $chart_teams['gameData'] = array(
             'battleGroup' => $this->armoryconfig['defaultBGName'],
             'id' => $this->gameid,
-            'map' => $this->aDB->selectCell("SELECT `name_" . $this->_locale . "` FROM `armory_maps` WHERE `id`=? LIMIT 1", $game_info[0]['mapId']),
+            'map' => $this->aDB->selectCell("SELECT `name_%s` FROM `armory_maps` WHERE `id`=%d LIMIT 1", $this->_locale, $game_info[0]['mapId']),
             'matchLength' => $game_info[0]['end']-$game_info[0]['start'],
             'teamSize' => $game_info[0]['type']
         );
@@ -421,7 +417,7 @@ Class Arenateams extends Connector {
     }
     
     public function TeamExists($teamId) {
-        return $this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `arenateamid`=? LIMIT 1", $teamId);
+        return $this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `arenateamid`=%d LIMIT 1", $teamId);
     }
     
     public function BuildGameChart() {
@@ -429,18 +425,18 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : arenateamid not provided', __METHOD__);
             return false;
         }
-        $game_ids = $this->cDB->select("SELECT DISTINCT `gameid` FROM `armory_game_chart` WHERE `teamid`=?", $this->arenateamid);
+        $game_ids = $this->cDB->select("SELECT DISTINCT `gameid` FROM `armory_game_chart` WHERE `teamid`=%d", $this->arenateamid);
         if(!$game_ids) {
             $this->Log()->writeLog('%s : unable to find any game for teamId %d', __METHOD__, $this->arenateamid);
             return false;
         }
         if(count($game_ids) < 2) {
-            $this->Log()->writeLog('%s : arenateamid %d is less than 2 matches played. Showing results has been disabled to prevent browser crash.', __METHOD__, $this->arenateamid);
+            $this->Log()->writeLog('%s : arenateamid %d have less than 2 matches played. Showing results has been disabled to prevent browser crash.', __METHOD__, $this->arenateamid);
             return false;
         }
         $game_ids_str = null;
         $counter = count($game_ids);
-        for($i = 0 ; $i < $counter; $i++) {
+        for($i = 0; $i < $counter; $i++) {
             if($i) {
                 $game_ids_str .= ', ' . $game_ids[$i]['gameid'];
             }
@@ -448,7 +444,7 @@ Class Arenateams extends Connector {
                 $game_ids_str .= $game_ids[$i]['gameid'];
             }
         }
-        $sql_query = sprintf("
+        $game_chart = $this->cDB->select("
         SELECT
         `armory_game_chart`.`gameid`,
         `armory_game_chart`.`teamid`,
@@ -462,7 +458,6 @@ Class Arenateams extends Connector {
         FROM `armory_game_chart` AS `armory_game_chart`
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`armory_game_chart`.`teamid`
         WHERE `armory_game_chart`.`gameid` IN (%s) AND `armory_game_chart`.`teamid` <> %d", $game_ids_str, $this->arenateamid);
-        $game_chart = $this->cDB->select($sql_query);
         if(!$game_chart) {
             $this->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches (%s) from characters DB (arenateamid:%d)', __METHOD__, $game_ids_str, $this->arenateamid);
             return false;
@@ -489,7 +484,7 @@ Class Arenateams extends Connector {
             $this->Log()->writeError('%s : arenateamid not provided', __METHOD__);
             return false;
         }
-        $game_ids = $this->cDB->select("SELECT DISTINCT `gameid` FROM `armory_game_chart` WHERE `teamid`=?", $this->arenateamid);
+        $game_ids = $this->cDB->select("SELECT DISTINCT `gameid` FROM `armory_game_chart` WHERE `teamid`=%d", $this->arenateamid);
         if(!$game_ids) {
             $this->Log()->writeLog('%s : unable to find any game for teamId %d', __METHOD__, $this->arenateamid);
             return false;
@@ -504,7 +499,7 @@ Class Arenateams extends Connector {
                 $game_ids_str .= $game_ids[$i]['gameid'];
             }
         }
-        $sql_query = sprintf("
+        $game_chart = $this->cDB->select("
         SELECT
         `armory_game_chart`.`gameid`,
         `armory_game_chart`.`teamid`,
@@ -516,7 +511,6 @@ Class Arenateams extends Connector {
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`armory_game_chart`.`teamid`
         WHERE `armory_game_chart`.`gameid` IN (%s) AND `armory_game_chart`.`teamid` <> %d
         GROUP BY `armory_game_chart`.`gameid`", $game_ids_str, $this->arenateamid);
-        $game_chart = $this->cDB->select($sql_query);
         if(!$game_chart) {
             $this->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches (%s) from characters DB (arenateamid:%d)', __METHOD__, $game_ids_str, $this->arenateamid);
             return false;
@@ -524,7 +518,7 @@ Class Arenateams extends Connector {
         $chart_data = array();
         foreach($game_chart as $team) {
             if(!isset($chart_data[$team['teamid']])) { // Add 1 team in 1 time
-                $rating_change = $this->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=? AND `gameid` IN (?)", $team['teamid'], $game_ids_str);
+                $rating_change = $this->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=? AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
                 $rd = 0;
                 if($rating_change) {
                     $exists = array();
@@ -540,8 +534,7 @@ Class Arenateams extends Connector {
                         }
                     }
                 }
-                $sql_query_tmp = sprintf("SELECT COUNT(`gameid`) FROM `armory_game_chart` WHERE `changeType`=1 AND `teamid`='%d' AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
-                $losses = $this->cDB->selectCell($sql_query_tmp);
+                $losses = $this->cDB->selectCell("SELECT COUNT(`gameid`) FROM `armory_game_chart` WHERE `changeType`=1 AND `teamid`='%d' AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
                 $chart_data[$team['teamid']] = array(
                     'deleted'  => ($this->TeamExists($team['teamid'])) ? 'false' : 'true',
                     'games'    => $team['countTeam'],
