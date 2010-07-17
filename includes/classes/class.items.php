@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 318
+ * @revision 319
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -784,13 +784,13 @@ Class Items extends Connector {
         $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
         $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
         $s3 = abs($spell['EffectBasePoints_3']+$spell['EffectBaseDice_3']);
-        if($spell['EffectDieSides_1']>$spell['EffectBaseDice_1']) {
+        if($spell['EffectDieSides_1']>$spell['EffectBaseDice_1'] && ($spell['EffectDieSides_1']-$spell['EffectBaseDice_1'] != 1)) {
             $s1 .= ' - ' . abs($spell['EffectBasePoints_1'] + $spell['EffectDieSides_1']);
         }
-        if($spell['EffectDieSides_2']>$spell['EffectBaseDice_2']) {
+        if($spell['EffectDieSides_2']>$spell['EffectBaseDice_2'] && ($spell['EffectDieSides_2']-$spell['EffectBaseDice_2'] != 1)) {
             $s2 .= ' - ' . abs($spell['EffectBasePoints_2'] + $spell['EffectDieSides_2']);
         }
-        if($spell['EffectDieSides_3']>$spell['EffectBaseDice_3']) {
+        if($spell['EffectDieSides_3']>$spell['EffectBaseDice_3'] && ($spell['EffectDieSides_3']-$spell['EffectBaseDice_3'] != 1)) {
             $s3 .= ' - ' . abs($spell['EffectBasePoints_3'] + $spell['EffectDieSides_3']);
         }
         $d = 0;
@@ -854,7 +854,7 @@ Class Items extends Connector {
     
     public function my_replace($matches) {
         $text = str_replace( array('[',']'), array('', ''), $matches[0]);
-        //eval("\$text = abs(".$text.");");
+        @eval("\$text = abs(".$text.");");
         return intval($text);
     }
     // End of CSWOWD functions
