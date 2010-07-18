@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 325
+ * @revision 326
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -257,7 +257,6 @@ Class Items extends Connector {
      * Return array with loot info: dropped by, contained in, disenchating to, reagent for, etc.
      * @category Items class
      * @access   public
-     * @todo     Currency for
      * @return   array
      **/
     public function BuildLootTable($item, $vendor, $data=false) {
@@ -458,7 +457,7 @@ Class Items extends Connector {
                 }
                 break;
             case 'currencyfor':
-                $exCostIds = $this->aDB->select("SELECT `id`, `item1`, `item2`, `item3`, `item4` FROM `armory_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item, $item, $item, $item, $item);
+                $exCostIds = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item, $item, $item, $item, $item);
                 if(!$exCostIds || !is_array($exCostIds)) {
                     return false;
                 }
@@ -500,6 +499,7 @@ Class Items extends Connector {
                     );
                     $lootTable[$i]['tokens'] = Mangos::GetExtendedCost($curItem['ExtendedCost']);
                     $oldItems[$curItem['id']] = $curItem['id'];
+                    $i++;
                 }
                 break;
             case 'reagent':
