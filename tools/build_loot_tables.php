@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 82
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 324
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -46,11 +46,11 @@ foreach($instance_data as $data) {
             if(isset($data['name_id']) && $data['name_id'] > 0) {
                 $data['id'] = $data['name_id'];
             }
-            $_tmp = $armory->wDB->selectRow("SELECT `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3` FROM `creature_template` WHERE `entry`=?", $data['id']);
+            $_tmp = $armory->wDB->selectRow("SELECT `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3` FROM `creature_template` WHERE `entry`=%d", $data['id']);
             if($_tmp) {
                 if(isset($data['name_id']) && $data['name_id'] > 0) {
                     if($update_type == 'update') {
-                        $armory->aDB->query("UPDATE `armory_instance_data` SET `lootid_1`=?, `lootid_2`=?, `lootid_3`=?, `lootid_4`=? WHERE `name_id`=?", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);
+                        $armory->aDB->query("UPDATE `armory_instance_data` SET `lootid_1`=%d, `lootid_2`=%d, `lootid_3`=%d, `lootid_4`=%d WHERE `name_id`=%d", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);
                     }
                     elseif($update_type == 'echo') {
                         echo sprintf("UPDATE `armory_instance_data` SET `lootid_1`=%d, `lootid_2`=%d, `lootid_3`=%d, `lootid_4`=%d WHERE `name_id`=%d; <br />", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);
@@ -58,7 +58,7 @@ foreach($instance_data as $data) {
                 }
                 else {
                     if($update_type == 'update') {
-                        $armory->aDB->query("UPDATE `armory_instance_data` SET `lootid_1`=?, `lootid_2`=?, `lootid_3`=?, `lootid_4`=? WHERE `id`=?", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);
+                        $armory->aDB->query("UPDATE `armory_instance_data` SET `lootid_1`=%d, `lootid_2`=%d, `lootid_3`=%d, `lootid_4`=%d WHERE `id`=%d", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);
                     }
                     elseif($update_type == 'echo') {
                         echo sprintf("UPDATE `armory_instance_data` SET `lootid_1`=%d, `lootid_2`=%d, `lootid_3`=%d, `lootid_4`=%d WHERE `id`=%d;<br />", $data['id'], $_tmp['difficulty_entry_1'], $_tmp['difficulty_entry_2'], $_tmp['difficulty_entry_3'], $data['id']);

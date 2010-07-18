@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 324
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -518,7 +518,7 @@ Class Arenateams extends Connector {
         $chart_data = array();
         foreach($game_chart as $team) {
             if(!isset($chart_data[$team['teamid']])) { // Add 1 team in 1 time
-                $rating_change = $this->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=? AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
+                $rating_change = $this->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=%d AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
                 $rd = 0;
                 if($rating_change) {
                     $exists = array();

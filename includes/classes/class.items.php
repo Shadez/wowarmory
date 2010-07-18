@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 324
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -645,7 +645,7 @@ Class Items extends Connector {
             $socketInfo = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
-                    WHERE `owner_guid`=? AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $socketfield[$socketNum], $guid, $item);
+                    WHERE `owner_guid`=%d AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $socketfield[$socketNum], $guid, $item);
         }
         else {
             $socketInfo = $db->selectCell("
@@ -1146,7 +1146,7 @@ Class Items extends Connector {
             default:
                 return 0;
         }
-        return $this->aDB->selectCell("SELECT `%s` FROM `armory_randompropertypoints` WHERE `itemlevel`=?", $field, $itemLevel);
+        return $this->aDB->selectCell("SELECT `%s` FROM `armory_randompropertypoints` WHERE `itemlevel`=%d", $field, $itemLevel);
     }
     
     public function GetItemBonusTemplate($statType) {
