@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 198
+ * @revision 322
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,7 +29,7 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 if(!isset($_SESSION['username'])) {
-    header('Location: index.xml?login=1');
+    header('Location: login.xml?ref=character-select.xml');
 }
 header('Content-type: text/xml');
 // Load XSLT template
