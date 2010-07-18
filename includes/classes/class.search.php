@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 323
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -204,7 +204,7 @@ Class SearchMgr extends Connector {
                         if($this->get_array['type'] == 'misc') {
                             $this->get_array['type'] = 'miscellaneous';
                         }
-                        $type_info = $this->aDB->selectCell("SELECT `type` FROM `armory_item_sources` WHERE `key`=? AND `parent`=0", $this->get_array['type']);
+                        $type_info = $this->aDB->selectCell("SELECT `type` FROM `armory_item_sources` WHERE `key`='%s' AND `parent`=0", $this->get_array['type']);
                         if($type_info === false) {
                             $this->Log()->writeLog('%s : type for key %s not found in `armory_item_sources`', __METHOD__, $this->get_array['type']);
                             return false;
@@ -215,7 +215,7 @@ Class SearchMgr extends Connector {
                     /* Subtype */
                     if(isset($this->get_array['subTp']) && !empty($this->get_array['subTp'])) {
                         if($this->get_array['subTp'] != 'all' && $type_info !== false) {
-                            $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`=%d AND `parent`=%d", $this->get_array['subTp'], $type_info);
+                            $subtype_info = $this->aDB->selectRow("SELECT `type`, `subtype` FROM `armory_item_sources` WHERE `key`='%s' AND `parent`=%d", $this->get_array['subTp'], $type_info);
                             if($subtype_info) {
                                 $sql_query .= sprintf(" AND `subclass`=%d", $subtype_info['subtype']);
                                 $andor = true;
