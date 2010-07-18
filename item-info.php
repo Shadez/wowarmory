@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 318
+ * @revision 325
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -120,6 +120,28 @@ if($vendor_items = $items->BuildLootTable($itemID, 'vendor')) {
         $xml->XMLWriter()->endElement(); //creature
     }
     $xml->XMLWriter()->endElement(); //vendors
+}
+if($currency_items = $items->BuildLootTable($itemID, 'currencyfor')) {
+    $xml->XMLWriter()->startElement('currencyFor');
+    foreach($currency_items as $item_currency) {
+        $xml->XMLWriter()->startElement('item');
+        foreach($item_currency['data'] as $cKey => $cValue) {
+            $xml->XMLWriter()->writeAttribute($cKey, $cValue);
+        }
+        if(is_array($item_currency['tokens'])) {
+            $xml->XMLWriter()->startElement('cost');
+            foreach($item_currency['tokens'] as $token) {
+                $xml->XMLWriter()->startElement('token');
+                foreach($token as $tKey => $tValue) {
+                    $xml->XMLWriter()->writeAttribute($tKey, $tValue);
+                }
+                $xml->XMLWriter()->endElement(); //$token
+            }
+            $xml->XMLWriter()->endElement(); //cost
+        }
+        $xml->XMLWriter()->endElement(); //item
+    }
+    $xml->XMLWriter()->endElement(); //currencyFor
 }
 if($creature_loot = $items->BuildLootTable($itemID, 'boss')) {
     $xml->XMLWriter()->startElement('dropCreatures');

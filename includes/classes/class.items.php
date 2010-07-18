@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 324
+ * @revision 325
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -112,11 +112,20 @@ Class Items extends Connector {
 		if($mask == 0x7FF || $mask == 0) {
             return 0;
 		}
+        $races = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_races`", $this->_locale);
+        if(!is_array($races)) {
+            $this->Log()->writeError('%s : unable to find races names for locale %s (%d)', __METHOD__, $this->_locale, $this->_loc);
+            return false;
+        }
+        $races_data = array();
+        foreach($races as $race_tmp) {
+            $races_data[$race_tmp['id']] = $race_tmp['name'];
+        }
         $i = 1;
         $rMask = array();
         while($mask) {
 			if($mask & 1) {
-                $rMask[$i] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_races` WHERE `id`=%d", $this->_locale, $i);
+                $rMask[$i] = $races_data[$i];
 		   	}
 			$mask>>=1;
 			$i++;
@@ -136,11 +145,20 @@ Class Items extends Connector {
 		if($mask == 0x5DF || $mask == 0) {
             return 0;
 		}
+        $classes = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_classes`", $this->_locale);
+        if(!is_array($classes)) {
+            $this->Log()->writeError('%s : unable to find classes names for locale %s (%d)', __METHOD__, $this->_locale, $this->_loc);
+            return false;
+        }
+        $classes_data = array();
+        foreach($classes as $class_tmp) {
+            $classes_data[$class_tmp['id']] = $class_tmp['name'];
+        }
         $i = 1;
         $rMask = array();
         while($mask) {
 			if($mask & 1) {
-                $rMask[$i] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_classes` WHERE `id`=%d", $this->_locale, $i);
+                $rMask[$i] = $classes_data[$i];
 	    	}
 			$mask>>=1;
 			$i++;
@@ -198,40 +216,6 @@ Class Items extends Connector {
         if($craftLoot) {
             return array('value' => 'sourceType.createdByPlans');
         }
-    }
-    
-    /**
-     * Return full loot info (not used now)
-     * @category Items class
-     * @access   public
-     * @return   array
-     **/
-    public function lootInfo($itemID) {
-        $bossLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `creature_loot_template` WHERE `item`=%d", $itemID);
-        $chestLoot = $this->wDB->selectRow("SELECT `entry`, `ChanceOrQuestChance` FROM `gameobject_loot_template` WHERE `item`=%d", $itemID);
-        $loot = array();
-        if($bossLoot) {
-            $loot = array(
-                'source'   => Mangos::GetNPCName($bossLoot['entry']),
-                'instance' => Mangos::GetNpcInfo($bossLoot['entry'], 'map'),
-                'percent'  => Mangos::DropPercent($bossLoot['ChanceOrQuestChance'])
-            );
-        }
-        elseif($chestLoot) {
-            $loot = array(
-                'source'   => Mangos::GameobjectInfo($chestLoot['entry'], 'name'),
-                'instance' => Mangos::GameobjectInfo($chestLoot['entry'], 'map'),
-                'percent'  => Mangos::DropPercent($chestLoot['ChanceOrQuestChance'])
-            );
-        }
-        else {
-            $loot = array(
-                'source'   => 'Unknown',
-                'instance' => 'Unknown',
-                'percent'  => 'Unknown'
-            );
-        }
-        return $loot;
     }
     
     /**
@@ -473,8 +457,50 @@ Class Items extends Connector {
                     }
                 }
                 break;
-            case 'currency':
-                return false;
+            case 'currencyfor':
+                $exCostIds = $this->aDB->select("SELECT `id`, `item1`, `item2`, `item3`, `item4` FROM `armory_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item, $item, $item, $item, $item);
+                if(!$exCostIds || !is_array($exCostIds)) {
+                    return false;
+                }
+                $CostIDs = array('pos' => array(), 'neg' => array());
+                foreach($exCostIds as $tmp_cost) {
+                    $CostIDs['pos'][] = $tmp_cost['id'];
+                    $CostIDs['neg'][] = '-'.$tmp_cost['id'];
+                }
+                $itemsData = $this->wDB->select("
+                SELECT
+                `item_template`.`entry` AS `id`,
+                `item_template`.`name`,
+                `item_template`.`class`,
+                `item_template`.`subclass`,
+                `item_template`.`ItemLevel` AS `level`,
+                `item_template`.`Quality` AS `quality`,
+                `item_template`.`displayid`,
+                `npc_vendor`.`ExtendedCost`
+                FROM `item_template` AS `item_template`
+                LEFT JOIN `npc_vendor` AS `npc_vendor` ON `npc_vendor`.`item`=`item_template`.`entry`
+                WHERE `npc_vendor`.`ExtendedCost` IN (%s) OR `npc_vendor`.`ExtendedCost` IN (%s)", $CostIDs['pos'], $CostIDs['neg'] );
+                if(!$itemsData || !is_array($itemsData)) {
+                    return false;
+                }
+                $oldItems = array();
+                $i = 0;
+                foreach($itemsData as $curItem) {
+                    if(isset($oldItems[$curItem['id']])) {
+                        // Do not add same items many times
+                        continue;
+                    }
+                    $lootTable[$i]['data'] = array(
+                        'icon' => self::getItemIcon($curItem['id'], $curItem['displayid']),
+                        'id' => $curItem['id'],
+                        'level' => $curItem['level'],
+                        'name' => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $curItem['name'] : self::getItemName($curItem['id']),
+                        'quality' => $curItem['quality'],
+                        'type' => $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->_locale, $curItem['class'], $curItem['subclass'])
+                    );
+                    $lootTable[$i]['tokens'] = Mangos::GetExtendedCost($curItem['ExtendedCost']);
+                    $oldItems[$curItem['id']] = $curItem['id'];
+                }
                 break;
             case 'reagent':
                 if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
