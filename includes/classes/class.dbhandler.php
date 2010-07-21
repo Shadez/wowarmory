@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 327
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -54,7 +54,7 @@ Class ArmoryDatabaseHandler {
     public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = false, $logHandler = null) {
         $this->connectionLink = @mysql_connect($host, $user, $password, true);
         $this->dbLink         = @mysql_select_db($dbName, $this->connectionLink);
-        if($charset == false) {
+        if($charset === false) {
             $this->query("SET NAMES UTF8");
         }
         else {
@@ -69,7 +69,7 @@ Class ArmoryDatabaseHandler {
      * @return bool
      **/
     public function TestLink() {
-        if($this->connectionLink) {
+        if($this->connectionLink == true) {
             return true;
         }
         return false;
@@ -199,6 +199,9 @@ Class ArmoryDatabaseHandler {
         $returnString = null;
         $count = count($source);
         for($i = 0; $i < $count; $i++) {
+            if(!isset($source[$i])) {
+                continue;
+            }
             if($i) {
                 $returnString .= ", '" . addslashes($source[$i]) . "'";
             }
