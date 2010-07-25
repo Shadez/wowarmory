@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 277
+ * @revision 328
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -78,7 +78,7 @@ if($utils->IsItemComparisonAllowed()) {
     if(isset($primaryCharacter['name'])) {
         if($primaryCharacter['name'] != $characters->GetName() || ($primaryCharacter['name'] == $characters->GetName() && $primaryCharacter['realm_id'] != $characters->GetRealmID())) {
             $newChar = new Characters;
-            $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
+            $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id'], false);
             if($newChar->CheckPlayer()) {
                 $itemSlot = $items->GetItemSlotId($itemID);
                 if(is_array($itemSlot)) {

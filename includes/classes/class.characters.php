@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 328
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -236,9 +236,10 @@ Class Characters extends Connector {
      * @access   public
      * @param    string $name
      * @param    int $realmId = 1
+     * @param    bool $full = true
      * @return   bool
      **/
-    public function BuildCharacter($name, $realmId = 1) {
+    public function BuildCharacter($name, $realmId = 1, $full = true) {
         if(!is_string($name)) {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
@@ -256,41 +257,63 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
             return false;
         }
-        $player_data = $this->db->selectRow("
-        SELECT
-        `characters`.`guid`,
-        `characters`.`account`,
-        `characters`.`name`,
-        `characters`.`race`,
-        `characters`.`class`,
-        `characters`.`gender`,
-        `characters`.`level`,
-        `characters`.`playerBytes`,
-        `characters`.`playerBytes2`,
-        `characters`.`playerFlags`,
-        `characters`.`specCount`,
-        `characters`.`activeSpec`,
-        `characters`.`chosenTitle`,
-        `characters`.`health`,
-        `characters`.`power1`,
-        `characters`.`power2`,
-        `characters`.`power3`,
-        `characters`.`equipmentCache`,
-        `guild_member`.`guildid` AS `guild_id`,
-        `guild`.`name` AS `guild_name`
-        FROM `characters` AS `characters`
-        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
-        LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-        WHERE `characters`.`name`='%s' LIMIT 1", $name);
+        if($full == true) {
+            $player_data = $this->db->selectRow("
+            SELECT
+            `characters`.`guid`,
+            `characters`.`account`,
+            `characters`.`name`,
+            `characters`.`race`,
+            `characters`.`class`,
+            `characters`.`gender`,
+            `characters`.`level`,
+            `characters`.`playerBytes`,
+            `characters`.`playerBytes2`,
+            `characters`.`playerFlags`,
+            `characters`.`specCount`,
+            `characters`.`activeSpec`,
+            `characters`.`chosenTitle`,
+            `characters`.`health`,
+            `characters`.`power1`,
+            `characters`.`power2`,
+            `characters`.`power3`,
+            `characters`.`equipmentCache`,
+            `guild_member`.`guildid` AS `guild_id`,
+            `guild`.`name` AS `guild_name`
+            FROM `characters` AS `characters`
+            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
+            WHERE `characters`.`name`='%s' LIMIT 1", $name);
+        }
+        else {
+            $player_data = $this->db->selectRow("
+            SELECT
+            `characters`.`guid`,
+            `characters`.`account`,
+            `characters`.`name`,
+            `characters`.`race`,
+            `characters`.`class`,
+            `characters`.`gender`,
+            `characters`.`level`,
+            `characters`.`equipmentCache`,
+            `guild_member`.`guildid` AS `guild_id`,
+            `guild`.`name` AS `guild_name`
+            FROM `characters` AS `characters`
+            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
+            WHERE `characters`.`name`='%s' LIMIT 1", $name);
+        }
         if(!$player_data || !is_array($player_data)) {
             $this->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
-        $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
-        if(!$player_stats_check) {
-            $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
-            unset($player_data);
-            return false;
+        if($full == true) {
+            $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
+            if(!$player_stats_check) {
+                $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
+                unset($player_data);
+                return false;
+            }
         }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
@@ -305,7 +328,7 @@ Class Characters extends Connector {
         }
         $allowed = ($gmLevel <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
         if(!$allowed || $player_data['level'] < $this->armoryconfig['minlevel']) {
-            $this->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory!', __METHOD__, $player_data['guid'], $player_data['name']);
+            $this->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory (GM level restriction)!', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
@@ -334,24 +357,26 @@ Class Characters extends Connector {
                 $this->{$pData_key} = $pData_value;
             }
         }
-        // Get race and class strings
-        $race_class = $this->aDB->selectRow("
-        SELECT
-        `armory_races`.`name_%s` AS `race`,
-        `armory_classes`.`name_%s` AS `class`
-        FROM `armory_races` AS `armory_races`
-        LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
-        WHERE `armory_races`.`id`=%d", $this->_locale, $this->_locale, $this->class, $this->race);
-        if(!$race_class) {
-            $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
-            unset($player_data);
-            return false;
-        }
-        $this->classText = $race_class['class'];
-        $this->raceText = $race_class['race'];
-        // Get title info
-        if($this->chosenTitle > 0) {
-            $this->__GetTitleInfo();
+        if($full == true) {
+            // Get race and class strings
+            $race_class = $this->aDB->selectRow("
+            SELECT
+            `armory_races`.`name_%s` AS `race`,
+            `armory_classes`.`name_%s` AS `class`
+            FROM `armory_races` AS `armory_races`
+            LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
+            WHERE `armory_races`.`id`=%d", $this->_locale, $this->_locale, $this->class, $this->race);
+            if(!$race_class) {
+                $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
+                unset($player_data);
+                return false;
+            }
+            $this->classText = $race_class['class'];
+            $this->raceText = $race_class['race'];
+            // Get title info
+            if($this->chosenTitle > 0) {
+                $this->__GetTitleInfo();
+            }
         }
         $this->realmName = $realm_info['name'];
         $this->realmID   = $realm_info['id'];
