@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 330
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -107,14 +107,15 @@ Class Connector {
         if(!$this->connectionData) {
             $this->connectionData = $this->realmData[1];
         }
-        $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-        if($user_locale && $http_locale = self::IsAllowedLocale($user_locale)) {
-            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
+        if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+            if($user_locale && $http_locale = self::IsAllowedLocale($user_locale)) {
+                $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
+            }
         }
-        else {
+        if(!$this->_locale) {
             $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         }
-        $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
         switch($this->_locale) {
             case 'en_gb':
             case 'en_us':
