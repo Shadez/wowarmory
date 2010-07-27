@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 331
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -48,7 +48,7 @@ Class Utils extends Connector {
             $this->Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
             return false;
         }
-        elseif($info['sha_pass_hash'] != $this->createShaHash()) {
+        elseif(strtoupper($info['sha_pass_hash']) != $this->createShaHash()) {
             $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are diffirent (%s and %s), unable to auth user.', __METHOD__, $info['sha_pass_hash'], $this->createShaHash());
             return false;
         }
@@ -344,7 +344,7 @@ Class Utils extends Connector {
             return false;
         }
         $this->shaHash = sha1(strtoupper($this->username).':'.strtoupper($this->password));
-        return $this->shaHash;
+        return strtoupper($this->shaHash);
     }
     
     public function ComputePetBonus($stat, $value, $unitClass) {
@@ -1179,6 +1179,94 @@ Class Utils extends Connector {
             }
         }
         return $db;
+    }
+    
+    /**
+     * Returns bit mask for class ID
+     * @category Utils class
+     * @access   public
+     * @param    int $classId
+     * @return   int
+     **/
+    public function GetClassBitMaskByClassId($classId) {
+        $mask = -1;
+        switch($classId) {
+            case CLASS_WARRIOR:
+                $mask = 1;
+                break;
+            case CLASS_PALADIN:
+                $mask = 2;
+                break;
+            case CLASS_HUNTER:
+                $mask = 4;
+                break;
+            case CLASS_ROGUE:
+                $mask = 8;
+                break;
+            case CLASS_PRIEST:
+                $mask = 16;
+                break;
+            case CLASS_DK:
+                $mask = 32;
+                break;
+            case CLASS_SHAMAN:
+                $mask = 64;
+                break;
+            case CLASS_MAGE:
+                $mask = 128;
+                break;
+            case CLASS_WARLOCK:
+                $mask = 256;
+                break;
+            case CLASS_DRUID:
+                $mask = 1024;
+                break;
+        }
+        return $mask;
+    }
+    
+    /**
+     * Returns bit mask for race ID
+     * @category Utils class
+     * @access   public
+     * @param    int $raceId
+     * @return   int
+     **/
+    public function GetRaceBitMaskByRaceId($raceId) {
+        $mask = -1;
+        switch($raceId) {
+            case RACE_HUMAN:
+                $mask = 1;
+                break;
+            case RACE_ORC:
+                $mask = 2;
+                break;
+            case RACE_DWARF:
+                $mask = 4;
+                break;
+            case RACE_NIGHTELF:
+                $mask = 8;
+                break;
+            case RACE_UNDEAD:
+                $mask = 16;
+                break;
+            case RACE_TAUREN:
+                $mask = 32;
+                break;
+            case RACE_GNOME:
+                $mask = 64;
+                break;
+            case RACE_TROLL:
+                $mask = 128;
+                break;
+            case RACE_BLOODELF:
+                $mask = 512;
+                break;
+            case RACE_DRAENEI:
+                $mask = 1024;
+                break;
+        }
+        return $mask;
     }
 }
 ?>
