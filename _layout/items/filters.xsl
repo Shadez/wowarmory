@@ -1185,7 +1185,7 @@
 		
 		theCounter = 0;
 		searchText = "black"
-		document.getElementById('searchQuery').value="<xsl:value-of select="searchResults/@searchText" />";
+		document.getElementById('searchQuery').value="<xsl:value-of select="searchResults/@searchString" />";
 	
 	
 		//on enter make it submit the form

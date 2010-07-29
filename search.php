@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 329
+ * @revision 333
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -146,7 +146,7 @@ $xml->XMLWriter()->endElement(); //tabs
 
 $searchType = (isset($_GET['searchType'])) ? $_GET['searchType'] : 'characters';
 $xml->XMLWriter()->startElement('searchResults');
-$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => null, 'searchMsg' => null, 'searchFilter' => null, 'searchText' => urlencode($search->searchQuery), 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
+$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => null, 'searchMsg' => null, 'searchFilter' => null, 'searchText' => urlencode($search->searchQuery), 'searchString' => $search->searchQuery, 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
 foreach($results_info as $result_key => $result_value) {
     $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }
