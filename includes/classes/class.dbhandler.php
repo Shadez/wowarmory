@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 327
+ * @revision 332
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -87,7 +87,9 @@ Class ArmoryDatabaseHandler {
         $query_start = microtime(true);
         $perfomed_query = @mysql_query($safe_sql, $this->connectionLink);
         if($perfomed_query === false) {
-            $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, mysql_error() ? mysql_error() : 'none');
+            if($this->logHandler != null && is_object($this->logHandler)) {
+                $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, mysql_error() ? mysql_error() : 'none');
+            }
             return false;
         }
         $result = false;
