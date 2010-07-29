@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 318
+ * @revision 334
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -598,4 +598,33 @@ define('ITEM_FLAGS_BOP_TRADEABLE', 0x80000000);
 define('ITEM_FLAGS2_HORDE_ONLY', 0x00000001); // drop in loot, sell by vendor and equipping only for horde
 define('ITEM_FLAGS2_ALLIANCE_ONLY', 0x00000002); // drop in loot, sell by vendor and equipping only for alliance
 define('ITEM_FLAGS2_EXT_COST_REQUIRES_GOLD', 0x00000004); // item cost include gold part in case extended cost use also
+
+define('INV_TYPE_HEAD', 1);
+define('INV_TYPE_NECK', 2);
+define('INV_TYPE_SHOULDER', 3);
+define('INV_TYPE_SHIRT', 4);
+define('INV_TYPE_CHEST', 4);
+define('INV_TYPE_WAIST', 6);
+define('INV_TYPE_LEGS', 7);
+define('INV_TYPE_FEET', 8);
+define('INV_TYPE_WRISTS', 9);
+define('INV_TYPE_HANDS', 10);
+define('INV_TYPE_FINGER', 11);
+define('INV_TYPE_TRINKET', 12);
+define('INV_TYPE_WEAPON', 13);
+define('INV_TYPE_SHIELD', 14);
+define('INV_TYPE_RANGED', 15);
+define('INV_TYPE_BACK', 16);
+define('INV_TYPE_TWOHAND', 17);
+define('INV_TYPE_BAG', 18);
+define('INV_TYPE_TABARD', 19);
+define('INV_TYPE_ROBE', 20);
+define('INV_TYPE_MAINHAND', 21);
+define('INV_TYPE_OFFHAND', 22);
+define('INV_TYPE_TOME', 23);
+define('INV_TYPE_AMMO', 24);
+define('INV_TYPE_THROWN', 25);
+define('INV_TYPE_RANGED_RIGHT', 26);
+define('INV_TYPE_QUIVER', 27);
+define('INV_TYPE_RELIC', 28);
 ?>

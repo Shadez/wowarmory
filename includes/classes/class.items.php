@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 326
+ * @revision 334
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,6 +28,9 @@ if(!defined('__ARMORY__')) {
 
 Class Items extends Connector {
     
+    /**
+     * Not used now
+     **/
     public $itemId;
     
     /**
@@ -35,6 +38,13 @@ Class Items extends Connector {
      **/
     public $charGuid;
     
+    /**
+     * Checks is item exists in DB
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @return   bool
+     **/
     public function IsItemExists($itemID) {
         if($this->wDB->selectCell("SELECT 1 FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID)) {
             return true;
@@ -43,9 +53,10 @@ Class Items extends Connector {
     }
     
     /**
-     * Returns item name according with defined locale (ru_ru or en_gb)
+     * Returns item name according with defined locale (ru_ru, en_gb, etc.)
      * @category Items class
      * @access   public
+     * @param    int $itemID
      * @return   string
      **/
     public function getItemName($itemID) {
@@ -68,10 +79,12 @@ Class Items extends Connector {
      * Returns item icon
      * @category Items class
      * @access   public
+     * @param    int $itemID
+     * @param    int $displayId = 0
      * @return   string
      **/
-    public function getItemIcon($itemID, $displayId = null) {
-        if($displayId == null) {
+    public function getItemIcon($itemID, $displayId = 0) {
+        if($displayId == 0) {
             $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d LIMIT 1", $displayId);
@@ -82,6 +95,7 @@ Class Items extends Connector {
      * Returns item description (if isset) according with defined locale (ru_ru or en_gb)
      * @category Items class
      * @access   public
+     * @param    int $itemID
      * @return   string
      **/
     public function GetItemDescription($itemID) {
@@ -104,6 +118,7 @@ Class Items extends Connector {
      * Returns available races string (if mask > 0)
      * @category Items class
      * @access   public
+     * @param    int $mask
      * @return   string
      **/
     public function AllowableRaces($mask) {
@@ -137,6 +152,7 @@ Class Items extends Connector {
      * Returns available classes string (if mask > 0)
      * @category Items class
      * @access   public
+     * @param    int $mask
      * @return   string
      **/
     public function AllowableClasses($mask) {
@@ -167,17 +183,19 @@ Class Items extends Connector {
 	}
     
     /**
-     * Returns item source strin (vendor, drop, chest loot, etc.)
+     * Returns item source string (vendor, drop, chest loot, etc.)
      * @category Items class
      * @access   public
+     * @param    int $item
+     * @param    bool $areaDataOnly = false
      * @return   string
      **/
-    public function GetItemSource($item) {
+    public function GetItemSource($item, $areaDataOnly = false) {
 		$bossLoot = $this->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d LIMIT 1", $item);
         if($bossLoot) {
             if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && self::IsUniqueLoot($item)) {
                 // We got boss loot, generate improved tooltip.
-                return self::GetImprovedItemSource($item, $bossLoot);
+                return self::GetImprovedItemSource($item, $bossLoot, $areaDataOnly);
             }
             elseif(Mangos::GetNpcInfo($bossLoot, 'isBoss')) {
                 return array('value' => 'sourceType.creatureDrop');
@@ -188,7 +206,7 @@ Class Items extends Connector {
         }
         $chestLoot = $this->wDB->selectCell("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d LIMIT 1", $item);
         if($chestLoot) {
-            if($chest_data = self::GetImprovedItemSource($item, $chestLoot)) {
+            if($chest_data = self::GetImprovedItemSource($item, $chestLoot, $areaDataOnly)) {
                 return $chest_data;
             }
             else {
@@ -216,12 +234,14 @@ Class Items extends Connector {
         if($craftLoot) {
             return array('value' => 'sourceType.createdByPlans');
         }
+        return array('value' => 'sourceType.none');
     }
     
     /**
      * Return itemset bonus spell(s) info
      * @category Items class
      * @access   public
+     * @param    int $itemsetdata
      * @return   array
      **/
     public function GetItemSetBonusInfo($itemsetdata) {
@@ -257,6 +277,9 @@ Class Items extends Connector {
      * Return array with loot info: dropped by, contained in, disenchating to, reagent for, etc.
      * @category Items class
      * @access   public
+     * @param    int $item
+     * @param    int $vendor
+     * @param    array $data = false
      * @return   array
      **/
     public function BuildLootTable($item, $vendor, $data=false) {
@@ -633,6 +656,8 @@ Class Items extends Connector {
      * Some item info
      * @category Items class
      * @access   public
+     * @param    int $itemID
+     * @param    string $type
      * @todo     Add more cases
      * @return   string
      **/
@@ -655,9 +680,14 @@ Class Items extends Connector {
      * Returns array with socket info (gem icon, enchant string, enchant id, item id)
      * @category Items class
      * @access   public
+     * @param    int $guid
+     * @param    int $item
+     * @param    int $socketNum
+     * @param    int $item_guid = 0
+     * @param    object $db = null
      * @return   array
      **/ 
-    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = false, $db = null) {
+    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = 0, $db = null) {
         $data = array();
         $socketfield = array(
             1 => ITEM_FIELD_ENCHANTMENT_3_2,
@@ -667,7 +697,7 @@ Class Items extends Connector {
         if($db === null) {
             $db = $this->cDB;
         }
-        if($item_guid === false) {
+        if($item_guid == 0) {
             $socketInfo = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
@@ -693,6 +723,8 @@ Class Items extends Connector {
      * Returns array with current/max item durability for selected ($guid) character
      * @category Items class
      * @access   public
+     * @param    int $guid
+     * @param    int $item
      * @return   array
      **/
     public function getItemDurability($guid, $item) {
@@ -701,6 +733,13 @@ Class Items extends Connector {
         return $durability;
     }
     
+    /**
+     * Returns max/current item durability by item guid
+     * @category Items class
+     * @access   public
+     * @param    int $item_guid
+     * @return   array
+     **/
     public function GetItemDurabilityByItemGuid($item_guid) {
         $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
         $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
@@ -711,6 +750,10 @@ Class Items extends Connector {
      * Returns field ($field) value from `item_instance`.`data` field for current item guid (NOT char guid!)
      * @category Items class
      * @access   public
+     * @param    int $field
+     * @param    int $itemid
+     * @param    int $owner_guid
+     * @param    int $use_item_guid = 0
      * @return   int
      **/
     public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0) {
@@ -731,7 +774,15 @@ Class Items extends Connector {
         return $qData;
     }
     
-    // CSWOWD functions
+    /**
+     * Spell Description handler
+     * @author   DiSlord aka Chestr
+     * @category Items class
+     * @access   public
+     * @param    array $spell
+     * @param    string $text
+     * @return   array
+     **/
     public function spellReplace($spell, $text) {
         $letter = array('${','}');
         $values = array( '[',']');
@@ -803,6 +854,14 @@ Class Items extends Connector {
         return $str;
     }
     
+    /**
+     * Spell Description handler
+     * @author   DiSlord aka Chestr
+     * @category Items class
+     * @access   public
+     * @param    array $spell
+     * @return   array
+     **/
     public function getSpellData($spell) {
         // Basepoints
         $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
@@ -876,6 +935,14 @@ Class Items extends Connector {
         return $spellData;
     }
     
+    /**
+     * Replaces square brackets with NULL text
+     * @author   DiSlord aka Chestr
+     * @category Items class
+     * @access   public
+     * @param    array $matches
+     * @return   int
+     **/
     public function my_replace($matches) {
         $text = str_replace( array('[',']'), array('', ''), $matches[0]);
         //@eval("\$text = abs(".$text.");");
@@ -883,6 +950,13 @@ Class Items extends Connector {
     }
     // End of CSWOWD functions
     
+    /**
+     * Returns instance name (according with current locale) where for boss $key
+     * @category Items class
+     * @access   public
+     * @param    string $key
+     * @return   string
+     **/
     public function GetItemSourceByKey($key) {
         $name = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s')", $this->_locale, $key);
         if($name) {
@@ -891,6 +965,15 @@ Class Items extends Connector {
         return false;
     }
     
+    /**
+     * Returns item source with area name, boss name, drop rate and area URL
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @param    int $bossID
+     * @param    bool $areaDataOnly = false
+     * @return   array
+     **/
     public function GetImprovedItemSource($itemID, $bossID, $areaDataOnly = false) {
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->_locale, $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
@@ -985,6 +1068,13 @@ Class Items extends Connector {
         return $instance_data;
     }
     
+    /**
+     * Checks is item is unique in boss's loot table
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @return   bool
+     **/
     public function IsUniqueLoot($itemID) {
         $item_count = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `creature_loot_template` WHERE `item`=%d", $itemID);
         if($item_count > 1) {
@@ -993,6 +1083,16 @@ Class Items extends Connector {
         return true;
     }
     
+    /**
+     * Returns model data for $displayId.
+     * If $itemid > 0 then $displayId will be loaded from DB
+     * @category Items class
+     * @access   public
+     * @param    int $displayId
+     * @param    string $row = null
+     * @param    int $itemid = 0
+     * @return   mixed
+     **/
     public function GetItemModelData($displayId, $row = null, $itemid = 0) {
         if($itemid > 0) {
             $displayId = self::GetItemInfo($itemid, 'displayid');
@@ -1010,6 +1110,17 @@ Class Items extends Connector {
         return false;
     }
     
+    /**
+     * Returns item equivalent for opposite faction
+     * FactionIDs are:
+     *  1 - Horde
+     *  2 - Alliance
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @param    int $factionID
+     * @return   array
+     **/
     public function GetFactionEquivalent($itemID, $factionID) {
         if($factionID == 1) {
             $equivalent_id = $this->aDB->selectCell("SELECT `item_alliance` FROM `armory_item_equivalents` WHERE `item_horde`=%d", $itemID);
@@ -1030,7 +1141,18 @@ Class Items extends Connector {
         return false;
     }
     
-    public function GetItemSubTypeInfo($itemID, $tooltip=false, $data = false) {
+    /**
+     * Returns item subclass/class text string
+     * If $tooltip == true, then function will return subclass name only.
+     * If $data == false, then required info will be loaded from DB
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @param    bool $tooltip = false
+     * @param    array $data = false
+     * @return   mixed
+     **/
+    public function GetItemSubTypeInfo($itemID, $tooltip = false, $data = false) {
         if($data) {
             $itemclassInfo = array('class' => $data['class'], 'subclass' => $data['subclass']);
         }
@@ -1046,6 +1168,13 @@ Class Items extends Connector {
         return $this->aDB->selectRow("SELECT `subclass_name_%s` AS `subclass_name`, `key` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->_locale, $itemclassInfo['class'], $itemclassInfo['subclass']);
     }
     
+    /**
+     * Checks if personal arena rating required for sale current item (and returns required rating if exists)
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @return   int
+     **/
     public function IsRequiredArenaRating($itemID) {
         $extended_cost_id = $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $itemID);
         if($extended_cost_id === false) {
@@ -1061,10 +1190,24 @@ Class Items extends Connector {
         return false;
     }
     
+    /**
+     * Loads neccessary item data from DB (for item-info.xml page)
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @return   array
+     **/
     public function GetItemData($itemID) {
         return $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
     }
     
+    /**
+     * Returns suffix for texture file name
+     * @category Items class
+     * @access   public
+     * @param    string $name
+     * @return   string
+     **/
     public function GetModelSuffix($name) {
         $suffixes = array('_u.png', '_m.png', '_f.png');
         $use_suffix = false;
@@ -1079,6 +1222,15 @@ Class Items extends Connector {
         return '_u.png';
     }
     
+    /**
+     * Generates random enchantments for $item_entry and $item_guid (if provided)
+     * @category Items class
+     * @access   public
+     * @param    int $item_entry
+     * @param    int $owner_guid
+     * @param    int $item_guid
+     * @return   array
+     **/
     public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0) {
         if($item_guid > 0) {
             $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
@@ -1102,9 +1254,19 @@ Class Items extends Connector {
         return $return_data;
     }
     
-    /* CSWOWD code */
-    public function GetRandomPropertiesPoints($itemLevel, $type, $quality, $itemId = null) {
-        if($itemId != null) {
+    /**
+     * Returns random properties points for itemId
+     * @author   DiSlord aka Chestr
+     * @category Items class
+     * @access   public
+     * @param    int $itemLevel
+     * @param    int $type
+     * @param    int $quality
+     * @param    int $itemId = 0
+     * @return   mixed
+     **/
+    public function GetRandomPropertiesPoints($itemLevel, $type, $quality, $itemId = 0) {
+        if($itemLevel == 0 && $type == 0 && $quality == 0 && $itemId > 0) {
             $data = $this->wDB->selectRow("SELECT `ItemLevel`, `type`, `Quality` FROM `item_template` WHERE `entry`=%d", $itemId);
             $itemLevel = $data['ItemLevel'];
             $type = $data['type'];
@@ -1175,6 +1337,13 @@ Class Items extends Connector {
         return $this->aDB->selectCell("SELECT `%s` FROM `armory_randompropertypoints` WHERE `itemlevel`=%d", $field, $itemLevel);
     }
     
+    /**
+     * Returns bonus template name for XSLT (by statTypeID)
+     * @category Items class
+     * @access   public
+     * @param    int $statType
+     * @return   string
+     **/
     public function GetItemBonusTemplate($statType) {
         switch($statType) {
             case 3:
@@ -1301,6 +1470,18 @@ Class Items extends Connector {
         return $bonus_template;
     }
     
+    /**
+     * Public access to Items::CreateAdditionalItemTooltip() method
+     *  - $parent: used for items that created by spells (displays under patterns/recipes, etc.)
+     *  - $comparison: used for dual tooltips (if user logged in and primary character is selected)
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @param    XMLHandler $xml
+     * @param    Characters $characters
+     * @param    bool $parent = false
+     * @param    bool $comparison = false
+     **/
     public function ItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparison = false) {
         if(!$xml || !$characters) {
             return false;
@@ -1308,11 +1489,26 @@ Class Items extends Connector {
         return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparison);
     }
     
+    /**
+     * Create item tooltip with provided options
+     *  - $parent: used for items that created by spells (displays under patterns/recipes, etc.)
+     *  - $comparison: used for dual tooltips (if user logged in and primary character is selected)
+     * This method must be called from Items::ItemTooltip() only!
+     * @category Items class
+     * @access   private
+     * @param    int $itemID
+     * @param    XMLHandler $xml
+     * @param    Characters $characters
+     * @param    bool $parent = false
+     * @param    bool $comparison = false
+     **/
     private function CreateAdditionalItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
         if(!$xml) {
+            $this->Log()->writeError('%s : xml should be instance of XMLHandler class. %s given.', __METHOD__, gettype($xml));
             return false;
         }
         elseif($parent == true && is_array($comparsion)) {
+            $this->Log()->writeError('%s : $parent and $comparison have \'true\' value (not allowed), ignore.', __METHOD__);
             return false; // both variables can't have 'true' value.
         }
         // Item comparsion mode
@@ -1320,9 +1516,8 @@ Class Items extends Connector {
         if(is_array($comparsion) && isset($this->realmData[$comparsion['realm_id']])) {
             $realm = $this->realmData[$comparsion['realm_id']];
         }
-        
         $data = $this->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=%d", $itemID);
-        if(!$data) {
+        if(!is_array($data)) {
             return false;
         }
         $isCharacter = $characters->CheckPlayer();
@@ -1962,6 +2157,13 @@ Class Items extends Connector {
         }
     }
     
+    /**
+     * Returns reagents info for crafted item (itemID)
+     * @category Items class
+     * @access   private
+     * @param    int $itemID
+     * @return   array
+     **/
     private function GetSpellItemCreateReagentsInfo($itemID) {
         $spell = $this->aDB->selectRow("
         SELECT
@@ -1985,8 +2187,18 @@ Class Items extends Connector {
         return $data;
     }
     
-    public function GetItemSlotId($itemID) {
-        $item_slot = $this->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=%d AND (`class`=2 OR `class`=4)", $itemID);
+    /**
+     * Returns item slot ID by InventoryType
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @param    int $item_slot = -1
+     * @return   array
+     **/
+    public function GetItemSlotId($itemID, $item_slot = -1) {
+        if($item_slot == -1) {
+            $item_slot = $this->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=%d AND (`class`=2 OR `class`=4)", $itemID);
+        }
         switch($item_slot) {
             case 1:
                 $slot_id = INV_HEAD;
@@ -2073,6 +2285,13 @@ Class Items extends Connector {
         return array('slot_id' => $slot_id, 'slotname' => $slotname);
     }
     
+    /**
+     * Checks is item sold by vendor
+     * @category Items class
+     * @access   public
+     * @param    int $itemID
+     * @return   bool
+     **/
     public function IsVendorItem($itemID) {
         if($this->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=%d", $itemID)) {
             return true;
@@ -2103,6 +2322,298 @@ Class Items extends Connector {
         $data['desc'] = str_replace('&quot;', '"', $data['desc']);
         $data['desc'] = str_replace('&lt;br&gt;', '', $data['desc']);
         return $data;
+    }
+    
+    /**
+     * Returns typeID or subtypeID for provided data
+     * @category Items class
+     * @access   public
+     * @param    string $key
+     * @param    string $row = 'type'
+     * @return   int
+     **/
+    public function GetItemTypeInfo($key, $row = 'type') {
+        if($key == 'all' || ($row != 'type' && $row != 'subtype')) {
+            //$this->Log()->writeError('%s : wrong key or row type (key: %s, row: %s)', __METHOD__, $key, $row);
+            return false;
+        }
+        return $this->aDB->selectCell("SELECT `%s` FROM `armory_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
+    }
+    
+    /**
+     * Returns item stats that can be useful for different class types (tank, melee, caster, etc.)
+     * @category Items class
+     * @access   public
+     * @param    string $classType
+     * @param    int    $value
+     * @param    string $type = '>'
+     * @param    string $mode = 'AND'
+     **/
+    public function GetItemModsByClassType($classType, $value, $type = '>', $mode = 'AND') {
+        $roles = array(
+            'tank' => array(
+                ITEM_MOD_DEFENSE_SKILL_RATING, ITEM_MOD_DODGE_RATING, ITEM_MOD_PARRY_RATING, ITEM_MOD_BLOCK_RATING
+            ),
+            'caster' => array(
+                ITEM_MOD_SPELL_POWER
+            ),
+            'melee' => array(
+                ITEM_MOD_AGILITY, ITEM_MOD_ATTACK_POWER
+            ),
+            'dd' => array(
+                ITEM_MOD_SPELL_POWER
+            ),
+            'dot' => array(
+                ITEM_MOD_SPELL_POWER
+            ),
+            'healer' => array(
+                ITEM_MOD_SPELL_POWER, ITEM_MOD_MANA_REGENERATION
+            )
+        );
+        $query = '';
+        switch($classType) {
+            case 'tank':
+            case 'caster':
+            case 'melee':
+            case 'dd':
+            case 'dot':
+            case 'healer':
+                $loop = 0;
+                foreach($roles[$classType] as $m_type) {
+                    if($loop > 0) {
+                        $query .= ' ' . $mode . ' ';
+                    }
+                    $query .= self::GenerateQueryByItemOpt($m_type, $type, $value);
+                    $loop++;
+                }
+                break;
+        }
+        return $query;
+    }
+    
+    /**
+     * Returns InventoryType ID by slot name ('head', for example)
+     * @category Items class
+     * @access   public
+     * @param    string $slotName
+     * @return   int
+     **/
+    public function GetInventoryTypeBySlotName($slotName) {
+        switch($slotName) {
+            case 'head':
+                $slot_id = INV_TYPE_HEAD;
+                break;
+            case 'neck':
+                $slot_id = INV_TYPE_NECK;
+                break;
+            case 'shoulders':
+                $slot_id = INV_TYPE_SHOULDER;
+                break;
+            case 'back':
+                $slot_id = INV_TYPE_BACK;
+                break;
+            case 'chest':
+                $slot_id = INV_TYPE_CHEST;
+                break;
+            case 'shirt':
+                $slot_id = INV_TYPE_SHIRT;
+                break;
+            case 'wrists':
+                $slot_id = INV_TYPE_WRISTS;
+                break;
+            case 'hands':
+                $slot_id = INV_TYPE_HANDS;
+                break;
+            case 'waist':
+                $slot_id = INV_TYPE_WAIST;
+                break;
+            case 'legs':
+                $slot_id = INV_TYPE_LEGS;
+                break;
+            case 'feet':
+                $slot_id = INV_TYPE_FEET;
+                break;
+            case 'finger':
+                $slot_id = INV_TYPE_FINGER;
+                break;
+            case 'trinket':
+                $slot_id = INV_TYPE_TRINKET;
+                break;
+            case 'main':
+                $slot_id = INV_TYPE_MAINHAND;
+                break;
+            case 'off':
+                $slot_id = INV_TYPE_OFFHAND;
+                break;
+            case 'one':
+                $slot_id = INV_TYPE_WEAPON;
+                break;
+            case 'two':
+                $slot_id = INV_TYPE_TWOHAND;
+                break;
+            case 'ranged':
+                $slot_id = INV_TYPE_RANGED;
+                break;
+            default:
+                $slot_id = 0;
+                break;
+        }
+        return $slot_id;
+    }
+    
+    /**
+     * Returns item stats by OptName
+     * @category Items class
+     * @access   public
+     * @param    string $opt
+     * @param    string $mode
+     * @param    int    $value
+     **/
+    public function GetItemModsByOpt($opt, $mode, $value) {
+        $data = false;
+        switch($opt) {
+            case 'strength':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_STRENGTH, $mode, $value);
+                break;
+            case 'agility':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_AGILITY, $mode, $value);
+                break;
+            case 'stamina':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_STAMINA, $mode, $value);
+                break;
+            case 'intellect':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_INTELLECT, $mode, $value);
+                break;
+            case 'spirit':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_SPIRIT, $mode, $value);
+                break;
+            case 'critRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_CRIT_RATING, $mode, $value);
+                break;
+            case 'hitRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_HIT_RATING, $mode, $value);
+                break;
+            case 'attackPower':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_ATTACK_POWER, $mode, $value);
+                break;
+            case 'ignoreArmor':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_ARMOR_PENETRATION_RATING, $mode, $value);
+                break;
+            case 'expertiseRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_EXPERTISE_RATING, $mode, $value);
+                break;
+            case 'spellPower':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_SPELL_POWER, $mode, $value);
+                break;
+            case 'spellPenetration':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_SPELL_PENETRATION, $mode, $value);
+                break;
+            case 'spellManaRegen':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_MANA_REGENERATION, $mode, $value);
+                break;
+            case 'armor':
+                break;
+            case 'blockRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_BLOCK_RATING, $mode, $value);
+                break;
+            case 'blockValue':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_BLOCK_VALUE, $mode, $value);
+                break;
+            case 'defenseRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_DEFENSE_SKILL_RATING, $mode, $value);
+                break;
+            case 'dodgeRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_DODGE_RATING, $mode, $value);
+                break;
+            case 'parryRating':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_PARRY_RATING, $mode, $value);
+                break;
+            case 'healthRegen':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_HEALTH_REGEN, $mode, $value);
+                break;
+            case 'resilience':
+                $data = self::GenerateQueryByItemOpt(ITEM_MOD_RESILIENCE_RATING, $mode, $value);
+                break;
+            case 'resistArcane':
+                $data = sprintf("(`item_template`.`arcane_res`%s%d) ", $mode, $value);
+                break;
+            case 'resistShadow':
+                $data = sprintf("(`item_template`.`shadow_res`%s%d) ", $mode, $value);
+                break;
+            case 'resistNature':
+                $data = sprintf("(`item_template`.`nature_res`%s%d) ", $mode, $value);
+                break;
+            case 'resistFrost':
+                $data = sprintf("(`item_template`.`frost_res`%s%d) ", $mode, $value);
+                break;
+            case 'resistFire':
+                $data = sprintf("(`item_template`.`fire_res`%s%d) ", $mode, $value);
+                break;
+            case 'dps':
+                break;
+            case 'minDamage':
+            case 'maxDamage':
+                $m_type = ($opt == 'minDamage') ? 'min' : 'max';
+                $data = '';
+                for($i = 0; $i < 2; $i++) {
+                    if($i) {
+                        $data .= sprintf(" OR (`item_template`.`dmg_%s%d`%s%d) ", $m_type, $i+1, $mode, $value);
+                    }
+                    else {
+                        $data .= sprintf("(`item_template`.`dmg_%s%d`%s%d) ", $m_type, $i+1, $mode, $value);
+                    }
+                }
+                break;
+            case 'speed':
+                $data = sprintf("(`item_template`.`delay`%s%d)", $mode, $value);
+                break;
+            case 'bindsPickedUp':
+                $data = "(`item_template`.`bonding`=1) ";
+                break;
+            case 'bindsEquip':
+                $data = "(`item_template`.`bonding`=2) ";
+                break;
+            case 'bindsWhenUsed':
+                $data = "(`item_template`.`bonding`=3) ";
+                break;
+            case 'unique':
+            case 'uniqueEquipped':
+                $data = "(`item_template`.`maxcount`=1) ";
+                break;
+            case 'hasSpellEffect':
+                for($i = 0; $i < 4; $i++) {
+                    if($i) {
+                        $data .= sprintf(" OR (`item_template`.`spellid_%d`>0) ", $i+1);
+                    }
+                    else {
+                        $data .= sprintf("(`item_template`.`spellid_%d`>0) ", $i+1);
+                    }
+                }
+                break;
+        }
+        return $data;
+    }
+    
+    /**
+     * Generates SQL query part (stat_typeX)
+     * @category Items class
+     * @access   private
+     * @param    int $mod
+     * @param    string $type
+     * @param    int $value
+     **/
+    private function GenerateQueryByItemOpt($mod, $type, $value) {
+        $query = '(';
+        for($i = 0; $i < 10; $i++) {
+            if($i) {
+                $query .= sprintf(" OR (`item_template`.`stat_type%d`='%d' AND `item_template`.`stat_value%d`%s%d) ", $i+1, $mod, $i+1, $type, $value);
+            }
+            else {
+                $query .= sprintf("(`item_template`.`stat_type%d`='%d' AND `item_template`.`stat_value%d`%s%d) ", $i+1, $mod, $i+1, $type, $value);
+            }
+        }
+        $query .= ')';
+        return $query;
     }
 }
 ?>

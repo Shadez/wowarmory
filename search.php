@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 333
+ * @revision 334
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -44,6 +44,12 @@ if(isset($_GET['pi']) && is_numeric($_GET['pi']) && $_GET['pi'] > 0) {
     $findGearUpgrade = true;
     $itemID = (int) $_GET['pi'];
     $characters->BuildCharacter($_GET['pn'], $utils->GetRealmIdByName($_GET['pr']), false);
+    if(!$characters->CheckPlayer()) {
+        $plLevel = 80;
+    }
+    else {
+        $plLevel = $characters->GetLevel();
+    }
 }
 if(isset($_GET['rrt']) && $_GET['rrt'] == 'hm') {
     $search->heirloom = true;
@@ -98,9 +104,9 @@ if($advancedItemsSearch) {
     }
 }
 elseif($findGearUpgrade) {
-    if($count_items = $search->DoSearchItems(true, $itemID)) {
+    if($count_items = $search->DoSearchItems(true, $itemID, $plLevel)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->DoSearchItems(false, $itemID);
+        $items_search = $search->DoSearchItems(false, $itemID, $plLevel);
         if($selected != 'characters') {
             $selected = 'items';
         }
