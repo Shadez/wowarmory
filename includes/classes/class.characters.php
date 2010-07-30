@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 328
+ * @revision 335
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,6 +70,11 @@ Class Characters extends Connector {
      * @access   private
      **/
     private $level = false;
+    
+    /**
+     * Player money amount
+     **/
+    private $money;
     
     /**
      * Player model display info
@@ -204,21 +209,21 @@ Class Characters extends Connector {
      * @category Characters class
      * @access   private
      **/
-    private $db;
+    private $db = false;
     
     /**
      * Character realm name
      * @category Characters class
      * @access   private
      **/
-    private $realmName;
+    private $realmName = false;
     
     /**
      * Character realm ID
      * @category Characters class
      * @access   private
      **/
-    private $realmID;
+    private $realmID = false;
     
     /**
      * Checks current player (loaded or not).
@@ -227,7 +232,7 @@ Class Characters extends Connector {
      * @return   bool
      **/
     public function IsCharacter() {
-        return self::CheckPlayer();
+        return $this->CheckPlayer();
     }
     
     /**
@@ -240,6 +245,7 @@ Class Characters extends Connector {
      * @return   bool
      **/
     public function BuildCharacter($name, $realmId = 1, $full = true) {
+        $this->Log()->writeLog('%s : prepare to build', __METHOD__);
         if(!is_string($name)) {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
@@ -267,6 +273,7 @@ Class Characters extends Connector {
             `characters`.`class`,
             `characters`.`gender`,
             `characters`.`level`,
+            `characters`.`money`,
             `characters`.`playerBytes`,
             `characters`.`playerBytes2`,
             `characters`.`playerFlags`,
@@ -649,6 +656,16 @@ Class Characters extends Connector {
     }
     
     /**
+     * Returns money amount
+     * @category Characters class
+     * @access   public
+     * @return   int
+     **/
+    public function GetMoney() {
+        return $this->money;
+    }
+    
+    /**
      * Generates character header (for XML output)
      * @category Characters class
      * @access   public
@@ -755,11 +772,11 @@ Class Characters extends Connector {
     public function getCharacterEquip($slot) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
-            return false;
+            return 0;
         }
         if(!is_array($this->equipmentCache)) {
             $this->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
-            return false;
+            return 0;
         }
         switch($slot) {
             case 'head':
@@ -955,12 +972,20 @@ Class Characters extends Connector {
         }
         $talentTree = array();
         $tab_class = self::GetTalentTab();
+        if(!is_array($tab_class)) {
+            $this->Log()->writeError('%s : unable to find tab_class for class %d (player: %s (GUID: %d))', __METHOD__, $this->GetClass(), $this->GetName(), $this->GetGUID());
+            return false;
+        }
         $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=%d", $this->guid);
         if(!$character_talents) {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
         $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        if(!$class_talents) {
+            $this->Log()->writeError('%s : unable to find talents for class %d (tabs are: %d, %d, %d)', __METHOD__, $this->GetClass(), $tab_class[0], $tab_class[1], $tab_class[2]);
+            return false;
+        }
         $talent_build = array();
         $talent_build[0] = null;
         $talent_build[1] = null;
@@ -974,9 +999,6 @@ Class Characters extends Connector {
         foreach($tab_class as $tab_key => $tab_value) {
             $num_tabs[$tab_key] = $i;
             $i++;
-        }
-        if(!$class_talents) {
-            return false;
         }
         foreach($class_talents as $class_talent) {
             $current_found = false;
@@ -1188,6 +1210,10 @@ Class Characters extends Connector {
      * @return   string
      **/
     public function ReturnTalentTreesNames($spec) {
+        if(!$this->class) {
+            $this->Log()->writeError('%s : class not provided', __METHOD__);
+            return false;
+        }
 		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->_locale, $this->class, $spec);
 	}
     
@@ -1200,11 +1226,11 @@ Class Characters extends Connector {
      * @todo     Move this function to Utils class
      **/
     public function ReturnTalentTreeIcon($tree) {
-        $icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
-        if($icon) {
-            return $icon;
+        if(!$this->class) {
+            $this->Log()->writeError('%s : class not provided', __METHOD__);
+            return false;
         }
-        return false;
+        return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
     }
     
     /**
@@ -1243,6 +1269,78 @@ Class Characters extends Connector {
         if(!$this->guid) {
             return false;
         }
+        /*
+        // Default categories
+        $categories = array(
+            // World of Warcraft (Classic)
+            1118 => array(
+                // Horde
+                67 => array(
+                    'order' => 1,
+                    'side'  => 1
+                ),
+                // Horde Forces
+                892 => array(
+                    'order' => 2,
+                    'side'  => 1
+                ),
+                // Alliance
+                469 => array(
+                    'order' => 1,
+                    'side'  => 2
+                ),
+                // Alliance Forces
+                891 => array(
+                    'order' => 2,
+                    'side'  => 2
+                ),
+                // Steamwheedle Cartel
+                169 => array(
+                    'order' => 3,
+                    'side'  => -1
+                )
+            ),
+            // The Burning Crusade
+            980 => array(
+                // Shattrath
+                936 => array(
+                    'order' => 1,
+                    'side'  => -1
+                )
+            ),
+            // Wrath of the Lich King
+            1097 => array(
+                // Sholazar Basin
+                1117 => array(
+                    'order' => 1,
+                    'side'  => -1
+                ),
+                // Horde Expedition
+                1052 => array(
+                    'order' => 2,
+                    'side'  => 1
+                ),
+                // Alliance Vanguard
+                1037 => array(
+                    'order' => 2,
+                    'side'  => 2
+                ),
+            ),
+            // Other
+            0 => array(
+                // Wintersaber trainers
+                589 => array(
+                    'order' => 1,
+                    'side'  => 2
+                ),
+                // Syndicat
+                70 => array(
+                    'order' => 2,
+                    'side'  => -1
+                )
+            )
+        );
+        */
         $repData = $this->db->select("SELECT `faction`, `standing`, `flags` FROM `character_reputation` WHERE `guid`=%d", $this->guid); 
         if(!$repData) {
             return false;
@@ -1252,7 +1350,7 @@ Class Characters extends Connector {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $faction['faction']);
+            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $faction['faction']);
             if($faction['standing'] > 42999) {
                 $factionReputation[$i]['reputation'] = 42999;
             }
@@ -1326,8 +1424,44 @@ Class Characters extends Connector {
      * @return   int
      **/
     public function GetMaxEnergy() {
-        return 100;
-        //return $this->power3;
+        $maxPower = 100;
+        if($this->class == CLASS_DK) {
+            // Check for 50147, 49455 spells (Runic power mastery) in current talent spec
+            $tRank = $this->db->selectCell("SELECT `rank` FROM `character_talent` WHERE `guid`=%d AND `talent_id`=2020 AND `spec`=%d", $this->guid, $this->activeSpec);
+            if($tRank === 0) {
+                // Runic power mastery (Rank 1)
+                $maxPower = 115;
+            }
+            elseif($tRank === 1) {
+                // Runic power mastery (Rank 2)
+                $maxPower = 130;
+            }
+        }
+        elseif($this->class == CLASS_ROGUE) {
+            // Check for 14983 spell (Vigor) in current talent spec
+            $tRank = $this->db->selectCell("SELECT `rank` FROM `character_talent` WHERE `guid`=%d AND `talent_id`=382 AND `spec`=%d", $this->guid, $this->activeSpec);
+            if($tRank === 0) {
+                $maxPower = 110;
+            }
+            // Also, check for Glyph of Vigor (id 408)
+            switch($this->currentRealmInfo['type']) {
+                case 'mangos':
+                    $isGlyphed = $this->db->selectCell("SELECT 1 FROM `character_glyphs` WHERE `guid`=%d AND `glyph`=408 AND `spec`=%d", $this->guid, $this->activeSpec);
+                    if($isGlyphed === true) {
+                        $maxPower = 120;
+                    }
+                    break;
+                case 'trinity':
+                    $isGlyphed = $this->db->selectCell("SELECT 1 FROM `character_glyphs` WHERE `guid`=%d AND (`glyph1`=408 OR `glyph2`=408 OR `glyph3`=408 OR `glyph4`=408 OR `glyph5`=408 OR `glyph6`=408) AND `spec`=%d", $this->guid, $this->activeSpec);
+                    if($isGlyphed === true) {
+                        $maxPower = 120;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return $maxPower;
     }
     
     /**
@@ -1337,7 +1471,7 @@ Class Characters extends Connector {
      * @return   array
      **/
     public function SetRating() {
-        if($this->rating) {
+        if(is_array($this->rating)) {
             return $this->rating;
         }
         else {
@@ -1522,8 +1656,7 @@ Class Characters extends Connector {
             'effective'      => $tmp_stats['effective']
         );
         
-        unset($rating);
-        unset($tmp_stats);
+        unset($rating, $tmp_stats);
         return $player_stats;
     }
     
@@ -1597,8 +1730,7 @@ Class Characters extends Connector {
             'petBonus'       => $tmp_stats['petBonus']
         );
         
-        unset($rating);
-        unset($tmp_stats);
+        unset($rating, $tmp_stats);
         return $player_stats;
     }
     
@@ -1640,8 +1772,7 @@ Class Characters extends Connector {
             'manaRegen'   => $tmp_stats['manaRegen']
         );
         
-        unset($rating);
-        unset($tmp_stats);
+        unset($rating, $tmp_stats);
         return $player_stats;
     }
     
@@ -1909,8 +2040,7 @@ Class Characters extends Connector {
             'percent' => '0.00'
         );
         
-        unset($tmp_stats);
-        unset($rangedSkillID);
+        unset($tmp_stats, $rangedSkillID);
         return $player_stats;
     }
     
@@ -1936,8 +2066,7 @@ Class Characters extends Connector {
             $player_stats['hastePercent'] = round($player_stats['hasteRating']/ Utils::GetRatingCoefficient($rating, 19), 2);
         }
         
-        unset($rating);
-        unset($rangedSkillID);
+        unset($rating, $rangedSkillID);
         return $player_stats;
     }
     
@@ -2075,9 +2204,7 @@ Class Characters extends Connector {
         $player_stats['arcane'] = $spellCrit[5];       
         $player_stats['shadow'] = $spellCrit[6];
         
-        unset($rating);
-        unset($spellCrit);
-        unset($player_stats['spell_crit_pct']);
+        unset($rating, $spellCrit, $player_stats['spell_crit_pct']);
         return $player_stats;
     }
     
@@ -2179,9 +2306,7 @@ Class Characters extends Connector {
             $tmp_stats['decreasePercent'] = 0;
         }
         
-        unset($rating);
-        unset($gskill);
-        unset($tmp_stats['defense_rating_skill']);
+        unset($rating, $gskill, $tmp_stats['defense_rating_skill']);
         return $tmp_stats;
     }
     
@@ -2261,8 +2386,7 @@ Class Characters extends Connector {
             'hitPercent'    => round($tmp_stats['hitPercent'], 2),
             'damagePercent' => round($tmp_stats['damagePercent'], 2)
         );
-        unset($rating);
-        unset($tmp_stats);
+        unset($rating, $tmp_stats);
         return $player_stats;
     }
     
@@ -2286,11 +2410,13 @@ Class Characters extends Connector {
     }
     
     /**
-     * Returns data for 2x2, 3x3 and 5x5 character arena teams (if exists). If $check == true, function will return boolean type. Used by character-*.php to check show or not 'Arena' button
+     * Returns data for 2x2, 3x3 and 5x5 character arena teams (if exists).
+     * If $check == true, function will return boolean type.
+     * Used by character-*.php to check show or not 'Arena' button
      * @category Character class
      * @access   public
      * @param    bool $check = false
-     * @return   mixed
+     * @return   array
      **/
     public function getCharacterArenaTeamInfo($check = false) {
         if(!$this->guid) {
@@ -2314,37 +2440,41 @@ Class Characters extends Connector {
         if(!$tmp_info) {
             return false;
         }
-        if($check == true && $tmp_info) {
+        if($check == true && is_array($tmp_info)) {
             return true;
         }
         for($i=0;$i<3;$i++) {
-            if($tmp_info[$i]['type'] == '2') {
-                $arenaTeamInfo['2x2'] = array(
-                    'name' => $tmp_info[$i]['name'],
-                    'rank' => $tmp_info[$i]['rank'],
-                    'rating' => $tmp_info[$i]['rating'],
-                    'personalrating' => $tmp_info[$i]['personal_rating']
-                );
-            }
-            elseif($tmp_info[$i]['type'] == '3') {
-                $arenaTeamInfo['3x3'] = array(
-                    'name' => $tmp_info[$i]['name'],
-                    'rank' => $tmp_info[$i]['rank'],
-                    'rating' => $tmp_info[$i]['rating'],
-                    'personalrating' => $tmp_info[$i]['personal_rating']
-                );
-            }
-            elseif($tmp_info[$i]['type'] == '5') {
-                $arenaTeamInfo['5x5'] = array(
-                    'name' => $tmp_info[$i]['name'],
-                    'rank' => $tmp_info[$i]['rank'],
-                    'rating' => $tmp_info[$i]['rating'],
-                    'personalrating' => $tmp_info[$i]['personal_rating']
-                );
+            switch($tmp_info[$i]['type']) {
+                case 2:
+                    $arenaTeamInfo['2x2'] = array(
+                        'name' => $tmp_info[$i]['name'],
+                        'rank' => $tmp_info[$i]['rank'],
+                        'rating' => $tmp_info[$i]['rating'],
+                        'personalrating' => $tmp_info[$i]['personal_rating']
+                    );
+                    break;
+                case 3:
+                    $arenaTeamInfo['3x3'] = array(
+                        'name' => $tmp_info[$i]['name'],
+                        'rank' => $tmp_info[$i]['rank'],
+                        'rating' => $tmp_info[$i]['rating'],
+                        'personalrating' => $tmp_info[$i]['personal_rating']
+                    );
+                    break;
+                case 5:
+                    $arenaTeamInfo['5x5'] = array(
+                        'name' => $tmp_info[$i]['name'],
+                        'rank' => $tmp_info[$i]['rank'],
+                        'rating' => $tmp_info[$i]['rating'],
+                        'personalrating' => $tmp_info[$i]['personal_rating']
+                    );
+                    break;
+                default:
+                    return false;
+                    break;
             }
             return $arenaTeamInfo;
         }
-        return false;
     }
     
     /**
@@ -2594,9 +2724,10 @@ Class Characters extends Connector {
      * @access   public
      * @param    int $amount
      * @param    int $type
+     * @param    bool $autoSave = false
      * @return   bool
      **/
-    public function ModifyMoney($amount, $type) {
+    public function ModifyMoney($amount, $type, $autoSave = false) {
         switch($type) {
             // Add money
             case 1:
@@ -2607,6 +2738,36 @@ Class Characters extends Connector {
                 $this->money -= $amount;
                 break;
         }
+        if($autoSave === true) {
+            $this->SaveMoneyToDB();
+        }
+        return true;
+    }
+    
+    /**
+     * Saves money amount to db.
+     * This method can be called from Characters::ModifyMoney() ONLY when $autoSave param is 'true'
+     * and 'AUCTION_HOUSE_ALLOWED_OPERATION' constant is defined (in auctionhouse.xml).
+     * Active session also must exists.
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
+    private function SaveMoneyToDB() {
+        if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            return false;
+        }
+        if(!isset($_SESSION['accountId']) || $_SESSION['accountId'] != $this->account) {
+            $this->Log()->writeError('%s : session not found', __METHOD__);
+            return false;
+        }
+        if(!defined('AUCTION_HOUSE_ALLOWED_OPERATION') || AUCTION_HOUSE_ALLOWED_OPERATION == false) {
+            $this->Log()->writeError('%s : autosave money to DB is allowed only from auction house handler and when AUCTION_HOUSE_ALLOWED_OPERATION is defined (currently: not defined)', __METHOD__);
+            return false;
+        }
+        $this->db->query("UPDATE `characters` SET `money`='%d' WHERE `guid`='%d' AND `account`='%d'", $this->money, $this->guid, (int) $_SESSION['accountId']);
+        $this->Log()->writeLog('%s : money amount: %d', __METHOD__, $this->money);
         return true;
     }
     
@@ -2772,6 +2933,12 @@ Class Characters extends Connector {
         return $this->db;
     }
     
+    /**
+     * Returns array with player model scales according with player race
+     * @category Characters class
+     * @access   public
+     * @return   array
+     **/
     public function GetModelData() {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not provided', __METHOD__);
