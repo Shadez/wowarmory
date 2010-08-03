@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 297
+ * @revision 342
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -71,7 +71,7 @@ if(!$isCharacter) {
     exit;
 }
 $character_title = $characters->GetChosenTitleInfo();
-$character_element = $characters->GetHeader($achievements);
+$character_element = $characters->GetHeader();
 $xml->XMLWriter()->startElement('characterInfo');
 if($utils->IsWriteRaw()) {
     $xml->XMLWriter()->writeRaw('<character');
