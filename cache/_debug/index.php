@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 302
+ * @revision 338
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,18 +23,17 @@
  **/
 
 define('__ARMORY__', true);
-
 if(isset($_GET['clearLog'])) {
     @file_put_contents('tmp.dbg', null);
     header('Location: index.php');
 }
-echo '<html><head><title>WoWArmory Debug Log</title></head><body><a href="?clearLog">Clear log</a><br /><hr />';
-if(@include('../../includes/classes/configuration.php')) {
+@include('../../includes/classes/configuration.php');
+if(isset($ArmoryConfig) && is_array($ArmoryConfig) && $ArmoryConfig['settings']['useDebug'] === true) {
     @include('../../includes/revision_nr.php');
+    echo '<html><head><title>WoWArmory Debug Log</title></head><body><a href="?clearLog">Clear log</a><br /><hr />';
     echo sprintf("<strong>Armory revision:</strong> %d<br />
     <strong>DB Version:</strong> %s<br />
     Configuration values are:<br />
-    <strong>ArmoryConfig['settings']['siteCharset']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['configVersion']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['useCache']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['cache_lifetime']</strong> = %d<br />
@@ -46,7 +45,6 @@ if(@include('../../includes/classes/configuration.php')) {
     ",
     ARMORY_REVISION,
     DB_VERSION,
-    $ArmoryConfig['settings']['siteCharset'],
     $ArmoryConfig['settings']['configVersion'],
     ($ArmoryConfig['settings']['useCache'] == true) ? 'true' : 'false',
     $ArmoryConfig['settings']['cache_lifetime'],
@@ -62,6 +60,10 @@ if(@include('../../includes/classes/configuration.php')) {
         }
     }
     echo '<br /><strong>Log</strong>:<br /><br />';
+}
+elseif($ArmoryConfig['settings']['useDebug'] === false) {
+    header('Location: ../../');
+    exit;
 }
 @include('tmp.dbg');
 echo '</body></html>';
