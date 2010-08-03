@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 330
+ * @revision 338
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -88,9 +88,9 @@ Class Connector {
             if(isset($this->realmData[$realm_info['id']])) {
                 $this->connectionData = $this->realmData[$realm_info['id']];
                 $this->cDB = new ArmoryDatabaseHandler($this->connectionData['host_characters'], $this->connectionData['user_characters'], $this->connectionData['pass_characters'], $this->connectionData['name_characters'], $this->connectionData['charset_characters'], $this->Log());
-                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'version' => $realm_info['version'], 'type' => $this->connectionData['type'], 'connected' => true);
-                if(isset($this->connectionData['name_mangos'])) {
-                    $this->wDB = new ArmoryDatabaseHandler($this->connectionData['host_mangos'], $this->connectionData['user_mangos'], $this->connectionData['pass_mangos'], $this->connectionData['name_mangos'], $this->connectionData['charset_mangos'], $this->Log());
+                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'type' => $this->connectionData['type'], 'connected' => true);
+                if(isset($this->connectionData['name_world'])) {
+                    $this->wDB = new ArmoryDatabaseHandler($this->connectionData['host_world'], $this->connectionData['user_world'], $this->connectionData['pass_world'], $this->connectionData['name_world'], $this->connectionData['charset_world'], $this->Log());
                 }
             }
         }
@@ -99,10 +99,10 @@ Class Connector {
             $this->cDB = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
         }
         if($this->wDB == null) {
-            $this->wDB = new ArmoryDatabaseHandler($realm_info['host_mangos'], $realm_info['user_mangos'], $realm_info['pass_mangos'], $realm_info['name_mangos'], $realm_info['charset_mangos'], $this->Log());
+            $this->wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->Log());
         }
         if(!$this->currentRealmInfo) {
-            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'version' => $this->armoryconfig['server_version'], 'type' => $this->realmData[1]['type'], 'connected' => true);
+            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'type' => $this->realmData[1]['type'], 'connected' => true);
         }
         if(!$this->connectionData) {
             $this->connectionData = $this->realmData[1];

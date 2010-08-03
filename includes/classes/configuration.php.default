@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 303
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 338
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,72 +26,185 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
+###############################################
+# World of Warcraft Armory configuration file #
+###############################################
+
 $ArmoryConfig = array();
-$ArmoryConfig['mysql'] = array();
-/* Armory Database configuration */
+$ArmoryConfig['mysql']      = array();
+$ArmoryConfig['settings']   = array();
+$ArmoryConfig['multiRealm'] = array();
+
+##############################################################################################
+# MySQL Database Configuration
+#    $ArmoryConfig['mysql']['host_*']
+#    $ArmoryConfig['mysql']['user_*']
+#    $ArmoryConfig['mysql']['pass_*']
+#    $ArmoryConfig['mysql']['name_*']
+#    $ArmoryConfig['mysql']['charset_*']
+#        Database connection settings for different databases
+#        Default:
+#                host: localhost
+#                user: root
+#                pass: 
+#                charset: UTF8
+##############################################################################################
+
 $ArmoryConfig['mysql']['host_armory']     = 'localhost';
 $ArmoryConfig['mysql']['user_armory']     = 'root';
 $ArmoryConfig['mysql']['pass_armory']     = '';
-$ArmoryConfig['mysql']['name_armory']     = 'armory';
+$ArmoryConfig['mysql']['name_armory']     = 'wowarmory';
 $ArmoryConfig['mysql']['charset_armory']  = 'UTF8';
 
-/* Accounts (realmd) Database configuration */
-$ArmoryConfig['mysql']['host_realmd']         = 'localhost';
-$ArmoryConfig['mysql']['user_realmd']         = 'root';
-$ArmoryConfig['mysql']['pass_realmd']         = '';
-$ArmoryConfig['mysql']['name_realmd']         = 'realmd';
-$ArmoryConfig['mysql']['charset_realmd']      = 'UTF8';
+$ArmoryConfig['mysql']['host_realmd']     = 'localhost';
+$ArmoryConfig['mysql']['user_realmd']     = 'root';
+$ArmoryConfig['mysql']['pass_realmd']     = '';
+$ArmoryConfig['mysql']['name_realmd']     = 'realmd';
+$ArmoryConfig['mysql']['charset_realmd']  = 'UTF8';
 
-/* For characters & world DB configuration see $ArmoryConfig['multiRealm'][X]['*_characters'] / ['*_mangos'] */
+##############################################################################################
+# Armory configuration
+#
+#    useNews
+#        News module enabled/disabled
+#        Default: false (Disabled)
+#                 true  (Enabled)
+#
+#    defaultBGName
+#        Battlegroup name (currently doesn't do anything, just cosmetic)
+#        Default: Massive Network
+#
+#    useCache
+#        Cache module enabled/disabled
+#        Default: false (Disabled)
+#                 true  (Enabled)
+#
+#    cache_lifetime
+#        Rebuild cache delay (in seconds)
+#        Default: 86400 (1 day)
+#
+#    minlevel
+#        Players with level below this value wouldn't be displayed in Armory 
+#        Default: 10 (Recommended)
+#
+#    minGmLevelToShow
+#        Characters with this GM level and below it will be displayed in Armory
+#        Default: 3 (Everyone)
+#                 2 (Everyone except Administrators will be displayed in Armory)
+#                 1 (Everyone except Administrators and GMs will be displayed in Armory)
+#                 0 (Only players will be displayed in Armory)
+#
+#    defaultLocale
+#        Site default locale
+#        Default: en_gb (UK English)
+#                 en_us (US English)
+#                 es_es (Spanish)
+#                 de_de (German)
+#                 fr_fr (French)
+#                 ru_ru (Russian)
+#
+#    maintenance
+#        Disable site and redirect users to info page
+#        Default: false (Site is not disabled)
+#                 true  (Site is disabled)
+#
+#    useDebug
+#        Debug log module enabled/disabled
+#        Default: false (Disabled)
+#                 true  (Enabled)
+#
+#    useCache
+#        Cache module enabled/disabled. STRONGLY not recommended to enable this option on live servers. 
+#        Use this for development cases only!
+#        Default: false (Disabled)
+#                 true  (Enabled)
+#
+#    logLevel
+#        Logging level
+#        Default: 2 (Full debug)
+#                 1 (Errors only)
+#
+#    configVersion
+#        Configuration file version. This option must not be changed (only by commits)!
+#        Default: DDMMYYYYNN (day, month, year, changes count)
+#
+#    checkVersionType
+#        Armory errors reporting style (wrong database version, config version mismatch, etc.)
+#        Default: show (Display all errors and exit script. Recommended)
+#                 log  (Write errors to log (if enabled) and continue script work)
+##############################################################################################
 
-/* Armory settings */
-$ArmoryConfig['settings']['server_version']   = '333'; // '322' or '333', without dots or something else
-$ArmoryConfig['settings']['siteCharset']      = 'utf-8';
 $ArmoryConfig['settings']['useNews']          = false;
-$ArmoryConfig['settings']['defaultRealmId']   = 1;
-$ArmoryConfig['settings']['defaultRealmName'] = 'MaNGOS'; // Realm name
-$ArmoryConfig['settings']['defaultBGName']    = 'Massive Network'; // "Battlegroup" name, just cosmetic
+$ArmoryConfig['settings']['defaultBGName']    = 'Massive Network';
 $ArmoryConfig['settings']['useCache']         = false;
-$ArmoryConfig['settings']['cache_lifetime']   = 86400; // In seconds; default - 1 day.
-$ArmoryConfig['settings']['minlevel']         = 10; // Character must have this level or higher to be shown in Armory
-$ArmoryConfig['settings']['minGmLevelToShow'] = 3;  // Show characters : 0 - only players, 1 - moderators, 2 - GMs, 3 - everyone
-$ArmoryConfig['settings']['defaultLocale']    = 'ru_ru'; // Can be 'ru_ru' or 'en_gb'
-$ArmoryConfig['settings']['showScriptInfo']   = true;    // Display script info (generation time, etc.) ? (true/false) (not used now)
-$ArmoryConfig['settings']['maintenance']      = false;   // Disable site? (true/false)
-$ArmoryConfig['settings']['useDebug']         = false;   // Use debug? (true/false). STRONGLY not recommended on live server!
-$ArmoryConfig['settings']['logLevel']         = 1;       // 1 - only errors, 2 - debug mode
-$ArmoryConfig['settings']['configVersion']    = 1107201001; // Do not change this value!
-$ArmoryConfig['settings']['checkVersionType'] = 'show'; // How to output Armory check results (db revision, config version, etc.)
-                                                       // Option can have 'show' or 'log' value (if nothing selected, script will use 'show' value)
-                                                       // 'show': display error message and stop script work
-                                                       // 'log' : write error to error log and continue script work (may cause errors!)
-                                                       // Default and recommended value: 'show'
+$ArmoryConfig['settings']['cache_lifetime']   = 86400;
+$ArmoryConfig['settings']['minlevel']         = 10;
+$ArmoryConfig['settings']['minGmLevelToShow'] = 3;
+$ArmoryConfig['settings']['defaultLocale']    = 'en_gb';
+$ArmoryConfig['settings']['maintenance']      = false;
+$ArmoryConfig['settings']['useDebug']         = true;
+$ArmoryConfig['settings']['logLevel']         = 2;
+$ArmoryConfig['settings']['configVersion']    = 0308201001;
+$ArmoryConfig['settings']['checkVersionType'] = 'show';
+
+##############################################################################################
+# Multirealms configuration
+#
+#    id
+#        Realm id. Must be unique. Also, this value must be the same with X ($ArmoryConfig['multiRealm'][X]).
+#
+#    name
+#        Realm name. Must be unique.
+#
+#    type
+#        Server type ('mangos' or 'trinity').
+#
+#    host_*
+#        MySQL server host for characters/world database.
+#        Default: localhost
+#
+#    user_*
+#        MySQL username for characters/world database.
+#        Default: root
+#
+#    pass_*
+#        Password for MySQL user.
+#
+#    name_*
+#        Database name for characters/world database.
+#
+#    charset_*
+#        MySQL database charset.
+#        Default: UTF8 (Recommended)
+#
+##############################################################################################
 
 $ArmoryConfig['multiRealm'][1]['id']                 = 1;
-$ArmoryConfig['multiRealm'][1]['name']               = 'MaNGOS1';
+$ArmoryConfig['multiRealm'][1]['name']               = 'Armory Realm';
 $ArmoryConfig['multiRealm'][1]['type']               = 'mangos';
 $ArmoryConfig['multiRealm'][1]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][1]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][1]['pass_characters']    = '';
 $ArmoryConfig['multiRealm'][1]['name_characters']    = 'characters';
 $ArmoryConfig['multiRealm'][1]['charset_characters'] = 'UTF8';
-$ArmoryConfig['multiRealm'][1]['host_mangos']        = 'localhost';
-$ArmoryConfig['multiRealm'][1]['user_mangos']        = 'root';
-$ArmoryConfig['multiRealm'][1]['pass_mangos']        = '';
-$ArmoryConfig['multiRealm'][1]['name_mangos']        = 'mangos';
-$ArmoryConfig['multiRealm'][1]['charset_mangos']     = 'UTF8';
+$ArmoryConfig['multiRealm'][1]['host_world']         = 'localhost';
+$ArmoryConfig['multiRealm'][1]['user_world']         = 'root';
+$ArmoryConfig['multiRealm'][1]['pass_world']         = '';
+$ArmoryConfig['multiRealm'][1]['name_world']         = 'mangos';
+$ArmoryConfig['multiRealm'][1]['charset_world']      = 'UTF8';
 
 $ArmoryConfig['multiRealm'][2]['id']                 = 2;
-$ArmoryConfig['multiRealm'][2]['name']               = 'Trinity1';
+$ArmoryConfig['multiRealm'][2]['name']               = 'Armory Realm 2';
 $ArmoryConfig['multiRealm'][2]['type']               = 'trinity';
 $ArmoryConfig['multiRealm'][2]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][2]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][2]['pass_characters']    = '';
-$ArmoryConfig['multiRealm'][2]['name_characters']    = 'characters_2';
+$ArmoryConfig['multiRealm'][2]['name_characters']    = 'characters_trinity';
 $ArmoryConfig['multiRealm'][2]['charset_characters'] = 'UTF8';
-$ArmoryConfig['multiRealm'][2]['host_mangos']        = 'localhost';
-$ArmoryConfig['multiRealm'][2]['user_mangos']        = 'root';
-$ArmoryConfig['multiRealm'][2]['pass_mangos']        = '';
-$ArmoryConfig['multiRealm'][2]['name_mangos']        = 'world';
-$ArmoryConfig['multiRealm'][2]['charset_mangos']     = 'UTF8';
+$ArmoryConfig['multiRealm'][2]['host_world']         = 'localhost';
+$ArmoryConfig['multiRealm'][2]['user_world']         = 'root';
+$ArmoryConfig['multiRealm'][2]['pass_world']         = '';
+$ArmoryConfig['multiRealm'][2]['name_world']         = 'trinity_world';
+$ArmoryConfig['multiRealm'][2]['charset_world']      = 'UTF8';
+
 ?>
