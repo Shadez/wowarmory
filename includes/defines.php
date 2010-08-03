@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 334
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -63,22 +63,22 @@ define('ACHIEVEMENTS_CATEGORY_REPUTATION',  201);
 define('ACHIEVEMENTS_CATEGORY_EVENTS',      155);
 define('ACHIEVEMENTS_CATEGORY_FEATS',       81);
 
-define('ACHIEVEMENTS_COUNT_SUMMARY',     1054);
+define('ACHIEVEMENTS_COUNT_SUMMARY',     1058);
 define('ACHIEVEMENTS_COUNT_GENERAL',     54);
 define('ACHIEVEMENTS_COUNT_QUESTS',      49);
 define('ACHIEVEMENTS_COUNT_EXPLORATION', 70);
 define('ACHIEVEMENTS_COUNT_PVP',         166);
-define('ACHIEVEMENTS_COUNT_DUNGEONS',    454);
+define('ACHIEVEMENTS_COUNT_DUNGEONS',    458);
 define('ACHIEVEMENTS_COUNT_PROFESSIONS', 75);
 define('ACHIEVEMENTS_COUNT_REPUTATION',  45);
 define('ACHIEVEMENTS_COUNT_EVENTS',      141);
 
-define('ACHIEVEMENT_POINTS_SUMMARY',     11635);
+define('ACHIEVEMENT_POINTS_SUMMARY',     11675);
 define('ACHIEVEMENT_POINTS_GENERAL',     570);
 define('ACHIEVEMENT_POINTS_QUESTS',      530);
 define('ACHIEVEMENT_POINTS_EXPLORATION', 830);
 define('ACHIEVEMENT_POINTS_PVP',         1930);
-define('ACHIEVEMENT_POINTS_DUNGEONS',    4915);
+define('ACHIEVEMENT_POINTS_DUNGEONS',    4955);
 define('ACHIEVEMENT_POINTS_PROFESSIONS', 760);
 define('ACHIEVEMENT_POINTS_REPUTATION',  560);
 define('ACHIEVEMENT_POINTS_EVENTS',      1540);

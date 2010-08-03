@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 337
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -226,6 +226,13 @@ Class Characters extends Connector {
     private $realmID = false;
     
     /**
+     * Achievement MGR
+     * @category Characters class
+     * @access   private
+     **/
+    private $m_achievementMgr = null;
+    
+    /**
      * Checks current player (loaded or not).
      * @category Characters class
      * @access   public
@@ -315,6 +322,7 @@ Class Characters extends Connector {
             return false;
         }
         if($full == true) {
+            // Character data required for character-sheet page only.
             $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
             if(!$player_stats_check) {
                 $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
@@ -382,7 +390,7 @@ Class Characters extends Connector {
             $this->raceText = $race_class['race'];
             // Get title info
             if($this->chosenTitle > 0) {
-                $this->__GetTitleInfo();
+                $this->__HandleTitle();
             }
         }
         $this->realmName = $realm_info['name'];
@@ -420,7 +428,7 @@ Class Characters extends Connector {
      * @access   private
      * @return   bool
      **/
-    private function __GetTitleInfo() {
+    private function __HandleTitle() {
         $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=%d", $this->_locale, $this->_locale, $this->chosenTitle);
         if(!$title_data) {
             $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
@@ -665,14 +673,21 @@ Class Characters extends Connector {
         return $this->money;
     }
     
+    public function GetAchievementMgr() {
+        if($this->m_achievementMgr === null) {
+            $this->m_achievementMgr = new Achievements;
+            $this->m_achievementMgr->InitAchievements($this->GetGUID(), $this->GetDB(), true);
+        }
+        return $this->m_achievementMgr;
+    }
+    
     /**
      * Generates character header (for XML output)
      * @category Characters class
      * @access   public
-     * @param    Achievements $achievements
      * @return   array 
      **/
-    public function GetHeader(Achievements $achievements) {
+    public function GetHeader() {
         $header = array(
             'battleGroup'  => $this->armoryconfig['defaultBGName'],
             'charUrl'      => $this->GetUrlString(),
@@ -688,7 +703,7 @@ Class Characters extends Connector {
             'lastModified' => null,
             'level'        => $this->level,
             'name'         => $this->name,
-            'points'       => $achievements->CalculateAchievementPoints(),
+            'points'       => $this->GetAchievementMgr()->GetAchievementPoints(),
             'prefix'       => $this->character_title['prefix'],
             'race'         => $this->raceText,
             'raceId'       => $this->race,
@@ -2523,7 +2538,7 @@ Class Characters extends Connector {
             switch($event['type']) {
                 case TYPE_ACHIEVEMENT_FEED:
                     $send_data = array('achievement' => $event['data'], 'date' => $event_date);
-                    $achievement_info = Achievements::GetAchievementInfo($send_data);
+                    $achievement_info = $this->GetAchievementMgr()->GetAchievementInfo($send_data);
                     if(!isset($achievement_info['title']) || !$achievement_info['title'] || empty($achievement_info['title'])) {
                         continue;
                     }

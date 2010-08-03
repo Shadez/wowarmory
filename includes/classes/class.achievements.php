@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 321
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,72 +30,123 @@ Class Achievements extends Connector {
     
     /**
      * Character guid
+     * @category Achievements class
+     * @access   public
      **/
     public $guid;
     
     /**
      * Character achievement points
+     * @category Achievements class
+     * @access   public
      **/
     public $pts;
     
     /**
      * Achievement ID
+     * @category Achievements class
+     * @access   public
      **/
     public $achId;
     
     /**
-     * Calculate total character achievement points
+     * Characters database handler
      * @category Achievements class
-     * @example Achievements::calculateAchievementPoints()
-     * @return int
+     * @access   private
      **/
-    public function CalculateAchievementPoints($guid = null) {
-        if($guid == null) {
-            $guid = $this->guid;
-        }
-        if(!$guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+    private $db;
+    
+    /**
+     * Character achievements count
+     * @category Achievements class
+     * @access   private
+     **/
+    private $m_count;
+    
+    /**
+     * Creates Achievement class instance
+     * @category Achievements class
+     * @access   public
+     * @param    int $player_guid
+     * @param    ArmoryDatabaseHandler $db
+     * @param    bool $check = true
+     * @return   bool
+     **/
+    public function InitAchievements($player_guid, ArmoryDatabaseHandler $db, $check = true) {
+        // Clear values before recalculation
+        $this->guid    = 0;
+        $this->db      = null;
+        $this->achId   = 0;
+        $this->m_count = 0;
+        $this->pts     = 0;
+        if(!$db->TestLink()) {
+            $this->Log()->writeError('%s : wrong database handler!', __METHOD__);
+            unset($db, $player_guid);
             return false;
         }
-        $pts = $this->aDB->selectCell("
-        SELECT SUM(`points`)
-            FROM `armory_achievement`
-                WHERE `id` IN 
-                (
-                    SELECT `achievement` 
-                    FROM `%s`.`character_achievement`
-                    WHERE `guid`=%d
-                )
-                ", $this->connectionData['name_characters'], $guid);
-        $this->pts = $pts;
-        return $this->pts;
+        if($check == true && !$db->selectCell("SELECT 1 FROM `characters` WHERE `guid`=%d LIMIT 1", $player_guid)) {
+            $this->Log()->writeError('%s : player with guid %d not found in `characters` table!', __METHOD__, $player_guid);
+            unset($db, $player_guid);
+            return false;
+        }
+        $this->guid = $player_guid;
+        $this->db   = $db;
+        self::CalculateAchievementPoints();
+        self::CountCharacterAchievements();
+        return true;
     }
     
     /**
-     * Returns % (0-100) for achievement progress bar width.
+     * Returns achievement points for current character
      * @category Achievements class
-     * @example Achievements::getAchievementProgressBar(150)
-     * @todo Check ACH_MAX_COUNT_GAME
-     * @return int
+     * @access   public
+     * @return   int
      **/
-    public function getAchievementProgressBar($sum) {
-        $percent = ACHIEVEMENTS_COUNT_SUMMARY / 100;
-        $progressPercent = $sum / $percent;
-        return $progressPercent;
+    public function GetAchievementPoints() {
+        return $this->pts;
+    }
+    
+    public function GetAchievementsCount() {
+        return $this->m_count;
+    }
+    
+    /**
+     * Calculate total character achievement points
+     * @category Achievements class
+     * @access   public
+     * @return   int
+     **/
+    public function CalculateAchievementPoints() {
+        if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+            return false;
+        }
+        $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d", $this->guid);
+        if(!$achievement_ids) {
+            $this->Log()->writeError('%s : unable to find any completed achievement for player %d', __METHOD__, $this->guid);
+            return false;
+        }
+        $ids = array();
+        foreach($achievement_ids as $_tmp) {
+            $ids[] = $_tmp['achievement'];
+        }
+        $this->pts = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (%s)", $ids);
+        return $this->pts;
     }
     
     /**
      * Returns number of character completed achievements.
      * @category Achievements class
-     * @example Achievements::countCharacterAchievements()
-     * @return int
+     * @access   public
+     * @return   int
      **/
     public function CountCharacterAchievements() {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        return $this->cDB->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=%d", $this->guid);
+        $this->m_count = $this->db->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=%d", $this->guid);
+        return $this->m_count;
     }
     
     public function GetSummaryAchievementData($category) {
@@ -104,7 +155,7 @@ Class Achievements extends Connector {
             return false;
         }
         $achievement_data = array('categoryId' => $category);
-        $categories = null;
+        $categories = 0;
         // 3.3.5a
         switch($category) {
             case 92:
@@ -151,22 +202,23 @@ Class Achievements extends Connector {
                 $categories = '81';
                 break;
             default: // Summary
-                $categories = null;
+                $categories = 0;
                 $achievement_data['total'] = ACHIEVEMENTS_COUNT_SUMMARY;
                 $achievement_data['totalPoints'] = ACHIEVEMENT_POINTS_SUMMARY;
                 break;
         }
-        if($categories != null) {
-            $achievement_ids = $this->aDB->select("
-            SELECT `achievement`
-                FROM `%s`.`character_achievement`
-                WHERE `achievement` IN 
-                (
-                    SELECT `id` 
-                    FROM `%s`.`armory_achievement` 
-                    WHERE `categoryId` IN (%s)
-                )
-                AND `guid`=%d", $this->connectionData['name_characters'], $this->mysqlconfig['name_armory'], $categories, $this->guid);
+        if($categories != 0) {
+            $id_in_category = $this->aDB->select("SELECT `id` FROM `armory_achievement` WHERE `categoryId` IN (%s)", $categories);
+            if(!$id_in_category) {
+                $this->Log()->writeError('%s : unable to find any achievements in %s category', __METHOD__, $categories);
+            }
+            $a_ids = array();
+            if(is_array($id_in_category)) {
+                foreach($id_in_category as $_tId) {
+                    $a_ids[] = $_tId['id'];
+                }
+            }
+            $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d AND `achievement` IN (%s)", $this->guid, $a_ids);
             if(!$achievement_ids) {
                 $achievement_data['earned'] = 0;
                 $achievement_data['points'] = 0;
@@ -186,8 +238,8 @@ Class Achievements extends Connector {
             }
         }
         else {
-            $achievement_data['earned'] = self::CountCharacterAchievements();
-            $achievement_data['points'] = self::CalculateAchievementPoints();
+            $achievement_data['earned'] = self::GetAchievementsCount();
+            $achievement_data['points'] = self::GetAchievementPoints();
         }
         return $achievement_data;
     }
@@ -195,15 +247,15 @@ Class Achievements extends Connector {
     /**
      * Returns array with 5 latest completed achievements. Requires $this->guid!
      * @category Achievements class
-     * @example Achievements::GetLastAchievements()
-     * @return array
+     * @access   public
+     * @return   array
      **/
     public function GetLastAchievements() {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
+        $achievements = $this->db->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
         if(!$achievements) {
             $this->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have achievements?)', __METHOD__, $this->guid);
             return false;
@@ -218,70 +270,31 @@ Class Achievements extends Connector {
     /**
      * Returns achievement date. If $guid not provided, function will use $this->guid.
      * @category Achievements class
-     * @example Achievements::GetAchievementDate(17, false)
-     * @return string
+     * @access   public
+     * @param    int $achId = 0
+     * @return   string
      **/
-    public function GetAchievementDate($guid = null, $achId = null) {
-        if($guid == null) {
-            $guid = $this->guid;
-        }
-        if($achId == null) {
+    public function GetAchievementDate($achId = 0) {
+        if($achId == 0) {
             $achId = $this->achId;
         }
-        $achievement_date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=%d AND `guid`=%d LIMIT 1", $achId, $guid);
+        if(!$this->guid || !$achId) {
+            $this->Log()->writeError('%s : not enough data for calculation (guid: %d, achId: %d).', __METHOD__, $this->guid, $achId);
+            return false;
+        }
+        $achievement_date = $this->db->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=%d AND `guid`=%d LIMIT 1", $achId, $this->guid);
         if(!$achievement_date) {
-            $this->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $guid);
+            $this->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
             return false;
         }
         return date('Y-m-d\TH:i:s+02:00', $achievement_date);
     }
     
     /**
-     * Returns progress bar width % (0-100) for selected category ($achType)
+     * Generates achievements categories tree
      * @category Achievements class
-     * @example Achievements::CountAchievementPercent(15, 4)
-     * @return int
-     **/
-    public function CountAchievementPercent($sum, $achType) {
-        switch($achType) {
-            case 1:
-                $maxAch = 54;
-				break;
-			case 2:
-				$maxAch = 49;
-				break;
-			case 3:
-				$maxAch = 70;
-				break;
-			case 4:
-				$maxAch = 166;
-				break;
-			case 5:
-				$maxAch = 454;
-				break;
-			case 6:
-				$maxAch = 75;
-				break;
-			case 7:
-				$maxAch = 45;
-				break;
-			case 8:
-				$maxAch = 141;
-				break;
-			case 9:
-				$maxAch = 126;
-				break;
-        }
-        $percent = $maxAch / 100;
-        $progressPercent = $sum / $percent;
-        return $progressPercent;
-    }
-    
-    /**
-     * Generates achievement categories menu (for character-achievements.php)
-     * @category Achievements class
-     * @example Achievements::BuildCategoriesTree()
-     * @return string
+     * @access   public
+     * @return   string
      **/
     public function BuildCategoriesTree() {
         $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->_locale);
@@ -307,6 +320,12 @@ Class Achievements extends Connector {
         return $root_tree;
     }
     
+    /**
+     * Generates statistics categories tree
+     * @category Achievements class
+     * @access   public
+     * @return   array
+     **/
     public function BuildStatisticsCategoriesTree() {
         $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=1", $this->_locale);
         $root_tree = array();
@@ -331,10 +350,11 @@ Class Achievements extends Connector {
      * Returns basic achievement info (name, description, points). 
      * $achievementData must be in array format: array('achievement' => ACHIEVEMENT_ID, 'date' => TIMESTAMP_DATE)
      * @category Achievements class
-     * @example Achievements::GetAchievementInfo(1263163814)
-     * @return string
+     * @access   public
+     * @param    array $achievementData
+     * @return   string
      **/
-    public function GetAchievementInfo(&$achievementData) {
+    public function GetAchievementInfo($achievementData) {
         if(!is_array($achievementData)) {
             $this->Log()->writeError('%s : achievementData must be an array!', __METHOD__);
             return false;
@@ -352,39 +372,43 @@ Class Achievements extends Connector {
     }
     
     /**
-     * Returns formatted date
+     * Checks is achievement with $achId ID completed by current player
      * @category Achievements class
-     * @example Achievements::GetDateFormat(1263163814)
-     * @return string
+     * @access   public
+     * @param    int $achId
+     * @return   bool
      **/
-    public function GetDateFormat($timestamp) {
-        return date('d/m/Y', $timestamp);
-    }
-    
     public function IsAchievementCompleted($achId) {
         if(!$this->guid || !$achId) {
-            $this->Log()->writeError('%s : player guid or achievement id not provided', __METHOD__);
+            $this->Log()->writeError('%s : player guid or achievement id not provided (guid: %d, achId: %d)', __METHOD__, $this->guid, $achId);
             return false;
         }
-        if($achId == 0 || $achId == -1 || !$this->IsAchievementExists($achId)) {
-            $this->Log()->writeError('%s : achievement %u not exists', __METHOD__, $achId);
+        if($achId == 0 || $achId == -1 || !self::IsAchievementExists($achId)) {
+            $this->Log()->writeError('%s : achievement %d not exists', __METHOD__, $achId);
             return false;
         }
-        $date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `guid`=%d AND `achievement`=%d", $this->guid, $achId);
-        if($date) {
-            return true;
-        }
-        return false;
+        return $this->db->selectCell("SELECT 1 FROM `character_achievement` WHERE `guid`=%d AND `achievement`=%d", $this->guid, $achId);
     }
     
+    /**
+     * Checks is achievement $achId exists in DB
+     * @category Achievements class
+     * @access   public
+     * @param    int $achId
+     * @return   bool
+     **/
     public function IsAchievementExists($achId) {
-        $data = $this->aDB->selectCell("SELECT 1 FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $achId);
-        if($data) {
-            return true;
-        }
-        return false;
+        return $this->aDB->selectCell("SELECT 1 FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $achId);
     }
     
+    /**
+     * Generates achievement page
+     * @category Achievements class
+     * @access   public
+     * @param    int $page_id
+     * @param    int $faction
+     * @return   array
+     **/
     public function LoadAchievementPage($page_id, $faction) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not provided', __METHOD__);
@@ -474,7 +498,7 @@ Class Achievements extends Connector {
             $locale = $this->_locale;
         }
         if(!$this->guid || !$this->achId) {
-            $this->Log()->writeError('%s : player guid or achievement id not defiend', __METHOD__);
+            $this->Log()->writeError('%s : player guid or achievement id not defiend (guid: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
             return false;
         }
         $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
@@ -520,11 +544,7 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $criteria_data = $this->cDB->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
-        if($criteria_data) {
-            return $criteria_data;
-        }
-        return false;
+        return $this->db->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
     }
     
     public function LoadStatisticsPage($page_id, $faction) {
@@ -564,7 +584,7 @@ Class Achievements extends Connector {
         }
         $tmp_criteria_value = 0;
         foreach($criteria_ids as $criteria) {
-            $tmp_criteria_value = $this->cDB->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
+            $tmp_criteria_value = $this->db->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
             if(!$tmp_criteria_value) {
                 continue;
             }
@@ -573,7 +593,7 @@ Class Achievements extends Connector {
             }
         }
         if(!$tmp_criteria_value) {
-            $this->Log()->writeError('%s : criteria value not found (id: %d)', __METHOD__, $this->achId);
+            $this->Log()->writeError('%s : criteria value for achievement %d not found', __METHOD__, $this->achId);
             return 0;
         }
         return $tmp_criteria_value;

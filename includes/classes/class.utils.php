@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 331
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,7 +49,7 @@ Class Utils extends Connector {
             return false;
         }
         elseif(strtoupper($info['sha_pass_hash']) != $this->createShaHash()) {
-            $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are diffirent (%s and %s), unable to auth user.', __METHOD__, $info['sha_pass_hash'], $this->createShaHash());
+            $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are different (%s and %s), unable to auth user.', __METHOD__, strtoupper($info['sha_pass_hash']), $this->createShaHash());
             return false;
         }
         else {
@@ -1267,6 +1267,36 @@ Class Utils extends Connector {
                 break;
         }
         return $mask;
+    }
+    
+    /**
+     * Returns realm type for provided $realm_id.
+     * Warning: if detection fails, realm with provided ID will be deleted from allowed realms!
+     * @category Utils class
+     * @access   public
+     * @param    int $realm_id
+     * @return   mixed
+     **/
+    public function GetRealmType($realm_id) {
+        if(!isset($this->realmData[$realm_id]) || !isset($this->realmData[$realm_id]['name_world'])) {
+            $this->Log()->writeError('%s : unable to detect realm type: world database config not found', __METHOD__);
+            return false;
+        }
+        $realm_info = $this->realmData[$realm_id];
+        $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->Log());
+        if(!$db->TestLink()) {
+            $this->Log()->writeError('%s : unable to connect to MySQL database (%s:%s:%s:%s)', __METHOD__, $realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world']);
+            return false;
+        }
+        if($tmp = $db->selectCell("SELECT 1 FROM `mangos_string` LIMIT 1")) {
+            return 'mangos';
+        }
+        elseif($tmp = $db->selectCell("SELECT 1 FROM `trinity_string` LIMIT 1")) {
+            return 'trinity';
+        }
+        $this->Log()->writeError('%s : unable to detect realm type, realm info with ID #%d was removed from allowed realms', __METHOD__, $realm_id);
+        unset($realm_id, $realm_info, $this->realmData[$realm_id], $db);
+        return false;
     }
 }
 ?>

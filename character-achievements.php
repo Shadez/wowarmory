@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 299
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -56,7 +56,7 @@ if(!isset($_GET['r'])) {
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
-$achievements->guid = $characters->GetGUID();
+$achievements = $characters->GetAchievementMgr();
 if($_GET['r'] === false || !$armory->currentRealmInfo) {
     $isCharacter = false;
 }
@@ -263,7 +263,7 @@ if(!$isCharacter) {
     exit;
 }
 $character_title = $characters->GetChosenTitleInfo();
-$character_element = $characters->GetHeader($achievements);
+$character_element = $characters->GetHeader();
 $xml->XMLWriter()->startElement('characterInfo');
 if($utils->IsWriteRaw()) {
     $xml->XMLWriter()->writeRaw('<character');

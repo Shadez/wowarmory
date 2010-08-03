@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 309
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -99,9 +99,7 @@ $guild_header = array(
     'realmUrl'     => urlencode($armory->currentRealmInfo['name']),
     'url'          => sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName))
 );
-// <guildInfo> start
 $xml->XMLWriter()->startElement('guildInfo');
-// <guildHeader> start
 $xml->XMLWriter()->startElement('guildHeader');
 foreach($guild_header as $header_key => $header_value) {
     $xml->XMLWriter()->writeAttribute($header_key, $header_value);
@@ -112,7 +110,6 @@ foreach($guild_emblem as $emblem_key => $emblem_value) {
 }
 $xml->XMLWriter()->endElement();  //emblem
 $xml->XMLWriter()->endElement(); //guildHeader
-// <guild> start
 $xml->XMLWriter()->startElement('guild');
 $xml->XMLWriter()->startElement('members');
 $xml->XMLWriter()->writeAttribute('memberCount', $guilds->CountGuildMembers());

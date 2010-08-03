@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 298
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -59,7 +59,7 @@ if($characters->GetGUID() > 0 && $isCharacter && $armory->armoryconfig['useCache
         exit;
     }
 }/** Basic info **/
-$achievements->guid = $characters->GetGUID();
+$achievements = $characters->GetAchievementMgr();
 $arenateams->guid   = $characters->GetGUID();
 $tabUrl = $characters->GetUrlString();
 /** Header **/
@@ -83,7 +83,7 @@ if(!$isCharacter) {
     exit;
 }
 $character_title = $characters->GetChosenTitleInfo();
-$character_element = $characters->GetHeader($achievements);
+$character_element = $characters->GetHeader();
 $character_arenateams = $arenateams->GetCharacterArenaTeamInfo();
 $xml->XMLWriter()->startElement('characterInfo');
 if($utils->IsWriteRaw()) {

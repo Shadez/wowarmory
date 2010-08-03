@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 324
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -237,8 +237,11 @@ Class Guilds extends Connector {
         WHERE `guild`.`guildid`=%d AND `characters`.`level`>=%d AND `guild_member`.`guid`=`characters`.`guid`", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
         $countMembers = count($memberListTmp);
         for($i=0;$i<$countMembers;$i++) {
-            $memberListTmp[$i]['achPoints'] = Achievements::calculateAchievementPoints($memberListTmp[$i]['guid']);
+            $pl = new Characters;
+            $pl->BuildCharacter($memberListTmp[$i]['name'], $this->currentRealmInfo['id'], false);
+            $memberListTmp[$i]['achPoints'] = $pl->GetAchievementMgr()->GetAchievementPoints();
             $memberListTmp[$i]['url'] = sprintf('r=%s&cn=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($memberListTmp[$i]['name']), urlencode($this->guildName));
+            unset($pl);
         }
         return $memberListTmp;
      }

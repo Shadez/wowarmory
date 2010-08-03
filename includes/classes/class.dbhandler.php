@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 332
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,7 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-/* Database Query Types */
+/** Database Query Types **/
 define('SINGLE_CELL',  0x01);
 define('SINGLE_ROW',   0x02);
 define('MULTIPLY_ROW', 0x03);
@@ -36,6 +36,7 @@ define('OBJECT_QUERY', 0x05);
 Class ArmoryDatabaseHandler {
     private $dbLink = false;
     private $connectionLink = false;
+    private $databaseInfo = array();
     
     /** Queries counter **/
     private $queryCount = 0;
@@ -44,12 +45,14 @@ Class ArmoryDatabaseHandler {
     
     /**
      * Connect to DB
-     * @param string host
-     * @param string user
-     * @param string password
-     * @param string dbName
-     * @param string charset
-     * @return bool
+     * @category Armory Database Handler
+     * @access   public
+     * @param    string host
+     * @param    string user
+     * @param    string password
+     * @param    string dbName
+     * @param    string charset
+     * @return   bool
      **/
     public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = false, $logHandler = null) {
         $this->connectionLink = @mysql_connect($host, $user, $password, true);
@@ -61,12 +64,32 @@ Class ArmoryDatabaseHandler {
             $this->query("SET NAMES %s", $charset);
         }
         $this->logHandler = $logHandler;
+        $this->databaseInfo = array(
+            'host'     => $host,
+            'user'     => $user,
+            'password' => $password,
+            'name'     => $dbName,
+            'charset'  => ($charset === false) ? 'UTF8' : $charset,
+        );
         return true;
     }
     
     /**
+     * Returns current database info
+     * @category Armory Database Handler
+     * @access   public
+     * @param    string $info
+     * @return   mixed
+     **/
+    public function GetDatabaseInfo($info) {
+        return (isset($this->databaseInfo[$info])) ? $this->databaseInfo[$info] : false;
+    }
+    
+    /**
      * Tests conection link
-     * @return bool
+     * @category Armory Database Handler
+     * @access   public
+     * @return   bool
      **/
     public function TestLink() {
         if($this->connectionLink == true) {
@@ -77,14 +100,17 @@ Class ArmoryDatabaseHandler {
     
     /**
      * Execute SQL query
-     * @param string $safe_sql
-     * @param int $queryType
-     * @return mixed
+     * @category Armory Database Handler
+     * @access   public
+     * @param    string $safe_sql
+     * @param    int $queryType
+     * @return   mixed
      **/
     private function _query($safe_sql, $queryType) {
         // Execute query and calculate execution time
         $make_array = array();
         $query_start = microtime(true);
+        $this->queryCount++;
         $perfomed_query = @mysql_query($safe_sql, $this->connectionLink);
         if($perfomed_query === false) {
             if($this->logHandler != null && is_object($this->logHandler)) {
@@ -190,8 +216,10 @@ Class ArmoryDatabaseHandler {
     
     /**
      * Converts array values to string format (for IN(%s) cases)
-     * @param array $source
-     * @return string
+     * @category Armory Database Handler
+     * @access   public
+     * @param    array $source
+     * @return   string
      **/
     private function ConvertArray($source) {
         if(!is_array($source)) {

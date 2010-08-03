@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 301
+ * @revision 340
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -185,7 +185,7 @@ if(defined('load_achievements_class')) {
     if(!@include('classes/class.achievements.php')) {
         die('<b>Error:</b> can not load achievements class!');
     }
-    $achievements = new Achievements;
+    // Class instance will be created in Characters::GetAchievementMgr()
 }
 if(defined('load_items_class')) {
     if(!@include('classes/class.items.php')) {
