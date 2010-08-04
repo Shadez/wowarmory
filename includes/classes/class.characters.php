@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 340
+ * @revision 344
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1442,33 +1442,33 @@ Class Characters extends Connector {
         $maxPower = 100;
         if($this->class == CLASS_DK) {
             // Check for 50147, 49455 spells (Runic power mastery) in current talent spec
-            $tRank = $this->db->selectCell("SELECT `rank` FROM `character_talent` WHERE `guid`=%d AND `talent_id`=2020 AND `spec`=%d", $this->guid, $this->activeSpec);
-            if($tRank === 0) {
+            $tRank = $this->db->selectCell("SELECT `current_rank` FROM `character_talent` WHERE `guid`=%d AND `talent_id`=2020 AND `spec`=%d", $this->guid, $this->activeSpec);
+            if($tRank == 0) {
                 // Runic power mastery (Rank 1)
                 $maxPower = 115;
             }
-            elseif($tRank === 1) {
+            elseif($tRank == 1) {
                 // Runic power mastery (Rank 2)
                 $maxPower = 130;
             }
         }
         elseif($this->class == CLASS_ROGUE) {
             // Check for 14983 spell (Vigor) in current talent spec
-            $tRank = $this->db->selectCell("SELECT `rank` FROM `character_talent` WHERE `guid`=%d AND `talent_id`=382 AND `spec`=%d", $this->guid, $this->activeSpec);
-            if($tRank === 0) {
+            $tRank = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `guid`=%d AND `talent_id`=382 AND `spec`=%d", $this->guid, $this->activeSpec);
+            if($tRank) {
                 $maxPower = 110;
             }
             // Also, check for Glyph of Vigor (id 408)
             switch($this->currentRealmInfo['type']) {
                 case 'mangos':
                     $isGlyphed = $this->db->selectCell("SELECT 1 FROM `character_glyphs` WHERE `guid`=%d AND `glyph`=408 AND `spec`=%d", $this->guid, $this->activeSpec);
-                    if($isGlyphed === true) {
+                    if($isGlyphed) {
                         $maxPower = 120;
                     }
                     break;
                 case 'trinity':
                     $isGlyphed = $this->db->selectCell("SELECT 1 FROM `character_glyphs` WHERE `guid`=%d AND (`glyph1`=408 OR `glyph2`=408 OR `glyph3`=408 OR `glyph4`=408 OR `glyph5`=408 OR `glyph6`=408) AND `spec`=%d", $this->guid, $this->activeSpec);
-                    if($isGlyphed === true) {
+                    if($isGlyphed) {
                         $maxPower = 120;
                     }
                     break;
@@ -1963,9 +1963,9 @@ Class Characters extends Connector {
         $tmp_stats['increasedDps'] = floor(max($tmp_stats['effective'], 0)/14);
         
         $player_stats = array(
-            'base'         => $tmp_stats['base'],
-            'effective'    => $tmp_stats['effective'],
-            'increasedDps' => $tmp_stats['increasedDps']
+            'base'         => round($tmp_stats['base']),
+            'effective'    => round($tmp_stats['effective']),
+            'increasedDps' => round($tmp_stats['increasedDps'])
         );
         
         unset($tmp_stats);
