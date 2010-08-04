@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 341
+ * @revision 343
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -217,6 +217,16 @@ define('TYPE_ACHIEVEMENT_FEED', 1);
 define('TYPE_ITEM_FEED',        2);
 define('TYPE_BOSS_FEED',        3);
 
+/** Item Quality**/
+define('ITEM_QUALITY_POOR', 0);
+define('ITEM_QUALITY_COMMON', 1);
+define('ITEM_QUALITY_UNCOMMON', 2);
+define('ITEM_QUALITY_RARE', 3);
+define('ITEM_QUALITY_EPIC', 4);
+define('ITEM_QUALITY_LEGENDARY', 5);
+define('ITEM_QUALITY_ARTEFACT', 6);
+define('ITEM_QUALITY_HEIRLOOM', 7);
+
 /** Item Classes **/
 define('ITEM_CLASS_CONSUMABLE', 0);
 define('ITEM_CLASS_CONTAINER', 1);
@@ -286,7 +296,7 @@ define('ITEM_MOD_BLOCK_VALUE', 48);
 define('MAX_ITEM_PROTO_DAMAGES', 2);    // changed in 3.1.0
 define('MAX_ITEM_PROTO_SOCKETS', 3);
 define('MAX_ITEM_PROTO_SPELLS', 5);
-define('MAX_ITEM_PROTO_STATS', 11);     // 10 in MaNGOS
+define('MAX_ITEM_PROTO_STATS', 10);
 
 /** Item Flags **/
 define('ITEM_FLAGS_BINDED', 0x00000001); // set in game at binding, not set in template

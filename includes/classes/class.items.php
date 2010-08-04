@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 334
+ * @revision 343
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1521,6 +1521,16 @@ Class Items extends Connector {
             return false;
         }
         $isCharacter = $characters->CheckPlayer();
+        // Check for ScalingStatDistribution (Heirloom items)
+        $ssd = $this->aDB->selectRow("SELECT * FROM `armory_ssd` WHERE `entry`=%d LIMIT 1", $data['ScalingStatDistribution']);
+        $ssd_level = PLAYER_MAX_LEVEL;
+        if($isCharacter) {
+            $ssd_level = $characters->GetLevel();
+            if($ssd && $ssd_level > $ssd['MaxLevel']) {
+                $ssd_level = $ssd['MaxLevel'];
+            }
+        }
+        $ssv = $this->aDB->selectRow("SELECT * FROM `armory_ssv` WHERE `level`=%d LIMIT 1", $ssd_level);
         $xml->XMLWriter()->startElement('id');
         $xml->XMLWriter()->text($itemID);
         $xml->XMLWriter()->endElement(); //id
@@ -1584,34 +1594,48 @@ Class Items extends Connector {
             $xml->XMLWriter()->startElement('type');
             $xml->XMLWriter()->text('0');
             $xml->XMLWriter()->endElement(); //type
+            // Damage
+            $minDmg = $data['dmg_min1'];
+            $maxDmg = $data['dmg_max1'];
+            $dps = null;
+            // SSD Check
+            if($ssv) {
+                if($extraDPS = self::GetDPSMod($ssv, $data['ScalingStatValue'])) {
+                    $average = $extraDPS * $data['delay'] / 1000;
+                    $minDmg = 0.7 * $average;
+                    $maxDmg = 1.3 * $average;
+                    $dps = round(($maxDmg+$minDmg) / (2 * ($data['delay'] / 1000)));
+                }
+            }
             $xml->XMLWriter()->startElement('min');
-            $xml->XMLWriter()->text($data['dmg_min1']);
+            $xml->XMLWriter()->text(round($minDmg));
             $xml->XMLWriter()->endElement(); //min
             $xml->XMLWriter()->startElement('max');
-            $xml->XMLWriter()->text($data['dmg_max1']);
+            $xml->XMLWriter()->text(round($maxDmg));
             $xml->XMLWriter()->endElement();   //max
             $xml->XMLWriter()->endElement();  //damage
             $xml->XMLWriter()->startElement('speed');
             $xml->XMLWriter()->text(round($data['delay']/1000, 2));
             $xml->XMLWriter()->endElement(); //speed
-            $xml->XMLWriter()->startElement('dps');
-            $dps = null;
-            for($jj=1;$jj<=2;$jj++) {
+            for($jj = 1; $jj <= 2; $jj++) {
                 $d_type = $data['dmg_type'.$jj];
-                $d_min = $data['dmg_min'.$jj];
-                $d_max = $data['dmg_max'.$jj];
-                if(($d_max>0) && ($data['class'] != ITEM_CLASS_PROJECTILE)) {
+                $d_min  = $data['dmg_min'.$jj];
+                $d_max  = $data['dmg_max'.$jj];
+                if(($d_max > 0) && ($data['class'] != ITEM_CLASS_PROJECTILE)) {
                     $delay = $data['delay'] / 1000;
-                    if($delay>0) {
-                        $dps = $dps + round(($d_max+$d_min) / (2*$delay), 1);
+                    if($delay > 0) {
+                        $dps = $dps + round(($d_max+$d_min) / (2 * $delay), 1);
                     }
-                    if($jj>1) {
-                        $delay=0;
+                    if($jj > 1) {
+                        $delay = 0;
                     }
                	}
             }
-            $xml->XMLWriter()->text($dps);
-            $xml->XMLWriter()->endElement(); //dps
+            if($dps != null) {
+                $xml->XMLWriter()->startElement('dps');
+                $xml->XMLWriter()->text($dps);
+                $xml->XMLWriter()->endElement(); //dps
+            }
             $xml->XMLWriter()->endElement(); //damageData
         }
         // Gem properties
@@ -1661,19 +1685,38 @@ Class Items extends Connector {
             $xml->XMLWriter()->text($data['arcane_res']);
             $xml->XMLWriter()->endElement(); //arcaneResist
         }
-        for($i=1;$i<11;$i++) {
-            if($data['stat_type'.$i] > 0 && $data['stat_value'.$i] > 0) {
-                $bonus_template = Items::GetItemBonusTemplate($data['stat_type'.$i]);
+        for($i = 0; $i < MAX_ITEM_PROTO_STATS; $i++) {
+            if($ssd && $ssv) {
+                if($ssd['StatMod_'.$i] < 0) {
+                    continue;
+                }
+                $val = (Items::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_'.$i]) / 10000;
+                $bonus_template = Items::GetItemBonusTemplate($ssd['StatMod_'.$i]);
                 $xml->XMLWriter()->startElement($bonus_template);
-                $xml->XMLWriter()->text($data['stat_value'.$i]);
+                $xml->XMLWriter()->text(round($val));
                 $xml->XMLWriter()->endElement();
+            }
+            else {
+                $key = $i+1;
+                if($data['stat_type'.$key] > 0 && $data['stat_value'.$key] > 0) {
+                    $bonus_template = Items::GetItemBonusTemplate($data['stat_type'.$key]);
+                    $xml->XMLWriter()->startElement($bonus_template);
+                    $xml->XMLWriter()->text($data['stat_value'.$key]);
+                    $xml->XMLWriter()->endElement();
+                }
+            }
+        }
+        $armor = $data['armor'];
+        if($ssv && $data['ScalingStatValue'] > 0) {
+            if($ssvarmor = $this->GetArmorMod($ssv, $data['ScalingStatValue'])) {
+                $armor = $ssvarmor;
             }
         }
         $xml->XMLWriter()->startElement('armor');
         if($data['ArmorDamageModifier'] > 0) {
             $xml->XMLWriter()->writeAttribute('armorBonus', 1);
         }
-        $xml->XMLWriter()->text($data['armor']);
+        $xml->XMLWriter()->text($armor);
         $xml->XMLWriter()->endElement(); //armor
         $ench_array = array (
         	1 => 'head',
@@ -1769,11 +1812,12 @@ Class Items extends Connector {
                 }
             }
         }
+        // Socket data
         $xml->XMLWriter()->startElement('socketData');
         $socket_data = false;
         $socketBonusCheck = array();
         for($i=1;$i<4;$i++) {
-            if($data['socketColor_'.$i] > 0) {
+            if($data['socketColor_'.$i] > 0) { // FIXME: this is not correct, I should check `item_instance`.`item_data` for sockets (if $characters is correct) instead of ['socketColor_X'].
                 switch($data['socketColor_'.$i]) {
                     case 1:
                         $color = 'Meta';
@@ -2614,6 +2658,161 @@ Class Items extends Connector {
         }
         $query .= ')';
         return $query;
+    }
+    
+    /**
+     * Returns multiplier for SSV mask
+     * @category Items class
+     * @access   private
+     * @param    array $ssv
+     * @param    int $mask
+     * @return   int
+     **/
+    private function GetSSDMultiplier($ssv, $mask) {
+        if(!is_array($ssv)) {
+            //$this->Log()->writeLog('%s : return 0 (mask: %d) ssv not array', __METHOD__, $mask);
+            return 0;
+        }
+        if($mask & 0x4001F) {
+            if($mask & 0x00000001) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_0'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier_0'];
+            }
+            if($mask & 0x00000002) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_1'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier_1'];
+            }
+            if($mask & 0x00000004) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_2'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier_2'];
+            }
+            if($mask & 0x00000008) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier2'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier2'];
+            }
+            if($mask & 0x00000010) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_3'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier_3'];
+            }
+            if($mask & 0x00040000) {
+                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier3'], $mask, $ssv['id']);
+                return $ssv['ssdMultiplier3'];
+            }
+        }
+        //$this->Log()->writeLog('%s : return 0 (mask: %d), ID: %d', __METHOD__, $mask, $ssv['id']);
+        return 0;
+    }
+    
+    /**
+     * Returns armor mod for SSV mask
+     * @category Items class
+     * @access   private
+     * @param    array $ssv
+     * @param    int $mask
+     * @return   int
+     **/
+    private function GetArmorMod($ssv, $mask) {
+        if(!is_array($ssv)) {
+            return 0;
+        }
+        if($mask & 0x00F001E0) {
+            if($mask & 0x00000020) {
+                return $ssv['armorMod_0'];
+            }
+            if($mask & 0x00000040) {
+                return $ssv['armorMod_1'];
+            }
+            if($mask & 0x00000080) {
+                return $ssv['armorMod_2'];
+            }
+            if($mask & 0x00000100) {
+                return $ssv['armorMod_3'];
+            }
+            if($mask & 0x00100000) {
+                return $ssv['armorMod2_0']; // cloth
+            }
+            if($mask & 0x00200000) {
+                return $ssv['armorMod2_1']; // leather
+            }
+            if($mask & 0x00400000) {
+                return $ssv['armorMod2_2']; // mail
+            }
+            if($mask & 0x00800000) {
+                return $ssv['armorMod2_3']; // plate
+            }
+        }
+        return 0;
+    }
+    
+    /**
+     * Returns DPS mod for SSV mask
+     * @category Items class
+     * @access   private
+     * @param    array $ssv
+     * @param    int $mask
+     * @return   int
+     **/
+    private function GetDPSMod($ssv, $mask) {
+        if(!is_array($ssv)) {
+            return 0;
+        }
+        if($mask & 0x7E00) {
+            if($mask & 0x00000200) {
+                return $ssv['dpsMod_0'];
+            }
+            if($mask & 0x00000400) {
+                return $ssv['dpsMod_1'];
+            }
+            if($mask & 0x00000800) {
+                return $ssv['dpsMod_2'];
+            }
+            if($mask & 0x00001000) {
+                return $ssv['dpsMod_3'];
+            }
+            if($mask & 0x00002000) {
+                return $ssv['dpsMod_4'];
+            }
+            if($mask & 0x00004000) {
+                return $ssv['dpsMod_5'];   // not used?
+            }
+        }
+        return 0;
+    }
+    
+    /**
+     * Returns Spell Bonus for SSV mask
+     * @category Items class
+     * @access   private
+     * @param    array $ssv
+     * @param    int $mask
+     * @return   int
+     **/
+    private function GetSpellBonus($ssv, $mask) {
+        if(!is_array($ssv)) {
+            return 0;
+        }
+        if($mask & 0x00008000) {
+            return $ssv['spellBonus'];
+        }
+        return 0;
+    }
+    
+    /**
+     * Returns feral bonus for SSV mask
+     * @category Items class
+     * @access   private
+     * @param    array $ssv
+     * @param    int $mask
+     * @return   int
+     **/
+    private function GetFeralBonus($ssv, $mask) {
+        if(!is_array($ssv)) {
+            return 0;
+        }
+        if($mask & 0x00010000) {
+            return 0;   // not used?
+        }
+        return 0;
     }
 }
 ?>
