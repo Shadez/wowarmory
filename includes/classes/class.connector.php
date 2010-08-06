@@ -41,30 +41,30 @@ Class Connector {
     public $wDB = null;
     
     /** MySQL connection configs **/
-    public $mysqlconfig;
+    public $mysqlconfig = array();
     
     /** Armory configs **/
-    public $armoryconfig;
+    public $armoryconfig = array();
     
     /** Current armory locale (ru_ru or en_gb) **/
-    public $_locale;
+    public $_locale = null;
     
     /** Locale (0 - en_gb, 2 - fr_fr, 3 - de_de, etc.)**/
-    public $_loc;
+    public $_loc = null;
     
     /** Links for multirealm info **/
-    public $realmData;    
+    public $realmData;
     public $connectionData;
     public $currentRealmInfo;
     
     /** Debug handler **/
-    private $debugHandler;        
+    private $debugHandler;
     
     /**
      * Initialize database handlers, debug handler, sets up sql/site configs
-     * @category Main system functions
-     * @example Connector::Connector()
-     * @return bool
+     * @category Core class
+     * @access   public
+     * @return   bool
      **/
     public function Connector() {
         if(!@include('configuration.php')) {
@@ -141,9 +141,9 @@ Class Connector {
     
     /**
      * Checks browser language from HTTP_ACCEPT_LANGUAGE
-     * @category Main system functions
-     * @example Connector::IsAllowedLocale('ru');
-     * @return mixed
+     * @category Core class
+     * @access   public
+     * @return   mixed
      **/
     private function IsAllowedLocale($locale) {
         switch($locale) {
@@ -170,9 +170,56 @@ Class Connector {
     
     /**
      * Returns debug log handler
+     * @category Core class
+     * @access   public
+     * @return   object
      **/
     public function Log() {
         return $this->debugHandler;
+    }
+    
+    /**
+     * Returns current locale (en_gb/ru_ru/fr_fr, etc.)
+     * @category Core class
+     * @access   public
+     * @return   string
+     **/
+    public function GetLocale() {
+        if($this->_locale == null) {
+            $this->Log()->writeLog('%s : locale not defined, return default locale', __METHOD__);
+            return $this->armoryconfig['defaultLocale'];
+        }
+        if($this->_locale == 'en_us') {
+            return 'en_gb'; // For DB compatibility
+        }
+        elseif($this->_locale == 'es_mx') {
+            return 'es_es'; // For DB compatibility
+        }
+        return $this->_locale;
+    }
+    
+    /**
+     * Returns locale ID (0 for en_gb, etc.)
+     * @category Core class
+     * @access   public
+     * @return   int
+     **/
+    public function GetLoc() {
+        if($this->_loc == null) {
+            return 0;
+        }
+        return $this->_loc;
+    }
+    
+    /**
+     * Sets locale
+     * @category Core class
+     * @access   public
+     * @return   int
+     **/
+    public function SetLocale($locale, $locale_id) {
+        $this->_locale = $locale;
+        $this->_loc    = $locale_id;
     }
 }
 ?>

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 334
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -58,11 +58,11 @@ Class SearchMgr extends Connector {
                 $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `Quality`=7");
             }
             else {
-                if($this->_loc == 0) {
+                if($this->GetLoc() == 0) {
                     $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
                 }
                 else {
-                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%'.$this->searchQuery.'%');
+                    $count_items = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->GetLoc(), '%'.$this->searchQuery.'%');
                 }
             }
             if($count_items > 200) {
@@ -77,15 +77,15 @@ Class SearchMgr extends Connector {
             $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `Quality`=7 ORDER BY `ItemLevel` DESC LIMIT 200");
         }
         else {
-            if($this->_loc == 0) {
+            if($this->GetLoc() == 0) {
                 $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
             }
             else {
-                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', $this->_loc, '%'.$this->searchQuery.'%');
+                $items = $this->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', $this->GetLoc(), '%'.$this->searchQuery.'%');
             }
         }
         if(!$items) {
-            $this->Log()->writeLog('%s : unable to find any items with `%s` query (current locale: %s, locId: %d)', __METHOD__, $this->searchQuery, $this->_locale, $this->_loc);
+            $this->Log()->writeLog('%s : unable to find any items with `%s` query (current locale: %s, locId: %d)', __METHOD__, $this->searchQuery, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $result_data = array();
@@ -97,7 +97,7 @@ Class SearchMgr extends Connector {
                 $result_data[$i]['data']['canAuction'] = 1;
             }
             unset($result_data[$i]['data']['flags'], $result_data[$i]['data']['duration'], $result_data[$i]['data']['bonding']);
-            if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
                 $result_data[$i]['data']['name'] = $item['name'];
             }
             else {
@@ -130,12 +130,12 @@ Class SearchMgr extends Connector {
         // Get item IDs first (if $this->searchQuery is defined)
         $item_id_string = null;
         if($this->searchQuery) {
-            if($this->_loc == 0) {
+            if($this->GetLoc() == 0) {
                 // No SQL injection - already escaped in search.php
                 $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
             }
             else {
-                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->_loc, '%' . $this->searchQuery.'%');
+                $_item_ids = $this->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->GetLoc(), '%' . $this->searchQuery.'%');
             }
             if(is_array($_item_ids)) {
                 $tmp_count_ids = count($_item_ids);
@@ -288,7 +288,7 @@ Class SearchMgr extends Connector {
                     }
                     if($this->get_array['boss'] != 'all') {
                         $current_instance_key = $this->get_array['dungeon'];
-                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->_locale, $current_instance_key);
+                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $current_instance_key);
                     }
                     $global_sql_query = $this->HandleItemFilters($item_id_string, $loot_table);
                 }
@@ -371,12 +371,12 @@ Class SearchMgr extends Connector {
             elseif(!$count) {
                 if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss'])) {
                     $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
-                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`='%s' LIMIT 1", $this->_locale, $current_instance_key);
+                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`='%s' LIMIT 1", $this->GetLocale(), $current_instance_key);
                 }
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
                 $items_result[$i]['data']['id'] = $item['id'];
-                if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                     $items_result[$i]['data']['name'] = Items::getItemName($item['id']);
                 }
                 else {
@@ -564,8 +564,8 @@ Class SearchMgr extends Connector {
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
-                $realm['class'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_classes` WHERE `id`=%d", $this->_locale, $realm['classId']);
-                $realm['race'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_races` WHERE `id`=%d", $this->_locale, $realm['raceId']);
+                $realm['class'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_classes` WHERE `id`=%d", $this->GetLocale(), $realm['classId']);
+                $realm['race'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_races` WHERE `id`=%d", $this->GetLocale(), $realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
@@ -652,7 +652,7 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : bossSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s') LIMIT 1", $this->_locale, $this->bossSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s') LIMIT 1", $this->GetLocale(), $this->bossSearchKey);
     }
     
     public function GetBossKeyById() {
@@ -668,7 +668,7 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : instanceSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->_locale, $this->instanceSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $this->instanceSearchKey);
     }
     
     public function MakeUniqueArray($array, $preserveKeys = false) {

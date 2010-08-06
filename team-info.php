@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 345
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -48,7 +48,7 @@ if(!$isTeam || !$arenateams->teamname) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
     $xml->XMLWriter()->startElement('errorhtml');
     $xml->XMLWriter()->endElement();  //errorhtml
     $xml->XMLWriter()->endElement(); //page
@@ -56,7 +56,7 @@ if(!$isTeam || !$arenateams->teamname) {
     exit;
 }
 if($arenateams->teamname && $isTeam && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('team-info', $arenateams->teamname, $armory->armoryconfig['defaultRealmName']);
+    $cache_id = $utils->GenerateCacheId('team-info', $arenateams->teamname, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'arena')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -67,7 +67,7 @@ if($arenateams->teamname && $isTeam && $armory->armoryconfig['useCache'] == true
 $xml->LoadXSLT('arena/team-info.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'team-info.xml');
 $arenateams->_initTeam();
 $team_info = $arenateams->GetArenaTeamInfo();

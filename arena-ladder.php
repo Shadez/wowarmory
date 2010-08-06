@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 238
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -52,7 +52,7 @@ $sortField = (isset($_GET['sf'])) ? $_GET['sf'] : 'rating';
 
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'arena-ladder.xml');
 $ladder_result = array(
     'battleGroup'      => $armory->armoryconfig['defaultBGName'],

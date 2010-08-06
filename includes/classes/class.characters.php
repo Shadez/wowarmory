@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 344
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -209,7 +209,7 @@ Class Characters extends Connector {
      * @category Characters class
      * @access   private
      **/
-    private $db = false;
+    private $db = null;
     
     /**
      * Character realm name
@@ -374,13 +374,17 @@ Class Characters extends Connector {
         }
         if($full == true) {
             // Get race and class strings
+            $locale = $this->GetLocale();
+            if($locale == 'en_us') {
+                $locale = 'en_gb';
+            }
             $race_class = $this->aDB->selectRow("
             SELECT
             `armory_races`.`name_%s` AS `race`,
             `armory_classes`.`name_%s` AS `class`
             FROM `armory_races` AS `armory_races`
             LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
-            WHERE `armory_races`.`id`=%d", $this->_locale, $this->_locale, $player_data['class'], $player_data['race']);
+            WHERE `armory_races`.`id`=%d", $locale, $locale, $player_data['class'], $player_data['race']);
             if(!$race_class) {
                 $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
                 unset($player_data);
@@ -429,9 +433,9 @@ Class Characters extends Connector {
      * @return   bool
      **/
     private function __HandleTitle() {
-        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=%d", $this->_locale, $this->_locale, $this->chosenTitle);
+        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $this->chosenTitle);
         if(!$title_data) {
-            $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         switch($this->gender) {
@@ -1173,8 +1177,8 @@ Class Characters extends Connector {
         foreach($glyphs_data as $glyph) {
             switch($this->currentRealmInfo['type']) {
                 case 'mangos':
-                    if($this->_locale == 'ru_ru' || $this->_locale == 'en_gb') {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->_locale, $this->_locale, $glyph['glyph']);
+                    if($this->GetLocale() == 'ru_ru' || $this->GetLocale() == 'en_gb') {
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph']);
                     }
                     else {
                         $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
@@ -1194,7 +1198,7 @@ Class Characters extends Connector {
                     break;
                 case 'trinity':
                     for($j=1;$j<7;$j++) {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->_locale, $this->_locale, $glyph['glyph' . $j]);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph' . $j]);
                         if(!$current_glyph) {
                             continue;
                         }
@@ -1229,7 +1233,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : class not provided', __METHOD__);
             return false;
         }
-		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->_locale, $this->class, $spec);
+		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $this->class, $spec);
 	}
     
     /**
@@ -1263,7 +1267,7 @@ Class Characters extends Connector {
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
-            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `armory_professions` WHERE `id`=%d LIMIT 1", $this->_locale, $prof['skill']);
+            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `armory_professions` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $prof['skill']);
             $p[$i]['value'] = $prof['value'];
             $p[$i]['key'] = str_replace('-sm', '', (isset($p[$i]['icon'])) ? $p[$i]['icon'] : '' );
             $p[$i]['max'] = 450;
@@ -1365,7 +1369,7 @@ Class Characters extends Connector {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $faction['faction']);
+            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->GetLocale(), $faction['faction']);
             if($faction['standing'] > 42999) {
                 $factionReputation[$i]['reputation'] = 42999;
             }
@@ -2515,9 +2519,9 @@ Class Characters extends Connector {
         $feed_data = array();
         $i = 0;
         // Strings
-        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->_locale);
+        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->GetLocale());
         if(!$feed_strings) {
-            $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $_strings = array();
@@ -2591,7 +2595,7 @@ Class Characters extends Connector {
                         'slot' => $item_slot,
                         'sort' => $sort
                     );
-                    if($this->_locale != 'en_gb' && $this->_locale != 'en_us') {
+                    if($this->GetLocale() != 'en_gb' && $this->GetLocale() != 'en_us') {
                         $item['name'] = Items::getItemName($event['data']);
                     }
                     $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
@@ -2624,7 +2628,7 @@ Class Characters extends Connector {
                     if(!$achievement_ids || !is_array($achievement_ids)) {
                         continue;
                     }
-                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->_locale, $achievement_ids);
+                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->GetLocale(), $achievement_ids);
                     if(!$achievement || !is_array($achievement)) {
                         continue;
                     }
@@ -2694,7 +2698,7 @@ Class Characters extends Connector {
             'id'                     => $item_id,
             'level'                  => $item_data['ItemLevel'],
             'maxDurability'          => $durability['max'],
-            'name'                   => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $item_data['name'] : Items::getItemName($item_id),
+            'name'                   => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $item_data['name'] : Items::getItemName($item_id),
             'permanentenchant'       => $enchantment,
             'pickUp'                 => 'PickUpLargeChain',
             'putDown'                => 'PutDownLArgeChain',
@@ -3007,6 +3011,49 @@ Class Characters extends Connector {
                 return false;
                 break;
         }
+    }
+    
+    public function HasSpell($spell_id, $active_spec = true) {
+        if($active_spec) {
+            $has = $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `spec`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->activeSpec, $this->guid);
+        }
+        else {
+            $has = $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->guid);
+        }
+        return $has;
+    }
+    
+    public function HasTalent($talent_id, $active_spec = true, $rank = -1) {
+        if($active_spec) {
+            if($rank == -1) {
+                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d", $talent_id, $this->guid, $this->activeSpec);
+            }
+            elseif($rank >= 0) {
+                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d AND `current_rank`=%d", $talent_id, $this->guid, $this->activeSpec, $rank);
+            }
+        }
+        else {
+            if($rank == -1) {
+                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d", $talent_id, $this->guid);
+            }
+            elseif($rank >= 0) {
+                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `current_rank`=%d", $talent_id, $this->guid, $rank);
+            }
+        }
+        return $has;
+    }
+    
+    public function GetTalentRankByID($talent_id, $active_spec = true) {
+        if($active_spec) {
+            $rank = $this->db->selectCell("SELECT `current_rank` FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d LIMIT 1", $talent_id, $this->guid, $this->activeSpec);
+        }
+        else {
+            $rank = $this->db->selectCell("SELECT `current_rank` FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d LIMIT 1", $talent_id, $this->guid);
+        }
+        if(!is_numeric($rank)) {
+            return false;
+        }
+        return $rank;
     }
 }
 ?>

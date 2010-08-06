@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 83
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 345
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,12 +24,20 @@
 
 define('__ARMORY__', true);
 if(!@include('includes/armory_loader.php')) {
-    die('<b>Fatal error:</b> can not load main system files!');
+    die('<b>Fatal error:</b> unable to load system files.');
 }
-$armory->tpl->assign('addCssSheet', '@import "_css/int.css";');
-
-$armory->tpl->assign('tpl2include', 'item_search_'.$_locale);
-$armory->tpl->display('overall_header.tpl');
-$armory->tpl->display('overall_start.tpl');
-exit();
+header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('items/search.xsl');
+$xml->XMLWriter()->startElement('page');
+$xml->XMLWriter()->writeAttribute('globalSearch', 1);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->startElement('itemSearch');
+$xml->XMLWriter()->startElement('related-info');
+$xml->XMLWriter()->endElement();   //related-info
+$xml->XMLWriter()->endElement();  //realmInfo
+$xml->XMLWriter()->endElement(); //page
+$xml_cache_data = $xml->StopXML();
+echo $xml_cache_data;
+exit;
 ?>

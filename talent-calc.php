@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 191
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,7 +31,7 @@ header('Content-type: text/xml');
 $xml->LoadXSLT('tools/talent-calculator.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'talent-calc.xml');
 if(isset($_GET['cid'])) {
     $class_id = (int) $_GET['cid'];
@@ -72,7 +72,7 @@ else {
     $xml->XMLWriter()->startElement('petTalentTabs');
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Cunning');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='cunning'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='cunning'"));
     $xml->XMLWriter()->writeAttribute('order', 2);
     $pet_cunning = $utils->PetTalentCalcData('cunning');
     foreach($pet_cunning as $cunning) {
@@ -86,7 +86,7 @@ else {
     
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Tenacity');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='tenacity'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='tenacity'"));
     $xml->XMLWriter()->writeAttribute('order', 1);
     $pet_tenacity = $utils->PetTalentCalcData('tenacity');
     foreach($pet_tenacity as $tenacity) {
@@ -100,7 +100,7 @@ else {
     
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Ferocity');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->_locale."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='ferocity'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='ferocity'"));
     $xml->XMLWriter()->writeAttribute('order', 0);
     $pet_ferocity = $utils->PetTalentCalcData('ferocity');
     foreach($pet_ferocity as $ferocity) {

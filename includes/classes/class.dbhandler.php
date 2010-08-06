@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 340
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,11 +27,12 @@ if(!defined('__ARMORY__')) {
 }
 
 /** Database Query Types **/
-define('SINGLE_CELL',  0x01);
-define('SINGLE_ROW',   0x02);
-define('MULTIPLY_ROW', 0x03);
-define('SQL_QUERY',    0x04);
-define('OBJECT_QUERY', 0x05);
+define('SINGLE_CELL',   0x01);
+define('SINGLE_ROW',    0x02);
+define('MULTIPLY_ROW',  0x03);
+define('SQL_QUERY',     0x04);
+define('OBJECT_QUERY',  0x05);
+define('SQL_RAW_QUERY', 0x06);
 
 Class ArmoryDatabaseHandler {
     private $dbLink = false;
@@ -172,12 +173,14 @@ Class ArmoryDatabaseHandler {
     
     private function _prepareQuery($funcArgs, $numArgs, $query_type) {
         // funcArgs[0] - SQL query text (with placeholders)
-        for($i = 1; $i < $numArgs; $i++) {
-            if(is_string($funcArgs[$i])) {
-                $funcArgs[$i] = addslashes($funcArgs[$i]);
-            }
-            if(is_array($funcArgs[$i])) {
-                $funcArgs[$i] = $this->ConvertArray($funcArgs[$i]);
+        if($query_type != SQL_RAW_QUERY) {
+            for($i = 1; $i < $numArgs; $i++) {
+                if(is_string($funcArgs[$i])) {
+                    $funcArgs[$i] = addslashes($funcArgs[$i]);
+                }
+                if(is_array($funcArgs[$i])) {
+                    $funcArgs[$i] = $this->ConvertArray($funcArgs[$i]);
+                }
             }
         }
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
@@ -206,6 +209,12 @@ Class ArmoryDatabaseHandler {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return $this->_prepareQuery($funcArgs, $numArgs, SQL_QUERY);
+    }
+    
+    public function RawQuery($query) {
+        $funcArgs = func_get_args();
+        $numArgs = func_num_args();
+        return $this->_prepareQuery($funcArgs, $numArgs, SQL_RAW_QUERY);
     }
     
     public function selectObject($query) {

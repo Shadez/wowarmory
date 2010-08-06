@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 315
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -59,7 +59,7 @@ if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['sk
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'character-model.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
@@ -533,7 +533,7 @@ if($tmpid = $characters->GetCharacterEquip('head') && $character_model_data['hid
             'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
         );
         if($model_data_attachment['helm_texture']['texture'] == 'item/objectcomponents/head/.png') {
-            unset($model_data_attachment['helm_texture']);
+            //unset($model_data_attachment['helm_texture']);
         }
     }
     unset($tmpid);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 343
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -60,11 +60,11 @@ Class Items extends Connector {
      * @return   string
      **/
     public function getItemName($itemID) {
-        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
             $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         else {
-            $itemName = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->_loc, $itemID);
+            $itemName = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $itemID);
             if(!$itemName) {
                 $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             }
@@ -99,11 +99,11 @@ Class Items extends Connector {
      * @return   string
      **/
     public function GetItemDescription($itemID) {
-        if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
             $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         else {
-            $itemDescription = $this->wDB->selectCell("SELECT `description_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->_loc, $itemID);
+            $itemDescription = $this->wDB->selectCell("SELECT `description_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $itemID);
             if(!$itemDescription) {
                 $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             }
@@ -127,9 +127,9 @@ Class Items extends Connector {
 		if($mask == 0x7FF || $mask == 0) {
             return 0;
 		}
-        $races = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_races`", $this->_locale);
+        $races = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_races`", $this->GetLocale());
         if(!is_array($races)) {
-            $this->Log()->writeError('%s : unable to find races names for locale %s (%d)', __METHOD__, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to find races names for locale %s (%d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $races_data = array();
@@ -161,9 +161,9 @@ Class Items extends Connector {
 		if($mask == 0x5DF || $mask == 0) {
             return 0;
 		}
-        $classes = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_classes`", $this->_locale);
+        $classes = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_classes`", $this->GetLocale());
         if(!is_array($classes)) {
-            $this->Log()->writeError('%s : unable to find classes names for locale %s (%d)', __METHOD__, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to find classes names for locale %s (%d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $classes_data = array();
@@ -245,8 +245,8 @@ Class Items extends Connector {
      * @return   array
      **/
     public function GetItemSetBonusInfo($itemsetdata) {
-        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
-            $tmp_locale = $this->_locale;
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
+            $tmp_locale = $this->GetLocale();
         }
         else {
             $tmp_locale = 'en_gb';
@@ -291,7 +291,7 @@ Class Items extends Connector {
 				    $i = 0;
                     foreach($VendorLoot as $vItem) {
                         $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, name FROM `creature_template` WHERE `entry`=%d", $vItem['entry']);
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($vItem['entry']);
                         }
                         $lootTable[$i]['area'] = Mangos::GetNpcInfo($vItem['entry'], 'map');
@@ -305,7 +305,7 @@ Class Items extends Connector {
 				    $i = 0;
                     foreach($BossLoot as $bItem) {
                         $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=%d", $bItem['entry']);
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
                         }
                         if(Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
@@ -360,7 +360,7 @@ Class Items extends Connector {
                     $i = 0;
                     foreach($QuestLoot as $qItem) {
                         $lootTable[$i] = $qItem;
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::QuestInfo($qItem['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::QuestInfo($qItem['id'], 'map');
@@ -374,7 +374,7 @@ Class Items extends Connector {
                     return false;
                 }
                 $lootTable = $this->wDB->selectRow("SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `entry`=%d", $QuestStart);
-                if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                     $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
                 }
                 $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
@@ -386,7 +386,7 @@ Class Items extends Connector {
                     $i = 0;
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
@@ -402,7 +402,7 @@ Class Items extends Connector {
                     $i = 0;
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
-                        if($this->_locale != 'en_gb' || $this->_locale != 'en_us') {
+                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
@@ -418,7 +418,7 @@ Class Items extends Connector {
                         $drop_percent = Mangos::GenerateLootPercent($item, 'disenchant_loot_template', $dItem['item']);
                         $lootTable[$i] = array (
                             'id'       => $dItem['item'],
-                            'name'     => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
+                            'name'     => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
                             'dropRate' => Mangos::DropPercent($drop_percent),
                             'maxCount' => $dItem['maxcount'],
                             'minCount' => $dItem['mincountOrRef'],
@@ -430,14 +430,14 @@ Class Items extends Connector {
                 }
                 break;
             case 'craft':
-                if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
                     $CraftLoot = $this->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
                         `SpellName_%s` AS `SpellName`, `SpellIconID`
                         FROM `armory_spell`
-                            WHERE `EffectItemType_1` =%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d", $this->_locale, $item, $item, $item);
+                            WHERE `EffectItemType_1` =%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d", $this->GetLocale(), $item, $item, $item);
                 }
                 else {
                     $CraftLoot = $this->aDB->select("
@@ -460,7 +460,7 @@ Class Items extends Connector {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['id'] = $craftItem['Reagent_'.$o];
-                                $lootTable[$i]['reagent'][$o]['name'] = ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::getItemName($craftItem['Reagent_'.$o]);
+                                $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($craftItem['Reagent_'.$o], $tmp_info['displayid']);
                                 $lootTable[$i]['reagent'][$o]['count'] = $craftItem['ReagentCount_'.$o];
                                 $lootTable[$i]['reagent'][$o]['quality'] = $tmp_info['Quality'];
@@ -469,7 +469,7 @@ Class Items extends Connector {
                         for($j=1;$j<4;$j++) {
                             if($craftItem['EffectItemType_'.$j] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item'][$j]['name'] = ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
+                                $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
                                 $lootTable[$i]['item'][$j]['id'] = $craftItem['EffectItemType_'.$j];
                                 $lootTable[$i]['item'][$j]['icon'] = self::getItemIcon($craftItem['EffectItemType_'.$j], $tmp_info['displayid']);
                                 $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
@@ -516,9 +516,9 @@ Class Items extends Connector {
                         'icon' => self::getItemIcon($curItem['id'], $curItem['displayid']),
                         'id' => $curItem['id'],
                         'level' => $curItem['level'],
-                        'name' => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $curItem['name'] : self::getItemName($curItem['id']),
+                        'name' => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $curItem['name'] : self::getItemName($curItem['id']),
                         'quality' => $curItem['quality'],
-                        'type' => $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->_locale, $curItem['class'], $curItem['subclass'])
+                        'type' => $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $curItem['class'], $curItem['subclass'])
                     );
                     $lootTable[$i]['tokens'] = Mangos::GetExtendedCost($curItem['ExtendedCost']);
                     $oldItems[$curItem['id']] = $curItem['id'];
@@ -526,7 +526,7 @@ Class Items extends Connector {
                 }
                 break;
             case 'reagent':
-                if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
+                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
                     $ReagentLoot = $this->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
@@ -534,7 +534,7 @@ Class Items extends Connector {
                         `SpellName_%s` AS `SpellName`, `SpellIconID`
                     FROM `armory_spell`
                         WHERE `Reagent_1`=%d OR `Reagent_2`=%d OR `Reagent_3`=%d OR `Reagent_4`=%d OR
-                            `Reagent_5`=%d OR `Reagent_6`=%d OR `Reagent_7`=%d OR `Reagent_8`=%d", $this->_locale, $item, $item, $item, $item, $item, $item, $item, $item);
+                            `Reagent_5`=%d OR `Reagent_6`=%d OR `Reagent_7`=%d OR `Reagent_8`=%d", $this->GetLocale(), $item, $item, $item, $item, $item, $item, $item, $item);
                 }
                 else {
                     $ReagentLoot = $this->aDB->select("
@@ -560,7 +560,7 @@ Class Items extends Connector {
                         if($ReagentItem['EffectItemType_'.$j] > 0) {
                             $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_'.$j]);
                             $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_'.$j];
-                            $lootTable[$i]['item'][$j]['name'] = ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['EffectItemType_'.$j]);
                             $lootTable[$i]['item'][$j]['icon'] = self::getItemIcon($ReagentItem['EffectItemType_'.$j], $tmp_info['displayid']);
                             $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
                         }
@@ -571,7 +571,7 @@ Class Items extends Connector {
                             $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_'.$o];
                             $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($ReagentItem['Reagent_'.$o], $tmp_info['displayid']);
                             $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_'.$o];
-                            $lootTable[$i]['reagent'][$o]['name'] = ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['Reagent_'.$o]);
+                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['Reagent_'.$o]);
                         }
                     }
                     $i++;
@@ -601,10 +601,10 @@ Class Items extends Connector {
                     $ids[$enchants_entries[$i]['ench']] = $enchants_entries[$i]['ench'];
                 }
                 if($type == 'property') {
-                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id` IN (%s)", $this->_locale, $ids);
+                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id` IN (%s)", $this->GetLocale(), $ids);
                 }
                 elseif($type == 'suffix') {
-                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3`, `ench_4`, `ench_5`, `pref_1`, `pref_2`, `pref_3`, `pref_4`, `pref_5` FROM `armory_randomsuffix` WHERE `id` IN (%s)", $this->_locale, $ids);
+                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3`, `ench_4`, `ench_5`, `pref_1`, `pref_2`, `pref_3`, `pref_4`, `pref_5` FROM `armory_randomsuffix` WHERE `id` IN (%s)", $this->GetLocale(), $ids);
                 }
                 if(!$enchants) {
                     return false;
@@ -626,7 +626,7 @@ Class Items extends Connector {
                             }
                         }
                     }
-                    $enchs = $this->aDB->select("SELECT `id`, `text_%s` AS `text` FROM `armory_enchantment` WHERE `id` IN (%s)", $this->_locale, $str_tmp);
+                    $enchs = $this->aDB->select("SELECT `id`, `text_%s` AS `text` FROM `armory_enchantment` WHERE `id` IN (%s)", $this->GetLocale(), $str_tmp);
                     if(!$enchs) {
                         $i++;
                         continue;
@@ -713,7 +713,7 @@ Class Items extends Connector {
             $data['enchant_id'] = $socketInfo;
             $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `armory_enchantment` WHERE `id`=%d", $socketInfo);
             $data['icon'] = self::getItemIcon($data['item']);
-            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->_locale."` FROM `armory_enchantment` WHERE `id`=%d", $socketInfo);
+            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->GetLocale()."` FROM `armory_enchantment` WHERE `id`=%d", $socketInfo);
             return $data;
         }
         return false;
@@ -958,7 +958,7 @@ Class Items extends Connector {
      * @return   string
      **/
     public function GetItemSourceByKey($key) {
-        $name = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s')", $this->_locale, $key);
+        $name = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s')", $this->GetLocale(), $key);
         if($name) {
             return $name;
         }
@@ -975,9 +975,9 @@ Class Items extends Connector {
      * @return   array
      **/
     public function GetImprovedItemSource($itemID, $bossID, $areaDataOnly = false) {
-        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->_locale, $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `armory_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->GetLocale(), $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
-            $this->Log()->writeError('%s : dungeonData for lootid %d not found (current_locale: %s, locId: %d)', __METHOD__, $bossID, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : dungeonData for lootid %d not found (current_locale: %s, locId: %d)', __METHOD__, $bossID, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
@@ -992,10 +992,10 @@ Class Items extends Connector {
         switch($item_difficulty) {
             case '10n':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1003,10 +1003,10 @@ Class Items extends Connector {
                 break;
             case '10h':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1017,10 +1017,10 @@ Class Items extends Connector {
                 break;
             case '25n':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1036,10 +1036,10 @@ Class Items extends Connector {
                 break;
             case '25h':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->_locale, $dungeonData['instance_id']);
+                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `armory_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1133,7 +1133,7 @@ Class Items extends Connector {
                 'icon'    => self::getItemIcon($equivalent_id, $info['displayid']),
                 'id'      => $equivalent_id,
                 'level'   => $info['ItemLevel'],
-                'name'    => ($this->_locale == 'en_gb' || $this->_locale == 'en_us') ? $info['name'] : self::getItemName($equivalent_id),
+                'name'    => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $info['name'] : self::getItemName($equivalent_id),
                 'quality' => $info['Quality']
             );
             return $item_data;
@@ -1163,9 +1163,9 @@ Class Items extends Connector {
             if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] === 0) {
                 return;
             }
-            return $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->_locale, $itemclassInfo['class'], $itemclassInfo['subclass']);
+            return $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
         }
-        return $this->aDB->selectRow("SELECT `subclass_name_%s` AS `subclass_name`, `key` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->_locale, $itemclassInfo['class'], $itemclassInfo['subclass']);
+        return $this->aDB->selectRow("SELECT `subclass_name_%s` AS `subclass_name`, `key` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
     }
     
     /**
@@ -1238,7 +1238,7 @@ Class Items extends Connector {
         else {
             $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
         }
-        $rand_data = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id`=%d", $this->_locale, $enchId);
+        $rand_data = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id`=%d", $this->GetLocale(), $enchId);
         if(!$rand_data) {
             $this->Log()->writeLog('%s : unable to get rand_data from `armory_randomproperties` for id %d', __METHOD__, $enchId);
             return false;
@@ -1248,7 +1248,7 @@ Class Items extends Connector {
         $return_data['data'] = array();
         for($i = 1; $i < 4; $i++) {
             if($rand_data['ench_' . $i] > 0) {
-                $return_data['data'][$i] = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->_locale, $rand_data['ench_' . $i]);
+                $return_data['data'][$i] = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->GetLocale(), $rand_data['ench_' . $i]);
             }
         }
         return $return_data;
@@ -1541,7 +1541,7 @@ Class Items extends Connector {
         }
         else {
             $xml->XMLWriter()->startElement('name');
-            if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
                 $xml->XMLWriter()->text($data['name']);
             }
             else {
@@ -1641,7 +1641,7 @@ Class Items extends Connector {
         // Gem properties
         if($data['class'] == ITEM_CLASS_GEM && $data['GemProperties'] > 0) {
             $GemSpellItemEcnhID = $this->aDB->selectCell("SELECT `spellitemenchantement` FROM `armory_gemproperties` WHERE `id`=%d", $data['GemProperties']);
-            $GemText = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->_locale, $GemSpellItemEcnhID);
+            $GemText = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->GetLocale(), $GemSpellItemEcnhID);
             if($GemText) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<gemProperties>');
@@ -1757,12 +1757,12 @@ Class Items extends Connector {
             if($enchantment) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<enchant>');
-                    $xml->XMLWriter()->writeRaw($this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d LIMIT 1", $this->_locale, $enchantment));
+                    $xml->XMLWriter()->writeRaw($this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $enchantment));
                     $xml->XMLWriter()->writeRaw('</enchant>'); //enchant
                 }
                 else {
                     $xml->XMLWriter()->startElement('enchant');
-                    $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d LIMIT 1", $this->_locale, $enchantment));
+                    $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $enchantment));
                     $xml->XMLWriter()->endElement(); //enchant
                 }
             }
@@ -1910,7 +1910,7 @@ Class Items extends Connector {
             }
         }
         if($data['socketBonus'] > 0) {
-            $bonus_text = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->_locale, $data['socketBonus']);
+            $bonus_text = $this->aDB->selectCell("SELECT `text_%s` FROM `armory_enchantment` WHERE `id`=%d", $this->GetLocale(), $data['socketBonus']);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<socketMatchEnchant>');
                 $xml->XMLWriter()->writeRaw($bonus_text);
@@ -1960,13 +1960,13 @@ Class Items extends Connector {
         if($data['RequiredSkill'] > 0) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredSkill');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `armory_skills` WHERE `id`=%d", $this->_locale, $data['RequiredSkill']) . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `armory_skills` WHERE `id`=%d", $this->GetLocale(), $data['RequiredSkill']) . '"');
                 $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'].'"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredSkill
             }
             else {
                 $xml->XMLWriter()->startElement('requiredSkill');
-                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `armory_skills` WHERE `id`=%d", $this->_locale, $data['RequiredSkill']));
+                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `armory_skills` WHERE `id`=%d", $this->GetLocale(), $data['RequiredSkill']));
                 $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
                 $xml->XMLWriter()->endElement(); //requiredSkill
             }
@@ -1974,13 +1974,13 @@ Class Items extends Connector {
         if($data['RequiredReputationFaction'] > 0) {    
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredFaction');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $data['RequiredReputationFaction']) . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `armory_faction` WHERE `id`=%d", $this->GetLocale(), $data['RequiredReputationFaction']) . '"');
                 $xml->XMLWriter()->writeRaw(' rep="' . $data['RequiredReputationRank'] . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredFaction
             }
             else {
                 $xml->XMLWriter()->startElement('requiredFaction');
-                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `armory_faction` WHERE `id`=%d", $this->_locale, $data['RequiredReputationFaction']));
+                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `armory_faction` WHERE `id`=%d", $this->GetLocale(), $data['RequiredReputationFaction']));
                 $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
                 $xml->XMLWriter()->endElement(); //requiredFaction
             }
@@ -1994,7 +1994,7 @@ Class Items extends Connector {
         
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
-            $itemsetName = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_itemsetinfo` WHERE `id`=%d", $this->_locale, $data['itemset']);
+            $itemsetName = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_itemsetinfo` WHERE `id`=%d", $this->GetLocale(), $data['itemset']);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<name>');
                 $xml->XMLWriter()->writeRaw($itemsetName);
@@ -2082,8 +2082,8 @@ Class Items extends Connector {
             if($data['spellid_'.$i] > 0) {
                 $spellData = 1;
                 $spell_tmp = $this->aDB->selectRow("SELECT * FROM `armory_spell` WHERE `id`=%d", $data['spellid_'.$i]);
-                if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
-                    $tmp_locale = $this->_locale;
+                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
+                    $tmp_locale = $this->GetLocale();
                 }
                 else {
                     $tmp_locale = 'en_gb';
@@ -2118,7 +2118,7 @@ Class Items extends Connector {
             $xml->XMLWriter()->text(6);
             $xml->XMLWriter()->endElement();  //trigger
             $xml->XMLWriter()->startElement('desc');
-            if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+            if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
                 $xml->XMLWriter()->text($data['description']);
             }
             else {
@@ -2166,7 +2166,7 @@ Class Items extends Connector {
             }
             else {
                 $xml->XMLWriter()->startElement('desc');
-                if($this->_locale == 'en_gb' || $this->_locale == 'en_us') {
+                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
                     $xml->XMLWriter()->text($data['description']);
                 }
                 else {
@@ -2344,8 +2344,8 @@ Class Items extends Connector {
     }
     
     public function GenerateEnchantmentSpellData($spellID) {
-        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
-            $tmp_locale = $this->_locale;
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
+            $tmp_locale = $this->GetLocale();
         }
         else {
             $tmp_locale = 'en_gb';
@@ -2663,12 +2663,12 @@ Class Items extends Connector {
     /**
      * Returns multiplier for SSV mask
      * @category Items class
-     * @access   private
+     * @access   public
      * @param    array $ssv
      * @param    int $mask
      * @return   int
      **/
-    private function GetSSDMultiplier($ssv, $mask) {
+    public function GetSSDMultiplier($ssv, $mask) {
         if(!is_array($ssv)) {
             //$this->Log()->writeLog('%s : return 0 (mask: %d) ssv not array', __METHOD__, $mask);
             return 0;
@@ -2706,12 +2706,12 @@ Class Items extends Connector {
     /**
      * Returns armor mod for SSV mask
      * @category Items class
-     * @access   private
+     * @access   public
      * @param    array $ssv
      * @param    int $mask
      * @return   int
      **/
-    private function GetArmorMod($ssv, $mask) {
+    public function GetArmorMod($ssv, $mask) {
         if(!is_array($ssv)) {
             return 0;
         }
@@ -2747,12 +2747,12 @@ Class Items extends Connector {
     /**
      * Returns DPS mod for SSV mask
      * @category Items class
-     * @access   private
+     * @access   public
      * @param    array $ssv
      * @param    int $mask
      * @return   int
      **/
-    private function GetDPSMod($ssv, $mask) {
+    public function GetDPSMod($ssv, $mask) {
         if(!is_array($ssv)) {
             return 0;
         }
@@ -2782,12 +2782,12 @@ Class Items extends Connector {
     /**
      * Returns Spell Bonus for SSV mask
      * @category Items class
-     * @access   private
+     * @access   public
      * @param    array $ssv
      * @param    int $mask
      * @return   int
      **/
-    private function GetSpellBonus($ssv, $mask) {
+    public function GetSpellBonus($ssv, $mask) {
         if(!is_array($ssv)) {
             return 0;
         }
@@ -2800,12 +2800,12 @@ Class Items extends Connector {
     /**
      * Returns feral bonus for SSV mask
      * @category Items class
-     * @access   private
+     * @access   public
      * @param    array $ssv
      * @param    int $mask
      * @return   int
      **/
-    private function GetFeralBonus($ssv, $mask) {
+    public function GetFeralBonus($ssv, $mask) {
         if(!is_array($ssv)) {
             return 0;
         }

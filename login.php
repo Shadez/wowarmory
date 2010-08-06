@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 235
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -85,11 +85,11 @@ $strings = array(
     
 );
 ob_start();
-if(!isset($strings[$armory->_locale])) {
-    $strings[$armory->_locale] = $strings['ru_ru'];
+if(!isset($strings[$armory->GetLocale()])) {
+    $strings[$armory->GetLocale()] = $strings['ru_ru'];
 }
 $template = file_get_contents('includes/template/login-page.html');
-foreach($strings[$armory->_locale] as $str_key => $str_value) {
+foreach($strings[$armory->GetLocale()] as $str_key => $str_value) {
     if($str_key != 'error_username' && $str_key != 'error_password') {
         $template = str_replace('<!-- [$'.$str_key.'] -->', $str_value, $template);
     }
@@ -110,16 +110,16 @@ if(isset($_POST['accountName'])) {
         }
         else {
             $template = str_replace('<!-- [$username] -->', $utils->username, $template);
-            $template = str_replace('<!-- [$error_password] -->', $strings[$armory->_locale]['error_incorrect_password'], $template);
+            $template = str_replace('<!-- [$error_password] -->', $strings[$armory->GetLocale()]['error_incorrect_password'], $template);
         }
     }
     if(empty($utils->username)) {
-        $template = str_replace('<!-- [$error_username] -->', $strings[$armory->_locale]['error_username'], $template);
+        $template = str_replace('<!-- [$error_username] -->', $strings[$armory->GetLocale()]['error_username'], $template);
         $template = str_replace('<!-- [$username] -->', '', $template);
     }
     if(empty($utils->password)) {
         $template = str_replace('<!-- [$username] -->', $utils->username, $template);
-        $template = str_replace('<!-- [$error_password] -->', $strings[$armory->_locale]['error_password'], $template);
+        $template = str_replace('<!-- [$error_password] -->', $strings[$armory->GetLocale()]['error_password'], $template);
     }
 }
 else {

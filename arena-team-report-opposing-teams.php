@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 271
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -48,7 +48,7 @@ if(!$isTeam || !$arenateams->teamname) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
     $xml->XMLWriter()->startElement('errorhtml');
     $xml->XMLWriter()->endElement();  //errorhtml
     $xml->XMLWriter()->endElement(); //page
@@ -67,7 +67,7 @@ if($arenateams->teamname && $isTeam && $armory->armoryconfig['useCache'] == true
 $xml->LoadXSLT('arena/opposing-teams.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'arena-team-report-opposing-teams.xml');
 $arenateams->_initTeam();
 $team_info = $arenateams->GetArenaTeamInfo();

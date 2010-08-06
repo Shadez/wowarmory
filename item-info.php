@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 325
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -42,7 +42,7 @@ if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
 $xml->LoadXSLT('items/info.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'item-info.xml');
 $xml->XMLWriter()->writeAttribute('requestQuery', 'i='.$itemID);
 if(!$items->IsItemExists($itemID) ) {
@@ -57,7 +57,7 @@ $item_data = array(
     'icon'    => $items->getItemIcon($itemID, $data['displayid']),
     'id'      => $itemID,
     'level'   => $data['ItemLevel'],
-    'name'    => ($armory->_locale == 'en_gb' || $armory->_locale == 'en_us') ? $data['name'] : $items->getItemName($itemID),
+    'name'    => ($armory->GetLocale() == 'en_gb' || $armory->GetLocale() == 'en_us') ? $data['name'] : $items->getItemName($itemID),
     'quality' => $data['Quality'],
     'type'    => null
 );

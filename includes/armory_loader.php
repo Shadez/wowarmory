@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 340
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -119,40 +119,47 @@ elseif(isset($_GET['logout']) && $_GET['logout'] == 1 && !defined('skip_utils_cl
 
 if(isset($_GET['locale'])) {
     $tmp = strtolower($_GET['locale']);
+    $_SESSION['armoryLocaleId'] = $armory->GetLoc();
     switch($tmp) {
         case 'ru_ru':
         case 'ruru':
         case 'ru':
             $_SESSION['armoryLocale'] = 'ru_ru';
+            $_SESSION['armoryLocaleId'] = 8;
             break;
         case 'en_gb':
         case 'engb':
         case 'en':
             $_SESSION['armoryLocale'] = 'en_gb';
+            $_SESSION['armoryLocaleId'] = 0;
             break;
         case 'es_es':
         case 'es_mx':
         case 'eses':
         case 'es':
             $_SESSION['armoryLocale'] = 'es_es';
+            $_SESSION['armoryLocaleId'] = 6;
             break;
         case 'de_de':
         case 'dede':
         case 'de':
             $_SESSION['armoryLocale'] = 'de_de';
+            $_SESSION['armoryLocaleId'] = 3;
             break;
         case 'fr_fr':
         case 'frfr':
         case 'fr':
             $_SESSION['armoryLocale'] = 'fr_fr';
+            $_SESSION['armoryLocaleId'] = 2;
             break;
         case 'en_us':
         case 'enus':
             $_SESSION['armoryLocale'] = 'en_us';
+            $_SESSION['armoryLocaleId'] = 0;
             break;
     }
-    $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
-    $armory->_locale = $_locale;
+    $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->GetLocale();
+    $armory->SetLocale($_locale, $_SESSION['armoryLocaleId']);
     if(isset($_SERVER['HTTP_REFERER'])) {
         $returnUrl = $_SERVER['HTTP_REFERER'];
     }
@@ -161,19 +168,12 @@ if(isset($_GET['locale'])) {
     }
     header('Location: '.$returnUrl);
 }
-$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->armoryconfig['defaultLocale'];
-
+$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->GetLocale();
 if(defined('load_characters_class')) {
     if(!@include('classes/class.characters.php')) {
         die('<b>Error:</b> can not load characters class!');
     }
     $characters = new Characters;
-}
-if(defined('load_player_class')) {
-    if(!@include('classes/class.player.php')) {
-        die('<b>Error:</b> can not load player class!');
-    }
-    $player = new Player;
 }
 if(defined('load_guilds_class')) {
     if(!@include('classes/class.guilds.php')) {
@@ -210,19 +210,6 @@ if(defined('load_search_class')) {
         die('<b>Error:</b> can not load search engine class!');
     }
     $search = new SearchMgr;
-}
-if(defined('load_itemproto_class')) {
-    if(!@include('classes/class.itemproto.php')) {
-        die('<b>Error:</b> can not load itemProto class!');
-    }
-    $proto = new ItemProto;
-}
-if(defined('__ARMORYADMIN__')) {
-    // This is a dev. placeholder I'm not totally sure about this feature ;)
-    if(!@include('classes/class.admin.php')) {
-        die('<b>Error:</b> can not load admin class!');
-    }
-    $admin = new ArmoryAdmin;
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {

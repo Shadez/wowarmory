@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 271
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,7 +40,7 @@ if($arenateams->GetGameID() === false || !is_array($game_data)) {
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-    $xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
     $xml->XMLWriter()->startElement('errorhtml');
     $xml->XMLWriter()->endElement();  //errorhtml
     $xml->XMLWriter()->endElement(); //page
@@ -59,7 +59,7 @@ if($arenateams->GetGameID() > 0 && $armory->armoryconfig['useCache'] == true && 
 $xml->LoadXSLT('arena/arena-game.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->_locale);
+$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'arena-game.xml');
 $xml->XMLWriter()->startElement('game');
 if(is_array($game_data['gameData'])) {

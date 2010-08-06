@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 345
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 header('Content-type: text/xml');
-$page_element = array('globalSearch' => 1, 'lang' => $armory->_locale, 'requestUrl' => 'login-status.xml');
+$page_element = array('globalSearch' => 1, 'lang' => $armory->GetLocale(), 'requestUrl' => 'login-status.xml');
 $xml->XMLWriter()->startElement('page');
 foreach($page_element as $page_key => $page_value) {
     $xml->XMLWriter()->writeAttribute($page_key, $page_value);

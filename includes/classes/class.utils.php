@@ -473,7 +473,7 @@ Class Utils extends Connector {
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $tmp_info = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->_locale, $this->_locale, $achievements_data[$i]['achievement']);
+            $tmp_info = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $this->GetLocale(), $achievements_data[$i]['achievement']);
             $achievements_data[$i]['title'] = $tmp_info['name'];
             $achievements_data[$i]['desc']  = $tmp_info['desc'];
             $achievements_data[$i]['icon']  = $tmp_info['iconname'];
@@ -646,7 +646,7 @@ Class Utils extends Connector {
     }
     
     public function GenerateCacheId($page, $att1=0, $att2=0, $att3=0) {
-        return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.$this->_locale);
+        return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.$this->GetLocale());
     }
     
     public function GetCache($file_id, $file_dir = 'characters') {
@@ -716,7 +716,7 @@ Class Utils extends Connector {
     }
     
     public function GenerateCacheData($nameOrItemID, $charGuid, $page=null) {
-        return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->_locale);
+        return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->GetLocale());
     }
     
     public function validateText($text) {
@@ -734,8 +734,8 @@ Class Utils extends Connector {
                 'дней', 'часов', 'мин', 'сек'
             )
         );
-        if($this->_locale == 'en_gb' || $this->_locale == 'ru_ru') {
-            $preferLocale = $strings_array[$this->_locale];
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
+            $preferLocale = $strings_array[$this->GetLocale()];
         }
         else {
             $preferLocale = $strings_array['en_gb'];
@@ -824,14 +824,14 @@ Class Utils extends Connector {
     }
     
     /**
-     * Returns string with ID #$id for $this->_locale locale from DB
+     * Returns string with ID #$id for $this->GetLocale() locale from DB
      * @category Utils class
      * @access   public
      * @param    int $id
      * @return   string
      **/
     public function GetArmoryString($id) {
-        return $this->aDB->selectCell("SELECT `string_%s` FROM `armory_string` WHERE `id`=%d", $this->_locale, $id);
+        return $this->aDB->selectCell("SELECT `string_%s` FROM `armory_string` WHERE `id`=%d", $this->GetLocale(), $id);
     }
     
     /**
@@ -920,7 +920,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetDungeonData($instance_key) {
-        return $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`='%s'", $this->_locale, $instance_key);
+        return $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `is_heroic`, `key`, `difficulty` FROM `armory_instance_template` WHERE `key`='%s'", $this->GetLocale(), $instance_key);
     }
     
     /**
@@ -935,7 +935,7 @@ Class Utils extends Connector {
             case 'ferocity':
             case 'tenacity':
             case 'cunning':
-                return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_%s` AS `name` FROM `armory_petcalc` WHERE `key`='%s' AND `catId` >= 0", $this->_locale, strtolower($key));
+                return $this->aDB->select("SELECT `catId`, `icon`, `id`, `name_%s` AS `name` FROM `armory_petcalc` WHERE `key`='%s' AND `catId` >= 0", $this->GetLocale(), strtolower($key));
                 break;
         }
     }
@@ -995,7 +995,7 @@ Class Utils extends Connector {
      * @return   string
      **/
     public function ReturnTalentTreeName($spec, $class) {
-		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->_locale, $class, $spec);
+		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $class, $spec);
 	}
     
     /**
@@ -1037,7 +1037,7 @@ Class Utils extends Connector {
      * @return   array
      **/
     public function GetArmoryNews() {
-        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC", $this->_locale, $this->_locale);
+        $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `armory_news` WHERE `display`=1 ORDER BY `date` DESC", $this->GetLocale(), $this->GetLocale());
         if(!$news) {
             return false;
         }
@@ -1109,7 +1109,7 @@ Class Utils extends Connector {
     }
     
     public function IsWriteRaw() {
-        if($this->_locale == 'en_gb' || $this->_locale == 'en_us' || $this->_locale == 'ru_ru') {
+        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us' || $this->GetLocale() == 'ru_ru') {
             return false;
         }
         return true;

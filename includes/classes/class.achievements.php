@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 340
+ * @revision 345
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -297,15 +297,15 @@ Class Achievements extends Connector {
      * @return   string
      **/
     public function BuildCategoriesTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->_locale);
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->GetLocale());
         if(!$categoryIds) {
-            $this->Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->_locale, $cat['id']);
+            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -327,11 +327,11 @@ Class Achievements extends Connector {
      * @return   array
      **/
     public function BuildStatisticsCategoriesTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=1", $this->_locale);
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=1", $this->GetLocale());
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->_locale, $cat['id']);
+            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -359,9 +359,9 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : achievementData must be an array!', __METHOD__);
             return false;
         }
-        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->_locale, $this->_locale, $achievementData['achievement']);
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $this->GetLocale(), $achievementData['achievement']);
         if(!$achievementinfo) {
-            $this->Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], $this->GetLocale(), $this->GetLoc());
             return false;
         }
         if($achievementinfo['points'] == 0) {
@@ -417,9 +417,9 @@ Class Achievements extends Connector {
         $achievements_data = $this->aDB->select(
         "SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`, `titleReward_%s` AS `titleReward`
             FROM `armory_achievement`
-                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1) ORDER BY `OrderInCategory`", $this->_locale, $this->_locale, $this->_locale, $page_id, $faction);
+                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1) ORDER BY `OrderInCategory`", $this->GetLocale(), $this->GetLocale(), $this->GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
-            $this->Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $return_data = array();
@@ -461,7 +461,7 @@ Class Achievements extends Connector {
                             $return_data['completed'][$this->achId]['achievement_tree'][$j] = $this->aDB->selectRow("
                             SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`
                                 FROM `armory_achievement`
-                                    WHERE `id`=%d", $this->_locale, $this->_locale, $parentId);
+                                    WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $parentId);
                             $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($this->guid, $parentId);
                             $cPoints = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'];
                             $fullPoints = $fullPoints+$cPoints;
@@ -491,11 +491,11 @@ Class Achievements extends Connector {
     }
     
     public function BuildAchievementCriteriaTable() {
-        if($this->_locale == 'es_es' || $this->_locale == 'es_mx') {
+        if($this->GetLocale() == 'es_es' || $this->GetLocale() == 'es_mx') {
             $locale = 'en_gb';
         }
         else {
-            $locale = $this->_locale;
+            $locale = $this->GetLocale();
         }
         if(!$this->guid || !$this->achId) {
             $this->Log()->writeError('%s : player guid or achievement id not defiend (guid: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
@@ -555,9 +555,9 @@ Class Achievements extends Connector {
         $achievements_data = $this->aDB->select(
         "SELECT `id`, `name_%s` AS `name`, `description_%s` AS `desc`, `categoryId`
             FROM `armory_achievement`
-                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", $this->_locale, $this->_locale, $page_id, $faction);
+                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", $this->GetLocale(), $this->GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
-            $this->Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->_locale, $this->_loc);
+            $this->Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $return_data = array();
