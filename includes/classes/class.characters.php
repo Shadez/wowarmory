@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 346
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -256,7 +256,7 @@ Class Characters extends Connector {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
         }
-        if($realmId === false) {
+        if($realmId == false) {
             $this->Log()->writeLog('%s : realmId not provided!', __METHOD__);
             return false;
         }
@@ -266,7 +266,7 @@ Class Characters extends Connector {
         }
         $realm_info = $this->realmData[$realmId];
         $this->db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
-        if(!$this->db) {
+        if(!$this->db || !$this->db->TestLink()) {
             $this->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
             return false;
         }
@@ -317,7 +317,7 @@ Class Characters extends Connector {
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
             WHERE `characters`.`name`='%s' LIMIT 1", $name);
         }
-        if($player_data === false || !is_array($player_data)) {
+        if($player_data == false || !is_array($player_data)) {
             $this->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
@@ -374,17 +374,13 @@ Class Characters extends Connector {
         }
         if($full == true) {
             // Get race and class strings
-            $locale = $this->GetLocale();
-            if($locale == 'en_us') {
-                $locale = 'en_gb';
-            }
             $race_class = $this->aDB->selectRow("
             SELECT
             `armory_races`.`name_%s` AS `race`,
             `armory_classes`.`name_%s` AS `class`
             FROM `armory_races` AS `armory_races`
             LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
-            WHERE `armory_races`.`id`=%d", $locale, $locale, $player_data['class'], $player_data['race']);
+            WHERE `armory_races`.`id`=%d", $this->GetLocale(), $this->GetLocale(), $player_data['class'], $player_data['race']);
             if(!$race_class) {
                 $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
                 unset($player_data);
@@ -401,6 +397,11 @@ Class Characters extends Connector {
         $this->realmID   = $realm_info['id'];
         unset($realm_info);
         $this->__HandleEquipmentCacheData();
+        // Initialize achievement manager
+        if(defined('load_achievements_class') && class_exists('Achievements')) {
+            $this->m_achievementMgr = new Achievements;
+            $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
+        }
         // Everything correct, build class
         $this->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
         return true;
@@ -678,10 +679,6 @@ Class Characters extends Connector {
     }
     
     public function GetAchievementMgr() {
-        if($this->m_achievementMgr === null) {
-            $this->m_achievementMgr = new Achievements;
-            $this->m_achievementMgr->InitAchievements($this->GetGUID(), $this->GetDB(), true);
-        }
         return $this->m_achievementMgr;
     }
     
