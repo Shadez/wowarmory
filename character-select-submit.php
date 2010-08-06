@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 322
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -31,8 +31,8 @@ if(!isset($_SESSION['accountId'])) {
     exit;
 }
 if(isset($_GET)) {
-    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `armory_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
-    $armory->aDB->query("DELETE FROM `armory_login_characters` WHERE `account`='%d'", $_SESSION['accountId']);
+    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
+    $armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_login_characters` WHERE `account`='%d'", $_SESSION['accountId']);
     for($i = 1; $i < 4; $i++) {
         if(isset($_GET['cn' . $i]) && isset($_GET['r' . $i])) {
             $realmName = urldecode($_GET['r' . $i]);

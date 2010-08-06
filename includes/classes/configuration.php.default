@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 338
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -83,6 +83,10 @@ $ArmoryConfig['mysql']['charset_realmd']  = 'UTF8';
 #        Rebuild cache delay (in seconds)
 #        Default: 86400 (1 day)
 #
+#    db_prefix
+#        Armory database prefix (without "_"!)
+#        Default: armory
+#
 #    minlevel
 #        Players with level below this value wouldn't be displayed in Armory 
 #        Default: 10 (Recommended)
@@ -113,12 +117,6 @@ $ArmoryConfig['mysql']['charset_realmd']  = 'UTF8';
 #        Default: false (Disabled)
 #                 true  (Enabled)
 #
-#    useCache
-#        Cache module enabled/disabled. STRONGLY not recommended to enable this option on live servers. 
-#        Use this for development cases only!
-#        Default: false (Disabled)
-#                 true  (Enabled)
-#
 #    logLevel
 #        Logging level
 #        Default: 2 (Full debug)
@@ -138,13 +136,14 @@ $ArmoryConfig['settings']['useNews']          = false;
 $ArmoryConfig['settings']['defaultBGName']    = 'Massive Network';
 $ArmoryConfig['settings']['useCache']         = false;
 $ArmoryConfig['settings']['cache_lifetime']   = 86400;
+$ArmoryConfig['settings']['db_prefix']        = 'armory';
 $ArmoryConfig['settings']['minlevel']         = 10;
 $ArmoryConfig['settings']['minGmLevelToShow'] = 3;
 $ArmoryConfig['settings']['defaultLocale']    = 'en_gb';
 $ArmoryConfig['settings']['maintenance']      = false;
 $ArmoryConfig['settings']['useDebug']         = true;
 $ArmoryConfig['settings']['logLevel']         = 2;
-$ArmoryConfig['settings']['configVersion']    = 0308201001;
+$ArmoryConfig['settings']['configVersion']    = '0708201001';
 $ArmoryConfig['settings']['checkVersionType'] = 'show';
 
 ##############################################################################################

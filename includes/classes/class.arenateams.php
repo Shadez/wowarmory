@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -375,7 +375,7 @@ Class Arenateams extends Connector {
         $chart_teams['gameData'] = array(
             'battleGroup' => $this->armoryconfig['defaultBGName'],
             'id' => $this->gameid,
-            'map' => $this->aDB->selectCell("SELECT `name_%s` FROM `armory_maps` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $game_info[0]['mapId']),
+            'map' => $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $game_info[0]['mapId']),
             'matchLength' => $game_info[0]['end']-$game_info[0]['start'],
             'teamSize' => $game_info[0]['type']
         );

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -167,12 +167,12 @@ Class SearchMgr extends Connector {
                 }
                 if(self::IsExtendedCost()) {
                     $this->Log()->writeLog('%s : current ExtendedCost key: %s', __METHOD__, $this->get_array['dungeon']);
-                    $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `armory_item_sources` WHERE `key`='%s' LIMIT 1", $this->get_array['dungeon']);
+                    $item_extended_cost = $this->aDB->selectCell("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $this->get_array['dungeon']);
                     if(!$item_extended_cost) {
                         $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost key (%s) but data for this key is missed in `armory_item_sources`', __METHOD__, $this->get_array['dungeon']);
                         return false;
                     }
-                    $extended_cost = $this->aDB->select("SELECT `id` FROM `armory_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
+                    $extended_cost = $this->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
                     if(!$extended_cost) {
                         $this->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost (key: %s, id: %d) but data for this id is missed in `armory_extended_cost`', __METHOD__, $this->get_array['dungeon'], $item_extended_cost);
                         return false;
@@ -203,10 +203,10 @@ Class SearchMgr extends Connector {
                         case 'normal':
                             switch($instance_data['difficulty']) {
                                 case 2:  // 25 Man (icc/toc)
-                                    $sql_query = "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                    $sql_query = "SELECT `lootid_2`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     break;
                                 default: // 10 Man (icc/toc) / all others
-                                    $sql_query = "SELECT `lootid_1`, `type` FROM `armory_instance_data`";
+                                    $sql_query = "SELECT `lootid_1`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     break;
                             }
                             $difficulty = 'n';
@@ -214,13 +214,13 @@ Class SearchMgr extends Connector {
                         case 'heroic':
                             switch($instance_data['difficulty']) { // instance diffuclty, not related to get_array['difficulty']
                                 case 1: // 10 Man (icc/toc)
-                                    $sql_query = "SELECT `lootid_3`, `type` FROM `armory_instance_data`";
+                                    $sql_query = "SELECT `lootid_3`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     break;
                                 case 2: // 25 Man (icc/toc)
-                                    $sql_query = "SELECT `lootid_4`, `type` FROM `armory_instance_data`";
+                                    $sql_query = "SELECT `lootid_4`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     break;
                                 default: // All others
-                                    $sql_query = "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                    $sql_query = "SELECT `lootid_2`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     break;
                             }
                             $difficulty = 'h';
@@ -231,26 +231,26 @@ Class SearchMgr extends Connector {
                             switch($instance_data['difficulty']) {
                                 case 1: // 10 Man
                                     if($instance_data['is_heroic'] == 1) {
-                                        $sql_query = "SELECT `lootid_1`, `lootid_3`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_1`, `lootid_3`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     else {
-                                        $sql_query = "SELECT `lootid_1`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_1`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     break;
                                 case 2: // 25 Man
                                     if($instance_data['is_heroic'] == 1) {
-                                        $sql_query = "SELECT `lootid_2`, `lootid_4`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_2`, `lootid_4`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     else {
-                                        $sql_query = "SELECT `lootid_2`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_2`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     break;
                                 default:
                                     if($instance_data['is_heroic'] == 1) {
-                                        $sql_query = "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     else {
-                                        $sql_query = "SELECT `lootid_1`, `lootid_2`, `type` FROM `armory_instance_data`";
+                                        $sql_query = "SELECT `lootid_1`, `lootid_2`, `type` FROM `ARMORYDBPREFIX_instance_data`";
                                     }
                                     break;
                             }
@@ -288,7 +288,7 @@ Class SearchMgr extends Connector {
                     }
                     if($this->get_array['boss'] != 'all') {
                         $current_instance_key = $this->get_array['dungeon'];
-                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $current_instance_key);
+                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $current_instance_key);
                     }
                     $global_sql_query = $this->HandleItemFilters($item_id_string, $loot_table);
                 }
@@ -305,14 +305,14 @@ Class SearchMgr extends Connector {
                     $this->get_array['pvp'] = 'all';
                 }
                 if($this->get_array['pvp'] == 'all' || $this->get_array['pvp'] == -1) {
-                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key` IN ('wintergrasp', 'arena8', 'arena7', 'arena6', 'arena5', 'arena4', 'arena3', 'arena2', 'arena1', 'honor', 'ab', 'av', 'wsg', 'halaa', 'honorhold', 'terrokar', 'zangarmarsh', 'thrallmar')");
+                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key` IN ('wintergrasp', 'arena8', 'arena7', 'arena6', 'arena5', 'arena4', 'arena3', 'arena2', 'arena1', 'honor', 'ab', 'av', 'wsg', 'halaa', 'honorhold', 'terrokar', 'zangarmarsh', 'thrallmar')");
                     if(!$pvpVendorsId) {
                         $this->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources', __METHOD__);
                         return false;
                     }
                 }
                 else {
-                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `armory_item_sources` WHERE `key`='%s'", $this->get_array['pvp']);
+                    $pvpVendorsId = $this->aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s'", $this->get_array['pvp']);
                     if(!$pvpVendorsId) {
                         $this->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources (faction: %s, key: %s)', __METHOD__, $this->get_array['source'], $this->get_array['pvp']);
                         return false;
@@ -371,7 +371,7 @@ Class SearchMgr extends Connector {
             elseif(!$count) {
                 if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss'])) {
                     $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
-                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `armory_instance_template` WHERE `key`='%s' LIMIT 1", $this->GetLocale(), $current_instance_key);
+                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s' LIMIT 1", $this->GetLocale(), $current_instance_key);
                 }
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
@@ -564,8 +564,8 @@ Class SearchMgr extends Connector {
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
                 $realm['battleGroup'] = $this->armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
-                $realm['class'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_classes` WHERE `id`=%d", $this->GetLocale(), $realm['classId']);
-                $realm['race'] = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_races` WHERE `id`=%d", $this->GetLocale(), $realm['raceId']);
+                $realm['class'] = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id`=%d", $this->GetLocale(), $realm['classId']);
+                $realm['race'] = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", $this->GetLocale(), $realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
@@ -652,14 +652,14 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : bossSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `armory_instance_data` WHERE `key`='%s') LIMIT 1", $this->GetLocale(), $this->bossSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s') LIMIT 1", $this->GetLocale(), $this->bossSearchKey);
     }
     
     public function GetBossKeyById() {
         if(!isset($this->get_array['boss']) || !is_numeric($this->get_array['boss'])) {
             return false;
         }
-        $this->bossSearchKey = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_data` WHERE `id`=%d LIMIT 1", $this->get_array['boss']);
+        $this->bossSearchKey = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d LIMIT 1", $this->get_array['boss']);
         return $this->bossSearchKey;
     }
     
@@ -668,7 +668,7 @@ Class SearchMgr extends Connector {
             $this->Log()->writeError('%s : instanceSearchKey not defined', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $this->instanceSearchKey);
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $this->instanceSearchKey);
     }
     
     public function MakeUniqueArray($array, $preserveKeys = false) {

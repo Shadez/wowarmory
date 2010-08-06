@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -85,7 +85,7 @@ Class Mangos extends Connector {
 			case 'map':
 				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_involvedrelation` WHERE `quest`=%d", $quest);
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d", $quester);
-				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
                 break;
 			}
         if($info) {
@@ -145,20 +145,20 @@ Class Mangos extends Connector {
 				break;            
             case 'map':
 				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d", $entry);
-				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
 				break;
             case 'areaUrl':
                 $mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d LIMIT 1", $entry);
                 if(!$mapID) {
                     return false;
                 }
-                if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=%d", $mapID)) {
+                if($info = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }
                 break;
             case 'isInInstance':
-                return $this->aDB->selectCell("SELECT 1 FROM `armory_instance_data` WHERE `type`='object' AND (`id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d)", $entry, $entry, $entry, $entry, $entry, $entry);
+                return $this->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_instance_data` WHERE `type`='object' AND (`id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d)", $entry, $entry, $entry, $entry, $entry, $entry);
                 break;
 		}
 		if($info) {
@@ -240,11 +240,11 @@ Class Mangos extends Connector {
                         return false;
                     }
                 }
-                if($info = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_instance_template` WHERE `map`=%d", $this->GetLocale(), $mapID)) {
+                if($info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $this->GetLocale(), $mapID)) {
                     return $info;
                 }
 				else {
-				    $info = $this->aDB->selectCell("SELECT `name_%s` FROM `armory_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				    $info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
 				}
 				break;
             case 'areaUrl':
@@ -265,7 +265,7 @@ Class Mangos extends Connector {
                         return false;
                     }
                 }
-                if($info = $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `map`=%d", $mapID)) {
+                if($info = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }
@@ -328,7 +328,7 @@ Class Mangos extends Connector {
                 break;            
             case 'instance_type':
                 $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
-                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `armory_instances_difficulty` WHERE `mapID`=%d", $mapID);
+                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `ARMORYDBPREFIX_instances_difficulty` WHERE `mapID`=%d", $mapID);
                 if($instanceInfo == 5) {
                     // Dungeon
                     return 1;
@@ -353,7 +353,7 @@ Class Mangos extends Connector {
                     $kc_entry = 0;
                 }
                 $npc_id = $npc.', '.$kc_entry;
-                $instance = $this->aDB->selectCell("SELECT `instance_id` FROM `armory_instance_data` WHERE `id` IN (%s) OR `name_id` IN (%s) OR `lootid_1` IN (%s) OR `lootid_2` IN (%s) OR `lootid_3` IN (%s) OR `lootid_4` IN (%s)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
+                $instance = $this->aDB->selectCell("SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id` IN (%s) OR `name_id` IN (%s) OR `lootid_1` IN (%s) OR `lootid_2` IN (%s) OR `lootid_3` IN (%s) OR `lootid_4` IN (%s)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
                 if($instance > 0) {
                     return true;
                 }
@@ -364,7 +364,7 @@ Class Mangos extends Connector {
             case 'bossData':
                 $data = $this->aDB->selectRow("
                 SELECT `instance_id`, `key`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`
-                    FROM `armory_instance_data`
+                    FROM `ARMORYDBPREFIX_instance_data`
                         WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d",
                         $npc, $npc, $npc, $npc, $npc);
                 if(!$data) {
@@ -373,7 +373,7 @@ Class Mangos extends Connector {
                 $info = array(
                     'difficulty' => 'all',
                     'key' => $data['key'],
-                    'dungeon_key' => $this->aDB->selectCell("SELECT `key` FROM `armory_instance_template` WHERE `id`=%d", $data['instance_id'])
+                    'dungeon_key' => $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $data['instance_id'])
                 );
                 for($i=1;$i<5;$i++) {
                     if($data['lootid_'.$i] == $npc) {
@@ -415,7 +415,7 @@ Class Mangos extends Connector {
         if($costId < 0) {
             $costId = abs($costId);
         }
-        $costInfo = $this->aDB->selectRow("SELECT * FROM `armory_extended_cost` WHERE `id`=%d LIMIT 1", $costId);
+        $costInfo = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d LIMIT 1", $costId);
         if(!$costInfo) {
             $this->Log()->writeError('%s : wrong cost id: #%d', __METHOD__, $costId);
             return false;
@@ -432,7 +432,7 @@ Class Mangos extends Connector {
     }
     
     public function GetPvPExtendedCost($costId) {
-        $costInfo = $this->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `armory_extended_cost` WHERE `id`=%d", $costId);
+        $costInfo = $this->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $costId);
         if(!$costInfo || ($costInfo['arena'] == 0 && $costInfo['honor'] == 0)) {
             return false;
         }

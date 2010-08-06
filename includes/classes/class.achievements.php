@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 346
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -134,7 +134,7 @@ Class Achievements extends Connector {
         foreach($achievement_ids as $_tmp) {
             $ids[] = $_tmp['achievement'];
         }
-        $this->pts = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (%s)", $ids);
+        $this->pts = $this->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
         return $this->pts;
     }
     
@@ -212,7 +212,7 @@ Class Achievements extends Connector {
                 break;
         }
         if($categories != 0) {
-            $id_in_category = $this->aDB->select("SELECT `id` FROM `armory_achievement` WHERE `categoryId` IN (%s)", $categories);
+            $id_in_category = $this->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement` WHERE `categoryId` IN (%s)", $categories);
             if(!$id_in_category) {
                 $this->Log()->writeError('%s : unable to find any achievements in %s category', __METHOD__, $categories);
             }
@@ -233,7 +233,7 @@ Class Achievements extends Connector {
                 $ids[] = $ach['achievement'];
             }
             $achievement_data['earned'] = count($ids);
-            $achievement_data['points'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `armory_achievement` WHERE `id` IN (%s)", $ids);
+            $achievement_data['points'] = $this->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
             if(!$achievement_data['earned']) {
                 $achievement_data['earned'] = 0;
             }
@@ -301,7 +301,7 @@ Class Achievements extends Connector {
      * @return   string
      **/
     public function BuildCategoriesTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->GetLocale());
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->GetLocale());
         if(!$categoryIds) {
             $this->Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
@@ -309,7 +309,7 @@ Class Achievements extends Connector {
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
+            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -331,11 +331,11 @@ Class Achievements extends Connector {
      * @return   array
      **/
     public function BuildStatisticsCategoriesTree() {
-        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=1", $this->GetLocale());
+        $categoryIds = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=1", $this->GetLocale());
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
+            $child_categories = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", $this->GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -363,7 +363,7 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : achievementData must be an array!', __METHOD__);
             return false;
         }
-        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $this->GetLocale(), $achievementData['achievement']);
+        $achievementinfo = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $this->GetLocale(), $achievementData['achievement']);
         if(!$achievementinfo) {
             $this->Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], $this->GetLocale(), $this->GetLoc());
             return false;
@@ -402,7 +402,7 @@ Class Achievements extends Connector {
      * @return   bool
      **/
     public function IsAchievementExists($achId) {
-        return $this->aDB->selectCell("SELECT 1 FROM `armory_achievement` WHERE `id`=%d LIMIT 1", $achId);
+        return $this->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $achId);
     }
     
     /**
@@ -420,7 +420,7 @@ Class Achievements extends Connector {
         }
         $achievements_data = $this->aDB->select(
         "SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`, `titleReward_%s` AS `titleReward`
-            FROM `armory_achievement`
+            FROM `ARMORYDBPREFIX_achievement`
                 WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1) ORDER BY `OrderInCategory`", $this->GetLocale(), $this->GetLocale(), $this->GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
             $this->Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->GetLocale(), $this->GetLoc());
@@ -432,7 +432,7 @@ Class Achievements extends Connector {
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
             $completed = self::IsAchievementCompleted($this->achId);
-            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=%d", $this->achId);
+            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $this->achId);
             if($completed) {
                 $return_data['completed'][$this->achId]['data'] = $achievement;
                 $return_data['completed'][$this->achId]['data']['categoryId'] = $page_id;
@@ -464,13 +464,13 @@ Class Achievements extends Connector {
                             $parent_used = true;
                             $return_data['completed'][$this->achId]['achievement_tree'][$j] = $this->aDB->selectRow("
                             SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`
-                                FROM `armory_achievement`
+                                FROM `ARMORYDBPREFIX_achievement`
                                     WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $parentId);
                             $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($this->guid, $parentId);
                             $cPoints = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'];
                             $fullPoints = $fullPoints+$cPoints;
                             $return_data['completed'][$this->achId]['data']['points'] = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points']+$fullPoints;
-                            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `armory_achievement` WHERE `id`=%d", $parentId);
+                            $parentId = $this->aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $parentId);
                             $j++;
                         }
                     }
@@ -505,7 +505,7 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : player guid or achievement id not defiend (guid: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
             return false;
         }
-        $data = $this->aDB->select("SELECT * FROM `armory_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
+        $data = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
         if(!$data) {
             $this->Log()->writeError('%s : achievement criteria for achievement #%d not found', __METHOD__, $this->achId);
             return false;
@@ -558,7 +558,7 @@ Class Achievements extends Connector {
         }
         $achievements_data = $this->aDB->select(
         "SELECT `id`, `name_%s` AS `name`, `description_%s` AS `desc`, `categoryId`
-            FROM `armory_achievement`
+            FROM `ARMORYDBPREFIX_achievement`
                 WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", $this->GetLocale(), $this->GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
             $this->Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->GetLocale(), $this->GetLoc());
@@ -581,7 +581,7 @@ Class Achievements extends Connector {
             $this->Log()->writeError('%s : player guid or achievement id not defined', __METHOD__);
             return false;
         }
-        $criteria_ids = $this->aDB->select("SELECT `id` FROM `armory_achievement_criteria` WHERE `referredAchievement`=%d", $this->achId);
+        $criteria_ids = $this->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d", $this->achId);
         if(!$criteria_ids) {
             $this->Log()->writeError('%s : unable to get criterias for achievement %d', __METHOD__, $this->achId);
             return false;

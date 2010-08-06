@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,7 +34,7 @@ if(!@include('revision_nr.php')) {
 }
 $armory = new Connector();
 /* Check DbVersion */
-$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `armory_db_version`");
+$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
 if($dbVersion != DB_VERSION) {
     if(!$dbVersion) {
         if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
@@ -174,6 +174,12 @@ if(defined('load_characters_class')) {
         die('<b>Error:</b> can not load characters class!');
     }
     $characters = new Characters;
+}
+if(defined('load_player_class')) {
+    if(!@include('classes/class.player.php')) {
+        die('<b>Error:</b> can not load player class!');
+    }
+    $player = new Player;
 }
 if(defined('load_guilds_class')) {
     if(!@include('classes/class.guilds.php')) {

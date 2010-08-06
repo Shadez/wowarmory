@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 346
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -378,7 +378,7 @@ Class Characters extends Connector {
             SELECT
             `armory_races`.`name_%s` AS `race`,
             `armory_classes`.`name_%s` AS `class`
-            FROM `armory_races` AS `armory_races`
+            FROM `ARMORYDBPREFIX_races` AS `armory_races`
             LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
             WHERE `armory_races`.`id`=%d", $this->GetLocale(), $this->GetLocale(), $player_data['class'], $player_data['race']);
             if(!$race_class) {
@@ -434,7 +434,7 @@ Class Characters extends Connector {
      * @return   bool
      **/
     private function __HandleTitle() {
-        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `armory_titles` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $this->chosenTitle);
+        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `ARMORYDBPREFIX_titles` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $this->chosenTitle);
         if(!$title_data) {
             $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->GetLocale(), $this->GetLoc());
             return false;
@@ -997,7 +997,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
-        $class_talents = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        $class_talents = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
         if(!$class_talents) {
             $this->Log()->writeError('%s : unable to find talents for class %d (tabs are: %d, %d, %d)', __METHOD__, $this->GetClass(), $tab_class[0], $tab_class[1], $tab_class[2]);
             return false;
@@ -1080,7 +1080,7 @@ Class Characters extends Connector {
         }
         if($this->currentRealmInfo['type'] == 'trinity') {
             for($i = 0; $i < 3; $i++) {
-                $current_tab = $this->aDB->select("SELECT * FROM `armory_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                $current_tab = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                 if(!$current_tab) {
                     continue;
                 }
@@ -1115,7 +1115,7 @@ Class Characters extends Connector {
                 }
                 switch($this->currentRealmInfo['type']) {
                     case 'mangos':
-                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `armory_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                         if(!$current_tab) {
                             continue;
                         }
@@ -1175,10 +1175,10 @@ Class Characters extends Connector {
             switch($this->currentRealmInfo['type']) {
                 case 'mangos':
                     if($this->GetLocale() == 'ru_ru' || $this->GetLocale() == 'en_gb') {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph']);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph']);
                     }
                     else {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
                     }
                     $data[$glyph['spec']][$i] = array(
                         'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
@@ -1195,7 +1195,7 @@ Class Characters extends Connector {
                     break;
                 case 'trinity':
                     for($j=1;$j<7;$j++) {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `armory_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph' . $j]);
+                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph' . $j]);
                         if(!$current_glyph) {
                             continue;
                         }
@@ -1230,7 +1230,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : class not provided', __METHOD__);
             return false;
         }
-		return $this->aDB->selectCell("SELECT `name_%s` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $this->class, $spec);
+		return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $this->class, $spec);
 	}
     
     /**
@@ -1246,7 +1246,7 @@ Class Characters extends Connector {
             $this->Log()->writeError('%s : class not provided', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `icon` FROM `armory_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
+        return $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
     }
     
     /**
@@ -1264,7 +1264,7 @@ Class Characters extends Connector {
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
-            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `armory_professions` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $prof['skill']);
+            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `ARMORYDBPREFIX_professions` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $prof['skill']);
             $p[$i]['value'] = $prof['value'];
             $p[$i]['key'] = str_replace('-sm', '', (isset($p[$i]['icon'])) ? $p[$i]['icon'] : '' );
             $p[$i]['max'] = 450;
@@ -1366,7 +1366,7 @@ Class Characters extends Connector {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `armory_faction` WHERE `id`=%d", $this->GetLocale(), $faction['faction']);
+            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->GetLocale(), $faction['faction']);
             if($faction['standing'] > 42999) {
                 $factionReputation[$i]['reputation'] = 42999;
             }
@@ -2516,7 +2516,7 @@ Class Characters extends Connector {
         $feed_data = array();
         $i = 0;
         // Strings
-        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `armory_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->GetLocale());
+        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->GetLocale());
         if(!$feed_strings) {
             $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
             return false;
@@ -2575,7 +2575,7 @@ Class Characters extends Connector {
                     if(!$item) {
                         continue;
                     }
-                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d", $item['displayid']);
+                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $item['displayid']);
                     // Is item equipped?
                     if($this->IsItemEquipped($event['data'])) {
                         $item_slot = $item['InventoryType'];
@@ -2601,7 +2601,7 @@ Class Characters extends Connector {
                 case TYPE_BOSS_FEED:
                     // Get criterias
                     $achievement_ids = array();
-                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=%d", $event['data']);
+                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data`=%d", $event['data']);
                     if(!$criterias) {
                         // Search for KillCredit
                         $kc_entry = 0;
@@ -2614,7 +2614,7 @@ Class Characters extends Connector {
                         if($kc_entry == 0) {
                             continue;
                         }
-                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `armory_achievement_criteria` WHERE `data`=%d", $kc_entry);
+                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data`=%d", $kc_entry);
                         if(!$criterias || !is_array($criterias)) {
                             continue;
                         }
@@ -2625,7 +2625,7 @@ Class Characters extends Connector {
                     if(!$achievement_ids || !is_array($achievement_ids)) {
                         continue;
                     }
-                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `armory_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->GetLocale(), $achievement_ids);
+                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->GetLocale(), $achievement_ids);
                     if(!$achievement || !is_array($achievement)) {
                         continue;
                     }
@@ -2675,12 +2675,12 @@ Class Characters extends Connector {
         $enchItemData = array();
         $enchItemDisplayId = null;
         if($enchantment > 0) {
-            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `armory_spellenchantment` WHERE `Value`=%d", $enchantment);
+            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spellenchantment` WHERE `Value`=%d", $enchantment);
             if($originalSpell > 0) {
                 $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
                 if($enchItemData) {
                     // Item
-                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `armory_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
+                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
                 }
                 else {
                     // Spell
@@ -3051,6 +3051,6 @@ Class Characters extends Connector {
             return false;
         }
         return $rank;
-    }
+    }        
 }
 ?>

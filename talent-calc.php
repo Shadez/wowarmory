@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -72,7 +72,7 @@ else {
     $xml->XMLWriter()->startElement('petTalentTabs');
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Cunning');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='cunning'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `ARMORYDBPREFIX_petcalc` WHERE `id` < 0 AND `key`='cunning'"));
     $xml->XMLWriter()->writeAttribute('order', 2);
     $pet_cunning = $utils->PetTalentCalcData('cunning');
     foreach($pet_cunning as $cunning) {
@@ -86,7 +86,7 @@ else {
     
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Tenacity');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='tenacity'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `ARMORYDBPREFIX_petcalc` WHERE `id` < 0 AND `key`='tenacity'"));
     $xml->XMLWriter()->writeAttribute('order', 1);
     $pet_tenacity = $utils->PetTalentCalcData('tenacity');
     foreach($pet_tenacity as $tenacity) {
@@ -100,7 +100,7 @@ else {
     
     $xml->XMLWriter()->startElement('petTalentTab');
     $xml->XMLWriter()->writeAttribute('key', 'Ferocity');
-    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `armory_petcalc` WHERE `id` < 0 AND `key`='ferocity'"));
+    $xml->XMLWriter()->writeAttribute('name', $armory->aDB->selectCell("SELECT `name_".$armory->GetLocale()."` FROM `ARMORYDBPREFIX_petcalc` WHERE `id` < 0 AND `key`='ferocity'"));
     $xml->XMLWriter()->writeAttribute('order', 0);
     $pet_ferocity = $utils->PetTalentCalcData('ferocity');
     foreach($pet_ferocity as $ferocity) {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 348
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,19 +43,22 @@ Class ArmoryDatabaseHandler {
     private $queryCount = 0;
     private $queryTimeGeneration = 0;
     private $logHandler;
+    private $armory_prefix = null;
     
     /**
      * Connect to DB
      * @category Armory Database Handler
      * @access   public
-     * @param    string host
-     * @param    string user
-     * @param    string password
-     * @param    string dbName
-     * @param    string charset
+     * @param    string $host
+     * @param    string $user
+     * @param    string $password
+     * @param    string $dbName
+     * @param    string $charset = false
+     * @param    string $logHandler = null
+     * @param    string $prefix = 'armory'
      * @return   bool
      **/
-    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = false, $logHandler = null) {
+    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = false, $logHandler = null, $prefix = null) {
         $this->connectionLink = @mysql_connect($host, $user, $password, true);
         $this->dbLink         = @mysql_select_db($dbName, $this->connectionLink);
         if($charset === false) {
@@ -72,6 +75,7 @@ Class ArmoryDatabaseHandler {
             'name'     => $dbName,
             'charset'  => ($charset === false) ? 'UTF8' : $charset,
         );
+        $this->armory_prefix = $prefix;
         return true;
     }
     
@@ -184,6 +188,13 @@ Class ArmoryDatabaseHandler {
             }
         }
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
+        if(eregi('ARMORYDBPREFIX', $safe_sql)) {
+            if($this->armory_prefix == null) {
+                $this->logHandler->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query!', __METHOD__);
+                return false;
+            }
+            $safe_sql = str_replace('ARMORYDBPREFIX', $this->armory_prefix, $safe_sql);
+        }
         return $this->_query($safe_sql, $query_type);
     }
     
