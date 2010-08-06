@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 347
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -669,6 +669,9 @@ Class Items extends Connector {
             case 'displayid':
                 $info = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
                 break;
+            case 'durability':
+                $info = $this->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                break;
             default:
                 $info = false;
                 break;
@@ -689,25 +692,46 @@ Class Items extends Connector {
      **/ 
     public function extractSocketInfo($guid, $item, $socketNum, $item_guid = 0, $db = null) {
         $data = array();
-        $socketfield = array(
-            1 => ITEM_FIELD_ENCHANTMENT_3_2,
-            2 => ITEM_FIELD_ENCHANTMENT_4_2,
-            3 => ITEM_FIELD_ENCHANTMENT_5_2
-        );
         if($db === null) {
             $db = $this->cDB;
         }
-        if($item_guid == 0) {
-            $socketInfo = $db->selectCell("
-            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
-                FROM `item_instance` 
-                    WHERE `owner_guid`=%d AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $socketfield[$socketNum], $guid, $item);
-        }
-        else {
-            $socketInfo = $db->selectCell("
-            SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
-                FROM `item_instance` 
-                    WHERE `owner_guid`=%d AND `guid`=%d", $socketfield[$socketNum], $guid, $item_guid);
+        switch($this->currentRealmInfo['type']) {
+            case 'mangos':
+                $socketfield = array(
+                    1 => ITEM_FIELD_ENCHANTMENT_3_2,
+                    2 => ITEM_FIELD_ENCHANTMENT_4_2,
+                    3 => ITEM_FIELD_ENCHANTMENT_5_2
+                );
+                if($item_guid == 0) {
+                    $socketInfo = $db->selectCell("
+                    SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
+                        FROM `item_instance` 
+                            WHERE `owner_guid`=%d AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $socketfield[$socketNum], $guid, $item);
+                }
+                else {
+                    $socketInfo = $db->selectCell("
+                    SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
+                        FROM `item_instance` 
+                            WHERE `owner_guid`=%d AND `guid`=%d", $socketfield[$socketNum], $guid, $item_guid);
+                }
+                break;
+            case 'trinity':
+                $socketfield = array(
+                    1 => 6,
+                    2 => 9,
+                    3 => 15
+                );
+                if($item_guid == 0) {
+                    $item_guid = self::GetItemGUIDByEntry($item, $guid, $db);
+                }
+                $row = $db->selectCell("SELECT `enchantments` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                if(!isset($socketfield[$socketNum])) {
+                    $this->Log()->writeError('%s : wrong socketNum: %d', __METHOD__, $socketNum);
+                    return false;
+                }
+                $enchantments = explode(' ', $row);
+                $socketInfo = $enchantments[$socketfield[$socketNum]];
+                break;
         }
         if($socketInfo > 0) {
             $data['enchant_id'] = $socketInfo;
@@ -725,11 +749,21 @@ Class Items extends Connector {
      * @access   public
      * @param    int $guid
      * @param    int $item
+     * @param    ArmoryDatabaseHandler $db = null
      * @return   array
+     * @todo     FIXME: use $db instead of $this->cDB
      **/
-    public function getItemDurability($guid, $item) {
-        $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, $item, $guid);
-        $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, $guid);
+    public function getItemDurability($guid, $item, $db = null) {
+        switch($this->currentRealmInfo['type']) {
+            case 'mangos':
+                $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, $item, 0, $guid, $db);
+                $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, 0, $guid, $db);
+                break;
+            case 'trinity':
+                $durability['current'] = $db->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `item_template`=%d", $guid, $item);
+                $durability['max'] = self::GetItemInfo($item, 'durability');
+                break;
+        }
         return $durability;
     }
     
@@ -738,11 +772,22 @@ Class Items extends Connector {
      * @category Items class
      * @access   public
      * @param    int $item_guid
+     * @param    ArmoryDatabaseHandler $db = null
      * @return   array
      **/
-    public function GetItemDurabilityByItemGuid($item_guid) {
-        $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
-        $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
+    public function GetItemDurabilityByItemGuid($item_guid, $db = null) {
+        $durability = array('current' => 0, 'max' => 0);
+        switch($this->currentRealmInfo['type']) {
+            case 'mangos':
+                $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
+                $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
+                break;
+            case 'trinity':
+                $durability['current'] = $db->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                $itemEntry = self::GetItemEntryByGUID($item_guid, $db);
+                $durability['max'] = self::GetItemInfo($itemEntry, 'durability');
+                break;
+        }
         return $durability;
     }
     
@@ -754,23 +799,28 @@ Class Items extends Connector {
      * @param    int $itemid
      * @param    int $owner_guid
      * @param    int $use_item_guid = 0
+     * @param    ArmoryDatabaseHandler $db = null
      * @return   int
      **/
-    public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0) {
+    public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0, $db = null) {
         $dataField = $field+1;
+        if($db == null) {
+            $db = $this->cDB;
+        }
         if($use_item_guid > 0) {
-            $qData = $this->cDB->selectCell("
+            $qData = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)
                 FROM `item_instance`
                     WHERE `guid`= %d", $dataField, $use_item_guid);
             return $qData;
         }
         else {
-            $qData = $this->cDB->selectCell("
+            $qData = $db->selectCell("
             SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
                 FROM `item_instance` 
                     WHERE `owner_guid`=%d AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $dataField, $owner_guid, $itemid);
-        }        
+        }
+        unset($db);
         return $qData;
     }
     
@@ -1159,8 +1209,8 @@ Class Items extends Connector {
         else {
             $itemclassInfo = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d", $itemID);
         }
-        if($tooltip) {
-            if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] === 0) {
+        if($tooltip == true) {
+            if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] == 0) {
                 return;
             }
             return $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `armory_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
@@ -1231,12 +1281,33 @@ Class Items extends Connector {
      * @param    int $item_guid
      * @return   array
      **/
-    public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0) {
-        if($item_guid > 0) {
-            $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
+    public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0, $rIdOnly = false) {
+        $enchId = 0;
+        switch($this->currentRealmInfo['type']) {
+            case 'mangos':
+                if($item_guid > 0) {
+                    $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
+                }
+                else {
+                    $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
+                }
+                break;
+            case 'trinity':
+                if($db == null && !is_object($db)) {
+                    $this->Log()->writeError('%s : $db must be object, %s given.', __METHOD__, gettype($db));
+                    return false;
+                }
+                if($item_guid > 0) {
+                    $enchId = $db->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                }
+                else {
+                    $item_guid = self::GetItemGUIDByEntry($item_entry, $owner_guid, $db);
+                    $enchId = $db->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                }
+                break;
         }
-        else {
-            $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
+        if($rIdOnly == true) {
+            return $enchId;
         }
         $rand_data = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `armory_randomproperties` WHERE `id`=%d", $this->GetLocale(), $enchId);
         if(!$rand_data) {
@@ -1923,6 +1994,19 @@ Class Items extends Connector {
             }
         }
         $xml->XMLWriter()->endElement(); //socketData
+        // Durability
+        if($isCharacter) {
+            $item_durability = Items::getItemDurability($characters->GetEquippedItemGuidBySlot($itemSlotName), $itemID, $characters->GetDB());
+        }
+        else {
+            $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
+        }
+        if(is_array($item_durability) && $item_durability['current'] > 0) {
+            $xml->XMLWriter()->startElement('durability');
+            $xml->XMLWriter()->writeAttribute('current', (int) $item_durability['current']);
+            $xml->XMLWriter()->writeAttribute('max', (int) $item_durability['max']);
+            $xml->XMLWriter()->endElement(); //durability
+        }
         $allowable_classes = Items::AllowableClasses($data['AllowableClass']);
         if($allowable_classes) {
             $xml->XMLWriter()->startElement('allowableClasses');
@@ -2813,6 +2897,41 @@ Class Items extends Connector {
             return 0;   // not used?
         }
         return 0;
+    }
+    
+    /**
+     * Returns item entry from DB
+     * @category Items class
+     * @access   public
+     * @param    int $item_guid
+     * @param    ArmoryDatabaseHandler $db = null
+     * @return   int
+     **/
+    public function GetItemEntryByGUID($item_guid, $db = null) {
+        if($db == null || !is_object($db)) {
+            $db = $this->cDB;
+        }
+        $entry = $db->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `item`=%d", $item_guid);
+        unset($db);
+        return $entry;
+    }
+    
+    /**
+     * Returns item GUID from DB
+     * @category Items class
+     * @access   public
+     * @param    int $item_entry
+     * @param    int $owner_guid
+     * @param    ArmoryDatabaseHandler $db = null
+     * @return   int
+     **/
+    public function GetItemGUIDByEntry($item_entry, $owner_guid, $db = null) {
+        if($db == null || !is_object($db)) {
+            $db = $this->cDB;
+        }
+        $guid = $db->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry);
+        unset($db);
+        return $guid;
     }
 }
 ?>

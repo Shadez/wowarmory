@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 340
+ * @revision 347
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -314,9 +314,20 @@ Class Guilds extends Connector {
                     return $GuildBankContents;
                 }
                 for($j=0;$j<7;$j++) {
+                    $iGuid = $this->cDB->selectCell("SELECT `item_guid` FROM `guild_bank_item` WHERE `SlotId`=%d AND `TabId`=%d", $x, $bank);
                     $GuildBankContents[$bank][$i]['slot_'.$j]['item_entry'] = $this->cDB->selectCell("SELECT `item_entry` FROM `guild_bank_item` WHERE `SlotId`=%d AND `TabId`=%d", $x, $bank);
                     $GuildBankContents[$bank][$i]['slot_'.$j]['item_icon']  = Items::GetItemIcon($GuildBankContents[$bank][$i]['slot_'.$j]['item_entry']);
-                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = Items::GetItemDataField(14, 0, 0, $this->cDB->selectCell("SELECT `item_guid` FROM `guild_bank_item` WHERE `SlotId`=%d AND `TabId`=%d", $x, $bank));
+                    switch($this->currentRealmInfo['type']) {
+                        case 'mangos':
+                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $iGuid);
+                            break;
+                        case 'trinity':
+                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = $this->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $iGuid);
+                            break;
+                        default:
+                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = 1;
+                            break;
+                    }
                     $x++;
                 }
             }
@@ -353,14 +364,19 @@ Class Guilds extends Connector {
         $count_items = count($items_list);
         for($i=0;$i<$count_items;$i++) {
             $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed']);
-            $items_list[$i]['durability'] = $tmp_durability['current'];
-            $items_list[$i]['maxDurability'] = $tmp_durability['max'];
+            $items_list[$i]['durability'] = (int) $tmp_durability['current'];
+            $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
             unset($tmp_durability);
             $items_list[$i]['icon'] = Items::getItemIcon($items_list[$i]['id']);
             $items_list[$i]['name'] = Items::getItemName($items_list[$i]['id']);            
             $items_list[$i]['qi'] = Items::GetItemInfo($items_list[$i]['id'], 'quality');
-            $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);
-            $items_list[$i]['randomPropertiesId'] = 0;
+            if($this->currentRealmInfo['type'] == 'mangos') {
+                $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);
+            }
+            elseif($this->currentRealmInfo['type'] == 'trinity') {
+                $items_list[$i]['quantity'] = $this->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $items_list[$i]['seed']);
+            }
+            $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true);
             $tmp_classinfo = Items::GetItemSubTypeInfo($items_list[$i]['id']);
             $items_list[$i]['subtype'] = '';
             $items_list[$i]['subtypeLoc'] = $tmp_classinfo['subclass_name'];
