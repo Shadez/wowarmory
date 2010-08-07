@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 349
+ * @revision 350
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1991,7 +1991,7 @@ Class Items extends Connector {
         $xml->XMLWriter()->endElement(); //socketData
         // Durability
         if($isCharacter) {
-            $item_durability = Items::getItemDurability($characters->GetEquippedItemGuidBySlot($itemSlotName));
+            $item_durability = Items::getItemDurability($characters->GetEquippedItemGuidBySlot($itemSlotName), $itemID);
         }
         else {
             $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
