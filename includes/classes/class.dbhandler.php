@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 351
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -188,7 +188,7 @@ Class ArmoryDatabaseHandler {
             }
         }
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
-        if(eregi('ARMORYDBPREFIX', $safe_sql)) {
+        if(preg_match('/ARMORYDBPREFIX/', $safe_sql)) {
             if($this->armory_prefix == null) {
                 $this->logHandler->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query!', __METHOD__);
                 return false;
