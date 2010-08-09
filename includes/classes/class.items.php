@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 352
+ * @revision 353
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -757,11 +757,11 @@ Class Items extends Connector {
     public function getItemDurability($guid, $item) {
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
-                $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, $item, 0, $guid);
-                $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, $item, 0, $guid);
+                $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, $guid, $item);
+                $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, $guid, $item);
                 break;
             case 'trinity':
-                $durability['current'] = $this->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `item_template`=%d", $guid, $item);
+                $durability['current'] = $this->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `guid`=%d", $guid, $item);
                 $durability['max'] = self::GetItemInfo($item, 'durability');
                 break;
         }
@@ -773,10 +773,9 @@ Class Items extends Connector {
      * @category Items class
      * @access   public
      * @param    int $item_guid
-     * @param    ArmoryDatabaseHandler $db = null
      * @return   array
      **/
-    public function GetItemDurabilityByItemGuid($item_guid, $db = null) {
+    public function GetItemDurabilityByItemGuid($item_guid) {
         $durability = array('current' => 0, 'max' => 0);
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
@@ -784,8 +783,8 @@ Class Items extends Connector {
                 $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
                 break;
             case 'trinity':
-                $durability['current'] = $db->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
-                $itemEntry = self::GetItemEntryByGUID($item_guid, $db);
+                $durability['current'] = $this->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                $itemEntry = self::GetItemEntryByGUID($item_guid);
                 $durability['max'] = self::GetItemInfo($itemEntry, 'durability');
                 break;
         }
@@ -1976,7 +1975,7 @@ Class Items extends Connector {
         $xml->XMLWriter()->endElement(); //socketData
         // Durability
         if($isCharacter) {
-            $item_durability = Items::getItemDurability($characters->GetEquippedItemGuidBySlot($itemSlotName), $itemID);
+            $item_durability = Items::getItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
         }
         else {
             $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
