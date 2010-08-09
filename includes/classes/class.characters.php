@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 352
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -922,11 +922,11 @@ Class Characters extends Connector {
                 return $this->equipmentCache[31];
                 break;
             case 'offhand':
-            case 'gun':
                 return $this->equipmentCache[33];
                 break;
             case 'relic':
             case 'sigil':
+            case 'gun':
                 return $this->equipmentCache[35];
                 break;
             case 'tabard':
@@ -2920,12 +2920,14 @@ Class Characters extends Connector {
             case 'back':
                 return $this->GetDataField(PLAYER_SLOT_ITEM_BACK);
                 break;
+            case 'stave':
             case 'mainhand':
                 return $this->GetDataField(PLAYER_SLOT_ITEM_MAIN_HAND);
                 break;
             case 'offhand':
                 return $this->GetDataField(PLAYER_SLOT_ITEM_OFF_HAND);
                 break;
+            case 'gun':
             case 'relic':
                 return $this->GetDataField(PLAYER_SLOT_ITEM_RANGED);
                 break;

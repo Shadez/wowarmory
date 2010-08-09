@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 350
+ * @revision 352
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -718,12 +718,16 @@ Class Items extends Connector {
                     2 => 9,
                     3 => 15
                 );
+                if(!isset($socketfield[$socketNum])) {
+                    $this->Log()->writeError('%s : wrong socketNum: %d', __METHOD__, $socketNum);
+                    return false;
+                }
                 if($item_guid == 0) {
                     $item_guid = self::GetItemGUIDByEntry($item, $guid);
                 }
                 $row = $this->cDB->selectCell("SELECT `enchantments` FROM `item_instance` WHERE `guid`=%d", $item_guid);
-                if(!isset($socketfield[$socketNum])) {
-                    $this->Log()->writeError('%s : wrong socketNum: %d', __METHOD__, $socketNum);
+                if(!$row) {
+                    $this->Log()->writeError('%s : item with guid #%d was not found in `item_instance` table.', __METHOD__, $item_guid);
                     return false;
                 }
                 $enchantments = explode(' ', $row);
@@ -731,10 +735,12 @@ Class Items extends Connector {
                 break;
         }
         if($socketInfo > 0) {
+            $gemData = $this->aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $socketInfo);
             $data['enchant_id'] = $socketInfo;
-            $data['item'] = $this->aDB->selectCell("SELECT `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $socketInfo);
+            $data['item'] = $gemData['gem'];
             $data['icon'] = self::getItemIcon($data['item']);
-            $data['enchant'] = $this->aDB->selectCell("SELECT `text_".$this->GetLocale()."` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $socketInfo);
+            $data['enchant'] = $gemData['text'];
+            $data['color'] = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
             return $data;
         }
         return false;
@@ -1820,7 +1826,7 @@ Class Items extends Connector {
         }
         if(!$parent && $isCharacter && $itemSlotName) {
             $enchantment = $characters->getCharacterEnchant($itemSlotName);
-            if($enchantment) {
+            if($enchantment > 0) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<enchant>');
                     $xml->XMLWriter()->writeRaw($this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $enchantment));
@@ -1881,61 +1887,61 @@ Class Items extends Connector {
         // Socket data
         $xml->XMLWriter()->startElement('socketData');
         $socket_data = false;
-        $socketBonusCheck = array();
-        for($i=1;$i<4;$i++) {
-            if($data['socketColor_'.$i] > 0) { // FIXME: this is not correct, I should check `item_instance`.`item_data` for sockets (if $characters is correct) instead of ['socketColor_X'].
-                switch($data['socketColor_'.$i]) {
-                    case 1:
-                        $color = 'Meta';
-                        $socket_data = array('color' => 'Meta');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
-                        if($gem && ($parent == false || $comparsion == true) ) {
-                            $socket_data['enchant'] = $gem['enchant'];
-                            $socket_data['icon'] = $gem['icon'];
-                            $currentColor = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d LIMIT 1", $gem['enchant_id']);
-                            if($currentColor == 1) {
-                                $socket_data['match'] = '1';
+        // If there's no character, check $data['socketColor_X']
+        if(!$isCharacter) {
+            for($i = 1; $i < 4; $i++) {
+                if(isset($data['socketColor_' . $i]) && $data['socketColor_' . $i] > 0) {
+                    switch($data['socketColor_'.$i]) {
+                        case 1:
+                            $socket_data = array('color' => 'Meta');
+                            break;
+                        case 2:
+                            $socket_data = array('color' => 'Red');
+                            break;
+                        case 4:
+                            $socket_data = array('color' => 'Yellow');
+                            break;
+                        case 8:
+                            $socket_data = array('color' => 'Blue');
+                            break;
+                    }
+                    if(is_array($socket_data)) {
+                        if(Utils::IsWriteRaw()) {
+                            $xml->XMLWriter()->writeRaw('<socket');
+                            foreach($socket_data as $socket_key => $socket_value) {
+                                $xml->XMLWriter()->writeRaw(' ' . $socket_key .'="' . $socket_value .'"');
                             }
+                            $xml->XMLWriter()->writeRaw('/>');
                         }
-                        break;
-                    case 2:
-                        $socket_data = array('color' => 'Red');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
-                        if($gem && ($parent == false || $comparsion == true) ) {
-                            $socket_data['enchant'] = $gem['enchant'];
-                            $socket_data['icon'] = $gem['icon'];
-                            $currentColor = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d LIMIT 1", $gem['enchant_id']);
-                            if($currentColor == 6 || $currentColor == 10 || $currentColor == 14) {
-                                $socket_data['match'] = '1';
+                        else {
+                            $xml->XMLWriter()->startElement('socket');
+                            foreach($socket_data as $socket_key => $socket_value) {
+                                $xml->XMLWriter()->writeAttribute($socket_key, $socket_value);
                             }
+                            $xml->XMLWriter()->endElement(); //socket
                         }
-                        break;
-                    case 4:
-                        $socket_data = array('color' => 'Yellow');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
-                        if($gem && ($parent == false || $comparsion == true) ) {
-                            $socket_data['enchant'] = $gem['enchant'];
-                            $socket_data['icon'] = $gem['icon'];
-                            $currentColor = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d LIMIT 1", $gem['enchant_id']);
-                            if($currentColor == 6 || $currentColor == 12 || $currentColor == 14) {
-                                $socket_data['match'] = '1';
-                            }
-                        }
-                        break;
-                    case 8:
-                        $socket_data = array('color' => 'Blue');
-                        $gem = Items::extractSocketInfo($characters->GetGUID(), $itemID, $i, ($isCharacter) ? $characters->GetEquippedItemGuidBySlot($itemSlotName) : null, ($isCharacter) ? $characters->GetDB() : null);
-                        if($gem && ($parent == false || $comparsion == true) ) {
-                            $socket_data['enchant'] = $gem['enchant'];
-                            $socket_data['icon'] = $gem['icon'];
-                            $currentColor = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d LIMIT 1", $gem['enchant_id']);
-                            if($currentColor == 10 || $currentColor == 12 || $currentColor == 14) {
-                                $socket_data['match'] = '1';
-                            }
-                        }
-                        break;
+                    }
                 }
-                if(is_array($socket_data)) {
+            }
+        }
+        else {
+            $gems = array(
+                'g0' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g1' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g2' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
+            );
+            for($i = 0; $i < 3; $i++) {
+                $index = $i+1;
+                if(isset($gems['g' . $i]['item']) && $gems['g' . $i]['item'] > 0 && ($parent == false || $comparsion == true)) {
+                    $socket_data = array();
+                    $socket_data['color'] = Items::GetSocketColorString((isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : 0);
+                    $socket_data['enchant'] = $gems['g' . $i]['enchant'];
+                    $socket_data['icon'] = $gems['g' . $i]['icon'];
+                    if(Items::IsGemMatchesSocketColor($gems['g' . $i]['color'], (isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : -1)) {
+                        $socket_data['match'] = '1';
+                    }
+                }
+                if(isset($socket_data) && is_array($socket_data)) {
                     if(Utils::IsWriteRaw()) {
                         $xml->XMLWriter()->writeRaw('<socket');
                         foreach($socket_data as $socket_key => $socket_value) {
@@ -1950,29 +1956,8 @@ Class Items extends Connector {
                         }
                         $xml->XMLWriter()->endElement(); //socket
                     }
-                    $color = false;
                 }
-            }
-        }
-        if(isset($socketBonusCheck)) {
-            $socketBonusCheckCount = count($socketBonusCheck);
-            $socketMatches = 0;
-            foreach($socketBonusCheck as $socket) {
-                if($socket['color'] == $socket['current']) {
-                    $socketMatches++;
-                }
-                elseif($socket['color'] == 2 && ($socket['current'] == 6 || $socket['current'] == 10 || $socket['current'] == 14)) {
-                    $socketMatches++;
-                }
-                elseif($socket['color'] == 4 && ($socket['current'] == 6 || $socket['current'] == 12 || $socket['current'] == 14)) {
-                    $socketMatches++;
-                }
-                elseif($socket['color'] == 8 && ($socket['current'] == 10 || $socket['current'] == 12 || $socket['current'] == 14)) {
-                    $socketMatches++;
-                }
-            }
-            if($socketBonusCheckCount == $socketMatches) {
-                $socket_data['match'] = '1';
+                $socket_data = false;
             }
         }
         if($data['socketBonus'] > 0) {
@@ -2919,6 +2904,48 @@ Class Items extends Connector {
         $guid = $this->cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry);
         unset($db);
         return $guid;
+    }
+    
+    public function IsGemMatchesSocketColor($gem_color, $socket_color) {
+        $this->Log()->writeLog('%s : gem_color: %d, socket_color: %d', __METHOD__, $gem_color, $socket_color);
+        if($socket_color == $gem_color) {
+            return true;
+        }
+        elseif($socket_color == 2 && in_array($gem_color, array(6, 10, 14))) {
+            return true;
+        }
+        elseif($socket_color == 4 && in_array($gem_color, array(6, 12, 14))) {
+            return true;
+        }
+        elseif($socket_color == 8 && in_array($gem_color, array(10, 12, 14))) {
+            return true;
+        }
+        elseif($socket_color == 0) {
+            // Extra socket
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public function GetSocketColorString($color) {
+        $string = '';
+        switch($color) {
+            case 1:
+                $string = 'Meta';
+                break;
+            case 2:
+                $string = 'Red';
+                break;
+            case 4:
+                $string = 'Yellow';
+                break;
+            case 8:
+                $string = 'Blue';
+                break;
+        }
+        return $string;
     }
 }
 ?>

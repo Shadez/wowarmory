@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 352
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -70,7 +70,6 @@ Class Utils extends Connector {
     
     public function getCharsArray($select = false) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if($select == true) {
@@ -87,7 +86,6 @@ Class Utils extends Connector {
     
     public function IsAllowedToGuildBank($guildId, $realmId) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if(!isset($this->realmData[$realmId])) {
@@ -116,7 +114,6 @@ Class Utils extends Connector {
     
     public function IsAccountHaveCurrentCharacter($guid, $realmId) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if(!isset($this->realmData[$realmId])) {
@@ -139,7 +136,6 @@ Class Utils extends Connector {
     
     public function CountSelectedCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
@@ -147,7 +143,6 @@ Class Utils extends Connector {
     
     public function CountAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $count_all = 0;
@@ -162,7 +157,6 @@ Class Utils extends Connector {
     
     public function GetAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $results = array();
@@ -231,7 +225,6 @@ Class Utils extends Connector {
     
     public function GetActiveCharacter() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         return $this->aDB->selectRow("
@@ -253,7 +246,6 @@ Class Utils extends Connector {
     
     public function GetBookmarks() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         // Bookmarks limit is 60
@@ -289,7 +281,6 @@ Class Utils extends Connector {
     
     public function AddBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         if($this->GetBookmarksCount() >= 60) {
@@ -319,7 +310,6 @@ Class Utils extends Connector {
     
     public function DeleteBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $this->aDB->query("DELETE FROM `ARMORYDBPREFIX_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
@@ -328,7 +318,6 @@ Class Utils extends Connector {
     
     public function GetBookmarksCount() {
         if(!isset($_SESSION['accountId'])) {
-            $this->Log()->writeLog('%s : session not found', __METHOD__);
             return false;
         }
         $count = $this->aDB->selectCell("SELECT COUNT(`name`) FROM `ARMORYDBPREFIX_bookmarks` WHERE `account`=%d", $_SESSION['accountId']);
@@ -430,7 +419,7 @@ Class Utils extends Connector {
         $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school+1;
         $damage_done_pos = $db->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)
-            FROM `ARMORYDBPREFIX_character_stats` 
+            FROM `armory_character_stats` 
                 WHERE `guid`=%d", $field_done_pos, $guid);
         return $damage_done_pos;
     }

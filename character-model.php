@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 352
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -234,7 +234,6 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('chest')) {
-    $armory->Log()->writeLog('model : tmpid: %d', $tmpid);
     if($items->GetItemModelData(0, 'visual_3', $tmpid)) {
         /**
          * Chest (armupper)
