@@ -1,44 +1,44 @@
 diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
 --- a/src/server/game/Achievements/AchievementMgr.cpp
 +++ b/src/server/game/Achievements/AchievementMgr.cpp
-@@ -1880,6 +1880,8 @@
+@@ -1908,6 +1908,9 @@
      if (achievement->flags & ACHIEVEMENT_FLAG_COUNTER || HasAchieved(achievement))
          return;
  
-+    /* WowArmory Feed Log */
++    /** World of Warcraft Armory **/
 +    GetPlayer()->WriteWowArmoryDatabaseLog(1, achievement->ID);
++    /** World of Warcraft Armory **/
      SendAchievementEarned(achievement);
      CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
      ca.date = time(NULL);
 diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/Item/Item.cpp
 --- a/src/server/game/Entities/Item/Item.cpp
 +++ b/src/server/game/Entities/Item/Item.cpp
-@@ -997,6 +997,14 @@
+@@ -1028,6 +1028,15 @@
          if (count > pProto->GetMaxStackSize())
              count = pProto->GetMaxStackSize();
  
++        /** World of Warcraft Armory **/
 +        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +        {
-+           /* WoWArmory Feed Log */
 +            std::ostringstream ss;
 +            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u)", player->GetGUIDLow(), item);
 +            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
-         assert(count !=0 && "pProto->Stackable == 0 but checked at loading already");
++        /** World of Warcraft Armory **/
+         ASSERT(count !=0 && "pProto->Stackable == 0 but checked at loading already");
  
          Item *pItem = NewItemOrBag(pProto);
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
-@@ -17604,6 +17604,19 @@
+@@ -17572,6 +17572,17 @@
  
      std::string sql_name = m_name;
      CharacterDatabase.escape_string(sql_name);
 +    
-+    CharacterDatabase.BeginTransaction();
-+	
-+	/* WoWArmory */
++    /** World of Warcraft Armory **/
 +    std::ostringstream ps;
 +    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
 +    for(uint16 i = 0; i < m_valuesCount; ++i )
@@ -47,24 +47,16 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 +    }
 +    ps << "')";
 +    CharacterDatabase.Execute( ps.str().c_str() );
-+    /* WoWArmory */
++    /** World of Warcraft Armory **/
  
      std::ostringstream ss;
      ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
-@@ -17741,8 +17754,6 @@
-     ss << uint32(GetByteValue(PLAYER_FIELD_BYTES, 2));
-     ss << ")";
+@@ -24011,3 +24022,32 @@
  
--    CharacterDatabase.BeginTransaction();
--
-     CharacterDatabase.Execute(ss.str().c_str());
- 
-     if (m_mailsUpdated)                                     //save mails only when needed
-@@ -24017,3 +24028,30 @@
-     if (result)
-         m_IsBGRandomWinner = true;
+     return ((float)sum) / count;
  }
 +
++/** World of Warcraft Armory **/
 +void Player::WriteWowArmoryDatabaseLog(uint32 type, uint32 data)
 +{
 +    uint32 pGuid = GetGUIDLow();
@@ -91,33 +83,33 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 +        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
 +    }
 +}
++/** World of Warcraft Armory **/
 \ No newline at end of file
 diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
 --- a/src/server/game/Entities/Player/Player.h
 +++ b/src/server/game/Entities/Player/Player.h
-@@ -2189,6 +2189,9 @@
-         float m_homebindZ;
+@@ -2222,6 +2222,9 @@
  
          WorldLocation GetStartPosition() const;
-+        
-+        /* WoWArmory Feed Log */
-+        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
  
++        /** World of Warcraft Armory **/
++        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
++        
          // currently visible objects at player client
          typedef std::set<uint64> ClientGUIDs;
+         ClientGUIDs m_clientGUIDs;
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -14990,4 +14990,5 @@
+@@ -15095,6 +15095,11 @@
+ 
+             if (m->IsDungeon() && creditedPlayer)
+             {
++                /** World of Warcraft Armory **/
++                // Write boss log in non heroic difficult too
++                if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
++                    creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
++                /** World of Warcraft Armory **/
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
-+                    {
-                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-@@ -14993,4 +14994,6 @@
-                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-+                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
-+                    }
-                 }
-                 else
-                 {

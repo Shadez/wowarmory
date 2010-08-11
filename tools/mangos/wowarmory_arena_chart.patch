@@ -1,23 +1,25 @@
-diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Battlegrounds/Battleground.cpp
---- a/src/server/game/Battlegrounds/Battleground.cpp
-+++ b/src/server/game/Battlegrounds/Battleground.cpp
-@@ -724,6 +724,43 @@
-             sLog.outDebug("--- Winner rating: %u, Loser rating: %u, Winner change: %u, Losser change: %u ---", winner_rating, loser_rating, winner_change, loser_change);
+diff --git a/src/game/BattleGround.cpp b/src/game/BattleGround.cpp
+index eb6ba1b..9b42030 100644
+--- a/src/game/BattleGround.cpp
++++ b/src/game/BattleGround.cpp
+@@ -723,6 +723,44 @@ void BattleGround::EndBattleGround(uint32 winner)
+             DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %u, Losser change: %u ---", winner_rating, loser_rating, winner_change, loser_change);
              SetArenaTeamRatingChangeForTeam(winner, winner_change);
              SetArenaTeamRatingChangeForTeam(GetOtherTeam(winner), loser_change);
 +            /** World of Warcraft Armory **/
 +            uint32 maxChartID;
-+            QueryResult_AutoPtr result = CharacterDatabase.PQuery("SELECT MAX(gameid) FROM armory_game_chart");
++            QueryResult *result = CharacterDatabase.PQuery("SELECT MAX(gameid) FROM armory_game_chart");
 +            if(!result)
 +                maxChartID = 0;
 +            else
 +            {
 +                maxChartID = (*result)[0].GetUInt32();
++                delete result;
 +            }
 +            uint32 gameID = maxChartID+1;
 +            for(BattleGroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
 +            {
-+                Player *plr = objmgr.GetPlayer(itr->first);
++                Player *plr = sObjectMgr.GetPlayer(itr->first);
 +                if (!plr)
 +                    continue;
 +                uint32 plTeamID = plr->GetArenaTeamId(winner_arena_team->GetSlot());
@@ -42,10 +44,10 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +                CharacterDatabase.Execute(sql_query.str().c_str());
 +            }
 +            /** World of Warcraft Armory **/
-             sLog.outArena("Arena match Type: %u for Team1Id: %u - Team2Id: %u ended. WinnerTeamId: %u. RatingChange: %i.", m_ArenaType, m_ArenaTeamIds[BG_TEAM_ALLIANCE], m_ArenaTeamIds[BG_TEAM_HORDE], winner_arena_team->GetId(), winner_change);
          }
          else
-@@ -1326,6 +1363,14 @@
+         {
+@@ -1374,6 +1412,14 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
          case SCORE_HEALING_DONE:                            // Healing Done
              itr->second->HealingDone += value;
              break;
@@ -58,25 +60,26 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +            break;
 +        /** World of Warcraft Armory **/
          default:
-             sLog.outError("Battleground: Unknown player score type %u", type);
+             sLog.outError("BattleGround: Unknown player score type %u", type);
              break;
-diff --git a/src/server/game/Battlegrounds/Battleground.h b/src/server/game/Battlegrounds/Battleground.h
---- a/src/server/game/Battlegrounds/Battleground.h
-+++ b/src/server/game/Battlegrounds/Battleground.h
-@@ -210,7 +210,11 @@
-     SCORE_SECONDARY_OBJECTIVES  = 17,
-     //SOTA
-     SCORE_DESTROYED_DEMOLISHER  = 18,
--    SCORE_DESTROYED_WALL        = 19
-+    SCORE_DESTROYED_WALL        = 19,
+diff --git a/src/game/BattleGround.h b/src/game/BattleGround.h
+index 32554e4..7003043 100644
+--- a/src/game/BattleGround.h
++++ b/src/game/BattleGround.h
+@@ -190,7 +190,11 @@ enum ScoreType
+     SCORE_GRAVEYARDS_DEFENDED   = 12,
+     SCORE_TOWERS_ASSAULTED      = 13,
+     SCORE_TOWERS_DEFENDED       = 14,
+-    SCORE_SECONDARY_OBJECTIVES  = 15
++    SCORE_SECONDARY_OBJECTIVES  = 15,
 +    /** World of Warcraft Armory **/
-+    SCORE_DAMAGE_TAKEN          = 20,
-+    SCORE_HEALING_TAKEN         = 21
++    SCORE_DAMAGE_TAKEN          = 16,
++    SCORE_HEALING_TAKEN         = 17
 +    /** World of Warcraft Armory **/
  };
  
  enum ArenaType
-@@ -302,6 +306,10 @@
+@@ -273,6 +277,10 @@ class BattleGroundScore
          uint32 BonusHonor;
          uint32 DamageDone;
          uint32 HealingDone;
@@ -86,29 +89,33 @@ diff --git a/src/server/game/Battlegrounds/Battleground.h b/src/server/game/Batt
 +        /** World of Warcraft Armory **/
  };
  
- enum BGHonorMode
-diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
---- a/src/server/game/Entities/Unit/Unit.cpp
-+++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -691,6 +691,10 @@
+ /*
+diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
+index 00fafde..3dba940 100644
+--- a/src/game/Unit.cpp
++++ b/src/game/Unit.cpp
+@@ -633,6 +633,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
 +                /** World of Warcraft Armory **/
-+                if (BattleGround * bgV = pVictim->ToPlayer()->GetBattleGround())
-+                    bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_DAMAGE_TAKEN, damage);
++                if (BattleGround * bgV = ((Player*)pVictim)->GetBattleGround())
++                    bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_DAMAGE_TAKEN, damage);
 +                /** World of Warcraft Armory **/
              }
          }
  
-@@ -9829,6 +9833,10 @@
+@@ -768,7 +772,13 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+             if (GetTypeId() == TYPEID_UNIT)
+                 ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILLED_BY_CREATURE, GetEntry());
+             else if(GetTypeId() == TYPEID_PLAYER && pVictim != this)
++            {
+                 ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILLED_BY_PLAYER, 1, ((Player*)this)->GetTeam());
++                /** World of Warcraft Armory **/
++                if (BattleGround *bgV = ((Player*)pVictim)->GetBattleGround())
++                    bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_HEALING_TAKEN, gain);
++                /** World of Warcraft Armory **/
++            }
+         }
  
-     if (pVictim->GetTypeId() == TYPEID_PLAYER)
-     {
-+        /** World of Warcraft Armory **/
-+        if (BattleGround *bgV = pVictim->ToPlayer()->GetBattleGround())
-+            bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_HEALING_TAKEN, gain);
-+        /** World of Warcraft Armory **/
-         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
-         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
-     }
+         // 10% durability loss on death
