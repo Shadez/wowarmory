@@ -91,7 +91,7 @@ index 32554e4..7003043 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 00fafde..3dba940 100644
+index 00fafde..9264c23 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
 @@ -633,6 +633,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
@@ -105,17 +105,14 @@ index 00fafde..3dba940 100644
              }
          }
  
-@@ -768,7 +772,13 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
-             if (GetTypeId() == TYPEID_UNIT)
-                 ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILLED_BY_CREATURE, GetEntry());
-             else if(GetTypeId() == TYPEID_PLAYER && pVictim != this)
-+            {
-                 ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILLED_BY_PLAYER, 1, ((Player*)this)->GetTeam());
-+                /** World of Warcraft Armory **/
-+                if (BattleGround *bgV = ((Player*)pVictim)->GetBattleGround())
-+                    bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_HEALING_TAKEN, gain);
-+                /** World of Warcraft Armory **/
-+            }
-         }
+@@ -5862,6 +5866,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+     {
+         ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
+         ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
++        /** World of Warcraft Armory **/
++        if (Battleground* bgV = ((Player*)pVictim)->GetBattleground())
++            bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_HEALING_TAKEN, gain);
++        /** World of Warcraft Armory **/
+     }
  
-         // 10% durability loss on death
+     return gain;

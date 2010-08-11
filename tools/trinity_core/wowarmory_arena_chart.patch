@@ -101,14 +101,14 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
              }
          }
  
-@@ -9829,6 +9833,10 @@
- 
-     if (pVictim->GetTypeId() == TYPEID_PLAYER)
+@@ -9831,6 +9835,10 @@
      {
+         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
+         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
 +        /** World of Warcraft Armory **/
 +        if (BattleGround *bgV = pVictim->ToPlayer()->GetBattleGround())
 +            bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_HEALING_TAKEN, gain);
 +        /** World of Warcraft Armory **/
-         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
-         pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
      }
+ 
+     return gain;
