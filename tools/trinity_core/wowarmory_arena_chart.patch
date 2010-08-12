@@ -17,7 +17,7 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +            uint32 gameID = maxChartID+1;
 +            for(BattleGroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
 +            {
-+                Player *plr = objmgr.GetPlayer(itr->first);
++                Player *plr = sObjectMgr.GetPlayer(itr->first);
 +                if (!plr)
 +                    continue;
 +                uint32 plTeamID = plr->GetArenaTeamId(winner_arena_team->GetSlot());
