@@ -372,7 +372,7 @@
         <rank description="Increases the critical strike chance of your Mind Blast, Mind Flay and Mind Sear spells by 2%, and increases the periodic critical strike chance of your Vampiric Touch, Devouring Plague and Shadow Word: Pain spells by 3%." lvl="1"/>
         <rank description="Increases the critical strike chance of your Mind Blast, Mind Flay and Mind Sear spells by 4%, and increases the periodic critical strike chance of your Vampiric Touch, Devouring Plague and Shadow Word: Pain spells by 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Improved Devouring Plague" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Improved Devouring Plague" tier="5">
         <rank description="Increases the periodic damage done by your Devouring Plague by 5%, and when you cast Devouring Plague you instantly deal damage equal to 10% of its total periodic effect." lvl="1"/>
         <rank description="Increases the periodic damage done by your Devouring Plague by 10%, and when you cast Devouring Plague you instantly deal damage equal to 20% of its total periodic effect." lvl="2"/>
         <rank description="Increases the periodic damage done by your Devouring Plague by 15%, and when you cast Devouring Plague you instantly deal damage equal to 30% of its total periodic effect." lvl="3"/>

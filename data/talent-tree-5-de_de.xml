@@ -372,7 +372,7 @@
         <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 2%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 3%." lvl="1"/>
         <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 4%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Verbesserte verschlingende Seuche" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Verbesserte verschlingende Seuche" tier="5">
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 5%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 10% des gesamten regelmäßigen Effekts." lvl="1"/>
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 10%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 20% des gesamten regelmäßigen Effekts." lvl="2"/>
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 15%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 30% des gesamten regelmäßigen Effekts." lvl="3"/>

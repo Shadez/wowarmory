@@ -372,7 +372,7 @@
         <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 2% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 3%." lvl="1"/>
         <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 4% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste devoradora mejorada" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Peste devoradora mejorada" tier="5">
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 5% y cuando lanzas Peste Devoradora infliges al instante daño igual al 10% de su efecto periódico total." lvl="1"/>
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 10% y cuando lanzas Peste Devoradora infliges al instante daño igual al 20% de su efecto periódico total." lvl="2"/>
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 15% y cuando lanzas Peste Devoradora infliges al instante daño igual al 30% de su efecto periódico total." lvl="3"/>

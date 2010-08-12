@@ -372,7 +372,7 @@
         <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 2%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 3%." lvl="1"/>
         <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 4%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste dévorante améliorée" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Peste dévorante améliorée" tier="5">
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 5%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 10% du total de son effet périodique." lvl="1"/>
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 10%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 20% du total de son effet périodique." lvl="2"/>
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 15%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 30% du total de son effet périodique." lvl="3"/>
