@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,10 +23,10 @@
  **/
 
 define('__ARMORY__', true);
-if(!@include('../includes/classes/class.connector.php')) {
-    die('<b>Error:</b> can not load connector class!');
+if(!@include('../includes/classes/class.armory.php')) {
+    die('<b>Error:</b> can not load Armory class!');
 }
-$armory = new Connector;
+$armory = new Armory();
 $wowarmory_tables = array(
     'achievement',
     'achievement_category',

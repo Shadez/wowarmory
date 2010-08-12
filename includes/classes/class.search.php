@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -22,7 +22,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-Class SearchMgr extends Connector {
+Class SearchMgr extends Armory {
     public $searchQuery = false;
     public $get_array;
     public $bossSearchKey;

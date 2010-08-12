@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,7 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-Class Achievements extends Connector {
+Class Achievements extends Armory {
     
     /**
      * Character guid

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 324
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,20 +23,20 @@
  **/
 
 define('__ARMORY__', true);
-if(!@include('../includes/classes/class.connector.php')) {
-    die('<b>Error:</b> can not load connector class!');
+if(!@include('../includes/classes/class.armory.php')) {
+    die('<b>Error:</b> can not load Armory class!');
 }
 
-$update_type = 'echo'; // Change to 'echo' to show query in you browser.
+$update_type = 'echo'; // Change to 'echo' to show query in you browser. Or choose 'update' to execute all queries directly to DB.
 
-$armory = new Connector;
+$armory = new Armory();
 echo '<title>World of Warcraft Armory</title>';
-$check_builded = $armory->aDB->selectCell("SELECT `loot_builded` FROM `armory_db_version`");
-if($check_builded == '1') {
+$check_builded = $armory->aDB->selectCell("SELECT `loot_builded` FROM `ARMORYDBPREFIX_db_version`");
+if($check_builded === 1) {
     die("You've already builded loot tables for bosses. If you want to re-build list, change field `loot_builded` to 0 in `armory_db_version` table: <br /><code>UPDATE `armory_db_version` SET `loot_builded`=0;</code>");
 }
 // Select all ids
-$instance_data = $armory->aDB->select("SELECT `id`, `name_id`, `type` FROM `armory_instance_data`");
+$instance_data = $armory->aDB->select("SELECT `id`, `name_id`, `type` FROM `ARMORYDBPREFIX_instance_data`");
 if(!$instance_data) {
     die('Error: can not find any boss data!');
 }

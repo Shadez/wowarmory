@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,7 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-Class Connector {
+Class Armory {
     
     /** Armory database handler **/
     public $aDB = null;
@@ -62,11 +62,11 @@ Class Connector {
     
     /**
      * Initialize database handlers, debug handler, sets up sql/site configs
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   bool
      **/
-    public function Connector() {
+    public function Armory() {
         if(!@include('configuration.php')) {
             die('<b>Error</b>: unable to load configuration file!');
         }
@@ -141,7 +141,7 @@ Class Connector {
     
     /**
      * Checks browser language from HTTP_ACCEPT_LANGUAGE
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   mixed
      **/
@@ -170,7 +170,7 @@ Class Connector {
     
     /**
      * Returns debug log handler
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   object
      **/
@@ -180,7 +180,7 @@ Class Connector {
     
     /**
      * Returns current locale (en_gb/ru_ru/fr_fr, etc.)
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   string
      **/
@@ -200,7 +200,7 @@ Class Connector {
     
     /**
      * Returns locale ID (0 for en_gb, etc.)
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   int
      **/
@@ -213,7 +213,7 @@ Class Connector {
     
     /**
      * Sets locale
-     * @category Core class
+     * @category Armory class
      * @access   public
      * @return   int
      **/

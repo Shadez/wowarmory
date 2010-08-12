@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 357
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,13 +26,13 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 session_start();
-if(!@include('classes/class.connector.php')) {
-    die('<b>Error:</b> can not load connector class!');
+if(!@include('classes/class.armory.php')) {
+    die('<b>Error:</b> can not load Armory class!');
 }
 if(!@include('revision_nr.php')) {
     die('<b>Error:</b> can not load revision_nr.php!');
 }
-$armory = new Connector();
+$armory = new Armory();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
 if($dbVersion != DB_VERSION) {
@@ -216,6 +216,30 @@ if(defined('load_search_class')) {
         die('<b>Error:</b> can not load search engine class!');
     }
     $search = new SearchMgr;
+}
+if(defined('load_itemproto_class')) {
+    if(!@include('classes/class.itemproto.php')) {
+        die('<b>Error:</b> can not load itemProto class!');
+    }
+    $proto = new ItemProto;
+}
+if(defined('load_statsystem_class')) {
+    if(!@include('classes/class.statsystem.php')) {
+        die('<b>Error:</b> can not load StatSystem class!');
+    }
+    $statSystem = new StatSystem;
+}
+if(defined('load_itemhandler_class')) {
+    if(!@include('classes/class.itemhandler.php')) {
+        die('<b>Error:</b> can not load ItemHandler class!');
+    }
+}
+if(defined('__ARMORYADMIN__')) {
+    // This is a dev. placeholder I'm not totally sure about this feature ;)
+    if(!@include('classes/class.admin.php')) {
+        die('<b>Error:</b> can not load admin class!');
+    }
+    $admin = new ArmoryAdmin;
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {
