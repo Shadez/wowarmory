@@ -15,7 +15,7 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +                maxChartID = (*result)[0].GetUInt32();
 +            }
 +            uint32 gameID = maxChartID+1;
-+            for(BattleGroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
++            for(BattlegroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
 +            {
 +                Player *plr = sObjectMgr.GetPlayer(itr->first);
 +                if (!plr)
@@ -95,7 +95,7 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
 +                /** World of Warcraft Armory **/
-+                if (BattleGround * bgV = pVictim->ToPlayer()->GetBattleGround())
++                if (Battleground * bgV = pVictim->ToPlayer()->GetBattleground())
 +                    bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_DAMAGE_TAKEN, damage);
 +                /** World of Warcraft Armory **/
              }
@@ -106,7 +106,7 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
 +        /** World of Warcraft Armory **/
-+        if (BattleGround *bgV = pVictim->ToPlayer()->GetBattleGround())
++        if (Battleground *bgV = pVictim->ToPlayer()->GetBattleground())
 +            bgV->UpdatePlayerScore(pVictim->ToPlayer(), SCORE_HEALING_TAKEN, gain);
 +        /** World of Warcraft Armory **/
      }
