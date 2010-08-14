@@ -63,7 +63,7 @@
 						    	</xsl:if>
 				    		</xsl:when>
 				    		<xsl:otherwise>
-				    			0<img class="p" src="../_images/icons/money-copper-small.png" alt=""/>
+				    			0<img class="p" src="images/icons/money-copper-small.png" alt=""/>
 				    		</xsl:otherwise>
 				    	</xsl:choose>
 			    	</div>
@@ -150,7 +150,7 @@
 		<div class="achv_title"><xsl:value-of select="@title"/></div>
 		<div class="achv_desc"><xsl:value-of select="@desc"/></div>
         <xsl:if test="@dateCompleted">
-        	<div class="achv_date"><xsl:apply-templates select="@dateCompleted" mode="format-date"/></div>
+        	<div class="achv_date"><xsl:value-of select="@dateCompleted"/></div>
         </xsl:if>
 
 		<xsl:if test="criteria|achievement">

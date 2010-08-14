@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 362
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -286,12 +286,12 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : not enough data for calculation (guid: %d, achId: %d).', __METHOD__, $this->guid, $achId);
             return false;
         }
-        $achievement_date = $this->db->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=%d AND `guid`=%d LIMIT 1", $achId, $this->guid);
+        $achievement_date = $this->cDB->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=%d AND `guid`=%d LIMIT 1", $achId, $this->guid);
         if(!$achievement_date) {
             $this->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
             return false;
         }
-        return date('Y-m-d\TH:i:s+02:00', $achievement_date);
+        return date('d/m/Y', $achievement_date); // Hack (Can't find the reason why achievement date is not displaying. Working on it.)
     }
     
     /**
@@ -441,6 +441,7 @@ Class Achievements extends Armory {
                     unset($return_data['completed'][$this->achId]['data']['titleReward']);
                 }
                 if($page_id == 81) {
+                    // Feats of Strength does not have points
                     unset($return_data['completed'][$this->achId]['data']['points']);
                 }
                 $return_data['completed'][$this->achId]['data']['dateCompleted'] = self::GetAchievementDate();
@@ -466,7 +467,7 @@ Class Achievements extends Armory {
                             SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`
                                 FROM `ARMORYDBPREFIX_achievement`
                                     WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $parentId);
-                            $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($this->guid, $parentId);
+                            $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($parentId);
                             $cPoints = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'];
                             $fullPoints = $fullPoints+$cPoints;
                             $return_data['completed'][$this->achId]['data']['points'] = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points']+$fullPoints;
