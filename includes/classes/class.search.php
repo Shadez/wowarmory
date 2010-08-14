@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 361
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -90,6 +90,7 @@ Class SearchMgr extends Armory {
         }
         $result_data = array();
         $i = 0;
+        $item_source = self::GetItemSourceArray($items);
         foreach($items as $item) {
             $result_data[$i]['data'] = $item;
             $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id'], $item['displayid']);
@@ -107,9 +108,20 @@ Class SearchMgr extends Armory {
                 array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
                 array('name' => 'relevance', 'value' => 100)
             );
-            $result_data[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.none');
+            if(isset($item_source[$item['id']])) {
+                $tmp_src = $item_source[$item['id']];
+                if($tmp_src['source'] == 'sourceType.dungeon' && $tmp_src['areaKey'] != null && $tmp_src['areaUrl'] != null) {
+                    $result_data[$i]['filters'][] = array('areaId' => $tmp_src['areaId'], 'areaKey' => $tmp_src['areaKey'], 'areaName' => $tmp_src['areaName'], 'name' => 'source', 'value' => 'sourceType.creatureDrop');
+                }
+                else {
+                    $result_data[$i]['filters'][] = array('name' => 'source', 'value' => $tmp_src['source']);
+                }
+            }
+            else {
+                $result_data[$i]['filters'][] = array('name' => 'source', 'value' => 'sourceType.none');
+            }
             if($this->heirloom == true) {
-                $result_data[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
+                $result_data[$i]['filters'][] = array('name' => 'source', 'value' => 'sourceType.vendor');
             }
             $i++;
             unset($result_data[$i]['data']['ItemLevel']);
@@ -152,8 +164,30 @@ Class SearchMgr extends Armory {
         }
         switch($this->get_array['source']) {
             case 'all':
-            case 'quest':
                 $global_sql_query = $this->HandleItemFilters($item_id_string);
+                break;
+            case 'quest':
+                $tmp_quest_query = "SELECT `item` FROM `ARMORYDBPREFIX_source` WHERE `source`='sourceType.questReward'";
+                if($item_id_string != '') {
+                    $tmp_quest_query .= sprintf(" AND `item` IN (%s)", $item_id_string);
+                }
+                $tmp_quest_query .= " ORDER BY `item` DESC LIMIT 200";
+                $_quest_items = $this->aDB->select($tmp_quest_query);
+                if(!$_quest_items) {
+                    return false;
+                }
+                $quest_id_string = '';
+                $qCount = count($_quest_items);
+                for($i = 0; $i < $qCount; $i++) {
+                    if($i) {
+                        $quest_id_string .= ', ' . $_quest_items[$i]['item'];
+                    }
+                    else {
+                        $quest_id_string .= $_quest_items[$i]['item'];
+                    }
+                }
+                unset($_quest_items, $qCount);
+                $global_sql_query = $this->HandleItemFilters($quest_id_string);
                 break;
             case 'dungeon':
                 if(!isset($this->get_array['dungeon'])) {
@@ -286,10 +320,6 @@ Class SearchMgr extends Armory {
                             }
                         }
                     }
-                    if($this->get_array['boss'] != 'all') {
-                        $current_instance_key = $this->get_array['dungeon'];
-                        $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $current_instance_key);
-                    }
                     $global_sql_query = $this->HandleItemFilters($item_id_string, $loot_table);
                 }
                 break;
@@ -355,6 +385,7 @@ Class SearchMgr extends Armory {
         }
         $items_result = array();
         $exists_items = array();
+        $source_items = self::GetItemSourceArray($items_query);
         $i = 0;
         foreach($items_query as $item) {
             if(isset($exists_items[$item['id']])) {
@@ -369,10 +400,7 @@ Class SearchMgr extends Armory {
                 }
             }
             elseif(!$count) {
-                if($this->get_array['source'] == 'dungeon' && $allowedDungeon && isset($this->get_array['boss'])) {
-                    $current_instance_key = Utils::GetBossDungeonKey($item['entry']);
-                    $current_dungeon_data = $this->aDB->selectRow("SELECT `id`, `map`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s' LIMIT 1", $this->GetLocale(), $current_instance_key);
-                }
+                $tmp_src = (isset($source_items[$item['id']])) ? $source_items[$item['id']] : null;
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
                 $items_result[$i]['data']['id'] = $item['id'];
@@ -390,31 +418,27 @@ Class SearchMgr extends Armory {
                 $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item['ItemLevel']);
                 $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100); // TODO: add relevance calculation for items
                 // Add some filters (according with item source)
-                switch($this->get_array['source']) {
-                    case 'dungeon':
-                        if(isset($current_dungeon_data) && $allowedDungeon && is_array($current_dungeon_data)) {
-                            $items_result[$i]['filters'][2] = array(
-                                'areaId' => $current_dungeon_data['id'],
-                                'areaKey' => $current_instance_key,
-                                'areaName' => $current_dungeon_data['name'],
-                                'name' => 'source',
-                                'value' => '' // 
-                            );
-                        }
-                        elseif(!$allowedDungeon && self::IsExtendedCost()) {
+                if($tmp_src != null) {
+                    if($tmp_src['source'] == 'sourceType.dungeon' && $tmp_src['areaKey'] != null && $tmp_src['areaUrl'] != null) {
+                        $items_result[$i]['filters'][] = array('areaId' => $tmp_src['areaId'], 'areaKey' => $tmp_src['areaKey'], 'areaName' => $tmp_src['areaName'], 'name' => 'source', 'value' => 'sourceType.creatureDrop');
+                    }
+                    else {
+                        $items_result[$i]['filters'][] = array('name' => 'source', 'value' => $tmp_src['source']);
+                    }
+                }
+                else {
+                    switch($this->get_array['source']) {
+                        case 'reputation':
+                            $items_result[$i]['filters'][] = array('name' => 'source', 'value' => 'sourceType.factionReward');
+                            break;
+                        case 'quest':
+                            $items_result[$i]['filters'][] = array('name' => 'source', 'value' => 'sourceType.questReward');
+                            break;
+                        case 'pvpAlliance':
+                        case 'pvpHorde':
                             $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
-                        }
-                        break;
-                    case 'reputation':
-                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.factionReward');
-                        break;
-                    case 'quest':
-                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.questReward');
-                        break;
-                    case 'pvpAlliance':
-                    case 'pvpHorde':
-                        $items_result[$i]['filters'][2] = array('name' => 'source', 'value' => 'sourceType.vendor');
-                        break;
+                            break;
+                    }
                 }
             }
             $exists_items[$item['id']] = $item['id'];
@@ -1114,6 +1138,58 @@ Class SearchMgr extends Armory {
         $sql = str_replace("AND ORDER BY", "ORDER BY", $sql);
         $sql = str_replace("WHERE ORDER BY", "ORDER BY", $sql);
         return $sql;
+    }
+    
+    /**
+     * Returns array with item sources (for search results)
+     * @category Search class
+     * @access   private
+     * @param    array $items
+     * @return   array
+     **/
+    private function GetItemSourceArray($items) {
+        // Get item IDs first
+        $result_ids = array();
+        foreach($items as $item) {
+            $curr_item_id = 0;
+            if(!isset($item['id']) && !isset($item['entry'])) {
+                continue;
+            }
+            elseif(isset($item['id'])) {
+                $curr_item_id = $item['id'];
+            }
+            elseif(isset($item['entry'])) {
+                $curr_item_id = $item['entry'];
+            }
+            if($curr_item_id == 0) {
+                continue;
+            }
+            $result_ids[] = $curr_item_id;
+        }
+        // Get item sources
+        $data = $this->aDB->select("
+        SELECT
+        `ARMORYDBPREFIX_source`.`item`,
+        `ARMORYDBPREFIX_source`.`source`,
+        `ARMORYDBPREFIX_source`.`areaKey`,
+        `ARMORYDBPREFIX_source`.`areaUrl`,
+        `ARMORYDBPREFIX_source`.`isHeroic`,
+        `ARMORYDBPREFIX_instance_template`.`name_%s` AS `areaName`,
+        `ARMORYDBPREFIX_instance_template`.`id` AS `areaId`
+        FROM `ARMORYDBPREFIX_source` AS `ARMORYDBPREFIX_source`
+        LEFT JOIN `ARMORYDBPREFIX_instance_template` AS `ARMORYDBPREFIX_instance_template` ON `ARMORYDBPREFIX_instance_template`.`key`=`ARMORYDBPREFIX_source`.`areaKey`
+        WHERE `ARMORYDBPREFIX_source`.`item` IN (%s)", $this->GetLocale(), $result_ids);
+        if(!$data) {
+            $this->Log()->writeError('%s : unable to get item sources from DB!', __METHOD__);
+            return false;
+        }
+        $sources_result = array();
+        foreach($data as $entry) {
+            if(!isset($sources_result[$entry['item']])) {
+                $sources_result[$entry['item']] = $entry;
+            }
+        }
+        return $sources_result;
     }
 }
 ?>
