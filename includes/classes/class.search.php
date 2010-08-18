@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 361
+ * @revision 363
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,9 +30,13 @@ Class SearchMgr extends Armory {
     public $heirloom = false;
     private $boss_loot_ids;
     private $results;
+    public $itemSearchSkip = false;
     private $type_results;
     
     public function DoSearchItems($count = false, $findUpgrade = false, $player_level = 80) {
+        if($this->itemSearchSkip == true) {
+            return false;
+        }
         if(!$this->searchQuery && !$findUpgrade && !$this->heirloom) {
             $this->Log()->writeError('%s : unable to start search: no data provided', __METHOD__);
             return false;
@@ -130,6 +134,9 @@ Class SearchMgr extends Armory {
     }
     
     public function AdvancedItemsSearch($count = false) {
+        if($this->itemSearchSkip == true) {
+            return false;
+        }
         if((!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
             $this->Log()->writeError('%s : start failed', __METHOD__);
             return false;
@@ -554,7 +561,7 @@ Class SearchMgr extends Armory {
             foreach($this->realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
                 $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
-                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s' AND `level` >= %d LIMIT 200", '%' . $this->searchQuery . '%', $this->armoryconfig['minlevel']);
+                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `level` >= %d LIMIT 200", $this->searchQuery, $this->armoryconfig['minlevel']);
             }
             for($ii = 0; $ii < $countRealmData; $ii++) {
                 $count_result_chars = count($characters_data[$ii]);
@@ -572,7 +579,7 @@ Class SearchMgr extends Armory {
             if(!$db) {
                 continue;
             }
-            $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
+            $current_realm = $db->select("SELECT `guid`, `name`, `class` AS `classId`, `gender` AS `genderId`, `race` AS `raceId`, `level`, `account` FROM `characters` WHERE `name` = '%s'", $this->searchQuery);
             if(!$current_realm) {
                 continue;
             }

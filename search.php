@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 363
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,6 +34,21 @@ header('Content-type: text/xml');
 $advancedItemsSearch = false;
 $findGearUpgrade     = false;
 if(isset($_GET['searchQuery'])) {
+    if(mb_strlen(urldecode($_GET['searchQuery']), 'UTF-8') < 2) {
+        $xml->LoadXSLT('error/error.xsl');
+        $xml->XMLWriter()->startElement('page');
+        $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+        $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+        $xml->XMLWriter()->startElement('errorhtml');
+        $xml->XMLWriter()->endElement();  //errorhtml
+        $xml->XMLWriter()->endElement(); //page
+        echo $xml->StopXML();
+        exit;
+    }
+    elseif(mb_strlen(urldecode($_GET['searchQuery']), 'UTF-8') < 4) {
+        // Search items with mb_strlen() > 4 only (offlike).
+        $search->itemSearchSkip = true;
+    }
     $search->searchQuery = $utils->escape($_GET['searchQuery']);
 }
 if(isset($_GET['source'])) {
