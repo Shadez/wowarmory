@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 364
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -42,8 +42,11 @@ if(isset($_GET['t'])) {
 elseif(isset($_GET['select'])) {
     $arenateams->teamname = $utils->escape($_GET['select']);
 }
+elseif(isset($_GET['tid'])) {
+    $arenateams->arenateamid = (int) $_GET['tid']; // Name will be assigned in Arenateams::_initTeam()
+}
 $isTeam = $arenateams->IsTeam();
-if(!$isTeam || !$arenateams->teamname) {
+if(!$isTeam) {
     // Load XSLT template
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
@@ -55,7 +58,7 @@ if(!$isTeam || !$arenateams->teamname) {
     echo $xml->StopXML();
     exit;
 }
-if($arenateams->teamname && $isTeam && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if($isTeam && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     $cache_id = $utils->GenerateCacheId('team-info', $arenateams->teamname, $armory->currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'arena')) {
         echo $cache_data;
