@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 366
+ * @revision 368
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -163,7 +163,7 @@ Class Utils extends Armory {
             }
             foreach($chars_data as $realm) {
                 $realm['account'] = strtoupper($_SESSION['username']);
-                $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
+                $realm['factionId'] = self::GetFactionId($realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['relevance'] = 100;
                 if($realm['level'] < $this->armoryconfig['minlevel']) {
@@ -1081,7 +1081,7 @@ Class Utils extends Armory {
         $countRealms = count($realms);
         $db = array();
         for($i = 0; $i < $countRealms; $i++) {
-            $rID = Utils::GetRealmIdByName($realms[$i]['realm']);
+            $rID = self::GetRealmIdByName($realms[$i]['realm']);
             if(!$rID) {
                 $this->Log()->writeError('%s : unable to find realm ID for name "%s", ignore.', __METHOD__, $realms[$i]['realm']);
                 continue;

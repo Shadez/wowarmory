@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 367
+ * @revision 368
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -309,7 +309,7 @@ Class Items extends Armory {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
                         }
                         if(Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
-                            $areaData = Items::GetImprovedItemSource($item, $bItem['entry'], true);
+                            $areaData = self::GetImprovedItemSource($item, $bItem['entry'], true);
                             $lootTable[$i]['area'] = $areaData['areaName'];
                             $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
                         }
@@ -338,7 +338,7 @@ Class Items extends Armory {
                             'dropRate' => Mangos::GetDropRate($drop_percent)
                         );
                         if(Mangos::GetGameObjectInfo($cItem['entry'], 'isInInstance')) {
-                            $areaData = Items::GetImprovedItemSource($item, $cItem['entry'], true);
+                            $areaData = self::GetImprovedItemSource($item, $cItem['entry'], true);
                             $lootTable[$i]['area'] = $areaData['areaName'];
                             $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
                         }
@@ -1536,7 +1536,7 @@ Class Items extends Armory {
     }
     
     /**
-     * Public access to Items::CreateAdditionalItemTooltip() method
+     * Public access to self::CreateAdditionalItemTooltip() method
      *  - $parent: used for items that created by spells (displays under patterns/recipes, etc.)
      *  - $comparison: used for dual tooltips (if user logged in and primary character is selected)
      * @category Items class
@@ -1551,14 +1551,14 @@ Class Items extends Armory {
         if(!$xml || !$characters) {
             return false;
         }
-        return Items::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparison);
+        return self::CreateAdditionalItemTooltip($itemID, $xml, $characters, $parent, $comparison);
     }
     
     /**
      * Create item tooltip with provided options
      *  - $parent: used for items that created by spells (displays under patterns/recipes, etc.)
      *  - $comparison: used for dual tooltips (if user logged in and primary character is selected)
-     * This method must be called from Items::ItemTooltip() only!
+     * This method must be called from self::ItemTooltip() only!
      * @category Items class
      * @access   private
      * @param    int $itemID
@@ -1615,7 +1615,7 @@ Class Items extends Armory {
             $xml->XMLWriter()->endElement(); //name
         }
         $xml->XMLWriter()->startElement('icon');
-        $xml->XMLWriter()->text(Items::GetItemIcon($itemID, $data['displayid']));
+        $xml->XMLWriter()->text(self::GetItemIcon($itemID, $data['displayid']));
         $xml->XMLWriter()->endElement(); //icon
         // 3.2.x heroic item flag
         if($data['Flags']&ITEM_FLAGS_HEROIC) {
@@ -1645,7 +1645,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->text($data['InventoryType']);
         $xml->XMLWriter()->endElement();  //inventoryType
         $xml->XMLWriter()->startElement('subclassName');
-        $xml->XMLWriter()->text(Items::GetItemSubTypeInfo($itemID, true, $data));
+        $xml->XMLWriter()->text(self::GetItemSubTypeInfo($itemID, true, $data));
         $xml->XMLWriter()->endElement();  //subclassName
         if($data['class'] == ITEM_CLASS_CONTAINER) {
             $xml->XMLWriter()->startElement('containerSlots');
@@ -1755,8 +1755,8 @@ Class Items extends Armory {
                 if($ssd['StatMod_'.$i] < 0) {
                     continue;
                 }
-                $val = (Items::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_'.$i]) / 10000;
-                $bonus_template = Items::GetItemBonusTemplate($ssd['StatMod_'.$i]);
+                $val = (self::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_'.$i]) / 10000;
+                $bonus_template = self::GetItemBonusTemplate($ssd['StatMod_'.$i]);
                 $xml->XMLWriter()->startElement($bonus_template);
                 $xml->XMLWriter()->text(round($val));
                 $xml->XMLWriter()->endElement();
@@ -1764,7 +1764,7 @@ Class Items extends Armory {
             else {
                 $key = $i+1;
                 if($data['stat_type'.$key] > 0 && $data['stat_value'.$key] > 0) {
-                    $bonus_template = Items::GetItemBonusTemplate($data['stat_type'.$key]);
+                    $bonus_template = self::GetItemBonusTemplate($data['stat_type'.$key]);
                     $xml->XMLWriter()->startElement($bonus_template);
                     $xml->XMLWriter()->text($data['stat_value'.$key]);
                     $xml->XMLWriter()->endElement();
@@ -1840,10 +1840,10 @@ Class Items extends Armory {
             }
             else {
                 if($itemSlotName) {
-                    $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
                 }
                 else {
-                    $rPropInfo = Items::GetRandomPropertiesData($itemID, $characters->GetGUID());
+                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID());
                 }
                 if($isCharacter && !$parent && is_array($rPropInfo)) {
                     $xml->XMLWriter()->startElement('randomEnchantData');
@@ -1919,18 +1919,18 @@ Class Items extends Armory {
         }
         else {
             $gems = array(
-                'g0' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g1' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g2' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
+                'g0' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g1' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g2' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
             );
             for($i = 0; $i < 3; $i++) {
                 $index = $i+1;
                 if(isset($gems['g' . $i]['item']) && $gems['g' . $i]['item'] > 0 && ($parent == false || $comparsion == true)) {
                     $socket_data = array();
-                    $socket_data['color'] = Items::GetSocketColorString((isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : 0);
+                    $socket_data['color'] = self::GetSocketColorString((isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : 0);
                     $socket_data['enchant'] = $gems['g' . $i]['enchant'];
                     $socket_data['icon'] = $gems['g' . $i]['icon'];
-                    if(Items::IsGemMatchesSocketColor($gems['g' . $i]['color'], (isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : -1)) {
+                    if(self::IsGemMatchesSocketColor($gems['g' . $i]['color'], (isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : -1)) {
                         $socket_data['match'] = '1';
                     }
                 }
@@ -1969,7 +1969,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->endElement(); //socketData
         // Durability
         if($isCharacter) {
-            $item_durability = Items::GetItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+            $item_durability = self::GetItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
         }
         else {
             $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
@@ -1980,7 +1980,7 @@ Class Items extends Armory {
             $xml->XMLWriter()->writeAttribute('max', (int) $item_durability['max']);
             $xml->XMLWriter()->endElement(); //durability
         }
-        $allowable_classes = Items::AllowableClasses($data['AllowableClass']);
+        $allowable_classes = self::AllowableClasses($data['AllowableClass']);
         if($allowable_classes) {
             $xml->XMLWriter()->startElement('allowableClasses');
             foreach($allowable_classes as $al_class) {
@@ -1997,7 +1997,7 @@ Class Items extends Armory {
             }
             $xml->XMLWriter()->endElement(); //allowableClasses
         }
-        $allowable_races = Items::AllowableRaces($data['AllowableRace']);
+        $allowable_races = self::AllowableRaces($data['AllowableRace']);
         if($allowable_races) {
             $xml->XMLWriter()->startElement('allowableRaces');
             foreach($allowable_races as $al_race) {
@@ -2069,7 +2069,7 @@ Class Items extends Armory {
                 $currentSetData = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d AND (`item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d)", $data['itemset'], $itemID, $itemID, $itemID, $itemID, $itemID);
                 if($currentSetData) {
                     for($i=1;$i<6;$i++) {
-                        if(Items::IsItemExists($currentSetData['item'.$i])) {
+                        if(self::IsItemExists($currentSetData['item'.$i])) {
                             if(Utils::IsWriteRaw()) {
                                 $xml->XMLWriter()->writeRaw('<item');
                                 $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($currentSetData['item'.$i]).'"');
@@ -2092,7 +2092,7 @@ Class Items extends Armory {
             }
             else {
                 for($i=1;$i<10;$i++) {
-                    if(isset($setdata['item'.$i]) && Items::IsItemExists($setdata['item'.$i])) {
+                    if(isset($setdata['item'.$i]) && self::IsItemExists($setdata['item'.$i])) {
                         if(Utils::IsWriteRaw()) {
                             $xml->XMLWriter()->writeRaw('<item');
                             $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($setdata['item'.$i]) . '"');
@@ -2112,7 +2112,7 @@ Class Items extends Armory {
                     }
                 }
             }
-            $itemsetbonus = Items::GetItemSetBonusInfo($setdata);
+            $itemsetbonus = self::GetItemSetBonusInfo($setdata);
             if(is_array($itemsetbonus)) {
                 foreach($itemsetbonus as $item_bonus) {
                     if(Utils::IsWriteRaw()) {
@@ -2179,12 +2179,12 @@ Class Items extends Armory {
                 $xml->XMLWriter()->text($data['description']);
             }
             else {
-                $xml->XMLWriter()->text(Items::GetItemDescription($itemID));
+                $xml->XMLWriter()->text(self::GetItemDescription($itemID));
             }
             $xml->XMLWriter()->endElement();  //desc
             if(!$parent) {
                 for($k = 1; $k < 4; $k++) {
-                    if($spell_tmp['EffectItemType_' . $k] > 0 && Items::IsItemExists($spell_tmp['EffectItemType_' . $k])) {
+                    if($spell_tmp['EffectItemType_' . $k] > 0 && self::IsItemExists($spell_tmp['EffectItemType_' . $k])) {
                         $xml->XMLWriter()->startElement('itemTooltip');
                         self::ItemTooltip($spell_tmp['EffectItemType_' . $k], $xml, $characters, true);
                         $xml->XMLWriter()->endElement(); //itemTooltip
@@ -2218,7 +2218,7 @@ Class Items extends Armory {
         if(!empty($data['description']) && $data['description'] != $spellInfo && $spellData != 1) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<desc>');
-                $xml->XMLWriter()->writeRaw(Items::GetItemDescription($itemID));
+                $xml->XMLWriter()->writeRaw(self::GetItemDescription($itemID));
                 $xml->XMLWriter()->writeRaw('</desc>'); //desc
             }
             else {
@@ -2227,13 +2227,13 @@ Class Items extends Armory {
                     $xml->XMLWriter()->text($data['description']);
                 }
                 else {
-                    $xml->XMLWriter()->text(Items::GetItemDescription($itemID));
+                    $xml->XMLWriter()->text(self::GetItemDescription($itemID));
                 }
                 $xml->XMLWriter()->endElement(); //desc
             }
         }
         if(!$parent) {
-            $itemSource = Items::GetItemSource($itemID);
+            $itemSource = self::GetItemSource($itemID);
             if(is_array($itemSource)) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<itemSource');
@@ -2250,7 +2250,7 @@ Class Items extends Armory {
                     $xml->XMLWriter()->endElement(); //itemSource
                 }
             }
-            if($itemSource['value'] == 'sourceType.vendor' && $reqArenaRating = Items::IsRequiredArenaRating($itemID)) {
+            if($itemSource['value'] == 'sourceType.vendor' && $reqArenaRating = self::IsRequiredArenaRating($itemID)) {
                 $xml->XMLWriter()->startElement('requiredPersonalArenaRating');
                 $xml->XMLWriter()->writeAttribute('personalArenaRating', $reqArenaRating);
                 $xml->XMLWriter()->endElement(); //requiredPersonalArenaRating
@@ -2727,36 +2727,28 @@ Class Items extends Armory {
      **/
     public function GetSSDMultiplier($ssv, $mask) {
         if(!is_array($ssv)) {
-            //$this->Log()->writeLog('%s : return 0 (mask: %d) ssv not array', __METHOD__, $mask);
             return 0;
         }
         if($mask & 0x4001F) {
             if($mask & 0x00000001) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_0'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier_0'];
             }
             if($mask & 0x00000002) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_1'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier_1'];
             }
             if($mask & 0x00000004) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_2'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier_2'];
             }
             if($mask & 0x00000008) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier2'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier2'];
             }
             if($mask & 0x00000010) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier_3'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier_3'];
             }
             if($mask & 0x00040000) {
-                //$this->Log()->writeLog('%s : return %d (mask: %d & 0x00000001), ID: %d', __METHOD__, $ssv['ssdMultiplier3'], $mask, $ssv['id']);
                 return $ssv['ssdMultiplier3'];
             }
         }
-        //$this->Log()->writeLog('%s : return 0 (mask: %d), ID: %d', __METHOD__, $mask, $ssv['id']);
         return 0;
     }
     
@@ -2880,9 +2872,7 @@ Class Items extends Armory {
      * @return   int
      **/
     public function GetItemEntryByGUID($item_guid) {
-        $entry = $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `item`=%d", $item_guid);
-        unset($db);
-        return $entry;
+        return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `item`=%d", $item_guid);
     }
     
     /**

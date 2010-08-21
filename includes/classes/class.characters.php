@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 366
+ * @revision 368
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -405,12 +405,12 @@ Class Characters extends Armory {
      **/
     private function HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
-            $this->Log()->writeError('%s : Characters::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__);
+            $this->Log()->writeError('%s : %s::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $itemscache = explode(' ', $this->equipmentCache);
         if(!$itemscache) {
-            $this->Log()->writeError('%s : unable to convert Characters::$equipmentCache from string to array (function.explode). Character items would not be shown.', __METHOD__);
+            $this->Log()->writeError('%s : unable to convert %s::$equipmentCache from string to array (function.explode). Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $this->equipmentCache = $itemscache;
