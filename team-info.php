@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 364
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,7 +43,7 @@ elseif(isset($_GET['select'])) {
     $arenateams->teamname = $utils->escape($_GET['select']);
 }
 elseif(isset($_GET['tid'])) {
-    $arenateams->arenateamid = (int) $_GET['tid']; // Name will be assigned in Arenateams::_initTeam()
+    $arenateams->arenateamid = (int) $_GET['tid']; // Name will be assigned in Arenateams::InitTeam()
 }
 $isTeam = $arenateams->IsTeam();
 if(!$isTeam) {
@@ -72,7 +72,7 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'team-info.xml');
-$arenateams->_initTeam();
+$arenateams->InitTeam();
 $team_info = $arenateams->GetArenaTeamInfo();
 $xml->XMLWriter()->startElement('teamInfo');
 $xml->XMLWriter()->startElement('arenaTeam');

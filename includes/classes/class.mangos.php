@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,7 +29,7 @@ if(!defined('__ARMORY__')) {
 Class Mangos extends Armory {
 
     /* CSWOWD */
-    public function getSkillFromItemID($id) {
+    public function GetSkillIDFromItemID($id) {
         if($id == 0) {
             return SKILL_UNARMED;
         }
@@ -63,10 +63,12 @@ Class Mangos extends Armory {
     /**
      * Returns quest info by $infoType case
      * @category Mangos class
-     * @example Mangos::QuestInfo(1500, 'reqlevel')
-     * @return int/string
+     * @access   public
+     * @param    int $quest
+     * @param    string $infoType
+     * @return   mixed
      **/
-    public function QuestInfo($quest, $infoType) {
+    public function GetQuestInfo($quest, $infoType) {
         switch($infoType) {
             case 'title':
                 if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
@@ -97,10 +99,11 @@ Class Mangos extends Armory {
     /**
      * Assign text value to int drop percent (drop > 51 = High, etc.)
      * @category Mangos class
-     * @example Mangos::DropPercent(51)
-     * @return string
+     * @access   public
+     * @param    float $percent
+     * @return   string
      **/
-    public function DropPercent($percent) {
+    public function GetDropRate($percent) {
         if($percent == 100) {
             return 6;
         }
@@ -127,10 +130,13 @@ Class Mangos extends Armory {
     /**
      * Returns game object info ($infoType)
      * @category Mangos class
-     * @example Mangos::GameobjectInfo(150000, 'name')
-     * @return string
+     * @access   public
+     * @param    int $entry
+     * @param    string $infoType
+     * @return   mixed
      **/
-    public function GameobjectInfo($entry, $infoType) {
+    public function GetGameObjectInfo($entry, $infoType) {
+        $info = false;
         switch($infoType) {
             case 'name':
                 if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
@@ -161,10 +167,7 @@ Class Mangos extends Armory {
                 return $this->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_instance_data` WHERE `type`='object' AND (`id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d)", $entry, $entry, $entry, $entry, $entry, $entry);
                 break;
 		}
-		if($info) {
-            return $info;
-		}
-        return false;
+        return $info;
     }
     
     /**
@@ -396,10 +399,9 @@ Class Mangos extends Armory {
     /**
      * Generates money value
      * @category Mangos class
-     * @example Mangos::getMoney(150000000)
      * @return array
      **/
-    public function getMoney($money) {
+    public function GetMoney($money) {
         $getMoney['gold'] = floor($money/(100*100));
         $money = $money-$getMoney['gold']*100*100;
         $getMoney['silver'] = floor($money/100);
@@ -424,7 +426,7 @@ Class Mangos extends Armory {
         for($i=1;$i<6;$i++) {
             if($costInfo['item'.$i] > 0) {
                 $extended_cost[$i]['count'] = $costInfo['item'.$i.'count'];
-                $extended_cost[$i]['icon']  = Items::getItemIcon($costInfo['item'.$i]);
+                $extended_cost[$i]['icon']  = Items::GetItemIcon($costInfo['item'.$i]);
                 $extended_cost[$i]['id'] = $costInfo['item'.$i];
             }
         }

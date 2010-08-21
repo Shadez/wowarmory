@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -100,7 +100,7 @@ if(isset($_POST['accountName'])) {
     if(!empty($utils->username) && !empty($utils->password)) {
         $template = str_replace('<!-- [$error_username] -->', '', $template);
         $template = str_replace('<!-- [$username] -->', $utils->username, $template);
-        if($utils->authUser()) {
+        if($utils->AuthUser()) {
             if(!isset($_GET['ref'])) {
                 header('Location: index.xml');
             }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 362
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -529,7 +529,7 @@ Class Achievements extends Armory {
             if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag']&ACHIEVEMENT_FLAG_COUNTER) {
                 if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_MONEY_COUNTER) {
                     $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
-                    $money = Mangos::getMoney($m_data['counter']);
+                    $money = Mangos::GetMoney($m_data['counter']);
                     $achievement_criteria[$i]['quantityGold'] = $money['gold'];
                     $achievement_criteria[$i]['quantitySilver'] = $money['silver'];
                     $achievement_criteria[$i]['quantityCopper'] = $money['copper'];

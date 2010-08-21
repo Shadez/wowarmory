@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 363
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,7 +49,7 @@ if(isset($_GET['searchQuery'])) {
         // Search items with mb_strlen() > 4 only (offlike).
         $search->itemSearchSkip = true;
     }
-    $search->searchQuery = $utils->escape($_GET['searchQuery']);
+    $search->SetSearchQuery($utils->escape($_GET['searchQuery']));
 }
 if(isset($_GET['source'])) {
     $advancedItemsSearch = true;
@@ -87,50 +87,50 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'search.xml');
-$xml->XMLWriter()->writeAttribute('requestQuery', ($search->searchQuery) ? $search->searchQuery.'&amp;searchType='.$_GET['searchType'] : null);
+$xml->XMLWriter()->writeAttribute('requestQuery', ($search->GetSearchQuery()) ? $search->GetSearchQuery().'&amp;searchType='.$_GET['searchType'] : null);
 $xml->XMLWriter()->startElement('armorySearch');
 $selected = null;
-if($count_characters = $search->SearchCharacters(true)) {
+if($count_characters = $search->PerformCharactersSearch(true)) {
     $totalCount = $totalCount+$count_characters;
-    $characters_search = $search->SearchCharacters();
+    $characters_search = $search->PerformCharactersSearch();
     $selected = 'characters';
 }
-if($count_guilds = $search->SearchGuilds(true)) {
+if($count_guilds = $search->PerformGuildsSearch(true)) {
     $totalCount = $totalCount+$count_guilds;
-    $guilds_search = $search->SearchGuilds();
+    $guilds_search = $search->PerformGuildsSearch();
     if($selected != 'characters') {
         $selected = 'guilds';
     }
 }
-if($count_teams = $search->SearchArenaTeams(true)) {
+if($count_teams = $search->PerformArenaTeamsSearch(true)) {
     $totalCount = $totalCount+$count_teams;
-    $teams_search = $search->SearchArenaTeams();
+    $teams_search = $search->PerformArenaTeamsSearch();
     if($selected != 'characters') {
         $selected = 'arenateams';
     }
 }
 if($advancedItemsSearch) {
-    if($count_items = $search->AdvancedItemsSearch(true)) {
+    if($count_items = $search->PerformAdvancedItemsSearch(true)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->AdvancedItemsSearch();
+        $items_search = $search->PerformAdvancedItemsSearch();
         if($selected != 'characters') {
             $selected = 'items';
         }
     }
 }
 elseif($findGearUpgrade) {
-    if($count_items = $search->DoSearchItems(true, $itemID, $plLevel)) {
+    if($count_items = $search->PerformItemsSearch(true, $itemID, $plLevel)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->DoSearchItems(false, $itemID, $plLevel);
+        $items_search = $search->PerformItemsSearch(false, $itemID, $plLevel);
         if($selected != 'characters') {
             $selected = 'items';
         }
     }
 }
 else {
-    if($count_items = $search->DoSearchItems(true)) {
+    if($count_items = $search->PerformItemsSearch(true)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->DoSearchItems();
+        $items_search = $search->PerformItemsSearch();
         if($selected != 'characters') {
             $selected = 'items';
         }
@@ -167,7 +167,7 @@ $xml->XMLWriter()->endElement(); //tabs
 
 $searchType = (isset($_GET['searchType'])) ? $_GET['searchType'] : 'characters';
 $xml->XMLWriter()->startElement('searchResults');
-$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => null, 'searchMsg' => null, 'searchFilter' => null, 'searchText' => urlencode($search->searchQuery), 'searchString' => $search->searchQuery, 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->searchQuery, 'version' => '1.0');
+$results_info = array('pageCount' => 1, 'pageCurrent' => 1, 'searchError' => null, 'searchMsg' => null, 'searchFilter' => null, 'searchText' => urlencode($search->GetSearchQuery()), 'searchString' => $search->GetSearchQuery(), 'searchType' => $searchType, 'url' => 'searchType='.$searchType.'&amp;searchQuery='.$search->GetSearchQuery(), 'version' => '1.0');
 foreach($results_info as $result_key => $result_value) {
     $xml->XMLWriter()->writeAttribute($result_key, $result_value);
 }

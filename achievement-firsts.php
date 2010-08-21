@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -48,7 +48,7 @@ if($isRealm) {
     $xml->XMLWriter()->startElement('realmInfo');
     $xml->XMLWriter()->writeAttribute('realm', $realmName);
     // Get achievements
-    $achievement_firsts = $utils->realmFirsts();
+    $achievement_firsts = $utils->GetRealmFirsts();
     if(is_array($achievement_firsts)) {
         foreach($achievement_firsts as $achievement_info) {
             $xml->XMLWriter()->startElement('achievement');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -59,7 +59,7 @@ Class Items extends Armory {
      * @param    int $itemID
      * @return   string
      **/
-    public function getItemName($itemID) {
+    public function GetItemName($itemID) {
         if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
             $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
@@ -83,7 +83,7 @@ Class Items extends Armory {
      * @param    int $displayId = 0
      * @return   string
      **/
-    public function getItemIcon($itemID, $displayId = 0) {
+    public function GetItemIcon($itemID, $displayId = 0) {
         if($displayId == 0) {
             $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
@@ -265,7 +265,7 @@ Class Items extends Armory {
                         continue;
                     }
                 }
-                $itemSetBonuses[$i]['desc'] = self::spellReplace($spell_tmp, Utils::validateText($spell_tmp['Description_'.$tmp_locale]));
+                $itemSetBonuses[$i]['desc'] = self::SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_'.$tmp_locale]));
                 $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
                 $itemSetBonuses[$i]['threshold'] = $i;
             }
@@ -318,7 +318,7 @@ Class Items extends Armory {
                             $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
                         }
                         $drop_percent = Mangos::GenerateLootPercent($bItem['entry'], 'creature_loot_template', $item);
-                        $lootTable[$i]['dropRate'] = Mangos::DropPercent($drop_percent);
+                        $lootTable[$i]['dropRate'] = Mangos::GetDropRate($drop_percent);
                         if($lootTable[$i]['areaUrl'] && Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
                             $lootTable[$i]['url'] = str_replace('boss=all', 'boss='.$bItem['entry'], $lootTable[$i]['areaUrl']);
                         }
@@ -333,18 +333,18 @@ Class Items extends Armory {
                     foreach($ChestLoot as $cItem) {
                         $drop_percent = Mangos::GenerateLootPercent($cItem['entry'], 'gameobject_loot_template', $item);
                         $lootTable[$i] = array (
-                            'name' => Mangos::GameobjectInfo($cItem['entry'], 'name'),
+                            'name' => Mangos::GetGameObjectInfo($cItem['entry'], 'name'),
                             'id' => $cItem['entry'],
-                            'dropRate' => Mangos::DropPercent($drop_percent)
+                            'dropRate' => Mangos::GetDropRate($drop_percent)
                         );
-                        if(Mangos::GameobjectInfo($cItem['entry'], 'isInInstance')) {
+                        if(Mangos::GetGameObjectInfo($cItem['entry'], 'isInInstance')) {
                             $areaData = Items::GetImprovedItemSource($item, $cItem['entry'], true);
                             $lootTable[$i]['area'] = $areaData['areaName'];
                             $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
                         }
                         else {
-                            $lootTable[$i]['area'] = Mangos::GameobjectInfo($cItem['entry'], 'map');
-                            $lootTable[$i]['areaUrl'] = Mangos::GameobjectInfo($cItem['entry'], 'areaUrl');
+                            $lootTable[$i]['area'] = Mangos::GetGameObjectInfo($cItem['entry'], 'map');
+                            $lootTable[$i]['areaUrl'] = Mangos::GetGameObjectInfo($cItem['entry'], 'areaUrl');
                         }
                         $i++;
                     }
@@ -361,9 +361,9 @@ Class Items extends Armory {
                     foreach($QuestLoot as $qItem) {
                         $lootTable[$i] = $qItem;
                         if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
-                            $lootTable[$i]['name'] = Mangos::QuestInfo($qItem['id'], 'title');
+                            $lootTable[$i]['name'] = Mangos::GetQuestInfo($qItem['id'], 'title');
                         }
-                        $lootTable[$i]['area'] = Mangos::QuestInfo($qItem['id'], 'map');
+                        $lootTable[$i]['area'] = Mangos::GetQuestInfo($qItem['id'], 'map');
                         $i++;
                     }
                 }
@@ -375,10 +375,10 @@ Class Items extends Armory {
                 }
                 $lootTable = $this->wDB->selectRow("SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `entry`=%d", $QuestStart);
                 if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
-                    $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
+                    $lootTable['name'] = Mangos::GetQuestInfo($QuestStart, 'title');
                 }
-                $lootTable['name'] = Mangos::QuestInfo($QuestStart, 'title');
-                $lootTable['area'] =  Mangos::QuestInfo($QuestStart, 'map');
+                $lootTable['name'] = Mangos::GetQuestInfo($QuestStart, 'title');
+                $lootTable['area'] =  Mangos::GetQuestInfo($QuestStart, 'map');
                 break;
             case 'providedfor':
                 $QuestInfo = $this->wDB->select("SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `SrcItemId`=%d", $item);
@@ -387,9 +387,9 @@ Class Items extends Armory {
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
                         if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
-                            $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
+                            $lootTable[$i]['name'] = Mangos::GetQuestInfo($quest['id'], 'title');
                         }
-                        $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
+                        $lootTable[$i]['area'] = Mangos::GetQuestInfo($quest['id'], 'map');
                     }
                 }
                 break;            
@@ -403,9 +403,9 @@ Class Items extends Armory {
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
                         if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
-                            $lootTable[$i]['name'] = Mangos::QuestInfo($quest['id'], 'title');
+                            $lootTable[$i]['name'] = Mangos::GetQuestInfo($quest['id'], 'title');
                         }
-                        $lootTable[$i]['area'] = Mangos::QuestInfo($quest['id'], 'map');
+                        $lootTable[$i]['area'] = Mangos::GetQuestInfo($quest['id'], 'map');
                     }
                 }
                 break;
@@ -419,10 +419,10 @@ Class Items extends Armory {
                         $lootTable[$i] = array (
                             'id'       => $dItem['item'],
                             'name'     => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
-                            'dropRate' => Mangos::DropPercent($drop_percent),
+                            'dropRate' => Mangos::GetDropRate($drop_percent),
                             'maxCount' => $dItem['maxcount'],
                             'minCount' => $dItem['mincountOrRef'],
-                            'icon'     => self::getItemIcon($dItem['item'], $tmp_info['displayid']),
+                            'icon'     => self::GetItemIcon($dItem['item'], $tmp_info['displayid']),
                             'quality'  => $tmp_info['Quality']
                         );
                         $i++;
@@ -460,8 +460,8 @@ Class Items extends Armory {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['id'] = $craftItem['Reagent_'.$o];
-                                $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($craftItem['Reagent_'.$o]);
-                                $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($craftItem['Reagent_'.$o], $tmp_info['displayid']);
+                                $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['Reagent_'.$o]);
+                                $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($craftItem['Reagent_'.$o], $tmp_info['displayid']);
                                 $lootTable[$i]['reagent'][$o]['count'] = $craftItem['ReagentCount_'.$o];
                                 $lootTable[$i]['reagent'][$o]['quality'] = $tmp_info['Quality'];
                             }
@@ -471,7 +471,7 @@ Class Items extends Armory {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['EffectItemType_'.$j]);
                                 $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
                                 $lootTable[$i]['item'][$j]['id'] = $craftItem['EffectItemType_'.$j];
-                                $lootTable[$i]['item'][$j]['icon'] = self::getItemIcon($craftItem['EffectItemType_'.$j], $tmp_info['displayid']);
+                                $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($craftItem['EffectItemType_'.$j], $tmp_info['displayid']);
                                 $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
                             }
                         }
@@ -513,10 +513,10 @@ Class Items extends Armory {
                         continue;
                     }
                     $lootTable[$i]['data'] = array(
-                        'icon' => self::getItemIcon($curItem['id'], $curItem['displayid']),
+                        'icon' => self::GetItemIcon($curItem['id'], $curItem['displayid']),
                         'id' => $curItem['id'],
                         'level' => $curItem['level'],
-                        'name' => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $curItem['name'] : self::getItemName($curItem['id']),
+                        'name' => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $curItem['name'] : self::GetItemName($curItem['id']),
                         'quality' => $curItem['quality'],
                         'type' => $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $curItem['class'], $curItem['subclass'])
                     );
@@ -560,8 +560,8 @@ Class Items extends Armory {
                         if($ReagentItem['EffectItemType_'.$j] > 0) {
                             $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_'.$j]);
                             $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_'.$j];
-                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['EffectItemType_'.$j]);
-                            $lootTable[$i]['item'][$j]['icon'] = self::getItemIcon($ReagentItem['EffectItemType_'.$j], $tmp_info['displayid']);
+                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['EffectItemType_'.$j]);
+                            $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($ReagentItem['EffectItemType_'.$j], $tmp_info['displayid']);
                             $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
                         }
                     }
@@ -569,9 +569,9 @@ Class Items extends Armory {
                         if($ReagentItem['Reagent_'.$o] > 0) {
                             $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['Reagent_'.$o]);
                             $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_'.$o];
-                            $lootTable[$i]['reagent'][$o]['icon'] = self::getItemIcon($ReagentItem['Reagent_'.$o], $tmp_info['displayid']);
+                            $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($ReagentItem['Reagent_'.$o], $tmp_info['displayid']);
                             $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_'.$o];
-                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::getItemName($ReagentItem['Reagent_'.$o]);
+                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['Reagent_'.$o]);
                         }
                     }
                     $i++;
@@ -690,7 +690,7 @@ Class Items extends Armory {
      * @param    object $db = null
      * @return   array
      **/ 
-    public function extractSocketInfo($guid, $item, $socketNum, $item_guid = 0) {
+    public function GetItemSocketInfo($guid, $item, $socketNum, $item_guid = 0) {
         $data = array();
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
@@ -738,7 +738,7 @@ Class Items extends Armory {
             $gemData = $this->aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $socketInfo);
             $data['enchant_id'] = $socketInfo;
             $data['item'] = $gemData['gem'];
-            $data['icon'] = self::getItemIcon($data['item']);
+            $data['icon'] = self::GetItemIcon($data['item']);
             $data['enchant'] = $gemData['text'];
             $data['color'] = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
             return $data;
@@ -754,7 +754,7 @@ Class Items extends Armory {
      * @param    int $item
      * @return   array
      **/
-    public function getItemDurability($guid, $item) {
+    public function GetItemDurability($guid, $item) {
         switch($this->currentRealmInfo['type']) {
             case 'mangos':
                 $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, $guid, $item);
@@ -833,7 +833,7 @@ Class Items extends Armory {
      * @param    string $text
      * @return   array
      **/
-    public function spellReplace($spell, $text) {
+    public function SpellReplace($spell, $text) {
         $letter = array('${','}');
         $values = array( '[',']');
         $text = str_replace($letter, $values, $text);
@@ -877,10 +877,10 @@ Class Items extends Armory {
                 $spellData = @$cacheSpellData[$lookup];
                 if($spellData == 0) {
                     if($lookup == $spell['id']) {
-                        $cacheSpellData[$lookup] = $this->getSpellData($spell);
+                        $cacheSpellData[$lookup] = $this->GetSpellData($spell);
                     }
                     else {
-                        $cacheSpellData[$lookup] = $this->getSpellData($this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $lookup));
+                        $cacheSpellData[$lookup] = $this->GetSpellData($this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $lookup));
                     }
                     $spellData = @$cacheSpellData[$lookup];
                 }
@@ -900,7 +900,7 @@ Class Items extends Armory {
             }
         }
         $str .= substr($data, $pos);
-        $str = preg_replace_callback("/\[.+[+\-\/*\d]\]/", array($this, 'my_replace'), $str);
+        $str = preg_replace_callback("/\[.+[+\-\/*\d]\]/", array($this, 'MyReplace'), $str);
         return $str;
     }
     
@@ -912,7 +912,7 @@ Class Items extends Armory {
      * @param    array $spell
      * @return   array
      **/
-    public function getSpellData($spell) {
+    public function GetSpellData($spell) {
         // Basepoints
         $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
         $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
@@ -957,15 +957,15 @@ Class Items extends Armory {
         $spellData['x2']= $spell['EffectChainTarget_2'];
         $spellData['x3']= $spell['EffectChainTarget_3'];
         $spellData['i'] = $spell['MaxAffectedTargets'];
-        $spellData['d'] = Utils::getTimeText($d);
-        $spellData['d1']= Utils::getTimeText($d);
-        $spellData['d2']= Utils::getTimeText($d);
-        $spellData['d3']= Utils::getTimeText($d);
+        $spellData['d'] = Utils::GetTimeText($d);
+        $spellData['d1']= Utils::GetTimeText($d);
+        $spellData['d2']= Utils::GetTimeText($d);
+        $spellData['d3']= Utils::GetTimeText($d);
         $spellData['v'] = $spell['MaxTargetLevel'];
         $spellData['u'] = $spell['StackAmount'];
-        $spellData['a1']= Utils::getRadius($spell['EffectRadiusIndex_1']);
-        $spellData['a2']= Utils::getRadius($spell['EffectRadiusIndex_2']);
-        $spellData['a3']= Utils::getRadius($spell['EffectRadiusIndex_3']);
+        $spellData['a1']= Utils::GetRadius($spell['EffectRadiusIndex_1']);
+        $spellData['a2']= Utils::GetRadius($spell['EffectRadiusIndex_2']);
+        $spellData['a3']= Utils::GetRadius($spell['EffectRadiusIndex_3']);
         $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
         $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
         $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
@@ -993,7 +993,7 @@ Class Items extends Armory {
      * @param    array $matches
      * @return   int
      **/
-    public function my_replace($matches) {
+    public function MyReplace($matches) {
         $text = str_replace( array('[',']'), array('', ''), $matches[0]);
         //@eval("\$text = abs(".$text.");");
         return intval($text);
@@ -1113,7 +1113,7 @@ Class Items extends Armory {
         else { // Creature
             $drop_percent = Mangos::GenerateLootPercent($bossID, 'creature_loot_template', $itemID);
         }
-        $instance_data['dropRate'] = Mangos::DropPercent($drop_percent);
+        $instance_data['dropRate'] = Mangos::GetDropRate($drop_percent);
         $instance_data['value'] = 'sourceType.creatureDrop';
         return $instance_data;
     }
@@ -1180,10 +1180,10 @@ Class Items extends Armory {
         }
         if($equivalent_id > 0 && $info = $this->wDB->selectRow("SELECT `name`, `ItemLevel`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d", $equivalent_id)) {
             $item_data = array(
-                'icon'    => self::getItemIcon($equivalent_id, $info['displayid']),
+                'icon'    => self::GetItemIcon($equivalent_id, $info['displayid']),
                 'id'      => $equivalent_id,
                 'level'   => $info['ItemLevel'],
-                'name'    => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $info['name'] : self::getItemName($equivalent_id),
+                'name'    => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $info['name'] : self::GetItemName($equivalent_id),
                 'quality' => $info['Quality']
             );
             return $item_data;
@@ -1607,7 +1607,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->endElement(); //id
         if(Utils::IsWriteRaw()) {
             $xml->XMLWriter()->writeRaw('<name>');
-            $xml->XMLWriter()->writeRaw(Items::getItemName($itemID));
+            $xml->XMLWriter()->writeRaw(self::GetItemName($itemID));
             $xml->XMLWriter()->writeRaw('</name>');
         }
         else {
@@ -1616,12 +1616,12 @@ Class Items extends Armory {
                 $xml->XMLWriter()->text($data['name']);
             }
             else {
-                $xml->XMLWriter()->text(Items::getItemName($itemID));
+                $xml->XMLWriter()->text(self::GetItemName($itemID));
             }
             $xml->XMLWriter()->endElement(); //name
         }
         $xml->XMLWriter()->startElement('icon');
-        $xml->XMLWriter()->text(Items::getItemIcon($itemID, $data['displayid']));
+        $xml->XMLWriter()->text(Items::GetItemIcon($itemID, $data['displayid']));
         $xml->XMLWriter()->endElement(); //icon
         // 3.2.x heroic item flag
         if($data['Flags']&ITEM_FLAGS_HEROIC) {
@@ -1824,7 +1824,7 @@ Class Items extends Armory {
             $itemSlotName = false;
         }
         if(!$parent && $isCharacter && $itemSlotName) {
-            $enchantment = $characters->getCharacterEnchant($itemSlotName);
+            $enchantment = $characters->GetCharacterEnchant($itemSlotName);
             if($enchantment > 0) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<enchant>');
@@ -1925,9 +1925,9 @@ Class Items extends Armory {
         }
         else {
             $gems = array(
-                'g0' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g1' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g2' => Items::extractSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
+                'g0' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g1' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
+                'g2' => Items::GetItemSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
             );
             for($i = 0; $i < 3; $i++) {
                 $index = $i+1;
@@ -1975,7 +1975,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->endElement(); //socketData
         // Durability
         if($isCharacter) {
-            $item_durability = Items::getItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+            $item_durability = Items::GetItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
         }
         else {
             $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
@@ -2078,7 +2078,7 @@ Class Items extends Armory {
                         if(Items::IsItemExists($currentSetData['item'.$i])) {
                             if(Utils::IsWriteRaw()) {
                                 $xml->XMLWriter()->writeRaw('<item');
-                                $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($currentSetData['item'.$i]).'"');
+                                $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($currentSetData['item'.$i]).'"');
                                 if($characters->IsItemEquipped($currentSetData['item'.$i])) {
                                     $xml->XMLWriter()->writeRaw(' equipped="' . 1 . '"');
                                 }
@@ -2086,7 +2086,7 @@ Class Items extends Armory {
                             }
                             else {
                                 $xml->XMLWriter()->startElement('item');
-                                $xml->XMLWriter()->writeAttribute('name', Items::getItemName($currentSetData['item'.$i]));
+                                $xml->XMLWriter()->writeAttribute('name', self::GetItemName($currentSetData['item'.$i]));
                                 if($characters->IsItemEquipped($currentSetData['item'.$i])) {
                                     $xml->XMLWriter()->writeAttribute('equipped', '1');
                                 }
@@ -2101,7 +2101,7 @@ Class Items extends Armory {
                     if(isset($setdata['item'.$i]) && Items::IsItemExists($setdata['item'.$i])) {
                         if(Utils::IsWriteRaw()) {
                             $xml->XMLWriter()->writeRaw('<item');
-                            $xml->XMLWriter()->writeRaw(' name="' . Items::getItemName($setdata['item'.$i]) . '"');
+                            $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($setdata['item'.$i]) . '"');
                             if($characters->IsItemEquipped($setdata['item'.$i])) {
                                 $xml->XMLWriter()->writeRaw(' equipped="1"');
                             }
@@ -2109,7 +2109,7 @@ Class Items extends Armory {
                         }
                         else {
                             $xml->XMLWriter()->startElement('item');
-                            $xml->XMLWriter()->writeAttribute('name', Items::getItemName($setdata['item'.$i]));
+                            $xml->XMLWriter()->writeAttribute('name', self::GetItemName($setdata['item'.$i]));
                             if($characters->IsItemEquipped($setdata['item'.$i])) {
                                 $xml->XMLWriter()->writeAttribute('equipped', 1);
                             }
@@ -2160,7 +2160,7 @@ Class Items extends Armory {
                         $tmp_locale = 'en_gb';
                     }
                 }
-                $spellInfo = $this->spellReplace($spell_tmp, Utils::ValidateText($spell_tmp['Description_'.$tmp_locale]));
+                $spellInfo = $this->SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_'.$tmp_locale]));
                 if($spellInfo) {
                     $spellData = 2;
                     $spellInfo = str_replace('&quot;', '"', $spellInfo);
@@ -2287,7 +2287,7 @@ Class Items extends Armory {
             if(isset($spell['Reagent_' . $i]) && $spell['Reagent_' . $i] > 0) {
                 $data[$i] = array(
                     'count' => $spell['ReagentCount_' . $i],
-                    'name'  => $this->getItemName($spell['Reagent_' . $i])
+                    'name'  => self::GetItemName($spell['Reagent_' . $i])
                 );
             }
         }
@@ -2900,13 +2900,10 @@ Class Items extends Armory {
      * @return   int
      **/
     public function GetItemGUIDByEntry($item_entry, $owner_guid) {
-        $guid = $this->cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry);
-        unset($db);
-        return $guid;
+        return $this->cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
     }
     
     public function IsGemMatchesSocketColor($gem_color, $socket_color) {
-        $this->Log()->writeLog('%s : gem_color: %d, socket_color: %d', __METHOD__, $gem_color, $socket_color);
         if($socket_color == $gem_color) {
             return true;
         }

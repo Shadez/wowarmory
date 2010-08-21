@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 363
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,17 +23,20 @@
  **/
 
 Class SearchMgr extends Armory {
-    public $searchQuery = false;
+    private $searchQuery = false;
     public $get_array;
-    public $bossSearchKey;
-    public $instanceSearchKey;
     public $heirloom = false;
-    private $boss_loot_ids;
-    private $results;
     public $itemSearchSkip = false;
-    private $type_results;
     
-    public function DoSearchItems($count = false, $findUpgrade = false, $player_level = 80) {
+    public function SetSearchQuery($searchQuery) {
+        $this->searchQuery = $searchQuery;
+    }
+    
+    public function GetSearchQuery() {
+        return $this->searchQuery;
+    }
+    
+    public function PerformItemsSearch($count = false, $findUpgrade = false, $player_level = 80) {
         if($this->itemSearchSkip == true) {
             return false;
         }
@@ -97,7 +100,7 @@ Class SearchMgr extends Armory {
         $item_source = self::GetItemSourceArray($items);
         foreach($items as $item) {
             $result_data[$i]['data'] = $item;
-            $result_data[$i]['data']['icon'] = Items::getItemIcon($item['id'], $item['displayid']);
+            $result_data[$i]['data']['icon'] = Items::GetItemIcon($item['id'], $item['displayid']);
             if(self::CanAuction($item)) {
                 $result_data[$i]['data']['canAuction'] = 1;
             }
@@ -106,7 +109,7 @@ Class SearchMgr extends Armory {
                 $result_data[$i]['data']['name'] = $item['name'];
             }
             else {
-                $result_data[$i]['data']['name'] = Items::getItemName($item['id']);
+                $result_data[$i]['data']['name'] = Items::GetItemName($item['id']);
             }
             $result_data[$i]['filters'] = array(
                 array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
@@ -133,7 +136,7 @@ Class SearchMgr extends Armory {
         return $result_data;
     }
     
-    public function AdvancedItemsSearch($count = false) {
+    public function PerformAdvancedItemsSearch($count = false) {
         if($this->itemSearchSkip == true) {
             return false;
         }
@@ -412,7 +415,7 @@ Class SearchMgr extends Armory {
                 $items_result[$i]['filters'] = array();
                 $items_result[$i]['data']['id'] = $item['id'];
                 if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
-                    $items_result[$i]['data']['name'] = Items::getItemName($item['id']);
+                    $items_result[$i]['data']['name'] = Items::GetItemName($item['id']);
                 }
                 else {
                     $items_result[$i]['data']['name'] = $item['name'];
@@ -421,7 +424,7 @@ Class SearchMgr extends Armory {
                     $items_result[$i]['data']['canAuction'] = 1;
                 }
                 $items_result[$i]['data']['rarity'] = $item['rarity'];
-                $items_result[$i]['data']['icon'] = Items::getItemIcon($item['id'], $item['displayid']);
+                $items_result[$i]['data']['icon'] = Items::GetItemIcon($item['id'], $item['displayid']);
                 $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item['ItemLevel']);
                 $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100); // TODO: add relevance calculation for items
                 // Add some filters (according with item source)
@@ -457,7 +460,7 @@ Class SearchMgr extends Armory {
         return $items_result;
     }
     
-    public function SearchArenaTeams($num = false) {
+    public function PerformArenaTeamsSearch($num = false) {
         if(!$this->searchQuery) {
             return false;
         }
@@ -504,7 +507,7 @@ Class SearchMgr extends Armory {
         return false;
     }
     
-    public function SearchGuilds($num = false) {
+    public function PerformGuildsSearch($num = false) {
         if(!$this->searchQuery) {
             return false;
         }
@@ -545,7 +548,7 @@ Class SearchMgr extends Armory {
         return false;
     }
     
-    public function SearchCharacters($num = false) {
+    public function PerformCharactersSearch($num = false) {
         if(!$this->searchQuery) {
             $this->Log()->writeLog('%s : searchQuery not defined', __METHOD__);
             return false;
@@ -678,30 +681,6 @@ Class SearchMgr extends Armory {
         return false;
     }
     
-    public function GetItemSourceByKey() {
-        if(!$this->bossSearchKey) {
-            $this->Log()->writeError('%s : bossSearchKey not defined', __METHOD__);
-            return false;
-        }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s') LIMIT 1", $this->GetLocale(), $this->bossSearchKey);
-    }
-    
-    public function GetBossKeyById() {
-        if(!isset($this->get_array['boss']) || !is_numeric($this->get_array['boss'])) {
-            return false;
-        }
-        $this->bossSearchKey = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d LIMIT 1", $this->get_array['boss']);
-        return $this->bossSearchKey;
-    }
-    
-    public function GetItemSourceByInstanceKey() {
-        if(!$this->instanceSearchKey) {
-            $this->Log()->writeError('%s : instanceSearchKey not defined', __METHOD__);
-            return false;
-        }
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`=%d LIMIT 1", $this->GetLocale(), $this->instanceSearchKey);
-    }
-    
     public function MakeUniqueArray($array, $preserveKeys = false) {
         // Unique Array for return  
         $arrayRewrite = array();  
@@ -762,213 +741,8 @@ Class SearchMgr extends Armory {
     }
     
     /**
-     * Calculates relevance for item/character/arena team in search results
-     * This function is beta version!
-     * If somebody have info about how it works, please PM me on getmangos.com or on github.com
-     * @category Search class
-     * @access   private
-     * @return   bool
-     * @todo     try find more correct way to generate max/min ratings (for arenateams case)
-     **/
-    private function CalculateRelevance() {
-        if(!$this->results) {
-            $this->Log()->writeError('%s can be called only after Search::$results variable assigned', __METHOD__);
-            return false;
-        }
-        elseif(!$this->type_results) {
-            $this->Log()->writeError('%s : type_results not defined, ignore.', __METHOD__);
-            return false;
-        }
-        $accounts_cache = array(); // For last_login timestamps
-        $arenateams_cache = array(
-            'minRating' => array(
-                'value' => 0,
-                'teamSize' => 0
-            ),
-            'maxRating' => array(
-                'value' => 0,
-                'teamSize' => 0
-            ),
-            'minRating2' => array(
-                'value' => 0,
-                'loopId' => 0,
-            ),
-            'minRating3' => array(
-                'value' => 0,
-                'loopId' => 0,
-            ),
-            'minRating5' => array(
-                'value' => 0,
-                'loopId' => 0,
-            ),
-            'maxRating2' => array(
-                'value' => 0,
-                'loopId' => 0,
-            ),
-            'maxRating3' => array(
-                'value' => 0,
-                'loopId' => 0,
-            ),
-            'maxRating5' => array(
-                'value' => 0,
-                'loopId' => 0,
-            )
-        ); // For arenateams case
-        $currentTimeStamp = time(); // For characters relevance calculation
-        // Get max/min ratings value
-        $i = 0;
-        if($this->type_results == 'arenateams') {
-            foreach($this->results as $result_temp) {
-                if($result_temp['rating'] > $arenateams_cache['maxRating']['value']) {
-                    $arenateams_cache['maxRating'] = array(
-                        'value' => $result_temp['rating'],
-                        'teamSize' => $result_temp['teamSize'],
-                        'loopId' => $i,
-                        'handled' => false
-                    );
-                }
-                if($result_temp['rating'] > 0 && $arenateams_cache['minRating']['value'] > 0 && $result_temp['rating'] < $arenateams_cache['minRating']['value']) {
-                    $arenateams_cache['minRating'] = array(
-                        'value' => $result_temp['rating'],
-                        'teamSize' => $result_temp['teamSize'],
-                        'loopId' => $i,
-                        'handled' => false
-                    );
-                }
-                if($result_temp['rating'] > 0 && $arenateams_cache['maxRating' . $result_temp['teamSize']]['value'] > 0 && $result_temp['rating'] > $arenateams_cache['maxRating' . $result_temp['teamSize']]['value']) {
-                    $arenateams_cache['maxRating' . $result_temp['teamSize']] = array(
-                        'value' => $result_temp['rating'],
-                        'loopId' => $i
-                    );
-                }
-                if($result_temp['rating'] < $arenateams_cache['minRating' . $result_temp['teamSize']]['value']) {
-                    $arenateams_cache['minRating' . $result_temp['teamSize']] = array(
-                        'value' => $result_temp['rating'],
-                        'loopId' => $i
-                    );
-                }
-            }
-            $i++;
-        }
-        $totalCount = count($this->results);
-        for($i = 0; $i < $totalCount; $i++) {
-            // All results have 100 relevance now. This value will be decreased through loop (if any reason for it found)
-            switch($this->type_results) {
-                case 'characters':
-                    $this->results[$i]['relevance'] = 100;
-                    // Relevance by last login date will check `realmd`.`account`.`last_login` timestamp
-                    // First of all - check character level
-                    $temp_value = $this->results[$i]['level'];
-                    if($temp_value > 70 && $temp_value < PLAYER_MAX_LEVEL) {
-                        $this->results[$i]['relevance'] -= 20;
-                    }
-                    elseif($temp_value > 60 && $temp_value < 70) {
-                        $this->results[$i]['relevance'] -= 25;
-                    }
-                    elseif($temp_value > 50 && $temp_value < 60) {
-                        $this->results[$i]['relevance'] -= 30;
-                    }
-                    elseif($temp_value > 40 && $temp_value < 50) {
-                        $this->results[$i]['relevance'] -= 35;
-                    }
-                    elseif($temp_value > 30 && $temp_value < 40) {
-                        $this->results[$i]['relevance'] -= 40;
-                    }
-                    elseif($temp_value > 20 && $temp_value < 30) {
-                        $this->results[$i]['relevance'] -= 45;
-                    }
-                    elseif($temp_value < 20) {
-                        $this->results[$i]['relevance'] -= 50;
-                        continue; // characters with level < 20 have 50% relevance and other reasons can't change this value
-                    }
-                    // Check last login date. If it's more than 2 days, decrease relevance by 4 for every day
-                    if(!isset($accounts_cache[$this->results[$i]['account']])) {
-                        $lastLogin = $this->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=%d", $this->results[$i]['account']);
-                        $accounts_cache[$this->results[$i]['account']] = $lastLogin;
-                    }
-                    else {
-                        $lastLogin = $accounts_cache[$this->results[$i]['account']];
-                    }
-                    // unset 'account' value (for security reason)
-                    if(isset($this->results[$i]['account'])) {
-                        unset($this->results[$i]['account']);
-                    }
-                    $lastLoginTimestamp = strtotime($lastLogin);
-                    $diff = $currentTimeStamp - $lastLoginTimestamp;
-                    if($lastLogin && $diff > 0) {
-                        // 1 day is 86400 seconds
-                        $totalDays = round($diff/86400);
-                        if($totalDays > 2) {
-                            $decreaseRelevanceByLogin = $totalDays*4;
-                            $this->results[$i]['relevance'] -= $decreaseRelevanceByLogin;
-                        }
-                    }
-                    // Relevance for characters can't be less than 50
-                    if($this->results[$i]['relevance'] < 50) {
-                        $this->results[$i]['relevance'] = 50;
-                    }
-                    // Relevance can't be more than 100
-                    if($this->results[$i]['relevance'] > 100) {
-                        $this->results[$i]['relevance'] = 100;
-                    }
-                    break;
-                case 'arenateams':
-                    /*$this->results[$i]['relevance'] = 100;
-                    if($this->results[$i]['rating'] == 0) {
-                        $this->results[$i]['relevance'] = 50;
-                        continue;
-                    }
-                    // 5v5>3v3>2v2
-                    if($this->results[$i]['teamSize'] == 5) {
-                        if($this->results[$i]['rating'] > $arenateams_cache['maxRating5']['value']) {
-                            $tempRelevance = 5*5*;
-                        }
-                        elseif($this->results[$i]['rating'] < $arenateams_cache['maxRating5']['value']) {
-                            $tempRelevance = 5*5;
-                            $this->results[$arenateams_cache['maxRating5']['loopId']]['relevance'] -= FIX_ME;
-                        }
-                    }
-                    elseif($this->results[$i]['relevance'] == 3) {
-                        $tempRelevance = 5*3;
-                    }
-                    else {
-                        $tempRelevance = 5*2;
-                    }
-                    if($this->results[$i]['rating'] > $arenateams_cache['maxRating']['value']) {
-                        $arenateams_cache['maxRating'] = array(
-                            'value' => $this->results[$i]['rating'],
-                            'teamSize' => $this->results[$i]['teamSize'],
-                            'loopId' => $i
-                        );
-                        if($this->results[$i]['teamSize'] > $arenateams_cache['maxRating']['teamSize']) {
-                            $diff = ($this->results[$i]['teamSize']-$arenateams_cache['maxRating']['teamSize']);
-                            $tempRelevance += $this->results[$i]['teamSize'] - $arenateams_cache['maxRating']['teamSize'];
-                        }
-                    }
-                    // Relevance for arena teams can't be less than 50
-                    if($this->results[$i]['relevance'] < 50) {
-                        $this->results[$i]['relevance'] = 50;
-                    }
-                    // Relevance can't be more than 100
-                    if($this->results[$i]['relevance'] > 100) {
-                        $this->results[$i]['relevance'] = 100;
-                    }
-                    */
-                    break;
-                case 'items':
-                    // Relevance can't be more than 100
-                    if($this->results[$i]['relevance'] > 100) {
-                        $this->results[$i]['relevance'] = 100;
-                    }
-                    break;
-            }
-        }
-        return true;
-    }
-    
-    /**
      * Do all dirty work with search filters here
-     * Can be called only from Search::AdvancedItemsSearch()
+     * Can be called only from Search::PerformAdvancedItemsSearch()
      * @category Search class
      * @access   private
      * @return   bool

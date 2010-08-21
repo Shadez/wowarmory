@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -84,7 +84,7 @@ if($utils->IsItemComparisonAllowed()) {
                 if(is_array($itemSlot)) {
                     if(is_array($itemSlot['slotname'])) {
                         foreach($itemSlot['slotname'] as $sId) {
-                            $compItemID = $newChar->getCharacterEquip($sId);
+                            $compItemID = $newChar->GetCharacterEquip($sId);
                             if($compItemID > 0) {
                                 $xml->XMLWriter()->startElement('comparisonTooltips');
                                 $xml->XMLWriter()->startElement('itemTooltip');
@@ -95,7 +95,7 @@ if($utils->IsItemComparisonAllowed()) {
                         }
                     }
                     else {
-                        $compItemID = $newChar->getCharacterEquip($itemSlot['slotname']);
+                        $compItemID = $newChar->GetCharacterEquip($itemSlot['slotname']);
                         if($compItemID > 0) {
                             $xml->XMLWriter()->startElement('comparisonTooltips');
                             $xml->XMLWriter()->startElement('itemTooltip');

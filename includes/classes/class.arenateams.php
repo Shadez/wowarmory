@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 364
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,12 +33,11 @@ Class Arenateams extends Armory {
     public $teamfaction;
     public $teamlogostyle;
     public $teamtype;
-    public $teamstats;
     public $players;
     public $guid;
     private $gameid = false;
     
-    public function _initTeam() {
+    public function InitTeam() {
         if(!$this->teamname && !$this->arenateamid) {
             $this->Log()->writeError('%s : teamname and arenateamid are not defined', __METHOD__);
             return false;
@@ -133,19 +132,10 @@ Class Arenateams extends Armory {
         $teams_result = array();
         for($i=0;$i<$count_teams;$i++) {
             $this->teamname = $team_names[$i]['name'];
-            self::_initTeam();
+            self::InitTeam();
             $teams_result[$i] = self::GetArenaTeamInfo();
         }
         return $teams_result;
-    }
-    
-    public function getTeamStats() {
-        if(!$this->arenateamid) {
-            $this->Log()->writeError('%s : arenateamid not defined', __METHOD__);
-            return false;
-        }
-        $this->teamstats = $this->cDB->selectRow("SELECT * FROM `arena_team_stats` WHERE `arenateamid`=%d LIMIT 1", $this->arenateamid);
-        return true;
     }
     
     public function GetTeamList() {
@@ -292,30 +282,6 @@ Class Arenateams extends Armory {
             $arenaTeamEmblem['iconColor'] = /*dechex(*/$arenaTeamEmblem['iconColor']/*)*/;
             return $arenaTeamEmblem;
         }
-    }
-    
-    public function buildArenaIconsList($type) {
-        $arenaTeamInfo = $this->cDB->select("
-        SELECT
-        `arena_team`.`BackgroundColor`,
-        `arena_team`.`EmblemStyle`,
-        `arena_team`.`EmblemColor`,
-        `arena_team`.`BorderStyle`,
-        `arena_team`.`BorderColor`,
-        `arena_team_stats`.`rank`
-        FROM `arena_team` AS `arena_team`
-        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-        WHERE `type`=%d
-        ORDER BY `arena_team_stats`.`rank`", $type);
-        $j = 1;
-        $count = count($arenaTeamInfo);
-        for($i=0;$i<$count;$i++) {
-            $arenaTeamInfo[$i]['num'] = $j;
-            $arenaTeamInfo[$i]['EmblemColor'] = dechex($arenaTeamInfo[$i]['EmblemColor']);
-            $arenaTeamInfo[$i]['BorderColor'] = dechex($arenaTeamInfo[$i]['BorderColor']);
-            $j++;
-        }
-        return $arenaTeamInfo;
     }
     
     public function CountArenaTeams($type) {
@@ -559,7 +525,7 @@ Class Arenateams extends Armory {
                     'teamUrl'  => sprintf("r=%s&ts=%d&t=%s", urlencode($this->currentRealmInfo['name']), $team['type'], urlencode($team['name'])),
                     'wins'     => $team['countTeam']-$losses
                 );
-                $chart_data[$team['teamid']]['winPer'] = Utils::getPercent($team['countTeam'], $chart_data[$team['teamid']]['wins']);
+                $chart_data[$team['teamid']]['winPer'] = Utils::GetPercent($team['countTeam'], $chart_data[$team['teamid']]['wins']);
             }
         }
         return $chart_data;

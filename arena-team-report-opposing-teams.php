@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,7 +69,7 @@ $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'arena-team-report-opposing-teams.xml');
-$arenateams->_initTeam();
+$arenateams->InitTeam();
 $team_info = $arenateams->GetArenaTeamInfo();
 $xml->XMLWriter()->startElement('arenaGameOpposingTeamsReport');
 $xml->XMLWriter()->startElement('arenaTeam');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,12 +33,7 @@ Class Utils extends Armory {
     public $password;
     public $shaHash;
     
-    public function timeMeasure() {
-        list($msec, $sec) = explode(chr(32), microtime());
-        return ($sec+$msec);
-    }
-    
-    public function authUser() {
+    public function AuthUser() {
         if(!$this->username || !$this->password) {
             $this->Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
@@ -48,8 +43,8 @@ Class Utils extends Armory {
             $this->Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
             return false;
         }
-        elseif(strtoupper($info['sha_pass_hash']) != $this->createShaHash()) {
-            $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are different (%s and %s), unable to auth user.', __METHOD__, strtoupper($info['sha_pass_hash']), $this->createShaHash());
+        elseif(strtoupper($info['sha_pass_hash']) != $this->GenerateShaHash()) {
+            $this->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are different (%s and %s), unable to auth user.', __METHOD__, strtoupper($info['sha_pass_hash']), $this->GenerateShaHash());
             return false;
         }
         else {
@@ -61,27 +56,11 @@ Class Utils extends Armory {
         }
     }
     
-    public function logoffUser() {
+    public function CloseSession() {
         unset($_SESSION['wow_login']);
         unset($_SESSION['username']);
         unset($_SESSION['accountId']);
         return true;
-    }
-    
-    public function getCharsArray($select = false) {
-        if(!isset($_SESSION['accountId'])) {
-            return false;
-        }
-        if($select == true) {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d AND `selected` <> 1 ORDER BY `num` ASC LIMIT 2", $_SESSION['accountId']);
-            $chars[0]['show'] = true;
-            $chars[1]['show'] = true;
-        }
-        else {
-            $chars = $this->aDB->select("SELECT `guid`, `name`, `class`, `race`, `gender`, `level` FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d ORDER BY `num` ASC LIMIT 3", $_SESSION['accountId']);
-        }
-        // TODO: achievement points for each character
-        return $chars;
     }
     
     public function IsAllowedToGuildBank($guildId, $realmId) {
@@ -127,7 +106,6 @@ Class Utils extends Armory {
         }
         $chars_data = $db->select("SELECT 1 FROM `characters` WHERE `account`=%d AND `guid`=%d", $_SESSION['accountId'], $guid);
         if(!$chars_data) {
-            $this->Log()->writeLog('%s : user with account %d does not have character %d', __METHOD__, $_SESSION['accountId'], $guid);
             return false;
         }
         // Account $_SESSION['accountId'] have character $guid on $realmId realm
@@ -219,10 +197,6 @@ Class Utils extends Armory {
         return false;
     }
     
-    public function getCharacter() {
-        return;
-    }
-    
     public function GetActiveCharacter() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -238,10 +212,6 @@ Class Utils extends Armory {
         LEFT JOIN `armory_realm_data` AS `armory_realm_data` ON `armory_realm_data`.`id`=`armory_login_characters`.`realm_id`
         WHERE `armory_login_characters`.`account`=%d AND `armory_login_characters`.`selected`=1 LIMIT 1
         ", $_SESSION['accountId']);
-    }
-    
-    public function loadRandomCharacter() {
-        return;
     }
     
     public function GetBookmarks() {
@@ -327,7 +297,7 @@ Class Utils extends Armory {
         return $count;
     }
     
-    public function createShaHash() {
+    public function GenerateShaHash() {
         if(!$this->username || !$this->password) {
             $this->Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
@@ -358,7 +328,7 @@ Class Utils extends Armory {
         return 0;
     }
     
-    public function getFloatValue($value, $num) {
+    public function GetFloatValue($value, $num) {
         $txt = unpack('f', pack('L', $value));
         return round($txt[1], $num);
     }
@@ -383,7 +353,7 @@ Class Utils extends Armory {
         return !get_magic_quotes_gpc() ? addslashes($string) : $string;
     }
     
-    public function getPercent($max, $min) {
+    public function GetPercent($max, $min) {
         $percent = $max / 100;
         if($percent == 0) {
             return 0;
@@ -427,11 +397,11 @@ Class Utils extends Armory {
     /**
      * Returns array with Realm firsts achievements
      * @category Utils class
-     * @example Utils::realmFirsts()
-     * @todo Merge characters who earned same achievement (realm first boss kill) into one group
-     * @return array
+     * @access   public
+     * @todo     Merge characters who earned same achievement (realm first boss kill) into one group
+     * @return   array
      **/
-    public function realmFirsts() {
+    public function GetRealmFirsts() {
         $achievements_data = $this->cDB->select("
         SELECT
         `character_achievement`.`achievement`,
@@ -584,7 +554,7 @@ Class Utils extends Armory {
         return $c;
     }
     
-    public function getSkillFromItemID($id) {
+    public function GetSkillIDFromItemID($id) {
         if($id == 0) {
             return SKILL_UNARMED;
         }
@@ -615,7 +585,7 @@ Class Utils extends Armory {
         return SKILL_UNARMED;
     }
     
-    public function getSkill($id, $char_data) {
+    public function GetSkillInfo($id, $char_data) {
         $skillInfo = array(0,0,0,0,0,0);
         for ($i=0;$i<128;$i++) {
             if(($char_data[PLAYER_SKILL_INFO_1_1 + $i*3] & 0x0000FFFF) == $id) {
@@ -708,13 +678,13 @@ Class Utils extends Armory {
         return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->GetLocale());
     }
     
-    public function validateText($text) {
-        $letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  );
-        $values = array("`",'&quot;',"&lt;","&gt;","&gt;",""  ,"<br>");
+    public function ValidateSpellText($text) {
+        $letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  , "\n"    , "\n"   );
+        $values = array("`",'&quot;',"&lt;","&gt;","&gt;",""  ,"<br>", "<br />", "<br/>");
         return str_replace($letter, $values, $text);
     }
     
-    public function getTimeText($seconds) {
+    public function GetTimeText($seconds) {
         $strings_array = array(
             'en_gb' => array(
                 'days', 'hours', 'min', 'sec'
@@ -754,7 +724,7 @@ Class Utils extends Armory {
         return $text;
     }
     
-    public function getRadius($index) {
+    public function GetRadius($index) {
         $gSpellRadiusIndex = array(
          '7'=>array(2,0,2),
          '8'=>array(5,0,5),
@@ -869,28 +839,6 @@ Class Utils extends Armory {
     }
     
     /**
-     * Returns instance key from DB
-     * @category Utils class
-     * @access   public
-     * @param    int $instance_id
-     * @return   array
-     **/
-    public function GetDungeonKey($instance_id) {
-        return $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d LIMIT 1", $instance_id);
-    }
-    
-    /**
-     * Returns instance ID from DB for $bossIdOrKey boss
-     * @category Utils class
-     * @access   public
-     * @param    string $bossIdOrKey
-     * @return   array
-     **/
-    public function GetBossDungeonKey($bossIdOrKey) {
-        return $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d) LIMIT 1", $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey, $bossIdOrKey);
-    }
-    
-    /**
      * Returns instance ID from DB
      * @category Utils class
      * @access   public
@@ -919,7 +867,7 @@ Class Utils extends Armory {
      * @param    string $key
      * @return   array
      **/
-    public function PetTalentCalcData($key) {
+    public function GetPetTalentCalculatorData($key) {
         switch(strtolower($key)) {
             case 'ferocity':
             case 'tenacity':
@@ -966,26 +914,6 @@ Class Utils extends Armory {
     public function RaceModelData($raceId) {
         return $this->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", $raceId);
     }
-    
-    /**
-     * Returns icon name for selected class & talent tree
-     * @category Utils
-     * @access   public
-     * @return   string
-     **/
-    public function ReturnTalentTreeIcon($spec, $class) {
-        return $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $class, $spec);
-    }
-    
-    /**
-     * Returns talent tree name for selected class
-     * @category Utils
-     * @access   public
-     * @return   string
-     **/
-    public function ReturnTalentTreeName($spec, $class) {
-		return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $class, $spec);
-	}
     
     /**
      * Returns faction ID for $raceID

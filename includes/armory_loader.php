@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -112,7 +112,7 @@ if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
 }
 elseif(isset($_GET['logout']) && $_GET['logout'] == 1 && !defined('skip_utils_class')) {
-    $utils->logoffUser();
+    $utils->CloseSession();
     header('Location: index.xml');
 }
 /** End login **/
@@ -175,12 +175,6 @@ if(defined('load_characters_class')) {
     }
     $characters = new Characters;
 }
-if(defined('load_player_class')) {
-    if(!@include('classes/class.player.php')) {
-        die('<b>Error:</b> can not load player class!');
-    }
-    $player = new Player;
-}
 if(defined('load_guilds_class')) {
     if(!@include('classes/class.guilds.php')) {
         die('<b>Error:</b> can not load guilds class!');
@@ -216,30 +210,6 @@ if(defined('load_search_class')) {
         die('<b>Error:</b> can not load search engine class!');
     }
     $search = new SearchMgr;
-}
-if(defined('load_itemproto_class')) {
-    if(!@include('classes/class.itemproto.php')) {
-        die('<b>Error:</b> can not load itemProto class!');
-    }
-    $proto = new ItemProto;
-}
-if(defined('load_statsystem_class')) {
-    if(!@include('classes/class.statsystem.php')) {
-        die('<b>Error:</b> can not load StatSystem class!');
-    }
-    $statSystem = new StatSystem;
-}
-if(defined('load_itemhandler_class')) {
-    if(!@include('classes/class.itemhandler.php')) {
-        die('<b>Error:</b> can not load ItemHandler class!');
-    }
-}
-if(defined('__ARMORYADMIN__')) {
-    // This is a dev. placeholder I'm not totally sure about this feature ;)
-    if(!@include('classes/class.admin.php')) {
-        die('<b>Error:</b> can not load admin class!');
-    }
-    $admin = new ArmoryAdmin;
 }
 // start XML parser
 if(!@include('classes/class.xmlhandler.php')) {

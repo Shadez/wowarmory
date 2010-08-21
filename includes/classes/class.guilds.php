@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -66,14 +66,14 @@ Class Guilds extends Armory {
      private $guildBankMoney;
      
      /**
-      * Constructs guild info
+      * Build guild info
       * @category Guilds class
-      * @example Guilds::constructGuildInfo()
-      * @return bool
+      * @access   public
+      * @return   bool
       **/
-     public function _structGuildInfo() {
+     public function BuildGuildInfo() {
         if(!$this->guildId) {
-            $this->extractPlayerGuildId();
+            $this->GetGuildIDByPlayerGUID();
         }
         $guild_data = $this->cDB->selectRow("SELECT `name`, `leaderguid`, `BankMoney`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor` FROM `guild` WHERE `guildid`=%d", $this->guildId);
         if(!$guild_data) {
@@ -88,17 +88,17 @@ Class Guilds extends Armory {
         $this->emblemstyle     = $guild_data['EmblemStyle'];
         $this->bordercolor     = $guild_data['BorderColor'];
         $this->borderstyle     = $guild_data['BorderStyle'];
-        $this->getGuildFaction();
+        $this->GetGuildFaction();
         return true;
      }
      
      /**
-      * Set $this->guildId by $this->guildName
+      * Initialize guild
       * @category Guilds class
-      * @example Guilds::initGuild()
-      * @return bool
+      * @access   public
+      * @return   bool
       **/
-     public function initGuild() {
+     public function InitGuild() {
         if(!$this->guildName) {
             $this->Log()->writeError('%s : guilName not defined', __METHOD__);
             return false;
@@ -112,10 +112,10 @@ Class Guilds extends Armory {
      /**
       * Set $this->guildId of selected player ($this->guid)
       * @category Guilds class
-      * @example Guilds::extractPlayerGuildId()
-      * @return bool
+      * @access   private
+      * @return   bool
       **/
-     public function extractPlayerGuildId($guid = false) {
+     private function GetGuildIDByPlayerGUID($guid = false) {
         if($guid) {
             $this->guid = $guid;
         }
@@ -127,21 +127,6 @@ Class Guilds extends Armory {
         if($this->guildId) {
             return true;
         }
-     }
-     
-     /**
-      * Set $this->guildName of selected guild ($this->guildId)
-      * @category Guilds class
-      * @example Guilds::getGuildName()
-      * @return bool
-      **/
-     public function getGuildName() {
-        if(!$this->guildId) {
-            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
-            return false;
-        }
-        $this->guildName = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=%d LIMIT 1", $this->guildId);
-        return $this->guildName;
      }
      
      /**
@@ -159,49 +144,12 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Set $this->guildleaderguid of selected guild ($this->guildId)
-      * @category Guilds class
-      * @example Guilds::getGuildLeaderGuid()
-      * @return bool
-      **/     
-     public function getGuildLeaderGuid() {
-        if(!$this->guildId) {
-            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
-            return false;
-        }
-        $this->guildleaderguid = $this->cDB->selectCell("SELECT `leaderguid` FROM `guild` WHERE `guildid`=%d LIMIT 1", $this->guildId);
-     }
-     
-     /**
-      * Sets $this->guildtabard of selected guild ($this->guildId)
-      * @category Guilds class
-      * @example Guilds::getGuildTabardStyle()
-      * @return bool
-      **/
-     public function getGuildTabardStyle() {
-        if(!$this->guildId) {
-            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
-            return false;
-        }
-        $gTabard = $this->cDB->selectRow("
-        SELECT `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor`
-            FROM `guild`
-                WHERE `guildid`=%d LIMIT 1", $this->guildId);
-        $this->bgcolor     = $gTabard['BackgroundColor'];
-        $this->emblemcolor = $gTabard['EmblemColor'];
-        $this->emblemstyle = $gTabard['EmblemStyle'];
-        $this->bordercolor = $gTabard['BorderColor'];
-        $this->borderstyle = $gTabard['BorderStyle'];
-        return true;
-     }
-     
-     /**
       * Sets $this->guildFaction as $this->guildleaderguid's faction
       * @category Guilds class
-      * @example Guilds::getGuildFaction()
-      * @return bool
+      * @access   private
+      * @return   bool
       **/
-     public function getGuildFaction() {
+     private function GetGuildFaction() {
         if(!$this->guildleaderguid) {
             $this->Log()->writeError('%s : guildleaderguid not defined', __METHOD__);
             return false;
@@ -293,49 +241,6 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Generates array with guild bank contents.
-      * @category Guilds class
-      * @example Guilds::showGuildBankContents()
-      * @todo Manage rights to access some GB tabs
-      * @return array
-      **/
-     public function showGuildBankContents() {
-        if(!$this->guildId) {
-            $this->Log()->writeError('%s : guildId not defined', __METHOD__);
-            return false;
-        }
-        $GuildBankContents = null;
-        $GB = null;
-        $j = 0;      
-        for($bank=0;$bank<7;$bank++) {
-            $x = 0;
-            for($i=0;$i<14;$i++) {
-                if($x > 97) {
-                    return $GuildBankContents;
-                }
-                for($j=0;$j<7;$j++) {
-                    $iGuid = $this->cDB->selectCell("SELECT `item_guid` FROM `guild_bank_item` WHERE `SlotId`=%d AND `TabId`=%d", $x, $bank);
-                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_entry'] = $this->cDB->selectCell("SELECT `item_entry` FROM `guild_bank_item` WHERE `SlotId`=%d AND `TabId`=%d", $x, $bank);
-                    $GuildBankContents[$bank][$i]['slot_'.$j]['item_icon']  = Items::GetItemIcon($GuildBankContents[$bank][$i]['slot_'.$j]['item_entry']);
-                    switch($this->currentRealmInfo['type']) {
-                        case 'mangos':
-                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $iGuid);
-                            break;
-                        case 'trinity':
-                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = $this->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $iGuid);
-                            break;
-                        default:
-                            $GuildBankContents[$bank][$i]['slot_'.$j]['item_count'] = 1;
-                            break;
-                    }
-                    $x++;
-                }
-            }
-        }
-        return $GuildBankContents;
-     }
-     
-     /**
       * Returns guild bank money
       * @category Guilds class
       * @example Guilds::GetGuildBankMoney()
@@ -367,8 +272,8 @@ Class Guilds extends Armory {
             $items_list[$i]['durability'] = (int) $tmp_durability['current'];
             $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
             unset($tmp_durability);
-            $items_list[$i]['icon'] = Items::getItemIcon($items_list[$i]['id']);
-            $items_list[$i]['name'] = Items::getItemName($items_list[$i]['id']);            
+            $items_list[$i]['icon'] = Items::GetItemIcon($items_list[$i]['id']);
+            $items_list[$i]['name'] = Items::GetItemName($items_list[$i]['id']);            
             $items_list[$i]['qi'] = Items::GetItemInfo($items_list[$i]['id'], 'quality');
             if($this->currentRealmInfo['type'] == 'mangos') {
                 $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);

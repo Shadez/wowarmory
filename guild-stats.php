@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,7 +36,7 @@ if(isset($_GET['gn'])) {
 else {
     $guilds->guildName = false;
 }
-$isGuild = $guilds->initGuild();
+$isGuild = $guilds->InitGuild();
 if(!$isGuild) {
     // Load XSLT template
     $xml->LoadXSLT('error/error.xsl');
@@ -72,7 +72,7 @@ $xml->XMLWriter()->writeAttribute('tabGroup', 'guild');
 $xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null);
 $xml->XMLWriter()->endElement(); //tabInfo
 /** Basic info **/
-$guilds->_structGuildInfo();
+$guilds->BuildGuildInfo();
 $guild_emblem = array(
     'emblemBackground'  => $guilds->bgcolor,
     'emblemBorderColor' => $guilds->bordercolor,

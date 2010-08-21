@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 351
+ * @revision 365
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -116,8 +116,8 @@ Class ArmoryDatabaseHandler {
         $make_array = array();
         $query_start = microtime(true);
         $this->queryCount++;
-        $perfomed_query = @mysql_query($safe_sql, $this->connectionLink);
-        if($perfomed_query === false) {
+        $performed_query = @mysql_query($safe_sql, $this->connectionLink);
+        if($performed_query === false) {
             if($this->logHandler != null && is_object($this->logHandler)) {
                 $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, mysql_error() ? mysql_error() : 'none');
             }
@@ -126,10 +126,10 @@ Class ArmoryDatabaseHandler {
         $result = false;
         switch($queryType) {
             case SINGLE_CELL:
-                $result = @mysql_result($perfomed_query, 0);
+                $result = @mysql_result($performed_query, 0);
                 break;
             case SINGLE_ROW:
-                $result = @mysql_fetch_array($perfomed_query);
+                $result = @mysql_fetch_array($performed_query);
                 if(is_array($result)) {
                     foreach($result as $rKey => $rValue) {
                         if(is_string($rKey)) {
@@ -141,7 +141,7 @@ Class ArmoryDatabaseHandler {
                 break;
             case MULTIPLY_ROW:
                 $result = array();
-                while($_result = @mysql_fetch_array($perfomed_query)) {
+                while($_result = @mysql_fetch_array($performed_query)) {
                     if(is_array($_result)) {
                         foreach($_result as $rKey => $rValue) {
                             if(is_string($rKey)) {
@@ -157,7 +157,7 @@ Class ArmoryDatabaseHandler {
                 break;
             case OBJECT_QUERY:
                 $result = array();
-                while($_result = @mysql_fetch_object($perfomed_query)) {
+                while($_result = @mysql_fetch_object($performed_query)) {
                     $result[] = $_result;
                 }
                 break;
@@ -190,7 +190,7 @@ Class ArmoryDatabaseHandler {
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
         if(preg_match('/ARMORYDBPREFIX/', $safe_sql)) {
             if($this->armory_prefix == null) {
-                $this->logHandler->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query!', __METHOD__);
+                $this->logHandler->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query (%s)!', __METHOD__, $safe_sql);
                 return false;
             }
             $safe_sql = str_replace('ARMORYDBPREFIX', $this->armory_prefix, $safe_sql);
