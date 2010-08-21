@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 367
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1027,7 +1027,6 @@ Class Items extends Armory {
     public function GetImprovedItemSource($itemID, $bossID, $areaDataOnly = false) {
         $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->GetLocale(), $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
-            $this->Log()->writeError('%s : dungeonData for lootid %d not found (current_locale: %s, locId: %d)', __METHOD__, $bossID, $this->GetLocale(), $this->GetLoc());
             return false;
         }
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
@@ -1156,7 +1155,6 @@ Class Items extends Armory {
         if($data) {
             return $data;
         }
-        $this->Log()->writeError('%s : unable to get model data for displayID %d (row: %s, itemid: %d)', __METHOD__, $displayId, $row, $itemid);
         return false;
     }
     
@@ -1293,16 +1291,12 @@ Class Items extends Armory {
                 }
                 break;
             case 'trinity':
-                if($db == null && !is_object($db)) {
-                    $this->Log()->writeError('%s : $db must be object, %s given.', __METHOD__, gettype($db));
-                    return false;
-                }
                 if($item_guid > 0) {
-                    $enchId = $db->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    $enchId = $this->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 }
                 else {
-                    $item_guid = self::GetItemGUIDByEntry($item_entry, $owner_guid, $db);
-                    $enchId = $db->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    $item_guid = self::GetItemGUIDByEntry($item_entry, $owner_guid);
+                    $enchId = $this->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 }
                 break;
         }

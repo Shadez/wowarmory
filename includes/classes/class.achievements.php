@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 367
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -584,7 +584,6 @@ Class Achievements extends Armory {
         }
         $criteria_ids = $this->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d", $this->achId);
         if(!$criteria_ids) {
-            $this->Log()->writeError('%s : unable to get criterias for achievement %d', __METHOD__, $this->achId);
             return false;
         }
         $tmp_criteria_value = 0;
@@ -598,7 +597,6 @@ Class Achievements extends Armory {
             }
         }
         if(!$tmp_criteria_value) {
-            $this->Log()->writeError('%s : criteria value for achievement %d not found', __METHOD__, $this->achId);
             return 0;
         }
         return $tmp_criteria_value;
