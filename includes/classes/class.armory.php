@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 366
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -83,7 +83,14 @@ Class Armory {
         $this->aDB = new ArmoryDatabaseHandler($this->mysqlconfig['host_armory'], $this->mysqlconfig['user_armory'], $this->mysqlconfig['pass_armory'], $this->mysqlconfig['name_armory'], $this->mysqlconfig['charset_armory'], $this->Log(), $this->armoryconfig['db_prefix']);
         $this->rDB = new ArmoryDatabaseHandler($this->mysqlconfig['host_realmd'], $this->mysqlconfig['user_realmd'], $this->mysqlconfig['pass_realmd'], $this->mysqlconfig['name_realmd'], $this->mysqlconfig['charset_realmd'], $this->Log());
         if(isset($_GET['r'])) {
-            $realmName = urldecode($_GET['r']);
+            if(preg_match('/,/', $_GET['r'])) {
+                // Achievements/statistics comparison
+                $rData = explode(',', $_GET['r']);
+                $realmName = urldecode($rData[0]);
+            }
+            else {
+                $realmName = urldecode($_GET['r']);
+            }
             $realm_info = $this->aDB->selectRow("SELECT `id`, `version` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
             if(isset($this->realmData[$realm_info['id']])) {
                 $this->connectionData = $this->realmData[$realm_info['id']];
@@ -102,10 +109,10 @@ Class Armory {
             $this->wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->Log());
         }
         if(!$this->currentRealmInfo) {
-            $this->currentRealmInfo = array('name' => $this->realmData[1]['name'], 'id' => 1, 'type' => $this->realmData[1]['type'], 'connected' => true);
+            $this->currentRealmInfo = array('name' => $realm_info['name'], 'id' => 1, 'type' => $realm_info['type'], 'connected' => true);
         }
         if(!$this->connectionData) {
-            $this->connectionData = $this->realmData[1];
+            $this->connectionData = $realm_info;
         }
         if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));

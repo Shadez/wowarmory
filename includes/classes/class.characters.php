@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 366
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -669,6 +669,10 @@ Class Characters extends Armory {
     }
     
     public function GetAchievementMgr() {
+        if(!is_object($this->m_achievementMgr)) {
+            $this->m_achievementMgr = new Achievements;
+            $this->m_achievementMgr->InitAchievements($this->GetGUID(), $this->db, true);
+        }
         return $this->m_achievementMgr;
     }
     

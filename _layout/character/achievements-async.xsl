@@ -256,7 +256,7 @@
 				<xsl:choose>
 	                <xsl:when test="@dateCompleted">
 	                    <div class="comp_points"><xsl:value-of select="../@points"/></div>
-						<div class="comp_date">[<xsl:apply-templates select="@dateCompleted" mode="format-date"/>]</div>
+						<div class="comp_date">[<xsl:value-of select="@dateCompleted"/>]</div>
 					</xsl:when>
 	                <xsl:otherwise>
 	                	&#8212;

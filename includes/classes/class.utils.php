@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 366
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -901,6 +901,9 @@ Class Utils extends Armory {
      * @return   array
      **/
     public function GetRealmIdByName($rName) {
+        if($realms = explode(',', $rName)) {
+            $rName = $realms[0];
+        }
         return self::IsRealm($rName);
     }
     
@@ -1034,7 +1037,6 @@ Class Utils extends Armory {
     
     public function IsAchievementsComparison($returnFirstRealmName = false) {
         if(!isset($_GET['r']) || (!isset($_GET['cn']) && !isset($_GET['n']))) {
-            $this->Log()->writeError('%s : realms names or characters names not provided', __METHOD__);
             return false;
         }
         $realms = explode(',', $_GET['r']);
@@ -1045,7 +1047,6 @@ Class Utils extends Armory {
             $chars = explode(',', $_GET['cn']);
         }
         if(!is_array($realms) || !is_array($chars)) {
-            $this->Log()->writeError('%s : wrong data', __METHOD__);
             return false;
         }
         $countR = count($realms);
@@ -1061,7 +1062,7 @@ Class Utils extends Armory {
         $data = array();
         for($i = 0; $i < $totalCount; $i++) {
             if(!isset($realms[$i]) || !isset($chars[$i])) {
-                $this->Log()->writeError('%s : missed data for %d count, ignore.', __METHOD__, $i);
+                $this->Log()->writeError('%s : missed data for %d loop, ignore.', __METHOD__, $i);
                 continue;
             }
             $data[$i] = array('name' => $chars[$i], 'realm' => $realms[$i]);

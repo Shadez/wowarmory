@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 366
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,6 +53,21 @@ else {
 if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
+$comparisonData = false;
+$comparison = false;
+// Check for achievement comparison
+if($comparisonData = $utils->IsAchievementsComparison()) {
+    // We got it
+    $comparison = array();
+    $i = 0;
+    foreach($comparisonData as $char) {
+        $comparison[$i] = new Characters;
+        $comparison[$i]->BuildCharacter($char['name'], $utils->GetRealmIdByName($char['realm']), true);
+        $i++;
+    }
+    //
+    $name = $comparisonData[0]['name'];
+}
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
@@ -75,11 +90,20 @@ if($characters->GetGUID() > 0 && $isCharacter && $armory->armoryconfig['useCache
     }
 }
 if($achievement_category > 0) {
-    $armory->Log()->writeLog('character-achievements.php : detected category: %d', $achievement_category);
     $xml->XMLWriter()->startElement('achievements');
     $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
     $xml->XMLWriter()->writeAttribute('requestUrl', 'character-achievements.xml');
     $xml->XMLWriter()->startElement('category');
+    $pages = false;
+    if(is_array($comparison)) {
+        $pages = array();
+        $counter_comparison = 0;
+        foreach($comparison as $char) {
+            $pages[$counter_comparison] = $char->GetAchievementMgr()->LoadAchievementPage($achievement_category, ($char->GetFaction() == 1) ? 0 : 1);
+            $counter_comparison++;
+        }
+    }
+    $pages_count = count($pages);
     $achievements_page = $achievements->LoadAchievementPage($achievement_category, ($characters->GetFaction() == 1) ? 0 : 1);
     $i = 0;
     if(isset($achievements_page['completed'])) {
@@ -88,64 +112,96 @@ if($achievement_category > 0) {
                 continue;
             }
             if($utils->IsWriteRaw()) {
-                $xml->XMLWriter()->writeRaw('<achievement');
-                if(isset($achievement['data'])) {
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->writeRaw('<achievement');
                     foreach($achievement['data'] as $a_data_key => $a_data_value) {
                         $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
                     }
-                }
-                $xml->XMLWriter()->writeRaw('>');
-                if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
-                    foreach($achievement['criteria'] as $criteria) {
-                        $xml->XMLWriter()->writeRaw('<criteria');
-                        foreach($criteria as $c_key => $c_value) {
-                            $xml->XMLWriter()->writeRaw(' ' . $c_key .'="' . $c_value .'"');
+                    $xml->XMLWriter()->writeRaw('>'); //achievement
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->writeRaw('<c');
+                        if(isset($tmp['completed'][$achievement['data']['id']])) {
+                            $xml->XMLWriter()->writeRaw(' dateCompleted="' . $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted'] . '"');
                         }
-                        $xml->XMLWriter()->writeRaw('/>'); //criteria
+                        $xml->XMLWriter()->writeRaw('/>'); //c
                     }
+                    $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
                 }
-                if(isset($achievement['achievement_tree'])) {
-                    foreach($achievement['achievement_tree'] as $achievement_tree) {
-                        $xml->XMLWriter()->writeRaw('<achievement');
-                        foreach($achievement_tree as $a_tree_key => $a_tree_value) {
-                            $xml->XMLWriter()->writeRaw(' ' . $a_tree_key . '="' . $a_tree_value . '"');
+                else {
+                    $xml->XMLWriter()->writeRaw('<achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
                         }
-                        $xml->XMLWriter()->writeRaw('/>'); //achievement
                     }
+                    $xml->XMLWriter()->writeRaw('>');
+                    if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
+                        foreach($achievement['criteria'] as $criteria) {
+                            $xml->XMLWriter()->writeRaw('<criteria');
+                            foreach($criteria as $c_key => $c_value) {
+                                $xml->XMLWriter()->writeRaw(' ' . $c_key .'="' . $c_value .'"');
+                            }
+                            $xml->XMLWriter()->writeRaw('/>'); //criteria
+                        }
+                    }
+                    if(isset($achievement['achievement_tree'])) {
+                        foreach($achievement['achievement_tree'] as $achievement_tree) {
+                            $xml->XMLWriter()->writeRaw('<achievement');
+                            foreach($achievement_tree as $a_tree_key => $a_tree_value) {
+                                $xml->XMLWriter()->writeRaw(' ' . $a_tree_key . '="' . $a_tree_value . '"');
+                            }
+                            $xml->XMLWriter()->writeRaw('/>'); //achievement
+                        }
+                    }
+                    $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
                 }
-                $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
             }
             else {
-                $xml->XMLWriter()->startElement('achievement');
-                if(isset($achievement['data'])) {
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->startElement('achievement');
                     foreach($achievement['data'] as $a_data_key => $a_data_value) {
                         $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
                     }
-                }
-                if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
-                    foreach($achievement['criteria'] as $criteria) {
-                        $xml->XMLWriter()->startElement('criteria');
-                        foreach($criteria as $c_key => $c_value) {
-                            $xml->XMLWriter()->writeAttribute($c_key, $c_value);
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->startElement('c');
+                        if(isset($tmp['completed'][$achievement['data']['id']])) {
+                            $xml->XMLWriter()->writeAttribute('dateCompleted', $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted']);
                         }
-                        $xml->XMLWriter()->endElement(); //criteria
+                        $xml->XMLWriter()->endElement(); //c
                     }
+                    $xml->XMLWriter()->endElement(); //achievement
                 }
-                if(isset($achievement['achievement_tree'])) {
-                    foreach($achievement['achievement_tree'] as $achievement_tree) {
-                        $xml->XMLWriter()->startElement('achievement');
-                        foreach($achievement_tree as $a_tree_key => $a_tree_value) {
-                            $xml->XMLWriter()->writeAttribute($a_tree_key, $a_tree_value);
+                else {
+                    $xml->XMLWriter()->startElement('achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
                         }
-                        $xml->XMLWriter()->endElement(); //achievement
                     }
+                    if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
+                        foreach($achievement['criteria'] as $criteria) {
+                            $xml->XMLWriter()->startElement('criteria');
+                            foreach($criteria as $c_key => $c_value) {
+                                $xml->XMLWriter()->writeAttribute($c_key, $c_value);
+                            }
+                            $xml->XMLWriter()->endElement(); //criteria
+                        }
+                    }
+                    if(isset($achievement['achievement_tree'])) {
+                        foreach($achievement['achievement_tree'] as $achievement_tree) {
+                            $xml->XMLWriter()->startElement('achievement');
+                            foreach($achievement_tree as $a_tree_key => $a_tree_value) {
+                                $xml->XMLWriter()->writeAttribute($a_tree_key, $a_tree_value);
+                            }
+                            $xml->XMLWriter()->endElement(); //achievement
+                        }
+                    }
+                    $xml->XMLWriter()->endElement(); //achievement
                 }
-                $xml->XMLWriter()->endElement(); //achievement
             }
         }
-    }
-    else {
-        $armory->Log()->writeLog('character-achievements.php : player %d (%s) does not have any completed achievements in %d category', $characters->GetGUID(), $characters->GetName(), $achievement_category);
     }
     if(isset($achievements_page['incompleted'])) {
         if($utils->IsWriteRaw()) {
@@ -153,38 +209,52 @@ if($achievement_category > 0) {
                 if(isset($achievement['display']) && $achievement['display'] == 0) {
                     continue;
                 }
-                $xml->XMLWriter()->writeRaw('<achievement');
-                if(isset($achievement['data'])) {
-                    foreach($achievement['data'] as $a_data_key => $a_data_value) {
-                        $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->writeRaw('<achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
+                        }
                     }
+                    $xml->XMLWriter()->writeRaw('>');
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->writeRaw('<c');
+                        if(isset($tmp['completed'][$achievement['data']['id']])) {
+                            $xml->XMLWriter()->writeRaw(' dateCompleted="' . $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted'] . '"');
+                        }
+                        $xml->XMLWriter()->writeRaw('/>'); //c
+                    }
+                    $xml->XMLWriter()->writeRaw('</achievement>');
                 }
                 else {
-                    $armory->Log()->writeLog('character-achievements.php : achievement[data] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
-                }
-                $xml->XMLWriter()->writeRaw('>');
-                if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
-                    foreach($achievement['criteria'] as $criteria) {
-                        $xml->XMLWriter()->writeRaw('<criteria');
-                        foreach($criteria as $c_key => $c_value) {
-                            $xml->XMLWriter()->writeRaw(' ' . $c_key . '="' . $c_value . '"');
+                    $xml->XMLWriter()->writeRaw('<achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
                         }
-                        $xml->XMLWriter()->writeRaw('/>'); //criteria
                     }
-                }
-                else {
-                    $armory->Log()->writeLog('character-achievements.php : achievement[critera] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
-                }
-                if(isset($achievement['achievement_tree'])) {
-                    foreach($achievement['achievement_tree'] as $achievement_tree) {
-                        $xml->XMLWriter()->writeRaw('<achievement');
-                        foreach($achievement_tree as $a_tree_key => $a_tree_value) {
-                            $xml->XMLWriter()->writeRaw(' ' . $a_tree_key . '="' . $a_tree_value . '"');
+                    $xml->XMLWriter()->writeRaw('>');
+                    if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
+                        foreach($achievement['criteria'] as $criteria) {
+                            $xml->XMLWriter()->writeRaw('<criteria');
+                            foreach($criteria as $c_key => $c_value) {
+                                $xml->XMLWriter()->writeRaw(' ' . $c_key . '="' . $c_value . '"');
+                            }
+                            $xml->XMLWriter()->writeRaw('/>'); //criteria
                         }
-                        $xml->XMLWriter()->writeRaw('/>'); //achievement
                     }
+                    if(isset($achievement['achievement_tree'])) {
+                        foreach($achievement['achievement_tree'] as $achievement_tree) {
+                            $xml->XMLWriter()->writeRaw('<achievement');
+                            foreach($achievement_tree as $a_tree_key => $a_tree_value) {
+                                $xml->XMLWriter()->writeRaw(' ' . $a_tree_key . '="' . $a_tree_value . '"');
+                            }
+                            $xml->XMLWriter()->writeRaw('/>'); //achievement
+                        }
+                    }
+                    $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
                 }
-                $xml->XMLWriter()->writeRaw('</achievement>'); //achievement
             }
         }
         else {
@@ -192,42 +262,52 @@ if($achievement_category > 0) {
                 if(isset($achievement['display']) && $achievement['display'] == 0) {
                     continue;
                 }
-                $xml->XMLWriter()->startElement('achievement');
-                if(isset($achievement['data'])) {
-                    foreach($achievement['data'] as $a_data_key => $a_data_value) {
-                        $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->startElement('achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
+                        }
                     }
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->startElement('c');
+                        if(isset($tmp['completed'][$achievement['data']['id']])) {
+                            $xml->XMLWriter()->writeAttribute('dateCompleted', $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted']);
+                        }
+                        $xml->XMLWriter()->endElement(); //c
+                    }
+                    $xml->XMLWriter()->endElement(); //achievement
                 }
                 else {
-                    $armory->Log()->writeLog('character-achievements.php : achievement[data] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
-                }
-                if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
-                    foreach($achievement['criteria'] as $criteria) {
-                        $xml->XMLWriter()->startElement('criteria');
-                        foreach($criteria as $c_key => $c_value) {
-                            $xml->XMLWriter()->writeAttribute($c_key, $c_value);
+                    $xml->XMLWriter()->startElement('achievement');
+                    if(isset($achievement['data'])) {
+                        foreach($achievement['data'] as $a_data_key => $a_data_value) {
+                            $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
                         }
-                        $xml->XMLWriter()->endElement(); //criteria
                     }
-                }
-                else {
-                    $armory->Log()->writeLog('character-achievements.php : achievement[critera] not found (player: %d; %s)!', $characters->GetGUID(), $characters->GetName());
-                }
-                if(isset($achievement['achievement_tree'])) {
-                    foreach($achievement['achievement_tree'] as $achievement_tree) {
-                        $xml->XMLWriter()->startElement('achievement');
-                        foreach($achievement_tree as $a_tree_key => $a_tree_value) {
-                            $xml->XMLWriter()->writeAttribute($a_tree_key, $a_tree_value);
+                    if(isset($achievement['criteria']) && is_array($achievement['criteria'])) {
+                        foreach($achievement['criteria'] as $criteria) {
+                            $xml->XMLWriter()->startElement('criteria');
+                            foreach($criteria as $c_key => $c_value) {
+                                $xml->XMLWriter()->writeAttribute($c_key, $c_value);
+                            }
+                            $xml->XMLWriter()->endElement(); //criteria
                         }
-                        $xml->XMLWriter()->endElement(); //achievement
                     }
+                    if(isset($achievement['achievement_tree'])) {
+                        foreach($achievement['achievement_tree'] as $achievement_tree) {
+                            $xml->XMLWriter()->startElement('achievement');
+                            foreach($achievement_tree as $a_tree_key => $a_tree_value) {
+                                $xml->XMLWriter()->writeAttribute($a_tree_key, $a_tree_value);
+                            }
+                            $xml->XMLWriter()->endElement(); //achievement
+                        }
+                    }
+                    $xml->XMLWriter()->endElement(); //achievement
                 }
-                $xml->XMLWriter()->endElement(); //achievement
             }
         }
-    }
-    else {
-        $armory->Log()->writeLog('character-achievements.php : player %d (%s) does not have any incompleted achievements in %d category', $characters->GetGUID(), $characters->GetName(), $achievement_category);
     }
     $xml->XMLWriter()->endElement();  //category
     $xml->XMLWriter()->endElement(); //achievements
@@ -266,57 +346,124 @@ $character_title = $characters->GetChosenTitleInfo();
 $character_element = $characters->GetHeader();
 $xml->XMLWriter()->startElement('characterInfo');
 if($utils->IsWriteRaw()) {
-    $xml->XMLWriter()->writeRaw('<character');
-    foreach($character_element as $c_elem_name => $c_elem_value) {
-        if($c_elem_name == 'charUrl') {
-            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
-        }
-        else {
-            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+    if(is_array($comparison)) {
+        foreach($comparison as $char) {
+            $xml->XMLWriter()->writeRaw('<character');
+            $current_header = $char->GetHeader();
+            foreach($current_header as $header_key => $header_value) {
+                if($header_key == 'charUrl') {
+                    $xml->XMLWriter()->writeRaw(' ' . $header_key . '="' . htmlspecialchars($header_value) . '"');
+                }
+                else {
+                    $xml->XMLWriter()->writeRaw(' ' . $header_key .'="' .$header_value.'"');
+                }
+            }
+            $xml->XMLWriter()->writeRaw('/>');
+            
         }
     }
-    $xml->XMLWriter()->writeRaw('>');
-    $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
+    else {
+        $xml->XMLWriter()->writeRaw('<character');
+        foreach($character_element as $c_elem_name => $c_elem_value) {
+            if($c_elem_name == 'charUrl') {
+                $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
+            }
+            else {
+                $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+            }
+        }
+        $xml->XMLWriter()->writeRaw('>');
+        $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
+    }
 }
 else {
-    $xml->XMLWriter()->startElement('character');
-    foreach($character_element as $c_elem_name => $c_elem_value) {
-        $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+    if(is_array($comparison)) {
+        foreach($comparison as $char) {
+            $xml->XMLWriter()->startElement('character');
+            $current_header = $char->GetHeader();
+            foreach($current_header as $header_key => $header_value) {
+                $xml->XMLWriter()->writeAttribute($header_key, $header_value);
+            }
+            $xml->XMLWriter()->endElement(); //character
+        }
     }
-    $xml->XMLWriter()->startElement('modelBasePath');
-    $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
-    $xml->XMLWriter()->endElement();  //modelBasePath
-    $xml->XMLWriter()->endElement(); //character
+    else {
+        $xml->XMLWriter()->startElement('character');
+        foreach($character_element as $c_elem_name => $c_elem_value) {
+            $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+        }
+        $xml->XMLWriter()->startElement('modelBasePath');
+        $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+        $xml->XMLWriter()->endElement();  //modelBasePath
+        $xml->XMLWriter()->endElement(); //character
+    }
 }
 $xml->XMLWriter()->endElement(); //characterInfo
 $xml->XMLWriter()->startElement('achievements');
 $xml->XMLWriter()->startElement('summary');
-$xml->XMLWriter()->startElement('c');
-$info_summary = $achievements->GetSummaryAchievementData(0);
-if(is_array($info_summary)) {
-    foreach($info_summary as $info_key => $info_value) {
-        $xml->XMLWriter()->writeAttribute($info_key, $info_value);
+if(is_array($comparison)) {
+    foreach($comparison as $char) {
+        $xml->XMLWriter()->startElement('c');
+        $info_summary = $char->GetAchievementMgr()->GetSummaryAchievementData(0);
+        if(is_array($info_summary)) {
+            foreach($info_summary as $info_key => $info_value) {
+                $xml->XMLWriter()->writeAttribute($info_key, $info_value);
+            }
+        }
+        $xml->XMLWriter()->endElement(); //c
     }
 }
-$xml->XMLWriter()->endElement(); //c
+else {
+    $xml->XMLWriter()->startElement('c');
+    $info_summary = $achievements->GetSummaryAchievementData(0);
+    if(is_array($info_summary)) {
+        foreach($info_summary as $info_key => $info_value) {
+            $xml->XMLWriter()->writeAttribute($info_key, $info_value);
+        }
+    }
+    $xml->XMLWriter()->endElement(); //c
+}
 $info_categories = array(92, 96, 97, 95, 168, 169, 201, 155, 81);
 foreach($info_categories as $achievement_category) {
     $xml->XMLWriter()->startElement('category');
-    $current_category = $achievements->GetSummaryAchievementData($achievement_category);
-    if($current_category) {
-        if($utils->IsWriteRaw()) {
-            $xml->XMLWriter()->writeRaw('<c');
-            foreach($current_category as $category_key => $category_value) {
-                $xml->XMLWriter()->writeRaw(' ' . $category_key .'="' . $category_value . '"');
+    if(is_array($comparison)) {
+        foreach($comparison as $char) {
+            $comp_category = $char->GetAchievementMgr()->GetSummaryAchievementData($achievement_category);
+            if($comp_category) {
+                if($utils->IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<c');
+                    foreach($comp_category as $comp_cat_key => $comp_cat_value) {
+                        $xml->XMLWriter()->writeRaw(' ' . $comp_cat_key . '="' . $comp_cat_value . '"');
+                    }
+                    $xml->XMLWriter()->writeRaw('/>'); //c
+                }
+                else {
+                    $xml->XMLWriter()->startElement('c');
+                    foreach($comp_category as $comp_cat_key => $comp_cat_value) {
+                        $xml->XMLWriter()->writeAttribute($comp_cat_key, $comp_cat_value);
+                    }
+                    $xml->XMLWriter()->endElement(); //c
+                }
             }
-            $xml->XMLWriter()->writeRaw('/>'); //c
         }
-        else {
-            $xml->XMLWriter()->startElement('c');
-            foreach($current_category as $category_key => $category_value) {
-                $xml->XMLWriter()->writeAttribute($category_key, $category_value);
+    }
+    else {
+        $current_category = $achievements->GetSummaryAchievementData($achievement_category);
+        if($current_category) {
+            if($utils->IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<c');
+                foreach($current_category as $category_key => $category_value) {
+                    $xml->XMLWriter()->writeRaw(' ' . $category_key .'="' . $category_value . '"');
+                }
+                $xml->XMLWriter()->writeRaw('/>'); //c
             }
-            $xml->XMLWriter()->endElement(); //c
+            else {
+                $xml->XMLWriter()->startElement('c');
+                foreach($current_category as $category_key => $category_value) {
+                    $xml->XMLWriter()->writeAttribute($category_key, $category_value);
+                }
+                $xml->XMLWriter()->endElement(); //c
+            }
         }
     }
     $xml->XMLWriter()->endElement(); //category
