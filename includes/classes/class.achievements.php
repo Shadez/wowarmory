@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 367
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -110,6 +110,12 @@ Class Achievements extends Armory {
         return $this->pts;
     }
     
+    /**
+     * Returns completed achievements count
+     * @category Achievements class
+     * @access   public
+     * @return   int
+     **/
     public function GetAchievementsCount() {
         return $this->m_count;
     }
@@ -153,6 +159,13 @@ Class Achievements extends Armory {
         return $this->m_count;
     }
     
+    /**
+     * Returns summary data for completed achievements in selected category.
+     * @category Achievements class
+     * @access   public
+     * @param    int $category
+     * @return   array
+     **/
     public function GetSummaryAchievementData($category) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
@@ -272,7 +285,7 @@ Class Achievements extends Armory {
     }
     
     /**
-     * Returns achievement date. If $guid not provided, function will use $this->guid.
+     * Returns achievement date.
      * @category Achievements class
      * @access   public
      * @param    int $achId = 0
@@ -427,7 +440,7 @@ Class Achievements extends Armory {
             return false;
         }
         $return_data = array();
-        $i=0;
+        $i = 0;
         $hide_id = array();
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
@@ -495,7 +508,13 @@ Class Achievements extends Armory {
         return $return_data;
     }
     
-    public function BuildAchievementCriteriaTable() {
+    /**
+     * Builds criterias table for current (this->achId) achievement
+     * @category Achievements class
+     * @access   private
+     * @return   array
+     **/
+    private function BuildAchievementCriteriaTable() {
         if($this->GetLocale() == 'es_es' || $this->GetLocale() == 'es_mx') {
             $locale = 'en_gb';
         }
@@ -517,7 +536,7 @@ Class Achievements extends Armory {
             if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_HIDE_CRITERIA) {
                 continue;
             }
-            $m_data = $this->GetCriteriaData($criteria['id']);
+            $m_data = self::GetCriteriaData($criteria['id']);
             if(!isset($m_data['counter']) || !$m_data['counter']) {
                 $m_data['counter'] = 0;
             }
@@ -544,7 +563,14 @@ Class Achievements extends Armory {
         return $achievement_criteria;
     }
     
-    public function GetCriteriaData($criteria_id) {
+    /**
+     * Returns criteria ($criteria_id) data
+     * @category Achievements class
+     * @access   private
+     * @param    int $criteria_id
+     * @return   array
+     **/
+    private function GetCriteriaData($criteria_id) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
@@ -552,6 +578,14 @@ Class Achievements extends Armory {
         return $this->db->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
     }
     
+    /**
+     * Generates statistics page
+     * @category Achievements class
+     * @access   public
+     * @param    int $page_id
+     * @param    int $faction
+     * @return   array
+     **/
     public function LoadStatisticsPage($page_id, $faction) {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
@@ -577,7 +611,13 @@ Class Achievements extends Armory {
         return $return_data;
     }
     
-    public function GetCriteriaValue() {
+    /**
+     * Returns criteria value for current achievement (this->achId)
+     * @category Achievements class
+     * @access   private
+     * @return   int
+     **/
+    private function GetCriteriaValue() {
         if(!$this->guid || !$this->achId) {
             $this->Log()->writeError('%s : player guid or achievement id not defined', __METHOD__);
             return false;
@@ -600,6 +640,28 @@ Class Achievements extends Armory {
             return 0;
         }
         return $tmp_criteria_value;
+    }
+    
+    /**
+     * Generates Feats of Strength list for achievements comparison.
+     * @category Achievements class
+     * @access   public
+     * @param    array $pages
+     * @return   array
+     **/
+    public function BuildFoSListForComparison($pages) {
+        if(!is_array($pages)) {
+            return false;
+        }
+        foreach($pages as $char) {
+            foreach($char['completed'] as $achList) {
+                if(!isset($pages[0]['completed'][$achList['data']['id']])) {
+                    $pages[0]['completed'][$achList['data']['id']] = $achList;
+                    $pages[0]['completed'][$achList['data']['id']]['data']['dateCompleted'] = null;
+                }
+            }
+        }
+        return $pages;
     }
 }
 ?>

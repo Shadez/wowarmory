@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 368
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,11 +28,40 @@ if(!defined('__ARMORY__')) {
 
 Class Utils extends Armory {
     
+    /**
+     * Account ID
+     * @category Utils class
+     * @access   public
+     **/
     public $accountId;
+    
+    /**
+     * Username
+     * @category Utils class
+     * @access   public
+     **/
     public $username;
+    
+    /**
+     * Password
+     * @category Utils class
+     * @access   public
+     **/
     public $password;
+    
+    /**
+     * Login-password hash (SHA1)
+     * @category Utils class
+     * @access   public
+     **/
     public $shaHash;
     
+    /**
+     * User authorization
+     * @category Utils class
+     * @access   public
+     * @return   bool
+     **/
     public function AuthUser() {
         if(!$this->username || !$this->password) {
             $this->Log()->writeError('%s : username or password not defined', __METHOD__);
@@ -56,6 +85,12 @@ Class Utils extends Armory {
         }
     }
     
+    /**
+     * Close session for current user
+     * @category Utils class
+     * @access   public
+     * @return   bool
+     **/
     public function CloseSession() {
         unset($_SESSION['wow_login']);
         unset($_SESSION['username']);
@@ -63,6 +98,14 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Checks if account have any character that can browse guild bank.
+     * @category Utils class
+     * @access   public
+     * @param    int $guildId
+     * @param    int $realmId
+     * @return   bool
+     **/
     public function IsAllowedToGuildBank($guildId, $realmId) {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -91,6 +134,14 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Is account have current character? :D
+     * @category Utils class
+     * @access   public
+     * @param    int $guid
+     * @param    int $realmId
+     * @return   bool
+     **/
     public function IsAccountHaveCurrentCharacter($guid, $realmId) {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -112,6 +163,12 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Counts all selected characters.
+     * @category Utils class
+     * @access   public
+     * @return   int
+     **/
     public function CountSelectedCharacters() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -119,6 +176,12 @@ Class Utils extends Armory {
         return $this->aDB->selectCell("SELECT COUNT(`guid`) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
     }
     
+    /**
+     * Counts all characters.
+     * @category Utils class
+     * @access   public
+     * @return   int
+     **/
     public function CountAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -133,6 +196,12 @@ Class Utils extends Armory {
         return $count_all;
     }
     
+    /**
+     * Returns array with all characters.
+     * @category Utils class
+     * @access   public
+     * @return   array
+     **/
     public function GetAllCharacters() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -197,6 +266,12 @@ Class Utils extends Armory {
         return false;
     }
     
+    /**
+     * Returns active (selected) character info
+     * @category Utils class
+     * @access   public
+     * @return   array
+     **/
     public function GetActiveCharacter() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -214,6 +289,12 @@ Class Utils extends Armory {
         ", $_SESSION['accountId']);
     }
     
+    /**
+     * Returns array with user bookmarks.
+     * @category Utils class
+     * @access   public
+     * @return   array
+     **/
     public function GetBookmarks() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -249,6 +330,14 @@ Class Utils extends Armory {
         return $result;
     }
     
+    /**
+     * Creates new bookmark
+     * @category Utils class
+     * @access   public
+     * @param    string $name
+     * @param    string $realmName
+     * @return   bool
+     **/
     public function AddBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -278,6 +367,14 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Delete bookmark.
+     * @category Utils class
+     * @access   public
+     * @param    string $name
+     * @param    string $realmName
+     * @return   bool
+     **/
     public function DeleteBookmark($name, $realmName) {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -286,6 +383,12 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Returns bookmarks count.
+     * @category Utils class
+     * @access   public
+     * @return   int
+     **/
     public function GetBookmarksCount() {
         if(!isset($_SESSION['accountId'])) {
             return false;
@@ -297,6 +400,12 @@ Class Utils extends Armory {
         return $count;
     }
     
+    /**
+     * Generates SHA1 hash.
+     * @category Utils class
+     * @access   public
+     * @return   string
+     **/
     public function GenerateShaHash() {
         if(!$this->username || !$this->password) {
             $this->Log()->writeError('%s : username or password not defined', __METHOD__);
@@ -306,6 +415,14 @@ Class Utils extends Armory {
         return strtoupper($this->shaHash);
     }
     
+    /**
+     * Calculates pet bonus for some stats.
+     * @category Utils class
+     * @access   public
+     * @param    int $stat
+     * @param    int $value
+     * @param    int $unitClass
+     **/
     public function ComputePetBonus($stat, $value, $unitClass) {
         $hunter_pet_bonus = array(0.22, 0.1287, 0.3, 0.4, 0.35, 0.0, 0.0, 0.0);
         $warlock_pet_bonus = array(0.0, 0.0, 0.3, 0.4, 0.35, 0.15, 0.57, 0.3);
@@ -328,11 +445,27 @@ Class Utils extends Armory {
         return 0;
     }
     
+    /**
+     * Returns float value.
+     * @category Utils class
+     * @access   public
+     * @param    int $value
+     * @param    int $num
+     * @return   float
+     **/
     public function GetFloatValue($value, $num) {
         $txt = unpack('f', pack('L', $value));
         return round($txt[1], $num);
     }
     
+    /**
+     * Returns rating coefficient for rating $id.
+     * @category Utils class
+     * @access   public
+     * @param    array $rating
+     * @param    int $id
+     * @return   int
+     **/
     public function GetRatingCoefficient($rating, $id) {
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[44+$id]) || !isset($rating[$ratingkey[44+$id]])) {
@@ -345,14 +478,36 @@ Class Utils extends Armory {
         return $c;
     }
     
+    /**
+     * Loads rating info from DB.
+     * @category Utils class
+     * @access   public
+     * @param    int $level
+     * @return   array
+     **/
     public function GetRating($level) {
         return $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_rating` WHERE `level`=%d", $level);
     }
     
+    /**
+     * Add slashes to string.
+     * @category Utils class
+     * @access   public
+     * @param    string $string
+     * @return   string
+     **/
     public function escape($string) {
         return !get_magic_quotes_gpc() ? addslashes($string) : $string;
     }
     
+    /**
+     * Returns percent value.
+     * @category Utils class
+     * @access   public
+     * @param    int $max
+     * @param    int $min
+     * @return   int
+     **/
     public function GetPercent($max, $min) {
         $percent = $max / 100;
         if($percent == 0) {
@@ -365,6 +520,13 @@ Class Utils extends Armory {
 		return $progressPercent;
     }
     
+    /**
+     * Returns max. array value index.
+     * @category Utils class
+     * @access   public
+     * @param    array $arr
+     * @return   array
+     **/
     public function GetMaxArray($arr) {
         if(!is_array($arr)) {
             $this->Log()->writeError('%s : arr must be in array', __METHOD__);
@@ -383,6 +545,15 @@ Class Utils extends Armory {
         return $index_max;
     }
     
+    /**
+     * Returns spell bonus damage.
+     * @category Utils class
+     * @access   public
+     * @param    int $school
+     * @param    int $guid
+     * @param    object $db
+     * @return   int
+     **/
     public function GetSpellBonusDamage($school, $guid, $db) {
         $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school+1;
         $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school+1;
@@ -482,6 +653,15 @@ Class Utils extends Armory {
         return $achievements_data;
     }
     
+    /**
+     * Calculates attack power for different classes by stat mods
+     * @category Utils class
+     * @access   public
+     * @param    int $statIndex
+     * @param    float $effectiveStat
+     * @param    int $class
+     * @return   float
+     **/
     public function GetAttackPowerForStat($statIndex, $effectiveStat, $class) {
         $ap = 0;
         if($statIndex == STAT_STRENGTH) {
@@ -514,6 +694,15 @@ Class Utils extends Armory {
         return $ap;
     }
     
+    /**
+     * Calculates crit chance from agility stat.
+     * @category Utils class
+     * @access   public
+     * @param    array $rating
+     * @param    int $class
+     * @param    float $agility
+     * @return   float
+     **/
     public function GetCritChanceFromAgility($rating, $class, $agility) {
         $base = array(3.1891, 3.2685, -1.532, -0.295, 3.1765, 3.1890, 2.922, 3.454, 2.6222, 20, 7.4755);
         $ratingkey = array_keys($rating);
@@ -522,6 +711,15 @@ Class Utils extends Armory {
         }
     }
     
+    /**
+     * Calculates spell crit chance from intellect stat.
+     * @category Utils class
+     * @access   public
+     * @param    array $rating
+     * @param    int $class
+     * @param    float $intellect
+     * @return   float
+     **/
     public function GetSpellCritChanceFromIntellect($rating, $class, $intellect) {
         $base = array(0, 3.3355, 3.602, 0, 1.2375, 0, 2.201, 0.9075, 1.7, 20, 1.8515);
         $ratingkey = array_keys($rating);
@@ -530,6 +728,14 @@ Class Utils extends Armory {
         }
     }
     
+    /**
+     * Calculates health regeneration coefficient.
+     * @category Utils class
+     * @access   public
+     * @param    array $rating
+     * @param    int $class
+     * @return   float
+     **/
     public function GetHRCoefficient($rating, $class) {
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[22+$class]) || !isset($rating[$ratingkey[22+$class]])) {
@@ -542,6 +748,14 @@ Class Utils extends Armory {
         return $c;
     }
     
+    /**
+     * Calculates mana regenerating coefficient
+     * @category Utils class
+     * @access   public
+     * @param    array $rating
+     * @param    int $class
+     * @return   float
+     **/
     public function GetMRCoefficient($rating, $class) {
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[33+$class]) || !isset($rating[$ratingkey[33+$class]])) {
@@ -554,6 +768,13 @@ Class Utils extends Armory {
         return $c;
     }
     
+    /**
+     * Returns Skill ID that required for Item $id
+     * @category Utils class
+     * @access   public
+     * @param    int $id
+     * @return   int
+     **/
     public function GetSkillIDFromItemID($id) {
         if($id == 0) {
             return SKILL_UNARMED;
@@ -585,6 +806,14 @@ Class Utils extends Armory {
         return SKILL_UNARMED;
     }
     
+    /**
+     * Returns skill info for skill $id
+     * @category Utils class
+     * @access   public
+     * @param    int $id
+     * @param    array $char_data
+     * @return   array
+     **/
     public function GetSkillInfo($id, $char_data) {
         $skillInfo = array(0,0,0,0,0,0);
         for ($i=0;$i<128;$i++) {
@@ -604,10 +833,28 @@ Class Utils extends Armory {
         return $skillInfo;
     }
     
-    public function GenerateCacheId($page, $att1=0, $att2=0, $att3=0) {
+    /**
+     * Generates cache ID (md5 hash)
+     * @category Utils class
+     * @access   public
+     * @param    string $page
+     * @param    int $att1 = 0
+     * @param    int $att2 = 0
+     * @param    int $att3 = 0
+     * @return   string
+     **/
+    public function GenerateCacheId($page, $att1 = 0, $att2 = 0, $att3 = 0) {
         return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.$this->GetLocale());
     }
     
+    /**
+     * Loads cache by $file_id hash (md5).
+     * @category Utils class
+     * @access   public
+     * @param    string $file_id
+     * @param    string $file_dir = 'characters'
+     * @return   string
+     **/
     public function GetCache($file_id, $file_dir = 'characters') {
         if($this->armoryconfig['useCache'] != true) {
             return false;
@@ -617,6 +864,10 @@ Class Utils extends Armory {
         if(file_exists($data_path)) {
             $data_contents = @file_get_contents($data_path);
             $data_explode = explode(':', $data_contents);
+            if(!is_array($data_explode)) {
+                $this->Log()->writeError('%s : wrong cache data!', __METHOD__);
+                return false;
+            }
             $cache_timestamp = $data_explode[0];
             $cache_revision  = $data_explode[1];
             $name_or_itemid  = $data_explode[2];
@@ -630,7 +881,7 @@ Class Utils extends Armory {
             else {
                 if(file_exists($cache_path)) {
                     $cache_contents = @file_get_contents($cache_path);
-                    if(sizeof($cache_contents) > 0x00) {
+                    if($cache_contents != null) {
                         return $cache_contents;
                     }
                     else {
@@ -642,7 +893,15 @@ Class Utils extends Armory {
         return false;
     }
     
-    public function DeleteCache($file_id, $file_dir) {
+    /**
+     * Delete cache by $file_id hash (md5) from $file_dir directory.
+     * @category Utils class
+     * @access   private
+     * @param    string $file_id
+     * @param    string $file_dir
+     * @return   bool
+     **/
+    private function DeleteCache($file_id, $file_dir) {
         $data_path  = sprintf('cache/%s/%s.data', $file_dir, $file_id);
         $cache_path = sprintf('cache/%s/%s.cache', $file_dir, $file_id);
         if(file_exists($data_path)) {
@@ -654,7 +913,17 @@ Class Utils extends Armory {
         return;
     }
     
-    public function WriteCache($file_id, $filedata, $filecontents, $filedir='characters') {
+    /**
+     * Write data to cache.
+     * @category Utils class
+     * @access   public
+     * @param    string $file_id
+     * @param    string $filedata
+     * @param    string $filecontents
+     * @param    string $filedir = 'characters'
+     * @return   bool
+     **/
+    public function WriteCache($file_id, $filedata, $filecontents, $filedir = 'characters') {
         if($this->armoryconfig['useCache'] != true) {
             return false;
         }
@@ -674,16 +943,39 @@ Class Utils extends Armory {
         return 0x01;
     }
     
-    public function GenerateCacheData($nameOrItemID, $charGuid, $page=null) {
+    /**
+     * Generates cache data (creation date, revisions, etc.).
+     * @category Utils class
+     * @access   public
+     * @param    string $nameOrItemID
+     * @param    int $charGuid
+     * @param    $page = null
+     * @return   string
+     **/
+    public function GenerateCacheData($nameOrItemID, $charGuid, $page = null) {
         return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->GetLocale());
     }
     
+    /**
+     * Replace special symbols in $text.
+     * @category Utils class
+     * @access   public
+     * @param    string $text.
+     * @return   string
+     **/
     public function ValidateSpellText($text) {
         $letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  , "\n"    , "\n"   );
         $values = array("`",'&quot;',"&lt;","&gt;","&gt;",""  ,"<br>", "<br />", "<br/>");
         return str_replace($letter, $values, $text);
     }
     
+    /**
+     * Converts seconds to day/hour/minutes format.
+     * @category Utils class
+     * @access   public
+     * @param    int $seconds
+     * @return   string
+     **/
     public function GetTimeText($seconds) {
         $strings_array = array(
             'en_gb' => array(
@@ -724,6 +1016,13 @@ Class Utils extends Armory {
         return $text;
     }
     
+    /**
+     * Returns spell radius.
+     * @category Utils class
+     * @access   public
+     * @param    int $index
+     * @return   string
+     **/
     public function GetRadius($index) {
         $gSpellRadiusIndex = array(
          '7'=>array(2,0,2),
@@ -794,7 +1093,7 @@ Class Utils extends Armory {
     }
     
     /**
-     * Returns player class ID
+     * Returns player class ID (by class name)
      * @category Utils class
      * @access   public
      * @param    string $class_string
@@ -1028,6 +1327,13 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Returns true if script should use XMLWriter::WriteRaw() instead of special methods.
+     * Required for fr/de/es locales.
+     * @category Utils class
+     * @access   public
+     * @retunr   bool
+     **/
     public function IsWriteRaw() {
         if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us' || $this->GetLocale() == 'ru_ru') {
             return false;
@@ -1035,6 +1341,13 @@ Class Utils extends Armory {
         return true;
     }
     
+    /**
+     * Checks $_GET variable for multiply realms/names in it (for achievement/statistics comparison).
+     * @category Utils class
+     * @access   public
+     * @param    bool $returnFirstRealmName = false
+     * @return   mixed
+     **/
     public function IsAchievementsComparison($returnFirstRealmName = false) {
         if(!isset($_GET['r']) || (!isset($_GET['cn']) && !isset($_GET['n']))) {
             return false;
@@ -1071,32 +1384,6 @@ Class Utils extends Armory {
             return array(0 => array('name' => $chars[0], 'realm' => $realms[0]), 1 => array('name' => $chars[1], 'realm' => $realms[1]));
         }
         return $data;
-    }
-    
-    public function GetAchievementsComparisonDB($realms) {
-        if(!is_array($realms)) {
-            $this->Log()->writeError('%s : realms must be in array!', __METHOD__);
-            return false;
-        }
-        $countRealms = count($realms);
-        $db = array();
-        for($i = 0; $i < $countRealms; $i++) {
-            $rID = self::GetRealmIdByName($realms[$i]['realm']);
-            if(!$rID) {
-                $this->Log()->writeError('%s : unable to find realm ID for name "%s", ignore.', __METHOD__, $realms[$i]['realm']);
-                continue;
-            }
-            if(!isset($this->realmData[$rID])) {
-                $this->Log()->writeError('%s : connection info for realm id %d (name: "%s") not found, ignore.', __METHOD__, $rID, $realms[$i]['realm']);
-                continue;
-            }
-            $realm_info = $this->realmData[$i];
-            $db[$i] = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
-            if(!$db[$i]) {
-                unset($db[$i]);
-            }
-        }
-        return $db;
     }
     
     /**
@@ -1215,6 +1502,21 @@ Class Utils extends Armory {
         $this->Log()->writeError('%s : unable to detect realm type, realm info with ID #%d was removed from allowed realms', __METHOD__, $realm_id);
         unset($realm_id, $realm_info, $this->realmData[$realm_id], $db);
         return false;
+    }
+    
+    /**
+     * Generate cache ID (md5 hash) for comparison cases (achievements/statistics).
+     * @category Utils class
+     * @access   public
+     * @param    array $comparison_data
+     * @return   string
+     **/
+    public function GenerateCacheIdForComparisons($comparison_data) {
+        $characters = '';
+        foreach($comparison_data as $char) {
+            $characters .= $char['name'].'_'.$char['realm'];
+        }
+        return md5($characters);
     }
 }
 ?>

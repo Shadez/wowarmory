@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,34 +28,70 @@ if(!defined('__ARMORY__')) {
 
 Class Mangos extends Armory {
 
-    /* CSWOWD */
+    /**
+     * Returns skill ID that required for item $id
+     * @category Mangos class
+     * @access   public
+     * @param    int $id
+     * @return   int
+     **/
     public function GetSkillIDFromItemID($id) {
         if($id == 0) {
             return SKILL_UNARMED;
         }
         $item = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
-        if(empty($item)) {
+        if(!$item) {
             return SKILL_UNARMED;
         }
         if($item['class'] != 2) {
             return SKILL_UNARMED;
         }
-        switch ($item['subclass']) {
-                case 0: return SKILL_AXES;
-                case 1: return SKILL_TWO_HANDED_AXE;
-                case 2: return SKILL_BOWS;
-                case 3: return SKILL_GUNS;
-                case 4: return SKILL_MACES;
-                case 5: return SKILL_TWO_HANDED_MACES;
-                case 6: return SKILL_POLEARMS;
-                case 7: return SKILL_SWORDS;
-                case 8: return SKILL_TWO_HANDED_SWORDS;
-                case 10: return SKILL_STAVES;
-                case 13: return SKILL_FIST_WEAPONS;
-                case 15: return SKILL_DAGGERS;
-                case 16: return SKILL_THROWN;
-                case 18: return SKILL_CROSSBOWS;
-                case 19: return SKILL_WANDS;
+        switch($item['subclass']) {
+            case 0:
+                return SKILL_AXES;
+                break;
+            case 1:
+                return SKILL_TWO_HANDED_AXE;
+                break;
+            case 2: 
+                return SKILL_BOWS;
+                break;
+            case 3: 
+                return SKILL_GUNS;
+                break;
+            case 4: 
+                return SKILL_MACES;
+                break;
+            case 5: 
+                return SKILL_TWO_HANDED_MACES;
+                break;
+            case 6: 
+                return SKILL_POLEARMS;
+                break;
+            case 7:
+                return SKILL_SWORDS;
+                break;
+            case 8:
+                return SKILL_TWO_HANDED_SWORDS;
+                break;
+            case 10:
+                return SKILL_STAVES;
+                break;
+            case 13:
+                return SKILL_FIST_WEAPONS;
+                break;
+            case 15:
+                return SKILL_DAGGERS;
+                break;
+            case 16:
+                return SKILL_THROWN;
+                break;
+            case 18:
+                return SKILL_CROSSBOWS;
+                break;
+            case 19:
+                return SKILL_WANDS;
+                break;
         }
         return SKILL_UNARMED;
     }
@@ -173,8 +209,9 @@ Class Mangos extends Armory {
     /**
      * Returns NPC name (according with current locale)
      * @category Mangos class
-     * @example Mangos::GetNPCName(32078)
-     * @return string
+     * @access   public
+     * @param    int $npc
+     * @return   string
      **/
     public function GetNPCName($npc) {
         if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
@@ -213,8 +250,10 @@ Class Mangos extends Armory {
     /**
      * Returns NPC info (infoType)
      * @category Mangos class
-     * @example Mangos::GetNPCInfo(32078, 'level')
-     * @return mixed
+     * @access   public
+     * @param    int $npc
+     * @param    string $infoType
+     * @return   mixed
      **/
     public function GetNpcInfo($npc, $infoType) {
         $info = null;
@@ -399,7 +438,9 @@ Class Mangos extends Armory {
     /**
      * Generates money value
      * @category Mangos class
-     * @return array
+     * @access   public
+     * @param    int $money
+     * @return   array
      **/
     public function GetMoney($money) {
         $getMoney['gold'] = floor($money/(100*100));
@@ -410,6 +451,13 @@ Class Mangos extends Armory {
         return $getMoney;
     }
     
+    /**
+     * Returns extended cost info for $costId cost.
+     * @category Mangos class
+     * @access   public
+     * @param    int $costId
+     * @return   array
+     **/
     public function GetExtendedCost($costId) {
         if($costId == 0) {
             return false;
@@ -433,6 +481,13 @@ Class Mangos extends Armory {
         return $extended_cost;
     }
     
+    /**
+     * Is PvP extended cost required?
+     * @category Mangos class
+     * @access   public
+     * @param    int $costId
+     * @return   array
+     **/
     public function GetPvPExtendedCost($costId) {
         $costInfo = $this->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $costId);
         if(!$costInfo || ($costInfo['arena'] == 0 && $costInfo['honor'] == 0)) {
@@ -441,6 +496,15 @@ Class Mangos extends Armory {
         return $costInfo;
     }
     
+    /**
+     * Generates drop percent for $boss_id boss and $item_id item.
+     * @category Mangos class
+     * @access   public
+     * @param    int $boss_id
+     * @param    string $db_table
+     * @param    int $item_id
+     * @return   int
+     **/
     public function GenerateLootPercent($boss_id, $db_table, $item_id) {
         // CSWOWD code
         $allowed_tables = array(
@@ -483,6 +547,13 @@ Class Mangos extends Armory {
         return $percent;
     }
     
+    /**
+     * Returns ExtendedCost for item $itemID
+     * @category Mangos class
+     * @access   public
+     * @param    int $itemID
+     * @return   int
+     **/
     public function GetVendorExtendedCost($itemID) {
         $costId = $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $itemID);
         if($costId < 0) {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,21 +30,29 @@ Class Guilds extends Armory {
     
     /**
      * Player guid
+     * @category Guilds class
+     * @access   public
      **/
      public $guid;
      
      /**
-      * Guild id
+      * Guild ID
+      * @category Guilds class
+      * @access   public
       **/
      public $guildId;
      
      /**
       * Guild name
+      * @category Guilds class
+      * @access   public
       **/
      public $guildName;
      
      /**
       * Guild tabard style
+      * @category Guilds class
+      * @access   public
       **/
      public $guildtabard;
      public $emblemstyle;
@@ -54,12 +62,16 @@ Class Guilds extends Armory {
      public $bgcolor;
      
      /**
-      * Guild leader guid
+      * Guild Leader GUID
+      * @category Guilds class
+      * @access   public
       **/
      public $guildleaderguid;
      
      /**
       * Guild faction
+      * @category Guilds class
+      * @access   public
       **/
      public $guildFaction;
      
@@ -110,7 +122,7 @@ Class Guilds extends Armory {
         return false;
      }
      /**
-      * Set $this->guildId of selected player ($this->guid)
+      * Assign guild ID by player GUID
       * @category Guilds class
       * @access   private
       * @return   bool
@@ -130,10 +142,10 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Counts guild members count
+      * Return guild members count
       * @category Guilds class
-      * @example Guilds::countGuildMembers()
-      * @return int
+      * @access   public
+      * @return   int
       **/
      public function CountGuildMembers() {
         if(!$this->guildId) {
@@ -144,7 +156,7 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Sets $this->guildFaction as $this->guildleaderguid's faction
+      * Assign guild faction by player faction ID
       * @category Guilds class
       * @access   private
       * @return   bool
@@ -160,10 +172,10 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Returns array with guild members list. If $gm == true, returns his/her data only.
+      * Returns array with guild members list.
       * @category Guilds class
-      * @example Guilds::buildGuildList(false)
-      * @return array
+      * @access   public
+      * @return   array
       **/
      public function BuildGuildList() {
         if(!$this->guildId) {
@@ -184,7 +196,7 @@ Class Guilds extends Armory {
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=%d
         WHERE `guild`.`guildid`=%d AND `characters`.`level`>=%d AND `guild_member`.`guid`=`characters`.`guid`", $this->guildId, $this->guildId, $this->guildId, $this->armoryconfig['minlevel']);
         $countMembers = count($memberListTmp);
-        for($i=0;$i<$countMembers;$i++) {
+        for($i = 0; $i < $countMembers; $i++) {
             $pl = new Characters;
             $pl->BuildCharacter($memberListTmp[$i]['name'], $this->currentRealmInfo['id'], false);
             $memberListTmp[$i]['achPoints'] = $pl->GetAchievementMgr()->GetAchievementPoints();
@@ -195,16 +207,13 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Returns array with guild members info for guild-stats.php page
+      * Returns array with guild members statistics
       * @category Guilds class
-      * @example Guilds::BuildStatsList()
-      * @return array
+      * @access   public
+      * @return   array
       **/
      public function BuildStatsList() {
-        return $this->cDB->select("
-        SELECT `race`, `class`, `level`, `gender`
-            FROM `characters`
-                WHERE `guid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=%d) AND `level`>=%d", $this->guildId, $this->armoryconfig['minlevel']);
+        return $this->cDB->select("SELECT `race`, `class`, `level`, `gender` FROM `characters` uid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=%d) AND `level`>=%d", $this->guildId, $this->armoryconfig['minlevel']);
      }
      
      /**
@@ -224,8 +233,8 @@ Class Guilds extends Armory {
      /**
       * Returns guild bank tabs info (name, icon)
       * @category Guilds class
-      * @example Guilds::getGuildBankTabs()
-      * @return array
+      * @access   public
+      * @return   array
       **/
      public function GetGuildBankTabs() {
         if(!$this->guildId) {
@@ -234,7 +243,7 @@ Class Guilds extends Armory {
         }
         $tabs = $this->cDB->select("SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon` FROM `guild_bank_tab` WHERE `guildid`=%d", $this->guildId);
         $count_tabs = count($tabs);
-        for($i=0;$i<$count_tabs;$i++) {
+        for($i = 0; $i < $count_tabs; $i++) {
             $tabs[$i]['viewable'] = 'true';
         }
         return $tabs;
@@ -243,8 +252,8 @@ Class Guilds extends Armory {
      /**
       * Returns guild bank money
       * @category Guilds class
-      * @example Guilds::GetGuildBankMoney()
-      * @return int
+      * @access   public
+      * @return   int
       **/
      public function GetGuildBankMoney() {
         if(!$this->guildBankMoney) {
@@ -255,10 +264,11 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Returns list of items that stored in guild bank
+      * Returns guild bank items
       * @category Guilds class
-      * @example Guilds::BuildGuildBankItemList()
-      * @return array
+      * @category Guilds class
+      * @access   public
+      * @return   array
       **/
      public function BuildGuildBankItemList() {
         if(!$this->guildId) {
@@ -292,10 +302,10 @@ Class Guilds extends Armory {
      }
      
      /**
-      * Returns array with guild ranks id (not titles). Requires $this->guildId!
+      * Returns array with guild rank IDs.
       * @category Guilds class
-      * @example Guilds::GetGuildRanks()
-      * @return array
+      * @access   public
+      * @return   array
       **/
      
      public function GetGuildRanks() {

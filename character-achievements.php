@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 366
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -78,10 +78,20 @@ if($_GET['r'] === false || !$armory->currentRealmInfo) {
 // Get page cache
 if($characters->GetGUID() > 0 && $isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     if($achievement_category > 0) {
-        $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->GetName(), $armory->currentRealmInfo['name']);
+        if(is_array($comparisonData)) {
+            $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $utils->GenerateCacheIdForComparisons($comparisonData));
+        }
+        else {
+            $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->GetName(), $armory->currentRealmInfo['name']);
+        }
     }
     else {
-        $cache_id = $utils->GenerateCacheId('character-achievements', $characters->GetName(), $armory->currentRealmInfo['name']);
+        if(is_array($comparisonData)) {
+            $cache_id = $utils->GenerateCacheId('character-achievements', $utils->GenerateCacheIdForComparisons($comparisonData));
+        }
+        else {
+            $cache_id = $utils->GenerateCacheId('character-achievements', $characters->GetName(), $armory->currentRealmInfo['name']);
+        }
     }
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
@@ -106,18 +116,20 @@ if($achievement_category > 0) {
     $pages_count = count($pages);
     $achievements_page = $achievements->LoadAchievementPage($achievement_category, ($characters->GetFaction() == 1) ? 0 : 1);
     $i = 0;
+    if($achievement_category == 81) {
+        // Generate all available achievements
+        $owner_fos = $achievements->BuildFoSListForComparison($pages);
+        $pages = $owner_fos;
+        $achievements_page = $owner_fos[0];
+    }
     if(isset($achievements_page['completed'])) {
         foreach($achievements_page['completed'] as $achievement) {
-            if($achievement['display'] == 0) {
+            if(isset($achievement['display']) && $achievement['display'] == 0) {
                 continue;
             }
             if($utils->IsWriteRaw()) {
                 if(is_array($pages)) {
-                    $xml->XMLWriter()->writeRaw('<achievement');
-                    foreach($achievement['data'] as $a_data_key => $a_data_value) {
-                        $xml->XMLWriter()->writeRaw(' ' . $a_data_key . '="' . $a_data_value . '"');
-                    }
-                    $xml->XMLWriter()->writeRaw('>'); //achievement
+                    $xml->XMLWriter()->writeRaw('<achievement desc="' . $achievement['data']['desc'] . '" icon="' . $achievement['data']['icon'] . '" title="' . $achievement['data']['title'] . '">');
                     for($aCount = 0; $aCount < $pages_count; $aCount++) {
                         $tmp = $pages[$aCount];
                         $xml->XMLWriter()->writeRaw('<c');
@@ -160,13 +172,13 @@ if($achievement_category > 0) {
             else {
                 if(is_array($pages)) {
                     $xml->XMLWriter()->startElement('achievement');
-                    foreach($achievement['data'] as $a_data_key => $a_data_value) {
-                        $xml->XMLWriter()->writeAttribute($a_data_key, $a_data_value);
-                    }
+                    $xml->XMLWriter()->writeAttribute('desc', $achievement['data']['desc']);
+                    $xml->XMLWriter()->writeAttribute('icon', $achievement['data']['icon']);
+                    $xml->XMLWriter()->writeAttribute('title', $achievement['data']['title']);
                     for($aCount = 0; $aCount < $pages_count; $aCount++) {
                         $tmp = $pages[$aCount];
                         $xml->XMLWriter()->startElement('c');
-                        if(isset($tmp['completed'][$achievement['data']['id']])) {
+                        if(isset($tmp['completed'][$achievement['data']['id']]['data']['dateCompleted']) && $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted'] != null) {
                             $xml->XMLWriter()->writeAttribute('dateCompleted', $tmp['completed'][$achievement['data']['id']]['data']['dateCompleted']);
                         }
                         $xml->XMLWriter()->endElement(); //c

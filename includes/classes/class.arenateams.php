@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 369
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,6 +37,12 @@ Class Arenateams extends Armory {
     public $guid;
     private $gameid = false;
     
+    /**
+     * Builds team info
+     * @category Arenateams class
+     * @access   public
+     * @return   bool
+     **/
     public function InitTeam() {
         if(!$this->teamname && !$this->arenateamid) {
             $this->Log()->writeError('%s : teamname and arenateamid are not defined', __METHOD__);
@@ -62,6 +68,12 @@ Class Arenateams extends Armory {
         self::GetTeamList();
     }
     
+    /**
+     * Returns array with team info, member list and stats
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function GetArenaTeamInfo() {
         if(!$this->arenateamid) {
             $this->Log()->writeError('%s : arenateamid not defined', __METHOD__);
@@ -103,6 +115,12 @@ Class Arenateams extends Armory {
         return $arenateaminfo;
     }
     
+    /**
+     * Checks is arena team exists
+     * @category Arenateams class
+     * @access   public
+     * @return   bool
+     **/
     public function IsTeam() {
         if(!$this->teamname && !$this->arenateamid) {
             $this->Log()->writeError('%s : teamname and arenateamid are not defined', __METHOD__);
@@ -118,6 +136,12 @@ Class Arenateams extends Armory {
         return $check;
     }
     
+    /**
+     * Generates and returns info about character's (this->guid) arena teams.
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function GetCharacterArenaTeamInfo() {
         if(!$this->guid) {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
@@ -125,7 +149,6 @@ Class Arenateams extends Armory {
         }
         $team_names = $this->cDB->select("SELECT `name` FROM `arena_team` WHERE `arenateamid` IN (SELECT `arenateamid` FROM `arena_team_member` WHERE `guid`=%d)", $this->guid);
         if(!$team_names) {
-            $this->Log()->writeLog('%s : player %d does not have any arena teams', __METHOD__, $this->guid);
             return false;
         }
         $count_teams = count($team_names);
@@ -138,6 +161,12 @@ Class Arenateams extends Armory {
         return $teams_result;
     }
     
+    /**
+     * Generates arena team member list
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function GetTeamList() {
         $this->players = $this->cDB->select("
         SELECT
@@ -169,6 +198,16 @@ Class Arenateams extends Armory {
         }
     }
     
+    /**
+     * Builds arena ladder list
+     * @category Arenateams class
+     * @access   public
+     * @param    int $type
+     * @param    bool $num = false
+     * @param    string $order = 'rating'
+     * @param    string $sort = 'ASC'
+     * @return   array
+     **/
     public function BuildArenaLadderList($type, $page, $num = false, $order = 'rating', $sort = 'ASC') {
         if($num == true) {
             $summary = 0;
@@ -258,11 +297,19 @@ Class Arenateams extends Armory {
         return $result_areanteams;
     }
     
-    public function GetArenaTeamEmblem($teamId = null, $db = false) {
-        if($teamId == null) {
+    /**
+     * Returns arena team emblem info.
+     * @category Arenateams class
+     * @access   public
+     * @param    int $teamId = 0
+     * @param    object $db = null
+     * @return   array
+     **/
+    public function GetArenaTeamEmblem($teamId = 0, $db = null) {
+        if($teamId == 0) {
             $teamId = $this->arenateamid;
         }
-        if($db == false) {
+        if($db == null) {
             $arenaTeamEmblem = $this->cDB->selectRow("
             SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
             FROM `arena_team`
@@ -284,6 +331,13 @@ Class Arenateams extends Armory {
         }
     }
     
+    /**
+     * Count all arena teams (by type) in all available realms.
+     * @category Arenateams class
+     * @access   public
+     * @param    int $type
+     * @return   int
+     **/
     public function CountArenaTeams($type) {
         $summary = 0;
         foreach($this->realmData as $realm_info) {
@@ -294,12 +348,26 @@ Class Arenateams extends Armory {
         return $summary;
     }
     
+    /**
+     * Returns number of pages (arena ladder)
+     * @category Arenateams class
+     * @access   public
+     * @param    int $type
+     * @return   int
+     **/
     public function CountPageNum($type) {
         $all_teams = self::CountArenaTeams($type);
         $result = round($all_teams/20);
         return $result;
     }
     
+    /**
+     * Sets game id (arena chart)
+     * @category Arenateams class
+     * @access   public
+     * @param    int $gameid
+     * @return   bool
+     **/
     public function SetGameID($gameid) {
         if($gameid > 0) {
             $this->gameid = $gameid;
@@ -307,10 +375,22 @@ Class Arenateams extends Armory {
         return true;
     }
     
+    /**
+     * Returns game id (arena ladder)
+     * @category Arenateams class
+     * @access   public
+     * @return   int
+     **/
     public function GetGameID() {
         return $this->gameid;
     }
     
+    /**
+     * Generates game info (by ID (this->gameid))
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function GetGameInfo() {
         if(!$this->gameid || $this->gameid === 0) {
             $this->Log()->writeError('%s : gameid not provided', __METHOD__);
@@ -396,10 +476,23 @@ Class Arenateams extends Armory {
         return $chart_teams;
     }
     
+    /**
+     * Checks is team exists
+     * @category Arenateams class
+     * @access   public
+     * @param    int $teamId
+     * @return   bool
+     **/
     public function TeamExists($teamId) {
         return $this->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `arenateamid`=%d LIMIT 1", $teamId);
     }
     
+    /**
+     * Builds game list for current arena team
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function BuildGameChart() {
         if(!$this->arenateamid) {
             $this->Log()->writeError('%s : arenateamid not provided', __METHOD__);
@@ -459,6 +552,12 @@ Class Arenateams extends Armory {
         return $chart_data;
     }
     
+    /**
+     * Build opponents list for current arena team
+     * @category Arenateams class
+     * @access   public
+     * @return   array
+     **/
     public function BuildOpposingTeamList() {
         if(!$this->arenateamid) {
             $this->Log()->writeError('%s : arenateamid not provided', __METHOD__);
