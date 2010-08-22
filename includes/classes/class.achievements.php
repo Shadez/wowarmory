@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 369
+ * @revision 370
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -600,15 +600,31 @@ Class Achievements extends Armory {
             return false;
         }
         $return_data = array();
-        $i=0;
         $hide_id = array();
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
-            $return_data[$i] = $achievement;
-            $return_data[$i]['quantity'] = self::GetCriteriaValue();
-            $i++;
+            $return_data[$this->achId] = $achievement;
+            $return_data[$this->achId]['quantity'] = self::GetCriteriaValue();
         }
         return $return_data;
+    }
+    
+    public function GetSummaryDataForStatisticsPage() {
+        if(!$this->guid) {
+            $this->Log()->writeError('%s : player guid not defined!');
+            return false;
+        }
+        $summary_info = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (1745, 1741, 1748, 178, 339)", $this->GetLocale());
+        if(!$summary_info) {
+            return false;
+        }
+        $data = array();
+        foreach($summary_info as $info) {
+            $this->achId = $info['id'];
+            $data[$this->achId] = $info;
+            $data[$this->achId]['quantity'] = self::GetCriteriaValue();
+        }
+        return $data;
     }
     
     /**
@@ -626,20 +642,20 @@ Class Achievements extends Armory {
         if(!$criteria_ids) {
             return false;
         }
-        $tmp_criteria_value = 0;
+        $tmp_criteria_value = '--';
         foreach($criteria_ids as $criteria) {
             $tmp_criteria_value = $this->db->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
             if(!$tmp_criteria_value) {
                 continue;
             }
             else {
-                return $tmp_criteria_value;
+                return ($tmp_criteria_value == 0) ? '--' : $tmp_criteria_value;
             }
         }
         if(!$tmp_criteria_value) {
-            return 0;
+            return '--';
         }
-        return $tmp_criteria_value;
+        return ($tmp_criteria_value == 0) ? '--' : $tmp_criteria_value;
     }
     
     /**

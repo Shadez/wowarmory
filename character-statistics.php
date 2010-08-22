@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 370
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -50,6 +50,21 @@ else {
 if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
+$comparisonData = false;
+$comparison = false;
+// Check for achievement comparison
+if($comparisonData = $utils->IsAchievementsComparison()) {
+    // We got it
+    $comparison = array();
+    $i = 0;
+    foreach($comparisonData as $char) {
+        $comparison[$i] = new Characters;
+        $comparison[$i]->BuildCharacter($char['name'], $utils->GetRealmIdByName($char['realm']), true);
+        $i++;
+    }
+    //
+    $name = $comparisonData[0]['name'];
+}
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId);
 $isCharacter = $characters->CheckPlayer();
@@ -60,10 +75,20 @@ if($_GET['r'] === false || !$armory->currentRealmInfo) {
 // Get page cache
 if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     if($achievement_category > 0) {
-        $cache_id = $utils->GenerateCacheId('character-statistics-c'.$achievement_category, $characters->GetName(), $armory->currentRealmInfo['name']);
+        if(is_array($comparisonData)) {
+            $cache_id = $utils->GenerateCacheId('character-statistics-c'.$achievement_category, $utils->GenerateCacheIdForComparisons($comparisonData));
+        }
+        else {
+            $cache_id = $utils->GenerateCacheId('character-statistics-c'.$achievement_category, $characters->GetName(), $armory->currentRealmInfo['name']);
+        }
     }
     else {
-        $cache_id = $utils->GenerateCacheId('character-statistics', $characters->GetName(), $armory->currentRealmInfo['name']);
+        if(is_array($comparisonData)) {
+            $cache_id = $utils->GenerateCacheId('character-statistics', $utils->GenerateCacheIdForComparisons($comparisonData));
+        }
+        else {
+            $cache_id = $utils->GenerateCacheId('character-statistics', $characters->GetName(), $armory->currentRealmInfo['name']);
+        }
     }
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
@@ -73,23 +98,69 @@ if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['sk
 }
 if($achievement_category > 0) {    
     $xml->XMLWriter()->startElement('category');
+    $pages = false;
+    if(is_array($comparison)) {
+        $pages = array();
+        $counter_comparison = 0;
+        foreach($comparison as $char) {
+            $pages[$counter_comparison] = $char->GetAchievementMgr()->LoadStatisticsPage($achievement_category, ($char->GetFaction() == 1) ? 0 : 1);
+            $counter_comparison++;
+        }
+    }
+    $pages_count = count($pages);
     $statistics_page = $achievements->LoadStatisticsPage($achievement_category, ($characters->GetFaction() == 1) ? 0 : 1);
     $i = 0;
     if($statistics_page) {
         foreach($statistics_page as $stat) {
             if($utils->IsWriteRaw()) {
-                $xml->XMLWriter()->writeRaw('<statistic');
-                foreach($stat as $statistic_key => $statistic_value) {
-                    $xml->XMLWriter()->writeRaw(' ' . $statistic_key . '="' . $statistic_value . '"');
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->writeRaw('<statistic name="' . $stat['name'] . '">');
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->writeRaw('<c');
+                        if(isset($tmp[$stat['id']])) {
+                            if($tmp[$stat['id']]['quantity'] == null || $tmp[$stat['id']]['quantity'] == 0) {
+                                $tmp[$stat['id']]['quantity'] = '--';
+                            }
+                            $xml->XMLWriter()->writeRaw(' id="' . $stat['id'] . '" "quantity="' . $tmp[$stat['id']]['quantity'] . '"');
+                        }
+                        $xml->XMLWriter()->writeRaw('/>'); //c
+                    }
+                    $xml->XMLWriter()->writeRaw('</statistic>'); //achievement
                 }
-                $xml->XMLWriter()->writeRaw('/>');
+                else {
+                    $xml->XMLWriter()->writeRaw('<statistic');
+                    foreach($stat as $statistic_key => $statistic_value) {
+                        $xml->XMLWriter()->writeRaw(' ' . $statistic_key . '="' . $statistic_value . '"');
+                    }
+                    $xml->XMLWriter()->writeRaw('/>');
+                }
             }
             else {
-                $xml->XMLWriter()->startElement('statistic');
-                foreach($stat as $statistic_key => $statistic_value) {
-                    $xml->XMLWriter()->writeAttribute($statistic_key, $statistic_value);
+                if(is_array($pages)) {
+                    $xml->XMLWriter()->startElement('statistic');
+                    $xml->XMLWriter()->writeAttribute('name', $stat['name']);
+                    for($aCount = 0; $aCount < $pages_count; $aCount++) {
+                        $tmp = $pages[$aCount];
+                        $xml->XMLWriter()->startElement('c');
+                        if(isset($tmp[$stat['id']])) {
+                            if($tmp[$stat['id']]['quantity'] == null || $tmp[$stat['id']]['quantity'] == 0) {
+                                $tmp[$stat['id']]['quantity'] = '--';
+                            }
+                            $xml->XMLWriter()->writeAttribute('id', $stat['id']);
+                            $xml->XMLWriter()->writeAttribute('quantity', $tmp[$stat['id']]['quantity']);
+                        }
+                        $xml->XMLWriter()->endElement();  //c
+                    }
+                    $xml->XMLWriter()->endElement(); //statistic
                 }
-                $xml->XMLWriter()->endElement();
+                else {
+                    $xml->XMLWriter()->startElement('statistic');
+                    foreach($stat as $statistic_key => $statistic_value) {
+                        $xml->XMLWriter()->writeAttribute($statistic_key, $statistic_value);
+                    }
+                    $xml->XMLWriter()->endElement(); //statistic
+                }
             }
         }
     }
@@ -129,31 +200,108 @@ $character_title = $characters->GetChosenTitleInfo();
 $character_element = $characters->GetHeader();
 $xml->XMLWriter()->startElement('characterInfo');
 if($utils->IsWriteRaw()) {
-    $xml->XMLWriter()->writeRaw('<character');
-    foreach($character_element as $c_elem_name => $c_elem_value) {
-        if($c_elem_name == 'charUrl') {
-            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
-        }
-        else {
-            $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+    if(is_array($comparison)) {
+        foreach($comparison as $char) {
+            $xml->XMLWriter()->writeRaw('<character');
+            $current_header = $char->GetHeader();
+            foreach($current_header as $header_key => $header_value) {
+                if($header_key == 'charUrl') {
+                    $xml->XMLWriter()->writeRaw(' ' . $header_key . '="' . htmlspecialchars($header_value) . '"');
+                }
+                else {
+                    $xml->XMLWriter()->writeRaw(' ' . $header_key .'="' .$header_value.'"');
+                }
+            }
+            $xml->XMLWriter()->writeRaw('/>');
+            
         }
     }
-    $xml->XMLWriter()->writeRaw('>');
-    $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
+    else {
+        $xml->XMLWriter()->writeRaw('<character');
+        foreach($character_element as $c_elem_name => $c_elem_value) {
+            if($c_elem_name == 'charUrl') {
+                $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .htmlspecialchars($c_elem_value).'"');
+            }
+            else {
+                $xml->XMLWriter()->writeRaw(' ' . $c_elem_name .'="' .$c_elem_value.'"');
+            }
+        }
+        $xml->XMLWriter()->writeRaw('>');
+        $xml->XMLWriter()->writeRaw('<modelBasePath value="http://eu.media.battle.net.edgesuite.net/"/></character>');
+    }
 }
 else {
-    $xml->XMLWriter()->startElement('character');
-    foreach($character_element as $c_elem_name => $c_elem_value) {
-        $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+    if(is_array($comparison)) {
+        foreach($comparison as $char) {
+            $xml->XMLWriter()->startElement('character');
+            $current_header = $char->GetHeader();
+            foreach($current_header as $header_key => $header_value) {
+                $xml->XMLWriter()->writeAttribute($header_key, $header_value);
+            }
+            $xml->XMLWriter()->endElement(); //character
+        }
     }
-    $xml->XMLWriter()->startElement('modelBasePath');
-    $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
-    $xml->XMLWriter()->endElement();  //modelBasePath
-    $xml->XMLWriter()->endElement(); //character
+    else {
+        $xml->XMLWriter()->startElement('character');
+        foreach($character_element as $c_elem_name => $c_elem_value) {
+            $xml->XMLWriter()->writeAttribute($c_elem_name, $c_elem_value);
+        }
+        $xml->XMLWriter()->startElement('modelBasePath');
+        $xml->XMLWriter()->writeAttribute('value', 'http://eu.media.battle.net.edgesuite.net/');
+        $xml->XMLWriter()->endElement();  //modelBasePath
+        $xml->XMLWriter()->endElement(); //character
+    }
 }
 $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->startElement('statistics');
 $xml->XMLWriter()->startElement('summary');
+$summary_data = $achievements->GetSummaryDataForStatisticsPage();
+if(is_array($comparison)) {
+    $count_summary = 0;
+    $summary = array();
+    foreach($comparison as $char) {
+        $summary[$count_summary] = $char->GetAchievementMgr()->GetSummaryDataForStatisticsPage();
+        $count_summary++;
+    }
+    foreach($summary_data as $summ) {
+        if($utils->IsWriteRaw()) {
+            $xml->XMLWriter()->writeRaw('<statistic name="' . $summ['name'] . '">');
+            foreach($summary as $sChar) {
+                if(isset($sChar[$summ['id']])) {
+                    $xml->XMLWriter()->writeRaw('<c id="' . $sChar[$summ['id']]['id'] . '" quantity="' . $sChar[$summ['id']]['quantity'] . '"/>');
+                }
+            }
+            $xml->XMLWriter()->writeRaw('</statistics>');
+        }
+        else {
+            $xml->XMLWriter()->startElement('statistic');
+            $xml->XMLWriter()->writeAttribute('name', $summ['name']);
+            foreach($summary as $sChar) {
+                if(isset($sChar[$summ['id']])) {
+                    $xml->XMLWriter()->startElement('c');
+                    $xml->XMLWriter()->writeAttribute('id', $sChar[$summ['id']]['id']);
+                    $xml->XMLWriter()->writeAttribute('quantity', $sChar[$summ['id']]['quantity']);
+                    $xml->XMLWriter()->endElement(); //c
+                }
+            }
+            $xml->XMLWriter()->endElement(); //statistic
+        }
+    }
+}
+else {
+    foreach($summary_data as $summ) {
+        if($utils->IsWriteRaw()) {
+            $xml->XMLWriter()->writeRaw('<statistic id="' . $summ['id'] . '" name="' . $summ['name'] . '" quantity="' . $summ['quantity'] . '"/>');
+        }
+        else {
+            $xml->XMLWriter()->startElement('statistic');
+            $xml->XMLWriter()->writeAttribute('id', $summ['id']);
+            $xml->XMLWriter()->writeAttribute('name', $summ['name']);
+            $xml->XMLWriter()->writeAttribute('quantity', $summ['quantity']);
+            $xml->XMLWriter()->endElement(); //statistic
+        }
+    }
+}
 $xml->XMLWriter()->endElement();    //summary
 $xml->XMLWriter()->startElement('rootCategories');
 $root_categories = $achievements->BuildStatisticsCategoriesTree();
