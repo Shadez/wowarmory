@@ -3227,4 +3227,20 @@
         <str id="remote.required">World of Warcraft Remote Required</str>
         <str id="remote.message">You must have a subscription to World of Warcraft Remote in order to buy and sell items on the Auction House.</str>
 	</auctionHouse>
+    <login>
+        <str id="login-title">World of Warcraft Account Login</str>
+        <str id="login-jquery-processed">Processing</str>
+        <str id="login-username-label">WoW Account Name</str>
+        <str id="login-password-label">Password</str>
+        <str id="login-auth-button">Log In</str>
+        <str id="login-return-to-armory">Back to Armory</str>
+        <str id="login-error-username">Account name required.</str>
+        <str id="login-error-password">Password required.</str>
+        <str id="login-error-incorrect-password">Password invalid.</str>
+        <str id="logoff-you-logged-off">You Are Logged Out</str>
+        <str id="logoff-redirect-info">You are now logged out and will automatically be redirected within three seconds.</str>
+        <str id="logoff-redirect-link-1">If you are not redirected, </str>
+        <str id="logoff-redirect-link-2">click here</str>
+        <str id="logoff-redirect-link-3"> to proceed.</str>
+    </login>
 </strs>

@@ -3222,4 +3222,20 @@
         <str id="remote.required">Requiert World of Warcraft Nomade</str>
         <str id="remote.message">Vous devez être abonné à World of Warcraft Nomade pour vendre ou acheter des objets à l’hôtel des ventes.</str>
 	</auctionHouse>
+    <login>
+        <str id="login-title">Identifiant de compte World of Warcraft</str>
+        <str id="login-jquery-processed">Connexion en cours...</str>
+        <str id="login-username-label">Compte WoW</str>
+        <str id="login-password-label">Mot de passe</str>
+        <str id="login-auth-button">Se connecter</str>
+        <str id="login-return-to-armory">Back to Armory</str>
+        <str id="login-error-username">Nom de compte requis.</str>
+        <str id="login-error-password">Mot de passe requis.</str>
+        <str id="login-error-incorrect-password">Mot de passe invalide.</str>
+        <str id="logoff-you-logged-off">Vous êtes déconnecté</str>
+        <str id="logoff-redirect-info">Vous êtes à présent déconnecté et serez redirigé automatiquement dans trois secondes.</str>
+        <str id="logoff-redirect-link-1">Si vous n'êtes pas redirigé, </str>
+        <str id="logoff-redirect-link-2">cliquez ici</str>
+        <str id="logoff-redirect-link-3"> pour continuer.</str>
+    </login>
 </strs>

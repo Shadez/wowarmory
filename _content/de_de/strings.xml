@@ -3759,4 +3759,20 @@
         <str id="remote.required">Benötigt World of Warcraft Connect</str>
         <str id="remote.message">Ihr benötigt ein Abonnement für World of Warcraft Connect, um im Auktionshaus Gegenstände kaufen und verkaufen zu können.</str>
 	</auctionHouse>
+    <login>
+        <str id="login-title">World of Warcraft Account - Anmeldung</str>
+        <str id="login-jquery-processed">In Bearbeitung</str>
+        <str id="login-username-label">WoW-Accountname</str>
+        <str id="login-password-label">Passwort</str>
+        <str id="login-auth-button">Anmeldung</str>
+        <str id="login-return-to-armory">Back to Armory</str>
+        <str id="login-error-username">Accountname benötigt.</str>
+        <str id="login-error-password">Passwort benötigt.</str>
+        <str id="login-error-incorrect-password">Ungültiges Passwort.</str>
+        <str id="logoff-you-logged-off">Sie haben sich abgemeldet</str>
+        <str id="logoff-redirect-info">Sie haben sich abgemeldet und werden in drei Sekunden automatisch weitergeleitet.</str>
+        <str id="logoff-redirect-link-1">Sollten Sie nicht weitergeleitet werden, </str>
+        <str id="logoff-redirect-link-2">klicken Sie bitte hier</str>
+        <str id="logoff-redirect-link-3">, um fortzufahren.</str>
+    </login>
 </strs>

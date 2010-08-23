@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 371
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,6 +32,7 @@ if(!@include('classes/class.armory.php')) {
 if(!@include('revision_nr.php')) {
     die('<b>Error:</b> can not load revision_nr.php!');
 }
+$_SESSION['last_url'] = str_replace('.php', '.xml', $_SERVER['PHP_SELF']) . '?' .str_replace('locale=', 'l=', $_SERVER['QUERY_STRING']);
 $armory = new Armory();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
@@ -111,9 +112,8 @@ if(!defined('skip_utils_class')) {
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
 }
-elseif(isset($_GET['logout']) && $_GET['logout'] == 1 && !defined('skip_utils_class')) {
-    $utils->CloseSession();
-    header('Location: index.xml');
+elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
+    header('Location: login.xml?logoff');
 }
 /** End login **/
 
@@ -164,7 +164,7 @@ if(isset($_GET['locale'])) {
         $returnUrl = $_SERVER['HTTP_REFERER'];
     }
     else {
-        $returnUrl = '.';
+        $returnUrl = $_SESSION['last_url'];
     }
     header('Location: '.$returnUrl);
 }
@@ -215,6 +215,6 @@ if(defined('load_search_class')) {
 if(!@include('classes/class.xmlhandler.php')) {
     die('<b>Error:</b> can not load XML handler class!');
 }
-$xml = new XMLHandler($armory->_locale);
+$xml = new XMLHandler($armory->GetLocale());
 $xml->StartXML();
 ?>

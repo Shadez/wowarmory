@@ -3222,4 +3222,20 @@
 		 <str id="remote.required">Requiere WoW Remoto</str>
         <str id="remote.message">Deberás tener una suscripción a WoW Remoto para comprar y vender objetos en la Casa de Subastas.</str>
 	</auctionHouse>
+    <login>
+        <str id="login-title">Inicia sesión en tu cuenta de World of Warcraft</str>
+        <str id="login-jquery-processed">En proceso</str>
+        <str id="login-username-label">Cuenta de WoW</str>
+        <str id="login-password-label">Contraseña</str>
+        <str id="login-auth-button">Iniciar sesión</str>
+        <str id="login-return-to-armory">Back to Armory</str>
+        <str id="login-error-username">El nombre de cuenta es obligatorio.</str>
+        <str id="login-error-password">La contraseña es obligatoria.</str>
+        <str id="login-error-incorrect-password">Contraseña no válida.</str>
+        <str id="logoff-you-logged-off">Has salido</str>
+        <str id="logoff-redirect-info">Has cerrado sesión y se te redireccionará automáticamente en tres segundos.</str>
+        <str id="logoff-redirect-link-1">Si no se te redirecciona,</str>
+        <str id="logoff-redirect-link-2"> haz clic aquí</str>
+        <str id="logoff-redirect-link-3"> para continuar.</str>
+    </login>
 </strs>

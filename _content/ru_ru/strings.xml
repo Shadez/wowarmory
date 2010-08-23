@@ -3210,4 +3210,20 @@
         <str id="remote.required">Требуется подписка на «World of Warcraft без границ»</str>
         <str id="remote.message">Для покупки и продажи лотов на аукционе для Оружейной требуется подписка на «World of Warcraft без границ».</str>
 	</auctionHouse>
+    <login>
+        <str id="login-title">Авторизация учетной записи World of Warcraft</str>
+        <str id="login-jquery-processed">Выполняется</str>
+        <str id="login-username-label">Имя пользователя WoW</str>
+        <str id="login-password-label">Пароль</str>
+        <str id="login-auth-button">Авторизация</str>
+        <str id="login-return-to-armory">Вернуться в Оружейную</str>
+        <str id="login-error-username">Необходимо указать имя пользователя.</str>
+        <str id="login-error-password">Необходимо указать пароль.</str>
+        <str id="login-error-incorrect-password">Пароль недействителен.</str>
+        <str id="logoff-you-logged-off">Вы не авторизованы в системе.</str>
+        <str id="logoff-redirect-info">Вы вышли из системы. Автоматическое перенаправление произойдет через 3 секунды.</str>
+        <str id="logoff-redirect-link-1">Если перенеправление не произошло, </str>
+        <str id="logoff-redirect-link-2">щелкните здесь</str>
+        <str id="logoff-redirect-link-3">.</str>
+    </login>
 </strs>
