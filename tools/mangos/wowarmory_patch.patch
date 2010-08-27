@@ -1,8 +1,8 @@
 diff --git a/src/game/AchievementMgr.cpp b/src/game/AchievementMgr.cpp
-index c03f7e4..c8c0ac6 100644
+index d69493f..9ccd45d 100644
 --- a/src/game/AchievementMgr.cpp
 +++ b/src/game/AchievementMgr.cpp
-@@ -1771,6 +1771,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
+@@ -1995,6 +1995,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
      if(achievement->flags & ACHIEVEMENT_FLAG_COUNTER || m_completedAchievements.find(achievement->ID)!=m_completedAchievements.end())
          return;
  
@@ -13,20 +13,19 @@ index c03f7e4..c8c0ac6 100644
      CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
      ca.date = time(NULL);
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index 3548a30..d47fbb8 100644
+index 4e0f65d..4c999e9 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
-@@ -953,7 +953,15 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
-             count = pProto->GetMaxStackSize();
+@@ -955,6 +955,15 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
  
          ASSERT(count !=0 && "pProto->Stackable==0 but checked at loading already");
--
+ 
 +        /** World of Warcraft Armory **/
 +        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +        {
 +            std::ostringstream ss;
 +            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u)", player->GetGUIDLow(), item);
-+            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
++            ss << "REPLACE INTO character_feed_log (guid, type, data, date, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", UNIX_TIMESTAMP(NOW()), 1)";
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
 +        /** World of Warcraft Armory **/
@@ -34,14 +33,13 @@ index 3548a30..d47fbb8 100644
          if( pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player) )
          {
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 8f30f1b..bec14d4 100644
+index 0572c21..db119c4 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -16717,6 +16717,17 @@ void Player::SaveToDB()
- 
+@@ -16739,6 +16739,17 @@ void Player::SaveToDB()
      DEBUG_FILTER_LOG(LOG_FILTER_PLAYER_STATS, "The value of player %s at save: ", m_name.c_str());
      outDebugStatsValues();
-+    
+ 
 +    /** World of Warcraft Armory **/
 +    std::ostringstream ps;
 +    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
@@ -52,10 +50,11 @@ index 8f30f1b..bec14d4 100644
 +    ps << "')";
 +    CharacterDatabase.Execute( ps.str().c_str() );
 +    /** World of Warcraft Armory **/
- 
++
      CharacterDatabase.BeginTransaction();
  
-@@ -22270,3 +22281,33 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
+     CharacterDatabase.PExecute("DELETE FROM characters WHERE guid = '%u'",GetGUIDLow());
+@@ -22296,3 +22307,34 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
              SetFFAPvP(false);
      }
  }
@@ -72,54 +71,54 @@ index 8f30f1b..bec14d4 100644
 +    }
 +    if (type == 3)	// Do not write same bosses many times - just update counter.
 +    {
-+        QueryResult *result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++        uint8 Difficulty = GetMap()->GetDifficulty();
++        QueryResult *result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
 +        if (result)
 +        {
-+            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=NOW() WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=UNIX_TIMESTAMP(NOW()) WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
 +        }
 +        else
 +        {
-+            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, date, counter, difficulty) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1, '%u')", pGuid, type, data, Difficulty);
 +        }
 +        delete result;
 +    }
 +    else
 +    {
-+        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, date, counter) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1)", pGuid, type, data);
 +    }
 +}
 +/** World of Warcraft Armory **/
 \ No newline at end of file
 diff --git a/src/game/Player.h b/src/game/Player.h
-index e16134e..399e835 100644
+index 17e14b3..e954bfe 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -2277,7 +2277,11 @@ class MANGOS_DLL_SPEC Player : public Unit
-         bool TeleportToHomebind(uint32 options = 0) { return TeleportTo(m_homebindMapId, m_homebindX, m_homebindY, m_homebindZ, GetOrientation(), options); }
+@@ -2278,6 +2278,10 @@ class MANGOS_DLL_SPEC Player : public Unit
  
          Object* GetObjectByTypeMask(ObjectGuid guid, TypeMask typemask);
--
-+        
+ 
 +        /** World of Warcraft Armory **/
 +        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
 +        /** World of Warcraft Armory **/
-+        
++
          // currently visible objects at player client
          ObjectGuidSet m_clientGUIDs;
- 
+
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 00fafde..09103f8 100644
+index db34012..b8c9cd2 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -823,6 +823,11 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
- 
-                 if(m->IsDungeon() && creditedPlayer)
-                 {
-+                    /** World of Warcraft Armory **/
-+                    // Write boss log in non heroic difficult too
-+                    if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
-+                        creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry);
-+                    /** World of Warcraft Armory **/
+@@ -832,7 +832,12 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
                      if (m->IsRaidOrHeroicDungeon())
                      {
                          if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
++                        {
+                             ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
++                            /** World of Warcraft Armory **/
++                            creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry); // Difficulty will be defined in Player::WriteWowArmoryDatabaseLog();
++                            /** World of Warcraft Armory **/
++                        }
+                     }
+                     else
+                     {

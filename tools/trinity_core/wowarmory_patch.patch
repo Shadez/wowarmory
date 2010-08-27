@@ -1,7 +1,7 @@
 diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
 --- a/src/server/game/Achievements/AchievementMgr.cpp
 +++ b/src/server/game/Achievements/AchievementMgr.cpp
-@@ -1908,6 +1908,9 @@
+@@ -1907,6 +1907,9 @@
      if (achievement->flags & ACHIEVEMENT_FLAG_COUNTER || HasAchieved(achievement))
          return;
  
@@ -14,26 +14,26 @@ diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/A
 diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/Item/Item.cpp
 --- a/src/server/game/Entities/Item/Item.cpp
 +++ b/src/server/game/Entities/Item/Item.cpp
-@@ -1028,6 +1028,15 @@
-         if (count > pProto->GetMaxStackSize())
-             count = pProto->GetMaxStackSize();
+@@ -1030,6 +1030,15 @@
+ 
+         ASSERT(count !=0 && "pProto->Stackable == 0 but checked at loading already");
  
 +        /** World of Warcraft Armory **/
 +        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +        {
 +            std::ostringstream ss;
 +            sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u)", player->GetGUIDLow(), item);
-+            ss << "REPLACE INTO character_feed_log (guid, type, data, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", 1)";
++            ss << "REPLACE INTO character_feed_log (guid, type, data, date, counter) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", UNIX_TIMESTAMP(NOW()), 1)";
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
 +        /** World of Warcraft Armory **/
-         ASSERT(count !=0 && "pProto->Stackable == 0 but checked at loading already");
- 
          Item *pItem = NewItemOrBag(pProto);
+         if (pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player))
+         {
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
-@@ -17572,6 +17572,17 @@
+@@ -17616,6 +17616,17 @@
  
      std::string sql_name = m_name;
      CharacterDatabase.escape_string(sql_name);
@@ -51,7 +51,7 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
  
      std::ostringstream ss;
      ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
-@@ -24011,3 +24022,32 @@
+@@ -24159,3 +24170,33 @@
  
      return ((float)sum) / count;
  }
@@ -68,19 +68,20 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 +    }
 +    if (type == 3)	// Do not write same bosses many times - just update counter.
 +    {
-+        QueryResult_AutoPtr result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++        uint8 Difficulty = GetMap()->GetDifficulty();
++        QueryResult_AutoPtr result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
 +        if (result)
 +        {
-+            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=NOW() WHERE guid='%u' AND type=3 AND data='%u' LIMIT 1", pGuid, data);
++            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=UNIX_TIMESTAMP(NOW()) WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
 +        }
 +        else
 +        {
-+            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, date, counter, difficulty) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1, '%u')", pGuid, type, data, Difficulty);
 +        }
 +    }
 +    else
 +    {
-+        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, counter) VALUES('%u', '%d', '%u', 1)", pGuid, type, data);
++        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, date, counter) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1)", pGuid, type, data);
 +    }
 +}
 +/** World of Warcraft Armory **/
@@ -88,28 +89,31 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
 --- a/src/server/game/Entities/Player/Player.h
 +++ b/src/server/game/Entities/Player/Player.h
-@@ -2222,6 +2222,9 @@
+@@ -2218,6 +2218,9 @@
+         float m_homebindZ;
  
          WorldLocation GetStartPosition() const;
- 
++        
 +        /** World of Warcraft Armory **/
 +        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
-+        
+ 
          // currently visible objects at player client
          typedef std::set<uint64> ClientGUIDs;
-         ClientGUIDs m_clientGUIDs;
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -15095,6 +15095,11 @@
- 
-             if (m->IsDungeon() && creditedPlayer)
-             {
-+                /** World of Warcraft Armory **/
-+                // Write boss log in non heroic difficult too
-+                if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
-+                    creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
-+                /** World of Warcraft Armory **/
+@@ -15250,4 +15250,5 @@
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
++                    {
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
+@@ -15253,4 +15254,8 @@
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
++                        /** World of Warcraft Armory **/
++                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
++                        /** World of Warcraft Armory **/
++                    }
+                 }
+                 else
+                 {

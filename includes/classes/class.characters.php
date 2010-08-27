@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 373
+ * @revision 378
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2520,7 +2520,7 @@ Class Characters extends Armory {
             $_strings[$str['id']] = $str['string'];
         }
         foreach($data as $event) {
-            $event_date = strtotime($event['date']);
+            $event_date = $event['date'];
             if(date('d.m.Y') == date('d.m.Y', $event_date)) {
                 $sort = 'today';
             }
