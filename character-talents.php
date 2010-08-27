@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 372
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -147,10 +147,6 @@ for($i = 0; $i < $characters->GetSpecCount(); $i++) {
     }
     $xml->XMLWriter()->endElement();  //glyphs    
     $xml->XMLWriter()->endElement(); //talentGroup
-}
-/* Hunter's pet talents */
-if($characters->GetClass() == CLASS_HUNTER && $characters->GetActivePetData() == true) {
-    // Talent counting here
 }
 $xml->XMLWriter()->endElement();   //talents
 $xml->XMLWriter()->endElement();  //characterInfo
