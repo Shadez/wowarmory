@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 370
+ * @revision 373
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -50,13 +50,6 @@ Class Achievements extends Armory {
     public $achId;
     
     /**
-     * Characters database handler
-     * @category Achievements class
-     * @access   private
-     **/
-    private $db;
-    
-    /**
      * Character achievements count
      * @category Achievements class
      * @access   private
@@ -68,33 +61,20 @@ Class Achievements extends Armory {
      * @category Achievements class
      * @access   public
      * @param    int $player_guid
-     * @param    ArmoryDatabaseHandler $db
      * @param    bool $check = true
      * @return   bool
      **/
-    public function InitAchievements($player_guid, ArmoryDatabaseHandler $db, $check = true) {
+    public function InitAchievements($player_guid, $check = true) {
         // Clear values before recalculation
         $this->guid    = 0;
-        $this->db      = null;
         $this->achId   = 0;
         $this->m_count = 0;
         $this->pts     = 0;
-        if(!is_object($db)) {
-            $this->Log()->writeError('%s : $db must be object, %s given!', __METHOD__, gettype($db));
-            return false;
-        }
-        if(!$db->TestLink()) {
-            $this->Log()->writeError('%s : wrong database handler!', __METHOD__);
-            unset($db, $player_guid);
-            return false;
-        }
-        if($check == true && !$db->selectCell("SELECT 1 FROM `characters` WHERE `guid`=%d LIMIT 1", $player_guid)) {
+        if($check == true && !$this->cDB->selectCell("SELECT 1 FROM `characters` WHERE `guid`=%d LIMIT 1", $player_guid)) {
             $this->Log()->writeError('%s : player with guid %d was not found in `characters` table!', __METHOD__, $player_guid);
-            unset($db, $player_guid);
             return false;
         }
         $this->guid = $player_guid;
-        $this->db   = $db;
         self::CalculateAchievementPoints();
         self::CountCharacterAchievements();
         return true;
@@ -131,7 +111,7 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d", $this->guid);
+        $achievement_ids = $this->cDB->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d", $this->guid);
         if(!$achievement_ids) {
             $this->Log()->writeError('%s : unable to find any completed achievement for player %d', __METHOD__, $this->guid);
             return false;
@@ -155,7 +135,7 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $this->m_count = $this->db->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=%d", $this->guid);
+        $this->m_count = $this->cDB->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=%d", $this->guid);
         return $this->m_count;
     }
     
@@ -235,7 +215,7 @@ Class Achievements extends Armory {
                     $a_ids[] = $_tId['id'];
                 }
             }
-            $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d AND `achievement` IN (%s)", $this->guid, $a_ids);
+            $achievement_ids = $this->cDB->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d AND `achievement` IN (%s)", $this->guid, $a_ids);
             if(!$achievement_ids) {
                 $achievement_data['earned'] = 0;
                 $achievement_data['points'] = 0;
@@ -272,7 +252,7 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $achievements = $this->db->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
+        $achievements = $this->cDB->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
         if(!$achievements) {
             $this->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have achievements?)', __METHOD__, $this->guid);
             return false;
@@ -404,7 +384,7 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : achievement %d not exists', __METHOD__, $achId);
             return false;
         }
-        return $this->db->selectCell("SELECT 1 FROM `character_achievement` WHERE `guid`=%d AND `achievement`=%d", $this->guid, $achId);
+        return $this->cDB->selectCell("SELECT 1 FROM `character_achievement` WHERE `guid`=%d AND `achievement`=%d", $this->guid, $achId);
     }
     
     /**
@@ -575,7 +555,7 @@ Class Achievements extends Armory {
             $this->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        return $this->db->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
+        return $this->cDB->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
     }
     
     /**
@@ -644,7 +624,7 @@ Class Achievements extends Armory {
         }
         $tmp_criteria_value = '--';
         foreach($criteria_ids as $criteria) {
-            $tmp_criteria_value = $this->db->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
+            $tmp_criteria_value = $this->cDB->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
             if(!$tmp_criteria_value) {
                 continue;
             }

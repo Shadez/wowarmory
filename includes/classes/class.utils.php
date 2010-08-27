@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 369
+ * @revision 373
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -467,6 +467,9 @@ Class Utils extends Armory {
      * @return   int
      **/
     public function GetRatingCoefficient($rating, $id) {
+        if(!is_array($rating)) {
+            return 1; // Do not return 0 because it will cause division by zero error.
+        }
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[44+$id]) || !isset($rating[$ratingkey[44+$id]])) {
             return 1;
@@ -1229,10 +1232,10 @@ Class Utils extends Armory {
         $horde_races    = array(RACE_ORC,     RACE_TROLL, RACE_TAUREN, RACE_UNDEAD, RACE_BLOODELF);
         $alliance_races = array(RACE_DRAENEI, RACE_DWARF, RACE_GNOME,  RACE_HUMAN,  RACE_NIGHTELF);
         if(in_array($raceID, $horde_races)) {
-            return 1;
+            return FACTION_HORDE;
         }
         elseif(in_array($raceID, $alliance_races)) {
-            return 0;
+            return FACTION_ALLIANCE;
         }
         else {
             // Unknown class
@@ -1364,6 +1367,10 @@ Class Utils extends Armory {
         }
         $countR = count($realms);
         $countC = count($chars);
+        if($countC == 1 && $countR == 1) {
+            // 1 Character, there's nothing to do.
+            return false;
+        }
         $totalCount = 0;
         if($countC == $countR) {
             $totalCount = $countC;

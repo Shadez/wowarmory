@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 368
+ * @revision 373
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -671,7 +671,7 @@ Class Characters extends Armory {
     public function GetAchievementMgr() {
         if(!is_object($this->m_achievementMgr)) {
             $this->m_achievementMgr = new Achievements;
-            $this->m_achievementMgr->InitAchievements($this->GetGUID(), $this->db, true);
+            $this->m_achievementMgr->InitAchievements($this->GetGUID(), true);
         }
         return $this->m_achievementMgr;
     }
@@ -2896,14 +2896,8 @@ Class Characters extends Armory {
         }
     }
     
-    public function HasSpell($spell_id, $active_spec = true) {
-        if($active_spec) {
-            $has = $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `spec`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->activeSpec, $this->guid);
-        }
-        else {
-            $has = $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->guid);
-        }
-        return $has;
+    public function HasSpell($spell_id) {
+        return $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->guid);;
     }
     
     public function HasTalent($talent_id, $active_spec = true, $rank = -1) {
@@ -2937,6 +2931,34 @@ Class Characters extends Armory {
             return false;
         }
         return $rank;
+    }
+    
+    public function GetSkillValue($skill) {
+        return $this->db->selectCell("SELECT `value` FROM `character_skills` WHERE `guid`=%d AND `skill`=%d", $this->guid, $skill);
+    }
+    
+    /**
+     * Returns reputation value with selected faction. If $returnAsRank == true, function will return reputation rank ID.
+     * @category Characters class
+     * @access   public
+     * @param    int $faction_id
+     * @param    bool $returnAsRank = false
+     * @return   int
+     **/
+    public function GetReputationWith($faction_id, $returnAsRank = false) {
+        $standing = $this->db->selectCell("SELECT `standing` FROM `character_reputation` WHERE `faction`=%d AND `guid`=%d", $faction_id, $this->guid);
+        if($returnAsRank == true) {
+            $PointsInRank = array(36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000);
+            $RepRanks  = array(REP_HATED, REP_HOSTILE, REP_UNFRIENDLY, REP_NEUTRAL, REP_FRIENDLY, REP_HONORED, REP_REVERED, REP_EXALTED);
+            $limit = 43000;
+            for($i = 7; $i >= 0; $i--) {
+                $limit -= $PointsInRank[$i];
+                if($standing >= $limit) {
+                    return $RepRanks[$i];
+                }
+            }
+        }
+        return $standing;
     }
 }
 ?>
