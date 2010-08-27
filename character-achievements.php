@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 369
+ * @revision 377
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -63,7 +63,12 @@ if($comparisonData = $utils->IsAchievementsComparison()) {
     foreach($comparisonData as $char) {
         $comparison[$i] = new Characters;
         $comparison[$i]->BuildCharacter($char['name'], $utils->GetRealmIdByName($char['realm']), true);
-        $i++;
+        if(!$comparison[$i]->CheckPlayer()) {
+            array_pop($comparison);
+        }
+        else {
+            $i++;
+        }
     }
     //
     $name = $comparisonData[0]['name'];
