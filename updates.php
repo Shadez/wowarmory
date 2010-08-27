@@ -27,28 +27,16 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 header('Content-type: text/xml');
+// Load XSLT template
+$xml->LoadXSLT('updates.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
 $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
-$xml->XMLWriter()->writeAttribute('requestUrl', 'newsfeed.xml');
-$armory_news = $utils->GetArmoryNews();
-if($armory_news && is_array($armory_news)) {
-    foreach($armory_news as $news) {
-        $xml->XMLWriter()->startElement('news');
-        $xml->XMLWriter()->writeAttribute('icon', 'news');
-        $xml->XMLWriter()->writeAttribute('posted', $news['posted']);
-        $xml->XMLWriter()->startElement('story');
-        $xml->XMLWriter()->writeAttribute('permalink', null);
-        $xml->XMLWriter()->writeAttribute('title', $news['title']);
-        if(preg_match('/&/', $news_item['text'])) {
-            $news_item['text'] = str_replace('&', '&amp;', $news_item['text']);
-        }
-        $xml->XMLWriter()->text($news['text']);
-        $xml->XMLWriter()->endElement();  //story
-        $xml->XMLWriter()->endElement(); //news
-    }
-}
+$xml->XMLWriter()->startElement('updates');
+$xml->XMLWriter()->startElement('related-info');
+$xml->XMLWriter()->endElement();   //related-info
+$xml->XMLWriter()->endElement();  //updates
 $xml->XMLWriter()->endElement(); //page
-echo htmlspecialchars_decode($xml->StopXML()); // htmlspecialchars_decode used to enable HTML tags
+echo $xml->StopXML();
 exit;
 ?>

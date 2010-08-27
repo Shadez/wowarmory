@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 373
+ * @revision 375
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1256,9 +1256,10 @@ Class Utils extends Armory {
      * See SQL update for 240 rev. (sql/updates/armory_r240_armory_news.sql) for example news.
      * @category Utils class
      * @access   public
+     * @param    bool $feed = false
      * @return   array
      **/
-    public function GetArmoryNews() {
+    public function GetArmoryNews($feed = false) {
         $news = $this->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `ARMORYDBPREFIX_news` WHERE `display`=1 ORDER BY `date` DESC", $this->GetLocale(), $this->GetLocale());
         if(!$news) {
             return false;
@@ -1267,7 +1268,12 @@ Class Utils extends Armory {
         $i = 0;
         foreach($news as $new) {
             $allNews[$i] = array();
-            $allNews[$i]['posted'] = date('Y-m-d\TH:i:s\Z', $new['date']);
+            if($feed == true) {
+                $allNews[$i]['date'] = date('d m Y', $new['date']);
+            }
+            else {
+                $allNews[$i]['posted'] = date('Y-m-d\TH:i:s\Z', $new['date']);
+            }
             if(!isset($new['titleLoc']) || empty($new['titleLoc'])) {
                 $allNews[$i]['title'] = (!empty($new['titleOriginal'])) ? $new['titleOriginal'] : null;
             }
@@ -1280,6 +1286,7 @@ Class Utils extends Armory {
             else {
                 $allNews[$i]['text'] = (!empty($new['textLoc'])) ? $new['textLoc'] : null;
             }
+            $allNews[$i]['key'] = $i;
             $i++;
         }
         if($allNews) {
