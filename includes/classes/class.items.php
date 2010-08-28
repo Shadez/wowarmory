@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 368
+ * @revision 379
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1932,6 +1932,11 @@ Class Items extends Armory {
                     $socket_data['icon'] = $gems['g' . $i]['icon'];
                     if(self::IsGemMatchesSocketColor($gems['g' . $i]['color'], (isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : -1)) {
                         $socket_data['match'] = '1';
+                    }
+                }
+                else {
+                    if(isset($data['socketColor_' . $index]) && $data['socketColor_' . $index] > 0) {
+                        $socket_data = array('color' => self::GetSocketColorString($data['socketColor_' . $index]));
                     }
                 }
                 if(isset($socket_data) && is_array($socket_data)) {
