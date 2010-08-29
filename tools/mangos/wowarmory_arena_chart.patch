@@ -12,8 +12,10 @@ index 8343ab5..0ba8a04 100644
 +            if(!result)
 +                maxChartID = 0;
 +            else
++            {
 +                maxChartID = (*result)[0].GetUInt32();
-+            delete result;
++                delete result;
++            }
 +            uint32 gameID = maxChartID+1;
 +            for(BattleGroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
 +            {

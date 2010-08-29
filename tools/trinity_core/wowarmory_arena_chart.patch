@@ -13,8 +13,8 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +            else
 +            {
 +                maxChartID = (*result)[0].GetUInt32();
++                delete result;
 +            }
-+            delete result;
 +            uint32 gameID = maxChartID+1;
 +            for(BattlegroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
 +            {
