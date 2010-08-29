@@ -22,7 +22,7 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +                if (!plr)
 +                    continue;
 +                uint32 plTeamID = plr->GetArenaTeamId(winner_arena_team->GetSlot());
-+                uint32 changeType;
++                int changeType;
 +                uint32 resultRating;
 +                uint32 resultTeamID;
 +                int32 ratingChange;
@@ -105,13 +105,13 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
              }
          }
  
-@@ -9961,6 +9965,10 @@
+@@ -9939,6 +9943,10 @@
      {
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
 +        /** World of Warcraft Armory **/
-+        if (Battleground *bgV = ((Player*)pVictim)->GetBattleground())
-+            bgV->UpdatePlayerScore(((Player*)pVictim), SCORE_HEALING_TAKEN, gain);
++        if (Battleground *bgV = pVictim->ToPlayer()->GetBattleground())
++            bgV->UpdatePlayerScore((Player*)pVictim, SCORE_HEALING_TAKEN, gain);
 +        /** World of Warcraft Armory **/
      }
  

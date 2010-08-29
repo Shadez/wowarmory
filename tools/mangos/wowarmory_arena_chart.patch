@@ -1,8 +1,8 @@
 diff --git a/src/game/BattleGround.cpp b/src/game/BattleGround.cpp
-index 8343ab5..0ba8a04 100644
+index 8343ab5..08debcc 100644
 --- a/src/game/BattleGround.cpp
 +++ b/src/game/BattleGround.cpp
-@@ -723,6 +723,45 @@ void BattleGround::EndBattleGround(uint32 winner)
+@@ -723,6 +723,47 @@ void BattleGround::EndBattleGround(uint32 winner)
              DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %u, Losser change: %u ---", winner_rating, loser_rating, winner_change, loser_change);
              SetArenaTeamRatingChangeForTeam(winner, winner_change);
              SetArenaTeamRatingChangeForTeam(GetOtherTeam(winner), loser_change);
@@ -23,7 +23,7 @@ index 8343ab5..0ba8a04 100644
 +                if (!plr)
 +                    continue;
 +                uint32 plTeamID = plr->GetArenaTeamId(winner_arena_team->GetSlot());
-+                uint32 changeType;
++                int changeType;
 +                uint32 resultRating;
 +                uint32 resultTeamID;
 +                int32 ratingChange;
@@ -50,7 +50,7 @@ index 8343ab5..0ba8a04 100644
          }
          else
          {
-@@ -1373,6 +1412,14 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
+@@ -1373,6 +1414,14 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
          case SCORE_HEALING_DONE:                            // Healing Done
              itr->second->HealingDone += value;
              break;
@@ -94,7 +94,7 @@ index a7a3da7..01f559a 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index db34012..48ea18e 100644
+index f8461c1..9f99002 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
 @@ -634,6 +634,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
@@ -108,7 +108,7 @@ index db34012..48ea18e 100644
              }
          }
  
-@@ -5873,6 +5882,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+@@ -5873,6 +5877,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
      {
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);
