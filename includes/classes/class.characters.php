@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 378
+ * @revision 383
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2595,23 +2595,15 @@ Class Characters extends Armory {
                 case TYPE_BOSS_FEED:
                     // Get criterias
                     $achievement_ids = array();
-                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data`=%d", $event['data']);
-                    if(!$criterias) {
-                        // Search for KillCredit
-                        $kc_entry = 0;
-                        $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $event['data']);
-                        for($i=1;$i<3;$i++) {
-                            if($KillCredit['KillCredit'.$i] > 0) {
-                                $kc_entry = $KillCredit['KillCredit'.$i];
-                            }
-                        }
-                        if($kc_entry == 0) {
-                            continue;
-                        }
-                        $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data`=%d", $kc_entry);
-                        if(!$criterias || !is_array($criterias)) {
-                            continue;
-                        }
+                    $dungeonDifficulty = $event['difficulty'];
+                    // Search for difficulty_entry_X
+                    $DifficultyEntry = $this->wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event['data']);
+                    if(!$DifficultyEntry || $DifficultyEntry == 0) {
+                        $DifficultyEntry = $event['data'];
+                    }
+                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data` = %d", $DifficultyEntry);
+                    if(!$criterias || !is_array($criterias)) {
+                        continue;
                     }
                     foreach($criterias as $crit) {
                         $achievement_ids[] = $crit['referredAchievement'];
@@ -2619,7 +2611,7 @@ Class Characters extends Armory {
                     if(!$achievement_ids || !is_array($achievement_ids)) {
                         continue;
                     }
-                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s) AND `flags`=1", $this->GetLocale(), $achievement_ids);
+                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s) AND `flags`=1 AND `dungeonDifficulty`=%d", $this->GetLocale(), $achievement_ids, $dungeonDifficulty);
                     if(!$achievement || !is_array($achievement)) {
                         continue;
                     }
