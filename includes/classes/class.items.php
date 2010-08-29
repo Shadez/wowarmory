@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 379
+ * @revision 380
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -252,11 +252,12 @@ Class Items extends Armory {
             $tmp_locale = 'en_gb';
         }
         $itemSetBonuses = array();
-        for($i=1; $i<9; $i++) {
-            if($itemsetdata['bonus'.$i] > 0) {
+        for($i = 1; $i < 9; $i++) {
+            if($itemsetdata['bonus' . $i] > 0) {
+                $threshold = $itemsetdata['threshold' . $i];
                 $spell_tmp = array();
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $itemsetdata['bonus'.$i]);
-                if(!isset($spell_tmp['Description_'.$tmp_locale]) || empty($spell_tmp['Description_' . $tmp_locale])) {
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $itemsetdata['bonus' . $i]);
+                if(!isset($spell_tmp['Description_' . $tmp_locale]) || empty($spell_tmp['Description_' . $tmp_locale])) {
                     // try to find en_gb locale
                     if(isset($spell_tmp['Description_en_gb']) && !empty($spell_tmp['Description_en_gb'])) {
                         $tmp_locale = 'en_gb';
@@ -265,11 +266,13 @@ Class Items extends Armory {
                         continue;
                     }
                 }
-                $itemSetBonuses[$i]['desc'] = self::SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_'.$tmp_locale]));
-                $itemSetBonuses[$i]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$i]['desc']);
-                $itemSetBonuses[$i]['threshold'] = $i;
+                $itemSetBonuses[$threshold]['desc'] = self::SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_' . $tmp_locale]));
+                $itemSetBonuses[$threshold]['desc'] = str_replace('&quot;', '"', $itemSetBonuses[$threshold]['desc']);
+                $itemSetBonuses[$threshold]['threshold'] = $threshold;
+                
             }
 	   }
+       sort($itemSetBonuses); // Correct display itemset bonuses
 	   return $itemSetBonuses;
     }
     
@@ -2053,7 +2056,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->startElement('itemLevel');
         $xml->XMLWriter()->text($data['ItemLevel']);
         $xml->XMLWriter()->endElement(); //itemLevel
-        
+        // Item set
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
             $itemsetName = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $this->GetLocale(), $data['itemset']);
@@ -2068,30 +2071,46 @@ Class Items extends Armory {
                 $xml->XMLWriter()->endElement();
             }
             $setdata = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $data['itemset']);
-            //                   t9/t10                    Onyxia trinkets
-            if($data['itemset'] >= 843 && $data['itemset'] != 881 && $data['itemset'] != 882) {
+            if(self::IsMultiplyItemSet($data['itemset'])) {
                 // Get itemset info from other table (armory_itemsetdata)
-                $currentSetData = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d AND (`item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d)", $data['itemset'], $itemID, $itemID, $itemID, $itemID, $itemID);
-                if($currentSetData) {
+                $currentSetData = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d", $data['itemset']);
+                if(is_array($currentSetData)) {
+                    $activeSetInfo = array();
+                    $basicSetData = $currentSetData[0];
+                    foreach($currentSetData as $iSet) {
+                        for($i = 1; $i < 6; $i++) {
+                            if($characters->IsItemEquipped($iSet['item' . $i])) {
+                                $activeSetInfo['item' . $i] = $iSet['item' . $i];
+                            }
+                        }
+                    }
                     for($i=1;$i<6;$i++) {
-                        if(self::IsItemExists($currentSetData['item'.$i])) {
                             if(Utils::IsWriteRaw()) {
                                 $xml->XMLWriter()->writeRaw('<item');
-                                $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($currentSetData['item'.$i]).'"');
-                                if($characters->IsItemEquipped($currentSetData['item'.$i])) {
-                                    $xml->XMLWriter()->writeRaw(' equipped="' . 1 . '"');
+                                if(isset($activeSetInfo['item' . $i])) {
+                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($activeSetInfo['item' . $i]).'"');
+                                    if($characters->IsItemEquipped($activeSetInfo['item'.$i])) {
+                                        $xml->XMLWriter()->writeRaw(' equipped="1"');
+                                    }
+                                }
+                                else {
+                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($basicSetData['item'.$i]).'"');
                                 }
                                 $xml->XMLWriter()->writeRaw('/>'); //item
                             }
                             else {
                                 $xml->XMLWriter()->startElement('item');
-                                $xml->XMLWriter()->writeAttribute('name', self::GetItemName($currentSetData['item'.$i]));
-                                if($characters->IsItemEquipped($currentSetData['item'.$i])) {
-                                    $xml->XMLWriter()->writeAttribute('equipped', '1');
+                                if(isset($activeSetInfo['item' . $i])) {
+                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($activeSetInfo['item'.$i]));
+                                    if($characters->IsItemEquipped($activeSetInfo['item'.$i])) {
+                                        $xml->XMLWriter()->writeAttribute('equipped', '1');
+                                    }
+                                }
+                                else {
+                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($basicSetData['item'.$i]));
                                 }
                                 $xml->XMLWriter()->endElement(); //item
                             }
-                        }
                     }
                 }
             }
@@ -2931,6 +2950,17 @@ Class Items extends Armory {
                 break;
         }
         return $string;
+    }
+    
+    private function IsMultiplyItemSet($itemSetID) {
+        if($itemSetID >= 843 && $itemSetID != 881 && $itemSetID != 882) {
+            return true;
+        }
+        $setID = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d LIMIT 1", $itemSetID);
+        if($setID > 160) {
+            return true;
+        }
+        return false;
     }
 }
 ?>
