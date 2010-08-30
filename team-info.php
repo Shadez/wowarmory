@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 384
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -74,23 +74,41 @@ $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'team-info.xml');
 $arenateams->InitTeam();
 $team_info = $arenateams->GetArenaTeamInfo();
+if(!is_array($team_info)) {
+    // Load XSLT template
+    $xml->LoadXSLT('error/error.xsl');
+    $xml->XMLWriter()->startElement('page');
+    $xml->XMLWriter()->writeAttribute('globalSearch', 1);
+    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+    $xml->XMLWriter()->startElement('errorhtml');
+    $xml->XMLWriter()->endElement();  //errorhtml
+    $xml->XMLWriter()->endElement(); //page
+    echo $xml->StopXML();
+    exit;
+}
 $xml->XMLWriter()->startElement('teamInfo');
 $xml->XMLWriter()->startElement('arenaTeam');
-foreach($team_info['data'] as $team_key => $team_value) {
-    $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+if(isset($team_info['data'])) {
+    foreach($team_info['data'] as $team_key => $team_value) {
+        $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+    }
 }
 $xml->XMLWriter()->startElement('emblem');
-foreach($team_info['emblem'] as $emblem_key => $emblem_value) {
-    $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+if(isset($team_info['emblem'])) {
+    foreach($team_info['emblem'] as $emblem_key => $emblem_value) {
+        $xml->XMLWriter()->writeAttribute($emblem_key, $emblem_value);
+    }
 }
 $xml->XMLWriter()->endElement(); //emblem
 $xml->XMLWriter()->startElement('members');
-foreach($team_info['members'] as $members) {
-    $xml->XMLWriter()->startElement('character');
-    foreach($members as $member_key => $member_value) {
-        $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+if(isset($team_info['members'])) {
+    foreach($team_info['members'] as $members) {
+        $xml->XMLWriter()->startElement('character');
+        foreach($members as $member_key => $member_value) {
+            $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+        }
+        $xml->XMLWriter()->endElement(); //character
     }
-    $xml->XMLWriter()->endElement(); //character
 }
 $xml->XMLWriter()->endElement();    //members
 $xml->XMLWriter()->endElement();   //arenaTeam

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 369
+ * @revision 384
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -187,7 +187,7 @@ Class Arenateams extends Armory {
             return;
         }
         $count_players = count($this->players);
-        for($i=0;$i<$count_players;$i++) {
+        for($i = 0; $i < $count_players; $i++) {
             if($this->players[$i]['guildId'] = $this->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $this->players[$i]['guid'])) {
                 $this->players[$i]['guild'] = $this->cDB->selectCell("SELECT `name` FROM `guild` WHERE `guildid`=%d", $this->players[$i]['guildId']);
                 $this->players[$i]['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->players[$i]['guild']));
@@ -213,12 +213,7 @@ Class Arenateams extends Armory {
             $summary = 0;
             foreach($this->realmData as $realm_info) {
                 $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
-                $current_count = $db->selectCell("
-                SELECT
-                COUNT(`arena_team`.`arenateamid`) 
-                FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid` = `arena_team`.`arenateamid` 
-                WHERE `arena_team`.`type` = %d AND `arena_team_stats`.`rank` > 0", $type);
+                $current_count = $db->selectCell("SELECT COUNT(`arena_team`.`arenateamid`) FROM `arena_team` AS `arena_team` LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid` = `arena_team`.`arenateamid` WHERE `arena_team`.`type` = %d AND `arena_team_stats`.`rank` > 0", $type);
                 $summary = $current_count+$summary;
             }
             return $summary;
@@ -245,8 +240,7 @@ Class Arenateams extends Armory {
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
                 WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
-                ORDER BY `lose` %s LIMIT %d, 20
-                ", $type, $sort, $page);
+                ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
             }
             else {
                 $realmArenaTeamInfo = $db->select("
@@ -264,8 +258,7 @@ Class Arenateams extends Armory {
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                 LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
                 WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
-                ORDER BY %s %s LIMIT %d, 20
-                ", $type, $order, $sort, $page);
+                ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
             }
             if(!$realmArenaTeamInfo) {
                 $this->Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
@@ -310,20 +303,14 @@ Class Arenateams extends Armory {
             $teamId = $this->arenateamid;
         }
         if($db == null) {
-            $arenaTeamEmblem = $this->cDB->selectRow("
-            SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
-            FROM `arena_team`
-            WHERE `arenateamid`=%d", $teamId);
+            $arenaTeamEmblem = $this->cDB->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
             $arenaTeamEmblem['background'] = /*dechex(*/$arenaTeamEmblem['background']/*)*/;
             $arenaTeamEmblem['borderColor'] = /*dechex(*/$arenaTeamEmblem['borderColor']/*)*/;
             $arenaTeamEmblem['iconColor'] = /*dechex(*/$arenaTeamEmblem['iconColor']/*)*/;
             return $arenaTeamEmblem;
         }
         elseif(is_object($db)) {
-            $arenaTeamEmblem = $db->selectRow("
-            SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle`
-                FROM `arena_team`
-                    WHERE `arenateamid`=%d", $teamId);
+            $arenaTeamEmblem = $db->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
             $arenaTeamEmblem['background'] = /*dechex(*/$arenaTeamEmblem['background']/*)*/;
             $arenaTeamEmblem['borderColor'] = /*dechex(*/$arenaTeamEmblem['borderColor']/*)*/;
             $arenaTeamEmblem['iconColor'] = /*dechex(*/$arenaTeamEmblem['iconColor']/*)*/;
