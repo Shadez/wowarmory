@@ -13,7 +13,7 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +            else
 +            {
 +                maxChartID = (*result)[0].GetUInt32();
-+                delete result;
++                result.release();
 +            }
 +            uint32 gameID = maxChartID+1;
 +            for(BattlegroundScoreMap::const_iterator itr = m_PlayerScores.begin(); itr != m_PlayerScores.end(); ++itr)
@@ -29,14 +29,14 @@ diff --git a/src/server/game/Battlegrounds/Battleground.cpp b/src/server/game/Ba
 +                if (plTeamID == winner_arena_team->GetId())
 +                {
 +                    changeType = 1; //win
-+                    resultRating = winner_rating;
++                    resultRating = winner_team_rating;
 +                    resultTeamID = plTeamID;
 +                    ratingChange = winner_change;
 +                }
 +                else
 +                {
 +                    changeType = 2; //lose
-+                    resultRating = loser_rating;
++                    resultRating = loser_team_rating;
 +                    resultTeamID = loser_arena_team->GetId();
 +                    ratingChange = loser_change;
 +                }
@@ -94,7 +94,7 @@ diff --git a/src/server/game/Battlegrounds/Battleground.h b/src/server/game/Batt
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -693,6 +693,10 @@
+@@ -700,6 +700,10 @@
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
@@ -105,7 +105,7 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
              }
          }
  
-@@ -9939,6 +9943,10 @@
+@@ -10001,6 +10005,10 @@
      {
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

@@ -66,7 +66,7 @@ index 8343ab5..08debcc 100644
              sLog.outError("BattleGround: Unknown player score type %u", type);
              break;
 diff --git a/src/game/BattleGround.h b/src/game/BattleGround.h
-index a7a3da7..01f559a 100644
+index 0a70990..55ea549 100644
 --- a/src/game/BattleGround.h
 +++ b/src/game/BattleGround.h
 @@ -191,7 +191,11 @@ enum ScoreType
@@ -94,10 +94,10 @@ index a7a3da7..01f559a 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index f8461c1..9f99002 100644
+index 4bf7533..b9bf8b0 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -634,6 +634,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -633,6 +633,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
@@ -108,7 +108,7 @@ index f8461c1..9f99002 100644
              }
          }
  
-@@ -5873,6 +5877,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+@@ -5872,6 +5876,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
      {
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

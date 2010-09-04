@@ -74,7 +74,7 @@ if($comparisonData = $utils->IsAchievementsComparison()) {
     $name = $comparisonData[0]['name'];
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
-$characters->BuildCharacter($name, $realmId);
+$characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
 $achievements = $characters->GetAchievementMgr();
 if($_GET['r'] === false || !$armory->currentRealmInfo) {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 380
+ * @revision 385
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1797,30 +1797,30 @@ Class Items extends Armory {
             8 => 'boots',
             9 => 'wrist',
             10=> 'gloves',
-            11=>'ring1',
-            12=>'trinket1',
-            13=>'mainhand',
-            14=>'offhand',
-            15=>'relic',
-            16=>'back', 
-            17=>'stave',
-            19=>'tabard',
-            20=>'chest',
-            21=>'mainhand',
-            22=>'',
-            23=>'offhand',
-            24=>'',
-            25=>'thrown',
-            26=>'gun',
-            28=>'sigil'
+            11=> 'ring1',
+            12=> 'trinket1',
+            13=> 'mainhand',
+            14=> 'offhand',
+            15=> 'relic',
+            16=> 'back', 
+            17=> 'stave',
+            19=> 'tabard',
+            20=> 'chest',
+            21=> 'mainhand',
+            22=> null,
+            23=> 'offhand',
+            24=> null,
+            25=> 'thrown',
+            26=> 'gun',
+            28=> 'relic'
         );
         if(isset($ench_array[$data['InventoryType']])) {
             $itemSlotName = $ench_array[$data['InventoryType']];
         }
         else {
-            $itemSlotName = false;
+            $itemSlotName = null;
         }
-        if(!$parent && $isCharacter && $itemSlotName) {
+        if(!$parent && $isCharacter && $itemSlotName != null) {
             $enchantment = $characters->GetCharacterEnchant($itemSlotName);
             if($enchantment > 0) {
                 if(Utils::IsWriteRaw()) {

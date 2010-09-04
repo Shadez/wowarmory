@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 383
+ * @revision 385
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -239,9 +239,10 @@ Class Characters extends Armory {
      * @param    string $name
      * @param    int $realmId = 1
      * @param    bool $full = true
+     * @param    bool $initialBuild = false
      * @return   bool
      **/
-    public function BuildCharacter($name, $realmId = 1, $full = true) {
+    public function BuildCharacter($name, $realmId = 1, $full = true, $initialBuild = false) {
         if(!is_string($name)) {
             $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
@@ -315,7 +316,7 @@ Class Characters extends Armory {
             // Character data required for character-sheet page only.
             $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
             if(!$player_stats_check) {
-                $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to characters DB not applied?)', __METHOD__, $player_data['guid'], $player_data['name']);
+                $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
                 unset($player_data);
                 return false;
             }
@@ -392,8 +393,10 @@ Class Characters extends Armory {
             $this->m_achievementMgr = new Achievements;
             $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
         }
-        // Everything correct, build class
-        $this->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
+        // Everything correct
+        if($initialBuild == true) {
+            $this->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
+        }
         return true;
     }
     
