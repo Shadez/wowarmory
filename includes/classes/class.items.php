@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 385
+ * @revision 386
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1621,14 +1621,29 @@ Class Items extends Armory {
         $xml->XMLWriter()->text(self::GetItemIcon($itemID, $data['displayid']));
         $xml->XMLWriter()->endElement(); //icon
         // 3.2.x heroic item flag
-        if($data['Flags']&ITEM_FLAGS_HEROIC) {
+        if($data['Flags'] & ITEM_FLAGS_HEROIC) {
             $xml->XMLWriter()->startElement('heroic');
-            $xml->XMLWriter()->text(1);
-            $xml->XMLWriter()->endElement();//heroic
+            $xml->XMLWriter()->text('1');
+            $xml->XMLWriter()->endElement(); //heroic
         }
         $xml->XMLWriter()->startElement('overallQualityId');
         $xml->XMLWriter()->text($data['Quality']);
-        $xml->XMLWriter()->endElement();//overallQualityId
+        $xml->XMLWriter()->endElement(); //overallQualityId
+        // Map
+        if($data['Map'] > 0 && $mapName = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id` = %d", $this->GetLocale(), $data['Map'])) {
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<instanceBound>' . $mapName . '</instanceBound>');
+            }
+            else {
+                $xml->XMLWriter()->startElement('instanceBound');
+                $xml->XMLWriter()->text($mapName);
+                $xml->XMLWriter()->endElement(); //instanceBound
+            }
+        }
+        if($data['Flags'] & ITEM_FLAGS_CONJURED) {
+            $xml->XMLWriter()->startElement('conjured');
+            $xml->XMLWriter()->endElement(); //conjured
+        }
         $xml->XMLWriter()->startElement('bonding');
         $xml->XMLWriter()->text($data['bonding']);
         $xml->XMLWriter()->endElement();//bonding
@@ -1705,6 +1720,24 @@ Class Items extends Armory {
                 $xml->XMLWriter()->endElement(); //dps
             }
             $xml->XMLWriter()->endElement(); //damageData
+        }
+        // Projectile DPS
+        if($data['class'] == ITEM_CLASS_PROJECTILE) {
+            if($data['dmg_min1'] > 0 && $data['dmg_max1'] > 0) {
+                $xml->XMLWriter()->startElement('damageData');
+                $xml->XMLWriter()->startElement('damage');
+                $xml->XMLWriter()->startElement('type');
+                $xml->XMLWriter()->text($data['dmg_type1']);
+                $xml->XMLWriter()->endElement(); //type
+                $xml->XMLWriter()->startElement('max');
+                $xml->XMLWriter()->text($data['dmg_max1']);
+                $xml->XMLWriter()->endElement(); //max
+                $xml->XMLWriter()->startElement('min');
+                $xml->XMLWriter()->text($data['dmg_min1']);
+                $xml->XMLWriter()->endElement();   //min
+                $xml->XMLWriter()->endElement();  //damage
+                $xml->XMLWriter()->endElement(); //damageData
+            }
         }
         // Gem properties
         if($data['class'] == ITEM_CLASS_GEM && $data['GemProperties'] > 0) {
@@ -2035,6 +2068,11 @@ Class Items extends Armory {
                 $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
                 $xml->XMLWriter()->endElement(); //requiredSkill
             }
+        }
+        if($data['requiredspell'] > 0 && $spellName = $this->aDB->selectCell("SELECT `SpellName_%s` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $this->GetLocale(), $data['requiredspell'])) {
+            $xml->XMLWriter()->startElement('requiredAbility');
+            $xml->XMLWriter()->text($spellName);
+            $xml->XMLWriter()->endElement(); //requiredAbility
         }
         if($data['RequiredReputationFaction'] > 0) {    
             if(Utils::IsWriteRaw()) {
