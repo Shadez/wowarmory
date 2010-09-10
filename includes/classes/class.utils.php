@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 375
+ * @revision 389
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1028,48 +1028,48 @@ Class Utils extends Armory {
      **/
     public function GetRadius($index) {
         $gSpellRadiusIndex = array(
-         '7'=>array(2,0,2),
-         '8'=>array(5,0,5),
-         '9'=>array(20,0,20),
-        '10'=>array(30,0,30),
-        '11'=>array(45,0,45),
-        '12'=>array(100,0,100),
-        '13'=>array(10,0,10),
-        '14'=>array(8,0,8),
-        '15'=>array(3,0,3),
-        '16'=>array(1,0,1),
-        '17'=>array(13,0,13),
-        '18'=>array(15,0,15),
-        '19'=>array(18,0,18),
-        '20'=>array(25,0,25),
-        '21'=>array(35,0,35),
-        '22'=>array(200,0,200),
-        '23'=>array(40,0,40),
-        '24'=>array(65,0,65),
-        '25'=>array(70,0,70),
-        '26'=>array(4,0,4),
-        '27'=>array(50,0,50),
-        '28'=>array(50000,0,50000),
-        '29'=>array(6,0,6),
-        '30'=>array(500,0,500),
-        '31'=>array(80,0,80),
-        '32'=>array(12,0,12),
-        '33'=>array(99,0,99),
-        '35'=>array(55,0,55),
-        '36'=>array(0,0,0),
-        '37'=>array(7,0,7),
-        '38'=>array(21,0,21),
-        '39'=>array(34,0,34),
-        '40'=>array(9,0,9),
-        '41'=>array(150,0,150),
-        '42'=>array(11,0,11),
-        '43'=>array(16,0,16),
-        '44'=>array(0.5,0,0.5),
-        '45'=>array(10,0,10),
-        '46'=>array(5,0,10),
-        '47'=>array(15,0,15),
-        '48'=>array(60,0,60),
-        '49'=>array(90,0,90)
+             '7' => array(2,0,2),
+             '8' => array(5,0,5),
+             '9' => array(20,0,20),
+            '10' => array(30,0,30),
+            '11' => array(45,0,45),
+            '12' => array(100,0,100),
+            '13' => array(10,0,10),
+            '14' => array(8,0,8),
+            '15' => array(3,0,3),
+            '16' => array(1,0,1),
+            '17' => array(13,0,13),
+            '18' => array(15,0,15),
+            '19' => array(18,0,18),
+            '20' => array(25,0,25),
+            '21' => array(35,0,35),
+            '22' => array(200,0,200),
+            '23' => array(40,0,40),
+            '24' => array(65,0,65),
+            '25' => array(70,0,70),
+            '26' => array(4,0,4),
+            '27' => array(50,0,50),
+            '28' => array(50000,0,50000),
+            '29' => array(6,0,6),
+            '30' => array(500,0,500),
+            '31' => array(80,0,80),
+            '32' => array(12,0,12),
+            '33' => array(99,0,99),
+            '35' => array(55,0,55),
+            '36' => array(0,0,0),
+            '37' => array(7,0,7),
+            '38' => array(21,0,21),
+            '39' => array(34,0,34),
+            '40' => array(9,0,9),
+            '41' => array(150,0,150),
+            '42' => array(11,0,11),
+            '43' => array(16,0,16),
+            '44' => array(0.5,0,0.5),
+            '45' => array(10,0,10),
+            '46' => array(5,0,10),
+            '47' => array(15,0,15),
+            '48' => array(60,0,60),
+            '49' => array(90,0,90)
         );
         if(!isset($gSpellRadiusIndex[$index])) {
             return false;
@@ -1081,17 +1081,20 @@ Class Utils extends Armory {
         if($radius[0] == 0 || $radius[0] == $radius[2]) {
             return $radius[2];
         }
-        return $radius[0].' - '.$radius[2];
+        return $radius[0] . ' - ' . $radius[2];
     }
     
     /**
      * Returns string with ID #$id for $this->GetLocale() locale from DB
      * @category Utils class
      * @access   public
-     * @param    int $id
+     * @param    mixed $id
      * @return   string
      **/
     public function GetArmoryString($id) {
+        if(is_array($id)) {
+            return $this->aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (%s)", $this->GetLocale(), $id);
+        }
         return $this->aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id`=%d", $this->GetLocale(), $id);
     }
     
@@ -1330,7 +1333,7 @@ Class Utils extends Armory {
                     $this->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
                 }
                 else {
-                    $this->Log()->writeError('%s : realm data for realm "%s" was not added to `armory_realm_data` table. Please, execute this query manually: "REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (%d, \'%s\');"', __METHOD__, $myRealm['name'], $myRealm['id'], $myRealm['name']);
+                    $this->Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`) VALUES (%d, \'%s\');"', __METHOD__, $myRealm['name'], $this->armoryconfig['db_prefix'], $this->armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name']);
                 }
             }
         }
@@ -1531,6 +1534,28 @@ Class Utils extends Armory {
             $characters .= $char['name'].'_'.$char['realm'];
         }
         return md5($characters);
+    }
+    
+    /**
+     * Returns server type ID
+     * @category Utils class
+     * @access   public
+     * @param    string $server
+     * @return   int
+     **/
+    public function GetServerTypeByString($server) {
+        /*
+        $server = strtolower($server);
+        if($server == 'mangos') {
+            return SERVER_MANGOS;
+        }
+        elseif($server == 'trinity') {
+            return SERVER_TRINITY;
+        }
+        $this->Log()->writeError('%s : unsupported server type ("%s")!', __METHOD__, $server);
+        return UNK_SERVER;
+        */
+        return -1;
     }
 }
 ?>
