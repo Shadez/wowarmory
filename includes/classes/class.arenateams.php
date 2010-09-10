@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 387
+ * @revision 388
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -63,7 +63,6 @@ Class Arenateams extends Armory {
         $this->teamname      = $arenaInfo['name'];
         $this->teamlogostyle = self::GetArenaTeamEmblem($this->arenateamid);
         $this->teamfaction   = Utils::GetFactionId($this->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=%d LIMIT 1", $this->captainguid));
-        $this->teamfaction   = 1;
         $this->teamtype      = $arenaInfo['type'];
         self::GetTeamList();
     }
