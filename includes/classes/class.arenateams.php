@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 384
+ * @revision 387
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -168,20 +168,40 @@ Class Arenateams extends Armory {
      * @return   array
      **/
     public function GetTeamList() {
-        $this->players = $this->cDB->select("
-        SELECT
-        `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
-        `arena_team_member`.`wons_season` AS `seasonGamesWon`,
-        `arena_team_member`.`personal_rating` AS `contribution`,
-        `characters`.`guid`,
-        `characters`.`name`,
-        `characters`.`race` AS `raceId`,
-        `characters`.`class` AS `classId`,
-        `characters`.`gender` AS `genderId`
-        FROM `arena_team_member` AS `arena_team_member`
-        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
-        WHERE `arena_team_member`.`arenateamid`=%d
-        ", $this->arenateamid);
+        if($this->currentRealmInfo['type'] == 'mangos') {
+            $this->players = $this->cDB->select("
+            SELECT
+            `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
+            `arena_team_member`.`wons_season` AS `seasonGamesWon`,
+            `arena_team_member`.`personal_rating` AS `contribution`,
+            `characters`.`guid`,
+            `characters`.`name`,
+            `characters`.`race` AS `raceId`,
+            `characters`.`class` AS `classId`,
+            `characters`.`gender` AS `genderId`
+            FROM `arena_team_member` AS `arena_team_member`
+            LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
+            WHERE `arena_team_member`.`arenateamid`=%d
+            ", $this->arenateamid);
+        }
+        elseif($this->currentRealmInfo['type'] == 'trinity') {
+            $this->players = $this->cDB->select("
+            SELECT
+            `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
+            `arena_team_member`.`wons_season` AS `seasonGamesWon`,
+            `character_arena_stats`.`personal_rating` AS `contribution`,
+            `characters`.`guid`,
+            `characters`.`name`,
+            `characters`.`race` AS `raceId`,
+            `characters`.`class` AS `classId`,
+            `characters`.`gender` AS `genderId`
+            FROM `arena_team_member` AS `arena_team_member`
+            LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
+            LEFT JOIN `character_arena_stats` AS `character_arena_stats` ON `character_arena_stats`.`guid`=`arena_team_member`.`guid`
+            WHERE `arena_team_member`.`arenateamid`=%d
+            AND `character_arena_stats`.`slot`=%d
+            ", $this->arenateamid, $this->teamtype);
+        }
         if(!$this->players) {
             $this->Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return;
