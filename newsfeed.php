@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 375
+ * @revision 391
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,8 +40,8 @@ if($armory_news && is_array($armory_news)) {
         $xml->XMLWriter()->startElement('story');
         $xml->XMLWriter()->writeAttribute('permalink', null);
         $xml->XMLWriter()->writeAttribute('title', $news['title']);
-        if(preg_match('/&/', $news_item['text'])) {
-            $news_item['text'] = str_replace('&', '&amp;', $news_item['text']);
+        if(preg_match('/&/', $news['text'])) {
+            $news['text'] = str_replace('&', '&amp;', $news['text']);
         }
         $xml->XMLWriter()->text($news['text']);
         $xml->XMLWriter()->endElement();  //story
