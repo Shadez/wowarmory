@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 386
+ * @revision 390
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -123,7 +123,7 @@ Class Items extends Armory {
      **/
     public function AllowableRaces($mask) {
         $mask &= 0x7FF;
-        // Return zero if for all class (or for none
+        // Return zero if for all class (or for none)
 		if($mask == 0x7FF || $mask == 0) {
             return 0;
 		}
@@ -194,7 +194,7 @@ Class Items extends Armory {
 		$bossLoot = $this->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d LIMIT 1", $item);
         if($bossLoot) {
             if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && self::IsUniqueLoot($item)) {
-                // We got boss loot, generate improved tooltip.
+                // We have boss loot, generate improved tooltip.
                 return self::GetImprovedItemSource($item, $bossLoot, $areaDataOnly);
             }
             elseif(Mangos::GetNpcInfo($bossLoot, 'isBoss')) {
@@ -459,7 +459,7 @@ Class Items extends Armory {
                         $lootTable[$i]['reagent'] = array();                    
                         $lootTable[$i]['spell']['name'] = $craftItem['SpellName'];
                         $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_speillicon` WHERE `id`=%d", $craftItem['SpellIconID']);
-                        for($o=1;$o<9;$o++) {
+                        for($o = 1; $o < 9; $o++) {
                             if($craftItem['Reagent_'.$o] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['id'] = $craftItem['Reagent_'.$o];
@@ -469,7 +469,7 @@ Class Items extends Armory {
                                 $lootTable[$i]['reagent'][$o]['quality'] = $tmp_info['Quality'];
                             }
                         }
-                        for($j=1;$j<4;$j++) {
+                        for($j = 1; $j < 4; $j++) {
                             if($craftItem['EffectItemType_'.$j] > 0) {
                                 $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['EffectItemType_'.$j]);
                                 $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
@@ -559,22 +559,22 @@ Class Items extends Armory {
                     $lootTable[$i]['reagent'] = array();
                     $lootTable[$i]['spell']['name'] = $ReagentItem['SpellName'];
                     $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `ARMORYDBPREFIX_spellicon` WHERE `id`=%d", $ReagentItem['SpellIconID']);
-                    for($j=1;$j<4;$j++) {
-                        if($ReagentItem['EffectItemType_'.$j] > 0) {
-                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_'.$j]);
-                            $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_'.$j];
-                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['EffectItemType_'.$j]);
+                    for($j = 1; $j < 4; $j++) {
+                        if($ReagentItem['EffectItemType_' . $j] > 0) {
+                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_' . $j]);
+                            $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_' . $j];
+                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['EffectItemType_' . $j]);
                             $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($ReagentItem['EffectItemType_'.$j], $tmp_info['displayid']);
                             $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
                         }
                     }
-                    for($o=1;$o<9;$o++) {
-                        if($ReagentItem['Reagent_'.$o] > 0) {
-                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['Reagent_'.$o]);
-                            $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_'.$o];
-                            $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($ReagentItem['Reagent_'.$o], $tmp_info['displayid']);
-                            $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_'.$o];
-                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['Reagent_'.$o]);
+                    for($o = 1; $o < 9; $o++) {
+                        if($ReagentItem['Reagent_' . $o] > 0) {
+                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['Reagent_' . $o]);
+                            $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_' . $o];
+                            $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($ReagentItem['Reagent_' . $o], $tmp_info['displayid']);
+                            $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_' . $o];
+                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['Reagent_' . $o]);
                         }
                     }
                     $i++;
@@ -619,7 +619,7 @@ Class Items extends Armory {
                     $str_tmp = array();
                     $lootTable[$i]['name'] = $entry['name'];
                     $lootTable[$i]['data'] = array();
-                    for($j=1;$j<6;$j++) {
+                    for($j = 1; $j < 6; $j++) {
                         if(isset($entry['ench_' . $j]) && $entry['ench_' . $j] > 0) {
                             if($type == 'property') {
                                 $str_tmp[$entry['ench_' . $j]] = $entry['ench_' . $j];
@@ -806,7 +806,7 @@ Class Items extends Armory {
      * @return   int
      **/
     public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0, $db = null) {
-        $dataField = $field+1;
+        $dataField = $field + 1;
         if($db == null) {
             $db = $this->cDB;
         }
@@ -899,7 +899,7 @@ Class Items extends Armory {
                 else {
                     $base = $var;
                 }
-                $str.=$base;
+                $str .= $base;
             }
         }
         $str .= substr($data, $pos);
@@ -917,9 +917,9 @@ Class Items extends Armory {
      **/
     public function GetSpellData($spell) {
         // Basepoints
-        $s1 = abs($spell['EffectBasePoints_1']+$spell['EffectBaseDice_1']);
-        $s2 = abs($spell['EffectBasePoints_2']+$spell['EffectBaseDice_2']);
-        $s3 = abs($spell['EffectBasePoints_3']+$spell['EffectBaseDice_3']);
+        $s1 = abs($spell['EffectBasePoints_1'] + $spell['EffectBaseDice_1']);
+        $s2 = abs($spell['EffectBasePoints_2'] + $spell['EffectBaseDice_2']);
+        $s3 = abs($spell['EffectBasePoints_3'] + $spell['EffectBaseDice_3']);
         if($spell['EffectDieSides_1']>$spell['EffectBaseDice_1'] && ($spell['EffectDieSides_1']-$spell['EffectBaseDice_1'] != 1)) {
             $s1 .= ' - ' . abs($spell['EffectBasePoints_1'] + $spell['EffectDieSides_1']);
         }
@@ -936,55 +936,55 @@ Class Items extends Armory {
             }
         }
         // Tick duration
-        $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
-        $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
-        $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
+        $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1'] / 1000 : 5;
+        $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2'] / 1000 : 5;
+        $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3'] / 1000 : 5;
         
         // Points per tick
-        $o1 = @intval($s1*$d/$t1);
-        $o2 = @intval($s2*$d/$t2);
-        $o3 = @intval($s3*$d/$t3);
-        $spellData['t1']=$t1;
-        $spellData['t2']=$t2;
-        $spellData['t3']=$t3;
-        $spellData['o1']=$o1;
-        $spellData['o2']=$o2;
-        $spellData['o3']=$o3;
-        $spellData['s1']=$s1;
-        $spellData['s2']=$s2;
-        $spellData['s3']=$s3;
-        $spellData['m1']=$s1;
-        $spellData['m2']=$s2;
-        $spellData['m3']=$s3;
-        $spellData['x1']= $spell['EffectChainTarget_1'];
-        $spellData['x2']= $spell['EffectChainTarget_2'];
-        $spellData['x3']= $spell['EffectChainTarget_3'];
-        $spellData['i'] = $spell['MaxAffectedTargets'];
-        $spellData['d'] = Utils::GetTimeText($d);
-        $spellData['d1']= Utils::GetTimeText($d);
-        $spellData['d2']= Utils::GetTimeText($d);
-        $spellData['d3']= Utils::GetTimeText($d);
-        $spellData['v'] = $spell['MaxTargetLevel'];
-        $spellData['u'] = $spell['StackAmount'];
-        $spellData['a1']= Utils::GetRadius($spell['EffectRadiusIndex_1']);
-        $spellData['a2']= Utils::GetRadius($spell['EffectRadiusIndex_2']);
-        $spellData['a3']= Utils::GetRadius($spell['EffectRadiusIndex_3']);
-        $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
-        $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
-        $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
-        $spellData['e'] = $spell['EffectMultipleValue_1'];
-        $spellData['e1']= $spell['EffectMultipleValue_1'];
-        $spellData['e2']= $spell['EffectMultipleValue_2'];
-        $spellData['e3']= $spell['EffectMultipleValue_3'];
-        $spellData['f1']= $spell['DmgMultiplier_1'];
-        $spellData['f2']= $spell['DmgMultiplier_2'];
-        $spellData['f3']= $spell['DmgMultiplier_3'];
-        $spellData['q1']= $spell['EffectMiscValue_1'];
-        $spellData['q2']= $spell['EffectMiscValue_2'];
-        $spellData['q3']= $spell['EffectMiscValue_3'];
-        $spellData['h'] = $spell['procChance'];
-        $spellData['n'] = $spell['procCharges'];
-        $spellData['z'] = "<home>";
+        $o1 = @intval($s1 * $d / $t1);
+        $o2 = @intval($s2 * $d / $t2);
+        $o3 = @intval($s3 * $d / $t3);
+        $spellData['t1'] = $t1;
+        $spellData['t2'] = $t2;
+        $spellData['t3'] = $t3;
+        $spellData['o1'] = $o1;
+        $spellData['o2'] = $o2;
+        $spellData['o3'] = $o3;
+        $spellData['s1'] = $s1;
+        $spellData['s2'] = $s2;
+        $spellData['s3'] = $s3;
+        $spellData['m1'] = $s1;
+        $spellData['m2'] = $s2;
+        $spellData['m3'] = $s3;
+        $spellData['x1'] = $spell['EffectChainTarget_1'];
+        $spellData['x2'] = $spell['EffectChainTarget_2'];
+        $spellData['x3'] = $spell['EffectChainTarget_3'];
+        $spellData['i']  = $spell['MaxAffectedTargets'];
+        $spellData['d']  = Utils::GetTimeText($d);
+        $spellData['d1'] = Utils::GetTimeText($d);
+        $spellData['d2'] = Utils::GetTimeText($d);
+        $spellData['d3'] = Utils::GetTimeText($d);
+        $spellData['v']  = $spell['MaxTargetLevel'];
+        $spellData['u']  = $spell['StackAmount'];
+        $spellData['a1'] = Utils::GetRadius($spell['EffectRadiusIndex_1']);
+        $spellData['a2'] = Utils::GetRadius($spell['EffectRadiusIndex_2']);
+        $spellData['a3'] = Utils::GetRadius($spell['EffectRadiusIndex_3']);
+        $spellData['b1'] = $spell['EffectPointsPerComboPoint_1'];
+        $spellData['b2'] = $spell['EffectPointsPerComboPoint_2'];
+        $spellData['b3'] = $spell['EffectPointsPerComboPoint_3'];
+        $spellData['e']  = $spell['EffectMultipleValue_1'];
+        $spellData['e1'] = $spell['EffectMultipleValue_1'];
+        $spellData['e2'] = $spell['EffectMultipleValue_2'];
+        $spellData['e3'] = $spell['EffectMultipleValue_3'];
+        $spellData['f1'] = $spell['DmgMultiplier_1'];
+        $spellData['f2'] = $spell['DmgMultiplier_2'];
+        $spellData['f3'] = $spell['DmgMultiplier_3'];
+        $spellData['q1'] = $spell['EffectMiscValue_1'];
+        $spellData['q2'] = $spell['EffectMiscValue_2'];
+        $spellData['q3'] = $spell['EffectMiscValue_3'];
+        $spellData['h']  = $spell['procChance'];
+        $spellData['n']  = $spell['procCharges'];
+        $spellData['z']  = "<home>";
         return $spellData;
     }
     
@@ -1011,11 +1011,7 @@ Class Items extends Armory {
      * @return   string
      **/
     public function GetItemSourceByKey($key) {
-        $name = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s')", $this->GetLocale(), $key);
-        if($name) {
-            return $name;
-        }
-        return false;
+        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s')", $this->GetLocale(), $key);
     }
     
     /**
@@ -1035,8 +1031,8 @@ Class Items extends Armory {
         $difficulty_enum = array(1 => '10n', 2 => '25n', 3 => '10h', 4 => '25h');
         $heroic_string = Utils::GetArmoryString(19);
         $item_difficulty = null;
-        for($i=1;$i<5;$i++) {
-            if(isset($dungeonData['lootid_'.$i]) && $dungeonData['lootid_'.$i] == $bossID && isset($difficulty_enum[$i])) {
+        for($i = 1; $i < 5; $i++) {
+            if(isset($dungeonData['lootid_' . $i]) && $dungeonData['lootid_' . $i] == $bossID && isset($difficulty_enum[$i])) {
                 $item_difficulty = $difficulty_enum[$i];
             }
         }
@@ -1109,10 +1105,12 @@ Class Items extends Armory {
         }
         $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         $instance_data['creatureName'] = $dungeonData['name'];
-        if($bossID > 100000) { // GameObject
+        if($bossID > 100000) {
+            // GameObject
             $drop_percent = Mangos::GenerateLootPercent($bossID, 'gameobject_loot_template', $itemID);
         }
-        else { // Creature
+        else {
+            // Creature
             $drop_percent = Mangos::GenerateLootPercent($bossID, 'creature_loot_template', $itemID);
         }
         $instance_data['dropRate'] = Mangos::GetDropRate($drop_percent);
@@ -1249,7 +1247,17 @@ Class Items extends Armory {
      * @return   array
      **/
     public function GetItemData($itemID) {
-        return $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+        $itemData = array();
+        if(!$this->wDB->selectCell("SELECT `Flags2` FROM `item_template` LIMIT 1")) {
+            // Trinity Core have FlagsExtra field instead of MaNGOS' `Flags2`
+            $itemData = $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `FlagsExtra`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+            $itemData['Flags2'] = $itemData['FlagsExtra']; // For compatibility
+            unset($itemData['FlagsExtra']);
+        }
+        else {
+            $itemData = $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+        }
+        return $itemData;
     }
     
     /**
@@ -1701,13 +1709,13 @@ Class Items extends Armory {
             $xml->XMLWriter()->text(round($data['delay']/1000, 2));
             $xml->XMLWriter()->endElement(); //speed
             for($jj = 1; $jj <= 2; $jj++) {
-                $d_type = $data['dmg_type'.$jj];
-                $d_min  = $data['dmg_min'.$jj];
-                $d_max  = $data['dmg_max'.$jj];
+                $d_type = $data['dmg_type' . $jj];
+                $d_min  = $data['dmg_min' . $jj];
+                $d_max  = $data['dmg_max' . $jj];
                 if(($d_max > 0) && ($data['class'] != ITEM_CLASS_PROJECTILE)) {
                     $delay = $data['delay'] / 1000;
                     if($delay > 0) {
-                        $dps = $dps + round(($d_max+$d_min) / (2 * $delay), 1);
+                        $dps = $dps + round(($d_max + $d_min) / (2 * $delay), 1);
                     }
                     if($jj > 1) {
                         $delay = 0;
@@ -1791,18 +1799,18 @@ Class Items extends Armory {
                 if($ssd['StatMod_'.$i] < 0) {
                     continue;
                 }
-                $val = (self::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_'.$i]) / 10000;
-                $bonus_template = self::GetItemBonusTemplate($ssd['StatMod_'.$i]);
+                $val = (self::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_' . $i]) / 10000;
+                $bonus_template = self::GetItemBonusTemplate($ssd['StatMod_' . $i]);
                 $xml->XMLWriter()->startElement($bonus_template);
                 $xml->XMLWriter()->text(round($val));
                 $xml->XMLWriter()->endElement();
             }
             else {
                 $key = $i+1;
-                if($data['stat_type'.$key] > 0 && $data['stat_value'.$key] > 0) {
-                    $bonus_template = self::GetItemBonusTemplate($data['stat_type'.$key]);
+                if($data['stat_type'.$key] > 0 && $data['stat_value' . $key] > 0) {
+                    $bonus_template = self::GetItemBonusTemplate($data['stat_type' . $key]);
                     $xml->XMLWriter()->startElement($bonus_template);
-                    $xml->XMLWriter()->text($data['stat_value'.$key]);
+                    $xml->XMLWriter()->text($data['stat_value' . $key]);
                     $xml->XMLWriter()->endElement();
                 }
             }
@@ -1820,32 +1828,32 @@ Class Items extends Armory {
         $xml->XMLWriter()->text($armor);
         $xml->XMLWriter()->endElement(); //armor
         $ench_array = array (
-        	1 => 'head',
-            2 => 'neck',
-            3 => 'shoulder',
-            4 => 'shirt',
-            5 => 'chest', 
-            6 => 'belt', 
-            7 => 'legs', 
-            8 => 'boots',
-            9 => 'wrist',
-            10=> 'gloves',
-            11=> 'ring1',
-            12=> 'trinket1',
-            13=> 'mainhand',
-            14=> 'offhand',
-            15=> 'relic',
-            16=> 'back', 
-            17=> 'stave',
-            19=> 'tabard',
-            20=> 'chest',
-            21=> 'mainhand',
-            22=> null,
-            23=> 'offhand',
-            24=> null,
-            25=> 'thrown',
-            26=> 'gun',
-            28=> 'relic'
+        	1  => 'head',
+            2  => 'neck',
+            3  => 'shoulder',
+            4  => 'shirt',
+            5  => 'chest', 
+            6  => 'belt', 
+            7  => 'legs', 
+            8  => 'boots',
+            9  => 'wrist',
+            10 => 'gloves',
+            11 => 'ring1',
+            12 => 'trinket1',
+            13 => 'mainhand',
+            14 => 'offhand',
+            15 => 'relic',
+            16 => 'back', 
+            17 => 'stave',
+            19 => 'tabard',
+            20 => 'chest',
+            21 => 'mainhand',
+            22 => null,
+            23 => 'offhand',
+            24 => null,
+            25 => 'thrown',
+            26 => 'gun',
+            28 => 'relic'
         );
         if(isset($ench_array[$data['InventoryType']])) {
             $itemSlotName = $ench_array[$data['InventoryType']];
@@ -1979,7 +1987,7 @@ Class Items extends Armory {
                     if(Utils::IsWriteRaw()) {
                         $xml->XMLWriter()->writeRaw('<socket');
                         foreach($socket_data as $socket_key => $socket_value) {
-                            $xml->XMLWriter()->writeRaw(' ' . $socket_key .'="' . $socket_value .'"');
+                            $xml->XMLWriter()->writeRaw(' ' . $socket_key . '="' . $socket_value . '"');
                         }
                         $xml->XMLWriter()->writeRaw('/>');
                     }
@@ -2059,7 +2067,7 @@ Class Items extends Armory {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredSkill');
                 $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->GetLocale(), $data['RequiredSkill']) . '"');
-                $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'].'"');
+                $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'] . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredSkill
             }
             else {
@@ -2091,9 +2099,11 @@ Class Items extends Armory {
         $xml->XMLWriter()->startElement('requiredLevel');
         $xml->XMLWriter()->text($data['RequiredLevel']);
         $xml->XMLWriter()->endElement(); //requiredLevel
-        $xml->XMLWriter()->startElement('itemLevel');
-        $xml->XMLWriter()->text($data['ItemLevel']);
-        $xml->XMLWriter()->endElement(); //itemLevel
+        if($data['ItemLevel'] > 0) {
+            $xml->XMLWriter()->startElement('itemLevel');
+            $xml->XMLWriter()->text($data['ItemLevel']);
+            $xml->XMLWriter()->endElement(); //itemLevel
+        }
         // Item set
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
@@ -2122,30 +2132,30 @@ Class Items extends Armory {
                             }
                         }
                     }
-                    for($i=1;$i<6;$i++) {
+                    for($i = 1; $i < 6; $i++) {
                             if(Utils::IsWriteRaw()) {
                                 $xml->XMLWriter()->writeRaw('<item');
                                 if(isset($activeSetInfo['item' . $i])) {
-                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($activeSetInfo['item' . $i]).'"');
-                                    if($characters->IsItemEquipped($activeSetInfo['item'.$i])) {
+                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($activeSetInfo['item' . $i]) . '"');
+                                    if($characters->IsItemEquipped($activeSetInfo['item' . $i])) {
                                         $xml->XMLWriter()->writeRaw(' equipped="1"');
                                     }
                                 }
                                 else {
-                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($basicSetData['item'.$i]).'"');
+                                    $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($basicSetData['item' . $i]) . '"');
                                 }
                                 $xml->XMLWriter()->writeRaw('/>'); //item
                             }
                             else {
                                 $xml->XMLWriter()->startElement('item');
                                 if(isset($activeSetInfo['item' . $i])) {
-                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($activeSetInfo['item'.$i]));
-                                    if($characters->IsItemEquipped($activeSetInfo['item'.$i])) {
+                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($activeSetInfo['item' . $i]));
+                                    if($characters->IsItemEquipped($activeSetInfo['item' . $i])) {
                                         $xml->XMLWriter()->writeAttribute('equipped', '1');
                                     }
                                 }
                                 else {
-                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($basicSetData['item'.$i]));
+                                    $xml->XMLWriter()->writeAttribute('name', self::GetItemName($basicSetData['item' . $i]));
                                 }
                                 $xml->XMLWriter()->endElement(); //item
                             }
@@ -2154,19 +2164,19 @@ Class Items extends Armory {
             }
             else {
                 for($i=1;$i<10;$i++) {
-                    if(isset($setdata['item'.$i]) && self::IsItemExists($setdata['item'.$i])) {
+                    if(isset($setdata['item' . $i]) && self::IsItemExists($setdata['item' . $i])) {
                         if(Utils::IsWriteRaw()) {
                             $xml->XMLWriter()->writeRaw('<item');
-                            $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($setdata['item'.$i]) . '"');
-                            if($characters->IsItemEquipped($setdata['item'.$i])) {
+                            $xml->XMLWriter()->writeRaw(' name="' . self::GetItemName($setdata['item' . $i]) . '"');
+                            if($characters->IsItemEquipped($setdata['item' . $i])) {
                                 $xml->XMLWriter()->writeRaw(' equipped="1"');
                             }
                             $xml->XMLWriter()->writeRaw('/>'); //item
                         }
                         else {
                             $xml->XMLWriter()->startElement('item');
-                            $xml->XMLWriter()->writeAttribute('name', self::GetItemName($setdata['item'.$i]));
-                            if($characters->IsItemEquipped($setdata['item'.$i])) {
+                            $xml->XMLWriter()->writeAttribute('name', self::GetItemName($setdata['item' . $i]));
+                            if($characters->IsItemEquipped($setdata['item' . $i])) {
                                 $xml->XMLWriter()->writeAttribute('equipped', 1);
                             }
                             $xml->XMLWriter()->endElement(); //item
@@ -2197,10 +2207,10 @@ Class Items extends Armory {
         $xml->XMLWriter()->startElement('spellData');
         $spellData = 0;
         $spellInfo = false;
-        for($i=1;$i<6;$i++) {
+        for($i = 1; $i < 6; $i++) {
             if($data['spellid_'.$i] > 0) {
                 $spellData = 1;
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $data['spellid_'.$i]);
+                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $data['spellid_' . $i]);
                 if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
                     $tmp_locale = $this->GetLocale();
                 }
@@ -2216,13 +2226,13 @@ Class Items extends Armory {
                         $tmp_locale = 'en_gb';
                     }
                 }
-                $spellInfo = $this->SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_'.$tmp_locale]));
+                $spellInfo = $this->SpellReplace($spell_tmp, Utils::ValidateSpellText($spell_tmp['Description_' . $tmp_locale]));
                 if($spellInfo) {
                     $spellData = 2;
                     $spellInfo = str_replace('&quot;', '"', $spellInfo);
                     $xml->XMLWriter()->startElement('spell');
                     $xml->XMLWriter()->startElement('trigger');
-                    $xml->XMLWriter()->text($data['spelltrigger_'.$i]);
+                    $xml->XMLWriter()->text($data['spelltrigger_' . $i]);
                     $xml->XMLWriter()->endElement();  //trigger
                     $xml->XMLWriter()->startElement('desc');
                     $xml->XMLWriter()->text($spellInfo);
@@ -2234,7 +2244,7 @@ Class Items extends Armory {
         if($spellData == 1 && !empty($data['description'])) {
             $xml->XMLWriter()->startElement('spell');
             $xml->XMLWriter()->startElement('trigger');
-            $xml->XMLWriter()->text(6);
+            $xml->XMLWriter()->text('6');
             $xml->XMLWriter()->endElement();  //trigger
             $xml->XMLWriter()->startElement('desc');
             if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
@@ -2300,7 +2310,7 @@ Class Items extends Armory {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<itemSource');
                     foreach($itemSource as $source_key => $source_value) {
-                        $xml->XMLWriter()->writeRaw(' ' . $source_key .'="' . $source_value . '"');
+                        $xml->XMLWriter()->writeRaw(' ' . $source_key . '="' . $source_value . '"');
                     }    
                     $xml->XMLWriter()->writeRaw('/>'); //itemSource
                 }
@@ -2497,7 +2507,6 @@ Class Items extends Armory {
      **/
     public function GetItemTypeInfo($key, $row = 'type') {
         if($key == 'all' || ($row != 'type' && $row != 'subtype')) {
-            //$this->Log()->writeError('%s : wrong key or row type (key: %s, row: %s)', __METHOD__, $key, $row);
             return false;
         }
         return $this->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
