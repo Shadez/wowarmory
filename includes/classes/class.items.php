@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 393
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1257,14 +1257,11 @@ Class Items {
      **/
     public function GetItemData($itemID) {
         $itemData = array();
-        if(!$this->armory->wDB->selectCell("SELECT `Flags2` FROM `item_template` LIMIT 1")) {
-            // Trinity Core have FlagsExtra field instead of MaNGOS' `Flags2`
+        $itemData = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+        if(!$itemData) {
             $itemData = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `FlagsExtra`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             $itemData['Flags2'] = $itemData['FlagsExtra']; // For compatibility
             unset($itemData['FlagsExtra']);
-        }
-        else {
-            $itemData = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         return $itemData;
     }
