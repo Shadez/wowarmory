@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 369
+ * @revision 392
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,16 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-Class Mangos extends Armory {
+Class Mangos {
+    
+    public $armory = null;
+    
+    public function Mangos($armory) {
+        if(!is_object($armory)) {
+            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
+        }
+        $this->armory = $armory;
+    }
 
     /**
      * Returns skill ID that required for item $id
@@ -39,7 +48,7 @@ Class Mangos extends Armory {
         if($id == 0) {
             return SKILL_UNARMED;
         }
-        $item = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
+        $item = $this->armory->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
         if(!$item) {
             return SKILL_UNARMED;
         }
@@ -107,23 +116,23 @@ Class Mangos extends Armory {
     public function GetQuestInfo($quest, $infoType) {
         switch($infoType) {
             case 'title':
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-                    $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=%d", $quest);
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+                    $info = $this->armory->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=%d", $quest);
                 }
                 else {
-                    $info = $this->wDB->selectCell("SELECT `Title_loc%d` FROM `locales_quest` WHERE `entry`=%d", $this->GetLoc(), $quest);
+                    $info = $this->armory->wDB->selectCell("SELECT `Title_loc%d` FROM `locales_quest` WHERE `entry`=%d", $this->armory->GetLoc(), $quest);
                     if(!$info) {
-                        $info = $this->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=%d", $quest);
+                        $info = $this->armory->wDB->selectCell("SELECT `Title` FROM `quest_template` WHERE `entry`=%d", $quest);
                     }
                 }
                 break;            
             case 'reqlevel':
-				$info = $this->wDB->selectCell("SELECT `MinLevel` FROM `quest_template` WHERE `entry`=%d", $quest);
+				$info = $this->armory->wDB->selectCell("SELECT `MinLevel` FROM `quest_template` WHERE `entry`=%d", $quest);
 				break;				
 			case 'map':
-				$quester = $this->wDB->selectCell("SELECT `id` FROM `creature_involvedrelation` WHERE `quest`=%d", $quest);
-				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d", $quester);
-				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				$quester = $this->armory->wDB->selectCell("SELECT `id` FROM `creature_involvedrelation` WHERE `quest`=%d", $quest);
+				$mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d", $quester);
+				$info = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->armory->GetLocale(), $mapID);
                 break;
 			}
         if($info) {
@@ -175,32 +184,32 @@ Class Mangos extends Armory {
         $info = false;
         switch($infoType) {
             case 'name':
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-                    $info = $this->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=%d", $entry);
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+                    $info = $this->armory->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=%d", $entry);
                 }
                 else {
-                    $info = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_gameobject` WHERE `entry`=%d", $this->GetLoc(), $entry);
+                    $info = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_gameobject` WHERE `entry`=%d", $this->armory->GetLoc(), $entry);
                     if(!$info) {
-                        $info = $this->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=%d", $entry);
+                        $info = $this->armory->wDB->selectCell("SELECT `name` FROM `gameobject_template` WHERE `entry`=%d", $entry);
                     }
                 }
 				break;            
             case 'map':
-				$mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d", $entry);
-				$info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				$mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d", $entry);
+				$info = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->armory->GetLocale(), $mapID);
 				break;
             case 'areaUrl':
-                $mapID = $this->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d LIMIT 1", $entry);
+                $mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `gameobject` WHERE `id`=%d LIMIT 1", $entry);
                 if(!$mapID) {
                     return false;
                 }
-                if($info = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
+                if($info = $this->armory->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }
                 break;
             case 'isInInstance':
-                return $this->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_instance_data` WHERE `type`='object' AND (`id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d)", $entry, $entry, $entry, $entry, $entry, $entry);
+                return $this->armory->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_instance_data` WHERE `type`='object' AND (`id`=%d OR `name_id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d)", $entry, $entry, $entry, $entry, $entry, $entry);
                 break;
 		}
         return $info;
@@ -214,15 +223,15 @@ Class Mangos extends Armory {
      * @return   string
      **/
     public function GetNPCName($npc) {
-        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-            return $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+            return $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
         }
         else {
-            $name = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $npc);
+            $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $npc);
             if(!$name) {
                 // Check KillCredit
                 $kc_entry = false;
-                $KillCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
+                $KillCredit = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
                 if($KillCredit['KillCredit1'] > 0) {
                     $kc_entry = $KillCredit['KillCredit1'];
                 }
@@ -230,20 +239,20 @@ Class Mangos extends Armory {
                     $kc_entry = $KillCredit['KillCredit2'];
                 }
                 if($kc_entry > 0) {
-                    $name = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $kc_entry);
+                    $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $kc_entry);
                     if(!$name) {
-                        $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+                        $name = $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
                     }
                 }
                 else {
-                    $name = $this->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+                    $name = $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
                 }
             }
         }
         if($name) {
             return $name;
         }
-        $this->Log()->writeError('%s : unable to find NPC name (id: %d, KillCredit1: %d, KillCredit2: %d)', __METHOD__, $npc, (isset($KillCredit['KillCredit1'])) ? $KillCredit['KillCredit1'] : 0, (isset($KillCredit['KillCredit2'])) ? $KillCredit['KillCredit2'] : 0);
+        $this->armory->Log()->writeError('%s : unable to find NPC name (id: %d, KillCredit1: %d, KillCredit2: %d)', __METHOD__, $npc, (isset($KillCredit['KillCredit1'])) ? $KillCredit['KillCredit1'] : 0, (isset($KillCredit['KillCredit2'])) ? $KillCredit['KillCredit2'] : 0);
         return false;
 	}
     
@@ -259,15 +268,15 @@ Class Mangos extends Armory {
         $info = null;
         switch($infoType) {
             case 'maxlevel':
-				$info = $this->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=%d", $npc);
+				$info = $this->armory->wDB->selectCell("SELECT `maxlevel` FROM `creature_template` WHERE `entry`=%d", $npc);
 				break;	
             case 'minlevel':
-				$info = $this->wDB->selectCell("SELECT `minlevel` FROM `creature_template` WHERE `entry`=%d", $npc);
+				$info = $this->armory->wDB->selectCell("SELECT `minlevel` FROM `creature_template` WHERE `entry`=%d", $npc);
 				break;				
 			case 'map':
-				$mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
+				$mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
                 if(!$mapID) {
-                    $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
+                    $killCredit = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
                     if($killCredit['KillCredit1'] > 0) {
                         $kc_entry = $killCredit['KillCredit1'];
                     }
@@ -277,22 +286,22 @@ Class Mangos extends Armory {
                     else {
                         $kc_entry = false;
                     }
-                    $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $kc_entry);
+                    $mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $kc_entry);
                     if(!$mapID) {
                         return false;
                     }
                 }
-                if($info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $this->GetLocale(), $mapID)) {
+                if($info = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $this->armory->GetLocale(), $mapID)) {
                     return $info;
                 }
 				else {
-				    $info = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->GetLocale(), $mapID);
+				    $info = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id`=%d", $this->armory->GetLocale(), $mapID);
 				}
 				break;
             case 'areaUrl':
-                $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
+                $mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
                 if(!$mapID) {
-                    $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
+                    $killCredit = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
                     if($killCredit['KillCredit1'] > 0) {
                         $kc_entry = $killCredit['KillCredit1'];
                     }
@@ -302,30 +311,30 @@ Class Mangos extends Armory {
                     else {
                         $kc_entry = false;
                     }
-                    $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $kc_entry);
+                    $mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $kc_entry);
                     if(!$mapID) {
                         return false;
                     }
                 }
-                if($info = $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
+                if($info = $this->armory->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `map`=%d", $mapID)) {
                     $areaUrl = sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $info);
                     return $areaUrl;
                 }
                 break;
             case 'mapID':
-                $info = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
+                $info = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
                 break;
             case 'rank':
-                return $this->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=%d", $npc);
+                return $this->armory->wDB->selectCell("SELECT `rank` FROM `creature_template` WHERE `entry`=%d", $npc);
                 break;
             case 'subname':
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-                    return $this->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+                    return $this->armory->wDB->selectCell("SELECT `subname` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
                 }
                 else {
-                    $info = $this->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $npc);
+                    $info = $this->armory->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $npc);
                     if(!$info) {
-                        $killCredit = $this->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
+                        $killCredit = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
                         $kc_entry = false;
                         if($killCredit['KillCredit1'] > 0) {
                             $kc_entry = $killCredit['KillCredit1'];
@@ -334,16 +343,16 @@ Class Mangos extends Armory {
                             $kc_entry = $killCredit['KillCredit2'];
                         }
                         if($kc_entry) {
-                            $info = $this->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $kc_entry);
+                            $info = $this->armory->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $kc_entry);
                         }
                         if(!$info) {
-                            $info = $this->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $npc);
+                            $info = $this->armory->wDB->selectCell("SELECT `subname_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $npc);
                         }
                     }
                 }
                 break;				
 			case 'dungeonlevel':
-                $query = $this->wDB->selectRow("
+                $query = $this->armory->wDB->selectRow("
 				SELECT `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`
 					FROM `creature_template` 
 						WHERE `entry`=%d AND `difficulty_entry_1` > 0 or `difficulty_entry_2` > 0 or `difficulty_entry_3` > 0", $npc);
@@ -369,8 +378,8 @@ Class Mangos extends Armory {
                 }
                 break;            
             case 'instance_type':
-                $mapID = $this->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
-                $instanceInfo = $this->aDB->selectCell("SELECT MAX(`max_players`) FROM `ARMORYDBPREFIX_instances_difficulty` WHERE `mapID`=%d", $mapID);
+                $mapID = $this->armory->wDB->selectCell("SELECT `map` FROM `creature` WHERE `id`=%d LIMIT 1", $npc);
+                $instanceInfo = $this->armory->aDB->selectCell("SELECT MAX(`max_players`) FROM `ARMORYDBPREFIX_instances_difficulty` WHERE `mapID`=%d", $mapID);
                 if($instanceInfo == 5) {
                     // Dungeon
                     return 1;
@@ -381,7 +390,7 @@ Class Mangos extends Armory {
                 }
                 break;				
 			case 'isBoss': 
-                $npc_data = $this->wDB->selectRow("SELECT `rank`, `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+                $npc_data = $this->armory->wDB->selectRow("SELECT `rank`, `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
                 if($npc_data['rank'] == 3) {
                     return true;
 				}
@@ -395,7 +404,7 @@ Class Mangos extends Armory {
                     $kc_entry = 0;
                 }
                 $npc_id = $npc.', '.$kc_entry;
-                $instance = $this->aDB->selectCell("SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id` IN (%s) OR `name_id` IN (%s) OR `lootid_1` IN (%s) OR `lootid_2` IN (%s) OR `lootid_3` IN (%s) OR `lootid_4` IN (%s)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
+                $instance = $this->armory->aDB->selectCell("SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id` IN (%s) OR `name_id` IN (%s) OR `lootid_1` IN (%s) OR `lootid_2` IN (%s) OR `lootid_3` IN (%s) OR `lootid_4` IN (%s)", $npc_id, $npc_id, $npc_id, $npc_id, $npc_id, $npc_id);
                 if($instance > 0) {
                     return true;
                 }
@@ -404,7 +413,7 @@ Class Mangos extends Armory {
                 }
 				break;
             case 'bossData':
-                $data = $this->aDB->selectRow("
+                $data = $this->armory->aDB->selectRow("
                 SELECT `instance_id`, `key`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4`
                     FROM `ARMORYDBPREFIX_instance_data`
                         WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d",
@@ -415,7 +424,7 @@ Class Mangos extends Armory {
                 $info = array(
                     'difficulty' => 'all',
                     'key' => $data['key'],
-                    'dungeon_key' => $this->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $data['instance_id'])
+                    'dungeon_key' => $this->armory->aDB->selectCell("SELECT `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $data['instance_id'])
                 );
                 for($i=1;$i<5;$i++) {
                     if($data['lootid_'.$i] == $npc) {
@@ -465,9 +474,9 @@ Class Mangos extends Armory {
         if($costId < 0) {
             $costId = abs($costId);
         }
-        $costInfo = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d LIMIT 1", $costId);
+        $costInfo = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d LIMIT 1", $costId);
         if(!$costInfo) {
-            $this->Log()->writeError('%s : wrong cost id: #%d', __METHOD__, $costId);
+            $this->armory->Log()->writeError('%s : wrong cost id: #%d', __METHOD__, $costId);
             return false;
         }
         $extended_cost = array();
@@ -489,7 +498,7 @@ Class Mangos extends Armory {
      * @return   array
      **/
     public function GetPvPExtendedCost($costId) {
-        $costInfo = $this->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $costId);
+        $costInfo = $this->armory->aDB->selectRow("SELECT `arenaPoints` AS `arena`, `honorPoints` AS `honor` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $costId);
         if(!$costInfo || ($costInfo['arena'] == 0 && $costInfo['honor'] == 0)) {
             return false;
         }
@@ -518,7 +527,7 @@ Class Mangos extends Armory {
         if(!isset($allowed_tables[$db_table])) {
             return 0;
         }
-        $lootTable = $this->wDB->select("SELECT `ChanceOrQuestChance`, `groupid`, `mincountOrRef`, `item` FROM `%s` WHERE `entry`=%d", $db_table, $boss_id);
+        $lootTable = $this->armory->wDB->select("SELECT `ChanceOrQuestChance`, `groupid`, `mincountOrRef`, `item` FROM `%s` WHERE `entry`=%d", $db_table, $boss_id);
         if(!$lootTable) {
             return 0;
         }
@@ -555,7 +564,7 @@ Class Mangos extends Armory {
      * @return   int
      **/
     public function GetVendorExtendedCost($itemID) {
-        $costId = $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $itemID);
+        $costId = $this->armory->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $itemID);
         if($costId < 0) {
             $costId = abs($costId);
         }

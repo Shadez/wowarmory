@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 385
+ * @revision 392
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,9 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-Class Characters extends Armory {
+Class Characters {
+    
+    public $armory = null;
     
     /**
      * Player guid
@@ -233,6 +235,20 @@ Class Characters extends Armory {
     private $m_achievementMgr = null;
     
     /**
+     * Equipped items
+     * @category Characters class
+     * @access   private
+     **/
+    public $m_items;
+    
+    public function Characters($armory) {
+        if(!is_object($armory)) {
+            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
+        }
+        $this->armory = $armory;
+    }
+    
+    /**
      * Init character, load data from DB, checks for requirements, etc.
      * @category Characters class
      * @access   public
@@ -244,21 +260,21 @@ Class Characters extends Armory {
      **/
     public function BuildCharacter($name, $realmId = 1, $full = true, $initialBuild = false) {
         if(!is_string($name)) {
-            $this->Log()->writeLog('%s : name must be a string!', __METHOD__);
+            $this->armory->Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
         }
         if($realmId == false) {
-            $this->Log()->writeLog('%s : realmId not provided!', __METHOD__);
+            $this->armory->Log()->writeLog('%s : realmId not provided!', __METHOD__);
             return false;
         }
-        if(!isset($this->realmData[$realmId])) {
-            $this->Log()->writeError('%s : unable to find data for realmId %d', __METHOD__, $realmId);
+        if(!isset($this->armory->realmData[$realmId])) {
+            $this->armory->Log()->writeError('%s : unable to find data for realmId %d', __METHOD__, $realmId);
             return false;
         }
-        $realm_info = $this->realmData[$realmId];
-        $this->db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+        $realm_info = $this->armory->realmData[$realmId];
+        $this->db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
         if(!$this->db || !$this->db->TestLink()) {
-            $this->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
+            $this->armory->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
             return false;
         }
         if($full == true) {
@@ -309,52 +325,52 @@ Class Characters extends Armory {
             WHERE `characters`.`name`='%s' LIMIT 1", $name);
         }
         if($player_data == false || !is_array($player_data)) {
-            $this->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
+            $this->armory->Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
         if($full == true) {
             // Character data required for character-sheet page only.
             $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
             if(!$player_stats_check) {
-                $this->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
+                $this->armory->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
                 unset($player_data);
                 return false;
             }
         }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
-        if($this->currentRealmInfo['type'] == 'trinity') {
-            $gmLevel = $this->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], $this->connectionData['id']);
+        if($this->armory->currentRealmInfo['type'] == 'trinity') {
+            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], $this->armory->connectionData['id']);
         }
-        elseif($this->currentRealmInfo['type'] == 'mangos') {
-            $gmLevel = $gmLevel_mangos = $this->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
+        elseif($this->armory->currentRealmInfo['type'] == 'mangos') {
+            $gmLevel = $gmLevel_mangos = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
         }
         if(!$gmLevel) {
             $gmLevel = 0;
         }
-        $allowed = ($gmLevel <= $this->armoryconfig['minGmLevelToShow']) ? true : false;
-        if(!$allowed || $player_data['level'] < $this->armoryconfig['minlevel']) {
-            $this->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory (GM level restriction)!', __METHOD__, $player_data['guid'], $player_data['name']);
+        $allowed = ($gmLevel <= $this->armory->armoryconfig['minGmLevelToShow']) ? true : false;
+        if(!$allowed || $player_data['level'] < $this->armory->armoryconfig['minlevel']) {
+            $this->armory->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory (GM level restriction)!', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
-            $this->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: class %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
+            $this->armory->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: class %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
             unset($player_data);
             return false;
         }
         elseif($player_data['race'] >= MAX_RACES) {
             // Unknown race
-            $this->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: race %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
+            $this->armory->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: race %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
             unset($player_data);
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
         if($this->faction === false) {
             // Unknown faction
-            $this->Log()->writeError('%s : player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
+            $this->armory->Log()->writeError('%s : player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
             unset($player_data);
             return false;
         }
@@ -365,15 +381,15 @@ Class Characters extends Armory {
         }
         if($full == true) {
             // Get race and class strings
-            $race_class = $this->aDB->selectRow("
+            $race_class = $this->armory->aDB->selectRow("
             SELECT
             `armory_races`.`name_%s` AS `race`,
             `armory_classes`.`name_%s` AS `class`
             FROM `ARMORYDBPREFIX_races` AS `armory_races`
             LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
-            WHERE `armory_races`.`id`=%d", $this->GetLocale(), $this->GetLocale(), $player_data['class'], $player_data['race']);
+            WHERE `armory_races`.`id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $player_data['class'], $player_data['race']);
             if(!$race_class) {
-                $this->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
+                $this->armory->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
                 unset($player_data);
                 return false;
             }
@@ -383,6 +399,10 @@ Class Characters extends Armory {
             if($this->chosenTitle > 0) {
                 $this->HandleChosenTitleInfo();
             }
+            if(defined('load_item_class') && defined('load_itemprototype_class')) {
+                // Load items
+                //$this->LoadInventory();
+            }
         }
         $this->realmName = $realm_info['name'];
         $this->realmID   = $realm_info['id'];
@@ -390,12 +410,12 @@ Class Characters extends Armory {
         $this->HandleEquipmentCacheData();
         // Initialize achievement manager
         if(defined('load_achievements_class') && class_exists('Achievements')) {
-            $this->m_achievementMgr = new Achievements;
-            $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
+            $this->m_achievementMgr = new Achievements($this->armory);
+            $this->m_achievementMgr->InitAchievements($this->guid, true);
         }
         // Everything correct
         if($initialBuild == true) {
-            $this->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
+            $this->armory->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
         }
         return true;
     }
@@ -408,12 +428,12 @@ Class Characters extends Armory {
      **/
     private function HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
-            $this->Log()->writeError('%s : %s::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
+            $this->armory->Log()->writeError('%s : %s::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $itemscache = explode(' ', $this->equipmentCache);
         if(!$itemscache) {
-            $this->Log()->writeError('%s : unable to convert %s::$equipmentCache from string to array (function.explode). Character items would not be shown.', __METHOD__, __METHOD__);
+            $this->armory->Log()->writeError('%s : unable to convert %s::$equipmentCache from string to array (function.explode). Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $this->equipmentCache = $itemscache;
@@ -427,9 +447,9 @@ Class Characters extends Armory {
      * @return   bool
      **/
     private function HandleChosenTitleInfo() {
-        $title_data = $this->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `ARMORYDBPREFIX_titles` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $this->chosenTitle);
+        $title_data = $this->armory->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `ARMORYDBPREFIX_titles` WHERE `id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $this->chosenTitle);
         if(!$title_data) {
-            $this->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->GetLocale(), $this->GetLoc());
+            $this->armory->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->armory->GetLocale(), $this->armory->GetLoc());
             return false;
         }
         switch($this->gender) {
@@ -687,7 +707,7 @@ Class Characters extends Armory {
      **/
     public function GetHeader() {
         $header = array(
-            'battleGroup'  => $this->armoryconfig['defaultBGName'],
+            'battleGroup'  => $this->armory->armoryconfig['defaultBGName'],
             'charUrl'      => $this->GetUrlString(),
             'class'        => $this->classText,
             'classId'      => $this->class,
@@ -697,7 +717,7 @@ Class Characters extends Armory {
             'gender'       => null,
             'genderId'     => $this->gender,
             'guildName'    => ($this->guild_id > 0) ? $this->guild_name : null,
-            'guildUrl'     => ($this->guild_id > 0) ? sprintf('r=%s&gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->guild_name)) : null,
+            'guildUrl'     => ($this->guild_id > 0) ? sprintf('r=%s&gn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($this->guild_name)) : null,
             'lastModified' => null,
             'level'        => $this->level,
             'name'         => $this->name,
@@ -705,12 +725,12 @@ Class Characters extends Armory {
             'prefix'       => $this->character_title['prefix'],
             'race'         => $this->raceText,
             'raceId'       => $this->race,
-            'realm'        => $this->currentRealmInfo['name'],
+            'realm'        => $this->armory->currentRealmInfo['name'],
             'suffix'       => $this->character_title['suffix'],
             'titleId'      => $this->character_title['titleId'],
         );
         if(Utils::IsWriteRaw()) {
-            $header['guildUrl'] = ($this->guild_id > 0) ? sprintf('r=%s&amp;gn=%s', urlencode($this->currentRealmInfo['name']), urlencode($this->guild_name)) : null;
+            $header['guildUrl'] = ($this->guild_id > 0) ? sprintf('r=%s&amp;gn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($this->guild_name)) : null;
         }
         return $header;
     }
@@ -784,11 +804,11 @@ Class Characters extends Armory {
      **/
     public function GetCharacterEquip($slot) {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return 0;
         }
         if(!is_array($this->equipmentCache)) {
-            $this->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
+            $this->armory->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
             return 0;
         }
         switch($slot) {
@@ -850,7 +870,7 @@ Class Characters extends Armory {
 				return $this->equipmentCache[36];
 				break;
 			default:
-                $this->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
+                $this->armory->Log()->writeError('%s : wrong item slot query: %s', __METHOD__, $slot);
 				return 0;
 				break;
         }
@@ -865,7 +885,7 @@ Class Characters extends Armory {
      **/
     public function GetCharacterEnchant($slot) {
         if(!is_array($this->equipmentCache)) {
-            $this->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
+            $this->armory->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
             return 0;
         }
         switch($slot) {
@@ -930,7 +950,7 @@ Class Characters extends Armory {
                 return $this->equipmentCache[37];
                 break;
             default:
-                $this->Log()->writeLog('%s : wrong item slot query: %s', __METHOD__, $slot);
+                $this->armory->Log()->writeLog('%s : wrong item slot query: %s', __METHOD__, $slot);
                 return 0;
                 break;
         }
@@ -945,7 +965,7 @@ Class Characters extends Armory {
      **/
     public function GetTalentTab($tab_count = -1) {
         if(!$this->class) {
-            $this->Log()->writeError('%s : player class not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player class not defined', __METHOD__);
             return false;
         }
         $talentTabId = array(
@@ -973,30 +993,30 @@ Class Characters extends Armory {
     
     /**
      * Calculates and returns array with character talent specs. !Required $this->guid and $this->class!
-     * Depends on $this->currentRealmInfo['type'] ('mangos' or 'trinity' realm)
+     * Depends on $this->armory->currentRealmInfo['type'] ('mangos' or 'trinity' realm)
      * @category Character class
      * @access   public
      * @return   array
      **/
     public function CalculateCharacterTalents() {
         if(!$this->class || !$this->guid) {
-            $this->Log()->writeError('%s : player class or guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player class or guid not defined', __METHOD__);
             return false;
         }
         $talentTree = array();
         $tab_class = self::GetTalentTab();
         if(!is_array($tab_class)) {
-            $this->Log()->writeError('%s : unable to find tab_class for class %d (player: %s (GUID: %d))', __METHOD__, $this->GetClass(), $this->GetName(), $this->GetGUID());
+            $this->armory->Log()->writeError('%s : unable to find tab_class for class %d (player: %s (GUID: %d))', __METHOD__, $this->GetClass(), $this->GetName(), $this->GetGUID());
             return false;
         }
         $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=%d", $this->guid);
         if(!$character_talents) {
-            $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
+            $this->armory->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
-        $class_talents = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
+        $class_talents = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab` IN (%s) ORDER BY `TalentTab`, `Row`, `Col`", $tab_class);
         if(!$class_talents) {
-            $this->Log()->writeError('%s : unable to find talents for class %d (tabs are: %d, %d, %d)', __METHOD__, $this->GetClass(), $tab_class[0], $tab_class[1], $tab_class[2]);
+            $this->armory->Log()->writeError('%s : unable to find talents for class %d (tabs are: %d, %d, %d)', __METHOD__, $this->GetClass(), $tab_class[0], $tab_class[1], $tab_class[2]);
             return false;
         }
         $talent_build = array();
@@ -1017,7 +1037,7 @@ Class Characters extends Armory {
             $current_found = false;
             $last_spec = 0;
             foreach($character_talents as $char_talent) {
-                switch($this->currentRealmInfo['type']) {
+                switch($this->armory->currentRealmInfo['type']) {
                     case 'mangos':
                         if($char_talent['talent_id'] == $class_talent['TalentID']) {
                             $talent_ranks = $char_talent['current_rank']+1;
@@ -1055,7 +1075,7 @@ Class Characters extends Armory {
      **/
     public function CalculateCharacterTalentBuild() {
         if(!$this->guid || !$this->class) {
-            $this->Log()->writeError('%s : player class or guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player class or guid not defined', __METHOD__);
             return false;
         }
         $build_tree = array(1 => null, 2 => null);
@@ -1064,20 +1084,20 @@ Class Characters extends Armory {
         $character_talents = $this->db->select("SELECT * FROM `character_talent` WHERE `guid`=%d", $this->guid);
         $talent_data = array(0 => null, 1 => null); // Talent build
         if(!$character_talents) {
-            $this->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
+            $this->armory->Log()->writeError('%s : unable to get data from DB for player %d (%s)', __METHOD__, $this->guid, $this->name);
             return false;
         }
         foreach($character_talents as $_tal) {
-            if($this->currentRealmInfo['type'] == 'mangos') {
+            if($this->armory->currentRealmInfo['type'] == 'mangos') {
                 $specs_talents[$_tal['spec']][$_tal['talent_id']] = $_tal['current_rank']+1;
             }
-            elseif($this->currentRealmInfo['type'] == 'trinity') {
+            elseif($this->armory->currentRealmInfo['type'] == 'trinity') {
                 $specs_talents[$_tal['spec']][$_tal['spell']] = true;
             }
         }
-        if($this->currentRealmInfo['type'] == 'trinity') {
+        if($this->armory->currentRealmInfo['type'] == 'trinity') {
             for($i = 0; $i < 3; $i++) {
-                $current_tab = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                $current_tab = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                 if(!$current_tab) {
                     continue;
                 }
@@ -1105,14 +1125,14 @@ Class Characters extends Armory {
                 }
             }
         }
-        elseif($this->currentRealmInfo['type'] == 'mangos') {
+        elseif($this->armory->currentRealmInfo['type'] == 'mangos') {
             for($i=0;$i<3;$i++) {
                 if(!isset($tab_class[$i])) {
                     continue;
                 }
-                switch($this->currentRealmInfo['type']) {
+                switch($this->armory->currentRealmInfo['type']) {
                     case 'mangos':
-                        $current_tab = $this->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                        $current_tab = $this->armory->aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
                         if(!$current_tab) {
                             continue;
                         }
@@ -1142,10 +1162,10 @@ Class Characters extends Armory {
      **/
     public function GetCharacterGlyphs($spec = -1) {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        switch($this->currentRealmInfo['type']) {
+        switch($this->armory->currentRealmInfo['type']) {
             case 'mangos':
                 if($spec >= 0) {
                     $glyphs_data = $this->db->select("SELECT * FROM `character_glyphs` WHERE `guid`=%d AND `spec`=%d ORDER BY `slot`", $this->guid, $spec);
@@ -1169,13 +1189,13 @@ Class Characters extends Armory {
         $data = array(0 => array(), 1 => array());
         $i = 0;
         foreach($glyphs_data as $glyph) {
-            switch($this->currentRealmInfo['type']) {
+            switch($this->armory->currentRealmInfo['type']) {
                 case 'mangos':
-                    if($this->GetLocale() == 'ru_ru' || $this->GetLocale() == 'en_gb') {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph']);
+                    if($this->armory->GetLocale() == 'ru_ru' || $this->armory->GetLocale() == 'en_gb') {
+                        $current_glyph = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $glyph['glyph']);
                     }
                     else {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
+                        $current_glyph = $this->armory->aDB->selectRow("SELECT `name_en_gb` AS `name`, `description_en_gb` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $glyph['glyph']);
                     }
                     $data[$glyph['spec']][$i] = array(
                         'effect' => str_replace('"', '&quot;', $current_glyph['effect']),
@@ -1192,7 +1212,7 @@ Class Characters extends Armory {
                     break;
                 case 'trinity':
                     for($j=1;$j<7;$j++) {
-                        $current_glyph = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->GetLocale(), $this->GetLocale(), $glyph['glyph' . $j]);
+                        $current_glyph = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `effect`, `type` FROM `ARMORYDBPREFIX_glyphproperties` WHERE `id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $glyph['glyph' . $j]);
                         if(!$current_glyph) {
                             continue;
                         }
@@ -1224,10 +1244,10 @@ Class Characters extends Armory {
      **/
     public function ReturnTalentTreesNames($spec) {
         if(!$this->class) {
-            $this->Log()->writeError('%s : class not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : class not provided', __METHOD__);
             return false;
         }
-		return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->GetLocale(), $this->class, $spec);
+		return $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d", $this->armory->GetLocale(), $this->class, $spec);
 	}
     
     /**
@@ -1240,10 +1260,10 @@ Class Characters extends Armory {
      **/
     public function ReturnTalentTreeIcon($tree) {
         if(!$this->class) {
-            $this->Log()->writeError('%s : class not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : class not provided', __METHOD__);
             return false;
         }
-        return $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
+        return $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_talent_icons` WHERE `class`=%d AND `spec`=%d LIMIT 1", $this->class, $tree);
     }
     
     /**
@@ -1261,7 +1281,7 @@ Class Characters extends Armory {
         $p = array();
         $i = 0;
         foreach($professions as $prof) {
-            $p[$i] = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `ARMORYDBPREFIX_professions` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $prof['skill']);
+            $p[$i] = $this->armory->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `icon` FROM `ARMORYDBPREFIX_professions` WHERE `id`=%d LIMIT 1", $this->armory->GetLocale(), $prof['skill']);
             $p[$i]['value'] = $prof['value'];
             $p[$i]['key'] = str_replace('-sm', '', (isset($p[$i]['icon'])) ? $p[$i]['icon'] : '' );
             $p[$i]['max'] = 450;
@@ -1363,7 +1383,7 @@ Class Characters extends Armory {
             if(!($faction['flags']&FACTION_FLAG_VISIBLE) || $faction['flags']&(FACTION_FLAG_HIDDEN|FACTION_FLAG_INVISIBLE_FORCED)) {
                 continue;
             }
-            $factionReputation[$i] = $this->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->GetLocale(), $faction['faction']);
+            $factionReputation[$i] = $this->armory->aDB->selectRow("SELECT `id`, `category`, `name_%s` AS `name`, `key` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $faction['faction']);
             if($faction['standing'] > 42999) {
                 $factionReputation[$i]['reputation'] = 42999;
             }
@@ -1388,7 +1408,7 @@ Class Characters extends Armory {
             $guid = $this->guid;
         }
         if(!$guid) {
-            $this->Log()->writeError('%s : guid not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
         $dataField = $fieldNum+1;
@@ -1457,7 +1477,7 @@ Class Characters extends Armory {
                 $maxPower = 110;
             }
             // Also, check for Glyph of Vigor (id 408)
-            switch($this->currentRealmInfo['type']) {
+            switch($this->armory->currentRealmInfo['type']) {
                 case 'mangos':
                     $isGlyphed = $this->db->selectCell("SELECT 1 FROM `character_glyphs` WHERE `guid`=%d AND `glyph`=408 AND `spec`=%d", $this->guid, $this->activeSpec);
                     if($isGlyphed) {
@@ -2416,7 +2436,7 @@ Class Characters extends Armory {
             $guid = $this->guid;
         }
         if($guid == 0) {
-            $this->Log()->writeError('%s : guid not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
         return $this->db->selectRow("SELECT * FROM `character_skill` WHERE `guid`=%d AND `skill`=%d", $guid, $skill);
@@ -2433,7 +2453,7 @@ Class Characters extends Armory {
      **/
     public function GetCharacterArenaTeamInfo($check = false) {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $arenaTeamInfo = array();
@@ -2501,21 +2521,21 @@ Class Characters extends Armory {
      **/
     public function GetCharacterFeed($full = false) {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not defined', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $limit = ($full == true) ? 50 : 10;
         $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=%d ORDER BY `date` DESC LIMIT %d", $this->guid, $limit);
         if(!$data) {
-            $this->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
+            $this->armory->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
             return false;
         }
         $feed_data = array();
         $i = 0;
         // Strings
-        $feed_strings = $this->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->GetLocale());
+        $feed_strings = $this->armory->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->armory->GetLocale());
         if(!$feed_strings) {
-            $this->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
+            $this->armory->Log()->writeError('%s : unable to load strings from armory_string (current locale: %s; locId: %d)', __METHOD__, $this->armory->GetLocale(), $this->armory->GetLoc());
             return false;
         }
         $_strings = array();
@@ -2558,21 +2578,21 @@ Class Characters extends Armory {
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title']);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->armory->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title']);
                     }
                     else {
                         $points_string = sprintf($_strings[18], $achievement_info['points']);
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[13], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->armory->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
                     }
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;
                 case TYPE_ITEM_FEED:
-                    $item = $this->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $event['data']);
+                    $item = $this->armory->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $event['data']);
                     if(!$item) {
                         continue;
                     }
-                    $item_icon = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $item['displayid']);
+                    $item_icon = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $item['displayid']);
                     // Is item equipped?
                     if($this->IsItemEquipped($event['data'])) {
                         $item_slot = $item['InventoryType'];
@@ -2589,7 +2609,7 @@ Class Characters extends Armory {
                         'slot' => $item_slot,
                         'sort' => $sort
                     );
-                    if($this->GetLocale() != 'en_gb' && $this->GetLocale() != 'en_us') {
+                    if($this->armory->GetLocale() != 'en_gb' && $this->armory->GetLocale() != 'en_us') {
                         $item['name'] = Items::GetItemName($event['data']);
                     }
                     $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
@@ -2600,11 +2620,11 @@ Class Characters extends Armory {
                     $achievement_ids = array();
                     $dungeonDifficulty = $event['difficulty'];
                     // Search for difficulty_entry_X
-                    $DifficultyEntry = $this->wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event['data']);
+                    $DifficultyEntry = $this->armory->wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event['data']);
                     if(!$DifficultyEntry || $DifficultyEntry == 0) {
                         $DifficultyEntry = $event['data'];
                     }
-                    $criterias = $this->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data` = %d", $DifficultyEntry);
+                    $criterias = $this->armory->aDB->select("SELECT `referredAchievement` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `data` = %d", $DifficultyEntry);
                     if(!$criterias || !is_array($criterias)) {
                         continue;
                     }
@@ -2614,7 +2634,7 @@ Class Characters extends Armory {
                     if(!$achievement_ids || !is_array($achievement_ids)) {
                         continue;
                     }
-                    $achievement = $this->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s) AND `flags`=1 AND `dungeonDifficulty`=%d", $this->GetLocale(), $achievement_ids, $dungeonDifficulty);
+                    $achievement = $this->armory->aDB->selectRow("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s) AND `flags`=1 AND `dungeonDifficulty`=%d", $this->armory->GetLocale(), $achievement_ids, $dungeonDifficulty);
                     if(!$achievement || !is_array($achievement)) {
                         continue;
                     }
@@ -2643,13 +2663,79 @@ Class Characters extends Armory {
      * @return   array
      **/
     public function GetCharacterItemInfo($slot) {
+        /*
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
         }
+        if(!isset($this->m_items[$slot['slotid']])) {
+            $this->armory->Log()->writeError('%s : slot %d is empty (nothing equipped?)', __METHOD__, $slot['slotid']);
+            return false;
+        }
+        $item = $this->m_items[$slot['slotid']];
+        $gems = array(
+            'g0' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT),
+            'g1' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT_2),
+            'g2' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT_3),
+        );
+        $durability = $item->GetItemDurability();
+        $item_data = $this->armory->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item->GetEntry());
+        $enchantment = $item->GetEnchantmentId(PERM_ENCHANTMENT_SLOT);
+        $originalSpell = 0;
+        $enchItemData = array();
+        $enchItemDisplayId = 0;
+        if($enchantment > 0) {
+            $originalSpell = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spellenchantment` WHERE `Value`=%d", $enchantment);
+            if($originalSpell > 0) {
+                $enchItemData = $this->armory->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
+                if($enchItemData) {
+                    // Item
+                    $enchItemDisplayId = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
+                }
+                else {
+                    // Spell
+                    $spellEnchData = Items::GenerateEnchantmentSpellData($originalSpell);
+                }
+            }
+        }
+        $item_info = array(
+            'displayInfoId'          => $item_data['displayid'],
+            'durability'             => $durability['current'],
+            'icon'                   => Items::GetItemIcon($item->GetEntry(), $item_data['displayid']),
+            'id'                     => $item->GetEntry(),
+            'level'                  => $item_data['ItemLevel'],
+            'maxDurability'          => $durability['max'],
+            'name'                   => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $item_data['name'] : Items::GetItemName($item->GetEntry()),
+            'permanentenchant'       => $enchantment,
+            'pickUp'                 => 'PickUpLargeChain',
+            'putDown'                => 'PutDownLArgeChain',
+            'randomPropertiesId'     => 0,
+            'rarity'                 => $item_data['Quality'],
+            'seed'                   => $item->GetGUID(),
+            'slot'                   => $slot['slotid']
+        );
+        if(is_array($gems)) {
+            for($i=0;$i<3;$i++) {
+                if($gems['g'.$i]['item'] > 0) {
+                    $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
+                    $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
+                }
+            }
+        }
+        if(is_array($enchItemData) && isset($enchItemData['entry'])) {
+            $item_info['permanentEnchantIcon'] = $enchItemDisplayId;
+            $item_info['permanentEnchantItemId'] = $enchItemData['entry'];
+        }
+        elseif(isset($spellEnchData) && is_array($spellEnchData) && isset($spellEnchData['name'])) {
+            $item_info['permanentEnchantIcon'] = 'trade_engraving';
+            $item_info['permanentEnchantSpellName'] = $spellEnchData['name'];
+            $item_info['permanentEnchantSpellDesc'] = $spellEnchData['desc'];
+        }
+        return $item_info;
+        */
         $item_id = $this->GetCharacterEquip($slot['slot']);
         if(!$item_id) {
-            $this->Log()->writeLog('%s : unable to get item_id for player %d (%s); slotid is %s (nothing equipped?)', __METHOD__, $this->guid, $this->name, $slot['slot']);
+            $this->armory->Log()->writeLog('%s : unable to get item_id for player %d (%s); slotid is %s (nothing equipped?)', __METHOD__, $this->guid, $this->name, $slot['slot']);
             return false;
         }
         $item_guid = $this->GetEquippedItemGuidBySlot($slot['slot']);
@@ -2659,18 +2745,18 @@ Class Characters extends Armory {
             'g1' => Items::GetItemSocketInfo($this->guid, $item_id, 2, $item_guid),
             'g2' => Items::GetItemSocketInfo($this->guid, $item_id, 3, $item_guid)
         );
-        $item_data = $this->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item_id);
+        $item_data = $this->armory->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item_id);
         $enchantment = $this->GetCharacterEnchant($slot['slot']);
         $originalSpell = 0;
         $enchItemData = array();
         $enchItemDisplayId = null;
         if($enchantment > 0) {
-            $originalSpell = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spellenchantment` WHERE `Value`=%d", $enchantment);
+            $originalSpell = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spellenchantment` WHERE `Value`=%d", $enchantment);
             if($originalSpell > 0) {
-                $enchItemData = $this->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
+                $enchItemData = $this->armory->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
                 if($enchItemData) {
                     // Item
-                    $enchItemDisplayId = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
+                    $enchItemDisplayId = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
                 }
                 else {
                     // Spell
@@ -2685,7 +2771,7 @@ Class Characters extends Armory {
             'id'                     => $item_id,
             'level'                  => $item_data['ItemLevel'],
             'maxDurability'          => $durability['max'],
-            'name'                   => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $item_data['name'] : Items::GetItemName($item_id),
+            'name'                   => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $item_data['name'] : Items::GetItemName($item_id),
             'permanentenchant'       => $enchantment,
             'pickUp'                 => 'PickUpLargeChain',
             'putDown'                => 'PutDownLArgeChain',
@@ -2750,7 +2836,7 @@ Class Characters extends Armory {
      **/
     public function GetEquippedItemGuidBySlot($slot_id) {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not provided', __METHOD__);
             return 0;
         }
         switch($slot_id) {
@@ -2814,7 +2900,7 @@ Class Characters extends Armory {
                 return $this->GetDataField(PLAYER_SLOT_ITEM_TABARD);
                 break;
             default:
-                $this->Log()->writeLog('%s : wrong item_slot: %s', __METHOD__, $slot_id);
+                $this->armory->Log()->writeLog('%s : wrong item_slot: %s', __METHOD__, $slot_id);
                 return 0;
                 break;
         }
@@ -2838,7 +2924,7 @@ Class Characters extends Armory {
      **/
     public function GetModelData() {
         if(!$this->guid) {
-            $this->Log()->writeError('%s : player guid not provided', __METHOD__);
+            $this->armory->Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
         }
         switch($this->race) {
@@ -2885,7 +2971,7 @@ Class Characters extends Armory {
                 return array('baseY' => 1.275, 'facedY' => 1.9, 'scale' => 1.375);
                 break;
             default:
-                $this->Log()->writeError('%s : wrong character raceId: %d (player: %s, realm: %s)', __METHOD__, $this->race, $this->name, $this->realmName);
+                $this->armory->Log()->writeError('%s : wrong character raceId: %d (player: %s, realm: %s)', __METHOD__, $this->race, $this->name, $this->realmName);
                 return false;
                 break;
         }
@@ -2954,6 +3040,76 @@ Class Characters extends Armory {
             }
         }
         return $standing;
+    }
+    
+    /**** DEVELOPMENT ****/
+    
+    /**
+     * Load character inventory (equipped items)
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
+    private function LoadInventory() {
+        if(!$this->guid) {
+            $this->armory->Log()->writeError('%s : player guid is not defined.', __METHOD__);
+            return false;
+        }
+        $inv = $this->db->select("SELECT `item`, `slot`, `item_template`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
+        if(!$inv) {
+            return false;
+        }
+        foreach($inv as $item) {
+            $this->m_items[$item['slot']] = new Item($this->armory);
+            $this->m_items[$item['slot']]->LoadFromDB($item, $this->guid, $this->db, Utils::GetServerTypeByString($this->armory->currentRealmInfo['type']));
+            // Do not load itemproto here!
+        }
+        return true;
+    }
+    
+    /**
+     * Load equipped item from character_inventory (by SLOT ID)
+     * @category Characters class
+     * @access   public
+     * @param    int $slotID
+     * @param    bool $addToInventoryStorage = true
+     * @return   mixed
+     **/
+    private function LoadItemFromDBBySlotID($slotID, $addToInventoryStorage = true) {
+        if(!$this->guid) {
+            $this->armory->Log()->writeError('%s : player guid is not defined.', __METHOD__);
+            return false;
+        }
+        $inv = $this->db->selectRow("SELECT `item`, `slot`, `item_template`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` = %d AND `guid` = %d LIMIT 1", $slotID, $this->guid);
+        if(!$inv) {
+            return false;
+        }
+        if($addToInventoryStorage == true) {
+            $this->m_inventory[$inv['slot']] = new Item($this->armory);
+            $this->m_inventory[$inv['slot']]->LoadFromDB($inv, $this->guid, $this->GetDB(), $this->armory->currentRealmInfo['type']);
+        }
+        return $inv; // or boolean?
+    }
+    
+    public function GetItemBySlot($slot) {
+        if(!isset($this->m_items[$slot])) {
+            $this->armory->Log()->writeError('%s : slot %d is empty (character: %s, GUID: %d).', __METHOD__, $slot, $this->name, $this->guid);
+            return null;
+        }
+        elseif(!is_object($this->m_items[$slot])) {
+            // Try to reload item
+            $item_temporary = $this->LoadItemFromDBBySlotID($slot, true);
+            if($item_temporary->IsCorrect()) {
+                return $item_temporary;
+            }
+            $this->armory->Log()->writeError('%s : slot %d is not an object (character: %s, GUID: %d).', __METHOD__, $slot, $this->name, $this->guid);
+            return null;
+        }
+        elseif(!$this->m_items[$slot]->IsCorrect()) {
+            $this->armory->Log()->writeError('%s : item in slot %d have wrong data (Item::IsCorrect() fail)', __METHOD__, $slot);
+            return null;
+        }
+        return $this->m_items[$slot];
     }
 }
 ?>

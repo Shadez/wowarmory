@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 390
+ * @revision 392
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,7 +26,9 @@ if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
 
-Class Items extends Armory {
+Class Items {
+    
+    public $armory = null;
     
     /**
      * Not used now
@@ -38,6 +40,13 @@ Class Items extends Armory {
      **/
     public $charGuid;
     
+    public function Items($armory) {
+        if(!is_object($armory)) {
+            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
+        }
+        $this->armory = $armory;
+    }
+    
     /**
      * Checks is item exists in DB
      * @category Items class
@@ -46,7 +55,7 @@ Class Items extends Armory {
      * @return   bool
      **/
     public function IsItemExists($itemID) {
-        if($this->wDB->selectCell("SELECT 1 FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID)) {
+        if($this->armory->wDB->selectCell("SELECT 1 FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID)) {
             return true;
         }
         return false;
@@ -60,13 +69,13 @@ Class Items extends Armory {
      * @return   string
      **/
     public function GetItemName($itemID) {
-        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-            $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+            $itemName = $this->armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         else {
-            $itemName = $this->wDB->selectCell("SELECT `name_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $itemID);
+            $itemName = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $itemID);
             if(!$itemName) {
-                $itemName = $this->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                $itemName = $this->armory->wDB->selectCell("SELECT `name` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             }
         }
         if($itemName) {
@@ -85,9 +94,9 @@ Class Items extends Armory {
      **/
     public function GetItemIcon($itemID, $displayId = 0) {
         if($displayId == 0) {
-            $displayId = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+            $displayId = $this->armory->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
-        $itemIcon = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d LIMIT 1", $displayId);
+        $itemIcon = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d LIMIT 1", $displayId);
         return strtolower($itemIcon);
     }
     
@@ -99,13 +108,13 @@ Class Items extends Armory {
      * @return   string
      **/
     public function GetItemDescription($itemID) {
-        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
-            $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+            $itemDescription = $this->armory->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         else {
-            $itemDescription = $this->wDB->selectCell("SELECT `description_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->GetLoc(), $itemID);
+            $itemDescription = $this->armory->wDB->selectCell("SELECT `description_loc%d` FROM `locales_item` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $itemID);
             if(!$itemDescription) {
-                $itemDescription = $this->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                $itemDescription = $this->armory->wDB->selectCell("SELECT `description` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             }
         }
         if($itemDescription) {
@@ -127,9 +136,9 @@ Class Items extends Armory {
 		if($mask == 0x7FF || $mask == 0) {
             return 0;
 		}
-        $races = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_races`", $this->GetLocale());
+        $races = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_races`", $this->armory->GetLocale());
         if(!is_array($races)) {
-            $this->Log()->writeError('%s : unable to find races names for locale %s (%d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
+            $this->armory->Log()->writeError('%s : unable to find races names for locale %s (%d)', __METHOD__, $this->armory->GetLocale(), $this->armory->GetLoc());
             return false;
         }
         $races_data = array();
@@ -161,9 +170,9 @@ Class Items extends Armory {
 		if($mask == 0x5DF || $mask == 0) {
             return 0;
 		}
-        $classes = $this->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_classes`", $this->GetLocale());
+        $classes = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_classes`", $this->armory->GetLocale());
         if(!is_array($classes)) {
-            $this->Log()->writeError('%s : unable to find classes names for locale %s (%d)', __METHOD__, $this->GetLocale(), $this->GetLoc());
+            $this->armory->Log()->writeError('%s : unable to find classes names for locale %s (%d)', __METHOD__, $this->armory->GetLocale(), $this->armory->GetLoc());
             return false;
         }
         $classes_data = array();
@@ -191,7 +200,7 @@ Class Items extends Armory {
      * @return   string
      **/
     public function GetItemSource($item, $areaDataOnly = false) {
-		$bossLoot = $this->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d LIMIT 1", $item);
+		$bossLoot = $this->armory->wDB->selectCell("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d LIMIT 1", $item);
         if($bossLoot) {
             if(Mangos::GetNpcInfo($bossLoot, 'isBoss') && self::IsUniqueLoot($item)) {
                 // We have boss loot, generate improved tooltip.
@@ -204,7 +213,7 @@ Class Items extends Armory {
                 return array('value' => 'sourceType.worldDrop');
             }
         }
-        $chestLoot = $this->wDB->selectCell("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d LIMIT 1", $item);
+        $chestLoot = $this->armory->wDB->selectCell("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d LIMIT 1", $item);
         if($chestLoot) {
             if($chest_data = self::GetImprovedItemSource($item, $chestLoot, $areaDataOnly)) {
                 return $chest_data;
@@ -213,15 +222,15 @@ Class Items extends Armory {
                 return array('value' => 'sourceType.gameObjectDrop');
             }
         }
-        $vendorLoot = $this->wDB->selectCell("SELECT `entry` FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $item);
-        $reputationReward = $this->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=%d", $item);
+        $vendorLoot = $this->armory->wDB->selectCell("SELECT `entry` FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $item);
+        $reputationReward = $this->armory->wDB->selectCell("SELECT `RequiredReputationFaction` FROM `item_template` WHERE `entry`=%d", $item);
         if($vendorLoot && $reputationReward > 0) {
             return array('value' => 'sourceType.factionReward');
 		}
         elseif($vendorLoot && (!$reputationReward || $reputationReward == 0)) {
             return array('value' => 'sourceType.vendor');
         }
-        $questLoot = $this->wDB->selectCell("
+        $questLoot = $this->armory->wDB->selectCell("
 		SELECT `entry`
 		  FROM `quest_template`
 		      WHERE `RewChoiceItemId1` = %d OR `RewChoiceItemId2` = %d OR `RewChoiceItemId3` = %d OR 
@@ -230,7 +239,7 @@ Class Items extends Armory {
         if($questLoot) {
             return array('value' => 'sourceType.questReward');
         }
-        $craftLoot = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spell` WHERE `EffectItemType_1`=%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d LIMIT 1", $item, $item, $item);
+        $craftLoot = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spell` WHERE `EffectItemType_1`=%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d LIMIT 1", $item, $item, $item);
         if($craftLoot) {
             return array('value' => 'sourceType.createdByPlans');
         }
@@ -245,8 +254,8 @@ Class Items extends Armory {
      * @return   array
      **/
     public function GetItemSetBonusInfo($itemsetdata) {
-        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
-            $tmp_locale = $this->GetLocale();
+        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
+            $tmp_locale = $this->armory->GetLocale();
         }
         else {
             $tmp_locale = 'en_gb';
@@ -256,7 +265,7 @@ Class Items extends Armory {
             if($itemsetdata['bonus' . $i] > 0) {
                 $threshold = $itemsetdata['threshold' . $i];
                 $spell_tmp = array();
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $itemsetdata['bonus' . $i]);
+                $spell_tmp = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $itemsetdata['bonus' . $i]);
                 if(!isset($spell_tmp['Description_' . $tmp_locale]) || empty($spell_tmp['Description_' . $tmp_locale])) {
                     // try to find en_gb locale
                     if(isset($spell_tmp['Description_en_gb']) && !empty($spell_tmp['Description_en_gb'])) {
@@ -289,12 +298,12 @@ Class Items extends Armory {
         $lootTable = array();
         switch($vendor) {
             case 'vendor':
-                $VendorLoot = $this->wDB->select("SELECT `entry`, `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $item);
+                $VendorLoot = $this->armory->wDB->select("SELECT `entry`, `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $item);
                 if(is_array($VendorLoot)) {
 				    $i = 0;
                     foreach($VendorLoot as $vItem) {
-                        $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, name FROM `creature_template` WHERE `entry`=%d", $vItem['entry']);
-                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                        $lootTable[$i] = $this->armory->wDB->selectRow("SELECT `entry` AS `id`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, name FROM `creature_template` WHERE `entry`=%d", $vItem['entry']);
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($vItem['entry']);
                         }
                         $lootTable[$i]['area'] = Mangos::GetNpcInfo($vItem['entry'], 'map');
@@ -303,12 +312,12 @@ Class Items extends Armory {
                 }
                 break;
             case 'boss':
-                $BossLoot = $this->wDB->select("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d", $item);
+                $BossLoot = $this->armory->wDB->select("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d", $item);
                 if(is_array($BossLoot)) {
 				    $i = 0;
                     foreach($BossLoot as $bItem) {
-                        $lootTable[$i] = $this->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=%d", $bItem['entry']);
-                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                        $lootTable[$i] = $this->armory->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=%d", $bItem['entry']);
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
                         }
                         if(Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
@@ -330,7 +339,7 @@ Class Items extends Armory {
                 }
                 break;
             case 'chest':
-                $ChestLoot = $this->wDB->select("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d", $item);
+                $ChestLoot = $this->armory->wDB->select("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d", $item);
                 if(is_array($ChestLoot)) {
                     $i = 0;
                     foreach($ChestLoot as $cItem) {
@@ -354,7 +363,7 @@ Class Items extends Armory {
                 }
                 break;
             case 'questreward':
-                $QuestLoot = $this->wDB->select("
+                $QuestLoot = $this->armory->wDB->select("
                 SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
                     FROM `quest_template`
                         WHERE `RewChoiceItemId1` = %d OR `RewChoiceItemId2` = %d OR `RewChoiceItemId3` = %d OR 
@@ -363,7 +372,7 @@ Class Items extends Armory {
                     $i = 0;
                     foreach($QuestLoot as $qItem) {
                         $lootTable[$i] = $qItem;
-                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetQuestInfo($qItem['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::GetQuestInfo($qItem['id'], 'map');
@@ -372,24 +381,24 @@ Class Items extends Armory {
                 }
                 break;
             case 'queststart':
-                $QuestStart = $this->wDB->selectCell("SELECT `startquest` FROM `item_template` WHERE `entry`=%d", $item);
+                $QuestStart = $this->armory->wDB->selectCell("SELECT `startquest` FROM `item_template` WHERE `entry`=%d", $item);
                 if(!$QuestStart) {
                     return false;
                 }
-                $lootTable = $this->wDB->selectRow("SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `entry`=%d", $QuestStart);
-                if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                $lootTable = $this->armory->wDB->selectRow("SELECT `entry` AS `id`, `Title` AS `name`, `QuestLevel` AS `level`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `entry`=%d", $QuestStart);
+                if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                     $lootTable['name'] = Mangos::GetQuestInfo($QuestStart, 'title');
                 }
                 $lootTable['name'] = Mangos::GetQuestInfo($QuestStart, 'title');
                 $lootTable['area'] =  Mangos::GetQuestInfo($QuestStart, 'map');
                 break;
             case 'providedfor':
-                $QuestInfo = $this->wDB->select("SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `SrcItemId`=%d", $item);
+                $QuestInfo = $this->armory->wDB->select("SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize` FROM `quest_template` WHERE `SrcItemId`=%d", $item);
                 if(is_array($QuestInfo)) {
                     $i = 0;
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
-                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetQuestInfo($quest['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::GetQuestInfo($quest['id'], 'map');
@@ -397,7 +406,7 @@ Class Items extends Armory {
                 }
                 break;            
             case 'objectiveof':
-                $QuestInfo = $this->wDB->select("
+                $QuestInfo = $this->armory->wDB->select("
                 SELECT `entry` AS `id`, `QuestLevel` AS `level`, `Title` AS `name`, `MinLevel` AS `reqMinLevel`, `SuggestedPlayers` AS `suggestedPartySize`
                     FROM `quest_template`
                         WHERE `ReqItemId1`=%d OR `ReqItemId2`=%d OR `ReqItemId3`=%d OR `ReqItemId4`=%d OR `ReqItemId5`=%d", $item, $item, $item, $item, $item);
@@ -405,7 +414,7 @@ Class Items extends Armory {
                     $i = 0;
                     foreach($QuestInfo as $quest) {
                         $lootTable[$i] = $quest;
-                        if($this->GetLocale() != 'en_gb' || $this->GetLocale() != 'en_us') {
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
                             $lootTable[$i]['name'] = Mangos::GetQuestInfo($quest['id'], 'title');
                         }
                         $lootTable[$i]['area'] = Mangos::GetQuestInfo($quest['id'], 'map');
@@ -413,15 +422,15 @@ Class Items extends Armory {
                 }
                 break;
             case 'disenchant':
-                $DisenchantLoot = $this->wDB->select("SELECT `item`, `maxcount`, `mincountOrRef` FROM `disenchant_loot_template` WHERE `entry`=%d", $item);
+                $DisenchantLoot = $this->armory->wDB->select("SELECT `item`, `maxcount`, `mincountOrRef` FROM `disenchant_loot_template` WHERE `entry`=%d", $item);
                 if(is_array($DisenchantLoot)) {
                     $i = 0;
                     foreach($DisenchantLoot as $dItem) {
-                        $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $dItem['item']);
+                        $tmp_info = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $dItem['item']);
                         $drop_percent = Mangos::GenerateLootPercent($item, 'disenchant_loot_template', $dItem['item']);
                         $lootTable[$i] = array (
                             'id'       => $dItem['item'],
-                            'name'     => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
+                            'name'     => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($dItem['item']),
                             'dropRate' => Mangos::GetDropRate($drop_percent),
                             'maxCount' => $dItem['maxcount'],
                             'minCount' => $dItem['mincountOrRef'],
@@ -433,17 +442,17 @@ Class Items extends Armory {
                 }
                 break;
             case 'craft':
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
-                    $CraftLoot = $this->aDB->select("
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
+                    $CraftLoot = $this->armory->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
                         `SpellName_%s` AS `SpellName`, `SpellIconID`
                         FROM `ARMORYDBPREFIX_spell`
-                            WHERE `EffectItemType_1` =%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d", $this->GetLocale(), $item, $item, $item);
+                            WHERE `EffectItemType_1` =%d OR `EffectItemType_2`=%d OR `EffectItemType_3`=%d", $this->armory->GetLocale(), $item, $item, $item);
                 }
                 else {
-                    $CraftLoot = $this->aDB->select("
+                    $CraftLoot = $this->armory->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
@@ -458,12 +467,12 @@ Class Items extends Armory {
                         $lootTable[$i]['item']    = array();
                         $lootTable[$i]['reagent'] = array();                    
                         $lootTable[$i]['spell']['name'] = $craftItem['SpellName'];
-                        $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_speillicon` WHERE `id`=%d", $craftItem['SpellIconID']);
+                        $lootTable[$i]['spell']['icon'] = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_speillicon` WHERE `id`=%d", $craftItem['SpellIconID']);
                         for($o = 1; $o < 9; $o++) {
                             if($craftItem['Reagent_'.$o] > 0) {
-                                $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['Reagent_'.$o]);
+                                $tmp_info = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['id'] = $craftItem['Reagent_'.$o];
-                                $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['Reagent_'.$o]);
+                                $lootTable[$i]['reagent'][$o]['name'] = ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['Reagent_'.$o]);
                                 $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($craftItem['Reagent_'.$o], $tmp_info['displayid']);
                                 $lootTable[$i]['reagent'][$o]['count'] = $craftItem['ReagentCount_'.$o];
                                 $lootTable[$i]['reagent'][$o]['quality'] = $tmp_info['Quality'];
@@ -471,8 +480,8 @@ Class Items extends Armory {
                         }
                         for($j = 1; $j < 4; $j++) {
                             if($craftItem['EffectItemType_'.$j] > 0) {
-                                $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['EffectItemType_'.$j]);
-                                $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
+                                $tmp_info = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $craftItem['EffectItemType_'.$j]);
+                                $lootTable[$i]['item'][$j]['name'] = ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($craftItem['EffectItemType_'.$j]);
                                 $lootTable[$i]['item'][$j]['id'] = $craftItem['EffectItemType_'.$j];
                                 $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($craftItem['EffectItemType_'.$j], $tmp_info['displayid']);
                                 $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
@@ -483,7 +492,7 @@ Class Items extends Armory {
                 }
                 break;
             case 'currencyfor':
-                $exCostIds = $this->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item, $item, $item, $item, $item);
+                $exCostIds = $this->armory->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item, $item, $item, $item, $item);
                 if(!$exCostIds || !is_array($exCostIds)) {
                     return false;
                 }
@@ -492,7 +501,7 @@ Class Items extends Armory {
                     $CostIDs['pos'][] = $tmp_cost['id'];
                     $CostIDs['neg'][] = '-'.$tmp_cost['id'];
                 }
-                $itemsData = $this->wDB->select("
+                $itemsData = $this->armory->wDB->select("
                 SELECT
                 `item_template`.`entry` AS `id`,
                 `item_template`.`name`,
@@ -519,9 +528,9 @@ Class Items extends Armory {
                         'icon' => self::GetItemIcon($curItem['id'], $curItem['displayid']),
                         'id' => $curItem['id'],
                         'level' => $curItem['level'],
-                        'name' => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $curItem['name'] : self::GetItemName($curItem['id']),
+                        'name' => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $curItem['name'] : self::GetItemName($curItem['id']),
                         'quality' => $curItem['quality'],
-                        'type' => $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $curItem['class'], $curItem['subclass'])
+                        'type' => $this->armory->aDB->selectCell("SELECT `subclass_name_%s` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->armory->GetLocale(), $curItem['class'], $curItem['subclass'])
                     );
                     $lootTable[$i]['tokens'] = Mangos::GetExtendedCost($curItem['ExtendedCost']);
                     $oldItems[$curItem['id']] = $curItem['id'];
@@ -529,18 +538,18 @@ Class Items extends Armory {
                 }
                 break;
             case 'reagent':
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
-                    $ReagentLoot = $this->aDB->select("
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
+                    $ReagentLoot = $this->armory->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
                         `SpellName_%s` AS `SpellName`, `SpellIconID`
                     FROM `ARMORYDBPREFIX_spell`
                         WHERE `Reagent_1`=%d OR `Reagent_2`=%d OR `Reagent_3`=%d OR `Reagent_4`=%d OR
-                            `Reagent_5`=%d OR `Reagent_6`=%d OR `Reagent_7`=%d OR `Reagent_8`=%d", $this->GetLocale(), $item, $item, $item, $item, $item, $item, $item, $item);
+                            `Reagent_5`=%d OR `Reagent_6`=%d OR `Reagent_7`=%d OR `Reagent_8`=%d", $this->armory->GetLocale(), $item, $item, $item, $item, $item, $item, $item, $item);
                 }
                 else {
-                    $ReagentLoot = $this->aDB->select("
+                    $ReagentLoot = $this->armory->aDB->select("
                     SELECT `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`, `Reagent_7`, `Reagent_8`,
                         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`, `ReagentCount_4`, `ReagentCount_5`, `ReagentCount_6`, 
                         `ReagentCount_7`, `ReagentCount_8`, `EffectItemType_1`, `EffectItemType_2`, `EffectItemType_3`,
@@ -558,30 +567,30 @@ Class Items extends Armory {
                     $lootTable[$i]['item']    = array();
                     $lootTable[$i]['reagent'] = array();
                     $lootTable[$i]['spell']['name'] = $ReagentItem['SpellName'];
-                    $lootTable[$i]['spell']['icon'] = $this->aDB->selectCell("SELEC `icon` FROM `ARMORYDBPREFIX_spellicon` WHERE `id`=%d", $ReagentItem['SpellIconID']);
+                    $lootTable[$i]['spell']['icon'] = $this->armory->aDB->selectCell("SELEC `icon` FROM `ARMORYDBPREFIX_spellicon` WHERE `id`=%d", $ReagentItem['SpellIconID']);
                     for($j = 1; $j < 4; $j++) {
                         if($ReagentItem['EffectItemType_' . $j] > 0) {
-                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_' . $j]);
+                            $tmp_info = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['EffectItemType_' . $j]);
                             $lootTable[$i]['item'][$j]['id'] = $ReagentItem['EffectItemType_' . $j];
-                            $lootTable[$i]['item'][$j]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['EffectItemType_' . $j]);
+                            $lootTable[$i]['item'][$j]['name'] = ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['EffectItemType_' . $j]);
                             $lootTable[$i]['item'][$j]['icon'] = self::GetItemIcon($ReagentItem['EffectItemType_'.$j], $tmp_info['displayid']);
                             $lootTable[$i]['item'][$j]['quality'] = $tmp_info['Quality'];
                         }
                     }
                     for($o = 1; $o < 9; $o++) {
                         if($ReagentItem['Reagent_' . $o] > 0) {
-                            $tmp_info = $this->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['Reagent_' . $o]);
+                            $tmp_info = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $ReagentItem['Reagent_' . $o]);
                             $lootTable[$i]['reagent'][$o]['id'] = $ReagentItem['Reagent_' . $o];
                             $lootTable[$i]['reagent'][$o]['icon'] = self::GetItemIcon($ReagentItem['Reagent_' . $o], $tmp_info['displayid']);
                             $lootTable[$i]['reagent'][$o]['count'] = $ReagentItem['ReagentCount_' . $o];
-                            $lootTable[$i]['reagent'][$o]['name'] = ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['Reagent_' . $o]);
+                            $lootTable[$i]['reagent'][$o]['name'] = ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $tmp_info['name'] : self::GetItemName($ReagentItem['Reagent_' . $o]);
                         }
                     }
                     $i++;
                 }
                 break;
             case 'randomProperty':
-                $itemProperty = $this->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry`=%d LIMIT 1", $item);
+                $itemProperty = $this->armory->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry`=%d LIMIT 1", $item);
                 if(!$itemProperty || ($itemProperty['RandomProperty'] == 0 && $itemProperty['RandomSuffix'] == 0)) {
                     return false;
                 }
@@ -594,7 +603,7 @@ Class Items extends Armory {
                     $itemPropertyId = $itemProperty['RandomSuffix'];
                     $type = 'suffix';
                 }
-                $enchants_entries = $this->wDB->select("SELECT * FROM `item_enchantment_template` WHERE `entry`=%d", $itemPropertyId);
+                $enchants_entries = $this->armory->wDB->select("SELECT * FROM `item_enchantment_template` WHERE `entry`=%d", $itemPropertyId);
                 if(!$enchants_entries) {
                     return false;
                 }
@@ -604,16 +613,16 @@ Class Items extends Armory {
                     $ids[$enchants_entries[$i]['ench']] = $enchants_entries[$i]['ench'];
                 }
                 if($type == 'property') {
-                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id` IN (%s)", $this->GetLocale(), $ids);
+                    $enchants = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id` IN (%s)", $this->armory->GetLocale(), $ids);
                 }
                 elseif($type == 'suffix') {
-                    $enchants = $this->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3`, `ench_4`, `ench_5`, `pref_1`, `pref_2`, `pref_3`, `pref_4`, `pref_5` FROM `ARMORYDBPREFIX_randomsuffix` WHERE `id` IN (%s)", $this->GetLocale(), $ids);
+                    $enchants = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3`, `ench_4`, `ench_5`, `pref_1`, `pref_2`, `pref_3`, `pref_4`, `pref_5` FROM `ARMORYDBPREFIX_randomsuffix` WHERE `id` IN (%s)", $this->armory->GetLocale(), $ids);
                 }
                 if(!$enchants) {
                     return false;
                 }
                 $i = 0;
-                $item_data = $this->wDB->selectRow("SELECT `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item);
+                $item_data = $this->armory->wDB->selectRow("SELECT `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item);
                 $points = self::GetRandomPropertiesPoints($item_data['ItemLevel'], $item_data['InventoryType'], $item_data['Quality']);
                 foreach($enchants as $entry) {
                     $str_tmp = array();
@@ -629,7 +638,7 @@ Class Items extends Armory {
                             }
                         }
                     }
-                    $enchs = $this->aDB->select("SELECT `id`, `text_%s` AS `text` FROM `ARMORYDBPREFIX_enchantment` WHERE `id` IN (%s)", $this->GetLocale(), $str_tmp);
+                    $enchs = $this->armory->aDB->select("SELECT `id`, `text_%s` AS `text` FROM `ARMORYDBPREFIX_enchantment` WHERE `id` IN (%s)", $this->armory->GetLocale(), $str_tmp);
                     if(!$enchs) {
                         $i++;
                         continue;
@@ -667,13 +676,13 @@ Class Items extends Armory {
     public function GetItemInfo($itemID, $type) {
         switch($type) {
             case 'quality':
-                $info = $this->wDB->selectCell("SELECT `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                $info = $this->armory->wDB->selectCell("SELECT `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
                 break;
             case 'displayid':
-                $info = $this->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                $info = $this->armory->wDB->selectCell("SELECT `displayid` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
                 break;
             case 'durability':
-                $info = $this->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                $info = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
                 break;
             default:
                 $info = false;
@@ -695,7 +704,7 @@ Class Items extends Armory {
      **/ 
     public function GetItemSocketInfo($guid, $item, $socketNum, $item_guid = 0) {
         $data = array();
-        switch($this->currentRealmInfo['type']) {
+        switch($this->armory->currentRealmInfo['type']) {
             case 'mangos':
                 $socketfield = array(
                     1 => ITEM_FIELD_ENCHANTMENT_3_2,
@@ -703,13 +712,13 @@ Class Items extends Armory {
                     3 => ITEM_FIELD_ENCHANTMENT_5_2
                 );
                 if($item_guid == 0) {
-                    $socketInfo = $this->cDB->selectCell("
+                    $socketInfo = $this->armory->cDB->selectCell("
                     SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
                         FROM `item_instance` 
                             WHERE `owner_guid`=%d AND CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 4), ' ', '-1') AS UNSIGNED) = %d", $socketfield[$socketNum], $guid, $item);
                 }
                 else {
-                    $socketInfo = $this->cDB->selectCell("
+                    $socketInfo = $this->armory->cDB->selectCell("
                     SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
                         FROM `item_instance` 
                             WHERE `owner_guid`=%d AND `guid`=%d", $socketfield[$socketNum], $guid, $item_guid);
@@ -719,18 +728,18 @@ Class Items extends Armory {
                 $socketfield = array(
                     1 => 6,
                     2 => 9,
-                    3 => 15
+                    3 => 12
                 );
                 if(!isset($socketfield[$socketNum])) {
-                    $this->Log()->writeError('%s : wrong socketNum: %d', __METHOD__, $socketNum);
+                    $this->armory->Log()->writeError('%s : wrong socketNum: %d', __METHOD__, $socketNum);
                     return false;
                 }
                 if($item_guid == 0) {
                     $item_guid = self::GetItemGUIDByEntry($item, $guid);
                 }
-                $row = $this->cDB->selectCell("SELECT `enchantments` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                $row = $this->armory->cDB->selectCell("SELECT `enchantments` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 if(!$row) {
-                    $this->Log()->writeError('%s : item with guid #%d was not found in `item_instance` table.', __METHOD__, $item_guid);
+                    $this->armory->Log()->writeError('%s : item with guid #%d was not found in `item_instance` table.', __METHOD__, $item_guid);
                     return false;
                 }
                 $enchantments = explode(' ', $row);
@@ -738,12 +747,12 @@ Class Items extends Armory {
                 break;
         }
         if($socketInfo > 0) {
-            $gemData = $this->aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $socketInfo);
+            $gemData = $this->armory->aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $socketInfo);
             $data['enchant_id'] = $socketInfo;
             $data['item'] = $gemData['gem'];
             $data['icon'] = self::GetItemIcon($data['item']);
             $data['enchant'] = $gemData['text'];
-            $data['color'] = $this->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
+            $data['color'] = $this->armory->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
             return $data;
         }
         return false;
@@ -758,13 +767,13 @@ Class Items extends Armory {
      * @return   array
      **/
     public function GetItemDurability($guid, $item) {
-        switch($this->currentRealmInfo['type']) {
+        switch($this->armory->currentRealmInfo['type']) {
             case 'mangos':
                 $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, $guid, $item);
                 $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, $guid, $item);
                 break;
             case 'trinity':
-                $durability['current'] = $this->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `guid`=%d", $guid, $item);
+                $durability['current'] = $this->armory->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `guid`=%d", $guid, $item);
                 $durability['max'] = self::GetItemInfo($item, 'durability');
                 break;
         }
@@ -780,13 +789,13 @@ Class Items extends Armory {
      **/
     public function GetItemDurabilityByItemGuid($item_guid) {
         $durability = array('current' => 0, 'max' => 0);
-        switch($this->currentRealmInfo['type']) {
+        switch($this->armory->currentRealmInfo['type']) {
             case 'mangos':
                 $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
                 $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
                 break;
             case 'trinity':
-                $durability['current'] = $this->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                $durability['current'] = $this->armory->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 $itemEntry = self::GetItemEntryByGUID($item_guid);
                 $durability['max'] = self::GetItemInfo($itemEntry, 'durability');
                 break;
@@ -808,7 +817,7 @@ Class Items extends Armory {
     public function GetItemDataField($field, $itemid, $owner_guid, $use_item_guid = 0, $db = null) {
         $dataField = $field + 1;
         if($db == null) {
-            $db = $this->cDB;
+            $db = $this->armory->cDB;
         }
         if($use_item_guid > 0) {
             $qData = $db->selectCell("
@@ -883,7 +892,7 @@ Class Items extends Armory {
                         $cacheSpellData[$lookup] = $this->GetSpellData($spell);
                     }
                     else {
-                        $cacheSpellData[$lookup] = $this->GetSpellData($this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $lookup));
+                        $cacheSpellData[$lookup] = $this->GetSpellData($this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $lookup));
                     }
                     $spellData = @$cacheSpellData[$lookup];
                 }
@@ -931,7 +940,7 @@ Class Items extends Armory {
         }
         $d = 0;
         if($spell['DurationIndex']) {
-            if($spell_duration = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell_duration` WHERE `id`=%d", $spell['DurationIndex'])) {
+            if($spell_duration = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell_duration` WHERE `id`=%d", $spell['DurationIndex'])) {
                 $d = $spell_duration['duration_1']/1000;
             }
         }
@@ -1011,7 +1020,7 @@ Class Items extends Armory {
      * @return   string
      **/
     public function GetItemSourceByKey($key) {
-        return $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s')", $this->GetLocale(), $key);
+        return $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_instance_template` WHERE `id` IN (SELECT `instance_id` FROM `ARMORYDBPREFIX_instance_data` WHERE `key`='%s')", $this->armory->GetLocale(), $key);
     }
     
     /**
@@ -1024,7 +1033,7 @@ Class Items extends Armory {
      * @return   array
      **/
     public function GetImprovedItemSource($itemID, $bossID, $areaDataOnly = false) {
-        $dungeonData = $this->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->GetLocale(), $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $dungeonData = $this->armory->aDB->selectRow("SELECT `instance_id`, `name_%s` AS `name`, `lootid_1`, `lootid_2`, `lootid_3`, `lootid_4` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $this->armory->GetLocale(), $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         if(!$dungeonData) {
             return false;
         }
@@ -1040,10 +1049,10 @@ Class Items extends Armory {
         switch($item_difficulty) {
             case '10n':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1051,10 +1060,10 @@ Class Items extends Armory {
                 break;
             case '10h':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=10 AND `is_heroic`=1", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1065,10 +1074,10 @@ Class Items extends Armory {
                 break;
             case '25n':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1084,10 +1093,10 @@ Class Items extends Armory {
                 break;
             case '25h':
                 if(in_array($dungeonData['instance_id'], $instance_heroic)) {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d AND `partySize`=25 AND `is_heroic`=1", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 else {
-                    $instance_data = $this->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->GetLocale(), $dungeonData['instance_id']);
+                    $instance_data = $this->armory->aDB->selectRow("SELECT `id` AS `areaId`, `name_%s` AS `areaName`, `is_heroic`, `key` FROM `ARMORYDBPREFIX_instance_template` WHERE `id`=%d", $this->armory->GetLocale(), $dungeonData['instance_id']);
                 }
                 if(!$instance_data) {
                     return false;
@@ -1103,7 +1112,7 @@ Class Items extends Armory {
         if($areaDataOnly == true) {
             return array('areaName' => $instance_data['areaName'], 'areaUrl' => sprintf('source=dungeon&dungeon=%s&boss=all&difficulty=all', $instance_data['key']));
         }
-        $instance_data['creatureId'] = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
+        $instance_data['creatureId'] = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_instance_data` WHERE `id`=%d OR `lootid_1`=%d OR `lootid_2`=%d OR `lootid_3`=%d OR `lootid_4`=%d OR `name_id`=%d LIMIT 1", $bossID, $bossID, $bossID, $bossID, $bossID, $bossID);
         $instance_data['creatureName'] = $dungeonData['name'];
         if($bossID > 100000) {
             // GameObject
@@ -1126,7 +1135,7 @@ Class Items extends Armory {
      * @return   bool
      **/
     public function IsUniqueLoot($itemID) {
-        $item_count = $this->wDB->selectCell("SELECT COUNT(`entry`) FROM `creature_loot_template` WHERE `item`=%d", $itemID);
+        $item_count = $this->armory->wDB->selectCell("SELECT COUNT(`entry`) FROM `creature_loot_template` WHERE `item`=%d", $itemID);
         if($item_count > 1) {
             return false;
         }
@@ -1148,10 +1157,10 @@ Class Items extends Armory {
             $displayId = self::GetItemInfo($itemid, 'displayid');
         }
         if($row == null) {
-            $data = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemdisplayinfo` WHERE `displayid`=%d", $displayId);
+            $data = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemdisplayinfo` WHERE `displayid`=%d", $displayId);
         }
         else {
-            $data = $this->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_itemdisplayinfo` WHERE `displayid`=%d", $row, $displayId);
+            $data = $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_itemdisplayinfo` WHERE `displayid`=%d", $row, $displayId);
         }
         if($data) {
             return $data;
@@ -1172,17 +1181,17 @@ Class Items extends Armory {
      **/
     public function GetFactionEquivalent($itemID, $factionID) {
         if($factionID == 1) {
-            $equivalent_id = $this->aDB->selectCell("SELECT `item_alliance` FROM `ARMORYDBPREFIX_item_equivalents` WHERE `item_horde`=%d", $itemID);
+            $equivalent_id = $this->armory->aDB->selectCell("SELECT `item_alliance` FROM `ARMORYDBPREFIX_item_equivalents` WHERE `item_horde`=%d", $itemID);
         }
         elseif($factionID == 2) {
-            $equivalent_id = $this->aDB->selectCell("SELECT `item_horde` FROM `ARMORYDBPREFIX_item_equivalents` WHERE `item_alliance`=%d", $itemID);
+            $equivalent_id = $this->armory->aDB->selectCell("SELECT `item_horde` FROM `ARMORYDBPREFIX_item_equivalents` WHERE `item_alliance`=%d", $itemID);
         }
-        if($equivalent_id > 0 && $info = $this->wDB->selectRow("SELECT `name`, `ItemLevel`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d", $equivalent_id)) {
+        if($equivalent_id > 0 && $info = $this->armory->wDB->selectRow("SELECT `name`, `ItemLevel`, `Quality`, `displayid` FROM `item_template` WHERE `entry`=%d", $equivalent_id)) {
             $item_data = array(
                 'icon'    => self::GetItemIcon($equivalent_id, $info['displayid']),
                 'id'      => $equivalent_id,
                 'level'   => $info['ItemLevel'],
-                'name'    => ($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') ? $info['name'] : self::GetItemName($equivalent_id),
+                'name'    => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $info['name'] : self::GetItemName($equivalent_id),
                 'quality' => $info['Quality']
             );
             return $item_data;
@@ -1206,15 +1215,15 @@ Class Items extends Armory {
             $itemclassInfo = array('class' => $data['class'], 'subclass' => $data['subclass']);
         }
         else {
-            $itemclassInfo = $this->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d", $itemID);
+            $itemclassInfo = $this->armory->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d", $itemID);
         }
         if($tooltip == true) {
             if($itemclassInfo['class'] == ITEM_CLASS_ARMOR && $itemclassInfo['subclass'] == 0) {
                 return;
             }
-            return $this->aDB->selectCell("SELECT `subclass_name_%s` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
+            return $this->armory->aDB->selectCell("SELECT `subclass_name_%s` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->armory->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
         }
-        return $this->aDB->selectRow("SELECT `subclass_name_%s` AS `subclass_name`, `key` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
+        return $this->armory->aDB->selectRow("SELECT `subclass_name_%s` AS `subclass_name`, `key` FROM `ARMORYDBPREFIX_itemsubclass` WHERE `class`=%d AND `subclass`=%d", $this->armory->GetLocale(), $itemclassInfo['class'], $itemclassInfo['subclass']);
     }
     
     /**
@@ -1225,14 +1234,14 @@ Class Items extends Armory {
      * @return   int
      **/
     public function IsRequiredArenaRating($itemID) {
-        $extended_cost_id = $this->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $itemID);
+        $extended_cost_id = $this->armory->wDB->selectCell("SELECT `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $itemID);
         if($extended_cost_id === false) {
             return false;
         }
         if($extended_cost_id < 0) {
             $extended_cost_id = abs($extended_cost_id);
         }
-        $arenaTeamRating = $this->aDB->selectCell("SELECT `personalRating` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $extended_cost_id);
+        $arenaTeamRating = $this->armory->aDB->selectCell("SELECT `personalRating` FROM `ARMORYDBPREFIX_extended_cost` WHERE `id`=%d", $extended_cost_id);
         if($arenaTeamRating > 0) {
             return $arenaTeamRating;
         }
@@ -1248,14 +1257,14 @@ Class Items extends Armory {
      **/
     public function GetItemData($itemID) {
         $itemData = array();
-        if(!$this->wDB->selectCell("SELECT `Flags2` FROM `item_template` LIMIT 1")) {
+        if(!$this->armory->wDB->selectCell("SELECT `Flags2` FROM `item_template` LIMIT 1")) {
             // Trinity Core have FlagsExtra field instead of MaNGOS' `Flags2`
-            $itemData = $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `FlagsExtra`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+            $itemData = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `FlagsExtra`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
             $itemData['Flags2'] = $itemData['FlagsExtra']; // For compatibility
             unset($itemData['FlagsExtra']);
         }
         else {
-            $itemData = $this->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+            $itemData = $this->armory->wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         }
         return $itemData;
     }
@@ -1292,7 +1301,7 @@ Class Items extends Armory {
      **/
     public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0, $rIdOnly = false) {
         $enchId = 0;
-        switch($this->currentRealmInfo['type']) {
+        switch($this->armory->currentRealmInfo['type']) {
             case 'mangos':
                 if($item_guid > 0) {
                     $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
@@ -1303,20 +1312,20 @@ Class Items extends Armory {
                 break;
             case 'trinity':
                 if($item_guid > 0) {
-                    $enchId = $this->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    $enchId = $this->armory->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 }
                 else {
                     $item_guid = self::GetItemGUIDByEntry($item_entry, $owner_guid);
-                    $enchId = $this->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    $enchId = $this->armory->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 }
                 break;
         }
         if($rIdOnly == true) {
             return $enchId;
         }
-        $rand_data = $this->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id`=%d", $this->GetLocale(), $enchId);
+        $rand_data = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id`=%d", $this->armory->GetLocale(), $enchId);
         if(!$rand_data) {
-            $this->Log()->writeLog('%s : unable to get rand_data FROM `ARMORYDBPREFIX_randomproperties` for id %d', __METHOD__, $enchId);
+            $this->armory->Log()->writeLog('%s : unable to get rand_data FROM `ARMORYDBPREFIX_randomproperties` for id %d', __METHOD__, $enchId);
             return false;
         }
         $return_data = array();
@@ -1324,7 +1333,7 @@ Class Items extends Armory {
         $return_data['data'] = array();
         for($i = 1; $i < 4; $i++) {
             if($rand_data['ench_' . $i] > 0) {
-                $return_data['data'][$i] = $this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $rand_data['ench_' . $i]);
+                $return_data['data'][$i] = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $rand_data['ench_' . $i]);
             }
         }
         return $return_data;
@@ -1343,7 +1352,7 @@ Class Items extends Armory {
      **/
     public function GetRandomPropertiesPoints($itemLevel, $type, $quality, $itemId = 0) {
         if($itemLevel == 0 && $type == 0 && $quality == 0 && $itemId > 0) {
-            $data = $this->wDB->selectRow("SELECT `ItemLevel`, `type`, `Quality` FROM `item_template` WHERE `entry`=%d", $itemId);
+            $data = $this->armory->wDB->selectRow("SELECT `ItemLevel`, `type`, `Quality` FROM `item_template` WHERE `entry`=%d", $itemId);
             $itemLevel = $data['ItemLevel'];
             $type = $data['type'];
             $quality = $data['Quality'];
@@ -1410,7 +1419,7 @@ Class Items extends Armory {
             default:
                 return 0;
         }
-        return $this->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_randompropertypoints` WHERE `itemlevel`=%d", $field, $itemLevel);
+        return $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_randompropertypoints` WHERE `itemlevel`=%d", $field, $itemLevel);
     }
     
     /**
@@ -1580,25 +1589,25 @@ Class Items extends Armory {
      **/
     private function CreateAdditionalItemTooltip($itemID, XMLHandler $xml, Characters $characters, $parent = false, $comparsion = false) {
         if(!$xml) {
-            $this->Log()->writeError('%s : xml should be instance of XMLHandler class. %s given.', __METHOD__, gettype($xml));
+            $this->armory->Log()->writeError('%s : xml should be instance of XMLHandler class. %s given.', __METHOD__, gettype($xml));
             return false;
         }
         elseif($parent == true && is_array($comparsion)) {
-            $this->Log()->writeError('%s : $parent and $comparison have \'true\' value (not allowed), ignore.', __METHOD__);
+            $this->armory->Log()->writeError('%s : $parent and $comparison have \'true\' value (not allowed), ignore.', __METHOD__);
             return false; // both variables can't have 'true' value.
         }
         // Item comparsion mode
         $realm = false;
-        if(is_array($comparsion) && isset($this->realmData[$comparsion['realm_id']])) {
-            $realm = $this->realmData[$comparsion['realm_id']];
+        if(is_array($comparsion) && isset($this->armory->realmData[$comparsion['realm_id']])) {
+            $realm = $this->armory->realmData[$comparsion['realm_id']];
         }
-        $data = $this->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=%d", $itemID);
+        $data = $this->armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=%d", $itemID);
         if(!is_array($data)) {
             return false;
         }
         $isCharacter = $characters->CheckPlayer();
         // Check for ScalingStatDistribution (Heirloom items)
-        $ssd = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssd` WHERE `entry`=%d LIMIT 1", $data['ScalingStatDistribution']);
+        $ssd = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssd` WHERE `entry`=%d LIMIT 1", $data['ScalingStatDistribution']);
         $ssd_level = PLAYER_MAX_LEVEL;
         if($isCharacter) {
             $ssd_level = $characters->GetLevel();
@@ -1606,7 +1615,7 @@ Class Items extends Armory {
                 $ssd_level = $ssd['MaxLevel'];
             }
         }
-        $ssv = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssv` WHERE `level`=%d LIMIT 1", $ssd_level);
+        $ssv = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssv` WHERE `level`=%d LIMIT 1", $ssd_level);
         $xml->XMLWriter()->startElement('id');
         $xml->XMLWriter()->text($itemID);
         $xml->XMLWriter()->endElement(); //id
@@ -1617,7 +1626,7 @@ Class Items extends Armory {
         }
         else {
             $xml->XMLWriter()->startElement('name');
-            if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
+            if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
                 $xml->XMLWriter()->text($data['name']);
             }
             else {
@@ -1638,7 +1647,7 @@ Class Items extends Armory {
         $xml->XMLWriter()->text($data['Quality']);
         $xml->XMLWriter()->endElement(); //overallQualityId
         // Map
-        if($data['Map'] > 0 && $mapName = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id` = %d", $this->GetLocale(), $data['Map'])) {
+        if($data['Map'] > 0 && $mapName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id` = %d", $this->armory->GetLocale(), $data['Map'])) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<instanceBound>' . $mapName . '</instanceBound>');
             }
@@ -1749,8 +1758,8 @@ Class Items extends Armory {
         }
         // Gem properties
         if($data['class'] == ITEM_CLASS_GEM && $data['GemProperties'] > 0) {
-            $GemSpellItemEcnhID = $this->aDB->selectCell("SELECT `spellitemenchantement` FROM `ARMORYDBPREFIX_gemproperties` WHERE `id`=%d", $data['GemProperties']);
-            $GemText = $this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $GemSpellItemEcnhID);
+            $GemSpellItemEcnhID = $this->armory->aDB->selectCell("SELECT `spellitemenchantement` FROM `ARMORYDBPREFIX_gemproperties` WHERE `id`=%d", $data['GemProperties']);
+            $GemText = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $GemSpellItemEcnhID);
             if($GemText) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<gemProperties>');
@@ -1866,12 +1875,12 @@ Class Items extends Armory {
             if($enchantment > 0) {
                 if(Utils::IsWriteRaw()) {
                     $xml->XMLWriter()->writeRaw('<enchant>');
-                    $xml->XMLWriter()->writeRaw($this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $enchantment));
+                    $xml->XMLWriter()->writeRaw($this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d LIMIT 1", $this->armory->GetLocale(), $enchantment));
                     $xml->XMLWriter()->writeRaw('</enchant>'); //enchant
                 }
                 else {
                     $xml->XMLWriter()->startElement('enchant');
-                    $xml->XMLWriter()->text($this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d LIMIT 1", $this->GetLocale(), $enchantment));
+                    $xml->XMLWriter()->text($this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d LIMIT 1", $this->armory->GetLocale(), $enchantment));
                     $xml->XMLWriter()->endElement(); //enchant
                 }
             }
@@ -2003,7 +2012,7 @@ Class Items extends Armory {
             }
         }
         if($data['socketBonus'] > 0) {
-            $bonus_text = $this->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->GetLocale(), $data['socketBonus']);
+            $bonus_text = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $data['socketBonus']);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<socketMatchEnchant>');
                 $xml->XMLWriter()->writeRaw($bonus_text);
@@ -2066,18 +2075,18 @@ Class Items extends Armory {
         if($data['RequiredSkill'] > 0) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredSkill');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->GetLocale(), $data['RequiredSkill']) . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredSkill']) . '"');
                 $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'] . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredSkill
             }
             else {
                 $xml->XMLWriter()->startElement('requiredSkill');
-                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->GetLocale(), $data['RequiredSkill']));
+                $xml->XMLWriter()->writeAttribute('name', $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredSkill']));
                 $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
                 $xml->XMLWriter()->endElement(); //requiredSkill
             }
         }
-        if($data['requiredspell'] > 0 && $spellName = $this->aDB->selectCell("SELECT `SpellName_%s` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $this->GetLocale(), $data['requiredspell'])) {
+        if($data['requiredspell'] > 0 && $spellName = $this->armory->aDB->selectCell("SELECT `SpellName_%s` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $this->armory->GetLocale(), $data['requiredspell'])) {
             $xml->XMLWriter()->startElement('requiredAbility');
             $xml->XMLWriter()->text($spellName);
             $xml->XMLWriter()->endElement(); //requiredAbility
@@ -2085,13 +2094,13 @@ Class Items extends Armory {
         if($data['RequiredReputationFaction'] > 0) {    
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredFaction');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->GetLocale(), $data['RequiredReputationFaction']) . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredReputationFaction']) . '"');
                 $xml->XMLWriter()->writeRaw(' rep="' . $data['RequiredReputationRank'] . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredFaction
             }
             else {
                 $xml->XMLWriter()->startElement('requiredFaction');
-                $xml->XMLWriter()->writeAttribute('name', $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->GetLocale(), $data['RequiredReputationFaction']));
+                $xml->XMLWriter()->writeAttribute('name', $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredReputationFaction']));
                 $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
                 $xml->XMLWriter()->endElement(); //requiredFaction
             }
@@ -2107,7 +2116,7 @@ Class Items extends Armory {
         // Item set
         if($data['itemset'] > 0) {
             $xml->XMLWriter()->startElement('setData');
-            $itemsetName = $this->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $this->GetLocale(), $data['itemset']);
+            $itemsetName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $this->armory->GetLocale(), $data['itemset']);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<name>');
                 $xml->XMLWriter()->writeRaw($itemsetName);
@@ -2118,10 +2127,10 @@ Class Items extends Armory {
                 $xml->XMLWriter()->text($itemsetName);
                 $xml->XMLWriter()->endElement();
             }
-            $setdata = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $data['itemset']);
+            $setdata = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $data['itemset']);
             if(self::IsMultiplyItemSet($data['itemset'])) {
                 // Get itemset info from other table (armory_itemsetdata)
-                $currentSetData = $this->aDB->select("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d", $data['itemset']);
+                $currentSetData = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d", $data['itemset']);
                 if(is_array($currentSetData)) {
                     $activeSetInfo = array();
                     $basicSetData = $currentSetData[0];
@@ -2210,9 +2219,9 @@ Class Items extends Armory {
         for($i = 1; $i < 6; $i++) {
             if($data['spellid_'.$i] > 0) {
                 $spellData = 1;
-                $spell_tmp = $this->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $data['spellid_' . $i]);
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
-                    $tmp_locale = $this->GetLocale();
+                $spell_tmp = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $data['spellid_' . $i]);
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
+                    $tmp_locale = $this->armory->GetLocale();
                 }
                 else {
                     $tmp_locale = 'en_gb';
@@ -2247,7 +2256,7 @@ Class Items extends Armory {
             $xml->XMLWriter()->text('6');
             $xml->XMLWriter()->endElement();  //trigger
             $xml->XMLWriter()->startElement('desc');
-            if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
+            if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
                 $xml->XMLWriter()->text($data['description']);
             }
             else {
@@ -2295,7 +2304,7 @@ Class Items extends Armory {
             }
             else {
                 $xml->XMLWriter()->startElement('desc');
-                if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'en_us') {
+                if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
                     $xml->XMLWriter()->text($data['description']);
                 }
                 else {
@@ -2338,7 +2347,7 @@ Class Items extends Armory {
      * @return   array
      **/
     private function GetSpellItemCreateReagentsInfo($itemID) {
-        $spell = $this->aDB->selectRow("
+        $spell = $this->armory->aDB->selectRow("
         SELECT
         `Reagent_1`, `Reagent_2`, `Reagent_3`, `Reagent_4`, `Reagent_5`, `Reagent_6`,
         `ReagentCount_1`, `ReagentCount_2`, `ReagentCount_3`,
@@ -2370,7 +2379,7 @@ Class Items extends Armory {
      **/
     public function GetItemSlotId($itemID, $item_slot = -1) {
         if($item_slot == -1) {
-            $item_slot = $this->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=%d AND (`class`=2 OR `class`=4)", $itemID);
+            $item_slot = $this->armory->wDB->selectCell("SELECT `InventoryType` FROM `item_template` WHERE `entry`=%d AND (`class`=2 OR `class`=4)", $itemID);
         }
         switch($item_slot) {
             case 1:
@@ -2466,21 +2475,21 @@ Class Items extends Armory {
      * @return   bool
      **/
     public function IsVendorItem($itemID) {
-        if($this->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=%d", $itemID)) {
+        if($this->armory->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=%d", $itemID)) {
             return true;
         }
         return false;
     }
     
     public function GenerateEnchantmentSpellData($spellID) {
-        if($this->GetLocale() == 'en_gb' || $this->GetLocale() == 'ru_ru') {
-            $tmp_locale = $this->GetLocale();
+        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
+            $tmp_locale = $this->armory->GetLocale();
         }
         else {
             $tmp_locale = 'en_gb';
         }
         $data = array();
-        $spell_info = $this->aDB->selectRow("SELECT `SpellName_%s`, `Description_%s`, `SpellName_en_gb`, `Description_en_gb` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d LIMIT 1", $tmp_locale, $tmp_locale, $spellID);
+        $spell_info = $this->armory->aDB->selectRow("SELECT `SpellName_%s`, `Description_%s`, `SpellName_en_gb`, `Description_en_gb` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d LIMIT 1", $tmp_locale, $tmp_locale, $spellID);
         if(!isset($spell_info['Description_' . $tmp_locale]) || empty($spell_info['Description_' . $tmp_locale])) {
             // Try to find en_gb locale
             if(isset($spell_info['Description_en_gb']) && !empty($spell_info['Description_en_gb'])) {
@@ -2509,7 +2518,7 @@ Class Items extends Armory {
         if($key == 'all' || ($row != 'type' && $row != 'subtype')) {
             return false;
         }
-        return $this->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
+        return $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
     }
     
     /**
@@ -2943,7 +2952,7 @@ Class Items extends Armory {
      * @return   int
      **/
     public function GetItemEntryByGUID($item_guid) {
-        return $this->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `item`=%d", $item_guid);
+        return $this->armory->cDB->selectCell("SELECT `item_template` FROM `character_inventory` WHERE `item`=%d", $item_guid);
     }
     
     /**
@@ -2955,7 +2964,7 @@ Class Items extends Armory {
      * @return   int
      **/
     public function GetItemGUIDByEntry($item_entry, $owner_guid) {
-        return $this->cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
+        return $this->armory->cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
     }
     
     public function IsGemMatchesSocketColor($gem_color, $socket_color) {
@@ -3003,7 +3012,7 @@ Class Items extends Armory {
         if($itemSetID >= 843 && $itemSetID != 881 && $itemSetID != 882) {
             return true;
         }
-        $setID = $this->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d LIMIT 1", $itemSetID);
+        $setID = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d LIMIT 1", $itemSetID);
         if($setID > 160) {
             return true;
         }
