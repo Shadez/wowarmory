@@ -235,9 +235,9 @@
         <rank description="Da a tu mascota un 100% probabilidad de aumentar un 30% su velocidad de ataque durante 8 s después de asestar un golpe crítico." lvl="5"/>
       </talent>
       <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Inspiración feroz" tier="6">
-        <rank description="Cuando tu mascota asesta un golpe crítico, el daño de todos los miembros del grupo y banda aumenta un 1% durante 10 s. Además, aumenta el daño infligido por Disparo Arcano un 3%." lvl="1"/>
-        <rank description="Cuando tu mascota asesta un golpe crítico, el daño de todos los miembros del grupo y banda aumenta un 2% durante 10 s. Además, aumenta el daño infligido por Disparo Arcano un 6%." lvl="2"/>
-        <rank description="Cuando tu mascota asesta un golpe crítico, el daño de todos los miembros del grupo y banda aumenta un 3% durante 10 s. Además, aumenta el daño infligido por Disparo Arcano un 9%." lvl="3"/>
+        <rank description="El daño de todos los miembros del grupo y banda aumenta un 1% en un radio de 100 metros de tu mascota. Además, aumenta el daño infligido por Disparo Arcano y Disparo firme un 3%." lvl="1"/>
+        <rank description="El daño de todos los miembros del grupo y banda aumenta un 2% en un radio de 100 metros de tu mascota. Además, aumenta el daño infligido por Disparo Arcano y Disparo firme un 6%." lvl="2"/>
+        <rank description="El daño de todos los miembros del grupo y banda aumenta un 3% en un radio de 100 metros de tu mascota. Además, aumenta el daño infligido por Disparo Arcano y Disparo firme un 9%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Cólera de las bestias" requires="1387" tier="6">
         <rank description="Pone iracunda a tu mascota para que cause un 50% de daño extra durante 10 s. Mientras está iracunda, la bestia no siente piedad, remordimiento ni miedo y no se detendrá a no ser que la maten." lvl="1"/>
@@ -378,7 +378,7 @@
         <rank description="Tus golpes críticos con Disparo de puntería, Disparo firme y Disparo de quimera hacen sangrar al objetivo un 30% del daño infligido durante 8 s." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_trueshot" key="1361" name="Aura de disparo certero" requires="1353" tier="6">
-        <rank description="Aumenta el poder de ataque de los miembros del grupo y banda en un radio de 45 m un 10%. Dura hasta cancelación." lvl="1"/>
+        <rank description="Aumenta el poder de ataque de los miembros del grupo y banda en un radio de 100 m un 10%. Dura hasta cancelación." lvl="1"/>
         <spell castTime="0"/>
       </talent>
       <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Tromba mejorada" requires="1347" tier="6">

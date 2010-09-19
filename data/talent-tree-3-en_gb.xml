@@ -235,9 +235,9 @@
         <rank description="Gives your pet a 100% chance to gain a 30% attack speed increase for 8 sec after dealing a critical strike." lvl="5"/>
       </talent>
       <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Ferocious Inspiration" tier="6">
-        <rank description="When your pet scores a critical hit, all party and raid members have all damage increased by 1% for 10 sec.  In addition, increases the damage dealt by Arcane Shot by 3%." lvl="1"/>
-        <rank description="When your pet scores a critical hit, all party and raid members have all damage increased by 2% for 10 sec.  In addition, increases the damage dealt by Arcane Shot by 6%." lvl="2"/>
-        <rank description="When your pet scores a critical hit, all party and raid members have all damage increased by 3% for 10 sec.  In addition, increases the damage dealt by Arcane Shot by 9%." lvl="3"/>
+        <rank description="All party and raid members have all damage increased by 1% within 100 yards of your pet. In addition, increases the damage dealt by Arcane Shot and Steady Shot by 3%." lvl="1"/>
+        <rank description="All party and raid members have all damage increased by 2% within 100 yards of your pet. In addition, increases the damage dealt by Arcane Shot and Steady Shot by 6%." lvl="2"/>
+        <rank description="All party and raid members have all damage increased by 3% within 100 yards of your pet. In addition, increases the damage dealt by Arcane Shot and Steady Shot by 9%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Bestial Wrath" requires="1387" tier="6">
         <rank description="Send your pet into a rage causing 50% additional damage for 10 sec.  While enraged, the beast does not feel pity or remorse or fear and it cannot be stopped unless killed." lvl="1"/>
@@ -378,7 +378,7 @@
         <rank description="Your critical Aimed, Steady and Chimera Shots cause the target to bleed for 30% of the damage dealt over 8 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_trueshot" key="1361" name="Trueshot Aura" requires="1353" tier="6">
-        <rank description="Increases the attack power of party and raid members within 45 yards by 10%.  Lasts until cancelled." lvl="1"/>
+        <rank description="Increases the attack power of party and raid members within 100 yards by 10%.  Lasts until cancelled." lvl="1"/>
         <spell castTime="0"/>
       </talent>
       <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Improved Barrage" requires="1347" tier="6">

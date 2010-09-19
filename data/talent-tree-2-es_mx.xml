@@ -29,8 +29,8 @@
         <rank description="Aumenta un 25% el bonus de poder de ataque de tu Bendición de poderío." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_holy_vindication" key="1633" name="Vindicación" tier="2">
-        <rank description="Da al paladín en sus ataques la posibilidad de reducir el poder de ataque del objetivo 23 p. durante 10 s." lvl="1"/>
-        <rank description="Da al paladín en sus ataques la posibilidad de reducir el poder de ataque del objetivo 46 p. durante 10 s." lvl="2"/>
+        <rank description="Da a los ataques del paladín la posibilidad de reducir el poder de ataque del objetivo 23 p. durante 10 s." lvl="1"/>
+        <rank description="Da a los ataques del paladín la posibilidad de reducir el poder de ataque del objetivo 46 p. durante 10 s." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_retributionaura" key="1411" name="Convicción" tier="2">
         <rank description="Aumenta la probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 1%." lvl="1"/>
@@ -40,7 +40,7 @@
         <rank description="Aumenta la probabilidad de conseguir un golpe crítico con todos los hechizos y ataques un 5%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_warrior_innerrage" key="1481" name="Sello de orden" tier="2">
-        <rank description="Todos los ataques cuerpo a cuerpo infligen 3-4 p. de daño Sagrado extra. Si se usa con ataques o facultades que afectan a un único objetivo, este daño Sagrado extra alcanzará hasta a 2 objetivos extra. Dura 30 min.&lt;br/&gt;&lt;br/&gt;Al desatar la energía de este sello se juzgará al enemigo, inflige instantáneamente 4-4 p. de daño Sagrado." lvl="1"/>
+        <rank description="Todos los ataques cuerpo a cuerpo infligen 1-2 p. de daño Sagrado extra. Si se usa con ataques o facultades que afectan a un único objetivo, este daño Sagrado extra alcanzará hasta a 2 objetivos extra. Dura 30 min.&lt;br/&gt;&lt;br/&gt;Al desatar la energía de este sello se juzgará al enemigo, inflige instantáneamente 3-3 p. de daño Sagrado." lvl="1"/>
         <spell castTime="0">
           <power cost="14" type="mana"/>
         </spell>
@@ -85,7 +85,7 @@
         <rank description="Aumenta el daño de tus facultades Sentencia, Golpe de cruzado y Tormenta divina un 10% y cuando tus ataques cuerpo a cuerpo asestan un golpe crítico, el lanzamiento de tu siguiente Destello de luz o Exorcismo es instantáneo." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_prayerofhealing" key="1441" name="Arrepentimiento" tier="6">
-        <rank description="Pone al enemigo objetivo en estado de meditación incapacitándolo hasta 1 min. Cualquier daño despertará al objetivo. Solo funciona contra demonios, dragonantes, gigantes, humanoides y no-muertos." lvl="1"/>
+        <rank description="Pone al enemigo objetivo en estado de meditación incapacitándolo hasta 1 min y eliminando el efecto de Venganza recta. Cualquier daño despertará al objetivo. Solo funciona contra demonios, dragonantes, gigantes, humanoides y no-muertos." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="20">
           <power cost="9" type="mana"/>
         </spell>
@@ -206,8 +206,8 @@
         <rank description="Proporciona un 10% de probabilidad, tras un bloqueo o haber recibido cualquier golpe dañino, de que tus siguientes 4 golpes con arma durante 8 s generen un ataque extra." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_holy_divineintervention" key="1750" name="Deber sagrado" tier="5">
-        <rank description="Aumenta tu aguante total un 4%, reduce el tiempo de reutilización de tus hechizos Escudo divino y Protección divina 30 s." lvl="1"/>
-        <rank description="Aumenta tu aguante total un 8%, reduce el tiempo de reutilización de tus hechizos Escudo divino y Protección divina 60 s." lvl="2"/>
+        <rank description="Aumenta tu aguante total un 2%, reduce el tiempo de reutilización de tus hechizos Escudo divino y Protección divina 30 s." lvl="1"/>
+        <rank description="Aumenta tu aguante total un 4%, reduce el tiempo de reutilización de tus hechizos Escudo divino y Protección divina 60 s." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_sword_20" key="1429" name="Especialización en armas de una mano" tier="5">
         <rank description="Aumenta un 4% todo daño infligido al equipar un arma cuerpo a cuerpo de una mano." lvl="1"/>

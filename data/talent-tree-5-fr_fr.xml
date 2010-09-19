@@ -101,8 +101,8 @@
         <rank description="Réduit le coût en mana de vos Soins rapides de 15% et augmente leurs chances d'effet critique de 10% sur les cibles alliées ne disposant que de 50% ou moins de leurs points de vie." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Regain d'espoir" tier="7">
-        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 2% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 50% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 20 sec quand vous lancez Mot de pouvoir : Bouclier." lvl="1"/>
-        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 4% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 100% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 20 sec quand vous lancez Mot de pouvoir : Bouclier." lvl="2"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 2% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 50% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 1 min quand vous lancez Mot de pouvoir : Bouclier. Cet effet a un temps de recharge de 15 sec." lvl="1"/>
+        <rank description="Augmente les chances d'effet critique de vos sorts Soins rapides, Soins supérieurs et Pénitence (soins) de 4% sur les cibles affectées par l'effet Ame affaiblie, et vous avez 100% de chances de réduire tous les dégâts subis par tous les membres alliés du groupe et du raid de 3% pendant 1 min quand vous lancez Mot de pouvoir : Bouclier. Cet effet a un temps de recharge de 15 sec." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_rapture" key="1896" name="Extase" tier="7">
         <rank description="Quand votre Mot de pouvoir : Bouclier est complètement absorbé ou dissipé, vous recevez instantanément 1,5% de votre total de mana, et vous avez 33% de chances de donner à la cible protégée 2% de son total de mana, 8 points de rage, 16 points d'énergie ou 32 points de puissance runique. Cet effet ne peut se produire plus d'une fois toutes les 12 sec." lvl="1"/>
@@ -233,7 +233,7 @@
         <rank description="Votre régénération de mana due à l'Esprit est augmentée de 50% pendant 8 sec. après avoir réussi des soins critiques avec Soins rapides, Soins supérieurs, Soins de lien ou Rénovation surpuissante." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Puits de lumière" requires="1561" tier="6">
-        <rank description="Crée un Puits de lumière sacré. Les membres du groupe ou du raid peuvent cliquer sur le Puits de lumière pour recevoir 801 points de vie en 6 sec. L'effet est annulé si vous subissez des dégâts directs égaux à 30% de vos points de vie. La durée du Puits de lumière est de 3 min ou bien 10 utilisations." lvl="1"/>
+        <rank description="Crée un Puits de lumière sacré. Les joueurs alliés peuvent cliquer sur le Puits de lumière pour recevoir 801 points de vie en 6 sec. L'effet est annulé si vous subissez des dégâts égaux à 30% de votre total de points de vie. La durée du Puits de lumière est de 3 min ou bien 10 utilisations." lvl="1"/>
         <spell castTime="500" cooldown="180000" maxRange="40">
           <power cost="17" type="mana"/>
         </spell>
@@ -357,7 +357,7 @@
         </spell>
       </talent>
       <talent column="1" icon="spell_shadow_unsummonbuilding" key="484" name="Etreinte vampirique" tier="4">
-        <rank description="Vous emplit de l'énergie de l'étreinte de l'Ombre, qui vous soigne pour 15% et les autres membres du groupe pour 3% de tous les dégâts d'Ombre que vous infligez avec des sorts monocible pendant 30 min." lvl="1"/>
+        <rank description="Vous emplit de l'énergie de l'étreinte de l'Ombre, qui vous soigne pour 15% et les autres membres du groupe pour 3% de tous les dégâts d'Ombre que vous infligez avec des sorts monocibles pendant 30 min." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_shadow_improvedvampiricembrace" key="1638" name="Etreinte vampirique améliorée" requires="484" tier="4">
         <rank description="Augmente de 33% les soins prodigués par Etreinte vampirique." lvl="1"/>
@@ -372,7 +372,7 @@
         <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 2%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 3%." lvl="1"/>
         <rank description="Augmente les chances de coup critique de vos sorts Attaque mentale, Fouet mental et Incandescence mentale de 4%, et augmente les chances de coup critique périodique de vos sorts Toucher vampirique, Peste dévorante et Mot de l'ombre : Douleur de 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Peste dévorante améliorée" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste dévorante améliorée" tier="5">
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 5%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 10% du total de son effet périodique." lvl="1"/>
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 10%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 20% du total de son effet périodique." lvl="2"/>
         <rank description="Augmente les dégâts périodiques infligés par votre Peste dévorante de 15%, et quand vous la lancez vous infligez instantanément un montant de dégâts égal à 30% du total de son effet périodique." lvl="3"/>
@@ -424,7 +424,7 @@
         <rank description="Augmente la puissance de vos sorts de 20% de votre total d'Esprit, et les dégâts que vous infligez avec Fouet mental et Attaque mentale sont augmentés de 10% si votre cible est affectée par Mot de l'ombre : Douleur." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersion" requires="1779" tier="10">
-        <rank description="Votre corps devient de l'énergie d'ombre pure, ce qui réduit tous les dégâts subis de 90%. Vous ne pouvez pas attaquer ni lancer de sorts, mais vous régénérez 6% de votre mana toutes les sec. pendant 6 sec. Dispersion peut être lancé lorsque vous êtes étourdi, apeuré ou réduit au silence, dissipe tous les effets affectant le déplacement à son lancement et vous rend insensible à eux tant que vous êtes de l'énergie pure." lvl="1"/>
+        <rank description="Votre corps devient de l'énergie d'ombre pure, ce qui réduit tous les dégâts subis de 90%. Vous ne pouvez pas attaquer ni lancer de sorts, mais vous régénérez 6% de votre mana toutes les 1 sec. pendant 6 sec. Dispersion peut être lancé lorsque vous êtes étourdi, apeuré ou réduit au silence, dissipe tous les effets affectant le déplacement à son lancement et vous rend insensible à eux tant que vous êtes de l'énergie pure." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
     </tree>

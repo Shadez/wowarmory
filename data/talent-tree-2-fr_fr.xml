@@ -40,7 +40,7 @@
         <rank description="Augmente vos chances d'infliger un coup critique avec tous les sorts et les attaques de 5%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_warrior_innerrage" key="1481" name="Sceau d'autorité" tier="2">
-        <rank description="Toutes les attaques en mêlée infligent de 3 à 4 points de dégâts du Sacré supplémentaires. Quand il est utilisé avec des attaques ou techniques qui frappent une cible unique, ces dégâts du Sacré supplémentaires s'abattent sur un maximum de 2 cibles supplémentaires. Dure 30 min.&lt;br/&gt;&lt;br/&gt;Libérez l'énergie de ce Sceau pour juger un ennemi et lui infliger instantanément de 4 à 4 points de dégâts du Sacré." lvl="1"/>
+        <rank description="Toutes les attaques en mêlée infligent de 1 à 2 points de dégâts du Sacré supplémentaires. Quand il est utilisé avec des attaques ou techniques qui frappent une cible unique, ces dégâts du Sacré supplémentaires s'abattent sur un maximum de 2 cibles supplémentaires. Dure 30 min.&lt;br/&gt;&lt;br/&gt;Libérez l'énergie de ce Sceau pour juger un ennemi et lui infliger instantanément de 3 à 3 points de dégâts du Sacré." lvl="1"/>
         <spell castTime="0">
           <power cost="14" type="mana"/>
         </spell>
@@ -85,7 +85,7 @@
         <rank description="Augmente les dégâts de vos techniques de Jugement, Inquisition et Tempête divine de 10%, et quand vous réussissez un coup critique avec vos attaques de mêlée, votre prochain sort Eclair lumineux ou Exorcisme est instantané." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_prayerofhealing" key="1441" name="Repentir" tier="6">
-        <rank description="Plonge la cible ennemie dans une transe méditative qui la stupéfie pendant 1 min. au maximum. Si la cible subit des dégâts, elle se réveille. Ne fonctionne que sur les démons, les draconiens, les géants, les humanoïdes et les morts-vivants." lvl="1"/>
+        <rank description="Plonge la cible ennemie dans une transe méditative qui la stupéfie pendant 1 min. au maximum et annule l'effet de Vengeance vertueuse. Si la cible subit des dégâts, elle se réveille. Ne fonctionne que sur les démons, les draconiens, les géants, les humanoïdes et les morts-vivants." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="20">
           <power cost="9" type="mana"/>
         </spell>
@@ -206,8 +206,8 @@
         <rank description="Confère 10% de chances lorsque vous êtes victime d'une attaque qui vous inflige des dégâts ou que vous l'avez bloquée de bénéficier d'une attaque supplémentaire avec les 4 frappes suivantes dans les 8 sec." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_holy_divineintervention" key="1750" name="Devoir sacré" tier="5">
-        <rank description="Augmente votre total d'Endurance de 4% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 30 sec." lvl="1"/>
-        <rank description="Augmente votre total d'Endurance de 8% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 60 sec." lvl="2"/>
+        <rank description="Augmente votre total d'Endurance de 2% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 30 sec." lvl="1"/>
+        <rank description="Augmente votre total d'Endurance de 4% et réduit le temps de recharge de vos sorts Bouclier divin et Protection divine de 60 sec." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_sword_20" key="1429" name="Spécialisation Arme 1M" tier="5">
         <rank description="Augmente tous les dégâts que vous infligez de 4% quand une arme de mêlée à une main est équipée." lvl="1"/>

@@ -180,15 +180,15 @@
         <rank description="Reduces the cooldown of your Vanish and Blind abilities by 60 sec and your Cloak of Shadows ability by 30 sec." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_curse" key="303" name="Ghostly Strike" tier="2">
-        <rank description="A strike that deals 125% weapon damage and increases your chance to dodge by 15% for 7 sec.  Awards 1 combo point." lvl="1"/>
+        <rank description="A strike that deals 125% weapon damage (180% if a dagger is equipped) and increases your chance to dodge by 15% for 7 sec.  Awards 1 combo point." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="5">
           <power cost="40" type="energy"/>
         </spell>
       </talent>
       <talent column="2" icon="inv_sword_17" key="1123" name="Serrated Blades" tier="2">
-        <rank description="Causes your attacks to ignore 0 of your target's Armor and increases the damage dealt by your Rupture ability by 10%.  The amount of Armor reduced increases with your level." lvl="1"/>
-        <rank description="Causes your attacks to ignore 0 of your target's Armor and increases the damage dealt by your Rupture ability by 20%.  The amount of Armor reduced increases with your level." lvl="2"/>
-        <rank description="Causes your attacks to ignore 0 of your target's Armor and increases the damage dealt by your Rupture ability by 30%.  The amount of Armor reduced increases with your level." lvl="3"/>
+        <rank description="Causes your attacks to ignore up to 3% of your target's Armor and increases the damage dealt by your Rupture ability by 10%." lvl="1"/>
+        <rank description="Causes your attacks to ignore up to 6% of your target's Armor and increases the damage dealt by your Rupture ability by 20%." lvl="2"/>
+        <rank description="Causes your attacks to ignore up to 9% of your target's Armor and increases the damage dealt by your Rupture ability by 30%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_mirrorimage" key="246" name="Setup" tier="3">
         <rank description="Gives you a 33% chance to add a combo point to your target after dodging their attack or fully resisting one of their spells.  This cannot happen more than once per second." lvl="1"/>
@@ -217,7 +217,7 @@
         <rank description="Reduces the Energy cost of your Cheap Shot and Garrote abilities by 20.  Additionally, your special abilities cause 20% more damage against targets below 35% health." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_lifedrain" key="681" name="Hemorrhage" requires="1123" tier="4">
-        <rank description="An instant strike that deals 110% weapon damage and causes the target to hemorrhage, increasing any Physical damage dealt to the target by up to 110.  Lasts 10 charges or 15 sec.  Awards 1 combo point." lvl="1"/>
+        <rank description="An instant strike that deals 110% weapon damage (160% if a dagger is equipped) and causes the target to hemorrhage, increasing any Physical damage dealt to the target by up to 13.  Lasts 10 charges or 15 sec.  Awards 1 combo point." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="35" type="energy"/>
         </spell>
@@ -256,8 +256,8 @@
         <rank description="Increases your total Agility by 15% and increases the percentage damage bonus of Backstab and Hemorrhage by an additional 10%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_rogue_waylay" key="2077" name="Waylay" tier="7">
-        <rank description="Your Ambush critical hits have a 50% chance to reduce the target's melee and ranged attack speed by 20%, movement speed by 70% for 8 sec." lvl="1"/>
-        <rank description="Your Ambush critical hits have a 100% chance to reduce the target's melee and ranged attack speed by 20%, movement speed by 70% for 8 sec." lvl="2"/>
+        <rank description="Your Ambush and Backstab hits have a 50% chance to unbalance a target, increasing the time between their melee and ranged attacks by 20%, and reducing movement speed by 50% for 8 sec." lvl="1"/>
+        <rank description="Your Ambush and Backstab hits have a 100% chance to unbalance a target, increasing the time between their melee and ranged attacks by 20%, and reducing movement speed by 50% for 8 sec." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_rogue_honoramongstthieves" key="2078" name="Honor Among Thieves" tier="8">
         <rank description="When anyone in your group critically hits with a damage or healing spell or ability, you have a 33% chance to gain a combo point on your current target.  This effect cannot occur more than once every second." lvl="1"/>
@@ -271,15 +271,15 @@
         </spell>
       </talent>
       <talent column="2" icon="ability_rogue_wrongfullyaccused" key="2079" name="Filthy Tricks" tier="8">
-        <rank description="Reduces the cooldown of your Tricks of the Trade and Distract abilities by 5 secs and Preparation by 1.5 min." lvl="1"/>
-        <rank description="Reduces the cooldown of your Tricks of the Trade and Distract abilities by 10 secs and Preparation by 3 min." lvl="2"/>
+        <rank description="Reduces the cooldown by 5 sec and energy cost by 5 of your Tricks of the Trade, Distract and Shadowstep abilities and reduces the cooldown of Preparation by 1.5 min." lvl="1"/>
+        <rank description="Reduces the cooldown by 10 sec and energy cost by 10 of your Tricks of the Trade, Distract and Shadowstep abilities and reduces the cooldown of Preparation by 3 min." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_rogue_slaughterfromtheshadows" key="2080" name="Slaughter from the Shadows" tier="9">
-        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 3 and the energy cost of your Hemorrhage by 1." lvl="1"/>
-        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 6 and the energy cost of your Hemorrhage by 2." lvl="2"/>
-        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 9 and the energy cost of your Hemorrhage by 3." lvl="3"/>
-        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 12 and the energy cost of your Hemorrhage by 4." lvl="4"/>
-        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 15 and the energy cost of your Hemorrhage by 5." lvl="5"/>
+        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 4 and the energy cost of your Hemorrhage by 1, and increases all damage done by 1%." lvl="1"/>
+        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 8 and the energy cost of your Hemorrhage by 2, and increases all damage done by 2%." lvl="2"/>
+        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 12 and the energy cost of your Hemorrhage by 3, and increases all damage done by 3%." lvl="3"/>
+        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 16 and the energy cost of your Hemorrhage by 4, and increases all damage done by 4%." lvl="4"/>
+        <rank description="Reduces the energy cost of your Backstab and Ambush abilities by 20 and the energy cost of your Hemorrhage by 5, and increases all damage done by 5%." lvl="5"/>
       </talent>
       <talent column="1" icon="ability_rogue_shadowdance" key="2081" name="Shadow Dance" tier="10">
         <rank description="Enter the Shadow Dance for 6 sec, allowing the use of Sap, Garrote, Ambush, Cheap Shot, Premeditation, Pickpocket and Disarm Trap regardless of being stealthed." lvl="1"/>

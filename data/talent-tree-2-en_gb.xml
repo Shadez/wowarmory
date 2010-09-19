@@ -40,7 +40,7 @@
         <rank description="Increases your chance to get a critical strike with all spells and attacks by 5%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_warrior_innerrage" key="1481" name="Seal of Command" tier="2">
-        <rank description="All melee attacks deal 3 to 4 additional Holy damage.  When used with attacks or abilities that strike a single target, this additional Holy damage will strike up to 2 additional targets.  Lasts 30 min.&lt;br/&gt;&lt;br/&gt;Unleashing this Seal's energy will judge an enemy, instantly causing 4 to 4 Holy damage." lvl="1"/>
+        <rank description="All melee attacks deal 1 to 2 additional Holy damage.  When used with attacks or abilities that strike a single target, this additional Holy damage will strike up to 2 additional targets.  Lasts 30 min.&lt;br/&gt;&lt;br/&gt;Unleashing this Seal's energy will judge an enemy, instantly causing 3 to 3 Holy damage." lvl="1"/>
         <spell castTime="0">
           <power cost="14" type="mana"/>
         </spell>
@@ -85,7 +85,7 @@
         <rank description="Increases the damage of your Judgement, Crusader Strike and Divine Storm abilities by 10% and when your melee attacks critically hit your next Flash of Light  or Exorcism spell becomes instant cast." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_prayerofhealing" key="1441" name="Repentance" tier="6">
-        <rank description="Puts the enemy target in a state of meditation, incapacitating them for up to 1 min.  Any damage caused will awaken the target.  Usable against Demons, Dragonkin, Giants, Humanoids and Undead." lvl="1"/>
+        <rank description="Puts the enemy target in a state of meditation, incapacitating them for up to 1 min, and removing the effect of Righteous Vengeance.  Any damage caused will awaken the target.  Usable against Demons, Dragonkin, Giants, Humanoids and Undead." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="20">
           <power cost="9" type="mana"/>
         </spell>
@@ -180,8 +180,8 @@
         <rank description="Increases your armor value from items by 10% and reduces the duration of all movement slowing effects by 30%." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_holy_powerwordbarrier" key="2281" name="Divine Guardian" requires="2280" tier="3">
-        <rank description="When Divine Sacrifice is actived, your party and raid members within 30 yards take 10% reduced damage for 6 sec.  In addition, increases the duration of your Sacred Shield by 50% and the amount absorbed by 10%." lvl="1"/>
-        <rank description="When Divine Sacrifice is actived, your party and raid members within 30 yards take 20% reduced damage for 6 sec.  In addition, increases the duration of your Sacred Shield by 100% and the amount absorbed by 20%." lvl="2"/>
+        <rank description="When Divine Sacrifice is activated, your party and raid members within 30 yards take 10% reduced damage for 6 sec.  In addition, increases the duration of your Sacred Shield by 50% and the amount absorbed by 10%." lvl="1"/>
+        <rank description="When Divine Sacrifice is activated, your party and raid members within 30 yards take 20% reduced damage for 6 sec.  In addition, increases the duration of your Sacred Shield by 100% and the amount absorbed by 20%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_sealofmight" key="1521" name="Improved Hammer of Justice" tier="3">
         <rank description="Decreases the cooldown of your Hammer of Justice spell by 10 sec." lvl="1"/>
@@ -206,8 +206,8 @@
         <rank description="Gives you a 10% chance after blocking or being hit by any damaging attack that the next 4 weapon swings within 8 sec will generate an additional attack." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_holy_divineintervention" key="1750" name="Sacred Duty" tier="5">
-        <rank description="Increases your total Stamina by 4%, reduces the cooldown of your Divine Shield and Divine Protection spells by 30 sec." lvl="1"/>
-        <rank description="Increases your total Stamina by 8%, reduces the cooldown of your Divine Shield and Divine Protection spells by 60 sec." lvl="2"/>
+        <rank description="Increases your total Stamina by 2%, reduces the cooldown of your Divine Shield and Divine Protection spells by 30 sec." lvl="1"/>
+        <rank description="Increases your total Stamina by 4%, reduces the cooldown of your Divine Shield and Divine Protection spells by 60 sec." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_sword_20" key="1429" name="One-Handed Weapon Specialization" tier="5">
         <rank description="Increases all damage you deal when a one-handed melee weapon is equipped by 4%." lvl="1"/>

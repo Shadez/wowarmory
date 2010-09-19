@@ -180,15 +180,15 @@
         <rank description="Réduit le temps de recharge de vos techniques Disparition et Cécité de 60 sec. et de votre technique Cape d'ombre de 30 sec." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_curse" key="303" name="Frappe fantomatique" tier="2">
-        <rank description="Une attaque qui inflige 125% des dégâts de l'arme et qui augmente vos chances d'esquiver de 15% pendant 7 sec. Vous gagnez 1 point de combo." lvl="1"/>
+        <rank description="Une attaque qui inflige 125% des dégâts de l'arme (180% si une dague est équipée) et qui augmente vos chances d'esquiver de 15% pendant 7 sec. Vous gagnez 1 point de combo." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="5">
           <power cost="40" type="energy"/>
         </spell>
       </talent>
       <talent column="2" icon="inv_sword_17" key="1123" name="Lames dentelées" tier="2">
-        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 10%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="1"/>
-        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 20%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="2"/>
-        <rank description="Vos attaques ignorent 0 points de l'Armure de votre cible. Augmente les points de dégâts infligés par votre technique Rupture de 30%. Le nombre de points d'Armure réduits augmente avec votre niveau." lvl="3"/>
+        <rank description="Vos attaques ignorent jusqu'à 3% de l'Armure de votre cible. Augmente les dégâts infligés par votre technique Rupture de 10%." lvl="1"/>
+        <rank description="Vos attaques ignorent jusqu'à 6% de l'Armure de votre cible. Augmente les dégâts infligés par votre technique Rupture de 20%." lvl="2"/>
+        <rank description="Vos attaques ignorent jusqu'à 9% de l'Armure de votre cible. Augmente les dégâts infligés par votre technique Rupture de 30%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_mirrorimage" key="246" name="Préparatifs" tier="3">
         <rank description="Vous confère 33% de chances d'ajouter un point de combo à votre cible après avoir esquivé son attaque ou entièrement résisté à un de ses sorts. Ne peut pas se produire plus d'une fois par seconde." lvl="1"/>
@@ -217,7 +217,7 @@
         <rank description="Réduit de 20 le coût en énergie de vos techniques Coup bas et Garrot. De plus, vos techniques spéciales infligent 20% de dégâts supplémentaires aux cibles qui possèdent moins de 35% de leurs points de vie." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_lifedrain" key="681" name="Hémorragie" requires="1123" tier="4">
-        <rank description="Une frappe instantanée qui inflige 110% des dégâts de l'arme à l'adversaire et provoque une hémorragie. Augmente tous les dégâts physiques infligés à la cible de 110 au maximum. Utilisable 10 fois ou pendant 15 sec. Vous gagnez 1 point de combo." lvl="1"/>
+        <rank description="Une frappe instantanée qui inflige 110% des dégâts de l'arme (160% si une dague est équipée) à l'adversaire et provoque une hémorragie. Augmente tous les dégâts physiques infligés à la cible de 13 au maximum. Utilisable 10 fois ou pendant 15 sec. Vous gagnez 1 point de combo." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="35" type="energy"/>
         </spell>
@@ -256,8 +256,8 @@
         <rank description="Augmente votre total d'Agilité de 15% et augmente de 10% supplémentaires le bonus aux dégâts d'Attaque sournoise et Hémorragie." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_rogue_waylay" key="2077" name="Assaillir" tier="7">
-        <rank description="Vos coups critiques avec Embuscade ont 50% de chances de réduire de 20% la vitesse d'attaque en mêlée et à distance et de 70% sa vitesse de déplacement pendant 8 sec." lvl="1"/>
-        <rank description="Vos coups critiques avec Embuscade ont 100% de chances de réduire de 20% la vitesse d'attaque en mêlée et à distance et de 70% sa vitesse de déplacement pendant 8 sec." lvl="2"/>
+        <rank description="Vos coups avec Embuscade et Attaque sournoise ont 50% de chances de déséquilibrer la cible, ce qui augmente le temps entre ses attaques en mêlée et à distance de 20% et réduit sa vitesse de déplacement de 50% pendant 8 sec." lvl="1"/>
+        <rank description="Vos coups avec Embuscade et Attaque sournoise ont 100% de chances de déséquilibrer la cible, ce qui augmente le temps entre ses attaques en mêlée et à distance de 20% et réduit sa vitesse de déplacement de 50% pendant 8 sec." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_rogue_honoramongstthieves" key="2078" name="Honneur des voleurs" tier="8">
         <rank description="Chaque fois qu'un membre de votre groupe réussit un coup critique avec un sort de dégâts ou de soins ou une technique, vous avez 33% de chances de gagner un point de combo sur votre cible actuelle. Cet effet ne peut se produire plus d'une fois toutes les secondes." lvl="1"/>
@@ -271,15 +271,15 @@
         </spell>
       </talent>
       <talent column="2" icon="ability_rogue_wrongfullyaccused" key="2079" name="Tours pendables" tier="8">
-        <rank description="Réduit le temps de recharge de vos techniques Ficelles du métier et Distraction de 5 sec. et celui de votre Préparation de 1.5 min." lvl="1"/>
-        <rank description="Réduit le temps de recharge de vos techniques Ficelles du métier et Distraction de 10 sec. et celui de votre Préparation de 3 min." lvl="2"/>
+        <rank description="Réduit le temps de recharge de 5 sec. et le coût en énergie de 5 de vos techniques Ficelles du métier, Distraction et Pas de l'ombre, et le temps de recharge de votre Préparation de 1.5 min." lvl="1"/>
+        <rank description="Réduit le temps de recharge de 10 sec. et le coût en énergie de 10 de vos techniques Ficelles du métier, Distraction et Pas de l'ombre, et le temps de recharge de votre Préparation de 3 min." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_rogue_slaughterfromtheshadows" key="2080" name="Ombres meurtrières" tier="9">
-        <rank description="Réduit de 3 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 1 le coût en énergie d'Hémorragie." lvl="1"/>
-        <rank description="Réduit de 6 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 2 le coût en énergie d'Hémorragie." lvl="2"/>
-        <rank description="Réduit de 9 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 3 le coût en énergie d'Hémorragie." lvl="3"/>
-        <rank description="Réduit de 12 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 4 le coût en énergie d'Hémorragie." lvl="4"/>
-        <rank description="Réduit de 15 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 5 le coût en énergie d'Hémorragie." lvl="5"/>
+        <rank description="Réduit de 4 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 1 le coût en énergie d'Hémorragie. Augmente tous les dégâts infligés de 1%." lvl="1"/>
+        <rank description="Réduit de 8 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 2 le coût en énergie d'Hémorragie. Augmente tous les dégâts infligés de 2%." lvl="2"/>
+        <rank description="Réduit de 12 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 3 le coût en énergie d'Hémorragie. Augmente tous les dégâts infligés de 3%." lvl="3"/>
+        <rank description="Réduit de 16 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 4 le coût en énergie d'Hémorragie. Augmente tous les dégâts infligés de 4%." lvl="4"/>
+        <rank description="Réduit de 20 le coût en énergie de vos techniques Attaque sournoise et Embuscade et de 5 le coût en énergie d'Hémorragie. Augmente tous les dégâts infligés de 5%." lvl="5"/>
       </talent>
       <talent column="1" icon="ability_rogue_shadowdance" key="2081" name="Danse de l'ombre" tier="10">
         <rank description="Entame la Danse de l'ombre, qui dure 6 sec. et permet l'utilisation d'Assommer, Garrot, Embuscade, Coup bas, Préméditation, Vol à la tire et Désarmement de piège même sans être camouflé." lvl="1"/>

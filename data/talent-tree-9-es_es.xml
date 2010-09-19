@@ -268,11 +268,11 @@
         <rank description="Reduce el tiempo de reutilización de los hechizos Potenciación demoníaca, Metamorfosis y Dominación vil un 30%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Pacto demoníaco" tier="9">
-        <rank description="Aumenta tu daño con hechizos un 2% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 2% de tu daño con hechizos durante 12 s. No funciona sobre demonios esclavizados." lvl="1"/>
-        <rank description="Aumenta tu daño con hechizos un 4% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 4% de tu daño con hechizos durante 12 s. No funciona sobre demonios esclavizados." lvl="2"/>
-        <rank description="Aumenta tu daño con hechizos un 6% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 6% de tu daño con hechizos durante 12 s. No funciona sobre demonios esclavizados." lvl="3"/>
-        <rank description="Aumenta tu daño con hechizos un 8% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 8% de tu daño con hechizos durante 12 s. No funciona sobre demonios esclavizados." lvl="4"/>
-        <rank description="Aumenta tu daño con hechizos un 10% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 10% de tu daño con hechizos durante 12 s. No funciona sobre demonios esclavizados." lvl="5"/>
+        <rank description="Aumenta tu daño con hechizos un 2% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 2% de tu daño con hechizos durante 45 s. Este efecto tiene un tiempo de reutilización de 20 s. No funciona sobre demonios esclavizados." lvl="1"/>
+        <rank description="Aumenta tu daño con hechizos un 4% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 4% de tu daño con hechizos durante 45 s. Este efecto tiene un tiempo de reutilización de 20 s. No funciona sobre demonios esclavizados." lvl="2"/>
+        <rank description="Aumenta tu daño con hechizos un 6% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 6% de tu daño con hechizos durante 45 s. Este efecto tiene un tiempo de reutilización de 20 s. No funciona sobre demonios esclavizados." lvl="3"/>
+        <rank description="Aumenta tu daño con hechizos un 8% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 8% de tu daño con hechizos durante 45 s. Este efecto tiene un tiempo de reutilización de 20 s. No funciona sobre demonios esclavizados." lvl="4"/>
+        <rank description="Aumenta tu daño con hechizos un 10% y los golpes críticos de tu mascota aplican el efecto de Pacto demoníaco a los miembros de tu banda o grupo. Pacto demoníaco aumenta el poder con hechizos un 10% de tu daño con hechizos durante 45 s. Este efecto tiene un tiempo de reutilización de 20 s. No funciona sobre demonios esclavizados." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonform" key="1886" name="Metamorfosis" tier="10">
         <rank description="Te transformas en un demonio durante 30 s. Esta forma aumenta tu armadura un 600%, el daño un 20%, reduce la probabilidad de que los ataques cuerpo a cuerpo te impacten un 6% y reduce la duración de los efectos de aturdimiento y de frenado un 50%. Ganas facultades de demonio únicas además de tus facultades normales. Tiempo de reutilización: 3 min." lvl="1"/>
@@ -353,7 +353,7 @@
         </spell>
       </talent>
       <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Manáfago mejorado" tier="5">
-        <rank description="Tu manáfago recupera un 8% de su maná máximo cada vez que golpea con su facultad Mordedura de las Sombras y el tiempo de reutilización de dicha facultad se reduce 2 s. Además, aumenta el efecto de Inteligencia vil de tu manáfago un 5%." lvl="1"/>
+        <rank description="Tu manáfago recupera un 4% de su maná máximo cada vez que golpea con su facultad Mordedura de las Sombras y el tiempo de reutilización de dicha facultad se reduce 2 s. Además, aumenta el efecto de Inteligencia vil de tu manáfago un 5%." lvl="1"/>
         <rank description="Tu manáfago recupera un 8% de su maná máximo cada vez que golpea con su facultad Mordedura de las Sombras y el tiempo de reutilización de dicha facultad se reduce 4 s. Además, aumenta el efecto de Inteligencia vil de tu manáfago un 10%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Maestría de las Sombras" requires="1041" tier="5">
@@ -393,7 +393,7 @@
         <rank description="Aumenta la cantidad drenada por tu Drenar vida un 30% mientras tu salud está al 20% o menos y aumenta el daño infligido por tus hechizos de las Sombras un 12% cuando tu objetivo está al 35% o menos de salud." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Aflicción inestable" requires="1669" tier="8">
-        <rank description="La energía de las Sombras destruye poco a poco al objetivo, inflige 550 p. de daño durante 15 s. Además, si se disipa tu hechizo Aflicción inestable, el que lo haya disipado recibe 990 p. de daño y queda silenciado durante 5 s." lvl="1"/>
+        <rank description="La energía de las Sombras destruye poco a poco al objetivo, inflige 550 p. de daño durante 15 s. Además, si se disipa tu hechizo Aflicción inestable, el que lo haya disipado recibe 990 p. de daño y queda silenciado durante 5 s. Un brujo solo puede un hechizo Aflicción inestable o Inmolar activo sobre un objetivo." lvl="1"/>
         <spell castTime="1500" maxRange="30">
           <power cost="15" type="mana"/>
         </spell>

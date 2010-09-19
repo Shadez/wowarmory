@@ -88,7 +88,7 @@
         <rank description="Augmente vos chances de toucher avec tous les sorts de 4% et réduit les dégâts que vous infligent tous les sorts de 6%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_nature_forceofnature" key="793" name="Forme de sélénien" tier="6">
-        <rank description="Le druide adopte sa forme de sélénien. Tant qu'il est sous cette forme, la valeur d'armure apportée par les objets est augmentée de 370%, les dégâts qu'il subit alors qu'il est étourdi sont réduits de 15% et tous les membres du groupe et du raid se trouvant à moins de 45 mètres voient leurs chances d'obtenir un coup critique avec les sorts augmenter de 5%. Les critiques réussis avec les sorts monocibles sous cette forme ont une chance de régénérer instantanément 2% de votre total de mana. Le sélénien ne peut pas lancer de sorts de soins ou de résurrection tant qu'il est transformé.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des métamorphoses et des effets qui affectent le déplacement." lvl="1"/>
+        <rank description="Le druide adopte sa forme de sélénien. Tant qu'il est sous cette forme, la valeur d'armure apportée par les objets est augmentée de 370%, les dégâts qu'il subit alors qu'il est étourdi sont réduits de 15% et tous les membres du groupe et du raid se trouvant à moins de 100 mètres voient leurs chances d'obtenir un coup critique avec les sorts augmenter de 5%. Les critiques réussis avec les sorts monocibles sous cette forme ont une chance de régénérer instantanément 2% de votre total de mana. Le sélénien ne peut pas lancer de sorts de soins ou de résurrection tant qu'il est transformé.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des métamorphoses et des effets qui affectent le déplacement." lvl="1"/>
         <spell castTime="0">
           <power cost="13" type="mana"/>
         </spell>
@@ -123,7 +123,7 @@
       <talent column="1" icon="ability_druid_typhoon" key="1923" name="Typhon" requires="793" tier="8">
         <rank description="Vous invoquez un violent Typhon qui inflige 400 points de dégâts de Nature quand il entre en contact avec des cibles hostiles. Il les fait tomber à la renverse et les hébète pendant 6 sec." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="30">
-          <power cost="32" type="mana"/>
+          <power cost="25" type="mana"/>
         </spell>
       </talent>
       <talent column="2" icon="ability_druid_forceofnature" key="1787" name="Force de la nature" tier="8">
@@ -142,7 +142,7 @@
         <rank description="Vos sorts Colère et Feu stellaire ont 100% de chances d'appliquer l'effet Terre et lune sur la cible. Celui-ci augmente les dégâts des sorts infligés à la cible de 13% pendant 12 sec. Augmente également vos dégâts des sorts de 6%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_starfall" key="1926" name="Météores" tier="10">
-        <rank description="Un déluge de météores tombe du ciel sur toutes les cibles se trouvant à moins de 30 mètres du lanceur de sorts et chacun inflige 111 à 129 points de dégâts des Arcanes. Inflige également 20 points de dégâts des Arcanes à tous les autres ennemis se trouvant à moins de 5 mètres de la cible ennemie. 20 météores au maximum. Dure 10 sec. Si vous changez de forme ou utilisez une monture, l'effet est annulé. Tout effet qui vous fait perdre le contrôle de votre personnage l'annule également." lvl="1"/>
+        <rank description="Un déluge de météores tombe du ciel sur toutes les cibles se trouvant à moins de 30 mètres du lanceur de sorts et chacun inflige 145 à 167 points de dégâts des Arcanes. Inflige également 26 points de dégâts des Arcanes à tous les autres ennemis se trouvant à moins de 5 mètres de la cible ennemie. 20 météores au maximum. Dure 10 sec. Si vous changez de forme ou utilisez une monture, l'effet est annulé. Tout effet qui vous fait perdre le contrôle de votre personnage l'annule également." lvl="1"/>
         <spell castTime="0" cooldown="90000">
           <power cost="35" type="mana"/>
         </spell>
@@ -235,7 +235,7 @@
         <rank description="Augmente toutes les caractéristiques de 6%, réduit la probabilité que vous soyez touché par un coup critique infligé par une attaque en mêlée de 6% et augmente de 33% la valeur d'armure apportée par les objets en tissu et en cuir quand vous êtes en forme d'ours et d'ours redoutable." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_unyeildingstamina" key="809" name="Chef de la meute" tier="6">
-        <rank description="Pendant qu'il est en forme de félin, d'ours ou d'ours redoutable, le Chef de la meute augmente de 5% les chances de tous les membres du groupe se trouvant à moins de 45 mètres d'obtenir un coup critique avec les attaques à distance et en mêlée." lvl="1"/>
+        <rank description="Pendant qu'il est en forme de félin, d'ours ou d'ours redoutable, le Chef de la meute augmente de 5% les chances de tous les membres du groupe se trouvant à moins de 100 mètres d'obtenir un coup critique avec les attaques à distance et en mêlée." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_nature_unyeildingstamina" key="1798" name="Chef de la meute amélioré" requires="809" tier="6">
         <rank description="Votre technique Chef de la meute permet aussi aux cibles affectées d'être soignées pour un montant égal à 2% de leur total de points de vie lorsqu'elles réussissent un coup critique avec une attaque en mêlée ou à distance. L'effet de soins ne peut se produire plus d'une fois toutes les 6 sec. De plus, vous recevez 4% de votre maximum de mana quand vous bénéficiez de ce soin." lvl="1"/>
@@ -267,7 +267,7 @@
         <rank description="Lorsque vous utilisez votre technique Enragé en forme d'ours ou d'ours redoutable, vos dégâts sont augmentés de 15%, et votre technique Fureur du tigre vous rend aussi immédiatement 60 points d'énergie. De plus, le coût en mana des formes d'ours, de félin et d'ours redoutable est réduit de 60%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_mangle2" key="1796" name="Mutilation" requires="809" tier="8">
-        <rank description="Mutile la cible, lui inflige des dégâts et fait augmenter les dégâts infligés par les effets de saignement pendant 12 sec. Cette technique peut être utilisée en forme de félin ou d'ours redoutable." lvl="1"/>
+        <rank description="Mutile la cible, lui inflige des dégâts et fait augmenter les dégâts infligés par les effets de saignement pendant 1 min. Cette technique peut être utilisée en forme de félin ou d'ours redoutable." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_mangle2" key="1920" name="Mutilation améliorée" requires="1796" tier="8">
         <rank description="Réduit le temps de recharge de votre technique Mutilation (ours) de 0.5 sec., et réduit le coût en énergie de votre technique Mutilation (félin) de 2." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Vos sorts Récupération et Croissance sauvage ont 15% de chances de rendre 8 points d'énergie, 4 points de rage, 1% du mana ou 16 points de puissance runique par itération." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_treeoflife" key="1791" name="Arbre de vie" requires="1789" tier="8">
-        <rank description="Réduit le coût en mana de vos sorts de soins sur la durée de 20% et permet d'adopter la forme de l'Arbre de vie. Tant que vous êtes sous cette forme, les soins reçus sont augmentés de 6% pour tous les membres du groupe et du raid se trouvant à moins de 45 mètres, et vous ne pouvez lancer que des sorts de Restauration en plus d'Innervation, Ecorce, Emprise de la nature et Epines.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des effets qui le ralentissent et des métamorphoses." lvl="1"/>
+        <rank description="Réduit le coût en mana de vos sorts de soins sur la durée de 20% et permet d'adopter la forme de l'Arbre de vie. Tant que vous êtes sous cette forme, les soins reçus sont augmentés de 6% pour tous les membres du groupe et du raid se trouvant à moins de 100 mètres, et vous ne pouvez lancer que des sorts de Restauration en plus d'Innervation, Ecorce, Emprise de la nature et Epines.&lt;br/&gt;&lt;br/&gt;La transformation libère le lanceur de sorts des effets qui le ralentissent et des métamorphoses." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_improvedtreeform" key="1930" name="Arbre de vie amélioré" requires="1791" tier="8">
         <rank description="Augmente de 67% la valeur d'armure apportée par les objets lorsque vous êtes en forme d'Arbre de vie, et augmente votre puissance des sorts de 5% de votre Esprit lorsque vous êtes en forme d'Arbre de vie." lvl="1"/>

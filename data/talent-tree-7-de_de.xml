@@ -51,11 +51,11 @@
         <rank description="Erhöht Eure Ausweichchance um 3% und verringert die Dauer aller auf Euch wirkenden Entwaffnungseffekte um 50%. Dieser Effekt ist mit anderen Effekten, welche die Entwaffnungsdauer verringern, nicht stapelbar." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Schlaghagel" requires="613" tier="3">
-        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 5%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="1"/>
-        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 10%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="2"/>
-        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 15%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="3"/>
-        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 20%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="4"/>
-        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 25%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="5"/>
+        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 6%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="1"/>
+        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 12%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="2"/>
+        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 18%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="3"/>
+        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 24%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="4"/>
+        <rank description="Erhöht Euer Angriffstempo für die nächsten 3 Waffenschwünge um 30%, nachdem Ihr einen kritischen Treffer zugefügt habt." lvl="5"/>
       </talent>
       <talent column="2" icon="spell_holy_devotion" key="615" name="Zähigkeit" tier="3">
         <rank description="Erhöht Eure Ausdauer um 2% und verringert die Dauer von auf Euch wirkenden bewegungsverlangsamenden Effekten um 6%." lvl="1"/>
@@ -77,9 +77,9 @@
         <rank description="Erhöht Eure Angriffskraft um 100% Eurer Intelligenz." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Entfesselte Wut" tier="5">
-        <rank description="Erhöht Eure Waffenkunde um 3. Erzielt Ihr im Nahkampf einen kritischen Treffer, wird die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um Euch um 4% erhöht. Hält 10 Sek. lang an." lvl="1"/>
-        <rank description="Erhöht Eure Waffenkunde um 6. Erzielt Ihr im Nahkampf einen kritischen Treffer, wird die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um Euch um 7% erhöht. Hält 10 Sek. lang an." lvl="2"/>
-        <rank description="Erhöht Eure Waffenkunde um 9. Erzielt Ihr im Nahkampf einen kritischen Treffer, wird die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um Euch um 10% erhöht. Hält 10 Sek. lang an." lvl="3"/>
+        <rank description="Erhöht Eure Waffenkunde um 3. Erhöht die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um den Schamanen um 4%." lvl="1"/>
+        <rank description="Erhöht Eure Waffenkunde um 6. Erhöht die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um den Schamanen um 7%." lvl="2"/>
+        <rank description="Erhöht Eure Waffenkunde um 9. Erhöht die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um den Schamanen um 10%." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Waffenbeherrschung" tier="5">
         <rank description="Erhöht den Schaden, den Ihr mit allen Waffen zufügt, um 4%." lvl="1"/>
@@ -239,8 +239,8 @@
         <rank description="Verringert die Abklingzeit Eurer Zauber 'Flammenschock' und 'Frostschock' um zusätzliche 2 Sek. und erhöht ihren direkten Schaden um zusätzliche 20%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Elementarer Schwur" requires="573" tier="7">
-        <rank description="Eure unregelmäßigen kritischen Zaubertreffer gewähren Euren Gruppen- und Schlachtzugsmitgliedern innerhalb von 100 Metern den Effekt 'Elementarer Schwur', der die kritische Zaubertrefferchance um 3% erhöht. Zusätzlich wird Euer Zauberschaden, wenn das Freizaubern von 'Elementarfokus' aktiv ist, um 5% erhöht. Hält 15 Sek. lang an." lvl="1"/>
-        <rank description="Eure unregelmäßigen kritischen Zaubertreffer gewähren Euren Gruppen- und Schlachtzugsmitgliedern innerhalb von 100 Metern den Effekt 'Elementarer Schwur', der die kritische Zaubertrefferchance um 5% erhöht. Zusätzlich wird Euer Zauberschaden, wenn das Freizaubern von 'Elementarfokus' aktiv ist, um 10% erhöht. Hält 15 Sek. lang an." lvl="2"/>
+        <rank description="Ist der Freizaubereffekt Eures Talents 'Elementarfokus' aktiv, wird Euer Zauberschaden um 5% erhöht. Zusätzlich wird die kritische Zaubertrefferchance aller Gruppen- und Schlachtzugsmitglieder innerhalb von 100 Metern um 3% erhöht." lvl="1"/>
+        <rank description="Ist der Freizaubereffekt Eures Talents 'Elementarfokus' aktiv, wird Euer Zauberschaden um 10% erhöht. Zusätzlich wird die kritische Zaubertrefferchance aller Gruppen- und Schlachtzugsmitglieder innerhalb von 100 Metern um 5% erhöht." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Blitzüberladung" tier="7">
         <rank description="Verleiht Euren Zaubern 'Blitzschlag' und 'Kettenblitzschlag' eine Chance von 11%, einen zweiten, identischen Zauber auf das gleiche Ziel auszulösen, ohne zusätzliche Kosten. Dieser verursacht nur halben Schaden und keine Bedrohung." lvl="1"/>
@@ -364,7 +364,7 @@
         <rank description="Wenn Ihr einen Angriff erleidet, der Eure Gesundheit unter 30% senkt, wird Eure maximale Gesundheit 10 Sek. lang um 15% erhöht und Eure Bedrohung gegenüber dem Angreifer verringert. 30 Sek. Abklingzeit." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_frost_summonwaterelemental" key="590" name="Totem der Manaflut" requires="588" tier="6">
-        <rank description="Beschwört 12 Sek. lang ein Totem der Manaflut mit 10% Gesundheit der Gesundheit des Zaubernden zu seinen Füßen, das für Gruppenmitglieder in einem Umkreis von 30 Metern alle 3 Sek. 6% des gesamten Manas wiederherstellt." lvl="1"/>
+        <rank description="Beschwört ein Totem der Manaflut mit 10% der Gesundheit des Zaubernden zu seinen Füßen, das für Gruppenmitglieder in einem Umkreis von 30 Metern alle 3 Sek. 6% des gesamten Manas wiederherstellt. Hält 12 Sek. lang an." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_shaman_cleansespirit" key="2084" name="Geistläuterung" requires="592" tier="6">
         <rank description="Läutert den Geist eines befreundeten Ziels, entfernt einen Gift-, einen Krankheits- und einen Flucheffekt." lvl="1"/>

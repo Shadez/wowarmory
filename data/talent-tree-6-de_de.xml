@@ -29,9 +29,9 @@
         <rank description="Erhöht Euren Frost- und Schattenschaden um 10%." lvl="5"/>
       </talent>
       <talent column="3" icon="ability_dualwield" key="2022" name="Nerven aus kaltem Stahl" tier="1">
-        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 1% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 5%." lvl="1"/>
-        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 2% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 10%." lvl="2"/>
-        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 3% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 15%." lvl="3"/>
+        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 1% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 8%." lvl="1"/>
+        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 2% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 16%." lvl="2"/>
+        <rank description="Erhöht Eure Trefferchance mit Einhandwaffen um 3% und erhöht den von Eurer Schildhandwaffe verursachten Schaden um 25%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2042" name="Eisige Klauen" requires="2031" tier="2">
         <rank description="Entzieht den Opfern Eures Frostfiebers die Wärme. Während ihr Nahkampfangriffstempo verringert wird, wird Eures für die nächsten 20 Sek. um 4% erhöht." lvl="1"/>
@@ -61,8 +61,8 @@
         <rank description="Eure Zauber 'Eisige Berührung', 'Eisketten', 'Heulende Böe' und 'Auslöschen' erzeugen 5 zusätzliche Runenmacht." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_twilight" key="1971" name="Endloser Winter" tier="3">
-        <rank description="Eure Fähigkeit 'Eisketten' hat eine Chance von 50%, Frostfieber zu verursachen und die Kosten von 'Gedankenfrost' sind auf 10 Runenmacht verringert." lvl="1"/>
-        <rank description="Eure Fähigkeit 'Eisketten' hat eine Chance von 100%, Frostfieber zu verursachen und 'Gedankenfrost' kostet keine Runenmacht." lvl="2"/>
+        <rank description="Eure Stärke wird um 2% erhöht und die Kosten von 'Gedankenfrost' sind auf 10 Runenmacht verringert." lvl="1"/>
+        <rank description="Eure Stärke wird um 4% erhöht und die Fähigkeit 'Gedankenfrost' kostet keine Runenmacht mehr." lvl="2"/>
       </talent>
       <talent column="1" icon="inv_chest_mail_04" key="1990" name="Eisige Schreckensplatte" tier="4">
         <rank description="Verringert die Chance, dass Ihr von Nahkampfangriffen getroffen werdet, um 1%." lvl="1"/>
@@ -79,7 +79,8 @@
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2223" name="Verbesserte eisige Klauen" requires="2042" tier="5">
-        <rank description="Der Effekt Eurer Fähigkeit 'Eisige Klauen' erhöht für die nächsten 20 Sek. das Nahkampfangriffstempo aller Gruppen- oder Schlachtzugsmitglieder um 20%. Zusätzlich wird Euer Tempo dauerhaft um 5% erhöht." lvl="1"/>
+        <rank description="Erhöht das Nahkampfangriffstempo aller Gruppen- oder Schlachtzugsmitglieder im Umkreis von 100 Metern um 20%, Euer Tempo wird zusätzlich um 5% erhöht." lvl="1"/>
+        <spell castTime="0"/>
       </talent>
       <talent column="1" icon="inv_sword_112" key="1993" name="Gnadenloser Kampf" tier="5">
         <rank description="Eure Fähigkeiten 'Eisige Berührung', 'Heulende Böe', 'Auslöschen' und 'Froststoß' verursachen 6% zusätzlichen Schaden, wenn das Ziel über weniger als 35% Gesundheit verfügt." lvl="1"/>
@@ -102,8 +103,8 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_deathknight_frostpresence" key="2029" name="Verbesserte Frostpräsenz" tier="6">
-        <rank description="In der Blut- oder unheiligen Präsenz behaltet Ihr 3% der Ausdauer der Frostpräsenz bei. In Frostpräsenz wird Euer erlittener Schaden um zusätzliche 1% verringert." lvl="1"/>
-        <rank description="In der Blut- oder unheiligen Präsenz behaltet Ihr 6% der Ausdauer der Frostpräsenz bei. In Frostpräsenz wird Euer erlittener Schaden um zusätzliche 2% verringert." lvl="2"/>
+        <rank description="In der Blut- oder unheiligen Präsenz behaltet Ihr 4% der Ausdauer der Frostpräsenz bei. In Frostpräsenz wird Euer erlittener Schaden um zusätzliche 1% verringert." lvl="1"/>
+        <rank description="In der Blut- oder unheiligen Präsenz behaltet Ihr 8% der Ausdauer der Frostpräsenz bei. In Frostpräsenz wird Euer erlittener Schaden um zusätzliche 2% verringert." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_dualwieldspecialization" key="2284" name="Thassarians Drohung" tier="7">
         <rank description="Wenn Ihr zwei Einhandwaffen nutzt, haben Eure Fähigkeiten 'Todesstoß', 'Auslöschen', 'Seuchenstoß', 'Runenstoß', 'Blutstoß' und 'Froststoß' eine Chance von 30%, auch mit der Schildhandwaffe Schaden zu verursachen." lvl="1"/>
@@ -116,7 +117,7 @@
         <rank description="Erhöht den Schaden von 'Blutstoß' und 'Froststoß' um 10%. Wenn Ihr mit Euren Fähigkeiten 'Blutstoß' oder 'Pestilenz' einen Treffer erzielt, besteht eine Chance von 100%, dass eine Blutrune bei ihrer Aktivierung zu einer Todesrune wird. Eine Todesrune zählt als Blut-, Frost- oder unheilige Rune." lvl="3"/>
       </talent>
       <talent column="2" icon="inv_armor_helm_plate_naxxramas_raidwarrior_c_01" key="1979" name="Undurchdringliche Rüstung" tier="7">
-        <rank description="Verstärkt Eure Rüstung 20 Sek. lang durch eine dicke Eisschicht, die Eure Rüstung um 25% und Eure Stärke um 10% erhöht." lvl="1"/>
+        <rank description="Verstärkt Eure Rüstung 20 Sek. lang durch eine dicke Eisschicht, die Eure Rüstung um 25% und Eure Stärke um 20% erhöht." lvl="1"/>
         <spell castTime="0" cooldown="60000">
           <power cost="1" type="frost"/>
         </spell>
@@ -240,8 +241,8 @@
         <rank description="Gewährt Euch nach dem Erzielen eines kritischen Treffers mit einem automatischen Angriff, einem Zauber oder einer Fähigkeit 30 Sek. lang einen Bonus von 3% auf den von Euch verursachten körperlichen Schaden. Dieser Effekt ist bis zu 3-mal stapelbar." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_intensifyrage" key="2105" name="Stärke der Monstrosität" tier="5">
-        <rank description="Eure Fähigkeiten 'Blutstoß' und 'Herzstoß' haben eine Chance von 25%, Eure Fähigkeiten 'Auslöschen' und 'Todesstoß' eine Chance von 50%, 10 Sek. lang die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um 10% zu erhöhen. Erhöht zusätzlich Eure gesamte Stärke um 1%." lvl="1"/>
-        <rank description="Eure Fähigkeiten 'Blutstoß' und 'Herzstoß' haben eine Chance von 50%, Eure Fähigkeiten 'Auslöschen' und 'Todesstoß' eine Chance von 100%, 10 Sek. lang die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um 10% zu erhöhen. Erhöht zusätzlich Eure gesamte Stärke um 2%." lvl="2"/>
+        <rank description="Erhöht die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um 5%. Erhöht zudem Eure gesamte Stärke um 1%." lvl="1"/>
+        <rank description="Erhöht die Angriffskraft aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um 10%. Erhöht zudem Eure gesamte Stärke um 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_soulleech" key="1960" name="Blutwürmer" tier="6">
         <rank description="Eure Treffer mit Waffen haben eine Chance von 3%, dass aus dem Ziel 2-4 Blutwürmer hervorbrechen. Blutwürmer greifen Eure Feinde an und heilen Euch in Höhe des verursachten Schadens. Blutwürmer bestehen 20 Sekunden, oder bis sie getötet werden." lvl="1"/>
@@ -272,9 +273,9 @@
         </spell>
       </talent>
       <talent column="0" icon="ability_creature_cursed_02" key="1959" name="Wille der Nekropole" tier="8">
-        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 5% verringert. Dieser Effekt kann nur ein Mal alle 15 Sek. auftreten und wird nicht durch Schaden ausgelöst, der 5% Eurer Gesundheit unterschreitet." lvl="1"/>
-        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 10% verringert. Dieser Effekt kann nur ein Mal alle 15 Sek. auftreten und wird nicht durch Schaden ausgelöst, der 5% Eurer Gesundheit unterschreitet." lvl="2"/>
-        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 15% verringert. Dieser Effekt kann nur ein Mal alle 15 Sek. auftreten und wird nicht durch Schaden ausgelöst, der 5% Eurer Gesundheit unterschreitet." lvl="3"/>
+        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 5% verringert." lvl="1"/>
+        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 10% verringert." lvl="2"/>
+        <rank description="Schaden, der Eure Gesundheit unter 35% sinken lassen würde, oder den Ihr mit 35% Gesundheit erleidet, wird um 15% verringert." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_weapon_shortblade_40" key="1957" name="Herzstoß" tier="8">
         <rank description="Schlägt sofort das Ziel und seinen nächsten Verbündeten. Dem Primärziel werden 50% Waffenschaden plus 125 zugefügt, dem Sekundärziel 25% Waffenschaden plus 63. Für jede Eurer auf das jeweilige Ziel wirkenden Krankheiten erleidet es zusätzlich 10% Schaden." lvl="1"/>
@@ -368,7 +369,7 @@
         <rank description="Verringert die Abklingzeit Eures Zaubers 'Totenerweckung' um 90 Sek. und die Abklingzeit von 'Armee der Toten' um 4 Min. Verringert zudem den von Eurem Begleiter durch Kreaturen erlittenen Flächenschaden um 90%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_contagion" key="1996" name="Unheilige Verseuchung" tier="4">
-        <rank description="Opfer Eurer Fähigkeit 'Todesmantel' werden von einem widerwärtigen Schwarm unheiliger Insekten umgeben, durch den sie im Verlauf von 10 Sek. 10% des Schadens von 'Todesmantel' erleiden." lvl="1"/>
+        <rank description="Opfer Eurer Fähigkeit 'Todesmantel' werden von einer widerwärtigen Wolke unheiliger Insekten umschwärmt, durch die sie im Verlauf von 10 Sek. 10% des Schadens von 'Todesmantel' erleiden. Zudem wird durch die Insekten verhindert, dass auf das Ziel wirkende Krankheiten gebannt werden können." lvl="1"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadowandflame" key="2005" name="Unreinheit" tier="4">
         <rank description="Der Angriffskraftbonus Eurer Zauber wird um 4% erhöht." lvl="1"/>
@@ -443,7 +444,7 @@
         <rank description="Euer Gruftfieber wandelt sich zur schwarzen Seuche. Zusätzlich zum erhöhten erlittenen Krankheitsschaden, wird der erlittene Magieschaden des Ziels um 13% erhöht. Zusätzlich wird Eure kritische Trefferchance mit Waffen und Zaubern dauerhaft um 3% erhöht." lvl="3"/>
       </talent>
       <talent column="2" icon="spell_deathknight_scourgestrike" key="2216" name="Geißelstoß" tier="8">
-        <rank description="Ein unheiliger Stoß, der 50% Waffenschaden als körperlichen Schaden plus 170 verursacht. Für jede Eurer auf das Ziel wirkenden Krankheiten fügt Ihr zusätzlich 25% des verursachten körperlichen Schadens als Schattenschaden zu." lvl="1"/>
+        <rank description="Ein unheiliger Stoß, der 70% Waffenschaden als körperlichen Schaden plus 238 verursacht. Für jede Eurer auf das Ziel wirkenden Krankheiten fügt Ihr zusätzlich 12% des verursachten körperlichen Schadens als Schattenschaden zu." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="1" type="unholy"/>
           <power cost="1" type="frost"/>

@@ -268,11 +268,11 @@
         <rank description="Reduces the cooldown of your Demonic Empowerment, Metamorphosis, and Fel Domination spells by 30%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Demonic Pact" tier="9">
-        <rank description="Increases your spell damage by 2%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 2% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="1"/>
-        <rank description="Increases your spell damage by 4%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 4% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="2"/>
-        <rank description="Increases your spell damage by 6%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 6% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="3"/>
-        <rank description="Increases your spell damage by 8%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 8% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="4"/>
-        <rank description="Increases your spell damage by 10%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 10% of your Spell Damage for 12 sec.  Does not work on Enslaved demons." lvl="5"/>
+        <rank description="Increases your spell damage by 2%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 2% of your Spell Damage for 45 sec. This effect has a 20 sec cooldown. Does not work on Enslaved demons." lvl="1"/>
+        <rank description="Increases your spell damage by 4%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 4% of your Spell Damage for 45 sec. This effect has a 20 sec cooldown. Does not work on Enslaved demons." lvl="2"/>
+        <rank description="Increases your spell damage by 6%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 6% of your Spell Damage for 45 sec. This effect has a 20 sec cooldown. Does not work on Enslaved demons." lvl="3"/>
+        <rank description="Increases your spell damage by 8%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 8% of your Spell Damage for 45 sec. This effect has a 20 sec cooldown. Does not work on Enslaved demons." lvl="4"/>
+        <rank description="Increases your spell damage by 10%, and your pet's criticals apply the Demonic Pact effect to your party or raid members. Demonic Pact increases spell power by 10% of your Spell Damage for 45 sec. This effect has a 20 sec cooldown. Does not work on Enslaved demons." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonform" key="1886" name="Metamorphosis" tier="10">
         <rank description="You transform into a Demon for 30 sec.  This form increases your armor by 600%, damage by 20%, reduces the chance you'll be critically hit by melee attacks by 6% and reduces the duration of stun and snare effects by 50%.  You gain some unique demon abilities in addition to your normal abilities. 3 minute cooldown." lvl="1"/>
@@ -353,7 +353,7 @@
         </spell>
       </talent>
       <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Improved Felhunter" tier="5">
-        <rank description="Your Felhunter regains 8% of its maximum mana each time it hits with its Shadow Bite ability and the cooldown on that ability is reduced by 2 sec.  In addition, increases the effect of your Felhunter's Fel Intelligence by 5%." lvl="1"/>
+        <rank description="Your Felhunter regains 4% of its maximum mana each time it hits with its Shadow Bite ability and the cooldown on that ability is reduced by 2 sec.  In addition, increases the effect of your Felhunter's Fel Intelligence by 5%." lvl="1"/>
         <rank description="Your Felhunter regains 8% of its maximum mana each time it hits with its Shadow Bite ability and the cooldown on that ability is reduced by 4 sec.  In addition, increases the effect of your Felhunter's Fel Intelligence by 10%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Shadow Mastery" requires="1041" tier="5">
@@ -393,7 +393,7 @@
         <rank description="Increases the amount drained by your Drain Life by 30% while your health is at or below 20% health, and increases the damage done by your Shadow spells by 12% when your target is at or below 35% health." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Unstable Affliction" requires="1669" tier="8">
-        <rank description="Shadow energy slowly destroys the target, causing 550 damage over 15 sec.  In addition, if the Unstable Affliction is dispelled it will cause 990 damage to the dispeller and silence them for 5 sec." lvl="1"/>
+        <rank description="Shadow energy slowly destroys the target, causing 550 damage over 15 sec.  In addition, if the Unstable Affliction is dispelled it will cause 990 damage to the dispeller and silence them for 5 sec. Only one Unstable Affliction or Immolate per Warlock can be active on any one target." lvl="1"/>
         <spell castTime="1500" maxRange="30">
           <power cost="15" type="mana"/>
         </spell>

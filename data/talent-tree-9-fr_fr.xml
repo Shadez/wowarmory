@@ -268,11 +268,11 @@
         <rank description="Réduit le temps de recharge de vos sorts Renforcement démoniaque, Métamorphe et Domination corrompue de 30%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonicpact" key="1885" name="Pacte démoniaque" tier="9">
-        <rank description="Augmente vos dégâts des sorts de 2%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 2% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="1"/>
-        <rank description="Augmente vos dégâts des sorts de 4%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 4% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="2"/>
-        <rank description="Augmente vos dégâts des sorts de 6%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 6% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="3"/>
-        <rank description="Augmente vos dégâts des sorts de 8%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 8% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="4"/>
-        <rank description="Augmente vos dégâts des sorts de 10%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 10% de vos dégâts des sorts pendant 12 sec. Ne fonctionne pas sur les démons asservis." lvl="5"/>
+        <rank description="Augmente vos dégâts des sorts de 2%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 2% de vos dégâts des sorts pendant 45 sec. Cet effet a un temps de recharge de 20 sec. Ne fonctionne pas sur les démons asservis." lvl="1"/>
+        <rank description="Augmente vos dégâts des sorts de 4%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 4% de vos dégâts des sorts pendant 45 sec. Cet effet a un temps de recharge de 20 sec. Ne fonctionne pas sur les démons asservis." lvl="2"/>
+        <rank description="Augmente vos dégâts des sorts de 6%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 6% de vos dégâts des sorts pendant 45 sec. Cet effet a un temps de recharge de 20 sec. Ne fonctionne pas sur les démons asservis." lvl="3"/>
+        <rank description="Augmente vos dégâts des sorts de 8%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 8% de vos dégâts des sorts pendant 45 sec. Cet effet a un temps de recharge de 20 sec. Ne fonctionne pas sur les démons asservis." lvl="4"/>
+        <rank description="Augmente vos dégâts des sorts de 10%, et les critiques de votre familier appliquent l'effet Pacte démoniaque sur les membres de votre groupe ou raid. Le Pacte démoniaque augmente la puissance des sorts de 10% de vos dégâts des sorts pendant 45 sec. Cet effet a un temps de recharge de 20 sec. Ne fonctionne pas sur les démons asservis." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_demonform" key="1886" name="Métamorphe" tier="10">
         <rank description="Vous vous transformez en démon pendant 30 sec. Cette forme augmente votre armure de 600% et vos dégâts de 20%, réduit la probabilité que vous soyez touché par des coups critiques en mêlée de 6% et réduit la durée des effets d'étourdissement et de ralentissement qui vous affectent de 50%. Vous bénéficiez de techniques démoniaques spécifiques en plus de vos techniques normales. Temps de recharge de 3 minutes." lvl="1"/>
@@ -353,7 +353,7 @@
         </spell>
       </talent>
       <talent column="0" icon="spell_shadow_summonfelhunter" key="1873" name="Chasseur corrompu amélioré" tier="5">
-        <rank description="Votre chasseur corrompu reçoit 8% de son maximum de mana chaque fois qu'il touche avec sa technique Morsure de l'ombre et le temps de recharge de cette technique est réduit de 2 sec. Augmente également l'effet de l'Intelligence gangrenée de votre chasseur corrompu de 5%." lvl="1"/>
+        <rank description="Votre chasseur corrompu reçoit 4% de son maximum de mana chaque fois qu'il touche avec sa technique Morsure de l'ombre et le temps de recharge de cette technique est réduit de 2 sec. Augmente également l'effet de l'Intelligence gangrenée de votre chasseur corrompu de 5%." lvl="1"/>
         <rank description="Votre chasseur corrompu reçoit 8% de son maximum de mana chaque fois qu'il touche avec sa technique Morsure de l'ombre et le temps de recharge de cette technique est réduit de 4 sec. Augmente également l'effet de l'Intelligence gangrenée de votre chasseur corrompu de 10%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadetruesight" key="1042" name="Maîtrise de l'ombre" requires="1041" tier="5">
@@ -393,7 +393,7 @@
         <rank description="Augmente le montant de points de vie drainés par votre Drain de vie de 30% quand vous disposez de 20% ou moins de vos points de vie, et augmente les dégâts infligés par vos sorts d'Ombre de 12% quand votre cible dispose de 35% ou moins de ses points de vie." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_unstableaffliction_3" key="1670" name="Affliction instable" requires="1669" tier="8">
-        <rank description="L’énergie de l’Ombre détruit lentement la cible, infligeant 550 points de dégâts en 15 sec. De plus, si l'Affliction instable est dissipée, celui qui la dissipe subit 990 points de dégâts et est réduit au silence pendant 5 sec." lvl="1"/>
+        <rank description="L’énergie de l’Ombre détruit lentement la cible, infligeant 550 points de dégâts en 15 sec. De plus, si l'Affliction instable est dissipée, celui qui la dissipe subit 990 points de dégâts et est réduit au silence pendant 5 sec. Une cible ne peut être victime que d'une seule Affliction instable ou Immolation par démoniste." lvl="1"/>
         <spell castTime="1500" maxRange="30">
           <power cost="15" type="mana"/>
         </spell>

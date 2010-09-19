@@ -235,9 +235,9 @@
         <rank description="Gewährt Eurem Tier eine Chance von 100%, 8 Sek. lang eine Zunahme des Angriffstempos um 30% zu erhalten, nachdem es einen kritischen Treffer ausgeführt hat." lvl="5"/>
       </talent>
       <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Wilde Eingebung" tier="6">
-        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 1% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 3% erhöht." lvl="1"/>
-        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 2% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 6% erhöht." lvl="2"/>
-        <rank description="Erzielt Euer Tier einen kritischen Treffer, wird jeglicher verursachter Schaden aller Gruppen- und Schlachtzugsmitglieder 10 Sek. lang um 3% erhöht. Zusätzlich wird der Schaden von 'Arkaner Schuss' um 9% erhöht." lvl="3"/>
+        <rank description="Der Schaden aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern Eures Begleiters wird um 1% erhöht. Erhöht zusätzlich den Schaden Eurer Fähigkeiten 'Arkaner Schuss' und 'Zuverlässiger Schuss' um 3%." lvl="1"/>
+        <rank description="Der Schaden aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern Eures Begleiters wird um 2% erhöht. Erhöht zusätzlich den Schaden Eurer Fähigkeiten 'Arkaner Schuss' und 'Zuverlässiger Schuss' um 6%." lvl="2"/>
+        <rank description="Der Schaden aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern Eures Begleiters wird um 3% erhöht. Erhöht zusätzlich den Schaden Eurer Fähigkeiten 'Arkaner Schuss' und 'Zuverlässiger Schuss' um 9%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Zorn des Wildtiers" requires="1387" tier="6">
         <rank description="Versetzt Euer Tier in einen Kampfrausch, wodurch es 10 Sek. lang 50% zusätzlichen Schaden verursacht. Einmal im Kampfrausch, gibt es keine Möglichkeit mehr, es zu stoppen, es sei denn, es wird getötet." lvl="1"/>
@@ -378,7 +378,7 @@
         <rank description="Die kritischen Treffer Eurer Fähigkeiten 'Gezielter Schuss', 'Zuverlässiger Schuss' und 'Schimärenschuss' lassen das Ziel im Verlauf von 8 Sek. für 30% des verursachten Schadens bluten." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_trueshot" key="1361" name="Aura des Volltreffers" requires="1353" tier="6">
-        <rank description="Erhöht die Angriffskraft von Gruppen- und Schlachtzugsmitgliedern in einem Umkreis von 45 Metern um 10%. Hält bis Abbruch an." lvl="1"/>
+        <rank description="Erhöht die Angriffskraft von Gruppen- und Schlachtzugsmitgliedern in einem Umkreis von 100 Metern um 10%. Hält bis Abbruch an." lvl="1"/>
         <spell castTime="0"/>
       </talent>
       <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Verbessertes Sperrfeuer" requires="1347" tier="6">

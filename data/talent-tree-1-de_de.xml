@@ -129,7 +129,7 @@
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_warrior_rampage" key="1659" name="Toben" requires="167" tier="8">
-        <rank description="Eure kritischen Nahkampftreffer verursachen einen Tobsuchtsanfall, der die kritische Nahkampf- und Distanztrefferchance aller Gruppen- und Schlachtzugsmitglieder innerhalb von 45 Metern um 5% erhöht. Hält 10 Sek. lang an." lvl="1"/>
+        <rank description="Erhöht die kritische Nahkampf- und Distanztrefferchance aller Gruppen- und Schlachtzugsmitglieder innerhalb von 100 Metern um 5%." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_warrior_bloodsurge" key="1866" name="Schäumendes Blut" requires="167" tier="8">
         <rank description="Mit den Fähigkeiten 'Heldenhafter Stoß', 'Blutdurst' und 'Wirbelwind' erzielte Treffer haben eine Chance von 7%, dass das nächste 'Zerschmettern' innerhalb der nächsten 5 Sek. spontan gewirkt werden kann." lvl="1"/>
@@ -241,8 +241,8 @@
         <rank description="Gewährt Eurer Fähigkeit 'Kniesehne' eine Chance von 15%, das Ziel 5 Sek. lang unbeweglich zu machen." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_warrior_bloodnova" key="1859" name="Trauma" tier="5">
-        <rank description="Eure kritischen Nahkampftreffer erhöhen die Wirksamkeit von Blutungseffekten auf dem Ziel 15 Sek. lang um 15%." lvl="1"/>
-        <rank description="Eure kritischen Nahkampftreffer erhöhen die Wirksamkeit von Blutungseffekten auf dem Ziel 15 Sek. lang um 30%." lvl="2"/>
+        <rank description="Eure kritischen Nahkampftreffer erhöhen die Wirksamkeit von Blutungseffekten auf dem Ziel 1 Min. lang um 15%." lvl="1"/>
+        <rank description="Eure kritischen Nahkampftreffer erhöhen die Wirksamkeit von Blutungseffekten auf dem Ziel 1 Min. lang um 30%." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_hunter_harass" key="1663" name="Kräfte sammeln" tier="6">
         <rank description="Jedes Mal, wenn Ihr von einem Betäubungs- oder Unbeweglichkeitseffekt getroffen werdet, erzeugt Ihr 10 Sek. lang insgesamt 10 Wut und 5% Eurer gesamten Gesundheit." lvl="1"/>
@@ -333,8 +333,8 @@
         <rank description="Wenn diese Fähigkeit aktiviert wird, gewährt sie Euch 20 Sek. lang vorübergehend 30% Eurer maximalen Gesundheit. Wenn der Effekt abklingt, geht die zusätzliche Gesundheit wieder verloren." lvl="1"/>
       </talent>
       <talent column="1" icon="ability_warrior_revenge" key="147" name="Verbesserte Rache" tier="2">
-        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Rache' um 10% und verleiht eine Chance von 25%, das Ziel 3 Sek. lang zu betäuben." lvl="1"/>
-        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Rache' um 20% und verleiht eine Chance von 50%, das Ziel 3 Sek. lang zu betäuben." lvl="2"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Rache' um 30% und lässt 'Rache' ein weiteres Ziel treffen, das 50% des Schadens erleidet." lvl="1"/>
+        <rank description="Erhöht den Schaden Eurer Fähigkeit 'Rache' um 60% und lässt 'Rache' ein weiteres Ziel treffen." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_warrior_shieldmastery" key="1654" name="Schildbeherrschung" tier="2">
         <rank description="Erhöht Euren Blockwert um 15% und verringert die Abklingzeit Eurer Fähigkeit 'Schildblock' um 10 Sek." lvl="1"/>
@@ -352,8 +352,8 @@
         <rank description="Verringert Eure Chance, einen Zaubertreffer zu erleiden, um 4% und die Fähigkeit reflektiert bei Anwendung auch den ersten Zauber, der auf die nächsten 4 Gruppenmitglieder innerhalb von 20 Metern gewirkt wurde." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_warrior_disarm" key="151" name="Verbessertes Entwaffnen" tier="3">
-        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Entwaffnen' um 10 Sek. und lässt Ziel, während es entwaffnet ist, 5% zusätzlichen Schaden erleiden." lvl="1"/>
-        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Entwaffnen' um 20 Sek. und lässt Ziel, während es entwaffnet ist, 10% zusätzlichen Schaden erleiden." lvl="2"/>
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Entwaffnen' um 10 Sek. und lässt das Ziel, während es entwaffnet ist, 5% zusätzlichen Schaden erleiden." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Entwaffnen' um 20 Sek. und lässt das Ziel, während es entwaffnet ist, 10% zusätzlichen Schaden erleiden." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_warrior_sunder" key="146" name="Durchstechen" tier="3">
         <rank description="Verringert die Wutkosten Eurer Fähigkeiten 'Rüstung zerreißen' und 'Verwüsten' um 1." lvl="1"/>
@@ -395,9 +395,9 @@
         <rank description="Verringert die Wutkosten aller Angriffsfähigkeiten um 3." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_helmet_21" key="1653" name="Vitalität" tier="7">
-        <rank description="Erhöht Eure gesamte Stärke und Ausdauer um 2% sowie Eure Waffenkunde um 2." lvl="1"/>
-        <rank description="Erhöht Eure gesamte Stärke und Ausdauer um 4% sowie Eure Waffenkunde um 4." lvl="2"/>
-        <rank description="Erhöht Eure gesamte Stärke und Ausdauer um 6% sowie Eure Waffenkunde um 6." lvl="3"/>
+        <rank description="Erhöht Eure gesamte Stärke um 2%, Eure Ausdauer um 3% und Eure Waffenkunde um 2." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Stärke um 4%, Eure Ausdauer um 6% und Eure Waffenkunde um 4." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Stärke um 6%, Eure Ausdauer um 9% und Eure Waffenkunde um 6." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_safeguard" key="1870" name="Sicherung" tier="7">
         <rank description="Verringert den erlittenen Schaden des von Eurer Fähigkeit 'Einschreiten' betroffenen Ziels 6 Sek. lang um 15%." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Eure Fähigkeiten 'Sturmangriff', 'Abfangen' und 'Einschreiten' sind nun während des Kampfes und in jeder Haltung nutzbar. Zusätzlich entfernt Eure Fähigkeit 'Einschreiten' jegliche bewegungseinschränkenden Effekte." lvl="1"/>
       </talent>
       <talent column="1" icon="inv_sword_11" key="1666" name="Verwüsten" tier="8">
-        <rank description="Zerreißt die Rüstung des Ziels und ruft den Effekt 'Rüstung zerreißen' hervor. Verursacht zusätzlich pro Stapel dieses Effektes auf dem Ziel 120% Waffenschaden plus 48. 'Rüstung zerreißen' ist bis zu 5-mal stapelbar." lvl="1"/>
+        <rank description="Zerreißt die Rüstung des Ziels und ruft den Effekt 'Rüstung zerreißen' hervor. Verursacht zusätzlich pro Stapel dieses Effektes auf dem Ziel 120% Waffenschaden plus 58. 'Rüstung zerreißen' ist bis zu 5-mal stapelbar." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="15" type="rage"/>
         </spell>

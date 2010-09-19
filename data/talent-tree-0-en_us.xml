@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="en_gb" requestUrl="/talent-tree.xml">
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="en_us" requestUrl="/talent-tree.xml">
   <talentTrees>
     <tree bgImage="HunterPetCunning" icon="ability_hunter_combatexperience" key="Cunning" name="Cunning" order="2">
       <talent column="0" icon="spell_nature_guardianward" key="2118" name="Cobra Reflexes" tier="0">
@@ -29,13 +29,13 @@
       <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Boar's Speed" tier="1">
         <rank description="Increases your pet's movement speed by 30%." lvl="1"/>
       </talent>
-      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Mobility" requires="2119" tier="1">
-        <rank description="Reduces the cooldown on your pet's Dash ability by 8 sec." lvl="1"/>
-        <rank description="Reduces the cooldown on your pet's Dash ability by 16 sec." lvl="2"/>
-      </talent>
       <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Mobility" requires="2201" tier="1">
         <rank description="Reduces the cooldown on your pet's Dive ability by 8 sec." lvl="1"/>
         <rank description="Reduces the cooldown on your pet's Dive ability by 16 sec." lvl="2"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Mobility" requires="2119" tier="1">
+        <rank description="Reduces the cooldown on your pet's Dash ability by 8 sec." lvl="1"/>
+        <rank description="Reduces the cooldown on your pet's Dash ability by 16 sec." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Owl's Focus" tier="1">
         <rank description="Your pet has a 15% chance after using an ability that the next ability will cost no Focus if used within 8 sec." lvl="1"/>
@@ -105,13 +105,13 @@
         <rank description="Increases your pet's attack speed by 15%.  Your pet will hit faster but each hit will do less damage." lvl="1"/>
         <rank description="Increases your pet's attack speed by 30%.  Your pet will hit faster but each hit will do less damage." lvl="2"/>
       </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Dive" tier="0">
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Dash" tier="0">
         <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Dash" tier="0">
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Dive" tier="0">
         <rank description="Increases your pet's movement speed by 80% for 16 sec." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
@@ -151,14 +151,14 @@
         <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 15%." lvl="1"/>
         <rank description="Reduces the duration of all Stun and Fear effects used against your pet by 30%." lvl="2"/>
       </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Charge" tier="2">
-        <rank description="Your pet charges an enemy, immobilizing the target for 1 sec, and increasing the pet's melee attack power by 25% for its next attack." lvl="1"/>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Swoop" tier="2">
+        <rank description="Your pet swoops at an enemy, immobilizing the target for 1 sec, and adds 25% melee attack power to the pet's next attack." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
       </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Swoop" tier="2">
-        <rank description="Your pet swoops at an enemy, immobilizing the target for 1 sec, and adds 25% melee attack power to the pet's next attack." lvl="1"/>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Charge" tier="2">
+        <rank description="Your pet charges an enemy, immobilizing the target for 1 sec, and increasing the pet's melee attack power by 25% for its next attack." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>

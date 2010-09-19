@@ -129,7 +129,7 @@
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_warrior_rampage" key="1659" name="Saccager" requires="167" tier="8">
-        <rank description="Vos coups critiques en mêlée vous font vous déchaîner, ce qui augmente les chances de coup critique en mêlée et à distance de tous les membres du groupe et du raid se trouvant à moins de 45 mètres de 5%. Dure 10 sec." lvl="1"/>
+        <rank description="Augmente de 5% les chances de coup critique en mêlée et à distance de tous les membres du groupe ou raid se trouvant à moins de 100 mètres." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_warrior_bloodsurge" key="1866" name="Afflux sanguin" requires="167" tier="8">
         <rank description="Vos coups réussis avec Frappe héroïque, Sanguinaire et Tourbillon ont 7% de chances de rendre votre prochain Heurtoir instantané pendant 5 sec." lvl="1"/>
@@ -195,9 +195,9 @@
         <rank description="Vos coups critiques font saigner l'adversaire et lui infligent 48% des points de dégâts moyens de votre arme de mêlée en 6 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_axe_09" key="136" name="Spécialisation Arme 2M" tier="3">
-        <rank description="Augmente de 2% les points de dégâts que vous infligez avec les armes à deux mains." lvl="1"/>
-        <rank description="Augmente de 4% les points de dégâts que vous infligez avec les armes à deux mains." lvl="2"/>
-        <rank description="Augmente de 6% les points de dégâts que vous infligez avec les armes à deux mains." lvl="3"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 2%." lvl="1"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 4%." lvl="2"/>
+        <rank description="Augmente les points de dégâts que vous infligez avec les armes de mêlée à deux mains de 6%." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_rogue_hungerforblood" key="2232" name="Goût du sang" tier="3">
         <rank description="Chaque fois que votre technique Pourfendre inflige des dégâts, vous avez 33% de chances de permettre l'utilisation de votre technique Fulgurance pendant 9 sec. 1 charge. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="1"/>
@@ -241,8 +241,8 @@
         <rank description="Confère à votre technique Brise-genou 15% de chances d'immobiliser votre cible pendant 5 sec." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_warrior_bloodnova" key="1859" name="Traumatisme" tier="5">
-        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 15% pendant 15 sec." lvl="1"/>
-        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 30% pendant 15 sec." lvl="2"/>
+        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 15% pendant 1 min." lvl="1"/>
+        <rank description="Vos coups critiques normaux en mêlée augmentent l'efficacité des effets de saignement sur la cible de 30% pendant 1 min." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_hunter_harass" key="1663" name="Second souffle" tier="6">
         <rank description="Chaque fois que vous êtes atteint par un effet d'étourdissement ou d'immobilisation, vous gagnez 10 points de rage et 5% de votre total de points de vie en 10 sec." lvl="1"/>
@@ -333,8 +333,8 @@
         <rank description="Activée, cette technique vous confère temporairement 30% de votre maximum de points de vie en plus pendant 20 sec. Lorsque l'effet expire, les points de vie sont perdus." lvl="1"/>
       </talent>
       <talent column="1" icon="ability_warrior_revenge" key="147" name="Vengeance améliorée" tier="2">
-        <rank description="Augmente les dégâts de votre technique Vengeance de 10% et vous confère 25% de chances d'étourdir la cible pendant 3 sec." lvl="1"/>
-        <rank description="Augmente les dégâts de votre technique Vengeance de 20% et vous confère 50% de chances d'étourdir la cible pendant 3 sec." lvl="2"/>
+        <rank description="Augmente les dégâts de votre technique Vengeance de 30% et permet à Vengeance de frapper une cible supplémentaire, lui infligeant 50% de ses dégâts." lvl="1"/>
+        <rank description="Augmente les dégâts de votre technique Vengeance de 60% et permet à Vengeance de frapper une cible supplémentaire." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_warrior_shieldmastery" key="1654" name="Maîtrise du bouclier" tier="2">
         <rank description="Augmente de 15% votre valeur de blocage et réduit de 10 sec. le temps de recharge de votre technique Maîtrise du blocage." lvl="1"/>
@@ -395,9 +395,9 @@
         <rank description="Réduit le coût en rage de vos techniques offensives de 3." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_helmet_21" key="1653" name="Vitalité" tier="7">
-        <rank description="Augmente votre total de Force et d'Endurance de 2% et votre expertise de 2." lvl="1"/>
-        <rank description="Augmente votre total de Force et d'Endurance de 4% et votre expertise de 4." lvl="2"/>
-        <rank description="Augmente votre total de Force et d'Endurance de 6% et votre expertise de 6." lvl="3"/>
+        <rank description="Augmente votre total de Force de 2%, d'Endurance de 3% et votre expertise de 2." lvl="1"/>
+        <rank description="Augmente votre total de Force de 4%, d'Endurance de 6% et votre expertise de 4." lvl="2"/>
+        <rank description="Augmente votre total de Force de 6%, d'Endurance de 9% et votre expertise de 6." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_safeguard" key="1870" name="Protéger" tier="7">
         <rank description="Réduit les dégâts subis par la cible de votre technique Intervention de 15% pendant 6 sec." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Vos techniques Charge, Interception et Intervention sont à présent utilisables en combat et avec n'importe quelle posture. De plus, Intervention dissipe tous les effets affectant le déplacement." lvl="1"/>
       </talent>
       <talent column="1" icon="inv_sword_11" key="1666" name="Dévaster" tier="8">
-        <rank description="Fracasse l'armure de la cible, provoquant l'effet Fracasser armure. De plus, inflige 120% des dégâts de l'arme plus 48 pour chaque Fracasser armure sur la cible. L'effet de fracassement d'armure peut être cumulé jusqu'à 5 fois." lvl="1"/>
+        <rank description="Fracasse l'armure de la cible, provoquant l'effet Fracasser armure. De plus, inflige 120% des dégâts de l'arme plus 58 pour chaque Fracasser armure sur la cible. L'effet de fracassement d'armure peut être cumulé jusqu'à 5 fois." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="15" type="rage"/>
         </spell>

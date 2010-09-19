@@ -180,15 +180,15 @@
         <rank description="Verringert die Abklingzeit Eurer Fähigkeiten 'Verschwinden' und 'Blenden' um 60 Sek. und die Abklingzeit von 'Mantel der Schatten' um 30 Sek." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_curse" key="303" name="Geisterhafter Stoß" tier="2">
-        <rank description="Ein Schlag, der 125% Waffenschaden zufügt und Eure Ausweichchance 7 Sek. lang um 15% erhöht. Gewährt 1 Combopunkt." lvl="1"/>
+        <rank description="Ein Stoß, der 125% Waffenschaden (oder bei Ausrüstung mit einem Dolch 180% Waffenschaden) verursacht und Eure Ausweichchance 7 Sek. lang um 15% erhöht. Gewährt 1 Combopunkt." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="5">
           <power cost="40" type="energy"/>
         </spell>
       </talent>
       <talent column="2" icon="inv_sword_17" key="1123" name="Gezahnte Klingen" tier="2">
-        <rank description="Eure Angriffe ignorieren 0 Rüstung Eures Ziels. Außerdem wird der Schaden Eurer Fähigkeit 'Blutung' um 10% erhöht. Die Rüstungsverringerung steigt mit Eurer Stufe." lvl="1"/>
-        <rank description="Eure Angriffe ignorieren 0 Rüstung Eures Ziels. Außerdem wird der Schaden Eurer Fähigkeit 'Blutung' um 20% erhöht. Die Rüstungsverringerung steigt mit Eurer Stufe." lvl="2"/>
-        <rank description="Eure Angriffe ignorieren 0 Rüstung Eures Ziels. Außerdem wird der Schaden Eurer Fähigkeit 'Blutung' um 30% erhöht. Die Rüstungsverringerung steigt mit Eurer Stufe." lvl="3"/>
+        <rank description="Eure Angriffe ignorieren bis zu 3% Rüstung Eures Ziels. Zudem wird der von Eurer Fähigkeit 'Blutung' verursachte Schaden um 10% erhöht." lvl="1"/>
+        <rank description="Eure Angriffe ignorieren bis zu 6% Rüstung Eures Ziels. Zudem wird der von Eurer Fähigkeit 'Blutung' verursachte Schaden um 20% erhöht." lvl="2"/>
+        <rank description="Eure Angriffe ignorieren bis zu 9% Rüstung Eures Ziels. Zudem wird der von Eurer Fähigkeit 'Blutung' verursachte Schaden um 30% erhöht." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_mirrorimage" key="246" name="Reinlegen" tier="3">
         <rank description="Gewährt Euch eine Chance von 33%, Eurem Ziel einen Combopunkt hinzuzufügen, nachdem Ihr dessen Angriff ausgewichen seid oder einem seiner Zauber vollständig widerstanden habt. Dieser Effekt kann nicht öfter als einmal pro Sekunde auftreten." lvl="1"/>
@@ -217,7 +217,7 @@
         <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Fieser Trick' und 'Erdrosseln' um 20. Zusätzlich verursachen Eure Spezialfähigkeiten 20% mehr Schaden gegen Ziele mit weniger als 35% Gesundheit." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_lifedrain" key="681" name="Blutsturz" requires="1123" tier="4">
-        <rank description="Ein sofortiger Stoß, der 110% Waffenschaden sowie einen Blutsturz beim Ziel verursacht und so den dem Ziel zugefügten körperlichen Schaden um bis zu 110 erhöht. Hält 10 Aufladungen oder 15 Sek. lang an. Gewährt 1 Combopunkt." lvl="1"/>
+        <rank description="Ein sofortiger Stoß, der 110% Waffenschaden (oder bei Ausrüstung mit einem Dolch 160% Waffenschaden) sowie einen Blutsturz beim Ziel verursacht und so den dem Ziel zugefügten körperlichen Schaden um bis zu 13 erhöht. Hält 10 Aufladungen oder 15 Sek. lang an. Gewährt 1 Combopunkt." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="35" type="energy"/>
         </spell>
@@ -256,8 +256,8 @@
         <rank description="Erhöht Eure gesamte Beweglichkeit um 15% und den prozentualen Schadensbonus von 'Meucheln' und 'Blutsturz' um zusätzliche 10%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_rogue_waylay" key="2077" name="Wegelagerei" tier="7">
-        <rank description="Die kritischen Treffer Eurer Fähigkeit 'Hinterhalt' haben eine Chance von 50%, das Nah- und Distanzangriffstempo des Ziels um 20% und sein Bewegungstempo um 70% zu verringern. Hält 8 Sek. lang an." lvl="1"/>
-        <rank description="Die kritischen Treffer Eurer Fähigkeit 'Hinterhalt' haben eine Chance von 100%, das Nah- und Distanzangriffstempo des Ziels um 20% und sein Bewegungstempo um 70% zu verringern. Hält 8 Sek. lang an." lvl="2"/>
+        <rank description="Die Treffer Eurer Fähigkeiten 'Hinterhalt' und 'Meucheln' haben eine Chance von 50%, das Ziel aus dem Gleichgewicht zu bringen und die Zeit zwischen den Nah- und Distanzangriffen um 20% zu erhöhen sowie sein Bewegungstempo um 50% zu verringern. Hält 8 Sek. lang an." lvl="1"/>
+        <rank description="Die Treffer Eurer Fähigkeiten 'Hinterhalt' und 'Meucheln' haben eine Chance von 100%, das Ziel aus dem Gleichgewicht zu bringen und die Zeit zwischen den Nah- und Distanzangriffen um 20% zu erhöhen sowie sein Bewegungstempo um 50% zu verringern. Hält 8 Sek. lang an." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_rogue_honoramongstthieves" key="2078" name="Ehre unter Dieben" tier="8">
         <rank description="Erzielt eines Eurer Gruppenmitglieder mit einer Fähigkeit, einem Schadens- oder Heilzauber einen kritischen Treffer, habt Ihr eine Chance von 33%, einen zusätzlichen Combopunkt auf Eurem aktuellen Ziel dazuzugewinnen. Dieser Effekt kann nur einmal pro Sekunde auftreten." lvl="1"/>
@@ -271,15 +271,15 @@
         </spell>
       </talent>
       <talent column="2" icon="ability_rogue_wrongfullyaccused" key="2079" name="Schmutzige Tricks" tier="8">
-        <rank description="Verringert die Abklingzeit von 'Schurkenhandel' und 'Ablenken' um 5 Sek. und von 'Vorbereitung' um 1.5 Min." lvl="1"/>
-        <rank description="Verringert die Abklingzeit von 'Schurkenhandel' und 'Ablenken' um 10 Sek. und von 'Vorbereitung' um 3 Min." lvl="2"/>
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeiten 'Schurkenhandel', 'Ablenken' und 'Schattenschritt' um 5 Sek. sowie ihre Energiekosten um 5. Zudem wird die Abklingzeit von 'Vorbereitung' um 1.5 Min. verringert." lvl="1"/>
+        <rank description="Verringert die Abklingzeit Eurer Fähigkeiten 'Schurkenhandel', 'Ablenken' und 'Schattenschritt' um 10 Sek. sowie ihre Energiekosten um 10. Zudem wird die Abklingzeit von 'Vorbereitung' um 3 Min. verringert." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_rogue_slaughterfromtheshadows" key="2080" name="Hinterhältiger Mord" tier="9">
-        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 3 und die Energiekosten von 'Blutsturz' um 1." lvl="1"/>
-        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 6 und die Energiekosten von 'Blutsturz' um 2." lvl="2"/>
-        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 9 und die Energiekosten von 'Blutsturz' um 3." lvl="3"/>
-        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 12 und die Energiekosten von 'Blutsturz' um 4." lvl="4"/>
-        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 15 und die Energiekosten von 'Blutsturz' um 5." lvl="5"/>
+        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 4 und die Energiekosten von 'Blutsturz' um 1. Erhöht zudem jeglichen verursachten Schaden um 1." lvl="1"/>
+        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 8 und die Energiekosten von 'Blutsturz' um 2. Erhöht zudem jeglichen verursachten Schaden um 2." lvl="2"/>
+        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 12 und die Energiekosten von 'Blutsturz' um 3. Erhöht zudem jeglichen verursachten Schaden um 3." lvl="3"/>
+        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 16 und die Energiekosten von 'Blutsturz' um 4. Erhöht zudem jeglichen verursachten Schaden um 4." lvl="4"/>
+        <rank description="Verringert die Energiekosten Eurer Fähigkeiten 'Meucheln' und 'Hinterhalt' um 20 und die Energiekosten von 'Blutsturz' um 5. Erhöht zudem jeglichen verursachten Schaden um 5." lvl="5"/>
       </talent>
       <talent column="1" icon="ability_rogue_shadowdance" key="2081" name="Schattentanz" tier="10">
         <rank description="Beginnt den Schattentanz, durch den 6 Sek. lang 'Kopfnuss', 'Erdrosseln', 'Hinterhalt', 'Fieser Trick', 'Konzentration', 'Taschendiebstahl' und 'Falle entschärfen' unabhängig von Verstohlenheit angewendet werden können." lvl="1"/>

@@ -29,9 +29,9 @@
         <rank description="Aumenta tu daño de Escarcha y de las Sombras un 10%." lvl="5"/>
       </talent>
       <talent column="3" icon="ability_dualwield" key="2022" name="Nervios de acero helado" tier="1">
-        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 1% y aumenta el daño infligido por tus armas de mano izquierda un 5%." lvl="1"/>
-        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 2% y aumenta el daño infligido por tus armas de mano izquierda un 10%." lvl="2"/>
-        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 3% y aumenta el daño infligido por tus armas de mano izquierda un 15%." lvl="3"/>
+        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 1% y aumenta el daño infligido por tus armas de mano izquierda un 8%." lvl="1"/>
+        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 2% y aumenta el daño infligido por tus armas de mano izquierda un 16%." lvl="2"/>
+        <rank description="Aumenta tu probabilidad de golpear con armas cuerpo a cuerpo de una mano un 3% y aumenta el daño infligido por tus armas de mano izquierda un 25%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2042" name="Garras heladas" requires="2031" tier="2">
         <rank description="Parasitas calor de las víctimas de tu Fiebre de Escarcha, de modo que cuando su velocidad de ataque cuerpo a cuerpo se reduce, la tuya aumenta un 4% durante los próximos 20 s." lvl="1"/>
@@ -61,8 +61,8 @@
         <rank description="Tu Toque helado, Cadenas de hielo, Explosión aullante y Asolar generan 5 p. de poder rúnico extra." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_twilight" key="1971" name="Invierno interminable" tier="3">
-        <rank description="Tu Cadenas de hielo tiene un 50% de probabilidad de provocar Fiebre de Escarcha y el coste de tu Helada mental se reduce a 10 p. de poder rúnico." lvl="1"/>
-        <rank description="Tu Cadenas de hielo tiene un 100% de probabilidad de provocar Fiebre de Escarcha y el coste de tu Helada mental se reduce a 0 p. de poder rúnico." lvl="2"/>
+        <rank description="Tu fuerza aumenta un 2% y el coste de tu Helada mental se reduce a 10 p. de poder rúnico." lvl="1"/>
+        <rank description="Tu fuerza aumenta un 4% y tu Helada mental ya no cuesta poder rúnico." lvl="2"/>
       </talent>
       <talent column="1" icon="inv_chest_mail_04" key="1990" name="Placas de tinieblas gélidas" tier="4">
         <rank description="Reduce la probabilidad de que los ataques cuerpo a cuerpo te golpeen un 1%." lvl="1"/>
@@ -79,7 +79,8 @@
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2223" name="Garras heladas mejoradas" requires="2042" tier="5">
-        <rank description="Tu efecto de Garras heladas aumenta la celeridad cuerpo a cuerpo de tu banda o grupo un 20% durante los próximos 20 s. Además, aumenta tu celeridad un 5% en todo momento." lvl="1"/>
+        <rank description="Aumenta la celeridad cuerpo a cuerpo de tu banda o grupo que se encuentran en un radio de 100 m en un 20% y aumenta tu celeridad un 5%." lvl="1"/>
+        <spell castTime="0"/>
       </talent>
       <talent column="1" icon="inv_sword_112" key="1993" name="Combate despiadado" tier="5">
         <rank description="Tus hechizos Toque helado, Explosión aullante, Asolar y Golpe de Escarcha infligen un 6% de daño adicional al golpear a objetivos que se encuentran por debajo del 35% de salud." lvl="1"/>
@@ -102,8 +103,8 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_deathknight_frostpresence" key="2029" name="Presencia de escarcha mejorada" tier="6">
-        <rank description="En Presencia de sangre o Presencia profana retienes un 3% de aguante de Presencia de escarcha y el daño que recibas se reduce un 1% extra en Presencia de escarcha." lvl="1"/>
-        <rank description="En Presencia de sangre o Presencia profana retienes un 6% de aguante de Presencia de escarcha y el daño que recibas se reduce un 2% extra en Presencia de escarcha." lvl="2"/>
+        <rank description="En Presencia de sangre o Presencia profana retienes un 4% de aguante de Presencia de escarcha y el daño que recibas se reduce un 1% extra en Presencia de escarcha." lvl="1"/>
+        <rank description="En Presencia de sangre o Presencia profana retienes un 8% de aguante de Presencia de escarcha y el daño que recibas se reduce un 2% extra en Presencia de escarcha." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_dualwieldspecialization" key="2284" name="Amenaza de Thassarian" tier="7">
         <rank description="Con la doble empuñadura, tus facultades Golpe letal, Asolar, Golpe de peste, Golpe con runa, Golpe sangriento y Golpe de Escarcha tienen un 30% de probabilidad de infligir también daño con el arma de mano izquierda." lvl="1"/>
@@ -116,7 +117,7 @@
         <rank description="Aumenta el daño de Golpe sangriento y Golpe de Escarcha un 10%. Además, cuando golpeas con Golpe sangriento o Pestilencia, tienes un 100% de probabilidades de que la runa de sangre se convierta en una runa de muerte al activarse. Esta runa cuenta como un runa de sangre, de escarcha o profana." lvl="3"/>
       </talent>
       <talent column="2" icon="inv_armor_helm_plate_naxxramas_raidwarrior_c_01" key="1979" name="Armadura inquebrantable" tier="7">
-        <rank description="Refuerza tu armadura con una gruesa capa de hielo, aumenta tu armadura un 25% y aumenta tu fuerza un 10% durante 20 s." lvl="1"/>
+        <rank description="Refuerza tu armadura con una gruesa capa de hielo, aumenta tu armadura un 25% y aumenta tu fuerza un 20% durante 20 s." lvl="1"/>
         <spell castTime="0" cooldown="60000">
           <power cost="1" type="frost"/>
         </spell>
@@ -145,7 +146,7 @@
         <rank description="Tus hechizos y facultades infligen un 15% más de daño a los objetivos enfermos con Fiebre de Escarcha. También aumenta la pericia 5 p." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_frost_arcticwinds" key="1989" name="Explosión aullante" tier="10">
-        <rank description="Golpea al objetivo con un viento helado que inflige 198-214 p. de Escarcha a todos los enemigos en un radio de 10 m." lvl="1"/>
+        <rank description="Golpea al objetivo con un viento helado que inflige 198-214 p. de daño de Escarcha a todos los enemigos en un radio de 10 m." lvl="1"/>
         <spell castTime="0" cooldown="8000" maxRange="20">
           <power cost="1" type="unholy"/>
           <power cost="1" type="frost"/>
@@ -240,8 +241,8 @@
         <rank description="Proporciona un 3% de bonificación al daño físico que infliges durante 30 s después de asestar un golpe crítico con un golpe de arma, hechizo o facultad. El efecto se acumula hasta 3 veces." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_intensifyrage" key="2105" name="Poderío de abominación" tier="5">
-        <rank description="Tus Golpes sangrientos y tus Golpes en el corazón tienen un 25% de probabilidad y tu Golpe letal y tu Asolar tienen un 50% de probabilidad de aumentar un 10% el poder de ataque de los miembros del grupo y de la banda que se encuentren en un radio de 45 m durante 10 s. También aumenta tu fuerza total un 1%." lvl="1"/>
-        <rank description="Tus Golpes sangrientos y tus Golpes en el corazón tienen un 50% de probabilidad y tu Golpe letal y tu Asolar tiene un 100% de probabilidad de aumentar un 10% el poder de ataque de los miembros del grupo y de la banda que se encuentren en un radio de 45 m durante 10 s. También aumenta tu fuerza total un 2%." lvl="2"/>
+        <rank description="Aumenta en un 5% el poder de ataque de los miembros del grupo y de la banda que se encuentren en un radio de 100 m. También aumenta tu fuerza total un 1%." lvl="1"/>
+        <rank description="Aumenta en un 10% el poder de ataque de los miembros del grupo y de la banda que se encuentren en un radio de 100 m. También aumenta tu fuerza total un 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_soulleech" key="1960" name="Gusanos de sangre" tier="6">
         <rank description="Tus golpes con arma tienen un 3% de probabilidad de provocar que el taumaturgo engendre 2-4 gusanos de sangre. Los gusanos de sangre atacan a tus enemigos, sanándote la misma cantidad de daño que ellos infligen durante 20 s o hasta que mueran." lvl="1"/>
@@ -272,9 +273,9 @@
         </spell>
       </talent>
       <talent column="0" icon="ability_creature_cursed_02" key="1959" name="Voluntad de la necrópolis" tier="8">
-        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 5%. Este efecto solo ocurre una vez cada 15 s y no se activa por daño que inflija menos de un 5% de tu salud." lvl="1"/>
-        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 10%. Este efecto solo ocurre una vez cada 15 s y no se activa por daño que inflija menos de un 5% de tu salud." lvl="2"/>
-        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 15%. Este efecto solo ocurre una vez cada 15 s y no se activa por daño que inflija menos de un 5% de tu salud." lvl="3"/>
+        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 5%." lvl="1"/>
+        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 10%." lvl="2"/>
+        <rank description="El daño que recibas que deje tu salud por debajo del 35% o cuando tengas un 35% de salud se reduce un 15%." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_weapon_shortblade_40" key="1957" name="Golpe en el corazón" tier="8">
         <rank description="Golpea instantáneamente al objetivo y a su aliado más cercano, infligiéndoles un 50% de daño con arma más 125 p. al objetivo principal y un 25% de daño de arma más 63 p. al objetivo secundario. Cada objetivo recibe un 10% de daño adicional por cada una de las enfermedades que tengas activas sobre él." lvl="1"/>
@@ -368,7 +369,7 @@
         <rank description="Reduce el tiempo de reutilización de Levantar a muerto 90 s y el tiempo de reutilización de Ejército de muertos 4 min. También reduce el daño que recibe tu mascota de los ataques de área de efecto de criaturas un 90%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_contagion" key="1996" name="Añublo profano" tier="4">
-        <rank description="Provoca que las víctimas de tu Espiral de la muerte se vean rodeadas por un espeluznante enjambre de insectos profanos y que reciban un 10% del daño infligido por la Espiral de la muerte durante 10 s." lvl="1"/>
+        <rank description="Provoca que las víctimas de tu Espiral de la muerte se vean rodeadas por un espeluznante enjambre de insectos profanos y que reciban un 10% del daño infligido por la Espiral de la muerte durante 10 s y evitando que las enfermedades de la víctima puedan disiparse." lvl="1"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadowandflame" key="2005" name="Impuridad" tier="4">
         <rank description="El bonus de poder de ataque de tus hechizos se aumenta un 4%." lvl="1"/>
@@ -443,7 +444,7 @@
         <rank description="Tu fiebre de la cripta evoluciona en Peste de ébano, que aumenta el daño mágico recibido un 13% además de aumentar el daño recibido por enfermedad. Mejora tu probabilidad de golpe crítico con armas y hechizos un 3% en todo momento." lvl="3"/>
       </talent>
       <talent column="2" icon="spell_deathknight_scourgestrike" key="2216" name="Golpe de la Plaga" tier="8">
-        <rank description="Un golpe profano que inflige un 50% de daño con arma como daño físico más 170 p. Además, por cada una de tus enfermedades sobre el objetivo, infliges un 25% extra del daño físico infligido como daño de las Sombras." lvl="1"/>
+        <rank description="Un golpe profano que inflige un 70% de daño con arma como daño físico más 238 p. Además, por cada una de tus enfermedades sobre el objetivo, infliges un 12% extra del daño físico infligido como daño de las Sombras." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="1" type="unholy"/>
           <power cost="1" type="frost"/>

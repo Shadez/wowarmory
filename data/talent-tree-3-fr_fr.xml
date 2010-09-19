@@ -235,9 +235,9 @@
         <rank description="Confère à votre familier 100% de chances de bénéficier d'un bonus de 30% à la vitesse d'attaque pendant 8 sec après qu'il a infligé un coup critique." lvl="5"/>
       </talent>
       <talent column="0" icon="ability_hunter_ferociousinspiration" key="1800" name="Inspiration féroce" tier="6">
-        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 1% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 3%." lvl="1"/>
-        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 2% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 6%." lvl="2"/>
-        <rank description="Quand votre familier réussit un coup critique, les dégâts infligés par tous les membres du groupe et du raid augmentent de 3% pendant 10 sec. De plus, les dégâts infligés par Tir des arcanes augmentent de 9%." lvl="3"/>
+        <rank description="Tous les membres du groupe ou du raid voient tous leurs dégâts augmenter de 1% quand ils sont à moins de 100 mètres de votre familier. De plus, augmente les dégâts infligés par Tir des arcanes et Tir assuré de 3%." lvl="1"/>
+        <rank description="Tous les membres du groupe ou du raid voient tous leurs dégâts augmenter de 2% quand ils sont à moins de 100 mètres de votre familier. De plus, augmente les dégâts infligés par Tir des arcanes et Tir assuré de 6%." lvl="2"/>
+        <rank description="Tous les membres du groupe ou du raid voient tous leurs dégâts augmenter de 3% quand ils sont à moins de 100 mètres de votre familier. De plus, augmente les dégâts infligés par Tir des arcanes et Tir assuré de 9%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_ferociousbite" key="1386" name="Courroux bestial" requires="1387" tier="6">
         <rank description="Votre familier, fou de rage, inflige 50% de points de dégâts supplémentaires pendant 10 sec. Lorsqu’il est dans cet état, il n'éprouve ni pitié, ni remords, ni peur et ne peut plus être arrêté à moins d'être tué." lvl="1"/>
@@ -378,7 +378,7 @@
         <rank description="Vos critiques réussis avec Visée, Tir assuré et Tir de la chimère font saigner la cible, qui perd un montant de points de vie égal à 30% des dégâts infligés en 8 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_trueshot" key="1361" name="Aura de précision" requires="1353" tier="6">
-        <rank description="Augmente de 10% la puissance d'attaque des membres du groupe ou du raid qui se trouvent dans un rayon de 45 mètres. Dure jusqu’à annulation." lvl="1"/>
+        <rank description="Augmente de 10% la puissance d'attaque des membres du groupe ou du raid qui se trouvent dans un rayon de 100 mètres. Dure jusqu’à annulation." lvl="1"/>
         <spell castTime="0"/>
       </talent>
       <talent column="2" icon="ability_upgrademoonglaive" key="1821" name="Barrage amélioré" requires="1347" tier="6">

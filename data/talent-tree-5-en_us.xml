@@ -101,8 +101,8 @@
         <rank description="Reduces the mana cost of your Flash Heal by 15%, and increases the critical effect chance of your Flash Heal by 10% on friendly targets at or below 50% health." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Renewed Hope" tier="7">
-        <rank description="Increases the critical effect chance of your Flash Heal, Greater Heal and Penance (Heal) spells by 2% on targets afflicted by the Weakened Soul effect, and you have a 50% chance to reduce all damage taken by 3% for 20 sec to all friendly party and raid targets when you cast Power Word: Shield." lvl="1"/>
-        <rank description="Increases the critical effect chance of your Flash Heal, Greater Heal and Penance (Heal) spells by 4% on targets afflicted by the Weakened Soul effect, and you have a 100% chance to reduce all damage taken by 3% for 20 sec to all friendly party and raid targets when you cast Power Word: Shield." lvl="2"/>
+        <rank description="Increases the critical effect chance of your Flash Heal, Greater Heal and Penance (Heal) spells by 2% on targets afflicted by the Weakened Soul effect, and you have a 50% chance to reduce all damage taken by 3% for 1 min to all friendly party and raid targets when you cast Power Word: Shield. This effect has a 15 sec cooldown." lvl="1"/>
+        <rank description="Increases the critical effect chance of your Flash Heal, Greater Heal and Penance (Heal) spells by 4% on targets afflicted by the Weakened Soul effect, and you have a 100% chance to reduce all damage taken by 3% for 1 min to all friendly party and raid targets when you cast Power Word: Shield. This effect has a 15 sec cooldown." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_rapture" key="1896" name="Rapture" tier="7">
         <rank description="When your Power Word: Shield is completely absorbed or dispelled you are instantly energized with 1.5% of your total mana, and you have a 33% chance to energize your shielded target with 2% total mana, 8 rage, 16 energy or 32 runic power. This effect can only occur once every 12 sec." lvl="1"/>
@@ -233,7 +233,7 @@
         <rank description="Your mana regeneration from spirit is increased by 50% for 8 sec after you critically heal with Flash Heal, Greater Heal, Binding Heal or Empowered Renew." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Lightwell" requires="1561" tier="6">
-        <rank description="Creates a Holy Lightwell.  Members of your raid or party can click the Lightwell to restore 801 health over 6 sec.  Attacks done to you equal to 30% of your total health will cancel the effect. Lightwell lasts for 3 min or 10 charges." lvl="1"/>
+        <rank description="Creates a Holy Lightwell.  Friendly players can click the Lightwell to restore 801 health over 6 sec.  Attacks done to you equal to 30% of your total health will cancel the effect. Lightwell lasts for 3 min or 10 charges." lvl="1"/>
         <spell castTime="500" cooldown="180000" maxRange="40">
           <power cost="17" type="mana"/>
         </spell>
@@ -372,7 +372,7 @@
         <rank description="Increases the critical strike chance of your Mind Blast, Mind Flay and Mind Sear spells by 2%, and increases the periodic critical strike chance of your Vampiric Touch, Devouring Plague and Shadow Word: Pain spells by 3%." lvl="1"/>
         <rank description="Increases the critical strike chance of your Mind Blast, Mind Flay and Mind Sear spells by 4%, and increases the periodic critical strike chance of your Vampiric Touch, Devouring Plague and Shadow Word: Pain spells by 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Improved Devouring Plague" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Improved Devouring Plague" tier="5">
         <rank description="Increases the periodic damage done by your Devouring Plague by 5%, and when you cast Devouring Plague you instantly deal damage equal to 10% of its total periodic effect." lvl="1"/>
         <rank description="Increases the periodic damage done by your Devouring Plague by 10%, and when you cast Devouring Plague you instantly deal damage equal to 20% of its total periodic effect." lvl="2"/>
         <rank description="Increases the periodic damage done by your Devouring Plague by 15%, and when you cast Devouring Plague you instantly deal damage equal to 30% of its total periodic effect." lvl="3"/>

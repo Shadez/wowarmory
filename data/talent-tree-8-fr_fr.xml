@@ -116,9 +116,9 @@
         <rank description="Donne à vos effets d'engourdissement 15% de chances de déclencher l’effet Doigts de givre, qui permet à vos 2 prochains sorts d'agir comme si la cible était Gelée. Dure 15 sec." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_mage_brainfreeze" key="1854" name="Gel mental" tier="8">
-        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 5% de chances de supprimer le temps d'incantation et le coût en mana de votre prochaine Boule de feu." lvl="1"/>
-        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 10% de chances de supprimer le temps d'incantation et le coût en mana de votre prochaine Boule de feu." lvl="2"/>
-        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 15% de chances de supprimer le temps d'incantation et le coût en mana de votre prochaine Boule de feu." lvl="3"/>
+        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 5% de chances de supprimer le temps d'incantation et le coût en mana de votre prochain sort Boule de feu ou Eclair de givrefeu." lvl="1"/>
+        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 10% de chances de supprimer le temps d'incantation et le coût en mana de votre prochain sort Boule de feu ou Eclair de givrefeu." lvl="2"/>
+        <rank description="Vos sorts de Givre infligeant des dégâts et pouvant transir ont 15% de chances de supprimer le temps d'incantation et le coût en mana de votre prochain sort Boule de feu ou Eclair de givrefeu." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_frost_summonwaterelemental_2" key="1741" name="Invocation d'un élémentaire d'eau" tier="8">
         <rank description="Invoque un élémentaire d'eau qui se bat pour le lanceur de sorts pendant 45 sec." lvl="1"/>
@@ -127,9 +127,9 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_frost_summonwaterelemental_2" key="1855" name="Hiver persistant" requires="1741" tier="8">
-        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 5 sec. et votre sort Eclair de givre a 33% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 0,25% de leur maximum de mana par seconde pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="1"/>
-        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 10 sec. et votre sort Eclair de givre a 66% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 0,25% de leur maximum de mana par seconde pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="2"/>
-        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 15 sec. et votre sort Eclair de givre a 100% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 0,25% de leur maximum de mana par seconde pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="3"/>
+        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 5 sec. et votre sort Eclair de givre a 33% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 1% de leur maximum de mana toutes les 5 secondes pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="1"/>
+        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 10 sec. et votre sort Eclair de givre a 66% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 1% de leur maximum de mana toutes les 5 secondes pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="2"/>
+        <rank description="Augmente la durée de votre sort Invocation d'un élémentaire d'eau de 15 sec. et votre sort Eclair de givre a 100% de chances de conférer l'effet de Requinquage à un maximum de 10 membres du groupe ou raid avec une régénération de mana égale à 1% de leur maximum de mana toutes les 5 secondes pendant 15 sec. Cet effet ne peut se produire plus d'une fois toutes les 6 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_chilledtothebone" key="1856" name="Transi jusqu'aux os" tier="9">
         <rank description="Augmente les points de dégâts infligés par vos sorts Eclair de givre, Eclair de givrefeu et Javelot de glace de 1% et réduit la vitesse de déplacement de toutes les cibles transies de 2% supplémentaires." lvl="1"/>
@@ -163,11 +163,11 @@
         <rank description="Réduit le temps d'incantation de votre sort Boule de feu de 0.5 secondes." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_fire_incinerate" key="34" name="Enflammer" tier="1">
-        <rank description="Les coups critiques causés par vos sorts à des dégâts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 8% des dégâts de votre sort en 4 sec." lvl="1"/>
-        <rank description="Les coups critiques causés par vos sorts à des dégâts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 16% des dégâts de votre sort en 4 sec." lvl="2"/>
-        <rank description="Les coups critiques causés par vos sorts à des dégâts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 24% des dégâts de votre sort en 4 sec." lvl="3"/>
-        <rank description="Les coups critiques causés par vos sorts à des dégâts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 32% des dégâts de votre sort en 4 sec." lvl="4"/>
-        <rank description="Les coups critiques causés par vos sorts à des dégâts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 40% des dégâts de votre sort en 4 sec." lvl="5"/>
+        <rank description="Les coups critiques causés par vos sorts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 8% des dégâts de votre sort en 4 sec." lvl="1"/>
+        <rank description="Les coups critiques causés par vos sorts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 16% des dégâts de votre sort en 4 sec." lvl="2"/>
+        <rank description="Les coups critiques causés par vos sorts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 24% des dégâts de votre sort en 4 sec." lvl="3"/>
+        <rank description="Les coups critiques causés par vos sorts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 32% des dégâts de votre sort en 4 sec." lvl="4"/>
+        <rank description="Les coups critiques causés par vos sorts de Feu enflamment la cible, ce qui lui inflige un montant de dégâts supplémentaire égal à 40% des dégâts de votre sort en 4 sec." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_fire_totemofwrath" key="2212" name="Détermination brûlante" tier="1">
         <rank description="Quand vous êtes interrompu ou réduit au silence, vous avez 50% de chances de devenir insensible au prochain mécanisme d'interruption ou de silence. Dure 20 sec." lvl="1"/>
@@ -194,8 +194,8 @@
         </spell>
       </talent>
       <talent column="3" icon="spell_fire_fire" key="23" name="Ame ardente" tier="2">
-        <rank description="Réduit l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez des sorts de Feu de 35% et réduit la menace générée par vos sorts de Feu de 5%." lvl="1"/>
-        <rank description="Réduit l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez des sorts de Feu de 70% et réduit la menace générée par vos sorts de Feu de 10%." lvl="2"/>
+        <rank description="Réduit l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez des sorts de Feu de 35% et réduit la menace générée par vos sorts de Feu de 10%." lvl="1"/>
+        <rank description="Réduit l'interruption causée par les attaques infligeant des dégâts pendant que vous incantez des sorts de Feu de 70% et réduit la menace générée par vos sorts de Feu de 20%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_fire_soulburn" key="25" name="Brûlure améliorée" tier="3">
         <rank description="Augmente vos chances de coup critique avec Brûlure, Boule de feu et Eclair de givrefeu de 1% supplémentaires et vos sorts de Brûlure infligeant des dégâts ont 33% de chances de rendre votre cible vulnérable aux dégâts de sorts. Cette vulnérabilité augmente les chances de coup critique avec les sorts contre cette cible de 5% et dure 30 sec." lvl="1"/>
@@ -245,7 +245,7 @@
       </talent>
       <talent column="1" icon="spell_fire_sealoffire" key="36" name="Combustion" requires="33" tier="6">
         <rank description="Lorsqu'il est activé, ce sort augmente votre bonus aux dégâts des coups critiques avec les sorts de dégâts de Feu de 50%, et chaque fois que vous touchez avec un sort de ce type vous augmentez vos chances de coup critique avec les sorts de dégâts de Feu de 10%. Cet effet dure jusqu'à ce que vous ayez infligé 3 coups critiques non périodiques avec des sorts de Feu." lvl="1"/>
-        <spell castTime="0" cooldown="180000"/>
+        <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="spell_fire_moltenblood" key="1732" name="Fureur de lave" tier="6">
         <rank description="Augmente les dégâts de tous les sorts contre les cibles disposant de moins de 35% de leurs points de vie de 6%." lvl="1"/>
@@ -256,9 +256,9 @@
         <rank description="Lorsque vous avez moins de 35% de vie, tous les dégâts subis sont réduits de 20%, le temps d'incantation de votre sort Explosion pyrotechnique est réduit de 3.5 sec. et son temps de recharge est augmenté de 5 sec. De plus, les attaques en mêlée et à distance contre vous ont 10% de chances de faire tomber l'arme en main droite et les armes à distance de l'attaquant." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_fire_flamebolt" key="1734" name="Feu surpuissant" tier="7">
-        <rank description="Augmente les dégâts de vos sorts Boule de feu et Eclair de givrefeu d'un montant égal à 5% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 33% de chances de récupérer 2% de votre mana de base." lvl="1"/>
-        <rank description="Augmente les dégâts de vos sorts Boule de feu et Eclair de givrefeu d'un montant égal à 10% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 67% de chances de récupérer 2% de votre mana de base." lvl="2"/>
-        <rank description="Augmente les dégâts de vos sorts Boule de feu et Eclair de givrefeu d'un montant égal à 15% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 100% de chances de récupérer 2% de votre mana de base." lvl="3"/>
+        <rank description="Augmente les dégâts de vos sorts Boule de feu, Eclair de givrefeu et Explosion pyrotechnique d'un montant égal à 5% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 33% de chances de récupérer 2% de votre mana de base." lvl="1"/>
+        <rank description="Augmente les dégâts de vos sorts Boule de feu, Eclair de givrefeu et Explosion pyrotechnique d'un montant égal à 10% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 67% de chances de récupérer 2% de votre mana de base." lvl="2"/>
+        <rank description="Augmente les dégâts de vos sorts Boule de feu, Eclair de givrefeu et Explosion pyrotechnique d'un montant égal à 15% de votre puissance des sorts. De plus, chaque fois que votre talent Enflammer inflige des dégâts, vous avez 100% de chances de récupérer 2% de votre mana de base." lvl="3"/>
       </talent>
       <talent column="0" icon="ability_mage_firestarter" key="1849" name="Boute-flammes" requires="1735" tier="8">
         <rank description="Lorsqu'ils infligent des dégâts, vos sorts Vague explosive et Souffle du dragon ont 50% de chances de rendre l'incantation de votre prochain sort Choc de flammes instantanée et sans coût en mana. Dure 10 sec." lvl="1"/>
@@ -289,7 +289,7 @@
         </spell>
       </talent>
     </tree>
-    <tree bgImage="MageArcane" icon="spell_holy_magicalsentry" key="Arcane" name="Arcane" order="0">
+    <tree bgImage="MageArcane" icon="spell_holy_magicalsentry" key="Arcane" name="Arcanes" order="0">
       <talent column="0" icon="spell_holy_dispelmagic" key="74" name="Subtilité des arcanes" tier="0">
         <rank description="Réduit de 15% les chances que vos sorts bénéfiques soient dissipés et réduit de 20% la menace générée par vos sorts des Arcanes." lvl="1"/>
         <rank description="Réduit de 30% les chances que vos sorts bénéfiques soient dissipés et réduit de 40% la menace générée par vos sorts des Arcanes." lvl="2"/>
@@ -356,9 +356,9 @@
         <rank description="Vous confère 50% de votre vitesse de récupération du mana normale pendant l'incantation." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_mage_tormentoftheweak" key="2222" name="Tourmenter les faibles" tier="3">
-        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 4% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="1"/>
-        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 8% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="2"/>
-        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 12% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="3"/>
+        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Explosion pyrotechnique, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 4% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="1"/>
+        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Explosion pyrotechnique, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 8% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="2"/>
+        <rank description="Vos techniques Eclair de givre, Boule de feu, Eclair de givrefeu, Explosion pyrotechnique, Projectiles des arcanes, Déflagration des arcanes et Barrage des arcanes infligent 12% de dégâts supplémentaires aux cibles piégées ou ralenties." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_arcane_blink" key="1724" name="Transfert amélioré" tier="4">
         <rank description="Réduit le coût en mana de Transfert de 25% et pendant 4 sec après l'avoir lancé, la probabilité que vous soyez touché par tous les sorts et attaques est réduite de 15%." lvl="1"/>
@@ -390,18 +390,18 @@
         <rank description="Augmente de 30% les chances de coup critique de tous les sorts infligeant des dégâts lancés sous l'effet d'Idées claires ou Présence spirituelle." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_nature_starfall" key="1727" name="Renforcement arcanique" tier="6">
-        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 15% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 3% de votre puissance des sorts. De plus, lorsque vous réussissez un coup critique avec Projectiles des arcanes, Explosion des arcanes, Déflagration des arcanes ou Barrage des arcanes, tous les membres du groupe et du raid voient tous leurs dégâts augmenter de 1% pendant 10 sec." lvl="1"/>
-        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 30% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 6% de votre puissance des sorts. De plus, lorsque vous réussissez un coup critique avec Projectiles des arcanes, Explosion des arcanes, Déflagration des arcanes ou Barrage des arcanes, tous les membres du groupe et du raid voient tous leurs dégâts augmenter de 2% pendant 10 sec." lvl="2"/>
-        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 45% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 9% de votre puissance des sorts. De plus, lorsque vous réussissez un coup critique avec Projectiles des arcanes, Explosion des arcanes, Déflagration des arcanes ou Barrage des arcanes, tous les membres du groupe et du raid voient tous leurs dégâts augmenter de 3% pendant 10 sec." lvl="3"/>
+        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 15% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 3% de votre puissance des sorts. De plus, augmente les dégâts de tous les membres du groupe et du raid se trouvant à moins de 100 mètres de 1%." lvl="1"/>
+        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 30% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 6% de votre puissance des sorts. De plus, augmente les dégâts de tous les membres du groupe et du raid se trouvant à moins de 100 mètres de 2%." lvl="2"/>
+        <rank description="Augmente les dégâts de votre sort Projectiles des arcanes d'un montant égal à 45% de votre puissance des sorts et les dégâts de Déflagration des arcanes de 9% de votre puissance des sorts. De plus, augmente les dégâts de tous les membres du groupe et du raid se trouvant à moins de 100 mètres de 3%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_lightning" key="87" name="Pouvoir des arcanes" requires="421" tier="6">
         <rank description="Lorsqu'il est activé, vos sorts infligent 20% de points de dégâts supplémentaires et ils vous coûtent 20% de points de mana supplémentaires. Cet effet dure 15 sec." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="ability_mage_incantersabsorbtion" key="1844" name="Absorption de l'incantateur" tier="6">
-        <rank description="Lorsque vous absorbez des dégâts, les dégâts infligés par vos sorts sont augmentés de 5% du montant absorbé pendant 10 sec. L'augmentation totale des dégâts de vos sorts ne peut excéder 5% de vos points de vie." lvl="1"/>
-        <rank description="Lorsque vous absorbez des dégâts, les dégâts infligés par vos sorts sont augmentés de 10% du montant absorbé pendant 10 sec. L'augmentation totale des dégâts de vos sorts ne peut excéder 5% de vos points de vie." lvl="2"/>
-        <rank description="Lorsque vous absorbez des dégâts, les dégâts infligés par vos sorts sont augmentés de 15% du montant absorbé pendant 10 sec. L'augmentation totale des dégâts de vos sorts ne peut excéder 5% de vos points de vie." lvl="3"/>
+        <rank description="Lorsque votre Bouclier de mana, Gardien de givre, Gardien de feu ou Barrière de glace absorbe des dégâts, les dégâts infligés par vos sorts sont augmentés de 5% du montant absorbé pendant 10 sec." lvl="1"/>
+        <rank description="Lorsque votre Bouclier de mana, Gardien de givre, Gardien de feu ou Barrière de glace absorbe des dégâts, les dégâts infligés par vos sorts sont augmentés de 10% du montant absorbé pendant 10 sec." lvl="2"/>
+        <rank description="Lorsque votre Bouclier de mana, Gardien de givre, Gardien de feu ou Barrière de glace absorbe des dégâts, les dégâts infligés par vos sorts sont augmentés de 15% du montant absorbé pendant 10 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_potentspirit" key="1843" name="Flux arcaniques" requires="87" tier="7">
         <rank description="Réduit le temps de recharge de vos sorts Présence spirituelle, Pouvoir des arcanes et Invisibilité de 15% et le temps de recharge de votre sort Evocation de 1 min." lvl="1"/>

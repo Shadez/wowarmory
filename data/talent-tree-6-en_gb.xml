@@ -29,9 +29,9 @@
         <rank description="Increases your Frost and Shadow damage by 10%." lvl="5"/>
       </talent>
       <talent column="3" icon="ability_dualwield" key="2022" name="Nerves of Cold Steel" tier="1">
-        <rank description="Increases your chance to hit with one-handed melee weapons by 1% and increases the damage done by your offhand weapon by 5%." lvl="1"/>
-        <rank description="Increases your chance to hit with one-handed melee weapons by 2% and increases the damage done by your offhand weapon by 10%." lvl="2"/>
-        <rank description="Increases your chance to hit with one-handed melee weapons by 3% and increases the damage done by your offhand weapon by 15%." lvl="3"/>
+        <rank description="Increases your chance to hit with one-handed melee weapons by 1% and increases the damage done by your offhand weapon by 8%." lvl="1"/>
+        <rank description="Increases your chance to hit with one-handed melee weapons by 2% and increases the damage done by your offhand weapon by 16%." lvl="2"/>
+        <rank description="Increases your chance to hit with one-handed melee weapons by 3% and increases the damage done by your offhand weapon by 25%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2042" name="Icy Talons" requires="2031" tier="2">
         <rank description="You leech heat from victims of your Frost Fever, so that when their melee attack speed is reduced, yours increases by 4% for the next 20 sec." lvl="1"/>
@@ -61,8 +61,8 @@
         <rank description="Your Chains of Ice, Howling Blast, Icy Touch and Obliterate generate 5 additional runic power." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_twilight" key="1971" name="Endless Winter" tier="3">
-        <rank description="Your Chains of Ice has a 50% chance to cause Frost Fever and the cost of your Mind Freeze is reduced to 10 runic power." lvl="1"/>
-        <rank description="Your Chains of Ice has a 100% chance to cause Frost Fever and the cost of your Mind Freeze is reduced to no runic power." lvl="2"/>
+        <rank description="Your strength is increased by 2% and the cost of your Mind Freeze is reduced to 10 runic power." lvl="1"/>
+        <rank description="Your strength is increased by 4% and your Mind Freeze no longer costs runic power." lvl="2"/>
       </talent>
       <talent column="1" icon="inv_chest_mail_04" key="1990" name="Frigid Dreadplate" tier="4">
         <rank description="Reduces the chance melee attacks will hit you by 1%." lvl="1"/>
@@ -79,7 +79,8 @@
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2223" name="Improved Icy Talons" requires="2042" tier="5">
-        <rank description="Your Icy Talons effect increases the melee haste of your group or raid by 20% for the next 20 sec.  In addition, increases your haste by 5% at all times." lvl="1"/>
+        <rank description="Increases the melee haste of all party and raid members within 100 yds by 20% and your haste by an additional 5%." lvl="1"/>
+        <spell castTime="0"/>
       </talent>
       <talent column="1" icon="inv_sword_112" key="1993" name="Merciless Combat" tier="5">
         <rank description="Your Icy Touch, Howling Blast, Obliterate and Frost Strike do an additional 6% damage when striking targets with less than 35% health." lvl="1"/>
@@ -102,8 +103,8 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_deathknight_frostpresence" key="2029" name="Improved Frost Presence" tier="6">
-        <rank description="While in Blood Presence or Unholy Presence, you retain 3% stamina from Frost Presence, and damage done to you is decreased by an additional 1% in Frost Presence." lvl="1"/>
-        <rank description="While in Blood Presence or Unholy Presence, you retain 6% stamina from Frost Presence, and damage done to you is decreased by an additional 2% in Frost Presence." lvl="2"/>
+        <rank description="While in Blood Presence or Unholy Presence, you retain 4% stamina from Frost Presence, and damage done to you is decreased by an additional 1% in Frost Presence." lvl="1"/>
+        <rank description="While in Blood Presence or Unholy Presence, you retain 8% stamina from Frost Presence, and damage done to you is decreased by an additional 2% in Frost Presence." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_dualwieldspecialization" key="2284" name="Threat of Thassarian" tier="7">
         <rank description="When dual-wielding, your Death Strikes, Obliterates, Plague Strikes, Rune Strikes, Blood Strikes and Frost Strikes have a 30% chance to also deal damage with your offhand weapon." lvl="1"/>
@@ -116,7 +117,7 @@
         <rank description="Increases Blood Strike and Frost Strike damage by 10%.  In addition, whenever you hit with Blood Strike or Pestilence there is a 100% chance that the Blood Rune will become a Death Rune when it activates.  Death Runes count as a Blood, Frost or Unholy Rune." lvl="3"/>
       </talent>
       <talent column="2" icon="inv_armor_helm_plate_naxxramas_raidwarrior_c_01" key="1979" name="Unbreakable Armor" tier="7">
-        <rank description="Reinforces your armor with a thick coat of ice, increasing your armor by 25% and increasing your Strength by 10% for 20 sec." lvl="1"/>
+        <rank description="Reinforces your armor with a thick coat of ice, increasing your armor by 25% and increasing your Strength by 20% for 20 sec." lvl="1"/>
         <spell castTime="0" cooldown="60000">
           <power cost="1" type="frost"/>
         </spell>
@@ -240,8 +241,8 @@
         <rank description="Gives you a 3% bonus to physical damage you deal for 30 sec after dealing a critical strike from a weapon swing, spell, or ability.  This effect stacks up to 3 times." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_intensifyrage" key="2105" name="Abomination's Might" tier="5">
-        <rank description="Your Blood Strikes and Heart Strikes have a 25% chance and your Death Strikes and Obliterates have a 50% chance to increase the attack power by 10% of party and raid members within 45 yards for 10 sec.  Also increases your total Strength by 1%." lvl="1"/>
-        <rank description="Your Blood Strikes and Heart Strikes have a 50% chance and your Death Strikes and Obliterates have a 100% chance to increase the attack power by 10% of party and raid members within 45 yards for 10 sec.  Also increases your total Strength by 2%." lvl="2"/>
+        <rank description="Increases the attack power by 5% of party and raid members within 100 yards.  Also increases your total Strength by 1%." lvl="1"/>
+        <rank description="Increases the attack power by 10% of party and raid members within 100 yards.  Also increases your total Strength by 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_soulleech" key="1960" name="Bloodworms" tier="6">
         <rank description="Your weapon hits have a 3% chance to cause the target to spawn 2-4 Bloodworms.  Bloodworms attack your enemies, healing you as they do damage for 20 sec or until killed." lvl="1"/>
@@ -272,9 +273,9 @@
         </spell>
       </talent>
       <talent column="0" icon="ability_creature_cursed_02" key="1959" name="Will of the Necropolis" tier="8">
-        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 5%.  This effect cannot occur more often than once every 15 sec and cannot be triggered by damage which deals less than 5% of your health." lvl="1"/>
-        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 10%.  This effect cannot occur more often than once every 15 sec and cannot be triggered by damage which deals less than 5% of your health." lvl="2"/>
-        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 15%.  This effect cannot occur more often than once every 15 sec and cannot be triggered by damage which deals less than 5% of your health." lvl="3"/>
+        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 5%." lvl="1"/>
+        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 10%." lvl="2"/>
+        <rank description="Damage that would take you below 35% health or taken while you are at 35% health is reduced by 15%." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_weapon_shortblade_40" key="1957" name="Heart Strike" tier="8">
         <rank description="Instantly strike the target and his nearest ally, causing 50% weapon damage plus 125 on the primary target, and 25% weapon damage plus 63 on the secondary target.  Each target takes 10% additional damage for each of your diseases active on that target." lvl="1"/>
@@ -368,7 +369,7 @@
         <rank description="Reduces the cooldown on Raise Dead by 90 sec and the cooldown on Army of the Dead by 4 min.  Also reduces the damage your pet takes from creature area of effect attacks by 90%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_contagion" key="1996" name="Unholy Blight" tier="4">
-        <rank description="Causes the victims of your Death Coil to be surrounded by a vile swarm of unholy insects, taking 10% of the damage done by the Death Coil over 10 sec." lvl="1"/>
+        <rank description="Causes the victims of your Death Coil to be surrounded by a vile swarm of unholy insects, taking 10% of the damage done by the Death Coil over 10 sec, and preventing any diseases on the victim from being dispelled." lvl="1"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadowandflame" key="2005" name="Impurity" tier="4">
         <rank description="The attack power bonus of your spells is increased by 4%." lvl="1"/>
@@ -443,7 +444,7 @@
         <rank description="Your Crypt Fever morphs into Ebon Plague, which increases magic damage taken by 13% in addition to increasing disease damage taken.  Improves your critical strike chance with weapons and spells by 3% at all times." lvl="3"/>
       </talent>
       <talent column="2" icon="spell_deathknight_scourgestrike" key="2216" name="Scourge Strike" tier="8">
-        <rank description="An unholy strike that deals 50% of weapon damage as Physical damage plus 170.  In addition, for each of your diseases on your target, you deal an additional 25% of the Physical damage done as Shadow damage." lvl="1"/>
+        <rank description="An unholy strike that deals 70% of weapon damage as Physical damage plus 238.  In addition, for each of your diseases on your target, you deal an additional 12% of the Physical damage done as Shadow damage." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="1" type="unholy"/>
           <power cost="1" type="frost"/>

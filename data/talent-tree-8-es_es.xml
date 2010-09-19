@@ -116,9 +116,9 @@
         <rank description="Da a tus efectos de Escalofrío un 15% de probabilidad de otorgarte el efecto de Dedos de Escarcha, que hace que tus siguientes 2 hechizos sobre el objetivo actúen como si el objetivo estuviera congelado. Dura 15 s." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_mage_brainfreeze" key="1854" name="Congelación cerebral" tier="8">
-        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 5% de probabilidad de que tu siguiente Bola de Fuego sea de lanzamiento instantáneo y que no cueste maná." lvl="1"/>
-        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 10% de probabilidad de que tu siguiente Bola de Fuego sea de lanzamiento instantáneo y que no cueste maná." lvl="2"/>
-        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 15% de probabilidad de que tu siguiente Bola de Fuego sea de lanzamiento instantáneo y que no cueste maná." lvl="3"/>
+        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 5% de probabilidad de que tu siguiente Bola de Fuego o Descarga de Pirofrío sea de lanzamiento instantáneo y que no cueste maná." lvl="1"/>
+        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 10% de probabilidad de que tu siguiente Bola de Fuego o Descarga de Pirofrío sea de lanzamiento instantáneo y que no cueste maná." lvl="2"/>
+        <rank description="Tus hechizos de daño de Escarcha con efectos escalofriantes tienen un 15% de probabilidad de que tu siguiente Bola de Fuego o Descarga de Pirofrío sea de lanzamiento instantáneo y que no cueste maná." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_frost_summonwaterelemental_2" key="1741" name="Invocar elemental de agua" tier="8">
         <rank description="Invoca un elemental de agua que lucha por el taumaturgo durante 45 s." lvl="1"/>
@@ -127,9 +127,9 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_frost_summonwaterelemental_2" key="1855" name="Invierno duradero" requires="1741" tier="8">
-        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 5 s y tu hechizo Descarga de Escarcha tiene un 33% de probabilidad de otorgar el efecto de Reposición hasta a 10 miembros del grupo o banda una cantidad de regeneración de maná igual al 0.25% de su maná total por segundo cada 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="1"/>
-        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 10 s y tu hechizo Descarga de Escarcha tiene un 66% de probabilidad de otorgar el efecto de Reposición hasta a 10 miembros del grupo o banda una cantidad de regeneración de maná igual al 0.25% de su maná total por segundo cada 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="2"/>
-        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 15 s y tu hechizo Descarga de Escarcha tiene un 100% de probabilidad de otorgar el efecto de Reposición hasta a 10 miembros del grupo o banda una cantidad de regeneración de maná igual al 0.25% de su maná total por segundo cada 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="3"/>
+        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 5 s y tu hechizo Descarga de Escarcha tiene un 33% de probabilidad de otorgar a hasta 10 miembros del grupo o la banda una regeneración de maná equivalente al 1% de su maná máximo cada 5 segundos durante 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="1"/>
+        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 10 s y tu hechizo Descarga de Escarcha tiene un 66% de probabilidad de otorgar a hasta 10 miembros del grupo o la banda una regeneración de maná equivalente al 1% de su maná máximo cada 5 segundos durante 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="2"/>
+        <rank description="Aumenta la duración de tu hechizo Invocar a elemental de agua 15 s y tu hechizo Descarga de Escarcha tiene un 100% de probabilidad de otorgar a hasta 10 miembros del grupo o la banda una regeneración de maná equivalente al 1% de su maná máximo cada 5 segundos durante 15 s. Este efecto solo ocurre una vez cada 6 s." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_chilledtothebone" key="1856" name="Helado hasta los huesos" tier="9">
         <rank description="Aumenta el daño provocado por tus hechizos Descarga de Escarcha, Descarga de Pirofrío y Lanza de hielo un 1% y reduce la velocidad de movimiento de todos los objetivos congelados un 2% extra." lvl="1"/>
@@ -139,7 +139,7 @@
         <rank description="Aumenta el daño provocado por tus hechizos Descarga de Escarcha, Descarga de Pirofrío y Lanza de hielo un 5% y reduce la velocidad de movimiento de todos los objetivos congelados un 10% extra." lvl="5"/>
       </talent>
       <talent column="1" icon="ability_mage_deepfreeze" key="1857" name="Congelación profunda" tier="10">
-        <rank description="Aturde al objetivo durante 5 s. Solo se puede usar en objetivos congelados. Inflige de 1469 a 1741  p. de daño a los objetivos inmunes de forma permanente al aturdimiento." lvl="1"/>
+        <rank description="Aturde al objetivo durante 5 s. Solo se puede usar en objetivos congelados. Inflige de 1469 a 1741 p. de daño a los objetivos inmunes de forma permanente al aturdimiento." lvl="1"/>
         <spell castTime="0" cooldown="30000" maxRange="30">
           <power cost="9" type="mana"/>
         </spell>
@@ -194,8 +194,8 @@
         </spell>
       </talent>
       <talent column="3" icon="spell_fire_fire" key="23" name="Alma ardiente" tier="2">
-        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas hechizos de Fuego un 35% y reduce la amenaza causada por tus hechizos de Fuego un 5%." lvl="1"/>
-        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas hechizos de Fuego un 70% y reduce la amenaza causada por tus hechizos de Fuego un 10%." lvl="2"/>
+        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas hechizos de Fuego un 35% y reduce la amenaza causada por tus hechizos de Fuego un 10%." lvl="1"/>
+        <rank description="Reduce el retroceso de los ataques dañinos mientras lanzas hechizos de Fuego un 70% y reduce la amenaza causada por tus hechizos de Fuego un 20%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_fire_soulburn" key="25" name="Agostar mejorado" tier="3">
         <rank description="Aumenta tu probabilidad de golpe crítico con Agostar, Bola de Fuego y Descarga de Pirofrío un 1% extra y tus hechizos de daño Agostar tienen un 33% de probabilidad de volver al objetivo vulnerable al daño con hechizos, aumentado la probabilidad de golpe crítico con hechizos frente a ese objetivo un 5% y dura 30 s." lvl="1"/>
@@ -222,7 +222,7 @@
         <rank description="Aumenta un 6% la probabilidad de golpe crítico de tus hechizos de Fuego." lvl="3"/>
       </talent>
       <talent column="2" icon="spell_holy_excorcism_02" key="32" name="Ola explosiva" requires="29" tier="4">
-        <rank description="El taumaturgo irradia una ola de llamas que inflige 154-186 p. de daño de Fuego a todos los enemigos a los que alcance la ola, los derriba y los atonta durante 6 s." lvl="1"/>
+        <rank description="El taumaturgo irradia una ola de llamas que inflige 154-186 p. de daño de Fuego a todos los enemigos a los que alcance la ola, los repele y los atonta durante 6 s." lvl="1"/>
         <spell castTime="0" cooldown="30000">
           <power cost="7" type="mana"/>
         </spell>
@@ -245,7 +245,7 @@
       </talent>
       <talent column="1" icon="spell_fire_sealoffire" key="36" name="Combustión" requires="33" tier="6">
         <rank description="Cuando se activa, este hechizo aumenta tu bonus de daño con golpe crítico con hechizos de daño de Fuego un 50%, y provoca que cada uno de tus golpes con hechizos de daño de Fuego aumente tu probabilidad de golpe crítico con hechizos de daño de Fuego un 10%. El efecto dura hasta que asestes 3 golpes críticos no periódicos con hechizos de Fuego." lvl="1"/>
-        <spell castTime="0" cooldown="180000"/>
+        <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="spell_fire_moltenblood" key="1732" name="Furia de arrabio" tier="6">
         <rank description="Aumenta el daño de todos los hechizos que lances contra objetivos que tengan menos del 35% de salud un 6%." lvl="1"/>
@@ -256,9 +256,9 @@
         <rank description="Cuando estás por debajo del 35% de salud, todo el daño recibido se reduce un 20% El tiempo de lanzamiento de tu hechizo Piroexplosión se reduce 3.5 s, mientras que el tiempo de reutilización aumenta 5 s. Además, los ataques cuerpo a cuerpo y a distancia que recibas tienen una probabilidad del 10% de desarmar las armas de mano principal y a distancia del atacante." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_fire_flamebolt" key="1734" name="Fuego potenciado" tier="7">
-        <rank description="Aumenta el daño de tus hechizos Bola de Fuego y Descarga de Pirofrío una cantidad igual al 5% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 33% de probabilidad de recuperar un 2% de tu maná base." lvl="1"/>
-        <rank description="Aumenta el daño de tus hechizos Bola de Fuego y Descarga de Pirofrío una cantidad igual al 10% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 67% de probabilidad de recuperar un 2% de tu maná base." lvl="2"/>
-        <rank description="Aumenta el daño de tus hechizos Bola de Fuego y Descarga de Pirofrío una cantidad igual al 15% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 100% de probabilidad de recuperar un 2% de tu maná base." lvl="3"/>
+        <rank description="Aumenta el daño de tus hechizos Bola de Fuego, Descarga de Pirofrío y Piroexplosión una cantidad igual al 5% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 33% de probabilidad de recuperar un 2% de tu maná base." lvl="1"/>
+        <rank description="Aumenta el daño de tus hechizos Bola de Fuego, Descarga de Pirofrío y Piroexplosión una cantidad igual al 10% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 67% de probabilidad de recuperar un 2% de tu maná base." lvl="2"/>
+        <rank description="Aumenta el daño de tus hechizos Bola de Fuego, Descarga de Pirofrío y Piroexplosión una cantidad igual al 15% de tu poder con hechizos. Además, cada vez que tu talento Ignición inflige daño, tienes un 100% de probabilidad de recuperar un 2% de tu maná base." lvl="3"/>
       </talent>
       <talent column="0" icon="ability_mage_firestarter" key="1849" name="Acelerador de ignición" requires="1735" tier="8">
         <rank description="Tus hechizos dañinos Ola explosiva y Aliento de dragón tienen un 50% de probabilidad de provocar que tu siguiente hechizo Fogonazo sea de lanzamiento instantáneo y no cueste maná. Dura 10 s." lvl="1"/>
@@ -356,9 +356,9 @@
         <rank description="Permite que un 50% de la regeneración de maná continúe mientras lanzas hechizos." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_mage_tormentoftheweak" key="2222" name="Torturar a los débiles" tier="3">
-        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 4% más de daño sobre los objetivos frenados o ralentizados." lvl="1"/>
-        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 8% más de daño sobre los objetivos frenados o ralentizados." lvl="2"/>
-        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 12% más de daño sobre los objetivos frenados o ralentizados." lvl="3"/>
+        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Piroexplosión, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 4% más de daño sobre los objetivos frenados o ralentizados." lvl="1"/>
+        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Piroexplosión, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 8% más de daño sobre los objetivos frenados o ralentizados." lvl="2"/>
+        <rank description="Tus facultades Descarga de Escarcha, Bola de Fuego, Descarga de Pirofrío, Piroexplosión, Misiles Arcanos, Explosión Arcana y Tromba Arcana infligen un 12% más de daño sobre los objetivos frenados o ralentizados." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_arcane_blink" key="1724" name="Traslación mejorada" tier="4">
         <rank description="Reduce el coste de maná de Traslación un 25% y durante 4 s después de lanzarlo se reduce la probabilidad de que te alcancen todos los ataques y hechizos un 15%." lvl="1"/>
@@ -390,18 +390,18 @@
         <rank description="Aumenta la probabilidad de golpe crítico de tu siguiente hechizo dañino un 30% tras ganar Lanzamiento libre o Presencia mental." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_nature_starfall" key="1727" name="Potenciación Arcana" tier="6">
-        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 15% de tu poder con hechizos y el daño de tu Explosión Arcana un 3% de tu poder con hechizos. Además, cuando infliges un golpe crítico con Misiles Arcanos, Deflagración Arcana, Explosión Arcana o Tromba Arcana, el daño de todos los miembros del grupo y de la banda aumenta un 1% durante 10 s." lvl="1"/>
-        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 30% de tu poder con hechizos y el daño de tu Explosión Arcana un 6% de tu poder con hechizos. Además, cuando infliges un golpe crítico con Misiles Arcanos, Deflagración Arcana, Explosión Arcana o Tromba Arcana, el daño de todos los miembros del grupo y de la banda aumenta un 2% durante 10 s." lvl="2"/>
-        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 45% de tu poder con hechizos y el daño de tu Explosión Arcana un 9% de tu poder con hechizos. Además, cuando infliges un golpe crítico con Misiles Arcanos, Deflagración Arcana, Explosión Arcana o Tromba Arcana, el daño de todos los miembros del grupo y de la banda aumenta un 3% durante 10 s." lvl="3"/>
+        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 15% de tu poder con hechizos y el daño de tu Explosión Arcana un 3% de tu poder con hechizos. Además, aumenta el daño de todos los miembros del grupo y de la banda que se encuentren en un radio de 100 m en un 1%." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 30% de tu poder con hechizos y el daño de tu Explosión Arcana un 6% de tu poder con hechizos. Además, aumenta el daño de todos los miembros del grupo y de la banda que se encuentren en un radio de 100 m en un 2%." lvl="2"/>
+        <rank description="Aumenta el daño infligido por tu hechizo Misiles Arcanos en una cantidad igual al 45% de tu poder con hechizos y el daño de tu Explosión Arcana un 9% de tu poder con hechizos. Además, aumenta el daño de todos los miembros del grupo y de la banda que se encuentren en un radio de 100 m en un 3%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_lightning" key="87" name="Poder Arcano" requires="421" tier="6">
         <rank description="Cuando se activa, tus hechizos causarán un 20% más de daño y el coste de maná aumentará un 20%. Dura 15 s." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="ability_mage_incantersabsorbtion" key="1844" name="Absorción de encantador" tier="6">
-        <rank description="Cuando amortiguas daño, tu daño con hechizos aumenta un 5% de la cantidad amortiguada durante 10 s. El aumento de tu daño con hechizos total no puede ser de más del 5% de tu salud." lvl="1"/>
-        <rank description="Cuando amortiguas daño, tu daño con hechizos aumenta un 10% de la cantidad amortiguada durante 10 s. El aumento de tu daño con hechizos total no puede ser de más del 5% de tu salud." lvl="2"/>
-        <rank description="Cuando amortiguas daño, tu daño con hechizos aumenta un 15% de la cantidad amortiguada durante 10 s. El aumento de tu daño con hechizos total no puede ser de más del 5% de tu salud." lvl="3"/>
+        <rank description="Cuando tu Escudo de maná, Resguardo contra la Escarcha, Resguardo contra el Fuego o Barrera de hielo absorben daño, tu daño con hechizos aumenta un 5% de la cantidad absorbida durante 10 s." lvl="1"/>
+        <rank description="Cuando tu Escudo de maná, Resguardo contra la Escarcha, Resguardo contra el Fuego o Barrera de hielo absorben daño, tu daño con hechizos aumenta un 10% de la cantidad absorbida durante 10 s." lvl="2"/>
+        <rank description="Cuando tu Escudo de maná, Resguardo contra la Escarcha, Resguardo contra el Fuego o Barrera de hielo absorben daño, tu daño con hechizos aumenta un 15% de la cantidad absorbida durante 10 s." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_potentspirit" key="1843" name="Corrientes Arcanas" requires="87" tier="7">
         <rank description="Reduce el tiempo de reutilización de tus hechizos Presencia mental, Poder Arcano e Invisibilidad un 15% y el tiempo de reutilización de tu hechizo Evocación 1 min." lvl="1"/>

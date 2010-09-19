@@ -129,7 +129,7 @@
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_warrior_rampage" key="1659" name="Desenfreno" requires="167" tier="8">
-        <rank description="Tus golpes críticos cuerpo a cuerpo provocan que te desenfrenes, lo que aumenta un 5% la probabilidad de golpe crítico a distancia y cuerpo a cuerpo de todos los miembros del grupo o banda en un radio de 45 m. Dura 10 s." lvl="1"/>
+        <rank description="Aumenta la probabilidad de golpe crítico a distancia y cuerpo a cuerpo de todos los miembros del grupo o banda en un radio de 100 m un 5%." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_warrior_bloodsurge" key="1866" name="Oleada de sangre" requires="167" tier="8">
         <rank description="Tu Golpe heroico, Sed de Sangre y Torbellino tienen un 7% de probabilidad de provocar que tu siguiente Embate sea de lanzamiento instantáneo durante 5 s." lvl="1"/>
@@ -241,15 +241,15 @@
         <rank description="Da a tu facultad Seccionar un 15% de probabilidad de inmovilizar el objetivo durante 5 s." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_warrior_bloodnova" key="1859" name="Trauma" tier="5">
-        <rank description="Tus golpes críticos cuerpo a cuerpo aumentan la eficacia de los efectos de sangrado sobre el objetivo un 15% durante 15 s." lvl="1"/>
-        <rank description="Tus golpes críticos cuerpo a cuerpo aumentan la eficacia de los efectos de sangrado sobre el objetivo un 30% durante 15 s." lvl="2"/>
+        <rank description="Tus golpes críticos cuerpo a cuerpo aumentan la eficacia de los efectos de sangrado sobre el objetivo un 15% durante 1 min." lvl="1"/>
+        <rank description="Tus golpes críticos cuerpo a cuerpo aumentan la eficacia de los efectos de sangrado sobre el objetivo un 30% durante 1 min." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_hunter_harass" key="1663" name="Segundo aliento" tier="6">
         <rank description="Cada vez que recibes un golpe con un efecto de aturdimiento o inmovilizador, generas 10 p. de ira y un 5% de tu salud total durante 10 s." lvl="1"/>
         <rank description="Cada vez que recibes un golpe con un efecto de aturdimiento o inmovilizador, generas 20 p. de ira y un 10% de tu salud total durante 10 s." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_warrior_savageblow" key="135" name="Golpe mortal" requires="133" tier="6">
-        <rank description="Un golpe sanguinario que inflige daño con arma más 85 p. y hiere al objetivo, reduciendo la eficacia de cualquier sanación un 50% durante 10 s." lvl="1"/>
+        <rank description="Un golpe sanguinario que inflige daño con arma más 85 p. y hiere al objetivo, lo que reduce la eficacia de cualquier sanación un 50% durante 10 s." lvl="1"/>
         <spell castTime="0" cooldown="6000" maxRange="5">
           <power cost="30" type="rage"/>
         </spell>
@@ -333,8 +333,8 @@
         <rank description="Cuando se activa, esta facultad otorga temporalmente el 30% de tu salud máxima durante 20 s. Perderás la salud cuando se acabe el efecto." lvl="1"/>
       </talent>
       <talent column="1" icon="ability_warrior_revenge" key="147" name="Revancha mejorada" tier="2">
-        <rank description="Aumenta el daño infligido por tu facultad Revancha un 10% y te da un 25% de probabilidad de aturdir el objetivo durante 3 s." lvl="1"/>
-        <rank description="Aumenta el daño infligido por tu facultad Revancha un 20% y te da un 50% de probabilidad de aturdir el objetivo durante 3 s." lvl="2"/>
+        <rank description="Aumenta el daño infligido por tu facultad Revancha un 30% y hace que Revancha inflija un 50% a un objetivo adicional." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tu facultad Revancha un 60% y hace que Revancha golpee a un objetivo adicional." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_warrior_shieldmastery" key="1654" name="Maestría con escudos" tier="2">
         <rank description="Aumenta tu valor de bloqueo un 15% y reduce el tiempo de reutilización de tu facultad Bloquear con escudo 10 s." lvl="1"/>
@@ -371,8 +371,8 @@
         </spell>
       </talent>
       <talent column="2" icon="ability_warrior_shieldbash" key="149" name="Orden de mordaza" tier="4">
-        <rank description="Da a tu facultad Azote de escudo y Lanzamiento heroico un 50% de probabilidad de silenciar al objetivo durante 3 s y aumenta el daño de tu facultad Embate con escudo un 5%." lvl="1"/>
-        <rank description="Da a tu facultad Azote de escudo y Lanzamiento heroico un 100% de probabilidad de silenciar al objetivo durante 3 s y aumenta el daño de tu facultad Embate con escudo un 10%." lvl="2"/>
+        <rank description="Da a tus facultades Azote de escudo y Lanzamiento heroico un 50% de probabilidad de silenciar al objetivo durante 3 s y aumenta el daño de tu facultad Embate con escudo un 5%." lvl="1"/>
+        <rank description="Da a tus facultades Azote de escudo y Lanzamiento heroico un 100% de probabilidad de silenciar al objetivo durante 3 s y aumenta el daño de tu facultad Embate con escudo un 10%." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_sword_20" key="702" name="Especialización en armas de una mano" tier="5">
         <rank description="Aumenta un 2% el daño que infliges cuando llevas un arma cuerpo a cuerpo de una mano equipada." lvl="1"/>
@@ -395,9 +395,9 @@
         <rank description="Reduce el coste de ira de tus facultades ofensivas 3 p." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_helmet_21" key="1653" name="Vitalidad" tier="7">
-        <rank description="Aumenta tu fuerza y aguante totales un 2% y tu pericia 2 p." lvl="1"/>
-        <rank description="Aumenta tu fuerza y aguante totales un 4% y tu pericia 4 p." lvl="2"/>
-        <rank description="Aumenta tu fuerza y aguante totales un 6% y tu pericia 6 p." lvl="3"/>
+        <rank description="Aumenta tu fuerza total un 2%, tu aguante total un 3% y tu pericia un 2 p." lvl="1"/>
+        <rank description="Aumenta tu fuerza total un 4%, tu aguante total un 6% y tu pericia un 4 p." lvl="2"/>
+        <rank description="Aumenta tu fuerza total un 6%, tu aguante total un 9% y tu pericia un 6 p." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_safeguard" key="1870" name="Salvaguarda" tier="7">
         <rank description="Reduce el daño recibido por el objetivo de tu facultad Intervenir un 15% durante 6 s." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Tus facultades Cargar, Interceptar e Intervenir ahora se pueden usar en combate y en cualquier actitud. Además, tu  facultad Intervenir eliminará todos los efectos de reducción de movimiento." lvl="1"/>
       </talent>
       <talent column="1" icon="inv_sword_11" key="1666" name="Devastar" tier="8">
-        <rank description="Hiende la armadura del objetivo causando el efecto de Hender armadura. Además inflige un 120% de daño con arma más 48 p. en cada aplicación de Hender armadura sobre el objetivo. El efecto de Hender armadura se puede apilar hasta 5 veces." lvl="1"/>
+        <rank description="Hiende la armadura del objetivo causando el efecto de Hender armadura. Además inflige un 120% de daño con arma más 58 p. en cada aplicación de Hender armadura sobre el objetivo. El efecto de Hender armadura se puede apilar hasta 5 veces." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="15" type="rage"/>
         </spell>

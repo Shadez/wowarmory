@@ -51,11 +51,11 @@
         <rank description="Aumenta tu probabilidad de esquivar un 3% extra y reduce la duración de todos los efectos de desarmar que se usen frente a ti un 50%. No se acumula con otros efectos de reducción de duración de desarmar." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Aluvión" requires="613" tier="3">
-        <rank description="Aumenta tu velocidad de ataque un 5% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="1"/>
-        <rank description="Aumenta tu velocidad de ataque un 10% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="2"/>
-        <rank description="Aumenta tu velocidad de ataque un 15% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="3"/>
-        <rank description="Aumenta tu velocidad de ataque un 20% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="4"/>
-        <rank description="Aumenta tu velocidad de ataque un 25% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="5"/>
+        <rank description="Aumenta tu velocidad de ataque un 6% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="1"/>
+        <rank description="Aumenta tu velocidad de ataque un 12% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="2"/>
+        <rank description="Aumenta tu velocidad de ataque un 18% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="3"/>
+        <rank description="Aumenta tu velocidad de ataque un 24% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="4"/>
+        <rank description="Aumenta tu velocidad de ataque un 30% en tus 3 próximos golpes después de asestar un golpe crítico." lvl="5"/>
       </talent>
       <talent column="2" icon="spell_holy_devotion" key="615" name="Consistencia" tier="3">
         <rank description="Aumenta tu aguante un 2% y reduce la duración de los efectos de reducción del movimiento sobre ti un 6%." lvl="1"/>
@@ -77,9 +77,9 @@
         <rank description="Aumenta tu poder de ataque un 100% de tu intelecto." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Ira desatada" tier="5">
-        <rank description="Aumenta tu pericia 3 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 4% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="1"/>
-        <rank description="Aumenta tu pericia 6 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 7% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="2"/>
-        <rank description="Aumenta tu pericia 9 p. y tus golpes críticos con ataques cuerpo a cuerpo aumentan el poder de ataque de todo el grupo y miembros de la banda un 10% si se encuentran en un radio de 45 m del chamán. Dura 10 s." lvl="3"/>
+        <rank description="Aumenta tu pericia 3 p. y aumenta el poder de ataque de todos los miembros del grupo y la banda un 4% si se encuentran en un radio de 100 m del chamán." lvl="1"/>
+        <rank description="Aumenta tu pericia 6 p. y aumenta el poder de ataque de todos los miembros del grupo y la banda un 7% si se encuentran en un radio de 100 m del chamán." lvl="2"/>
+        <rank description="Aumenta tu pericia 9 p. y aumenta el poder de ataque de todos los miembros del grupo y la banda un 10% si se encuentran en un radio de 100 m del chamán." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Maestría en armas" tier="5">
         <rank description="Aumenta un 4% el daño infligido con todas las armas." lvl="1"/>
@@ -140,7 +140,7 @@
         <rank description="Cuando infliges daño con un arma cuerpo a cuerpo, tienes la posibilidad (mayor que el rango 4) de reducir el tiempo de lanzamiento de tu siguiente hechizo de Descarga de relámpagos, Cadena de relámpagos, Ola de sanación inferior, Sanación en cadena, Ola de sanación o Maleficio un 20%. Se acumula hasta 5 veces. Dura 30 s." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shaman_feralspirit" key="2058" name="Espíritu feral" tier="10">
-        <rank description="Invoca 2 espíritus de lobo a las órdenes del taumaturgo, duran 45 s." lvl="1"/>
+        <rank description="Invoca 2 espíritus de lobo a las órdenes del chamán. Duran 45 s." lvl="1"/>
         <spell castTime="0" cooldown="180000" maxRange="30">
           <power cost="12" type="mana"/>
         </spell>
@@ -227,7 +227,7 @@
         <rank description="Reduce el tiempo de lanzamiento de tus hechizos Descarga de relámpagos, Ráfaga de lava y Cadena de relámpagos 0.5 s." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_nature_wispheal" key="573" name="Maestría elemental" requires="562" tier="6">
-        <rank description="Cuando se activa, tus próximos hechizos Descarga de relámpagos, Cadena de relámpagos o Ráfaga de lava se convierten en hechizos de lanzamiento instantáneos. Además, obtienes un 15% de celeridad con hechizos durante 15 s. Maestría elemental comparte tiempo de reutilización con Presteza de la Naturaleza." lvl="1"/>
+        <rank description="Cuando se activa, tus próximos hechizos Descarga de relámpagos, Cadena de relámpagos o Ráfaga de lava se convierten en hechizos de lanzamiento instantáneo. Además, obtienes un 15% de celeridad con hechizos durante 15 s. Maestría elemental comparte tiempo de reutilización con Presteza de la Naturaleza." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_shaman_stormearthfire" key="2052" name="Tormenta, Tierra y Fuego" tier="6">
         <rank description="Reduce el tiempo de reutilización de tu hechizo Cadena de relámpagos 0,75 s, el alcance de tu Tótem Nexo Terrestre también tiene un 33% de probabilidad de enraizar a los objetivos durante 5 s al lanzarlo y el daño periódico infligido por tu Choque de llamas aumenta un 20%." lvl="1"/>
@@ -239,8 +239,8 @@
         <rank description="Reduce el tiempo de reutilización de tus hechizos Choque de llamas y Choque de Escarcha 2 s extra, aumenta el daño directo infligido por tus hechizos Choque de llamas y tu Choque de Escarcha un 20% extra." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Juramento elemental" requires="573" tier="7">
-        <rank description="Tus golpes críticos no periódicos con hechizos otorgan a los miembros de tu grupo o banda en un radio de 100 m Juramento elemental, que aumenta la probabilidad de golpe crítico con hechizos un 3%. Además, mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 5% más de daño con hechizos. Dura 15 s." lvl="1"/>
-        <rank description="Tus golpes críticos no periódicos con hechizos otorgan a los miembros de tu grupo o banda en un radio de 100 m Juramento elemental, que aumenta la probabilidad de golpe crítico con hechizos un 5%. Además, mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 10% más de daño con hechizos. Dura 15 s." lvl="2"/>
+        <rank description="Mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 5% más de daño con hechizos. Además, los miembros de tu grupo o banda en un radio de 100 m reciben un bonus de un 3% a su probabilidad de golpe crítico con hechizos." lvl="1"/>
+        <rank description="Mientras está activo Lanzamiento libre de Enfoque elemental, infligirás un 10% más de daño con hechizos. Además, los miembros de tu grupo o banda en un radio de 100 m reciben un bonus de un 5% a su probabilidad de golpe crítico con hechizos." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Sobrecarga de relámpagos" tier="7">
         <rank description="Da a tus hechizos Descarga de relámpagos y Cadena de relámpagos un 11% de probabilidad de lanzar un segundo hechizo similar sobre el mismo objetivo sin ningún coste extra que inflige la mitad de daño y nada de amenaza." lvl="1"/>

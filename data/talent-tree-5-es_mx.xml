@@ -101,8 +101,8 @@
         <rank description="Reduce el coste de maná de tu Sanación relámpago un 15% y aumenta la probabilidad de efecto crítico de tu Sanación relámpago un 10% sobre los objetivos amistosos con salud igual o menor del 50%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Esperanza renovada" tier="7">
-        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 2% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 50% de probabilidad de reducir todo el daño recibido un 3% durante 20 s de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo." lvl="1"/>
-        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 4% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 100% de probabilidad de reducir todo el daño recibido un 3% durante 20 s de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo." lvl="2"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 2% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 50% de probabilidad de reducir todo el daño recibido un 3% durante 1 min de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo. Este efecto tiene un tiempo de reutilización de 15 s." lvl="1"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Sanación relámpago, Sanación superior y Penitencia (Sanación) un 4% sobre los objetivos afectados por el efecto Alma debilitada y tienes un 100% de probabilidad de reducir todo el daño recibido un 3% durante 1 min de todos los objetivos amistosos del grupo o banda cuando lanzas Palabra de poder: escudo. Este efecto tiene un tiempo de reutilización de 15 s." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_rapture" key="1896" name="Éxtasis" tier="7">
         <rank description="Cuando se absorbe o disipa completamente tu Palabra de poder: escudo, te energizas al instante con un 1,5% de tu maná total y tienes un 33% de probabilidad de energizar al objetivo escudado con un 2% del maná total, 8 p. de ira, 16 p. de energía o 32 p. de poder rúnico. Este efecto solo puede ocurrir una vez cada 12 s." lvl="1"/>
@@ -233,7 +233,7 @@
         <rank description="Tu regeneración de maná de espíritu aumenta un 50% durante 8 s tras una sanación crítica con Sanación relámpago, Sanación superior, Sanación conjunta o Renovar potenciado." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Pozo de Luz" requires="1561" tier="6">
-        <rank description="Crea un Pozo de Luz Sagrado. Los miembros de tu banda o grupo pueden hacer clic en el Pozo de Luz para recuperar 801 p. de salud durante 6 s. Los ataques que se hagan contra ti que sean iguales al 30% de tu salud total cancelarán el efecto. El Pozo de Luz dura 3 min o 10 cargas." lvl="1"/>
+        <rank description="Crea un Pozo de Luz Sagrado. Los jugadores amistosos pueden hacer clic en el Pozo de Luz para recuperar 801 p. de salud durante 6 s. Los ataques que se hagan contra ti que sean iguales al 30% de tu salud total cancelarán el efecto. El Pozo de Luz dura 3 min o 10 cargas." lvl="1"/>
         <spell castTime="500" cooldown="180000" maxRange="40">
           <power cost="17" type="mana"/>
         </spell>
@@ -332,7 +332,7 @@
         <rank description="Reduce el tiempo de reutilización de tu hechizo Explosión mental 2.5 s y con Forma de las Sombras tu Explosión mental también tiene un 100% de probabilidad de reducir todas las sanaciones realizadas al objetivo un 20% durante 10 s." lvl="5"/>
       </talent>
       <talent column="2" icon="spell_shadow_siphonmana" key="501" name="Tortura mental" tier="2">
-        <rank description="Ofusca la mente del objetivo con energía de las Sombras, inflige 45 p. de daño de las Sombras durante 3 s y ralentizando su movimiento un 50%." lvl="1"/>
+        <rank description="Ofusca la mente del objetivo con energía de las Sombras, lo que le inflige 45 p. de daño de las Sombras durante 3 s y ralentiza su velocidad de movimiento un 50%." lvl="1"/>
         <spell castTime="0" channeled="1" maxRange="30">
           <power cost="9" type="mana"/>
         </spell>
@@ -372,13 +372,13 @@
         <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 2% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 3%." lvl="1"/>
         <rank description="Aumenta la probabilidad de golpe crítico de Explosión mental, Tortura mental y Abrasamiento mental un 4% y aumenta la probabilidad de golpe crítico periódico de tus hechizos Toque Vampírico, Peste devoradora y Palabra de las Sombras: dolor un 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Peste devoradora mejorada" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Peste devoradora mejorada" tier="5">
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 5% y cuando lanzas Peste Devoradora infliges al instante daño igual al 10% de su efecto periódico total." lvl="1"/>
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 10% y cuando lanzas Peste Devoradora infliges al instante daño igual al 20% de su efecto periódico total." lvl="2"/>
         <rank description="Aumenta el daño periódico infligido por tu Peste devoradora un 15% y cuando lanzas Peste Devoradora infliges al instante daño igual al 30% de su efecto periódico total." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadowform" key="521" name="Forma de las Sombras" requires="484" tier="6">
-        <rank description="Adoptas la forma de las Sombras, aumentando el daño de las Sombras que infliges un 15% y reduciendo todo el daño recibido un 15% y la amenaza generada un 30%. Sin embargo, no puedes lanzar hechizos Sagrados mientras estés en esta forma excepto Curar enfermedad y Suprimir enfermedad. Otorga al daño periódico de tus hechizos Palabra de las Sombras: dolor, Peste devoradora y Toque vampírico  la facultad de asestar un golpe crítico que inflija un 100% de daño aumentado y hace que Peste devoradora y Toque vampírico se beneficien de celeridad." lvl="1"/>
+        <rank description="Adoptas la forma de las Sombras, aumentando el daño de las Sombras que infliges un 15% y reduciendo todo el daño recibido un 15% y la amenaza generada un 30%. Sin embargo, no puedes lanzar hechizos Sagrados mientras estés en esta forma excepto Curar enfermedad y Suprimir enfermedad. Otorga al daño periódico de tus hechizos Palabra de las Sombras: dolor, Peste devoradora y Toque vampírico la facultad de asestar un golpe crítico que inflija un 100% de daño aumentado y hace que Peste devoradora y Toque vampírico se beneficien de celeridad." lvl="1"/>
         <spell castTime="0" cooldown="1500">
           <power cost="13" type="mana"/>
         </spell>
@@ -424,7 +424,7 @@
         <rank description="Aumenta tu poder con hechizos un 20% de tu espíritu total y el daño que inflige tu Tortura mental y Explosión mental aumenta un 10% si tu objetivo está afectado por tu Palabra de las Sombras: dolor." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersión" requires="1779" tier="10">
-        <rank description="Te conviertes en energía de las Sombras pura y reduces todo el daño recibido un 90%. No puedes atacar ni lanzar hechizos, pero regeneras un 6% de maná cada 1 s durante 6 s. Dispersión se puede lanzar mientras estás aturdido, asustado o silenciado, quita todos los efectos de frenado y que afectan al movimiento al lanzarlo y te hace inmune a ellos mientras dura." lvl="1"/>
+        <rank description="Te conviertes en energía de las Sombras pura y reduces todo el daño recibido un 90%. No puedes atacar ni lanzar hechizos, pero regeneras un 6% de maná cada 1 s durante 6 s. Dispersión se puede lanzar mientras estás aturdido, asustado o silenciado, quita todos los efectos de frenado y de reducción del movimiento al lanzarlo y te hace inmune a ellos mientras dura." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
     </tree>

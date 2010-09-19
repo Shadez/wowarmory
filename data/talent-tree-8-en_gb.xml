@@ -116,9 +116,9 @@
         <rank description="Gives your Chill effects a 15% chance to grant you the Fingers of Frost effect, which treats your next 2 spells cast as if the target were Frozen.  Lasts 15 sec." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_mage_brainfreeze" key="1854" name="Brain Freeze" tier="8">
-        <rank description="Your Frost damage spells with chilling effects have a 5% chance to cause your next Fireball spell to be instant cast and cost no mana." lvl="1"/>
-        <rank description="Your Frost damage spells with chilling effects have a 10% chance to cause your next Fireball spell to be instant cast and cost no mana." lvl="2"/>
-        <rank description="Your Frost damage spells with chilling effects have a 15% chance to cause your next Fireball spell to be instant cast and cost no mana." lvl="3"/>
+        <rank description="Your Frost damage spells with chilling effects have a 5% chance to cause your next Fireball or Frostfire Bolt spell to be instant cast and cost no mana." lvl="1"/>
+        <rank description="Your Frost damage spells with chilling effects have a 10% chance to cause your next Fireball or Frostfire Bolt spell to be instant cast and cost no mana." lvl="2"/>
+        <rank description="Your Frost damage spells with chilling effects have a 15% chance to cause your next Fireball or Frostfire Bolt spell to be instant cast and cost no mana." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_frost_summonwaterelemental_2" key="1741" name="Summon Water Elemental" tier="8">
         <rank description="Summon a Water Elemental to fight for the caster for 45 sec." lvl="1"/>
@@ -127,9 +127,9 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_frost_summonwaterelemental_2" key="1855" name="Enduring Winter" requires="1741" tier="8">
-        <rank description="Increases the duration of your Summon Water Elemental spell by 5 sec and your Frostbolt spell has a 33% chance to grant the Replenishment effect to up to 10 party or raid members mana regeneration equal to 0.25% of their maximum mana per second for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="1"/>
-        <rank description="Increases the duration of your Summon Water Elemental spell by 10 sec and your Frostbolt spell has a 66% chance to grant the Replenishment effect to up to 10 party or raid members mana regeneration equal to 0.25% of their maximum mana per second for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="2"/>
-        <rank description="Increases the duration of your Summon Water Elemental spell by 15 sec and your Frostbolt spell has a 100% chance to grant the Replenishment effect to up to 10 party or raid members mana regeneration equal to 0.25% of their maximum mana per second for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="3"/>
+        <rank description="Increases the duration of your Summon Water Elemental spell by 5 sec and your Frostbolt spell has a 33% chance to grant up to 10 party or raid members mana regeneration equal to 1% of their maximum mana per 5 sec for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="1"/>
+        <rank description="Increases the duration of your Summon Water Elemental spell by 10 sec and your Frostbolt spell has a 66% chance to grant up to 10 party or raid members mana regeneration equal to 1% of their maximum mana per 5 sec for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="2"/>
+        <rank description="Increases the duration of your Summon Water Elemental spell by 15 sec and your Frostbolt spell has a 100% chance to grant up to 10 party or raid members mana regeneration equal to 1% of their maximum mana per 5 sec for 15 sec.  This effect cannot occur more often than once every 6 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_chilledtothebone" key="1856" name="Chilled to the Bone" tier="9">
         <rank description="Increases the damage caused by your Frostbolt, Frostfire Bolt and Ice Lance spells by 1% and reduces the movement speed of all chilled targets by an additional 2%." lvl="1"/>
@@ -194,8 +194,8 @@
         </spell>
       </talent>
       <talent column="3" icon="spell_fire_fire" key="23" name="Burning Soul" tier="2">
-        <rank description="Reduces the pushback suffered from damaging attacks while casting Fire spells by 35% and reduces the threat caused by your Fire spells by 5%." lvl="1"/>
-        <rank description="Reduces the pushback suffered from damaging attacks while casting Fire spells by 70% and reduces the threat caused by your Fire spells by 10%." lvl="2"/>
+        <rank description="Reduces the pushback suffered from damaging attacks while casting Fire spells by 35% and reduces the threat caused by your Fire spells by 10%." lvl="1"/>
+        <rank description="Reduces the pushback suffered from damaging attacks while casting Fire spells by 70% and reduces the threat caused by your Fire spells by 20%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_fire_soulburn" key="25" name="Improved Scorch" tier="3">
         <rank description="Increases your chance to critically hit with Scorch, Fireball and Frostfire Bolt by an additional 1% and your damaging Scorch spells have a 33% chance to cause your target to be vulnerable to spell damage, increasing spell critical strike chance against that target by 5% and lasts 30 sec." lvl="1"/>
@@ -245,7 +245,7 @@
       </talent>
       <talent column="1" icon="spell_fire_sealoffire" key="36" name="Combustion" requires="33" tier="6">
         <rank description="When activated, this spell increases your critical strike damage bonus with Fire damage spells by 50%, and causes each of your Fire damage spell hits to increase your critical strike chance with Fire damage spells by 10%.  This effect lasts until you have caused 3 non-periodic critical strikes with Fire spells." lvl="1"/>
-        <spell castTime="0" cooldown="180000"/>
+        <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="spell_fire_moltenblood" key="1732" name="Molten Fury" tier="6">
         <rank description="Increases damage of all spells against targets with less than 35% health by 6%." lvl="1"/>
@@ -256,9 +256,9 @@
         <rank description="When below 35% health all damage taken is reduced by 20% and your Pyroblast spell's cast time is reduced by 3.5 secs while the cooldown is increased by 5 secs.  In addition, melee and ranged attacks made against you have a 10% chance to disarm your attacker's main hand and ranged weapons." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_fire_flamebolt" key="1734" name="Empowered Fire" tier="7">
-        <rank description="Increases the damage of your Fireball and Frostfire Bolt spells by an amount equal to 5% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 33% chance to regain 2% of your base mana." lvl="1"/>
-        <rank description="Increases the damage of your Fireball and Frostfire Bolt spells by an amount equal to 10% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 67% chance to regain 2% of your base mana." lvl="2"/>
-        <rank description="Increases the damage of your Fireball and Frostfire Bolt spells by an amount equal to 15% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 100% chance to regain 2% of your base mana." lvl="3"/>
+        <rank description="Increases the damage of your Fireball, Frostfire Bolt and Pyroblast spells by an amount equal to 5% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 33% chance to regain 2% of your base mana." lvl="1"/>
+        <rank description="Increases the damage of your Fireball, Frostfire Bolt and Pyroblast spells by an amount equal to 10% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 67% chance to regain 2% of your base mana." lvl="2"/>
+        <rank description="Increases the damage of your Fireball, Frostfire Bolt and Pyroblast spells by an amount equal to 15% of your spell power.  In addition, each time your Ignite talent causes damage, you have a 100% chance to regain 2% of your base mana." lvl="3"/>
       </talent>
       <talent column="0" icon="ability_mage_firestarter" key="1849" name="Firestarter" requires="1735" tier="8">
         <rank description="Your damaging Blast Wave and Dragon's Breath spells have a 50% chance to make your next Flamestrike spell instant cast and cost no mana.  Lasts 10 sec." lvl="1"/>
@@ -356,9 +356,9 @@
         <rank description="Allows 50% of your mana regeneration to continue while casting." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_mage_tormentoftheweak" key="2222" name="Torment the Weak" tier="3">
-        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 4% more damage to snared or slowed targets." lvl="1"/>
-        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 8% more damage to snared or slowed targets." lvl="2"/>
-        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 12% more damage to snared or slowed targets." lvl="3"/>
+        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Pyroblast, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 4% more damage to snared or slowed targets." lvl="1"/>
+        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Pyroblast, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 8% more damage to snared or slowed targets." lvl="2"/>
+        <rank description="Your Frostbolt, Fireball, Frostfire Bolt, Pyroblast, Arcane Missiles, Arcane Blast, and Arcane Barrage abilities deal 12% more damage to snared or slowed targets." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_arcane_blink" key="1724" name="Improved Blink" tier="4">
         <rank description="Reduces the mana cost of Blink by 25% and for 4 sec after casting your chance to be hit by all attacks and spells is reduced by 15%." lvl="1"/>
@@ -390,18 +390,18 @@
         <rank description="Increases the critical strike chance of your next damaging spell by 30% after gaining Clearcasting or Presence of Mind." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_nature_starfall" key="1727" name="Arcane Empowerment" tier="6">
-        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 15% of your spell power and the damage of your Arcane Blast by 3% of your spell power.  In addition, when you score a critical hit with Arcane Missiles, Arcane Explosion, Arcane Blast, or Arcane Barrage all party and raid members have all damage increased by 1% for 10 sec." lvl="1"/>
-        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 30% of your spell power and the damage of your Arcane Blast by 6% of your spell power.  In addition, when you score a critical hit with Arcane Missiles, Arcane Explosion, Arcane Blast, or Arcane Barrage all party and raid members have all damage increased by 2% for 10 sec." lvl="2"/>
-        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 45% of your spell power and the damage of your Arcane Blast by 9% of your spell power.  In addition, when you score a critical hit with Arcane Missiles, Arcane Explosion, Arcane Blast, or Arcane Barrage all party and raid members have all damage increased by 3% for 10 sec." lvl="3"/>
+        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 15% of your spell power and the damage of your Arcane Blast by 3% of your spell power.  In addition, increases the damage of all party and raid members within 100 yds by 1%." lvl="1"/>
+        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 30% of your spell power and the damage of your Arcane Blast by 6% of your spell power.  In addition, increases the damage of all party and raid members within 100 yds by 2%." lvl="2"/>
+        <rank description="Increases the damage of your Arcane Missiles spell by an amount equal to 45% of your spell power and the damage of your Arcane Blast by 9% of your spell power.  In addition, increases the damage of all party and raid members within 100 yds by 3%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_lightning" key="87" name="Arcane Power" requires="421" tier="6">
         <rank description="When activated, your spells deal 20% more damage while costing 20% more mana to cast.  This effect lasts 15 sec." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="2" icon="ability_mage_incantersabsorbtion" key="1844" name="Incanter's Absorption" tier="6">
-        <rank description="When you absorb damage your spell damage is increased by 5% of the amount absorbed for 10 sec.  Total spell damage increase cannot exceed 5% of your health." lvl="1"/>
-        <rank description="When you absorb damage your spell damage is increased by 10% of the amount absorbed for 10 sec.  Total spell damage increase cannot exceed 5% of your health." lvl="2"/>
-        <rank description="When you absorb damage your spell damage is increased by 15% of the amount absorbed for 10 sec.  Total spell damage increase cannot exceed 5% of your health." lvl="3"/>
+        <rank description="When your Mana Shield, Frost Ward, Fire Ward, or Ice Barrier absorbs damage your spell damage is increased by 5% of the amount absorbed for 10 sec." lvl="1"/>
+        <rank description="When your Mana Shield, Frost Ward, Fire Ward, or Ice Barrier absorbs damage your spell damage is increased by 10% of the amount absorbed for 10 sec." lvl="2"/>
+        <rank description="When your Mana Shield, Frost Ward, Fire Ward, or Ice Barrier absorbs damage your spell damage is increased by 15% of the amount absorbed for 10 sec." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_mage_potentspirit" key="1843" name="Arcane Flows" requires="87" tier="7">
         <rank description="Reduces the cooldown of your Presence of Mind, Arcane Power and Invisibility spells by 15% and the cooldown of your Evocation spell by 1 min." lvl="1"/>

@@ -2,64 +2,64 @@
   <talentTrees>
     <tree bgImage="HunterPetCunning" icon="ability_hunter_combatexperience" key="Cunning" name="Gerissenheit" order="2">
       <talent column="0" icon="spell_nature_guardianward" key="2118" name="Kobrareflexe" tier="0">
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
       </talent>
       <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_druid_dash" key="2119" name="Spurt" tier="0">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
       <talent categoryMask0="21238021" column="1" icon="spell_shadow_burningspirit" key="2201" name="Sinkflug" tier="0">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
-      <talent column="2" icon="spell_nature_unyeildingstamina" key="2120" name="Gro?e Ausdauer" tier="0">
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2120" name="Große Ausdauer" tier="0">
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
       </talent>
-      <talent column="3" icon="spell_nature_spiritarmor" key="2121" name="Naturliche Rustung" tier="0">
-        <rank description="Erhoht die Rustung Eures Tiers um 5%." lvl="1"/>
-        <rank description="Erhoht die Rustung Eures Tiers um 10%." lvl="2"/>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2121" name="Natürliche Rüstung" tier="0">
+        <rank description="Erhöht die Rüstung Eures Tiers um 5%." lvl="1"/>
+        <rank description="Erhöht die Rüstung Eures Tiers um 10%." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Tempo des Ebers" tier="1">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
-      </talent>
-      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Wendigkeit" requires="2119" tier="1">
-        <rank description="Verringert die Abklingzeit der Fahigkeit 'Spurt' Eures Tiers um 8 Sek." lvl="1"/>
-        <rank description="Verringert die Abklingzeit der Fahigkeit 'Spurt' Eures Tiers um 16 Sek." lvl="2"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
       </talent>
       <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Wendigkeit" requires="2201" tier="1">
-        <rank description="Verringert die Abklingzeit der Fahigkeit 'Sinkflug' Eures Tiers um 8 Sek." lvl="1"/>
-        <rank description="Verringert die Abklingzeit der Fahigkeit 'Sinkflug' Eures Tiers um 16 Sek." lvl="2"/>
+        <rank description="Verringert die Abklingzeit der Fähigkeit 'Sinkflug' Eures Tiers um 8 Sek." lvl="1"/>
+        <rank description="Verringert die Abklingzeit der Fähigkeit 'Sinkflug' Eures Tiers um 16 Sek." lvl="2"/>
+      </talent>
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Wendigkeit" requires="2119" tier="1">
+        <rank description="Verringert die Abklingzeit der Fähigkeit 'Spurt' Eures Tiers um 8 Sek." lvl="1"/>
+        <rank description="Verringert die Abklingzeit der Fähigkeit 'Spurt' Eures Tiers um 16 Sek." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Eulenfokus" tier="1">
-        <rank description="Euer Tier hat eine Chance von 15%, dass nach dem Nutzen einer Fahigkeit die nachste Fahigkeit keinen Fokus kostet, wenn sie innerhalb von 8 Sek. genutzt wird." lvl="1"/>
-        <rank description="Euer Tier hat eine Chance von 30%, dass nach dem Nutzen einer Fahigkeit die nachste Fahigkeit keinen Fokus kostet, wenn sie innerhalb von 8 Sek. genutzt wird." lvl="2"/>
+        <rank description="Euer Tier hat eine Chance von 15%, dass nach dem Nutzen einer Fähigkeit die nächste Fähigkeit keinen Fokus kostet, wenn sie innerhalb von 8 Sek. genutzt wird." lvl="1"/>
+        <rank description="Euer Tier hat eine Chance von 30%, dass nach dem Nutzen einer Fähigkeit die nächste Fähigkeit keinen Fokus kostet, wenn sie innerhalb von 8 Sek. genutzt wird." lvl="2"/>
       </talent>
       <talent column="3" icon="inv_jewelry_necklace_22" key="2127" name="Stachelhalsband" tier="1">
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusatzlichen Schaden." lvl="1"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusatzlichen Schaden." lvl="2"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusatzlichen Schaden." lvl="3"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusätzlichen Schaden." lvl="1"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusätzlichen Schaden." lvl="2"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusätzlichen Schaden." lvl="3"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2166" name="Herdenschlachtung" tier="2">
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhoht." lvl="1"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhoht." lvl="2"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhoht." lvl="3"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhöht." lvl="1"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhöht." lvl="2"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhöht." lvl="3"/>
       </talent>
-      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Lowenherz" tier="2">
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 15%." lvl="1"/>
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 30%." lvl="2"/>
+      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Löwenherz" tier="2">
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 15%." lvl="1"/>
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 30%." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_racial_cannibalize" key="2206" name="Aasfresser" tier="2">
-        <rank description="Euer Tier kann durch das Fressen eines Leichnams Gesundheit und Zufriedenheit wiederherstellen. Kann nicht auf die Uberreste von mechanischen Einheiten oder Elementaren angewandt werden." lvl="1"/>
+        <rank description="Euer Tier kann durch das Fressen eines Leichnams Gesundheit und Zufriedenheit wiederherstellen. Kann nicht auf die Überreste von mechanischen Einheiten oder Elementaren angewandt werden." lvl="1"/>
         <spell castTime="0" cooldown="30000" maxRange="5"/>
       </talent>
-      <talent column="1" icon="spell_nature_resistnature" key="2168" name="Gro?er Widerstand" tier="3">
+      <talent column="1" icon="spell_nature_resistnature" key="2168" name="Großer Widerstand" tier="3">
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 5% weniger Schaden." lvl="1"/>
         <spell castTime="0"/>
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 10% weniger Schaden." lvl="2"/>
@@ -67,24 +67,24 @@
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 15% weniger Schaden." lvl="3"/>
         <spell castTime="0"/>
       </talent>
-      <talent column="2" icon="ability_hunter_survivalinstincts" key="2177" name="In die Ecke gedrangt" tier="3">
+      <talent column="2" icon="ability_hunter_survivalinstincts" key="2177" name="In die Ecke gedrängt" tier="3">
         <rank description="Besitzt Euer Tier 35% Gesundheit oder weniger, verursacht es 25% mehr Schaden und die Chance, dass es kritisch getroffen wird, ist um 30% verringert." lvl="1"/>
         <rank description="Besitzt Euer Tier 35% Gesundheit oder weniger, verursacht es 50% mehr Schaden und die Chance, dass es kritisch getroffen wird, ist um 60% verringert." lvl="2"/>
       </talent>
       <talent column="3" icon="inv_misc_fish_48" key="2183" name="Fressattacke" requires="2127" tier="3">
-        <rank description="Euer Tier verursacht bei Zielen, die uber weniger als 35% Gesundheit verfugen, 8% zusatzlichen Schaden." lvl="1"/>
-        <rank description="Euer Tier verursacht bei Zielen, die uber weniger als 35% Gesundheit verfugen, 16% zusatzlichen Schaden." lvl="2"/>
+        <rank description="Euer Tier verursacht bei Zielen, die über weniger als 35% Gesundheit verfügen, 8% zusätzlichen Schaden." lvl="1"/>
+        <rank description="Euer Tier verursacht bei Zielen, die über weniger als 35% Gesundheit verfügen, 16% zusätzlichen Schaden." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_druid_lacerate" key="2181" name="Marderbiss" tier="4">
         <rank description="Ein wilder Angriff, der 5 Schaden verursacht (modifiziert durch die Stufe des Tieres) und den Euer Tier nutzen kann, nachdem es einen kritischen Treffer erzielt hat. Der Marderbiss kann nicht geblockt oder pariert und ihm kann nicht ausgewichen werden." lvl="1"/>
         <spell castTime="0" cooldown="10000" maxRange="5"/>
       </talent>
-      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Brullen der Erholung" tier="4">
-        <rank description="Das kraftigende Brullen Eures Tiers stellt im Verlauf von 9 Sek. 30% Eures gesamten Manas wieder her." lvl="1"/>
+      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Brüllen der Erholung" tier="4">
+        <rank description="Das kräftigende Brüllen Eures Tiers stellt im Verlauf von 9 Sek. 30% Eures gesamten Manas wieder her." lvl="1"/>
         <spell castTime="0" cooldown="180000" maxRange="40"/>
       </talent>
       <talent column="2" icon="ability_warrior_bullrush" key="2175" name="Stur wie ein Ochse" requires="2177" tier="4">
-        <rank description="Entfernt alle bewegungseinschrankenden Effekte sowie Effekte, die zum Kontrollverlust uber Euer Tier fuhren. Verringert zudem 12 Sek. lang den erlittenen Schaden Eures Tiers um 20%." lvl="1"/>
+        <rank description="Entfernt alle bewegungseinschränkenden Effekte sowie Effekte, die zum Kontrollverlust über Euer Tier führen. Verringert zudem 12 Sek. lang den erlittenen Schaden Eures Tiers um 20%." lvl="1"/>
         <spell castTime="0" cooldown="180000"/>
       </talent>
       <talent column="3" icon="inv_misc_ahnqirajtrinket_02" key="2257" name="Gewandtheit der Gottesanbeterin" tier="4">
@@ -92,86 +92,86 @@
         <rank description="Verringert die Chance, dass Euer Tier einen kritischen Nahkampftreffer erleidet, um 4%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_misc_horn_04" key="2256" name="Wilde Jagd" requires="2181" tier="5">
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 20% und den er durch Eure Angriffskraft erhalt, um 15%." lvl="1"/>
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 40% und den er durch Eure Angriffskraft erhalt, um 30%." lvl="2"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 20% und den er durch Eure Angriffskraft erhält, um 15%." lvl="1"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 40% und den er durch Eure Angriffskraft erhält, um 30%." lvl="2"/>
       </talent>
-      <talent column="3" icon="ability_druid_demoralizingroar" key="2278" name="Brullen der Aufopferung" requires="2257" tier="5">
-        <rank description="Schutzt ein befreundetes Ziel davor, kritische Treffer zu erleiden. Gegen das Ziel gefuhrte Angriffe konnen nicht kritisch treffen, jedoch wird 20% des gesamten erlittenen Schadens auch auf Euer Tier ubertragen. Halt 12 Sek. lang an." lvl="1"/>
+      <talent column="3" icon="ability_druid_demoralizingroar" key="2278" name="Brüllen der Aufopferung" requires="2257" tier="5">
+        <rank description="Schützt ein befreundetes Ziel davor, kritische Treffer zu erleiden. Gegen das Ziel geführte Angriffe können nicht kritisch treffen, jedoch wird 20% des gesamten erlittenen Schadens auch auf Euer Tier übertragen. Hält 12 Sek. lang an." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="40"/>
       </talent>
     </tree>
     <tree bgImage="HunterPetFerocity" icon="ability_druid_swipe" key="Ferocity" name="Wildheit" order="0">
       <talent column="0" icon="spell_nature_guardianward" key="2107" name="Kobrareflexe" tier="0">
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
-      </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Sinkflug" tier="0">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
-        <spell castTime="0" cooldown="32000">
-          <power cost="30" type="unknown"/>
-        </spell>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
       </talent>
       <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Spurt" tier="0">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
-      <talent column="2" icon="spell_nature_unyeildingstamina" key="2112" name="Gro?e Ausdauer" tier="0">
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Sinkflug" tier="0">
+        <rank description="Erhöht das Bewegungstempo Eures Tiers 16 Sek. lang um 80%." lvl="1"/>
+        <spell castTime="0" cooldown="32000">
+          <power cost="30" type="unknown"/>
+        </spell>
       </talent>
-      <talent column="3" icon="spell_nature_spiritarmor" key="2113" name="Naturliche Rustung" tier="0">
-        <rank description="Erhoht die Rustung Eures Tiers um 5%." lvl="1"/>
-        <rank description="Erhoht die Rustung Eures Tiers um 10%." lvl="2"/>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2112" name="Große Ausdauer" tier="0">
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
+      </talent>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2113" name="Natürliche Rüstung" tier="0">
+        <rank description="Erhöht die Rüstung Eures Tiers um 5%." lvl="1"/>
+        <rank description="Erhöht die Rüstung Eures Tiers um 10%." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_druid_cower" key="2124" name="Verbessertes Ducken" tier="1">
-        <rank description="Die Verringerung des Bewegungstempo Eures Tiers durch die Fahigkeit 'Ducken' wird um 50% gesenkt." lvl="1"/>
-        <rank description="Die Verringerung des Bewegungstempo Eures Tiers durch die Fahigkeit 'Ducken' wird um 100% gesenkt." lvl="2"/>
+        <rank description="Die Verringerung des Bewegungstempo Eures Tiers durch die Fähigkeit 'Ducken' wird um 50% gesenkt." lvl="1"/>
+        <rank description="Die Verringerung des Bewegungstempo Eures Tiers durch die Fähigkeit 'Ducken' wird um 100% gesenkt." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_druid_primaltenacity" key="2128" name="Blutdurstig" tier="1">
-        <rank description="Die Angriffe Eures Tiers haben eine Chance von 10%, seine gesamte Zufriedenheit um 5% zu erhohen und es um 5% seiner gesamten Gesundheit zu heilen." lvl="1"/>
-        <rank description="Die Angriffe Eures Tiers haben eine Chance von 20%, seine gesamte Zufriedenheit um 5% zu erhohen und es um 5% seiner gesamten Gesundheit zu heilen." lvl="2"/>
+        <rank description="Die Angriffe Eures Tiers haben eine Chance von 10%, seine gesamte Zufriedenheit um 5% zu erhöhen und es um 5% seiner gesamten Gesundheit zu heilen." lvl="1"/>
+        <rank description="Die Angriffe Eures Tiers haben eine Chance von 20%, seine gesamte Zufriedenheit um 5% zu erhöhen und es um 5% seiner gesamten Gesundheit zu heilen." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_jewelry_necklace_22" key="2125" name="Stachelhalsband" tier="1">
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusatzlichen Schaden." lvl="1"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusatzlichen Schaden." lvl="2"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusatzlichen Schaden." lvl="3"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusätzlichen Schaden." lvl="1"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusätzlichen Schaden." lvl="2"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusätzlichen Schaden." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_hunter_pet_boar" key="2151" name="Tempo des Ebers" tier="1">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2106" name="Herdenschlachtung" tier="2">
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhoht." lvl="1"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhoht." lvl="2"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhoht." lvl="3"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhöht." lvl="1"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhöht." lvl="2"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhöht." lvl="3"/>
       </talent>
-      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Lowenherz" tier="2">
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 15%." lvl="1"/>
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 30%." lvl="2"/>
-      </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Sturmangriff" tier="2">
-        <rank description="Euer Tier sturmt auf sein Ziel zu und macht es 1 Sek. lang bewegungsunfahig. Zusatzlich wird die Nahkampfangriffskraft seines nachsten Angriffs um 25% erhoht." lvl="1"/>
-        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
-          <power cost="35" type="unknown"/>
-        </spell>
+      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Löwenherz" tier="2">
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 15%." lvl="1"/>
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 30%." lvl="2"/>
       </talent>
       <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Sturzflug" tier="2">
-        <rank description="Euer Tier fliegt im Sturzflug auf sein Ziel zu und macht es 1 Sek. lang unbeweglich. Zusatzlich wird die Nahkampfangriffskraft seines nachsten Angriffs um 25% erhoht." lvl="1"/>
+        <rank description="Euer Tier fliegt im Sturzflug auf sein Ziel zu und macht es 1 Sek. lang unbeweglich. Zusätzlich wird die Nahkampfangriffskraft seines nächsten Angriffs um 25% erhöht." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
       </talent>
-      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Herz des Phonix" requires="2128" tier="3">
-        <rank description="Stirbt Euer Tier, wird es sofort auf wundersame Weise mit voller Gesundheit ins Leben zuruckkehren." lvl="1"/>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Sturmangriff" tier="2">
+        <rank description="Euer Tier stürmt auf sein Ziel zu und macht es 1 Sek. lang bewegungsunfähig. Zusätzlich wird die Nahkampfangriffskraft seines nächsten Angriffs um 25% erhöht." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
+      </talent>
+      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Herz des Phönix" requires="2128" tier="3">
+        <rank description="Stirbt Euer Tier, wird es sofort auf wundersame Weise mit voller Gesundheit ins Leben zurückkehren." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_hunter_pet_spider" key="2129" name="Spinnenbiss" tier="3">
-        <rank description="Erhoht die kritische Trefferchance Eures Tiers um 3%." lvl="1"/>
-        <rank description="Erhoht die kritische Trefferchance Eures Tiers um 6%." lvl="2"/>
-        <rank description="Erhoht die kritische Trefferchance Eures Tiers um 9%." lvl="3"/>
+        <rank description="Erhöht die kritische Trefferchance Eures Tiers um 3%." lvl="1"/>
+        <rank description="Erhöht die kritische Trefferchance Eures Tiers um 6%." lvl="2"/>
+        <rank description="Erhöht die kritische Trefferchance Eures Tiers um 9%." lvl="3"/>
       </talent>
-      <talent column="3" icon="spell_nature_resistnature" key="2154" name="Gro?er Widerstand" tier="3">
+      <talent column="3" icon="spell_nature_resistnature" key="2154" name="Großer Widerstand" tier="3">
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 5% weniger Schaden." lvl="1"/>
         <spell castTime="0"/>
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 10% weniger Schaden." lvl="2"/>
@@ -180,77 +180,77 @@
         <spell castTime="0"/>
       </talent>
       <talent column="0" icon="ability_druid_berserk" key="2155" name="Tollwut" tier="4">
-        <rank description="Euer Tier gerat in einen todlichen Blutrausch. Erfolgreiche Angriffe haben eine Chance, die Angriffskraft um 5% zu erhohen. Der Effekt ist bis zu 5-mal stapelbar. Halt 20 Sek. lang an." lvl="1"/>
+        <rank description="Euer Tier gerät in einen tödlichen Blutrausch. Erfolgreiche Angriffe haben eine Chance, die Angriffskraft um 5% zu erhöhen. Der Effekt ist bis zu 5-mal stapelbar. Hält 20 Sek. lang an." lvl="1"/>
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_hunter_mendpet" key="2153" name="Wunden lecken" requires="2156" tier="4">
-        <rank description="Euer Tier heilt sich selbst im Verlauf von 5 Sek. um 100% seiner gesamten Gesundheit, so lang es diese Fahigkeit kanalisiert." lvl="1"/>
+        <rank description="Euer Tier heilt sich selbst im Verlauf von 5 Sek. um 100% seiner gesamten Gesundheit, so lang es diese Fähigkeit kanalisiert." lvl="1"/>
         <spell castTime="0" channeled="1" cooldown="180000"/>
       </talent>
       <talent column="2" icon="ability_druid_kingofthejungle" key="2157" name="Ruf der Wildnis" requires="2129" tier="4">
-        <rank description="Euer Tier brullt und erhoht sowohl seine eigene als auch Eure Nahkampf- und Distanzangriffskraft um 10%. Halt 20 Sek. lang an." lvl="1"/>
+        <rank description="Euer Tier brüllt und erhöht sowohl seine eigene als auch Eure Nahkampf- und Distanzangriffskraft um 10%. Hält 20 Sek. lang an." lvl="1"/>
         <spell castTime="0" cooldown="300000"/>
       </talent>
       <talent column="0" icon="inv_misc_fish_35" key="2254" name="Haiangriff" tier="5">
-        <rank description="Die Angriffe Eures Begleiters verursachen zusatzlich 3% Schaden." lvl="1"/>
-        <rank description="Die Angriffe Eures Begleiters verursachen zusatzlich 6% Schaden." lvl="2"/>
+        <rank description="Die Angriffe Eures Begleiters verursachen zusätzlich 3% Schaden." lvl="1"/>
+        <rank description="Die Angriffe Eures Begleiters verursachen zusätzlich 6% Schaden." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_misc_horn_04" key="2253" name="Wilde Jagd" requires="2157" tier="5">
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 20% und den er durch Eure Angriffskraft erhalt, um 15%." lvl="1"/>
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 40% und den er durch Eure Angriffskraft erhalt, um 30%." lvl="2"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 20% und den er durch Eure Angriffskraft erhält, um 15%." lvl="1"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 40% und den er durch Eure Angriffskraft erhält, um 30%." lvl="2"/>
       </talent>
     </tree>
-    <tree bgImage="HunterPetTenacity" icon="ability_hunter_pet_bear" key="Tenacity" name="Hartnackigkeit" order="1">
+    <tree bgImage="HunterPetTenacity" icon="ability_hunter_pet_bear" key="Tenacity" name="Hartnäckigkeit" order="1">
       <talent column="0" icon="spell_nature_guardianward" key="2114" name="Kobrareflexe" tier="0">
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
-        <rank description="Erhoht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 15%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="1"/>
+        <rank description="Erhöht das Angriffstempo Eures Tiers um 30%. Euer Tier wird schneller zuschlagen, die einzelnen Treffer verursachen jedoch weniger Schaden." lvl="2"/>
       </talent>
       <talent categoryMask0="3179210" categoryMask1="1610612736" column="1" icon="ability_hunter_pet_bear" key="2237" name="Sturmangriff" tier="0">
-        <rank description="Euer Tier sturmt auf sein Ziel zu und macht es 1 Sek. lang bewegungsunfahig. Zusatzlich wird die Nahkampfangriffskraft seines nachsten Angriffs um 25% erhoht." lvl="1"/>
+        <rank description="Euer Tier stürmt auf sein Ziel zu und macht es 1 Sek. lang bewegungsunfähig. Zusätzlich wird die Nahkampfangriffskraft seines nächsten Angriffs um 25% erhöht." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
       </talent>
-      <talent column="2" icon="spell_nature_unyeildingstamina" key="2116" name="Gro?e Ausdauer" tier="0">
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
+      <talent column="2" icon="spell_nature_unyeildingstamina" key="2116" name="Große Ausdauer" tier="0">
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 4%." lvl="1"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 8%." lvl="2"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 12%." lvl="3"/>
       </talent>
-      <talent column="3" icon="spell_nature_spiritarmor" key="2117" name="Naturliche Rustung" tier="0">
-        <rank description="Erhoht die Rustung Eures Tiers um 5%." lvl="1"/>
-        <rank description="Erhoht die Rustung Eures Tiers um 10%." lvl="2"/>
+      <talent column="3" icon="spell_nature_spiritarmor" key="2117" name="Natürliche Rüstung" tier="0">
+        <rank description="Erhöht die Rüstung Eures Tiers um 5%." lvl="1"/>
+        <rank description="Erhöht die Rüstung Eures Tiers um 10%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_jewelry_necklace_22" key="2126" name="Stachelhalsband" tier="1">
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusatzlichen Schaden." lvl="1"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusatzlichen Schaden." lvl="2"/>
-        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusatzlichen Schaden." lvl="3"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 3% zusätzlichen Schaden." lvl="1"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 6% zusätzlichen Schaden." lvl="2"/>
+        <rank description="Jegliche Angriffe Eures Tiers verursachen 9% zusätzlichen Schaden." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_hunter_pet_boar" key="2160" name="Tempo des Ebers" tier="1">
-        <rank description="Erhoht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
+        <rank description="Erhöht das Bewegungstempo Eures Tiers um 30%." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_shadow_lifedrain" key="2173" name="Blut des Rhinozeros" requires="2116" tier="1">
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 2% und erhoht jegliche von ihm erhaltene Heilung um 20%." lvl="1"/>
-        <rank description="Erhoht die gesamte Ausdauer Eures Tiers um 4% und erhoht jegliche von ihm erhaltene Heilung um 40%." lvl="2"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 2% und erhöht jegliche von ihm erhaltene Heilung um 20%." lvl="1"/>
+        <rank description="Erhöht die gesamte Ausdauer Eures Tiers um 4% und erhöht jegliche von ihm erhaltene Heilung um 40%." lvl="2"/>
       </talent>
       <talent column="3" icon="inv_helmet_94" key="2122" name="Elefantenhaut" requires="2117" tier="1">
-        <rank description="Erhoht die Rustung Eures Tiers um 5% und seine Ausweichchance um 1%." lvl="1"/>
-        <rank description="Erhoht die Rustung Eures Tiers um 10% und seine Ausweichchance um 2%." lvl="2"/>
+        <rank description="Erhöht die Rüstung Eures Tiers um 5% und seine Ausweichchance um 1%." lvl="1"/>
+        <rank description="Erhöht die Rüstung Eures Tiers um 10% und seine Ausweichchance um 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2110" name="Herdenschlachtung" tier="2">
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhoht." lvl="1"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhoht." lvl="2"/>
-        <rank description="Wenn die Fahigkeiten 'Klaue', 'Bei?en' oder 'Sto?en' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhoht." lvl="3"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 1% erhöht." lvl="1"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 2% erhöht." lvl="2"/>
+        <rank description="Wenn die Fähigkeiten 'Klaue', 'Beißen' oder 'Stoßen' Eures Tiers kritische Treffer erzielen, wird Euer verursachter Schaden und der Eures Tiers 10 Sek. lang um 3% erhöht." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_physical_taunt" key="2123" name="Wachhund" tier="2">
-        <rank description="Das Knurren Eures Tiers erzeugt 10% zusatzliche Bedrohung und 10% seiner gesamten Zufriedenheit." lvl="1"/>
-        <rank description="Das Knurren Eures Tiers erzeugt 20% zusatzliche Bedrohung und 10% seiner gesamten Zufriedenheit." lvl="2"/>
+        <rank description="Das Knurren Eures Tiers erzeugt 10% zusätzliche Bedrohung und 10% seiner gesamten Zufriedenheit." lvl="1"/>
+        <rank description="Das Knurren Eures Tiers erzeugt 20% zusätzliche Bedrohung und 10% seiner gesamten Zufriedenheit." lvl="2"/>
       </talent>
-      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Lowenherz" tier="2">
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 15%." lvl="1"/>
-        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betaubungs- und Furchteffekte um 30%." lvl="2"/>
+      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Löwenherz" tier="2">
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 15%." lvl="1"/>
+        <rank description="Verringert die Dauer aller auf Euer Tier wirkenden Betäubungs- und Furchteffekte um 30%." lvl="2"/>
       </talent>
       <talent column="3" icon="ability_golemthunderclap" key="2277" name="Donnerstampfer" tier="2">
-        <rank description="Lasst den Boden mit donnernder Macht erbeben und verursacht bei allen Feinden in einem Umkreis von 8 Metern 3 bis 5 Naturschaden. Diese Fahigkeit verursacht eine durchschnittliche Menge zusatzlicher Bedrohung." lvl="1"/>
+        <rank description="Lässt den Boden mit donnernder Macht erbeben und verursacht bei allen Feinden in einem Umkreis von 8 Metern 3 bis 5 Naturschaden. Diese Fähigkeit verursacht eine durchschnittliche Menge zusätzlicher Bedrohung." lvl="1"/>
         <spell castTime="0" cooldown="10000" maxRange="5">
           <power cost="20" type="unknown"/>
         </spell>
@@ -259,7 +259,7 @@
         <rank description="Verringert die Chance, dass Euer Tier einen kritischen Nahkampftreffer erleidet, um 2%." lvl="1"/>
         <rank description="Verringert die Chance, dass Euer Tier einen kritischen Nahkampftreffer erleidet, um 4%." lvl="2"/>
       </talent>
-      <talent column="3" icon="spell_nature_resistnature" key="2161" name="Gro?er Widerstand" tier="3">
+      <talent column="3" icon="spell_nature_resistnature" key="2161" name="Großer Widerstand" tier="3">
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 5% weniger Schaden." lvl="1"/>
         <spell castTime="0"/>
         <rank description="Euer Tier erleidet durch Arkan-, Feuer-, Frost-, Natur- und Schattenzauber 10% weniger Schaden." lvl="2"/>
@@ -268,30 +268,30 @@
         <spell castTime="0"/>
       </talent>
       <talent column="0" icon="spell_nature_shamanrage" key="2171" name="Letztes Gefecht" tier="4">
-        <rank description="Eurem Tier werden 20 Sek. lang 30% seiner maximalen Gesundheit gewahrt. Wenn der Effekt abklingt, geht die zusatzliche Gesundheit wieder verloren." lvl="1"/>
+        <rank description="Eurem Tier werden 20 Sek. lang 30% seiner maximalen Gesundheit gewährt. Wenn der Effekt abklingt, geht die zusätzliche Gesundheit wieder verloren." lvl="1"/>
         <spell castTime="0" cooldown="360000"/>
       </talent>
       <talent column="1" icon="spell_nature_reincarnation" key="2170" name="Spott" requires="2123" tier="4">
         <rank description="Euer Tier verspottet das Ziel, um 3 Sek. lang von ihm angegriffen zu werden." lvl="1"/>
         <spell castTime="0" cooldown="180000" maxRange="5"/>
       </talent>
-      <talent column="2" icon="ability_druid_demoralizingroar" key="2172" name="Brullen der Aufopferung" requires="2163" tier="4">
-        <rank description="Schutzt ein befreundetes Ziel davor, kritische Treffer zu erleiden. Gegen das Ziel gefuhrte Angriffe konnen nicht kritisch treffen, jedoch wird 20% des gesamten erlittenen Schadens auch auf Euer Tier ubertragen. Halt 12 Sek. lang an." lvl="1"/>
+      <talent column="2" icon="ability_druid_demoralizingroar" key="2172" name="Brüllen der Aufopferung" requires="2163" tier="4">
+        <rank description="Schützt ein befreundetes Ziel davor, kritische Treffer zu erleiden. Gegen das Ziel geführte Angriffe können nicht kritisch treffen, jedoch wird 20% des gesamten erlittenen Schadens auch auf Euer Tier übertragen. Hält 12 Sek. lang an." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="40"/>
       </talent>
       <talent column="3" icon="ability_hunter_pet_turtle" key="2169" name="Einschreiten" tier="4">
-        <rank description="Euer Tier lauft mit gro?er Geschwindigkeit auf ein Gruppenmitglied zu und fangt den nachsten Nahkampf- oder Distanzangriff gegen dieses Gruppenmitglied ab." lvl="1"/>
+        <rank description="Euer Tier läuft mit großer Geschwindigkeit auf ein Gruppenmitglied zu und fängt den nächsten Nahkampf- oder Distanzangriff gegen dieses Gruppenmitglied ab." lvl="1"/>
         <spell castTime="0" cooldown="30000" maxRange="25" minRange="8">
           <power cost="20" type="unknown"/>
         </spell>
       </talent>
-      <talent column="1" icon="ability_hunter_pet_gorilla" key="2258" name="Silberrucken" tier="5">
-        <rank description="Das Knurren Eures Tieres heilt es zusatzlich um 1% seiner gesamten Gesundheit." lvl="1"/>
-        <rank description="Das Knurren Eures Tieres heilt es zusatzlich um 2% seiner gesamten Gesundheit." lvl="2"/>
+      <talent column="1" icon="ability_hunter_pet_gorilla" key="2258" name="Silberrücken" tier="5">
+        <rank description="Das Knurren Eures Tieres heilt es zusätzlich um 1% seiner gesamten Gesundheit." lvl="1"/>
+        <rank description="Das Knurren Eures Tieres heilt es zusätzlich um 2% seiner gesamten Gesundheit." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_misc_horn_04" key="2255" name="Wilde Jagd" requires="2172" tier="5">
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 20% und den er durch Eure Angriffskraft erhalt, um 15%." lvl="1"/>
-        <rank description="Erhoht den Bonus, den Euer Begleiter durch Eure Ausdauer erhalt, um 40% und den er durch Eure Angriffskraft erhalt, um 30%." lvl="2"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 20% und den er durch Eure Angriffskraft erhält, um 15%." lvl="1"/>
+        <rank description="Erhöht den Bonus, den Euer Begleiter durch Eure Ausdauer erhält, um 40% und den er durch Eure Angriffskraft erhält, um 30%." lvl="2"/>
       </talent>
     </tree>
   </talentTrees>

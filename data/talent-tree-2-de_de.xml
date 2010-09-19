@@ -40,7 +40,7 @@
         <rank description="Erhöht Eure Chance, mit allen Angriffen und Zaubern einen kritischen Treffer zu erzielen, um 5%." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_warrior_innerrage" key="1481" name="Siegel des Befehls" tier="2">
-        <rank description="Alle Nahkampfangriffe verursachen 3 bis 4 zusätzlichen Heiligschaden. Wird dieser Zauber mit Angriffen oder Fähigkeiten genutzt, die ein einzelnes Ziel treffen, trifft der zusätzliche Heiligschaden bis zu 2 zusätzliche Ziele. Hält 30 Min. lang an.&lt;br/&gt;&lt;br/&gt;Die Entfesselung der Energie dieses Siegels richtet einen Feind und verursacht sofort 4 bis 4 Heiligschaden." lvl="1"/>
+        <rank description="Alle Nahkampfangriffe verursachen 1 bis 2 zusätzlichen Heiligschaden. Wird dieser Zauber mit Angriffen oder Fähigkeiten genutzt, die ein einzelnes Ziel treffen, trifft der zusätzliche Heiligschaden bis zu 2 zusätzliche Ziele. Hält 30 Min. lang an.&lt;br/&gt;&lt;br/&gt;Die Entfesselung der Energie dieses Siegels richtet einen Feind und verursacht sofort 3 bis 3 Heiligschaden." lvl="1"/>
         <spell castTime="0">
           <power cost="14" type="mana"/>
         </spell>
@@ -85,7 +85,7 @@
         <rank description="Erhöht sowohl den Schaden Eurer Richturteilszauber, als auch den Eurer Zauber 'Kreuzfahrerstoß' und 'Göttlicher Sturm' um 10%. Zudem wird, wenn Eure Nahkampfangriffe kritisch treffen, Euer nächstes Wirken von 'Lichtblitz' oder 'Exorzismus' zu einem Spontanzauber." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_prayerofhealing" key="1441" name="Buße" tier="6">
-        <rank description="Versetzt das feindliche Ziel in einen meditativen Zustand, macht es so bis zu 1 Min. lang handlungsunfähig. Jeglicher erlittene Schaden wird das Ziel wecken. Wirkt auf Dämonen, Drachkin, Riesen, Humanoide und Untote." lvl="1"/>
+        <rank description="Versetzt das feindliche Ziel in einen meditativen Zustand, macht es so bis zu 1 Min. lang handlungsunfähig und entfernt den Effekt von 'Rechtschaffene Vergeltung'. Jeglicher erlittene Schaden wird das Ziel wecken. Wirkt auf Dämonen, Drachkin, Riesen, Humanoide und Untote." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="20">
           <power cost="9" type="mana"/>
         </spell>
@@ -206,8 +206,8 @@
         <rank description="Gewährt Euch eine Chance von 10%, dass die nächsten 4 Waffenschwünge innerhalb von 8 Sek. nach erlittenem Schaden oder einem geblockten Angriff jeweils einen zusätzlichen Angriff erzeugen." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_holy_divineintervention" key="1750" name="Heilige Pflicht" tier="5">
-        <rank description="Erhöht Eure gesamte Ausdauer um 4% und verringert die Abklingzeit Eurer Zauber 'Gottesschild' und 'Göttlicher Schutz' um 30 Sek." lvl="1"/>
-        <rank description="Erhöht Eure gesamte Ausdauer um 8% und verringert die Abklingzeit Eurer Zauber 'Gottesschild' und 'Göttlicher Schutz' um 60 Sek." lvl="2"/>
+        <rank description="Erhöht Eure gesamte Ausdauer um 2% und verringert die Abklingzeit Eurer Zauber 'Gottesschild' und 'Göttlicher Schutz' um 30 Sek." lvl="1"/>
+        <rank description="Erhöht Eure gesamte Ausdauer um 4% und verringert die Abklingzeit Eurer Zauber 'Gottesschild' und 'Göttlicher Schutz' um 60 Sek." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_sword_20" key="1429" name="Einhandwaffen-Spezialisierung" tier="5">
         <rank description="Erhöht jeglichen zugefügten Schaden, wenn Ihr eine Einhandnahkampfwaffe angelegt habt, um 4%." lvl="1"/>

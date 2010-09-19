@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_es" requestUrl="/talent-tree.xml">
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_mx" requestUrl="/talent-tree.xml">
   <talentTrees>
     <tree bgImage="HunterPetCunning" icon="ability_hunter_combatexperience" key="Cunning" name="Astucia" order="2">
       <talent column="0" icon="spell_nature_guardianward" key="2118" name="Reflejos de cobra" tier="0">
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="1"/>
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="2"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="1"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="2"/>
       </talent>
       <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_druid_dash" key="2119" name="Carrerilla" tier="0">
         <rank description="Aumenta la velocidad de movimiento de tu mascota un 80% durante 16 s." lvl="1"/>
@@ -26,92 +26,92 @@
         <rank description="Aumenta la armadura de tu mascota un 5%." lvl="1"/>
         <rank description="Aumenta la armadura de tu mascota un 10%." lvl="2"/>
       </talent>
-      <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Velocidad de jabali" tier="1">
+      <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Velocidad de jabalí" tier="1">
         <rank description="Aumenta un 30% la velocidad de movimiento de tu mascota." lvl="1"/>
       </talent>
-      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Movilidad" requires="2119" tier="1">
-        <rank description="Reduce el tiempo de reutilizacion de la facultad Carrerilla de tu mascota 8 s." lvl="1"/>
-        <rank description="Reduce el tiempo de reutilizacion de la facultad Carrerilla de tu mascota 16 s." lvl="2"/>
-      </talent>
       <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Movilidad" requires="2201" tier="1">
-        <rank description="Reduce el tiempo de reutilizacion de la facultad En picado de tu mascota 8 s." lvl="1"/>
-        <rank description="Reduce el tiempo de reutilizacion de la facultad En picado de tu mascota 16 s." lvl="2"/>
+        <rank description="Reduce el tiempo de reutilización de la facultad En picado de tu mascota 8 s." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de la facultad En picado de tu mascota 16 s." lvl="2"/>
       </talent>
-      <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Enfoque de buho" tier="1">
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Movilidad" requires="2119" tier="1">
+        <rank description="Reduce el tiempo de reutilización de la facultad Carrerilla de tu mascota 8 s." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de la facultad Carrerilla de tu mascota 16 s." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_owl" key="2182" name="Enfoque de búho" tier="1">
         <rank description="Tu mascota tiene un 15% de probabilidad tras usar una facultad de que la siguiente facultad no cueste enfoque si se usa en 8 s." lvl="1"/>
         <rank description="Tu mascota tiene un 30% de probabilidad tras usar una facultad de que la siguiente facultad no cueste enfoque si se usa en 8 s." lvl="2"/>
       </talent>
       <talent column="3" icon="inv_jewelry_necklace_22" key="2127" name="Collera con pinchos" tier="1">
-        <rank description="Tu mascota inflige un 3% de dano extra con todos los ataques." lvl="1"/>
-        <rank description="Tu mascota inflige un 6% de dano extra con todos los ataques." lvl="2"/>
-        <rank description="Tu mascota inflige un 9% de dano extra con todos los ataques." lvl="3"/>
+        <rank description="Tu mascota inflige un 3% de daño extra con todos los ataques." lvl="1"/>
+        <rank description="Tu mascota inflige un 6% de daño extra con todos los ataques." lvl="2"/>
+        <rank description="Tu mascota inflige un 9% de daño extra con todos los ataques." lvl="3"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2166" name="Desvieje de la manada" tier="2">
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 1% de dano aumentado durante 10 s." lvl="1"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 2% de dano aumentado durante 10 s." lvl="2"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 3% de dano aumentado durante 10 s." lvl="3"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 1% de daño aumentado durante 10 s." lvl="1"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 2% de daño aumentado durante 10 s." lvl="2"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 3% de daño aumentado durante 10 s." lvl="3"/>
       </talent>
-      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Corazon de leon" tier="2">
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
+      <talent column="1" icon="inv_bannerpvp_02" key="2167" name="Corazón de león" tier="2">
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
       </talent>
-      <talent column="2" icon="ability_racial_cannibalize" key="2206" name="Carronero" tier="2">
-        <rank description="Tu mascota puede generar salud y felicidad comiendose un cadaver. No funcionara con los restos de criaturas elementales o mecanicas." lvl="1"/>
+      <talent column="2" icon="ability_racial_cannibalize" key="2206" name="Carroñero" tier="2">
+        <rank description="Tu mascota puede generar salud y felicidad comiéndose un cadáver. No funcionará con los restos de criaturas elementales o mecánicas." lvl="1"/>
         <spell castTime="0" cooldown="30000" maxRange="5"/>
       </talent>
       <talent column="1" icon="spell_nature_resistnature" key="2168" name="Gran resistencia" tier="3">
-        <rank description="Tu mascota recibe un 5% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
+        <rank description="Tu mascota recibe un 5% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 10% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
+        <rank description="Tu mascota recibe un 10% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 15% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
+        <rank description="Tu mascota recibe un 15% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
         <spell castTime="0"/>
       </talent>
       <talent column="2" icon="ability_hunter_survivalinstincts" key="2177" name="Arrinconado" tier="3">
-        <rank description="Cuando esta por debajo del 35% de salud, tu mascota inflige un 25% mas de dano y tiene un 30% menos de probabilidad de recibir un golpe critico." lvl="1"/>
-        <rank description="Cuando esta por debajo del 35% de salud, tu mascota inflige un 50% mas de dano y tiene un 60% menos de probabilidad de recibir un golpe critico." lvl="2"/>
+        <rank description="Cuando está por debajo del 35% de salud, tu mascota inflige un 25% más de daño y tiene un 30% menos de probabilidad de recibir un golpe crítico." lvl="1"/>
+        <rank description="Cuando está por debajo del 35% de salud, tu mascota inflige un 50% más de daño y tiene un 60% menos de probabilidad de recibir un golpe crítico." lvl="2"/>
       </talent>
-      <talent column="3" icon="inv_misc_fish_48" key="2183" name="Frenesi de comida" requires="2127" tier="3">
-        <rank description="Tu mascota inflige un 8% de dano extra a los objetivos con menos del 35% de salud." lvl="1"/>
-        <rank description="Tu mascota inflige un 16% de dano extra a los objetivos con menos del 35% de salud." lvl="2"/>
+      <talent column="3" icon="inv_misc_fish_48" key="2183" name="Frenesí de comida" requires="2127" tier="3">
+        <rank description="Tu mascota inflige un 8% de daño extra a los objetivos con menos del 35% de salud." lvl="1"/>
+        <rank description="Tu mascota inflige un 16% de daño extra a los objetivos con menos del 35% de salud." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_druid_lacerate" key="2181" name="Mordedura de lobezno" tier="4">
-        <rank description="Un ataque feroz que inflige 5 p. de dano, modificados por el nivel de mascota, que tu mascota puede usar cuando realice un ataque critico. No se puede esquivar, bloquear o parar." lvl="1"/>
+        <rank description="Un ataque feroz que inflige 5 p. de daño, modificados por el nivel de mascota, que tu mascota puede usar cuando realice un ataque crítico. No se puede esquivar, bloquear o parar." lvl="1"/>
         <spell castTime="0" cooldown="10000" maxRange="5"/>
       </talent>
-      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Rugido de recuperacion" tier="4">
-        <rank description="El rugido inspirador de tu mascota restaura el 30% de tu mana total durante 9 s." lvl="1"/>
+      <talent column="1" icon="ability_druid_mastershapeshifter" key="2184" name="Rugido de recuperación" tier="4">
+        <rank description="El rugido inspirador de tu mascota restaura el 30% de tu maná total durante 9 s." lvl="1"/>
         <spell castTime="0" cooldown="180000" maxRange="40"/>
       </talent>
       <talent column="2" icon="ability_warrior_bullrush" key="2175" name="Cabezota" requires="2177" tier="4">
-        <rank description="Elimina todos los efectos que reducen el movimiento y todos los efectos que provocan perdida de control sobre tu mascota y reduce el dano infligido a tu mascota un 20% durante 12 s." lvl="1"/>
+        <rank description="Elimina todos los efectos que reducen el movimiento y todos los efectos que provocan pérdida de control sobre tu mascota y reduce el daño infligido a tu mascota un 20% durante 12 s." lvl="1"/>
         <spell castTime="0" cooldown="180000"/>
       </talent>
       <talent column="3" icon="inv_misc_ahnqirajtrinket_02" key="2257" name="Gracia de la mantis" tier="4">
-        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe critico con ataques cuerpo a cuerpo un 2%." lvl="1"/>
-        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe critico con ataques cuerpo a cuerpo un 4%." lvl="2"/>
+        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe crítico con ataques cuerpo a cuerpo un 2%." lvl="1"/>
+        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe crítico con ataques cuerpo a cuerpo un 4%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_misc_horn_04" key="2256" name="Caza salvaje" requires="2181" tier="5">
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
       </talent>
       <talent column="3" icon="ability_druid_demoralizingroar" key="2278" name="Rugido de sacrificio" requires="2257" tier="5">
-        <rank description="Protege a un objetivo amistoso de los golpes criticos, haciendo que los ataques contra ese objetivo no puedan ser golpes criticos, pero un 20% de todo el dano recibido por ese objetivo tambien lo recibe la mascota. Dura 12 s." lvl="1"/>
+        <rank description="Protege a un objetivo amistoso de los golpes críticos, haciendo que los ataques contra ese objetivo no puedan ser golpes críticos, pero un 20% de todo el daño recibido por ese objetivo también lo recibe la mascota. Dura 12 s." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="40"/>
       </talent>
     </tree>
     <tree bgImage="HunterPetFerocity" icon="ability_druid_swipe" key="Ferocity" name="Ferocidad" order="0">
       <talent column="0" icon="spell_nature_guardianward" key="2107" name="Reflejos de cobra" tier="0">
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="1"/>
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="2"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="1"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="2"/>
       </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="En picado" tier="0">
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Carrerilla" tier="0">
         <rank description="Aumenta la velocidad de movimiento de tu mascota un 80% durante 16 s." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Carrerilla" tier="0">
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="En picado" tier="0">
         <rank description="Aumenta la velocidad de movimiento de tu mascota un 80% durante 16 s." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
@@ -127,86 +127,86 @@
         <rank description="Aumenta la armadura de tu mascota un 10%." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_druid_cower" key="2124" name="Agazapar mejorado" tier="1">
-        <rank description="La penalizacion de velocidad de movimiento del Agazapar de tu mascota se reduce un 50%." lvl="1"/>
-        <rank description="La penalizacion de velocidad de movimiento del Agazapar de tu mascota se reduce un 100%." lvl="2"/>
+        <rank description="La penalización de velocidad de movimiento del Agazapar de tu mascota se reduce un 50%." lvl="1"/>
+        <rank description="La penalización de velocidad de movimiento del Agazapar de tu mascota se reduce un 100%." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_druid_primaltenacity" key="2128" name="Sediento de sangre" tier="1">
         <rank description="Los ataques de tu mascota tienen un 10% de probabilidad de aumentar su felicidad un 5% y de sanar el 5% de su salud total." lvl="1"/>
         <rank description="Los ataques de tu mascota tienen un 20% de probabilidad de aumentar su felicidad un 5% y de sanar un 5% de su salud total." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_jewelry_necklace_22" key="2125" name="Collera con pinchos" tier="1">
-        <rank description="Tu mascota inflige un 3% de dano extra con todos los ataques." lvl="1"/>
-        <rank description="Tu mascota inflige un 6% de dano extra con todos los ataques." lvl="2"/>
-        <rank description="Tu mascota inflige un 9% de dano extra con todos los ataques." lvl="3"/>
+        <rank description="Tu mascota inflige un 3% de daño extra con todos los ataques." lvl="1"/>
+        <rank description="Tu mascota inflige un 6% de daño extra con todos los ataques." lvl="2"/>
+        <rank description="Tu mascota inflige un 9% de daño extra con todos los ataques." lvl="3"/>
       </talent>
-      <talent column="3" icon="ability_hunter_pet_boar" key="2151" name="Velocidad de jabali" tier="1">
+      <talent column="3" icon="ability_hunter_pet_boar" key="2151" name="Velocidad de jabalí" tier="1">
         <rank description="Aumenta un 30% la velocidad de movimiento de tu mascota." lvl="1"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2106" name="Desvieje de la manada" tier="2">
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 1% de dano aumentado durante 10 s." lvl="1"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 2% de dano aumentado durante 10 s." lvl="2"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 3% de dano aumentado durante 10 s." lvl="3"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 1% de daño aumentado durante 10 s." lvl="1"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 2% de daño aumentado durante 10 s." lvl="2"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 3% de daño aumentado durante 10 s." lvl="3"/>
       </talent>
-      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Corazon de leon" tier="2">
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
-      </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Cargar" tier="2">
-        <rank description="Tu mascota carga contra un enemigo, inmovilizandolo durante 1 s, y aumenta el poder de ataque cuerpo a cuerpo de tu mascota un 25% en su siguiente ataque." lvl="1"/>
-        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
-          <power cost="35" type="unknown"/>
-        </spell>
+      <talent column="2" icon="inv_bannerpvp_02" key="2152" name="Corazón de león" tier="2">
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
       </talent>
       <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Descenso en picado" tier="2">
-        <rank description="Tu mascota cae en picado sobre un enemigo, lo inmoviliza durante 1 s y anade un 25% de ataque cuerpo a cuerpo al siguiente ataque de la mascota." lvl="1"/>
+        <rank description="Tu mascota cae en picado sobre un enemigo, lo inmoviliza durante 1 s y añade un 25% de ataque cuerpo a cuerpo al siguiente ataque de la mascota." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
       </talent>
-      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Corazon del fenix" requires="2128" tier="3">
-        <rank description="Cuando tu mascota muera, volvera a la vida milagrosamente con la salud completa." lvl="1"/>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Cargar" tier="2">
+        <rank description="Tu mascota carga contra un enemigo, inmovilizándolo durante 1 s, y aumenta el poder de ataque cuerpo a cuerpo de tu mascota un 25% en su siguiente ataque." lvl="1"/>
+        <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
+          <power cost="35" type="unknown"/>
+        </spell>
       </talent>
-      <talent column="2" icon="ability_hunter_pet_spider" key="2129" name="Picadura de arana" tier="3">
-        <rank description="Aumenta un 3% la probabilidad de golpe critico de tu mascota." lvl="1"/>
-        <rank description="Aumenta un 6% la probabilidad de golpe critico de tu mascota." lvl="2"/>
-        <rank description="Aumenta un 9% la probabilidad de golpe critico de tu mascota." lvl="3"/>
+      <talent column="1" icon="inv_misc_pheonixpet_01" key="2156" name="Corazón del fénix" requires="2128" tier="3">
+        <rank description="Cuando tu mascota muera, volverá a la vida milagrosamente con la salud completa." lvl="1"/>
+      </talent>
+      <talent column="2" icon="ability_hunter_pet_spider" key="2129" name="Picadura de araña" tier="3">
+        <rank description="Aumenta un 3% la probabilidad de golpe crítico de tu mascota." lvl="1"/>
+        <rank description="Aumenta un 6% la probabilidad de golpe crítico de tu mascota." lvl="2"/>
+        <rank description="Aumenta un 9% la probabilidad de golpe crítico de tu mascota." lvl="3"/>
       </talent>
       <talent column="3" icon="spell_nature_resistnature" key="2154" name="Gran resistencia" tier="3">
-        <rank description="Tu mascota recibe un 5% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
+        <rank description="Tu mascota recibe un 5% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 10% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
+        <rank description="Tu mascota recibe un 10% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 15% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
+        <rank description="Tu mascota recibe un 15% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
         <spell castTime="0"/>
       </talent>
       <talent column="0" icon="ability_druid_berserk" key="2155" name="Rabioso" tier="4">
-        <rank description="Tu mascota entra en un frenesi de muerte. Los ataques que impacten en el objetivo tienen una probabilidad de aumentar el poder de ataque un 5%. Este efecto se acumula hasta 5 veces. Dura 20 s." lvl="1"/>
+        <rank description="Tu mascota entra en un frenesí de muerte. Los ataques que impacten en el objetivo tienen una probabilidad de aumentar el poder de ataque un 5%. Este efecto se acumula hasta 5 veces. Dura 20 s." lvl="1"/>
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_hunter_mendpet" key="2153" name="Lame tus heridas" requires="2156" tier="4">
-        <rank description="Tu mascota se sana un 100% de su salud total durante 5 s mientras este canalizando." lvl="1"/>
+        <rank description="Tu mascota se sana un 100% de su salud total durante 5 s mientras esté canalizando." lvl="1"/>
         <spell castTime="0" channeled="1" cooldown="180000"/>
       </talent>
       <talent column="2" icon="ability_druid_kingofthejungle" key="2157" name="Llamada de lo Salvaje" requires="2129" tier="4">
         <rank description="Tu mascota ruge, aumentando un 10% el poder de ataque cuerpo a cuerpo y a distancia de tu mascota. Dura 20 s." lvl="1"/>
         <spell castTime="0" cooldown="300000"/>
       </talent>
-      <talent column="0" icon="inv_misc_fish_35" key="2254" name="Ataque de tiburon" tier="5">
-        <rank description="Tu mascota inflige un 3% de dano extra con todos los ataques." lvl="1"/>
-        <rank description="Tu mascota inflige un 6% de dano extra con todos los ataques." lvl="2"/>
+      <talent column="0" icon="inv_misc_fish_35" key="2254" name="Ataque de tiburón" tier="5">
+        <rank description="Tu mascota inflige un 3% de daño extra con todos los ataques." lvl="1"/>
+        <rank description="Tu mascota inflige un 6% de daño extra con todos los ataques." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_misc_horn_04" key="2253" name="Caza salvaje" requires="2157" tier="5">
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
       </talent>
     </tree>
     <tree bgImage="HunterPetTenacity" icon="ability_hunter_pet_bear" key="Tenacity" name="Tenacidad" order="1">
       <talent column="0" icon="spell_nature_guardianward" key="2114" name="Reflejos de cobra" tier="0">
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="1"/>
-        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestara golpes mas rapido pero cada golpe infligira menos dano." lvl="2"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 15%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="1"/>
+        <rank description="Aumenta la velocidad de ataque de tu mascota un 30%. Tu mascota asestará golpes más rápido pero cada golpe infligirá menos daño." lvl="2"/>
       </talent>
       <talent categoryMask0="3179210" categoryMask1="1610612736" column="1" icon="ability_hunter_pet_bear" key="2237" name="Cargar" tier="0">
-        <rank description="Tu mascota carga contra un enemigo, inmovilizandolo durante 1 s, y aumenta el poder de ataque cuerpo a cuerpo de tu mascota un 25% en su siguiente ataque." lvl="1"/>
+        <rank description="Tu mascota carga contra un enemigo, inmovilizándolo durante 1 s, y aumenta el poder de ataque cuerpo a cuerpo de tu mascota un 25% en su siguiente ataque." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
@@ -221,54 +221,54 @@
         <rank description="Aumenta la armadura de tu mascota un 10%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_jewelry_necklace_22" key="2126" name="Collera con pinchos" tier="1">
-        <rank description="Tu mascota inflige un 3% de dano extra con todos los ataques." lvl="1"/>
-        <rank description="Tu mascota inflige un 6% de dano extra con todos los ataques." lvl="2"/>
-        <rank description="Tu mascota inflige un 9% de dano extra con todos los ataques." lvl="3"/>
+        <rank description="Tu mascota inflige un 3% de daño extra con todos los ataques." lvl="1"/>
+        <rank description="Tu mascota inflige un 6% de daño extra con todos los ataques." lvl="2"/>
+        <rank description="Tu mascota inflige un 9% de daño extra con todos los ataques." lvl="3"/>
       </talent>
-      <talent column="1" icon="ability_hunter_pet_boar" key="2160" name="Velocidad de jabali" tier="1">
+      <talent column="1" icon="ability_hunter_pet_boar" key="2160" name="Velocidad de jabalí" tier="1">
         <rank description="Aumenta un 30% la velocidad de movimiento de tu mascota." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_shadow_lifedrain" key="2173" name="Sangre de los rinocerontes" requires="2116" tier="1">
-        <rank description="Aumenta el aguante total de tu mascota un 2% y aumenta todos los efectos de sanacion sobre tu mascota un 20%." lvl="1"/>
-        <rank description="Aumenta el aguante total de tu mascota un 4% y aumenta todos los efectos de sanacion sobre tu mascota un 40%." lvl="2"/>
+        <rank description="Aumenta el aguante total de tu mascota un 2% y aumenta todos los efectos de sanación sobre tu mascota un 20%." lvl="1"/>
+        <rank description="Aumenta el aguante total de tu mascota un 4% y aumenta todos los efectos de sanación sobre tu mascota un 40%." lvl="2"/>
       </talent>
       <talent column="3" icon="inv_helmet_94" key="2122" name="Aderezar mascota" requires="2117" tier="1">
         <rank description="Aumenta la armadura de tu mascota un 5% y la probabilidad de esquivar un 1%." lvl="1"/>
         <rank description="Aumenta la armadura de tu mascota un 10% y la probabilidad de esquivar un 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="inv_misc_monsterhorn_06" key="2110" name="Desvieje de la manada" tier="2">
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 1% de dano aumentado durante 10 s." lvl="1"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 2% de dano aumentado durante 10 s." lvl="2"/>
-        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe critico, tu y tu mascota infligis un 3% de dano aumentado durante 10 s." lvl="3"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 1% de daño aumentado durante 10 s." lvl="1"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 2% de daño aumentado durante 10 s." lvl="2"/>
+        <rank description="Cuando las facultades Zarpa, Mordedura o Bofetada de tu mascota infligen un golpe crítico, tú y tu mascota infligís un 3% de daño aumentado durante 10 s." lvl="3"/>
       </talent>
-      <talent column="1" icon="ability_physical_taunt" key="2123" name="Perro guardian" tier="2">
+      <talent column="1" icon="ability_physical_taunt" key="2123" name="Perro guardián" tier="2">
         <rank description="Bramido de tu mascota genera un 10% de amenaza extra y un 10% de tu felicidad total." lvl="1"/>
         <rank description="Bramido de tu mascota genera un 20% de amenaza extra y un 10% de tu felicidad total." lvl="2"/>
       </talent>
-      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Corazon de leon" tier="2">
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
-        <rank description="Reduce la duracion de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
+      <talent column="2" icon="inv_bannerpvp_02" key="2162" name="Corazón de león" tier="2">
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 15%." lvl="1"/>
+        <rank description="Reduce la duración de todos los efectos de aturdimiento y miedo que se usen contra tu mascota un 30%." lvl="2"/>
       </talent>
-      <talent column="3" icon="ability_golemthunderclap" key="2277" name="Pisoton de trueno" tier="2">
-        <rank description="Sacude el terreno con tremenda fuerza e inflige 3-5 p. de dano de Naturaleza a todos los enemigos en un radio de 8 m. Esta facultad provoca una cantidad moderada de amenaza extra." lvl="1"/>
+      <talent column="3" icon="ability_golemthunderclap" key="2277" name="Pisotón de trueno" tier="2">
+        <rank description="Sacude el terreno con tremenda fuerza e inflige 3-5 p. de daño de Naturaleza a todos los enemigos en un radio de 8 m. Esta facultad provoca una cantidad moderada de amenaza extra." lvl="1"/>
         <spell castTime="0" cooldown="10000" maxRange="5">
           <power cost="20" type="unknown"/>
         </spell>
       </talent>
       <talent column="2" icon="inv_misc_ahnqirajtrinket_02" key="2163" name="Gracia de la mantis" tier="3">
-        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe critico con ataques cuerpo a cuerpo un 2%." lvl="1"/>
-        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe critico con ataques cuerpo a cuerpo un 4%." lvl="2"/>
+        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe crítico con ataques cuerpo a cuerpo un 2%." lvl="1"/>
+        <rank description="Reduce la probabilidad de que tu mascota reciba un golpe crítico con ataques cuerpo a cuerpo un 4%." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_nature_resistnature" key="2161" name="Gran resistencia" tier="3">
-        <rank description="Tu mascota recibe un 5% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
+        <rank description="Tu mascota recibe un 5% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="1"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 10% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
+        <rank description="Tu mascota recibe un 10% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="2"/>
         <spell castTime="0"/>
-        <rank description="Tu mascota recibe un 15% menos de dano de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
+        <rank description="Tu mascota recibe un 15% menos de daño de la magia Arcana, de Fuego, de Escarcha, de Naturaleza y de las Sombras." lvl="3"/>
         <spell castTime="0"/>
       </talent>
-      <talent column="0" icon="spell_nature_shamanrage" key="2171" name="Ultima carga" tier="4">
-        <rank description="Tu mascota gana temporalmente un 30% de su salud maxima durante 20 s. Cuando el efecto se disipa, la salud se pierde." lvl="1"/>
+      <talent column="0" icon="spell_nature_shamanrage" key="2171" name="Última carga" tier="4">
+        <rank description="Tu mascota gana temporalmente un 30% de su salud máxima durante 20 s. Cuando el efecto se disipa, la salud se pierde." lvl="1"/>
         <spell castTime="0" cooldown="360000"/>
       </talent>
       <talent column="1" icon="spell_nature_reincarnation" key="2170" name="Provocar" requires="2123" tier="4">
@@ -276,22 +276,22 @@
         <spell castTime="0" cooldown="180000" maxRange="5"/>
       </talent>
       <talent column="2" icon="ability_druid_demoralizingroar" key="2172" name="Rugido de sacrificio" requires="2163" tier="4">
-        <rank description="Protege a un objetivo amistoso de los golpes criticos, haciendo que los ataques contra ese objetivo no puedan ser golpes criticos, pero un 20% de todo el dano recibido por ese objetivo tambien lo recibe la mascota. Dura 12 s." lvl="1"/>
+        <rank description="Protege a un objetivo amistoso de los golpes críticos, haciendo que los ataques contra ese objetivo no puedan ser golpes críticos, pero un 20% de todo el daño recibido por ese objetivo también lo recibe la mascota. Dura 12 s." lvl="1"/>
         <spell castTime="0" cooldown="60000" maxRange="40"/>
       </talent>
       <talent column="3" icon="ability_hunter_pet_turtle" key="2169" name="Intervenir" tier="4">
-        <rank description="Tu mascota corre a gran velocidad hacia el miembro del grupo, interceptando el siguiente ataque a distancia o cuerpo a cuerpo hecho contra el." lvl="1"/>
+        <rank description="Tu mascota corre a gran velocidad hacia el miembro del grupo, interceptando el siguiente ataque a distancia o cuerpo a cuerpo hecho contra él." lvl="1"/>
         <spell castTime="0" cooldown="30000" maxRange="25" minRange="8">
           <power cost="20" type="unknown"/>
         </spell>
       </talent>
       <talent column="1" icon="ability_hunter_pet_gorilla" key="2258" name="Lomoplata" tier="5">
-        <rank description="Bramido de tu mascota tambien sana un 1% de su salud total." lvl="1"/>
-        <rank description="Bramido de tu mascota tambien sana un 2% de su salud total." lvl="2"/>
+        <rank description="Bramido de tu mascota también sana un 1% de su salud total." lvl="1"/>
+        <rank description="Bramido de tu mascota también sana un 2% de su salud total." lvl="2"/>
       </talent>
       <talent column="2" icon="inv_misc_horn_04" key="2255" name="Caza salvaje" requires="2172" tier="5">
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
-        <rank description="Aumenta la contribucion que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 20% y el poder de ataque un 15%." lvl="1"/>
+        <rank description="Aumenta la contribución que tu mascota obtiene de tu aguante un 40% y el poder de ataque un 30%." lvl="2"/>
       </talent>
     </tree>
   </talentTrees>

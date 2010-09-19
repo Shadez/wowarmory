@@ -29,11 +29,11 @@
       <talent column="0" icon="ability_hunter_pet_boar" key="2165" name="Звериная стремительность" tier="1">
         <rank description="Повышает скорость передвижения вашего питомца на 30%." lvl="1"/>
       </talent>
-      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Подвижность" requires="2119" tier="1">
+      <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Подвижность" requires="2201" tier="1">
         <rank description="Сокращает время восстановления способности питомца &quot;Пикирование&quot; на 8 с." lvl="1"/>
         <rank description="Сокращает время восстановления способности питомца &quot;Пикирование&quot; на 16 с." lvl="2"/>
       </talent>
-      <talent categoryMask0="21238021" column="1" icon="ability_hunter_animalhandler" key="2208" name="Подвижность" requires="2201" tier="1">
+      <talent categoryMask0="212992" categoryMask1="-2147483648" column="1" icon="ability_hunter_animalhandler" key="2207" name="Подвижность" requires="2119" tier="1">
         <rank description="Сокращает время восстановления способности питомца &quot;Пикирование&quot; на 8 с." lvl="1"/>
         <rank description="Сокращает время восстановления способности питомца &quot;Пикирование&quot; на 16 с." lvl="2"/>
       </talent>
@@ -105,14 +105,14 @@
         <rank description="Повышает скорость атаки питомца на 15%. Ваш питомец будет сражаться быстрее, но каждый удар будет наносить меньше урона." lvl="1"/>
         <rank description="Повышает скорость атаки питомца на 30%. Ваш питомец будет сражаться быстрее, но каждый удар будет наносить меньше урона." lvl="2"/>
       </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Пикирование" tier="0">
-        <rank description="Повышает скорость передвижения вашего питомца на 80% на 16 сек." lvl="1"/>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Порыв" tier="0">
+        <rank description="Повышает скорость передвижения питомца на 80% на 16 сек." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
       </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="1" icon="ability_druid_dash" key="2109" name="Порыв" tier="0">
-        <rank description="Повышает скорость передвижения питомца на 80% на 16 сек." lvl="1"/>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="1" icon="spell_shadow_burningspirit" key="2203" name="Пикирование" tier="0">
+        <rank description="Повышает скорость передвижения вашего питомца на 80% на 16 сек." lvl="1"/>
         <spell castTime="0" cooldown="32000">
           <power cost="30" type="unknown"/>
         </spell>
@@ -151,14 +151,14 @@
         <rank description="Сокращает время действия всех эффектов оглушения и страха на вашего питомца на 15%." lvl="1"/>
         <rank description="Сокращает время действия всех эффектов оглушения и страха на вашего питомца на 30%." lvl="2"/>
       </talent>
-      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Рывок" tier="2">
-        <rank description="Ваш питомец бросается на противника и обездвиживает его на 1 сек. Сила следующей атаки ближнего боя питомца возрастает на 25%." lvl="1"/>
+      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Налет" tier="2">
+        <rank description="Питомец налетает на противника, обездвиживая его на 1 сек. Сила следующей атаки ближнего боя питомца увеличивается на 25%." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>
       </talent>
-      <talent categoryMask0="2064" categoryMask1="268435456" column="3" icon="ability_hunter_pet_dragonhawk" key="2219" name="Налет" tier="2">
-        <rank description="Питомец налетает на противника, обездвиживая его на 1 сек. Сила следующей атаки ближнего боя питомца увеличивается на 25%." lvl="1"/>
+      <talent categoryMask0="42476576" categoryMask1="201326592" column="3" icon="ability_hunter_pet_bear" key="2111" name="Рывок" tier="2">
+        <rank description="Ваш питомец бросается на противника и обездвиживает его на 1 сек. Сила следующей атаки ближнего боя питомца возрастает на 25%." lvl="1"/>
         <spell castTime="0" cooldown="25000" maxRange="25" minRange="8">
           <power cost="35" type="unknown"/>
         </spell>

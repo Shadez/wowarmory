@@ -51,11 +51,11 @@
         <rank description="Augmente de 3% vos chances d'esquiver et réduit de 50% la durée de tous les effets de désarmement utilisés contre vous. Non cumulable avec les autres effets qui réduisent la durée du désarmement." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Rafale" requires="613" tier="3">
-        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 5% pour les 3 prochaines attaques." lvl="1"/>
-        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 10% pour les 3 prochaines attaques." lvl="2"/>
-        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 15% pour les 3 prochaines attaques." lvl="3"/>
-        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 20% pour les 3 prochaines attaques." lvl="4"/>
-        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 25% pour les 3 prochaines attaques." lvl="5"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 6% pour les 3 prochaines attaques." lvl="1"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 12% pour les 3 prochaines attaques." lvl="2"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 18% pour les 3 prochaines attaques." lvl="3"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 24% pour les 3 prochaines attaques." lvl="4"/>
+        <rank description="Lorsque vous infligez un coup critique, augmente votre vitesse d'attaque de 30% pour les 3 prochaines attaques." lvl="5"/>
       </talent>
       <talent column="2" icon="spell_holy_devotion" key="615" name="Résistance" tier="3">
         <rank description="Augmente votre Endurance de 2% et réduit sur vous la durée des effets ralentissant le mouvement de 6%." lvl="1"/>
@@ -77,9 +77,9 @@
         <rank description="Augmente votre puissance d'attaque de 100% de votre Intelligence." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Rage libérée" tier="5">
-        <rank description="Augmente votre expertise de 3, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 4% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="1"/>
-        <rank description="Augmente votre expertise de 6, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 7% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="2"/>
-        <rank description="Augmente votre expertise de 9, et vos coups critiques obtenus avec les attaques de mêlée augmentent de 10% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 45 mètres du chaman. Dure 10 sec." lvl="3"/>
+        <rank description="Augmente votre expertise de 3, et augmente de 4% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 100 mètres du chaman." lvl="1"/>
+        <rank description="Augmente votre expertise de 6, et augmente de 7% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 100 mètres du chaman." lvl="2"/>
+        <rank description="Augmente votre expertise de 9, et augmente de 10% la puissance d'attaque de tous les membres du groupe ou du raid s'ils se trouvent à moins de 100 mètres du chaman." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Maîtrise des armes" tier="5">
         <rank description="Augmente de 4% les dégâts que vous infligez avec toutes les armes." lvl="1"/>
@@ -187,11 +187,11 @@
         <rank description="Après avoir réussi un coup critique non périodique avec un sort de dégâts de Feu, de Givre ou de Nature, vous entrez dans un état d'Idées claires. Idées claires réduit le coût en mana de vos 2 prochains sorts de dégâts ou de soins de 40%." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_fire_volcano" key="565" name="Fureur élémentaire" tier="2">
-        <rank description="Augmente de 20% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="1"/>
-        <rank description="Augmente de 40% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="2"/>
-        <rank description="Augmente de 60% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="3"/>
-        <rank description="Augmente de 80% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="4"/>
-        <rank description="Augmente de 100% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de Magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="5"/>
+        <rank description="Augmente de 20% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="1"/>
+        <rank description="Augmente de 40% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="2"/>
+        <rank description="Augmente de 60% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="3"/>
+        <rank description="Augmente de 80% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="4"/>
+        <rank description="Augmente de 100% le bonus aux dégâts des coups critiques obtenus avec vos Totems incendiaires et de magma ainsi qu'avec les sorts de Feu, de Givre et de Nature." lvl="5"/>
       </talent>
       <talent column="0" icon="spell_fire_sealoffire" key="567" name="Nova de feu améliorée" tier="3">
         <rank description="Augmente les dégâts infligés par votre Nova de feu de 10% et réduit le temps de recharge de 2 sec." lvl="1"/>
@@ -239,8 +239,8 @@
         <rank description="Réduit le temps de recharge de vos sorts Horion de flammes et Horion de givre de 2 sec. supplémentaires, en plus d'augmenter les dégâts directs qu'ils infligent de 20% supplémentaires." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Serment des éléments" requires="573" tier="7">
-        <rank description="Vos coups critiques non périodiques avec les sorts font bénéficier les membres de votre groupe ou raid se trouvant à moins de 100 mètres du Serment des éléments, qui augmente les chances de coup critique avec les sorts de 3%. De plus, quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 5% de dégâts supplémentaires avec les sorts. Dure 15 sec." lvl="1"/>
-        <rank description="Vos coups critiques non périodiques avec les sorts font bénéficier les membres de votre groupe ou raid se trouvant à moins de 100 mètres du Serment des éléments, qui augmente les chances de coup critique avec les sorts de 5%. De plus, quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 10% de dégâts supplémentaires avec les sorts. Dure 15 sec." lvl="2"/>
+        <rank description="Quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 5% de dégâts supplémentaires avec les sorts. De plus, les membres du groupe ou raid se trouvant à moins de 100 mètres bénéficient d'un bonus de 3% à leurs chances de coup critique avec les sorts." lvl="1"/>
+        <rank description="Quand vous êtes sous l'effet d'Idées claires alors que Focalisation élémentaire est active, vous infligez 10% de dégâts supplémentaires avec les sorts. De plus, les membres du groupe ou raid se trouvant à moins de 100 mètres bénéficient d'un bonus de 5% à leurs chances de coup critique avec les sorts." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Surcharge de foudre" tier="7">
         <rank description="Donne à vos sorts Eclair et Chaîne d'éclairs 11% de chances de lancer un second sort semblable sur la même cible sans coût supplémentaire. Ce sort inflige la moitié des dégâts et ne génère pas de menace." lvl="1"/>

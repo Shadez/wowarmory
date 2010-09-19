@@ -101,8 +101,8 @@
         <rank description="Verringert die Manakosten Eures Zaubers 'Blitzheilung' um 15% und erhöht seine Chance auf einen kritischen Effekt bei befreundeten Zielen, deren Gesundheit 50% oder weniger beträgt, um 10%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_holy_holyprotection" key="2235" name="Erneuerte Hoffnung" tier="7">
-        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne (Heilung)' um 2%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem habt Ihr beim Wirken von 'Machtwort: Schild' eine Chance von 50%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 20 Sek. lang um 3% zu verringern." lvl="1"/>
-        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne (Heilung)' um 4%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem habt Ihr beim Wirken von 'Machtwort: Schild' eine Chance von 100%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 20 Sek. lang um 3% zu verringern." lvl="2"/>
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne' (Heilung) um 2%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem besteht beim Wirken von 'Machtwort: Schild' eine Chance von 50%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 1 Min. lang um 3% zu verringern. Dieser Effekt hat eine Abklingzeit von 15 Sek." lvl="1"/>
+        <rank description="Erhöht die Chance auf kritische Effekte Eurer Zauber 'Blitzheilung', 'Große Heilung' und 'Sühne' (Heilung) um 4%, wenn das Ziel von 'Geschwächte Seele' betroffen ist. Zudem besteht beim Wirken von 'Machtwort: Schild' eine Chance von 100%, jeglichen erlittenen Schaden aller Gruppen- und Schlachtzugsmitglieder 1 Min. lang um 3% zu verringern. Dieser Effekt hat eine Abklingzeit von 15 Sek." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_holy_rapture" key="1896" name="Euphorie" tier="7">
         <rank description="Wenn der Effekt Eures Zaubers 'Machtwort: Schild' gebannt oder durch absorbierten Schaden beendet wird, gewinnt Ihr sofort 1,5% Eures maximalen Manas. Es besteht eine Chance von 33%, dass ein schildgeschütztes Ziel 2% seines gesamten Manas, 8 Wut, 16 Energie oder 32 Runenmacht gewinnt. Dieser Effekt kann nur ein Mal alle 12 Sek. auftreten." lvl="1"/>
@@ -233,7 +233,7 @@
         <rank description="Erzielt Ihr mit 'Blitzheilung', 'Große Heilung', 'Verbindende Heilung' oder 'Machterfüllte Erneuerung' einen kritischen Effekt, wird die Manaregeneration durch Eure Willenskraft 8 Sek. lang um 50% erhöht." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_holy_summonlightwell" key="1637" name="Brunnen des Lichts" requires="1561" tier="6">
-        <rank description="Erschafft einen heiligen Brunnen des Lichts. Gruppen- oder Schlachtzugsmitglieder können den Brunnen des Lichts anklicken, um im Verlauf von 6 Sek. insgesamt 801 Gesundheit wiederherzustellen. Erlittener Schaden, der 30% Eurer gesamten Gesundheit entspricht, bricht den Effekt ab. Der Brunnen des Lichts bleibt 3 Min. lang bestehen oder bis 10 Aufladungen verbraucht sind." lvl="1"/>
+        <rank description="Erschafft einen heiligen Brunnen des Lichts. Befreundete Spieler können den Brunnen des Lichts anklicken, um im Verlauf von 6 Sek. insgesamt 801 Gesundheit wiederherzustellen. Erlittener Schaden, der 30% Eurer gesamten Gesundheit entspricht, bricht den Effekt ab. Der Brunnen des Lichts bleibt 3 Min. lang bestehen oder bis 10 Aufladungen verbraucht sind." lvl="1"/>
         <spell castTime="500" cooldown="180000" maxRange="40">
           <power cost="17" type="mana"/>
         </spell>
@@ -372,7 +372,7 @@
         <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 2%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 3%." lvl="1"/>
         <rank description="Erhöht die kritische Trefferchance Eurer Zauber 'Gedankenschlag', 'Gedankenschinden' und 'Gedankenexplosion' um 4%. Erhöht zudem die regelmäßige kritische Trefferchance Eurer Zauber 'Vampirberührung', 'Verschlingende Seuche' und 'Schattenwort: Schmerz' um 6%." lvl="2"/>
       </talent>
-      <talent column="2" icon="spell_shadow_devouringplague" key="2267" name="Verbesserte verschlingende Seuche" tier="5">
+      <talent column="2" icon="spell_shadow_devouringplague." key="2267" name="Verbesserte verschlingende Seuche" tier="5">
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 5%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 10% des gesamten regelmäßigen Effekts." lvl="1"/>
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 10%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 20% des gesamten regelmäßigen Effekts." lvl="2"/>
         <rank description="Erhöht den regelmäßigen Schaden Eures Zaubers 'Verschlingende Seuche' um 15%, zudem verursacht der Zauber beim Wirken sofort Schaden in Höhe von 30% des gesamten regelmäßigen Effekts." lvl="3"/>
@@ -424,7 +424,7 @@
         <rank description="Erhöht Eure Zaubermacht um 20% Eurer gesamten Willenskraft und der von Euren Zaubern 'Gedankenschinden' und 'Gedankenschlag' verursachte Schaden wird um 10% erhöht, wenn das Ziel von 'Schattenwort: Schmerz' betroffen ist." lvl="5"/>
       </talent>
       <talent column="1" icon="spell_shadow_dispersion" key="1910" name="Dispersion" requires="1779" tier="10">
-        <rank description="Löst Euch zu reiner Schattenenergie auf und verringert jeglichen erlittenen Schaden um 90%. Ihr könnt weder angreifen noch Zauber wirken, regeneriert jedoch 6 Sek. lang pro Sekunde 6% Mana. 'Dispersion' kann gewirkt werden, während Betäubungs-, Furcht- oder Stilleeffekte auf Euch wirken. Bei Anwendung werden alle wirkenden Verlangsamungs- und bewegungseinschränkenden Effekte entfernt und Ihr werdet für die Dauer des Effektes von 'Dispersion' gegen sie immun." lvl="1"/>
+        <rank description="Löst Euch zu reiner Schattenenergie auf und verringert jeglichen erlittenen Schaden um 90%. Ihr könnt weder angreifen noch Zauber wirken, regeneriert jedoch 6 Sek. lang alle 1 Sek. 6% Mana. 'Dispersion' kann gewirkt werden, während Betäubungs-, Furcht- oder Stilleeffekte auf Euch wirken. Bei Anwendung werden alle wirkenden Verlangsamungs- und bewegungseinschränkenden Effekte entfernt und Ihr werdet für die Dauer des Effektes von 'Dispersion' gegen sie immun." lvl="1"/>
         <spell castTime="0" cooldown="120000"/>
       </talent>
     </tree>

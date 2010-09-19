@@ -51,11 +51,11 @@
         <rank description="Increases your chance to dodge by an additional 3%, and reduces the duration of all Disarm effects used against you by 50%. This does not stack with other Disarm duration reducing effects." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_ghoulfrenzy" key="602" name="Flurry" requires="613" tier="3">
-        <rank description="Increases your attack speed by 5% for your next 3 swings after dealing a critical strike." lvl="1"/>
-        <rank description="Increases your attack speed by 10% for your next 3 swings after dealing a critical strike." lvl="2"/>
-        <rank description="Increases your attack speed by 15% for your next 3 swings after dealing a critical strike." lvl="3"/>
-        <rank description="Increases your attack speed by 20% for your next 3 swings after dealing a critical strike." lvl="4"/>
-        <rank description="Increases your attack speed by 25% for your next 3 swings after dealing a critical strike." lvl="5"/>
+        <rank description="Increases your attack speed by 6% for your next 3 swings after dealing a critical strike." lvl="1"/>
+        <rank description="Increases your attack speed by 12% for your next 3 swings after dealing a critical strike." lvl="2"/>
+        <rank description="Increases your attack speed by 18% for your next 3 swings after dealing a critical strike." lvl="3"/>
+        <rank description="Increases your attack speed by 24% for your next 3 swings after dealing a critical strike." lvl="4"/>
+        <rank description="Increases your attack speed by 30% for your next 3 swings after dealing a critical strike." lvl="5"/>
       </talent>
       <talent column="2" icon="spell_holy_devotion" key="615" name="Toughness" tier="3">
         <rank description="Increases your Stamina by 2%, and reduces the duration of movement slowing effects on you by 6%." lvl="1"/>
@@ -77,9 +77,9 @@
         <rank description="Increases your Attack Power by 100% of your Intellect." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_unleashedrage" key="1689" name="Unleashed Rage" tier="5">
-        <rank description="Increases your expertise by 3, and causes your critical hits with melee attacks to increase all party and raid members' attack power by 4% if within 45 yards of the Shaman.  Lasts 10 sec." lvl="1"/>
-        <rank description="Increases your expertise by 6, and causes your critical hits with melee attacks to increase all party and raid members' attack power by 7% if within 45 yards of the Shaman.  Lasts 10 sec." lvl="2"/>
-        <rank description="Increases your expertise by 9, and causes your critical hits with melee attacks to increase all party and raid members' attack power by 10% if within 45 yards of the Shaman.  Lasts 10 sec." lvl="3"/>
+        <rank description="Increases your expertise by 3, and increases all party and raid members' attack power by 4% while within 100 yards of the Shaman." lvl="1"/>
+        <rank description="Increases your expertise by 6, and increases all party and raid members' attack power by 7% while within 100 yards of the Shaman." lvl="2"/>
+        <rank description="Increases your expertise by 9, and increases all party and raid members' attack power by 10% while within 100 yards of the Shaman." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_hunter_swiftstrike" key="1643" name="Weapon Mastery" tier="5">
         <rank description="Increases the damage you deal with all weapons by 4%." lvl="1"/>
@@ -239,8 +239,8 @@
         <rank description="Reduces the cooldown of your Flame Shock and Frost Shock spells by an additional 2 sec., and increases the direct damage done by your Flame Shock and Frost Shock spells by an additional 20%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shaman_elementaloath" key="2049" name="Elemental Oath" requires="573" tier="7">
-        <rank description="Your non-periodic spell critical strikes grant your party or raid members within 100 yards Elemental Oath, increasing spell critical strike chance by 3%.  In addition, while Clearcasting from Elemental Focus is active, you deal 5% more spell damage.  Lasts 15 sec." lvl="1"/>
-        <rank description="Your non-periodic spell critical strikes grant your party or raid members within 100 yards Elemental Oath, increasing spell critical strike chance by 5%.  In addition, while Clearcasting from Elemental Focus is active, you deal 10% more spell damage.  Lasts 15 sec." lvl="2"/>
+        <rank description="While Clearcasting from Elemental Focus is active, you deal 5% more spell damage. In addition, party and raid members within 100 yards receive a 3% bonus to their spell critical strike chance." lvl="1"/>
+        <rank description="While Clearcasting from Elemental Focus is active, you deal 10% more spell damage. In addition, party and raid members within 100 yards receive a 5% bonus to their spell critical strike chance." lvl="2"/>
       </talent>
       <talent column="2" icon="spell_nature_lightningoverload" key="1686" name="Lightning Overload" tier="7">
         <rank description="Gives your Lightning Bolt and Chain Lightning spells a 11% chance to cast a second, similar spell on the same target at no additional cost that causes half damage and no threat." lvl="1"/>

@@ -129,7 +129,7 @@
         <spell castTime="0" cooldown="45000"/>
       </talent>
       <talent column="1" icon="ability_warrior_rampage" key="1659" name="Rampage" requires="167" tier="8">
-        <rank description="Your melee critical hits cause you to go on a rampage, increasing ranged and melee critical hit chance of all party and raid members within 45 yds by 5%.  Lasts 10 sec." lvl="1"/>
+        <rank description="Increases ranged and melee critical hit chance of all party and raid members within 100 yds by 5%." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_warrior_bloodsurge" key="1866" name="Bloodsurge" requires="167" tier="8">
         <rank description="Your Heroic Strike, Bloodthirst, and Whirlwind hits have a 7% chance of making your next Slam instant for 5 sec." lvl="1"/>
@@ -241,8 +241,8 @@
         <rank description="Gives your Hamstring ability a 15% chance to immobilize the target for 5 sec." lvl="3"/>
       </talent>
       <talent column="3" icon="ability_warrior_bloodnova" key="1859" name="Trauma" tier="5">
-        <rank description="Your melee critical strikes increase the effectiveness of Bleed effects on the target by 15% for 15 sec." lvl="1"/>
-        <rank description="Your melee critical strikes increase the effectiveness of Bleed effects on the target by 30% for 15 sec." lvl="2"/>
+        <rank description="Your melee critical strikes increase the effectiveness of Bleed effects on the target by 15% for 1 min." lvl="1"/>
+        <rank description="Your melee critical strikes increase the effectiveness of Bleed effects on the target by 30% for 1 min." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_hunter_harass" key="1663" name="Second Wind" tier="6">
         <rank description="Whenever you are struck by a Stun or Immobilize effect you will generate 10 rage and 5% of your total health over 10 sec." lvl="1"/>
@@ -333,8 +333,8 @@
         <rank description="When activated, this ability temporarily grants you 30% of your maximum health for 20 sec.  After the effect expires, the health is lost." lvl="1"/>
       </talent>
       <talent column="1" icon="ability_warrior_revenge" key="147" name="Improved Revenge" tier="2">
-        <rank description="Increases damage of your Revenge ability by 10% and gives a 25% chance to stun the target for 3 sec." lvl="1"/>
-        <rank description="Increases damage of your Revenge ability by 20% and gives a 50% chance to stun the target for 3 sec." lvl="2"/>
+        <rank description="Increases damage of your Revenge ability by 30% and causes Revenge to strike an additional target for 50% damage." lvl="1"/>
+        <rank description="Increases damage of your Revenge ability by 60% and causes Revenge to strike an additional target." lvl="2"/>
       </talent>
       <talent column="2" icon="ability_warrior_shieldmastery" key="1654" name="Shield Mastery" tier="2">
         <rank description="Increases your block value by 15% and reduces the cooldown of your Shield Block ability by 10 sec." lvl="1"/>
@@ -395,9 +395,9 @@
         <rank description="Reduces the rage cost of your offensive abilities by 3." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_helmet_21" key="1653" name="Vitality" tier="7">
-        <rank description="Increases your total Strength and Stamina by 2% and your Expertise by 2." lvl="1"/>
-        <rank description="Increases your total Strength and Stamina by 4% and your Expertise by 4." lvl="2"/>
-        <rank description="Increases your total Strength and Stamina by 6% and your Expertise by 6." lvl="3"/>
+        <rank description="Increases your total Strength by 2%, Stamina by 3% and your Expertise by 2." lvl="1"/>
+        <rank description="Increases your total Strength by 4%, Stamina by 6% and your Expertise by 4." lvl="2"/>
+        <rank description="Increases your total Strength by 6%, Stamina by 9% and your Expertise by 6." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_safeguard" key="1870" name="Safeguard" tier="7">
         <rank description="Reduces damage taken by the target of your Intervene ability by 15% for 6 sec." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Your Charge, Intercept and Intervene abilities are now usable while in combat and in any stance.  In addition, your Intervene ability will remove all movement impairing effects." lvl="1"/>
       </talent>
       <talent column="1" icon="inv_sword_11" key="1666" name="Devastate" tier="8">
-        <rank description="Sunder the target's armor causing the Sunder Armor effect.  In addition, causes 120% of weapon damage plus 48 for each application of Sunder Armor on the target.  The Sunder Armor effect can stack up to 5 times." lvl="1"/>
+        <rank description="Sunder the target's armor causing the Sunder Armor effect.  In addition, causes 120% of weapon damage plus 58 for each application of Sunder Armor on the target.  The Sunder Armor effect can stack up to 5 times." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="15" type="rage"/>
         </spell>

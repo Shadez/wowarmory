@@ -180,15 +180,15 @@
         <rank description="Reduce el tiempo de reutilización de tus facultades Esfumarse y Ceguera 60 s y de tu facultad Capa de las Sombras 30 s." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_shadow_curse" key="303" name="Golpe fantasmal" tier="2">
-        <rank description="Un golpe que inflige un 125% de daño con arma y aumenta un 15% la probabilidad de esquivar durante 7 s. Otorga 1 p. de combo." lvl="1"/>
+        <rank description="Un golpe que inflige un 125% de daño con arma (un 180% si se lleva equipada una daga) y aumenta un 15% tu probabilidad de esquivar durante 7 s. Otorga 1 p. de combo." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="5">
           <power cost="40" type="energy"/>
         </spell>
       </talent>
       <talent column="2" icon="inv_sword_17" key="1123" name="Espadas dentadas" tier="2">
-        <rank description="Provoca que tus ataques ignoren 0 p. de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 10%. La cantidad de armadura reducida aumenta a medida que subes de nivel." lvl="1"/>
-        <rank description="Provoca que tus ataques ignoren 0 p. de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 20%. La cantidad de armadura reducida aumenta a medida que subes de nivel." lvl="2"/>
-        <rank description="Provoca que tus ataques ignoren 0 p. de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 30%. La cantidad de armadura reducida aumenta a medida que subes de nivel." lvl="3"/>
+        <rank description="Provoca que tus ataques ignoren hasta un 3% de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 10%." lvl="1"/>
+        <rank description="Provoca que tus ataques ignoren hasta un 6% de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 20%." lvl="2"/>
+        <rank description="Provoca que tus ataques ignoren hasta un 9% de armadura de tu objetivo y aumenta el daño infligido por tu facultad Ruptura un 30%." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_nature_mirrorimage" key="246" name="Establecer" tier="3">
         <rank description="Te da un 33% de probabilidad de añadir un punto de combo a tu objetivo tras haber esquivado su ataque o haber resistido totalmente a uno de sus hechizos. No puede tener lugar más de una vez por segundo." lvl="1"/>
@@ -217,7 +217,7 @@
         <rank description="Reduce el coste de energía de tu facultad Golpe bajo y Garrote 20 p. Además, tus facultades especiales provocan un 20% más de daño frente a objetivos por debajo del 35% de salud." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_lifedrain" key="681" name="Hemorragia" requires="1123" tier="4">
-        <rank description="Un golpe instantáneo que inflige un 110% de daño con arma y le provoca al objetivo una hemorragia, aumentando cualquier daño físico infligido al objetivo hasta 110. Dura 15 s o hasta que se utilizan 10 cargas. Otorga 1 p. de combo." lvl="1"/>
+        <rank description="Un golpe instantáneo que inflige un 110% de daño con arma (un 160% si se lleva equipada una daga) y le provoca al objetivo una hemorragia, lo que aumenta cualquier daño físico infligido al objetivo hasta 13. Dura 15 s o hasta que se utilizan 10 cargas. Otorga 1 p. de combo." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="35" type="energy"/>
         </spell>
@@ -256,8 +256,8 @@
         <rank description="Aumenta tu agilidad total un 15% y aumenta el porcentaje de bonus de daño de Puñalada y de Hemorragia un 10% adicional." lvl="5"/>
       </talent>
       <talent column="2" icon="ability_rogue_waylay" key="2077" name="Acecho" tier="7">
-        <rank description="Los golpes críticos que asestes con Emboscada tienen un 50% de probabilidad de reducir un 20% la velocidad de ataques cuerpo a cuerpo y a distancia de tu objetivo y su velocidad de movimiento un 70% durante 8 s." lvl="1"/>
-        <rank description="Los golpes críticos que asestes con Emboscada tienen un 100% de probabilidad de reducir un 20% la velocidad de ataques cuerpo a cuerpo y a distancia de tu objetivo y su velocidad de movimiento un 70% durante 8 s." lvl="2"/>
+        <rank description="Los golpes que asestes con Emboscada y con Puñalada tienen un 50% de probabilidad de desequilibrar a un objetivo, aumentar el tiempo entre sus ataques cuerpo a cuerpo y a distancia un 20% y reducir su velocidad de movimiento un 50% durante 8 s." lvl="1"/>
+        <rank description="Los golpes que asestes con Emboscada y con Puñalada tienen un 100% de probabilidad de desequilibrar a un objetivo, aumentar el tiempo entre sus ataques cuerpo a cuerpo y a distancia un 20% y reducir su velocidad de movimiento un 50% durante 8 s." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_rogue_honoramongstthieves" key="2078" name="Honor entre ladrones" tier="8">
         <rank description="Cuando alguien de tu grupo asesta un golpe crítico con una facultad o hechizo de daño o de sanación, tienes un 33% de probabilidad de ganar un punto de combo en tu objetivo actual. Este efecto no puede tener lugar más de una vez cada segundo." lvl="1"/>
@@ -271,15 +271,15 @@
         </spell>
       </talent>
       <talent column="2" icon="ability_rogue_wrongfullyaccused" key="2079" name="Artimañas" tier="8">
-        <rank description="Reduce el tiempo de reutilización de tus facultades Secretos del oficio y Distraer 5 s y Preparación 1.5 min." lvl="1"/>
-        <rank description="Reduce el tiempo de reutilización de tus facultades Secretos del oficio y Distraer 10 s y Preparación 3 min." lvl="2"/>
+        <rank description="Reduce 5 s el tiempo de reutilización y 5 p. el coste de energía de tus facultades Secretos del oficio, Distraer y Paso de las Sombras y reduce 1.5 min. el tiempo de reutilización de Preparación." lvl="1"/>
+        <rank description="Reduce 10 s el tiempo de reutilización y 10 p. el coste de energía de tus facultades Secretos del oficio, Distraer y Paso de las Sombras y reduce 3 min. el tiempo de reutilización de Preparación." lvl="2"/>
       </talent>
       <talent column="1" icon="ability_rogue_slaughterfromtheshadows" key="2080" name="Matanza desde las Sombras" tier="9">
-        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 3 p. y el coste de energía de tu Hemorragia 1 p." lvl="1"/>
-        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 6 p. y el coste de energía de tu Hemorragia 2 p." lvl="2"/>
-        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 9 p. y el coste de energía de tu Hemorragia 3 p." lvl="3"/>
-        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 12 p. y el coste de energía de tu Hemorragia 4 p." lvl="4"/>
-        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 15 p. y el coste de energía de tu Hemorragia 5 p." lvl="5"/>
+        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 4 p. y el coste de energía de tu Hemorragia 1 p., y aumenta todo el daño infligido un 1%." lvl="1"/>
+        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 8 p. y el coste de energía de tu Hemorragia 2 p., y aumenta todo el daño infligido un 2%." lvl="2"/>
+        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 12 p. y el coste de energía de tu Hemorragia 3 p., y aumenta todo el daño infligido un 3%." lvl="3"/>
+        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 16 p. y el coste de energía de tu Hemorragia 4 p., y aumenta todo el daño infligido un 4%." lvl="4"/>
+        <rank description="Reduce el coste de energía de tus facultades Puñalada y Emboscada 20 p. y el coste de energía de tu Hemorragia 5 p., y aumenta todo el daño infligido un 5%." lvl="5"/>
       </talent>
       <talent column="1" icon="ability_rogue_shadowdance" key="2081" name="Danza de las Sombras" tier="10">
         <rank description="Entras en la Danza de las Sombras durante 6 s, que permite el uso de las facultades Porrazo, Garrote, Emboscada, Golpe bajo, Premeditación, Robar y Desactivar trampa aunque no estés en sigilo." lvl="1"/>

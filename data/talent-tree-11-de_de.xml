@@ -88,7 +88,7 @@
         <rank description="Erhöht Eure Zaubertrefferchance um 4% und verringert den erlittenen Zauberschaden um 6%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_nature_forceofnature" key="793" name="Mondkingestalt" tier="6">
-        <rank description="Verwandelt Euch in eine Mondkingestalt. In dieser Gestalt wird der Rüstungsbonus durch Gegenstände um 370% erhöht und jeglicher erlittene Schaden, während Ihr von Betäubungseffekten betroffen seid, um 15% verringert. Zusätzlich wird die kritische Zaubertrefferchance aller Gruppen- und Schlachtzugsmitglieder in einem Umkreis von 45 Metern um 5% erhöht. In dieser Gestalt erzielte kritische Zaubertreffer auf ein Einzelziel haben eine Chance, sofort 2% Eures gesamten Manas wiederherzustellen. In Mondkingestalt können keine Heil- oder Wiederbelebungszauber gewirkt werden.&lt;br/&gt;&lt;br/&gt;Der Akt des Gestaltwandelns befreit den Zaubernden von Verwandlungs- und bewegungseinschränkenden Effekten." lvl="1"/>
+        <rank description="Verwandelt Euch in eine Mondkingestalt. In dieser Gestalt wird der Rüstungsbonus durch Gegenstände um 370% erhöht und jeglicher erlittene Schaden, während Ihr von Betäubungseffekten betroffen seid, um 15% verringert. Zusätzlich wird die kritische Zaubertrefferchance aller Gruppen- und Schlachtzugsmitglieder in einem Umkreis von 100 Metern um 5% erhöht. In dieser Gestalt erzielte kritische Zaubertreffer auf ein Einzelziel haben eine Chance, sofort 2% Eures gesamten Manas wiederherzustellen. In Mondkingestalt können keine Heil- oder Wiederbelebungszauber gewirkt werden.&lt;br/&gt;&lt;br/&gt;Der Akt des Gestaltwandelns befreit den Zaubernden von Verwandlungs- und bewegungseinschränkenden Effekten." lvl="1"/>
         <spell castTime="0">
           <power cost="13" type="mana"/>
         </spell>
@@ -123,7 +123,7 @@
       <talent column="1" icon="ability_druid_typhoon" key="1923" name="Taifun" requires="793" tier="8">
         <rank description="Ihr beschwört einen wilden Taifun, der an feindlichen Zielen bei Kontakt 400 Naturschaden verursacht, sie zurückstößt und 6 Sek. lang benommen macht." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="30">
-          <power cost="32" type="mana"/>
+          <power cost="25" type="mana"/>
         </spell>
       </talent>
       <talent column="2" icon="ability_druid_forceofnature" key="1787" name="Naturgewalt" tier="8">
@@ -142,7 +142,7 @@
         <rank description="Eure Zauber 'Zorn' und 'Sternenfeuer' haben eine Chance von 100%, beim Ziel den Effekt 'Erde und Mond' auszulösen. Dadurch wird der erlittene Zauberschaden des Ziels 12 Sek. lang um 13% erhöht. Erhöht auch Euren verursachten Zauberschaden um 6%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_starfall" key="1926" name="Sternenregen" tier="10">
-        <rank description="Ihr beschwört einen Sternenschauer vom Himmel, der auf alle Ziele innerhalb von 30 Metern um den Zaubernden herniedergeht. Jeder Stern verursacht 111 bis 129 Arkanschaden sowie an Gegnern innerhalb von 5 Metern um das feindliche Ziel zusätzliche 20 Arkanschaden. Es werden maximal 20 Sterne beschworen. Hält 10 Sek. lang an. Gestaltwandel in eine Tiergestalt oder Aufsitzen brechen den Effekt ab. Jedweder Effekt, der Euch die Kontrolle über Euren Charakter verlieren lässt, führt zum Abbruch von 'Sternenregen'." lvl="1"/>
+        <rank description="Ihr beschwört einen Sternenschauer vom Himmel, der auf alle Ziele innerhalb von 30 Metern um den Zaubernden herniedergeht. Jeder Stern verursacht 145 bis 167 Arkanschaden sowie an Gegnern innerhalb von 5 Metern um das feindliche Ziel zusätzliche 26 Arkanschaden. Es werden maximal 20 Sterne beschworen. Hält 10 Sek. lang an. Gestaltwandel in eine Tiergestalt oder Aufsitzen brechen den Effekt ab. Jedweder Effekt, der Euch die Kontrolle über Euren Charakter verlieren lässt, führt zum Abbruch von 'Sternenregen'." lvl="1"/>
         <spell castTime="0" cooldown="90000">
           <power cost="35" type="mana"/>
         </spell>
@@ -235,7 +235,7 @@
         <rank description="Erhöht alle Attribute um 6%, verringert die Chance, dass Ihr von Nahkampfangriffen kritisch getroffen werdet, um 6% und erhöht Euren durch Gegenstände aus Stoff und Leder erzielten Rüstungswert in der Bären- und Terrorbärengestalt um 33%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_unyeildingstamina" key="809" name="Rudelführer" tier="6">
-        <rank description="Befindet Ihr Euch in Bären-, Terrorbären- oder Katzengestalt, erhöht das Talent 'Rudelführer' die kritische Distanz- und Nahkampftrefferchance aller Gruppen- und Schlachtzugsmitglieder in einem Umkreis von 45 Metern um 5%." lvl="1"/>
+        <rank description="Befindet Ihr Euch in Bären-, Terrorbären- oder Katzengestalt, erhöht das Talent 'Rudelführer' die kritische Distanz- und Nahkampftrefferchance aller Gruppen- und Schlachtzugsmitglieder in einem Umkreis von 100 Metern um 5%." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_nature_unyeildingstamina" key="1798" name="Verbesserter Rudelführer" requires="809" tier="6">
         <rank description="Durch Eure Fähigkeit 'Rudelführer' heilen sich betroffene Ziele um 2% ihrer gesamten Gesundheit, wenn sie mit einem Nahkampf- oder Distanzangriff kritisch treffen. Dieser Heileffekt kann innerhalb von 6 Sek. nur einmal auftreten. Zusätzlich gewinnt Ihr 4% Eures gesamten Manas, wenn Ihr selbst von dieser Heilung profitiert." lvl="1"/>
@@ -267,7 +267,7 @@
         <rank description="Für die Dauer Eurer Fähigkeit 'Wutanfall' wird Euer verursachter Schaden in Bären- oder Terrorbärengestalt um 15% erhöht und Eure Fähigkeit 'Tigerfuror' stellt sofort 60 Energie wieder her. Zudem werden die Manakosten der Bären- Katzen- und Terrorbärengestalt um 60% verringert." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_mangle2" key="1796" name="Zerfleischen" requires="809" tier="8">
-        <rank description="Zerfleischt das Ziel, verursacht Schaden und lässt es 12 Sek. lang zusätzlichen Schaden durch Blutungseffekte erleiden. Diese Fähigkeit kann in Katzen- und Terrorbärengestalt angewendet werden." lvl="1"/>
+        <rank description="Zerfleischt das Ziel, verursacht Schaden und lässt es 1 Min. lang zusätzlichen Schaden durch Blutungseffekte erleiden. Diese Fähigkeit kann in Katzen- und Terrorbärengestalt angewendet werden." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_mangle2" key="1920" name="Verbessertes Zerfleischen" requires="1796" tier="8">
         <rank description="Verringert die Abklingzeit Eurer Fähigkeit 'Zerfleischen' (Bärengestalt) um 0.5 Sek. und verringert die Energiekosten Eurer Fähigkeit 'Zerfleischen' (Katzengestalt) um 2." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Eure Zauber 'Verjüngung' und 'Wildwuchs' haben eine Chance von 15%, pro Tick 8 Energie, 4 Wut, 1% Mana oder 16 Runenmacht wiederherzustellen." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_treeoflife" key="1791" name="Baum des Lebens" requires="1789" tier="8">
-        <rank description="Verringert die Manakosten Eurer Zauber, die Heilung über Zeit hervorrufen, um 20% und verleiht Euch die Fähigkeit, Euch in den Baum des Lebens zu verwandeln. In dieser Gestalt erhöht Ihr die erhaltene Heilung aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 45 Metern um 6%. Ihr könnt ausschließlich Wiederherstellungszauber, 'Anregen', 'Baumrinde', 'Griff der Natur' und 'Dornen' wirken.&lt;br/&gt;&lt;br/&gt;Der Akt des Gestaltwandelns befreit den Zaubernden von Verwandlungs- und bewegungseinschränkenden Effekten." lvl="1"/>
+        <rank description="Verringert die Manakosten Eurer Zauber, die Heilung über Zeit hervorrufen, um 20% und verleiht Euch die Fähigkeit, Euch in den Baum des Lebens zu verwandeln. In dieser Gestalt erhöht Ihr die erhaltene Heilung aller Gruppen- und Schlachtzugsmitglieder im Umkreis von 100 Metern um 6%. Ihr könnt ausschließlich Wiederherstellungszauber, 'Anregen', 'Baumrinde', 'Griff der Natur' und 'Dornen' wirken.&lt;br/&gt;&lt;br/&gt;Der Akt des Gestaltwandelns befreit den Zaubernden von Verwandlungs- und bewegungseinschränkenden Effekten." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_improvedtreeform" key="1930" name="Verbesserter Baum des Lebens" requires="1791" tier="8">
         <rank description="Erhöht in Baumgestalt sowohl Euren durch Gegenstände erzielten Rüstungswert um 67% als auch Eure Heilzaubermacht um einen Wert, der 5% Eurer Willenskraft entspricht." lvl="1"/>

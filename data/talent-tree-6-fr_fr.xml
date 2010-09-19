@@ -29,9 +29,9 @@
         <rank description="Augmente vos dégâts de Givre et d'Ombre de 10%." lvl="5"/>
       </talent>
       <talent column="3" icon="ability_dualwield" key="2022" name="Nerfs d'acier glacé" tier="1">
-        <rank description="Augmente de 1% vos chances de toucher avec les armes de mêlée à une main, et augmente de 5% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="1"/>
-        <rank description="Augmente de 2% vos chances de toucher avec les armes de mêlée à une main, et augmente de 10% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="2"/>
-        <rank description="Augmente de 3% vos chances de toucher avec les armes de mêlée à une main, et augmente de 15% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="3"/>
+        <rank description="Augmente de 1% vos chances de toucher avec les armes de mêlée à une main, et augmente de 8% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="1"/>
+        <rank description="Augmente de 2% vos chances de toucher avec les armes de mêlée à une main, et augmente de 16% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="2"/>
+        <rank description="Augmente de 3% vos chances de toucher avec les armes de mêlée à une main, et augmente de 25% les dégâts infligés par l'arme que vous utilisez en main gauche." lvl="3"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2042" name="Serres de glace" requires="2031" tier="2">
         <rank description="Vous volez la chaleur des victimes de votre Fièvre de givre, de sorte que lorsque leur vitesse d'attaque en mêlée est réduite, la vôtre augmente de 4% pendant les 20 prochaines sec." lvl="1"/>
@@ -61,8 +61,8 @@
         <rank description="Vos sorts Chaînes de glace, Rafale hurlante, Toucher de glace et Anéantissement génèrent 5 points de puissance runique supplémentaires." lvl="2"/>
       </talent>
       <talent column="3" icon="spell_shadow_twilight" key="1971" name="Hiver sans fin" tier="3">
-        <rank description="Votre sort Chaînes de glace a 50% de chances d'infliger une Fièvre de givre et le coût de Gel de l'esprit est réduit à 10 points de puissance runique." lvl="1"/>
-        <rank description="Votre sort Chaînes de glace a 100% de chances d'infliger une Fièvre de givre et le coût de Gel de l'esprit est réduit à aucune puissance runique." lvl="2"/>
+        <rank description="Votre Force est augmentée de 2% et le coût de votre Gel de l'esprit est réduit à 10 points de puissance runique." lvl="1"/>
+        <rank description="Votre Force est augmentée de 4% et votre Gel de l'esprit ne coûte plus de puissance runique." lvl="2"/>
       </talent>
       <talent column="1" icon="inv_chest_mail_04" key="1990" name="Plaques d'effroi algides" tier="4">
         <rank description="Réduit les chances de vous toucher en mêlée de 1%." lvl="1"/>
@@ -79,7 +79,8 @@
         <spell castTime="0" cooldown="120000"/>
       </talent>
       <talent column="0" icon="spell_deathknight_icytalons" key="2223" name="Serres de glace améliorées" requires="2042" tier="5">
-        <rank description="L'effet de vos Serres de glace augmente la hâte en mêlée de votre groupe ou raid de 20% pendant les 20 prochaines sec. De plus, il augmente en permanence votre hâte en mêlée de 5%." lvl="1"/>
+        <rank description="Augmente la hâte en mêlée de tous les membres de votre groupe ou raid à moins de 100 mètres de 20% et votre hâte de 5% supplémentaires." lvl="1"/>
+        <spell castTime="0"/>
       </talent>
       <talent column="1" icon="inv_sword_112" key="1993" name="Combat impitoyable" tier="5">
         <rank description="Toucher de glace, Rafale hurlante, Anéantissement et Frappe de givre infligent 6% de dégâts supplémentaires aux cibles qui disposent de moins de 35% de leurs points de vie." lvl="1"/>
@@ -102,8 +103,8 @@
         </spell>
       </talent>
       <talent column="2" icon="spell_deathknight_frostpresence" key="2029" name="Présence de givre améliorée" tier="6">
-        <rank description="Quand vous êtes en Présence de sang ou impie, vous conservez 3% de l'Endurance de Présence de givre, et les dégâts qui vous sont infligés sont réduits de 1% supplémentaires en Présence de givre." lvl="1"/>
-        <rank description="Quand vous êtes en Présence de sang ou impie, vous conservez 6% de l'Endurance de Présence de givre, et les dégâts qui vous sont infligés sont réduits de 2% supplémentaires en Présence de givre." lvl="2"/>
+        <rank description="Quand vous êtes en Présence de sang ou impie, vous conservez 4% de l'Endurance de Présence de givre, et les dégâts qui vous sont infligés sont réduits de 1% supplémentaires en Présence de givre." lvl="1"/>
+        <rank description="Quand vous êtes en Présence de sang ou impie, vous conservez 8% de l'Endurance de Présence de givre, et les dégâts qui vous sont infligés sont réduits de 2% supplémentaires en Présence de givre." lvl="2"/>
       </talent>
       <talent column="0" icon="ability_dualwieldspecialization" key="2284" name="Menace de Thassarian" tier="7">
         <rank description="Lorsque vous utilisez deux armes en même temps, vos Frappes de mort, Anéantissements, Frappes de peste, Frappes runiques, Frappes de sang et Frappes de givre ont 30% de chances d'également infliger des dégâts avec votre arme tenue en main gauche." lvl="1"/>
@@ -116,7 +117,7 @@
         <rank description="Augmente les dégâts de Frappe de sang et Frappe de givre de 10%. De plus, chaque fois que vous touchez avec Frappe de sang ou Pestilence, il y a 100% de chances que la rune de sang devienne une rune de la mort à son activation. Les runes de la mort comptent comme une rune de sang, de givre ou impie." lvl="3"/>
       </talent>
       <talent column="2" icon="inv_armor_helm_plate_naxxramas_raidwarrior_c_01" key="1979" name="Armure incassable" tier="7">
-        <rank description="Renforce votre armure d'une épaisse couche de glace qui augmente votre armure de 25% et votre Force de 10% pendant 20 sec." lvl="1"/>
+        <rank description="Renforce votre armure d'une épaisse couche de glace qui augmente votre armure de 25% et votre Force de 20% pendant 20 sec." lvl="1"/>
         <spell castTime="0" cooldown="60000">
           <power cost="1" type="frost"/>
         </spell>
@@ -240,8 +241,8 @@
         <rank description="Confère un bonus de 3% aux dégâts physiques que vous infligez pendant 30 sec après avoir réussi un coup critique avec une arme, un sort ou une technique. L'effet est cumulable jusqu'à 3 fois." lvl="3"/>
       </talent>
       <talent column="2" icon="ability_warrior_intensifyrage" key="2105" name="Puissance de l'abomination" tier="5">
-        <rank description="Vos Frappes de sang et Frappes au cœur ont 25% de chances et vos Frappes de mort et Anéantissements 50% de chances d'augmenter la puissance d'attaque des membres du groupe et du raid se trouvant à moins de 45 mètres de 10% pendant 10 sec. Augmente également votre total de Force de 1%." lvl="1"/>
-        <rank description="Vos Frappes de sang et Frappes au cœur ont 50% de chances et vos Frappes de mort et Anéantissements 100% de chances d'augmenter la puissance d'attaque des membres du groupe et du raid se trouvant à moins de 45 mètres de 10% pendant 10 sec. Augmente également votre total de Force de 2%." lvl="2"/>
+        <rank description="Augmente de 5% la puissance d'attaque des membres du groupe ou du raid se trouvant à moins de 100 mètres. Augmente également votre total de Force de 1%." lvl="1"/>
+        <rank description="Augmente de 10% la puissance d'attaque des membres du groupe ou du raid se trouvant à moins de 100 mètres. Augmente également votre total de Force de 2%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_soulleech" key="1960" name="Vers de sang" tier="6">
         <rank description="Vos coups portés avec des armes ont 3% de chances de faire produire à la cible de 2 à 4 vers de sang. Les vers de sang attaquent vos ennemis et vous rendent un montant de points de vie égal aux dégâts qu'ils infligent pendant 20 sec. ou jusqu'à ce qu'ils soient tués." lvl="1"/>
@@ -272,9 +273,9 @@
         </spell>
       </talent>
       <talent column="0" icon="ability_creature_cursed_02" key="1959" name="Volonté de la nécropole" tier="8">
-        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 5%. Cet effet ne peut se produire plus d'une fois toutes les 15 sec. et ne peut être déclenché par des dégâts d'un montant inférieur à 5% de vos points de vie." lvl="1"/>
-        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 10%. Cet effet ne peut se produire plus d'une fois toutes les 15 sec. et ne peut être déclenché par des dégâts d'un montant inférieur à 5% de vos points de vie." lvl="2"/>
-        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 15%. Cet effet ne peut se produire plus d'une fois toutes les 15 sec. et ne peut être déclenché par des dégâts d'un montant inférieur à 5% de vos points de vie." lvl="3"/>
+        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 5%." lvl="1"/>
+        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 10%." lvl="2"/>
+        <rank description="Les dégâts qui vous feraient descendre à moins de 35% de vos points de vie ou que vous subissez alors que vous ne disposez que de 35% de vos points de vie sont réduits de 15%." lvl="3"/>
       </talent>
       <talent column="1" icon="inv_weapon_shortblade_40" key="1957" name="Frappe au coeur" tier="8">
         <rank description="Frappe instantanément la cible et son allié le plus proche, infligeant 50% des dégâts de l'arme plus 125 à la cible principale et 25% des dégâts de l'arme plus 63 à la cible secondaire. Chaque cible subit 10% de dégâts supplémentaires pour chacune de vos maladies actives sur elle." lvl="1"/>
@@ -368,7 +369,7 @@
         <rank description="Réduit le temps de recharge de Réanimation morbide de 90 sec. et celui d'Armée des morts de 4 min. Réduit également les dégâts infligés à votre familier par les attaques à zone d'effet des créatures de 90%." lvl="2"/>
       </talent>
       <talent column="0" icon="spell_shadow_contagion" key="1996" name="Chancre impie" tier="4">
-        <rank description="Un essaim infect d'insectes impies s'abat sur les victimes de votre Voile mortel et leur inflige un montant de dégâts égal à 10% des dégâts infligés par Voile mortel en 10 sec." lvl="1"/>
+        <rank description="Un essaim infect d'insectes impies s'abat sur les victimes de votre Voile mortel et leur inflige un montant de dégâts égal à 10% des dégâts infligés par Voile mortel en 10 sec, en plus d'empêcher toutes les maladies présentes sur ces victimes d'être dissipées." lvl="1"/>
       </talent>
       <talent column="1" icon="spell_shadow_shadowandflame" key="2005" name="Impureté" tier="4">
         <rank description="Le bonus à la puissance d'attaque de vos sorts est augmenté de 4%." lvl="1"/>
@@ -443,7 +444,7 @@
         <rank description="Votre Fièvre de la crypte devient une Peste d'ébène, qui augmente les dégâts magiques subis de 13% en plus d'augmenter les dégâts infligés par les maladies. Augmente en permanence vos chances de coup critique avec les armes et les sorts de 3%." lvl="3"/>
       </talent>
       <talent column="2" icon="spell_deathknight_scourgestrike" key="2216" name="Frappe du Fléau" tier="8">
-        <rank description="Une frappe impie qui inflige 50% des dégâts de l'arme sous forme de dégâts physiques plus 170. De plus, pour chacune de vos maladies sur la cible, vous infligez un montant supplémentaire de dégâts d'Ombre égal à 25% des dégâts physiques infligés." lvl="1"/>
+        <rank description="Une frappe impie qui inflige 70% des dégâts de l'arme sous forme de dégâts physiques plus 238. De plus, pour chacune de vos maladies sur la cible, vous infligez un montant supplémentaire de dégâts d'Ombre égal à 12% des dégâts physiques infligés." lvl="1"/>
         <spell castTime="0" maxRange="5">
           <power cost="1" type="unholy"/>
           <power cost="1" type="frost"/>

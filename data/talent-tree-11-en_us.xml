@@ -88,7 +88,7 @@
         <rank description="Increases your chance to hit with all spells by 4% and reduces your damage taken from all spells by 6%." lvl="2"/>
       </talent>
       <talent column="1" icon="spell_nature_forceofnature" key="793" name="Moonkin Form" tier="6">
-        <rank description="Shapeshift into Moonkin Form.  While in this form the armor contribution from items is increased by 370%, damage taken while stunned is reduced by 15%, and all party and raid members within 45 yards have their spell critical chance increased by 5%.  Single target spell critical strikes in this form have a chance to instantly regenerate 2% of your total mana.  The Moonkin can not cast healing or resurrection spells while shapeshifted.&lt;br/&gt;&lt;br/&gt;The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects." lvl="1"/>
+        <rank description="Shapeshift into Moonkin Form.  While in this form the armor contribution from items is increased by 370%, damage taken while stunned is reduced by 15%, and all party and raid members within 100 yards have their spell critical chance increased by 5%.  Single target spell critical strikes in this form have a chance to instantly regenerate 2% of your total mana.  The Moonkin can not cast healing or resurrection spells while shapeshifted.&lt;br/&gt;&lt;br/&gt;The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects." lvl="1"/>
         <spell castTime="0">
           <power cost="13" type="mana"/>
         </spell>
@@ -123,7 +123,7 @@
       <talent column="1" icon="ability_druid_typhoon" key="1923" name="Typhoon" requires="793" tier="8">
         <rank description="You summon a violent Typhoon that does 400 Nature damage when in contact with hostile targets, knocking them back and dazing them for 6 sec." lvl="1"/>
         <spell castTime="0" cooldown="20000" maxRange="30">
-          <power cost="32" type="mana"/>
+          <power cost="25" type="mana"/>
         </spell>
       </talent>
       <talent column="2" icon="ability_druid_forceofnature" key="1787" name="Force of Nature" tier="8">
@@ -142,7 +142,7 @@
         <rank description="Your Wrath and Starfire spells have a 100% chance to apply the Earth and Moon effect, which increases spell damage taken by 13% for 12 sec.  Also increases your spell damage by 6%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_starfall" key="1926" name="Starfall" tier="10">
-        <rank description="You summon a flurry of stars from the sky on all targets within 30 yards of the caster, each dealing 111 to 129 Arcane damage. Also causes 20 Arcane damage to all other enemies within 5 yards of the enemy target. Maximum 20 stars. Lasts 10 sec.  Shapeshifting into an animal form or mounting cancels the effect. Any effect which causes you to lose control of your character will suppress the starfall effect." lvl="1"/>
+        <rank description="You summon a flurry of stars from the sky on all targets within 30 yards of the caster, each dealing 145 to 167 Arcane damage. Also causes 26 Arcane damage to all other enemies within 5 yards of the enemy target. Maximum 20 stars. Lasts 10 sec.  Shapeshifting into an animal form or mounting cancels the effect. Any effect which causes you to lose control of your character will suppress the starfall effect." lvl="1"/>
         <spell castTime="0" cooldown="90000">
           <power cost="35" type="mana"/>
         </spell>
@@ -235,7 +235,7 @@
         <rank description="Increases all attributes by 6%, reduces the chance you'll be critically hit by melee attacks by 6%, and increases your armor contribution from cloth and leather items in Bear Form and Dire Bear Form by 33%." lvl="3"/>
       </talent>
       <talent column="1" icon="spell_nature_unyeildingstamina" key="809" name="Leader of the Pack" tier="6">
-        <rank description="While in Cat, Bear or Dire Bear Form, the Leader of the Pack increases ranged and melee critical chance of all party and raid members within 45 yards by 5%." lvl="1"/>
+        <rank description="While in Cat, Bear or Dire Bear Form, the Leader of the Pack increases ranged and melee critical chance of all party and raid members within 100 yards by 5%." lvl="1"/>
       </talent>
       <talent column="2" icon="spell_nature_unyeildingstamina" key="1798" name="Improved Leader of the Pack" requires="809" tier="6">
         <rank description="Your Leader of the Pack ability also causes affected targets to heal themselves for 2% of their total health when they critically hit with a melee or ranged attack.  The healing effect cannot occur more than once every 6 sec.  In addition, you gain 4% of your maximum mana when you benefit from this heal." lvl="1"/>
@@ -267,7 +267,7 @@
         <rank description="While using your Enrage ability in Bear Form or Dire Bear Form, your damage is increased by 15%, and your Tiger's Fury ability also instantly restores 60 energy.  In addition, the mana cost of Bear Form, Cat Form, and Dire Bear Form is reduced by 60%." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_mangle2" key="1796" name="Mangle" requires="809" tier="8">
-        <rank description="Mangle the target, inflicting damage and causing the target to take additional damage from bleed effects for 12 sec.  This ability can be used in Cat Form or Dire Bear Form." lvl="1"/>
+        <rank description="Mangle the target, inflicting damage and causing the target to take additional damage from bleed effects for 1 min.  This ability can be used in Cat Form or Dire Bear Form." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_mangle2" key="1920" name="Improved Mangle" requires="1796" tier="8">
         <rank description="Reduces the cooldown of your Mangle (Bear) ability by 0.5 sec., and reduces the energy cost of your Mangle (Cat) ability by 2." lvl="1"/>
@@ -407,7 +407,7 @@
         <rank description="Your Rejuvenation and Wild Growth spells have a 15% chance to restore 8 Energy, 4 Rage, 1% Mana or 16 Runic Power per tick." lvl="3"/>
       </talent>
       <talent column="1" icon="ability_druid_treeoflife" key="1791" name="Tree of Life" requires="1789" tier="8">
-        <rank description="Reduces the mana cost of your healing over time spells by 20% and grants the ability to shapeshift into the Tree of Life. While in this form you increase healing received by 6% for all party and raid members within 45 yards, and you can only cast Restoration spells in addition to Innervate, Barkskin, Nature's Grasp and Thorns spells.&lt;br/&gt;&lt;br/&gt;The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects." lvl="1"/>
+        <rank description="Reduces the mana cost of your healing over time spells by 20% and grants the ability to shapeshift into the Tree of Life. While in this form you increase healing received by 6% for all party and raid members within 100 yards, and you can only cast Restoration spells in addition to Innervate, Barkskin, Nature's Grasp and Thorns spells.&lt;br/&gt;&lt;br/&gt;The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects." lvl="1"/>
       </talent>
       <talent column="2" icon="ability_druid_improvedtreeform" key="1930" name="Improved Tree of Life" requires="1791" tier="8">
         <rank description="Increases your armor contribution from items while in Tree of Life Form by 67%, and increases your healing spell power by 5% of your spirit while in Tree of Life Form." lvl="1"/>
