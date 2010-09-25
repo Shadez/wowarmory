@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 395
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -693,7 +693,7 @@ Class Characters {
     
     public function GetAchievementMgr() {
         if(!is_object($this->m_achievementMgr)) {
-            $this->m_achievementMgr = new Achievements;
+            $this->m_achievementMgr = new Achievements($this->armory);
             $this->m_achievementMgr->InitAchievements($this->GetGUID(), true);
         }
         return $this->m_achievementMgr;
@@ -3042,7 +3042,7 @@ Class Characters {
         return $standing;
     }
     
-    /**** DEVELOPMENT ****/
+    /**** DEVELOPMENT SECTION ****/
     
     /**
      * Load character inventory (equipped items)
@@ -3110,6 +3110,40 @@ Class Characters {
             return null;
         }
         return $this->m_items[$slot];
+    }
+    
+    public function IsHaveAnyPet() {
+        if(!$this->IsCanHavePet()) {
+            return false;
+        }
+        return $this->db->selectCell("SELECT 1 FROM `character_pet` WHERE `owner` = %d AND `PetType` = 1", $this->GetGUID());
+    }
+    
+    /**
+     * Checks if player mana user
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
+    private function IsManaUser() {
+        if(!in_array($this->class, array(CLASS_DK, CLASS_ROGUE, CLASS_WARRIOR))) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Checks if player can have pet.
+     * Note: self::CalculatePetTalents() must have internal check (CLASS_HUNTER)
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
+    private function IsCanHavePet() {
+        if(in_array($this->class, array(CLASS_DK, CLASS_HUNTER, CLASS_WARLOCK))) {
+            return true;
+        }
+        return false;
     }
 }
 ?>
