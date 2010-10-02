@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 393
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -702,9 +702,12 @@ Class Items {
      * @param    object $db = null
      * @return   array
      **/ 
-    public function GetItemSocketInfo($guid, $item, $socketNum, $item_guid = 0) {
+    public function GetItemSocketInfo($guid, $item, $socketNum, $item_guid = 0, $serverType = -1) {
         $data = array();
-        switch($this->armory->currentRealmInfo['type']) {
+        if($serverType == -1) {
+            $serverType = $this->armory->currentRealmInfo['type'];
+        }
+        switch($serverType) {
             case 'mangos':
                 $socketfield = array(
                     1 => ITEM_FIELD_ENCHANTMENT_3_2,
@@ -1598,13 +1601,25 @@ Class Items {
         if(is_array($comparsion) && isset($this->armory->realmData[$comparsion['realm_id']])) {
             $realm = $this->armory->realmData[$comparsion['realm_id']];
         }
-        $data = $this->armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry`=%d", $itemID);
-        if(!is_array($data)) {
-            return false;
-        }
+        $proto = null;
         $isCharacter = $characters->CheckPlayer();
+        if($isCharacter) {
+            $item = $characters->GetItemByEntry($itemID);
+            if($item) {
+                $proto = $item->GetProto();
+            }
+        }
+        if(!$proto) {
+            // Maybe we haven't any character? Let's find itemproto by entry.
+            $proto = new ItemPrototype($this->armory);
+            $proto->LoadItem($itemID);
+            if(!$proto) {
+                $this->armory->Log()->writeError('%s : unable to find item with entry #%d', __METHOD__, $itemID);
+                return false;
+            }
+        }
         // Check for ScalingStatDistribution (Heirloom items)
-        $ssd = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssd` WHERE `entry`=%d LIMIT 1", $data['ScalingStatDistribution']);
+        $ssd = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssd` WHERE `entry`=%d LIMIT 1", $proto->ScalingStatDistribution);
         $ssd_level = PLAYER_MAX_LEVEL;
         if($isCharacter) {
             $ssd_level = $characters->GetLevel();
@@ -1624,7 +1639,7 @@ Class Items {
         else {
             $xml->XMLWriter()->startElement('name');
             if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
-                $xml->XMLWriter()->text($data['name']);
+                $xml->XMLWriter()->text($proto->name);
             }
             else {
                 $xml->XMLWriter()->text(self::GetItemName($itemID));
@@ -1632,19 +1647,19 @@ Class Items {
             $xml->XMLWriter()->endElement(); //name
         }
         $xml->XMLWriter()->startElement('icon');
-        $xml->XMLWriter()->text(self::GetItemIcon($itemID, $data['displayid']));
+        $xml->XMLWriter()->text(self::GetItemIcon($itemID, $proto->displayid));
         $xml->XMLWriter()->endElement(); //icon
         // 3.2.x heroic item flag
-        if($data['Flags'] & ITEM_FLAGS_HEROIC) {
+        if($proto->Flags & ITEM_FLAGS_HEROIC) {
             $xml->XMLWriter()->startElement('heroic');
             $xml->XMLWriter()->text('1');
             $xml->XMLWriter()->endElement(); //heroic
         }
         $xml->XMLWriter()->startElement('overallQualityId');
-        $xml->XMLWriter()->text($data['Quality']);
+        $xml->XMLWriter()->text($proto->Quality);
         $xml->XMLWriter()->endElement(); //overallQualityId
         // Map
-        if($data['Map'] > 0 && $mapName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id` = %d", $this->armory->GetLocale(), $data['Map'])) {
+        if($proto->Map > 0 && $mapName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_maps` WHERE `id` = %d", $this->armory->GetLocale(), $proto->Map)) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<instanceBound>' . $mapName . '</instanceBound>');
             }
@@ -1654,54 +1669,54 @@ Class Items {
                 $xml->XMLWriter()->endElement(); //instanceBound
             }
         }
-        if($data['Flags'] & ITEM_FLAGS_CONJURED) {
+        if($proto->Flags & ITEM_FLAGS_CONJURED) {
             $xml->XMLWriter()->startElement('conjured');
             $xml->XMLWriter()->endElement(); //conjured
         }
         $xml->XMLWriter()->startElement('bonding');
-        $xml->XMLWriter()->text($data['bonding']);
+        $xml->XMLWriter()->text($proto->bonding);
         $xml->XMLWriter()->endElement();//bonding
         $xml->XMLWriter()->startElement('maxCount');
-        $xml->XMLWriter()->text($data['maxcount']);
+        $xml->XMLWriter()->text($proto->maxcount);
         $xml->XMLWriter()->endElement();//maxCount
-        if($data['startquest'] > 0) {
+        if($proto->startquest > 0) {
             $xml->XMLWriter()->startElement('startQuestId');
-            $xml->XMLWriter()->text($data['startquest']);
+            $xml->XMLWriter()->text($proto->startquest);
             $xml->XMLWriter()->endElement(); //startQuestId
         }
         $xml->XMLWriter()->startElement('classId');
-        $xml->XMLWriter()->text($data['class']);
+        $xml->XMLWriter()->text($proto->class);
         $xml->XMLWriter()->endElement();//classId
         $xml->XMLWriter()->startElement('equipData');
         $xml->XMLWriter()->startElement('inventoryType');
-        $xml->XMLWriter()->text($data['InventoryType']);
+        $xml->XMLWriter()->text($proto->InventoryType);
         $xml->XMLWriter()->endElement();  //inventoryType
         $xml->XMLWriter()->startElement('subclassName');
-        $xml->XMLWriter()->text(self::GetItemSubTypeInfo($itemID, true, $data));
+        $xml->XMLWriter()->text(self::GetItemSubTypeInfo($itemID, true, array('class' => $proto->class, 'subclass' => $proto->subclass)));
         $xml->XMLWriter()->endElement();  //subclassName
-        if($data['class'] == ITEM_CLASS_CONTAINER) {
+        if($proto->class== ITEM_CLASS_CONTAINER) {
             $xml->XMLWriter()->startElement('containerSlots');
-            $xml->XMLWriter()->text($data['ContainerSlots']);
+            $xml->XMLWriter()->text($proto->ContainerSlots);
             $xml->XMLWriter()->endElement(); //containerSlots
         }
         $xml->XMLWriter()->endElement(); //equipData
-        if($data['class'] == ITEM_CLASS_WEAPON) {
+        if($proto->class == ITEM_CLASS_WEAPON) {
             $xml->XMLWriter()->startElement('damageData');
             $xml->XMLWriter()->startElement('damage');
             $xml->XMLWriter()->startElement('type');
             $xml->XMLWriter()->text('0');
             $xml->XMLWriter()->endElement(); //type
             // Damage
-            $minDmg = $data['dmg_min1'];
-            $maxDmg = $data['dmg_max1'];
+            $minDmg = $proto->Damage[0]['min'];
+            $maxDmg = $proto->Damage[0]['max'];
             $dps = null;
             // SSD Check
             if($ssv) {
-                if($extraDPS = self::GetDPSMod($ssv, $data['ScalingStatValue'])) {
-                    $average = $extraDPS * $data['delay'] / 1000;
+                if($extraDPS = self::GetDPSMod($ssv, $proto->ScalingStatValue)) {
+                    $average = $extraDPS * $proto->delay / 1000;
                     $minDmg = 0.7 * $average;
                     $maxDmg = 1.3 * $average;
-                    $dps = round(($maxDmg+$minDmg) / (2 * ($data['delay'] / 1000)));
+                    $dps = round(($maxDmg + $minDmg) / (2 * ($proto->delay / 1000)));
                 }
             }
             $xml->XMLWriter()->startElement('min');
@@ -1712,14 +1727,14 @@ Class Items {
             $xml->XMLWriter()->endElement();   //max
             $xml->XMLWriter()->endElement();  //damage
             $xml->XMLWriter()->startElement('speed');
-            $xml->XMLWriter()->text(round($data['delay']/1000, 2));
+            $xml->XMLWriter()->text(round($proto->delay / 1000, 2));
             $xml->XMLWriter()->endElement(); //speed
-            for($jj = 1; $jj <= 2; $jj++) {
-                $d_type = $data['dmg_type' . $jj];
-                $d_min  = $data['dmg_min' . $jj];
-                $d_max  = $data['dmg_max' . $jj];
-                if(($d_max > 0) && ($data['class'] != ITEM_CLASS_PROJECTILE)) {
-                    $delay = $data['delay'] / 1000;
+            for($jj = 0; $jj <= 1; $jj++) {
+                $d_type = $proto->Damage[$jj]['type'];// $data['dmg_type' . $jj];
+                $d_min  = $proto->Damage[$jj]['min']; // $data['dmg_min' . $jj];
+                $d_max  = $proto->Damage[$jj]['max']; // $data['dmg_max' . $jj];
+                if(($d_max > 0) && ($proto->class != ITEM_CLASS_PROJECTILE)) {
+                    $delay = $proto->delay / 1000;
                     if($delay > 0) {
                         $dps = $dps + round(($d_max + $d_min) / (2 * $delay), 1);
                     }
@@ -1736,26 +1751,26 @@ Class Items {
             $xml->XMLWriter()->endElement(); //damageData
         }
         // Projectile DPS
-        if($data['class'] == ITEM_CLASS_PROJECTILE) {
-            if($data['dmg_min1'] > 0 && $data['dmg_max1'] > 0) {
+        if($proto->class == ITEM_CLASS_PROJECTILE) {
+            if($proto->Damage[0]['min'] > 0 && $proto->Damage[0]['max'] > 0) {
                 $xml->XMLWriter()->startElement('damageData');
                 $xml->XMLWriter()->startElement('damage');
                 $xml->XMLWriter()->startElement('type');
-                $xml->XMLWriter()->text($data['dmg_type1']);
+                $xml->XMLWriter()->text($proto->Damage[0]['type']);
                 $xml->XMLWriter()->endElement(); //type
                 $xml->XMLWriter()->startElement('max');
-                $xml->XMLWriter()->text($data['dmg_max1']);
+                $xml->XMLWriter()->text($proto->Damage[0]['max']);
                 $xml->XMLWriter()->endElement(); //max
                 $xml->XMLWriter()->startElement('min');
-                $xml->XMLWriter()->text($data['dmg_min1']);
+                $xml->XMLWriter()->text($proto->Damage[0]['min']);
                 $xml->XMLWriter()->endElement();   //min
                 $xml->XMLWriter()->endElement();  //damage
                 $xml->XMLWriter()->endElement(); //damageData
             }
         }
         // Gem properties
-        if($data['class'] == ITEM_CLASS_GEM && $data['GemProperties'] > 0) {
-            $GemSpellItemEcnhID = $this->armory->aDB->selectCell("SELECT `spellitemenchantement` FROM `ARMORYDBPREFIX_gemproperties` WHERE `id`=%d", $data['GemProperties']);
+        if($proto->class == ITEM_CLASS_GEM && $proto->GemProperties > 0) {
+            $GemSpellItemEcnhID = $this->armory->aDB->selectCell("SELECT `spellitemenchantement` FROM `ARMORYDBPREFIX_gemproperties` WHERE `id`=%d", $proto->GemProperties);
             $GemText = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $GemSpellItemEcnhID);
             if($GemText) {
                 if(Utils::IsWriteRaw()) {
@@ -1770,34 +1785,34 @@ Class Items {
                 }
             }
         }
-        if($data['block'] > 0) {
+        if($proto->block > 0) {
             $xml->XMLWriter()->startElement('blockValue');
-            $xml->XMLWriter()->text($data['block']);
+            $xml->XMLWriter()->text($proto->block);
             $xml->XMLWriter()->endElement(); //blockValue
         }
-        if($data['fire_res'] > 0) {
+        if($proto->fire_res > 0) {
             $xml->XMLWriter()->startElement('fireResist');
-            $xml->XMLWriter()->text($data['fire_res']);
+            $xml->XMLWriter()->text($proto->fire_res);
             $xml->XMLWriter()->endElement(); //fireResist
         }
-        if($data['nature_res'] > 0) {
+        if($proto->nature_res > 0) {
             $xml->XMLWriter()->startElement('natureResist');
-            $xml->XMLWriter()->text($data['nature_res']);
+            $xml->XMLWriter()->text($proto->nature_res);
             $xml->XMLWriter()->endElement(); //natureResist
         }
-        if($data['frost_res'] > 0) {
+        if($proto->frost_res > 0) {
             $xml->XMLWriter()->startElement('frostResist');
-            $xml->XMLWriter()->text($data['frost_res']);
+            $xml->XMLWriter()->text($proto->frost_res);
             $xml->XMLWriter()->endElement(); //frostResist
         }
-        if($data['shadow_res'] > 0) {
+        if($proto->shadow_res > 0) {
             $xml->XMLWriter()->startElement('shadowResist');
-            $xml->XMLWriter()->text($data['shadow_res']);
+            $xml->XMLWriter()->text($proto->shadow_res);
             $xml->XMLWriter()->endElement(); //shadowResist
         }
-        if($data['arcane_res'] > 0) {
+        if($proto->arcane_res > 0) {
             $xml->XMLWriter()->startElement('arcaneResist');
-            $xml->XMLWriter()->text($data['arcane_res']);
+            $xml->XMLWriter()->text($proto->arcane_res);
             $xml->XMLWriter()->endElement(); //arcaneResist
         }
         for($i = 0; $i < MAX_ITEM_PROTO_STATS; $i++) {
@@ -1805,68 +1820,35 @@ Class Items {
                 if($ssd['StatMod_'.$i] < 0) {
                     continue;
                 }
-                $val = (self::GetSSDMultiplier($ssv, $data['ScalingStatValue']) * $ssd['Modifier_' . $i]) / 10000;
+                $val = (self::GetSSDMultiplier($ssv, $proto->ScalingStatValue) * $ssd['Modifier_' . $i]) / 10000;
                 $bonus_template = self::GetItemBonusTemplate($ssd['StatMod_' . $i]);
                 $xml->XMLWriter()->startElement($bonus_template);
                 $xml->XMLWriter()->text(round($val));
                 $xml->XMLWriter()->endElement();
             }
             else {
-                $key = $i+1;
-                if($data['stat_type'.$key] > 0 && $data['stat_value' . $key] > 0) {
-                    $bonus_template = self::GetItemBonusTemplate($data['stat_type' . $key]);
+                $key = $i + 1;
+                if($proto->ItemStat[$i]['type'] > 0 && $proto->ItemStat[$i]['value'] > 0) {
+                    $bonus_template = self::GetItemBonusTemplate($proto->ItemStat[$i]['type']);
                     $xml->XMLWriter()->startElement($bonus_template);
-                    $xml->XMLWriter()->text($data['stat_value' . $key]);
+                    $xml->XMLWriter()->text($proto->ItemStat[$i]['value']);
                     $xml->XMLWriter()->endElement();
                 }
             }
         }
-        $armor = $data['armor'];
-        if($ssv && $data['ScalingStatValue'] > 0) {
-            if($ssvarmor = $this->GetArmorMod($ssv, $data['ScalingStatValue'])) {
+        $armor = $proto->armor;
+        if($ssv && $proto->ScalingStatValue > 0) {
+            if($ssvarmor = $this->GetArmorMod($ssv, $proto->ScalingStatValue)) {
                 $armor = $ssvarmor;
             }
         }
         $xml->XMLWriter()->startElement('armor');
-        if($data['ArmorDamageModifier'] > 0) {
+        if($proto->ArmorDamageModifier > 0) {
             $xml->XMLWriter()->writeAttribute('armorBonus', 1);
         }
         $xml->XMLWriter()->text($armor);
         $xml->XMLWriter()->endElement(); //armor
-        $ench_array = array (
-        	1  => 'head',
-            2  => 'neck',
-            3  => 'shoulder',
-            4  => 'shirt',
-            5  => 'chest', 
-            6  => 'belt', 
-            7  => 'legs', 
-            8  => 'boots',
-            9  => 'wrist',
-            10 => 'gloves',
-            11 => 'ring1',
-            12 => 'trinket1',
-            13 => 'mainhand',
-            14 => 'offhand',
-            15 => 'relic',
-            16 => 'back', 
-            17 => 'stave',
-            19 => 'tabard',
-            20 => 'chest',
-            21 => 'mainhand',
-            22 => null,
-            23 => 'offhand',
-            24 => null,
-            25 => 'thrown',
-            26 => 'gun',
-            28 => 'relic'
-        );
-        if(isset($ench_array[$data['InventoryType']])) {
-            $itemSlotName = $ench_array[$data['InventoryType']];
-        }
-        else {
-            $itemSlotName = null;
-        }
+        $itemSlotName = Utils::GetItemSlotTextByInvType($proto->InventoryType);
         if(!$parent && $isCharacter && $itemSlotName != null) {
             $enchantment = $characters->GetCharacterEnchant($itemSlotName);
             if($enchantment > 0) {
@@ -1883,7 +1865,7 @@ Class Items {
             }
         }
         // Random property
-        if($data['RandomProperty'] > 0 || $data['RandomSuffix'] > 0) {
+        if($proto->RandomProperty > 0 || $proto->RandomSuffix > 0) {
             if(!$isCharacter) {
                 $xml->XMLWriter()->startElement('randomEnchantData');
                 $xml->XMLWriter()->endElement(); //randomEnchantData
@@ -1930,11 +1912,11 @@ Class Items {
         // Socket data
         $xml->XMLWriter()->startElement('socketData');
         $socket_data = false;
-        // If there's no character, check $data['socketColor_X']
+        // If there's no character, check $proto->Socket[X]
         if(!$isCharacter) {
-            for($i = 1; $i < 4; $i++) {
-                if(isset($data['socketColor_' . $i]) && $data['socketColor_' . $i] > 0) {
-                    switch($data['socketColor_'.$i]) {
+            for($i = 0; $i < 3; $i++) {
+                if(isset($proto->Socket[$i]['color']) && $proto->Socket[$i]['color'] > 0) {
+                    switch($proto->Socket[$i]['color']) {
                         case 1:
                             $socket_data = array('color' => 'Meta');
                             break;
@@ -1967,26 +1949,27 @@ Class Items {
                 }
             }
         }
-        else {
+        elseif($isCharacter && isset($item) && is_object($item)) {
             $gems = array(
-                'g0' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 1, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g1' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 2, $characters->GetEquippedItemGuidBySlot($itemSlotName)),
-                'g2' => self::GetItemSocketInfo($characters->GetGUID(), $itemID, 3, $characters->GetEquippedItemGuidBySlot($itemSlotName))
+                'g0' => $item->GetSocketInfo(1),
+                'g1' => $item->GetSocketInfo(2),
+                'g2' => $item->GetSocketInfo(3)
             );
             for($i = 0; $i < 3; $i++) {
                 $index = $i+1;
                 if(isset($gems['g' . $i]['item']) && $gems['g' . $i]['item'] > 0 && ($parent == false || $comparsion == true)) {
-                    $socket_data = array();
-                    $socket_data['color'] = self::GetSocketColorString((isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : 0);
-                    $socket_data['enchant'] = $gems['g' . $i]['enchant'];
-                    $socket_data['icon'] = $gems['g' . $i]['icon'];
-                    if(self::IsGemMatchesSocketColor($gems['g' . $i]['color'], (isset($data['socketColor_' . $index])) ? $data['socketColor_' . $index] : -1)) {
+                    $socket_data = array(
+                        'color'   => self::GetSocketColorString(($proto->Socket[$i]['color']) ? $proto->Socket[$i]['color'] : 0),
+                        'enchant' => $gems['g' . $i]['enchant'],
+                        'icon'    => $gems['g' . $i]['icon']
+                    );
+                    if(self::IsGemMatchesSocketColor($gems['g' . $i]['color'], ($proto->Socket[$i]['color']) ? $proto->Socket[$i]['color'] : -1)) {
                         $socket_data['match'] = '1';
                     }
                 }
                 else {
-                    if(isset($data['socketColor_' . $index]) && $data['socketColor_' . $index] > 0) {
-                        $socket_data = array('color' => self::GetSocketColorString($data['socketColor_' . $index]));
+                    if(isset($proto->Socket[$i]['color']) && $proto->Socket[$i]['color'] > 0) {
+                        $socket_data = array('color' => self::GetSocketColorString($proto->Socket[$i]['color']));
                     }
                 }
                 if(isset($socket_data) && is_array($socket_data)) {
@@ -2008,8 +1991,8 @@ Class Items {
                 $socket_data = false;
             }
         }
-        if($data['socketBonus'] > 0) {
-            $bonus_text = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $data['socketBonus']);
+        if($proto->socketBonus > 0) {
+            $bonus_text = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $proto->socketBonus);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<socketMatchEnchant>');
                 $xml->XMLWriter()->writeRaw($bonus_text);
@@ -2027,7 +2010,7 @@ Class Items {
             $item_durability = self::GetItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
         }
         else {
-            $item_durability = array('current' => $data['MaxDurability'], 'max' => $data['MaxDurability']);
+            $item_durability = array('current' => $proto->MaxDurability, 'max' => $proto->MaxDurability);
         }
         if(is_array($item_durability) && $item_durability['current'] > 0) {
             $xml->XMLWriter()->startElement('durability');
@@ -2035,7 +2018,7 @@ Class Items {
             $xml->XMLWriter()->writeAttribute('max', (int) $item_durability['max']);
             $xml->XMLWriter()->endElement(); //durability
         }
-        $allowable_classes = self::AllowableClasses($data['AllowableClass']);
+        $allowable_classes = self::AllowableClasses($proto->AllowableClass);
         if($allowable_classes) {
             $xml->XMLWriter()->startElement('allowableClasses');
             foreach($allowable_classes as $al_class) {
@@ -2052,7 +2035,7 @@ Class Items {
             }
             $xml->XMLWriter()->endElement(); //allowableClasses
         }
-        $allowable_races = self::AllowableRaces($data['AllowableRace']);
+        $allowable_races = self::AllowableRaces($proto->AllowableRace);
         if($allowable_races) {
             $xml->XMLWriter()->startElement('allowableRaces');
             foreach($allowable_races as $al_race) {
@@ -2069,51 +2052,51 @@ Class Items {
             }
             $xml->XMLWriter()->endElement(); //allowableRaces
         }
-        if($data['RequiredSkill'] > 0) {
+        if($proto->RequiredSkill > 0) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredSkill');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredSkill']) . '"');
-                $xml->XMLWriter()->writeRaw(' rank="', $data['RequiredSkillRank'] . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $proto->RequiredSkill) . '"');
+                $xml->XMLWriter()->writeRaw(' rank="', $proto->RequiredSkillRank . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredSkill
             }
             else {
                 $xml->XMLWriter()->startElement('requiredSkill');
-                $xml->XMLWriter()->writeAttribute('name', $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredSkill']));
-                $xml->XMLWriter()->writeAttribute('rank', $data['RequiredSkillRank']);
+                $xml->XMLWriter()->writeAttribute('name', $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_skills` WHERE `id`=%d", $this->armory->GetLocale(), $proto->RequiredSkill));
+                $xml->XMLWriter()->writeAttribute('rank', $proto->RequiredSkillRank);
                 $xml->XMLWriter()->endElement(); //requiredSkill
             }
         }
-        if($data['requiredspell'] > 0 && $spellName = $this->armory->aDB->selectCell("SELECT `SpellName_%s` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $this->armory->GetLocale(), $data['requiredspell'])) {
+        if($proto->requiredspell > 0 && $spellName = $this->armory->aDB->selectCell("SELECT `SpellName_%s` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $this->armory->GetLocale(), $proto->requiredspell)) {
             $xml->XMLWriter()->startElement('requiredAbility');
             $xml->XMLWriter()->text($spellName);
             $xml->XMLWriter()->endElement(); //requiredAbility
         }
-        if($data['RequiredReputationFaction'] > 0) {    
+        if($proto->RequiredReputationFaction > 0 && $factionName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $proto->RequiredReputationFaction)) {    
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<requiredFaction');
-                $xml->XMLWriter()->writeRaw(' name="' . $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredReputationFaction']) . '"');
-                $xml->XMLWriter()->writeRaw(' rep="' . $data['RequiredReputationRank'] . '"');
+                $xml->XMLWriter()->writeRaw(' name="' . $factionName . '"');
+                $xml->XMLWriter()->writeRaw(' rep="' . $proto->RequiredReputationRank . '"');
                 $xml->XMLWriter()->writeRaw('/>'); //requiredFaction
             }
             else {
                 $xml->XMLWriter()->startElement('requiredFaction');
-                $xml->XMLWriter()->writeAttribute('name', $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_faction` WHERE `id`=%d", $this->armory->GetLocale(), $data['RequiredReputationFaction']));
-                $xml->XMLWriter()->writeAttribute('rep', $data['RequiredReputationRank']);
+                $xml->XMLWriter()->writeAttribute('name', $factionName);
+                $xml->XMLWriter()->writeAttribute('rep', $proto->RequiredReputationRank);
                 $xml->XMLWriter()->endElement(); //requiredFaction
             }
         }
         $xml->XMLWriter()->startElement('requiredLevel');
-        $xml->XMLWriter()->text($data['RequiredLevel']);
+        $xml->XMLWriter()->text($proto->RequiredLevel);
         $xml->XMLWriter()->endElement(); //requiredLevel
-        if($data['ItemLevel'] > 0) {
+        if($proto->ItemLevel > 0) {
             $xml->XMLWriter()->startElement('itemLevel');
-            $xml->XMLWriter()->text($data['ItemLevel']);
+            $xml->XMLWriter()->text($proto->ItemLevel);
             $xml->XMLWriter()->endElement(); //itemLevel
         }
         // Item set
-        if($data['itemset'] > 0) {
+        if($proto->itemset > 0) {
             $xml->XMLWriter()->startElement('setData');
-            $itemsetName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $this->armory->GetLocale(), $data['itemset']);
+            $itemsetName = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $this->armory->GetLocale(), $proto->itemset);
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<name>');
                 $xml->XMLWriter()->writeRaw($itemsetName);
@@ -2122,12 +2105,12 @@ Class Items {
             else {
                 $xml->XMLWriter()->startElement('name');
                 $xml->XMLWriter()->text($itemsetName);
-                $xml->XMLWriter()->endElement();
+                $xml->XMLWriter()->endElement(); //name
             }
-            $setdata = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $data['itemset']);
-            if(self::IsMultiplyItemSet($data['itemset'])) {
+            $setdata = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_itemsetinfo` WHERE `id`=%d", $proto->itemset);
+            if(self::IsMultiplyItemSet($proto->itemset)) {
                 // Get itemset info from other table (armory_itemsetdata)
-                $currentSetData = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d", $data['itemset']);
+                $currentSetData = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_itemsetdata` WHERE `original`=%d", $proto->itemset);
                 if(is_array($currentSetData)) {
                     $activeSetInfo = array();
                     $basicSetData = $currentSetData[0];
@@ -2169,7 +2152,7 @@ Class Items {
                 }
             }
             else {
-                for($i=1;$i<10;$i++) {
+                for($i = 1; $i < 10; $i++) {
                     if(isset($setdata['item' . $i]) && self::IsItemExists($setdata['item' . $i])) {
                         if(Utils::IsWriteRaw()) {
                             $xml->XMLWriter()->writeRaw('<item');
@@ -2213,10 +2196,10 @@ Class Items {
         $xml->XMLWriter()->startElement('spellData');
         $spellData = 0;
         $spellInfo = false;
-        for($i = 1; $i < 6; $i++) {
-            if($data['spellid_'.$i] > 0) {
+        for($i = 0; $i < 5; $i++) {
+            if($proto->Spells[$i]['spellid'] > 0) {
                 $spellData = 1;
-                $spell_tmp = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $data['spellid_' . $i]);
+                $spell_tmp = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d", $proto->Spells[$i]['spellid']);
                 if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
                     $tmp_locale = $this->armory->GetLocale();
                 }
@@ -2238,7 +2221,7 @@ Class Items {
                     $spellInfo = str_replace('&quot;', '"', $spellInfo);
                     $xml->XMLWriter()->startElement('spell');
                     $xml->XMLWriter()->startElement('trigger');
-                    $xml->XMLWriter()->text($data['spelltrigger_' . $i]);
+                    $xml->XMLWriter()->text($proto->Spells[$i]['trigger']);
                     $xml->XMLWriter()->endElement();  //trigger
                     $xml->XMLWriter()->startElement('desc');
                     $xml->XMLWriter()->text($spellInfo);
@@ -2247,19 +2230,19 @@ Class Items {
                 }
             }
         }
-        if($spellData == 1 && !empty($data['description'])) {
+        if($spellData == 1 && $proto->description != null) {
             $xml->XMLWriter()->startElement('spell');
             $xml->XMLWriter()->startElement('trigger');
             $xml->XMLWriter()->text('6');
-            $xml->XMLWriter()->endElement();  //trigger
+            $xml->XMLWriter()->endElement(); //trigger
             $xml->XMLWriter()->startElement('desc');
             if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
-                $xml->XMLWriter()->text($data['description']);
+                $xml->XMLWriter()->text($proto->description);
             }
             else {
                 $xml->XMLWriter()->text(self::GetItemDescription($itemID));
             }
-            $xml->XMLWriter()->endElement();  //desc
+            $xml->XMLWriter()->endElement(); //desc
             if(!$parent) {
                 for($k = 1; $k < 4; $k++) {
                     if($spell_tmp['EffectItemType_' . $k] > 0 && self::IsItemExists($spell_tmp['EffectItemType_' . $k])) {
@@ -2284,7 +2267,7 @@ Class Items {
                             }
                         }
                         else {
-                            $xml->XMLWriter()->startElement('reag');
+                            $xml->XMLWriter()->startElement('reagent');
                             $xml->XMLWriter()->endElement(); //reagent
                         }
                     }
@@ -2293,7 +2276,7 @@ Class Items {
             $xml->XMLWriter()->endElement(); //spell
         }
         $xml->XMLWriter()->endElement(); //spellData
-        if(!empty($data['description']) && $data['description'] != $spellInfo && $spellData != 1) {
+        if($proto->description != null && $proto->description != $spellInfo && $spellData != 1) {
             if(Utils::IsWriteRaw()) {
                 $xml->XMLWriter()->writeRaw('<desc>');
                 $xml->XMLWriter()->writeRaw(self::GetItemDescription($itemID));
@@ -2302,7 +2285,7 @@ Class Items {
             else {
                 $xml->XMLWriter()->startElement('desc');
                 if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
-                    $xml->XMLWriter()->text($data['description']);
+                    $xml->XMLWriter()->text($proto->description);
                 }
                 else {
                     $xml->XMLWriter()->text(self::GetItemDescription($itemID));
@@ -2472,10 +2455,7 @@ Class Items {
      * @return   bool
      **/
     public function IsVendorItem($itemID) {
-        if($this->armory->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=%d", $itemID)) {
-            return true;
-        }
-        return false;
+        return $this->armory->wDB->selectCell("SELECT 1 FROM `npc_vendor` WHERE `item`=%d LIMIT 1", $itemID);
     }
     
     public function GenerateEnchantmentSpellData($spellID) {
@@ -2485,7 +2465,6 @@ Class Items {
         else {
             $tmp_locale = 'en_gb';
         }
-        $data = array();
         $spell_info = $this->armory->aDB->selectRow("SELECT `SpellName_%s`, `Description_%s`, `SpellName_en_gb`, `Description_en_gb` FROM `ARMORYDBPREFIX_spell` WHERE `id`=%d LIMIT 1", $tmp_locale, $tmp_locale, $spellID);
         if(!isset($spell_info['Description_' . $tmp_locale]) || empty($spell_info['Description_' . $tmp_locale])) {
             // Try to find en_gb locale
@@ -2496,10 +2475,10 @@ Class Items {
                 return false;
             }
         }
-        $data['name'] = $spell_info['SpellName_' . $tmp_locale];
-        $data['desc'] = $spell_info['Description_' . $tmp_locale];
-        $data['desc'] = str_replace('&quot;', '"', $data['desc']);
-        $data['desc'] = str_replace('&lt;br&gt;', '', $data['desc']);
+        $data = array(
+            'name' => $spell_info['SpellName_' . $tmp_locale],
+            'desc' => str_replace(array('&quot;', '&lt;br&gt;', '<br>'), array('"', '', ''), $spell_info['Description_' . $tmp_locale])
+        );
         return $data;
     }
     
@@ -2548,7 +2527,7 @@ Class Items {
                 ITEM_MOD_SPELL_POWER, ITEM_MOD_MANA_REGENERATION
             )
         );
-        $query = '';
+        $query = null;
         switch($classType) {
             case 'tank':
             case 'caster':
@@ -2987,7 +2966,7 @@ Class Items {
     }
     
     public function GetSocketColorString($color) {
-        $string = '';
+        $string = null;
         switch($color) {
             case 1:
                 $string = 'Meta';

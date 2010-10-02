@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 385
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,6 +28,8 @@ define('load_achievements_class', true);
 define('load_items_class', true);
 define('load_mangos_class', true);
 define('load_arenateams_class', true);
+define('load_item_class', true);
+define('load_itemprototype_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1250,7 +1250,7 @@ Class Utils {
             return FACTION_ALLIANCE;
         }
         else {
-            // Unknown class
+            // Unknown race
             $this->armory->Log()->writeError('%s : unknown race: %d', __METHOD__, $raceID);
             return false;
         }
@@ -1335,14 +1335,14 @@ Class Utils {
             return false;
         }
         foreach($this->armory->realmData as $myRealm) {
-            $tmpData = $this->armory->aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
-            if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'])) {
-                $replace = $this->armory->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`) VALUES (%d, '%s')", $myRealm['id'], $myRealm['name']);
+            $tmpData = $this->armory->aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
+            if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'] || $tmpData['type'] == UNK_SERVER)) {
+                $replace = $this->armory->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 if($replace) {
                     $this->armory->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
                 }
                 else {
-                    $this->armory->Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`) VALUES (%d, \'%s\');"', __METHOD__, $myRealm['name'], $this->armory->armoryconfig['db_prefix'], $this->armory->armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name']);
+                    $this->armory->Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`, `type`) VALUES (%d, \'%s\', %d);"', __METHOD__, $myRealm['name'], $this->armory->armoryconfig['db_prefix'], $this->armory->armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 }
             }
         }
@@ -1562,7 +1562,77 @@ Class Utils {
         }
         $this->armory->Log()->writeError('%s : unsupported server type ("%s")!', __METHOD__, $server);
         return UNK_SERVER;
-        return -1;
+    }
+    
+    /**
+     * Return slot name by slot ID
+     * @category Utils class
+     * @access   public
+     * @param    int $slotId
+     * @return   string
+     **/
+    public function GetItemSlotTextBySlotId($slotId) {
+        $slots_info = array(
+            INV_HEAD => 'head',
+            INV_NECK => 'neck',
+            INV_SHOULDER => 'shoulder',
+            INV_SHIRT => 'shirt',
+            INV_CHEST => 'chest',
+            INV_BELT => 'belt',
+            INV_LEGS => 'legs',
+            INV_BOOTS => 'boots',
+            INV_BRACERS => 'wrist',
+            INV_GLOVES => 'gloves',
+            INV_RING_1 => 'ring1',
+            INV_RING_2 => 'ring2',
+            INV_TRINKET_1 => 'trinket1',
+            INV_TRINKET_2 => 'trinket2',
+            INV_BACK => 'back',
+            INV_MAIN_HAND => 'mainhand',
+            INV_OFF_HAND => 'offhand',
+            INV_RANGED_RELIC => 'relic',
+            INV_TABARD => 'tabard'
+        );
+        return (isset($slots_info[$slotId])) ? $slots_info[$slotId] : null;
+    }
+    
+    /**
+     * Return slot name by inventory type
+     * @category Utils class
+     * @access   public
+     * @param    int $invType
+     * @return   string
+     **/
+    public function GetItemSlotTextByInvType($invType) {
+        $slots_info = array (
+        	1  => 'head',
+            2  => 'neck',
+            3  => 'shoulder',
+            4  => 'shirt',
+            5  => 'chest', 
+            6  => 'belt', 
+            7  => 'legs', 
+            8  => 'boots',
+            9  => 'wrist',
+            10 => 'gloves',
+            11 => 'ring1',
+            12 => 'trinket1',
+            13 => 'mainhand',
+            14 => 'offhand',
+            15 => 'relic',
+            16 => 'back', 
+            17 => 'stave',
+            19 => 'tabard',
+            20 => 'chest',
+            21 => 'mainhand',
+            22 => null,
+            23 => 'offhand',
+            24 => null,
+            25 => 'thrown',
+            26 => 'gun',
+            28 => 'relic'
+        );
+        return (isset($slots_info[$invType])) ? $slots_info[$invType] : null;
     }
 }
 ?>

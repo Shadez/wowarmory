@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -507,6 +507,7 @@ Class Mangos {
     
     /**
      * Generates drop percent for $boss_id boss and $item_id item.
+     * @author   DiSlord
      * @category Mangos class
      * @access   public
      * @param    int $boss_id
@@ -515,7 +516,6 @@ Class Mangos {
      * @return   int
      **/
     public function GenerateLootPercent($boss_id, $db_table, $item_id) {
-        // CSWOWD code
         $allowed_tables = array(
             'creature_loot_template'   => true,
             'disenchant_loot_template' => true,

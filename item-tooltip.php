@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 397
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,6 +26,8 @@ define('__ARMORY__', true);
 define('load_items_class', true);
 define('load_characters_class', true);
 define('load_mangos_class', true);
+define('load_item_class', true);
+define('load_itemprototype_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
@@ -78,7 +80,7 @@ if($utils->IsItemComparisonAllowed()) {
     if(isset($primaryCharacter['name'])) {
         if($primaryCharacter['name'] != $characters->GetName() || ($primaryCharacter['name'] == $characters->GetName() && $primaryCharacter['realm_id'] != $characters->GetRealmID())) {
             $newChar = new Characters($armory);
-            $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id'], false);
+            $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
             if($newChar->CheckPlayer()) {
                 $itemSlot = $items->GetItemSlotId($itemID);
                 if(is_array($itemSlot)) {

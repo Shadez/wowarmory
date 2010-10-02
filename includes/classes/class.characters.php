@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 395
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -235,11 +235,18 @@ Class Characters {
     private $m_achievementMgr = null;
     
     /**
-     * Equipped items
+     * Equipped items storage
      * @category Characters class
      * @access   private
      **/
-    public $m_items;
+    private $m_items;
+    
+    /**
+     * Server type (SERVER_MANGOS or SERVER_TRINITY)
+     * @category Characters class
+     * @access   private
+     **/
+    private $m_server = null;
     
     public function Characters($armory) {
         if(!is_object($armory)) {
@@ -275,6 +282,12 @@ Class Characters {
         $this->db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
         if(!$this->db || !$this->db->TestLink()) {
             $this->armory->Log()->writeError('%s : unable to connect to MySQL server (error: %s; realmId: %d). Check your configs.', __METHOD__, (mysql_error()) ? mysql_error() : 'none', $realmId);
+            return false;
+        }
+        // Set type
+        $this->m_server = $this->armory->aDB->selectCell("SELECT `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `id`=%d", $realmId);
+        if($this->m_server == UNK_SERVER) {
+            $this->armory->Log()->writeError('%s : unknown server type! Unable to initialize characters class (name: %s, realmId: %d)', __METHOD__, $name, $realmId);
             return false;
         }
         if($full == true) {
@@ -379,6 +392,7 @@ Class Characters {
                 $this->{$pData_key} = $pData_value;
             }
         }
+        $this->HandleEquipmentCacheData();
         if($full == true) {
             // Get race and class strings
             $race_class = $this->armory->aDB->selectRow("
@@ -401,13 +415,12 @@ Class Characters {
             }
             if(defined('load_item_class') && defined('load_itemprototype_class')) {
                 // Load items
-                //$this->LoadInventory();
+                $this->LoadInventory();
             }
         }
         $this->realmName = $realm_info['name'];
         $this->realmID   = $realm_info['id'];
         unset($realm_info);
-        $this->HandleEquipmentCacheData();
         // Initialize achievement manager
         if(defined('load_achievements_class') && class_exists('Achievements')) {
             $this->m_achievementMgr = new Achievements($this->armory);
@@ -950,7 +963,7 @@ Class Characters {
                 return $this->equipmentCache[37];
                 break;
             default:
-                $this->armory->Log()->writeLog('%s : wrong item slot query: %s', __METHOD__, $slot);
+                $this->armory->Log()->writeLog('%s : wrong item slot: %s', __METHOD__, $slot);
                 return 0;
                 break;
         }
@@ -2663,7 +2676,6 @@ Class Characters {
      * @return   array
      **/
     public function GetCharacterItemInfo($slot) {
-        /*
         if(!$this->guid) {
             $this->armory->Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
@@ -2674,13 +2686,13 @@ Class Characters {
         }
         $item = $this->m_items[$slot['slotid']];
         $gems = array(
-            'g0' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT),
-            'g1' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT_2),
-            'g2' => $item->GetEnchantmentId(SOCK_ENCHANTMENT_SLOT_3),
+            'g0' => $item->GetSocketInfo(1),
+            'g1' => $item->GetSocketInfo(2),
+            'g2' => $item->GetSocketInfo(3)
         );
         $durability = $item->GetItemDurability();
         $item_data = $this->armory->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item->GetEntry());
-        $enchantment = $item->GetEnchantmentId(PERM_ENCHANTMENT_SLOT);
+        $enchantment = $item->GetEnchantmentId();
         $originalSpell = 0;
         $enchItemData = array();
         $enchItemDisplayId = 0;
@@ -2715,10 +2727,10 @@ Class Characters {
             'slot'                   => $slot['slotid']
         );
         if(is_array($gems)) {
-            for($i=0;$i<3;$i++) {
-                if($gems['g'.$i]['item'] > 0) {
-                    $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
-                    $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
+            for($i = 0; $i < 3; $i++) {
+                if($gems['g' . $i]['item'] > 0) {
+                    $item_info['gem' . $i . 'Id'] = $gems['g' . $i]['item'];
+                    $item_info['gemIcon' . $i ] = $gems['g' . $i]['icon'];
                 }
             }
         }
@@ -2732,82 +2744,6 @@ Class Characters {
             $item_info['permanentEnchantSpellDesc'] = $spellEnchData['desc'];
         }
         return $item_info;
-        */
-        $item_id = $this->GetCharacterEquip($slot['slot']);
-        if(!$item_id) {
-            $this->armory->Log()->writeLog('%s : unable to get item_id for player %d (%s); slotid is %s (nothing equipped?)', __METHOD__, $this->guid, $this->name, $slot['slot']);
-            return false;
-        }
-        $item_guid = $this->GetEquippedItemGuidBySlot($slot['slot']);
-        $durability = Items::GetItemDurability($this->guid, $item_guid);
-        $gems = array(
-            'g0' => Items::GetItemSocketInfo($this->guid, $item_id, 1, $item_guid),
-            'g1' => Items::GetItemSocketInfo($this->guid, $item_id, 2, $item_guid),
-            'g2' => Items::GetItemSocketInfo($this->guid, $item_id, 3, $item_guid)
-        );
-        $item_data = $this->armory->wDB->selectRow("SELECT `name`, `displayid`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item_id);
-        $enchantment = $this->GetCharacterEnchant($slot['slot']);
-        $originalSpell = 0;
-        $enchItemData = array();
-        $enchItemDisplayId = null;
-        if($enchantment > 0) {
-            $originalSpell = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_spellenchantment` WHERE `Value`=%d", $enchantment);
-            if($originalSpell > 0) {
-                $enchItemData = $this->armory->wDB->selectRow("SELECT `entry`, `displayid` FROM `item_template` WHERE `spellid_1`=%d LIMIT 1", $originalSpell);
-                if($enchItemData) {
-                    // Item
-                    $enchItemDisplayId = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $enchItemData['displayid']);
-                }
-                else {
-                    // Spell
-                    $spellEnchData = Items::GenerateEnchantmentSpellData($originalSpell);
-                }
-            }
-        }
-        $item_info = array(
-            'displayInfoId'          => $item_data['displayid'],
-            'durability'             => $durability['current'],
-            'icon'                   => Items::GetItemIcon($item_id, $item_data['displayid']),
-            'id'                     => $item_id,
-            'level'                  => $item_data['ItemLevel'],
-            'maxDurability'          => $durability['max'],
-            'name'                   => ($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') ? $item_data['name'] : Items::GetItemName($item_id),
-            'permanentenchant'       => $enchantment,
-            'pickUp'                 => 'PickUpLargeChain',
-            'putDown'                => 'PutDownLArgeChain',
-            'randomPropertiesId'     => 0,
-            'rarity'                 => $item_data['Quality'],
-            'seed'                   => 0,
-            'slot'                   => $slot['slotid']
-        );
-        if(is_array($gems)) {
-            for($i=0;$i<3;$i++) {
-                if($gems['g'.$i]['item'] > 0) {
-                    $item_info['gem'.$i.'Id'] = $gems['g'.$i]['item'];
-                    $item_info['gemIcon'.$i] = $gems['g'.$i]['icon'];
-                }
-            }
-        }
-        if(is_array($enchItemData) && isset($enchItemData['entry'])) {
-            $item_info['permanentEnchantIcon'] = $enchItemDisplayId;
-            $item_info['permanentEnchantItemId'] = $enchItemData['entry'];
-        }
-        elseif(isset($spellEnchData) && is_array($spellEnchData) && isset($spellEnchData['name'])) {
-            $item_info['permanentEnchantIcon'] = 'trade_engraving';
-            $item_info['permanentEnchantSpellName'] = $spellEnchData['name'];
-            $item_info['permanentEnchantSpellDesc'] = $spellEnchData['desc'];
-        }
-        return $item_info;
-    }
-    
-    /**
-     * Returns $this->db statistics (queries amount, generation time, etc.). Not used now.
-     * @category Character class
-     * @access   public
-     * @return   array
-     **/
-    public function GetDBStatistics() {
-        return $this->db->getStatistics();
     }
     
     /**
@@ -3042,10 +2978,8 @@ Class Characters {
         return $standing;
     }
     
-    /**** DEVELOPMENT SECTION ****/
-    
     /**
-     * Load character inventory (equipped items)
+     * Load character inventory (equipped items only). Must be called from Characters::BuildCharacter() only!
      * @category Characters class
      * @access   private
      * @return   bool
@@ -3060,8 +2994,9 @@ Class Characters {
             return false;
         }
         foreach($inv as $item) {
-            $this->m_items[$item['slot']] = new Item($this->armory);
-            $this->m_items[$item['slot']]->LoadFromDB($item, $this->guid, $this->db, Utils::GetServerTypeByString($this->armory->currentRealmInfo['type']));
+            $item['enchants'] = $this->GetCharacterEnchant(Utils::GetItemSlotTextBySlotId($item['slot']));
+            $this->m_items[$item['slot']] = new Item($this->armory, $this->m_server);
+            $this->m_items[$item['slot']]->LoadFromDB($item, $this->guid, $this->db);
             // Do not load itemproto here!
         }
         return true;
@@ -3085,12 +3020,21 @@ Class Characters {
             return false;
         }
         if($addToInventoryStorage == true) {
-            $this->m_inventory[$inv['slot']] = new Item($this->armory);
-            $this->m_inventory[$inv['slot']]->LoadFromDB($inv, $this->guid, $this->GetDB(), $this->armory->currentRealmInfo['type']);
+            $inv['enchants'] = $this->GetCharacterEnchant(Utils::GetItemSlotTextBySlotId($item['slot']));
+            $this->m_items[$inv['slot']] = new Item($this->armory, $this->m_server);
+            $this->m_items[$inv['slot']]->LoadFromDB($inv, $this->guid, $this->GetDB());
         }
-        return $inv; // or boolean?
+        return $inv;
     }
     
+    /**
+     * Return Item by SlotID
+     * Note: m_items must be initialized in Characters::BuildCharacter()!
+     * @category Characters class
+     * @access   public
+     * @param    int $slot
+     * @return   object
+     **/
     public function GetItemBySlot($slot) {
         if(!isset($this->m_items[$slot])) {
             $this->armory->Log()->writeError('%s : slot %d is empty (character: %s, GUID: %d).', __METHOD__, $slot, $this->name, $this->guid);
@@ -3112,6 +3056,35 @@ Class Characters {
         return $this->m_items[$slot];
     }
     
+    /**
+     * Return item handler by item entry (from item storage)
+     * Note: m_items must be initialized in Characters::BuildCharacter()!
+     * @category Characters class
+     * @access   public
+     * @param    int $entry
+     * @return   object
+     **/
+    public function GetItemByEntry($entry) {
+        if(!is_array($this->m_items)) {
+            $this->armory->Log()->writeError('%s : m_items must be an array!', __METHOD__);
+            return false;
+        }
+        foreach($this->m_items as $mItem) {
+            if($mItem->GetEntry() == $entry) {
+                return $mItem;
+            }
+        }
+        return false;
+    }
+    
+    /**** DEVELOPMENT SECTION ****/
+    
+    /**
+     * Checks if player have any active pet
+     * @category Characters class
+     * @access   public
+     * @return   bool
+     **/
     public function IsHaveAnyPet() {
         if(!$this->IsCanHavePet()) {
             return false;

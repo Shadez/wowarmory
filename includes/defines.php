@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 374
+ * @revision 398
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -815,4 +815,8 @@ define('ITEM_QUALITY_EPIC', 4);
 define('ITEM_QUALITY_LEGENDARY', 5);
 define('ITEM_QUALITY_ARTEFACT', 6);
 define('ITEM_QUALITY_HEIRLOOM', 7);
+
+define('UNK_SERVER', 0);
+define('SERVER_MANGOS', 1);
+define('SERVER_TRINITY', 2);
 ?>
