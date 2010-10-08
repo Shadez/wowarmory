@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 399
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -188,10 +188,21 @@ Class Arenateams {
             `characters`.`gender` AS `genderId`
             FROM `arena_team_member` AS `arena_team_member`
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
-            WHERE `arena_team_member`.`arenateamid`=%d
-            ", $this->arenateamid);
+            WHERE `arena_team_member`.`arenateamid`=%d", $this->arenateamid);
         }
         elseif($this->armory->currentRealmInfo['type'] == 'trinity') {
+            switch($this->teamtype) {
+                case 2:
+                default:
+                    $slot = 0;
+                    break;
+                case 3:
+                    $slot = 1;
+                    break;
+                case 5:
+                    $slot = 2;
+                    break;
+            }
             $this->players = $this->armory->cDB->select("
             SELECT
             `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
@@ -206,8 +217,7 @@ Class Arenateams {
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
             LEFT JOIN `character_arena_stats` AS `character_arena_stats` ON `character_arena_stats`.`guid`=`arena_team_member`.`guid`
             WHERE `arena_team_member`.`arenateamid`=%d
-            AND `character_arena_stats`.`slot`=%d
-            ", $this->arenateamid, $this->teamtype);
+            AND `character_arena_stats`.`slot`=%d", $this->arenateamid, $slot);
         }
         if(!$this->players) {
             $this->armory->Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
@@ -287,7 +297,7 @@ Class Arenateams {
                 WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
                 ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
             }
-            if(!$realmArenaTeamInfo) {
+            if(!$realmArenaTeamInfo || !is_array($realmArenaTeamInfo)) {
                 $this->armory->Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
                 continue;
             }
