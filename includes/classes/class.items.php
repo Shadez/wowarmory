@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1299,20 +1299,48 @@ Class Items {
      * @param    int $item_guid
      * @return   array
      **/
-    public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0, $rIdOnly = false) {
+    public function GetRandomPropertiesData($item_entry, $owner_guid, $item_guid = 0, $rIdOnly = false, $serverType = 1, $item = null, $item_data = null) {
+        // I have no idea how it works but it works :D
+        // Do not touch anything in this method (at least until somebody will explain me what the fuck am I did here).
         $enchId = 0;
-        switch($this->armory->currentRealmInfo['type']) {
-            case 'mangos':
+        $use = 'property';
+        switch($serverType) {
+            case SERVER_MANGOS:
                 if($item_guid > 0) {
-                    $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
+                    if(is_object($item) && $item->IsCorrect()) {
+                        if(is_array($item_data) && $item_data['RandomProperty'] > 0) {
+                            $enchId = $item->GetItemRandomPropertyId();
+                        }
+                        elseif(is_array($item_data) && $item_data['RandomSuffix'] > 0) {
+                            $suffix_enchants = $item->GetRandomSuffixData();
+                            if(!is_array($suffix_enchants) || !isset($suffix_enchants[0]) || $suffix_enchants[0] == 0) {
+                                $this->armory->Log()->writeError('%s : suffix_enchants not found', __METHOD__);
+                                return false;
+                            }
+                            $enchId = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_randomsuffix` WHERE `ench_1` = %d AND `ench_2` = %d AND `ench_3` = %d LIMIT 1", $suffix_enchants[0], $suffix_enchants[1], $suffix_enchants[2]);
+                            $use = 'suffix';
+                        }
+                    }
+                    else {
+                        $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, 0, $owner_guid, $item_guid);
+                    }
                 }
                 else {
                     $enchId = self::GetItemDataField(ITEM_FIELD_RANDOM_PROPERTIES_ID, $item_entry, $owner_guid);
                 }
                 break;
-            case 'trinity':
+            case SERVER_TRINITY:
                 if($item_guid > 0) {
-                    $enchId = $this->armory->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    if(is_object($item) && $item->IsCorrect()) {
+                        $enchId = $item->GetItemRandomPropertyId();
+                        if($enchId < 0) {
+                            $use = 'suffix';
+                            $enchId = abs($enchId);
+                        }
+                    }
+                    else {
+                        $enchId = $this->armory->cDB->selectCell("SELECT `randomPropertyId` FROM `item_instance` WHERE `guid`=%d", $item_guid);
+                    }
                 }
                 else {
                     $item_guid = self::GetItemGUIDByEntry($item_entry, $owner_guid);
@@ -1323,17 +1351,47 @@ Class Items {
         if($rIdOnly == true) {
             return $enchId;
         }
-        $rand_data = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id`=%d", $this->armory->GetLocale(), $enchId);
-        if(!$rand_data) {
-            $this->armory->Log()->writeLog('%s : unable to get rand_data FROM `ARMORYDBPREFIX_randomproperties` for id %d', __METHOD__, $enchId);
-            return false;
-        }
         $return_data = array();
-        $return_data['suffix'] = $rand_data['name'];
-        $return_data['data'] = array();
-        for($i = 1; $i < 4; $i++) {
-            if($rand_data['ench_' . $i] > 0) {
-                $return_data['data'][$i] = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $rand_data['ench_' . $i]);
+        $table = 'randomproperties';
+        if($use == 'property') {
+            $rand_data = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3` FROM `ARMORYDBPREFIX_randomproperties` WHERE `id`=%d", $this->armory->GetLocale(), $enchId);
+        }
+        elseif($use == 'suffix') {
+            $table = 'randomsuffix';
+        }
+        if($table == 'randomproperties') {
+            if(!$rand_data) {
+                $this->armory->Log()->writeLog('%s : unable to get rand_data FROM `%s_%s` for id %d (itemGuid: %d, ownerGuid: %d)', __METHOD__, $this->armory->armoryconfig['db_prefix'], $table, $enchId, $item_guid, $owner_guid);
+                return false;
+            }
+            $return_data['suffix'] = $rand_data['name'];
+            $return_data['data'] = array();
+            for($i = 1; $i < 4; $i++) {
+                if($rand_data['ench_' . $i] > 0) {
+                    $return_data['data'][$i] = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $rand_data['ench_' . $i]);
+                }
+            }
+        }
+        elseif($table == 'randomsuffix') {
+            $enchant = $this->armory->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `ench_1`, `ench_2`, `ench_3`, `pref_1`, `pref_2`, `pref_3` FROM `ARMORYDBPREFIX_randomsuffix` WHERE `id`=%d", $this->armory->GetLocale(), $enchId);
+            if(!$enchant) {
+                return false;
+            }
+            $return_data['suffix'] = $enchant['name'];
+            $return_data['data'] = array();
+            $item_data = $this->armory->wDB->selectRow("SELECT `InventoryType`, `ItemLevel`, `Quality` FROM `item_template` WHERE `entry`=%d", $item_entry);
+            $points = self::GetRandomPropertiesPoints($item_data['ItemLevel'], $item_data['InventoryType'], $item_data['Quality']);
+            $return_data = array(
+                'suffix' => $enchant['name'],
+                'data' => array()
+            );
+            $k = 1;
+            for($i = 1; $i < 4; $i++) {
+                if(isset($enchant['ench_' . $i]) && $enchant['ench_' . $i] > 0) {
+                    $cur = $this->armory->aDB->selectCell("SELECT `text_%s` FROM `ARMORYDBPREFIX_enchantment` WHERE `id` = %d", $this->armory->GetLocale(), $enchant['ench_' . $i]);
+                    $return_data['data'][$k] = str_replace('$i', round(floor($points * $enchant['pref_' . $i] / 10000), 0), $cur);
+                }
+                $k++;
             }
         }
         return $return_data;
@@ -1872,10 +1930,10 @@ Class Items {
             }
             else {
                 if($itemSlotName) {
-                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName), false, $characters->GetServerType(), $item, array('RandomProperty' => $proto->RandomProperty, 'RandomSuffix' => $proto->RandomSuffix));
                 }
                 else {
-                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID());
+                    $rPropInfo = self::GetRandomPropertiesData($itemID, $characters->GetGUID(), 0, false, $characters->GetServerType(), $item);
                 }
                 if($isCharacter && !$parent && is_array($rPropInfo)) {
                     $xml->XMLWriter()->startElement('randomEnchantData');
@@ -2993,6 +3051,11 @@ Class Items {
             return true;
         }
         return false;
+    }
+    
+    public function GetItemIdByName($name) {
+        $name = Utils::escape(urldecode($name));
+        return $this->armory->wDB->selectCell("SELECT `entry` FROM `item_template` WHERE `name` = '%s' LIMIT 1", $name);
     }
 }
 ?>

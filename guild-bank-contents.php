@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -26,6 +26,7 @@ define('__ARMORY__', true);
 define('load_characters_class', true);
 define('load_guilds_class', true);
 define('load_items_class', true);
+define('load_item_class', true);
 if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -286,6 +286,21 @@ Class ItemPrototype {
             $temp += $this->Damage[$i]['min'] + $this->Damage[$i]['max'];
         }
         return $temp * 500 / $this->delay;
+    }
+    
+    // Not used now.
+    public function GetItemQualityColor() {
+        $colors_array = array(
+            '#c9c9c9',        //GREY
+            '#ffffff',        //WHITE
+            '#00FF00',        //GREEN
+            '#0070DD',        //BLUE
+            '#A335EE',        //PURPLE
+            '#ff8000',        //ORANGE
+            '#7e7046',        //LIGHT YELLOW
+            '#7e7046'         //LIGHT YELLOW
+        );
+        return (isset($colors_array[$this->Quality])) ? $colors_array[$this->Quality] : $colors_array[1];
     }
 }
 

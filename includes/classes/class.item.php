@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -331,6 +331,9 @@ Class Item {
         }
     }
     
+    /**
+     * @return int
+     **/
     public function GetCurrentDurability() {
         if($this->m_server == SERVER_MANGOS) {
             return $this->GetUInt32Value(ITEM_FIELD_DURABILITY);
@@ -342,6 +345,9 @@ Class Item {
         return 0;
     }
     
+    /**
+     * @return int
+     **/
     public function GetMaxDurability() {
         if($this->m_server == SERVER_MANGOS) {
             return $this->GetUInt32Value(ITEM_FIELD_MAXDURABILITY);
@@ -349,6 +355,7 @@ Class Item {
         elseif($this->m_server == SERVER_TRINITY) {
             return $this->tc_data['maxdurability']; // assigned in Item::LoadFromDB()
         }
+        $this->armory->Log()->writeLog('%s : wrong server type', __METHOD__);
         return 0;
     }
     
@@ -357,6 +364,21 @@ Class Item {
      **/
     public function GetItemDurability() {
         return array('current' => $this->GetCurrentDurability(), 'max' => $this->GetMaxDurability());
+    }
+    
+    /**
+     * @return array
+     **/
+    public function GetRandomSuffixData() {
+        if($this->m_server != SERVER_MANGOS) {
+            $this->armory->Log()->writeError('%s : this method is usable with MaNGOS servers only.', __METHOD__);
+            return false;
+        }
+        return array(
+            $this->GetUInt32Value(ITEM_FIELD_ENCHANTMENT_8_1),
+            $this->GetUInt32Value(ITEM_FIELD_ENCHANTMENT_9_1),
+            $this->GetUInt32Value(ITEM_FIELD_ENCHANTMENT_10_1)
+        );
     }
 }
 

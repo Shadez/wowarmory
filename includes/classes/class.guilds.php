@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 396
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -286,7 +286,9 @@ Class Guilds {
         }
         $items_list = $this->armory->cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=%d", $this->guildId);
         $count_items = count($items_list);
-        for($i=0;$i<$count_items;$i++) {
+        for($i = 0; $i < $count_items; $i++) {
+            $m_server = Utils::GetServerTypeByString($this->armory->currentRealmInfo['type']);
+            $item_data = $this->armory->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry` = %d LIMIT 1", $items_list[$i]['id']);
             $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed']);
             $items_list[$i]['durability'] = (int) $tmp_durability['current'];
             $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
@@ -300,7 +302,8 @@ Class Guilds {
             elseif($this->armory->currentRealmInfo['type'] == 'trinity') {
                 $items_list[$i]['quantity'] = $this->armory->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $items_list[$i]['seed']);
             }
-            $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true);
+            //TODO: Find correct random property/suffix for items in guild vault.
+            $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true, $m_server, null, $item_data);
             $tmp_classinfo = Items::GetItemSubTypeInfo($items_list[$i]['id']);
             $items_list[$i]['subtype'] = '';
             $items_list[$i]['subtypeLoc'] = $tmp_classinfo['subclass_name'];

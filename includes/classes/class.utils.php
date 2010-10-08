@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 400
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -114,6 +114,7 @@ Class Utils {
      * @param    int $guildId
      * @param    int $realmId
      * @return   bool
+     * @todo     Add guild bank tab access handling
      **/
     public function IsAllowedToGuildBank($guildId, $realmId) {
         if(!isset($_SESSION['accountId'])) {

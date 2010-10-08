@@ -1,9 +1,9 @@
 diff --git a/src/game/BattleGround.cpp b/src/game/BattleGround.cpp
-index 8343ab5..08debcc 100644
+index a786ffa..b6db14f 100644
 --- a/src/game/BattleGround.cpp
 +++ b/src/game/BattleGround.cpp
 @@ -723,6 +723,47 @@ void BattleGround::EndBattleGround(uint32 winner)
-             DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %u, Losser change: %u ---", winner_rating, loser_rating, winner_change, loser_change);
+             DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %i, Loser change: %i ---", winner_rating, loser_rating, winner_change, loser_change);
              SetArenaTeamRatingChangeForTeam(winner, winner_change);
              SetArenaTeamRatingChangeForTeam(GetOtherTeam(winner), loser_change);
 +            /** World of Warcraft Armory **/
@@ -94,10 +94,10 @@ index 0a70990..55ea549 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 4bf7533..b9bf8b0 100644
+index e5f9745..6aac984 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -633,6 +633,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -658,6 +658,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
@@ -108,7 +108,7 @@ index 4bf7533..b9bf8b0 100644
              }
          }
  
-@@ -5872,6 +5876,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+@@ -6000,6 +6004,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
      {
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

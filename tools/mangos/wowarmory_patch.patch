@@ -1,5 +1,5 @@
 diff --git a/src/game/AchievementMgr.cpp b/src/game/AchievementMgr.cpp
-index 3ef1762..95de09e 100644
+index 3a4c63d..69cb02d 100644
 --- a/src/game/AchievementMgr.cpp
 +++ b/src/game/AchievementMgr.cpp
 @@ -1995,6 +1995,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
@@ -13,14 +13,13 @@ index 3ef1762..95de09e 100644
      CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
      ca.date = time(NULL);
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index 52e58a9..b1c7951 100644
+index 52e58a9..82f425c 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
-@@ -953,6 +953,16 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
-             count = pProto->GetMaxStackSize();
+@@ -954,6 +954,16 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
  
          MANGOS_ASSERT(count !=0 && "pProto->Stackable==0 but checked at loading already");
-+        
+ 
 +        /** World of Warcraft Armory **/
 +        if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +        {
@@ -30,14 +29,15 @@ index 52e58a9..b1c7951 100644
 +            CharacterDatabase.PExecute( ss.str().c_str() );
 +        }
 +        /** World of Warcraft Armory **/
- 
++        
          Item *pItem = NewItemOrBag( pProto );
          if( pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player) )
+         {
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 19d749e..3c8ea9b 100644
+index dbb71d9..f32af9b 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -16737,6 +16737,17 @@ void Player::SaveToDB()
+@@ -16742,6 +16742,17 @@ void Player::SaveToDB()
  
      DEBUG_FILTER_LOG(LOG_FILTER_PLAYER_STATS, "The value of player %s at save: ", m_name.c_str());
      outDebugStatsValues();
@@ -55,7 +55,7 @@ index 19d749e..3c8ea9b 100644
  
      CharacterDatabase.BeginTransaction();
  
-@@ -22295,3 +22306,34 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
+@@ -22315,3 +22326,40 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
              SetFFAPvP(false);
      }
  }
@@ -63,9 +63,15 @@ index 19d749e..3c8ea9b 100644
 +/** World of Warcraft Armory **/
 +void Player::WriteWowArmoryDatabaseLog(uint32 type, uint32 data)
 +{
++    /*
++        Log types:
++        1 - achievement feed
++        2 - loot feed
++        3 - boss kill feed
++    */
 +    uint32 pGuid = GetGUIDLow();
 +    sLog.outDetail("WoWArmory: write feed log (guid: %u, type: %u, data: %u", pGuid, type, data);
-+    if (type <= 0)	// Unknown type
++    if (type <= 0 || type > 3)	// Unknown type
 +    {
 +        sLog.outError("WoWArmory: unknown type id: %d, ignore.", type);
 +        return;
@@ -92,10 +98,10 @@ index 19d749e..3c8ea9b 100644
 +/** World of Warcraft Armory **/
 \ No newline at end of file
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 0b34970..ac556b4 100644
+index 4a9240e..0590d31 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -2277,6 +2277,10 @@ class MANGOS_DLL_SPEC Player : public Unit
+@@ -2279,6 +2279,10 @@ class MANGOS_DLL_SPEC Player : public Unit
          bool TeleportToHomebind(uint32 options = 0) { return TeleportTo(m_homebindMapId, m_homebindX, m_homebindY, m_homebindZ, GetOrientation(), options); }
  
          Object* GetObjectByTypeMask(ObjectGuid guid, TypeMask typemask);
@@ -107,16 +113,16 @@ index 0b34970..ac556b4 100644
          // currently visible objects at player client
          ObjectGuidSet m_clientGUIDs;
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 4bf7533..84986df 100644
+index e5f9745..b412f27 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -831,7 +831,12 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -859,7 +859,11 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
                      if (m->IsRaidOrHeroicDungeon())
                      {
                          if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
+-                            ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        {
-                             ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
-+                            /** World of Warcraft Armory **/
++                            ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);/** World of Warcraft Armory **/
 +                            creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry); // Difficulty will be defined in Player::WriteWowArmoryDatabaseLog();
 +                            /** World of Warcraft Armory **/
 +                        }
