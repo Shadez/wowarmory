@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 401
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -38,12 +38,18 @@ Class ArmoryDatabaseHandler {
     private $dbLink = false;
     private $connectionLink = false;
     private $databaseInfo = array();
+    private $connected = false;
     
     /** Queries counter **/
     private $queryCount = 0;
-    private $queryTimeGeneration = 0;
-    private $logHandler;
+    private $queryTimeGeneration = 0.0;
+    private $logHandler = null;
     private $armory_prefix = null;
+    
+    /** Error messages **/
+    private $errmsg = null;
+    private $errno = 0;
+    private $server_version = null;
     
     /**
      * Connect to DB
@@ -53,29 +59,46 @@ Class ArmoryDatabaseHandler {
      * @param    string $user
      * @param    string $password
      * @param    string $dbName
-     * @param    string $charset = false
+     * @param    string $charset = null
      * @param    string $logHandler = null
-     * @param    string $prefix = 'armory'
+     * @param    string $prefix = null
      * @return   bool
      **/
-    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = false, $logHandler = null, $prefix = null) {
+    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = null, $logHandler = null, $prefix = null) {
+        $this->logHandler = $logHandler;
         $this->connectionLink = @mysql_connect($host, $user, $password, true);
-        $this->dbLink         = @mysql_select_db($dbName, $this->connectionLink);
-        if($charset === false) {
+        if(!$this->connectionLink) {
+            $this->errmsg = @mysql_error($this->connectionLink);
+            $this->errno = @mysql_errno($this->connectionLink);
+            if(is_object($this->logHandler)) {
+                $this->logHandler->writeError('%s : unable to connect to MySQL Server (host: "%s", dbName: "%s"). Error: %s. Check your configs.', __METHOD__, $host, $dbName, $this->errmsg ? $this->errmsg : 'none');
+            }
+            return false;
+        }
+        $this->dbLink = @mysql_select_db($dbName, $this->connectionLink);
+        if(!$this->dbLink) {
+            if(is_object($this->logHandler)) {
+                $this->logHandler->writeError('%s : unable to switch to database "%s"!', __METHOD__, $dbName);
+            }
+            return false;
+        }
+        if($charset == null) {
             $this->query("SET NAMES UTF8");
         }
         else {
             $this->query("SET NAMES %s", $charset);
         }
-        $this->logHandler = $logHandler;
         $this->databaseInfo = array(
             'host'     => $host,
             'user'     => $user,
             'password' => $password,
             'name'     => $dbName,
-            'charset'  => ($charset === false) ? 'UTF8' : $charset,
+            'charset'  => ($charset == null) ? 'UTF8' : $charset,
         );
         $this->armory_prefix = $prefix;
+        $this->server_version = $this->selectCell("SELECT VERSION()");
+        $this->connected = true;
+        $this->logHandler->writeLog('%s : connection to MySQL database was successfully established.', __METHOD__);
         return true;
     }
     
@@ -97,10 +120,7 @@ Class ArmoryDatabaseHandler {
      * @return   bool
      **/
     public function TestLink() {
-        if($this->connectionLink == true) {
-            return true;
-        }
-        return false;
+        return $this->connected;
     }
     
     /**
@@ -117,9 +137,11 @@ Class ArmoryDatabaseHandler {
         $query_start = microtime(true);
         $this->queryCount++;
         $performed_query = @mysql_query($safe_sql, $this->connectionLink);
-        if($performed_query === false) {
+        $this->errmsg = @mysql_error($this->connectionLink);
+        $this->errno = @mysql_errno($this->connectionLink);
+        if($performed_query == false) {
             if($this->logHandler != null && is_object($this->logHandler)) {
-                $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, mysql_error() ? mysql_error() : 'none');
+                $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, $this->errmsg ? sprintf('"%s" (Error #%d)', $this->errmsg, $this->errno) : 'none');
             }
             return false;
         }
@@ -170,7 +192,6 @@ Class ArmoryDatabaseHandler {
         }
         $query_end = microtime(true);
         $queryTime = round($query_end - $query_start, 4);
-        $this->queryCount++;
         $this->queryTimeGeneration += $queryTime;
         return $result;
     }
@@ -237,7 +258,7 @@ Class ArmoryDatabaseHandler {
     /**
      * Converts array values to string format (for IN(%s) cases)
      * @category Armory Database Handler
-     * @access   public
+     * @access   private
      * @param    array $source
      * @return   string
      **/
@@ -256,10 +277,51 @@ Class ArmoryDatabaseHandler {
                 $returnString .= ", '" . addslashes($source[$i]) . "'";
             }
             else {
-                $returnString .="'" . addslashes($source[$i]) . "'";
+                $returnString .= "'" . addslashes($source[$i]) . "'";
             }
         }
         return $returnString;
+    }
+    
+    public function __destruct() {
+        @mysql_close($this->connectionLink);
+        $this->DropLastErrors();
+        $this->DropCounters();
+        $this->logHandler->writeLog('%s : connection closed.', __METHOD__);
+    }
+    
+    public function GetServerVersion() {
+        return $this->server_version;
+    }
+    
+    public function GetLastErrorMessage() {
+        return $this->errmsg;
+    }
+    
+    public function GetLastErrorNum() {
+        return $this->errno;
+    }
+    
+    private function DropLastErrors() {
+        $this->DropLastErrorMessage();
+        $this->DropLastErrorNumber();
+    }
+    
+    private function DropLastErrorMessage() {
+        $this->errmsg = null;
+    }
+    
+    private function DropLastErrorNumber() {
+        $this->errno = 0;
+    }
+    
+    private function DropCounters() {
+        $this->queryCount = 0;
+        $this->queryTimeGeneration = 0.0;
+    }
+    
+    public function GetStatistics() {
+        return array('queryCount' => $this->queryCount, 'queryTimeGeneration' => $this->queryTimeGeneration);
     }
 }
 
