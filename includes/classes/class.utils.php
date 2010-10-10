@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 402
+ * @revision 403
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1521,7 +1521,7 @@ Class Utils {
         $realm_info = $this->armory->realmData[$realm_id];
         $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->armory->Log());
         if(!$db->TestLink()) {
-            $this->armory->Log()->writeError('%s : unable to connect to MySQL database (%s:%s:%s:%s)', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], rand(1, strlen($realm_info['user_world'])), 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], rand(1, strlen($realm_info['pass_world'])), 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
+            $this->armory->Log()->writeError('%s : unable to connect to MySQL database ("%s":"%s":"%s":"%s")', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], 2, 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], 2, 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
             return false;
         }
         if($tmp = $db->selectCell("SELECT 1 FROM `mangos_string` LIMIT 1")) {
@@ -1691,6 +1691,66 @@ Class Utils {
                 break;
         }
         return true;
+    }
+    
+    public function GetAllowableArmorTypesForClass($class, $search = false) {
+        $allowable_armor_types = null;
+        switch($class) {
+            case CLASS_PRIEST:
+            case CLASS_MAGE:
+            case CLASS_WARLOCK:
+                $allowable_armor_types = ITEM_SUBCLASS_ARMOR_CLOTH;
+                break;
+            case CLASS_ROGUE:
+            case CLASS_DRUID:
+                $allowable_armor_types = $search ? ITEM_SUBCLASS_ARMOR_LEATHER : ITEM_SUBCLASS_ARMOR_CLOTH . ', ' . ITEM_SUBCLASS_ARMOR_LEATHER;
+                break;
+            case CLASS_HUNTER:
+            case CLASS_SHAMAN:
+                $allowable_armor_types = $search ? ITEM_SUBCLASS_ARMOR_MAIL : ITEM_SUBCLASS_ARMOR_CLOTH . ', ' . ITEM_SUBCLASS_ARMOR_LEATHER . ', ' . ITEM_SUBCLASS_ARMOR_MAIL;
+                break;
+            default:
+                $allowable_armor_types = $search ? ITEM_SUBCLASS_ARMOR_PLATE : ITEM_SUBCLASS_ARMOR_CLOTH . ', ' . ITEM_SUBCLASS_ARMOR_LEATHER . ', ' . ITEM_SUBCLASS_ARMOR_MAIL . ', ' . ITEM_SUBCLASS_ARMOR_PLATE;
+                break;
+        }
+        return $allowable_armor_types;
+    }
+    
+    public function GetAllowableWeaponTypesForClass($class, $search = false) {
+        $allowable_weapon_types = null;
+        switch($class) {
+            case CLASS_WARRIOR:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_BOW, ITEM_SUBCLASS_WEAPON_CROSSBOW, ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_FIST, ITEM_SUBCLASS_WEAPON_GUN, ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_MACE, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_POLEARM, ITEM_SUBCLASS_WEAPON_STAFF, ITEM_SUBCLASS_WEAPON_THROWN, ITEM_SUBCLASS_WEAPON_AXE2, ITEM_SUBCLASS_WEAPON_MACE2, ITEM_SUBCLASS_WEAPON_SWORD2);
+                break;
+            case CLASS_PALADIN:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_AXE2, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_SWORD2, ITEM_SUBCLASS_WEAPON_MACE, ITEM_SUBCLASS_WEAPON_MACE2, ITEM_SUBCLASS_WEAPON_POLEARM);
+                break;
+            case CLASS_HUNTER:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_AXE2, ITEM_SUBCLASS_WEAPON_SWORD2, ITEM_SUBCLASS_WEAPON_THROWN, ITEM_SUBCLASS_WEAPON_STAFF, ITEM_SUBCLASS_WEAPON_POLEARM, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_GUN, ITEM_SUBCLASS_WEAPON_FIST, ITEM_SUBCLASS_WEAPON_BOW, ITEM_SUBCLASS_WEAPON_CROSSBOW);
+                break;
+            case CLASS_ROGUE:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_BOW, ITEM_SUBCLASS_WEAPON_CROSSBOW, ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_FIST, ITEM_SUBCLASS_WEAPON_GUN, ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_THROWN);
+                break;
+            case CLASS_PRIEST:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_MACE2, ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_STAFF, ITEM_SUBCLASS_WEAPON_WAND);
+                break;
+            case CLASS_DK:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_MACE, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_AXE2, ITEM_SUBCLASS_WEAPON_MACE2, ITEM_SUBCLASS_WEAPON_SWORD2, ITEM_SUBCLASS_WEAPON_POLEARM);
+                break;
+            case CLASS_SHAMAN:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_FIST, ITEM_SUBCLASS_WEAPON_AXE, ITEM_SUBCLASS_WEAPON_MACE, ITEM_SUBCLASS_WEAPON_STAFF, ITEM_SUBCLASS_WEAPON_AXE2, ITEM_SUBCLASS_WEAPON_MACE2);
+                break;
+            case CLASS_MAGE:
+            case CLASS_WARLOCK:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_SWORD, ITEM_SUBCLASS_WEAPON_WAND, ITEM_SUBCLASS_WEAPON_STAFF);
+                break;
+            case CLASS_DRUID:
+                $allowable_weapon_types = sprintf("%d, %d, %d, %d, %d, %d", ITEM_SUBCLASS_WEAPON_DAGGER, ITEM_SUBCLASS_WEAPON_FIST, ITEM_SUBCLASS_WEAPON_MACE, ITEM_SUBCLASS_WEAPON_POLEARM, ITEM_SUBCLASS_WEAPON_STAFF, ITEM_SUBCLASS_WEAPON_MACE2);
+                break;
+            default:
+                break;
+        }
+        return $allowable_weapon_types;
     }
 }
 ?>

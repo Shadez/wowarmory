@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 403
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -840,6 +840,22 @@ Class SearchMgr {
         }
         if(isset($this->get_array['usbleBy']) && $this->get_array['usbleBy'] > 0) {
             $sql .= sprintf(" (`item_template`.`AllowableClass`&%d) AND", Utils::GetClassBitMaskByClassId($this->get_array['usbleBy']));
+            if(isset($this->get_array['type'])) {
+                if(!isset($this->get_array['subTp']) || $this->get_array['subTp'] == 'all') {
+                    $allowable_types = null;
+                    switch($this->get_array['type']) {
+                        case 'armor':
+                            $allowable_types = Utils::GetAllowableArmorTypesForClass($this->get_array['usbleBy'], true);
+                            break;
+                        default:
+                            $allowable_types = Utils::GetAllowableWeaponTypesForClass($this->get_array['usbleBy'], true);
+                            break;
+                    }
+                    if($allowable_types != null) {
+                        $sql .= sprintf(" (`item_template`.`subclass` IN (%s)) AND", $allowable_types);
+                    }
+                }
+            }
         }
         for($i = 0; $i < $count; $i++) {
             if(!isset($query_string[$i])) {
