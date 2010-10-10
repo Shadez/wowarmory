@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 400
+ * @revision 402
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1332,9 +1332,10 @@ Class Utils {
      **/
     public function CheckConfigRealmData() {
         if(!$this->armory->realmData || !is_array($this->armory->realmData) || !isset($this->armory->realmData[1])) {
-            $this->armory->Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and configured Armory right.', __METHOD__);
+            $this->armory->Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and have configured Armory correctly.', __METHOD__);
             return false;
         }
+        $allIds = array();
         foreach($this->armory->realmData as $myRealm) {
             $tmpData = $this->armory->aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
             if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'] || $tmpData['type'] == UNK_SERVER)) {
@@ -1346,7 +1347,10 @@ Class Utils {
                     $this->armory->Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`, `type`) VALUES (%d, \'%s\', %d);"', __METHOD__, $myRealm['name'], $this->armory->armoryconfig['db_prefix'], $this->armory->armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 }
             }
+            $allIds[] = $myRealm['id'];
         }
+        // Drop wrong realms from armory_realm_data table
+        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_realm_data` WHERE `id` NOT IN (%s)", $allIds);
         return true;
     }
     
@@ -1396,18 +1400,18 @@ Class Utils {
             $totalCount = $countC;
         }
         else {
-            $this->armory->Log()->writeError('%s : wrong realm and characters count are not equal (realms: %d, chars: %d)!', __METHOD__, $countR, $countC);
+            $this->armory->Log()->writeError('%s : realm and characters count are not equal (realms: %d, chars: %d)!', __METHOD__, $countR, $countC);
             return false;
         }
         $data = array();
         for($i = 0; $i < $totalCount; $i++) {
             if(!isset($realms[$i]) || !isset($chars[$i])) {
-                $this->armory->Log()->writeError('%s : missed data for %d loop, ignore.', __METHOD__, $i);
+                $this->armory->Log()->writeError('%s : data check for loop %d was failed, ignore.', __METHOD__, $i);
                 continue;
             }
             $data[$i] = array('name' => $chars[$i], 'realm' => $realms[$i]);
         }
-        if($returnFirstRealmName) {
+        if($returnFirstRealmName == true) {
             return array(0 => array('name' => $chars[0], 'realm' => $realms[0]), 1 => array('name' => $chars[1], 'realm' => $realms[1]));
         }
         return $data;
@@ -1421,7 +1425,7 @@ Class Utils {
      * @return   int
      **/
     public function GetClassBitMaskByClassId($classId) {
-        $mask = -1;
+        $mask = 0;
         switch($classId) {
             case CLASS_WARRIOR:
                 $mask = 1;
@@ -1465,7 +1469,7 @@ Class Utils {
      * @return   int
      **/
     public function GetRaceBitMaskByRaceId($raceId) {
-        $mask = -1;
+        $mask = 0;
         switch($raceId) {
             case RACE_HUMAN:
                 $mask = 1;
@@ -1517,7 +1521,7 @@ Class Utils {
         $realm_info = $this->armory->realmData[$realm_id];
         $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->armory->Log());
         if(!$db->TestLink()) {
-            $this->armory->Log()->writeError('%s : unable to connect to MySQL database (%s:%s:%s:%s)', __METHOD__, $realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world']);
+            $this->armory->Log()->writeError('%s : unable to connect to MySQL database (%s:%s:%s:%s)', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], rand(1, strlen($realm_info['user_world'])), 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], rand(1, strlen($realm_info['pass_world'])), 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
             return false;
         }
         if($tmp = $db->selectCell("SELECT 1 FROM `mangos_string` LIMIT 1")) {
@@ -1634,6 +1638,59 @@ Class Utils {
             28 => 'relic'
         );
         return (isset($slots_info[$invType])) ? $slots_info[$invType] : null;
+    }
+    
+    /**
+     * Checks and fills missed and required $_GET variables.
+     * @category Utils class
+     * @access   public
+     * @return   bool 
+     **/
+    public function CheckVariablesForPage() {
+        $pageStr = $_SERVER['PHP_SELF'];
+        $pageArr = explode('/', $pageStr);
+        $pageId  = $pageArr[count($pageArr)-1];
+        $pageId  = str_replace('.php', null, $pageId);
+        switch($pageId) {
+            case 'character-achievements':
+            case 'character-arenateams':
+            case 'character-calendar':
+            case 'character-feed-data':
+            case 'character-feed':
+            case 'character-model-embed':
+            case 'character-model':
+            case 'character-reputation':
+            case 'character-sheet':
+            case 'character-statistics':
+            case 'character-talents':
+                if(!isset($_GET['r'])) {
+                    $_GET['r'] = null;
+                }
+                if(!isset($_GET['cn'])) {
+                    $_GET['cn'] = null;
+                }
+                break;
+            case 'arena-game':
+                if(!isset($_GET['gid'])) {
+                    $_GET['gid'] = 0;
+                }
+                break;
+            case 'guild-bank-contents':
+            case 'guild-bank-log':
+            case 'guild-info':
+            case 'guild-stats':
+                if(!isset($_GET['r'])) {
+                    $_GET['r'] = null;
+                }
+                if(!isset($_GET['gn'])) {
+                    $_GET['gn'] = null;
+                }
+                break;
+            default:
+                return true;
+                break;
+        }
+        return true;
     }
 }
 ?>

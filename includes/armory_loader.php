@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 392
+ * @revision 402
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -107,6 +107,8 @@ if(!defined('skip_utils_class')) {
      * This will automaticaly add missing realms to `armory_realm_data` table (if MySQL user have "INSERT" access to Armory database)
      **/
     $utils->CheckConfigRealmData();
+    // Check $_GET variable
+    $utils->CheckVariablesForPage();
 }
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {

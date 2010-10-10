@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 400
+ * @revision 402
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -79,6 +79,13 @@ Class Guilds {
      
      private $guildBankMoney;
      
+     /**
+      * Server type
+      * @category Guilds class
+      * @access   private
+      **/
+     private $m_server;
+     
      public function Guilds($armory) {
         if(!is_object($armory)) {
             die('<b>Fatal Error:</b> armory must be instance of Armory class!');
@@ -117,27 +124,32 @@ Class Guilds {
       * Initialize guild
       * @category Guilds class
       * @access   public
+      * @param    int $serverType
       * @return   bool
       **/
-     public function InitGuild() {
+     public function InitGuild($serverType) {
         if(!$this->guildName) {
             $this->armory->Log()->writeError('%s : guilName not defined', __METHOD__);
             return false;
         }
         $this->guildId = $this->armory->cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`='%s' LIMIT 1", $this->guildName);
+        if($serverType <= 0 || $serverType > SERVER_TRINITY) {
+            $this->armory->Log()->writeError('%s : unknown server type (%d). Set m_server to SERVER_MANGOS (%d)', __METHOD__, $serverType, SERVER_MANGOS);
+        }
         if($this->guildId) {
             return true;
         }
         return false;
      }
+     
      /**
       * Assign guild ID by player GUID
       * @category Guilds class
       * @access   private
       * @return   bool
       **/
-     private function GetGuildIDByPlayerGUID($guid = false) {
-        if($guid) {
+     private function GetGuildIDByPlayerGUID($guid = 0) {
+        if($guid > 0) {
             $this->guid = $guid;
         }
         if(!$this->guid) {
@@ -145,7 +157,7 @@ Class Guilds {
             return false;
         }
         $this->guildId = $this->armory->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $this->guid);
-        if($this->guildId) {
+        if($this->guildId > 0) {
             return true;
         }
      }
@@ -287,25 +299,23 @@ Class Guilds {
         $items_list = $this->armory->cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=%d", $this->guildId);
         $count_items = count($items_list);
         for($i = 0; $i < $count_items; $i++) {
-            $m_server = Utils::GetServerTypeByString($this->armory->currentRealmInfo['type']);
             $item_data = $this->armory->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry` = %d LIMIT 1", $items_list[$i]['id']);
             $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed']);
             $items_list[$i]['durability'] = (int) $tmp_durability['current'];
             $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
-            unset($tmp_durability);
             $items_list[$i]['icon'] = Items::GetItemIcon($items_list[$i]['id']);
             $items_list[$i]['name'] = Items::GetItemName($items_list[$i]['id']);            
             $items_list[$i]['qi'] = Items::GetItemInfo($items_list[$i]['id'], 'quality');
-            if($this->armory->currentRealmInfo['type'] == 'mangos') {
+            if($this->m_server == SERVER_MANGOS) {
                 $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);
             }
-            elseif($this->armory->currentRealmInfo['type'] == 'trinity') {
+            elseif($this->m_server == SERVER_TRINITY) {
                 $items_list[$i]['quantity'] = $this->armory->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $items_list[$i]['seed']);
             }
             //TODO: Find correct random property/suffix for items in guild vault.
-            $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true, $m_server, null, $item_data);
+            $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true, $this->m_server, null, $item_data);
             $tmp_classinfo = Items::GetItemSubTypeInfo($items_list[$i]['id']);
-            $items_list[$i]['subtype'] = '';
+            $items_list[$i]['subtype'] = null;
             $items_list[$i]['subtypeLoc'] = $tmp_classinfo['subclass_name'];
             $items_list[$i]['type'] = $tmp_classinfo['key'];
             $items_list[$i]['slot']++;
@@ -327,5 +337,39 @@ Class Guilds {
         }
         return $this->armory->cDB->select("SELECT `rid` AS `id`, `rname` AS `name` FROM `guild_rank` WHERE `guildid`=%d", $this->guildId);
      }
+     
+     /* DEVELOPMENT SECTION */
+     
+     /*
+     
+     public function IsAllowedToGuildBank($tab) {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $chars_data = $this->armory->cDB->select("
+        SELECT
+        `characters`.`guid`,
+        `guild_member`.`guildid` AS `guildId`
+        FROM `characters` AS `characters`
+        LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
+        WHERE `characters`.`account`=%d AND `guild_member`.`guildid`=%d", $_SESSION['accountId'], $this->guildId);
+        if(!$chars_data) {
+            return false;
+        }
+        // Account have character in current guild but we need to check his/her bank access rights.
+        $active_character_data = Utils::GetActiveCharacter();
+        if($active_character_data['realmName'] != $this->armory->currentRealmInfo['name']) {
+            return false;
+        }
+        $rank = $this->armory->cDB->selectCell("SELECT `rank` FROM `guild_member` WHERE `guid`=%d AND `guildid`=%d LIMIT 1", $active_character_data['guid'], $this->guildId);
+        $rights = $this->armory->cDB->selectCell("SELECT `rights` FROM `guild_rank` WHERE `guildid` = %d AND `rid`=%d LIMIT 1", $this->guildId, $rank);
+        return ($this->GetBankRights($rank, $tab) & $rights) == $rights;
+     }
+     
+     public function GetBankRights($rank, $tab) {
+        return $this->armory->cDB->selectCell("SELECT `gbright` FROM `guild_bank_right` WHERE `guildid` = %d AND `TabId` = %d AND `rid` = %d LIMIT 1", $this->guildId, $tab, $rank);
+     }
+     
+     */
 }
 ?>
