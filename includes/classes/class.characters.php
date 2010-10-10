@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 404
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -450,6 +450,12 @@ Class Characters {
             return false;
         }
         $this->equipmentCache = $itemscache;
+        $cacheCount = count($this->equipmentCache);
+        if($cacheCount < 37) {
+            for($i = $cacheCount; $i < 38; $i++) {
+                $this->equipmentCache[$i] = null;
+            }
+        }
         return true;
     }
     
@@ -692,6 +698,16 @@ Class Characters {
      **/
     public function GetRealmID() {
         return $this->realmID;
+    }
+    
+    /**
+     * Returns server type
+     * @category Characters class
+     * @access   public
+     * @return   int
+     **/
+    public function GetServerType() {
+        return $this->m_server;
     }
     
     /**
@@ -1050,8 +1066,8 @@ Class Characters {
             $current_found = false;
             $last_spec = 0;
             foreach($character_talents as $char_talent) {
-                switch($this->armory->currentRealmInfo['type']) {
-                    case 'mangos':
+                switch($this->m_server) {
+                    case SERVER_MANGOS:
                         if($char_talent['talent_id'] == $class_talent['TalentID']) {
                             $talent_ranks = $char_talent['current_rank']+1;
                             $talent_build[$char_talent['spec']] .= $talent_ranks; // not 0-4, is 1-5
@@ -1060,7 +1076,8 @@ Class Characters {
                         }
                         $last_spec = $char_talent['spec'];
                         break;
-                    case 'trinity':
+                    case SERVER_TRINITY:
+                        $this->armory->Log()->writeLog('%s : startOver', __METHOD__);
                         for($k = 1; $k < 6; $k++) {
                             if($char_talent['spell'] == $class_talent['Rank_' . $k]) {
                                 $talent_build[$char_talent['spec']] .= $k;
@@ -1069,6 +1086,10 @@ Class Characters {
                             }
                         }
                         $last_spec = $char_talent['spec'];
+                        break;
+                    default:
+                        $this->armory->Log()->writeError('%s : unknown server type');
+                        return false;
                         break;
                 }
             }
