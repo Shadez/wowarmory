@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 402
+ * @revision 405
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -231,4 +231,12 @@ if(!@include('classes/class.xmlhandler.php')) {
 }
 $xml = new XMLHandler($armory->GetLocale());
 $xml->StartXML();
+// Do not remove this
+if(isset($_GET['_DISPLAYVERSION_'])) {
+    $xml->XMLWriter()->startElement('ARMORY_REVISION');
+    $xml->XMLWriter()->text(ARMORY_REVISION);
+    $xml->XMLWriter()->endElement(); //ARMORY_REVISION
+    header('Content-type: text/xml');
+    die($xml->StopXML());
+}
 ?>

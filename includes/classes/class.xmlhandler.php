@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 122
- * @copyright (c) 2009-2010 Shadez  
+ * @revision 405
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,9 +27,10 @@ if(!defined('__ARMORY__')) {
 }
 
 Class XMLHandler {
-    public $writer = null;
-    public $region = 'eu';
-    public $locale = 'ru_ru';
+    private $writer = null;
+    private $region = 'eu';
+    private $locale = 'ru_ru';
+    private $attData = array();
     
     public function XMLHandler($locale = null, $region = null) {
         $this->writer = new XMLWriter;
@@ -65,8 +66,13 @@ Class XMLHandler {
      * Load XSLT sheet
      * Return: bool
      **/
-    public function LoadXSLT($xslt_link) {
-        $this->writer->writePI('xml-stylesheet', sprintf('type="text/xsl" href="_layout/%s"', $xslt_link));
+    public function LoadXSLT($xslt_link, $path = false) {
+        if($path == false) {
+            $this->writer->writePI('xml-stylesheet', sprintf('type="text/xsl" href="_layout/%s"', $xslt_link));
+        }
+        else {
+            $this->writer->writePI('xml-stylesheet', sprintf('type="text/xsl" href="%s"', $xslt_link));
+        }
     }
     
     /**

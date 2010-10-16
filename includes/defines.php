@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 405
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -52,7 +52,7 @@ define('RACE_BLOODELF', 0x0A);
 define('RACE_DRAENEI',  0x0B);
 define('MAX_RACES',     0x0C);
 
-/* Factionns */
+/* Factions */
 define('FACTION_ALLIANCE', 0);
 define('FACTION_HORDE', 1);
 
@@ -65,6 +65,22 @@ define('REP_FRIENDLY', 4);
 define('REP_HONORED', 5);
 define('REP_REVERED', 6);
 define('REP_EXALTED', 7);
+
+define('REPUTATION_CAP', 42999);
+define('REPUTATION_BOTTOM', -42000);
+define('MIN_REPUTATION_RANK', REP_HATED);
+define('MAX_REPUTATION_RANK', 8);
+
+/** Reputation ranks values **/
+//TODO: fill values
+define('REPUTATION_VALUE_HATED', 0);
+define('REPUTATION_VALUE_HOSTILE', 1);
+define('REPUTATION_VALUE_UNFRIENDLY', 2);
+define('REPUTATION_VALUE_NEUTRAL', 3);
+define('REPUTATION_VALUE_FRIENDLY', 4);
+define('REPUTATION_VALUE_HONORED', 5);
+define('REPUTATION_VALUE_REVERED', 6);
+define('REPUTATION_VALUE_EXALTED', 7);
 
 /* Achievements */
 define('ACHIEVEMENTS_CATEGORY_GENERAL',     92);
@@ -816,7 +832,15 @@ define('ITEM_QUALITY_LEGENDARY', 5);
 define('ITEM_QUALITY_ARTEFACT', 6);
 define('ITEM_QUALITY_HEIRLOOM', 7);
 
+/** Server Types **/
 define('UNK_SERVER', 0);
 define('SERVER_MANGOS', 1);
 define('SERVER_TRINITY', 2);
+
+/** Guild Bank Rights **/
+define('GUILD_BANK_RIGHT_VIEW_TAB', 0x01);
+define('GUILD_BANK_RIGHT_PUT_ITEM', 0x02);
+define('GUILD_BANK_RIGHT_UPDATE_TEXT', 0x04);
+define('GUILD_BANK_RIGHT_DEPOSIT_ITEM', GUILD_BANK_RIGHT_VIEW_TAB | GUILD_BANK_RIGHT_PUT_ITEM);
+define('GUILD_BANK_RIGHT_FULL', 0xFF);
 ?>
