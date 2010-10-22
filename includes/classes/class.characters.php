@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 404
+ * @revision 406
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1077,7 +1077,6 @@ Class Characters {
                         $last_spec = $char_talent['spec'];
                         break;
                     case SERVER_TRINITY:
-                        $this->armory->Log()->writeLog('%s : startOver', __METHOD__);
                         for($k = 1; $k < 6; $k++) {
                             if($char_talent['spell'] == $class_talent['Rank_' . $k]) {
                                 $talent_build[$char_talent['spec']] .= $k;
