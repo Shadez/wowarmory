@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 406
+ * @revision 410
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -352,38 +352,35 @@ Class Characters {
         }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
-        if($this->armory->currentRealmInfo['type'] == 'trinity') {
+        if($this->m_server == SERVER_TRINITY) {
             $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], $this->armory->connectionData['id']);
         }
-        elseif($this->armory->currentRealmInfo['type'] == 'mangos') {
-            $gmLevel = $gmLevel_mangos = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
-        }
-        if(!$gmLevel) {
-            $gmLevel = 0;
+        elseif($this->m_server == SERVER_MANGOS) {
+            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
         }
         $allowed = ($gmLevel <= $this->armory->armoryconfig['minGmLevelToShow']) ? true : false;
         if(!$allowed || $player_data['level'] < $this->armory->armoryconfig['minlevel']) {
-            $this->armory->Log()->writeLog('%s: Player %d (%s) is not allowed to be displayed in Armory (GM level restriction)!', __METHOD__, $player_data['guid'], $player_data['name']);
+            $this->armory->Log()->writeLog('%s : Player %d (%s) is not allowed to be displayed in Armory (GM level restriction or have low level)!', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
-            $this->armory->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: class %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong data in DB: class %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
             unset($player_data);
             return false;
         }
         elseif($player_data['race'] >= MAX_RACES) {
             // Unknown race
-            $this->armory->Log()->writeError('%s: Player %d (%s) have incorrect data in DB: race %d not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong data in DB: race %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
             unset($player_data);
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
         if($this->faction === false) {
             // Unknown faction
-            $this->armory->Log()->writeError('%s : player %d (%s) have incorrect faction in DB: faction %d not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong faction in DB: faction %d was not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
             unset($player_data);
             return false;
         }
@@ -424,7 +421,7 @@ Class Characters {
         // Initialize achievement manager
         if(defined('load_achievements_class') && class_exists('Achievements')) {
             $this->m_achievementMgr = new Achievements($this->armory);
-            $this->m_achievementMgr->InitAchievements($this->guid, true);
+            $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
         }
         // Everything correct
         if($initialBuild == true) {
@@ -441,7 +438,7 @@ Class Characters {
      **/
     private function HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
-            $this->armory->Log()->writeError('%s : %s::$equipmentCache have `false` value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
+            $this->armory->Log()->writeError('%s : %s::$equipmentCache have NULL value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $itemscache = explode(' ', $this->equipmentCache);
@@ -723,7 +720,7 @@ Class Characters {
     public function GetAchievementMgr() {
         if(!is_object($this->m_achievementMgr)) {
             $this->m_achievementMgr = new Achievements($this->armory);
-            $this->m_achievementMgr->InitAchievements($this->GetGUID(), true);
+            $this->m_achievementMgr->InitAchievements($this->GetGUID(), $this->db, true);
         }
         return $this->m_achievementMgr;
     }
@@ -1097,6 +1094,8 @@ Class Characters {
             }
         }
         $talent_data = array('points' => $talent_points);
+        //print_r($talent_data);
+        //die;
         return $talent_data;
     }
     

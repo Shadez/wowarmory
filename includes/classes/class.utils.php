@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 403
+ * @revision 410
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1392,7 +1392,7 @@ Class Utils {
         $countR = count($realms);
         $countC = count($chars);
         if($countC == 1 && $countR == 1) {
-            // 1 Character, there's nothing to do.
+            // Only one character, there's nothing to do.
             return false;
         }
         $totalCount = 0;
@@ -1400,7 +1400,7 @@ Class Utils {
             $totalCount = $countC;
         }
         else {
-            $this->armory->Log()->writeError('%s : realm and characters count are not equal (realms: %d, chars: %d)!', __METHOD__, $countR, $countC);
+            $this->armory->Log()->writeError('%s : realms and characters counters are not equal (realms: %d, chars: %d, total: %d)!', __METHOD__, $countR, $countC, $totalCount);
             return false;
         }
         $data = array();
