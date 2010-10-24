@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 410
+ * @revision 411
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -743,7 +743,7 @@ Class Characters {
             'gender'       => null,
             'genderId'     => $this->gender,
             'guildName'    => ($this->guild_id > 0) ? $this->guild_name : null,
-            'guildUrl'     => ($this->guild_id > 0) ? sprintf('r=%s&gn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($this->guild_name)) : null,
+            'guildUrl'     => ($this->guild_id > 0) ? sprintf('r=%s&gn=%s', urlencode($this->GetRealmName()), urlencode($this->guild_name)) : null,
             'lastModified' => null,
             'level'        => $this->level,
             'name'         => $this->name,
@@ -751,12 +751,12 @@ Class Characters {
             'prefix'       => $this->character_title['prefix'],
             'race'         => $this->raceText,
             'raceId'       => $this->race,
-            'realm'        => $this->armory->currentRealmInfo['name'],
+            'realm'        => $this->GetRealmName(),
             'suffix'       => $this->character_title['suffix'],
             'titleId'      => $this->character_title['titleId'],
         );
         if(Utils::IsWriteRaw()) {
-            $header['guildUrl'] = ($this->guild_id > 0) ? sprintf('r=%s&amp;gn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($this->guild_name)) : null;
+            $header['guildUrl'] = ($this->guild_id > 0) ? sprintf('r=%s&amp;gn=%s', urlencode($this->GetRealmName()), urlencode($this->guild_name)) : null;
         }
         return $header;
     }
@@ -1094,8 +1094,6 @@ Class Characters {
             }
         }
         $talent_data = array('points' => $talent_points);
-        //print_r($talent_data);
-        //die;
         return $talent_data;
     }
     
@@ -2610,12 +2608,12 @@ Class Characters {
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->armory->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title']);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>]', $_strings[14], urlencode($this->GetRealmName()), urlencode($this->name), $tooltip, $achievement_info['title']);
                     }
                     else {
                         $points_string = sprintf($_strings[18], $achievement_info['points']);
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[13], $achievement_info['title']);
-                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->armory->currentRealmInfo['name']), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
+                        $feed_data[$i]['desc'] = sprintf('%s [<a class="achievement staticTip" href="character-achievements.xml?r=%s&amp;cn=%s" onMouseOver="setTipText(\'%s\')">%s</a>] %s.', $_strings[13], urlencode($this->GetRealmName()), urlencode($this->name), $tooltip, $achievement_info['title'], $points_string);
                     }
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;
