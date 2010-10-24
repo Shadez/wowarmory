@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 405
+ * @revision 409
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2469,8 +2469,8 @@ Class Items {
                 $slotname = 'chest';
                 break;
             case 6:
-                $slot_id = INV_BRACERS;
-                $slotname = 'wrist';
+                $slot_id = INV_BELT;
+                $slotname = 'belt';
                 break;
             case 7:
                 $slot_id = INV_LEGS;
@@ -2481,8 +2481,8 @@ Class Items {
                 $slotname = 'boots';
                 break;
             case 9:
-                $slot_id = INV_BELT;
-                $slotname = 'belt';
+                $slot_id = INV_BRACERS;
+                $slotname = 'wrist';
                 break;
             case 10:
                 $slot_id = INV_GLOVES;
