@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 407
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -92,19 +92,16 @@ $xml->XMLWriter()->startElement('armorySearch');
 $selected = null;
 if($count_characters = $search->PerformCharactersSearch(true)) {
     $totalCount = $totalCount+$count_characters;
-    $characters_search = $search->PerformCharactersSearch();
     $selected = 'characters';
 }
 if($count_guilds = $search->PerformGuildsSearch(true)) {
     $totalCount = $totalCount+$count_guilds;
-    $guilds_search = $search->PerformGuildsSearch();
     if($selected != 'characters') {
         $selected = 'guilds';
     }
 }
 if($count_teams = $search->PerformArenaTeamsSearch(true)) {
     $totalCount = $totalCount+$count_teams;
-    $teams_search = $search->PerformArenaTeamsSearch();
     if($selected != 'characters') {
         $selected = 'arenateams';
     }
@@ -112,7 +109,6 @@ if($count_teams = $search->PerformArenaTeamsSearch(true)) {
 if($advancedItemsSearch) {
     if($count_items = $search->PerformAdvancedItemsSearch(true)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->PerformAdvancedItemsSearch();
         if($selected != 'characters') {
             $selected = 'items';
         }
@@ -121,7 +117,6 @@ if($advancedItemsSearch) {
 elseif($findGearUpgrade) {
     if($count_items = $search->PerformItemsSearch(true, $itemID, $plLevel)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->PerformItemsSearch(false, $itemID, $plLevel);
         if($selected != 'characters') {
             $selected = 'items';
         }
@@ -130,7 +125,6 @@ elseif($findGearUpgrade) {
 else {
     if($count_items = $search->PerformItemsSearch(true)) {
         $totalCount = $totalCount+$count_items;
-        $items_search = $search->PerformItemsSearch();
         if($selected != 'characters') {
             $selected = 'items';
         }
@@ -189,58 +183,78 @@ if(isset($_GET['source'])) {
     }
     $xml->XMLWriter()->endElement();
 }
-if(isset($characters_search) && is_array($characters_search) && $selected == 'characters') {
-    $xml->XMLWriter()->startElement('characters');
-    foreach($characters_search as $_results_characters) {
-        $xml->XMLWriter()->startElement('character');
-        foreach($_results_characters as $character_key => $character_value) {
-            $xml->XMLWriter()->writeAttribute($character_key, $character_value);
-        }
-        $xml->XMLWriter()->endElement(); //character
-    }
-    $xml->XMLWriter()->endElement(); //characters
-}
-if(isset($guilds_search) && is_array($guilds_search) && $selected == 'guilds') {
-    $xml->XMLWriter()->startElement('guilds');
-    foreach($guilds_search as $_results_guilds) {
-        $xml->XMLWriter()->startElement('guild');
-        foreach($_results_guilds as $guild_key => $guild_value) {
-            $xml->XMLWriter()->writeAttribute($guild_key, $guild_value);
-        }
-        $xml->XMLWriter()->endElement(); //guild
-    }
-    $xml->XMLWriter()->endElement(); //guilds
-}
-if(isset($teams_search) && is_array($teams_search) && $selected == 'arenateams') {
-    $xml->XMLWriter()->startElement('arenaTeams');
-    foreach($teams_search as $_results_teams) {
-        $xml->XMLWriter()->startElement('arenaTeam');
-        foreach($_results_teams as $team_key => $team_value) {
-            $xml->XMLWriter()->writeAttribute($team_key, $team_value);
-        }
-        $xml->XMLWriter()->startElement('emblem');
-        $xml->XMLWriter()->endElement();  //emblem
-        $xml->XMLWriter()->endElement(); //arenaTeam
-    }
-    $xml->XMLWriter()->endElement(); //arenaTeams
-}
-if(isset($items_search) && is_array($items_search) && $selected == 'items') {
-    $xml->XMLWriter()->startElement('items');
-    foreach($items_search as $item) {
-        $xml->XMLWriter()->startElement('item');
-        foreach($item['data'] as $itemdata_key => $itemdata_value) {
-            $xml->XMLWriter()->writeAttribute($itemdata_key, $itemdata_value);
-        }
-        foreach($item['filters'] as $filter) {
-            $xml->XMLWriter()->startElement('filter');
-            foreach($filter as $filter_key => $filter_value) {
-                $xml->XMLWriter()->writeAttribute($filter_key, $filter_value);
+if($count_characters > 0 && $selected == 'characters') {
+    $characters_search = $search->PerformCharactersSearch();
+    if(is_array($characters_search)) {
+        $xml->XMLWriter()->startElement('characters');
+        foreach($characters_search as $_results_characters) {
+            $xml->XMLWriter()->startElement('character');
+            foreach($_results_characters as $character_key => $character_value) {
+                $xml->XMLWriter()->writeAttribute($character_key, $character_value);
             }
-            $xml->XMLWriter()->endElement(); //filter
+            $xml->XMLWriter()->endElement(); //character
         }
-        $xml->XMLWriter()->endElement(); //item
+        $xml->XMLWriter()->endElement(); //characters
     }
-    $xml->XMLWriter()->endElement(); //items
+}
+if($count_guilds > 0 && $selected == 'guilds') {
+    $guilds_search = $search->PerformGuildsSearch();
+    if(is_array($guilds_search)) {
+        $xml->XMLWriter()->startElement('guilds');
+        foreach($guilds_search as $_results_guilds) {
+            $xml->XMLWriter()->startElement('guild');
+            foreach($_results_guilds as $guild_key => $guild_value) {
+                $xml->XMLWriter()->writeAttribute($guild_key, $guild_value);
+            }
+            $xml->XMLWriter()->endElement(); //guild
+        }
+        $xml->XMLWriter()->endElement(); //guilds
+    }
+}
+if($count_teams && $selected == 'arenateams') {
+    $teams_search = $search->PerformArenaTeamsSearch();
+    if(is_array($teams_search)) {
+        $xml->XMLWriter()->startElement('arenaTeams');
+        foreach($teams_search as $_results_teams) {
+            $xml->XMLWriter()->startElement('arenaTeam');
+            foreach($_results_teams as $team_key => $team_value) {
+                $xml->XMLWriter()->writeAttribute($team_key, $team_value);
+            }
+            $xml->XMLWriter()->startElement('emblem');
+            $xml->XMLWriter()->endElement();  //emblem
+            $xml->XMLWriter()->endElement(); //arenaTeam
+        }
+        $xml->XMLWriter()->endElement(); //arenaTeams
+    }
+}
+if($count_items > 0 && $selected == 'items') {
+    if($advancedItemsSearch) {
+        $items_search = $search->PerformAdvancedItemsSearch();
+    }
+    elseif($findGearUpgrade) {
+        $items_search = $search->PerformItemsSearch(false, $itemID, $plLevel);
+    }
+    else {
+        $items_search = $search->PerformItemsSearch();
+    }
+    if(is_array($items_search)) {
+        $xml->XMLWriter()->startElement('items');
+        foreach($items_search as $item) {
+            $xml->XMLWriter()->startElement('item');
+            foreach($item['data'] as $itemdata_key => $itemdata_value) {
+                $xml->XMLWriter()->writeAttribute($itemdata_key, $itemdata_value);
+            }
+            foreach($item['filters'] as $filter) {
+                $xml->XMLWriter()->startElement('filter');
+                foreach($filter as $filter_key => $filter_value) {
+                    $xml->XMLWriter()->writeAttribute($filter_key, $filter_value);
+                }
+                $xml->XMLWriter()->endElement(); //filter
+            }
+            $xml->XMLWriter()->endElement(); //item
+        }
+        $xml->XMLWriter()->endElement(); //items
+    }
 }
 $xml->XMLWriter()->endElement(); //searchResult
 $xml->XMLWriter()->endElement();  //armorySearch
