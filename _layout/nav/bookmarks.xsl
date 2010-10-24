@@ -126,8 +126,6 @@
 
 	<xsl:param name="charNode" />
     
-	<xsl:variable name="txtClassbm" select="$loc/strs/classes/str[@id=concat('armory.classes.class.', $charNode/@classId,'.', $charNode/@genderId)]" />
-    
     <div class="menuItem bmlist">
 
         <a href="javascript:void(0);" class="rmBookmark staticTip"
@@ -136,7 +134,7 @@
     	<a class="character-achievement staticTip" onMouseOver="setTipText('{$loc/strs/login/str[@id='armory.login.achievements']}');" 
             href="character-achievements.xml?{@url}"><xsl:value-of select="@achPoints"/></a>   
     
-    	<em class="classId{@classId} staticTip" onmouseover="setTipText('{$txtClassbm}')"></em>
+    	<em class="classId{@classId} staticTip" onmouseover="setTipText('{@classText}')"></em>
         <a href="character-sheet.xml?{@url}" class="charName"><xsl:value-of select="@name"/></a>
         <span>&#160;-&#160;<xsl:value-of select="@realm"/></span>      
     
@@ -144,7 +142,7 @@
 			<xsl:apply-templates mode="printf" select="$loc/strs/character/str[@id='charLevelStr']">
 				<xsl:with-param name="param1" select="@level" />
 				<xsl:with-param name="param2" select="''" />
-				<xsl:with-param name="param3" select="$txtClassbm" />
+				<xsl:with-param name="param3" select="@classText" />
 			</xsl:apply-templates>
         </p>        
 	</div>

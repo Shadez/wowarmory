@@ -1054,6 +1054,24 @@ function checkArrows(){
 	$("#currPageTxt").html(currPage);
 	$("#totalPageTxt").html(totalPages);	
 }
+
+function changeMainCharacter(name, realm) {
+    $.ajax({
+        url: 'character-select-submit-json.xml',
+        data: {
+            cn: name,
+            r: realm
+        },
+        dataType: 'json',
+        type: 'GET',
+        success: function(data, status) {
+            if (data.success) {
+                location.reload(true);
+            }
+        }
+    });
+}
+
 /*****************************************************
  * End Bookmarks
  *****************************************************/

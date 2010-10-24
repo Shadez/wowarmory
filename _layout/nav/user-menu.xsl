@@ -137,7 +137,7 @@
                             <xsl:attribute name="style"></xsl:attribute>
                         </xsl:if>
 
-                        <img src="images/icons/icon-guildmaster.gif" alt="" class="staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='primaryChar']}')" />
+                        <img src="images/icons/icon-guildmaster.gif" alt="Selected" class="staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='primaryChar']}')" />
                     </div>
                     
                     <div class="menuItemAvatar">
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="menuItemMeta">
-                        <a href="/vault/character-calendar.xml?{@url}" class="user-alerts staticTip" style="display: none;" onmouseover="setTipText('{$loc/strs/login/str[@id='armory.login.calendar.pending']}')">0</a>
+                        <a href="character-calendar.xml?{@url}" class="user-alerts staticTip" style="display: none;" onmouseover="setTipText('{$loc/strs/login/str[@id='armory.login.calendar.pending']}')">0</a>
 
                         <a href="character-sheet.xml?{@url}" class="charName js-character-name"><xsl:value-of select="@name" /></a> -
                         <span class="js-character-realm"><xsl:value-of select="@realm" /></span>

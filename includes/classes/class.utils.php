@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 410
+ * @revision 413
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -183,7 +183,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return $this->armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
+        return $this->armory->aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
     }
     
     /**
@@ -199,11 +199,42 @@ Class Utils {
         $count_all = 0;
         foreach($this->armory->realmData as $realm_info) {
             $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
-            $current = $db->selectCell("SELECT COUNT(`guid`) FROM `characters` WHERE `account`=%d", $_SESSION['accountId']);
+            $current = $db->selectCell("SELECT COUNT(*) FROM `characters` WHERE `account`=%d", $_SESSION['accountId']);
             $count_all += $current;
         }
         unset($realm_info, $db);
         return $count_all;
+    }
+    
+    /**
+     * Removes all characters from `armory_login_characters` table.
+     * @category Utils class
+     * @access   public
+     * @param    $allow = false
+     * @return   bool
+     **/
+    public function DropAllSelectedCharacters($allow = false) {
+        if(!$allow || !isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
+        return true;
+    }
+    
+    /**
+     * Add character to `armory_login_characters` table.
+     * @category Utils class
+     * @access   public
+     * @param    array $char_data
+     * @param    int $realm_id
+     * @param    int $count
+     * @return   bool
+     **/
+    public function AddCharacterAsSelected($char_data, $realm_id, $count) {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        return $this->armory->aDB->query("INSERT INTO `ARMORYDBPREFIX_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $count, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_id, $char_data['selected']);
     }
     
     /**
@@ -251,7 +282,7 @@ Class Utils {
                 elseif($realm['level'] >= $this->armory->armoryconfig['minlevel'] && $realm['level'] <= 79) {
                     $realm['relevance'] = $realm['level'];
                 }
-                elseif($realm['level'] == 80) {
+                elseif($realm['level'] == PLAYER_MAX_LEVEL) {
                     $realm['relevance'] = 100;
                 }
                 else {
@@ -265,7 +296,10 @@ Class Utils {
                 elseif($realm['selected'] == 0) {
                     unset($realm['selected']);
                 }
-                unset($realm['guid']); // Do not show GUID in XML results
+                $ach = new Achievements($this->armory);
+                $ach->InitAchievements($realm['guid'], $db);
+                $realm['achPoints'] = $ach->CalculateAchievementPoints();
+                unset($realm['guid'], $ach); // Do not show GUID in XML results
                 $results[] = $realm;
             }
         }
@@ -300,6 +334,47 @@ Class Utils {
     }
     
     /**
+     * Returns character GUID for $name@$realmId
+     * @category Utils class
+     * @access   public
+     * @param    string $name
+     * @param    int $realmId
+     * @return   int
+     **/
+    public function GetCharacterGUID($name, $realmId) {
+        if(!isset($_SESSION['accountId'])) {
+            return 0;
+        }
+        return $this->armory->aDB->selectCell("SELECT `guid` FROM `ARMORYDBPREFIX_login_characters` WHERE `name` = '%s' AND `realm_id` = %d AND `account` = %d LIMIT 1", $name, $realmId, $_SESSION['accountId']);
+    }
+    
+    public function SetNewPrimaryCharacter($guid, $realm_id) {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $charactersInfo = $this->armory->aDB->select("SELECT `guid`, `realm_id`, `selected` FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
+        if(!$charactersInfo) {
+            return false;
+        }
+        $new_data = array();
+        $counter = count($charactersInfo);
+        $last_num = 1;
+        for($i = 0; $i < $counter; $i++) {
+            if($charactersInfo[$i]['guid'] == $guid && $charactersInfo[$i]['realm_id'] == $realm_id) {
+                $charactersInfo[$i]['selected'] = 1;
+            }
+            else {
+                $last_num++;
+                $charactersInfo[$i]['selected'] = $last_num;
+            }
+        }
+        foreach($charactersInfo as $char) {
+            $this->armory->aDB->query("UPDATE `ARMORYDBPREFIX_login_characters` SET `selected` = %d WHERE `guid` = %d AND `realm_id` = %d AND `account` = %d LIMIT 1", $char['selected'], $char['guid'], $char['realm_id'], $_SESSION['accountId']);
+        }
+        return true;
+    }
+    
+    /**
      * Returns array with user bookmarks.
      * @category Utils class
      * @access   public
@@ -329,13 +404,15 @@ Class Utils {
             if(!$db) {
                 continue;
             }
-            $guid = $db->selectCell("SELECT `guid` FROM `characters` WHERE `name`='%s'", $bookmark['name']);
-            if(!$guid) {
+            $char_data = $db->selectRow("SELECT `guid`, `class` FROM `characters` WHERE `name`='%s'", $bookmark['name']);
+            if(!$char_data) {
                 continue;
             }
+            $guid = $char_data['guid'];
+            $bookmark['classText'] = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id` = %d", $this->armory->GetLocale(), $char_data['class']);
             $bookmark['achPoints'] = $this->armory->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (SELECT `achievement` FROM `%s`.`character_achievement` WHERE `guid`=%d)", $realm_info['name_characters'], $guid);
             $result[] = $bookmark;
-            unset($db, $realm_info, $achievement_ids, $guid, $realm);
+            unset($db, $realm_info, $achievement_ids, $guid, $char_data, $realm);
         }
         return $result;
     }

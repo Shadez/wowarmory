@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 412
+ * @revision 413
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -843,4 +843,8 @@ define('GUILD_BANK_RIGHT_PUT_ITEM', 0x02);
 define('GUILD_BANK_RIGHT_UPDATE_TEXT', 0x04);
 define('GUILD_BANK_RIGHT_DEPOSIT_ITEM', GUILD_BANK_RIGHT_VIEW_TAB | GUILD_BANK_RIGHT_PUT_ITEM);
 define('GUILD_BANK_RIGHT_FULL', 0xFF);
+
+/** Bookmarks and selected characters **/
+define('MAX_BOOKMARKS_COUNT', 60);
+define('MAX_SELECTED_CHARACTERS_COUNT', 5);
 ?>

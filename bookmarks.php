@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 413
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,7 +53,7 @@ $xml->XMLWriter()->writeAttribute('requestUrl', 'bookmarks.xml');
 $bookmarks_count = $utils->GetBookmarksCount();
 $xml->XMLWriter()->startElement('characters');
 $xml->XMLWriter()->writeAttribute('count', $bookmarks_count);
-$xml->XMLWriter()->writeAttribute('max', 60);
+$xml->XMLWriter()->writeAttribute('max', MAX_BOOKMARKS_COUNT);
 $character_bookmarks = $utils->GetBookmarks();
 if(is_array($character_bookmarks)) {
     foreach($character_bookmarks as $bookmark) {

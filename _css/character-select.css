@@ -49,7 +49,7 @@
 .tabs {left:22px; margin:0;}
 
 #charList {position:static; clear:both;}
-.topcharlist {height:287px; background:url(../images/select-topcharlist.gif) 0 0 no-repeat; position:relative; margin:0 0 -20px 0; top:0; left:0;}
+.topcharlist {height:357px; background:url(../images/select-topcharlist.jpg) 0 0 no-repeat; position:relative; margin:0 0 -20px 0; top:0; left:0;}
 .topcharlist h5{font:bold 14px/26px Arial, Helvetica, sans-serif; margin:0 auto; text-align:center; display: block; letter-spacing:-1px; width:260px; height:26px; color:#724503; position:relative; top:23px;}
 .sel-char { }
 .sel-char h1 {color:#c3830a;padding:5px 0 10px 20px !important; background:url('../images/expand-tile.jpg') repeat-x 0 0; margin:0;}

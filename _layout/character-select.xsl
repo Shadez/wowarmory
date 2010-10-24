@@ -2,6 +2,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:include href="includes.xsl"/>
+
+
 <xsl:template name="charactersTable"><style type="text/css" media="screen, projection">
 		@import "_css/character-select.css";	
 	</style>
@@ -25,6 +27,24 @@
                 setTipText("<xsl:value-of select="$loc/strs/character/str[@id='character.tip.primary']"/>");
             });
         }
+
+        $(function() {
+            $('.selSecondaryChar').click(function() {
+                var that = $(this);
+                var name = that.parent().find('h6 a').html();
+                var realm = that.parent().find('.char-realm').html();
+
+                changeMainCharacter(name, realm);
+            });
+
+            $('.charListIcons').click(function() {
+                var that = $(this);
+                var name = that.parent().find('.menu-char-name').val();
+                var realm = that.parent().find('.menu-char-realm').val();
+
+                changeMainCharacter(name, realm);
+            });
+        });
 	</script>
     
     <div class="sel-char">  
@@ -64,9 +84,13 @@
             <td style="text-align:left; padding-left: 3px;">
                 <span style="display: none;"><xsl:value-of select="@name" /></span>
                 
-                <xsl:call-template name="characterPromote" />
+                <xsl:call-template name="characterPromote">
+                    <xsl:with-param name="char" select="current()" />
+                </xsl:call-template>
                 
                 <a href="character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a>
+                <input type="hidden" class="menu-char-name" value="{@name}" />
+                <input type="hidden" class="menu-char-realm" value="{@realm}" />
             </td>
 			<td style="text-align:right; padding-right:3px; font-weight: bold; width: 50px;">
 				<span style="display: none;"><xsl:value-of select="@achPoints" /></span>
@@ -185,10 +209,12 @@
 
 <!-- prints icon-link to add characters (gets called in table row) -->
 <xsl:template name="characterPromote">
-	<a href="javascript:void(0)">
-    	<xsl:choose>
-        	<xsl:when test="count(/page/characters/character/@selected) = 3">
-            	<!-- if we're at max character count, grey out links -->
+    <xsl:param name="char" />
+    
+	<a href="javascript:void(0)" class="charListIcons add_on staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='makePrimary']}');">
+    	<!--<xsl:choose>
+        	<xsl:when test="count(/page/characters/character/@selected) = 5">
+            	if we're at max character count, grey out links
             	<xsl:attribute name="class">charListIcons add_off staticTip</xsl:attribute>
 	            <xsl:attribute name="onmouseover">setTipText("<xsl:value-of select="$loc/strs/character-select/str[@id='easyAccessLimit']"/>");</xsl:attribute>
             </xsl:when>
@@ -196,7 +222,7 @@
             	<xsl:attribute name="class">charListIcons add_on staticTip</xsl:attribute>
 	            <xsl:attribute name="onmouseover">setTipText("<xsl:value-of select="$loc/strs/character-select/str[@id='addToEasyAccess']"/>");</xsl:attribute>            
             </xsl:otherwise>
-		</xsl:choose>
+		</xsl:choose>-->
 	</a>
 </xsl:template>
 
@@ -251,17 +277,20 @@
 
 <!-- prints secondary characters in top character area -->
 <xsl:template name="printSecondaryChars">
-    <xsl:if test="count(/page/characters/character/@selected) &gt; 1"> 
+    <xsl:if test="count(/page/characters/character/@selected) &gt; 1">
+
         <xsl:for-each select="/page/characters/character[@selected = '2']">
             <div class="select-char2">
-                <a id="{@url}" class="selChar selSecondaryChar staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='makePrimary']}');" 
-                	href="javascript:void(0)"> </a>
-                <a class="delChar staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='removeFromEasyAccess']}');" href="javascript:void(0)"></a>
-                <img class="staticTip" onmouseover="setTipText('{$loc/strs/races/str[@id=concat('armory.races.race.',current()/@raceId)]}');" 
+                <a id="{@url}" class="selChar selSecondaryChar staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='makePrimary']}');" href="javascript:void(0)"></a>
+
+                <!--<a class="delChar staticTip" onmouseover="setTipText('{$loc/strs/character-select/str[@id='removeFromEasyAccess']}');" href="javascript:void(0)"></a>-->
+
+                <img class="staticTip" onmouseover="setTipText('{$loc/strs/races/str[@id=concat('armory.races.race.',current()/@raceId)]}');"
                     src="images/icons/race/{current()/@raceId}-{current()/@genderId}.gif" />
                 <img class="staticTip" onmouseover="setTipText('{$loc/strs/classes/str[@id=concat('armory.classes.class.',current()/@classId)]}');" 
                     src="images/icons/class/{current()/@classId}.gif" />
-                <h6><a href="character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a></h6>&#160;(<xsl:value-of select="@level" />) - 
+
+                <h6><a href="character-sheet.xml?{@url}"><xsl:value-of select="@name" /></a></h6>&#160;(<xsl:value-of select="@level" />) -
                 <span class="char-realm"><xsl:value-of select="current()/@realm" /></span>                        
             </div>                
         </xsl:for-each>        
@@ -272,8 +301,19 @@
     	<xsl:when test="count(/page/characters/character/@selected) = '1'">         	
         	<div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
             <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+            <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+            <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
         </xsl:when>
     	<xsl:when test="count(/page/characters/character/@selected) = '2'">
+        	<div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+            <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+            <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+        </xsl:when>
+    	<xsl:when test="count(/page/characters/character/@selected) = '3'">
+        	<div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+            <div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
+        </xsl:when>
+    	<xsl:when test="count(/page/characters/character/@selected) = '4'">
         	<div class="select-char2"><h6><xsl:value-of select="$loc/strs/character-select/str[@id='availableSlot']"/></h6></div>
         </xsl:when>
     </xsl:choose>	

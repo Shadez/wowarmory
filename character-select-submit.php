@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 413
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,13 +27,12 @@ if(!@include('includes/armory_loader.php')) {
     die('<b>Fatal error:</b> unable to load system files.');
 }
 if(!isset($_SESSION['accountId'])) {
-    $armory->Log()->writeLog('character-select-submit : session not found!');
     exit;
 }
 if(isset($_GET)) {
-    $totalCharsCount = $armory->aDB->selectCell("SELECT COUNT(`guid`) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
-    $armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_login_characters` WHERE `account`='%d'", $_SESSION['accountId']);
-    for($i = 1; $i < 4; $i++) {
+    $totalCharsCount = $utils->CountSelectedCharacters();
+    $utils->DropAllSelectedCharacters(true);
+    for($i = 1; $i < MAX_SELECTED_CHARACTERS_COUNT+1; $i++) {
         if(isset($_GET['cn' . $i]) && isset($_GET['r' . $i])) {
             $realmName = urldecode($_GET['r' . $i]);
             $realm_id = $utils->GetRealmIdByName($realmName);
@@ -48,7 +47,7 @@ if(isset($_GET)) {
             $realm_info = $armory->realmData[$realm_id];
             $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $armory->Log());
             if(!$db) {
-                $armory->Log()->writeLog('character-select-submit : unable to connect to MySQL database (host: %s, user: %s, password: %s, name: %s)', $realm_info['host_characters'], $realm_infoa['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters']);
+                // Error message will appear in ArmoryDatabaseHandler::ArmoryDatabaseHandler();
                 continue;
             }
             $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `account`=%d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
@@ -64,7 +63,7 @@ if(isset($_GET)) {
                 $char_data['selected'] = $i;
             }
             $char_data['num'] = $i;
-            $armory->aDB->query("INSERT INTO `armory_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $i, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_id, $char_data['selected']);
+            $utils->AddCharacterAsSelected($char_data, $realm_id, $i);
         }
     }
 }
