@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 352
+ * @revision 412
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -42,7 +42,7 @@ if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
-$characters->BuildCharacter($name, $realmId);
+$characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
 if($_GET['r'] === false || !$armory->currentRealmInfo) {
     $isCharacter = false;
@@ -99,10 +99,10 @@ $character_model_data['hair_style'] += 2; // Hack?
 
 $character_model_data['hide_helm'] = 0;
 $character_model_data['hide_cloak'] = 0;
-if($player_model['playerFlags'] & 1024) {
+if($player_model['playerFlags'] & PLAYER_FLAGS_HIDE_HELM) {
     $character_model_data['hide_helm'] = 1;
 }
-if($player_model['playerFlags'] & 2048) {
+if($player_model['playerFlags'] & PLAYER_FLAGS_HIDE_CLOAK) {
     $character_model_data['hide_cloak'] = 1;
 }
 if(strlen($character_model_data['skin_style']) == 1) {
@@ -519,20 +519,22 @@ if($tmpid = $characters->GetCharacterEquip('boots')) {
 
 /** ATTACHMENT TEXTURES **/
 
-if($tmpid = $characters->GetCharacterEquip('head') && $character_model_data['hide_helm'] == 0) {
-    if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
-        /**
-         * Helm (texture)
-         **/
-        $model_data_attachment['helm_texture'] = array(
-            'linkPoint' => 11,
-            'type' => 'none',
-            'modelFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'.m2',
-            'skinFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'00.skin',
-            'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
-        );
-        if($model_data_attachment['helm_texture']['texture'] == 'item/objectcomponents/head/.png') {
-            //unset($model_data_attachment['helm_texture']);
+if($tmpid = $characters->GetCharacterEquip('head')) {
+    if($character_model_data['hide_helm'] == 0) {
+        if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
+            /**
+             * Helm (texture)
+             **/
+            $model_data_attachment['helm_texture'] = array(
+                'linkPoint' => 11,
+                'type' => 'none',
+                'modelFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'.m2',
+                'skinFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'00.skin',
+                'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+            );
+            if($model_data_attachment['helm_texture']['texture'] == 'item/objectcomponents/head/.png') {
+                unset($model_data_attachment['helm_texture']);
+            }
         }
     }
     unset($tmpid);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 405
+ * @revision 412
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -524,8 +524,8 @@ define('MAX_ATTACK', 3);
 
 // Player::LoadFromDB()
 define('DEFAULT_WORLD_OBJECT_SIZE', 0.388999998569489);
-define('PLAYER_FLAGS_HIDE_CLOAK', 2048);
 define('PLAYER_FLAGS_HIDE_HELM', 1024);
+define('PLAYER_FLAGS_HIDE_CLOAK', 2048);
 define('MAX_STATS', 5);
 
 /** Spell Schools **/
