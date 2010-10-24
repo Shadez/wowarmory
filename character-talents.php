@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 385
+ * @revision 408
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -114,7 +114,7 @@ $points = array();
 $talent_info = array();
 $current_tree = array();
 $glyphs = $characters->GetCharacterGlyphs();
-for($i = 0; $i < $characters->GetSpecCount(); $i++ ) {
+for($i = 0; $i < 2; $i++ ) {
     $current_tree[$i] = $utils->GetMaxArray($talent_points['points'][$i]);
     $talent_info[$i] = array(
         'treeOne'   => $talent_points['points'][$i][$characters->GetTalentTab(0)],
@@ -124,7 +124,7 @@ for($i = 0; $i < $characters->GetSpecCount(); $i++ ) {
     );
 }
 $xml->XMLWriter()->startElement('talents');
-for($i = 0; $i < $characters->GetSpecCount(); $i++) {
+for($i = 0; $i < 2;  $i++) {
     $xml->XMLWriter()->startElement('talentGroup');
     $xml->XMLWriter()->writeAttribute('active', ($i == $characters->GetActiveSpec()) ? 1 : 0);
     $xml->XMLWriter()->writeAttribute('group', $i+1);
