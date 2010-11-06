@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 365
+ * @revision 414
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -83,7 +83,7 @@ if($data['SellPrice'] > 0 || $data['BuyPrice'] || $extended_cost > 0) {
                 $xml->XMLWriter()->writeAttribute($pvp_cost_key, $pvp_cost_value);
             }
         }
-        $xml->XMLWriter()->writeAttribute('factionId', ($data['Flags2']&ITEM_FLAGS2_HORDE_ONLY) ? 0 : 1);
+        $xml->XMLWriter()->writeAttribute('factionId', ($data['Flags2']&ITEM_FLAGS2_HORDE_ONLY) ? FACTION_ALLIANCE : FACTION_HORDE);
     }
     if(is_array($cost_info)) {
         foreach($cost_info as $cost) {
@@ -143,7 +143,7 @@ if($currency_items = $items->BuildLootTable($itemID, 'currencyfor')) {
     }
     $xml->XMLWriter()->endElement(); //currencyFor
 }
-if($creature_loot = $items->BuildLootTable($itemID, 'boss')) {
+if($creature_loot = $items->BuildLootTable($itemID, 'creature')) {
     $xml->XMLWriter()->startElement('dropCreatures');
     foreach($creature_loot as $creature_item) {
         $xml->XMLWriter()->startElement('creature');
@@ -154,7 +154,7 @@ if($creature_loot = $items->BuildLootTable($itemID, 'boss')) {
     }
     $xml->XMLWriter()->endElement(); //dropCreatures
 }
-if($gameobject_loot = $items->BuildLootTable($itemID, 'chest')) {
+if($gameobject_loot = $items->BuildLootTable($itemID, 'gameobject')) {
     $xml->XMLWriter()->startElement('containerObjects');
     foreach($gameobject_loot as $gameobject_item) {
         $xml->XMLWriter()->startElement('object');

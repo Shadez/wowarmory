@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 414
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -220,36 +220,41 @@ Class Mangos {
      * @category Mangos class
      * @access   public
      * @param    int $npc
+     * @param    bool $isBoss = false
      * @return   string
      **/
-    public function GetNPCName($npc) {
-        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
-            return $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+    public function GetNPCName($npc, $isBoss = false) {
+        $creature_id = $npc;
+        // If npc is boss we need to find him/her original ID (to prevent names like "Bronjahm (1)", etc.)
+        if($isBoss) {
+            $KillCreditInfo = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry` = %d LIMIT 1", $npc);
+            if(!$KillCreditInfo) {
+                // return name for current ID
+                return $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
+            }
+            if($KillCreditInfo['KillCredit1'] > 0) {
+                $creature_id = $KillCreditInfo['KillCredit1'];
+            }
+            elseif($KillCreditInfo['KillCredit2'] > 0) {
+                $creature_id = $KillCreditInfo['KillCredit'];
+            }
+        }
+        if($this->armory->GetLoc() == 0) {
+            $name = $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $creature_id);
         }
         else {
-            $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $npc);
+            $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry` = %d LIMIT 1", $this->armory->GetLoc(), $creature_id);
             if(!$name) {
-                // Check KillCredit
-                $kc_entry = false;
-                $KillCredit = $this->armory->wDB->selectRow("SELECT `KillCredit1`, `KillCredit2` FROM `creature_template` WHERE `entry`=%d", $npc);
-                if($KillCredit['KillCredit1'] > 0) {
-                    $kc_entry = $KillCredit['KillCredit1'];
-                }
-                elseif($KillCredit['KillCredit2'] > 0) {
-                    $kc_entry = $KillCredit['KillCredit2'];
-                }
-                if($kc_entry > 0) {
-                    $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry`=%d LIMIT 1", $this->armory->GetLoc(), $kc_entry);
-                    if(!$name) {
-                        $name = $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
-                    }
-                }
-                else {
+                $name = $this->armory->wDB->selectCell("SELECT `name_loc%d` FROM `locales_creature` WHERE `entry` = %d LIMIT 1", $this->armory->GetLoc(), $npc);
+                if(!$name) {
                     $name = $this->armory->wDB->selectCell("SELECT `name` FROM `creature_template` WHERE `entry`=%d LIMIT 1", $npc);
                 }
             }
         }
-        if($name) {
+        if($name && $isBoss) {
+            return array('id' => $creature_id, 'name' => $name);
+        }
+        elseif($name && !$isBoss) {
             return $name;
         }
         $this->armory->Log()->writeError('%s : unable to find NPC name (id: %d, KillCredit1: %d, KillCredit2: %d)', __METHOD__, $npc, (isset($KillCredit['KillCredit1'])) ? $KillCredit['KillCredit1'] : 0, (isset($KillCredit['KillCredit2'])) ? $KillCredit['KillCredit2'] : 0);

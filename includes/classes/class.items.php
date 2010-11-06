@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 409
+ * @revision 414
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -290,13 +290,13 @@ Class Items {
      * @category Items class
      * @access   public
      * @param    int $item
-     * @param    int $vendor
+     * @param    int $type
      * @param    array $data = false
      * @return   array
      **/
-    public function BuildLootTable($item, $vendor, $data=false) {
+    public function BuildLootTable($item, $type, $data=false) {
         $lootTable = array();
-        switch($vendor) {
+        switch($type) {
             case 'vendor':
                 $VendorLoot = $this->armory->wDB->select("SELECT `entry`, `ExtendedCost` FROM `npc_vendor` WHERE `item`=%d", $item);
                 if(!is_array($VendorLoot)) {
@@ -312,55 +312,59 @@ Class Items {
                     $i++;
                 }
                 break;
-            case 'boss':
-                $BossLoot = $this->armory->wDB->select("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d", $item);
-                if(!is_array($BossLoot)) {
+            case 'creature':
+                $CreatureLoot = $this->armory->wDB->select("SELECT `entry` FROM `creature_loot_template` WHERE `item`=%d", $item);
+                if(!is_array($CreatureLoot)) {
 				    return false;
                 }
                 $i = 0;
-                foreach($BossLoot as $bItem) {
-                    $lootTable[$i] = $this->armory->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=%d", $bItem['entry']);
-                    if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
-                        $lootTable[$i]['name'] = Mangos::GetNpcName($bItem['entry']);
-                    }
-                    if(Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
-                        $areaData = self::GetImprovedItemSource($item, $bItem['entry'], true);
-                        $lootTable[$i]['area'] = $areaData['areaName'];
-                        $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
-                    }
-                    else {
-                        $lootTable[$i]['area'] = Mangos::GetNpcInfo($bItem['entry'], 'map');
-                        $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($bItem['entry'], 'areaUrl');
-                    }
-                    $drop_percent = Mangos::GenerateLootPercent($bItem['entry'], 'creature_loot_template', $item);
-                    $lootTable[$i]['dropRate'] = Mangos::GetDropRate($drop_percent);
-                    if($lootTable[$i]['areaUrl'] && Mangos::GetNpcInfo($bItem['entry'], 'isBoss')) {
-                        $lootTable[$i]['url'] = str_replace('boss=all', 'boss='.$bItem['entry'], $lootTable[$i]['areaUrl']);
-                    }
-                    $i++;
-                }
-                break;
-            case 'chest':
-                $ChestLoot = $this->armory->wDB->select("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d", $item);
-                if(!is_array($ChestLoot)) {
-                    return false;
-                }
-                $i = 0;
-                foreach($ChestLoot as $cItem) {
-                    $drop_percent = Mangos::GenerateLootPercent($cItem['entry'], 'gameobject_loot_template', $item);
-                    $lootTable[$i] = array(
-                        'name' => Mangos::GetGameObjectInfo($cItem['entry'], 'name'),
-                        'id' => $cItem['entry'],
-                        'dropRate' => Mangos::GetDropRate($drop_percent)
-                    );
-                    if(Mangos::GetGameObjectInfo($cItem['entry'], 'isInInstance')) {
+                foreach($CreatureLoot as $cItem) {
+                    $lootTable[$i] = $this->armory->wDB->selectRow("SELECT `entry` AS `id`, `name`, `minlevel` AS `minLevel`, `maxlevel` AS `maxLevel`, `rank` AS `classification` FROM `creature_template` WHERE `entry`=%d", $cItem['entry']);
+                    $isBoss = Mangos::GetNpcInfo($cItem['entry'], 'isBoss');
+                    if($isBoss) {
+                        $npc_data =  Mangos::GetNpcName($cItem['entry'], true);
+                        $lootTable[$i]['name'] = $npc_data['name'];
+                        $lootTable[$i]['id'] = $npc_data['id'];
                         $areaData = self::GetImprovedItemSource($item, $cItem['entry'], true);
                         $lootTable[$i]['area'] = $areaData['areaName'];
                         $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
                     }
                     else {
-                        $lootTable[$i]['area'] = Mangos::GetGameObjectInfo($cItem['entry'], 'map');
-                        $lootTable[$i]['areaUrl'] = Mangos::GetGameObjectInfo($cItem['entry'], 'areaUrl');
+                        if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
+                            $lootTable[$i]['name'] = Mangos::GetNpcName($cItem['entry']);
+                        }
+                        $lootTable[$i]['area'] = Mangos::GetNpcInfo($cItem['entry'], 'map');
+                        $lootTable[$i]['areaUrl'] = Mangos::GetNpcInfo($cItem['entry'], 'areaUrl');
+                    }
+                    $drop_percent = Mangos::GenerateLootPercent($cItem['entry'], 'creature_loot_template', $item);
+                    $lootTable[$i]['dropRate'] = Mangos::GetDropRate($drop_percent);
+                    if($lootTable[$i]['areaUrl'] && $isBoss) {
+                        $lootTable[$i]['url'] = str_replace('boss=all', 'boss=' . $lootTable[$i]['id'], $lootTable[$i]['areaUrl']);
+                    }
+                    $i++;
+                }
+                break;
+            case 'gameobject':
+                $GameObjectLoot = $this->armory->wDB->select("SELECT `entry` FROM `gameobject_loot_template` WHERE `item`=%d", $item);
+                if(!is_array($GameObjectLoot)) {
+                    return false;
+                }
+                $i = 0;
+                foreach($GameObjectLoot as $gItem) {
+                    $drop_percent = Mangos::GenerateLootPercent($gItem['entry'], 'gameobject_loot_template', $item);
+                    $lootTable[$i] = array(
+                        'name' => Mangos::GetGameObjectInfo($gItem['entry'], 'name'),
+                        'id' => $gItem['entry'],
+                        'dropRate' => Mangos::GetDropRate($drop_percent)
+                    );
+                    if(Mangos::GetGameObjectInfo($gItem['entry'], 'isInInstance')) {
+                        $areaData = self::GetImprovedItemSource($item, $gItem['entry'], true);
+                        $lootTable[$i]['area'] = $areaData['areaName'];
+                        $lootTable[$i]['areaUrl'] = $areaData['areaUrl'];
+                    }
+                    else {
+                        $lootTable[$i]['area'] = Mangos::GetGameObjectInfo($gItem['entry'], 'map');
+                        $lootTable[$i]['areaUrl'] = Mangos::GetGameObjectInfo($gItem['entry'], 'areaUrl');
                     }
                     $i++;
                 }
@@ -519,7 +523,10 @@ Class Items {
                 $CostIDs = array('pos' => array(), 'neg' => array());
                 foreach($exCostIds as $tmp_cost) {
                     $CostIDs['pos'][] = $tmp_cost['id'];
-                    $CostIDs['neg'][] = '-'.$tmp_cost['id'];
+                    $CostIDs['neg'][] = -$tmp_cost['id'];
+                }
+                if(!isset($CostIDs['pos'][0]) || !$CostIDs['pos'][0]) {
+                    return false;
                 }
                 $itemsData = $this->armory->wDB->select("
                 SELECT
