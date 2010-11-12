@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 411
+ * @revision 415
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -394,11 +394,11 @@ Class Characters {
             // Get race and class strings
             $race_class = $this->armory->aDB->selectRow("
             SELECT
-            `armory_races`.`name_%s` AS `race`,
-            `armory_classes`.`name_%s` AS `class`
-            FROM `ARMORYDBPREFIX_races` AS `armory_races`
-            LEFT JOIN `armory_classes` AS `armory_classes` ON `armory_classes`.`id`=%d
-            WHERE `armory_races`.`id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $player_data['class'], $player_data['race']);
+            `ARMORYDBPREFIX_races`.`name_%s` AS `race`,
+            `ARMORYDBPREFIX_classes`.`name_%s` AS `class`
+            FROM `ARMORYDBPREFIX_races` AS `ARMORYDBPREFIX_races`
+            LEFT JOIN `ARMORYDBPREFIX_classes` AS `ARMORYDBPREFIX_classes` ON `ARMORYDBPREFIX_classes`.`id`=%d
+            WHERE `ARMORYDBPREFIX_races`.`id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $player_data['class'], $player_data['race']);
             if(!$race_class) {
                 $this->armory->Log()->writeError('%s : unable to find class/race text strings for player %d (name: %s, race: %d, class: %d)', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race'], $player_data['class']);
                 unset($player_data);
@@ -839,7 +839,7 @@ Class Characters {
         }
         switch($slot) {
             case 'head':
-				return $this->equipmentCache[0];
+                return $this->equipmentCache[0];
                 break;
             case 'neck':
 				return $this->equipmentCache[2];

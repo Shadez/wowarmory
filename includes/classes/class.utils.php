@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 413
+ * @revision 415
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -322,14 +322,14 @@ Class Utils {
         }
         return $this->armory->aDB->selectRow("
         SELECT
-        `armory_login_characters`.`guid`,
-        `armory_login_characters`.`name`,
-        `armory_login_characters`.`race`,
-        `armory_login_characters`.`realm_id`,
-        `armory_realm_data`.`name` AS `realmName`
-        FROM `ARMORYDBPREFIX_login_characters` AS `armory_login_characters`
-        LEFT JOIN `armory_realm_data` AS `armory_realm_data` ON `armory_realm_data`.`id`=`armory_login_characters`.`realm_id`
-        WHERE `armory_login_characters`.`account`=%d AND `armory_login_characters`.`selected`=1 LIMIT 1
+        `ARMORYDBPREFIX_login_characters`.`guid`,
+        `ARMORYDBPREFIX_login_characters`.`name`,
+        `ARMORYDBPREFIX_login_characters`.`race`,
+        `ARMORYDBPREFIX_login_characters`.`realm_id`,
+        `ARMORYDBPREFIX_realm_data`.`name` AS `realmName`
+        FROM `ARMORYDBPREFIX_login_characters` AS `ARMORYDBPREFIX_login_characters`
+        LEFT JOIN `ARMORYDBPREFIX_realm_data` AS `ARMORYDBPREFIX_realm_data` ON `ARMORYDBPREFIX_realm_data`.`id`=`ARMORYDBPREFIX_login_characters`.`realm_id`
+        WHERE `ARMORYDBPREFIX_login_characters`.`account`=%d AND `ARMORYDBPREFIX_login_characters`.`selected`=1 LIMIT 1
         ", $_SESSION['accountId']);
     }
     
@@ -450,7 +450,7 @@ Class Utils {
             return false;
         }
         $char_data['realmUrl'] = sprintf('r=%s&cn=%s', urlencode($realmName), urlencode($name));
-        $this->armory->aDB->query("INSERT IGNORE INTO `armory_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
+        $this->armory->aDB->query("INSERT IGNORE INTO `ARMORYDBPREFIX_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
         return true;
     }
     
@@ -686,7 +686,7 @@ Class Utils {
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
             1463, 3259, 456, 1400, 1402, 3117, 4078, 4576
         )
-        ORDER BY `character_achievement`.`date` DESC"); // 3.3.3a IDs
+        ORDER BY `character_achievement`.`date` DESC"); // 4.0.3 IDs
         if(!$achievements_data) {
             $this->armory->Log()->writeLog('%s : unable to get data from DB for achievement firsts (theres no completed achievement firsts?)', __METHOD__);
             return false;
@@ -1416,7 +1416,7 @@ Class Utils {
         foreach($this->armory->realmData as $myRealm) {
             $tmpData = $this->armory->aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
             if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'] || $tmpData['type'] == UNK_SERVER)) {
-                $replace = $this->armory->aDB->query("REPLACE INTO `armory_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
+                $replace = $this->armory->aDB->query("REPLACE INTO `ARMORYDBPREFIX_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 if($replace) {
                     $this->armory->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
                 }
@@ -1828,6 +1828,60 @@ Class Utils {
                 break;
         }
         return $allowable_weapon_types;
+    }
+    
+    public function CreateNewSession() {
+        if(isset($_SESSION['armory_sid']) && $this->IsCorrectSession()) {
+            return true;
+        }
+        // Create new
+        $session_id = $this->GetNextSessionId();
+        $session_hash = md5($_SERVER['REMOTE_ADDR'] . ':' . $session_id);
+        $login_timestamp = time();
+        $is_admin = $this->IsUserAdmin();
+        // Add
+        $this->armory->aDB->query("INSERT INTO `ARMORYDBPREFIX_session` (`sid`, `shash`, `ip`, `logintstamp`, `active`, `is_admin`) VALUES ('%s', '%s', %d, 1, %d)", $session_id, $session_hash, $_SERVER['REMOTE_ADDR'], $login_timestamp, (int) $is_admin);
+        $_SESSION['armory_shash'] = $session_hash;
+        $_SESSION['armory_sid'] = $session_id;
+    }
+    
+    public function UpdateSession() {
+        if(isset($_SESSION['armory_sid']) && $this->IsCorrectSession()) {
+            return $this->armory->aDB->query("UPDATE `ARMORYDBPREFIX_session` SET `active` = 1 WHERE `sid` = %d", $_SESSION['armory_sid']);
+        }
+        return true;
+    }
+    
+    public function GetSessionsCount() {
+        // Drop old sessions before calculations
+        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_session` WHERE `logintstamp` >= %d", ((60 * 15) + time()));
+        return $this->armory->aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_session` WHERE `active` = %d AND `is_admin` = 0", 1);
+    }
+    
+    public function GetNextSessionId() {
+        return $this->armory->aDB->selectCell("SELECT MAX(`sid`) FROM `ARMORYDBPREFIX_session`") + 1;
+    }
+    
+    public function IsCorrectSession() {
+        if(!isset($_SESSION['armory_sid']) && !isset($_SESSION['armory_shash'])) {
+            return false;
+        }
+        return (bool) $this->armory->aDB->selectCell("SELECT `active` FROM `ARMORYDBPREFIX_session` WHERE `sid` = %d AND `shash` = '%s' AND `ip` = '%s'", $_SESSION['armory_sid'], $_SESSION['armory_shash'], $_SERVER['REMOTE_ADDR']);
+    }
+    
+    private function IsUserAdmin() {
+        if(!isset($_SESSION['accountId'])) {
+            return false;
+        }
+        $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
+        if(!$gmLevel) {
+            // trinity?
+            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
+        }
+        if($gmLevel >= 1) {
+            return true;
+        }
+        return false;
     }
 }
 ?>
