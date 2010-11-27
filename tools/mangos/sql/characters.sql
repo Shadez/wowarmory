@@ -13,5 +13,6 @@ CREATE TABLE `character_feed_log` (
   `date` int(11) default NULL,
   `counter` int(11) NOT NULL,
   `difficulty` smallint(6) default '-1',
+  `item_guid` int(11) NOT NULL,
   PRIMARY KEY  (`guid`,`type`,`data`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
