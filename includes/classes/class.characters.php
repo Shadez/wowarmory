@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 415
+ * @revision 419
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2930,10 +2930,26 @@ Class Characters {
         }
     }
     
+    /**
+     * Checks for spell ID in character's spellbook
+     * @category Characters class
+     * @access   public
+     * @param    int $spell_id
+     * @return   bool
+     **/
     public function HasSpell($spell_id) {
-        return $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->guid);;
+        return (bool) $this->db->selectCell("SELECT 1 FROM `character_spell` WHERE `spell`=%d AND `guid`=%d AND `active`=1 AND `disabled`=0 LIMIT 1", $spell_id, $this->guid);;
     }
     
+    /**
+     * Checks for talent ID in active or all specs
+     * @category Characters class
+     * @access   public
+     * @param    int $talent_id
+     * @param    bool $active_spec = true
+     * @param    int $rank = -1
+     * @return   bool
+     **/
     public function HasTalent($talent_id, $active_spec = true, $rank = -1) {
         if($active_spec) {
             if($rank == -1) {
@@ -2951,9 +2967,17 @@ Class Characters {
                 $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `current_rank`=%d", $talent_id, $this->guid, $rank);
             }
         }
-        return $has;
+        return (bool) $has;
     }
     
+    /**
+     * Returns talent rank by talent ID (if player have this talent)
+     * @category Characters class
+     * @access   public
+     * @param    int $talent_id
+     * @param    bool $active_spec = true
+     * @return   int
+     **/
     public function GetTalentRankByID($talent_id, $active_spec = true) {
         if($active_spec) {
             $rank = $this->db->selectCell("SELECT `current_rank` FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d LIMIT 1", $talent_id, $this->guid, $this->activeSpec);
@@ -2967,6 +2991,13 @@ Class Characters {
         return $rank;
     }
     
+    /**
+     * Returns skill value by skill ID (if player have this skill)
+     * @category Characters class
+     * @access   public
+     * @param    int $skill
+     * @return   int
+     **/
     public function GetSkillValue($skill) {
         return $this->db->selectCell("SELECT `value` FROM `character_skills` WHERE `guid`=%d AND `skill`=%d", $this->guid, $skill);
     }
@@ -3006,7 +3037,13 @@ Class Characters {
             $this->armory->Log()->writeError('%s : player guid is not defined.', __METHOD__);
             return false;
         }
-        $inv = $this->db->select("SELECT `item`, `slot`, `item_template`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
+        switch($this->m_server) {
+            case SERVER_MANGOS:
+                $inv = $this->db->select("SELECT `item`, `slot`, `item_template`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
+                break;
+            case SERVER_TRINITY:
+                $inv = $this->db->select("SELECT `item`, `slot`, `bag`, FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
+        }
         if(!$inv) {
             return false;
         }

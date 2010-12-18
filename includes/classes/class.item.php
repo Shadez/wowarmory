@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 400
+ * @revision 419
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,6 +91,7 @@ Class Item {
                 return false;
             }
             $this->m_values = explode(' ', $m_values);
+            $this->entry = $data['item_template'];
         }
         elseif($this->m_server == SERVER_TRINITY) {
             $this->tc_data = $this->db->selectRow("SELECT * FROM `item_instance` WHERE `guid` = %d AND `owner_guid` = %d", $this->m_guid, $this->m_owner);
@@ -103,6 +104,7 @@ Class Item {
                 $this->tc_ench = explode(' ', $this->tc_data['enchantments']);
             }
             $this->tc_data['maxdurability'] = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $data['item_template']);
+            $this->entry = $this->tc_data['itemEntry'];
         }
         else {
             $this->armory->Log()->writeError('%s : unknown server type (%d), unable to handle item!', __METHOD__, $this->m_server);
