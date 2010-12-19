@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 401
+ * @revision 420
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -50,6 +50,7 @@ Class ArmoryDatabaseHandler {
     private $errmsg = null;
     private $errno = 0;
     private $server_version = null;
+    private $disableNextError = false;
     
     /**
      * Connect to DB
@@ -98,7 +99,7 @@ Class ArmoryDatabaseHandler {
         $this->armory_prefix = $prefix;
         $this->server_version = $this->selectCell("SELECT VERSION()");
         $this->connected = true;
-        $this->logHandler->writeLog('%s : connection to MySQL database was successfully established.', __METHOD__);
+        //$this->logHandler->writeLog('%s : connection to MySQL database was successfully established.', __METHOD__);
         return true;
     }
     
@@ -126,7 +127,7 @@ Class ArmoryDatabaseHandler {
     /**
      * Execute SQL query
      * @category Armory Database Handler
-     * @access   public
+     * @access   private
      * @param    string $safe_sql
      * @param    int $queryType
      * @return   mixed
@@ -136,12 +137,16 @@ Class ArmoryDatabaseHandler {
         $make_array = array();
         $query_start = microtime(true);
         $this->queryCount++;
+        //$this->logHandler->writeSql('%s', $safe_sql);
         $performed_query = @mysql_query($safe_sql, $this->connectionLink);
         $this->errmsg = @mysql_error($this->connectionLink);
         $this->errno = @mysql_errno($this->connectionLink);
         if($performed_query == false) {
-            if($this->logHandler != null && is_object($this->logHandler)) {
+            if($this->logHandler != null && is_object($this->logHandler) && !$this->disableNextError) {
                 $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, $this->errmsg ? sprintf('"%s" (Error #%d)', $this->errmsg, $this->errno) : 'none');
+            }
+            if($this->disableNextError) {
+                $this->disableNextError = false;
             }
             return false;
         }
@@ -287,7 +292,7 @@ Class ArmoryDatabaseHandler {
         @mysql_close($this->connectionLink);
         $this->DropLastErrors();
         $this->DropCounters();
-        $this->logHandler->writeLog('%s : connection closed.', __METHOD__);
+        //$this->logHandler->writeLog('%s : connection closed.', __METHOD__);
     }
     
     public function GetServerVersion() {
@@ -307,11 +312,11 @@ Class ArmoryDatabaseHandler {
         $this->DropLastErrorNumber();
     }
     
-    private function DropLastErrorMessage() {
+    public function DropLastErrorMessage() {
         $this->errmsg = null;
     }
     
-    private function DropLastErrorNumber() {
+    public function DropLastErrorNumber() {
         $this->errno = 0;
     }
     
@@ -322,6 +327,17 @@ Class ArmoryDatabaseHandler {
     
     public function GetStatistics() {
         return array('queryCount' => $this->queryCount, 'queryTimeGeneration' => $this->queryTimeGeneration);
+    }
+    
+    /**
+     * Allows to skip next MySQL error (do not add it to debug log) - spam preventing.
+     * @category Armory Database Handler
+     * @access   public
+     * @return   bool
+     **/
+    public function SkipNextError() {
+        $this->disableNextError = true;
+        return true;
     }
 }
 

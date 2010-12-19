@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 419
+ * @revision 420
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -17,7 +17,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should has received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
@@ -345,13 +345,14 @@ Class Characters {
             // Character data required for character-sheet page only.
             $player_stats_check = $this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid']);
             if(!$player_stats_check) {
-                $this->armory->Log()->writeError('%s : player %d (%s) does not have any data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
+                $this->armory->Log()->writeError('%s : player %d (%s) has no data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
                 unset($player_data);
                 return false;
             }
         }
         // Is character allowed to be displayed in Armory?
         $gmLevel = false;
+        $this->armory->rDB->SkipNextError();
         if($this->m_server == SERVER_TRINITY) {
             $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], $this->armory->connectionData['id']);
         }
@@ -360,27 +361,27 @@ Class Characters {
         }
         $allowed = ($gmLevel <= $this->armory->armoryconfig['minGmLevelToShow']) ? true : false;
         if(!$allowed || $player_data['level'] < $this->armory->armoryconfig['minlevel']) {
-            $this->armory->Log()->writeLog('%s : Player %d (%s) is not allowed to be displayed in Armory (GM level restriction or have low level)!', __METHOD__, $player_data['guid'], $player_data['name']);
+            $this->armory->Log()->writeLog('%s : Player %d (%s) is not allowed to be displayed in Armory (GM level restriction or has low level)!', __METHOD__, $player_data['guid'], $player_data['name']);
             unset($player_data);
             return false;
         }
         // Class/race/faction checks
         if($player_data['class'] >= MAX_CLASSES) {
             // Unknown class
-            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong data in DB: class %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) has wrong data in DB: class %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
             unset($player_data);
             return false;
         }
         elseif($player_data['race'] >= MAX_RACES) {
             // Unknown race
-            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong data in DB: race %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) has wrong data in DB: race %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
             unset($player_data);
             return false;
         }
         $this->faction = Utils::GetFactionId($player_data['race']);
         if($this->faction === false) {
             // Unknown faction
-            $this->armory->Log()->writeError('%s : Player %d (%s) have wrong faction in DB: faction %d was not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
+            $this->armory->Log()->writeError('%s : Player %d (%s) has wrong faction in DB: faction %d was not found (race: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
             unset($player_data);
             return false;
         }
@@ -438,7 +439,7 @@ Class Characters {
      **/
     private function HandleEquipmentCacheData() {
         if(!$this->equipmentCache) {
-            $this->armory->Log()->writeError('%s : %s::$equipmentCache have NULL value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
+            $this->armory->Log()->writeError('%s : %s::$equipmentCache has NULL value, unable to generate array. Character items would not be shown.', __METHOD__, __METHOD__);
             return false;
         }
         $itemscache = explode(' ', $this->equipmentCache);
@@ -465,7 +466,7 @@ Class Characters {
     private function HandleChosenTitleInfo() {
         $title_data = $this->armory->aDB->selectRow("SELECT `title_F_%s` AS `titleF`, `title_M_%s` AS `titleM`, `place` FROM `ARMORYDBPREFIX_titles` WHERE `id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $this->chosenTitle);
         if(!$title_data) {
-            $this->armory->Log()->writeError('%s: player %d (%s) have wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->armory->GetLocale(), $this->armory->GetLoc());
+            $this->armory->Log()->writeError('%s: player %d (%s) has wrong chosenTitle id (%d) or there is no data for %s locale (locId: %d)', __METHOD__, $this->guid, $this->name, $this->chosenTitle, $this->armory->GetLocale(), $this->armory->GetLoc());
             return false;
         }
         switch($this->gender) {
@@ -834,7 +835,7 @@ Class Characters {
             return 0;
         }
         if(!is_array($this->equipmentCache)) {
-            $this->armory->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
+            $this->armory->Log()->writeError('%s : equipmentCache must has array type!', __METHOD__);
             return 0;
         }
         switch($slot) {
@@ -911,7 +912,7 @@ Class Characters {
      **/
     public function GetCharacterEnchant($slot) {
         if(!is_array($this->equipmentCache)) {
-            $this->armory->Log()->writeError('%s : equipmentCache must have array type!', __METHOD__);
+            $this->armory->Log()->writeError('%s : equipmentCache must has array type!', __METHOD__);
             return 0;
         }
         switch($slot) {
@@ -1098,7 +1099,7 @@ Class Characters {
     }
     
     /**
-     * Returns character talent build for all specs (2 if character have dual talent specialization)
+     * Returns character talent build for all specs (2 if character has dual talent specialization)
      * @category Character class
      * @access   public
      * @return   array
@@ -2971,7 +2972,7 @@ Class Characters {
     }
     
     /**
-     * Returns talent rank by talent ID (if player have this talent)
+     * Returns talent rank by talent ID (if player has this talent)
      * @category Characters class
      * @access   public
      * @param    int $talent_id
@@ -2992,7 +2993,7 @@ Class Characters {
     }
     
     /**
-     * Returns skill value by skill ID (if player have this skill)
+     * Returns skill value by skill ID (if player has this skill)
      * @category Characters class
      * @access   public
      * @param    int $skill
@@ -3042,7 +3043,7 @@ Class Characters {
                 $inv = $this->db->select("SELECT `item`, `slot`, `item_template`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
                 break;
             case SERVER_TRINITY:
-                $inv = $this->db->select("SELECT `item`, `slot`, `bag`, FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
+                $inv = $this->db->select("SELECT `item`, `slot`, `bag` FROM `character_inventory` WHERE `bag` = 0 AND `slot` < %d AND `guid` = %d", INV_MAX, $this->guid);
         }
         if(!$inv) {
             return false;
@@ -3104,7 +3105,7 @@ Class Characters {
             return null;
         }
         elseif(!$this->m_items[$slot]->IsCorrect()) {
-            $this->armory->Log()->writeError('%s : item in slot %d have wrong data (Item::IsCorrect() fail)', __METHOD__, $slot);
+            $this->armory->Log()->writeError('%s : item in slot %d has wrong data (Item::IsCorrect() fail)', __METHOD__, $slot);
             return null;
         }
         return $this->m_items[$slot];
@@ -3134,7 +3135,7 @@ Class Characters {
     /**** DEVELOPMENT SECTION ****/
     
     /**
-     * Checks if player have any active pet
+     * Checks if player has any active pet
      * @category Characters class
      * @access   public
      * @return   bool
@@ -3160,8 +3161,8 @@ Class Characters {
     }
     
     /**
-     * Checks if player can have pet.
-     * Note: self::CalculatePetTalents() must have internal check (CLASS_HUNTER)
+     * Checks if player can has pet.
+     * Note: self::CalculatePetTalents() must has internal check (CLASS_HUNTER)
      * @category Characters class
      * @access   private
      * @return   bool

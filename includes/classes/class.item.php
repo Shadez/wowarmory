@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 419
+ * @revision 420
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -103,8 +103,8 @@ Class Item {
             if(isset($this->tc_data['enchantments'])) {
                 $this->tc_ench = explode(' ', $this->tc_data['enchantments']);
             }
-            $this->tc_data['maxdurability'] = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $data['item_template']);
             $this->entry = $this->tc_data['itemEntry'];
+            $this->tc_data['maxdurability'] = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $this->entry);
         }
         else {
             $this->armory->Log()->writeError('%s : unknown server type (%d), unable to handle item!', __METHOD__, $this->m_server);
