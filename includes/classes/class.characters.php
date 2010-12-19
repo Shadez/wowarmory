@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 420
+ * @revision 422
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -248,6 +248,11 @@ Class Characters {
      **/
     private $m_server = null;
     
+    /**
+     * Character feed data
+     **/
+    private $feed_data = array();
+    
     public function Characters($armory) {
         if(!is_object($armory)) {
             die('<b>Fatal Error:</b> armory must be instance of Armory class!');
@@ -423,10 +428,15 @@ Class Characters {
         if(defined('load_achievements_class') && class_exists('Achievements')) {
             $this->m_achievementMgr = new Achievements($this->armory);
             $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
+            if($full) {
+                // Load Feed data
+                $this->LoadFeedData();
+                // Character feed feature requires Achievements class!
+            }
         }
         // Everything correct
         if($initialBuild == true) {
-            $this->armory->Log()->writeLog('%s : all correct, player %s (race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->race, $this->class, $this->level);
+            $this->armory->Log()->writeLog('%s : all correct, player %s (GUID: %d, race: %d, class: %d, level: %d) loaded, class has been initialized.', __METHOD__, $name, $this->guid, $this->race, $this->class, $this->level);
         }
         return true;
     }
@@ -2542,6 +2552,30 @@ Class Characters {
     }
     
     /**
+     * Loads character feed data from DB
+     * @category Characters class
+     * @access   private
+     * @return   bool
+     **/
+    private function LoadFeedData() {
+        if($this->feed_data) {
+            return true;
+        }
+        $this->feed_data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid` = %d AND `date` > 0 ORDER BY `date` DESC", $this->GetGUID());
+        if(!$this->feed_data) {
+            $this->armory->Log()->writeLog('%s : unable to load feed data for character %s (GUID: %d).', __METHOD__, $this->GetName(), $this->GetGUID());
+            return false;
+        }
+        $count = count($this->feed_data);
+        for($i = 0; $i < $count; $i++) {
+            if($this->feed_data[$i]['type'] == TYPE_ACHIEVEMENT_FEED) {
+                $this->feed_data[$i]['date'] = $this->GetAchievementMgr()->GetAchievementDate($this->feed_data[$i]['data'], true);
+            }
+        }
+        return true;
+    }
+    
+    /**
      * Returns info about last character activity. Requires MaNGOS/Trinity core patch (tools/character_feed)!
      * bool $full used only in character-feed.php
      * @category Characters class
@@ -2555,14 +2589,15 @@ Class Characters {
             $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $limit = ($full == true) ? 50 : 10;
-        $data = $this->db->select("SELECT * FROM `character_feed_log` WHERE `guid`=%d ORDER BY `date` DESC LIMIT %d", $this->guid, $limit);
-        if(!$data) {
-            $this->armory->Log()->writeLog('%s : feed data for player %d (%s) not found!', __METHOD__, $this->guid, $this->name);
+        if(!$this->feed_data) {
+            // Must be loaded from Character::BuildCharacter()
             return false;
         }
-        $feed_data = array();
+        $limit = ($full == true) ? 50 : 10;
+        $currently_added = 0;
         $i = 0;
+        $key = 0;
+        $feed_data = array();
         // Strings
         $feed_strings = $this->armory->aDB->select("SELECT `id`, `string_%s` AS `string` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (13, 14, 15, 16, 17, 18)", $this->armory->GetLocale());
         if(!$feed_strings) {
@@ -2573,39 +2608,64 @@ Class Characters {
         foreach($feed_strings as $str) {
             $_strings[$str['id']] = $str['string'];
         }
-        foreach($data as $event) {
-            $event_date = $event['date'];
-            if(date('d.m.Y') == date('d.m.Y', $event_date)) {
-                $sort = 'today';
+        foreach($this->feed_data as $event) {
+            if($currently_added == $limit) {
+                break;
             }
-            elseif(date('d.m.Y', $event_date) == date('d.m.Y', strtotime('yesterday'))) {
+            $event_date = $event['date'];
+            $event_type = $event['type'];
+            $event_data = $event['data'];
+            $date_string = date('d.m.Y', $event_date);
+            if(date('d.m.Y') == $date_string) {
+                $sort = 'today';
+                $diff = time() - $event_date;
+                if($this->armory->GetLocale() == 'ru_ru') {
+                    $periods = array('сек.', 'мин.', 'ч.');
+                    $ago_str = 'назад';
+                }
+                else {
+                    $periods = array('seconds', 'minutes', 'hours');
+                    $ago_str = 'ago';
+                }
+                $lengths = array(60, 60, 24);
+                for($j = 0; $diff >= $lengths[$j]; $j++) {
+                    $diff /= $lengths[$j];
+                }
+                $diff = round($diff);
+                $date_string = sprintf('%s %s %s', $diff, $periods[$j], $ago_str);
+            }
+            elseif(date('d.m.Y', strtotime('yesterday')) == $date_string) {
                 $sort = 'yesterday';
             }
             else {
                 $sort = 'earlier';
             }
-            switch($event['type']) {
+            switch($event_type) {
                 case TYPE_ACHIEVEMENT_FEED:
-                    $send_data = array('achievement' => $event['data'], 'date' => $event_date);
+                    $send_data = array('achievement' => $event_data, 'date' => $event_date);
                     $achievement_info = $this->GetAchievementMgr()->GetAchievementInfo($send_data);
-                    if(!isset($achievement_info['title']) || !$achievement_info['title'] || empty($achievement_info['title'])) {
+                    if(!$achievement_info || !isset($achievement_info['title']) || !$achievement_info['title'] || empty($achievement_info['title'])) {
+                        // Wrong achievement ID or achievement not found in DB.
+                        continue;
+                    }
+                    if(date('d/m/Y', $event_date) != $this->GetAchievementMgr()->GetAchievementDate($event['data'])) {
+                        // Wrong achievement date, skip. Related to Vasago's issue.
                         continue;
                     }
                     if(!isset($achievement_info['points'])) {
-                        $achievement_info['points'] = 0;
+                        $achievement_info['points'] = 0; // Feat of Strength has no points.
                     }
                     $feed_data[$i]['event'] = array(
                         'type'   => 'achievement',
-                        'date'   => date('d.m.Y', $event_date),
+                        'date'   => $date_string,
                         'time'   => date('H:i:s', $event_date),
-                        'id'     => $event['data'],
+                        'id'     => $event_data,
                         'points' => $achievement_info['points'],
                         'sort'   => $sort
                     );
                     $achievement_info['desc'] = str_replace("'", "\'", $achievement_info['desc']);
                     $achievement_info['title'] = str_replace("'", "\'", $achievement_info['title']);
                     $tooltip = sprintf('&lt;div class=\&quot;myTable\&quot;\&gt;&lt;img src=\&quot;wow-icons/_images/51x51/%s.jpg\&quot; align=\&quot;left\&quot; class=\&quot;ach_tooltip\&quot; /\&gt;&lt;strong style=\&quot;color: #fff;\&quot;\&gt;%s (%d)&lt;/strong\&gt;&lt;br /\&gt;%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
-                    //$tooltip = sprintf('<div class="myTable"><img src="wow-icons/_images/51x51/%s.jpg" align="left" class="ach_tooltip" /><strong style="color: #fff;">%s (%d)</strong><br />%s', $achievement_info['icon'], $achievement_info['title'], $achievement_info['points'], $achievement_info['desc']);
                     if($achievement_info['categoryId'] == 81) {
                         // Feats of strenght
                         $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[14], $achievement_info['title']);
@@ -2619,13 +2679,13 @@ Class Characters {
                     $feed_data[$i]['tooltip'] = $tooltip;
                     break;
                 case TYPE_ITEM_FEED:
-                    $item = $this->armory->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $event['data']);
+                    $item = $this->armory->wDB->selectRow("SELECT `displayid`, `InventoryType`, `name`, `Quality` FROM `item_template` WHERE `entry`=%d LIMIT 1", $event_data);
                     if(!$item) {
                         continue;
                     }
                     $item_icon = $this->armory->aDB->selectCell("SELECT `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid`=%d", $item['displayid']);
                     // Is item equipped?
-                    if($this->IsItemEquipped($event['data'])) {
+                    if($this->IsItemEquipped($event_data)) {
                         $item_slot = $item['InventoryType'];
                     }
                     else {
@@ -2633,25 +2693,25 @@ Class Characters {
                     }
                     $feed_data[$i]['event'] = array(
                         'type' => 'loot',
-                        'date' => date('d.m.Y', $event_date),
+                        'date' => $date_string,
                         'time' => date('H:i:s', $event_date),
                         'icon' => $item_icon,
-                        'id'   => $event['data'],
+                        'id'   => $event_data,
                         'slot' => $item_slot,
                         'sort' => $sort
                     );
                     if($this->armory->GetLocale() != 'en_gb' && $this->armory->GetLocale() != 'en_us') {
-                        $item['name'] = Items::GetItemName($event['data']);
+                        $item['name'] = Items::GetItemName($event_data);
                     }
                     $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
-                    $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event['data'], $event['data'], $item['Quality'], $item['name']);
+                    $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event_data, $event_data, $item['Quality'], $item['name']);
                     break;
                 case TYPE_BOSS_FEED:
                     // Get criterias
                     $achievement_ids = array();
                     $dungeonDifficulty = $event['difficulty'];
                     // Search for difficulty_entry_X
-                    $DifficultyEntry = $this->armory->wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event['data']);
+                    $DifficultyEntry = $this->armory->wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event_data);
                     if(!$DifficultyEntry || $DifficultyEntry == 0) {
                         $DifficultyEntry = $event['data'];
                     }
@@ -2671,17 +2731,21 @@ Class Characters {
                     }
                     $feed_data[$i]['event'] = array(
                         'type' => 'bosskill',
-                        'date'   => date('d.m.Y', $event_date),
+                        'date'   => $date_string,
                         'time'   => date('H:i:s', $event_date),
-                        'id'     => $event['data'],
+                        'id'     => $event_data,
                         'points' => 0,                        
                         'sort'   => $sort
                     );
                     $feed_data[$i]['title'] = sprintf('%s [%s] %d %s', $_strings[16], $achievement['name'], $event['counter'], $_strings[17]);
                     $feed_data[$i]['desc'] = sprintf('%d %s.', $event['counter'], $achievement['name']);
                     break;
+                default:
+                    continue;
+                    break;
             }
             $i++;
+            $currently_added++;
         }
         return $feed_data;
     }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 410
+ * @revision 422
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -35,39 +35,46 @@ Class Achievements {
      * @category Achievements class
      * @access   public
      **/
-    public $guid;
+    public $guid = 0;
     
     /**
      * Character achievement points
      * @category Achievements class
      * @access   public
      **/
-    public $pts;
+    public $pts = 0;
     
     /**
      * Achievement ID
      * @category Achievements class
      * @access   public
      **/
-    public $achId;
+    public $achId = -1;
     
     /**
      * Character achievements count
      * @category Achievements class
      * @access   private
      **/
-    private $m_count;
+    private $m_count = 0;
+    
+    private $b_isInitialized = false;
     
     private $db = null;
     
     /**
-     * Assign $armory variable
+     * Class constructor, assigns $armory instance.
+     * @category Achievements class
+     * @access   public
+     * @param    Armory $armory
+     * @return   bool
      **/
     public function Achievements($armory) {
         if(!is_object($armory)) {
             die('<b>Fatal Error:</b> armory must be instance of Armory class!');
         }
         $this->armory = $armory;
+        return true;
     }
     
     /**
@@ -75,6 +82,7 @@ Class Achievements {
      * @category Achievements class
      * @access   public
      * @param    int $player_guid
+     * @param    ArmoryDatabaseHandler $db
      * @param    bool $check = true
      * @return   bool
      **/
@@ -96,6 +104,7 @@ Class Achievements {
         $this->guid = $player_guid;
         self::CalculateAchievementPoints();
         self::CountCharacterAchievements();
+        $this->b_isInitialized = true;
         return true;
     }
     
@@ -106,6 +115,10 @@ Class Achievements {
      * @return   int
      **/
     public function GetAchievementPoints() {
+        if(!$this->b_isInitialized) {
+            $this->armory->Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
+            return false;
+        }
         return $this->pts;
     }
     
@@ -116,6 +129,10 @@ Class Achievements {
      * @return   int
      **/
     public function GetAchievementsCount() {
+        if(!$this->b_isInitialized) {
+            $this->armory->Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
+            return false;
+        }
         return $this->m_count;
     }
     
@@ -132,7 +149,7 @@ Class Achievements {
         }
         $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d", $this->guid);
         if(!$achievement_ids) {
-            $this->armory->Log()->writeError('%s : unable to find any completed achievement for player %d', __METHOD__, $this->guid);
+            $this->armory->Log()->writeError('%s : unable to find any completed achievements for player %d', __METHOD__, $this->guid);
             return false;
         }
         $ids = array();
@@ -172,7 +189,7 @@ Class Achievements {
         }
         $achievement_data = array('categoryId' => $category);
         $categories = 0;
-        // 3.3.5a
+        // 4.0.1
         switch($category) {
             case ACHIEVEMENTS_CATEGORY_GENERAL:
                 $categories = 92;
@@ -273,7 +290,7 @@ Class Achievements {
         }
         $achievements = $this->db->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
         if(!$achievements) {
-            $this->armory->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have achievements?)', __METHOD__, $this->guid);
+            $this->armory->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have any completed achievement?)', __METHOD__, $this->guid);
             return false;
         }
         $aCount = count($achievements);
@@ -288,9 +305,10 @@ Class Achievements {
      * @category Achievements class
      * @access   public
      * @param    int $achId = 0
+     * @param    bool $returnStamp = false
      * @return   string
      **/
-    public function GetAchievementDate($achId = 0) {
+    public function GetAchievementDate($achId = 0, $returnStamp = false) {
         if($achId == 0) {
             $achId = $this->achId;
         }
@@ -302,6 +320,9 @@ Class Achievements {
         if(!$achievement_date) {
             $this->armory->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
             return false;
+        }
+        if($returnStamp) {
+            return $achievement_date;
         }
         return date('d/m/Y', $achievement_date); // Hack (Can't find the reason why achievement date is not displaying. Working on it.)
     }
@@ -414,7 +435,7 @@ Class Achievements {
      * @return   bool
      **/
     public function IsAchievementExists($achId) {
-        return $this->armory->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $achId);
+        return (bool) $this->armory->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $achId);
     }
     
     /**
@@ -453,14 +474,14 @@ Class Achievements {
                     unset($return_data['completed'][$this->achId]['data']['titleReward']);
                 }
                 if($page_id == ACHIEVEMENTS_CATEGORY_FEATS) {
-                    // Feats of Strength have no achievement points
+                    // Feats of Strength has no achievement points
                     unset($return_data['completed'][$this->achId]['data']['points']);
                 }
                 $return_data['completed'][$this->achId]['data']['dateCompleted'] = self::GetAchievementDate();
                 $return_data['completed'][$this->achId]['display'] = 1;
                 $parent_used = false;
                 if($parentId > 0 && self::IsAchievementCompleted($parentId)) {
-                    $j=0;
+                    $j = 0;
                     $fullPoints = 0;
                     $return_data['completed'][$this->achId]['achievement_tree'] = array();
                     while($parentId != 0) {
