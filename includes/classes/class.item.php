@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 420
+ * @revision 421
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -111,7 +111,6 @@ Class Item {
             $this->loaded = false;
             return false;
         }
-        $this->entry = $data['item_template'];
         if($data['bag'] == 0 && $data['slot'] < INV_MAX) {
             $this->equipped = true;
         }
