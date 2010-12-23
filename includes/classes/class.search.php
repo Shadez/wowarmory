@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 415
+ * @revision 423
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -712,7 +712,12 @@ Class SearchMgr {
         if($level < $this->armory->armoryconfig['minlevel']) {
             return false;
         }
+        $gmLevel = 0;
+        $this->armory->rDB->SkipNextError();
         $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $account_id);
+        if(!$gmLevel) {
+            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d) LIMIT 1", $account_id, $this->armory->currentRealmInfo['id']);
+        }
         if($gmLevel <= $this->armory->armoryconfig['minGmLevelToShow']) {
             return true;
         }
@@ -729,7 +734,7 @@ Class SearchMgr {
             // Wrong bonding type
             return false;
         }
-        elseif($item_data['flags']&0x00000002) {
+        elseif($item_data['flags'] & 0x00000002) {
             // Conjured items can't be traded via auction.
             return false;
         }
@@ -738,7 +743,6 @@ Class SearchMgr {
             return false;
         }
         else {
-            //$this->armory->Log()->writeLog('%s : item #%d can be traded via auction', __METHOD__, $item_data['id']);
             return true;
         }
     }
