@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 348
+ * @revision 428
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -93,6 +93,8 @@ $ArmoryConfig['mysql']['charset_realmd']  = 'UTF8';
 #
 #    minGmLevelToShow
 #        Characters with this GM level and below it will be displayed in Armory
+#        This example is for MaNGOS' access levels, Trinity Core has more than 3 GM lvls,
+#        so you may need to set this value by more than 3.
 #        Default: 3 (Everyone)
 #                 2 (Everyone except Administrators will be displayed in Armory)
 #                 1 (Everyone except Administrators and GMs will be displayed in Armory)
@@ -143,7 +145,7 @@ $ArmoryConfig['settings']['defaultLocale']    = 'en_gb';
 $ArmoryConfig['settings']['maintenance']      = false;
 $ArmoryConfig['settings']['useDebug']         = true;
 $ArmoryConfig['settings']['logLevel']         = 2;
-$ArmoryConfig['settings']['configVersion']    = '0708201001';
+$ArmoryConfig['settings']['configVersion']    = '2812201001';
 $ArmoryConfig['settings']['checkVersionType'] = 'show';
 
 ##############################################################################################
