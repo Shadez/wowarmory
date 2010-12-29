@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 429
+ * @revision 431
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -84,7 +84,7 @@ if(!defined('CONFIG_VERSION') || !isset($armory->armoryconfig['configVersion']))
     }
 }
 elseif(CONFIG_VERSION != $armory->armoryconfig['configVersion']) {
-    $CfgError = sprintf('<b>ConfigVersion error:</b> your config version is outdated (current: %d, expected: %d).<br />
+    $CfgError = sprintf('<b>ConfigVersion error:</b> your config version is outdated (current: %s, expected: %s).<br />
     Please, update your config file from configuration.php.default', $armory->armoryconfig['configVersion'], CONFIG_VERSION);
     if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
         $armory->Log()->writeError('ArmoryChecker : %s', $CfgError);
