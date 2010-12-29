@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 405
+ * @revision 429
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,14 +25,21 @@
 if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
+// Detect armory directory
+define('__ARMORYDIRECTORY__', dirname(dirname(__FILE__)));
+if(!defined('__ARMORYDIRECTORY__') || __ARMORYDIRECTORY__ == null) {
+    die('<b>Fatal error:</b> unable to detect armory directory!');
+}
 session_start();
-if(!@include('classes/class.armory.php')) {
+if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
     die('<b>Error:</b> unable to load Armory class!');
 }
-if(!@include('revision_nr.php')) {
-    die('<b>Error:</b> unable to load revision_nr.php!');
+if(!@include(__ARMORYDIRECTORY__ . '/includes/revision_nr.php')) {
+    die('<b>Error:</b> unable to load revision file!');
 }
+// Forgot what am I did here :(
 $_SESSION['last_url'] = str_replace('.php', '.xml', $_SERVER['PHP_SELF']) . '?' .str_replace('locale=', 'l=', $_SERVER['QUERY_STRING']);
+
 $armory = new Armory();
 /* Check DbVersion */
 $dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
@@ -91,14 +98,14 @@ error_reporting(E_ALL);
 if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
 }
-if(!@include('UpdateFields.php')) {
+if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
     die('<b>Error:</b> unable to load UpdateFields.php!');
 }
-if(!@include('defines.php')) {
+if(!@include(__ARMORYDIRECTORY__ . '/includes/defines.php')) {
     die('<b>Error:</b> unable to load defines.php!');
 }
 if(!defined('skip_utils_class')) {
-    if(!@include('classes/class.utils.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.utils.php')) {
         die('<b>Error:</b> unable to load utils class!');
     }
     $utils = new Utils($armory);
@@ -109,6 +116,29 @@ if(!defined('skip_utils_class')) {
     $utils->CheckConfigRealmData();
     // Check $_GET variable
     $utils->CheckVariablesForPage();
+    /*
+    // Check sessions count
+    // May be not required?
+    //TODO: think about this feature
+    $sess_count = $utils->GetSessionsCount();
+    if($sess_count >= $armory->armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession() && !defined('LIMIT_PAGE')) {
+        header('Location: limit.xml');
+    }
+    elseif($sess_count < $armory->armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession()) {
+        // we can create session
+        $utils->CreateNewSession();
+        if(defined('LIMIT_PAGE')) {
+            header('Location: index.xml');
+        }
+    }
+    elseif($sess_count < $armory->armoryconfig['maxSessionCount'] && $utils->IsCorrectSession()) {
+        // just update
+        $utils->UpdateSession();
+        if(defined('LIMIT_PAGE')) {
+            header('Location: index.xml');
+        }
+    }
+    */
 }
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
@@ -172,61 +202,61 @@ if(isset($_GET['locale'])) {
 }
 $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->GetLocale();
 if(defined('load_characters_class')) {
-    if(!@include('classes/class.characters.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.characters.php')) {
         die('<b>Error:</b> unable to load characters class!');
     }
     $characters = new Characters($armory);
 }
 if(defined('load_guilds_class')) {
-    if(!@include('classes/class.guilds.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.guilds.php')) {
         die('<b>Error:</b> unable to load guilds class!');
     }
     $guilds = new Guilds($armory);
 }
 if(defined('load_achievements_class')) {
-    if(!@include('classes/class.achievements.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.achievements.php')) {
         die('<b>Error:</b> unable to load achievements class!');
     }
     // Do not create class instance here. It should be created in Characters::GetAchievementMgr().
 }
 if(defined('load_items_class')) {
-    if(!@include('classes/class.items.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.items.php')) {
         die('<b>Error:</b> unable to load items class!');
     }
     $items = new Items($armory);
 }
 if(defined('load_mangos_class')) {
-    if(!@include('classes/class.mangos.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.mangos.php')) {
         die('<b>Error:</b> unable to load Mangos class!');
     }
     $mangos = new Mangos($armory);
 }
 if(defined('load_arenateams_class')) {
-    if(!@include('classes/class.arenateams.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.arenateams.php')) {
         die('<b>Error:</b> unable to load arenateams class!');
     }
     $arenateams = new Arenateams($armory);
 }
 if(defined('load_search_class')) {
-    if(!@include('classes/class.search.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.search.php')) {
         die('<b>Error:</b> unable to load search engine class!');
     }
     $search = new SearchMgr($armory);
 }
 if(defined('load_itemprototype_class')) {
-    if(!@include('classes/class.itemprototype.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.itemprototype.php')) {
         die('<b>Error:</b> unable to load ItemPrototype Class!');
     }
     // Do not create class instance here. It should be created in Characters or Items classes.
 }
 if(defined('load_item_class')) {
-    if(!@include('classes/class.item.php')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.item.php')) {
         die('<b>Error:</b> unable to load Item Class!');
     }
     // Do not create class instance here. It should be created in Characters or Items classes.
 }
 // Start XML parser
-if(!@include('classes/class.xmlhandler.php')) {
+if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.xmlhandler.php')) {
     die('<b>Error:</b> unable to load XML handler class!');
 }
 $xml = new XMLHandler($armory->GetLocale());

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 429
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,12 +23,11 @@
  **/
 
 define('__ARMORY__', true);
-if(!@include('../includes/classes/class.armory.php')) {
-    die('<b>Error:</b> can not load Armory class!');
+define('__ARMORYDIRECTORY__', dirname(dirname(__FILE__)));
+if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
+    die('<b>Error:</b> unable to load Armory class!');
 }
-
 $update_type = 'echo'; // Change to 'echo' to show query in you browser. Or choose 'update' to execute all queries directly to DB.
-
 $armory = new Armory();
 echo '<title>World of Warcraft Armory</title>';
 $check_builded = $armory->aDB->selectCell("SELECT `loot_builded` FROM `ARMORYDBPREFIX_db_version`");

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 366
+ * @revision 429
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -67,13 +67,13 @@ Class Armory {
      * @return   bool
      **/
     public function Armory() {
-        if(!@include('configuration.php')) {
+        if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/configuration.php')) {
             die('<b>Error</b>: unable to load configuration file!');
         }
-        if(!@require_once('class.dbhandler.php')) {
+        if(!@require_once(__ARMORYDIRECTORY__ . '/includes/classes/class.dbhandler.php')) {
             die('<b>Error</b>: unable to load database class!');
         }
-        if(!@require_once('class.debug.php')) {
+        if(!@require_once(__ARMORYDIRECTORY__ . '/includes/classes/class.debug.php')) {
             die('<b>Error</b>: unable to load debug class!');
         }
         $this->mysqlconfig  = $ArmoryConfig['mysql'];
@@ -84,7 +84,7 @@ Class Armory {
         $this->rDB = new ArmoryDatabaseHandler($this->mysqlconfig['host_realmd'], $this->mysqlconfig['user_realmd'], $this->mysqlconfig['pass_realmd'], $this->mysqlconfig['name_realmd'], $this->mysqlconfig['charset_realmd'], $this->Log());
         if(isset($_GET['r'])) {
             if(preg_match('/,/', $_GET['r'])) {
-                // Achievements/statistics comparison
+                // Achievements/statistics comparison cases
                 $rData = explode(',', $_GET['r']);
                 $realmName = urldecode($rData[0]);
             }
@@ -150,7 +150,7 @@ Class Armory {
      * Checks browser language from HTTP_ACCEPT_LANGUAGE
      * @category Armory class
      * @access   public
-     * @return   mixed
+     * @return   string
      **/
     private function IsAllowedLocale($locale) {
         switch($locale) {
@@ -161,7 +161,7 @@ Class Armory {
                 return 'en_gb';
                 break;
             case 'es':
-                return 'es_es';
+                return 'es_es'; //es_mx?
                 break;
             case 'fr':
                 return 'fr_fr';
@@ -170,9 +170,9 @@ Class Armory {
                 return 'ru_ru';
                 break;
             default:
-                return false;
                 break;
         }
+        return null;
     }
     
     /**
@@ -212,9 +212,6 @@ Class Armory {
      * @return   int
      **/
     public function GetLoc() {
-        if($this->_loc == null) {
-            return 0;
-        }
         return $this->_loc;
     }
     
@@ -222,11 +219,12 @@ Class Armory {
      * Sets locale
      * @category Armory class
      * @access   public
-     * @return   int
+     * @return   bool
      **/
     public function SetLocale($locale, $locale_id) {
         $this->_locale = $locale;
         $this->_loc    = $locale_id;
+        return true;
     }
 }
 ?>
