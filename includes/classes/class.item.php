@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 421
+ * @revision 432
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -13,7 +13,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANY WARRANTY; with`out even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -103,7 +103,7 @@ Class Item {
             if(isset($this->tc_data['enchantments'])) {
                 $this->tc_ench = explode(' ', $this->tc_data['enchantments']);
             }
-            $this->entry = $this->tc_data['itemEntry'];
+            $this->entry = (isset($this->tc_data['itemEntry'])) ? $this->tc_data['itemEntry'] : (isset($this->tc_data['item_template'])) ? $this->tc_data['item_template'] : 0;
             $this->tc_data['maxdurability'] = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $this->entry);
         }
         else {
@@ -119,6 +119,10 @@ Class Item {
         $this->m_ench = $data['enchants'];
         $this->m_socketInfo = array();
         $this->loaded = true;
+        if($this->entry == 0) {
+            $this->loaded = false;
+            return false;
+        }
         return true;
     }
     

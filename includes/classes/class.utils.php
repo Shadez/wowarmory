@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 415
+ * @revision 432
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -505,6 +505,7 @@ Class Utils {
     /**
      * Calculates pet bonus for some stats.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    int $stat
      * @param    int $value
@@ -548,6 +549,7 @@ Class Utils {
     /**
      * Returns rating coefficient for rating $id.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    array $rating
      * @param    int $id
@@ -558,10 +560,10 @@ Class Utils {
             return 1; // Do not return 0 because it will cause division by zero error.
         }
         $ratingkey = array_keys($rating);
-        if(!isset($ratingkey[44+$id]) || !isset($rating[$ratingkey[44+$id]])) {
+        if(!isset($ratingkey[44 + $id]) || !isset($rating[$ratingkey[44 + $id]])) {
             return 1;
         }
-        $c = $rating[$ratingkey[44+$id]];
+        $c = $rating[$ratingkey[44 + $id]];
         if($c == 0) {
             $c = 1;
         }
@@ -638,6 +640,7 @@ Class Utils {
     /**
      * Returns spell bonus damage.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    int $school
      * @param    int $guid
@@ -645,13 +648,14 @@ Class Utils {
      * @return   int
      **/
     public function GetSpellBonusDamage($school, $guid, $db) {
-        $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS+$school+1;
-        $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG+$school+1;
-        $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT+$school+1;
+        $field_done_pos = PLAYER_FIELD_MOD_DAMAGE_DONE_POS + $school+1;
+        $field_done_neg = PLAYER_FIELD_MOD_DAMAGE_DONE_NEG + $school+1;
+        $field_done_pct = PLAYER_FIELD_MOD_DAMAGE_DONE_PCT + $school+1;
         $damage_done_pos = $db->selectCell("
         SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)
             FROM `armory_character_stats` 
                 WHERE `guid`=%d", $field_done_pos, $guid);
+        unset($db);
         return $damage_done_pos;
     }
     
@@ -746,6 +750,7 @@ Class Utils {
     /**
      * Calculates attack power for different classes by stat mods
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    int $statIndex
      * @param    float $effectiveStat
@@ -787,6 +792,7 @@ Class Utils {
     /**
      * Calculates crit chance from agility stat.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    array $rating
      * @param    int $class
@@ -794,6 +800,9 @@ Class Utils {
      * @return   float
      **/
     public function GetCritChanceFromAgility($rating, $class, $agility) {
+        if(!is_array($rating)) {
+            return 0;
+        }
         $base = array(3.1891, 3.2685, -1.532, -0.295, 3.1765, 3.1890, 2.922, 3.454, 2.6222, 20, 7.4755);
         $ratingkey = array_keys($rating);
         if(isset($ratingkey[$class]) && isset($rating[$ratingkey[$class]]) && isset($base[$class-1])) {
@@ -804,6 +813,7 @@ Class Utils {
     /**
      * Calculates spell crit chance from intellect stat.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    array $rating
      * @param    int $class
@@ -811,6 +821,9 @@ Class Utils {
      * @return   float
      **/
     public function GetSpellCritChanceFromIntellect($rating, $class, $intellect) {
+        if(!is_array($rating)) {
+            return 0;
+        }
         $base = array(0, 3.3355, 3.602, 0, 1.2375, 0, 2.201, 0.9075, 1.7, 20, 1.8515);
         $ratingkey = array_keys($rating);
         if(isset($base[$class-1]) && isset($ratingkey[11+$class]) && isset($rating[$ratingkey[11+$class]])) {
@@ -821,12 +834,16 @@ Class Utils {
     /**
      * Calculates health regeneration coefficient.
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    array $rating
      * @param    int $class
      * @return   float
      **/
     public function GetHRCoefficient($rating, $class) {
+        if(!is_array($rating)) {
+            return 0;
+        }
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[22+$class]) || !isset($rating[$ratingkey[22+$class]])) {
             return 1;
@@ -841,12 +858,16 @@ Class Utils {
     /**
      * Calculates mana regenerating coefficient
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    array $rating
      * @param    int $class
      * @return   float
      **/
     public function GetMRCoefficient($rating, $class) {
+        if(!is_array($rating)) {
+            return 0;
+        }
         $ratingkey = array_keys($rating);
         if(!isset($ratingkey[33+$class]) || !isset($rating[$ratingkey[33+$class]])) {
             return 1;
@@ -861,6 +882,7 @@ Class Utils {
     /**
      * Returns Skill ID that required for Item $id
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    int $id
      * @return   int
@@ -899,6 +921,7 @@ Class Utils {
     /**
      * Returns skill info for skill $id
      * @category Utils class
+     * @author   Chestr (aka DiSlord)
      * @access   public
      * @param    int $id
      * @param    array $char_data
@@ -906,17 +929,17 @@ Class Utils {
      **/
     public function GetSkillInfo($id, $char_data) {
         $skillInfo = array(0,0,0,0,0,0);
-        for ($i=0;$i<128;$i++) {
-            if(($char_data[PLAYER_SKILL_INFO_1_1 + $i*3] & 0x0000FFFF) == $id) {
-                $data0 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3];
-                $data1 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 1];
-                $data2 = $char_data[PLAYER_SKILL_INFO_1_1 + $i*3 + 2];
-                $skillInfo[0]=$data0&0x0000FFFF; // skill id
-                $skillInfo[1]=$data0>>16;        // skill flag
-                $skillInfo[2]=$data1&0x0000FFFF; // skill
-                $skillInfo[3]=$data1>>16;        // max skill
-                $skillInfo[4]=$data2&0x0000FFFF; // pos buff
-                $skillInfo[5]=$data2>>16;        // neg buff
+        for ($i = 0; $i < 128; $i++) {
+            if(($char_data[PLAYER_SKILL_INFO_1_1 + $i * 3] & 0x0000FFFF) == $id) {
+                $data0 = $char_data[PLAYER_SKILL_INFO_1_1 + $i * 3];
+                $data1 = $char_data[PLAYER_SKILL_INFO_1_1 + $i * 3 + 1];
+                $data2 = $char_data[PLAYER_SKILL_INFO_1_1 + $i * 3 + 2];
+                $skillInfo[0] = $data0 & 0x0000FFFF; // skill id
+                $skillInfo[1] = $data0 >> 16;        // skill flag
+                $skillInfo[2] = $data1 & 0x0000FFFF; // skill
+                $skillInfo[3] = $data1 >> 16;        // max skill
+                $skillInfo[4] = $data2 & 0x0000FFFF; // pos buff
+                $skillInfo[5] = $data2 >> 16;        // neg buff
                 break;
             }
         }
