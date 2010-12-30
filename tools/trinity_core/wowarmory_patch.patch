@@ -109,6 +109,7 @@ diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/U
 +                    {
 +                        /** World of Warcraft Armory **/
 +                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
++                        ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        /** World of Warcraft Armory **/
 +                    }
                  }

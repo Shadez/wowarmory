@@ -122,6 +122,7 @@ index cf5b7a6..8a0d189 100644
 +                        {
                              ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                            /** World of Warcraft Armory **/
++                            ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                            creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry); // Difficulty will be defined in Player::WriteWowArmoryDatabaseLog();
 +                            /** World of Warcraft Armory **/
 +                        }
