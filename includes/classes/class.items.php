@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 436
+ * @revision 437
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -797,45 +797,26 @@ Class Items {
     }
     
     /**
-     * Returns array with current/max item durability for selected ($guid) character
-     * @category Items class
-     * @access   public
-     * @param    int $guid
-     * @param    int $item
-     * @return   array
-     **/
-    public function GetItemDurability($guid, $item) {
-        switch($this->armory->currentRealmInfo['type']) {
-            case 'mangos':
-                $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, $guid, $item);
-                $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, $guid, $item);
-                break;
-            case 'trinity':
-                $durability['current'] = $this->armory->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `owner_guid`=%d AND `guid`=%d", $guid, $item);
-                $durability['max'] = self::GetItemInfo($item, 'durability');
-                break;
-        }
-        return $durability;
-    }
-    
-    /**
      * Returns max/current item durability by item guid
      * @category Items class
      * @access   public
      * @param    int $item_guid
+     * @param    int $serverType
      * @return   array
      **/
-    public function GetItemDurabilityByItemGuid($item_guid) {
+    public function GetItemDurabilityByItemGuid($item_guid, $serverType) {
         $durability = array('current' => 0, 'max' => 0);
-        switch($this->armory->currentRealmInfo['type']) {
-            case 'mangos':
+        switch($serverType) {
+            case SERVER_MANGOS:
                 $durability['current'] = self::GetItemDataField(ITEM_FIELD_DURABILITY, 0, 0, $item_guid);
                 $durability['max'] = self::GetItemDataField(ITEM_FIELD_MAXDURABILITY, 0, 0, $item_guid);
                 break;
-            case 'trinity':
+            case SERVER_TRINITY:
                 $durability['current'] = $this->armory->cDB->selectCell("SELECT `durability` FROM `item_instance` WHERE `guid`=%d", $item_guid);
                 $itemEntry = self::GetItemEntryByGUID($item_guid);
                 $durability['max'] = self::GetItemInfo($itemEntry, 'durability');
+                break;
+            default:
                 break;
         }
         return $durability;

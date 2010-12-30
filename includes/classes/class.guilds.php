@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 402
+ * @revision 437
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -133,8 +133,12 @@ Class Guilds {
             return false;
         }
         $this->guildId = $this->armory->cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`='%s' LIMIT 1", $this->guildName);
-        if($serverType <= 0 || $serverType > SERVER_TRINITY) {
+        if($serverType < SERVER_MANGOS || $serverType > SERVER_TRINITY) {
             $this->armory->Log()->writeError('%s : unknown server type (%d). Set m_server to SERVER_MANGOS (%d)', __METHOD__, $serverType, SERVER_MANGOS);
+            $this->m_server = SERVER_MANGOS;
+        }
+        else {
+            $this->m_server = $serverType;
         }
         if($this->guildId) {
             return true;
@@ -300,7 +304,7 @@ Class Guilds {
         $count_items = count($items_list);
         for($i = 0; $i < $count_items; $i++) {
             $item_data = $this->armory->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry` = %d LIMIT 1", $items_list[$i]['id']);
-            $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed']);
+            $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed'], $this->m_server);
             $items_list[$i]['durability'] = (int) $tmp_durability['current'];
             $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
             $items_list[$i]['icon'] = Items::GetItemIcon($items_list[$i]['id']);
