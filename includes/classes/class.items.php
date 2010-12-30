@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 433
+ * @revision 434
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2582,13 +2582,18 @@ Class Items {
      * @access   public
      * @param    string $key
      * @param    string $row = 'type'
+     * @param    string $type = null
      * @return   int
      **/
-    public function GetItemTypeInfo($key, $row = 'type') {
-        if($key == 'all' || ($row != 'type' && $row != 'subtype')) {
-            return false;
+    public function GetItemTypeInfo($key, $row = 'type', $type = null) {
+        if(($key == 'all' && $type == null) || (!in_array($row, array('type', 'subtype')))) {
+            return -1;
         }
-        return $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
+        $info = $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $key);
+        if(!$info) {
+            $info = $this->armory->aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $row, $type);
+        }
+        return $info;
     }
     
     /**

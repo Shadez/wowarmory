@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 433
+ * @revision 434
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -832,8 +832,16 @@ Class SearchMgr {
             if($this->get_array['type'] != 'all') {
                 $type_info = Items::GetItemTypeInfo($this->get_array['type'], 'type');
             }
-            if((isset($this->get_array['subTp'])) && $this->get_array['subTp'] != 'all') {
-                $subType_info = Items::GetItemTypeInfo($this->get_array['subTp'], 'subtype');
+            if((isset($this->get_array['subTp']))) {
+                if($this->get_array['subTp'] != 'all') {
+                    $subType_info = Items::GetItemTypeInfo($this->get_array['subTp'], 'subtype');
+                }
+                elseif($this->get_array['subTp'] == 'all' && in_array($this->get_array['type'], array('mounts', 'minipets', 'misc', 'reagents'))) {
+                    $subType_info = Items::GetItemTypeInfo($this->get_array['subTp'], 'subtype', $this->get_array['type']);
+                }
+            }
+            elseif(in_array($this->get_array['type'], array('mounts', 'minipets', 'misc', 'reagents'))) {
+                $subType_info = Items::GetItemTypeInfo('all', 'subtype', $this->get_array['type']);
             }
             if($type_info != -1 && $subType_info != -1)  {
                 $sql .= sprintf(" (`item_template`.`class`='%d' AND `item_template`.`subclass`='%d') AND", $type_info, $subType_info);
