@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 432
+ * @revision 433
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -282,7 +282,7 @@ Class Utils {
                 elseif($realm['level'] >= $this->armory->armoryconfig['minlevel'] && $realm['level'] <= 79) {
                     $realm['relevance'] = $realm['level'];
                 }
-                elseif($realm['level'] == PLAYER_MAX_LEVEL) {
+                elseif($realm['level'] == MAX_PLAYER_LEVEL) {
                     $realm['relevance'] = 100;
                 }
                 else {

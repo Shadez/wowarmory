@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 423
+ * @revision 433
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -611,7 +611,7 @@ Class SearchMgr {
                 // Relevance by last login date will check `realmd`.`account`.`last_login` timestamp
                 // First of all - check character level
                 $temp_value = $realm['level'];
-                if($temp_value > 70 && $temp_value < PLAYER_MAX_LEVEL) {
+                if($temp_value > 70 && $temp_value < MAX_PLAYER_LEVEL) {
                     $realm['relevance'] -= 20;
                 }
                 elseif($temp_value > 60 && $temp_value < 70) {
@@ -812,7 +812,7 @@ Class SearchMgr {
             $sql .= "
             FROM `item_template` WHERE";
         }
-        if(isset($this->get_array['rqrMin']) && isset($this->get_array['rqrMax']) && ($this->get_array['rqrMin'] > 0 || $this->get_array['rqrMax'] > 0) /*<= PLAYER_MAX_LEVEL*/) {
+        if(isset($this->get_array['rqrMin']) && isset($this->get_array['rqrMax']) && ($this->get_array['rqrMin'] > 0 || $this->get_array['rqrMax'] > 0) /*<= MAX_PLAYER_LEVEL*/) {
             if($this->get_array['rqrMin'] > 0 && $this->get_array['rqrMax'] > 0) {
                 $sql .= sprintf(" (`item_template`.`RequiredLevel` >= %d AND `item_template`.`RequiredLevel` <= %d) AND", (int) $this->get_array['rqrMin'], (int) $this->get_array['rqrMax']);
             }

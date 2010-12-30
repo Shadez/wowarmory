@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 420
+ * @revision 433
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1714,7 +1714,7 @@ Class Items {
         }
         // Check for ScalingStatDistribution (Heirloom items)
         $ssd = $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_ssd` WHERE `entry`=%d LIMIT 1", $proto->ScalingStatDistribution);
-        $ssd_level = PLAYER_MAX_LEVEL;
+        $ssd_level = MAX_PLAYER_LEVEL;
         if($isCharacter) {
             $ssd_level = $characters->GetLevel();
             if($ssd && $ssd_level > $ssd['MaxLevel']) {
