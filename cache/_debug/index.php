@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 338
+ * @revision 438
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -34,7 +34,7 @@ if(isset($ArmoryConfig) && is_array($ArmoryConfig) && $ArmoryConfig['settings'][
     echo sprintf("<strong>Armory revision:</strong> %d<br />
     <strong>DB Version:</strong> %s<br />
     Configuration values are:<br />
-    <strong>ArmoryConfig['settings']['configVersion']</strong> = %d<br />
+    <strong>ArmoryConfig['settings']['configVersion']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['useCache']</strong> = %s<br />
     <strong>ArmoryConfig['settings']['cache_lifetime']</strong> = %d<br />
     <strong>ArmoryConfig['settings']['minlevel']</strong> = %d<br />
