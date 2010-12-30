@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 434
+ * @revision 436
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1702,6 +1702,11 @@ Class Items {
             if($item) {
                 $proto = $item->GetProto();
             }
+            else {
+                // Wrong item, nothing to do here.
+                $this->armory->Log()->writeError('%s : wrong item handler for itemID #%d, character GUID: %d', __METHOD__, $itemID, $characters->GetGUID());
+                return false;
+            }
         }
         if(!$proto) {
             // Maybe we haven't any character? Let's find itemproto by entry.
@@ -2101,7 +2106,7 @@ Class Items {
         $xml->XMLWriter()->endElement(); //socketData
         // Durability
         if($isCharacter) {
-            $item_durability = self::GetItemDurability($characters->GetGUID(), $characters->GetEquippedItemGuidBySlot($itemSlotName));
+            $item_durability = $item->GetItemDurability();
         }
         else {
             $item_durability = array('current' => $proto->MaxDurability, 'max' => $proto->MaxDurability);
