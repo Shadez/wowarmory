@@ -4,7 +4,7 @@
  * @package World of Warcraft Armory
  * @version Release Candidate 1
  * @revision 399
- * @copyright (c) 2009-2010 Shadez
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -38,11 +38,19 @@ Class Arenateams {
     public $guid;
     private $gameid = false;
     
+    /**
+     * Class constructor
+     * @category Arenateams class
+     * @access   public
+     * @param    object $armory
+     * @return   bool
+     **/
     public function Arenateams($armory) {
         if(!is_object($armory)) {
             die('<b>Fatal Error:</b> armory must be instance of Armory class!');
         }
         $this->armory = $armory;
+        return true;
     }
     
     /**
@@ -90,11 +98,11 @@ Class Arenateams {
         $arenateaminfo['data'] = $this->armory->cDB->selectRow("
         SELECT
         `rating`,
-        `games`  AS `gamesPlayed`,
-        `wins`   AS `gamesWon`,
+        `games_week`  AS `gamesPlayed`,
+        `wins_week`   AS `gamesWon`,
         `rank`   AS `ranking`,
-        `played` AS `seasonGamesPlayed`,
-        `wins2`  AS `seasonGamesWon`
+        `games_season` AS `seasonGamesPlayed`,
+        `wins_season`  AS `seasonGamesWon`
         FROM `arena_team_stats` WHERE `arenateamid`=%d", $this->arenateamid);
         if(!$arenateaminfo) {
             $this->armory->Log()->writeError('%s : unable to get data from DB for arenateam %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
@@ -133,14 +141,12 @@ Class Arenateams {
             $this->armory->Log()->writeError('%s : teamname and arenateamid are not defined', __METHOD__);
             return false;
         }
-        $check = false;
         if($this->teamname != null) {
-            $check = $this->armory->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`='%s' LIMIT 1", $this->teamname);
+            return $this->armory->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `name`='%s' LIMIT 1", $this->teamname);
         }
         elseif($this->arenateamid != 0) {
-            $check = $this->armory->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `arenateamid`=%d LIMIT 1", $this->arenateamid);
+            return $this->armory->cDB->selectCell("SELECT 1 FROM `arena_team` WHERE `arenateamid`=%d LIMIT 1", $this->arenateamid);
         }
-        return $check;
     }
     
     /**
@@ -172,7 +178,7 @@ Class Arenateams {
      * Generates arena team member list
      * @category Arenateams class
      * @access   public
-     * @return   array
+     * @return   bool
      **/
     public function GetTeamList() {
         if($this->armory->currentRealmInfo['type'] == 'mangos') {
@@ -233,6 +239,7 @@ Class Arenateams {
             $this->players[$i]['charUrl'] = sprintf('r=%s&cn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($this->players[$i]['name']));
             unset($this->players[$i]['guid']);
         }
+        return true;
     }
     
     /**
@@ -266,11 +273,11 @@ Class Arenateams {
                 `arena_team`.`arenateamid`,
                 `arena_team`.`name`,
                 `arena_team_stats`.`rating`,
-                `arena_team_stats`.`games`  AS `gamesPlayed`,
-                `arena_team_stats`.`wins`   AS `gamesWon`,
+                `arena_team_stats`.`games_week`  AS `gamesPlayed`,
+                `arena_team_stats`.`wins_week`   AS `gamesWon`,
                 `arena_team_stats`.`rank`   AS `ranking`,
-                `arena_team_stats`.`played` AS `seasonGamesPlayed`,
-                `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
+                `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
                 `characters`.`race`,
                 `arena_team_stats`.`played`-`arena_team_stats`.`wins2` AS `lose`
                 FROM `arena_team` AS `arena_team`
@@ -285,11 +292,11 @@ Class Arenateams {
                 `arena_team`.`arenateamid`,
                 `arena_team`.`name`,
                 `arena_team_stats`.`rating`,
-                `arena_team_stats`.`games`  AS `gamesPlayed`,
-                `arena_team_stats`.`wins`   AS `gamesWon`,
+                `arena_team_stats`.`games_week`  AS `gamesPlayed`,
+                `arena_team_stats`.`wins_week`   AS `gamesWon`,
                 `arena_team_stats`.`rank`   AS `ranking`,
-                `arena_team_stats`.`played` AS `seasonGamesPlayed`,
-                `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
+                `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
                 `characters`.`race`
                 FROM `arena_team` AS `arena_team`
                 LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
@@ -341,16 +348,16 @@ Class Arenateams {
         }
         if($db == null) {
             $arenaTeamEmblem = $this->armory->cDB->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
-            $arenaTeamEmblem['background'] = /*dechex(*/$arenaTeamEmblem['background']/*)*/;
-            $arenaTeamEmblem['borderColor'] = /*dechex(*/$arenaTeamEmblem['borderColor']/*)*/;
-            $arenaTeamEmblem['iconColor'] = /*dechex(*/$arenaTeamEmblem['iconColor']/*)*/;
+            $arenaTeamEmblem['background'] = $arenaTeamEmblem['background'];
+            $arenaTeamEmblem['borderColor'] = $arenaTeamEmblem['borderColor'];
+            $arenaTeamEmblem['iconColor'] = $arenaTeamEmblem['iconColor'];
             return $arenaTeamEmblem;
         }
         elseif(is_object($db)) {
             $arenaTeamEmblem = $db->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
-            $arenaTeamEmblem['background'] = /*dechex(*/$arenaTeamEmblem['background']/*)*/;
-            $arenaTeamEmblem['borderColor'] = /*dechex(*/$arenaTeamEmblem['borderColor']/*)*/;
-            $arenaTeamEmblem['iconColor'] = /*dechex(*/$arenaTeamEmblem['iconColor']/*)*/;
+            $arenaTeamEmblem['background'] = $arenaTeamEmblem['background'];
+            $arenaTeamEmblem['borderColor'] = $arenaTeamEmblem['borderColor'];
+            $arenaTeamEmblem['iconColor'] = $arenaTeamEmblem['iconColor'];
             return $arenaTeamEmblem;
         }
     }
@@ -367,7 +374,7 @@ Class Arenateams {
         foreach($this->armory->realmData as $realm_info) {
             $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
             $current_count = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `type`=%d", $type);
-            $summary = $summary+$current_count;
+            $summary += $current_count;
         }
         return $summary;
     }
@@ -380,9 +387,7 @@ Class Arenateams {
      * @return   int
      **/
     public function CountPageNum($type) {
-        $all_teams = self::CountArenaTeams($type);
-        $result = round($all_teams/20);
-        return $result;
+        return round(self::CountArenaTeams($type) / 20);
     }
     
     /**
@@ -393,9 +398,7 @@ Class Arenateams {
      * @return   bool
      **/
     public function SetGameID($gameid) {
-        if($gameid > 0) {
-            $this->gameid = $gameid;
-        }
+        $this->gameid = $gameid;
         return true;
     }
     
@@ -475,8 +478,8 @@ Class Arenateams {
                     'emblemIconColor' => $team_member['emblemIconColor'],
                     'emblemIconStyle' => $team_member['emblemIconStyle'],
                     'name' => $team_member['name'],
-                    'ratingDelta' => ($team_member['changeType'] == 1) ? $team_member['ratingChange'] : '-'.$team_member['ratingChange'],
-                    'ratingNew' => ($team_member['changeType'] == 1) ? $team_member['teamRating']+$team_member['ratingChange'] : $team_member['teamRating']-$team_member['ratingChange'],
+                    'ratingDelta' => ($team_member['changeType'] == 1) ? $team_member['ratingChange'] : '-' . $team_member['ratingChange'],
+                    'ratingNew' => ($team_member['changeType'] == 1) ? $team_member['teamRating']+$team_member['ratingChange'] : $team_member['teamRating'] - $team_member['ratingChange'],
                     'realm' => $this->armory->currentRealmInfo['name'],
                     'result' => ($team_member['changeType'] == 1) ? 'win' : 'loss',
                     'teamUrl' => sprintf('r=%s&ts=%d&t=%s', urlencode($this->armory->currentRealmInfo['name']), $team_member['type'], urlencode($team_member['name']))
@@ -528,18 +531,13 @@ Class Arenateams {
             return false;
         }
         if(count($game_ids) < 2) {
-            $this->armory->Log()->writeLog('%s : arenateamid %d have less than 2 matches played. Showing results has been disabled to prevent browser crash.', __METHOD__, $this->arenateamid);
+            $this->armory->Log()->writeLog('%s : arenateamid %d has less than 2 matches played. Showing results has been disabled to prevent browser crash.', __METHOD__, $this->arenateamid);
             return false;
         }
-        $game_ids_str = null;
+        $all_games = array();
         $counter = count($game_ids);
-        for($i = 0; $i < $counter; $i++) {
-            if($i) {
-                $game_ids_str .= ', ' . $game_ids[$i]['gameid'];
-            }
-            else {
-                $game_ids_str .= $game_ids[$i]['gameid'];
-            }
+        foreach($game_ids as $game) {
+            $all_games[] = $game['gameid'];
         }
         $game_chart = $this->armory->cDB->select("
         SELECT
@@ -554,21 +552,21 @@ Class Arenateams {
         `arena_team`.`type`
         FROM `armory_game_chart` AS `armory_game_chart`
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`armory_game_chart`.`teamid`
-        WHERE `armory_game_chart`.`gameid` IN (%s) AND `armory_game_chart`.`teamid` <> %d", $game_ids_str, $this->arenateamid);
+        WHERE `armory_game_chart`.`gameid` IN (%s) AND `armory_game_chart`.`teamid` <> %d", $all_games, $this->arenateamid);
         if(!$game_chart) {
-            $this->armory->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches (%s) from characters DB (arenateamid:%d)', __METHOD__, $game_ids_str, $this->arenateamid);
+            $this->armory->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches from characters DB (arenateamid:%d)', __METHOD__, $this->arenateamid);
             return false;
         }
         $chart_data = array();
         foreach($game_chart as $team) {
-            if(!isset($chart_data[$team['gameid']])) { // Do not add same games more then 1 time
+            if(!isset($chart_data[$team['gameid']])) { // Do not add same games more than 1 time
                 $chart_data[$team['gameid']] = array(
                     'deleted' => ($this->TeamExists($team['teamid'])) ? 'false' : 'true',
                     'id' => $team['gameid'],
                     'ot' => $team['name'],
-                    'r' => ($team['changeType'] == 1) ? $team['teamRating']+$team['ratingChange'] : $team['teamRating']-$team['ratingChange'],
-                    'reamOffset' => 3600000, // hardcode
-                    'st' => $team['start'], // need to be fixed (change to timestamp)
+                    'r' => ($team['changeType'] == 1) ? $team['teamRating'] + $team['ratingChange'] : $team['teamRating']-$team['ratingChange'],
+                    'reamOffset' => 3600000, // hardcoded
+                    'st' => $team['start'], // needs to be fixed (change to timestamp)
                     'teamUrl' => sprintf('r=%s&ts=%d&t=%s', urlencode($this->armory->currentRealmInfo['name']), $team['type'], urlencode($team['name']))
                 );
             }
@@ -592,15 +590,10 @@ Class Arenateams {
             $this->armory->Log()->writeLog('%s : unable to find any game for teamId %d', __METHOD__, $this->arenateamid);
             return false;
         }
-        $game_ids_str = null;
+        $all_games = array();
         $counter = count($game_ids);
-        for($i = 0 ; $i < $counter; $i++) {
-            if($i) {
-                $game_ids_str .= ', ' . $game_ids[$i]['gameid'];
-            }
-            else {
-                $game_ids_str .= $game_ids[$i]['gameid'];
-            }
+        foreach($game_ids as $game) {
+            $all_games[] = $game['gameid'];
         }
         $game_chart = $this->armory->cDB->select("
         SELECT
@@ -613,15 +606,15 @@ Class Arenateams {
         FROM `armory_game_chart` AS `armory_game_chart`
         LEFT JOIN `arena_team` AS `arena_team` ON `arena_team`.`arenateamid`=`armory_game_chart`.`teamid`
         WHERE `armory_game_chart`.`gameid` IN (%s) AND `armory_game_chart`.`teamid` <> %d
-        GROUP BY `armory_game_chart`.`gameid`", $game_ids_str, $this->arenateamid);
+        GROUP BY `armory_game_chart`.`gameid`", $all_games, $this->arenateamid);
         if(!$game_chart) {
-            $this->armory->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches (%s) from characters DB (arenateamid:%d)', __METHOD__, $game_ids_str, $this->arenateamid);
+            $this->armory->Log()->writeError('%s : game_ids were fetched from DB, but script was unable to get data for these matches from characters DB (arenateamid:%d)', __METHOD__, $this->arenateamid);
             return false;
         }
         $chart_data = array();
         foreach($game_chart as $team) {
-            if(!isset($chart_data[$team['teamid']])) { // Add 1 team in 1 time
-                $rating_change = $this->armory->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=%d AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
+            if(!isset($chart_data[$team['teamid']])) { // Do not add same teams more than 1 time
+                $rating_change = $this->armory->cDB->select("SELECT `gameid`, `changeType`, `ratingChange` FROM `armory_game_chart` WHERE `teamid`=%d AND `gameid` IN (%s)", $team['teamid'], $all_games);
                 $rd = 0;
                 if($rating_change) {
                     $exists = array();
@@ -637,7 +630,7 @@ Class Arenateams {
                         }
                     }
                 }
-                $losses = $this->armory->cDB->selectCell("SELECT COUNT(`gameid`) FROM `armory_game_chart` WHERE `changeType`=1 AND `teamid`='%d' AND `gameid` IN (%s)", $team['teamid'], $game_ids_str);
+                $losses = $this->armory->cDB->selectCell("SELECT COUNT(`gameid`) FROM `armory_game_chart` WHERE `changeType`=1 AND `teamid`='%d' AND `gameid` IN (%s)", $team['teamid'], $all_games);
                 $chart_data[$team['teamid']] = array(
                     'deleted'  => ($this->TeamExists($team['teamid'])) ? 'false' : 'true',
                     'games'    => $team['countTeam'],

@@ -1,15 +1,15 @@
 Attention!
-Currently 3D Viewer is not completed full - there's no animations, saving character poses 
+Currently 3D Viewer is not completed full - there's no saving character poses, full screen modes
 and some other features.
 
-For correctly work, you need to download an archive with textures (rather large file - 198 MB).
+For correct work, you need to download an archive with textures (rather large file - 198 MB).
 
-'models' folder from the archive should be placed in the root of the site. The unpacked file is approximately 420 megabytes.
+'models' folder from the archive should be placed in the root of the site. The unpacked files are approximately 420 megabytes.
 
 If you have some troubles, report on forum:
-http://getmangos.com/community/showthread.php?12096-World-of-Warcraft-Armory
+http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 
-You can find textures archive on filekeeper.org (when it will be uploaded on FTP server):
+You can find textures archive on filekeeper.org:
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Direct link:
 http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
@@ -17,7 +17,7 @@ http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
 -----------------------
 
 Внимание!
-На данный момент 3D Viewer не завершен полностью - отсутствует проигрывание анимаций, сохранение позы персонажа 
+На данный момент 3D Viewer не завершен полностью - отсутствует сохранение позы персонажа, поддержка проигрывания в полном экране
 и некоторые другие возможности.
 
 Для корректной работы необходимо скачать архив с текстурами (архив довольно большой - 198 мегабайт).
@@ -25,9 +25,9 @@ http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
 Папку 'models' из архива необходимо поместить в корень сайта. Распакованные файлы занимают примерно 420 мегабайт.
 
 Если у вас возникли какие-либо затруднения, пишите на форум:
-http://getmangos.com/community/showthread.php?12096-World-of-Warcraft-Armory
+http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 
-Архив с текстурами можно найти на filekeeper.org (как только будет загружен на ФТП сервер):
+Архив с текстурами можно найти на filekeeper.org:
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Прямая ссылка:
 http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z

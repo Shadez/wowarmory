@@ -4,7 +4,7 @@
  * @package World of Warcraft Armory
  * @version Release Candidate 1
  * @revision 422
- * @copyright (c) 2009-2010 Shadez
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -518,7 +518,7 @@ Class Achievements {
                 $return_data['incompleted'][$this->achId]['data'] = $achievement;
                 $return_data['incompleted'][$this->achId]['data']['categoryId'] = $page_id;
                 $return_data['incompleted'][$this->achId]['display'] = 1;
-                if(isset($return_data['incompleted'][$this->achId]['data']['titleReward']) && $return_data['incompleted'][$this->achId]['data']['titleReward'] != '') {
+                if(isset($return_data['incompleted'][$this->achId]['data']['titleReward']) && $return_data['incompleted'][$this->achId]['data']['titleReward'] != null) {
                     $return_data['incompleted'][$this->achId]['data']['reward'] = $return_data['incompleted'][$this->achId]['data']['titleReward'];
                     unset($return_data['incompleted'][$this->achId]['data']['titleReward']);
                 }
@@ -536,19 +536,19 @@ Class Achievements {
      * @return   array
      **/
     private function BuildAchievementCriteriaTable() {
-        if($this->armory->GetLocale() == 'es_es' || $this->armory->GetLocale() == 'es_mx') {
+        if(in_array($this->armory->GetLocale(), array('es_es', 'es_mx'))) {
             $locale = 'en_gb';
         }
         else {
             $locale = $this->armory->GetLocale();
         }
         if(!$this->guid || !$this->achId) {
-            $this->armory->Log()->writeError('%s : player guid or achievement id not defiend (guid: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
+            $this->armory->Log()->writeError('%s : player guid or achievement id is not defiend (GUID: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
             return false;
         }
         $data = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
         if(!$data) {
-            $this->armory->Log()->writeError('%s : achievement criteria for achievement #%d not found', __METHOD__, $this->achId);
+            $this->armory->Log()->writeError('%s : achievement criteria for achievement #%d was not found', __METHOD__, $this->achId);
             return false;
         }
         $i = 0;
@@ -566,7 +566,7 @@ Class Achievements {
                 $achievement_criteria[$i]['date'] = date('Y-m-d\TH:i:s\+01:00', $m_data['date']);
             }
             $achievement_criteria[$i]['name'] = $criteria['name_'.$locale];
-            if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag']&ACHIEVEMENT_FLAG_COUNTER) {
+            if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_SHOW_PROGRESS_BAR || $criteria['completionFlag'] & ACHIEVEMENT_FLAG_COUNTER) {
                 if($criteria['completionFlag']&ACHIEVEMENT_CRITERIA_FLAG_MONEY_COUNTER) {
                     $achievement_criteria[$i]['maxQuantityGold'] = $criteria['value'];
                     $money = Mangos::GetMoney($m_data['counter']);
@@ -612,8 +612,8 @@ Class Achievements {
             $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $achievements_data = $this->armory->aDB->select(
-        "SELECT `id`, `name_%s` AS `name`, `description_%s` AS `desc`, `categoryId`
+        $achievements_data = $this->armory->aDB->select("
+        SELECT `id`, `name_%s` AS `name`, `description_%s` AS `desc`, `categoryId`
             FROM `ARMORYDBPREFIX_achievement`
                 WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", $this->armory->GetLocale(), $this->armory->GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
@@ -663,7 +663,7 @@ Class Achievements {
         if(!$criteria_ids) {
             return false;
         }
-        $tmp_criteria_value = '--';
+        $tmp_criteria_value = null;
         foreach($criteria_ids as $criteria) {
             $tmp_criteria_value = $this->db->selectCell("SELECT `counter` FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d LIMIT 1", $this->guid, $criteria['id']);
             if(!$tmp_criteria_value) {

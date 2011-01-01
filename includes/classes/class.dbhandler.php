@@ -4,7 +4,7 @@
  * @package World of Warcraft Armory
  * @version Release Candidate 1
  * @revision 420
- * @copyright (c) 2009-2010 Shadez
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -99,7 +99,6 @@ Class ArmoryDatabaseHandler {
         $this->armory_prefix = $prefix;
         $this->server_version = $this->selectCell("SELECT VERSION()");
         $this->connected = true;
-        //$this->logHandler->writeLog('%s : connection to MySQL database was successfully established.', __METHOD__);
         return true;
     }
     
@@ -137,7 +136,6 @@ Class ArmoryDatabaseHandler {
         $make_array = array();
         $query_start = microtime(true);
         $this->queryCount++;
-        //$this->logHandler->writeSql('%s', $safe_sql);
         $performed_query = @mysql_query($safe_sql, $this->connectionLink);
         $this->errmsg = @mysql_error($this->connectionLink);
         $this->errno = @mysql_errno($this->connectionLink);
@@ -292,7 +290,7 @@ Class ArmoryDatabaseHandler {
         @mysql_close($this->connectionLink);
         $this->DropLastErrors();
         $this->DropCounters();
-        //$this->logHandler->writeLog('%s : connection closed.', __METHOD__);
+        return true;
     }
     
     public function GetServerVersion() {

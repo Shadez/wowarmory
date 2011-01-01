@@ -4,7 +4,7 @@
  * @package World of Warcraft Armory
  * @version Release Candidate 1
  * @revision 257
- * @copyright (c) 2009-2010 Shadez
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -42,7 +42,7 @@ if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
-$characters->BuildCharacter($name, $realmId);
+$characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
 if($_GET['r'] === false || !$armory->currentRealmInfo) {
     $isCharacter = false;

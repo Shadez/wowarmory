@@ -4,7 +4,7 @@
  * @package World of Warcraft Armory
  * @version Release Candidate 1
  * @revision 398
- * @copyright (c) 2009-2010 Shadez
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -168,9 +168,10 @@ $xml->XMLWriter()->startElement('talentSpecs');
 $talent_data = $characters->CalculateCharacterTalents();
 $current_tree = array();
 $activeSpec = $characters->GetActiveSpec();
+$talent_spec = null;
 if($talent_data && is_array($talent_data)) {
     $specCount = $characters->GetSpecCount();
-    for($i=0;$i<$specCount;$i++) {
+    for($i = 0; $i < $specCount; $i++) {
         $current_tree[$i] = $utils->GetMaxArray($talent_data['points'][$i]);
         $talent_spec[$i] = array(
             'group' => $i+1,
@@ -184,20 +185,22 @@ if($talent_data && is_array($talent_data)) {
             $talent_spec[$i]['active'] = 1;
         }
     }
-    foreach($talent_spec as $m_spec) {
-        if($utils->IsWriteRaw()) {
-            $xml->XMLWriter()->writeRaw('<talentSpec');
-            foreach($m_spec as $spec_key => $spec_value) {
-                $xml->XMLWriter()->writeRaw(' ' . $spec_key .'="' . $spec_value . '"');
+    if(is_array($talent_spec)) {
+        foreach($talent_spec as $m_spec) {
+            if($utils->IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<talentSpec');
+                foreach($m_spec as $spec_key => $spec_value) {
+                    $xml->XMLWriter()->writeRaw(' ' . $spec_key .'="' . $spec_value . '"');
+                }
+                $xml->XMLWriter()->writeRaw('/>');
             }
-            $xml->XMLWriter()->writeRaw('/>');
-        }
-        else {
-            $xml->XMLWriter()->startElement('talentSpec');
-            foreach($m_spec as $spec_key => $spec_value) {
-                $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
+            else {
+                $xml->XMLWriter()->startElement('talentSpec');
+                foreach($m_spec as $spec_key => $spec_value) {
+                    $xml->XMLWriter()->writeAttribute($spec_key, $spec_value);
+                }
+                $xml->XMLWriter()->endElement(); //talentSpec
             }
-            $xml->XMLWriter()->endElement(); //talentSpec
         }
     }
 }
@@ -411,5 +414,10 @@ if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-sheet');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
+echo '<!-- Database statistics:
+';
+print_r($characters->GetDB()->GetStatistics());
+echo '
+--> ';
 exit;
 ?>
