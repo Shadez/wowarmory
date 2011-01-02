@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 422
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,9 +27,7 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Achievements {
-    
-    public $armory = null;
-    
+
     /**
      * Character guid
      * @category Achievements class
@@ -63,21 +61,6 @@ Class Achievements {
     private $db = null;
     
     /**
-     * Class constructor, assigns $armory instance.
-     * @category Achievements class
-     * @access   public
-     * @param    Armory $armory
-     * @return   bool
-     **/
-    public function Achievements($armory) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
-        return true;
-    }
-    
-    /**
      * Creates Achievement class instance
      * @category Achievements class
      * @access   public
@@ -89,7 +72,7 @@ Class Achievements {
     public function InitAchievements($player_guid, $db, $check = true) {
         $this->db = $db;
         if($player_guid <= 0) {
-            $this->armory->Log()->writeError('%s : wrong player guid (%d), ignore.', __METHOD__, $player_guid);
+            Armory::Log()->writeError('%s : wrong player guid (%d), ignore.', __METHOD__, $player_guid);
             return false;
         }
         // Clear values before recalculation
@@ -98,7 +81,7 @@ Class Achievements {
         $this->m_count = 0;
         $this->pts     = 0;
         if($check == true && !$this->db->selectCell("SELECT 1 FROM `characters` WHERE `guid`=%d LIMIT 1", $player_guid)) {
-            $this->armory->Log()->writeError('%s : player with guid %d was not found in `characters` table!', __METHOD__, $player_guid);
+            Armory::Log()->writeError('%s : player with guid %d was not found in `characters` table!', __METHOD__, $player_guid);
             return false;
         }
         $this->guid = $player_guid;
@@ -116,7 +99,7 @@ Class Achievements {
      **/
     public function GetAchievementPoints() {
         if(!$this->b_isInitialized) {
-            $this->armory->Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
+            Armory::Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
             return false;
         }
         return $this->pts;
@@ -130,7 +113,7 @@ Class Achievements {
      **/
     public function GetAchievementsCount() {
         if(!$this->b_isInitialized) {
-            $this->armory->Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
+            Armory::Log()->writeError('%s : unexpected method call: class was not initialized.', __METHOD__);
             return false;
         }
         return $this->m_count;
@@ -144,19 +127,19 @@ Class Achievements {
      **/
     public function CalculateAchievementPoints() {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievement_ids = $this->db->select("SELECT `achievement` FROM `character_achievement` WHERE `guid`=%d", $this->guid);
         if(!$achievement_ids) {
-            $this->armory->Log()->writeError('%s : unable to find any completed achievements for player %d', __METHOD__, $this->guid);
+            Armory::Log()->writeError('%s : unable to find any completed achievements for player %d', __METHOD__, $this->guid);
             return false;
         }
         $ids = array();
         foreach($achievement_ids as $_tmp) {
             $ids[] = $_tmp['achievement'];
         }
-        $this->pts = $this->armory->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
+        $this->pts = Armory::$aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
         return $this->pts;
     }
     
@@ -168,7 +151,7 @@ Class Achievements {
      **/
     public function CountCharacterAchievements() {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $this->m_count = $this->db->selectCell("SELECT COUNT(`achievement`) FROM `character_achievement` WHERE `guid`=%d", $this->guid);
@@ -184,7 +167,7 @@ Class Achievements {
      **/
     public function GetSummaryAchievementData($category) {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievement_data = array('categoryId' => $category);
@@ -241,9 +224,9 @@ Class Achievements {
                 break;
         }
         if($categories != 0) {
-            $id_in_category = $this->armory->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement` WHERE `categoryId` IN (%s)", $categories);
+            $id_in_category = Armory::$aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement` WHERE `categoryId` IN (%s)", $categories);
             if(!$id_in_category) {
-                $this->armory->Log()->writeError('%s : unable to find any achievements in %s category', __METHOD__, $categories);
+                Armory::Log()->writeError('%s : unable to find any achievements in %s category', __METHOD__, $categories);
             }
             $a_ids = array();
             if(is_array($id_in_category)) {
@@ -262,7 +245,7 @@ Class Achievements {
                 $ids[] = $ach['achievement'];
             }
             $achievement_data['earned'] = count($ids);
-            $achievement_data['points'] = $this->armory->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
+            $achievement_data['points'] = Armory::$aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
             if(!$achievement_data['earned']) {
                 $achievement_data['earned'] = 0;
             }
@@ -285,12 +268,12 @@ Class Achievements {
      **/
     public function GetLastAchievements() {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         $achievements = $this->db->select("SELECT `achievement`, `date` FROM `character_achievement` WHERE `guid`=%d ORDER BY `date` DESC LIMIT 5", $this->guid);
         if(!$achievements) {
-            $this->armory->Log()->writeError('%s : unable to get data from character_achievement (player %d does not have any completed achievement?)', __METHOD__, $this->guid);
+            Armory::Log()->writeError('%s : unable to get data from character_achievement (player %d does not have any completed achievement?)', __METHOD__, $this->guid);
             return false;
         }
         $aCount = count($achievements);
@@ -313,12 +296,12 @@ Class Achievements {
             $achId = $this->achId;
         }
         if(!$this->guid || !$achId) {
-            $this->armory->Log()->writeError('%s : not enough data for calculation (guid: %d, achId: %d).', __METHOD__, $this->guid, $achId);
+            Armory::Log()->writeError('%s : not enough data for calculation (guid: %d, achId: %d).', __METHOD__, $this->guid, $achId);
             return false;
         }
         $achievement_date = $this->db->selectCell("SELECT `date` FROM `character_achievement` WHERE `achievement`=%d AND `guid`=%d LIMIT 1", $achId, $this->guid);
         if(!$achievement_date) {
-            $this->armory->Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
+            Armory::Log()->writeError('%s : unable to find completion date for achievement %d, player %d', __METHOD__, $achId, $this->guid);
             return false;
         }
         if($returnStamp) {
@@ -334,15 +317,15 @@ Class Achievements {
      * @return   string
      **/
     public function BuildCategoriesTree() {
-        $categoryIds = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", $this->armory->GetLocale());
+        $categoryIds = Armory::$aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=-1 AND `id` <> 1", Armory::GetLocale());
         if(!$categoryIds) {
-            $this->armory->Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, $this->armory->GetLocale(), $this->armory->GetLoc());
+            Armory::Log()->writeError('%s : unable to get categories names (current locale: %s, locId: %d)', __METHOD__, Armory::GetLocale(), Armory::GetLoc());
             return false;
         }
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", $this->armory->GetLocale(), $cat['id']);
+            $child_categories = Armory::$aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", Armory::GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -364,11 +347,11 @@ Class Achievements {
      * @return   array
      **/
     public function BuildStatisticsCategoriesTree() {
-        $categoryIds = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=1", $this->armory->GetLocale());
+        $categoryIds = Armory::$aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=1", Armory::GetLocale());
         $root_tree = array();
         $i = 0;
         foreach($categoryIds as $cat) {
-            $child_categories = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", $this->armory->GetLocale(), $cat['id']);
+            $child_categories = Armory::$aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement_category` WHERE `parentCategory`=%d", Armory::GetLocale(), $cat['id']);
             if($child_categories) {
                 $root_tree[$i]['child'] = array();
                 $child_count = count($child_categories);
@@ -393,12 +376,12 @@ Class Achievements {
      **/
     public function GetAchievementInfo($achievementData) {
         if(!is_array($achievementData)) {
-            $this->armory->Log()->writeError('%s : achievementData must be an array!', __METHOD__);
+            Armory::Log()->writeError('%s : achievementData must be an array!', __METHOD__);
             return false;
         }
-        $achievementinfo = $this->armory->aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $this->armory->GetLocale(), $this->armory->GetLocale(), $achievementData['achievement']);
+        $achievementinfo = Armory::$aDB->selectRow("SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `points`, `categoryId`, `iconname` AS `icon` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", Armory::GetLocale(), Armory::GetLocale(), $achievementData['achievement']);
         if(!$achievementinfo) {
-            $this->armory->Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], $this->armory->GetLocale(), $this->armory->GetLoc());
+            Armory::Log()->writeError('%s : unable to get data for achievement %d (current locale: %s; locId: %d)', __METHOD__, $achievementData['achievement'], Armory::GetLocale(), Armory::GetLoc());
             return false;
         }
         if($achievementinfo['points'] == 0) {
@@ -417,11 +400,11 @@ Class Achievements {
      **/
     public function IsAchievementCompleted($achId) {
         if(!$this->guid || !$achId) {
-            $this->armory->Log()->writeError('%s : player guid or achievement id not provided (guid: %d, achId: %d)', __METHOD__, $this->guid, $achId);
+            Armory::Log()->writeError('%s : player guid or achievement id not provided (guid: %d, achId: %d)', __METHOD__, $this->guid, $achId);
             return false;
         }
         if($achId == 0 || $achId == -1 || !self::IsAchievementExists($achId)) {
-            $this->armory->Log()->writeError('%s : achievement %d not exists', __METHOD__, $achId);
+            Armory::Log()->writeError('%s : achievement %d not exists', __METHOD__, $achId);
             return false;
         }
         return $this->db->selectCell("SELECT 1 FROM `character_achievement` WHERE `guid`=%d AND `achievement`=%d", $this->guid, $achId);
@@ -435,7 +418,7 @@ Class Achievements {
      * @return   bool
      **/
     public function IsAchievementExists($achId) {
-        return (bool) $this->armory->aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $achId);
+        return (bool) Armory::$aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $achId);
     }
     
     /**
@@ -448,15 +431,15 @@ Class Achievements {
      **/
     public function LoadAchievementPage($page_id, $faction) {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not provided', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not provided', __METHOD__);
             return false;
         }
-        $achievements_data = $this->armory->aDB->select(
+        $achievements_data = Armory::$aDB->select(
         "SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`, `titleReward_%s` AS `titleReward`
             FROM `ARMORYDBPREFIX_achievement`
-                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1) ORDER BY `OrderInCategory`", $this->armory->GetLocale(), $this->armory->GetLocale(), $this->armory->GetLocale(), $page_id, $faction);
+                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1) ORDER BY `OrderInCategory`", Armory::GetLocale(), Armory::GetLocale(), Armory::GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
-            $this->armory->Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->armory->GetLocale(), $this->armory->GetLoc());
+            Armory::Log()->writeError('%s : unable to get data (page_id: %u, faction: %u, locale: %s, locId: %d)', __METHOD__, $page_id, $faction, Armory::GetLocale(), Armory::GetLoc());
             return false;
         }
         $return_data = array();
@@ -465,7 +448,7 @@ Class Achievements {
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
             $completed = self::IsAchievementCompleted($this->achId);
-            $parentId = $this->armory->aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $this->achId);
+            $parentId = Armory::$aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $this->achId);
             if($completed) {
                 $return_data['completed'][$this->achId]['data'] = $achievement;
                 $return_data['completed'][$this->achId]['data']['categoryId'] = $page_id;
@@ -497,15 +480,15 @@ Class Achievements {
                         else {
                             $return_data['completed'][$parentId]['display'] = 0;
                             $parent_used = true;
-                            $return_data['completed'][$this->achId]['achievement_tree'][$j] = $this->armory->aDB->selectRow("
+                            $return_data['completed'][$this->achId]['achievement_tree'][$j] = Armory::$aDB->selectRow("
                             SELECT `id`, `name_%s` AS `title`, `description_%s` AS `desc`, `iconname` AS `icon`, `points`, `categoryId`
                                 FROM `ARMORYDBPREFIX_achievement`
-                                    WHERE `id`=%d", $this->armory->GetLocale(), $this->armory->GetLocale(), $parentId);
+                                    WHERE `id`=%d", Armory::GetLocale(), Armory::GetLocale(), $parentId);
                             $return_data['completed'][$this->achId]['achievement_tree'][$j]['dateCompleted'] = self::GetAchievementDate($parentId);
                             $cPoints = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'];
                             $fullPoints += $cPoints;
                             $return_data['completed'][$this->achId]['data']['points'] = $return_data['completed'][$this->achId]['achievement_tree'][$j]['points'] + $fullPoints;
-                            $parentId = $this->armory->aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $parentId);
+                            $parentId = Armory::$aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $parentId);
                             $j++;
                         }
                     }
@@ -536,19 +519,19 @@ Class Achievements {
      * @return   array
      **/
     private function BuildAchievementCriteriaTable() {
-        if(in_array($this->armory->GetLocale(), array('es_es', 'es_mx'))) {
+        if(in_array(Armory::GetLocale(), array('es_es', 'es_mx'))) {
             $locale = 'en_gb';
         }
         else {
-            $locale = $this->armory->GetLocale();
+            $locale = Armory::GetLocale();
         }
         if(!$this->guid || !$this->achId) {
-            $this->armory->Log()->writeError('%s : player guid or achievement id is not defiend (GUID: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
+            Armory::Log()->writeError('%s : player guid or achievement id is not defiend (GUID: %s, achId: %d)', __METHOD__, $this->guid, $this->achId);
             return false;
         }
-        $data = $this->armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
+        $data = Armory::$aDB->select("SELECT * FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d ORDER BY `showOrder`", $this->achId);
         if(!$data) {
-            $this->armory->Log()->writeError('%s : achievement criteria for achievement #%d was not found', __METHOD__, $this->achId);
+            Armory::Log()->writeError('%s : achievement criteria for achievement #%d was not found', __METHOD__, $this->achId);
             return false;
         }
         $i = 0;
@@ -593,7 +576,7 @@ Class Achievements {
      **/
     private function GetCriteriaData($criteria_id) {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
         return $this->db->selectRow("SELECT * FROM `character_achievement_progress` WHERE `guid`=%d AND `criteria`=%d", $this->guid, $criteria_id);
@@ -609,15 +592,15 @@ Class Achievements {
      **/
     public function LoadStatisticsPage($page_id, $faction) {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $achievements_data = $this->armory->aDB->select("
+        $achievements_data = Armory::$aDB->select("
         SELECT `id`, `name_%s` AS `name`, `description_%s` AS `desc`, `categoryId`
             FROM `ARMORYDBPREFIX_achievement`
-                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", $this->armory->GetLocale(), $this->armory->GetLocale(), $page_id, $faction);
+                WHERE `categoryId`=%d AND `factionFlag` IN (%d, -1)", Armory::GetLocale(), Armory::GetLocale(), $page_id, $faction);
         if(!$achievements_data) {
-            $this->armory->Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, $this->armory->GetLocale(), $this->armory->GetLoc());
+            Armory::Log()->writeError('%s : unable to get data for page_id %d, faction %d (current locale: %s, locId: %d)', __METHOD__, $page_id, $faction, Armory::GetLocale(), Armory::GetLoc());
             return false;
         }
         $return_data = array();
@@ -632,10 +615,10 @@ Class Achievements {
     
     public function GetSummaryDataForStatisticsPage() {
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined!');
+            Armory::Log()->writeError('%s : player guid not defined!');
             return false;
         }
-        $summary_info = $this->armory->aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (1745, 1741, 1748, 178, 339)", $this->armory->GetLocale());
+        $summary_info = Armory::$aDB->select("SELECT `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (1745, 1741, 1748, 178, 339)", Armory::GetLocale());
         if(!$summary_info) {
             return false;
         }
@@ -656,10 +639,10 @@ Class Achievements {
      **/
     private function GetCriteriaValue() {
         if(!$this->guid || !$this->achId) {
-            $this->armory->Log()->writeError('%s : player guid or achievement id not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid or achievement id not defined', __METHOD__);
             return false;
         }
-        $criteria_ids = $this->armory->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d", $this->achId);
+        $criteria_ids = Armory::$aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_achievement_criteria` WHERE `referredAchievement`=%d", $this->achId);
         if(!$criteria_ids) {
             return false;
         }

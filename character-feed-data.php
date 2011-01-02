@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 257
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -44,7 +44,7 @@ if(!isset($_GET['r'])) {
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
-if($_GET['r'] === false || !$armory->currentRealmInfo) {
+if($_GET['r'] === false || !Armory::$currentRealmInfo) {
     $isCharacter = false;
 }
 // Get page cache
@@ -60,8 +60,8 @@ else {
     }
     $cache_name = 'character-feed-data';
 }
-if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId($cache_name, $characters->GetName(), $armory->currentRealmInfo['name']);
+if($isCharacter && Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId($cache_name, $characters->GetName(), Armory::$currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -83,7 +83,7 @@ if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
         }
         $xml->XMLWriter()->startElement('character');
         $xml->XMLWriter()->writeAttribute('name', $characters->GetName());
-        $xml->XMLWriter()->writeAttribute('characterUrl', sprintf('r=%s&cn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($characters->GetName())));
+        $xml->XMLWriter()->writeAttribute('characterUrl', sprintf('r=%s&cn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($characters->GetName())));
         $xml->XMLWriter()->endElement(); //character
         if(isset($feed_item['title'])) {
             $xml->XMLWriter()->startElement('title');
@@ -106,7 +106,7 @@ if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
 $xml->XMLWriter()->endElement(); //feed
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), $cache_name);
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);

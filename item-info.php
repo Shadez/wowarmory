@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 414
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,8 +30,8 @@ if(!@include('includes/armory_loader.php')) {
 }
 header('Content-type: text/xml');
 $itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : 0;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('item-info', $itemID, 0, $armory->currentRealmInfo['name']);
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('item-info', $itemID, 0, Armory::$currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'items')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -42,7 +42,7 @@ if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
 $xml->LoadXSLT('items/info.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'item-info.xml');
 $xml->XMLWriter()->writeAttribute('requestQuery', 'i='.$itemID);
 if(!$items->IsItemExists($itemID) ) {
@@ -57,7 +57,7 @@ $item_data = array(
     'icon'    => $items->GetItemIcon($itemID, $data['displayid']),
     'id'      => $itemID,
     'level'   => $data['ItemLevel'],
-    'name'    => ($armory->GetLocale() == 'en_gb' || $armory->GetLocale() == 'en_us') ? $data['name'] : $items->GetItemName($itemID),
+    'name'    => (Armory::GetLocale() == 'en_gb' || Armory::GetLocale() == 'en_us') ? $data['name'] : $items->GetItemName($itemID),
     'quality' => $data['Quality'],
     'type'    => null
 );
@@ -309,7 +309,7 @@ $xml->XMLWriter()->endElement();  //itemInfo
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($itemID, 0, 'item-info');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'items');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 429
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -29,36 +29,36 @@ if(!defined('__ARMORY__')) {
 Class Armory {
     
     /** Armory database handler **/
-    public $aDB = null;
+    public static $aDB = null;
     
     /** Character database hanlder **/
-    public $cDB = null;
+    public static $cDB = null;
     
     /** Realm/accounts database handler **/
-    public $rDB = null;
+    public static $rDB = null;
     
     /** Mangos/world database handler **/
-    public $wDB = null;
+    public static $wDB = null;
     
     /** MySQL connection configs **/
-    public $mysqlconfig = array();
+    public static $mysqlconfig = array();
     
     /** Armory configs **/
-    public $armoryconfig = array();
+    public static $armoryconfig = array();
     
     /** Current armory locale (ru_ru or en_gb) **/
-    public $_locale = null;
+    public static $_locale = null;
     
     /** Locale (0 - en_gb, 2 - fr_fr, 3 - de_de, etc.)**/
-    public $_loc = null;
+    public static $_loc = null;
     
     /** Links for multirealm info **/
-    public $realmData;
-    public $connectionData;
-    public $currentRealmInfo;
+    public static $realmData;
+    public static $connectionData;
+    public static $currentRealmInfo;
     
     /** Debug handler **/
-    private $debugHandler;
+    private static $debugHandler;
     
     /**
      * Initialize database handlers, debug handler, sets up sql/site configs
@@ -66,7 +66,7 @@ Class Armory {
      * @access   public
      * @return   bool
      **/
-    public function Armory() {
+    public static function InitializeArmory() {
         if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/configuration.php')) {
             die('<b>Error</b>: unable to load configuration file!');
         }
@@ -76,12 +76,12 @@ Class Armory {
         if(!@require_once(__ARMORYDIRECTORY__ . '/includes/classes/class.debug.php')) {
             die('<b>Error</b>: unable to load debug class!');
         }
-        $this->mysqlconfig  = $ArmoryConfig['mysql'];
-        $this->armoryconfig = $ArmoryConfig['settings'];
-        $this->debugHandler = new ArmoryDebug(array('useDebug' => $this->armoryconfig['useDebug'], 'logLevel' => $this->armoryconfig['logLevel']));
-        $this->realmData    = $ArmoryConfig['multiRealm'];
-        $this->aDB = new ArmoryDatabaseHandler($this->mysqlconfig['host_armory'], $this->mysqlconfig['user_armory'], $this->mysqlconfig['pass_armory'], $this->mysqlconfig['name_armory'], $this->mysqlconfig['charset_armory'], $this->Log(), $this->armoryconfig['db_prefix']);
-        $this->rDB = new ArmoryDatabaseHandler($this->mysqlconfig['host_realmd'], $this->mysqlconfig['user_realmd'], $this->mysqlconfig['pass_realmd'], $this->mysqlconfig['name_realmd'], $this->mysqlconfig['charset_realmd'], $this->Log());
+        self::$mysqlconfig  = $ArmoryConfig['mysql'];
+        self::$armoryconfig = $ArmoryConfig['settings'];
+        self::$debugHandler = new ArmoryDebug(array('useDebug' => self::$armoryconfig['useDebug'], 'logLevel' => self::$armoryconfig['logLevel']));
+        self::$realmData    = $ArmoryConfig['multiRealm'];
+        self::$aDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_armory'], self::$mysqlconfig['user_armory'], self::$mysqlconfig['pass_armory'], self::$mysqlconfig['name_armory'], self::$mysqlconfig['charset_armory'], self::Log(), self::$armoryconfig['db_prefix']);
+        self::$rDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_realmd'], self::$mysqlconfig['user_realmd'], self::$mysqlconfig['pass_realmd'], self::$mysqlconfig['name_realmd'], self::$mysqlconfig['charset_realmd'], self::Log());
         if(isset($_GET['r'])) {
             if(preg_match('/,/', $_GET['r'])) {
                 // Achievements/statistics comparison cases
@@ -91,57 +91,57 @@ Class Armory {
             else {
                 $realmName = urldecode($_GET['r']);
             }
-            $realm_info = $this->aDB->selectRow("SELECT `id`, `version` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
-            if(isset($this->realmData[$realm_info['id']])) {
-                $this->connectionData = $this->realmData[$realm_info['id']];
-                $this->cDB = new ArmoryDatabaseHandler($this->connectionData['host_characters'], $this->connectionData['user_characters'], $this->connectionData['pass_characters'], $this->connectionData['name_characters'], $this->connectionData['charset_characters'], $this->Log());
-                $this->currentRealmInfo = array('name' => $this->connectionData['name'], 'id' => $realm_info['id'], 'type' => $this->connectionData['type'], 'connected' => true);
-                if(isset($this->connectionData['name_world'])) {
-                    $this->wDB = new ArmoryDatabaseHandler($this->connectionData['host_world'], $this->connectionData['user_world'], $this->connectionData['pass_world'], $this->connectionData['name_world'], $this->connectionData['charset_world'], $this->Log());
+            $realm_info = self::$aDB->selectRow("SELECT `id`, `version` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
+            if(isset(self::$realmData[$realm_info['id']])) {
+                self::$connectionData = self::$realmData[$realm_info['id']];
+                self::$cDB = new ArmoryDatabaseHandler(self::$connectionData['host_characters'], self::$connectionData['user_characters'], self::$connectionData['pass_characters'], self::$connectionData['name_characters'], self::$connectionData['charset_characters'], self::Log());
+                self::$currentRealmInfo = array('name' => self::$connectionData['name'], 'id' => $realm_info['id'], 'type' => self::$connectionData['type'], 'connected' => true);
+                if(isset(self::$connectionData['name_world'])) {
+                    self::$wDB = new ArmoryDatabaseHandler(self::$connectionData['host_world'], self::$connectionData['user_world'], self::$connectionData['pass_world'], self::$connectionData['name_world'], self::$connectionData['charset_world'], self::Log());
                 }
             }
         }
-        $realm_info = $this->realmData[1];
-        if($this->cDB == null) {
-            $this->cDB = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->Log());
+        $realm_info = self::$realmData[1];
+        if(self::$cDB == null) {
+            self::$cDB = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], self::Log());
         }
-        if($this->wDB == null) {
-            $this->wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->Log());
+        if(self::$wDB == null) {
+            self::$wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], self::Log());
         }
-        if(!$this->currentRealmInfo) {
-            $this->currentRealmInfo = array('name' => $realm_info['name'], 'id' => 1, 'type' => $realm_info['type'], 'connected' => true);
+        if(!self::$currentRealmInfo) {
+            self::$currentRealmInfo = array('name' => $realm_info['name'], 'id' => 1, 'type' => $realm_info['type'], 'connected' => true);
         }
-        if(!$this->connectionData) {
-            $this->connectionData = $realm_info;
+        if(!self::$connectionData) {
+            self::$connectionData = $realm_info;
         }
         if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
             if($user_locale && $http_locale = self::IsAllowedLocale($user_locale)) {
-                $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
+                self::$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $http_locale;
             }
         }
-        if(!$this->_locale) {
-            $this->_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $this->armoryconfig['defaultLocale'];
+        if(!self::$_locale) {
+            self::$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : self::$armoryconfig['defaultLocale'];
         }
-        switch($this->_locale) {
+        switch(self::$_locale) {
             case 'en_gb':
             case 'en_us':
-                $this->_loc = 0;
+                self::$_loc = 0;
                 break;
             case 'fr_fr':
-                $this->_loc = 2;
+                self::$_loc = 2;
                 break;
             case 'de_de':
-                $this->_loc = 3;
+                self::$_loc = 3;
                 break;
             case 'es_es':
-                $this->_loc = 6;
+                self::$_loc = 6;
                 break;
             case 'es_mx':
-                $this->_loc = 7;
+                self::$_loc = 7;
                 break;
             case 'ru_ru':
-                $this->_loc = 8;
+                self::$_loc = 8;
                 break;
         }
     }
@@ -152,7 +152,7 @@ Class Armory {
      * @access   public
      * @return   string
      **/
-    private function IsAllowedLocale($locale) {
+    private static function IsAllowedLocale($locale) {
         switch($locale) {
             case 'de':
                 return 'de_de';
@@ -181,8 +181,8 @@ Class Armory {
      * @access   public
      * @return   object
      **/
-    public function Log() {
-        return $this->debugHandler;
+    public static function Log() {
+        return self::$debugHandler;
     }
     
     /**
@@ -191,18 +191,18 @@ Class Armory {
      * @access   public
      * @return   string
      **/
-    public function GetLocale() {
-        if($this->_locale == null) {
-            $this->Log()->writeLog('%s : locale not defined, return default locale', __METHOD__);
-            return $this->armoryconfig['defaultLocale'];
+    public static function GetLocale() {
+        if(self::$_locale == null) {
+            self::Log()->writeLog('%s : locale not defined, return default locale', __METHOD__);
+            return self::$armoryconfig['defaultLocale'];
         }
-        if($this->_locale == 'en_us') {
+        if(self::$_locale == 'en_us') {
             return 'en_gb'; // For DB compatibility
         }
-        elseif($this->_locale == 'es_mx') {
+        elseif(self::$_locale == 'es_mx') {
             return 'es_es'; // For DB compatibility
         }
-        return $this->_locale;
+        return self::$_locale;
     }
     
     /**
@@ -211,8 +211,8 @@ Class Armory {
      * @access   public
      * @return   int
      **/
-    public function GetLoc() {
-        return $this->_loc;
+    public static function GetLoc() {
+        return self::$_loc;
     }
     
     /**
@@ -221,9 +221,9 @@ Class Armory {
      * @access   public
      * @return   bool
      **/
-    public function SetLocale($locale, $locale_id) {
-        $this->_locale = $locale;
-        $this->_loc    = $locale_id;
+    public static function SetLocale($locale, $locale_id) {
+        self::$_locale = $locale;
+        self::$_loc    = $locale_id;
         return true;
     }
 }

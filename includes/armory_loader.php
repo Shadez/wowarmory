@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 431
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -40,13 +40,13 @@ if(!@include(__ARMORYDIRECTORY__ . '/includes/revision_nr.php')) {
 // Forgot what am I did here :(
 $_SESSION['last_url'] = str_replace('.php', '.xml', $_SERVER['PHP_SELF']) . '?' .str_replace('locale=', 'l=', $_SERVER['QUERY_STRING']);
 
-$armory = new Armory();
+Armory::InitializeArmory();
 /* Check DbVersion */
-$dbVersion = $armory->aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
+$dbVersion = Armory::$aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
 if($dbVersion != DB_VERSION) {
     if(!$dbVersion) {
-        if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
-            $armory->Log()->writeError('ArmoryChecker: wrong Armory DB name!');
+        if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+            Armory::Log()->writeError('ArmoryChecker: wrong Armory DB name!');
         }
         else {
             echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
@@ -54,8 +54,8 @@ if($dbVersion != DB_VERSION) {
     }
     $errorDBVersion = sprintf('Current version is %s but expected %s.<br />
     Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'");
-    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
-        $armory->Log()->writeError('ArmoryChecker : DB_VERSION error: %s', (defined('DB_VERSION')) ? $errorDBVersion : 'DB_VERSION constant not defined!');
+    if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+        Armory::Log()->writeError('ArmoryChecker : DB_VERSION error: %s', (defined('DB_VERSION')) ? $errorDBVersion : 'DB_VERSION constant not defined!');
     }
     else {
         echo '<b>DB_VERSION error</b>:<br />';
@@ -67,27 +67,27 @@ if($dbVersion != DB_VERSION) {
 }
 /* Check revision */
 if(!defined('ARMORY_REVISION')) {
-    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
-        $armory->Log()->writeError('ArmoryChecker : unable to detect Armroy revision!');
+    if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+        Armory::Log()->writeError('ArmoryChecker : unable to detect Armroy revision!');
     }
     else {
         die('<b>Revision error:</b> unable to detect Armory revision!');
     }
 }
 /* Check config version */
-if(!defined('CONFIG_VERSION') || !isset($armory->armoryconfig['configVersion'])) {
-    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
-        $armory->Log()->writeError('ArmoryChecker : unable to detect Configuration version!');
+if(!defined('CONFIG_VERSION') || !isset(Armory::$armoryconfig['configVersion'])) {
+    if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+        Armory::Log()->writeError('ArmoryChecker : unable to detect Configuration version!');
     }
     else {
         die('<b>ConfigVersion error:</b> unable to detect Configuration version!');
     }
 }
-elseif(CONFIG_VERSION != $armory->armoryconfig['configVersion']) {
+elseif(CONFIG_VERSION != Armory::$armoryconfig['configVersion']) {
     $CfgError = sprintf('<b>ConfigVersion error:</b> your config version is outdated (current: %s, expected: %s).<br />
-    Please, update your config file from configuration.php.default', $armory->armoryconfig['configVersion'], CONFIG_VERSION);
-    if(isset($armory->armoryconfig['checkVersionType']) && $armory->armoryconfig['checkVersionType'] == 'log') {
-        $armory->Log()->writeError('ArmoryChecker : %s', $CfgError);
+    Please, update your config file from configuration.php.default', Armory::$armoryconfig['configVersion'], CONFIG_VERSION);
+    if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+        Armory::Log()->writeError('ArmoryChecker : %s', $CfgError);
     }
     else {
         die($CfgError);
@@ -95,7 +95,7 @@ elseif(CONFIG_VERSION != $armory->armoryconfig['configVersion']) {
 }
 error_reporting(E_ALL);
 /* Check maintenance */
-if($armory->armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
+if(Armory::$armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
 }
 if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
@@ -108,7 +108,7 @@ if(!defined('skip_utils_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.utils.php')) {
         die('<b>Error:</b> unable to load utils class!');
     }
-    $utils = new Utils($armory);
+    $utils = new Utils();
     /** 
      * Check realm data
      * This will automaticaly add missing realms to `armory_realm_data` table (if MySQL user have "INSERT" access to Armory database)
@@ -121,17 +121,17 @@ if(!defined('skip_utils_class')) {
     // May be not required?
     //TODO: think about this feature
     $sess_count = $utils->GetSessionsCount();
-    if($sess_count >= $armory->armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession() && !defined('LIMIT_PAGE')) {
+    if($sess_count >= Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession() && !defined('LIMIT_PAGE')) {
         header('Location: limit.xml');
     }
-    elseif($sess_count < $armory->armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession()) {
+    elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession()) {
         // we can create session
         $utils->CreateNewSession();
         if(defined('LIMIT_PAGE')) {
             header('Location: index.xml');
         }
     }
-    elseif($sess_count < $armory->armoryconfig['maxSessionCount'] && $utils->IsCorrectSession()) {
+    elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && $utils->IsCorrectSession()) {
         // just update
         $utils->UpdateSession();
         if(defined('LIMIT_PAGE')) {
@@ -151,7 +151,7 @@ elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
 /** Locale change **/
 if(isset($_GET['locale'])) {
     $tmp = strtolower($_GET['locale']);
-    $_SESSION['armoryLocaleId'] = $armory->GetLoc();
+    $_SESSION['armoryLocaleId'] = Armory::GetLoc();
     switch($tmp) {
         case 'ru_ru':
         case 'ruru':
@@ -190,8 +190,8 @@ if(isset($_GET['locale'])) {
             $_SESSION['armoryLocaleId'] = 0;
             break;
     }
-    $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->GetLocale();
-    $armory->SetLocale($_locale, $_SESSION['armoryLocaleId']);
+    $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : Armory::GetLocale();
+    Armory::SetLocale($_locale, $_SESSION['armoryLocaleId']);
     if(isset($_SERVER['HTTP_REFERER'])) {
         $returnUrl = $_SERVER['HTTP_REFERER'];
     }
@@ -200,18 +200,18 @@ if(isset($_GET['locale'])) {
     }
     header('Location: ' . $returnUrl);
 }
-$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : $armory->GetLocale();
+$_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : Armory::GetLocale();
 if(defined('load_characters_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.characters.php')) {
         die('<b>Error:</b> unable to load characters class!');
     }
-    $characters = new Characters($armory);
+    $characters = new Characters();
 }
 if(defined('load_guilds_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.guilds.php')) {
         die('<b>Error:</b> unable to load guilds class!');
     }
-    $guilds = new Guilds($armory);
+    $guilds = new Guilds();
 }
 if(defined('load_achievements_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.achievements.php')) {
@@ -223,25 +223,25 @@ if(defined('load_items_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.items.php')) {
         die('<b>Error:</b> unable to load items class!');
     }
-    $items = new Items($armory);
+    $items = new Items();
 }
 if(defined('load_mangos_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.mangos.php')) {
         die('<b>Error:</b> unable to load Mangos class!');
     }
-    $mangos = new Mangos($armory);
+    $mangos = new Mangos();
 }
 if(defined('load_arenateams_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.arenateams.php')) {
         die('<b>Error:</b> unable to load arenateams class!');
     }
-    $arenateams = new Arenateams($armory);
+    $arenateams = new Arenateams();
 }
 if(defined('load_search_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.search.php')) {
         die('<b>Error:</b> unable to load search engine class!');
     }
-    $search = new SearchMgr($armory);
+    $search = new SearchMgr();
 }
 if(defined('load_itemprototype_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.itemprototype.php')) {
@@ -259,7 +259,7 @@ if(defined('load_item_class')) {
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.xmlhandler.php')) {
     die('<b>Error:</b> unable to load XML handler class!');
 }
-$xml = new XMLHandler($armory->GetLocale());
+$xml = new XMLHandler(Armory::GetLocale());
 $xml->StartXML();
 // Do not remove this
 if(isset($_GET['_DISPLAYVERSION_'])) {

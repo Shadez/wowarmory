@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 400
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -30,8 +30,6 @@ if(!defined('__ARMORY__')) {
  * This class used in item tooltips.
  **/
 Class ItemPrototype {
-    
-    public $armory;
     
     public $entry;
     public $class;
@@ -182,18 +180,10 @@ Class ItemPrototype {
     private $m_guid  = 0;
     private $m_owner = 0;
     
-    public function ItemPrototype($armory) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
-        return true;
-    }
-    
     public function LoadItem($item_entry, $itemGuid = 0, $ownerGuid = 0) {
-        $item_row = $this->armory->wDB->selectRow("SELECT * FROM `item_template` WHERE `entry` = '%d' LIMIT 1", $item_entry);
+        $item_row = Armory::$wDB->selectRow("SELECT * FROM `item_template` WHERE `entry` = '%d' LIMIT 1", $item_entry);
         if(!$item_row) {
-            $this->armory->Log()->writeError('%s : item #%d (GUID: %d) was not found in `item_template` table.', __METHOD__, $item_entry, $itemGuid);
+            Armory::Log()->writeError('%s : item #%d (GUID: %d) was not found in `item_template` table.', __METHOD__, $item_entry, $itemGuid);
             return false;
         }
         // FlagsExtra check

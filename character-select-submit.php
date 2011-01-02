@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 413
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,22 +37,22 @@ if(isset($_GET)) {
             $realmName = urldecode($_GET['r' . $i]);
             $realm_id = $utils->GetRealmIdByName($realmName);
             if(!$realm_id) {
-                $armory->Log()->writeLog('character-select-submit : realm %s not found in database!', $realmName);
+                Armory::Log()->writeLog('character-select-submit : realm %s not found in database!', $realmName);
                 continue;
             }
-            elseif(!isset($armory->realmData[$realm_id])) {
-                $armory->Log()->writeLog('character-select-submit : connection data to realm %s (ID: %d) not found!', $realmName, $realm_id);
+            elseif(!isset(Armory::$realmData[$realm_id])) {
+                Armory::Log()->writeLog('character-select-submit : connection data to realm %s (ID: %d) not found!', $realmName, $realm_id);
                 continue;
             }
-            $realm_info = $armory->realmData[$realm_id];
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $armory->Log());
+            $realm_info = Armory::$realmData[$realm_id];
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             if(!$db) {
                 // Error message will appear in ArmoryDatabaseHandler::ArmoryDatabaseHandler();
                 continue;
             }
             $char_data = $db->selectRow("SELECT `guid`, `name`, `class`, `race`, `gender`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `account`=%d LIMIT 1", $utils->escape($_GET['cn' . $i]), $_SESSION['accountId']);
             if(!$char_data) {
-                $armory->Log()->writeLog('character-select-submit : unable to get character data from DB (name: %s, accountId: %d)', $_GET['cn' . $i], $_SESSION['accountId']);
+                Armory::Log()->writeLog('character-select-submit : unable to get character data from DB (name: %s, accountId: %d)', $_GET['cn' . $i], $_SESSION['accountId']);
                 continue;
             }
             $char_data['realm_id'] = $realm_id;
@@ -68,7 +68,7 @@ if(isset($_GET)) {
     }
 }
 else {
-    $armory->Log()->writeLog('character-select-submit : $_GET variable not found!');
+    Armory::Log()->writeLog('character-select-submit : $_GET variable not found!');
 }
 exit;
 ?>

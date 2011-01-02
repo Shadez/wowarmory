@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 433
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,8 +27,6 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Utils {
-    
-    public $armory = null;
     
     /**
      * Account ID
@@ -58,13 +56,6 @@ Class Utils {
      **/
     public $shaHash;
     
-    public function Utils($armory) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
-    }
-    
     /**
      * User authorization
      * @category Utils class
@@ -73,16 +64,16 @@ Class Utils {
      **/
     public function AuthUser() {
         if(!$this->username || !$this->password) {
-            $this->armory->Log()->writeError('%s : username or password not defined', __METHOD__);
+            Armory::Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
         }
-        $info = $this->armory->rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`='%s' LIMIT 1", $this->username);
+        $info = Armory::$rDB->selectRow("SELECT `id`, `sha_pass_hash` FROM `account` WHERE `username`='%s' LIMIT 1", $this->username);
         if(!$info) {
-            $this->armory->Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
+            Armory::Log()->writeError('%s : unable to get data from DB for account %s', __METHOD__, $this->username);
             return false;
         }
         elseif(strtoupper($info['sha_pass_hash']) != $this->GenerateShaHash()) {
-            $this->armory->Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are different (%s and %s), unable to auth user.', __METHOD__, strtoupper($info['sha_pass_hash']), $this->GenerateShaHash());
+            Armory::Log()->writeError('%s : sha_pass_hash and generated SHA1 hash are different (%s and %s), unable to auth user.', __METHOD__, strtoupper($info['sha_pass_hash']), $this->GenerateShaHash());
             return false;
         }
         else {
@@ -120,12 +111,12 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        if(!isset($this->armory->realmData[$realmId])) {
-            $this->armory->Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
+        if(!isset(Armory::$realmData[$realmId])) {
+            Armory::Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
             return false;
         }
-        $realm_info = $this->armory->realmData[$realmId];
-        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        $realm_info = Armory::$realmData[$realmId];
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
         if(!$db) {
             return false;
         }
@@ -137,7 +128,7 @@ Class Utils {
         LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
         WHERE `characters`.`account`=%d AND `guild_member`.`guildid`=%d", $_SESSION['accountId'], $guildId);
         if(!$chars_data) {
-            $this->armory->Log()->writeLog('%s : account %d does not have any character in %d guild on realm %d', __METHOD__, $_SESSION['accountId'], $guildId, $realmId);
+            Armory::Log()->writeLog('%s : account %d does not have any character in %d guild on realm %d', __METHOD__, $_SESSION['accountId'], $guildId, $realmId);
             return false;
         }
         // Account have character in $guildId guild
@@ -156,12 +147,12 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        if(!isset($this->armory->realmData[$realmId])) {
-            $this->armory->Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
+        if(!isset(Armory::$realmData[$realmId])) {
+            Armory::Log()->writeError('%s : unable to find connection data for realm %d', __METHOD__, $realmId);
             return false;
         }
-        $realm_info = $this->armory->realmData[$realmId];
-        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        $realm_info = Armory::$realmData[$realmId];
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
         if(!$db) {
             return false;
         }
@@ -183,7 +174,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return $this->armory->aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
+        return Armory::$aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d", $_SESSION['accountId']);
     }
     
     /**
@@ -197,8 +188,8 @@ Class Utils {
             return false;
         }
         $count_all = 0;
-        foreach($this->armory->realmData as $realm_info) {
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        foreach(Armory::$realmData as $realm_info) {
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             $current = $db->selectCell("SELECT COUNT(*) FROM `characters` WHERE `account`=%d", $_SESSION['accountId']);
             $count_all += $current;
         }
@@ -217,7 +208,7 @@ Class Utils {
         if(!$allow || !isset($_SESSION['accountId'])) {
             return false;
         }
-        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
+        Armory::$aDB->query("DELETE FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
         return true;
     }
     
@@ -234,7 +225,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return $this->armory->aDB->query("INSERT INTO `ARMORYDBPREFIX_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $count, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_id, $char_data['selected']);
+        return Armory::$aDB->query("INSERT INTO `ARMORYDBPREFIX_login_characters` VALUES (%d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)", $char_data['account'], $count, $char_data['guid'], $char_data['name'], $char_data['class'], $char_data['race'], $char_data['gender'], $char_data['level'], $realm_id, $char_data['selected']);
     }
     
     /**
@@ -248,8 +239,8 @@ Class Utils {
             return false;
         }
         $results = array();
-        foreach($this->armory->realmData as $realm_info) {
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        foreach(Armory::$realmData as $realm_info) {
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             if(!$db) {
                 continue;
             }
@@ -268,7 +259,7 @@ Class Utils {
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildId`
             WHERE `characters`.`account`=%d", $_SESSION['accountId']);
             if(!$chars_data) {
-                $this->armory->Log()->writeLog('%s : no characters found for account %d in `%s` database', __METHOD__, $_SESSION['accountId'], $realm_info['name_characters']);
+                Armory::Log()->writeLog('%s : no characters found for account %d in `%s` database', __METHOD__, $_SESSION['accountId'], $realm_info['name_characters']);
                 continue;
             }
             foreach($chars_data as $realm) {
@@ -276,10 +267,10 @@ Class Utils {
                 $realm['factionId'] = self::GetFactionId($realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['relevance'] = 100;
-                if($realm['level'] < $this->armory->armoryconfig['minlevel']) {
+                if($realm['level'] < Armory::$armoryconfig['minlevel']) {
                     $realm['relevance'] = 0;
                 }
-                elseif($realm['level'] >= $this->armory->armoryconfig['minlevel'] && $realm['level'] <= 79) {
+                elseif($realm['level'] >= Armory::$armoryconfig['minlevel'] && $realm['level'] <= 79) {
                     $realm['relevance'] = $realm['level'];
                 }
                 elseif($realm['level'] == MAX_PLAYER_LEVEL) {
@@ -289,14 +280,14 @@ Class Utils {
                     $realm['relevance'] = 0; // Unknown
                 }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm['realm']), urlencode($realm['name']));
-                $realm['selected'] = $this->armory->aDB->selectCell("SELECT `selected` FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d AND `guid`=%d AND `realm_id`=%d LIMIT 1", $_SESSION['accountId'], $realm['guid'], $realm_info['id']);
+                $realm['selected'] = Armory::$aDB->selectCell("SELECT `selected` FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d AND `guid`=%d AND `realm_id`=%d LIMIT 1", $_SESSION['accountId'], $realm['guid'], $realm_info['id']);
                 if($realm['selected'] > 2) {
                     $realm['selected'] = 2;
                 }
                 elseif($realm['selected'] == 0) {
                     unset($realm['selected']);
                 }
-                $ach = new Achievements($this->armory);
+                $ach = new Achievements();
                 $ach->InitAchievements($realm['guid'], $db);
                 $realm['achPoints'] = $ach->CalculateAchievementPoints();
                 unset($realm['guid'], $ach); // Do not show GUID in XML results
@@ -306,7 +297,7 @@ Class Utils {
         if(is_array($results)) {
             return $results;
         }
-        $this->armory->Log()->writeLog('%s : unable to find any character for account %d', __METHOD__, $_SESSION['accountId']);
+        Armory::Log()->writeLog('%s : unable to find any character for account %d', __METHOD__, $_SESSION['accountId']);
         return false;
     }
     
@@ -320,7 +311,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return $this->armory->aDB->selectRow("
+        return Armory::$aDB->selectRow("
         SELECT
         `ARMORYDBPREFIX_login_characters`.`guid`,
         `ARMORYDBPREFIX_login_characters`.`name`,
@@ -345,14 +336,14 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return 0;
         }
-        return $this->armory->aDB->selectCell("SELECT `guid` FROM `ARMORYDBPREFIX_login_characters` WHERE `name` = '%s' AND `realm_id` = %d AND `account` = %d LIMIT 1", $name, $realmId, $_SESSION['accountId']);
+        return Armory::$aDB->selectCell("SELECT `guid` FROM `ARMORYDBPREFIX_login_characters` WHERE `name` = '%s' AND `realm_id` = %d AND `account` = %d LIMIT 1", $name, $realmId, $_SESSION['accountId']);
     }
     
     public function SetNewPrimaryCharacter($guid, $realm_id) {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $charactersInfo = $this->armory->aDB->select("SELECT `guid`, `realm_id`, `selected` FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
+        $charactersInfo = Armory::$aDB->select("SELECT `guid`, `realm_id`, `selected` FROM `ARMORYDBPREFIX_login_characters` WHERE `account` = %d", $_SESSION['accountId']);
         if(!$charactersInfo) {
             return false;
         }
@@ -369,7 +360,7 @@ Class Utils {
             }
         }
         foreach($charactersInfo as $char) {
-            $this->armory->aDB->query("UPDATE `ARMORYDBPREFIX_login_characters` SET `selected` = %d WHERE `guid` = %d AND `realm_id` = %d AND `account` = %d LIMIT 1", $char['selected'], $char['guid'], $char['realm_id'], $_SESSION['accountId']);
+            Armory::$aDB->query("UPDATE `ARMORYDBPREFIX_login_characters` SET `selected` = %d WHERE `guid` = %d AND `realm_id` = %d AND `account` = %d LIMIT 1", $char['selected'], $char['guid'], $char['realm_id'], $_SESSION['accountId']);
         }
         return true;
     }
@@ -385,22 +376,22 @@ Class Utils {
             return false;
         }
         // Bookmarks limit is 60
-        $bookmarks_data = $this->armory->aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `ARMORYDBPREFIX_bookmarks` WHERE `account`=%d LIMIT 60", $_SESSION['accountId']);
+        $bookmarks_data = Armory::$aDB->select("SELECT `name`, `classId`, `level`, `realm`, `url` FROM `ARMORYDBPREFIX_bookmarks` WHERE `account`=%d LIMIT 60", $_SESSION['accountId']);
         if(!$bookmarks_data) {
-            $this->armory->Log()->writeLog('%s : bookmarks for account %d not found', __METHOD__, $_SESSION['accountId']);
+            Armory::Log()->writeLog('%s : bookmarks for account %d not found', __METHOD__, $_SESSION['accountId']);
             return false;
         }
         $result = array();
         foreach($bookmarks_data as $bookmark) {
-            $realm = $this->armory->aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $bookmark['realm']);
+            $realm = Armory::$aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $bookmark['realm']);
             if(!$realm) {
                 continue;
             }
-            elseif(!isset($this->armory->realmData[$realm['id']])) {
+            elseif(!isset(Armory::$realmData[$realm['id']])) {
                 continue;
             }
-            $realm_info = $this->armory->realmData[$realm['id']];
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+            $realm_info = Armory::$realmData[$realm['id']];
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             if(!$db) {
                 continue;
             }
@@ -409,8 +400,8 @@ Class Utils {
                 continue;
             }
             $guid = $char_data['guid'];
-            $bookmark['classText'] = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id` = %d", $this->armory->GetLocale(), $char_data['class']);
-            $bookmark['achPoints'] = $this->armory->aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (SELECT `achievement` FROM `%s`.`character_achievement` WHERE `guid`=%d)", $realm_info['name_characters'], $guid);
+            $bookmark['classText'] = Armory::$aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id` = %d", Armory::GetLocale(), $char_data['class']);
+            $bookmark['achPoints'] = Armory::$aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (SELECT `achievement` FROM `%s`.`character_achievement` WHERE `guid`=%d)", $realm_info['name_characters'], $guid);
             $result[] = $bookmark;
             unset($db, $realm_info, $achievement_ids, $guid, $char_data, $realm);
         }
@@ -433,15 +424,15 @@ Class Utils {
             // Unable to store more than 60 bookmarks for single account
             return false;
         }
-        $realm = $this->armory->aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
+        $realm = Armory::$aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
         if(!$realm) {
             return false;
         }
-        elseif(!isset($this->armory->realmData[$realm['id']])) {
+        elseif(!isset(Armory::$realmData[$realm['id']])) {
             return false;
         }
-        $realm_info = $this->armory->realmData[$realm['id']];
-        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        $realm_info = Armory::$realmData[$realm['id']];
+        $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
         if(!$db) {
             return false;
         }
@@ -450,7 +441,7 @@ Class Utils {
             return false;
         }
         $char_data['realmUrl'] = sprintf('r=%s&cn=%s', urlencode($realmName), urlencode($name));
-        $this->armory->aDB->query("INSERT IGNORE INTO `ARMORYDBPREFIX_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
+        Armory::$aDB->query("INSERT IGNORE INTO `ARMORYDBPREFIX_bookmarks` VALUES (%d, '%s', %d, %d, '%s', '%s')", $_SESSION['accountId'], $char_data['name'], $char_data['classId'], $char_data['level'], $realmName, $char_data['realmUrl']);
         return true;
     }
     
@@ -466,7 +457,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
+        Armory::$aDB->query("DELETE FROM `ARMORYDBPREFIX_bookmarks` WHERE `name`='%s' AND `realm`='%s' AND `account`='%d' LIMIT 1", $name, $realmName, $_SESSION['accountId']);
         return true;
     }
     
@@ -480,7 +471,7 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $count = $this->armory->aDB->selectCell("SELECT COUNT(`name`) FROM `ARMORYDBPREFIX_bookmarks` WHERE `account`=%d", $_SESSION['accountId']);
+        $count = Armory::$aDB->selectCell("SELECT COUNT(`name`) FROM `ARMORYDBPREFIX_bookmarks` WHERE `account`=%d", $_SESSION['accountId']);
         if($count > 60) {
             return 60;
         }
@@ -495,7 +486,7 @@ Class Utils {
      **/
     public function GenerateShaHash() {
         if(!$this->username || !$this->password) {
-            $this->armory->Log()->writeError('%s : username or password not defined', __METHOD__);
+            Armory::Log()->writeError('%s : username or password not defined', __METHOD__);
             return false;
         }
         $this->shaHash = sha1(strtoupper($this->username).':'.strtoupper($this->password));
@@ -578,7 +569,7 @@ Class Utils {
      * @return   array
      **/
     public function GetRating($level) {
-        return $this->armory->aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_rating` WHERE `level`=%d", $level);
+        return Armory::$aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_rating` WHERE `level`=%d", $level);
     }
     
     /**
@@ -621,7 +612,7 @@ Class Utils {
      **/
     public function GetMaxArray($arr) {
         if(!is_array($arr)) {
-            $this->armory->Log()->writeError('%s : arr must be in array', __METHOD__);
+            Armory::Log()->writeError('%s : arr must be in array', __METHOD__);
             return false;
         }
         $keys = array_keys($arr);
@@ -667,7 +658,7 @@ Class Utils {
      * @return   array
      **/
     public function GetRealmFirsts() {
-        $achievements_data = $this->armory->cDB->select("
+        $achievements_data = Armory::$cDB->select("
         SELECT
         `character_achievement`.`achievement`,
         `character_achievement`.`date`,
@@ -692,12 +683,12 @@ Class Utils {
         )
         ORDER BY `character_achievement`.`date` DESC"); // 4.0.3 IDs
         if(!$achievements_data) {
-            $this->armory->Log()->writeLog('%s : unable to get data from DB for achievement firsts (theres no completed achievement firsts?)', __METHOD__);
+            Armory::Log()->writeLog('%s : unable to get data from DB for achievement firsts (theres no completed achievement firsts?)', __METHOD__);
             return false;
         }
         $countAch = count($achievements_data);
         for($i=0;$i<$countAch;$i++) {
-            $tmp_info = $this->armory->aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", $this->armory->GetLocale(), $this->armory->GetLocale(), $achievements_data[$i]['achievement']);
+            $tmp_info = Armory::$aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", Armory::GetLocale(), Armory::GetLocale(), $achievements_data[$i]['achievement']);
             $achievements_data[$i]['title'] = $tmp_info['name'];
             $achievements_data[$i]['desc']  = $tmp_info['desc'];
             $achievements_data[$i]['icon']  = $tmp_info['iconname'];
@@ -713,7 +704,7 @@ Class Utils {
         $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
         /*$i = count($achievements_data)+1;
         foreach($boss_firsts as $rf) {
-            $tmp = $this->armory->cDB->select("
+            $tmp = Armory::$cDB->select("
             SELECT
             `character_achievement`.`achievement`,
             `character_achievement`.`date`,
@@ -891,7 +882,7 @@ Class Utils {
         if($id == 0) {
             return SKILL_UNARMED;
         }
-        $item = $this->armory->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
+        $item = Armory::$wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d LIMIT 1", $id);
         if(!$item) {
             return SKILL_UNARMED;
         }
@@ -957,7 +948,7 @@ Class Utils {
      * @return   string
      **/
     public function GenerateCacheId($page, $att1 = 0, $att2 = 0, $att3 = 0) {
-        return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.$this->armory->GetLocale());
+        return md5($page.':'.ARMORY_REVISION.':'.$att1.':'.$att2.':'.$att3.':'.Armory::GetLocale());
     }
     
     /**
@@ -969,7 +960,7 @@ Class Utils {
      * @return   string
      **/
     public function GetCache($file_id, $file_dir = 'characters') {
-        if($this->armory->armoryconfig['useCache'] != true) {
+        if(Armory::$armoryconfig['useCache'] != true) {
             return false;
         }
         $cache_path = sprintf('cache/%s/%s.cache', $file_dir, $file_id);
@@ -978,7 +969,7 @@ Class Utils {
             $data_contents = @file_get_contents($data_path);
             $data_explode = explode(':', $data_contents);
             if(!is_array($data_explode)) {
-                $this->armory->Log()->writeError('%s : wrong cache data!', __METHOD__);
+                Armory::Log()->writeError('%s : wrong cache data!', __METHOD__);
                 return false;
             }
             $cache_timestamp = $data_explode[0];
@@ -986,7 +977,7 @@ Class Utils {
             $name_or_itemid  = $data_explode[2];
             $character_guid  = $data_explode[3];
             $cache_locale    = $data_explode[4];
-            $file_expire = $cache_timestamp + $this->armory->armoryconfig['cache_lifetime'];
+            $file_expire = $cache_timestamp + Armory::$armoryconfig['cache_lifetime'];
             if($file_expire < time() || $cache_revision != ARMORY_REVISION) {
                 self::DeleteCache($file_id, $file_dir); // Remove old cache
                 return false;
@@ -1037,7 +1028,7 @@ Class Utils {
      * @return   bool
      **/
     public function WriteCache($file_id, $filedata, $filecontents, $filedir = 'characters') {
-        if($this->armory->armoryconfig['useCache'] != true) {
+        if(Armory::$armoryconfig['useCache'] != true) {
             return false;
         }
         $data_path  = sprintf('cache/%s/%s.data', $filedir, $file_id);
@@ -1045,12 +1036,12 @@ Class Utils {
         $error_message = null;
         $cacheData = @fopen($data_path, 'w+');
         if(!@fwrite($cacheData, $filedata)) {
-            $this->armory->Log()->writeError('%s : unable to write %s.data', __METHOD__, $file_id);
+            Armory::Log()->writeError('%s : unable to write %s.data', __METHOD__, $file_id);
         }
         @fclose($cacheData);
         $cacheCache = @fopen($cache_path, 'w+');
         if(!@fwrite($cacheCache, $filecontents)) {
-            $this->armory->Log()->writeError('%s : unable to write %s.cache', __METHOD__, $file_id);
+            Armory::Log()->writeError('%s : unable to write %s.cache', __METHOD__, $file_id);
         }
         @fclose($cacheCache);
         return 0x01;
@@ -1066,7 +1057,7 @@ Class Utils {
      * @return   string
      **/
     public function GenerateCacheData($nameOrItemID, $charGuid, $page = null) {
-        return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, $this->armory->GetLocale());
+        return sprintf('%d:%d:%s:%d:%s:%s', time(), ARMORY_REVISION, $nameOrItemID, $charGuid, $page, Armory::GetLocale());
     }
     
     /**
@@ -1098,8 +1089,8 @@ Class Utils {
                 'дней', 'часов', 'мин', 'сек'
             )
         );
-        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'ru_ru') {
-            $preferLocale = $strings_array[$this->armory->GetLocale()];
+        if(Armory::GetLocale() == 'en_gb' || Armory::GetLocale() == 'ru_ru') {
+            $preferLocale = $strings_array[Armory::GetLocale()];
         }
         else {
             $preferLocale = $strings_array['en_gb'];
@@ -1195,7 +1186,7 @@ Class Utils {
     }
     
     /**
-     * Returns string with ID #$id for $this->armory->GetLocale() locale from DB
+     * Returns string with ID #$id for Armory::GetLocale() locale from DB
      * @category Utils class
      * @access   public
      * @param    mixed $id
@@ -1203,9 +1194,9 @@ Class Utils {
      **/
     public function GetArmoryString($id) {
         if(is_array($id)) {
-            return $this->armory->aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (%s)", $this->armory->GetLocale(), $id);
+            return Armory::$aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id` IN (%s)", Armory::GetLocale(), $id);
         }
-        return $this->armory->aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id`=%d", $this->armory->GetLocale(), $id);
+        return Armory::$aDB->selectCell("SELECT `string_%s` FROM `ARMORYDBPREFIX_string` WHERE `id`=%d", Armory::GetLocale(), $id);
     }
     
     /**
@@ -1261,7 +1252,7 @@ Class Utils {
      * @return   array
      **/
     public function GetDungeonId($instance_key) {
-        return $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s' LIMIT 1", $instance_key);
+        return Armory::$aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s' LIMIT 1", $instance_key);
     }
     
     /**
@@ -1272,7 +1263,7 @@ Class Utils {
      * @return   array
      **/
     public function GetDungeonData($instance_key) {
-        return $this->armory->aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `is_heroic`, `key`, `difficulty` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s'", $this->armory->GetLocale(), $instance_key);
+        return Armory::$aDB->selectRow("SELECT `id`, `name_%s` AS `name`, `is_heroic`, `key`, `difficulty` FROM `ARMORYDBPREFIX_instance_template` WHERE `key`='%s'", Armory::GetLocale(), $instance_key);
     }
     
     /**
@@ -1287,7 +1278,7 @@ Class Utils {
             case 'ferocity':
             case 'tenacity':
             case 'cunning':
-                return $this->armory->aDB->select("SELECT `catId`, `icon`, `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_petcalc` WHERE `key`='%s' AND `catId` >= 0", $this->armory->GetLocale(), strtolower($key));
+                return Armory::$aDB->select("SELECT `catId`, `icon`, `id`, `name_%s` AS `name` FROM `ARMORYDBPREFIX_petcalc` WHERE `key`='%s' AND `catId` >= 0", Armory::GetLocale(), strtolower($key));
                 break;
         }
     }
@@ -1300,11 +1291,11 @@ Class Utils {
      * @return   int
      **/
     public function IsRealm($rName) {
-        $realmId = $this->armory->aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $rName);
+        $realmId = Armory::$aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $rName);
         if($realmId > 0) {
             return $realmId;
         }
-        $this->armory->Log()->writeError('%s : unable to find id for realm %s (armory_realm_data)', __METHOD__, $rName);
+        Armory::Log()->writeError('%s : unable to find id for realm %s (armory_realm_data)', __METHOD__, $rName);
         return false;
     }
     
@@ -1330,7 +1321,7 @@ Class Utils {
      * @return   array
      **/
     public function RaceModelData($raceId) {
-        return $this->armory->aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", $raceId);
+        return Armory::$aDB->selectRow("SELECT `modeldata_1`, `modeldata_2` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", $raceId);
     }
     
     /**
@@ -1352,7 +1343,7 @@ Class Utils {
         }
         else {
             // Unknown race
-            $this->armory->Log()->writeError('%s : unknown race: %d', __METHOD__, $raceID);
+            Armory::Log()->writeError('%s : unknown race: %d', __METHOD__, $raceID);
             return false;
         }
     }
@@ -1373,7 +1364,7 @@ Class Utils {
      * @return   array
      **/
     public function GetArmoryNews($feed = false) {
-        $news = $this->armory->aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `ARMORYDBPREFIX_news` WHERE `display`=1 ORDER BY `date` DESC", $this->armory->GetLocale(), $this->armory->GetLocale());
+        $news = Armory::$aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `ARMORYDBPREFIX_news` WHERE `display`=1 ORDER BY `date` DESC", Armory::GetLocale(), Armory::GetLocale());
         if(!$news) {
             return false;
         }
@@ -1431,26 +1422,26 @@ Class Utils {
      * @return   bool
      **/
     public function CheckConfigRealmData() {
-        if(!$this->armory->realmData || !is_array($this->armory->realmData) || !isset($this->armory->realmData[1])) {
-            $this->armory->Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and have configured Armory correctly.', __METHOD__);
+        if(!Armory::$realmData || !is_array(Armory::$realmData) || !isset(Armory::$realmData[1])) {
+            Armory::Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and have configured Armory correctly.', __METHOD__);
             return false;
         }
         $allIds = array();
-        foreach($this->armory->realmData as $myRealm) {
-            $tmpData = $this->armory->aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
+        foreach(Armory::$realmData as $myRealm) {
+            $tmpData = Armory::$aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
             if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'] || $tmpData['type'] == UNK_SERVER)) {
-                $replace = $this->armory->aDB->query("REPLACE INTO `ARMORYDBPREFIX_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
+                $replace = Armory::$aDB->query("REPLACE INTO `ARMORYDBPREFIX_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 if($replace) {
-                    $this->armory->Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
+                    Armory::Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
                 }
                 else {
-                    $this->armory->Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`, `type`) VALUES (%d, \'%s\', %d);"', __METHOD__, $myRealm['name'], $this->armory->armoryconfig['db_prefix'], $this->armory->armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
+                    Armory::Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`, `type`) VALUES (%d, \'%s\', %d);"', __METHOD__, $myRealm['name'], Armory::$armoryconfig['db_prefix'], Armory::$armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
                 }
             }
             $allIds[] = $myRealm['id'];
         }
         // Drop wrong realms from armory_realm_data table
-        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_realm_data` WHERE `id` NOT IN (%s)", $allIds);
+        Armory::$aDB->query("DELETE FROM `ARMORYDBPREFIX_realm_data` WHERE `id` NOT IN (%s)", $allIds);
         return true;
     }
     
@@ -1462,7 +1453,7 @@ Class Utils {
      * @retunr   bool
      **/
     public function IsWriteRaw() {
-        if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us' || $this->armory->GetLocale() == 'ru_ru') {
+        if(Armory::GetLocale() == 'en_gb' || Armory::GetLocale() == 'en_us' || Armory::GetLocale() == 'ru_ru') {
             return false;
         }
         return true;
@@ -1500,13 +1491,13 @@ Class Utils {
             $totalCount = $countC;
         }
         else {
-            $this->armory->Log()->writeError('%s : realms and characters counters are not equal (realms: %d, chars: %d, total: %d)!', __METHOD__, $countR, $countC, $totalCount);
+            Armory::Log()->writeError('%s : realms and characters counters are not equal (realms: %d, chars: %d, total: %d)!', __METHOD__, $countR, $countC, $totalCount);
             return false;
         }
         $data = array();
         for($i = 0; $i < $totalCount; $i++) {
             if(!isset($realms[$i]) || !isset($chars[$i])) {
-                $this->armory->Log()->writeError('%s : data check for loop %d was failed, ignore.', __METHOD__, $i);
+                Armory::Log()->writeError('%s : data check for loop %d was failed, ignore.', __METHOD__, $i);
                 continue;
             }
             $data[$i] = array('name' => $chars[$i], 'realm' => $realms[$i]);
@@ -1614,14 +1605,14 @@ Class Utils {
      * @return   mixed
      **/
     public function GetRealmType($realm_id) {
-        if(!isset($this->armory->realmData[$realm_id]) || !isset($this->armory->realmData[$realm_id]['name_world'])) {
-            $this->armory->Log()->writeError('%s : unable to detect realm type: world database config not found', __METHOD__);
+        if(!isset(Armory::$realmData[$realm_id]) || !isset(Armory::$realmData[$realm_id]['name_world'])) {
+            Armory::Log()->writeError('%s : unable to detect realm type: world database config not found', __METHOD__);
             return false;
         }
-        $realm_info = $this->armory->realmData[$realm_id];
-        $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], $this->armory->Log());
+        $realm_info = Armory::$realmData[$realm_id];
+        $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world'], Armory::Log());
         if(!$db->TestLink()) {
-            $this->armory->Log()->writeError('%s : unable to connect to MySQL database ("%s":"%s":"%s":"%s")', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], 2, 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], 2, 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
+            Armory::Log()->writeError('%s : unable to connect to MySQL database ("%s":"%s":"%s":"%s")', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], 2, 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], 2, 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
             return false;
         }
         if($tmp = $db->selectCell("SELECT 1 FROM `mangos_string` LIMIT 1")) {
@@ -1630,8 +1621,8 @@ Class Utils {
         elseif($tmp = $db->selectCell("SELECT 1 FROM `trinity_string` LIMIT 1")) {
             return 'trinity';
         }
-        $this->armory->Log()->writeError('%s : unable to detect realm type, realm info with ID #%d was removed from allowed realms', __METHOD__, $realm_id);
-        unset($realm_id, $realm_info, $this->armory->realmData[$realm_id], $db);
+        Armory::Log()->writeError('%s : unable to detect realm type, realm info with ID #%d was removed from allowed realms', __METHOD__, $realm_id);
+        unset($realm_id, $realm_info, Armory::$realmData[$realm_id], $db);
         return false;
     }
     
@@ -1665,7 +1656,7 @@ Class Utils {
         elseif($server == 'trinity') {
             return SERVER_TRINITY;
         }
-        $this->armory->Log()->writeError('%s : unsupported server type ("%s")!', __METHOD__, $server);
+        Armory::Log()->writeError('%s : unsupported server type ("%s")!', __METHOD__, $server);
         return UNK_SERVER;
     }
     
@@ -1863,43 +1854,43 @@ Class Utils {
         $login_timestamp = time();
         $is_admin = $this->IsUserAdmin();
         // Add
-        $this->armory->aDB->query("INSERT INTO `ARMORYDBPREFIX_session` (`sid`, `shash`, `ip`, `logintstamp`, `active`, `is_admin`) VALUES ('%s', '%s', %d, 1, %d)", $session_id, $session_hash, $_SERVER['REMOTE_ADDR'], $login_timestamp, (int) $is_admin);
+        Armory::$aDB->query("INSERT INTO `ARMORYDBPREFIX_session` (`sid`, `shash`, `ip`, `logintstamp`, `active`, `is_admin`) VALUES ('%s', '%s', %d, 1, %d)", $session_id, $session_hash, $_SERVER['REMOTE_ADDR'], $login_timestamp, (int) $is_admin);
         $_SESSION['armory_shash'] = $session_hash;
         $_SESSION['armory_sid'] = $session_id;
     }
     
     public function UpdateSession() {
         if(isset($_SESSION['armory_sid']) && $this->IsCorrectSession()) {
-            return $this->armory->aDB->query("UPDATE `ARMORYDBPREFIX_session` SET `active` = 1 WHERE `sid` = %d", $_SESSION['armory_sid']);
+            return Armory::$aDB->query("UPDATE `ARMORYDBPREFIX_session` SET `active` = 1 WHERE `sid` = %d", $_SESSION['armory_sid']);
         }
         return true;
     }
     
     public function GetSessionsCount() {
         // Drop old sessions before calculations
-        $this->armory->aDB->query("DELETE FROM `ARMORYDBPREFIX_session` WHERE `logintstamp` >= %d", ((60 * 15) + time()));
-        return $this->armory->aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_session` WHERE `active` = %d AND `is_admin` = 0", 1);
+        Armory::$aDB->query("DELETE FROM `ARMORYDBPREFIX_session` WHERE `logintstamp` >= %d", ((60 * 15) + time()));
+        return Armory::$aDB->selectCell("SELECT COUNT(*) FROM `ARMORYDBPREFIX_session` WHERE `active` = %d AND `is_admin` = 0", 1);
     }
     
     public function GetNextSessionId() {
-        return $this->armory->aDB->selectCell("SELECT MAX(`sid`) FROM `ARMORYDBPREFIX_session`") + 1;
+        return Armory::$aDB->selectCell("SELECT MAX(`sid`) FROM `ARMORYDBPREFIX_session`") + 1;
     }
     
     public function IsCorrectSession() {
         if(!isset($_SESSION['armory_sid']) && !isset($_SESSION['armory_shash'])) {
             return false;
         }
-        return (bool) $this->armory->aDB->selectCell("SELECT `active` FROM `ARMORYDBPREFIX_session` WHERE `sid` = %d AND `shash` = '%s' AND `ip` = '%s'", $_SESSION['armory_sid'], $_SESSION['armory_shash'], $_SERVER['REMOTE_ADDR']);
+        return (bool) Armory::$aDB->selectCell("SELECT `active` FROM `ARMORYDBPREFIX_session` WHERE `sid` = %d AND `shash` = '%s' AND `ip` = '%s'", $_SESSION['armory_sid'], $_SESSION['armory_shash'], $_SERVER['REMOTE_ADDR']);
     }
     
     private function IsUserAdmin() {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
+        $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
         if(!$gmLevel) {
             // trinity?
-            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
+            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id` = %d LIMIT 1", $_SESSION['accountId']);
         }
         if($gmLevel >= 1) {
             return true;

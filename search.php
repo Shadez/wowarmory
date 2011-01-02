@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 407
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -38,7 +38,7 @@ if(isset($_GET['searchQuery'])) {
         $xml->LoadXSLT('error/error.xsl');
         $xml->XMLWriter()->startElement('page');
         $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-        $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+        $xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
         $xml->XMLWriter()->startElement('errorhtml');
         $xml->XMLWriter()->endElement();  //errorhtml
         $xml->XMLWriter()->endElement(); //page
@@ -73,7 +73,7 @@ if(!isset($_GET['searchQuery']) && !isset($_GET['source']) && !isset($_GET['pi']
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+    $xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
     $xml->XMLWriter()->startElement('errorhtml');
     $xml->XMLWriter()->endElement();  //errorhtml
     $xml->XMLWriter()->endElement(); //page
@@ -85,7 +85,7 @@ $xml->LoadXSLT('search/search.xsl');
 $totalCount = 0;
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'search.xml');
 $xml->XMLWriter()->writeAttribute('requestQuery', ($search->GetSearchQuery()) ? $search->GetSearchQuery().'&amp;searchType='.$_GET['searchType'] : null);
 $xml->XMLWriter()->startElement('armorySearch');

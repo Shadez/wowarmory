@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,12 +49,12 @@ if(!isset($_GET['r'])) {
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
-if($_GET['r'] === false || !$armory->currentRealmInfo) {
+if($_GET['r'] === false || !Armory::$currentRealmInfo) {
     $isCharacter = false;
 }
 // Get page cache
-if($isCharacter && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-sheet', $characters->GetName(), $armory->currentRealmInfo['name']);
+if($isCharacter && Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('character-sheet', $characters->GetName(), Armory::$currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -70,7 +70,7 @@ $tabUrl = $characters->GetUrlString();
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'character-sheet.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'profile');
@@ -409,15 +409,10 @@ $xml->XMLWriter()->endElement();  //characterInfo
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-sheet');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
-echo '<!-- Database statistics:
-';
-print_r($characters->GetDB()->GetStatistics());
-echo '
---> ';
 exit;
 ?>

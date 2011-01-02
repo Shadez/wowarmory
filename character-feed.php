@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 385
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -44,7 +44,7 @@ if(!isset($_GET['r'])) {
 $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
-if($_GET['r'] === false || !$armory->currentRealmInfo) {
+if($_GET['r'] === false || !Armory::$currentRealmInfo) {
     $isCharacter = false;
 }
 $tabUrl = $characters->GetUrlString();
@@ -53,7 +53,7 @@ $xml->LoadXSLT('character/feed.xsl');
 // Load XSLT template
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'character-feed.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'feed');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 398
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -39,14 +39,14 @@ if($name != null) {
     $characters->BuildCharacter($name, $realmId);
 }
 $isCharacter = $characters->CheckPlayer();
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     if($utils->IsItemComparisonAllowed()) {
         $selected_char_data = $utils->GetActiveCharacter();
         $chars_data = sprintf('%s:%s:%s:%s', ($characters->CheckPlayer()) ? $characters->GetName() : null, $characters->GetRealmName(), $selected_char_data['name'], $selected_char_data['realmName']);
-        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, $chars_data, $armory->currentRealmInfo['name']);
+        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, $chars_data, Armory::$currentRealmInfo['name']);
     }
     else {
-        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, ($characters->CheckPlayer()) ? $characters->GetName() : null, $armory->currentRealmInfo['name']);
+        $cache_id = $utils->GenerateCacheId('item-tooltip', $itemID, ($characters->CheckPlayer()) ? $characters->GetName() : null, Armory::$currentRealmInfo['name']);
     }
     if($cache_data = $utils->GetCache($cache_id, 'tooltips')) {
         echo $cache_data;
@@ -58,7 +58,7 @@ if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
 $xml->LoadXSLT('items/tooltip.xsl');
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'item-tooltip.xml');
 $itemID = (int) $_GET['i'];
 if(!$items->IsItemExists($itemID)) {
@@ -79,7 +79,7 @@ if($utils->IsItemComparisonAllowed()) {
     $primaryCharacter = $utils->GetActiveCharacter();
     if(isset($primaryCharacter['name'])) {
         if($primaryCharacter['name'] != $characters->GetName() || ($primaryCharacter['name'] == $characters->GetName() && $primaryCharacter['realm_id'] != $characters->GetRealmID())) {
-            $newChar = new Characters($armory);
+            $newChar = new Characters();
             $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
             if($newChar->CheckPlayer()) {
                 $itemSlot = $items->GetItemSlotId($itemID);
@@ -115,7 +115,7 @@ $xml->XMLWriter()->endElement();  //itemTooltips
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($itemID, ($characters->CheckPlayer()) ? $characters->GetGUID() : 0, 'item-tooltip');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'tooltips');

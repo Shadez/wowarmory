@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 402
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,14 +36,14 @@ if(isset($_GET['gn'])) {
 else {
     $guilds->guildName = false;
 }
-$serverType = $armory->aDB->selectCell("SELECT `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name` = '%s' LIMIT 1", $utils->escape($_GET['r']));
+$serverType = Armory::$aDB->selectCell("SELECT `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name` = '%s' LIMIT 1", $utils->escape($_GET['r']));
 $isGuild = $guilds->InitGuild($serverType);
 if(!$isGuild) {
     // Load XSLT template
     $xml->LoadXSLT('error/error.xsl');
     $xml->XMLWriter()->startElement('page');
     $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-    $xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+    $xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
     $xml->XMLWriter()->startElement('errorhtml');
     $xml->XMLWriter()->endElement();  //errorhtml
     $xml->XMLWriter()->endElement(); //page
@@ -51,8 +51,8 @@ if(!$isGuild) {
     exit;
 }
 // Get page cache
-if($guilds->guildId > 0 && $isGuild && $armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('guild-stats', $guilds->guildName, $armory->currentRealmInfo['name']);
+if($guilds->guildId > 0 && $isGuild && Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+    $cache_id = $utils->GenerateCacheId('guild-stats', $guilds->guildName, Armory::$currentRealmInfo['name']);
     if($cache_data = $utils->GetCache($cache_id, 'guilds')) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -64,13 +64,13 @@ $xml->LoadXSLT('guild/stats.xsl');
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'guild-stats.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('subTab', 'guildStats');
 $xml->XMLWriter()->writeAttribute('tab', 'guild');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'guild');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)) : null);
+$xml->XMLWriter()->writeAttribute('tabUrl', ($isGuild) ? sprintf('r=%s&gn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($guilds->guildName)) : null);
 $xml->XMLWriter()->endElement(); //tabInfo
 /** Basic info **/
 $guilds->BuildGuildInfo();
@@ -82,14 +82,14 @@ $guild_emblem = array(
     'emblemIconStyle'   => $guilds->emblemstyle
 );
 $guild_header = array(
-    'battleGroup'  => $armory->armoryconfig['defaultBGName'],
+    'battleGroup'  => Armory::$armoryconfig['defaultBGName'],
     'count'        => $guilds->CountGuildMembers(),
     'faction'      => $guilds->guildFaction,
     'name'         => $guilds->guildName,
-    'nameUrl'      => sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName)),
-    'realm'        => $armory->currentRealmInfo['name'],
-    'realmUrl'     => urlencode($armory->currentRealmInfo['name']),
-    'url'          => sprintf('r=%s&gn=%s', urlencode($armory->currentRealmInfo['name']), urlencode($guilds->guildName))
+    'nameUrl'      => sprintf('r=%s&gn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($guilds->guildName)),
+    'realm'        => Armory::$currentRealmInfo['name'],
+    'realmUrl'     => urlencode(Armory::$currentRealmInfo['name']),
+    'url'          => sprintf('r=%s&gn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($guilds->guildName))
 );
 $xml->XMLWriter()->startElement('guildInfo');
 $xml->XMLWriter()->startElement('guildHeader');
@@ -119,7 +119,7 @@ $xml->XMLWriter()->endElement();  //guildInfo
 $xml->XMLWriter()->endElement(); //page
 $xml_cache_data = $xml->StopXML();
 echo $xml_cache_data;
-if($armory->armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
+if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     // Write cache to file
     $cache_data = $utils->GenerateCacheData($guilds->guildName, $guilds->guildId, 'guild-stats');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data, 'guilds');

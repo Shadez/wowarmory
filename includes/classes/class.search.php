@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 434
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,19 +23,11 @@
  **/
 
 Class SearchMgr {
-    
-    public $armory = null;
+
     private $searchQuery = false;
     public $get_array;
     public $heirloom = false;
     public $itemSearchSkip = false;
-    
-    public function SearchMgr($armory) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
-    }
     
     public function SetSearchQuery($searchQuery) {
         $this->searchQuery = $searchQuery;
@@ -50,29 +42,29 @@ Class SearchMgr {
             return false;
         }
         if(!$this->searchQuery && !$findUpgrade && !$this->heirloom) {
-            $this->armory->Log()->writeError('%s : unable to start search: no data provided', __METHOD__);
+            Armory::Log()->writeError('%s : unable to start search: no data provided', __METHOD__);
             return false;
         }
         if($findUpgrade > 0) {
-            $source_item_data = $this->armory->wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality`, `bonding` FROM `item_template` WHERE `entry`=%d", $findUpgrade);
+            $source_item_data = Armory::$wDB->selectRow("SELECT `class`, `subclass`, `InventoryType`, `ItemLevel`, `Quality`, `bonding` FROM `item_template` WHERE `entry`=%d", $findUpgrade);
             if(!$source_item_data) {
-                $this->armory->Log()->writeError('%s : unable to item info for ID #%d (findUpgrade)', __METHOD__, $findUpgrade);
+                Armory::Log()->writeError('%s : unable to item info for ID #%d (findUpgrade)', __METHOD__, $findUpgrade);
                 return false;
             }
         }
         if($count == true) {
             if($findUpgrade) {
-                $count_items = $this->armory->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d AND `RequiredLevel` <= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel'], $player_level);
+                $count_items = Armory::$wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d AND `RequiredLevel` <= %d", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel'], $player_level);
             }
             elseif($this->heirloom == true) {
-                $count_items = $this->armory->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `Quality`=7");
+                $count_items = Armory::$wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `Quality`=7");
             }
             else {
-                if($this->armory->GetLoc() == 0) {
-                    $count_items = $this->armory->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
+                if(Armory::GetLoc() == 0) {
+                    $count_items = Armory::$wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
                 }
                 else {
-                    $count_items = $this->armory->wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->armory->GetLoc(), '%'.$this->searchQuery.'%');
+                    $count_items = Armory::$wDB->selectCell("SELECT COUNT(`entry`) FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', Armory::GetLoc(), '%'.$this->searchQuery.'%');
                 }
             }
             if($count_items > 200) {
@@ -81,21 +73,21 @@ Class SearchMgr {
             return $count_items;
         }
         if($findUpgrade) {
-            $items = $this->armory->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d AND `RequiredLevel` <= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel'], $player_level);
+            $items = Armory::$wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `class`=%d AND `subclass`=%d AND `InventoryType`=%d AND `Quality` >= %d AND `ItemLevel` >= %d AND `RequiredLevel` <= %d ORDER BY `ItemLevel` DESC LIMIT 200", $source_item_data['class'], $source_item_data['subclass'], $source_item_data['InventoryType'], $source_item_data['Quality'], $source_item_data['ItemLevel'], $player_level);
         }
         elseif($this->heirloom == true) {
-            $items = $this->armory->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `Quality`=7 ORDER BY `ItemLevel` DESC LIMIT 200");
+            $items = Armory::$wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `Quality`=7 ORDER BY `ItemLevel` DESC LIMIT 200");
         }
         else {
-            if($this->armory->GetLoc() == 0) {
-                $items = $this->armory->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
+            if(Armory::GetLoc() == 0) {
+                $items = Armory::$wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%');
             }
             else {
-                $items = $this->armory->wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', $this->armory->GetLoc(), '%'.$this->searchQuery.'%');
+                $items = Armory::$wDB->select("SELECT `entry` AS `id`, `name`, `ItemLevel`, `Quality` AS `rarity`, `displayid`, `bonding`, `flags`, `duration` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s') ORDER BY `ItemLevel` DESC LIMIT 200", '%'.$this->searchQuery.'%', Armory::GetLoc(), '%'.$this->searchQuery.'%');
             }
         }
         if(!$items) {
-            $this->armory->Log()->writeLog('%s : unable to find any items with `%s` query (current locale: %s, locId: %d)', __METHOD__, $this->searchQuery, $this->armory->GetLocale(), $this->armory->GetLoc());
+            Armory::Log()->writeLog('%s : unable to find any items with `%s` query (current locale: %s, locId: %d)', __METHOD__, $this->searchQuery, Armory::GetLocale(), Armory::GetLoc());
             return false;
         }
         $result_data = array();
@@ -108,7 +100,7 @@ Class SearchMgr {
                 $result_data[$i]['data']['canAuction'] = 1;
             }
             unset($result_data[$i]['data']['flags'], $result_data[$i]['data']['duration'], $result_data[$i]['data']['bonding']);
-            if($this->armory->GetLocale() == 'en_gb' || $this->armory->GetLocale() == 'en_us') {
+            if(Armory::GetLocale() == 'en_gb' || Armory::GetLocale() == 'en_us') {
                 $result_data[$i]['data']['name'] = $item['name'];
             }
             else {
@@ -144,23 +136,23 @@ Class SearchMgr {
             return false;
         }
         if((!$this->get_array || !is_array($this->get_array)) && !$this->searchQuery ) {
-            $this->armory->Log()->writeError('%s : start failed', __METHOD__);
+            Armory::Log()->writeError('%s : start failed', __METHOD__);
             return false;
         }
         if(!isset($this->get_array['source'])) {
-            $this->armory->Log()->writeError('%s : get_array[source] not defined', __METHOD__);
+            Armory::Log()->writeError('%s : get_array[source] not defined', __METHOD__);
             return false;
         }
         $allowedDungeon = false;
         // Get item IDs first (if $this->searchQuery is defined)
         $item_id_string = null;
         if($this->searchQuery) {
-            if($this->armory->GetLoc() == 0) {
+            if(Armory::GetLoc() == 0) {
                 // No SQL injection - already escaped in search.php
-                $_item_ids = $this->armory->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
+                $_item_ids = Armory::$wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s'", '%'.$this->searchQuery.'%');
             }
             else {
-                $_item_ids = $this->armory->wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', $this->armory->GetLoc(), '%' . $this->searchQuery.'%');
+                $_item_ids = Armory::$wDB->select("SELECT `entry` FROM `item_template` WHERE `name` LIKE '%s' OR `entry` IN (SELECT `entry` FROM `locales_item` WHERE `name_loc%d` LIKE '%s')", '%'.$this->searchQuery.'%', Armory::GetLoc(), '%' . $this->searchQuery.'%');
             }
             if(is_array($_item_ids)) {
                 $tmp_count_ids = count($_item_ids);
@@ -185,7 +177,7 @@ Class SearchMgr {
                     $tmp_quest_query .= sprintf(" AND `item` IN (%s)", $item_id_string);
                 }
                 $tmp_quest_query .= " ORDER BY `item` DESC LIMIT 200";
-                $_quest_items = $this->armory->aDB->select($tmp_quest_query);
+                $_quest_items = Armory::$aDB->select($tmp_quest_query);
                 if(!$_quest_items) {
                     return false;
                 }
@@ -213,15 +205,15 @@ Class SearchMgr {
                     $this->get_array['boss'] = 'all';
                 }
                 if(self::IsExtendedCost()) {
-                    $this->armory->Log()->writeLog('%s : current ExtendedCost key: %s', __METHOD__, $this->get_array['dungeon']);
-                    $item_extended_cost = $this->armory->aDB->selectCell("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $this->get_array['dungeon']);
+                    Armory::Log()->writeLog('%s : current ExtendedCost key: %s', __METHOD__, $this->get_array['dungeon']);
+                    $item_extended_cost = Armory::$aDB->selectCell("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s' LIMIT 1", $this->get_array['dungeon']);
                     if(!$item_extended_cost) {
-                        $this->armory->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost key (%s) but data for this key is missed in `armory_item_sources`', __METHOD__, $this->get_array['dungeon']);
+                        Armory::Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost key (%s) but data for this key is missed in `armory_item_sources`', __METHOD__, $this->get_array['dungeon']);
                         return false;
                     }
-                    $extended_cost = $this->armory->aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
+                    $extended_cost = Armory::$aDB->select("SELECT `id` FROM `ARMORYDBPREFIX_extended_cost` WHERE `item1`=%d OR `item2`=%d OR `item3`=%d OR `item4`=%d OR `item5`=%d", $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost, $item_extended_cost);
                     if(!$extended_cost) {
-                        $this->armory->Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost (key: %s, id: %d) but data for this id is missed in `armory_extended_cost`', __METHOD__, $this->get_array['dungeon'], $item_extended_cost);
+                        Armory::Log()->writeError('%s : this->get_array[dungeon] is ExtendedCost (key: %s, id: %d) but data for this id is missed in `armory_extended_cost`', __METHOD__, $this->get_array['dungeon'], $item_extended_cost);
                         return false;
                     }
                     $cost_ids = array();
@@ -315,9 +307,9 @@ Class SearchMgr {
                             $sql_query .= sprintf(" AND `key`='%s'", $this->get_array['boss']);
                         }
                     }
-                    $boss_lootids = $this->armory->aDB->select($sql_query);
+                    $boss_lootids = Armory::$aDB->select($sql_query);
                     if(!$boss_lootids) {
-                        $this->armory->Log()->writeLog('%s : unable to find loot IDs for boss %s (instance: %s)', __METHOD__, $this->get_array['boss'], $this->get_array['dungeon']);
+                        Armory::Log()->writeLog('%s : unable to find loot IDs for boss %s (instance: %s)', __METHOD__, $this->get_array['boss'], $this->get_array['dungeon']);
                         return false;
                     }
                     $loot_table = '-1';
@@ -348,16 +340,16 @@ Class SearchMgr {
                     $this->get_array['pvp'] = 'all';
                 }
                 if($this->get_array['pvp'] == 'all' || $this->get_array['pvp'] == -1) {
-                    $pvpVendorsId = $this->armory->aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key` IN ('wintergrasp', 'arena8', 'arena7', 'arena6', 'arena5', 'arena4', 'arena3', 'arena2', 'arena1', 'honor', 'ab', 'av', 'wsg', 'halaa', 'honorhold', 'terrokar', 'zangarmarsh', 'thrallmar')");
+                    $pvpVendorsId = Armory::$aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key` IN ('wintergrasp', 'arena8', 'arena7', 'arena6', 'arena5', 'arena4', 'arena3', 'arena2', 'arena1', 'honor', 'ab', 'av', 'wsg', 'halaa', 'honorhold', 'terrokar', 'zangarmarsh', 'thrallmar')");
                     if(!$pvpVendorsId) {
-                        $this->armory->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources', __METHOD__);
+                        Armory::Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources', __METHOD__);
                         return false;
                     }
                 }
                 else {
-                    $pvpVendorsId = $this->armory->aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s'", $this->get_array['pvp']);
+                    $pvpVendorsId = Armory::$aDB->select("SELECT `item` FROM `ARMORYDBPREFIX_item_sources` WHERE `key`='%s'", $this->get_array['pvp']);
                     if(!$pvpVendorsId) {
-                        $this->armory->Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources (faction: %s, key: %s)', __METHOD__, $this->get_array['source'], $this->get_array['pvp']);
+                        Armory::Log()->writeError('%s : unable to get data for pvpVendors from armory_item_sources (faction: %s, key: %s)', __METHOD__, $this->get_array['source'], $this->get_array['pvp']);
                         return false;
                     }
                 }
@@ -387,12 +379,12 @@ Class SearchMgr {
                 break;
         }
         if(!isset($global_sql_query) || !$global_sql_query) {
-            $this->armory->Log()->writeError('%s : SQL query was not created (probably "%s" is unknown source).', __METHOD__, $this->get_array['source']);
+            Armory::Log()->writeError('%s : SQL query was not created (probably "%s" is unknown source).', __METHOD__, $this->get_array['source']);
             return false;
         }
-        $items_query = $this->armory->wDB->select($global_sql_query);
+        $items_query = Armory::$wDB->select($global_sql_query);
         if(!$items_query) {
-            $this->armory->Log()->writeError('%s : unable to execute SQL query "%s"', __METHOD__, $global_sql_query);
+            Armory::Log()->writeError('%s : unable to execute SQL query "%s"', __METHOD__, $global_sql_query);
             unset($global_sql_query);
             return false;
         }
@@ -417,7 +409,7 @@ Class SearchMgr {
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
                 $items_result[$i]['data']['id'] = $item['id'];
-                if($this->armory->GetLocale() != 'en_gb' || $this->armory->GetLocale() != 'en_us') {
+                if(Armory::GetLocale() != 'en_gb' || Armory::GetLocale() != 'en_us') {
                     $items_result[$i]['data']['name'] = Items::GetItemName($item['id']);
                 }
                 else {
@@ -473,16 +465,16 @@ Class SearchMgr {
         $count_results_currrent_realm = 0; // Current realm results
         $db = null; // Temporary handler
         if($num == true) {
-            foreach($this->armory->realmData as $realm_info) {
+            foreach(Armory::$realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
                 $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`arenateamid`) FROM `arena_team` WHERE `name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
                 $count_results = $count_results + $count_results_currrent_realm;
             }
             return $count_results;
         }
-        foreach($this->armory->realmData as $realm_info) {
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        foreach(Armory::$realmData as $realm_info) {
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             $current_realm = $db->select("
             SELECT `arena_team`.`name`, `arena_team`.`type` AS `size`, `arena_team_stats`.`rating`, `characters`.`race`
                 FROM `arena_team` AS `arena_team`
@@ -495,7 +487,7 @@ Class SearchMgr {
             $count_current_realm = count($current_realm);
             foreach($current_realm as $realm) {
                 $realm['teamSize'] = $realm['size'];
-                $realm['battleGroup'] = $this->armory->armoryconfig['defaultBGName'];
+                $realm['battleGroup'] = Armory::$armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
                 $realm['relevance'] = 100;
                 $realm['realm'] = $realm_info['name'];
@@ -520,23 +512,23 @@ Class SearchMgr {
         $count_results_currrent_realm = 0; // Current realm results
         $db = null; // Temporary handler
         if($num == true) {
-            foreach($this->armory->realmData as $realm_info) {
+            foreach(Armory::$realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
                 $count_results_currrent_realm = $db->selectCell("SELECT COUNT(`guildid`) FROM `guild` WHERE `name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
                 $count_results = $count_results + $count_results_currrent_realm;
             }
             return $count_results;
         }
-        foreach($this->armory->realmData as $realm_info) {
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        foreach(Armory::$realmData as $realm_info) {
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             $current_realm = $db->select("SELECT `guild`.`name`, `characters`.`race` FROM `guild` AS `guild` LEFT JOIN `characters` AS `characters` ON `guild`.`leaderguid`=`characters`.`guid` WHERE `guild`.`name` LIKE '%s' LIMIT 200", '%'.$this->searchQuery.'%');
             if(!$current_realm) {
                 continue;
             }
             $count_current_realm = count($current_realm);
             foreach($current_realm as $realm) {
-                $realm['battleGroup'] = $this->armory->armoryconfig['defaultBGName'];
+                $realm['battleGroup'] = Armory::$armoryconfig['defaultBGName'];
                 $realm['factionId'] = Utils::GetFactionId($realm['race']);
                 $realm['relevance'] = 100; // All guilds have 100% relevance
                 $realm['realm'] = $realm_info['name'];
@@ -553,7 +545,7 @@ Class SearchMgr {
     
     public function PerformCharactersSearch($num = false) {
         if(!$this->searchQuery) {
-            $this->armory->Log()->writeLog('%s : searchQuery not defined', __METHOD__);
+            Armory::Log()->writeLog('%s : searchQuery not defined', __METHOD__);
             return false;
         }
         $currentTimeStamp = time();
@@ -562,12 +554,12 @@ Class SearchMgr {
         $count_results = 0; // All realms results
         $count_results_currrent_realm = 0; // Current realm results
         $db = null; // Temporary handler
-        $countRealmData = count($this->armory->realmData);
+        $countRealmData = count(Armory::$realmData);
         if($num == true) {
-            foreach($this->armory->realmData as $realm_info) {
+            foreach(Armory::$realmData as $realm_info) {
                 $count_results_currrent_realm = 0;
-                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
-                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `level` >= %d LIMIT 200", $this->searchQuery, $this->armory->armoryconfig['minlevel']);
+                $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
+                $characters_data[] = $db->select("SELECT `guid`, `level`, `account` FROM `characters` WHERE `name`='%s' AND `level` >= %d LIMIT 200", $this->searchQuery, Armory::$armoryconfig['minlevel']);
             }
             for($ii = 0; $ii < $countRealmData; $ii++) {
                 $count_result_chars = count($characters_data[$ii]);
@@ -580,8 +572,8 @@ Class SearchMgr {
             return $count_results;
         }
         $accounts_cache = array(); // For relevance calculation
-        foreach($this->armory->realmData as $realm_info) {
-            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], $this->armory->Log());
+        foreach(Armory::$realmData as $realm_info) {
+            $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             if(!$db) {
                 continue;
             }
@@ -599,10 +591,10 @@ Class SearchMgr {
                     $realm['guildUrl'] = sprintf('r=%s&gn=%s', urlencode($realm_info['name']), urlencode($realm['guild']));
                 }
                 $realm['url'] = sprintf('r=%s&cn=%s', urlencode($realm_info['name']), urlencode($realm['name']));
-                $realm['battleGroup'] = $this->armory->armoryconfig['defaultBGName'];
+                $realm['battleGroup'] = Armory::$armoryconfig['defaultBGName'];
                 $realm['battleGroupId'] = 1;
-                $realm['class'] = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id`=%d", $this->armory->GetLocale(), $realm['classId']);
-                $realm['race'] = $this->armory->aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", $this->armory->GetLocale(), $realm['raceId']);
+                $realm['class'] = Armory::$aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_classes` WHERE `id`=%d", Armory::GetLocale(), $realm['classId']);
+                $realm['race'] = Armory::$aDB->selectCell("SELECT `name_%s` FROM `ARMORYDBPREFIX_races` WHERE `id`=%d", Armory::GetLocale(), $realm['raceId']);
                 $realm['realm'] = $realm_info['name'];
                 $realm['factionId'] = Utils::GetFactionId($realm['raceId']);
                 $realm['searchRank'] = 1; //???
@@ -638,7 +630,7 @@ Class SearchMgr {
                 }
                 // Check last login date. If it's more than 2 days, decrease relevance by 4 for every day
                 if(!isset($accounts_cache[$realm['account']])) {
-                    $lastLogin = $this->armory->rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=%d", $realm['account']);
+                    $lastLogin = Armory::$rDB->selectCell("SELECT `last_login` FROM `account` WHERE `id`=%d", $realm['account']);
                     $accounts_cache[$realm['account']] = $lastLogin;
                 }
                 else {
@@ -674,7 +666,7 @@ Class SearchMgr {
     
     public function IsExtendedCost() {
         if(!isset($this->get_array['dungeon'])) {
-            $this->armory->Log()->writeError('%s is for `dungeon` cases only!', __METHOD__);
+            Armory::Log()->writeError('%s is for `dungeon` cases only!', __METHOD__);
             return false;
         }
         $key = $this->get_array['dungeon'];
@@ -709,16 +701,16 @@ Class SearchMgr {
     }
     
     private function IsCharacterAllowedForSearch($guid, $level, $account_id) {
-        if($level < $this->armory->armoryconfig['minlevel']) {
+        if($level < Armory::$armoryconfig['minlevel']) {
             return false;
         }
         $gmLevel = 0;
-        $this->armory->rDB->SkipNextError();
-        $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $account_id);
+        Armory::$rDB->SkipNextError();
+        $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $account_id);
         if(!$gmLevel) {
-            $gmLevel = $this->armory->rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d) LIMIT 1", $account_id, $this->armory->currentRealmInfo['id']);
+            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d) LIMIT 1", $account_id, Armory::$currentRealmInfo['id']);
         }
-        if($gmLevel <= $this->armory->armoryconfig['minGmLevelToShow']) {
+        if($gmLevel <= Armory::$armoryconfig['minGmLevelToShow']) {
             return true;
         }
         return false;
@@ -756,17 +748,17 @@ Class SearchMgr {
      **/
     private function HandleItemFilters($item_ids = null, $data = null) {
         if(!isset($_SERVER['QUERY_STRING'])) {
-            $this->armory->Log()->writeError('%s : unable to find \$_SERVER[QUERY_STRING] variable', __METHOD__);
+            Armory::Log()->writeError('%s : unable to find \$_SERVER[QUERY_STRING] variable', __METHOD__);
             return false;
         }
         elseif(!$this->get_array) {
-            $this->armory->Log()->writeError('%s : get_array not defined', __METHOD__);
+            Armory::Log()->writeError('%s : get_array not defined', __METHOD__);
             return false;
         }
         $string = $_SERVER['QUERY_STRING'];
         $query_string = explode('&', $string);
         if(!is_array($query_string)) {
-            $this->armory->Log()->writeError('%s : unable to convert \$string variable to array (query_string)!', __METHOD__);
+            Armory::Log()->writeError('%s : unable to convert \$string variable to array (query_string)!', __METHOD__);
         }
         $search_type = (isset($this->get_array['andor'])) ? $this->get_array['andor'] : 'and';
         $quality_types = array(
@@ -979,7 +971,7 @@ Class SearchMgr {
             $result_ids[] = $curr_item_id;
         }
         // Get item sources
-        $data = $this->armory->aDB->select("
+        $data = Armory::$aDB->select("
         SELECT
         `ARMORYDBPREFIX_source`.`item`,
         `ARMORYDBPREFIX_source`.`source`,
@@ -990,9 +982,9 @@ Class SearchMgr {
         `ARMORYDBPREFIX_instance_template`.`id` AS `areaId`
         FROM `ARMORYDBPREFIX_source` AS `ARMORYDBPREFIX_source`
         LEFT JOIN `ARMORYDBPREFIX_instance_template` AS `ARMORYDBPREFIX_instance_template` ON `ARMORYDBPREFIX_instance_template`.`key`=`ARMORYDBPREFIX_source`.`areaKey`
-        WHERE `ARMORYDBPREFIX_source`.`item` IN (%s)", $this->armory->GetLocale(), $result_ids);
+        WHERE `ARMORYDBPREFIX_source`.`item` IN (%s)", Armory::GetLocale(), $result_ids);
         if(!$data) {
-            $this->armory->Log()->writeError('%s : unable to get item sources from DB!', __METHOD__);
+            Armory::Log()->writeError('%s : unable to get item sources from DB!', __METHOD__);
             return false;
         }
         $sources_result = array();

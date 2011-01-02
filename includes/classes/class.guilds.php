@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 437
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,8 +27,6 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Guilds {
-    
-    public $armory = null;
     
     /**
      * Player guid
@@ -86,13 +84,6 @@ Class Guilds {
       **/
      private $m_server;
      
-     public function Guilds($armory) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
-     }
-     
      /**
       * Build guild info
       * @category Guilds class
@@ -103,9 +94,9 @@ Class Guilds {
         if(!$this->guildId) {
             $this->GetGuildIDByPlayerGUID();
         }
-        $guild_data = $this->armory->cDB->selectRow("SELECT `name`, `leaderguid`, `BankMoney`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor` FROM `guild` WHERE `guildid`=%d", $this->guildId);
+        $guild_data = Armory::$cDB->selectRow("SELECT `name`, `leaderguid`, `BankMoney`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor` FROM `guild` WHERE `guildid`=%d", $this->guildId);
         if(!$guild_data) {
-            $this->armory->Log()->writeError('%s : unable to get data from DB for guild %d', __METHOD__, $this->guildId);
+            Armory::Log()->writeError('%s : unable to get data from DB for guild %d', __METHOD__, $this->guildId);
             return false;
         }
         $this->guildName       = $guild_data['name'];
@@ -129,12 +120,12 @@ Class Guilds {
       **/
      public function InitGuild($serverType) {
         if(!$this->guildName) {
-            $this->armory->Log()->writeError('%s : guilName not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guilName not defined', __METHOD__);
             return false;
         }
-        $this->guildId = $this->armory->cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`='%s' LIMIT 1", $this->guildName);
+        $this->guildId = Armory::$cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`='%s' LIMIT 1", $this->guildName);
         if($serverType < SERVER_MANGOS || $serverType > SERVER_TRINITY) {
-            $this->armory->Log()->writeError('%s : unknown server type (%d). Set m_server to SERVER_MANGOS (%d)', __METHOD__, $serverType, SERVER_MANGOS);
+            Armory::Log()->writeError('%s : unknown server type (%d). Set m_server to SERVER_MANGOS (%d)', __METHOD__, $serverType, SERVER_MANGOS);
             $this->m_server = SERVER_MANGOS;
         }
         else {
@@ -157,10 +148,10 @@ Class Guilds {
             $this->guid = $guid;
         }
         if(!$this->guid) {
-            $this->armory->Log()->writeError('%s : player guid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : player guid not defined', __METHOD__);
             return false;
         }
-        $this->guildId = $this->armory->cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $this->guid);
+        $this->guildId = Armory::$cDB->selectCell("SELECT `guildid` FROM `guild_member` WHERE `guid`=%d", $this->guid);
         if($this->guildId > 0) {
             return true;
         }
@@ -174,10 +165,10 @@ Class Guilds {
       **/
      public function CountGuildMembers() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        return $this->armory->cDB->selectCell("SELECT COUNT(`guid`) FROM `guild_member` WHERE `guildid`=%d", $this->guildId);
+        return Armory::$cDB->selectCell("SELECT COUNT(`guid`) FROM `guild_member` WHERE `guildid`=%d", $this->guildId);
      }
      
      /**
@@ -188,10 +179,10 @@ Class Guilds {
       **/
      private function GetGuildFaction() {
         if(!$this->guildleaderguid) {
-            $this->armory->Log()->writeError('%s : guildleaderguid not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildleaderguid not defined', __METHOD__);
             return false;
         }
-        $race = $this->armory->cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=%d LIMIT 1", $this->guildleaderguid);
+        $race = Armory::$cDB->selectCell("SELECT `race` FROM `characters` WHERE `guid`=%d LIMIT 1", $this->guildleaderguid);
         $this->guildFaction = Utils::GetFactionId($race);
         return true;
      }
@@ -204,10 +195,10 @@ Class Guilds {
       **/
      public function BuildGuildList() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        $memberListTmp = $this->armory->cDB->select("
+        $memberListTmp = Armory::$cDB->select("
         SELECT
         `characters`.`guid`,
         `characters`.`name`,
@@ -219,13 +210,13 @@ Class Guilds {
         FROM `characters` AS `characters`
         LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid` AND `guild_member`.`guildid`=%d
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=%d
-        WHERE `guild`.`guildid`=%d AND `characters`.`level`>=%d AND `guild_member`.`guid`=`characters`.`guid`", $this->guildId, $this->guildId, $this->guildId, $this->armory->armoryconfig['minlevel']);
+        WHERE `guild`.`guildid`=%d AND `characters`.`level`>=%d AND `guild_member`.`guid`=`characters`.`guid`", $this->guildId, $this->guildId, $this->guildId, Armory::$armoryconfig['minlevel']);
         $countMembers = count($memberListTmp);
         for($i = 0; $i < $countMembers; $i++) {
-            $pl = new Characters($this->armory);
-            $pl->BuildCharacter($memberListTmp[$i]['name'], $this->armory->currentRealmInfo['id'], false);
+            $pl = new Characters();
+            $pl->BuildCharacter($memberListTmp[$i]['name'], Armory::$currentRealmInfo['id'], false);
             $memberListTmp[$i]['achPoints'] = $pl->GetAchievementMgr()->GetAchievementPoints();
-            $memberListTmp[$i]['url'] = sprintf('r=%s&cn=%s&gn=%s', urlencode($this->armory->currentRealmInfo['name']), urlencode($memberListTmp[$i]['name']), urlencode($this->guildName));
+            $memberListTmp[$i]['url'] = sprintf('r=%s&cn=%s&gn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($memberListTmp[$i]['name']), urlencode($this->guildName));
             unset($pl);
         }
         return $memberListTmp;
@@ -238,7 +229,7 @@ Class Guilds {
       * @return   array
       **/
      public function BuildStatsList() {
-        return $this->armory->cDB->select("SELECT `race`, `class`, `level`, `gender` FROM `characters` uid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=%d) AND `level`>=%d", $this->guildId, $this->armory->armoryconfig['minlevel']);
+        return Armory::$cDB->select("SELECT `race`, `class`, `level`, `gender` FROM `characters` uid` IN (SELECT `guid` FROM `guild_member` WHERE `guildid`=%d) AND `level`>=%d", $this->guildId, Armory::$armoryconfig['minlevel']);
      }
      
      /**
@@ -249,10 +240,10 @@ Class Guilds {
       **/
      public function GetGuildInfo() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        return $this->armory->cDB->selectRow("SELECT `info`, `motd` FROM `guild` WHERE `guildid`=%d", $this->guildId);
+        return Armory::$cDB->selectRow("SELECT `info`, `motd` FROM `guild` WHERE `guildid`=%d", $this->guildId);
      }
      
      /**
@@ -263,10 +254,10 @@ Class Guilds {
       **/
      public function GetGuildBankTabs() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        $tabs = $this->armory->cDB->select("SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon` FROM `guild_bank_tab` WHERE `guildid`=%d", $this->guildId);
+        $tabs = Armory::$cDB->select("SELECT `TabId` AS `id`, `TabName` AS `name`, LOWER(`TabIcon`) AS `icon` FROM `guild_bank_tab` WHERE `guildid`=%d", $this->guildId);
         $count_tabs = count($tabs);
         for($i = 0; $i < $count_tabs; $i++) {
             $tabs[$i]['viewable'] = 'true';
@@ -282,7 +273,7 @@ Class Guilds {
       **/
      public function GetGuildBankMoney() {
         if(!$this->guildBankMoney) {
-            $this->armory->Log()->writeError('%s : guildBankMoney not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildBankMoney not defined', __METHOD__);
             return false;
         }
         return $this->guildBankMoney;
@@ -297,13 +288,13 @@ Class Guilds {
       **/
      public function BuildGuildBankItemList() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        $items_list = $this->armory->cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=%d", $this->guildId);
+        $items_list = Armory::$cDB->select("SELECT `item_entry` AS `id`, `item_guid` AS `seed`, `SlotId` AS `slot`, `TabId` AS `bag` FROM `guild_bank_item` WHERE `guildid`=%d", $this->guildId);
         $count_items = count($items_list);
         for($i = 0; $i < $count_items; $i++) {
-            $item_data = $this->armory->wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry` = %d LIMIT 1", $items_list[$i]['id']);
+            $item_data = Armory::$wDB->selectRow("SELECT `RandomProperty`, `RandomSuffix` FROM `item_template` WHERE `entry` = %d LIMIT 1", $items_list[$i]['id']);
             $tmp_durability = Items::GetItemDurabilityByItemGuid($items_list[$i]['seed'], $this->m_server);
             $items_list[$i]['durability'] = (int) $tmp_durability['current'];
             $items_list[$i]['maxDurability'] = (int) $tmp_durability['max'];
@@ -314,7 +305,7 @@ Class Guilds {
                 $items_list[$i]['quantity'] = Items::GetItemDataField(ITEM_FIELD_STACK_COUNT, 0, 0, $items_list[$i]['seed']);
             }
             elseif($this->m_server == SERVER_TRINITY) {
-                $items_list[$i]['quantity'] = $this->armory->cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $items_list[$i]['seed']);
+                $items_list[$i]['quantity'] = Armory::$cDB->selectCell("SELECT `count` FROM `item_instance` WHERE `guid`=%d", $items_list[$i]['seed']);
             }
             //TODO: Find correct random property/suffix for items in guild vault.
             $items_list[$i]['randomPropertiesId'] = Items::GetRandomPropertiesData($items_list[$i]['id'], 0, $items_list[$i]['seed'], true, $this->m_server, null, $item_data);
@@ -336,10 +327,10 @@ Class Guilds {
      
      public function GetGuildRanks() {
         if(!$this->guildId) {
-            $this->armory->Log()->writeError('%s : guildId not defined', __METHOD__);
+            Armory::Log()->writeError('%s : guildId not defined', __METHOD__);
             return false;
         }
-        return $this->armory->cDB->select("SELECT `rid` AS `id`, `rname` AS `name` FROM `guild_rank` WHERE `guildid`=%d", $this->guildId);
+        return Armory::$cDB->select("SELECT `rid` AS `id`, `rname` AS `name` FROM `guild_rank` WHERE `guildid`=%d", $this->guildId);
      }
      
      /* DEVELOPMENT SECTION */
@@ -350,7 +341,7 @@ Class Guilds {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        $chars_data = $this->armory->cDB->select("
+        $chars_data = Armory::$cDB->select("
         SELECT
         `characters`.`guid`,
         `guild_member`.`guildid` AS `guildId`
@@ -362,16 +353,16 @@ Class Guilds {
         }
         // Account have character in current guild but we need to check his/her bank access rights.
         $active_character_data = Utils::GetActiveCharacter();
-        if($active_character_data['realmName'] != $this->armory->currentRealmInfo['name']) {
+        if($active_character_data['realmName'] != Armory::$currentRealmInfo['name']) {
             return false;
         }
-        $rank = $this->armory->cDB->selectCell("SELECT `rank` FROM `guild_member` WHERE `guid`=%d AND `guildid`=%d LIMIT 1", $active_character_data['guid'], $this->guildId);
-        $rights = $this->armory->cDB->selectCell("SELECT `rights` FROM `guild_rank` WHERE `guildid` = %d AND `rid`=%d LIMIT 1", $this->guildId, $rank);
+        $rank = Armory::$cDB->selectCell("SELECT `rank` FROM `guild_member` WHERE `guid`=%d AND `guildid`=%d LIMIT 1", $active_character_data['guid'], $this->guildId);
+        $rights = Armory::$cDB->selectCell("SELECT `rights` FROM `guild_rank` WHERE `guildid` = %d AND `rid`=%d LIMIT 1", $this->guildId, $rank);
         return ($this->GetBankRights($rank, $tab) & $rights) == $rights;
      }
      
      public function GetBankRights($rank, $tab) {
-        return $this->armory->cDB->selectCell("SELECT `gbright` FROM `guild_bank_right` WHERE `guildid` = %d AND `TabId` = %d AND `rid` = %d LIMIT 1", $this->guildId, $tab, $rank);
+        return Armory::$cDB->selectCell("SELECT `gbright` FROM `guild_bank_right` WHERE `guildid` = %d AND `TabId` = %d AND `rid` = %d LIMIT 1", $this->guildId, $tab, $rank);
      }
      
      */

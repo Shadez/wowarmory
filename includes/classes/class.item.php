@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 436
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -27,8 +27,7 @@ if(!defined('__ARMORY__')) {
 }
 
 Class Item {
-    
-    public  $armory   = null;
+
     private $db       = false;
     private $entry    = false;
     private $equipped = false;
@@ -49,17 +48,12 @@ Class Item {
      * Class constructor
      * @category Item class
      * @access   public
-     * @param    Armory $armory
      * @param    int $serverType
      * @return   bool
      **/
-    public function Item($armory, $serverType) {
-        if(!is_object($armory)) {
-            die('<b>Fatal Error:</b> armory must be instance of Armory class!');
-        }
-        $this->armory = $armory;
+    public function Item($serverType) {
         if(!in_array($serverType, array(SERVER_MANGOS, SERVER_TRINITY))) {
-            $this->armory->Log()->writeError('%s : fatal error: unknown server type (%d)!', __METHOD__, $serverType);
+            Armory::Log()->writeError('%s : fatal error: unknown server type (%d)!', __METHOD__, $serverType);
             return false;
         }
         $this->m_server = $serverType;
@@ -77,7 +71,7 @@ Class Item {
      **/
     public function LoadFromDB($data, $owner_guid, $db) {
         if(!is_object($db) || !$db->TestLink()) {
-            $this->armory->Log()->writeError('%s : wrong database handler', __METHOD__);
+            Armory::Log()->writeError('%s : wrong database handler', __METHOD__);
             return false;
         }
         $this->db = $db;
@@ -86,7 +80,7 @@ Class Item {
         if($this->m_server == SERVER_MANGOS) {
             $m_values = $this->db->selectCell("SELECT `data` FROM `item_instance` WHERE `guid`=%d AND `owner_guid`=%d", $this->m_guid, $this->m_owner);
             if(!$m_values) {
-                $this->armory->Log()->writeError('%s : item (GUID: %d) was not found in `item_instance` table (server type: SERVER_MANGOS - %d)!', __METHOD__, $this->m_guid, $this->m_server);
+                Armory::Log()->writeError('%s : item (GUID: %d) was not found in `item_instance` table (server type: SERVER_MANGOS - %d)!', __METHOD__, $this->m_guid, $this->m_server);
                 unset($db, $this->db);
                 return false;
             }
@@ -96,7 +90,7 @@ Class Item {
         elseif($this->m_server == SERVER_TRINITY) {
             $this->tc_data = $this->db->selectRow("SELECT * FROM `item_instance` WHERE `guid` = %d AND `owner_guid` = %d", $this->m_guid, $this->m_owner);
             if(!$this->tc_data) {
-                $this->armory->Log()->writeError('%s : item (GUID: %d) was not found in `item_instance` table (server type: SERVER_TRINITY - %d)!', __METHOD__, $this->m_guid, $this->m_server);
+                Armory::Log()->writeError('%s : item (GUID: %d) was not found in `item_instance` table (server type: SERVER_TRINITY - %d)!', __METHOD__, $this->m_guid, $this->m_server);
                 unset($db, $this->db);
                 return false;
             }
@@ -104,10 +98,10 @@ Class Item {
                 $this->tc_ench = explode(' ', $this->tc_data['enchantments']);
             }
             $this->entry = $this->tc_data['itemEntry'];
-            $this->tc_data['maxdurability'] = $this->armory->wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $this->entry);
+            $this->tc_data['maxdurability'] = Armory::$wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d", $this->entry);
         }
         else {
-            $this->armory->Log()->writeError('%s : unknown server type (%d), unable to handle item!', __METHOD__, $this->m_server);
+            Armory::Log()->writeError('%s : unknown server type (%d), unable to handle item!', __METHOD__, $this->m_server);
             $this->loaded = false;
             return false;
         }
@@ -158,10 +152,10 @@ Class Item {
      **/
     public function GetProto() {
         if(!$this->m_proto) {
-            $this->m_proto = new ItemPrototype($this->armory);
+            $this->m_proto = new ItemPrototype();
             $this->m_proto->LoadItem($this->GetEntry(), $this->GetGUID(), $this->GetOwnerGUID());
             if(!$this->m_proto || !$this->m_proto->IsCorrect()) {
-                $this->armory->Log()->writeError('%s : unable to find item with entry %d in `item_template` table.', __METHOD__, $this->GetEntry());
+                Armory::Log()->writeError('%s : unable to find item with entry %d in `item_template` table.', __METHOD__, $this->GetEntry());
                 return false;
             }
         }
@@ -261,17 +255,17 @@ Class Item {
                 $socketInfo = $this->tc_ench[$socketfield[$num]];
                 break;
             default:
-                $this->armory->Log()->writeError('%s : unknown server type (%d)', __METHOD__, $this->m_server);
+                Armory::Log()->writeError('%s : unknown server type (%d)', __METHOD__, $this->m_server);
                 return false;
                 break;
         }
         if($socketInfo > 0) {
-            $gemData = $this->armory->aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", $this->armory->GetLocale(), $socketInfo);
+            $gemData = Armory::$aDB->selectRow("SELECT `text_%s` AS `text`, `gem` FROM `ARMORYDBPREFIX_enchantment` WHERE `id`=%d", Armory::GetLocale(), $socketInfo);
             $data['enchant_id'] = $socketInfo;
             $data['item'] = $gemData['gem'];
             $data['icon'] = Items::GetItemIcon($data['item']);
             $data['enchant'] = $gemData['text'];
-            $data['color'] = $this->armory->aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
+            $data['color'] = Armory::$aDB->selectCell("SELECT `color` FROM `ARMORYDBPREFIX_gemproperties` WHERE `spellitemenchantement`=%d", $socketInfo);
             $this->m_socketInfo[$num] = $data; // Is it neccessary?
             return $data;
         }
@@ -313,7 +307,7 @@ Class Item {
         $item_armor_skills = array(
             0, SKILL_CLOTH, SKILL_LEATHER, SKILL_MAIL, SKILL_PLATE_MAIL, 0, SKILL_SHIELD, 0, 0, 0, 0
         );
-        $item_info = $this->armory->wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d", $this->GetEntry());
+        $item_info = Armory::$wDB->selectRow("SELECT `class`, `subclass` FROM `item_template` WHERE `entry`=%d", $this->GetEntry());
         if(!$item_info) {
             return 0;
         }
@@ -346,7 +340,7 @@ Class Item {
         elseif($this->m_server == SERVER_TRINITY) {
             return $this->tc_data['durability'];
         }
-        $this->armory->Log()->writeLog('%s : wrong server type', __METHOD__);
+        Armory::Log()->writeLog('%s : wrong server type', __METHOD__);
         return 0;
     }
     
@@ -360,7 +354,7 @@ Class Item {
         elseif($this->m_server == SERVER_TRINITY) {
             return $this->tc_data['maxdurability']; // assigned in Item::LoadFromDB()
         }
-        $this->armory->Log()->writeLog('%s : wrong server type', __METHOD__);
+        Armory::Log()->writeLog('%s : wrong server type', __METHOD__);
         return 0;
     }
     
@@ -376,7 +370,7 @@ Class Item {
      **/
     public function GetRandomSuffixData() {
         if($this->m_server != SERVER_MANGOS) {
-            $this->armory->Log()->writeError('%s : this method is usable with MaNGOS servers only.', __METHOD__);
+            Armory::Log()->writeError('%s : this method is usable with MaNGOS servers only.', __METHOD__);
             return false;
         }
         return array(

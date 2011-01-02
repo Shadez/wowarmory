@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 345
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -32,22 +32,22 @@ $xml->LoadXSLT('arena/battlegroups.xsl');
 /** Header **/
 $xml->XMLWriter()->startElement('page');
 $xml->XMLWriter()->writeAttribute('globalSearch', 1);
-$xml->XMLWriter()->writeAttribute('lang', $armory->GetLocale());
+$xml->XMLWriter()->writeAttribute('lang', Armory::GetLocale());
 $xml->XMLWriter()->writeAttribute('requestUrl', 'battlegroups.xml');
 $xml->XMLWriter()->startElement('battlegroups');
 $xml->XMLWriter()->startElement('battlegroup');
 $current_BG = array(
-    'display'      => $armory->armoryconfig['defaultBGName'],
-    'ladderUrl'    => sprintf('b=%s', urlencode($armory->armoryconfig['defaultBGName'])),
-    'name'         => strtolower($armory->armoryconfig['defaultBGName']),
+    'display'      => Armory::$armoryconfig['defaultBGName'],
+    'ladderUrl'    => sprintf('b=%s', urlencode(Armory::$armoryconfig['defaultBGName'])),
+    'name'         => strtolower(Armory::$armoryconfig['defaultBGName']),
     'sortPosition' => 1
 );
 foreach($current_BG as $bg_key => $bg_value) {
     $xml->XMLWriter()->writeAttribute($bg_key, $bg_value);
 }
 $xml->XMLWriter()->startElement('realms');
-if(is_array($armory->realmData)) {
-    foreach($armory->realmData as $realm) {
+if(is_array(Armory::$realmData)) {
+    foreach(Armory::$realmData as $realm) {
         $xml->XMLWriter()->startElement('realm');
         $xml->XMLWriter()->writeAttribute('name', $realm['name']);
         $xml->XMLWriter()->writeAttribute('nameEn', $realm['name']);

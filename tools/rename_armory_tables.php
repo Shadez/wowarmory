@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 357
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -23,10 +23,11 @@
  **/
 
 define('__ARMORY__', true);
-if(!@include('../includes/classes/class.armory.php')) {
+define('__ARMORYDIRECTORY__', dirname(dirname(__FILE__)));
+if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
     die('<b>Error:</b> can not load Armory class!');
 }
-$armory = new Armory();
+Armory::InitializeArmory();
 $wowarmory_tables = array(
     'achievement',
     'achievement_category',
@@ -79,8 +80,8 @@ if(isset($_GET['prefix'])) {
     if(!preg_match("/^[a-zA-Z0-9]+$/", $prefix)) {
         die('Error: prefix contains not allowed symbols: ' . $prefix);
     }
-    $allowed = $armory->aDB->selectCell("SELECT `rename_status` FROM `ARMORYDBPREFIX_db_version`");
-    $oldprefix = $armory->armoryconfig['db_prefix'];
+    $allowed = Armory::$aDB->selectCell("SELECT `rename_status` FROM `ARMORYDBPREFIX_db_version`");
+    $oldprefix = Armory::$armoryconfig['db_prefix'];
     if($allowed == 0) {
         die("Error: table rename is locked now.");
     }
@@ -88,11 +89,11 @@ if(isset($_GET['prefix'])) {
         die('Error: current prefix and old prefix are equal, operation is not required.');
     }
     echo 'Table rename started.<hr />';
-    $armory->aDB->query("UPDATE `ARMORYDBPREFIX_db_version` SET `rename_status`='0', `prev_name`='%s'", $prefix);
+    Armory::$aDB->query("UPDATE `ARMORYDBPREFIX_db_version` SET `rename_status`='0', `prev_name`='%s'", $prefix);
     foreach($wowarmory_tables as $table) {
         // Rename each table
         if($update_type == 'query') {
-            $result = $armory->aDB->query("ALTER TABLE `%s_%s` RENAME `%s_%s`", $oldprefix, $table, $prefix, $table);
+            $result = Armory::$aDB->query("ALTER TABLE `%s_%s` RENAME `%s_%s`", $oldprefix, $table, $prefix, $table);
             if($result == true) {
                 echo sprintf("<br />Table `%s` was successfully renamed to `%s`.", $oldprefix.'_'.$table, $prefix.'_'.$table);
             }

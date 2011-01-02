@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 429
+ * @revision 440
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -352,13 +352,13 @@ $sql_dump_text = sprintf("/*
 foreach($allowed_tables as $table) {
     $data = array();
     if($table['skipData'] == false && $table['internalFile'] == false) {
-        $data = $armory->aDB->select("SELECT * FROM `ARMORYDBPREFIX_%s`", $table['name']);
+        $data = Armory::$aDB->select("SELECT * FROM `ARMORYDBPREFIX_%s`", $table['name']);
     }
-    $create_table = $armory->aDB->selectRow("SHOW CREATE TABLE `ARMORYDBPREFIX_%s`", $table['name']);
+    $create_table = Armory::$aDB->selectRow("SHOW CREATE TABLE `ARMORYDBPREFIX_%s`", $table['name']);
     $create_table_query = $create_table['Create Table'];
     $sql_dump_text .= '
 
--- `' . $armory->armoryconfig['db_prefix'] . '_' . $table['name'] . '`';
+-- `' . Armory::$armoryconfig['db_prefix'] . '_' . $table['name'] . '`';
     if($table['internalFile'] != false) {
         $sql_dump_text .= '
 -- execute from ' . $table['internalFile'];
@@ -366,7 +366,7 @@ foreach($allowed_tables as $table) {
     }
     if($table['drop'] == true) {
         $sql_dump_text .= '
-DROP TABLE IF EXISTS `' . $armory->armoryconfig['db_prefix'] . '_' . $table['name'] . '`;
+DROP TABLE IF EXISTS `' . Armory::$armoryconfig['db_prefix'] . '_' . $table['name'] . '`;
 ' . $create_table_query . ';';
     }
     elseif($table['onlyIfNotExists'] == true) {
@@ -378,7 +378,7 @@ DROP TABLE IF EXISTS `' . $armory->armoryconfig['db_prefix'] . '_' . $table['nam
 ';
         foreach($data as $tbl_data) {
             $sql_dump_text .= sprintf('
-INSERT INTO `%s_%s` VALUES (', $armory->armoryconfig['db_prefix'], $table['name']);
+INSERT INTO `%s_%s` VALUES (', Armory::$armoryconfig['db_prefix'], $table['name']);
             $count = count($tbl_data)-1;
             $i = 0;
             foreach($tbl_data as $t_value) {
