@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 420
+ * @revision 443
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -43,7 +43,6 @@ Class ArmoryDatabaseHandler {
     /** Queries counter **/
     private $queryCount = 0;
     private $queryTimeGeneration = 0.0;
-    private $logHandler = null;
     private $armory_prefix = null;
     
     /** Error messages **/
@@ -61,26 +60,20 @@ Class ArmoryDatabaseHandler {
      * @param    string $password
      * @param    string $dbName
      * @param    string $charset = null
-     * @param    string $logHandler = null
      * @param    string $prefix = null
      * @return   bool
      **/
-    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = null, $logHandler = null, $prefix = null) {
-        $this->logHandler = $logHandler;
+    public function ArmoryDatabaseHandler($host, $user, $password, $dbName, $charset = null, $prefix = null) {
         $this->connectionLink = @mysql_connect($host, $user, $password, true);
         if(!$this->connectionLink) {
             $this->errmsg = @mysql_error($this->connectionLink);
             $this->errno = @mysql_errno($this->connectionLink);
-            if(is_object($this->logHandler)) {
-                $this->logHandler->writeError('%s : unable to connect to MySQL Server (host: "%s", dbName: "%s"). Error: %s. Check your configs.', __METHOD__, $host, $dbName, $this->errmsg ? $this->errmsg : 'none');
-            }
+            Armory::Log()->writeError('%s : unable to connect to MySQL Server (host: "%s", dbName: "%s"). Error: %s. Check your configs.', __METHOD__, $host, $dbName, $this->errmsg ? $this->errmsg : 'none');
             return false;
         }
         $this->dbLink = @mysql_select_db($dbName, $this->connectionLink);
         if(!$this->dbLink) {
-            if(is_object($this->logHandler)) {
-                $this->logHandler->writeError('%s : unable to switch to database "%s"!', __METHOD__, $dbName);
-            }
+            Armory::Log()->writeError('%s : unable to switch to database "%s"!', __METHOD__, $dbName);
             return false;
         }
         if($charset == null) {
@@ -140,8 +133,8 @@ Class ArmoryDatabaseHandler {
         $this->errmsg = @mysql_error($this->connectionLink);
         $this->errno = @mysql_errno($this->connectionLink);
         if($performed_query == false) {
-            if($this->logHandler != null && is_object($this->logHandler) && !$this->disableNextError) {
-                $this->logHandler->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, $this->errmsg ? sprintf('"%s" (Error #%d)', $this->errmsg, $this->errno) : 'none');
+            if(!$this->disableNextError) {
+                Armory::Log()->writeLog('%s : unable to execute SQL query (%s). MySQL error: %s', __METHOD__, $safe_sql, $this->errmsg ? sprintf('"%s" (Error #%d)', $this->errmsg, $this->errno) : 'none');
             }
             if($this->disableNextError) {
                 $this->disableNextError = false;
@@ -214,7 +207,7 @@ Class ArmoryDatabaseHandler {
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
         if(preg_match('/ARMORYDBPREFIX/', $safe_sql)) {
             if($this->armory_prefix == null) {
-                $this->logHandler->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query (%s)!', __METHOD__, $safe_sql);
+                Armory::Log()->writeError('%s : fatal error: armory database prefix is not defined, unable to execute SQL query (%s)!', __METHOD__, $safe_sql);
                 return false;
             }
             $safe_sql = str_replace('ARMORYDBPREFIX', $this->armory_prefix, $safe_sql);
@@ -267,7 +260,7 @@ Class ArmoryDatabaseHandler {
      **/
     private function ConvertArray($source) {
         if(!is_array($source)) {
-            $this->logHandler->writeError('%s : source must have array type!', __METHOD__);
+            Armory::Log()->writeError('%s : source must have array type!', __METHOD__);
             return null;
         }
         $returnString = null;
