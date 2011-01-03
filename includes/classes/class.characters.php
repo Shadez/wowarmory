@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 441
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -259,9 +259,10 @@ Class Characters {
      * @param    int $realmId = 1
      * @param    bool $full = true
      * @param    bool $initialBuild = false
+     * @param    int  $loadType
      * @return   bool
      **/
-    public function BuildCharacter($name, $realmId = 1, $full = true, $initialBuild = false) {
+    public function BuildCharacter($name, $realmId = 1, $full = true, $initialBuild = false, $loadType = 0) {
         if(!is_string($name)) {
             Armory::Log()->writeLog('%s : name must be a string!', __METHOD__);
             return false;
@@ -337,7 +338,7 @@ Class Characters {
             Armory::Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
-        if($full == true) {
+        if($full == true && $loadType == 0) {
             // Character data required for character-sheet.xml page only.
             if(!$this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid'])) {
                 Armory::Log()->writeError('%s : player %d (%s) has no data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
@@ -386,7 +387,7 @@ Class Characters {
             }
         }
         $this->HandleEquipmentCacheData();
-        if($full == true) {
+        if($full == true && $loadType == 0) {
             // Get race and class strings
             $race_class = Armory::$aDB->selectRow("
             SELECT

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 441
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -392,6 +392,28 @@ Class SearchMgr {
         $exists_items = array();
         $source_items = self::GetItemSourceArray($items_query);
         $i = 0;
+        
+        $icons_to_add = array();
+        $names_to_add = array();
+        $icons_holder = array();
+        $names_holder = array();
+        foreach($items_query as $tmp_item) {
+            $icons_to_add[] = $tmp_item['displayid'];
+            $names_to_add[] = $tmp_item['id'];
+        }
+        $tmp_icons_holder = Armory::$aDB->select("SELECT `displayid`, `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid` IN (%s)", $icons_to_add);
+        foreach($tmp_icons_holder as $icon) {
+            $icons_holder[$icon['displayid']] = $icon['icon'];
+        }
+        $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name_loc%d` AS `name` FROM `locales_item` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
+        foreach($tmp_names_holder as $name) {
+            if($name['name'] == null) {
+                $name['name'] = Items::GetItemName($name['id']);
+            }
+            $names_holder[$name['entry']] = $name['name'];
+        }
+        unset($tmp_icons_holder, $tmp_names_holder, $names_to_add, $icons_to_add);
+        
         foreach($items_query as $item) {
             if(isset($exists_items[$item['id']])) {
                 continue; // Do not add the same items to result array
@@ -409,17 +431,22 @@ Class SearchMgr {
                 $items_result[$i]['data'] = array();
                 $items_result[$i]['filters'] = array();
                 $items_result[$i]['data']['id'] = $item['id'];
-                if(Armory::GetLocale() != 'en_gb' || Armory::GetLocale() != 'en_us') {
+                if(!isset($names_holder[$item['id']])) {
                     $items_result[$i]['data']['name'] = Items::GetItemName($item['id']);
                 }
                 else {
-                    $items_result[$i]['data']['name'] = $item['name'];
+                    $items_result[$i]['data']['name'] = $names_holder[$item['id']];
                 }
                 if(self::CanAuction($item)) {
                     $items_result[$i]['data']['canAuction'] = 1;
                 }
                 $items_result[$i]['data']['rarity'] = $item['rarity'];
-                $items_result[$i]['data']['icon'] = Items::GetItemIcon($item['id'], $item['displayid']);
+                if(!isset($icons_holder[$item['displayid']])) {
+                    $items_result[$i]['data']['icon'] = Items::GetItemIcon($item['id'], $item['displayid']);
+                }
+                else {
+                    $items_result[$i]['data']['icon'] = $icons_holder[$item['displayid']];
+                }
                 $items_result[$i]['filters'][0] = array('name' => 'itemLevel', 'value' => $item['ItemLevel']);
                 $items_result[$i]['filters'][1] = array('name' => 'relevance', 'value' => 100); // TODO: add relevance calculation for items
                 // Add some filters (according with item source)

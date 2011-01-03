@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 441
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -42,7 +42,7 @@ if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
-$characters->BuildCharacter($name, $realmId, true, true);
+$characters->BuildCharacter($name, $realmId, true, true, 1);
 $isCharacter = $characters->CheckPlayer();
 if($_GET['r'] === false || !Armory::$currentRealmInfo) {
     $isCharacter = false;
@@ -169,14 +169,15 @@ $subtexture_data = array();
 */
 $tmpid = 0;
 if($tmpid = $characters->GetCharacterEquip('shirt')) {
-    if($items->GetItemModelData(0, 'texture_2', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'texture_2', $tmpid)) {
         /**
          * Shirt (armupper)
          **/
         $subtexture_data['shirt_au'] = array(
             'prefix' => 'item/texturecomponents/armuppertexture/',
-            'file'   => $items->GetItemModelData(0, 'texture_2', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'texture_2', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'texture_2', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -190,8 +191,8 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
          **/
         $subtexture_data['shirt_al'] = array(
             'prefix' => 'item/texturecomponents/armlowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -205,8 +206,8 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
          **/
         $subtexture_data['shirt_tu'] = array(
             'prefix' => 'item/texturecomponents/torsouppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -220,8 +221,8 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
          **/
         $subtexture_data['shirt_tl'] = array(
             'prefix' => 'item/texturecomponents/torsolowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
@@ -234,14 +235,15 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('chest')) {
-    if($items->GetItemModelData(0, 'visual_3', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_3', $tmpid)) {
         /**
          * Chest (armupper)
          **/
         $subtexture_data['chest_au'] = array(
             'prefix' => 'item/texturecomponents/armuppertexture/',
-            'file'   => $items->GetItemModelData(0, 'texture_2', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'texture_2', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'texture_2', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'texture_2', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -255,8 +257,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
          **/
         $subtexture_data['chest_al'] = array(
             'prefix' => 'item/texturecomponents/armlowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -270,8 +272,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
          **/        
         $subtexture_data['chest_tu'] = array(
             'prefix' => 'item/texturecomponents/torsouppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.5',
@@ -285,8 +287,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
          **/        
         $subtexture_data['chest_tl'] = array(
             'prefix' => 'item/texturecomponents/torsolowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
@@ -300,8 +302,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
          **/        
         $subtexture_data['chest_lu'] = array(
             'prefix' => 'item/texturecomponents/leguppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -315,8 +317,8 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
          **/
         $subtexture_data['chest_ll'] = array(
             'prefix' => 'item/texturecomponents/leglowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -328,14 +330,15 @@ if($tmpid = $characters->GetCharacterEquip('chest')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('wrist')) {
-    if($items->GetItemModelData(0, 'visual_1', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_1', $tmpid)) {
         /**
          * Bracers (armlower)
-         **/        
+         **/
         $subtexture_data['bracers_al'] = array(
             'prefix' => 'item/texturecomponents/armlowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -347,14 +350,15 @@ if($tmpid = $characters->GetCharacterEquip('wrist')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('gloves')) {
-    if($items->GetItemModelData(0, 'visual_1', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_1', $tmpid)) {
         /**
          * Gloves (armlower)
          **/
         $subtexture_data['gloves_al'] = array(
             'prefix' => 'item/texturecomponents/armlowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_1', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_1', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_1', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => '0.0',
@@ -368,8 +372,8 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
          **/
         $subtexture_data['hand'] = array(
             'prefix' => 'item/texturecomponents/handtexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_2', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_2', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_2', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_2', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => '0.0',
@@ -381,14 +385,15 @@ if($tmpid = $characters->GetCharacterEquip('gloves')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('tabard')) {
-    if($items->GetItemModelData(0, 'visual_3', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_3', $tmpid)) {
         /**
          * Tabard (torsoupper)
          **/
         $subtexture_data['tabard_tu'] = array(
             'prefix' => 'item/texturecomponents/torsouppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_3', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_3', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_3', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -402,8 +407,8 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
          **/        
         $subtexture_data['tabard_tl'] = array(
             'prefix' => 'item/texturecomponents/torsolowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
@@ -415,14 +420,15 @@ if($tmpid = $characters->GetCharacterEquip('tabard')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('belt')) {
-    if($items->GetItemModelData(0, 'visual_4', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_4', $tmpid)) {
         /**
          * Belt (torsolower)
          **/
         $subtexture_data['belt_tl'] = array(
             'prefix' => 'item/texturecomponents/torsolowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_4', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_4', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_4', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
@@ -436,8 +442,8 @@ if($tmpid = $characters->GetCharacterEquip('belt')) {
          **/
         $subtexture_data['belt_lu'] = array(
             'prefix' => 'item/texturecomponents/leguppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -449,14 +455,15 @@ if($tmpid = $characters->GetCharacterEquip('belt')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('legs')) {
-    if($items->GetItemModelData(0, 'visual_5', $tmpid) && (!isset($subtexture_data['chest_lu']) || !isset($subtexture_data['chest_lu']['file']) || $subtexture_data['chest_lu']['file'] === false || $subtexture_data['chest_lu']['file'] === null) ) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_5', $tmpid) && (!isset($subtexture_data['chest_lu']) || !isset($subtexture_data['chest_lu']['file']) || $subtexture_data['chest_lu']['file'] === false || $subtexture_data['chest_lu']['file'] === null) ) {
         /**
          * Leg (legupper)
          **/
         $subtexture_data['leg_lu'] = array(
             'prefix' => 'item/texturecomponents/leguppertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_5', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_5', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_5', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -470,8 +477,8 @@ if($tmpid = $characters->GetCharacterEquip('legs')) {
          **/
         $subtexture_data['leg_ll'] = array(
             'prefix' => 'item/texturecomponents/leglowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -483,14 +490,15 @@ if($tmpid = $characters->GetCharacterEquip('legs')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('boots')) {
-    if($items->GetItemModelData(0, 'visual_7', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'visual_7', $tmpid)) {
         /**
          * Boot (leglower)
          **/
         $subtexture_data['boot_ll'] = array(
             'prefix' => 'item/texturecomponents/leglowertexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_6', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_6', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_6', $tmpid),
             'h' => 0.25,
             'w' => 0.5,
             'x' => 0.5,
@@ -504,8 +512,8 @@ if($tmpid = $characters->GetCharacterEquip('boots')) {
          **/
         $subtexture_data['boot_fo'] = array(
             'prefix' => 'item/texturecomponents/foottexture/',
-            'file'   => $items->GetItemModelData(0, 'visual_7', $tmpid),
-            'fileBackup' => $items->GetItemModelData(0, 'visual_7', $tmpid),
+            'file'   => $items->GetItemModelData($displayId, 'visual_7', $tmpid),
+            'fileBackup' => $items->GetItemModelData($displayId, 'visual_7', $tmpid),
             'h' => 0.125,
             'w' => 0.5,
             'x' => 0.5,
@@ -520,17 +528,18 @@ if($tmpid = $characters->GetCharacterEquip('boots')) {
 /** ATTACHMENT TEXTURES **/
 
 if($tmpid = $characters->GetCharacterEquip('head')) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
     if($character_model_data['hide_helm'] == 0) {
-        if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
+        if($items->GetItemModelData($displayId, 'modelName_1', $tmpid)) {
             /**
              * Helm (texture)
              **/
             $model_data_attachment['helm_texture'] = array(
                 'linkPoint' => 11,
                 'type' => 'none',
-                'modelFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'.m2',
-                'skinFile' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'00.skin',
-                'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+                'modelFile' => 'item/objectcomponents/head/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'.m2',
+                'skinFile' => 'item/objectcomponents/head/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'_'.$character_model_data['race_gender'].'00.skin',
+                'texture' => 'item/objectcomponents/head/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
             );
             if($model_data_attachment['helm_texture']['texture'] == 'item/objectcomponents/head/.png') {
                 unset($model_data_attachment['helm_texture']);
@@ -540,12 +549,13 @@ if($tmpid = $characters->GetCharacterEquip('head')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('back')) {
-    if($items->GetItemModelData(0, 'modelTexture_1', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'modelTexture_1', $tmpid)) {
         /**
          * Back (texture)
          **/
         $model_data_texture['back_texture'] = array(
-            'file' => 'item/objectcomponents/cape/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png'
+            'file' => 'item/objectcomponents/cape/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png'
         );
         if($model_data_texture['back_texture']['file'] == 'item/objectcomponents/cape/.png') {
             unset($model_data_texture['back_texture']);
@@ -554,23 +564,24 @@ if($tmpid = $characters->GetCharacterEquip('back')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('shoulder')) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
     /**
      * Shoulders (texture)
      **/
-    if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
+    if($items->GetItemModelData($displayId, 'modelName_1', $tmpid)) {
         $model_data_attachment['left_shoulder_texture'] = array(
             'linkPoint' => 6,
             'type' => 'none',
-            'modelFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+            'modelFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+            'skinFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+            'texture' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
         );
         $model_data_attachment['right_shoulder_texture'] = array(
             'linkPoint' => 5,
             'type' => 'none',
-            'modelFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelName_2', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelName_2', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData(0, 'modelTexture_2', $tmpid).'.png',
+            'modelFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelName_2', $tmpid).'.m2',
+            'skinFile' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelName_2', $tmpid).'00.skin',   // What does 00 means?
+            'texture' => 'item/objectcomponents/shoulder/'.$items->GetItemModelData($displayId, 'modelTexture_2', $tmpid).'.png',
         );
         if($model_data_attachment['left_shoulder_texture']['texture'] == 'item/objectcomponents/shoulder/.png') {
             unset($model_data_attachment['left_shoulder_texture']);
@@ -580,16 +591,17 @@ if($tmpid = $characters->GetCharacterEquip('shoulder')) {
     unset($tmpid);
 }
 if($tmpid = $characters->GetCharacterEquip('mainhand')) {
-    if($items->GetItemModelData(0, 'modelName_1', $tmpid)) {
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($items->GetItemModelData($displayId, 'modelName_1', $tmpid)) {
         /**
          * Main hand (texture)
          **/
         $model_data_attachment['main_hand_texture'] = array(
             'linkPoint' => 1,
             'type' => 'none',
-            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+            'skinFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+            'texture' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
         );
         if($model_data_attachment['main_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
             unset($model_data_attachment['main_hand_texture']);
@@ -602,12 +614,13 @@ if($tmpid = $characters->GetCharacterEquip('mainhand')) {
  **/
 if($characters->GetClass() == CLASS_PALADIN || $characters->GetClass() == CLASS_WARRIOR || $characters->GetClass() == CLASS_SHAMAN) {
     if($tmpid = $characters->GetCharacterEquip('offhand')) {
+        $displayId = $items->GetItemInfo($tmpid, 'displayid');
         $model_data_attachment['off_hand_texture'] = array(
             'linkPoint' => 0,
             'type' => 'melee',
-            'modelFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/shield/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+            'modelFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+            'skinFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+            'texture' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
         );
         if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/shield/.png') {
             unset($model_data_attachment['off_hand_texture']);
@@ -621,12 +634,13 @@ if($characters->GetClass() == CLASS_PALADIN || $characters->GetClass() == CLASS_
 }
 else {
     if($tmpid = $characters->GetCharacterEquip('offhand')) {
+        $displayId = $items->GetItemInfo($tmpid, 'displayid');
         $model_data_attachment['off_hand_texture'] = array(
             'linkPoint' => 1,
             'type' => 'ranged',
-            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'.m2',
-            'skinFile'  => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture'   => 'item/objectcomponents/weapon/'.$items->GetItemModelData(0, 'modelTexture_1', $tmpid).'.png',
+            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+            'skinFile'  => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+            'texture'   => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
         );
         if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
             unset($model_data_attachment['off_hand_texture']);
@@ -718,5 +732,6 @@ if(Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
     $cache_data = $utils->GenerateCacheData($characters->GetName(), $characters->GetGUID(), 'character-model');
     $cache_handler = $utils->WriteCache($cache_id, $cache_data, $xml_cache_data);
 }
+$items->FreeItemDisplayInfo();
 exit;
 ?>

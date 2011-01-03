@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 441
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,6 +37,11 @@ Class Items {
      * $charGuid used by item-tooltip.php (enchantments, sockets & item durability for current character)
      **/
     public $charGuid;
+    
+    /**
+     * ItemDisplayInfo holder
+     **/
+    private $itemDisplayInfo = array();
     
     /**
      * Checks is item exists in DB
@@ -1163,7 +1168,10 @@ Class Items {
      * @return   mixed
      **/
     public function GetItemModelData($displayId, $row = null, $itemid = 0) {
-        if($itemid > 0) {
+        if(isset($this->itemDisplayInfo[$row]) && isset($this->itemDisplayInfo[$row][$itemid])) {
+            return $this->itemDisplayInfo[$row][$itemid];
+        }
+        if($displayId == 0) {
             $displayId = self::GetItemInfo($itemid, 'displayid');
         }
         if($row == null) {
@@ -1173,9 +1181,17 @@ Class Items {
             $data = Armory::$aDB->selectCell("SELECT `%s` FROM `ARMORYDBPREFIX_itemdisplayinfo` WHERE `displayid`=%d", $row, $displayId);
         }
         if($data) {
+            if(!isset($this->itemDisplayInfo[$row])) {
+                $this->itemDisplayInfo[$row] = array();
+            }
+            $this->itemDisplayInfo[$row][$itemid] = $data;
             return $data;
         }
         return false;
+    }
+    
+    public function FreeItemDisplayInfo() {
+        $this->itemDisplayInfo = array();
     }
     
     /**
