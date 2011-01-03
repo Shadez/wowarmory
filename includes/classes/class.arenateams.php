@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 442
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -253,41 +253,88 @@ Class Arenateams {
             $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters'], Armory::Log());
             if($order == 'lose') {
                 // Special sorting
-                $realmArenaTeamInfo = $db->select("
-                SELECT
-                `arena_team`.`arenateamid`,
-                `arena_team`.`name`,
-                `arena_team_stats`.`rating`,
-                `arena_team_stats`.`games_week`  AS `gamesPlayed`,
-                `arena_team_stats`.`wins_week`   AS `gamesWon`,
-                `arena_team_stats`.`rank`   AS `ranking`,
-                `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
-                `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
-                `characters`.`race`,
-                `arena_team_stats`.`played`-`arena_team_stats`.`wins2` AS `lose`
-                FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
-                ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
+                switch($realm_info['type']) {
+                    default:
+                    case 'mangos':
+                        $realmArenaTeamInfo = $db->select("
+                        SELECT
+                        `arena_team`.`arenateamid`,
+                        `arena_team`.`name`,
+                        `arena_team_stats`.`rating`,
+                        `arena_team_stats`.`games_week`  AS `gamesPlayed`,
+                        `arena_team_stats`.`wins_week`   AS `gamesWon`,
+                        `arena_team_stats`.`rank`   AS `ranking`,
+                        `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
+                        `characters`.`race`,
+                        `arena_team_stats`.`games_season`-`arena_team_stats`.`wins_season` AS `lose`
+                        FROM `arena_team` AS `arena_team`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
+                        break;
+                    case 'trinity':
+                        $realmArenaTeamInfo = $db->select("
+                        SELECT
+                        `arena_team`.`arenateamid`,
+                        `arena_team`.`name`,
+                        `arena_team_stats`.`rating`,
+                        `arena_team_stats`.`games`  AS `gamesPlayed`,
+                        `arena_team_stats`.`wins`   AS `gamesWon`,
+                        `arena_team_stats`.`rank`   AS `ranking`,
+                        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                        `characters`.`race`,
+                        `arena_team_stats`.`played`-`arena_team_stats`.`wins2` AS `lose`
+                        FROM `arena_team` AS `arena_team`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
+                        break;
+                }
             }
             else {
-                $realmArenaTeamInfo = $db->select("
-                SELECT
-                `arena_team`.`arenateamid`,
-                `arena_team`.`name`,
-                `arena_team_stats`.`rating`,
-                `arena_team_stats`.`games_week`  AS `gamesPlayed`,
-                `arena_team_stats`.`wins_week`   AS `gamesWon`,
-                `arena_team_stats`.`rank`   AS `ranking`,
-                `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
-                `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
-                `characters`.`race`
-                FROM `arena_team` AS `arena_team`
-                LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
-                ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
+                switch($realm_info['type']) {
+                    default:
+                    case 'mangos':
+                        $realmArenaTeamInfo = $db->select("
+                        SELECT
+                        `arena_team`.`arenateamid`,
+                        `arena_team`.`name`,
+                        `arena_team_stats`.`rating`,
+                        `arena_team_stats`.`games_week`  AS `gamesPlayed`,
+                        `arena_team_stats`.`wins_week`   AS `gamesWon`,
+                        `arena_team_stats`.`rank`   AS `ranking`,
+                        `arena_team_stats`.`games_season` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
+                        `characters`.`race`
+                        FROM `arena_team` AS `arena_team`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
+                        break;
+                    case 'trinity':
+                        $realmArenaTeamInfo = $db->select("
+                        SELECT
+                        `arena_team`.`arenateamid`,
+                        `arena_team`.`name`,
+                        `arena_team_stats`.`rating`,
+                        `arena_team_stats`.`games`  AS `gamesPlayed`,
+                        `arena_team_stats`.`wins`   AS `gamesWon`,
+                        `arena_team_stats`.`rank`   AS `ranking`,
+                        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                        `characters`.`race`
+                        FROM `arena_team` AS `arena_team`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
+                        break;
+                }
             }
             if(!$realmArenaTeamInfo || !is_array($realmArenaTeamInfo)) {
                 Armory::Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
