@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 445
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -260,7 +260,9 @@ if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.xmlhandler.php')) {
     die('<b>Error:</b> unable to load XML handler class!');
 }
 $xml = new XMLHandler(Armory::GetLocale());
-$xml->StartXML();
+if(!defined('RSS_FEED')) {
+    $xml->StartXML();
+}
 // Do not remove this
 if(isset($_GET['_DISPLAYVERSION_'])) {
     $xml->XMLWriter()->startElement('ARMORY_REVISION');

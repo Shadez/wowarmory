@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 443
+ * @revision 445
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2552,6 +2552,8 @@ Class Characters {
             $event_type = $event['type'];
             $event_data = $event['data'];
             $date_string = date('d.m.Y', $event_date);
+            $feed_data[$i]['hard_date'] = $event_date;
+            $feed_data[$i]['hard_data'] = $event_data;
             if(date('d.m.Y') == $date_string) {
                 $sort = 'today';
                 $diff = time() - $event_date;
@@ -2634,13 +2636,14 @@ Class Characters {
                         'icon' => $item_icon,
                         'id'   => $event_data,
                         'slot' => $item_slot,
-                        'sort' => $sort
+                        'sort' => $sort,
                     );
                     if(Armory::GetLocale() != 'en_gb' && Armory::GetLocale() != 'en_us') {
                         $item['name'] = Items::GetItemName($event_data);
                     }
                     $feed_data[$i]['title'] = sprintf('%s [%s].', $_strings[15], $item['name']);
                     $feed_data[$i]['desc'] = sprintf('%s <a class="staticTip itemToolTip" id="i=%d" href="item-info.xml?i=%d"><span class="stats_rarity%d">[%s]</span></a>.', $_strings[15], $event_data, $event_data, $item['Quality'], $item['name']);
+                    $feed_data[$i]['tooltip'] = $feed_data[$i]['desc'];
                     break;
                 case TYPE_BOSS_FEED:
                     // Get criterias
@@ -2675,6 +2678,7 @@ Class Characters {
                     );
                     $feed_data[$i]['title'] = sprintf('%s [%s] %d %s', $_strings[16], $achievement['name'], $event['counter'], $_strings[17]);
                     $feed_data[$i]['desc'] = sprintf('%d %s.', $event['counter'], $achievement['name']);
+                    $feed_data[$i]['tooltip'] = $feed_data[$i]['desc'];
                     break;
                 default:
                     continue;

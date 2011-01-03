@@ -165,7 +165,7 @@
                 <table id="achievement_subfilter">
                 <tr class="sub_filter_option">
                 <!-- Dummy loc parameter guarantees language-specific client-side caching  -->
-                    <td><xsl:for-each select="document(concat('/data/achievementStrings.xml?loc=',$lang))/page/rootCategories/category">
+                    <td><xsl:for-each select="document(concat('../../data/achievementStrings.xml?loc=',$lang))/page/rootCategories/category">
                     		<div class="sub"><xsl:if test="position() mod 2"><xsl:attribute name="style">clear:left;</xsl:attribute></xsl:if>
                             <a class="check_box checked" href="javascript:;" id="{@id}"></a>
                             				 <span class="filter_desc"><xsl:value-of select="@name"/></span>
