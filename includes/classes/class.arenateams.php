@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 443
+ * @revision 444
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -80,16 +80,26 @@ Class Arenateams {
             return false;
         }
         $arenateaminfo = array();
-        $arenateaminfo['data'] = Armory::$cDB->selectRow("
-        SELECT
-        `rating`,
-        `games_week`  AS `gamesPlayed`,
-        `wins_week`   AS `gamesWon`,
-        `rank`   AS `ranking`,
-        `games_season` AS `seasonGamesPlayed`,
-        `wins_season`  AS `seasonGamesWon`
-        FROM `arena_team_stats` WHERE `arenateamid`=%d", $this->arenateamid);
-        if(!$arenateaminfo) {
+        switch(Armory::$currentRealmInfo['type']) {
+            case 'mangos':
+                $sql = "
+                `games_week`  AS `gamesPlayed`,
+                `wins_week`   AS `gamesWon`,
+                `rank`   AS `ranking`,
+                `games_season` AS `seasonGamesPlayed`,
+                `wins_season`  AS `seasonGamesWon`";
+                break;
+            case 'trinity':
+                $sql = "
+                `games`  AS `gamesPlayed`,
+                `wins`   AS `gamesWon`,
+                `rank`   AS `ranking`,
+                `played` AS `seasonGamesPlayed`,
+                `wins2`  AS `seasonGamesWon`";
+                break;
+        }
+        $arenateaminfo['data'] = Armory::$cDB->selectRow("SELECT `rating`, %s FROM `arena_team_stats` WHERE `arenateamid`=%d", $sql, $this->arenateamid);
+        if(!$arenateaminfo['data']) {
             Armory::Log()->writeError('%s : unable to get data from DB for arenateam %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return false;
         }
@@ -380,16 +390,26 @@ Class Arenateams {
         }
         if($db == null) {
             $arenaTeamEmblem = Armory::$cDB->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
-            $arenaTeamEmblem['background'] = $arenaTeamEmblem['background'];
-            $arenaTeamEmblem['borderColor'] = $arenaTeamEmblem['borderColor'];
-            $arenaTeamEmblem['iconColor'] = $arenaTeamEmblem['iconColor'];
+            
+            // Displaying correct Team Emblem
+            // We have DECIMAL value here in DB (4294106805 e.g.)
+            // We need to reduce it to 255 (4294106550)
+            // Then convert it to HEX (FFF2DDB6)
+            // Remove 2 first symbols FF (F2DDB6)
+            // And somehow add '0x' substring to our HEX value (0xF2DDB6).
+            // If I'm doing it wrong (and I'm totally sure that I'm doing it in wrong way),
+            // please report on GitHub.com/Shadez/wowarmory/issues/
+            
+            $arenaTeamEmblem['background'] = '0x' . substr(dechex($arenaTeamEmblem['background']-255), 2);
+            $arenaTeamEmblem['borderColor'] = '0x' . substr(dechex($arenaTeamEmblem['borderColor']-255), 2);
+            $arenaTeamEmblem['iconColor'] = '0x' . substr(dechex($arenaTeamEmblem['iconColor']-255), 2);
             return $arenaTeamEmblem;
         }
         elseif(is_object($db)) {
             $arenaTeamEmblem = $db->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
-            $arenaTeamEmblem['background'] = $arenaTeamEmblem['background'];
-            $arenaTeamEmblem['borderColor'] = $arenaTeamEmblem['borderColor'];
-            $arenaTeamEmblem['iconColor'] = $arenaTeamEmblem['iconColor'];
+            $arenaTeamEmblem['background'] = '0x' . substr(dechex($arenaTeamEmblem['background']-255), 2);
+            $arenaTeamEmblem['borderColor'] = '0x' . substr(dechex($arenaTeamEmblem['borderColor']-255), 2);
+            $arenaTeamEmblem['iconColor'] = '0x' . substr(dechex($arenaTeamEmblem['iconColor']-255), 2);
             return $arenaTeamEmblem;
         }
     }
