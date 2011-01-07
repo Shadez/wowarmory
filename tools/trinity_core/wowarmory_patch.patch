@@ -1,7 +1,8 @@
 diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
+index fb8ed5b..d87fa63 100755
 --- a/src/server/game/Achievements/AchievementMgr.cpp
 +++ b/src/server/game/Achievements/AchievementMgr.cpp
-@@ -1965,6 +1965,9 @@
+@@ -1965,6 +1965,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement, b
          return;
  
      SendAchievementEarned(achievement);
@@ -12,12 +13,13 @@ diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/A
      ca.date = time(NULL);
      ca.changed = true;
 diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/Item/Item.cpp
+index 969461d..52ca8eb 100755
 --- a/src/server/game/Entities/Item/Item.cpp
 +++ b/src/server/game/Entities/Item/Item.cpp
-@@ -1018,6 +1018,15 @@
+@@ -1017,6 +1017,15 @@ Item* Item::CreateItem(uint32 item, uint32 count, Player const* player)
+         Item *pItem = NewItemOrBag(pProto);
          if (pItem->Create(sObjectMgr->GenerateLowGuid(HIGHGUID_ITEM), item, player))
          {
-             pItem->SetCount(count);
 +            /** World of Warcraft Armory **/
 +            if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
 +            {
@@ -27,16 +29,18 @@ diff --git a/src/server/game/Entities/Item/Item.cpp b/src/server/game/Entities/I
 +                CharacterDatabase.PExecute( ss.str().c_str() );
 +            }
 +            /** World of Warcraft Armory **/
+             pItem->SetCount(count);
              return pItem;
          }
-         else
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 5618bf5..572f302 100755
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
-@@ -17892,6 +17892,17 @@
+@@ -17916,6 +17916,17 @@ void Player::SaveToDB()
+ 
      std::string sql_name = m_name;
      CharacterDatabase.escape_string(sql_name);
- 
++    
 +    /** World of Warcraft Armory **/
 +    std::ostringstream ps;
 +    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
@@ -47,11 +51,10 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 +    ps << "')";
 +    CharacterDatabase.Execute( ps.str().c_str() );
 +    /** World of Warcraft Armory **/
-+
+ 
      std::ostringstream ss;
      ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
-         "map, instance_id, instance_mode_mask, position_x, position_y, position_z, orientation, "
-@@ -24393,3 +24404,33 @@
+@@ -24420,3 +24431,33 @@ float Player::GetAverageItemLevel()
  
      return ((float)sum) / count;
  }
@@ -87,9 +90,10 @@ diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entiti
 +/** World of Warcraft Armory **/
 \ No newline at end of file
 diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+index caabac6..31f7752 100755
 --- a/src/server/game/Entities/Player/Player.h
 +++ b/src/server/game/Entities/Player/Player.h
-@@ -2235,6 +2235,8 @@
+@@ -2239,6 +2239,8 @@ class Player : public Unit, public GridObject<Player>
          float m_homebindZ;
  
          WorldLocation GetStartPosition() const;
@@ -99,17 +103,17 @@ diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities
          // currently visible objects at player client
          typedef std::set<uint64> ClientGUIDs;
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
+index 81b0233..df114f6 100755
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -15377,7 +15377,11 @@
+@@ -15057,7 +15057,12 @@ void Unit::Kill(Unit *pVictim, bool durabilityLoss)
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
--                        ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                    {
+                         ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        /** World of Warcraft Armory **/
 +                        creditedPlayer->WriteWowArmoryDatabaseLog(3, creature->GetCreatureInfo()->Entry);
-+                        ((InstanceMap *)m)->PermBindAllPlayers(creditedPlayer);
 +                        /** World of Warcraft Armory **/
 +                    }
                  }

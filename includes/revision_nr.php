@@ -1,5 +1,5 @@
 <?php
-define('ARMORY_REVISION', 445);
+define('ARMORY_REVISION', 446);
 define('DB_VERSION', 'armory_r434');
 define('CONFIG_VERSION', '2812201001');
 ?>
