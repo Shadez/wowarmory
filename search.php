@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 447
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -174,10 +174,15 @@ if(isset($_GET['source'])) {
             break;
         }
         if(is_string($filter_get_key) && is_string($filter_get_value)) {
-            $xml->XMLWriter()->startElement('filter');
-            $xml->XMLWriter()->writeAttribute('name', $filter_get_key);
-            $xml->XMLWriter()->writeAttribute('value', $filter_get_value);
-            $xml->XMLWriter()->endElement();
+            if(Utils::IsWriteRaw()) {
+                $xml->XMLWriter()->writeRaw('<filter name="' . $filter_get_key . '" value="' . $filter_get_value . '" />');
+            }
+            else {
+                $xml->XMLWriter()->startElement('filter');
+                $xml->XMLWriter()->writeAttribute('name', $filter_get_key);
+                $xml->XMLWriter()->writeAttribute('value', $filter_get_value);
+                $xml->XMLWriter()->endElement();
+            }
         }
         $filtersCount++;
     }
@@ -245,11 +250,26 @@ if($count_items > 0 && $selected == 'items') {
                 $xml->XMLWriter()->writeAttribute($itemdata_key, $itemdata_value);
             }
             foreach($item['filters'] as $filter) {
-                $xml->XMLWriter()->startElement('filter');
-                foreach($filter as $filter_key => $filter_value) {
-                    $xml->XMLWriter()->writeAttribute($filter_key, $filter_value);
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw('<filter');
                 }
-                $xml->XMLWriter()->endElement(); //filter
+                else {
+                    $xml->XMLWriter()->startElement('filter');
+                }
+                foreach($filter as $filter_key => $filter_value) {
+                    if(Utils::IsWriteRaw()) {
+                        $xml->XMLWriter()->writeRaw(' ' . $filter_key . '="' . $filter_value . '"');
+                    }
+                    else {
+                        $xml->XMLWriter()->writeAttribute($filter_key, $filter_value);
+                    }
+                }
+                if(Utils::IsWriteRaw()) {
+                    $xml->XMLWriter()->writeRaw(' />'); //filter
+                }
+                else {
+                    $xml->XMLWriter()->endElement(); //filter
+                }
             }
             $xml->XMLWriter()->endElement(); //item
         }

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 443
+ * @revision 447
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -408,7 +408,7 @@ Class SearchMgr {
         $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name_loc%d` AS `name` FROM `locales_item` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
         foreach($tmp_names_holder as $name) {
             if($name['name'] == null) {
-                $name['name'] = Items::GetItemName($name['id']);
+                $name['name'] = Items::GetItemName($name['entry']);
             }
             $names_holder[$name['entry']] = $name['name'];
         }
