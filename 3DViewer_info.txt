@@ -1,10 +1,22 @@
+Last updated: Jan-08-2011
+
 Attention!
-Currently 3D Viewer is not completed full - there's no saving character poses, full screen modes
+Currently 3D Viewer is not completed full - there's no saving character poses, full screen mode
 and some other features.
 
-For correct work, you need to download an archive with textures (rather large file - 198 MB).
+For correct work, you need to download an archive with textures (~206 MB).
 
-'models' folder from the archive should be placed in the root of the site. The unpacked files are approximately 420 megabytes.
+All files from archive must be unpacked to the 'models' folder. The unpacked files are approximately 465 megabytes.
+Directory tree:
+ - models
+         |- bgs
+         |- character
+         |- flash
+         |- images
+         |- item
+                |- objectcomponents
+                |- texturecomponents
+         |- spells
 
 If you have some troubles, report on forum:
 http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
@@ -12,7 +24,7 @@ http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 You can find textures archive on filekeeper.org:
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Direct link:
-http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
+http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
 
 -----------------------
 
@@ -20,14 +32,23 @@ http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
 На данный момент 3D Viewer не завершен полностью - отсутствует сохранение позы персонажа, поддержка проигрывания в полном экране
 и некоторые другие возможности.
 
-Для корректной работы необходимо скачать архив с текстурами (архив довольно большой - 198 мегабайт).
+Для корректной работы необходимо скачать архив с текстурами (~206 мегабайт).
 
-Папку 'models' из архива необходимо поместить в корень сайта. Распакованные файлы занимают примерно 420 мегабайт.
-
+Все файлы из архива должны быть распакованы в папку 'models'. Распакованные файлы занимают примерно 465 мегабайт.
+Структура папок:
+ - models
+         |- bgs
+         |- character
+         |- flash
+         |- images
+         |- item
+                |- objectcomponents
+                |- texturecomponents
+         |- spells
 Если у вас возникли какие-либо затруднения, пишите на форум:
 http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 
 Архив с текстурами можно найти на filekeeper.org:
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Прямая ссылка:
-http://filekeeper.org/download/shadez1/wowarmory/armory_3dviewer.7z
+http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
