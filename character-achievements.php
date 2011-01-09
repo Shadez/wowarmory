@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release Candidate 1
- * @revision 440
+ * @revision 449
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -120,7 +120,7 @@ if($achievement_category > 0) {
     $pages_count = count($pages);
     $achievements_page = $achievements->LoadAchievementPage($achievement_category, ($characters->GetFaction() == 1) ? 0 : 1);
     $i = 0;
-    if($achievement_category == 81) {
+    if($achievement_category == 81 && is_array($comparisonData)) {
         // Generate all available achievements
         $owner_fos = $achievements->BuildFoSListForComparison($pages);
         $pages = $owner_fos;
