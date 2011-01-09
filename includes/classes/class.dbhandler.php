@@ -2,8 +2,8 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 443
+ * @version Release 4.50
+ * @revision 450
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -188,6 +188,7 @@ Class ArmoryDatabaseHandler {
         }
         $query_end = microtime(true);
         $queryTime = round($query_end - $query_start, 4);
+        //Armory::Log()->writeSql('[%s ms]: %s', $queryTime, $safe_sql);
         $this->queryTimeGeneration += $queryTime;
         return $result;
     }

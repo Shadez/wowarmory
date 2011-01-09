@@ -2,8 +2,8 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 441
+ * @version Release 4.50
+ * @revision 450
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -185,7 +185,7 @@ if($tmpid = $characters->GetCharacterEquip('shirt')) {
         );
         $subtexture_data['shirt_au']['suffixFile'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['file']);
         $subtexture_data['shirt_au']['suffixFileBackup'] = $items->GetModelSuffix($subtexture_data['shirt_au']['prefix'] . $subtexture_data['shirt_au']['fileBackup']);
-            
+        
         /**
          * Shirt (armlower)
          **/

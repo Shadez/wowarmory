@@ -2,8 +2,8 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 440
+ * @version Release 4.50
+ * @revision 450
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -448,6 +448,9 @@ Class Achievements {
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
             $completed = self::IsAchievementCompleted($this->achId);
+            if($completed) {
+                Armory::Log()->writeLog('%s : ach #%d is completed for player %d', __METHOD__, $this->achId, $this->guid);
+            }
             $parentId = Armory::$aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $this->achId);
             if($completed) {
                 $return_data['completed'][$this->achId]['data'] = $achievement;

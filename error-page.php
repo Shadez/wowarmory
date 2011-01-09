@@ -2,9 +2,9 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 66
- * @copyright (c) 2009-2010 Shadez
+ * @version Release 4.50
+ * @revision 450
+ * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify

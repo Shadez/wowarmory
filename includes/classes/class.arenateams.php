@@ -2,8 +2,8 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 444
+ * @version Release 4.50
+ * @revision 450
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -390,6 +390,7 @@ Class Arenateams {
         }
         if($db == null) {
             $arenaTeamEmblem = Armory::$cDB->selectRow("SELECT `BackgroundColor` AS `background`, `BorderColor` AS `borderColor`, `BorderStyle` AS `borderStyle`, `EmblemColor` AS `iconColor`, `EmblemStyle` AS `iconStyle` FROM `arena_team` WHERE `arenateamid`=%d", $teamId);
+            
             // Displaying correct Team Emblem
             // We have DECIMAL value here in DB (4294106805 e.g.)
             // We need to reduce it to 255 (4294106550)

@@ -1,0 +1,175 @@
+= World of Warcraft Armory =
+= Release 4.50 (10 January 2011) =
+
+Implemented features:
+ - Character RSS Feed feature
+Server-side features:
+ - Database prefix support
+Improved:
+ - Item pages
+ - Character pages
+ - Character activity feed feature
+ - 3D Viewer (new models)
+ - Armory layout
+
+= World of Warcraft Armory =
+= Release Candidate 4.01 (10 October 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - Character achievements comparison (up to 5 characters)
+ - Character statistics comparison (up to 5 characters)
+Server-side features:
+ - New table `armory_item_sources` with source types for all items
+ - XSLT template for login page
+ - Drop "Armory" class inherit from other classes
+ - Character items storage in Characters class
+Improved:
+ - Search system
+ - Item pages
+ - Character activity feed feature
+ - Talent trees info
+
+= World of Warcraft Armory =
+= Release Candidate 3.51 (8 August 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - Items search filters (full implementation)
+ - Heirloom items support
+Server-side features:
+ - Configuration file version check
+ - Self written database handler library, DbSimple support was dropped
+Improved:
+ - Character pages
+ - Item pages
+ - Search system
+ - 3D Viewer
+
+= World of Warcraft Armory =
+= Release Candidate 3.01 (10 July 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - Dual item tooltips
+ - Arena match history (basic support, requires provided server core patch)
+Server-side features:
+ - Ruby Sanctum instance support
+ - Autofill realms data table (armory_realm_data)
+ - esES/deDE/frFR locale updates
+Improved:
+ - Search system
+ - Static FAQ pages
+ - Itemsets improvements
+ - Character pages
+ - Item pages
+ - Revision/database version controller
+ - Improved XML output system (properly display some locale related special symbols)
+
+= World of Warcraft Armory =
+= Release Candidate 2.51 (20 June 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - Random properties/suffixes for items
+Server-side features:
+ - Debug log feature
+ - New storage for MySQL databases configuration info
+Improved:
+ - Character pages
+ - Achievements displaying improvements
+ - Item pages
+ - Search system
+ - XSL Templates fixes
+ - Guild vault feature
+ - News feature
+
+= World of Warcraft Armory =
+= Release Candidate 2.01 (21 May 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - Multi realms support
+ - Static maintenance page
+ - Character activity feed (basic support, requires provided server core patch)
+ - Sorting for arena ladders
+ - Trinity Core Server support (3.3.3a WoW client version)
+Improved:
+ - Search system
+ - Character pages
+ - Item pages
+ - XSL Templates fixes
+
+= World of Warcraft Armory =
+= Release Candidate 1.51 (21 April 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - 3D Model Viewer (basic support)
+ - Spanish (es_ES) language support
+Server-side features:
+ - Switch to native XSLT templates, use XMLWriter package for data output, Smarty Engine support was dropped
+ - XML format data
+ - New cache system
+Improved:
+ - Search system
+ - Character pages
+ - Item pages
+
+= World of Warcraft Armory =
+= Release Candidate 1.01 (03 March 2010) =
+= "Release Candidate 1" in phpDoc header =
+
+Implemented features:
+ - English (en_GB) locale support
+ - Character arena teams
+ - Guild vault
+ - Arena teams ladder (2v2, 3v3, 5v5)
+ - Arena team profile
+ - Account profile & bookmarks support
+ - Items search filters (basic support)
+ - Static pages for in-game dungeons & faction reputation rewards
+Server-side features:
+ - Simple cache system for item tooltips
+ - News support
+Improved:
+ - Character profile
+ - Character achievements
+ - Character reputations
+ - Character talents (with dual talent specialization)
+ - Guild roster
+ - Guild statistics
+ - Item info page
+ - Item tooltips page
+ - Search system
+ - Template improvements
+
+= World of Warcraft Armory =
+= Release Candidate 1 (23 December 2009) =
+
+= World of Warcraft Armory =
+= Beta (RU-Community) (14 August 2009) =
+
+Implemented features:
+ - Character profile (basic suppot)
+ - Character talents (basic suppot)
+ - Character reputation (basic suppot)
+ - Character achievements (basic suppot)
+ - Guild roster
+ - Guild statistics
+ - Simple search system (basic support for characters search)
+ - Item info page (basic suppot)
+ - Item tooltip page (basic suppot)
+ - Arena calculator
+ - Talents calculator (with pet talents calculator)
+ - Static FAQ pages
+
+= World of Warcraft Armory =
+= Alpha (4 August 2009) =
+
+Internal tests
+
+= World of Warcraft Armory =
+= Pre-Alpha (26 July 2009) =
+
+Development started

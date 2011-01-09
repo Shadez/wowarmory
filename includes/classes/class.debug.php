@@ -2,8 +2,8 @@
 
 /**
  * @package World of Warcraft Armory
- * @version Release Candidate 1
- * @revision 250
+ * @version Release 4.50
+ * @revision 450
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -50,8 +50,7 @@ Class ArmoryDebug {
         $args = func_get_args();
         $debug_log = self::AddStyle('debug');
         $debug_log .= call_user_func_array('sprintf', $args);
-        $debug_log .= '<br />
-';
+        $debug_log .= "<br />\n";
         self::__writeFile($debug_log);
         return;
     }
@@ -63,8 +62,7 @@ Class ArmoryDebug {
         $args = func_get_args();
         $error_log = self::AddStyle('error');
         $error_log .= call_user_func_array('sprintf', $args);
-        $error_log .= '<br />
-';
+        $error_log .= "<br />\n";
         self::__writeFile($error_log);
         return;
     }
@@ -76,8 +74,7 @@ Class ArmoryDebug {
         $args = func_get_args();
         $error_log = self::AddStyle('sql');
         $error_log .= call_user_func_array('sprintf', $args);
-        $error_log .= '<br />
-';
+        $error_log .= "<br />\n";
         self::__writeFile($error_log);
         return;
     }
