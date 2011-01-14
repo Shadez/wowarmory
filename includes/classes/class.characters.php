@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 451
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -252,6 +252,11 @@ Class Characters {
     private $feed_data = array();
     
     /**
+     * Character data
+     **/
+    private $char_data = array();
+    
+    /**
      * Init character, load data from DB, checks for requirements, etc.
      * @category Characters class
      * @access   public
@@ -345,6 +350,8 @@ Class Characters {
                 unset($player_data);
                 return false;
             }
+            $this->char_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid` = %d LIMIT 1", $player_data['guid']);
+            $this->HandleCharacterData();
         }
         // Can we display this character?
         $gmLevel = false;
@@ -492,6 +499,21 @@ Class Characters {
                 break;
         }
         $this->character_title['titleId'] = $this->chosenTitle;
+        return true;
+    }
+    
+    private function HandleCharacterData() {
+        if(!$this->char_data) {
+            return false;
+        }
+        if(is_array($this->char_data)) {
+            // Already converted.
+            return true;
+        }
+        $this->char_data = explode(' ', $this->char_data);
+        if(!is_array($this->char_data) || !isset($this->char_data[1])) {
+            Armory::Log()->writeError('%s : unable to convert $this->char_data from string to array!', __METHOD__);
+        }
         return true;
     }
     
@@ -1446,12 +1468,7 @@ Class Characters {
             Armory::Log()->writeError('%s : guid not provided', __METHOD__);
             return false;
         }
-        $fieldNum++;
-        $qData = $this->db->selectCell("
-        SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', %d), ' ', '-1') AS UNSIGNED)  
-            FROM `armory_character_stats` 
-				WHERE `guid`=%d", $fieldNum, $guid);
-        return $qData;
+        return (isset($this->char_data[$fieldNum])) ? $this->char_data[$fieldNum] : 0;
     }
     
     /**
