@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_es" requestUrl="/talent-tree.xml">
+<?xml version="1.0" encoding="UTF-8"?><page globalSearch="1" lang="es_mx" requestUrl="/talent-tree.xml">
   <talentTrees>
     <tree bgImage="PaladinCombat" icon="spell_holy_auraoflight" key="Retribution" name="Reprensión" order="2">
       <talent column="1" icon="ability_parry" key="1403" name="Desvío" tier="0">
@@ -236,4 +236,178 @@
       </talent>
       <talent column="2" icon="spell_holy_weaponmastery" key="1753" name="Pericia en combate" tier="7">
         <rank description="Aumenta tu pericia 2 p., tu aguante total y probabilidad de asestar un golpe crítico un 2%." lvl="1"/>
-     
+        <rank description="Aumenta tu pericia 4 p., tu aguante total y probabilidad de asestar un golpe crítico un 4%." lvl="2"/>
+        <rank description="Aumenta tu pericia 6 p., tu aguante total y probabilidad de asestar un golpe crítico un 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_touchedbylight" key="2195" name="Tocado por la Luz" tier="8">
+        <rank description="Aumenta tu poder con hechizos una cantidad igual al 20% de tu fuerza y aumenta la cantidad sanada por tus sanaciones críticas un 10%." lvl="1"/>
+        <rank description="Aumenta tu poder con hechizos una cantidad igual al 40% de tu fuerza y aumenta la cantidad sanada por tus sanaciones críticas un 20%." lvl="2"/>
+        <rank description="Aumenta tu poder con hechizos una cantidad igual al 60% de tu fuerza y aumenta la cantidad sanada por tus sanaciones críticas un 30%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_avengersshield" key="1754" name="Escudo de vengador" requires="1430" tier="8">
+        <rank description="Lanza un escudo Sagrado al enemigo, inflige 442-538 p. de daño Sagrado y dejándolo atontado. A continuación salta a los enemigos cercanos. Afecta a 3 objetivos en total. Dura 10 s." lvl="1"/>
+        <spell castTime="0" cooldown="30000" maxRange="30">
+          <power cost="26" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="ability_paladin_gaurdedbythelight" key="2194" name="Custodiado por la Luz" tier="8">
+        <rank description="Reduce el daño con hechizos recibido un 3% y otorga un 50% de probabilidad de actualizar la duración de tu Súplica divina al golpear al enemigo. Además, tu hechizo Súplica divina tiene un 50% menos de probabilidad de ser disipado." lvl="1"/>
+        <rank description="Reduce el daño con hechizos recibido un 6% y otorga un 100% de probabilidad de actualizar la duración de tu Súplica divina al golpear al enemigo. Además, tu hechizo Súplica divina tiene un 100% menos de probabilidad de ser disipado." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_shieldofthetemplar" key="2204" name="Escudo del templario" requires="1754" tier="9">
+        <rank description="Reduce todo el daño recibido un 1% y otorga a tu Escudo de vengador un 33% de probabilidad de silenciar a todos los objetivos durante 3 s." lvl="1"/>
+        <rank description="Reduce todo el daño recibido un 2% y otorga a tu Escudo de vengador un 66% de probabilidad de silenciar a todos los objetivos durante 3 s." lvl="2"/>
+        <rank description="Reduce todo el daño recibido un 3% y otorga a tu Escudo de vengador un 100% de probabilidad de silenciar a todos los objetivos durante 3 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_judgementsofthejust" key="2200" name="Sentencias del justo" tier="9">
+        <rank description="Reduce el tiempo de reutilización de tu Martillo de justicia 5 s, aumenta la duración del efecto de tu Sello de Justicia 0.5 s y tus hechizos de Sentencia también reducen la velocidad de ataque cuerpo a cuerpo del objetivo un 10%." lvl="1"/>
+        <rank description="Reduce el tiempo de reutilización de tu Martillo de justicia 10 s, aumenta la duración del efecto de tu Sello de Justicia 1 s y tus hechizos de Sentencia también reducen la velocidad de ataque cuerpo a cuerpo del objetivo un 20%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_hammeroftherighteous" key="2196" name="Martillo del honrado" tier="10">
+        <rank description="Da un martillazo al objetivo actual y hasta a 2 objetivos cercanos más, inflige 4 veces el daño por segundo de tu mano derecha como daño sagrado." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="5">
+          <power cost="6" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+    <tree bgImage="PaladinHoly" icon="spell_holy_holybolt" key="Holy" name="Sagrado" order="0">
+      <talent column="1" icon="spell_arcane_blink" key="1432" name="Enfoque espiritual" tier="0">
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Destello de luz y Luz sagrada un 14%." lvl="1"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Destello de luz y Luz sagrada un 28%." lvl="2"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Destello de luz y Luz sagrada un 42%." lvl="3"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Destello de luz y Luz sagrada un 56%." lvl="4"/>
+        <rank description="Reduce el retroceso sufrido por los ataques dañinos mientras lanzas Destello de luz y Luz sagrada un 70%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="ability_thunderbolt" key="1463" name="Sellos del puro" tier="0">
+        <rank description="Aumenta un 3% el daño infligido con tu Sello de rectitud, Sello de venganza y Sello de Corrupción y sus efectos de Sentencia." lvl="1"/>
+        <rank description="Aumenta un 6% el daño infligido con tu Sello de rectitud, Sello de venganza y Sello de Corrupción y sus efectos de Sentencia." lvl="2"/>
+        <rank description="Aumenta un 9% el daño infligido con tu Sello de rectitud, Sello de venganza y Sello de Corrupción y sus efectos de Sentencia." lvl="3"/>
+        <rank description="Aumenta un 12% el daño infligido con tu Sello de rectitud, Sello de venganza y Sello de Corrupción y sus efectos de Sentencia." lvl="4"/>
+        <rank description="Aumenta un 15% el daño infligido con tu Sello de rectitud, Sello de venganza y Sello de Corrupción y sus efectos de Sentencia." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_holybolt" key="1444" name="Luz de sanación" tier="1">
+        <rank description="Aumenta la cantidad sanada por tu Luz Sagrada, Destello de Luz y la eficacia de Choque Sagrado un 4%." lvl="1"/>
+        <rank description="Aumenta la cantidad sanada por tu Luz Sagrada, Destello de Luz y la eficacia de Choque Sagrado un 8%." lvl="2"/>
+        <rank description="Aumenta la cantidad sanada por tu Luz Sagrada, Destello de Luz y la eficacia de Choque Sagrado un 12%." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_nature_sleep" key="1449" name="Intelecto divino" tier="1">
+        <rank description="Aumenta tu intelecto total un 2%." lvl="1"/>
+        <rank description="Aumenta tu intelecto total un 4%." lvl="2"/>
+        <rank description="Aumenta tu intelecto total un 6%." lvl="3"/>
+        <rank description="Aumenta tu intelecto total un 8%." lvl="4"/>
+        <rank description="Aumenta tu intelecto total un 10%." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_unyieldingfaith" key="1628" name="Fe implacable" tier="1">
+        <rank description="Reduce la duración de todos los efectos de miedo y desorientación un 15%." lvl="1"/>
+        <rank description="Reduce la duración de todos los efectos de miedo y desorientación un 30%." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_auramastery" key="1435" name="Maestría en auras" tier="2">
+        <rank description="Provoca que tu Aura de concentración haga inmunes a los efectos de Silencio e Interrumpir a todos los objetivos afectados y mejore el efecto del resto de las auras un 100%. Dura 6 s." lvl="1"/>
+        <spell castTime="0" cooldown="120000"/>
+      </talent>
+      <talent column="1" icon="spell_holy_greaterheal" key="1461" name="Iluminación" tier="2">
+        <rank description="Tras haber obtenido un efecto crítico con los hechizos de sanación Destello de Luz, Luz Sagrada o Choque Sagrado, tienes un 20% de probabilidad de ganar maná igual a un 30% del coste base del hechizo." lvl="1"/>
+        <rank description="Tras haber obtenido un efecto crítico con los hechizos de sanación Destello de Luz, Luz Sagrada o Choque Sagrado, tienes un 40% de probabilidad de ganar maná igual a un 30% del coste base del hechizo." lvl="2"/>
+        <rank description="Tras haber obtenido un efecto crítico con los hechizos de sanación Destello de Luz, Luz Sagrada o Choque Sagrado, tienes un 60% de probabilidad de ganar maná igual a un 30% del coste base del hechizo." lvl="3"/>
+        <rank description="Tras haber obtenido un efecto crítico con los hechizos de sanación Destello de Luz, Luz Sagrada o Choque Sagrado, tienes un 80% de probabilidad de ganar maná igual a un 30% del coste base del hechizo." lvl="4"/>
+        <rank description="Tras haber obtenido un efecto crítico con los hechizos de sanación Destello de Luz, Luz Sagrada o Choque Sagrado, tienes un 100% de probabilidad de ganar maná igual a un 30% del coste base del hechizo." lvl="5"/>
+      </talent>
+      <talent column="2" icon="spell_holy_layonhands" key="1443" name="Imposición de manos mejorada" tier="2">
+        <rank description="Da al objetivo de tu hechizo Imposición de manos una reducción de un 10% de daño físico recibido durante 15 s. Además, se reduce el tiempo de reutilización del hechizo Imposición de manos 2 min." lvl="1"/>
+        <rank description="Da al objetivo de tu hechizo Imposición de manos una reducción de un 20% de daño físico recibido durante 15 s. Además, se reduce el tiempo de reutilización del hechizo Imposición de manos 4 min." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_mindsooth" key="1450" name="Aura de concentración mejorada" tier="3">
+        <rank description="Aumenta el efecto de tu Aura de concentración un 5% extra y, mientras un Aura cualquiera esté activa, reduce la duración de cualquier efecto de interrupción y silenciamiento contra un miembro de un grupo afectado un 10%. La reducción de duración no se acumula con otros efectos." lvl="1"/>
+        <rank description="Aumenta el efecto de tu Aura de concentración un 10% extra y, mientras un Aura cualquiera esté activa, reduce la duración de cualquier efecto de interrupción y silenciamiento contra un miembro de un grupo afectado un 20%. La reducción de duración no se acumula con otros efectos." lvl="2"/>
+        <rank description="Aumenta el efecto de tu Aura de concentración un 15% extra y, mientras un Aura cualquiera esté activa, reduce la duración de cualquier efecto de interrupción y silenciamiento contra un miembro de un grupo afectado un 30%. La reducción de duración no se acumula con otros efectos." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_sealofwisdom" key="1446" name="Bendición de sabiduría mejorada" tier="3">
+        <rank description="Aumenta un 10% el efecto de tu hechizo de Bendición de Sabiduría." lvl="1"/>
+        <rank description="Aumenta un 20% el efecto de tu hechizo de Bendición de Sabiduría." lvl="2"/>
+      </talent>
+      <talent column="3" icon="ability_paladin_blessedhands" key="2198" name="Manos benditas" tier="3">
+        <rank description="Reduce el coste de maná de Mano de libertad, Mano de sacrificio y Mano de salvación un 15%, aumenta la efectividad de Mano de salvación un 50% y la efectividad de Mano de sacrificio un 5% extra." lvl="1"/>
+        <rank description="Reduce el coste de maná de Mano de libertad, Mano de sacrificio y Mano de salvación un 30%, aumenta la efectividad de Mano de salvación un 100% y la efectividad de Mano de sacrificio un 10% extra." lvl="2"/>
+      </talent>
+      <talent column="0" icon="spell_holy_pureofheart" key="1742" name="Pureza de corazón" tier="4">
+        <rank description="Reduce la duración de los efectos de maldiciones, enfermedades y venenos un 15%." lvl="1"/>
+        <rank description="Reduce la duración de los efectos de maldiciones, enfermedades y venenos un 30%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="spell_holy_heal" key="1433" name="Favor divino" requires="1461" tier="4">
+        <rank description="Cuando se activa, otorga al siguiente hechizo Destello de Luz, Luz Sagrada o Choque Sagrado una probabilidad de efecto crítico del 100%." lvl="1"/>
+        <spell castTime="0" cooldown="120000">
+          <power cost="3" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_healingaura" key="1465" name="Luz santificada" tier="4">
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Luz Sagrada y Choque Sagrado un 2%." lvl="1"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Luz Sagrada y Choque Sagrado un 4%." lvl="2"/>
+        <rank description="Aumenta la probabilidad de efecto crítico de tus hechizos Luz Sagrada y Choque Sagrado un 6%." lvl="3"/>
+      </talent>
+      <talent column="0" icon="spell_holy_purifyingpower" key="1743" name="Poder purificador" tier="5">
+        <rank description="Reduce el coste de maná de tus hechizos Limpiar, Purificar y Consagración un 5% y reduce el tiempo de reutilización de tus hechizos Exorcismo y Cólera Sagrada un 17%." lvl="1"/>
+        <rank description="Reduce el coste de maná de tus hechizos Limpiar, Purificar y Consagración un 10% y reduce el tiempo de reutilización de tus hechizos Exorcismo y Cólera Sagrada un 33%." lvl="2"/>
+      </talent>
+      <talent column="2" icon="spell_holy_power" key="1627" name="Poder Sagrado" tier="5">
+        <rank description="Aumenta un 1% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="1"/>
+        <rank description="Aumenta un 2% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="2"/>
+        <rank description="Aumenta un 3% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="3"/>
+        <rank description="Aumenta un 4% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="4"/>
+        <rank description="Aumenta un 5% la probabilidad de efecto crítico de tus hechizos Sagrados." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_lightsgrace" key="1745" name="Gracia de Luz" tier="6">
+        <rank description="Da a tu hechizo Luz Sagrada un 33% de probabilidad de reducir el tiempo de lanzamiento de tu siguiente hechizo Luz Sagrada en 0.5 s. El efecto dura 15 s." lvl="1"/>
+        <rank description="Da a tu hechizo Luz Sagrada un 66% de probabilidad de reducir el tiempo de lanzamiento de tu siguiente hechizo Luz Sagrada en 0.5 s. El efecto dura 15 s." lvl="2"/>
+        <rank description="Da a tu hechizo Luz Sagrada un 100% de probabilidad de reducir el tiempo de lanzamiento de tu siguiente hechizo Luz Sagrada en 0.5 s. El efecto dura 15 s." lvl="3"/>
+      </talent>
+      <talent column="1" icon="spell_holy_searinglight" key="1502" name="Choque Sagrado" requires="1433" tier="6">
+        <rank description="Golpea al objetivo con energía Sagrada, inflige 314-340 p. de daño Sagrado a un enemigo o sana 481-519 p. a un aliado." lvl="1"/>
+        <spell castTime="0" cooldown="6000" maxRange="20">
+          <power cost="18" type="mana"/>
+        </spell>
+      </talent>
+      <talent column="2" icon="spell_holy_blessedlife" key="1744" name="Vida bendita" tier="6">
+        <rank description="4% de probabilidad de que todos los ataques que recibas te causen la mitad de daño." lvl="1"/>
+        <rank description="7% de probabilidad de que todos los ataques que recibas te causen la mitad de daño." lvl="2"/>
+        <rank description="10% de probabilidad de que todos los ataques que recibas te causen la mitad de daño." lvl="3"/>
+      </talent>
+      <talent column="0" icon="ability_paladin_sacredcleansing" key="2190" name="Limpieza Sagrada" tier="7">
+        <rank description="Tu hechizo Limpiar tiene un 10% de probabilidad de aumentar la resistencia del objetivo contra enfermedad, magia y veneno un 30% durante 10 s." lvl="1"/>
+        <rank description="Tu hechizo Limpiar tiene un 20% de probabilidad de aumentar la resistencia del objetivo contra enfermedad, magia y veneno un 30% durante 10 s." lvl="2"/>
+        <rank description="Tu hechizo Limpiar tiene un 30% de probabilidad de aumentar la resistencia del objetivo contra enfermedad, magia y veneno un 30% durante 10 s." lvl="3"/>
+      </talent>
+      <talent column="2" icon="spell_holy_holyguidance" key="1746" name="Guía Sagrada" tier="7">
+        <rank description="Aumenta tu poder con hechizos un 4% de tu intelecto total." lvl="1"/>
+        <rank description="Aumenta tu poder con hechizos un 8% de tu intelecto total." lvl="2"/>
+        <rank description="Aumenta tu poder con hechizos un 12% de tu intelecto total." lvl="3"/>
+        <rank description="Aumenta tu poder con hechizos un 16% de tu intelecto total." lvl="4"/>
+        <rank description="Aumenta tu poder con hechizos un 20% de tu intelecto total." lvl="5"/>
+      </talent>
+      <talent column="0" icon="spell_holy_divineillumination" key="1747" name="Iluminación divina" tier="8">
+        <rank description="Reduce el coste de maná de todos los hechizos un 50% durante 15 s." lvl="1"/>
+        <spell castTime="0" cooldown="180000"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_judgementofthepure" key="2199" name="Sentencias del puro" tier="8">
+        <rank description="Aumenta el daño infligido por tus hechizos de sello y de sentencia un 5% y tus hechizos de sentencia aumentan tu celeridad cuerpo a cuerpo y de lanzamiento un 3% durante 1 min." lvl="1"/>
+        <rank description="Aumenta el daño infligido por tus hechizos de sello y de sentencia un 10% y tus hechizos de sentencia aumentan tu celeridad cuerpo a cuerpo y de lanzamiento un 6% durante 1 min." lvl="2"/>
+        <rank description="Aumenta el daño infligido por tus hechizos de sello y de sentencia un 15% y tus hechizos de Sentencia aumentan tu celeridad de lanzamiento y cuerpo a cuerpo un 9% durante 1 min." lvl="3"/>
+        <rank description="Aumenta el daño infligido por tus hechizos de sello y de sentencia un 20% y tus hechizos de Sentencia aumentan tu celeridad de lanzamiento y cuerpo a cuerpo un 12% durante 1 min." lvl="4"/>
+        <rank description="Aumenta el daño infligido por tus hechizos de sello y de sentencia un 25% y tus hechizos de Sentencia aumentan tu celeridad de lanzamiento y cuerpo a cuerpo un 15% durante 1 min." lvl="5"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_infusionoflight" key="2193" name="Infusión de Luz" requires="1502" tier="9">
+        <rank description="Tus golpes críticos con Choque Sagrado reducen el tiempo de lanzamiento de tu siguiente hechizo Destello de Luz 0.75 s o aumentan la probabilidad de crítico de tu próxima Luz Sagrada un 10%.  Además, hacen que tu hechizo Destello de luz sane un 50% adicional durante 12 s a los objetivos con Escudo sacro." lvl="1"/>
+        <rank description="Tus golpes críticos con Choque Sagrado reducen el tiempo de lanzamiento de tu siguiente hechizo Destello de Luz 1.5 s o aumentan la probabilidad de crítico de tu próxima Luz Sagrada un 20%.  Además, hacen que tu hechizo Destello de luz sane un 100% adicional durante 12 s a los objetivos con Escudo sacro." lvl="2"/>
+      </talent>
+      <talent column="2" icon="ability_paladin_enlightenedjudgements" key="2191" name="Sentencias iluminadas" tier="9">
+        <rank description="Aumenta el alcance de tus hechizos de Sentencia de Luz y Sentencia de sabiduría 15 m y aumenta tu probabilidad de asestar un golpe un 2%." lvl="1"/>
+        <rank description="Aumenta el alcance de tus hechizos de Sentencia de Luz y Sentencia de sabiduría 30 m y aumenta tu probabilidad de asestar un golpe un 4%." lvl="2"/>
+      </talent>
+      <talent column="1" icon="ability_paladin_beaconoflight" key="2192" name="Señal de la Luz" tier="10">
+        <rank description="El objetivo se convierte en una Señal de la Luz para todos los miembros de tu grupo o banda que se encuentren en un radio de 60 m. Cualquier sanación que lances sobre miembros de tu grupo o banda sanará también a la señal un 100% de la cantidad sanada. Solo un objetivo puede ser la Señal de la Luz cada vez. Dura 1 min." lvl="1"/>
+        <spell castTime="0" maxRange="60">
+          <power cost="35" type="mana"/>
+        </spell>
+      </talent>
+    </tree>
+  </talentTrees>
+</page>
