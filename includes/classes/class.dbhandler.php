@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 451
+ * @revision 457
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -92,9 +92,6 @@ Class ArmoryDatabaseHandler {
         $this->armory_prefix = $prefix;
         $this->server_version = $this->selectCell("SELECT VERSION()");
         $this->connected = true;
-        ///*if(defined('TEST_CONNECTION')) {
-            Armory::Log()->writeLog('%s : test connection: connected: %s', __METHOD__, var_export($this->databaseInfo));
-        //*/}
         return true;
     }
     
@@ -287,9 +284,6 @@ Class ArmoryDatabaseHandler {
         @mysql_close($this->connectionLink);
         $this->DropLastErrors();
         $this->DropCounters();
-        ///*if(defined('TEST_CONNECTION')) {
-            Armory::Log()->writeLog('%s : test connection: closed', __METHOD__);
-        //*/}
         return true;
     }
     
