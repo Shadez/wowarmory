@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -58,6 +58,7 @@ if(isset($_GET['source'])) {
 if(isset($_GET['pi']) && is_numeric($_GET['pi']) && $_GET['pi'] > 0) {
     $findGearUpgrade = true;
     $itemID = (int) $_GET['pi'];
+    $characters->SetOptions(LOAD_NOTHING);
     $characters->BuildCharacter($_GET['pn'], $utils->GetRealmIdByName($_GET['pr']), false);
     if(!$characters->CheckPlayer()) {
         $plLevel = 80;

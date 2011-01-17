@@ -3,8 +3,8 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
- * @copyright (c) 2009-2011 Shadez
+ * @revision 456
+ * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
  * This program is free software; you can redistribute it and/or modify
@@ -145,7 +145,7 @@ $ArmoryConfig['settings']['defaultLocale']    = 'en_gb';
 $ArmoryConfig['settings']['maintenance']      = false;
 $ArmoryConfig['settings']['useDebug']         = true;
 $ArmoryConfig['settings']['logLevel']         = 2;
-$ArmoryConfig['settings']['configVersion']    = '2812201001';
+$ArmoryConfig['settings']['configVersion']    = '1801201101';
 $ArmoryConfig['settings']['checkVersionType'] = 'show';
 
 ##############################################################################################
@@ -158,7 +158,7 @@ $ArmoryConfig['settings']['checkVersionType'] = 'show';
 #        Realm name. Must be unique.
 #
 #    type
-#        Server type ('mangos' or 'trinity').
+#        Server type (SERVER_MANGOS or SERVER_TRINITY).
 #
 #    host_*
 #        MySQL server host for characters/world database.
@@ -182,7 +182,7 @@ $ArmoryConfig['settings']['checkVersionType'] = 'show';
 
 $ArmoryConfig['multiRealm'][1]['id']                 = 1;
 $ArmoryConfig['multiRealm'][1]['name']               = 'Armory Realm';
-$ArmoryConfig['multiRealm'][1]['type']               = 'mangos';
+$ArmoryConfig['multiRealm'][1]['type']               = SERVER_MANGOS;
 $ArmoryConfig['multiRealm'][1]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][1]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][1]['pass_characters']    = '';
@@ -196,7 +196,7 @@ $ArmoryConfig['multiRealm'][1]['charset_world']      = 'UTF8';
 
 $ArmoryConfig['multiRealm'][2]['id']                 = 2;
 $ArmoryConfig['multiRealm'][2]['name']               = 'Armory Realm 2';
-$ArmoryConfig['multiRealm'][2]['type']               = 'trinity';
+$ArmoryConfig['multiRealm'][2]['type']               = SERVER_TRINITY;
 $ArmoryConfig['multiRealm'][2]['host_characters']    = 'localhost';
 $ArmoryConfig['multiRealm'][2]['user_characters']    = 'root';
 $ArmoryConfig['multiRealm'][2]['pass_characters']    = '';

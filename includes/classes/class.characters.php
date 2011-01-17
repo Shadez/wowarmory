@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 451
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -257,6 +257,49 @@ Class Characters {
     private $char_data = array();
     
     /**
+     * 
+     **/
+    private $load_options = array();
+    
+    public function Characters() {
+        // Reset load options
+        $this->load_options = array(
+            'load_achievements' => true,    // Achievement Manager
+            'load_inventory'    => false,   // Inventory
+            'load_feeds'        => false,   // Character Feed
+            'load_data'         => false,   // Data field
+            'load_info'         => true     // Class, race info
+        );
+        return true;
+    }
+    
+    public function SetOptions($options) {
+        if(!is_array($options)) {
+            switch($options) {
+                case LOAD_ALL:
+                default:
+                    foreach($this->load_options as $opt_key => $opt_value) {
+                        $this->load_options[$opt_key] = true;
+                    }
+                    return true;
+                    break;
+                case LOAD_NOTHING:
+                    foreach($this->load_options as $opt_key => $opt_value) {
+                        $this->load_options[$opt_key] = false;
+                    }
+                    return true;
+                    break;
+            }
+        }
+        foreach($options as $op_key => $op_value) {
+            if(isset($this->load_options[$op_key])) {
+                $this->load_options[$op_key] = $op_value;
+            }
+        }
+        return true;
+    }
+    
+    /**
      * Init character, load data from DB, checks for requirements, etc.
      * @category Characters class
      * @access   public
@@ -287,7 +330,7 @@ Class Characters {
             return false;
         }
         // Set server type (SERVER_MANGOS or SERVER_TRINITY)
-        $this->m_server = Armory::$aDB->selectCell("SELECT `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `id`=%d", $realmId);
+        $this->m_server = $realm_info['type'];
         if($this->m_server == UNK_SERVER) {
             Armory::Log()->writeError('%s : unknown server type! Unable to initialize characters class (character name: %s, realmId: %d)', __METHOD__, $name, $realmId);
             return false;
@@ -343,14 +386,14 @@ Class Characters {
             Armory::Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
             return false;
         }
-        if($full == true && $loadType == 0) {
+        if($this->load_options['load_data'] == true) {
             // Character data required for character-sheet.xml page only.
-            if(!$this->db->selectCell("SELECT 1 FROM `armory_character_stats` WHERE `guid`=%d LIMIT 1", $player_data['guid'])) {
+            $this->char_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid` = %d LIMIT 1", $player_data['guid']);
+            if(!$this->char_data) {
                 Armory::Log()->writeError('%s : player %d (%s) has no data in `armory_character_stats` table (SQL update to Characters DB was not applied? / Character was not saved in game? / Server core was not patched?)', __METHOD__, $player_data['guid'], $player_data['name']);
                 unset($player_data);
                 return false;
             }
-            $this->char_data = $this->db->selectCell("SELECT `data` FROM `armory_character_stats` WHERE `guid` = %d LIMIT 1", $player_data['guid']);
             $this->HandleCharacterData();
         }
         // Can we display this character?
@@ -394,7 +437,7 @@ Class Characters {
             }
         }
         $this->HandleEquipmentCacheData();
-        if($full == true && $loadType == 0) {
+        if($this->load_options['load_info'] == true) {
             // Get race and class strings
             $race_class = Armory::$aDB->selectRow("
             SELECT
@@ -414,23 +457,21 @@ Class Characters {
             if($this->chosenTitle > 0) {
                 $this->HandleChosenTitleInfo();
             }
-            if(defined('load_item_class') && defined('load_itemprototype_class')) {
-                // Load items
-                $this->LoadInventory();
-            }
+        }
+        if($this->load_options['load_inventory'] == true) {
+            // Load items
+            $this->LoadInventory();
         }
         $this->realmName = $realm_info['name'];
         $this->realmID   = $realm_info['id'];
-        unset($realm_info);
-        // Initialize achievement manager
-        if(defined('load_achievements_class') && class_exists('Achievements')) {
+        if($this->load_options['load_achievements']) {
+            // Initialize achievement manager
             $this->m_achievementMgr = new Achievements;
             $this->m_achievementMgr->InitAchievements($this->guid, $this->db, true);
-            if($full) {
-                // Load Feed data
-                $this->LoadFeedData();
-                // Character feed feature requires Achievements class!
-            }
+        }
+        if($this->load_options['load_feeds']) {
+            // Load Feed data
+            $this->LoadFeedData();
         }
         // Everything correct
         if($initialBuild == true) {
@@ -439,6 +480,7 @@ Class Characters {
                 Armory::Log()->writeLog('%s : WARNING: %s\'s (GUID: %d) level is more than GT_MAX_LEVEL (%d) - %d. This may cause some errors at data generation.', __METHOD__, $this->GetName(), $this->GetGUID(), GT_MAX_LEVEL, $this->GetLevel());
             }
         }
+        unset($realm_info);
         return true;
     }
     
@@ -1046,7 +1088,7 @@ Class Characters {
     
     /**
      * Calculates and returns array with character talent specs. !Required $this->guid and $this->class!
-     * Depends on Armory::$currentRealmInfo['type'] ('mangos' or 'trinity' realm)
+     * Depends on $this->m_server value (SERVER_MANGOS or SERVER_TRINITY)
      * @category Character class
      * @access   public
      * @return   array
@@ -1187,23 +1229,19 @@ Class Characters {
                 if(!isset($tab_class[$i])) {
                     continue;
                 }
-                switch(Armory::$currentRealmInfo['type']) {
-                    case 'mangos':
-                        $current_tab = Armory::$aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
-                        if(!$current_tab) {
-                            continue;
+                $current_tab = Armory::$aDB->select("SELECT `TalentID`, `TalentTab`, `Row`, `Col` FROM `ARMORYDBPREFIX_talents` WHERE `TalentTab`=%d ORDER BY `TalentTab`, `Row`, `Col`", $tab_class[$i]);
+                if(!$current_tab) {
+                    continue;
+                }
+                foreach($current_tab as $tab) {
+                    for($j = 0; $j < 2; $j++) {
+                        if(isset($specs_talents[$j][$tab['TalentID']])) {
+                            $talent_data[$j] .= $specs_talents[$j][$tab['TalentID']];
                         }
-                        foreach($current_tab as $tab) {
-                            for($j = 0; $j < 2; $j++) {
-                                if(isset($specs_talents[$j][$tab['TalentID']])) {
-                                    $talent_data[$j] .= $specs_talents[$j][$tab['TalentID']];
-                                }
-                                else {
-                                    $talent_data[$j] .= 0;
-                                }
-                            }
+                        else {
+                            $talent_data[$j] .= 0;
                         }
-                        break;
+                    }
                 }
             }
         }

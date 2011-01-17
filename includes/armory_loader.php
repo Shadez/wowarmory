@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 455
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -25,12 +25,18 @@
 if(!defined('__ARMORY__')) {
     die('Direct access to this file not allowed!');
 }
+session_start();
 // Detect armory directory
 define('__ARMORYDIRECTORY__', dirname(dirname(__FILE__)));
 if(!defined('__ARMORYDIRECTORY__') || __ARMORYDIRECTORY__ == null) {
     die('<b>Fatal error:</b> unable to detect armory directory!');
 }
-session_start();
+if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
+    die('<b>Error:</b> unable to load UpdateFields.php!');
+}
+if(!@include(__ARMORYDIRECTORY__ . '/includes/defines.php')) {
+    die('<b>Error:</b> unable to load defines.php!');
+}
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
     die('<b>Error:</b> unable to load Armory class!');
 }
@@ -99,50 +105,13 @@ if(Armory::$armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE'))
     header('Location: maintenance.xml');
     exit;
 }
-if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
-    die('<b>Error:</b> unable to load UpdateFields.php!');
-}
-if(!@include(__ARMORYDIRECTORY__ . '/includes/defines.php')) {
-    die('<b>Error:</b> unable to load defines.php!');
-}
 if(!defined('skip_utils_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.utils.php')) {
         die('<b>Error:</b> unable to load utils class!');
     }
     $utils = new Utils();
-    /** 
-     * Check realm data
-     * This will automaticaly add missing realms to `armory_realm_data` table (if MySQL user have "INSERT" access to Armory database)
-     **/
-    $utils->CheckConfigRealmData();
     // Check $_GET variable
     $utils->CheckVariablesForPage();
-    /*
-    // Check sessions count
-    // May be not required?
-    //TODO: think about this feature
-    $sess_count = $utils->GetSessionsCount();
-    if($sess_count >= Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession() && !defined('LIMIT_PAGE')) {
-        header('Location: limit.xml');
-        exit;
-    }
-    elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession()) {
-        // we can create session
-        $utils->CreateNewSession();
-        if(defined('LIMIT_PAGE')) {
-            header('Location: index.xml');
-            exit;
-        }
-    }
-    elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && $utils->IsCorrectSession()) {
-        // just update
-        $utils->UpdateSession();
-        if(defined('LIMIT_PAGE')) {
-            header('Location: index.xml');
-            exit;
-        }
-    }
-    */
 }
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
@@ -264,7 +233,7 @@ if(defined('load_item_class')) {
 }
 // Start XML parser
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.xmlhandler.php')) {
-    die('<b>Error:</b> unable to load XML handler class!');
+    die('<b>Error:</b> unable to load XML Handler Class!');
 }
 $xml = new XMLHandler(Armory::GetLocale());
 if(!defined('RSS_FEED')) {

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -739,7 +739,7 @@ Class Items {
             $serverType = Armory::$currentRealmInfo['type'];
         }
         switch($serverType) {
-            case 'mangos':
+            case SERVER_MANGOS:
                 $socketfield = array(
                     1 => ITEM_FIELD_ENCHANTMENT_3_2,
                     2 => ITEM_FIELD_ENCHANTMENT_4_2,
@@ -758,7 +758,7 @@ Class Items {
                             WHERE `owner_guid`=%d AND `guid`=%d", $socketfield[$socketNum], $guid, $item_guid);
                 }
                 break;
-            case 'trinity':
+            case SERVER_TRINITY:
                 $socketfield = array(
                     1 => 6,
                     2 => 9,

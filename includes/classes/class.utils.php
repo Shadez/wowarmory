@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -311,17 +311,12 @@ Class Utils {
         if(!isset($_SESSION['accountId'])) {
             return false;
         }
-        return Armory::$aDB->selectRow("
-        SELECT
-        `ARMORYDBPREFIX_login_characters`.`guid`,
-        `ARMORYDBPREFIX_login_characters`.`name`,
-        `ARMORYDBPREFIX_login_characters`.`race`,
-        `ARMORYDBPREFIX_login_characters`.`realm_id`,
-        `ARMORYDBPREFIX_realm_data`.`name` AS `realmName`
-        FROM `ARMORYDBPREFIX_login_characters` AS `ARMORYDBPREFIX_login_characters`
-        LEFT JOIN `ARMORYDBPREFIX_realm_data` AS `ARMORYDBPREFIX_realm_data` ON `ARMORYDBPREFIX_realm_data`.`id`=`ARMORYDBPREFIX_login_characters`.`realm_id`
-        WHERE `ARMORYDBPREFIX_login_characters`.`account`=%d AND `ARMORYDBPREFIX_login_characters`.`selected`=1 LIMIT 1
-        ", $_SESSION['accountId']);
+        $char_data = Armory::$aDB->selectRow("SELECT `guid`, `name`, `race`, `realm_id` FROM `ARMORYDBPREFIX_login_characters` WHERE `account`=%d AND `selected`=1 LIMIT 1", $_SESSION['accountId']);
+        if(!$char_data) {
+            return false;
+        }
+        $char_data['realmName'] = Armory::$realmData[$char_data['realm_id']]['name'];
+        return $char_data;
     }
     
     /**
@@ -383,14 +378,14 @@ Class Utils {
         }
         $result = array();
         foreach($bookmarks_data as $bookmark) {
-            $realm = Armory::$aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $bookmark['realm']);
-            if(!$realm) {
+            $realm_id = Armory::FindRealm($bookmark['realm']);
+            if($realm_id == 0) {
                 continue;
             }
-            elseif(!isset(Armory::$realmData[$realm['id']])) {
+            elseif(!isset(Armory::$realmData[$realm_id])) {
                 continue;
             }
-            $realm_info = Armory::$realmData[$realm['id']];
+            $realm_info = Armory::$realmData[$realm_id];
             $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
             if(!$db) {
                 continue;
@@ -424,14 +419,14 @@ Class Utils {
             // Unable to store more than 60 bookmarks for single account
             return false;
         }
-        $realm = Armory::$aDB->selectRow("SELECT `id`, `name` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
+        $realm_id = Armory::FindRealm($realmName);
         if(!$realm) {
             return false;
         }
-        elseif(!isset(Armory::$realmData[$realm['id']])) {
+        elseif(!isset(Armory::$realmData[$realm_id])) {
             return false;
         }
-        $realm_info = Armory::$realmData[$realm['id']];
+        $realm_info = Armory::$realmData[$realm_id];
         $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
         if(!$db) {
             return false;
@@ -510,7 +505,7 @@ Class Utils {
                 return $value * $warlock_pet_bonus[$stat];
             }
             else {
-                return 0;
+                return -1;
             }
         }
         elseif($unitClass == CLASS_HUNTER) {
@@ -518,10 +513,10 @@ Class Utils {
                 return $value * $hunter_pet_bonus[$stat];
             }
             else {
-                return 0;
+                return -1;
             }
         }
-        return 0;
+        return -1;
     }
     
     /**
@@ -758,7 +753,7 @@ Class Utils {
                 case CLASS_DRUID:
                     $baseStr = min($effectiveStat,20);
                     $moreStr = $effectiveStat-$baseStr;
-                    $ap = $baseStr + 2*$moreStr;
+                    $ap = $baseStr + 2 * $moreStr;
                     break;
                 default:
                     $ap = $effectiveStat - 10;
@@ -774,8 +769,8 @@ Class Utils {
                     break;
             }
         }
-        if($ap < 0) {
-            $ap = 0;
+        if($ap <= 0) {
+            return -1;
         }
         return $ap;
     }
@@ -792,12 +787,15 @@ Class Utils {
      **/
     public function GetCritChanceFromAgility($rating, $class, $agility) {
         if(!is_array($rating)) {
-            return 0;
+            return -1;
         }
         $base = array(3.1891, 3.2685, -1.532, -0.295, 3.1765, 3.1890, 2.922, 3.454, 2.6222, 20, 7.4755);
         $ratingkey = array_keys($rating);
         if(isset($ratingkey[$class]) && isset($rating[$ratingkey[$class]]) && isset($base[$class-1])) {
-            return $base[$class-1] + $agility*$rating[$ratingkey[$class]]*100;
+            return $base[$class-1] + $agility * $rating[$ratingkey[$class]] * 100;
+        }
+        else {
+            return -1;
         }
     }
     
@@ -1291,16 +1289,16 @@ Class Utils {
      * @return   int
      **/
     public function IsRealm($rName) {
-        $realmId = Armory::$aDB->selectCell("SELECT `id` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $rName);
+        $realmId = Armory::FindRealm($rName);
         if($realmId > 0) {
             return $realmId;
         }
-        Armory::Log()->writeError('%s : unable to find id for realm %s (armory_realm_data)', __METHOD__, $rName);
+        Armory::Log()->writeError('%s : unable to find id for realm "%s".', __METHOD__, $rName);
         return false;
     }
     
     /**
-     * Returns realm ID from DB
+     * Returns realm ID
      * @category Utils class
      * @access   public
      * @param    string $rName
@@ -1415,37 +1413,6 @@ Class Utils {
     }
     
     /**
-     * Checks all realms for correct configs (in configuration.php and `armory_realm_data` table)
-     * and inserts data to DB if something missing.
-     * @category Utils class
-     * @access   public
-     * @return   bool
-     **/
-    public function CheckConfigRealmData() {
-        if(!Armory::$realmData || !is_array(Armory::$realmData) || !isset(Armory::$realmData[1])) {
-            Armory::Log()->writeError('%s : unable to detect correct multiRealm config. Please, make sure that you have read INSTALL file and have configured Armory correctly.', __METHOD__);
-            return false;
-        }
-        $allIds = array();
-        foreach(Armory::$realmData as $myRealm) {
-            $tmpData = Armory::$aDB->selectRow("SELECT `id`, `name`, `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s' LIMIT 1", $myRealm['name']);
-            if((!$tmpData || !is_array($tmpData)) || ($tmpData['id'] != $myRealm['id'] || $tmpData['name'] != $myRealm['name'] || $tmpData['type'] == UNK_SERVER)) {
-                $replace = Armory::$aDB->query("REPLACE INTO `ARMORYDBPREFIX_realm_data` (`id`, `name`, `type`) VALUES (%d, '%s', %d)", $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
-                if($replace) {
-                    Armory::Log()->writeLog('%s : realm data for realm "%s" was successfully added to `armory_realm_data` table.', __METHOD__, $myRealm['name']);
-                }
-                else {
-                    Armory::Log()->writeError('%s : realm data for realm "%s" was not added to `%s_realm_data` table. Please, execute this query manually: "REPLACE INTO `%s_realm_data` (`id`, `name`, `type`) VALUES (%d, \'%s\', %d);"', __METHOD__, $myRealm['name'], Armory::$armoryconfig['db_prefix'], Armory::$armoryconfig['db_prefix'], $myRealm['id'], $myRealm['name'], self::GetServerTypeByString($myRealm['type']));
-                }
-            }
-            $allIds[] = $myRealm['id'];
-        }
-        // Drop wrong realms from armory_realm_data table
-        Armory::$aDB->query("DELETE FROM `ARMORYDBPREFIX_realm_data` WHERE `id` NOT IN (%s)", $allIds);
-        return true;
-    }
-    
-    /**
      * Returns true if script should use XMLWriter::WriteRaw() instead of special methods.
      * Required for fr/de/es locales.
      * @category Utils class
@@ -1497,7 +1464,6 @@ Class Utils {
         $data = array();
         for($i = 0; $i < $totalCount; $i++) {
             if(!isset($realms[$i]) || !isset($chars[$i])) {
-                Armory::Log()->writeError('%s : data check for loop %d was failed, ignore.', __METHOD__, $i);
                 continue;
             }
             $data[$i] = array('name' => $chars[$i], 'realm' => $realms[$i]);
@@ -1594,36 +1560,6 @@ Class Utils {
                 break;
         }
         return $mask;
-    }
-    
-    /**
-     * Returns realm type for provided $realm_id.
-     * Warning: if detection fails, realm with provided ID will be deleted from allowed realms!
-     * @category Utils class
-     * @access   public
-     * @param    int $realm_id
-     * @return   mixed
-     **/
-    public function GetRealmType($realm_id) {
-        if(!isset(Armory::$realmData[$realm_id]) || !isset(Armory::$realmData[$realm_id]['name_world'])) {
-            Armory::Log()->writeError('%s : unable to detect realm type: world database config not found', __METHOD__);
-            return false;
-        }
-        $realm_info = Armory::$realmData[$realm_id];
-        $db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world']);
-        if(!$db->TestLink()) {
-            Armory::Log()->writeError('%s : unable to connect to MySQL database ("%s":"%s":"%s":"%s")', __METHOD__, $realm_info['host_world'], str_replace(substr($realm_info['user_world'], 2, 3), '***', $realm_info['user_world']), str_replace(substr($realm_info['pass_world'], 2, 3), '***', $realm_info['pass_world']), $realm_info['name_world']);
-            return false;
-        }
-        if($tmp = $db->selectCell("SELECT 1 FROM `mangos_string` LIMIT 1")) {
-            return 'mangos';
-        }
-        elseif($tmp = $db->selectCell("SELECT 1 FROM `trinity_string` LIMIT 1")) {
-            return 'trinity';
-        }
-        Armory::Log()->writeError('%s : unable to detect realm type, realm info with ID #%d was removed from allowed realms', __METHOD__, $realm_id);
-        unset($realm_id, $realm_info, Armory::$realmData[$realm_id], $db);
-        return false;
     }
     
     /**

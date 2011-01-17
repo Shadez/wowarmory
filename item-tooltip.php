@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -36,6 +36,8 @@ $itemID = (isset($_GET['i'])) ? (int) $_GET['i'] : null;
 $name = (isset($_GET['cn'])) ? $_GET['cn'] : null;
 $realmId = (isset($_GET['r'])) ? $utils->GetRealmIdByName($_GET['r']) : 1;
 if($name != null) {
+    $characters->SetOptions(LOAD_NOTHING);
+    $characters->SetOptions(array('load_inventory' => true));
     $characters->BuildCharacter($name, $realmId);
 }
 $isCharacter = $characters->CheckPlayer();
@@ -80,6 +82,8 @@ if($utils->IsItemComparisonAllowed()) {
     if(isset($primaryCharacter['name'])) {
         if($primaryCharacter['name'] != $characters->GetName() || ($primaryCharacter['name'] == $characters->GetName() && $primaryCharacter['realm_id'] != $characters->GetRealmID())) {
             $newChar = new Characters();
+            $newChar->SetOptions(LOAD_NOTHING);
+            $newChar->SetOptions(array('load_inventory' => true));
             $newChar->BuildCharacter($primaryCharacter['name'], $primaryCharacter['realm_id']);
             if($newChar->CheckPlayer()) {
                 $itemSlot = $items->GetItemSlotId($itemID);

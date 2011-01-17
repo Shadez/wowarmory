@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -76,7 +76,7 @@ $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
 $achievements = $characters->GetAchievementMgr();
-if($_GET['r'] === false || !Armory::$currentRealmInfo) {
+if($_GET['r'] === false || !$characters->GetRealmName()) {
     $isCharacter = false;
 }
 // Get page cache
@@ -86,7 +86,7 @@ if($characters->GetGUID() > 0 && $isCharacter && Armory::$armoryconfig['useCache
             $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $utils->GenerateCacheIdForComparisons($comparisonData));
         }
         else {
-            $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->GetName(), Armory::$currentRealmInfo['name']);
+            $cache_id = $utils->GenerateCacheId('character-achievements-c'.$achievement_category, $characters->GetName(), $characters->GetRealmName());
         }
     }
     else {
@@ -94,7 +94,7 @@ if($characters->GetGUID() > 0 && $isCharacter && Armory::$armoryconfig['useCache
             $cache_id = $utils->GenerateCacheId('character-achievements', $utils->GenerateCacheIdForComparisons($comparisonData));
         }
         else {
-            $cache_id = $utils->GenerateCacheId('character-achievements', $characters->GetName(), Armory::$currentRealmInfo['name']);
+            $cache_id = $utils->GenerateCacheId('character-achievements', $characters->GetName(), $characters->GetRealmName());
         }
     }
     if($cache_data = $utils->GetCache($cache_id)) {

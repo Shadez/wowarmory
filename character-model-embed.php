@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -45,12 +45,12 @@ $realmId = $utils->GetRealmIdByName($_GET['r']);
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
 $achievements = $characters->GetAchievementMgr();
-if($_GET['r'] === false || !Armory::$currentRealmInfo) {
+if($_GET['r'] === false || !$characters->GetRealmName()) {
     $isCharacter = false;
 }
 // Get page cache
 if($isCharacter && Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-model-embed', $characters->GetName(), Armory::$currentRealmInfo['name']);
+    $cache_id = $utils->GenerateCacheId('character-model-embed', $characters->GetName(), $characters->GetRealmName());
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -48,9 +48,11 @@ if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
+$characters->SetOptions(LOAD_NOTHING);
+$characters->SetOptions(array('load_feeds' => true));
 $characters->BuildCharacter($name, $realmId, true, true);
 $isCharacter = $characters->CheckPlayer();
-if($_GET['r'] === false || !Armory::$currentRealmInfo) {
+if($_GET['r'] === false || !$characters->GetRealmName()) {
     $isCharacter = false;
 }
 header('Content-type: text/xml');

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -81,7 +81,7 @@ Class Arenateams {
         }
         $arenateaminfo = array();
         switch(Armory::$currentRealmInfo['type']) {
-            case 'mangos':
+            case SERVER_MANGOS:
                 $sql = "
                 `games_week`  AS `gamesPlayed`,
                 `wins_week`   AS `gamesWon`,
@@ -89,7 +89,7 @@ Class Arenateams {
                 `games_season` AS `seasonGamesPlayed`,
                 `wins_season`  AS `seasonGamesWon`";
                 break;
-            case 'trinity':
+            case SERVER_TRINITY:
                 $sql = "
                 `games`  AS `gamesPlayed`,
                 `wins`   AS `gamesWon`,
@@ -176,7 +176,7 @@ Class Arenateams {
      * @return   bool
      **/
     public function GetTeamList() {
-        if(Armory::$currentRealmInfo['type'] == 'mangos') {
+        if(Armory::$currentRealmInfo['type'] == SERVER_MANGOS) {
             $this->players = Armory::$cDB->select("
             SELECT
             `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
@@ -191,7 +191,7 @@ Class Arenateams {
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
             WHERE `arena_team_member`.`arenateamid`=%d", $this->arenateamid);
         }
-        elseif(Armory::$currentRealmInfo['type'] == 'trinity') {
+        elseif(Armory::$currentRealmInfo['type'] == SERVER_TRINITY) {
             switch($this->teamtype) {
                 case 2:
                 default:
@@ -265,7 +265,7 @@ Class Arenateams {
                 // Special sorting
                 switch($realm_info['type']) {
                     default:
-                    case 'mangos':
+                    case SERVER_MANGOS:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
                         `arena_team`.`arenateamid`,
@@ -284,7 +284,7 @@ Class Arenateams {
                         WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
                         ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
                         break;
-                    case 'trinity':
+                    case SERVER_TRINITY:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
                         `arena_team`.`arenateamid`,
@@ -308,7 +308,7 @@ Class Arenateams {
             else {
                 switch($realm_info['type']) {
                     default:
-                    case 'mangos':
+                    case SERVER_MANGOS:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
                         `arena_team`.`arenateamid`,
@@ -326,7 +326,7 @@ Class Arenateams {
                         WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
                         ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
                         break;
-                    case 'trinity':
+                    case SERVER_TRINITY:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
                         `arena_team`.`arenateamid`,

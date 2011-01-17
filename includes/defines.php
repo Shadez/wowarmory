@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -847,4 +847,7 @@ define('GUILD_BANK_RIGHT_FULL', 0xFF);
 /** Bookmarks and selected characters **/
 define('MAX_BOOKMARKS_COUNT', 60);
 define('MAX_SELECTED_CHARACTERS_COUNT', 5);
+
+define('LOAD_ALL', 1);
+define('LOAD_NOTHING', 2);
 ?>

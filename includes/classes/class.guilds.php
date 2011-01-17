@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -214,6 +214,8 @@ Class Guilds {
         $countMembers = count($memberListTmp);
         for($i = 0; $i < $countMembers; $i++) {
             $pl = new Characters();
+            $pl->SetOptions(LOAD_NOTHING);
+            $pl->SetOptions(array('load_achievements' => true));
             $pl->BuildCharacter($memberListTmp[$i]['name'], Armory::$currentRealmInfo['id'], false);
             $memberListTmp[$i]['achPoints'] = $pl->GetAchievementMgr()->GetAchievementPoints();
             $memberListTmp[$i]['url'] = sprintf('r=%s&cn=%s&gn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($memberListTmp[$i]['name']), urlencode($this->guildName));

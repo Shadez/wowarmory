@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -80,10 +80,6 @@ Class Achievements {
         $this->achId   = 0;
         $this->m_count = 0;
         $this->pts     = 0;
-        if($check == true && !$this->db->selectCell("SELECT 1 FROM `characters` WHERE `guid`=%d LIMIT 1", $player_guid)) {
-            Armory::Log()->writeError('%s : player with guid %d was not found in `characters` table!', __METHOD__, $player_guid);
-            return false;
-        }
         $this->guid = $player_guid;
         self::CalculateAchievementPoints();
         self::CountCharacterAchievements();
@@ -448,9 +444,6 @@ Class Achievements {
         foreach($achievements_data as $achievement) {
             $this->achId = $achievement['id'];
             $completed = self::IsAchievementCompleted($this->achId);
-            if($completed) {
-                Armory::Log()->writeLog('%s : ach #%d is completed for player %d', __METHOD__, $this->achId, $this->guid);
-            }
             $parentId = Armory::$aDB->selectCell("SELECT `parentAchievement` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d", $this->achId);
             if($completed) {
                 $return_data['completed'][$this->achId]['data'] = $achievement;

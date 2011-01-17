@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 455
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,8 +37,7 @@ if(isset($_GET['gn'])) {
 else {
     $guilds->guildName = false;
 }
-$serverType = Armory::$aDB->selectCell("SELECT `type` FROM `ARMORYDBPREFIX_realm_data` WHERE `name` = '%s' LIMIT 1", $utils->escape($_GET['r']));
-$isGuild = $guilds->InitGuild($serverType);
+$isGuild = $guilds->InitGuild(Armory::$currentRealmInfo['type']);
 if(!$isGuild) {
     // Load XSLT template
     $xml->LoadXSLT('error/error.xsl');

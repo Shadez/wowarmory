@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -91,14 +91,12 @@ Class Armory {
             else {
                 $realmName = urldecode($_GET['r']);
             }
-            $realm_info = self::$aDB->selectRow("SELECT `id`, `version` FROM `ARMORYDBPREFIX_realm_data` WHERE `name`='%s'", $realmName);
-            if(isset(self::$realmData[$realm_info['id']])) {
-                self::$connectionData = self::$realmData[$realm_info['id']];
+            $realm_id = self::FindRealm($realmName);
+            if(isset(self::$realmData[$realm_id])) {
+                self::$connectionData = self::$realmData[$realm_id];
                 self::$cDB = new ArmoryDatabaseHandler(self::$connectionData['host_characters'], self::$connectionData['user_characters'], self::$connectionData['pass_characters'], self::$connectionData['name_characters'], self::$connectionData['charset_characters']);
-                self::$currentRealmInfo = array('name' => self::$connectionData['name'], 'id' => $realm_info['id'], 'type' => self::$connectionData['type'], 'connected' => true);
-                if(isset(self::$connectionData['name_world'])) {
-                    self::$wDB = new ArmoryDatabaseHandler(self::$connectionData['host_world'], self::$connectionData['user_world'], self::$connectionData['pass_world'], self::$connectionData['name_world'], self::$connectionData['charset_world']);
-                }
+                self::$currentRealmInfo = array('name' => self::$connectionData['name'], 'id' => $realm_id, 'type' => self::$connectionData['type'], 'connected' => true);
+                self::$wDB = new ArmoryDatabaseHandler(self::$connectionData['host_world'], self::$connectionData['user_world'], self::$connectionData['pass_world'], self::$connectionData['name_world'], self::$connectionData['charset_world']);
             }
         }
         $realm_info = self::$realmData[1];
@@ -225,6 +223,16 @@ Class Armory {
         self::$_locale = $locale;
         self::$_loc    = $locale_id;
         return true;
+    }
+    
+    public static function FindRealm($realm_name) {
+        $realm_name = urldecode($realm_name);
+        foreach(self::$realmData as $realm) {
+            if($realm['name'] == $realm_name) {
+                return $realm['id'];
+            }
+        }
+        return 0;
     }
 }
 ?>

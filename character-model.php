@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 456
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -42,14 +42,15 @@ if(!isset($_GET['r'])) {
     $_GET['r'] = false;
 }
 $realmId = $utils->GetRealmIdByName($_GET['r']);
+$characters->SetOptions(LOAD_NOTHING);
 $characters->BuildCharacter($name, $realmId, true, true, 1);
 $isCharacter = $characters->CheckPlayer();
-if($_GET['r'] === false || !Armory::$currentRealmInfo) {
+if($_GET['r'] === false || !$characters->GetRealmName()) {
     $isCharacter = false;
 }
 // Get page cache
 if($isCharacter && Armory::$armoryconfig['useCache'] == true && !isset($_GET['skipCache'])) {
-    $cache_id = $utils->GenerateCacheId('character-model', $characters->GetName(), Armory::$currentRealmInfo['name']);
+    $cache_id = $utils->GenerateCacheId('character-model', $characters->GetName(), $characters->GetRealmName());
     if($cache_data = $utils->GetCache($cache_id)) {
         echo $cache_data;
         echo sprintf('<!-- Restored from cache; id: %s -->', $cache_id);
@@ -64,7 +65,7 @@ $xml->XMLWriter()->writeAttribute('requestUrl', 'character-model.xml');
 $xml->XMLWriter()->startElement('tabInfo');
 $xml->XMLWriter()->writeAttribute('tab', 'character');
 $xml->XMLWriter()->writeAttribute('tabGroup', 'character');
-$xml->XMLWriter()->writeAttribute('tabUrl', ($isCharacter) ? sprintf('r=%s&cn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($characters->GetName())) : null);
+$xml->XMLWriter()->writeAttribute('tabUrl', ($isCharacter) ? sprintf('r=%s&cn=%s', urlencode($characters->GetRealmName()), urlencode($characters->GetName())) : null);
 $xml->XMLWriter()->endElement(); //tabInfo
 if(!$isCharacter) {
     $xml->XMLWriter()->startElement('characterInfo');
@@ -126,7 +127,7 @@ $model_data = array(
 );
 
 $xml->XMLWriter()->startElement('character');
-if($utils->IsAccountHaveCurrentCharacter($characters->GetGUID(), Armory::$currentRealmInfo['id'])) {
+if($utils->IsAccountHaveCurrentCharacter($characters->GetGUID(), $characters->GetRealmID())) {
     $xml->XMLWriter()->writeAttribute('owned', 1);
 }
 $xml->XMLWriter()->startElement('models');
