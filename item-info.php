@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 454
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -146,22 +146,40 @@ if($currency_items = $items->BuildLootTable($itemID, 'currencyfor')) {
 if($creature_loot = $items->BuildLootTable($itemID, 'creature')) {
     $xml->XMLWriter()->startElement('dropCreatures');
     foreach($creature_loot as $creature_item) {
-        $xml->XMLWriter()->startElement('creature');
-        foreach($creature_item as $c_item_key => $c_item_value) {
-            $xml->XMLWriter()->writeAttribute($c_item_key, $c_item_value);
+        if(Utils::IsWriteRaw()) {
+            $xml->XMLWriter()->writeRaw('<creature ');
+            foreach($creature_item as $c_item_key => $c_item_value) {
+                $xml->XMLWriter()->writeRaw(sprintf(' %s="%s"', $c_item_key, (preg_match('/url/', strtolower($c_item_key))) ? str_replace('&', '&amp;', $c_item_value) : $c_item_value));
+            }
+            $xml->XMLWriter()->writeRaw(' />');
         }
-        $xml->XMLWriter()->endElement(); //creature
+        else {
+            $xml->XMLWriter()->startElement('creature');
+            foreach($creature_item as $c_item_key => $c_item_value) {
+                $xml->XMLWriter()->writeAttribute($c_item_key, $c_item_value);
+            }
+            $xml->XMLWriter()->endElement(); //creature
+        }
     }
     $xml->XMLWriter()->endElement(); //dropCreatures
 }
 if($gameobject_loot = $items->BuildLootTable($itemID, 'gameobject')) {
     $xml->XMLWriter()->startElement('containerObjects');
     foreach($gameobject_loot as $gameobject_item) {
-        $xml->XMLWriter()->startElement('object');
-        foreach($gameobject_item as $gobject_key => $gobject_value) {
-            $xml->XMLWriter()->writeAttribute($gobject_key, $gobject_value);
+        if(Utils::IsWriteRaw()) {
+            $xml->XMLWriter()->writeRaw('<object ');
+            foreach($gameobject_item as $gobject_key => $gobject_value) {
+                $xml->XMLWriter()->writeRaw(sprintf('%s="%s" ', $gobject_key, (preg_match('/url/', strtolower($gobject_key))) ? str_replace('&', '&amp;', $gobject_value) : $gobject_value));
+            }
+            $xml->XMLWriter()->writeRaw(' />');
         }
-        $xml->XMLWriter()->endElement(); //object
+        else {
+            $xml->XMLWriter()->startElement('object');
+            foreach($gameobject_item as $gobject_key => $gobject_value) {
+                $xml->XMLWriter()->writeAttribute($gobject_key, $gobject_value);
+            }
+            $xml->XMLWriter()->endElement(); //object
+        }
     }
     $xml->XMLWriter()->endElement(); //containerObjects
 }
