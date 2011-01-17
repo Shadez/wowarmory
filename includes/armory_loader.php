@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 455
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -97,6 +97,7 @@ error_reporting(E_ALL);
 /* Check maintenance */
 if(Armory::$armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
     header('Location: maintenance.xml');
+    exit;
 }
 if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
     die('<b>Error:</b> unable to load UpdateFields.php!');
@@ -123,12 +124,14 @@ if(!defined('skip_utils_class')) {
     $sess_count = $utils->GetSessionsCount();
     if($sess_count >= Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession() && !defined('LIMIT_PAGE')) {
         header('Location: limit.xml');
+        exit;
     }
     elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && !$utils->IsCorrectSession()) {
         // we can create session
         $utils->CreateNewSession();
         if(defined('LIMIT_PAGE')) {
             header('Location: index.xml');
+            exit;
         }
     }
     elseif($sess_count < Armory::$armoryconfig['maxSessionCount'] && $utils->IsCorrectSession()) {
@@ -136,6 +139,7 @@ if(!defined('skip_utils_class')) {
         $utils->UpdateSession();
         if(defined('LIMIT_PAGE')) {
             header('Location: index.xml');
+            exit;
         }
     }
     */
@@ -143,9 +147,11 @@ if(!defined('skip_utils_class')) {
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
     header('Location: login.xml');
+    exit;
 }
 elseif(isset($_GET['logout']) && $_GET['logout'] == 1) {
     header('Location: login.xml?logoff');
+    exit;
 }
 
 /** Locale change **/
@@ -199,6 +205,7 @@ if(isset($_GET['locale'])) {
         $returnUrl = $_SESSION['last_url'];
     }
     header('Location: ' . $returnUrl);
+    exit;
 }
 $_locale = (isset($_SESSION['armoryLocale'])) ? $_SESSION['armoryLocale'] : Armory::GetLocale();
 if(defined('load_characters_class')) {

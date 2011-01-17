@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 455
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -28,6 +28,7 @@ if(!@include('includes/armory_loader.php')) {
 }
 if(!isset($_SESSION['username'])) {
     header('Location: index.xml?login=1');
+    exit;
 }
 if(isset($_GET['action']) && isset($_GET['r']) && isset($_GET['cn'])) {
     $name = $utils->escape($_GET['cn']);

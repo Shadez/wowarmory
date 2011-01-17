@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 455
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -53,6 +53,7 @@ if(!$isGuild) {
 }
 if(!isset($_SESSION['accountId'])) {
     header('Location: login.xml?ref=' . urlencode(sprintf('guild-bank-contents.xml?r=%s&gn=%s', Armory::$currentRealmInfo['name'], $guilds->guildName)));
+    exit;
 }
 elseif(!$utils->IsAllowedToGuildBank($guilds->guildId, Armory::$currentRealmInfo['id'])) {
     // Load XSLT template

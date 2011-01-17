@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 455
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,9 +49,11 @@ if(isset($_POST['accountName']) && !isset($_SESSION['accountId'])) {
     else {
         if(!isset($_GET['ref'])) {
             header('Location: index.xml');
+            exit;
         }
         else {
             header('Location: ' . $_GET['ref']);
+            exit;
         }
     }
 }
@@ -64,9 +66,11 @@ elseif(isset($_GET['logoff']) && isset($_SESSION['accountId'])) {
 elseif(isset($_SESSION['accountId'])) {
     if(isset($_GET['ref'])) {
         header('Location: ' . $_GET['ref']);
+        exit;
     }
     else {
         header('Location: index.xml');
+        exit;
     }
 }
 $xml->LoadXSLT('login.xsl');
