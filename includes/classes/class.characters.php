@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 458
+ * @revision 459
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -3014,20 +3014,56 @@ Class Characters {
      * @return   bool
      **/
     public function HasTalent($talent_id, $active_spec = true, $rank = -1) {
+        switch($this->GetServerType()) {
+            case SERVER_MANGOS:
+                $sql_data = array(
+                    'activeSpec' => array(
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%%d AND `spec`=%%d', $talent_id),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%%d AND `spec`=%%d AND `current_rank`=%d', $talent_id, $rank)
+                    ),
+                    'spec' => array(
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%%d', $talent_id),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%%d AND `current_rank`=%d', $talent_id, $rank)
+                    )
+                );
+                break;
+            case SERVER_TRINITY:
+                $talent_spells = Armory::$aDB->selectRow("SELECT `Rank_1`, `Rank_3`, `Rank_4`, `Rank_4`, `Rank_5` FROM `DBPREFIX_talent` WHERE `TalentID` = %d LIMIT 1", $talent_id);
+                if(!$talent_spells || ($rank >= 0 && !isset($talent_spells['Rank_' . $rank + 1]))) {
+                    Armory::Log()->writeError('%s : talent ranks for talent %d was not found in DB!', __METHOD__);
+                    return false;
+                }
+                $sql_data = array(
+                    'activeSpec' => array(
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d', array($talent_spells['Rank_1'], $talent_spells['Rank_2'], $talent_spells['Rank_3'], $talent_spells['Rank_4'], $talent_spells['Rank_5'])),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d'. $talent_spells['Rank_' . $rank + 1])
+                    ),
+                    'spec' => array(
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d', array($talent_spells['Rank_1'], $talent_spells['Rank_2'], $talent_spells['Rank_3'], $talent_spells['Rank_4'], $talent_spells['Rank_5'])),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d', $talent_spells['Rank_' . $rank + 1])
+                    )
+                );
+                break;
+            default:
+                Armory::Log()->writeError('%s : unknown server type %d!', __METHOD__, $this->GetServerType());
+                return false;
+                break;
+        }
+        
         if($active_spec) {
             if($rank == -1) {
-                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d", $talent_id, $this->guid, $this->activeSpec);
+                $has = $this->db->selectCell($sql_data['activeSpec'][0], $this->guid, $this->activeSpec);
             }
             elseif($rank >= 0) {
-                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `spec`=%d AND `current_rank`=%d", $talent_id, $this->guid, $this->activeSpec, $rank);
+                $has = $this->db->selectCell($sql_data['activeSpec'][1], $this->guid, $this->activeSpec);
             }
         }
         else {
             if($rank == -1) {
-                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d", $talent_id, $this->guid);
+                $has = $this->db->selectCell($sql_data['spec'][0], $this->guid);
             }
             elseif($rank >= 0) {
-                $has = $this->db->selectCell("SELECT 1 FROM `character_talent` WHERE `talent_id`=%d AND `guid`=%d AND `current_rank`=%d", $talent_id, $this->guid, $rank);
+                $has = $this->db->selectCell($sql_data['spec'][1], $this->guid);
             }
         }
         return (bool) $has;
