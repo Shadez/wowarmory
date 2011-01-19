@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 458
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -2704,6 +2704,9 @@ Class Characters {
                     // Get criterias
                     $achievement_ids = array();
                     $dungeonDifficulty = $event['difficulty'];
+                    if($dungeonDifficulty == -1) {
+                        $dungeonDifficulty = 0;
+                    }
                     // Search for difficulty_entry_X
                     $DifficultyEntry = Armory::$wDB->selectCell("SELECT `entry` FROM `creature_template` WHERE `difficulty_entry_%d` = %d", $event['difficulty'], $event_data);
                     if(!$DifficultyEntry || $DifficultyEntry == 0) {
