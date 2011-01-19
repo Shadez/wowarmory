@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 460
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -3032,7 +3032,15 @@ Class Items {
      * @return   int
      **/
     public function GetItemGUIDByEntry($item_entry, $owner_guid) {
-        return Armory::$cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
+        switch(Armory::$currentRealmInfo['type']) {
+            case SERVER_MANGOS:
+                return Armory::$cDB->selectCell("SELECT `item` FROM `character_inventory` WHERE `item_template`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
+                break;
+            case SERVER_TRINITY:
+                return Armory::$cDB->selectCell("SELECT `guid` FROM `item_instance` WHERE `itemEntry`=%d AND `owner_guid`=%d", $item_entry, $owner_guid);
+                break;
+        }
+        return 0;
     }
     
     public function IsGemMatchesSocketColor($gem_color, $socket_color) {
