@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 462
+ * @revision 463
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -299,6 +299,49 @@ Class Characters {
         return true;
     }
     
+    private function IsCharacterFitsRequirements(&$player_data) {
+        $gmLevel = 0;
+        // Disable next SQL error
+        Armory::$rDB->SkipNextError();
+        if($this->m_server == SERVER_TRINITY) {
+            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], Armory::$connectionData['id']);
+        }
+        elseif($this->m_server == SERVER_MANGOS) {
+            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
+        }
+        $allowed = ($gmLevel <= Armory::$armoryconfig['minGmLevelToShow']) ? true : false;
+        if(!$allowed) {
+            Armory::Log()->writeLog('%s : unable to display character %s (GUID: %d): GM level restriction!', __METHOD__, $player_data['name'], $player_data['guid']);
+            return false;
+        }
+        if($player_data['level'] < Armory::$armoryconfig['minlevel']) {
+            Armory::Log()->writeLog('%s : unable to load character %s (GUID: %d): level restriction.', __METHOD__, $player_data['name'], $player_data['guid']);
+            return false;
+        }
+        if(Armory::$armoryconfig['skipBanned'] && Armory::$rDB->selectCell("SELECT 1 FROM `account_banned` WHERE `id` = %d AND `active` = 1", $player_data['account'])) {
+            Armory::Log()->writeLog('%s : unable to load character %s (GUID: %d) from banned account %d.', __METHOD__, $player_data['name'], $player_data['guid'], $player_data['account']);
+            return false;
+        }
+        // Class/race/faction checks
+        if($player_data['class'] >= MAX_CLASSES) {
+            // Unknown class
+            Armory::Log()->writeError('%s : character %s (GUID: %d) has wrong data in DB: classID %d was not found. Unable to continue.', __METHOD__, $player_data['name'], $player_data['guid'], $player_data['class']);
+            return false;
+        }
+        elseif($player_data['race'] >= MAX_RACES) {
+            // Unknown race
+            Armory::Log()->writeError('%s : character %s (GUID: %d) has wrong data in DB: raceID %d was not found. Unable to continue.', __METHOD__, $player_data['name'], $player_data['guid'], $player_data['race']);
+            return false;
+        }
+        $this->faction = Utils::GetFactionId($player_data['race']);
+        if($this->faction === false) {
+            // Unknown faction
+            Armory::Log()->writeError('%s : character %s (GUID: %d) has wrong data in DB: factionID %d was not found (raceID: %d).', __METHOD__, $player_data['name'], $player_data['guid'], $this->faction, $player_data['race']);
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * Init character, load data from DB, checks for requirements, etc.
      * @category Characters class
@@ -397,39 +440,9 @@ Class Characters {
             $this->HandleCharacterData();
         }
         // Can we display this character?
-        $gmLevel = false;
-        Armory::$rDB->SkipNextError();
-        if($this->m_server == SERVER_TRINITY) {
-            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account_access` WHERE `id`=%d AND `RealmID` IN (-1, %d)", $player_data['account'], Armory::$connectionData['id']);
-        }
-        elseif($this->m_server == SERVER_MANGOS) {
-            $gmLevel = Armory::$rDB->selectCell("SELECT `gmlevel` FROM `account` WHERE `id`=%d LIMIT 1", $player_data['account']);
-        }
-        $allowed = ($gmLevel <= Armory::$armoryconfig['minGmLevelToShow']) ? true : false;
-        if(!$allowed || $player_data['level'] < Armory::$armoryconfig['minlevel']) {
-            Armory::Log()->writeLog('%s : Player %d (%s) can not be displayed (GM level restriction or has low level (%d level))!', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['level']);
-            unset($player_data);
+        if(!$this->IsCharacterFitsRequirements($player_data)) {
             return false;
-        }
-        // Class/race/faction checks
-        if($player_data['class'] >= MAX_CLASSES) {
-            // Unknown class
-            Armory::Log()->writeError('%s : Player %d (%s) has wrong data in DB: classID %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['class']);
-            unset($player_data);
-            return false;
-        }
-        elseif($player_data['race'] >= MAX_RACES) {
-            // Unknown race
-            Armory::Log()->writeError('%s : Player %d (%s) has wrong data in DB: raceID %d was not found.', __METHOD__, $player_data['guid'], $player_data['name'], $player_data['race']);
-            unset($player_data);
-            return false;
-        }
-        $this->faction = Utils::GetFactionId($player_data['race']);
-        if($this->faction === false) {
-            // Unknown faction
-            Armory::Log()->writeError('%s : Player %d (%s) has wrong data in DB: factionID %d was not found (raceID: %d).', __METHOD__, $player_data['guid'], $player_data['name'], $this->faction, $player_data['class']);
-            unset($player_data);
-            return false;
+            // Debug message will be added from Characters::IsCharacterFitsRequirements()
         }
         foreach($player_data as $pData_key => $pData_value) {
             if(is_string($pData_key)) {

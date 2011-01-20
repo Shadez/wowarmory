@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 463
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -100,6 +100,11 @@ $ArmoryConfig['mysql']['charset_realmd']  = 'UTF8';
 #                 1 (Everyone except Administrators and GMs will be displayed in Armory)
 #                 0 (Only players will be displayed in Armory)
 #
+#    skipBanned
+#        Disable characters loading from banned accounts?
+#        Default: false (Recommended)
+#                 true
+#
 #    defaultLocale
 #        Site default locale
 #        Default: en_gb (UK English)
@@ -141,11 +146,12 @@ $ArmoryConfig['settings']['cache_lifetime']   = 86400;
 $ArmoryConfig['settings']['db_prefix']        = 'armory';
 $ArmoryConfig['settings']['minlevel']         = 10;
 $ArmoryConfig['settings']['minGmLevelToShow'] = 3;
+$ArmoryConfig['settings']['skipBanned']       = false;
 $ArmoryConfig['settings']['defaultLocale']    = 'en_gb';
 $ArmoryConfig['settings']['maintenance']      = false;
 $ArmoryConfig['settings']['useDebug']         = true;
 $ArmoryConfig['settings']['logLevel']         = 2;
-$ArmoryConfig['settings']['configVersion']    = '1801201101';
+$ArmoryConfig['settings']['configVersion']    = '2001201101';
 $ArmoryConfig['settings']['checkVersionType'] = 'show';
 
 ##############################################################################################
