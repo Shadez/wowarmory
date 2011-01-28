@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 463
+ * @revision 464
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -17,7 +17,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should has received a copy of the GNU General Public License
+ * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
@@ -3043,9 +3043,9 @@ Class Characters {
                 );
                 break;
             case SERVER_TRINITY:
-                $talent_spells = Armory::$aDB->selectRow("SELECT `Rank_1`, `Rank_3`, `Rank_4`, `Rank_4`, `Rank_5` FROM `DBPREFIX_talent` WHERE `TalentID` = %d LIMIT 1", $talent_id);
+                $talent_spells = Armory::$aDB->selectRow("SELECT `Rank_1`, `Rank_3`, `Rank_4`, `Rank_4`, `Rank_5` FROM `ARMORYDBPREFIX_talent` WHERE `TalentID` = %d LIMIT 1", $talent_id);
                 if(!$talent_spells || ($rank >= 0 && !isset($talent_spells['Rank_' . $rank + 1]))) {
-                    Armory::Log()->writeError('%s : talent ranks for talent %d was not found in DB!', __METHOD__);
+                    Armory::Log()->writeError('%s : talent ranks for talent %d was not found in DB!', __METHOD__, $talent_id);
                     return false;
                 }
                 $sql_data = array(
