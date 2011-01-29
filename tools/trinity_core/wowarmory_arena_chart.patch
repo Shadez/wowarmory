@@ -91,9 +91,8 @@ index 2e2a452..67000cb 100755
  };
  
  enum BGHonorMode
-
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
-index 81b0233..1a6ccfa 100755
+index b1fab1b..6c8041f 100755
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
 @@ -647,9 +647,16 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
@@ -114,7 +113,7 @@ index 81b0233..1a6ccfa 100755
          killer->UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_DAMAGE_DONE, damage, 0, pVictim);
          killer->UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HIT_DEALT, damage);
      }
-@@ -9739,6 +9746,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth)
+@@ -9727,6 +9734,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth)
      {
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          pVictim->ToPlayer()->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

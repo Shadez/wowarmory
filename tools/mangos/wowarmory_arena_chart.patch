@@ -94,10 +94,10 @@ index 73c2093..8ea413e 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 4722069..674c986 100644
+index 032e98e..bbe8a22 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -662,6 +662,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -661,6 +661,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
@@ -108,7 +108,7 @@ index 4722069..674c986 100644
              }
          }
  
-@@ -6065,6 +6069,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+@@ -6076,6 +6080,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
      {
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

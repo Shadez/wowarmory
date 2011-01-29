@@ -1,5 +1,5 @@
 diff --git a/src/game/AchievementMgr.cpp b/src/game/AchievementMgr.cpp
-index a8d4155..6fc1f43 100644
+index 1fba470..d1fd7bc 100644
 --- a/src/game/AchievementMgr.cpp
 +++ b/src/game/AchievementMgr.cpp
 @@ -2076,6 +2076,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
@@ -33,10 +33,10 @@ index b62eda2..e68332d 100644
              return pItem;
          }
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 36018e8..ba57b98 100644
+index 90e21b7..1fdc3b3 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -16951,6 +16951,17 @@ void Player::SaveToDB()
+@@ -16968,6 +16968,17 @@ void Player::SaveToDB()
  
      DEBUG_FILTER_LOG(LOG_FILTER_PLAYER_STATS, "The value of player %s at save: ", m_name.c_str());
      outDebugStatsValues();
@@ -54,7 +54,7 @@ index 36018e8..ba57b98 100644
  
      CharacterDatabase.BeginTransaction();
  
-@@ -22550,3 +22561,40 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
+@@ -22563,3 +22574,40 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
              SetFFAPvP(false);
      }
  }
@@ -97,10 +97,10 @@ index 36018e8..ba57b98 100644
 +/** World of Warcraft Armory **/
 \ No newline at end of file
 diff --git a/src/game/Player.h b/src/game/Player.h
-index ab43e7d..8625a18 100644
+index bc4c0b5..793dd90 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -2276,6 +2276,9 @@ class MANGOS_DLL_SPEC Player : public Unit
+@@ -2277,6 +2277,9 @@ class MANGOS_DLL_SPEC Player : public Unit
          bool TeleportToHomebind(uint32 options = 0) { return TeleportTo(m_homebindMapId, m_homebindX, m_homebindY, m_homebindZ, GetOrientation(), options); }
  
          Object* GetObjectByTypeMask(ObjectGuid guid, TypeMask typemask);
@@ -111,10 +111,10 @@ index ab43e7d..8625a18 100644
          // currently visible objects at player client
          ObjectGuidSet m_clientGUIDs;
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 4722069..7077964 100644
+index 032e98e..35ac1b2 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -866,7 +866,13 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -865,7 +865,13 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
                      if (m->IsRaidOrHeroicDungeon())
                      {
                          if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
