@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 468
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -670,67 +670,101 @@ Class Utils {
         LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
         WHERE `character_achievement`.`achievement` IN 
         (
-            457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 
-            467, 1404, 1405, 1406, 1407, 1408, 1409, 
+            456,  457,  458,  459,  460,  461,  462,  463, 464, 465, 466, 467,  
+            1400, 1402, 1404, 1405, 1406, 1407, 1408, 1409, 
             1410, 1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 
             1419, 1420, 1421, 1422, 1423, 1424, 1425, 1426, 1427, 
-            1463, 3259, 456, 1400, 1402, 3117, 4078, 4576
+            1463, 3259, 3117, 4078, 4576
         )
         ORDER BY `character_achievement`.`date` DESC"); // 4.0.3 IDs
         if(!$achievements_data) {
-            Armory::Log()->writeLog('%s : unable to get data from DB for achievement firsts (theres no completed achievement firsts?)', __METHOD__);
+            Armory::Log()->writeLog('%s : unable to get data from DB for achievement firsts (there is no completed achievement firsts?)', __METHOD__);
             return false;
         }
         $countAch = count($achievements_data);
-        for($i=0;$i<$countAch;$i++) {
-            $tmp_info = Armory::$aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", Armory::GetLocale(), Armory::GetLocale(), $achievements_data[$i]['achievement']);
-            $achievements_data[$i]['title'] = $tmp_info['name'];
-            $achievements_data[$i]['desc']  = $tmp_info['desc'];
-            $achievements_data[$i]['icon']  = $tmp_info['iconname'];
-            $achievements_data[$i]['id']    = $achievements_data[$i]['achievement'];
-            $achievements_data[$i]['dateCompleted'] = date('Y-m-d\TH:i:s\Z', $achievements_data[$i]['date']);
-        }
-        /*
-        $start_id = $countAch+1;
+        $realm_firsts = array();
         //                   Sartharion Malygos Kel'thuzed Yogg-Saron ToGC  The Lich King
         $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
-        $bosses = array();
-        */
-        $boss_firsts = array(456,       1400,   1402,      3117,      4078, 4576);
-        /*$i = count($achievements_data)+1;
-        foreach($boss_firsts as $rf) {
-            $tmp = Armory::$cDB->select("
-            SELECT
-            `character_achievement`.`achievement`,
-            `character_achievement`.`date`,
-            `character_achievement`.`guid`,
-            `characters`.`name` AS `charname`,
-            `characters`.`race`,
-            `characters`.`class`,
-            `characters`.`gender`,
-            `guild`.`name` AS `guildname`,
-            `guild`.`guildid`,
-            `guild_member`.`guildid`
-            FROM `character_achievement` AS `character_achievement`
-            LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
-            LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`character_achievement`.`guid`
-            LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-            WHERE `character_achievement`.`achievement`=%d
-            ORDER BY `character_achievement`.`date` DESC", $rf);
-            if($tmp) {
-                foreach($tmp as $ach) {
-                    if($ach['guildid'] != null) {
-                         $achievements_data[$rf][$ach['guildid']]['info'] = array('guildId' => $ach['guildid'], 'name' => $ach['guildname'], 'achievementId' => $ach['achievement']);
-                    }
-                    else {
-                        $ach['guildid'] = 0;
-                    }
-                    $achievements_data[$rf][$ach['guildid']]['members'][] = $ach;
+        foreach($achievements_data as $achievement) {
+            $achId = $achievement['achievement'];
+            if(isset($realm_firsts[$achId])) {
+                // Already handled.
+                continue;
+            }
+            $tmp_info = Armory::$aDB->selectRow("SELECT `name_%s` AS `name`, `description_%s` AS `desc`, `iconname` FROM `ARMORYDBPREFIX_achievement` WHERE `id`=%d LIMIT 1", Armory::GetLocale(), Armory::GetLocale(), $achId);
+            if(!$tmp_info) {
+                continue;
+            }
+            $realm_firsts[$achId] = array(
+                'title' => $tmp_info['name'],
+                'desc'  => $tmp_info['desc'],
+                'icon'  => $tmp_info['iconname'],
+                'id'    => $achId,
+                'dateCompleted' => date('Y-m-d\TH:i:s\Z', $achievement['date']),
+                'characters' => array()
+            );
+            if(in_array($achId, $boss_firsts)) {
+                $characters = Armory::$cDB->select("
+                SELECT
+                `character_achievement`.`achievement`,
+                `character_achievement`.`date`,
+                `character_achievement`.`guid`,
+                `characters`.`name` AS `charname`,
+                `characters`.`race`,
+                `characters`.`class`,
+                `characters`.`gender`,
+                `guild`.`name` AS `guildname`,
+                `guild`.`guildid`
+                FROM `character_achievement` AS `character_achievement`
+                LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`character_achievement`.`guid`
+                LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`character_achievement`.`guid`
+                LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
+                WHERE `character_achievement`.`achievement`=%d
+                ORDER BY `character_achievement`.`date` DESC", $achId);
+                if(!$characters) {
+                    continue;
+                }
+                $key = array();
+                foreach($characters as $char) {
+                    $guild_id = $char['guildid'];
+                    $realm_firsts[$achId]['characters'][$guild_id][] = array(
+                        'achPoints' => 0,
+                        'battleGroupId' => 0,
+                        'classId' => $char['class'],
+                        'factionId' => 0,
+                        'genderId' => $char['gender'],
+                        'guild' => $char['guildname'],
+                        'guildId' => $char['guildid'],
+                        'guildUrl' => sprintf('gn=%s&r=%s', urlencode($char['guildname']), urlencode(Armory::$currentRealmInfo['name'])),
+                        'lastLoginDate' => 'null',
+                        'level' => 0,
+                        'raceId' => $char['race'],
+                        'realm' => Armory::$currentRealmInfo['name'],
+                        'name' => $char['charname'],
+                        'url' => sprintf('cn=%s&r=%s', urlencode($char['charname']), urlencode(Armory::$currentRealmInfo['name']))
+                    );
                 }
             }
+            else {
+                $realm_firsts[$achId]['characters'][0][0] = array(
+                    'achPoints' => 0,
+                    'battleGroupId' => 0,
+                    'classId' => $achievement['class'],
+                    'factionId' => 0,
+                    'genderId' => $achievement['gender'],
+                    'guild' => $achievement['guildname'],
+                    'guildId' => $achievement['guildid'],
+                    'guildUrl' => sprintf('gn=%s&r=%s', urlencode($achievement['guildname']), urlencode(Armory::$currentRealmInfo['name'])),
+                    'lastLoginDate' => 'null',
+                    'level' => 0,
+                    'raceId' => $achievement['race'],
+                    'realm' => Armory::$currentRealmInfo['name'],
+                    'name' => $achievement['charname'],
+                    'url' => sprintf('cn=%s&r=%s', urlencode($achievement['charname']), urlencode(Armory::$currentRealmInfo['name']))
+                );
+            }
         }
-        */
-        return $achievements_data;
+        return $realm_firsts;
     }
     
     /**

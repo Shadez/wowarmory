@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 468
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -49,29 +49,45 @@ if($isRealm) {
     $xml->XMLWriter()->writeAttribute('realm', $realmName);
     // Get achievements
     $achievement_firsts = $utils->GetRealmFirsts();
+    
     if(is_array($achievement_firsts)) {
         foreach($achievement_firsts as $achievement_info) {
             $xml->XMLWriter()->startElement('achievement');
-            $xml->XMLWriter()->writeAttribute('dateCompleted', $achievement_info['dateCompleted']);
-            $xml->XMLWriter()->writeAttribute('desc', $achievement_info['desc']);
-            $xml->XMLWriter()->writeAttribute('icon', $achievement_info['icon']);
-            $xml->XMLWriter()->writeAttribute('title', $achievement_info['title']);
-            $xml->XMLWriter()->writeAttribute('id', $achievement_info['id']);
-            $xml->XMLWriter()->writeAttribute('realm', $realmName);
-            $xml->XMLWriter()->startElement('character');
-            $xml->XMLWriter()->writeAttribute('classId', $achievement_info['class']);
-            $xml->XMLWriter()->writeAttribute('genderId', $achievement_info['gender']);
-            $xml->XMLWriter()->writeAttribute('guild', $achievement_info['guildname']);
-            if(isset($achievement_info['guildname'])) {
-                $xml->XMLWriter()->writeAttribute('guildId', $achievement_info['guildid']);
-                $xml->XMLWriter()->writeAttribute('guildUrl', sprintf('gn=%s&r=%s', urlencode($achievement_info['guildname']), urlencode(Armory::$currentRealmInfo['name'])));
+            foreach($achievement_info as $ach_key => $ach_value) {
+                if($ach_key != 'characters') {
+                    $xml->XMLWriter()->writeAttribute($ach_key, $ach_value);
+                }
+                else {
+                    if(isset($ach_value[0])) {
+                        // Non-guilded players.
+                        foreach($ach_value[0] as $player) {
+                            $xml->XMLWriter()->startElement('character');
+                            foreach($player as $player_key => $player_value) {
+                                $xml->XMLWriter()->writeAttribute($player_key, $player_value);
+                            }
+                            $xml->XMLWriter()->endElement(); //character
+                        }
+                    }
+                    else {
+                        // Only guilded players.
+                        foreach($ach_value as $guild) {
+                            $xml->XMLWriter()->startElement('guild');
+                            $xml->XMLWriter()->writeAttribute('count', count($guild));
+                            $xml->XMLWriter()->writeAttribute('guildUrl', $guild[0]['guildUrl']);
+                            $xml->XMLWriter()->writeAttribute('name', $guild[0]['guild']);
+                            $xml->XMLWriter()->writeAttribute('realm', $guild[0]['realm']);
+                            foreach($guild as $member) {
+                                $xml->XMLWriter()->startElement('character');
+                                foreach($member as $member_key => $member_value) {
+                                    $xml->XMLWriter()->writeAttribute($member_key, $member_value);
+                                }
+                                $xml->XMLWriter()->endElement(); //character
+                            }
+                            $xml->XMLWriter()->endElement(); //guild
+                        }
+                    }
+                }
             }
-            $xml->XMLWriter()->writeAttribute('name', $achievement_info['charname']);
-            $xml->XMLWriter()->writeAttribute('raceId', $achievement_info['race']);
-            $xml->XMLWriter()->writeAttribute('realm', Armory::$currentRealmInfo['name']);
-            $xml->XMLWriter()->writeAttribute('realmUrl', urlencode(Armory::$currentRealmInfo['name']));
-            $xml->XMLWriter()->writeAttribute('url', sprintf('r=%s&cn=%s', urlencode(Armory::$currentRealmInfo['name']), urlencode($achievement_info['charname'])));
-            $xml->XMLWriter()->endElement();  //character
             $xml->XMLWriter()->endElement(); //achievement
         }
     }
