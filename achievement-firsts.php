@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 468
+ * @revision 469
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -44,7 +44,6 @@ $xml->XMLWriter()->writeAttribute('requestUrl', 'achievement-firsts.xml');
 $realmName = (isset($_GET['r'])) ? urldecode($_GET['r']) : Armory::$currentRealmInfo['name'];
 $isRealm = $utils->IsRealm($realmName);
 if($isRealm) {
-    Armory::Log()->writeLog('achievement-firsts.php : realm %s defined', $realmName);
     $xml->XMLWriter()->startElement('realmInfo');
     $xml->XMLWriter()->writeAttribute('realm', $realmName);
     // Get achievements
@@ -91,13 +90,9 @@ if($isRealm) {
             $xml->XMLWriter()->endElement(); //achievement
         }
     }
-    else {
-        Armory::Log()->writeError('achievement-firsts.php : achievement_firsts variable must be in array!');
-    }
     $xml->XMLWriter()->endElement();  //realmInfo
 }
 else {
-    Armory::Log()->writeLog('Unable to find any achievement firsts');
     $xml->XMLWriter()->startElement('error');
     $xml->XMLWriter()->writeAttribute('errCode', 'noData');
     $xml->XMLWriter()->endElement(); //error
