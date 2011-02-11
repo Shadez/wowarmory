@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 450
+ * @revision 472
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -405,7 +405,12 @@ Class SearchMgr {
         foreach($tmp_icons_holder as $icon) {
             $icons_holder[$icon['displayid']] = $icon['icon'];
         }
-        $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name_loc%d` AS `name` FROM `locales_item` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
+        if(Armory::GetLoc() == 0) {
+            $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name` AS `name` FROM `item_template` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
+        }
+        else {
+            $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name_loc%d` AS `name` FROM `locales_item` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
+        }
         foreach($tmp_names_holder as $name) {
             if($name['name'] == null) {
                 $name['name'] = Items::GetItemName($name['entry']);
