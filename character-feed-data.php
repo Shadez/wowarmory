@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 474
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -77,6 +77,9 @@ foreach($feed_header as $feed_key => $feed_value) {
 }
 if(isset($character_feed) && is_array($character_feed) && $isCharacter) {
     foreach($character_feed as $feed_item) {
+        if(!is_array($feed_item) || !isset($feed_item['event'])) {
+            continue;
+        }
         $xml->XMLWriter()->startElement('event');
         foreach($feed_item['event'] as $f_header_key => $f_header_value) {
             $xml->XMLWriter()->startAttribute($f_header_key);

@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 470
+ * @revision 474
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1501,6 +1501,22 @@ Class Characters {
             $i++;
         }
         return $factionReputation;
+    }
+    
+    private function GetFactionCategories($faction) {
+        $path = array();
+        $in_process = true;
+        $id = $faction;
+        while($in_process) {
+            $id = Armory::$aDB->selectCell("SELECT `category` FROM `ARMORYDBPREFIX_faction` WHERE `id` = %d", $id);
+            if($id > 0) {
+                $path[] = $id;
+            }
+            else {
+                $in_process = false;
+            }
+        }
+        return $path;
     }
     
     /**
@@ -3050,11 +3066,11 @@ Class Characters {
                 }
                 $sql_data = array(
                     'activeSpec' => array(
-                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d', array($talent_spells['Rank_1'], $talent_spells['Rank_2'], $talent_spells['Rank_3'], $talent_spells['Rank_4'], $talent_spells['Rank_5'])),
+                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
                         sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d'. $talent_spells['Rank_' . $rank + 1])
                     ),
                     'spec' => array(
-                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d', array($talent_spells['Rank_1'], $talent_spells['Rank_2'], $talent_spells['Rank_3'], $talent_spells['Rank_4'], $talent_spells['Rank_5'])),
+                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
                         sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d', $talent_spells['Rank_' . $rank + 1])
                     )
                 );
