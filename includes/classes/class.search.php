@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 473
+ * @revision 481
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -92,19 +92,52 @@ Class SearchMgr {
         }
         $result_data = array();
         $i = 0;
+        
+        $icons_to_add = array();
+        $names_to_add = array();
+        $icons_holder = array();
+        $names_holder = array();
+        foreach($items as $tmp_item) {
+            $icons_to_add[] = $tmp_item['displayid'];
+            $names_to_add[] = $tmp_item['id'];
+        }
+        $tmp_icons_holder = Armory::$aDB->select("SELECT `displayid`, `icon` FROM `ARMORYDBPREFIX_icons` WHERE `displayid` IN (%s)", $icons_to_add);
+        foreach($tmp_icons_holder as $icon) {
+            $icons_holder[$icon['displayid']] = $icon['icon'];
+        }
+        if(Armory::GetLoc() == 0) {
+            $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name` AS `name` FROM `item_template` WHERE `entry` IN (%s)", $names_to_add);
+        }
+        else {
+            $tmp_names_holder = Armory::$wDB->select("SELECT `entry`, `name_loc%d` AS `name` FROM `locales_item` WHERE `entry` IN (%s)", Armory::GetLoc(), $names_to_add);
+        }
+        foreach($tmp_names_holder as $name) {
+            if($name['name'] == null) {
+                $name['name'] = Items::GetItemName($name['entry']);
+            }
+            $names_holder[$name['entry']] = $name['name'];
+        }
+        unset($tmp_icons_holder, $tmp_names_holder, $names_to_add, $icons_to_add);
+        
         $item_source = self::GetItemSourceArray($items);
         foreach($items as $item) {
             $result_data[$i]['data'] = $item;
-            $result_data[$i]['data']['icon'] = Items::GetItemIcon($item['id'], $item['displayid']);
+            if(isset($item['displayid'])) {
+                $result_data[$i]['data']['icon'] = $icons_holder[$item['displayid']];
+            }
+            else {
+                $result_data[$i]['data']['icon'] = Items::GetItemIcon($item['id']);
+            }
             if(self::CanAuction($item)) {
                 $result_data[$i]['data']['canAuction'] = 1;
             }
             unset($result_data[$i]['data']['flags'], $result_data[$i]['data']['duration'], $result_data[$i]['data']['bonding']);
-            if(Armory::GetLocale() == 'en_gb' || Armory::GetLocale() == 'en_us') {
-                $result_data[$i]['data']['name'] = $item['name'];
+            
+            if(!isset($names_holder[$item['id']])) {
+                $result_data[$i]['data']['name'] = Items::GetItemName($item['id']);
             }
             else {
-                $result_data[$i]['data']['name'] = Items::GetItemName($item['id']);
+                $result_data[$i]['data']['name'] = $names_holder[$item['id']];
             }
             $result_data[$i]['filters'] = array(
                 array('name' => 'itemLevel', 'value' => $item['ItemLevel']),
