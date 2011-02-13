@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 460
+ * @revision 477
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -714,6 +714,9 @@ Class Items {
                 break;
             case 'durability':
                 $info = Armory::$wDB->selectCell("SELECT `MaxDurability` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+                break;
+            case 'class':
+                $info = Armory::$wDB->selectCell("SELECT `class` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
                 break;
             default:
                 $info = false;
@@ -1685,7 +1688,7 @@ Class Items {
         }
         $proto = null;
         $isCharacter = $characters->CheckPlayer();
-        if($isCharacter) {
+        if($isCharacter && in_array(self::GetItemInfo($itemID, 'class'), array(ITEM_CLASS_ARMOR, ITEM_CLASS_WEAPON))) {
             $item = $characters->GetItemByEntry($itemID);
             if($item) {
                 $proto = $item->GetProto();
@@ -1695,6 +1698,9 @@ Class Items {
                 Armory::Log()->writeError('%s : wrong item handler for itemID #%d, character GUID: %d', __METHOD__, $itemID, $characters->GetGUID());
                 return false;
             }
+        }
+        else {
+            $isCharacter = false;
         }
         if(!$proto) {
             // Maybe we haven't any character? Let's find itemproto by entry.

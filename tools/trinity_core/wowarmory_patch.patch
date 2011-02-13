@@ -1,8 +1,8 @@
 diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
-index 327b436..00f749e 100755
+index 228af58..3d79c69 100755
 --- a/src/server/game/Achievements/AchievementMgr.cpp
 +++ b/src/server/game/Achievements/AchievementMgr.cpp
-@@ -1972,6 +1972,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement, b
+@@ -1968,6 +1968,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement, b
          return;
  
      SendAchievementEarned(achievement);
@@ -33,10 +33,10 @@ index f1366a4..eb8b56a 100755
              return pItem;
          }
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index c95e363..eb63ffe 100755
+index 4072d85..d753123 100755
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
-@@ -18002,6 +18002,17 @@ void Player::SaveToDB()
+@@ -17959,6 +17959,17 @@ void Player::SaveToDB()
  
      std::string sql_name = m_name;
      CharacterDatabase.escape_string(sql_name);
@@ -54,14 +54,10 @@ index c95e363..eb63ffe 100755
  
      std::ostringstream ss;
      ss << "REPLACE INTO characters (guid,account,name,race,class,gender,level,xp,money,playerBytes,playerBytes2,playerFlags,"
-@@ -24545,4 +24556,34 @@ void Player::SendClearFocus(Unit* target)
-     WorldPacket data(SMSG_BREAK_TARGET, target->GetPackGUID().size());
+@@ -24510,3 +24521,32 @@ void Player::SendClearFocus(Unit* target)
      data.append(target->GetPackGUID());
      GetSession()->SendPacket(&data);
--}
-\ No newline at end of file
-+}
-+
+ }
 +/** World of Warcraft Armory **/
 +void Player::WriteWowArmoryDatabaseLog(uint32 type, uint32 data)
 +{
@@ -106,10 +102,10 @@ index a4f5b42..a830628 100755
          // currently visible objects at player client
          typedef std::set<uint64> ClientGUIDs;
 diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
-index b1fab1b..e24fd7a 100755
+index 6709044..554b63b 100755
 --- a/src/server/game/Entities/Unit/Unit.cpp
 +++ b/src/server/game/Entities/Unit/Unit.cpp
-@@ -15054,7 +15054,12 @@ void Unit::Kill(Unit *pVictim, bool durabilityLoss)
+@@ -15096,7 +15096,12 @@ void Unit::Kill(Unit *pVictim, bool durabilityLoss)
                  if (m->IsRaidOrHeroicDungeon())
                  {
                      if (creature->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)

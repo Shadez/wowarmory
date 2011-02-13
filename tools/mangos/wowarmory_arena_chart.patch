@@ -1,8 +1,8 @@
 diff --git a/src/game/BattleGround.cpp b/src/game/BattleGround.cpp
-index 1b3cf08..1ee6327 100644
+index e0b57d7..2941500 100644
 --- a/src/game/BattleGround.cpp
 +++ b/src/game/BattleGround.cpp
-@@ -727,6 +727,47 @@ void BattleGround::EndBattleGround(Team winner)
+@@ -717,6 +717,47 @@ void BattleGround::EndBattleGround(Team winner)
              DEBUG_LOG("--- Winner rating: %u, Loser rating: %u, Winner change: %i, Loser change: %i ---", winner_rating, loser_rating, winner_change, loser_change);
              SetArenaTeamRatingChangeForTeam(winner, winner_change);
              SetArenaTeamRatingChangeForTeam(GetOtherTeam(winner), loser_change);
@@ -50,7 +50,7 @@ index 1b3cf08..1ee6327 100644
          }
          else
          {
-@@ -1384,6 +1425,14 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
+@@ -1374,6 +1415,14 @@ void BattleGround::UpdatePlayerScore(Player *Source, uint32 type, uint32 value)
          case SCORE_HEALING_DONE:                            // Healing Done
              itr->second->HealingDone += value;
              break;
@@ -66,7 +66,7 @@ index 1b3cf08..1ee6327 100644
              sLog.outError("BattleGround: Unknown player score type %u", type);
              break;
 diff --git a/src/game/BattleGround.h b/src/game/BattleGround.h
-index 73c2093..8ea413e 100644
+index e90b919..cfd7329 100644
 --- a/src/game/BattleGround.h
 +++ b/src/game/BattleGround.h
 @@ -191,7 +191,11 @@ enum ScoreType
@@ -94,10 +94,10 @@ index 73c2093..8ea413e 100644
  
  /*
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 032e98e..bbe8a22 100644
+index 19daa47..785c450 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -661,6 +661,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -672,6 +672,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
              {
                  // FIXME: kept by compatibility. don't know in BG if the restriction apply.
                  bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
@@ -108,7 +108,7 @@ index 032e98e..bbe8a22 100644
              }
          }
  
-@@ -6076,6 +6080,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
+@@ -6087,6 +6091,10 @@ int32 Unit::DealHeal(Unit *pVictim, uint32 addhealth, SpellEntry const *spellPro
      {
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_TOTAL_HEALING_RECEIVED, gain);
          ((Player*)pVictim)->GetAchievementMgr().UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HIGHEST_HEALING_RECEIVED, addhealth);

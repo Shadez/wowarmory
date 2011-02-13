@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 476
+ * @revision 477
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1579,7 +1579,7 @@ Class Characters {
         if($this->class == CLASS_DK) {
             // Check for 50147, 49455 spells (Runic power mastery) in current talent spec
             $tRank = $this->HasTalent(2020);
-            if($tRank == 0) {
+            if($tRank === 0) {
                 // Runic power mastery (Rank 1)
                 $maxPower = 115;
             }
@@ -3066,12 +3066,12 @@ Class Characters {
                 }
                 $sql_data = array(
                     'activeSpec' => array(
-                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
-                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d', $talent_spells['Rank_' . $rank + 1])
+                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d LIMIT 1', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d', $rank == -1 ? $talent_spells['Rank_1'] : $talent_spells['Rank_' . ($rank + 1)])
                     ),
                     'spec' => array(
-                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
-                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d', $talent_spells['Rank_' . $rank + 1])
+                        sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d LIMIT 1', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d', $rank == -1 ? $talent_spells['Rank_1'] : $talent_spells['Rank_' . ($rank + 1)])
                     )
                 );
                 break;
@@ -3097,9 +3097,9 @@ Class Characters {
                 $has = $this->db->selectCell($sql_data['spec'][1], $this->guid);
             }
         }
-        if($this->GetServerType() == SERVER_TRINITY && $rank == -1 && $has) {
+        if($this->GetServerType() == SERVER_TRINITY && $rank == -1 && $has != false) {
             for($i = 0; $i < 5; $i++) {
-                if($talent_spells['Rank_' . $i + 1] == $has) {
+                if(isset($talent_spells['Rank_' . ($i + 1)]) && $talent_spells['Rank_' . ($i + 1)] == $has) {
                     return $i;
                 }
             }
