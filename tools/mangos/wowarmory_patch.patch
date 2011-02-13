@@ -18,7 +18,7 @@ index 77faf13..b07382e 100644
 +++ b/src/game/Item.cpp
 @@ -1032,6 +1032,15 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
          Item *pItem = NewItemOrBag( pProto );
-         if (pItem->Create(sObjectMgr.GenerateItemLowGuid(), item, player) )
+         if( pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player) )
          {
 +            /** World of Warcraft Armory **/
 +            if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
