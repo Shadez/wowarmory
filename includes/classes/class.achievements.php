@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 479
+ * @revision 480
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -229,7 +229,7 @@ Class Achievements {
             }
             $ids = $this->GetCompletedAchievements($a_ids);
             $achievement_data['earned'] = count($ids);
-            $achievement_data['points'] = Armory::$aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids);
+            $achievement_data['points'] = $ids ? Armory::$aDB->selectCell("SELECT SUM(`points`) FROM `ARMORYDBPREFIX_achievement` WHERE `id` IN (%s)", $ids) : 0;
             if(!$achievement_data['earned']) {
                 $achievement_data['earned'] = 0;
             }
