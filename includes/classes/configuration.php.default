@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 463
+ * @revision 482
  * @copyright (c) 2009-2010 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -164,7 +164,7 @@ $ArmoryConfig['settings']['checkVersionType'] = 'show';
 #        Realm name. Must be unique.
 #
 #    type
-#        Server type (SERVER_MANGOS or SERVER_TRINITY).
+#        Server type (SERVER_MANGOS or SERVER_TRINITY, WITHOUT apostrophes - this is a constant!).
 #
 #    host_*
 #        MySQL server host for characters/world database.
