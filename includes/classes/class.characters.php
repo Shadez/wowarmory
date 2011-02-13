@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 475
+ * @revision 476
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -3067,7 +3067,7 @@ Class Characters {
                 $sql_data = array(
                     'activeSpec' => array(
                         sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d AND `spec`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
-                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d'. $talent_spells['Rank_' . $rank + 1])
+                        sprintf('SELECT 1 FROM `character_talent` WHERE `spell`=%d AND `guid`=%%d AND `spec`=%%d', $talent_spells['Rank_' . $rank + 1])
                     ),
                     'spec' => array(
                         sprintf('SELECT `spell` FROM `character_talent` WHERE `spell` IN (%s) AND `guid`=%%d', $talent_spells['Rank_1'] . ', ' . $talent_spells['Rank_2'] . ', ' . $talent_spells['Rank_3'] . ', ' . $talent_spells['Rank_4'] . ', ' . $talent_spells['Rank_5']),
