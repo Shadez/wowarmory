@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 483
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -33,56 +33,56 @@ Class Guilds {
      * @category Guilds class
      * @access   public
      **/
-     public $guid;
+     public $guid = 0;
      
      /**
       * Guild ID
       * @category Guilds class
       * @access   public
       **/
-     public $guildId;
+     private $guildId = 0;
      
      /**
       * Guild name
       * @category Guilds class
       * @access   public
       **/
-     public $guildName;
+     private $guildName = null;
      
      /**
       * Guild tabard style
       * @category Guilds class
       * @access   public
       **/
-     public $guildtabard;
-     public $emblemstyle;
-     public $emblemcolor;
-     public $borderstyle;
-     public $bordercolor;
-     public $bgcolor;
+     public $guildtabard = null;
+     private $emblemstyle = 0;
+     private $emblemcolor = 0;
+     private $borderstyle = 0;
+     private $bordercolor = 0;
+     private $bgcolor = 0;
      
      /**
       * Guild Leader GUID
       * @category Guilds class
       * @access   public
       **/
-     public $guildleaderguid;
+     public $guildleaderguid = 0;
      
      /**
       * Guild faction
       * @category Guilds class
       * @access   public
       **/
-     public $guildFaction;
+     private $guildFaction = 0;
      
-     private $guildBankMoney;
+     private $guildBankMoney = 0;
      
      /**
       * Server type
       * @category Guilds class
       * @access   private
       **/
-     private $m_server;
+     private $m_server = null;
      
      /**
       * Build guild info
@@ -92,7 +92,9 @@ Class Guilds {
       **/
      public function BuildGuildInfo() {
         if(!$this->guildId) {
-            $this->GetGuildIDByPlayerGUID();
+            if(!$this->GetGuildIDByPlayerGUID()) {
+                return false;
+            }
         }
         $guild_data = Armory::$cDB->selectRow("SELECT `name`, `leaderguid`, `BankMoney`, `EmblemStyle`, `EmblemColor`, `BorderStyle`, `BorderColor`, `BackgroundColor` FROM `guild` WHERE `guildid`=%d", $this->guildId);
         if(!$guild_data) {
@@ -107,7 +109,7 @@ Class Guilds {
         $this->emblemstyle     = $guild_data['EmblemStyle'];
         $this->bordercolor     = $guild_data['BorderColor'];
         $this->borderstyle     = $guild_data['BorderStyle'];
-        $this->GetGuildFaction();
+        $this->SetGuildFaction();
         return true;
      }
      
@@ -118,12 +120,11 @@ Class Guilds {
       * @param    int $serverType
       * @return   bool
       **/
-     public function InitGuild($serverType) {
-        if(!$this->guildName) {
-            Armory::Log()->writeError('%s : guilName not defined', __METHOD__);
+     public function InitGuild($guild_name, $serverType) {
+        if(!is_string($guild_name)) {
+            Armory::Log()->writeError('%s : $guild_name must be a string (%s given)!', __METHOD__, gettype($guild_name));
             return false;
         }
-        $this->guildId = Armory::$cDB->selectCell("SELECT `guildid` FROM `guild` WHERE `name`='%s' LIMIT 1", $this->guildName);
         if($serverType < SERVER_MANGOS || $serverType > SERVER_TRINITY) {
             Armory::Log()->writeError('%s : unknown server type (%d). Set m_server to SERVER_MANGOS (%d)', __METHOD__, $serverType, SERVER_MANGOS);
             $this->m_server = SERVER_MANGOS;
@@ -131,10 +132,45 @@ Class Guilds {
         else {
             $this->m_server = $serverType;
         }
+        $this->guildName = $guild_name;
+        // No SQL Injection: will be escaped in database handler methods.
+        $this->guildId = Armory::$cDB->selectCell("SELECT `guildid` FROM `guild` WHERE BINARY `name`='%s' LIMIT 1", $this->guildName);
         if($this->guildId) {
             return true;
         }
         return false;
+     }
+     
+     public function GetGuildName() {
+        return $this->guildName;
+     }
+     
+     public function GetGuildID() {
+        return $this->guildId;
+     }
+     
+     public function GetGuildFaction() {
+        return $this->guildFaction;
+     }
+     
+     public function GetEmblemBGColor() {
+        return $this->bgcolor;
+     }
+     
+     public function GetEmblemStyle() {
+        return $this->emblemstyle;
+     }
+     
+     public function GetEmblemColor() {
+        return $this->emblemcolor;
+     }
+     
+     public function GetBorderStyle() {
+        return $this->borderstyle;
+     }
+     
+     public function GetBorderColor() {
+        return $this->bordercolor;
      }
      
      /**
@@ -155,6 +191,7 @@ Class Guilds {
         if($this->guildId > 0) {
             return true;
         }
+        return false;
      }
      
      /**
@@ -177,7 +214,7 @@ Class Guilds {
       * @access   private
       * @return   bool
       **/
-     private function GetGuildFaction() {
+     private function SetGuildFaction() {
         if(!$this->guildleaderguid) {
             Armory::Log()->writeError('%s : guildleaderguid not defined', __METHOD__);
             return false;
