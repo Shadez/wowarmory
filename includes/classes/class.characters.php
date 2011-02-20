@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 477
+ * @revision 484
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -378,6 +378,7 @@ Class Characters {
             Armory::Log()->writeError('%s : unknown server type! Unable to initialize characters class (character name: %s, realmId: %d)', __METHOD__, $name, $realmId);
             return false;
         }
+        $name = ucfirst($name); // Because BINARY is used in SQL query.
         if($full == true) {
             $player_data = $this->db->selectRow("
             SELECT
@@ -405,7 +406,7 @@ Class Characters {
             FROM `characters` AS `characters`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-            WHERE `characters`.`name`='%s' LIMIT 1", $name);
+            WHERE BINARY `characters`.`name`='%s' LIMIT 1", $name);
         }
         else {
             $player_data = $this->db->selectRow("
@@ -423,7 +424,7 @@ Class Characters {
             FROM `characters` AS `characters`
             LEFT JOIN `guild_member` AS `guild_member` ON `guild_member`.`guid`=`characters`.`guid`
             LEFT JOIN `guild` AS `guild` ON `guild`.`guildid`=`guild_member`.`guildid`
-            WHERE `characters`.`name`='%s' LIMIT 1", $name);
+            WHERE BINARY `characters`.`name`='%s' LIMIT 1", $name);
         }
         if($player_data == false || !is_array($player_data)) {
             Armory::Log()->writeError('%s: unable to get data from characters DB for player %s (realmId: %d, expected realmName: %s, currentRealmName: %s)', __METHOD__, $name, $realmId, (isset($_GET['r'])) ? $_GET['r'] : 'none', $realm_info['name']);
