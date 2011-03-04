@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 477
+ * @revision 486
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -1289,9 +1289,9 @@ Class Items {
         Armory::$wDB->SkipNextError();
         $itemData = Armory::$wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `Flags2`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
         if(!$itemData) {
-            $itemData = Armory::$wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `FlagsExtra`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
-            $itemData['Flags2'] = $itemData['FlagsExtra']; // For compatibility
-            unset($itemData['FlagsExtra']);
+            $itemData = Armory::$wDB->selectRow("SELECT `name`, `Quality`, `ItemLevel`, `displayid`, `SellPrice`, `BuyPrice`, `ExtraFlags`, `RequiredDisenchantSkill` FROM `item_template` WHERE `entry`=%d LIMIT 1", $itemID);
+            $itemData['Flags2'] = $itemData['ExtraFlags']; // For compatibility
+            unset($itemData['ExtraFlags']);
         }
         return $itemData;
     }
