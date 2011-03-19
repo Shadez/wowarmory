@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 456
+ * @revision 490
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,20 +37,6 @@ if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
 if(!@include(__ARMORYDIRECTORY__ . '/includes/defines.php')) {
     die('<b>Error:</b> unable to load defines.php!');
 }
-if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.cacher.php')) {
-    die('<b>Error:</b> unable to load Cacher class!');
-}
-/* SQL CACHER: IN DEVELOPMENT! */
-/*
-if(isset($_GET['_DROPSQLCACHE_'])) {
-    $cacher = new Cacher(md5('1'), 'scalar');
-    $cacher->DropAllCache();
-    $cacher->Free();
-    unset($cacher);
-    header('Location: index.xml');
-    exit;
-}
-*/
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
     die('<b>Error:</b> unable to load Armory class!');
 }
