@@ -80,37 +80,39 @@ Class Armory {
         self::$armoryconfig = $ArmoryConfig['settings'];
         self::$debugHandler = new ArmoryDebug(array('useDebug' => self::$armoryconfig['useDebug'], 'logLevel' => self::$armoryconfig['logLevel']));
         self::$realmData    = $ArmoryConfig['multiRealm'];
-        self::$aDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_armory'], self::$mysqlconfig['user_armory'], self::$mysqlconfig['pass_armory'], self::$mysqlconfig['name_armory'], self::$mysqlconfig['charset_armory'], self::$armoryconfig['db_prefix']);
-        self::$rDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_realmd'], self::$mysqlconfig['user_realmd'], self::$mysqlconfig['pass_realmd'], self::$mysqlconfig['name_realmd'], self::$mysqlconfig['charset_realmd']);
-        if(isset($_GET['r'])) {
-            if(preg_match('/,/', $_GET['r'])) {
-                // Achievements/statistics comparison cases
-                $rData = explode(',', $_GET['r']);
-                $realmName = urldecode($rData[0]);
+        if(!defined('SKIP_DB')) {
+            self::$aDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_armory'], self::$mysqlconfig['user_armory'], self::$mysqlconfig['pass_armory'], self::$mysqlconfig['name_armory'], self::$mysqlconfig['charset_armory'], self::$armoryconfig['db_prefix']);
+            self::$rDB = new ArmoryDatabaseHandler(self::$mysqlconfig['host_realmd'], self::$mysqlconfig['user_realmd'], self::$mysqlconfig['pass_realmd'], self::$mysqlconfig['name_realmd'], self::$mysqlconfig['charset_realmd']);
+            if(isset($_GET['r'])) {
+                if(preg_match('/,/', $_GET['r'])) {
+                    // Achievements/statistics comparison cases
+                    $rData = explode(',', $_GET['r']);
+                    $realmName = urldecode($rData[0]);
+                }
+                else {
+                    $realmName = urldecode($_GET['r']);
+                }
+                $realm_id = self::FindRealm($realmName);
+                if(isset(self::$realmData[$realm_id])) {
+                    self::$connectionData = self::$realmData[$realm_id];
+                    self::$cDB = new ArmoryDatabaseHandler(self::$connectionData['host_characters'], self::$connectionData['user_characters'], self::$connectionData['pass_characters'], self::$connectionData['name_characters'], self::$connectionData['charset_characters']);
+                    self::$currentRealmInfo = array('name' => self::$connectionData['name'], 'id' => $realm_id, 'type' => self::$connectionData['type'], 'connected' => true);
+                    self::$wDB = new ArmoryDatabaseHandler(self::$connectionData['host_world'], self::$connectionData['user_world'], self::$connectionData['pass_world'], self::$connectionData['name_world'], self::$connectionData['charset_world']);
+                }
             }
-            else {
-                $realmName = urldecode($_GET['r']);
+            $realm_info = self::$realmData[1];
+            if(self::$cDB == null) {
+                self::$cDB = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
             }
-            $realm_id = self::FindRealm($realmName);
-            if(isset(self::$realmData[$realm_id])) {
-                self::$connectionData = self::$realmData[$realm_id];
-                self::$cDB = new ArmoryDatabaseHandler(self::$connectionData['host_characters'], self::$connectionData['user_characters'], self::$connectionData['pass_characters'], self::$connectionData['name_characters'], self::$connectionData['charset_characters']);
-                self::$currentRealmInfo = array('name' => self::$connectionData['name'], 'id' => $realm_id, 'type' => self::$connectionData['type'], 'connected' => true);
-                self::$wDB = new ArmoryDatabaseHandler(self::$connectionData['host_world'], self::$connectionData['user_world'], self::$connectionData['pass_world'], self::$connectionData['name_world'], self::$connectionData['charset_world']);
+            if(self::$wDB == null) {
+                self::$wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world']);
             }
-        }
-        $realm_info = self::$realmData[1];
-        if(self::$cDB == null) {
-            self::$cDB = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
-        }
-        if(self::$wDB == null) {
-            self::$wDB = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world']);
-        }
-        if(!self::$currentRealmInfo) {
-            self::$currentRealmInfo = array('name' => $realm_info['name'], 'id' => 1, 'type' => $realm_info['type'], 'connected' => true);
-        }
-        if(!self::$connectionData) {
-            self::$connectionData = $realm_info;
+            if(!self::$currentRealmInfo) {
+                self::$currentRealmInfo = array('name' => $realm_info['name'], 'id' => 1, 'type' => $realm_info['type'], 'connected' => true);
+            }
+            if(!self::$connectionData) {
+                self::$connectionData = $realm_info;
+            }
         }
         if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $user_locale = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));

@@ -28,7 +28,7 @@ Class ArmoryDebug {
      * Log config
      **/
     private $config;
-    private $file = 'cache/_debug/tmp.dbg';
+    private $file = '';
     
     /**
      * Initializes debugger
@@ -38,13 +38,14 @@ Class ArmoryDebug {
             return;
         }
         $this->config = $config;
+        $this->file = __ARMORYDIRECTORY__ . '/cache/_debug/tmp.dbg';
         if($file) {
             $this->file = $file;
         }
     }
     
     public function writeLog($logtext) {
-        if($this->config['useDebug'] == false || $this->config['logLevel'] == 1) {
+        if($this->config['useDebug'] == false || $this->config['logLevel'] < 2) {
             return;
         }
         $args = func_get_args();
@@ -68,7 +69,7 @@ Class ArmoryDebug {
     }
     
     public function writeSql($sqlText) {
-        if($this->config['useDebug'] == false || $this->config['logLevel'] == 1) {
+        if($this->config['useDebug'] == false || $this->config['logLevel'] < 3) {
             return;
         }
         $args = func_get_args();

@@ -188,7 +188,7 @@ Class ArmoryDatabaseHandler {
         }
         $query_end = microtime(true);
         $queryTime = round($query_end - $query_start, 4);
-        //Armory::Log()->writeSql('[%s ms]: %s', $queryTime, $safe_sql);
+        Armory::Log()->writeSql('[%s ms]: %s', $queryTime, $safe_sql);
         $this->queryTimeGeneration += $queryTime;
         return $result;
     }

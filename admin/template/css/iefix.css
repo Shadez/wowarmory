@@ -1,0 +1,20 @@
+* html #tabs ul li a span {
+	width: 1px !important;
+    position:static !important;
+    }
+* html #tabs ul li a.current {
+    position: relative;
+    top: 1px;
+}
+.group { margin-left:6px !important; }
+#hidden_submenu { margin-left:5px !important; }
+#wrapper { z-index: 0 !important; }
+#user_tools { z-index: 1 !important; }
+#header { z-index:2 !important; }
+#menu { z-index:3 !important; }
+.group { z-index:4 !important; }
+.item {z-index:5 !important; }
+.item span { z-index:6 !important; }
+#colorchanger { z-index:7 !important; }
+#colorchanger a { z-index:8 !important; }
+#colorchanger a span { z-index:9 !important; }

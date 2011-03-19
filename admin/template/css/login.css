@@ -1,0 +1,115 @@
+body { background:url(../images/bg.gif) repeat-x left top #d4d3d3; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-size: 13px; color: #333; }
+a, a:active, a:link, a:visited { text-decoration:none; color: #FFF; }
+a:hover { text-decoration: underline; color: #CCC; }
+h1 {
+	font-size:24px;
+	font-style:italic;
+	font-weight:normal;
+	color:white;
+	line-height:35px;
+	margin-bottom:0px;
+	margin-top:80px;
+	text-align: center;
+}
+#login {
+	margin:10px 0px 0px 0px;
+	border:1px solid #666;
+	background:url(../images/bg_login.gif) repeat-x left top #f6f5f5;
+	padding:20px;
+}
+#forgot {
+	margin:0px auto 30px auto;
+	width:235px;
+	text-align: center;
+}
+p.tip {
+	padding-left:20px;
+	display:block;
+	background-image: url(../images/icons/lightbulb.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+p.error {
+	padding-left:20px;
+	display:block;
+	background-image: url(../images/icons/exclamation.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	color: #900;
+}
+.black_button {
+	margin: 0px;
+  	padding: 0px !important;
+  	border: 0px;
+  	background: transparent url('../images/but_login_span.gif') no-repeat scroll top right;
+  	color: #FFF;
+  	display:block;
+  	float: right;
+	width:105px;
+  	height: 30px;
+  	margin-right: 6px;
+  	margin-top:10px;
+  	padding-right: 12px !important;
+  	text-decoration: none;
+  	overflow: hidden;
+  	font-size: 12px;
+  	outline: none !important;
+  	cursor: pointer;
+  	font-weight: bold;
+}
+.black_button span {
+	background: url('../images/but_login_left.gif') no-repeat left top;
+	display: block;
+	line-height: 30px;
+	padding: 0px 0px 0px 12px;
+	outline: none !important;
+	float:right;
+}
+.inputText {
+	padding:7px;
+	border:1px solid #999;
+	font-size:16px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #333;
+	width:270px;
+	margin:5px;
+	background:#FFFFF8;
+}
+.forgotlink {
+	margin: 0px;
+  	padding: 0px !important;
+  	border: 0px;
+  	background: transparent url('../images/forgot_bg_span.gif') no-repeat scroll top right;
+  	color: #888 !important;
+  	display:block;
+  	float: left;
+  	height: 30px;
+  	margin-right: 6px;
+  	padding-right: 15px !important;
+  	text-decoration: none;
+  	overflow: hidden;
+  	font-size: 11px;
+  	outline: none !important;
+  	cursor: pointer;
+  	font-weight: bold;
+}
+.forgotlink:hover {
+	color: #666 !important;
+}
+.forgotlink span {
+	background: url('../images/forgot_bg_left.gif') no-repeat left top;
+	display: block;
+	line-height: 25px;
+	padding: 0px 0px 0px 15px;
+	outline: none !important;
+	float:left;	
+	height:30px;
+}
+#forgotform {
+	margin:0px auto;
+	width:280px;
+	padding:10px;
+	border:1px solid #666;
+	background:#CCC;
+	display:none;
+}

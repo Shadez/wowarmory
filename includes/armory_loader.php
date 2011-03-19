@@ -37,6 +37,20 @@ if(!@include(__ARMORYDIRECTORY__ . '/includes/UpdateFields.php')) {
 if(!@include(__ARMORYDIRECTORY__ . '/includes/defines.php')) {
     die('<b>Error:</b> unable to load defines.php!');
 }
+if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.cacher.php')) {
+    die('<b>Error:</b> unable to load Cacher class!');
+}
+/* SQL CACHER: IN DEVELOPMENT! */
+/*
+if(isset($_GET['_DROPSQLCACHE_'])) {
+    $cacher = new Cacher(md5('1'), 'scalar');
+    $cacher->DropAllCache();
+    $cacher->Free();
+    unset($cacher);
+    header('Location: index.xml');
+    exit;
+}
+*/
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.armory.php')) {
     die('<b>Error:</b> unable to load Armory class!');
 }
@@ -48,27 +62,29 @@ $_SESSION['last_url'] = str_replace('.php', '.xml', $_SERVER['PHP_SELF']) . '?' 
 
 Armory::InitializeArmory();
 /* Check DbVersion */
-$dbVersion = Armory::$aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
-if($dbVersion != DB_VERSION) {
-    if(!$dbVersion) {
+if(!defined('SKIP_DB')) {
+    $dbVersion = Armory::$aDB->selectCell("SELECT `version` FROM `ARMORYDBPREFIX_db_version`");
+    if($dbVersion != DB_VERSION) {
+        if(!$dbVersion) {
+            if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
+                Armory::Log()->writeError('ArmoryChecker: wrong Armory DB name!');
+            }
+            else {
+                echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
+            }
+        }
+        $errorDBVersion = sprintf('Current version is %s but expected %s.<br />
+        Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'");
         if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
-            Armory::Log()->writeError('ArmoryChecker: wrong Armory DB name!');
+            Armory::Log()->writeError('ArmoryChecker : DB_VERSION error: %s', (defined('DB_VERSION')) ? $errorDBVersion : 'DB_VERSION constant not defined!');
         }
         else {
-            echo '<b>Fatal error</b>: wrong Armory DB name<br/>';
+            echo '<b>DB_VERSION error</b>:<br />';
+            if(!defined('DB_VERSION')) {
+                die('DB_VERSION constant not defined!');
+            }
+            die($errorDBVersion);
         }
-    }
-    $errorDBVersion = sprintf('Current version is %s but expected %s.<br />
-    Apply all neccessary updates from \'sql/updates\' folder and refresh this page.', ($dbVersion) ? "'" . $dbVersion . "'" : 'not defined', "'" . DB_VERSION . "'");
-    if(isset(Armory::$armoryconfig['checkVersionType']) && Armory::$armoryconfig['checkVersionType'] == 'log') {
-        Armory::Log()->writeError('ArmoryChecker : DB_VERSION error: %s', (defined('DB_VERSION')) ? $errorDBVersion : 'DB_VERSION constant not defined!');
-    }
-    else {
-        echo '<b>DB_VERSION error</b>:<br />';
-        if(!defined('DB_VERSION')) {
-            die('DB_VERSION constant not defined!');
-        }
-        die($errorDBVersion);
     }
 }
 /* Check revision */
@@ -101,7 +117,7 @@ elseif(CONFIG_VERSION != Armory::$armoryconfig['configVersion']) {
 }
 error_reporting(E_ALL);
 /* Check maintenance */
-if(Armory::$armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE')) {
+if(Armory::$armoryconfig['maintenance'] == true && !defined('MAINTENANCE_PAGE') && !defined('ADMIN_PAGE')) {
     header('Location: maintenance.xml');
     exit;
 }
@@ -112,6 +128,8 @@ if(!defined('skip_utils_class')) {
     $utils = new Utils();
     // Check $_GET variable
     $utils->CheckVariablesForPage();
+    // Update visitors count
+    $utils->UpdateVisitorsCount();
 }
 /** Login **/
 if(isset($_GET['login']) && $_GET['login'] == 1) {
@@ -221,19 +239,32 @@ if(defined('load_search_class')) {
 }
 if(defined('load_itemprototype_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.itemprototype.php')) {
-        die('<b>Error:</b> unable to load ItemPrototype Class!');
+        die('<b>Error:</b> unable to load ItemPrototype class!');
     }
     // Do not create class instance here. It should be created in Characters or Items classes.
 }
 if(defined('load_item_class')) {
     if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.item.php')) {
-        die('<b>Error:</b> unable to load Item Class!');
+        die('<b>Error:</b> unable to load Item class!');
     }
     // Do not create class instance here. It should be created in Characters or Items classes.
 }
+if(defined('ADMIN_PAGE')) {
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.template.php')) {
+        die('<b>Error:</b> unable to load template class!');
+    }
+    if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.admin.php')) {
+        die('<b>Error:</b> unable to load template class!');
+    }
+    // Re-build account data from cookie.
+    Admin::InitializeAdmin();
+    // Load locale
+    Template::LoadLocale( isset($_SESSION['admin_locale']) ? $_SESSION['admin_locale'] : 'en');
+    // Do not create instances of these classes: they are using static methods.
+}
 // Start XML parser
 if(!@include(__ARMORYDIRECTORY__ . '/includes/classes/class.xmlhandler.php')) {
-    die('<b>Error:</b> unable to load XML Handler Class!');
+    die('<b>Error:</b> unable to load XML Handler class!');
 }
 $xml = new XMLHandler(Armory::GetLocale());
 if(!defined('RSS_FEED')) {

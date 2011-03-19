@@ -25,6 +25,8 @@ You can find textures archive on filekeeper.org:
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Direct link:
 http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
+Mirror link (user's server, can't guarantee anything):
+http://files.alein.org/wow/armory/
 
 -----------------------
 
@@ -52,3 +54,5 @@ http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
 Прямая ссылка:
 http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
+Зеркало (пользовательский сервер, гарантий нет):
+http://files.alein.org/wow/armory/

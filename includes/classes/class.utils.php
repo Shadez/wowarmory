@@ -1393,21 +1393,52 @@ Class Utils {
      * @category Utils class
      * @access   public
      * @param    bool $feed = false
+     * @param    int $itemId = 0
      * @return   array
      **/
-    public function GetArmoryNews($feed = false) {
-        $news = Armory::$aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `ARMORYDBPREFIX_news` WHERE `display`=1 ORDER BY `date` DESC", Armory::GetLocale(), Armory::GetLocale());
+    public function GetArmoryNews($feed = false, $itemId = 0, $empty = false) {
+        if(Armory::$armoryconfig['useNews'] == false && !defined('ADMIN_PAGE')) {
+            return false;
+        }
+        if($empty) {
+            return array(
+                'id' => Armory::$aDB->selectCell("SELECT MAX(`id`)+1 FROM `ARMORYDBPREFIX_news`"),
+                'date' => time(),
+                'title_de_de' => null,
+                'title_en_gb' => null,
+                'title_es_es' => null,
+                'title_fr_fr' => null,
+                'title_ru_ru' => null,
+                'text_de_de' => null,
+                'text_en_gb' => null,
+                'text_es_es' => null,
+                'text_fr_fr' => null,
+                'text_ru_ru' => null,
+                'display' => 1
+            );
+        }
+        if($itemId > 0) {
+            $newsitem = Armory::$aDB->selectRow("SELECT * FROM `ARMORYDBPREFIX_news` WHERE `id` = %d", $itemId);
+            $locales = array('de_de', 'en_gb', 'es_es', 'fr_fr', 'ru_ru');
+            foreach($locales as $loc) {
+                $newsitem['title_' . $loc] = stripcslashes($newsitem['title_' . $loc]);
+                $newsitem['text_' . $loc] = stripcslashes($newsitem['text_' . $loc]);
+            }
+            return $newsitem;
+        }
+        $news = Armory::$aDB->select("SELECT `id`, `date`, `title_en_gb` AS `titleOriginal`, `title_%s` AS `titleLoc`, `text_en_gb` AS `textOriginal`, `text_%s` AS `textLoc` FROM `ARMORYDBPREFIX_news`%s ORDER BY `date` DESC", Armory::GetLocale(), Armory::GetLocale(), !defined('ADMIN_PAGE') ? ' WHERE `display`=1' : null);
         if(!$news) {
             return false;
         }
         $allNews = array();
         $i = 0;
         foreach($news as $new) {
-            $allNews[$i] = array();
-            if($feed == true) {
-                $allNews[$i]['date'] = date('d m Y', $new['date']);
-            }
-            else {
+            $allNews[$i] = array(
+                'id' => $new['id'],
+                'date' => date('d m Y', $new['date'])
+            );
+            $allNews[$i]['id'] = $new['id'];
+            if(!$feed) {
                 $allNews[$i]['posted'] = date('Y-m-d\TH:i:s\Z', $new['date']);
             }
             if(!isset($new['titleLoc']) || empty($new['titleLoc'])) {
@@ -1429,6 +1460,48 @@ Class Utils {
             return $allNews;
         }
         return false;
+    }
+    
+    public function AddNewsItem($newsItem, $update = false) {
+        if(!is_array($newsItem)) {
+            Armory::Log()->writeError('%s : $newsItem must be an array (%s given.)!', __METHOD__, gettype($newsItem));
+            return 'error_array';
+        }
+        if($update) {
+            $sql_query = "UPDATE `ARMORYDBPREFIX_news` SET `date` = %d, 
+            `title_de_de` = '%s', `title_en_gb` = '%s', `title_es_es` = '%s', `title_fr_fr` = '%s', `title_ru_ru` = '%s', 
+            `text_de_de` = '%s', `text_en_gb` = '%s', `text_es_es` = '%s', `text_fr_fr` = '%s', `text_ru_ru` = '%s', 
+            `display` = %d
+            WHERE `id` = %d";
+            $id = $newsItem['id'];
+        }
+        else {
+            $sql_query = "INSERT INTO `ARMORYDBPREFIX_news`
+            (`date`, `title_de_de`, `title_en_gb`, `title_es_es`, `title_fr_fr`, `title_ru_ru`,
+            `text_de_de`, `text_en_gb`, `text_es_es`, `text_fr_fr`, `text_ru_ru`, `id`)
+            VALUES (%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)";
+            $id = Armory::$aDB->selectCell("SELECT MAX(`id`)+1 FROM `ARMORYDBPREFIX_news`");
+        }
+        $newsItem['date'] = strtotime($newsItem['date']);
+        if(!Armory::$aDB->query($sql_query, 
+            $newsItem['date'],
+            $newsItem['title_de_de'],
+            $newsItem['title_en_gb'],
+            $newsItem['title_es_es'],
+            $newsItem['title_fr_fr'],
+            $newsItem['title_ru_ru'],
+            $newsItem['text_de_de'],
+            $newsItem['text_en_gb'],
+            $newsItem['text_es_es'],
+            $newsItem['text_fr_fr'],
+            $newsItem['text_ru_ru'],
+            isset($newsItem['display']) ? 1 : 0,
+            $id
+        )) {
+            return 'error_insert';
+        }
+        header('Location: ?action=news&subaction=added');
+        exit;
     }
     
     /**
@@ -1866,6 +1939,18 @@ Class Utils {
             return true;
         }
         return false;
+    }
+    
+    public function UpdateVisitorsCount() {
+        if(!isset($_COOKIE['armory_visited'])) {
+            if(!Armory::$aDB->selectCell("SELECT 1 FROM `ARMORYDBPREFIX_visitors` WHERE `date` = %d", strtotime('TODAY'))) {
+                Armory::$aDB->query("INSERT INTO `ARMORYDBPREFIX_visitors` SET `date` = %d, `count` = 1", strtotime('TODAY'));
+            }
+            else {
+                Armory::$aDB->query("UPDATE `ARMORYDBPREFIX_visitors` SET `count`= `count` + 1 WHERE `date` = %d", strtotime('TODAY'));
+            }
+            setcookie('armory_visited', 1, strtotime('TOMORROW'));
+        }
     }
 }
 ?>
