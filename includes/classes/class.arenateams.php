@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 485
+ * @revision 493
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -37,6 +37,11 @@ Class Arenateams {
     public $players;
     public $guid;
     private $gameid = false;
+    private $m_server;
+    
+    public function Arenateams() {
+        $this->m_server = Armory::$currentRealmInfo['type'];
+    }
     
     /**
      * Builds team info
@@ -50,10 +55,20 @@ Class Arenateams {
             return false;
         }
         if($this->teamname != null) {
-            $arenaInfo = Armory::$cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type`, `name` FROM `arena_team` WHERE `name`='%s' LIMIT 1", $this->teamname);
+            if($this->m_server == SERVER_MANGOS) {
+                $arenaInfo = Armory::$cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type`, `name` FROM `arena_team` WHERE `name` = '%s' LIMIT 1", $this->teamname);
+            }
+            else {
+                $arenaInfo = Armory::$cDB->selectRow("SELECT `arenaTeamId` AS `arenateamid`, `captainGuid` AS `captainguid`, `type`, `name` FROM `arena_team` WHERE `name` = '%s' LIMIT 1", $this->teamname);
+            }
         }
         elseif($this->arenateamid != 0) {
-            $arenaInfo = Armory::$cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type`, `name` FROM `arena_team` WHERE `arenateamid`='%d' LIMIT 1", $this->arenateamid);
+            if ($this->m_server == SERVER_MANGOS) {
+                $arenaInfo = Armory::$cDB->selectRow("SELECT `arenateamid`, `captainguid`, `type`, `name` FROM `arena_team` WHERE `arenateamid` = %d LIMIT 1", $this->arenateamid);
+            }
+            else {
+                $arenaInfo = Armory::$cDB->selectRow("SELECT `arenaTeamId` AS `arenateamid`, `captainGuid` AS `captainguid`, `type`, `name` FROM `arena_team` WHERE `arenaTeamId` = %d LIMIT 1", $this->arenateamid);
+            }
         }
         if(!$arenaInfo || !isset($arenaInfo)) {
             Armory::Log()->writeError('%s : unable to find arenateam %s (id: %d)!', __METHOD__, $this->teamname, $this->arenateamid);
@@ -80,25 +95,33 @@ Class Arenateams {
             return false;
         }
         $arenateaminfo = array();
-        switch(Armory::$currentRealmInfo['type']) {
+        switch($this->m_server) {
             case SERVER_MANGOS:
-                $sql = "
-                `games_week`  AS `gamesPlayed`,
-                `wins_week`   AS `gamesWon`,
-                `rank`   AS `ranking`,
+                $arenateaminfo['data'] = Armory::$cDB->selectRow("
+                SELECT
+                `rating`,
+                `games_week`   AS `gamesPlayed`,
+                `wins_week`    AS `gamesWon`,
+                `rank`         AS `ranking`,
                 `games_season` AS `seasonGamesPlayed`,
-                `wins_season`  AS `seasonGamesWon`";
+                `wins_season`  AS `seasonGamesWon`
+                 FROM `arena_team_stats`
+                 WHERE `arenateamid`=%d", $this->arenateamid);
                 break;
             case SERVER_TRINITY:
-                $sql = "
-                `games`  AS `gamesPlayed`,
-                `wins`   AS `gamesWon`,
-                `rank`   AS `ranking`,
-                `played` AS `seasonGamesPlayed`,
-                `wins2`  AS `seasonGamesWon`";
+                $arenateaminfo['data'] = Armory::$cDB->selectRow("
+                SELECT
+                `rating`,
+                `weekGames`   AS `gamesPlayed`,
+                `weekWeens`   AS `gamesWon`,
+                `rank`        AS `ranking`,
+                `seasonGames` AS `seasonGamesPlayed`,
+                `seasonWins`  AS `seasonGamesWon`
+                 FROM `arena_team`
+                 WHERE `arenateamid`=%d", $this->arenateamid);
+                $sql = "";
                 break;
         }
-        $arenateaminfo['data'] = Armory::$cDB->selectRow("SELECT `rating`, %s FROM `arena_team_stats` WHERE `arenateamid`=%d", $sql, $this->arenateamid);
         if(!$arenateaminfo['data']) {
             Armory::Log()->writeError('%s : unable to get data from DB for arenateam %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
             return false;
@@ -177,7 +200,7 @@ Class Arenateams {
      * @return   bool
      **/
     public function GetTeamList() {
-        if(Armory::$currentRealmInfo['type'] == SERVER_MANGOS) {
+        if($this->m_server == SERVER_MANGOS) {
             $this->players = Armory::$cDB->select("
             SELECT
             `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
@@ -192,7 +215,7 @@ Class Arenateams {
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
             WHERE `arena_team_member`.`arenateamid`=%d", $this->arenateamid);
         }
-        elseif(Armory::$currentRealmInfo['type'] == SERVER_TRINITY) {
+        elseif($this->m_server == SERVER_TRINITY) {
             switch($this->teamtype) {
                 case 2:
                 default:
@@ -207,9 +230,9 @@ Class Arenateams {
             }
             $this->players = Armory::$cDB->select("
             SELECT
-            `arena_team_member`.`played_season` AS `seasonGamesPlayed`,
-            `arena_team_member`.`wons_season` AS `seasonGamesWon`,
-            `character_arena_stats`.`personal_rating` AS `contribution`,
+            `arena_team_member`.`seasonGames` AS `seasonGamesPlayed`,
+            `arena_team_member`.`seasonWins` AS `seasonGamesWon`,
+            `character_arena_stats`.`personalRating` AS `contribution`,
             `characters`.`guid`,
             `characters`.`name`,
             `characters`.`race` AS `raceId`,
@@ -218,8 +241,8 @@ Class Arenateams {
             FROM `arena_team_member` AS `arena_team_member`
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
             LEFT JOIN `character_arena_stats` AS `character_arena_stats` ON `character_arena_stats`.`guid`=`arena_team_member`.`guid`
-            WHERE `arena_team_member`.`arenateamid`=%d
-            AND `character_arena_stats`.`slot`=%d", $this->arenateamid, $slot);
+            WHERE `arena_team_member`.`arenateamid` = %d
+            AND `character_arena_stats`.`slot` = %d", $this->arenateamid, $slot);
         }
         if(!$this->players) {
             Armory::Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
@@ -254,7 +277,7 @@ Class Arenateams {
             foreach(Armory::$realmData as $realm_info) {
                 $db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
                 $current_count = $db->selectCell("SELECT COUNT(`arena_team`.`arenateamid`) FROM `arena_team` AS `arena_team` LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid` = `arena_team`.`arenateamid` WHERE `arena_team`.`type` = %d AND `arena_team_stats`.`rank` > 0", $type);
-                $summary = $current_count+$summary;
+                $summary += $current_count;
             }
             return $summary;
         }
@@ -288,16 +311,16 @@ Class Arenateams {
                     case SERVER_TRINITY:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
-                        `arena_team`.`arenateamid`,
+                        `arena_team`.`arenaTeamId` AS `arenateamid`,
                         `arena_team`.`name`,
                         `arena_team_stats`.`rating`,
-                        `arena_team_stats`.`games`  AS `gamesPlayed`,
-                        `arena_team_stats`.`wins`   AS `gamesWon`,
-                        `arena_team_stats`.`rank`   AS `ranking`,
-                        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
-                        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                        `arena_team_stats`.`weekGames`   AS `gamesPlayed`,
+                        `arena_team_stats`.`weekWins`    AS `gamesWon`,
+                        `arena_team_stats`.`rank`        AS `ranking`,
+                        `arena_team_stats`.`seasonGames` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`seasonWins`  AS `seasonGamesWon`,
                         `characters`.`race`,
-                        `arena_team_stats`.`played`-`arena_team_stats`.`wins2` AS `lose`
+                        `arena_team_stats`.`seasonGames`-`arena_team_stats`.`seasonWins` AS `lose`
                         FROM `arena_team` AS `arena_team`
                         LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
@@ -322,34 +345,30 @@ Class Arenateams {
                         `arena_team_stats`.`wins_season`  AS `seasonGamesWon`,
                         `characters`.`race`
                         FROM `arena_team` AS `arena_team`
-                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenaTeamId`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainGuid`
                         WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
                         ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
                         break;
                     case SERVER_TRINITY:
                         $realmArenaTeamInfo = $db->select("
                         SELECT
-                        `arena_team`.`arenateamid`,
+                        `arena_team`.`arenaTeamId` AS `arenateamid`,
                         `arena_team`.`name`,
                         `arena_team_stats`.`rating`,
-                        `arena_team_stats`.`games`  AS `gamesPlayed`,
-                        `arena_team_stats`.`wins`   AS `gamesWon`,
-                        `arena_team_stats`.`rank`   AS `ranking`,
-                        `arena_team_stats`.`played` AS `seasonGamesPlayed`,
-                        `arena_team_stats`.`wins2`  AS `seasonGamesWon`,
+                        `arena_team_stats`.`weekGames`   AS `gamesPlayed`,
+                        `arena_team_stats`.`weekWins`    AS `gamesWon`,
+                        `arena_team_stats`.`rank`        AS `ranking`,
+                        `arena_team_stats`.`seasonGames` AS `seasonGamesPlayed`,
+                        `arena_team_stats`.`seasonWins`  AS `seasonGamesWon`,
                         `characters`.`race`
                         FROM `arena_team` AS `arena_team`
-                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
-                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
+                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenaTeamId`
+                        LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainGuid`
                         WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
                         ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
                         break;
                 }
-            }
-            if(!$realmArenaTeamInfo || !is_array($realmArenaTeamInfo)) {
-                Armory::Log()->writeLog('%s : loop finished, no arena teams found (order: %s, type: %d, page: %d, sort: %s, db_name: %s).', __METHOD__, $order, $type, $page, $sort, $realm_info['name_characters']);
-                continue;
             }
             foreach($realmArenaTeamInfo as $team) {
                 $result_areanteams[$i]['data'] = $team;
@@ -371,7 +390,6 @@ Class Arenateams {
             }
         }
         if(!isset($result_areanteams[0]['data'])) {
-            Armory::Log()->writeLog('%s : unable to find any arena teams', __METHOD__);
             return false;
         }
         return $result_areanteams;
@@ -575,7 +593,7 @@ Class Arenateams {
      **/
     public function BuildGameChart() {
         if(!$this->arenateamid) {
-            Armory::Log()->writeError('%s : arenateamid not provided', __METHOD__);
+            Armory::Log()->writeError('%s : arenateamid was not provided', __METHOD__);
             return false;
         }
         $game_ids = Armory::$cDB->select("SELECT DISTINCT `gameid` FROM `armory_game_chart` WHERE `teamid`=%d", $this->arenateamid);
