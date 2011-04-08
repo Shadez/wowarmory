@@ -1,129 +1,206 @@
 diff --git a/src/game/AchievementMgr.cpp b/src/game/AchievementMgr.cpp
-index 7b4cdfa..6149d50 100644
+index 929688e..4c1e0cc 100644
 --- a/src/game/AchievementMgr.cpp
 +++ b/src/game/AchievementMgr.cpp
-@@ -2066,6 +2066,9 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
-     if(achievement->flags & ACHIEVEMENT_FLAG_COUNTER || m_completedAchievements.find(achievement->ID)!=m_completedAchievements.end())
+@@ -2064,6 +2064,7 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
          return;
  
-+    /** World of Warcraft Armory **/
-+    GetPlayer()->WriteWowArmoryDatabaseLog(1, achievement->ID);
-+    /** World of Warcraft Armory **/
      SendAchievementEarned(achievement);
++    GetPlayer()->CreateWowarmoryFeed(1, achievement->ID, 0, 0);
      CompletedAchievementData& ca =  m_completedAchievements[achievement->ID];
      ca.date = time(NULL);
+     ca.changed = true;
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index 77faf13..b07382e 100644
+index 5eb22a2..8083944 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
-@@ -1032,6 +1032,15 @@ Item* Item::CreateItem( uint32 item, uint32 count, Player const* player )
-         Item *pItem = NewItemOrBag( pProto );
-         if( pItem->Create(sObjectMgr.GenerateLowGuid(HIGHGUID_ITEM), item, player) )
-         {
-+            /** World of Warcraft Armory **/
-+            if (pProto->Quality > 2 && pProto->Flags != 2048 && (pProto->Class == ITEM_CLASS_WEAPON || pProto->Class == ITEM_CLASS_ARMOR) && player)
-+            {
-+                std::ostringstream ss;
-+                sLog.outDetail("WoWArmory: write feed log (guid: %u, type: 2, data: %u)", player->GetGUIDLow(), item);
-+                ss << "REPLACE INTO character_feed_log (guid, type, data, date, counter, item_guid) VALUES (" << player->GetGUIDLow() << ", 2, " << item << ", UNIX_TIMESTAMP(NOW()), 1," << pItem->GetGUIDLow()  << ")";
-+                CharacterDatabase.PExecute( ss.str().c_str() );
-+            }
-+            /** World of Warcraft Armory **/
-             pItem->SetCount( count );
-             return pItem;
-         }
+@@ -258,7 +258,6 @@ bool Item::Create( uint32 guidlow, uint32 itemid, Player const* owner)
+     ItemPrototype const *itemProto = ObjectMgr::GetItemPrototype(itemid);
+     if(!itemProto)
+         return false;
+-
+     SetUInt32Value(ITEM_FIELD_STACK_COUNT, 1);
+     SetUInt32Value(ITEM_FIELD_MAXDURABILITY, itemProto->MaxDurability);
+     SetUInt32Value(ITEM_FIELD_DURABILITY, itemProto->MaxDurability);
+@@ -267,7 +266,12 @@ bool Item::Create( uint32 guidlow, uint32 itemid, Player const* owner)
+         SetSpellCharges(i,itemProto->Spells[i].SpellCharges);
+ 
+     SetUInt32Value(ITEM_FIELD_DURATION, itemProto->Duration);
+-
++    if (itemProto->Quality > 2 && itemProto->Flags != 2048 && (itemProto->Class == ITEM_CLASS_WEAPON || itemProto->Class == ITEM_CLASS_ARMOR))
++    {
++        if (!GetOwner())
++            return true;
++        GetOwner()->CreateWowarmoryFeed(2, itemid, guidlow, itemProto->Quality);
++    }
+     return true;
+ }
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 39c9432..8e73bcd 100644
+index 125c57d..416639d 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -17005,6 +17005,17 @@ void Player::SaveToDB()
+@@ -4319,13 +4319,15 @@ void Player::DeleteFromDB(ObjectGuid playerguid, uint32 accountId, bool updateRe
+                 } while (resultFriend->NextRow());
+                 delete resultFriend;
+             }
+-
++            
++            CharacterDatabase.PExecute("DELETE FROM armory_character_stats WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM characters WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_account_data WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_declinedname WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_action WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_aura WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_battleground_data WHERE guid = '%u'", lowguid);
++            CharacterDatabase.PExecute("DELETE FROM character_feed_log WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_gifts WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_glyphs WHERE guid = '%u'", lowguid);
+             CharacterDatabase.PExecute("DELETE FROM character_homebind WHERE guid = '%u'", lowguid);
+@@ -15297,6 +15299,8 @@ bool Player::LoadFromDB(ObjectGuid guid, SqlQueryHolder *holder )
+             uint32(AT_LOGIN_RENAME), guid.GetCounter());
+         return false;
+     }
++    // Cleanup old Wowarmory feeds
++    InitWowarmoryFeeds();
  
-     DEBUG_FILTER_LOG(LOG_FILTER_PLAYER_STATS, "The value of player %s at save: ", m_name.c_str());
-     outDebugStatsValues();
+     // overwrite possible wrong/corrupted guid
+     SetGuidValue(OBJECT_FIELD_GUID, guid);
+@@ -17260,6 +17264,30 @@ void Player::SaveToDB()
+     _SaveTalents();
+ 
+     CharacterDatabase.CommitTransaction();
 +    
-+    /** World of Warcraft Armory **/
-+    std::ostringstream ps;
-+    ps << "REPLACE INTO armory_character_stats (guid,data) VALUES ('" << GetGUIDLow() << "', '";
-+    for(uint16 i = 0; i < m_valuesCount; ++i )
-+    {
-+        ps << GetUInt32Value(i) << " ";
++    /* World of Warcraft Armory */
++    // Place this code AFTER CharacterDatabase.CommitTransaction(); to avoid some character saving errors.
++    // Wowarmory feeds
++    std::ostringstream sWowarmory;
++    for (WowarmoryFeeds::iterator iter = m_wowarmory_feeds.begin(); iter < m_wowarmory_feeds.end(); ++iter) {
++        sWowarmory << "INSERT IGNORE INTO character_feed_log (guid,type,data,date,counter,difficulty,item_guid,item_quality) VALUES ";
++        //                      guid                    type                        data                    date                            counter                   difficulty                        item_guid                      item_quality
++        sWowarmory << "(" << (*iter).guid << ", " << (*iter).type << ", " << (*iter).data << ", " << uint64((*iter).date) << ", " << (*iter).counter << ", " << uint32((*iter).difficulty) << ", " << (*iter).item_guid << ", " << (*iter).item_quality <<  ");";
++        CharacterDatabase.PExecute(sWowarmory.str().c_str());
++        sWowarmory.str("");
 +    }
-+    ps << "')";
-+    CharacterDatabase.Execute( ps.str().c_str() );
-+    /** World of Warcraft Armory **/
++    // Clear old saved feeds from storage - they are not required for server core.
++    InitWowarmoryFeeds();
++    // Character stats
++    std::ostringstream ps;
++    time_t t = time(NULL);
++    CharacterDatabase.PExecute("DELETE FROM armory_character_stats WHERE guid = %u", GetGUIDLow());
++    ps << "INSERT INTO armory_character_stats (guid, data, save_date) VALUES (" << GetGUIDLow() << ", '";
++    for (uint16 i = 0; i < m_valuesCount; ++i)
++        ps << GetUInt32Value(i) << " ";
++    ps << "', " << uint64(t) << ");";
++    CharacterDatabase.PExecute(ps.str().c_str());
++    /* World of Warcraft Armory */
  
-     CharacterDatabase.BeginTransaction();
- 
-@@ -22600,3 +22611,40 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
+     // check if stats should only be saved on logout
+     // save stats can be out of transaction
+@@ -22849,3 +22877,43 @@ void Player::SetRestType( RestType n_r_type, uint32 areaTriggerId /*= 0*/)
              SetFFAPvP(false);
      }
  }
 +
-+/** World of Warcraft Armory **/
-+void Player::WriteWowArmoryDatabaseLog(uint32 type, uint32 data)
-+{
++void Player::InitWowarmoryFeeds() {
++    // Clear feeds
++    m_wowarmory_feeds.clear();
++}
++
++void Player::CreateWowarmoryFeed(uint32 type, uint32 data, uint32 item_guid, uint32 item_quality) {
 +    /*
-+        Log types:
-+        1 - achievement feed
-+        2 - loot feed
-+        3 - boss kill feed
++        1 - TYPE_ACHIEVEMENT_FEED
++        2 - TYPE_ITEM_FEED
++        3 - TYPE_BOSS_FEED
 +    */
-+    uint32 pGuid = GetGUIDLow();
-+    sLog.outDetail("WoWArmory: write feed log (guid: %u, type: %u, data: %u", pGuid, type, data);
-+    if (type <= 0 || type > 3)	// Unknown type
++    sLog.outDebug("[Wowarmory]: entering Player::CreateWowarmoryFeed(%d, %u, %u, %u)", type, data, item_guid, item_quality); // For debugging
++    if (GetGUIDLow() == 0)
 +    {
-+        sLog.outError("WoWArmory: unknown type id: %d, ignore.", type);
++        sLog.outError("[Wowarmory]: player is not initialized, unable to create log entry!");
 +        return;
 +    }
-+    if (type == 3)	// Do not write same bosses many times - just update counter.
++    if (type <= 0 || type > 3)
 +    {
-+        uint8 Difficulty = GetMap()->GetDifficulty();
-+        QueryResult *result = CharacterDatabase.PQuery("SELECT counter FROM character_feed_log WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
-+        if (result)
-+        {
-+            CharacterDatabase.PExecute("UPDATE character_feed_log SET counter=counter+1, date=UNIX_TIMESTAMP(NOW()) WHERE guid='%u' AND type=3 AND data='%u' AND difficulty='%u' LIMIT 1", pGuid, data, Difficulty);
-+        }
-+        else
-+        {
-+            CharacterDatabase.PExecute("INSERT INTO character_feed_log (guid, type, data, date, counter, difficulty) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1, '%u')", pGuid, type, data, Difficulty);
-+        }
-+        delete result;
++        sLog.outError("[Wowarmory]: unknown feed type: %d, ignore.", type);
++        return;
 +    }
-+    else
++    if (data == 0)
 +    {
-+        CharacterDatabase.PExecute("REPLACE INTO character_feed_log (guid, type, data, date, counter) VALUES('%u', '%d', '%u', UNIX_TIMESTAMP(NOW()), 1)", pGuid, type, data);
++        sLog.outError("[Wowarmory]: empty data (GUID: %u), ignore.", GetGUIDLow());
++        return;
 +    }
++    WowarmoryFeedEntry feed;
++    feed.guid = GetGUIDLow();
++    feed.type = type;
++    feed.data = data;
++    feed.difficulty = type == 3 ? GetMap()->GetDifficulty() : 0;
++    feed.item_guid  = item_guid;
++    feed.item_quality = item_quality;
++    feed.counter = 0;
++    feed.date = time(NULL);
++    sLog.outDebug("[Wowarmory]: create wowarmory feed (GUID: %u, type: %d, data: %u).", feed.guid, feed.type, feed.data);
++    m_wowarmory_feeds.push_back(feed);
 +}
-+/** World of Warcraft Armory **/
-\ No newline at end of file
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 50136dd..14a5454 100644
+index c597348..ec37b34 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -2277,6 +2277,10 @@ class MANGOS_DLL_SPEC Player : public Unit
-         bool TeleportToHomebind(uint32 options = 0) { return TeleportTo(m_homebindMapId, m_homebindX, m_homebindY, m_homebindZ, GetOrientation(), options); }
+@@ -1088,6 +1088,21 @@ class TradeData
+         ObjectGuid m_items[TRADE_SLOT_COUNT];               // traded itmes from m_player side including non-traded slot
+ };
  
-         Object* GetObjectByTypeMask(ObjectGuid guid, TypeMask typemask);
++/* World of Warcraft Armory */
++struct WowarmoryFeedEntry {
++    uint32 guid;         // Player GUID
++    time_t date;         // Log date
++    uint32 type;         // TYPE_ACHIEVEMENT_FEED, TYPE_ITEM_FEED, TYPE_BOSS_FEED
++    uint32 data;         // TYPE_ITEM_FEED: item_entry, TYPE_BOSS_FEED: creature_entry
++    uint32 item_guid;    // Can be 0
++    uint32 item_quality; // Can be 0
++    uint8  difficulty;   // Can be 0
++    int    counter;      // Can be 0
++};
++
++typedef std::vector<WowarmoryFeedEntry> WowarmoryFeeds;
++/* World of Warcraft Armory */
++
+ class MANGOS_DLL_SPEC Player : public Unit
+ {
+     friend class WorldSession;
+@@ -2314,6 +2329,12 @@ class MANGOS_DLL_SPEC Player : public Unit
+         void SendCinematicStart(uint32 CinematicSequenceId);
+         void SendMovieStart(uint32 MovieId);
+ 
++        /* World of Warcraft Armory */
++        void CreateWowarmoryFeed(uint32 type, uint32 data, uint32 item_guid, uint32 item_quality);
++        void InitWowarmoryFeeds();
++        /* World of Warcraft Armory */
++
++
+         /*********************************************************/
+         /***                 INSTANCE SYSTEM                   ***/
+         /*********************************************************/
+@@ -2702,6 +2723,9 @@ class MANGOS_DLL_SPEC Player : public Unit
+         uint32 m_timeSyncTimer;
+         uint32 m_timeSyncClient;
+         uint32 m_timeSyncServer;
 +        
-+        /** World of Warcraft Armory **/
-+        void WriteWowArmoryDatabaseLog(uint32 type, uint32 data);
-+        /** World of Warcraft Armory **/
++        // World of Warcraft Armory Feeds
++        WowarmoryFeeds m_wowarmory_feeds;
+ };
  
-         // currently visible objects at player client
-         ObjectGuidSet m_clientGUIDs;
+ void AddItemsSetItem(Player*player,Item *item);
 diff --git a/src/game/Unit.cpp b/src/game/Unit.cpp
-index 19daa47..e382281 100644
+index e45c38e..74416f7 100644
 --- a/src/game/Unit.cpp
 +++ b/src/game/Unit.cpp
-@@ -876,7 +876,12 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+@@ -876,8 +876,10 @@ uint32 Unit::DealDamage(Unit *pVictim, uint32 damage, CleanDamage const* cleanDa
+                 {
                      if (m->IsRaidOrHeroicDungeon())
                      {
-                         if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
-+                        {
-+                            /** World of Warcraft Armory **/
+-                        if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND)
++                        if(cVictim->GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INSTANCE_BIND) {
                              ((DungeonMap *)m)->PermBindAllPlayers(creditedPlayer);
-+                            creditedPlayer->WriteWowArmoryDatabaseLog(3, cVictim->GetCreatureInfo()->Entry); // Difficulty will be defined in Player::WriteWowArmoryDatabaseLog();
-+                            /** World of Warcraft Armory **/
++                            creditedPlayer->CreateWowarmoryFeed(3, cVictim->GetCreatureInfo()->Entry, 0, 0);
 +                        }
                      }
                      else
