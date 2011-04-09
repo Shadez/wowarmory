@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 495
+ * @revision 496
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -240,8 +240,7 @@ Class Arenateams {
             `characters`.`gender` AS `genderId`
             FROM `arena_team_member` AS `arena_team_member`
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
-            WHERE `arena_team_member`.`arenateamid` = %d
-            AND `character_arena_stats`.`slot` = %d", $this->arenateamid, $slot);
+            WHERE `arena_team_member`.`arenateamid` = %d", $this->arenateamid);
         }
         if(!$this->players) {
             Armory::Log()->writeLog('%s : unable to get player list for arena team %d (%s)', __METHOD__, $this->arenateamid, $this->teamname);
