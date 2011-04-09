@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 493
+ * @revision 495
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -232,7 +232,7 @@ Class Arenateams {
             SELECT
             `arena_team_member`.`seasonGames` AS `seasonGamesPlayed`,
             `arena_team_member`.`seasonWins` AS `seasonGamesWon`,
-            `character_arena_stats`.`personalRating` AS `contribution`,
+            `arena_team_member`.`personalRating` AS `contribution`,
             `characters`.`guid`,
             `characters`.`name`,
             `characters`.`race` AS `raceId`,
@@ -240,7 +240,6 @@ Class Arenateams {
             `characters`.`gender` AS `genderId`
             FROM `arena_team_member` AS `arena_team_member`
             LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team_member`.`guid`
-            LEFT JOIN `character_arena_stats` AS `character_arena_stats` ON `character_arena_stats`.`guid`=`arena_team_member`.`guid`
             WHERE `arena_team_member`.`arenateamid` = %d
             AND `character_arena_stats`.`slot` = %d", $this->arenateamid, $slot);
         }
