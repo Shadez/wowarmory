@@ -35,6 +35,7 @@ index 5eb22a2..8083944 100644
 +    }
      return true;
  }
+
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
 index 125c57d..416639d 100644
 --- a/src/game/Player.cpp
