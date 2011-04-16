@@ -1,4 +1,21 @@
 = World of Warcraft Armory =
+= Release 5.00 (16 April 2011) =
+
+Implemented features:
+ - Allow to avoid banned characters displaying
+ - Raid achievements grouping (Realm firsts)
+ - Allow to browse guilds and characters with diffirent name spellings (Name and NAME for example).
+Server-side features:
+ - Character data storage (SQL queries optimization)
+ - Character achievements storage (SQL queries optimization)
+ - Simple administrator panel
+ - Core patches 2.0: all feed log entries are writing to DB only at character saving (std::vector used as feed entries storage)
+Improved:
+ - Decreased amount of SQL queries to characters and Armory databases.
+ - Arena teams code changes due to TrinityCore's DB refactoring.
+ - Character achievements
+ 
+= World of Warcraft Armory =
 = Release 4.50 (10 January 2011) =
 
 Implemented features:
