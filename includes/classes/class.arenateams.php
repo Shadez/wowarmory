@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 498
+ * @revision 499
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -311,18 +311,17 @@ Class Arenateams {
                         SELECT
                         `arena_team`.`arenaTeamId` AS `arenateamid`,
                         `arena_team`.`name`,
-                        `arena_team_stats`.`rating`,
-                        `arena_team_stats`.`weekGames`   AS `gamesPlayed`,
-                        `arena_team_stats`.`weekWins`    AS `gamesWon`,
-                        `arena_team_stats`.`rank`        AS `ranking`,
-                        `arena_team_stats`.`seasonGames` AS `seasonGamesPlayed`,
-                        `arena_team_stats`.`seasonWins`  AS `seasonGamesWon`,
+                        `arena_team`.`rating`,
+                        `arena_team`.`weekGames`   AS `gamesPlayed`,
+                        `arena_team`.`weekWins`    AS `gamesWon`,
+                        `arena_team`.`rank`        AS `ranking`,
+                        `arena_team`.`seasonGames` AS `seasonGamesPlayed`,
+                        `arena_team`.`seasonWins`  AS `seasonGamesWon`,
                         `characters`.`race`,
-                        `arena_team_stats`.`seasonGames`-`arena_team_stats`.`seasonWins` AS `lose`
+                        `arena_team`.`seasonGames`-`arena_team`.`seasonWins` AS `lose`
                         FROM `arena_team` AS `arena_team`
-                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenateamid`
                         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainguid`
-                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        WHERE `arena_team`.`type`=%d AND `arena_team`.`rank` > 0
                         ORDER BY `lose` %s LIMIT %d, 20", $type, $sort, $page);
                         break;
                 }
@@ -353,17 +352,16 @@ Class Arenateams {
                         SELECT
                         `arena_team`.`arenaTeamId` AS `arenateamid`,
                         `arena_team`.`name`,
-                        `arena_team_stats`.`rating`,
-                        `arena_team_stats`.`weekGames`   AS `gamesPlayed`,
-                        `arena_team_stats`.`weekWins`    AS `gamesWon`,
-                        `arena_team_stats`.`rank`        AS `ranking`,
-                        `arena_team_stats`.`seasonGames` AS `seasonGamesPlayed`,
-                        `arena_team_stats`.`seasonWins`  AS `seasonGamesWon`,
+                        `arena_team`.`rating`,
+                        `arena_team`.`weekGames`   AS `gamesPlayed`,
+                        `arena_team`.`weekWins`    AS `gamesWon`,
+                        `arena_team`.`rank`        AS `ranking`,
+                        `arena_team`.`seasonGames` AS `seasonGamesPlayed`,
+                        `arena_team`.`seasonWins`  AS `seasonGamesWon`,
                         `characters`.`race`
                         FROM `arena_team` AS `arena_team`
-                        LEFT JOIN `arena_team_stats` AS `arena_team_stats` ON `arena_team_stats`.`arenateamid`=`arena_team`.`arenaTeamId`
                         LEFT JOIN `characters` AS `characters` ON `characters`.`guid`=`arena_team`.`captainGuid`
-                        WHERE `arena_team`.`type`=%d AND `arena_team_stats`.`rank` > 0
+                        WHERE `arena_team`.`type`=%d AND `arena_team`.`rank` > 0
                         ORDER BY %s %s LIMIT %d, 20", $type, $order, $sort, $page);
                         break;
                 }
