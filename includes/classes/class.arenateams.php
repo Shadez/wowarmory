@@ -3,7 +3,7 @@
 /**
  * @package World of Warcraft Armory
  * @version Release 4.50
- * @revision 496
+ * @revision 498
  * @copyright (c) 2009-2011 Shadez
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -113,7 +113,7 @@ Class Arenateams {
                 SELECT
                 `rating`,
                 `weekGames`   AS `gamesPlayed`,
-                `weekWeens`   AS `gamesWon`,
+                `weekWins`    AS `gamesWon`,
                 `rank`        AS `ranking`,
                 `seasonGames` AS `seasonGamesPlayed`,
                 `seasonWins`  AS `seasonGamesWon`
