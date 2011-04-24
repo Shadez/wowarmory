@@ -34,6 +34,9 @@ Class Admin {
     private static $user_rights = 0;
     private static $user_session = array();
     private static $is_logged_in = false;
+    private static $db = null;
+    private static $db_type = null;
+    private static $db_table = null;
     
     public static function IsLoggedIn() {
         return self::$is_logged_in;
@@ -385,8 +388,7 @@ if(!defined('__ARMORY__')) {
                     `account_access`.`gmlevel`
                     FROM `account`
                     JOIN `account_access` ON `account_access`.`id` = `account`.`id`
-                    WHERE `account_access`.`RealmID` = -1
-                    AND `account`.`username` LIKE '%%%s%%'
+                    WHERE `account`.`username` LIKE '%%%s%%'
                     ORDER BY `account`.`%s` %s
                     LIMIT %d, 20
                     ", $search, $sort_by, $sort_type, $limit);
@@ -404,7 +406,6 @@ if(!defined('__ARMORY__')) {
                     `account_access`.`gmlevel`
                     FROM `account`
                     JOIN `account_access` ON `account_access`.`id` = `account`.`id`
-                    WHERE `account_access`.`RealmID` = -1
                     ORDER BY `account`.`%s` %s
                     LIMIT %d, 20
                     ", $sort_by, $sort_type, $limit);
@@ -457,6 +458,87 @@ if(!defined('__ARMORY__')) {
         }
         Armory::$rDB->query("DELETE FROM `account` WHERE `id` = %d LIMIT 1", $id);
         return true;
+    }
+    
+    public static function GetDB() {
+        return self::$db;
+    }
+    
+    public static function InitDB($realm_id, $db_name, $db_type) {
+        
+        if(!in_array($db_type, array('characters', 'world', 'realmd', 'armory'))) {
+            return false;
+        }
+        if(!isset(Armory::$realmData[$realm_id]) && in_array($db_type, array('characters', 'world'))) {
+            return false;
+        }
+        if((Armory::$realmData[$realm_id]['name_' . $db_type] != $db_name || Armory::$realmData[$realm_id]['id'] != $realm_id) && in_array($db_type, array('characters', 'world'))) {
+            return false;
+        }
+        $realm_info = Armory::$realmData[$realm_id];
+        self::$db_type = $db_type;
+        switch($db_type) {
+            case 'characters':
+                self::$db = new ArmoryDatabaseHandler($realm_info['host_characters'], $realm_info['user_characters'], $realm_info['pass_characters'], $realm_info['name_characters'], $realm_info['charset_characters']);
+                break;
+            case 'world':
+                self::$db = new ArmoryDatabaseHandler($realm_info['host_world'], $realm_info['user_world'], $realm_info['pass_world'], $realm_info['name_world'], $realm_info['charset_world']);
+                break;
+            case 'realmd':
+                self::$db = Armory::$rDB;
+                break;
+            case 'armory':
+                self::$db = Armory::$aDB;
+                break;
+            default:
+                return false;
+                break;
+        }
+        if(!self::$db->TestLink()) {
+            return false;
+        }
+    }
+    
+    public static function GetTablesListFromDB() {
+        if(!self::$db) {
+            Armory::Log()->writeError('%s : DB is not initialized!', __METHOD__);
+            return false;
+        }
+        $tables = self::$db->select("SHOW TABLES");
+        if(!$tables) {
+            return false;
+        }
+        $list = array();
+        foreach($tables as $tmpTable) {
+            if(!is_array($tmpTable)) {
+                return false;
+            }
+            foreach($tmpTable as $tb_name) {
+                $list[] = $tb_name;
+            }
+        }
+        return $list;
+    }
+    
+    public static function LoadTableFromDB($table) {
+        if(!self::$db) {
+            Armory::Log()->writeError('%s : DB is not initialized!', __METHOD__);
+            return false;
+        }
+        self::$db_table = $table;
+        $table_data = self::$db->select("DESCRIBE %s", self::$db_table);
+        if(!$table_data) {
+            return false;
+        }
+        $td = array();
+        $i = 0;
+        foreach($table_data as $tbl) {
+            $td[] = array(
+                'name' => $tbl['Field'],
+                'key' => $tbl['Key'] == 'PRI' ? true : false
+            );
+        }
+        return $td;
     }
 }
 ?>

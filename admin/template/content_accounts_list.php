@@ -15,6 +15,18 @@
         </form>
         <br />
         <div class="portlet-content nopadding">
+        <div class="pagination">
+        <?php
+        $page_count = round(Armory::$rDB->selectCell("SELECT COUNT(*) FROM `account`") / 20)+1;
+        $str = 'action=accounts';
+        echo sprintf('%s%s%s%s',
+            Template::GetPageData('page')     == 1             ? '<span class="active">First page</span>'                                                  : sprintf('<span class="active"><a href="?%s&page=1">First page</a></span>', $str),
+            Template::GetPageData('page') - 1 >= 1             ? sprintf('<a href="?%s&page=%d">Previous page</a>', $str, Template::GetPageData('page')-1) : '<span class="active">Previous page</span>',
+            Template::GetPageData('page') + 1 <= $page_count   ? sprintf('<a href="?%s&page=%d">Next page</a>', $str, Template::GetPageData('page') + 1)   : '<span class="active">Next page</span>',
+            Template::GetPageData('page')     == $page_count   ? '<span class="active">Last page</span>'                                                   : sprintf('<a href="?%s&page=%d">Last page</a>', $str, $page_count)
+        );
+        ?>
+        </div>
         <form action="" method="post">
           <table width="100%" cellpadding="0" cellspacing="0" id="box-table-a" summary="">
             <thead>
@@ -53,25 +65,7 @@
               <tr class="footer">
                 <td colspan="4">&nbsp;</td>
                 <td align="right">&nbsp;</td>
-                <td colspan="3" align="right">
-				<!--  PAGINATION START  -->             
-                    <div class="pagination">
-                    <?php
-                    $page_count = round(Armory::$rDB->selectCell("SELECT COUNT(*) FROM `account`") / 20)+1;
-                    if($page_count < 1) {
-                        $page_count = 1;
-                    }
-                    for($iter = 1; $iter < $page_count; ++$iter) {
-                        if($iter == Template::GetPageData('page')) {
-                            echo sprintf('<span class="active">%d</span>', $iter);
-                        }
-                        else {
-                            echo sprintf('<a href="?action=accounts&page=%d">%d</a>', $iter, $iter);
-                        }
-                    }
-                    ?>
-                    </div>
-                <!--  PAGINATION END  -->       
+                <td colspan="3" align="right">  
                 </td>
               </tr>
             </tbody>

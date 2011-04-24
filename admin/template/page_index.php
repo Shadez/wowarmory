@@ -243,6 +243,21 @@ switch(Template::GetPageData('action')) {
                 break;
         }
         break;
+    case 'database':
+        switch(Template::GetPageData('subaction')) {
+            default:
+                Template::LoadTemplate('content_database');
+                break;
+            case 'open':
+                if(!isset($_GET['table'])) {
+                    Template::LoadTemplate('content_database_opened');
+                }
+                else {
+                    Template::LoadTemplate('content_table_list');
+                }
+                break;
+        }
+        break;
 }
 ?>   
   </div>

@@ -96,7 +96,7 @@ switch(Template::GetPageData('action')) {
                     case 'username':
                     case 'gmlevel':
                         Template::SetPageData('accounts_list', Admin::GetAccountsList(Template::GetPageData('page'), Template::GetPageData('sortby'), Template::GetPageData('sorttype'), $searchAccount));
-                    break;
+                        break;
                 }
                 break;
             case 'edit':
@@ -115,6 +115,24 @@ switch(Template::GetPageData('action')) {
                 Admin::DeleteAccount($accid);
                 header('Location: ?action=accounts');
                 exit;
+                break;
+        }
+        break;
+    case 'database':
+        switch(Template::GetPageData('subaction')) {
+            default:
+                break;
+            case 'open':
+                Template::SetPageData('page', isset($_GET['page']) ? (int) $_GET['page'] : 1);
+                if(isset($_GET['type']) && isset($_GET['name']) && isset($_GET['realm']) && isset(Armory::$realmData[$_GET['realm']]) && Armory::$realmData[$_GET['realm']]['name_' . $_GET['type']] == $_GET['name'] && in_array($_GET['type'], array('characters', 'world', 'realm', 'armory'))) {
+                    Admin::InitDB($_GET['realm'], $_GET['name'], $_GET['type']);
+                    if(!isset($_GET['table'])) {
+                        Template::SetPageData('tables_list', Admin::GetTablesListFromDB());
+                    }
+                    else {
+                        Template::SetPageData('table_data', Admin::LoadTableFromDB($_GET['table']));
+                    }
+                }
                 break;
         }
         break;
