@@ -21,12 +21,8 @@ Directory tree:
 If you have some troubles, report on forum:
 http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 
-You can find textures archive on filekeeper.org:
-http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
-Direct link:
-http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
-Mirror link (user's server, can't guarantee anything):
-http://files.alein.org/wow/armory/
+Direct link to 3D Viewer Models:
+http://www.megaupload.com/?d=FNT1F64V
 
 -----------------------
 
@@ -50,9 +46,5 @@ http://files.alein.org/wow/armory/
 Если у вас возникли какие-либо затруднения, пишите на форум:
 http://getmangos.com/community/topic/12096/world-of-warcraft-armory/
 
-Архив с текстурами можно найти на filekeeper.org:
-http://filekeeper.org/download/browser.php?path=shadez1%2Fwowarmory/
-Прямая ссылка:
-http://filekeeper.org/download/shadez1/wowarmory/3dviewer_textures_448.7z
-Зеркало (пользовательский сервер, гарантий нет):
-http://files.alein.org/wow/armory/
+Прямая ссылка на модели 3D просмотрщика:
+http://www.megaupload.com/?d=FNT1F64V

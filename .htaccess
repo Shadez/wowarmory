@@ -1,0 +1,10 @@
+# UTF8 support
+AddDefaultCharset utf8
+#php_value default_charset UTF-8
+
+RewriteEngine On
+RewriteRule ^(.*).xml $1.php?%{QUERY_STRING}
+RewriteRule character-feed.atom character-feed-atom.php?%{QUERY_STRING}
+RewriteRule ^(.*).html $1.php?%{QUERY_STRING}
+RewriteRule ^(.*).htm $1.php?%{QUERY_STRING}
+Options -Indexes
