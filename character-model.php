@@ -599,7 +599,7 @@ if($tmpid = $characters->GetCharacterEquip('mainhand')) {
          **/
         $model_data_attachment['main_hand_texture'] = array(
             'linkPoint' => 1,
-            'type' => 'none',
+            'type' => 'melee',
             'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
             'skinFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
             'texture' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
@@ -613,41 +613,39 @@ if($tmpid = $characters->GetCharacterEquip('mainhand')) {
 /**
  * Off hand (texture)
  **/
-if($characters->GetClass() == CLASS_PALADIN || $characters->GetClass() == CLASS_WARRIOR || $characters->GetClass() == CLASS_SHAMAN) {
-    if($tmpid = $characters->GetCharacterEquip('offhand')) {
-        $displayId = $items->GetItemInfo($tmpid, 'displayid');
-        $model_data_attachment['off_hand_texture'] = array(
-            'linkPoint' => 0,
-            'type' => 'melee',
-            'modelFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
-            'skinFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
-        );
-        if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/shield/.png') {
-            unset($model_data_attachment['off_hand_texture']);
-            $model_data['use_shield'] = false;
-        }
-        else {
-            $model_data['use_shield'] = true;
-        }
+if($tmpid = $characters->GetCharacterEquip('offhand')) {
+    $InventoryType = $items->GetItemInfo($tmpid, 'InventoryType');
+    $displayId = $items->GetItemInfo($tmpid, 'displayid');
+    if($InventoryType == 14) {
+    	$model_data_attachment['off_hand_texture'] = array(
+	   		'linkPoint' => 0,
+	    	'type' => 'melee',
+	    	'modelFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+	    	'skinFile' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+	    	'texture' => 'item/objectcomponents/shield/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
+    	);
+		if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/shield/.png') {
+		    unset($model_data_attachment['off_hand_texture']);
+		   	$model_data['use_shield'] = false;
+		}
+	    else {
+	    	$model_data['use_shield'] = true;
+	    }
+	    unset($tmpid);
     }
-    unset($tmpid);
-}
-else {
-    if($tmpid = $characters->GetCharacterEquip('offhand')) {
-        $displayId = $items->GetItemInfo($tmpid, 'displayid');
-        $model_data_attachment['off_hand_texture'] = array(
-            'linkPoint' => 1,
-            'type' => 'ranged',
-            'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
-            'skinFile'  => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
-            'texture'   => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
-        );
-        if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
-            unset($model_data_attachment['off_hand_texture']);
-        }
+    else {
+    	$model_data_attachment['off_hand_texture'] = array(
+    			'linkPoint' => 2,
+    			'type' => 'melee',
+    			'modelFile' => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'.m2',
+    			'skinFile'  => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelName_1', $tmpid).'00.skin',   // What does 00 means?
+    			'texture'   => 'item/objectcomponents/weapon/'.$items->GetItemModelData($displayId, 'modelTexture_1', $tmpid).'.png',
+    	);
+    	if($model_data_attachment['off_hand_texture']['texture'] == 'item/objectcomponents/weapon/.png') {
+    		unset($model_data_attachment['off_hand_texture']);
+    	}
+    	unset($tmpid);
     }
-    unset($tmpid);
 }
 $xml->XMLWriter()->startElement('textures');
 $xml->XMLWriter()->startElement('texture');
