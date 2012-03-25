@@ -135,26 +135,6 @@ $xml->XMLWriter()->startElement('model');
 foreach($model_data as $model_key => $model_value) {
     $xml->XMLWriter()->writeAttribute($model_key, $model_value);
 }
-$xml->XMLWriter()->startElement('components');
-$components = array(100, 200, 801, 401, 601, $character_model_data['hair_style'], 901, 302, 1600, 1201, 702, 1001, 1401, 1501, 0, 101, 301, 1101, 502, 1502);
-if($characters->GetGender() == 1) {
-    $components[count($components)+1] = 1302; // Legs type
-}
-else {
-    $components[count($components)+1] = 1301; // Legs type
-}
-if($characters->GetRace() == RACE_BLOODELF) {
-    $components[count($components)+1] = 1702; // Eyes
-}
-if($characters->GetClass() == CLASS_DK) {
-    $components[count($components)+1] = 1703; // Eyes
-}
-foreach($components as $component) {
-    $xml->XMLWriter()->startElement('component');
-    $xml->XMLWriter()->writeAttribute('n', $component);
-    $xml->XMLWriter()->endElement();
-}
-$xml->XMLWriter()->endElement(); //components
 $subtexture_data = array();
 /** MAIN TEXTURES **/
 /*
@@ -647,6 +627,28 @@ if($tmpid = $characters->GetCharacterEquip('offhand')) {
     	unset($tmpid);
     }
 }
+$xml->XMLWriter()->startElement('components');
+$components = array(100, 200, 801, 401, 601, $character_model_data['hair_style'], 901, 302, 1600, 1201, 702, 1001, 1401, 1501, 0, 101, 301, 1101, 1502);
+if(isset($subtexture_data['leg_ll']))
+{
+	$components[count($components)+1] = 1301; // Legs type (with robe)
+	$components[count($components)+1] = 502; // Removes boots texture
+}else {
+	$components[count($components)+1] = 1302; // Legs type (no robe)
+	$components[count($components)+1] = 500; // Adds boots texture
+}
+if($characters->GetRace() == RACE_BLOODELF) {
+    $components[count($components)+1] = 1702; // Eyes
+}
+if($characters->GetClass() == CLASS_DK) {
+    $components[count($components)+1] = 1703; // Eyes
+}
+foreach($components as $component) {
+    $xml->XMLWriter()->startElement('component');
+    $xml->XMLWriter()->writeAttribute('n', $component);
+    $xml->XMLWriter()->endElement();
+}
+$xml->XMLWriter()->endElement(); //components
 $xml->XMLWriter()->startElement('textures');
 $xml->XMLWriter()->startElement('texture');
 $xml->XMLWriter()->writeAttribute('file', sprintf('character/%s/%s/%s%sskin00_%s.png', $character_model_data['race'], $character_model_data['gender'], $character_model_data['race'], $character_model_data['gender'], $character_model_data['skin_style']));
